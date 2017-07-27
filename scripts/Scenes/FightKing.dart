@@ -48,7 +48,9 @@ class FightKing extends Scene {
 		var fighting = this.getGoodGuys();
 		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
+		pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.king]);
+    dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 
@@ -59,11 +61,11 @@ class FightKing extends Scene {
 		}
 	}
 	dynamic content(){
-		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
-		var badPrototyping = findBadPrototyping(nativePlayersInSession);
+		List<Player> nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
+		String badPrototyping = findBadPrototyping(nativePlayersInSession);
 
 		String ret = " It is time for the final opponent, the Black King. ";
-		if(badPrototyping){
+		if(badPrototyping != null){
 			ret += " He is made especially terrifying with the addition of the " + badPrototyping + ". ";
 		}
 

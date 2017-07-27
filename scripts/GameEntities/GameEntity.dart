@@ -139,7 +139,7 @@ class GameEntity implements Comparable{
   //any subclass can choose to do things differently. for now, this is default.
   //so yes, npcs can have ghost attacks.
   //this won't be called if I CAN'T take a turn because i participated in fraymotif
-  void takeTurn(div, Team mySide, List<Team> enemyTeams) {
+  void takeTurn(Element div, Team mySide, List<Team> enemyTeams) {
       if(usedFraymotifThisTurn) return; //already did an attack.
       if(mySide.absconded.contains(this)) return;
       //if still dead, return, can't do anything.
@@ -148,7 +148,7 @@ class GameEntity implements Comparable{
         //whether it works or not, return. you can't revive AND do other stuff.
         return;
       }
-      div.apendHTML(describeBuffs());
+      appendHtml(div, describeBuffs());
       if(checkAbscond(div, mySide, enemyTeams)) return; //nice abscond, bro
 
       //pick a team to target.  if cant find target, return

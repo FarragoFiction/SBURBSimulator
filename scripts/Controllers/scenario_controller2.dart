@@ -345,7 +345,7 @@ void processCombinedSession(){
 
 
 
-void advertisePatreon(div){
+void advertisePatreon(Element div){
 	var player = curSessionGlobalVar.players[0];
 	var playerStart = player.chatHandleShort()+ ": ";
 	String canvasHTML = "<br><a target='_blank' href = 'https:;//www.patreon.com/FarragoFiction'><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas></a>";

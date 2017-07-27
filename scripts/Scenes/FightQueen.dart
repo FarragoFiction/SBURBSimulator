@@ -23,16 +23,16 @@ class FightQueen extends Scene {
 		}
 		return living;
 	}
-	void renderGoodguys(div){
+	void renderGoodguys(Element div){
 		num repeatTime = 1000;
-		var divID = (div.id) + "_final_boss";
-		var ch = canvasHeight;
-		var fightingPlayers = this.getGoodGuys();
+		String divID = (div.id) + "_final_boss";
+		num ch = canvasHeight;
+		List<Player> fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
-		div.append(canvasHTML);
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
+		appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
 		poseAsATeam(canvasDiv, fightingPlayers);
@@ -41,13 +41,15 @@ class FightQueen extends Scene {
 	void renderContent(Element div){
 		if(this.session.queen.getStat("power") < 0) print("rendering fight queen with negative power " +this.session.session_id.toString());
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
-		div.append(this.content());
+    appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
 		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
 		Team pTeam = new Team(this.session, fighting);
+    pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.queen]);
+    dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 
@@ -65,10 +67,10 @@ class FightQueen extends Scene {
 
 	dynamic content(){
 		//print("Queen Strength : " + this.session.queenStrength);
-		var badPrototyping = findBadPrototyping(this.playerList);
+		String badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
-		if(badPrototyping && this.session.queen.crowned != null){
+		if(badPrototyping != null && this.session.queen.crowned != null){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";
 		}else if(this.session.queen.crowned != null){
 			ret += "She may no longer have her RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD, but she is dedicated to her duty and will fight the Players to the bitter end.";

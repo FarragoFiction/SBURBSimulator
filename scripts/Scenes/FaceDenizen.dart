@@ -70,6 +70,7 @@ class FaceDenizen extends Scene{
 		div.append(ret);
 		Team pTeam = new Team(this.session, [p]);
 		Team dTeam = new Team(this.session, [denizenMinion]);
+    dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 		if(denizenMinion.getStat("currentHP") <= 0 || denizenMinion.dead){
@@ -103,6 +104,7 @@ class FaceDenizen extends Scene{
 			div.append(ret);
       Team pTeam = new Team(this.session, [p]);
       Team dTeam = new Team(this.session, [denizen]);
+      dTeam.canAbscond = false;
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
       strife.startTurn(div);
 			denizen.strife(div, [p],0);

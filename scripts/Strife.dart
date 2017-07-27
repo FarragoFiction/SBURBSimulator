@@ -233,9 +233,9 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   Session session;
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
-  List<GameEntity> absconded; //this only matters for one strife, so save to the team.
+  List<GameEntity> absconded = new List<GameEntity>(); //this only matters for one strife, so save to the team.
   String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
-  bool canAbscond; //sometimes you are forced to keep fighting.
+  bool canAbscond = true; //sometimes you are forced to keep fighting.
   Team.withName(this.name, this.session, this.members){
     resetFraymotifsForMembers();
   }

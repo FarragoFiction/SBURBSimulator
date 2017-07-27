@@ -527,7 +527,7 @@ void wireUpTeamSelector(){
 
 
 //oncoe tournament starts, div should be unique for that tier
-void displayTeams(div){
+void displayTeams(Element div){
 	//when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
 	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
 	//loser is crossed off from team description, and next pair go.
@@ -543,7 +543,7 @@ void displayTeams(div){
 
 
 //pairs teams up instead of straight line.
-void displayTeamsTournament(div){
+void displayTeamsTournament(Element div){
 	//when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
 	//points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
 	//loser is crossed off from team description, and next pair go.

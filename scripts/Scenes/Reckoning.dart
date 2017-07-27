@@ -16,7 +16,7 @@ class Reckoning extends Scene {
 	}
 
 	@override
-	dynamic renderContent(div){
+	dynamic renderContent(Element div){
 		this.session.reckoningStarted = true;
 		String intro = "";
 		if(this.session.king.getStat("currentHP") < 0){
@@ -67,7 +67,7 @@ class Reckoning extends Scene {
 					intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him on Skaia before they lose their Ultimate Reward. ";
 					intro += " The Ultimate Reward allows the players to create a new Universe frog, and live inside of it. ";
 					intro += " Without it, they'll be trapped in the Medium forever. (Barring shenanigans). ";
-					intro += living.length + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
+					intro += living.length.toString() + " players will fight the Dersite Royalty and try to prove themselves worthy of the Ultimate Reward. ";
 			}
 
 		}else{
@@ -78,7 +78,7 @@ class Reckoning extends Scene {
 		}
 		intro += "<br><br>";
 
-		div.append(intro);
+		appendHtml(div, intro);
 
 	}
 	void content(div, i){
