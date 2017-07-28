@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class Reckoning extends Scene {
-	
+
 	bool canRepeat = false;
 
 	Reckoning(Session session): super(session, false);

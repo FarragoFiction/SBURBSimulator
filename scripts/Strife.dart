@@ -124,7 +124,7 @@ class Strife {
     String endingHTML = "<Br><br> ${icon} The fight is over. ${winner
         .name} remains alive and unabsconded. <br>";
     div.appendHtml(endingHTML,treeSanitizer: NodeTreeSanitizer.trusted);
-    winner.renderPoseAsATeam(div);
+    if (winner.findPlayer() != null) winner.renderPoseAsATeam(div); //only call this if winning team has a player in it. (otherwise blank canvas)
   }
 
 
