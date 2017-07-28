@@ -104,7 +104,7 @@ class Fraymotif {
         for(num j = 0; j<stats.length; j++){
           stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
         }
-        retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
+        retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
       }
       if(effectTypes["buff$i"].length > 0){
         stats = effectTypes["buff$i"];
@@ -189,16 +189,16 @@ class Fraymotif {
             stats = effectTypes["damage$i"];
             var template = stats[0];
             stats.remove(template);
-            retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
+            retArray.add(template.replaceAll("STAT",turnArrayIntoHumanSentence(stats)));
           }
           if(effectTypes["buff$i"].length > 0){
             stats = effectTypes["buff$i"];
             var template = stats[0];
             stats.remove(template);
-            retArray.add(template.replace("STAT", [stats.sublist(0, -1).join(', '), stats.sublist(-1)[0]].join(stats.length < 2 ? '' : ' and ')));
+            retArray.add(template.replaceAll("STAT",  turnArrayIntoHumanSentence(stats)));
           }
         }
-        return [retArray.sublist(0, -1).join(', '), retArray.sublist(-1)[0]].join(retArray.length < 2 ? '' : ' and ');
+        return turnArrayIntoHumanSentence(retArray);
 
   }
 	dynamic replaceKeyWordsForFlavorTextBase(Random rand, String phrase){
