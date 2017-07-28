@@ -2910,6 +2910,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
 
 
   Player findHighestMobilityPlayer(List<Player> playerList) {
+    if(playerList.length == 0) return null; //it's empty you dunkass
     Player ret = playerList[0];
     for (int i = 0; i < playerList.length; i++) {
       Player p = playerList[i];

@@ -268,9 +268,9 @@ class MurderPlayers extends Scene {
 
 		return ret;
 	}
-	bool canCatch(m, worstEnemy){
+	bool canCatch(Player m, Player worstEnemy){
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
-		if(worstEnemy.mobility > m.mobility) return false;
+		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
 		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
 		if(worstEnemy.aspect == "Space" && worstEnemy.getStat("power") > 50){
 			print("high level space player avoiding a murderer" + this.session.session_id.toString());
