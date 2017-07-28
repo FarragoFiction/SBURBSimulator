@@ -26,7 +26,7 @@ main() {
 
 
 
-class SessionFinderController extends StoryController { //works exactly like Sim unless otherwise specified.
+class SessionFinderController extends SimController { //works exactly like Sim unless otherwise specified.
   SessionFinderController() : super();
 
   void percentBullshit(){
