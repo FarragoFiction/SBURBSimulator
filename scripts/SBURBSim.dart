@@ -404,7 +404,7 @@ String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollect
 String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert:(T e) => e.toString(), combine:(String p, String e) => "$p$joiner$e", initial:"");
 
 void appendHtml(Element element, String html) {
-	appendHtml(element, html);
+	element.appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
 void renderAfterlifeURL(){
