@@ -36,8 +36,10 @@ class SessionFinderController extends StoryController { //works exactly like Sim
   }
 
   void formInit(){
-    querySelector("#button").prop('disabled', false);
-    querySelector("#num_sessions_text").val(querySelector("#num_sessions").val());
+    (querySelector("#button")as ButtonInputElement).disabled =false;
+    (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
+
+    querySelector("#num_sessions").onChange.listen(onData)
     querySelector("#num_sessions").change((){
       querySelector("#num_sessions_text").val(querySelector("#num_sessions").val());
     });
