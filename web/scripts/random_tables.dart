@@ -199,7 +199,7 @@ List<String> makeFilteredCopyForLetters(List<String> array, String letter){
 
 
 
-String turnArrayIntoHumanSentence(List<String> retArray){
+String turnArrayIntoHumanSentence(List<dynamic> retArray){
 	return [retArray.sublist(0, retArray.length-1).join(', '), retArray.sublist(retArray.length-1,retArray.length)].join(retArray.length < 2 ? '' : ' and ');
 }
 
