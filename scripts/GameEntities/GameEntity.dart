@@ -444,9 +444,9 @@ class GameEntity implements Comparable{
       this.stats[stat.name] += modValue * stat.multiplier;
     }
   }
-  //TODO players (and any complicated NPCS) need to override this to hook up RELATIONSHIPS to actual other players.
   num getStat(String statName){
     num ret = this.stats[statName];
+    if(ret == null) throw "What Kind of Stat is: ${statName}???"
     for(var i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
       if(b.name == statName) ret += b.value;

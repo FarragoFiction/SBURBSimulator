@@ -13,15 +13,14 @@ class VoidyStuff extends Scene {
 
 	@override
 	bool trigger(List<Player> playerList){
-	  window.alert("shoul di void trigger???");
 		this.playerList = playerList;
 		this.player = null;
 		if(rand.nextDouble() > .5){
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
-			if(this.enablingPlayer != null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
 		}else{
 			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage");
-			if(this.enablingPlayer != null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
 		}
 
 		if(this.enablingPlayer != null){
@@ -127,7 +126,7 @@ class VoidyStuff extends Scene {
 	void findFraymotif(Element div, Element specialDiv){
 		print("Void/Rage fraymotif acquired: " + this.session.session_id.toString());
 		appendHtml(div, " What's that music playing? ");
-		Fraymotif f = this.player.getNewFraymotif(rand);
+		Fraymotif f = this.player.getNewFraymotif(this.enablingPlayer);
 		appendHtml(specialDiv, "A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
 	}
 	void makeEnemies(Element div, Element specialDiv){
