@@ -513,7 +513,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 
 	String title(){
-		String ret = "The "; //TODO get rid of anywhere else using 'the'
+		String ret = "";
 
 		if(this.doomed){
 			ret += "Doomed ";
