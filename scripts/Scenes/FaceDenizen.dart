@@ -107,7 +107,6 @@ class FaceDenizen extends Scene{
       dTeam.canAbscond = false;
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
       strife.startTurn(div);
-			denizen.strife(div, [p],0);
 			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);

@@ -398,8 +398,8 @@ class GameEntity implements Comparable{
   void increasePower(){
     //stub for sprites, and maybe later consorts or carapcians
   }
-  int getTotalBuffForStat(String statName){
-    int ret = 0;
+  double getTotalBuffForStat(String statName){
+    double ret = 0;
     for(int i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
       if(b.name == statName) ret += b.value;
