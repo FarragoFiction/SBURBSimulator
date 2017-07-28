@@ -464,10 +464,10 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     if(poseable.length > 6){
       ch = (canvasHeight*1.5).round(); //a little bigger than two rows, cause time clones
     }
-    String canvasHTML = "<br><canvas id='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
+    String canvasHTML = "<br><canvas id='canvas${div.id}${members[0].id}' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
     div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
     //different format for canvas code
-    var canvasDiv = querySelector("#canvas"+ div.id);
+    var canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
     poseAsATeam(canvasDiv, poseable); //in handle sprites
   }
 

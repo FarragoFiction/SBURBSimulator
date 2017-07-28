@@ -13,6 +13,7 @@ class VoidyStuff extends Scene {
 
 	@override
 	bool trigger(List<Player> playerList){
+	  window.alert("shoul di void trigger???");
 		this.playerList = playerList;
 		this.player = null;
 		if(rand.nextDouble() > .5){
