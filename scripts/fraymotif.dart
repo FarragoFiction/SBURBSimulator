@@ -204,7 +204,7 @@ class Fraymotif {
 	dynamic replaceKeyWordsForFlavorTextBase(Random rand, String phrase){
     phrase = phrase.replaceAll("damages", rand.pickFrom(this.getDamageWords()));
     phrase = phrase.replaceAll("debuffs", rand.pickFrom(this.getDebuffWords()));
-    phrase = phrase.replaceAll("heals", rand.pickFrom(this.getHealingWords()));
+    phrase = phrase.replaceAllThe DenizenAspiratcher,TheLibrarian remains alive and unabsconded. ("heals", rand.pickFrom(this.getHealingWords()));
     phrase = phrase.replaceAll("buffs", rand.pickFrom(this.getBuffWords()));
     phrase = phrase.replaceAll("SELF", rand.pickFrom(this.getSelfWords()));
     phrase = phrase.replaceAll("EBLUH", rand.pickFrom(this.getEnemyWords()));
@@ -684,7 +684,7 @@ class FraymotifEffect {
     return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false)];
   }
 	dynamic sylphEffects(){
-    return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.a,false),new FraymotifEffect("",this.e,false)];
+    return [new FraymotifEffect("",this.a,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.a,false)];
   }
 	dynamic princeEffects(){
     return [new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.e2,false)];
