@@ -278,7 +278,7 @@ class QuadrantDialogue extends Scene {
 	dynamic getp2ResponseBasedOnInterests(chosen, interest, player, playerStart, relationship){
 		//print("interest is: " + interest);
 		String chat = "";
-		if(relationship && relationship.value > 0){
+		if(relationship != null && relationship.value > 0){
 			if(player.interestedIn(interest)){
 				//print("interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.responseLinesSharedInterestPositive));
@@ -654,7 +654,7 @@ class PlusMinusConversationalPair {
 		}
 	}
 	dynamic p2GetResponseBasedOnRelationship(player, playerStart, relationship){
-		if(relationship && relationship.value > 0){
+		if(relationship != null && relationship.value > 0){
 			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.positiveRespones));
 		}else{ //negative response.
 			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.negativeResponses));
@@ -687,7 +687,7 @@ class ConversationalPair {
 				chat += Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.genericResponses));
 			}
 		}else{
-			if(relationship && relationship.value < 0){
+			if(relationship != null && relationship.value < 0){
 				chat += Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.responseLines));
 			}else{  //i don't hate you like i should.
 				chat += Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.genericResponses));

@@ -399,7 +399,7 @@ class GameEntity implements Comparable{
     //stub for sprites, and maybe later consorts or carapcians
   }
   double getTotalBuffForStat(String statName){
-    double ret = 0;
+    double ret = 0.0;
     for(int i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
       if(b.name == statName) ret += b.value;
@@ -425,7 +425,7 @@ class GameEntity implements Comparable{
     List<String> ret = [];
     Iterable allStats = this.allStats();
     for(String stat in allStats){
-      int b = this.getTotalBuffForStat(stat);
+      double b = this.getTotalBuffForStat(stat);
       //only say nothing if equal to zero
       if(b>0) ret.add("more "+this.humanWordForBuffNamed(stat));
       if(b<0) ret.add("less " + this.humanWordForBuffNamed(stat));
