@@ -233,7 +233,7 @@ class Breakup extends Scene {
 	void breakupChat(Element div){
 		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		Player player1 = this.player;
 		Player player2 = this.relationshipToBreakUp.target;
 		String chatText = this.getChat(player1,player2);

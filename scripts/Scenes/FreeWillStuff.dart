@@ -50,7 +50,7 @@ class FreeWillStuff extends Scene{
 
 		String divID = (div.id) + "_freeWillBulshit" + this.renderPlayer1.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
-		div.appendHtml(canvasHTML, treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		CanvasElement canvas = querySelector("#canvas"+ divID);
 
 		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));

@@ -60,7 +60,7 @@ class Intro  extends IntroScene{
 		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
 			String divID = (div.id);
 			String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+			appendHtml(div, canvasHTML);
 			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
 			List<Player> times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
 			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
@@ -90,7 +90,7 @@ class Intro  extends IntroScene{
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
 
 		}
-		div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, ret);
 		return "";
 	}
 	dynamic addImportantEvent(){
@@ -611,7 +611,7 @@ class Intro  extends IntroScene{
 	dynamic chat(Element div){
 		num repeatTime = 1000;
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		//first, find/make pesterchum skin. Want it to be no more than 300 tall for now.
 		//then, have some text I want to render to it.
 		//filter through quirks, and render.  (you can splurge and make more quirks here, future me)
@@ -642,7 +642,7 @@ class Intro  extends IntroScene{
 	void renderContent(div, i){
 		//foundRareSession(div, "This is just a test. " + this.session.session_id);
 		String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
 		drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
@@ -660,7 +660,7 @@ class Intro  extends IntroScene{
 			if(this.player.dead==true){
 				print(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
-				div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
+				appendHtml(div, narration);
 				this.session.availablePlayers.add(this.player);
 				return;
 			}
@@ -712,7 +712,7 @@ class Intro  extends IntroScene{
 					narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
-				div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
+				appendHtml(div, narration);
 
 				return;
 			}
@@ -743,7 +743,7 @@ class Intro  extends IntroScene{
 			}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 		}
-		div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, narration);
 		this.chat(div);
 		this.session.availablePlayers.add(this.player);
 	}

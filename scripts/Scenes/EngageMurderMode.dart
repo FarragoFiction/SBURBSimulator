@@ -231,11 +231,11 @@ class EngageMurderMode extends Scene{
 	void rapBattle(Element div, Player player1, Player player2){
 		this.session.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
-		div.appendHtml(narration,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, narration);
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
 		String chatText = "";
 
@@ -261,7 +261,7 @@ class EngageMurderMode extends Scene{
 			this.session.sickFires = true;
 		}else{
 			String canvasHTML2 = "<br><canvas id='canvas2" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			div.appendHtml(canvasHTML2,treeSanitizer: NodeTreeSanitizer.trusted);
+			appendHtml(div, canvasHTML2);
 			CanvasElement canvasDiv2 = querySelector("#canvas2"+  (div.id));
 			String chatText2 = "";
 			chatText2 += Scene.chatLine(player1Start, player1,"Fuck. That was LAME! It makes me so FUCKING ANGRY!");
@@ -289,7 +289,7 @@ class EngageMurderMode extends Scene{
 			return;//nobody i actually want to kill??? why am i in murder mode?
 		}
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 
 		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
 

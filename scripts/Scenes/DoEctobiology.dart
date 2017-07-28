@@ -30,7 +30,7 @@ class DoEctobiology extends Scene {
 			ch = (canvasHeight*1.5).round();
 		}
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$ch'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		//different format for canvas code
 		Element canvasDiv = querySelector("#canvas"+ divID);
 		poseBabiesAsATeam(canvasDiv, this.leader, this.playersMade, getGuardiansForPlayers(this.playersMade));
