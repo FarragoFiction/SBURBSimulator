@@ -18,7 +18,8 @@ class DoLandQuest extends Scene{
 	dynamic trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
 		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
-		for(num j = 0; j<this.session.availablePlayers.length; j++){
+		print("available players is: $availablePlayers");
+    for(num j = 0; j<this.session.availablePlayers.length; j++){
 			Player p = this.session.availablePlayers[j];
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
 			if(ph != null){
@@ -27,13 +28,13 @@ class DoLandQuest extends Scene{
 				if(ph[1] != null && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.remove(ph[1]);
 			}
 		}
-		//print(this.playersPlusHelpers.length + " players are available for quests.");
+		print(this.playersPlusHelpers.length.toString() + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(p, availablePlayers){
-		if(p.land != null || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
+		if(p.land == null || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
 		var helper = this.lookForHelper(p,availablePlayers);
-		if(helper && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
+		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
 
 		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
@@ -343,10 +344,10 @@ class DoLandQuest extends Scene{
 
 			//print("doing land quests at: " + player.land);
 			var helper = this.playersPlusHelpers[i][1]; //might be null
-			if(player.aspect == "Space" && !helper){
+			if(player.aspect == "Space" && helper == null){
 
 				var alt = this.addImportantEvent();
-				if(alt && alt.alternateScene(div)){
+				if(alt != null && alt.alternateScene(div)){
 					//do nothing, alternate scene handles it
 				}else{
 					ret += this.contentForPlayer(player, helper);
