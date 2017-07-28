@@ -15,7 +15,7 @@ class DoLandQuest extends Scene{
 	DoLandQuest(Session session): super(session);
 
 	@override
-	dynamic trigger(List<Player> playerList){
+	bool trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
 		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
 		print("available players is: $availablePlayers");

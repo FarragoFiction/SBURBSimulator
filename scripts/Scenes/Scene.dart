@@ -10,7 +10,7 @@ abstract class Scene {
   bool trigger(List<Player> playerList);
 
   //each scene should handle rendering itself, whether via text or canvas
-  void renderContent(var div);
+  void renderContent(Element div);
 
 
   //TODO maybe things that used to be global methods in  scene ccontroller can be static methods here

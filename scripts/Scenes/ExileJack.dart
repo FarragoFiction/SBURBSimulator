@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class ExileJack extends Scene{
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 
 	
 
@@ -11,7 +11,7 @@ class ExileJack extends Scene{
 
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		return (!this.session.jack.exiled && this.session.jack.getStat("power") < 10) && (this.session.jack.getStat("currentHP") >  0 && this.session.jack.crowned == null);
 	}

@@ -43,7 +43,7 @@ class QuadrantDialogue extends Scene {
 	void findQuardrantMate(){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
 		var potentials = this.player1.getDiamonds();
-		this.player2 = rand.pickFrom(potentials);
+		this.player2 = rand.pickFrom(potentials).target;
 		if(this.player2 != null && !this.player2.dead && rand.nextDouble() > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
@@ -93,7 +93,7 @@ class QuadrantDialogue extends Scene {
 			relationship2 = tmp;
 		}
 		//print("chatting about shared interests");
-		if(trait == "smart") return this.chatAboutAcademic(p1, p2,  p1Start, p2Start, relationship, relationship2);
+		if(trait == "smart") return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "cultured") return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "lettered") return this.chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -111,7 +111,7 @@ class QuadrantDialogue extends Scene {
 
 		return null;
 	}
-	String chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutAcademic(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Academic";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -120,7 +120,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "These 'lands' just don't make sense on a fundamental level. They are so small, how do they have an atmosphere! Where is the light coming from!", ["I know right, how the hell does physics work in the Medium? What is even keeping the planets in order? They are perfect little spheres and Skaia is nowhere near as big as a sun. ","Oh wow, I hadn't even noticed! You're so smart!","I'm pretty sure that if magic were a real thing, Skaia would be using it egregiously.", "As far as I've been able to tell, almost every object, including the ground, radiates a very small amount of light. Its fascinating really."], ["Really. The PLANETS not making sense is what bothers you, not the time travel, not the paradoxes, and definitely not all the nearly magical powers we apparently all have.", "If you used your brain even once a month, you'd see that CLEARLY the laws of physics do not apply in the Medium.", "Do you even have eyes? Or have they become vestigal in self defense after catching too many glances of your own putrid husk in the mirror. GRAVITY isn't even keeping the planets in correct orbits, the entire 'skaia system' is flawed on a fundamental level if you are assuming standard laws of physics, but YOU only care about the superficial shit like atmospheres.", "No shit Sherlock, we all noticed that already."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutWriting(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Writing";
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		List<dynamic> chats = [];
@@ -131,7 +131,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "When all this is over, I think I'm going to finally write my novel.", ["Oh man, you'll be the new universe's first author!","If anyone can do it, it's you!","You were born to be the new universe's first published author.", "If we become the gods of the new universe, I guess that would make the book holy writ?"], ["Should you REALLY be making plans for the future in the middle of a death game? ", "How much of a self absorbed asshole ARE you?", "Like anybody would read anything YOU wrote.", "Thats a bad idea and you should feel bad for having it."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutRomance(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Romance";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -141,7 +141,7 @@ class QuadrantDialogue extends Scene {
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
 	}
-	String chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutSocial(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Social";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -151,7 +151,7 @@ class QuadrantDialogue extends Scene {
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
 	}
-	String chatAboutTechnology(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutTechnology(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Technology";
 		List<dynamic> chats = [];
 		chats.add(new InterestConversationalPair(interest, "Hey, what operating system are you running again? I just realized alchemy could let me improve it.", ["Oh please, I've been running some crappy old junker since I got in the game, I need an upgrade so bad.","Some old gaming computer. Its full of patches and shit, but I'd definitely be up for a tune up.","You should remember, you gave me my last one!", "Homemade all day. I'm more then willing to let you peak around the inside tho."], ["I have a faster system then you could even dream of.", "Stay the fuck away from my Wilson.", "The last time you offered to improve my comp it ran about 38.2% slower. I'm not letting you back in.","You blew up my last computer, asshole. I'm stuck on a shitty oldbox because of you.", "Eat shit and die asshole."]));
@@ -160,7 +160,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "I am pretty sure I could rig up an assembly line to get us alchemy products.", ["Oh man, infinite high level goods ftw.","Hell yes, I say go for it.","Ooo, I could probably throw together a grist procural factory to feed it!", "Gamebreaking FTW."], ["God, do you really think alchemy is that hard? It takes like two goddamned seconds.", "What would be the point? What we need is GRIST, not random stupid final products.", "Have a gold star for 'most pointless idea of the year'. You've earned it.", "Come on, I've had one running for ages now, you're only NOW thinking of this?"]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutPopCulture(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutPopCulture(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "PopCulture";
 		List<dynamic> chats = [];
 		chats.add(new InterestConversationalPair(interest, "Don't you miss that one TV show? About the Mobster KingPin and those detectives?", ["Hell yeah, and now we're never going to find out how it ends!","Oh my god that show was the best. I still have some on DVD, you should come round for a marathon sometime!","Oof. Honestly, biggest downside of the apocalypse."], ["No, that was a shit TV show, how the hell does one even enjoy that sort of crap.", "The show? Yes. You're frankly stupid theories about what was going to happen next? Hell no.", "Yeah, that was a great fucking show.", "No, of course not. Why would someone even like that show.", "Fucking hell, the world is dead and you're moaning over a TV show."]));
@@ -170,7 +170,7 @@ class QuadrantDialogue extends Scene {
 
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutMusic(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 			//if both characters like rap/hiphop, etc, they rap here????
 			String interest = "Music";
 			List<dynamic> chats = [];
@@ -187,7 +187,7 @@ class QuadrantDialogue extends Scene {
 			//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 			return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutCulture(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Culture";
 		List<dynamic> chats = [];
 		chats.add(new InterestConversationalPair(interest, "Did you ever go see that opera I told you about?", ["Oh no! I never got too! And now the planet's dead and I'll never be able too! D:","Yeah, its such a pity the lead singer is dead now.","Oh hell yes, that opera was amazing. That solo when the heroine died? Priceless.", "Yeah, I saw that TEN TIMES. It rocked."], ["Ugh, of course not. That theater had been over for years, it went for spectacle over anything meaningful. Of course you'd like it.", "Yes, It was garbage. I can't believe you could enjoy something so pedestrian and boring.", "Yeah, the singer's voice went screwy partway through. Why the hell would you like something like that?","Don't remind me. It was complete and total shit.", "Of course not. I make it a matter of policy to not go see anything you enjoy. Your taste is simply the worst there is."]));
@@ -196,10 +196,10 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "Your land is beautiful, by the way. I really should paint it sometime.", ["Maybe we can make a day of it!","You're welcome to come over anytime.","I'm glad you think so, but I'm pretty sure my land is creepy as hell."], ["Ugh, nope, no way.", "Go for it, I really want to see how much you screw this up.", "You have a twisted sense of aesthetics, did you know that?"]));
 
 		//MI: The line below wasn’t working for me, but you said worked on your end? (JR: Yup, and i turned it back on. shenaigans, i guess.)
-		if(p1.land) chats.add(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
+		if(p1.land != null) chats.add(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutComedy(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Comedy";
 		//InterestConversationalPair(interest, line1, responseLinesSharedInterestPositive, responseLinesSharedInterestNegative))
 		List<dynamic> chats = [];
@@ -210,19 +210,19 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "How do you organize a space party, you planet!", ["Oh, because 'plan it' is how you would really orgnize a themed party, but it sounds like 'planet' which is a space themed word!","Lol, A star walks into a blackhole, but nothing happens. The blackhole turns to the star and says, 'Sir, I don't think you understand the gravity of the situation'.","lol, planet sounds like 'plan it'"], ["Oh god. Fuck you for that joke. Fuck the entire concept of space. Fuck me for hearing it.", "Are those space pants, because that ass is out of this world. Unlike your jokes.", "Oh god. Fuck you. Fuck space."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutDomestic(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Domestic";
 		List<dynamic> chats = [];
 		chats.add(new InterestConversationalPair(interest, "I need to tidy your home some time", ["Ugh, yeah, its becoming such a mess.","That sounds like a great excuse for you to get the hell over here.","I'd say Spring Cleaning, but I'm not sure SBURB has seasons."], ["I have a system and you will learn a new meaning of pain if you try to messs with it.", "God no, you'd only make it look worse.", "You had a pair of socks hanging over your computer last time I was over, no WAY am I trusting you near my house.","Hahahahah fuck no.", "You can take your cleaning mania and stick up your ass."]));
 		chats.add(new InterestConversationalPair(interest, "Remind me to alchemize some new clothes for you later.", ["Oh man, I bet they'd look so cool!","Really!? You have such good taste in fashion!","I can't wait!", "Would this be a private fitting? *waggles eyebrows*"], ["Ugh, never in a million years. You have shit taste.", "Remind me to take a holy vow against wearing clothes later.", "Not if they were the last pair of pants in existance.","Ugh, just imagining wearing something with your shit taste makes me feel debased.", "Jesus why are you wasting grist on clothes? Especially clothes designed by you?"]));
-		if(p1.land) chats.add(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand() + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
+		if(p1.land != null) chats.add(new InterestConversationalPair(interest, "Do you think I could get any vegetables to grow on " + p1.shortLand() + "?", ["Oh man, it would be so cool if you could!","Maybe with game powers?","Wow, you have seeds in your sylladex?"], ["Do you see a sun anywhere, asshole?", "What would even be the point?", "With your brown thumb, you'd probably just kill them. "]));
 		if(p2.knowsAboutSburb()){
 			chats[chats.length-1].responseLinesSharedInterestPositive.add(" I'd hold onto any seeds you have until we get the Ultimate Reward.");
 		}
 		chats.add(new InterestConversationalPair(interest, "Remind me to make a cake later on, okay?", ["Hell yes!","Yes, I wouldn't miss it for the world.","Yes, we could all use a morale boost.", "... CAKE TIME."], ["We are in the middle of a SBURB-damned death game and you want to BAKE!?", "You clearly have cake where your brain should be.", "I would not put anything you baked near my mouth in a million years.", "Oh god no, you always use that horrible pre-made icing stuff."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutAthletic(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Athletic";
 		List<dynamic> chats = [];
 		chats.add(new InterestConversationalPair(interest, "We should play a game of Sports Ball next time I come round.", ["I'm not completely sure thats the right name of the game, but whatever floats your boat.","Oh yeah, lets kick this shit off!","A good game could be just the thing to get my mind of the Armageddon right now, thanks!"], ["You know 'Sports Ball' isn't actually a name, right?", "Yeah, its hilarious to watch you lose.", "Yes, I think a fucking GAME is just what we need in the middle of this fucking murder trap. Seriously, time and place.","Fine, I call whichever team doesn't end up stuck with your pathetic ass.", "Fuck no, last time we played you tried to bite my ear off."]));
@@ -233,7 +233,7 @@ class QuadrantDialogue extends Scene {
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 
 	}
-	String chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutTerrible(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Terrible";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -247,7 +247,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "I always knew I would rule a planet with an iron fist, but I didn't think it would happen like this.", ["It is so amazing to be able to rule different planets together.","Hell yes, I feel you.", "Great conquerers think alike!", "Lets roll this bi-planet duumvirate out!"], ["Yeah, well, don't come crying to me in a month when you are up to your nose in insurrections. I have never SEEN a shittier ruler.", "Who the hell WOULD predict all this crazy SBURB shit?", "lol, good luck KEEPING it, asshole, 'cause I am already sowing the seeds of dissent in your consorts.", "I predict a war in your planet's future. lol."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutFantasy(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutFantasy(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Fantasy";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -256,7 +256,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "Man, I always hoped the end of the world would have more zombies in it.", ["Yeah, but at least we're still in a desparate struggle to survive?","Yeah, shotgunkind always appealed to me.","We could pretend the imps are zombies?", "Z squad for life."], ["People died asshole. Not in your fake fucking stories, in real life. ", "Yeah, because all we fucking need is ZOMBIE underlings to fight, you asshole.", "And I here I thought you couldn't become more of an asshole. It's a motherfucking miracle."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
-	String chatAboutJustice(p1, p2, p1Start, p2Start, relationship, relationship2){
+	String chatAboutJustice(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){
 		String interest = "Justice";
 		List<dynamic> chats = [];
 		//chats.add(new InterestConversationalPair(interest, "", ["","",""], ["", "", "","", ""]));
@@ -268,14 +268,14 @@ class QuadrantDialogue extends Scene {
 
 
 	}
-	dynamic processChatAboutInterests(chats, interest, p1, p2, p1Start, p2Start, relationship1, relationship2){
-		var chosen = rand.pickFrom(chats);
+	String processChatAboutInterests(List<InterestConversationalPair> chats, String interest, Player p1, Player p2, String p1Start, String p2Start, Relationship relationship1, Relationship relationship2){
+		InterestConversationalPair chosen = rand.pickFrom(chats);
 		String chat = "";
 		chat +=  Scene.chatLine(p1Start, p1, chosen.line1);
 		chat += this.getp2ResponseBasedOnInterests(chosen, interest, p2, p2Start, relationship2);
 		return chat;
 	}
-	dynamic getp2ResponseBasedOnInterests(chosen, interest, player, playerStart, relationship){
+	String getp2ResponseBasedOnInterests(InterestConversationalPair chosen, String interest, Player player, String playerStart, Relationship relationship){
 		//print("interest is: " + interest);
 		String chat = "";
 		if(relationship != null && relationship.value > 0){
@@ -443,7 +443,7 @@ class QuadrantDialogue extends Scene {
 		var p1start = this.player1Start;
 		var shoosher = this.player2;
 		var p2start = this.player2Start;
-		if(!freakOutWeasel.flipOutReason){
+		if(freakOutWeasel.flipOutReason == null){
 			freakOutWeasel = this.player2;
 			p1start = this.player2Start;
 			shoosher = this.player1;
@@ -452,8 +452,8 @@ class QuadrantDialogue extends Scene {
 			relationship = relationship2;
 			relationship2 = tmp;
 		}
-		if(!freakOutWeasel.flipOutReason) return "ERROR: NO ONE IS FLIPPING OUT.";
-		if(freakOutWeasel.flippingOutOverDeadPlayer && freakOutWeasel.flippingOutOverDeadPlayer.dead){
+		if(freakOutWeasel.flipOutReason == null) return "ERROR: NO ONE IS FLIPPING OUT.";
+		if(freakOutWeasel.flippingOutOverDeadPlayer != null && freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Wait, who is dead?");
@@ -462,7 +462,7 @@ class QuadrantDialogue extends Scene {
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "I hope so.");
-		}else if(freakOutWeasel.flippingOutOverDeadPlayer && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
+		}else if(freakOutWeasel.flippingOutOverDeadPlayer != null && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Oh god. I'm so sorry.");
@@ -573,9 +573,9 @@ class QuadrantDialogue extends Scene {
 
 		return ret;
 	}
-	void chat(div){
+	void chat(Element div){
 		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div, canvasHTML);
 		var relationship = this.getQuadrant();
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);

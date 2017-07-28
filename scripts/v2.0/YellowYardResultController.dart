@@ -48,15 +48,15 @@ class YellowYardResultController {
 	But i figure if multiple mind-influenced time players warp into save them multiple times (even from one decision), well...time shenanigans.
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
-bool doEventsMatch(newEvent, storedEvent, spawn){
+bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool spawn = false]){
 	//print("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
-	if(!newEvent || !storedEvent) return false; //can't match if one of them doesn't exist.;
+	if(newEvent == null || storedEvent == null) return false; //can't match if one of them doesn't exist.;
   if(newEvent.session.session_id != storedEvent.session.session_id){
     //  print("session id did not match.");
       return false;
   }
   //are they the same kind of event
-  if(newEvent.constructor.name != storedEvent.constructor.name){
+  if(newEvent.runtimeType != storedEvent.runtimeType){
   //  print("constructor did not match.");
     return false;
   }
@@ -64,7 +64,7 @@ bool doEventsMatch(newEvent, storedEvent, spawn){
     //  print("mvp did not match");
       return false;
   }
-  if(newEvent.player && storedEvent.player){
+  if(newEvent.player != null && storedEvent.player != null){
 	  //should work even if player is supposed to be null
 	  if(newEvent.player.class_name != storedEvent.player.class_name){
 		 //print("player class did not match");
@@ -89,7 +89,7 @@ bool doEventsMatch(newEvent, storedEvent, spawn){
 
 
 
-void spawnDoomedTimeClone(newEvent, storedEvent){
+void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
     print("spawning a doomed time clone");
     //since i know the events match, make sure my player is up to date with the current session.
     //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
@@ -97,10 +97,10 @@ void spawnDoomedTimeClone(newEvent, storedEvent){
     storedEvent.session = newEvent.session; //cant get space players otherwise
     //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
     var alphaTimePlayer = findAspectPlayer(newEvent.session.players, "Time");
-    alphaTimePlayer.sanity += -10; //how many re-dos does this give me before they snap?
+    alphaTimePlayer.addStat("sanity", -10); //how many re-dos does this give me before they snap?
     alphaTimePlayer.doomedTimeClones.add(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something");
-    if(storedEvent.secondTimeClone){
+    if(storedEvent.secondTimeClone != null){
         print("think there is a second time clone");
         alphaTimePlayer.doomedTimeClones.add(storedEvent.secondTimeClone);
     }
@@ -124,7 +124,7 @@ void decision(){
     var doom = Player.makeRenderingSnapshot(timePlayer);
 		doom.dead = false;
 		doom.doomed = true;
-		doom.currentHP = doom.hp;
+		doom.setStat("currentHP", doom.getStat("hp"));
     doom.influenceSymbol = "mind_forehead.png";
     eventToUndo2x.secondTimeClone = doom;
     curSessionGlobalVar.addEventToUndoAndReset(null);

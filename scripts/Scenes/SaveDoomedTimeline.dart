@@ -100,7 +100,7 @@ class SaveDoomedTimeLine extends Scene {
 			this.leaderPlayer.dead = false;
 			this.leaderPlayer.renderSelf();
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
-			if(r && r.value != 0){
+			if(r != null && r.value != 0){
 					if(r.value > 0){
 						print(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
@@ -123,7 +123,7 @@ class SaveDoomedTimeLine extends Scene {
 			this.leaderPlayer.dead = false;
 			this.leaderPlayer.renderSelf();
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
-			if(r && r.value != 0){
+			if(r != null && r.value != 0){
 					if(r.value > 0){
 						print(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";

@@ -21,7 +21,7 @@ class KingPowerful extends Scene {
 	String content(){
 		var nativePlayersInSession = findPlayersFromSessionWithId(this.playerList,this.session.session_id);
 		var badPrototyping = findBadPrototyping(nativePlayersInSession);
-		if(!badPrototyping){
+		if(badPrototyping == null){
 			badPrototyping = "glitchy piece of shit that is SBURB itself";
 		}
 		String ret = " At this point, the various prototypings from " +this.playerList.length.toString();

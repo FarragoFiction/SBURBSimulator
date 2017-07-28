@@ -9,15 +9,17 @@ class GrimDarkQuests extends Scene{
 	GrimDarkQuests(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.players = [];
 		var living = findLivingPlayers(playerList);
 		for (num i = 0; i<living.length; i++){
 			var player = living[i];
-			if(player.grimDark>2){
-				 this.players.add(player);
-			}else if(player.grimDark>1 && rand.nextDouble() > .5){
-				this.players.add(player);
+			if (player is Player) {
+				if (player.grimDark > 2) {
+					this.players.add(player);
+				} else if (player.grimDark > 1 && rand.nextDouble() > .5) {
+					this.players.add(player);
+				}
 			}
 		}
 		if(this.players.length > 0 && this.players[0].trickster && rand.nextDouble() >.01) return false; //tricksters are too op and distractable, don't often actually try to break sim
@@ -48,7 +50,7 @@ class GrimDarkQuests extends Scene{
 				print("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id.toString());
 			}
 			String quip = "";
-			var amount =0;
+			num amount =0;
 			if(player.grimDark < 2){
 				amount = -1* player.getStat("power")/4; //not trying as hard
 			}else if(player.grimDark <3){

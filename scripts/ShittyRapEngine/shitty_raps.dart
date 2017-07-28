@@ -365,7 +365,7 @@ List<dynamic> getRapForPlayer(Player player, String returnString, num score) {
 	var secondWord = raps[2];
 	returnString += str + " \n";
 
-	if(firstWord && secondWord && firstWord != secondWord){
+	if(firstWord != null && secondWord != null && firstWord != secondWord){
 				score ++;
 				//dont rap forever, like you can on rap.html
 				if(score<5) return getRapForPlayer(player, returnString, score); //keep going till you can't

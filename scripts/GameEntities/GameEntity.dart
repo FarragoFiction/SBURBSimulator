@@ -18,9 +18,9 @@ class GameEntity implements Comparable{
   List<dynamic> fraymotifs = [];
   bool usedFraymotifThisTurn = false;
   List<Buff> buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
-  HashMap stats = {};
+  Map<String,num> stats = <String,num>{};
   List<Relationship> relationships = []; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
-  HashMap permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+  Map<String,num> permaBuffs = <String,num>{"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
   num renderingType = 0; //0 means default for this sim.
   List<AssociatedStat> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
   String spriteCanvasID = null;  //part of new rendering engine.
@@ -184,14 +184,14 @@ class GameEntity implements Comparable{
     var mine = getStat("sanity");
     var theirs = getAverageSanity(living_enemies);
     if(mine+200 < theirs && this.session.rand.nextDouble() < 0.5){
-      print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
+      print("Too insane to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: $mine Theirs: $theirs in session: " + this.session.session_id.toString());
       div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but they are too crazy to focus. ",treeSanitizer: NodeTreeSanitizer.trusted);
       return false;
     }
     mine = getStat("freeWill") ;
     theirs = getAverageFreeWill(living_enemies);
     if(mine +200 < theirs && this.session.rand.nextDouble() < 0.5){
-      print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: " + mine + "Theirs: " + theirs + " in session: " + this.session.session_id.toString());
+      print("Too controlled to use fraymotifs: " + htmlTitleHP() +" against " + target.htmlTitleHP() + "Mine: $mine Theirs: $theirs in session: " + this.session.session_id.toString());
       div.appendHtml(" The " + htmlTitleHP() + " wants to use a Fraymotif, but Fate dictates otherwise. ",treeSanitizer: NodeTreeSanitizer.trusted);
       return false;
     }
@@ -218,14 +218,14 @@ class GameEntity implements Comparable{
     num reasonsToLeave = 0;
     num reasonsToStay = 2; //generally prefer to win fights.
     reasonsToStay += getFriendsFromList(whoINeedToProtect).length;
-    List<GameEntity> hearts = getHearts();
-    List<GameEntity> diamonds = getDiamonds();
-    for(GameEntity heart in hearts) {
-      if(whoINeedToProtect.contains(heart)) reasonsToStay += 1;
+    List<Relationship> hearts = getHearts();
+    List<Relationship> diamonds = getDiamonds();
+    for(Relationship heart in hearts) {
+      if(whoINeedToProtect.contains(heart.target)) reasonsToStay += 1;
     }
 
-    for(GameEntity diamond in diamonds) {
-      if(whoINeedToProtect.contains(diamond)) reasonsToStay += 1;
+    for(Relationship diamond in diamonds) {
+      if(whoINeedToProtect.contains(diamond.target)) reasonsToStay += 1;
     }
     reasonsToStay += getStat("power")/Team.getTeamsStatTotal(enemies, "currentHP"); //i can take you.
     reasonsToLeave += Team.getTeamsStatTotal(enemies, "power")/getStat("currentHP"); //you can take me.
@@ -434,7 +434,7 @@ class GameEntity implements Comparable{
     return this.htmlTitleHP() + " is feeling " + turnArrayIntoHumanSentence(ret) + " than normal. ";
   }
 
-  void modifyAssociatedStat(modValue, stat){
+  void modifyAssociatedStat(num modValue, AssociatedStat stat){
     //modValue * stat.multiplier.
     if(stat.name == "RELATIONSHIPS"){
       for(num i = 0; i<this.relationships.length; i++){
@@ -542,13 +542,13 @@ class GameEntity implements Comparable{
   void boostAllRelationshipsBy(amount){
 
   }
-  List<dynamic> getFriendsFromList(list){
+  List<GameEntity> getFriendsFromList(List<GameEntity> list){
     return [];
   }
-  List<dynamic> getHearts(){
+  List<Relationship> getHearts(){
     return [];
   }
-  List<dynamic> getDiamonds(){
+  List<Relationship> getDiamonds(){
     return [];
   }
 

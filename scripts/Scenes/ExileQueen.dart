@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class ExileQueen extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 
 	
 
@@ -10,7 +10,7 @@ class ExileQueen extends Scene {
 	ExileQueen(Session session): super(session, false);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		return (this.session.queen.getStat("power")<10 && !this.session.queen.exiled );
 	}

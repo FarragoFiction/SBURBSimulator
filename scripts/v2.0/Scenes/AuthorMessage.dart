@@ -4,7 +4,7 @@
 
 /***class AuthorMessage extends Scene {
 	bool canRepeat = false;
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	var player = null;	
 
 

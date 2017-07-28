@@ -18,7 +18,7 @@ dynamic rand.pickFrom(array){
 
 //http://jsfiddle.net/JKirchartz/wwckP/    horrorterror html stuff
 class Zalgo{
-    static HashMap chars= {
+    static Map<int,List<String>> chars= {
         0 : [ /* up */
     '\u030d', /*     ̍     */
     '\u030e', /*     ̎     */
@@ -199,8 +199,8 @@ List<String> makeFilteredCopyForLetters(List<String> array, String letter){
 
 
 
-String turnArrayIntoHumanSentence(List<dynamic> retArray){
-  return [retArray.sublist(0, retArray.length-1).join(', '), retArray.sublist(retArray.length-1,0)].join(retArray.length < 2 ? '' : ' and ');
+String turnArrayIntoHumanSentence(List<String> retArray){
+	return [retArray.sublist(0, retArray.length-1).join(', '), retArray.sublist(retArray.length-1,retArray.length)].join(retArray.length < 2 ? '' : ' and ');
 }
 
 

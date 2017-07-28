@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class PlanToExileJack extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	var planner = null;	//a player has to be not busy to be your friend right now.
 	
 
@@ -173,13 +173,13 @@ class PlanToExileJack extends Scene {
 		this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 		var player1 = this.planner;
 		var player2 = getLeader(findLivingPlayers(	this.session.players));
-		if(player2 && player2 != player1){
+		if(player2 != null && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2);
 		}else if(player2 == player1){
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(	this.session.players));
-			if(!player2){
+			if(player2 == null){
 				appendHtml(div,this.content());
 				return;
 			}else{

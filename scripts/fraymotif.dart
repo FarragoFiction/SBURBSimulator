@@ -28,7 +28,7 @@ class Fraymotif {
 	}
 
 
-	dynamic toString(){
+	String toString(){
       return this.name;
     }
 	void addEffectsForPlayers(players){
@@ -258,20 +258,20 @@ class Fraymotif {
       casters[i].usedFraymotifThisTurn = true;
     }
   }
-	dynamic useFraymotif(Player owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
+	String useFraymotif(GameEntity owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies){
     if(!this.canCast(owner, allies, enemies)) return "";
 		var casters = this.getCasters(owner, allies);
     this.makeCastersUnavailable(casters);
-    var living = findLivingPlayers(allies);
+    List<Player> living = findLivingPlayers(allies);
     //Hope Rides Alone
-    if(owner.aspect == "Hope" && living.length == 1 && owner.rand.nextDouble() > 0.85){
+    if(owner is Player && owner.aspect == "Hope" && living.length == 1 && owner.rand.nextDouble() > 0.85){
         enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
         print("Hope Rides Alone in session: ${owner.session.session_id}");
         var scream = getFontColorFromAspect(owner.aspect) + owner.rand.pickFrom(jakeisms) + "</font>";
         return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
     }
-    var dead = findDeadPlayers(allies);
+    List<GameEntity> dead = findDeadPlayers(allies);
 		//print(casters);
     //ALL effects that target a single enemy target the SAME enemy.
 		for(num i = 0; i<this.effects.length; i++){
@@ -794,7 +794,7 @@ class FraymotifEffect {
     }
 		return ret;
   }
-	dynamic toString(){
+	String toString(){
 		String ret = "";
 		if(this.damageInsteadOfBuff && this.target < 2){
 			 ret += " heals";

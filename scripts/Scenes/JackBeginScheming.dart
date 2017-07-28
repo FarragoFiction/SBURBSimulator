@@ -33,7 +33,7 @@ class JackBeginScheming extends Scene {
 		return null;
 	}
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		if(this.session.jack.getStat("currentHP") <= 0 && !this.session.jack.dead|| this.session.queen.getStat("currentHP") <= 0 && !this.session.queen.dead){  //the dead can't scheme or be schemed against
 			return false;
@@ -219,13 +219,13 @@ class JackBeginScheming extends Scene {
 		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
 		var player1 = this.friend;
 		var player2 = getLeader(findLivingPlayers(this.session.players));
-		if(player2 && player2 != player1){
+		if(player2 != null && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2);
 		}else if(player2 == player1){
 			//leader gossips with friends
 			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), (){});
-			if(!player2){
+			if(player2 == null){
 				div.appendHtml(this.content(), treeSanitizer: NodeTreeSanitizer.trusted);
 				return;
 			}else{

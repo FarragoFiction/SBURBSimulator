@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class Reckoning extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	
 
 
@@ -16,7 +16,7 @@ class Reckoning extends Scene {
 	}
 
 	@override
-	dynamic renderContent(Element div){
+	String renderContent(Element div){
 		this.session.reckoningStarted = true;
 		String intro = "";
 		if(this.session.king.getStat("currentHP") < 0){
@@ -74,12 +74,12 @@ class Reckoning extends Scene {
 			intro += " <br><br>No one is alive. <BR><BR>Game Over.  ";
 			intro += "<img src = 'images/abj_watermark.png' class='watermark'>";
 			var strongest = findStrongestPlayer(this.session.players);
-			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: " + strongest.getStat("power");
+			intro += "The MVP of the session was: " + strongest.htmlTitle() + " with a power of: ${strongest.getStat("power")}";
 		}
 		intro += "<br><br>";
 
 		appendHtml(div, intro);
-
+		return null;
 	}
 	void content(div, i){
 		String ret = " TODO: Figure out what a non 2.0 version of the Intro scene would look like. ";

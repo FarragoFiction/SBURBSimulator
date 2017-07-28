@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class GiveJackBullshitWeapon extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 
 	
 
@@ -10,7 +10,7 @@ class GiveJackBullshitWeapon extends Scene {
 	GiveJackBullshitWeapon(Session session): super(session, false);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		var partyRoll = partyRollForLuck(this.session.players);
 		var jackRoll = this.session.jack.rollForLuck();

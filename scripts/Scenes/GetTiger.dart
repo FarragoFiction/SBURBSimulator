@@ -3,7 +3,7 @@ part of SBURBSim;
 
 //known to lesser mortals as God Tier
 class GetTiger extends Scene{
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	List<dynamic> deadPlayersToGodTier = [];	//doesn't matter if dream self 'cause sacrificial slab.
 	
 
@@ -11,7 +11,7 @@ class GetTiger extends Scene{
 	GetTiger(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.deadPlayersToGodTier = [];
 		if(this.session.reckoningStarted){
@@ -41,7 +41,7 @@ class GetTiger extends Scene{
 		var players = this.deadPlayersToGodTier;
 		if(!players[0].dead){
 			appendHtml(div,"<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + text);
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='$ch'>  </canvas>";
 			appendHtml(div,canvasHTML);
 			//different format for canvas code
 			Element canvasDiv = querySelector("#canvas"+ divID);
@@ -58,7 +58,7 @@ class GetTiger extends Scene{
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
-		if(withd && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
+		if(withd != null && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
 			for(num i = 0; i< withd.length; i++){
 				var p = withd[i];
 				p.setStat("currentHP", p.getStat("hp"));
@@ -70,12 +70,12 @@ class GetTiger extends Scene{
 				ret += " They learn " + f.name + "." ;
 				this.session.questBed = true;
 			}
-		}else if(withd && withd.length > 0){
+		}else if(withd != null && withd.length > 0){
 			//print("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(withd))
 			return "";
 		}
 
-		if(withoutd){
+		if(withoutd != null){
 			for(num i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
 				if(p.isDreamSelf){

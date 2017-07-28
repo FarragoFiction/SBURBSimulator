@@ -92,7 +92,7 @@ class LifeStuff extends Scene {
 		List<Player> chosenSuplicants = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			var possibleGuide = this.session.availablePlayers[i];
-			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune()){
+			if(possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune() != null){
 				if(possibleGuide.class_name == "Seer" ||  possibleGuide.class_name == "Scribe" ||possibleGuide.class_name == "Page" || possibleGuide.class_name == "Bard" || possibleGuide.class_name == "Rogue" ||  possibleGuide.class_name == "Maid"){
 						chosenGuides.add(possibleGuide);
 				}

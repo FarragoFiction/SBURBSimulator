@@ -11,9 +11,11 @@ main() {
   new DateTime.now();
   //TODO scroll the window up
   //make a new StoryController (which will auto set itself as it's parent's singleton instance
-  window.onError.listen((ErrorEvent e){
+  window.onError.listen((Event event){
+  	ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
     printCorruptionMessage(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
+    return;
   });
   loadNavbar();
   new StoryController(); //will set this as SimController's instance variable.
@@ -222,7 +224,7 @@ class StoryController extends SimController {
     var living = findLivingPlayers(session.players);
     if(living.length > 0 && (session.makeCombinedSession == false && session.hadCombinedSession == false)){
       print("gonna render scratch");
-      var timePlayer = findAspectPlayer(session.players, "Time");
+      //var timePlayer = findAspectPlayer(session.players, "Time");
       if(!session.scratched){
         //this is apparently spoilery.
         //alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
@@ -237,7 +239,7 @@ class StoryController extends SimController {
         renderAfterlifeURL();
       }
     }else{
-      print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: " + living.length + " is had combo? " +session.hadCombinedSession.toString() );
+      print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: ${living.length} is had combo? " +session.hadCombinedSession.toString() );
     }
   }
 

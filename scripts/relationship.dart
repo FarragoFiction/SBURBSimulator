@@ -189,7 +189,7 @@ class Relationship {
 			var clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
 			//if i can't find a clone, it's probably a dead player that didn't come to the new session.
 			//may as well keep the original relationship
-			if(clone){
+			if(clone != null){
 				r.target = clone;
 			}
 

@@ -3,7 +3,7 @@ part of SBURBSim;
 
 //x times corpse smooch combo.
 class CorpseSmooch extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	List<dynamic> dreamersToRevive = [];
 	num combo = 0;	
 
@@ -11,7 +11,7 @@ class CorpseSmooch extends Scene {
 	CorpseSmooch(Session session): super(session);
 
 	@override
-	dynamic trigger(List<Player> playerList){
+	bool trigger(List<Player> playerList){
 		//print('checking corpse smooch');
 		this.playerList = playerList;
 		this.dreamersToRevive = [];
@@ -166,7 +166,7 @@ class CorpseSmooch extends Scene {
 					//print("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
 					//print("alt is: " +alt);
-					if(alt && alt.alternateScene(div)){
+					if(alt != null&& alt.alternateScene(div)){
 						//do nothing here.
 					}else{
 						ret += "<Br><Br><img src = 'images/sceneIcons/death_icon.png'>" + d.htmlTitle() + "'s waits patiently for the kiss of life. But nobody came. ";
@@ -176,7 +176,7 @@ class CorpseSmooch extends Scene {
 				}
 			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false && d.dead == true){
 				var alt = this.addImportantEvent(d);
-					if(alt && alt.alternateScene(div)){
+					if(alt != null && alt.alternateScene(div)){
 					}else{
 						//don't even mention corpse smooching for dream selves. but them perma-dying is an event.
 					}
@@ -188,7 +188,7 @@ class CorpseSmooch extends Scene {
 		//x times corpse smooch combo
 		return ret;
 	}
-	dynamic addImportantEvent(Player player){
+	ImportantEvent addImportantEvent(Player player){
 		//print("adding important event from corpse smooch");
 		Player current_mvp = findStrongestPlayer(this.session.players);
 		//only one alternate event can happen at a time. if one gets replaced, return

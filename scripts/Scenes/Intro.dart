@@ -2,7 +2,6 @@ part of SBURBSim;
 
 
 class Intro  extends IntroScene{
-	List<dynamic> playerList = [];  //whatthis.session.players are already in the medium when i trigger?
 	Player player = null;
 
 

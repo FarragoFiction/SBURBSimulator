@@ -2,14 +2,14 @@ part of SBURBSim;
 
 
 class GodTierRevival extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	List<dynamic> godsToRevive = [];	
 
 
 	GodTierRevival(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		this.godsToRevive = [];
 		//all dead players who aren't god tier and are destined to be god tier god tier now.
@@ -32,7 +32,7 @@ class GodTierRevival extends Scene {
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch + "'>  </canvas>";
+		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='$ch'>  </canvas>";
     appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);

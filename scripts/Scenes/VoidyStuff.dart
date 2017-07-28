@@ -3,7 +3,7 @@ part of SBURBSim;
 typedef ShenaniganCallback(Element normalDiv, Element newDiv);
 
 class VoidyStuff extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	Player player = null;
 	Player enablingPlayer = null;
 

@@ -2,8 +2,6 @@ part of SBURBSim;
 
 
 class YellowYard extends Scene {
-	List<dynamic> playerList = [
-	]; //what players are already in the medium when i trigger?
 	Player timePlayer;
 
 	//this will be manually triggered, won't be from scene controller.
@@ -207,7 +205,7 @@ class YellowYard extends Scene {
 	String cheatChat(player){
 		String chat = "";
 		var bullshit = 90+random()*10;
-		chat += "AB: "  +"Fuck, JR, there is a  " + bullshit + " chance that an Observer got a hold of your Yellow Yard." + "\n";
+		chat += "AB: "  +"Fuck, JR, there is a $bullshit chance that an Observer got a hold of your Yellow Yard." + "\n";
 		chat += "JR: Do they even know how to USE that thing correctly? Fuck. I mean, yeah, it'll suck if they meddle with sessions that are better left alone. \n";
 		chat += "JR: But do they even realize how much they cheapen MY power by over using that gimmicky stick? \n";
 		chat += "AB: It seems you meant 'schtick'. \n";

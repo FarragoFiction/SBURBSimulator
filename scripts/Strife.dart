@@ -285,7 +285,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     List<GameEntity> present = getLivingMinusAbsconded();
     for(GameEntity m in present){
        var r = m.getRelationshipWith(coward);
-       if(r) r.value += -5; //could be a sprite, after all.
+       if(r != null) r.value += -5; //could be a sprite, after all.
     }
   }
 
@@ -462,7 +462,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
     var ch = canvasHeight;
     if(poseable.length > 6){
-      ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
+      ch = (canvasHeight*1.5).round(); //a little bigger than two rows, cause time clones
     }
     String canvasHTML = "<br><canvas id='canvas" + div.id+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
     div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);

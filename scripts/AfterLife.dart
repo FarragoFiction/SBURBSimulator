@@ -43,17 +43,17 @@ class AfterLife {
 		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
 	List<Player> findAllDeadLovedOnes(Player player){
-		List<dynamic> lovedOnes = [];
-		List<Player> hearts = player.getHearts();
-		List<Player> diamonds = player.getDiamonds();
-		List<Player> crushes = player.getCrushes();
-		List<Player> relationships = new List<Player>();
+		List<Player> lovedOnes = [];
+		List<Relationship> hearts = player.getHearts();
+		List<Relationship> diamonds = player.getDiamonds();
+		List<Relationship> crushes = player.getCrushes();
+		List<Relationship> relationships = new List<Relationship>();
     relationships.addAll(hearts);
 		relationships.addAll(diamonds);
 	  relationships.addAll(crushes);
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
-			lovedOnes.addAll(this.findAllAlternateSelves(r));
+			lovedOnes.addAll(this.findAllAlternateSelves(r.target));
 		}
 
 		return lovedOnes;

@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class LevelTheHellUp extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 
 
 	LevelTheHellUp(Session session): super(session);

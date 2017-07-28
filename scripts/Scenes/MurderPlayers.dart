@@ -21,13 +21,14 @@ class MurderPlayers extends Scene {
 
 		return this.murderers.length > 0;
 	}
-	dynamic addImportantEvent(player){
+	ImportantEvent addImportantEvent(Player player){
 		//print( "A player is dead. Dream Self: " + player.isDreamSelf + " God Destiny: " + player.godDestiny + " GodTier: " + player.godTier);
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp = findStrongestPlayer(this.session.players);
 			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player,null) );
 		}
+		return null;
 	}
 
 	@override
@@ -59,10 +60,10 @@ class MurderPlayers extends Scene {
 				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;
 					ret += " The " + p.htmlTitle() + " is enraged that their crush was killed. ";
-				}else if(rv.type() == rv.badBig && p.isTroll){
+				}else if(rv.type() == rv.badBig && (p is Player && p.isTroll)){
 					rm.value = -20;
 					ret += " The " + p.htmlTitle() + " is enraged that their spades crush was killed. ";
-				}else if(rv.type() == rv.badBig && !p.isTroll){
+				}else if(rv.type() == rv.badBig && (p is Player && !p.isTroll)){
 					rm.increase();
 					ret += " The " + p.htmlTitle() + " is pretty happy that their enemy was killed. ";
 				}else if(rv.value > 0){  //iff i actually liked the guy.
@@ -196,7 +197,7 @@ class MurderPlayers extends Scene {
 
 				}else if(worstEnemy.getStat("power") * worstEnemy.getPVPModifier("Defender") < m.getStat("power")*m.getPVPModifier("Murderer")){
 					var alt = this.addImportantEvent(worstEnemy);
-					if(alt && alt.alternateScene(div)){
+					if(alt != null && alt.alternateScene(div)){
 						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
@@ -217,7 +218,7 @@ class MurderPlayers extends Scene {
 					}
 				}else{
 					var alt = this.addImportantEvent(worstEnemy);
-					if(alt && alt.alternateScene(div)){
+					if(alt != null && alt.alternateScene(div)){
 						//do nothing, alt scene will handle this
 					}else{
 						worstEnemy.increasePower();

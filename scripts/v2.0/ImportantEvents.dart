@@ -12,13 +12,13 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   Session session;
   Player player;
   num mvp_value; //could be a float?
-  num importanceRating = 1; //am I even still using this?
+  int importanceRating = 1; //am I even still using this?
   Player doomedTimeClone; //TODO or should it be a playerSnapShot?
   num timesCalled=0; //what was this for again?
   Player secondTimeClone; //used to undo this event
   ImportantEvent(this.session, this.mvp_value, this.player, [this.doomedTimeClone = null]);
   String humanLabel();
-  bool alternateScene(div);
+  bool alternateScene(Element div);
 
   //TODO maybe these shouldn't live here, but dragging them out of global namespace for now.
   //reference with ImportantEvent.methodname.   It's fucking nice to have static again.
@@ -45,8 +45,8 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 
 
 //YellowYardcontroller knows what makes two events functionally equivalent
-  static dynamic removeRepeatEvents(events){
-    List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
+  static List<ImportantEvent> removeRepeatEvents(List<ImportantEvent> events){
+    List<ImportantEvent> eventsToRemove = []; //don't mod an array as you loop over it.
     for(num i = 0; i<events.length; i++){
       var e1 = events[i];
       for(var j = i; j<events.length-i; j++){
@@ -67,12 +67,12 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 
 
   static List<ImportantEvent> sortEventsByImportance(List<ImportantEvent> events){
-    return events.sort(ImportantEvent.comparePriority); //TODO how do you do sorting in Dart?
+    return events..sort(ImportantEvent.comparePriority); //TODO how do you do sorting in Dart?
   }
 
 
 
-  static bool comparePriority(a,b) {
+  static int comparePriority(ImportantEvent a, ImportantEvent b) {
     return b.importanceRating - a.importanceRating;
   }
 
@@ -87,17 +87,17 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 
 
 //why was this a class???
-  static bool undoTimeUndoScene(var div, Session session, ImportantEvent event, Player timeClone1, Player timeClone2)  {
+  static bool undoTimeUndoScene(Element div, Session session, ImportantEvent event, Player timeClone1, Player timeClone2)  {
 
 //	print("times called : " + this.timesCalled);
   String narration = "<br>A doomed " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
   narration +=  " But before they can do anything, a second doomed " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
 
-  div.append(narration);
+  appendHtml(div, narration);
 
   var divID = (div.id) + "_alt_" + timeClone1.chatHandle;
-  String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-  div.append(canvasHTML);
+  String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+  appendHtml(div, canvasHTML);
   var canvasDiv = querySelector("#canvas"+ divID);
 
   var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -130,7 +130,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 	PlayerDiedButCouldGodTier(Session session, num mvp_value, Player player, [Player doomedTimeClone = null]): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "";
 		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. ";
 		return ret;
@@ -139,12 +139,12 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 	bool alternateScene(div){
 			timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			//print("times called : " + this.timesCalled);
@@ -160,11 +160,11 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 				narration +="On " + this.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 
 			var divID = (div.id) + "_alt_" + this.player.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -172,7 +172,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(dSpriteBuffer,this.player);
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
@@ -180,12 +180,12 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			player.makeGodTier();
 
 			var divID2 = (div.id) + "_alt_god" + player.chatHandle;
-			String canvasHTML2 = "<br><canvas id='canvas" + divID2+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML2);
+			String canvasHTML2 = "<br><canvas id='canvas" + divID2+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML2);
 			var canvasDiv2 = querySelector("#canvas"+ divID2);
 			List<dynamic> players = [];
 			players.add(player);
-			drawGetTiger(canvasDiv2, players,repeatTime);
+			drawGetTiger(canvasDiv2, players);//,repeatTime);
 			return true;
 	}
 
@@ -195,12 +195,12 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 
 
 class PlayerDiedForever  extends ImportantEvent {
-	num importanceRating = 5;
+	int importanceRating = 5;
 
 	PlayerDiedForever(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Make the " + this.player.htmlTitle() + " not permanently dead.";
 		return ret;
 	}
@@ -208,9 +208,9 @@ class PlayerDiedForever  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 			if(secondTimeClone != null) this.secondTimeClone.dead = false;
-			if(secondTimeClone != null) this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+			if(secondTimeClone != null) this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 			if(secondTimeClone != null){
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
@@ -222,7 +222,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			narration += " They sacrifice their life for the " + player.htmlTitleBasic() + ". ";
 
 
-			div.append(narration);
+			appendHtml(div, narration);
 
 			player.makeAlive();
 			player.sanity += -0.5;
@@ -230,8 +230,8 @@ class PlayerDiedForever  extends ImportantEvent {
 			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard");
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -239,7 +239,7 @@ class PlayerDiedForever  extends ImportantEvent {
 
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,player);
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
@@ -254,12 +254,15 @@ class PlayerDiedForever  extends ImportantEvent {
 
 
 class PlayerWentGrimDark  extends ImportantEvent {
-	num importanceRating = 7;	var player = Player.makeRenderingSnapshot;
+	int importanceRating = 7;
 
-	PlayerWentGrimDark(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
+	PlayerWentGrimDark(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone)
+	{
+		this.player = Player.makeRenderingSnapshot(player);	// TODO: Discover why this is needed (it wasn't working anyway) -PL
+	}
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going Grimdark.";
 		return ret;
 	}
@@ -267,11 +270,11 @@ class PlayerWentGrimDark  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -284,13 +287,13 @@ class PlayerWentGrimDark  extends ImportantEvent {
 				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + " is doomed makes this especially tragic, forestalling any romance this might have otherwise had. ";
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 			player.sanity += -10;
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -299,7 +302,7 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return true;
@@ -310,12 +313,12 @@ class PlayerWentGrimDark  extends ImportantEvent {
 
 
 class PlayerWentMurderMode  extends ImportantEvent{
-	num importanceRating = 7;
+	int importanceRating = 7;
 
 	PlayerWentMurderMode(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
 		return ret;
 	}
@@ -323,11 +326,11 @@ class PlayerWentMurderMode  extends ImportantEvent{
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -340,13 +343,13 @@ class PlayerWentMurderMode  extends ImportantEvent{
 				narration += "The fact that the " + this.doomedTimeClone.htmlTitleBasic() + " is doomed makes this especially tragic, forestalling any romance this might have otherwise had. ";
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 			player.sanity += -10;
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -355,7 +358,7 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return true;
@@ -367,12 +370,12 @@ class PlayerWentMurderMode  extends ImportantEvent{
 
 //grab ring before this can happen.
 class JackPromoted  extends ImportantEvent{
-	num importanceRating = 10;
+	int importanceRating = 10;
 
 	JackPromoted(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
@@ -380,11 +383,11 @@ class JackPromoted  extends ImportantEvent{
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -392,17 +395,17 @@ class JackPromoted  extends ImportantEvent{
 			narration += " Something seems...off...about them. But they are adamant that the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD needs to be destroyed. Immediately.";
 			narration += " No matter what 'fate' says. Jack Noir immediately begins flipping out, but the RING is stolen before he can do anything. ";
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with the RING in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 			this.session.destroyBlackRing();
 
 			var divID = (div.id) + "_alt_jack_promotion";
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(pSpriteBuffer,this.doomedTimeClone);
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			return true;
 	}
@@ -416,11 +419,11 @@ class JackPromoted  extends ImportantEvent{
 //TODO important, time player isn't being passed in this contstructor for some reason.
 //was i derping?
 class FrogBreedingNeedsHelp extends ImportantEvent {
-	num importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
+	int importanceRating = 2;  //really, this is probably the least useful thing you could do. If this is the ONLY thing that went wrong, your session is going great.
 	FrogBreedingNeedsHelp(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		var spacePlayer = findAspectPlayer(this.session.players, "Space");
 		String ret = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
 		return ret;
@@ -430,11 +433,11 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			var spacePlayer = findAspectPlayer(this.session.players, "Space");
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -449,11 +452,11 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 				spacePlayer.landLevel += 8;
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 
 			var divID = (div.id) + "_alt_" + spacePlayer.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -462,7 +465,7 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSpriteTurnways(dSpriteBuffer,spacePlayer);
 
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			//print("done helping frog a scene, seed is at: " + Math.seed);
@@ -476,11 +479,11 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 
 
 class PlayerEnteredSession  extends ImportantEvent {
-	num importanceRating = 5;
+	int importanceRating = 5;
 	PlayerEnteredSession(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
 		return ret;
 	}
@@ -488,11 +491,11 @@ class PlayerEnteredSession  extends ImportantEvent {
 	bool alternateScene(div){
 		this.timesCalled ++;
 		this.doomedTimeClone.dead = false;
-		this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+		this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -502,15 +505,15 @@ class PlayerEnteredSession  extends ImportantEvent {
 			narration += " No matter what 'fate' says. ";
 
 			narration +=  "After a brief struggle, the doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 			player.dead = true;
 			player.makeDead("apparantly displeasing the Observer.");
 			this.doomedTimeClone.victimBlood = player.bloodColor;
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -519,7 +522,7 @@ class PlayerEnteredSession  extends ImportantEvent {
 			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 			drawSprite(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv, this.doomedTimeClone);
+			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return false; //let the original scene happen as well.
@@ -533,12 +536,12 @@ class PlayerEnteredSession  extends ImportantEvent {
 //...huh...how did I not notice this typo soner.
 //TODO when refactor is done and everything is hooked up, test out intellij-s auto refactor rename variable thing
 class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
-	num importanceRating = 10;
+	int importanceRating = 10;
 	//this is so illegal.
 	TimePlayerEnteredSessionWihtoutFrog(Session session, num mvp_value, Player player, Player doomedTimeClone): super(session, mvp_value, player, doomedTimeClone);
 
   @override
-	dynamic humanLabel(){
+	String humanLabel(){
 		String ret = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";
 		return ret;
 	}
@@ -546,11 +549,11 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.currentHP = this.doomedTimeClone.hp;
+			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.currentHP = this.secondTimeClone.hp;
+				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -559,15 +562,15 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			narration += " Something seems...off...about them. But they are adamant that their past-selves kernel sprite needs to be prototyped with this FROG. You do not even want to know how long it took them to get back to earth, and then time-travel to before the" +  player.htmlTitleBasic() + " entered the session. They are commited to this. ";
 			narration += " No matter what 'fate' says.  They don't even care how illegal this is. ";
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
-			div.append(narration);
+			appendHtml(div, narration);
 
 			player.object_to_prototype = new GameEntity("Frog",0,null);
 			player.object_to_prototype.setStat("power",20);
 			player.object_to_prototype.illegal = true;
 			player.object_to_prototype.mobility = 100;
 			var divID = (div.id) + "_alt_jack_promotion";
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.canvasWidth.toString() + "'>  </canvas>";
-			div.append(canvasHTML);
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
 			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));

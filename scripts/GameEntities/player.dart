@@ -106,7 +106,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return ret;
 	}
-	dynamic getHearts(){
+	List<Relationship> getHearts(){
 		List<dynamic> ret = [];
 		for (num i = 0; i<this.relationships.length; i++){
 			var r = this.relationships[i];
@@ -262,8 +262,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		this.flippingOutOverDeadPlayer = null;
 		this.flipOutReason = reason;
 	}
-	bool interestedIn(interestWord, interestNum){
-		if(!interestNum){
+	bool interestedIn(String interestWord, [int interestNum = 0]){
+		if(interestNum == 0){
 			if(interestWord == "Comedy") return playerLikesComedy(this);
 			if(interestWord == "Music") return playerLikesMusic(this);
 			if(interestWord == "Culture") return playerLikesCulture(this);
@@ -453,7 +453,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return ret;
 	}
-	dynamic getDiamonds(){
+	List<Relationship> getDiamonds(){
 		List<dynamic> ret = [];
 		for (num i = 0; i<this.relationships.length; i++){
 			var r = this.relationships[i];
@@ -1208,7 +1208,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			}
 		}
 	}
-	dynamic rollForLuck([String stat]){
+	num rollForLuck([String stat]){
 		if(stat == null || stat == ""){
 		    return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
 		}else{
@@ -1259,7 +1259,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 
 	@override
-	Relationship getRelationshipWith(Player player){
+	Relationship getRelationshipWith(GameEntity player){
 		for(num i = 0; i<this.relationships.length; i++){
 			if(this.relationships[i].target == player){
 				return this.relationships[i];
@@ -1286,14 +1286,14 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return null;
 	}
-	dynamic getWhoLikesMeLeastFromList(potentialFriends){
-		var worstRelationshipSoFar = this.relationships[0];
-		var enemy = worstRelationshipSoFar.target;
+	Player getWhoLikesMeLeastFromList(List<Player >potentialFriends){
+		Relationship worstRelationshipSoFar = this.relationships[0];
+		Player enemy = worstRelationshipSoFar.target;
 		for(num i = 0; i<potentialFriends.length; i++){
-			var p = potentialFriends[i];
+			Player p = potentialFriends[i];
 			if(p != this){
 				var r = p.getRelationshipWith(this);
-				if(r && r.value < worstRelationshipSoFar.value){
+				if(r != null && r.value < worstRelationshipSoFar.value){
 					worstRelationshipSoFar = r;
 					enemy = p;
 				}
@@ -1331,7 +1331,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			return getColorFromAspect(this.aspect);
 		}
 	}
-	dynamic getFriendsFromList(potentialFriends){
+	List<GameEntity> getFriendsFromList(List<GameEntity> potentialFriends){
 		List<dynamic> ret = [];
 		for(num i = 0; i<potentialFriends.length; i++){
 			var p = potentialFriends[i];
@@ -1367,8 +1367,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 		return worstRelationshipSoFar.value;
 	}
-	dynamic getTotalBuffForStat(statName){
-	    num ret = 0;
+	double getTotalBuffForStat(String statName){
+	    double ret = 0.0;
 	    for(num i = 0; i<this.buffs.length; i++){
 	        var b = this.buffs[i];
 	        if(b.name == statName) ret += b.value;
@@ -1571,9 +1571,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void renderSelf(){
 		if(this.spriteCanvasID == null) this.initSpriteCanvas();
-		var canvasDiv = querySelector("#${this.spriteCanvasID}");
+		CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
 
-		var ctx = canvasDiv.getContext("2d");
+		//var ctx = canvasDiv.context2D;
 		this.clearSelf();
 		//var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(querySelector("#sprite_template"));
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -1583,8 +1583,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0);
 	}
 	void clearSelf(){
-		var canvasDiv = querySelector("#${this.spriteCanvasID}");
-		var ctx = canvasDiv.getContext("2d");
+		CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
+		var ctx = canvasDiv.context2D;
 		ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height);
 	}
 	void initializeMobility(){
@@ -1665,17 +1665,21 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	    String x = "&x=" +this.toDataBytesX(); //ALWAYS have it. worst case scenario is 1 bit.
 		return "b=" + this.toDataBytes() + "&s="+this.toDataStrings(true) + x;
 	}
-	dynamic toDataBytesX(){
-        var builder = new ByteBuilder();
+	String toDataBytesX(){
+        /*
+		var builder = new ByteBuilder();
         var j = this.toJSON();
         if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
-            return Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
+            return Uri.encodeComponent(builder.toBuffer()).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
         }
         builder.appendExpGolomb(2); //for length
         builder.appendByte(j.class_name);
         builder.appendByte(j.aspect);
-        return Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
+        return Uri.encodeComponent(builder.toBuffer()).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
+        */
+        // TODO: Extension machine also broke - PL
+		return null;
 	}
 	void readInExtensionsString(reader){
 	    print("reading in extension string");
@@ -1720,8 +1724,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		var json = {"aspect": aspectToInt(this.aspect), "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair,  "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon,"causeOfDrain": cod,"victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf":this.isDreamSelf ? 1 : 0, "murderMode":this.murderMode ? 1 : 0, "leftMurderMode":this.leftMurderMode ? 1 : 0,"grimDark":this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0 };
 		return json;
 	}
-	dynamic toString(){
-		return (this.class_name+this.aspect).replaceAll(new RegExp(r"'", multiLine:true), '');; //no spaces.
+	String toString(){
+		return (this.class_name+this.aspect).replaceAll(new RegExp(r"'", multiLine:true), ''); //no spaces.
 	}
 	void copyFromPlayer(replayPlayer){
 		//print("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber);
@@ -2212,13 +2216,13 @@ javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 List<Player> getReplayers(){
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
-	var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
+	//var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
   String raw = getRawParameterByName("b",null);
   if(raw == null) return []; //don't even try getting the rest.
 	var b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b",null)));
 	var s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s",null));
 	var x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x",null));
-	if(!b||!s) return [];
+	if(b == null||s == null) return [];
 	if(b== "null" || s == "null") return []; //why was this necesassry????????????????
 	//print("b is");
 	//print(b);
@@ -2282,7 +2286,7 @@ void initializePlayers(List<Player> players, Session  session){
 			players[i].initialize();
 			players[i].guardian.initialize();
 			if(replayPlayers.length > i){
-				players[i].quirk.favoriteNumber = int.parse(replayPlayers[i].quirk.favoriteNumber, onError:(String input) => 0) ;//has to be after initialization;
+				players[i].quirk.favoriteNumber = replayPlayers[i].quirk.favoriteNumber; //int.parse(replayPlayers[i].quirk.favoriteNumber, onError:(String input) => 0) ;//has to be after initialization;
 				if(players[i].isTroll){
 					players[i].quirk.makeTrollQuirk(players[i]); //redo quirk
 				}else{
@@ -2303,7 +2307,7 @@ void initializePlayers(List<Player> players, Session  session){
 void initializePlayersNoDerived(players, session){
 	var replayPlayers = getReplayers();
 	for(num i = 0; i<players.length; i++){
-		if(replayPlayers[i]) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+		if(replayPlayers[i] != null) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
 		players[i].initializeStats();
 		players[i].initializeSprite();
 	}
@@ -2636,10 +2640,10 @@ Player findStrongestPlayer(List<Player> playerList){
 
 
 
-List<Player> findDeadPlayers(List<GameEntity> playerList){
-	List<Player> ret = [];
+List<T> findDeadPlayers<T extends GameEntity>(List<T> playerList){
+	List<GameEntity> ret = [];
 	for(int i= 0; i<playerList.length; i++){
-		Player p = playerList[i];
+		T p = playerList[i];
 		if(p.dead){
 			ret.add(p);
 		}

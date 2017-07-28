@@ -4,7 +4,7 @@ part of SBURBSim;
 //only one player at a time.
 //compare old relationship with new relationship.
 class RelationshipDrama extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	List<dynamic> dramaPlayers = [];	
 
 

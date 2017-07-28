@@ -2,14 +2,14 @@ part of SBURBSim;
 
 
 class FaceDenizen extends Scene{
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	List<dynamic> denizenFighters = [];	
 
 
 	FaceDenizen(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
 		for(num i = 0; i<this.session.availablePlayers.length; i++){

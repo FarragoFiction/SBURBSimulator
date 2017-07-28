@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class FightQueen extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 
 	
 
@@ -10,7 +10,7 @@ class FightQueen extends Scene {
 	FightQueen(Session session): super(session);
 
 	@override
-	dynamic trigger(playerList){
+	bool trigger(playerList){
 		this.playerList = playerList;
 		return (this.session.queen.getStat("currentHP") > 0) &&  !this.session.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
 	}

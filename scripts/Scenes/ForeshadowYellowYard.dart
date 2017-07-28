@@ -2,7 +2,7 @@
 /*
 //not being used anymore since yellow yard is implemented.
 class ForeshadowYellowYard extends Scene{
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	this.timePlayer;
 	//this will be manually triggered, won't be from scene controller.
 	//mostly just a collection of methods needed fo this.

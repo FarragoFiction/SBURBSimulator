@@ -309,12 +309,12 @@ void scratchEasterEggCallBack(){
   scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
   scratch += " The new players will be given stat boosts to give them a better chance than the previous generation.";
 
-  var suddenDeath = findAspectPlayer(raggedPlayers, "Life");
+  Player suddenDeath = findAspectPlayer(raggedPlayers, "Life");
   if( suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
 
   //NOT over time. literally sudden death. thanks meenah!
   var livingRagged = findLivingPlayers(raggedPlayers);
-  if(suddenDeath && !suddenDeath.dead){
+  if(suddenDeath != null && !suddenDeath.dead){
     print("sudden death in: ${curSessionGlobalVar.session_id}");
     for(num i = 0; i<livingRagged.length; i++){
       livingRagged[i].makeDead("right as the scratch happened");

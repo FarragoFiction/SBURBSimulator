@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class PrepareToExileQueen extends Scene {
-		List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	var player = null;	
 
 

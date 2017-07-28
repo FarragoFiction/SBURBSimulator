@@ -41,19 +41,21 @@ class CharacterEasterEggEngine {
 
 
   void parseFileContentsToArray(arr, fileContents){
-    this[arr] = fileContents.split("\n");
+    //this[arr] = fileContents.split("\n");
+	  //TODO: parse machine broken -PL
+
     //print(arr);
     //print(this[arr]);
   }
   void processForSim(callBack){
   	Random rand = curSessionGlobalVar.rand;
-    var pool = this.getPoolBasedOnEggs();
+    var pool = this.getPoolBasedOnEggs(rand);
     var potentials = this.playerDataStringArrayToURLFormat(pool);
     List<dynamic> ret = [];
     List<Player> spacePlayers = findAllAspectPlayers(potentials, "Space");
     var space = rand.pickFrom(spacePlayers);
     potentials.removeFromArray(space);
-    if(!space){
+    if(space == null){
       space = randomSpacePlayer(curSessionGlobalVar);
       space.chatHandle = "randomSpace";
       //print("Random space player!");
@@ -64,7 +66,7 @@ class CharacterEasterEggEngine {
     var timePlayers = findAllAspectPlayers(potentials, "Time");
     var time = rand.pickFrom(timePlayers);
     potentials.removeFromArray(time);
-    if(!time){
+    if(time == null){
       time = randomTimePlayer(curSessionGlobalVar);
       time.chatHandle = "randomTime";
       time.quirk = new Quirk(rand);
@@ -218,7 +220,7 @@ dynamic playersToDataBytes(players){
 dynamic playersToExtensionBytes(players){
   String ret = "";
   return ret; //not working 4 now
-  var builder = new ByteBuilder();
+  /*var builder = new ByteBuilder();
   //do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
   //builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
   ret += Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
@@ -227,7 +229,7 @@ dynamic playersToExtensionBytes(players){
     ret += players[i].toDataBytesX();
   }
   return LZString.compressToEncodedURIComponent(ret);
-  //return ret;
+  //return ret;*/
 }
 
 
@@ -351,12 +353,12 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
   //print("Binary string is: " + charString[7]);
   player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7));
   player.quirk.favoriteNumber = charString.charCodeAt(7) & 15;
-  print("Player favorite number is: " + player.quirk.favoriteNumber);
+  print("Player favorite number is: ${player.quirk.favoriteNumber}");
   player.leftHorn = charString.charCodeAt(8);
   player.rightHorn = charString.charCodeAt(9);
   player.hair = charString.charCodeAt(10);
-  if(player.interest1Category) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
-  if(player.interest2Category )interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
+  if(player.interest1Category != null) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
+  if(player.interest2Category != null)interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
 
   return player;
 }

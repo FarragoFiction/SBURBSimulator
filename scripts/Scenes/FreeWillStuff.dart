@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class FreeWillStuff extends Scene{
-	//	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+	//
 	var decision = null;
 	Player player = null;
 	Player renderPlayer1 = null;
@@ -16,7 +16,7 @@ class FreeWillStuff extends Scene{
 	FreeWillStuff(Session session): super(session);
 
 	@override
-	dynamic trigger(List<Player> playerList){
+	bool trigger(List<Player> playerList){
 		this.decision = null;//reset
 		this.player = null;
 		this.renderPlayer1 = null;
@@ -101,7 +101,7 @@ class FreeWillStuff extends Scene{
 				var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
 				var ectobiologistEnemy = getLeader(enemies);
 				//not everybody knows about ectobiology.
-				if(!this.session.ectoBiologyStarted && ectobiologistEnemy && (player.knowsAboutSburb() && player.grimDark < 2)){
+				if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.knowsAboutSburb() && player.grimDark < 2)){
 					//print("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
@@ -111,7 +111,7 @@ class FreeWillStuff extends Scene{
 					return ret;
 				}
 				//not everybody knows why frog breeding is important.
-				if(spacePlayerEnemy && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){
+				if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){
 					//print("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
@@ -378,7 +378,7 @@ class FreeWillStuff extends Scene{
 	}
 	String forceSomeOneElseBecomeGod(Player player){
 		var sacrifice = this.findNonGodTierBesidesMe(player);
-		if(sacrifice && !sacrifice.dead && !sacrifice.godTier){
+		if(sacrifice != null && !sacrifice.dead && !sacrifice.godTier){
 			String bed = "bed";
 			String loop = "";
 

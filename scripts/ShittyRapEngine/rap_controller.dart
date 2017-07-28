@@ -48,7 +48,7 @@ void rap(playerNum, Player player){
 			rapper2Line(str);
 	}
 
-	if(firstWord && secondWord && firstWord != secondWord){
+	if(firstWord != null && secondWord != null && firstWord != secondWord){
 		if(playerNum==1){
 				player1Score ++;
 				rap(1,player); //keep going till you can't

@@ -478,7 +478,7 @@ class Session {
 		}else if(ouija == true){
 			var trueRandom = getRandomIntNoSeed(1,4);
 			div = "<div class = 'scene' id='scene${this.currentSceneNum}'>";
-			div += "<img class = 'pen15' src = 'images/pen15_bg"+ trueRandom+".png'>";
+			div += "<img class = 'pen15' src = 'images/pen15_bg$trueRandom.png'>";
 			div += "</div>";
 		}else{
 			div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";

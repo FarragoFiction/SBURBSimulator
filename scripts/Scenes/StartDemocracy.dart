@@ -15,7 +15,7 @@ part of SBURBSim;
 */
 
 class StartDemocracy extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	var friend = null;	//blood or page or thief or rogue.
 	
 

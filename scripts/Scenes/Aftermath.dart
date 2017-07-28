@@ -1,7 +1,7 @@
 part of SBURBSim;
 
 class Aftermath extends Scene {
-	List<dynamic> playerList = [];  //what players are already in the medium when i trigger?
+
 	
 
 
@@ -45,7 +45,7 @@ class Aftermath extends Scene {
 		if(timePlayer == null && singleUseOfSeed > .5){
 			timePlayer = findAspectPlayer(this.session.players, "Time");
 		}
-		if(dead.length >= living.length && timePlayer || this.session.janusReward){
+		if(dead.length >= living.length && timePlayer != null || this.session.janusReward){
 			//print("Time Player: " + timePlayer);
 			timePlayer = findAspectPlayer(this.session.players, "Time") ;//NEED to have a time player here.;
 			var s = new YellowYard(this.session);
@@ -54,7 +54,7 @@ class Aftermath extends Scene {
 			s.renderContent(div);
 		}
 	}
-	String mournDead(div){
+	String mournDead(Element div){
 		var dead = findDeadPlayers(this.session.players);
 		var living = findLivingPlayers(this.session.players);
 		if(dead.length == 0){
@@ -62,7 +62,7 @@ class Aftermath extends Scene {
 		}
 		String ret = "<br><br>";
 		if(living.length > 0){
-			ret += " Victory is not without it's price. " + dead.length + " players are dead, never to revive. There is time for mourning. <br>";
+			ret += " Victory is not without it's price. ${dead.length} players are dead, never to revive. There is time for mourning. <br>";
 		}else{
 			ret += " The consorts and Carapacians both Prospitian and Dersite alike mourn their fallen heroes. ";
 			ret += "<img src = 'images/abj_watermark.png' class='watermark'>";
@@ -73,25 +73,25 @@ class Aftermath extends Scene {
 			ret += "<br><br> The " + p.htmlTitleBasic() + " died " + p.causeOfDeath + ". ";
 			var friend = p.getWhoLikesMeBestFromList(living);
 			var enemy = p.getWhoLikesMeLeastFromList(living);
-			if(friend){
+			if(friend != null){
 				ret += " They are mourned by the" + friend.htmlTitle() + ". ";
-				div.append(ret);
+				appendHtml(div, ret);
 				ret = "";
 				this.drawMourning(div, p,friend);
-				div.append(ret);
+				appendHtml(div, ret);
 			}else if(enemy){
 				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. <br><br>";
-				div.append(ret);
+				appendHtml(div, ret);
 				ret = "";
 			}
 		}
-		div.append(ret);
+		appendHtml(div, ret);
 		return null;
 	}
 	void drawMourning(div, dead_player, friend){
 		var divID = (div.id) + "_" + dead_player.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div, canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
