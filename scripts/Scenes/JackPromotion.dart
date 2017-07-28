@@ -3,7 +3,7 @@ part of SBURBSim;
 
 class JackPromotion extends Scene{
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
-
+  bool canRepeat = false;
 	JackPromotion(Session session): super(session, false);
 
 	@override

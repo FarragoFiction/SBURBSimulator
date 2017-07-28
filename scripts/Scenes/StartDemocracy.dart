@@ -15,7 +15,7 @@ part of SBURBSim;
 */
 
 class StartDemocracy extends Scene {
-
+  bool canRepeat = false;
 	var friend = null;	//blood or page or thief or rogue.
 	
 

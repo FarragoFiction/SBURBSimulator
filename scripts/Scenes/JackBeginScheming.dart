@@ -5,6 +5,7 @@ class JackBeginScheming extends Scene {
 	//Session session;
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	Player friend = null;	//blood or page or thief or rogue.  don't go for non native players
+  bool canRepeat = false;
 	
 
 

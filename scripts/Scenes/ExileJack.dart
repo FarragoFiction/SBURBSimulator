@@ -3,9 +3,7 @@ part of SBURBSim;
 
 class ExileJack extends Scene{
 
-
-	
-
+	bool canRepeat = false;
 
 	ExileJack(Session session): super(session, false);
 

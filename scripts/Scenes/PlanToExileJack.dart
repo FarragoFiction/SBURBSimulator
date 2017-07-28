@@ -4,11 +4,8 @@ part of SBURBSim;
 class PlanToExileJack extends Scene {
 
 	var planner = null;	//a player has to be not busy to be your friend right now.
-	
-
-
+  bool canRepeat = false;
 	PlanToExileJack(Session session): super(session, false);
-
 
 	@override
 	bool trigger(playerList){

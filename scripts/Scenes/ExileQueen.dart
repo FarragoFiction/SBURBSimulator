@@ -2,10 +2,7 @@ part of SBURBSim;
 
 
 class ExileQueen extends Scene {
-
-
-	
-
+	bool canRepeat = false;
 
 	ExileQueen(Session session): super(session, false);
 

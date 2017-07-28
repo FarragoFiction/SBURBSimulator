@@ -2,10 +2,7 @@ part of SBURBSim;
 
 
 class GiveJackBullshitWeapon extends Scene {
-
-
-	
-
+  bool canRepeat = false;
 
 	GiveJackBullshitWeapon(Session session): super(session, false);
 
