@@ -445,8 +445,9 @@ class GameEntity implements Comparable{
     }
   }
   num getStat(String statName){
+    if(statName == "MANGRIT") statName = "power"; //fraymotifs can try to get it directly
     num ret = this.stats[statName];
-    if(ret == null) throw "What Kind of Stat is: ${statName}???"
+    if(ret == null) throw "What Kind of Stat is: ${statName}???";
     for(var i = 0; i<this.buffs.length; i++){
       var b = this.buffs[i];
       if(b.name == statName) ret += b.value;
