@@ -1194,7 +1194,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		for(num i = 0; i<this.relationships.length; i++){
 			var player = this.relationships[i].target;
 			var r = this.getRelationshipWith(player);
-			if(r){
+			if(r != null){
 				r.value += boost;
 			}
 		}
@@ -1203,7 +1203,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		for(num i = 0; i<this.relationships.length; i++){
 			var player = this.relationships[i].target;
 			var r = this.getRelationshipWith(player);
-			if(r){
+			if(r != null){
 				r.increase();
 			}
 		}
@@ -1220,7 +1220,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	void damageAllRelationshipsWithMe(){
 		for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 			var r = this.getRelationshipWith(curSessionGlobalVar.players[i]);
-			if(r){
+			if(r != null){
 				r.decrease();
 			}
 		}

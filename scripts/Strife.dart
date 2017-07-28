@@ -51,7 +51,7 @@ class Strife {
 
   bool denizenDoneWithYourShit(Element div) {
     List<GameEntity> members = findMembersOfDenizenFight();
-    if(members == null || members.length == 0) return false; //not a denizen fight
+    if(members == null || members.length < 2) return false; //not a denizen fight
     Denizen d = members[0];
     Player p = members[1];
     if (members.length != 2) return false; //it's not a denizen fight.

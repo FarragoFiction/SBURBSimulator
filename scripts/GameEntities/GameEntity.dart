@@ -19,7 +19,7 @@ class GameEntity implements Comparable{
   bool usedFraymotifThisTurn = false;
   List<Buff> buffs = []; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
   HashMap stats = {};
-  List<Relationship> relationships; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
+  List<Relationship> relationships = []; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
   HashMap permaBuffs = {"MANGRIT":0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
   num renderingType = 0; //0 means default for this sim.
   List<AssociatedStat> associatedStats = [];  //most players will have a 2x, a 1x and a -1x stat.
