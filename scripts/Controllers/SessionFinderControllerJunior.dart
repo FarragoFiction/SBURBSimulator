@@ -1,16 +1,18 @@
 import '../SBURBSim.dart';
 import 'dart:html';
-import 'dart:html';
 import 'dart:typed_data';
 import 'dart:collection';
+import 'SessionFinderController.dart';
 
 //replaces the poorly named scenario_controller2.js
 num initial_seed = 0;
+SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
+
 Random rand;
 main() {
   loadNavbar();
   new SessionFinderControllerJunior();
-  percentBullshit();
+  self.percentBullshit();
 
   if(getParameterByName("seed",null) != null){
     initial_seed = int.parse(getParameterByName("seed",null));
@@ -19,15 +21,11 @@ main() {
     initial_seed = tmp;
   }
   rand = new Random(initial_seed);
-  formInit();
+  self.formInit();
 }
 
-void percentBullshit(){
-  var pr = 90+rand.nextDouble()*10; //this is not consuming randomness. what to do?
-  querySelector("#percentBullshit").setInnerHtml("$pr%");
-}
 
-class SessionFinderControllerJunior extends SessionFinderController { //TODO maybe extend story controller?
+class SessionFinderControllerJunior extends SessionFinderController {
   SessionFinderControllerJunior() : super();
 
 
