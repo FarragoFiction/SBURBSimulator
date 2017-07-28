@@ -204,7 +204,7 @@ class Fraymotif {
 	dynamic replaceKeyWordsForFlavorTextBase(Random rand, String phrase){
     phrase = phrase.replaceAll("damages", rand.pickFrom(this.getDamageWords()));
     phrase = phrase.replaceAll("debuffs", rand.pickFrom(this.getDebuffWords()));
-    phrase = phrase.replaceAllThe DenizenAspiratcher,TheLibrarian remains alive and unabsconded. ("heals", rand.pickFrom(this.getHealingWords()));
+    phrase = phrase.replaceAll("heals", rand.pickFrom(this.getHealingWords()));
     phrase = phrase.replaceAll("buffs", rand.pickFrom(this.getBuffWords()));
     phrase = phrase.replaceAll("SELF", rand.pickFrom(this.getSelfWords()));
     phrase = phrase.replaceAll("EBLUH", rand.pickFrom(this.getEnemyWords()));

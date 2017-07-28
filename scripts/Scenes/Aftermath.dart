@@ -79,7 +79,7 @@ class Aftermath extends Scene {
 				ret = "";
 				this.drawMourning(div, p,friend);
 				appendHtml(div, ret);
-			}else if(enemy){
+			}else if(enemy != null){
 				ret += " The " +enemy.htmlTitle() + " feels awkward about not missing them at all. <br><br>";
 				appendHtml(div, ret);
 				ret = "";
@@ -191,7 +191,7 @@ class Aftermath extends Scene {
 	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a power of: ${strongest.getStat("power")}";
 	end += "<br>Thanks for Playing!<br>";
 	div.appendHtml(end,treeSanitizer: NodeTreeSanitizer.trusted);
-	String divID = (div.id) + "_aftermath" ;
+	//String divID = (div.id) + "_aftermath" ;
 
 
 	//poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.

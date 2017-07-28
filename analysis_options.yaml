@@ -1,2 +1,37 @@
 analyzer:
   strong-mode: true
+
+linter:
+  rules:
+    - avoid_empty_else
+    - empty_statements
+    - hash_and_equals
+    - iterable_contains_unrelated_type
+    - list_remove_unrelated_type
+    - no_adjacent_strings_in_list
+    - no_duplicate_case_values
+    - unrelated_type_equality_checks
+    - valid_regexps
+
+    - always_declare_return_types
+    - always_specify_types
+    - annotate_overrides
+    - avoid_function_literals_in_foreach_calls
+    - await_only_futures
+    - directives_ordering
+    - empty_catches
+    - implementation_imports
+    - one_member_abstracts
+    - overridden_fields
+    - prefer_contains
+    - prefer_function_declarations_over_variables
+    - prefer_interpolation_to_compose_strings
+    - prefer_is_empty
+    - recursive_getters
+    - sort_constructors_first
+    - unawaited_futures
+    - unnecessary_brace_in_string_interps
+    - unnecessary_getters_setters
+    - unnecessary_lambdas
+    - unnecessary_overrides
+    - use_to_and_as_if_applicable
