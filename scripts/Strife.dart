@@ -123,7 +123,7 @@ class Strife {
       icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
     String endingHTML = "<Br><br> ${icon} The fight is over. ${winner
         .name} remains alive and unabsconded. <br>";
-    div.appendHtml(endingHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+    appendHtml(div, endingHTML);
     if (winner.findPlayer() != null) winner.renderPoseAsATeam(div); //only call this if winning team has a player in it. (otherwise blank canvas)
   }
 
@@ -321,7 +321,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   //handle doomed time clones here, too
   void summonBackup(GameEntity backup, div) {
     String canvasHTML = "<br><canvas id='canvasBackup${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-    div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+    appendHtml(div, canvasHTML);
     var canvasDiv = querySelector("#canvasBackup"+ div.id);
     if(backup.doomed){
       var canvasDiv = querySelector("#canvas"+ div.id);
@@ -340,7 +340,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       }//not a time player
       //console.log("summoning a player to this fight. " +this.session.session_id)
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-      div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+      appendHtml(div, canvasHTML);
 
       div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!!",treeSanitizer: NodeTreeSanitizer.trusted);
     }
@@ -425,7 +425,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
           ret += member.checkDiedInAStrife(enemyTeams);
       }
     }
-    if(ret.isEmpty) div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
+    if(ret.isEmpty) appendHtml(div, ret);
   }
 
   void giveGristFromTeams(List<Team>teams) {
@@ -465,7 +465,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       ch = (canvasHeight*1.5).round(); //a little bigger than two rows, cause time clones
     }
     String canvasHTML = "<br><canvas id='canvas${div.id}${members[0].id}' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
-    div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+    appendHtml(div, canvasHTML);
     //different format for canvas code
     var canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
     poseAsATeam(canvasDiv, poseable); //in handle sprites

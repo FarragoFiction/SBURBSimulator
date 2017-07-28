@@ -341,7 +341,7 @@ void scratchEasterEggCallBack(){
   }
   String canvasHTML = "<br><canvas id='canvas" + guardianID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  guardianDiv.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+  appendHtml(guardianDiv, canvasHTML);
   Element canvasDiv = querySelector("#canvas"+ guardianID);
   poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
@@ -354,7 +354,7 @@ void scratchEasterEggCallBack(){
   }
   canvasHTML = "<br><canvas id='canvas" + playerID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
 
-  playerDiv.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+  appendHtml(playerDiv, canvasHTML);
   canvasDiv = querySelector("#canvas"+ playerID);
 
   //need to render self for caching to work for this
@@ -404,7 +404,7 @@ String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollect
 String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert:(T e) => e.toString(), combine:(String p, String e) => "$p$joiner$e", initial:"");
 
 void appendHtml(Element element, String html) {
-	element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+	appendHtml(element, html);
 }
 
 void renderAfterlifeURL(){

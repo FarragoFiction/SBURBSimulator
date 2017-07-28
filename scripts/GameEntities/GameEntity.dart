@@ -348,7 +348,7 @@ class GameEntity implements Comparable{
         ", but not before a lot of grumbling and arguing about how the pact shouldn't even be VALID anymore since the player is fucking GODTIER, they are going to revive fucking ANYWAY. But yeah, MAYBE it'd be judged HEROIC or some shit. Fine, they agree to go into a ghost coma or whatever. ";
       }
       ret += "It will be a while before the ghost recovers.";
-      div.appendHtml(ret,treeSanitizer: NodeTreeSanitizer.trusted);
+      appendHtml(div, ret);
       Player myGhost = this.session.afterLife.findClosesToRealSelf(this);
       removeFromArray(myGhost, this.session.afterLife.ghosts);
      // CanvasElement canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);

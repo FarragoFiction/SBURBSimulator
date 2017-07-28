@@ -21,7 +21,7 @@ class YellowYard extends Scene {
 		this.session.yellowYard = true;
 		Element div2 = null;
 		String tmp = "<div id = 'yyholder'></div><bR>";
-		div.appendHtml(tmp,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, tmp);
 		div2 = querySelector("#yyholder");
 		//this.timePlayer.wasteInfluenced = true; //can't go back now. shit, yes you can scratch
 		Player time = this.getDoomedTimeClone();
@@ -30,7 +30,7 @@ class YellowYard extends Scene {
 		//String html = "<img src = 'images/yellow_yard.png'>";
 		String html = "<div id = '4thwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
 		Session session = this.session;
-		div2.appendHtml(html,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div2, html);
 		querySelector("#4thwall").onClick.listen((Event e) {
 			//helloWorld();
 			String html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
@@ -142,7 +142,7 @@ class YellowYard extends Scene {
 		//div.append("<br>"+this.content());
 		//print("Yellow yard is happening. " + this.session.session_id);
 		String canvasHTML = "<br><canvas id='canvasJRAB1${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 
 		CanvasElement canvasDiv = querySelector("#canvasJRAB1${div.id}");
 		String chat = "";
@@ -163,7 +163,7 @@ class YellowYard extends Scene {
 		drawChatABJR(canvasDiv, chat);
 
 		canvasHTML = "<br><canvas id='canvasJRAB22${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML);
 		canvasDiv = querySelector("#canvasJRAB22${div.id}");
 		chat = "";
 		chat += "AB: WAIT! Don't forget to give the Observer the standard warning!\n";
@@ -175,7 +175,7 @@ class YellowYard extends Scene {
 		drawChatABJR(canvasDiv, chat);
 
 		String canvasHTML2 = "<br><canvas id='canvasJRAB2${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		div.appendHtml(canvasHTML2,treeSanitizer: NodeTreeSanitizer.trusted);
+		appendHtml(div, canvasHTML2);
 		CanvasElement canvasDiv2 = querySelector("#canvasJRAB2${div.id}");
 		chat = "";
 		if(this.timePlayer.dead){
@@ -195,7 +195,7 @@ class YellowYard extends Scene {
 		//might not be another part.
 		if(chat != ""){
 			String canvasHTML3 = "<br><canvas id='canvasJRAB3${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			div.appendHtml(canvasHTML3,treeSanitizer: NodeTreeSanitizer.trusted);
+			appendHtml(div, canvasHTML3);
 			var canvasDiv3 = querySelector("#canvasJRAB3${div.id}");
 			drawChatJRPlayer(canvasDiv3, chat, player);
 		}

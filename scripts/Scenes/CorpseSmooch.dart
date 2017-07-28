@@ -40,7 +40,7 @@ class CorpseSmooch extends Scene {
 		if(this.combo>1){
 			var divID = (div.id) + "_" + "combo";
 			String canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='$canvasWidth' height='${canvasHeight/3}'>  </canvas>";
-			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvasCombo"+ divID);
 			this.drawCombo(canvasDiv, this.combo);
 		}
@@ -135,7 +135,7 @@ class CorpseSmooch extends Scene {
 			royalty.interactionEffect(deadPlayer);
 			String divID = (div.id) + "_" + deadPlayer.chatHandle;
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			div.appendHtml(canvasHTML,treeSanitizer: NodeTreeSanitizer.trusted);
+			appendHtml(div, canvasHTML);
 			Element canvasDiv = querySelector("#canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000);
 		}else{
