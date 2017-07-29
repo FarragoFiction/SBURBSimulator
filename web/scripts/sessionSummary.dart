@@ -1,5 +1,4 @@
 part of SBURBSim;
-//TODO NOTE FROM JR: This is for the rare session finder and will be a BITCH to convert. wait on this.
 //how AuthorBot summarizes a session
 //eventually moon prophecies will use this.
 //a prophecy can be any of these values that don't match the values in the current session summary.
@@ -7,9 +6,12 @@ part of SBURBSim;
 class SessionSummary{ //since stats will be hash, don't need to make junior
   int session_id = null;
   Session parentSession; //pretty sure this has to be a full session so i can get lineage
+  bool scratched = false;
+  num frogLevel = 0;
+  //the two hashes are for big masses of stats that i just blindly print to screen.
   Map<String, bool> bool_stats; //most things
   Map<String, num> num_stats; //num_living etc
-  String frog_status; //doesn't need to be in a hash.
+  String frogStatus; //doesn't need to be in a hash.
   List<Map> miniPlayers = []; //array of hashes from players
   List<Player> players = []; //TODO do i need this AND that miniPlayers thing???
   Player mvp;
@@ -202,29 +204,17 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     if (params == window.location.href) params = "";
     String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
     html += generateNumHTML();
-    html += generateStringHTML();
     html += generateBoolHTML();
-    for(var propertyName in this) {
-      if(propertyName == "players"){
-        html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
-      }else if(propertyName == "mvp"){
-        html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power");
-      }else if(propertyName == "frogLevel"){
-        html += "<Br><b>" + propertyName + "</b>: " + this.frogLevel + " (" + this.frogStatus +")";
-      }else if(propertyName == "session_id"){
-        if(this.parentSession){
-          html += this.decodeLineageGenerateHTML();
-        }else{
-          String scratch = "";
-          if(this.scratched) scratch = "(scratched)";
+    html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+    html += "<Br><b>mvp</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power").toString();
+    html += "<Br><b>Frog Level</b>: " + this.frogLevel.toString() + " (" + this.frogStatus +")";
+    if(this.parentSession != null){
+      html += this.decodeLineageGenerateHTML();
+    }else{
+      String scratch = "";
+      if(this.scratched) scratch = "(scratched)";
 
-          html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>";
-        }
-      }else if(propertyName == "matchesClass" || propertyName == "matchesAspect" || propertyName == "miniPlayerMatchesAnyClasspect" || propertyName == "matchesBothClassAndAspect" || propertyName == "matchesClasspect" ||propertyName == "matchesClass" || propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
-        //do nothing. properties used elsewhere.
-      }else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
-        html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
-      }
+      html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id.toString() + "&"+params+"'>" +this.session_id.toString() + scratch +  "</a>";
     }
 
     html += "</div><br>";
