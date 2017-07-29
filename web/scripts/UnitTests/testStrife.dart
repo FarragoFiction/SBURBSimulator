@@ -9,6 +9,10 @@ part "../Strife.dart";
 part "../fraymotif.dart";
 part "../random_tables.dart"; //needed for global functions
 part "JRTestSuite.dart";
+part "../Afterlife.dart";
+
+part "../random.dart";
+part "../v2.0/YellowYardResultController.dart";
 
 
 

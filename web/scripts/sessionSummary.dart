@@ -10,8 +10,8 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   num frogLevel = 0;
   List<Player> ghosts = [];
   //the two hashes are for big masses of stats that i just blindly print to screen.
-  Map<String, bool> bool_stats; //most things
-  Map<String, num> num_stats; //num_living etc
+  Map<String, bool> bool_stats = {}; //most things
+  Map<String, num> num_stats = {}; //num_living etc
   String frogStatus; //doesn't need to be in a hash.
   List<Map> miniPlayers = []; //array of hashes from players
   List<Player> players = []; //TODO do i need this AND that miniPlayers thing???

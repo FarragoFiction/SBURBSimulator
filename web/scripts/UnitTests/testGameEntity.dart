@@ -6,7 +6,12 @@ import 'dart:math' as Math;
 
 part "../GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
 part "../random_tables.dart"; //needed for global functions
+part "../session.dart";
+part "../Afterlife.dart";
 part "JRTestSuite.dart";
+part "../fraymotif.dart";
+part "../random.dart";
+part "../v2.0/YellowYardResultController.dart";
 
 var testGE = null;
 main() {
@@ -19,7 +24,7 @@ main() {
 }
 
 setup() {
-  testGE = new GameEntity("Firsty Testy", 413, null);
+  testGE = new GameEntity("Firsty Testy", 413, new Session(0));
 }
 
 testName() {
