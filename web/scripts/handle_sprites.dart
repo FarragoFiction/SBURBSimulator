@@ -1014,7 +1014,7 @@ void drawRelationshipChat(CanvasElement canvas, Player player1, player2, chat){
 
 bool checkSimMode(){
   //return true; // debugging, is loading the problem, or is this method?
-  if(simulationMode == true){
+  if(doNotRender == true){
     //looking for rare sessions, or getting moon prophecies.
   //  print("no canvas, are we simulatating the simulation?");
     return true;

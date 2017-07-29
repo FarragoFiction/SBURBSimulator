@@ -5,7 +5,7 @@ num imagesLoaded = 0;
 var callBack = null;
 
 dynamic loadFuckingEverything(skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	loadAllImages(skipInit);
 	return null;
 }
@@ -16,7 +16,7 @@ dynamic loadFuckingEverything(skipInit){
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
 dynamic load(List<Player>players, List<Player>guardians, String skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
   var guardians = getGuardiansForPlayers(players);
 	loadAllImagesForPlayers(players, guardians,skipInit);
 	return null;
@@ -26,7 +26,7 @@ dynamic load(List<Player>players, List<Player>guardians, String skipInit){
 
 
 dynamic loadAllImages(skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	loadOther(skipInit);
 	loadAllPossiblePlayers(skipInit);
 	return null;
@@ -49,7 +49,7 @@ dynamic loadAllImages(skipInit){
 dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
 	callBack = cb;
 	String skipInit = "yes";
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	loadPlayer(player,skipInit);
 	return null;
 }
@@ -57,7 +57,7 @@ dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
 
 
 dynamic loadAllImagesForPlayers(List<Player> players, List<Player> guardians, String skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	num numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 
@@ -108,7 +108,7 @@ String escapeId(String toEscape) {
 
 dynamic checkDone(String skipInit){
   querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
-	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || simulationMode == true){  //if i'm not using images, don't load them, dunkass.
+	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
     if(skipInit != null && !skipInit.isEmpty){
 		if(callBack != null) return callBack();
@@ -135,7 +135,7 @@ dynamic checkDone(String skipInit){
 
 void loadImage(String img, String skipInit) {
 
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	//print(img);
 	imagesWaiting ++;
 	ImageElement imageObj = new ImageElement();
@@ -169,7 +169,7 @@ void loadImage(String img, String skipInit) {
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
 dynamic loadOther(String skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 		loadImage("Credits/recursiveSlacker.png", skipInit);
 	  if(cool_kid){
 		loadImage("/Bodies/coolk1dlogo.png",skipInit);
@@ -259,7 +259,7 @@ dynamic loadOther(String skipInit){
 
 
 dynamic loadAllPossiblePlayers(skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
 	var blankPlayer = new Player(); //need to get num hair and horns.
     num numBodies = 16;  //1 indexed
     var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
@@ -328,7 +328,7 @@ dynamic loadAllPossiblePlayers(skipInit){
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
 dynamic loadPlayer(Player player, String skipInit){
-	if(simulationMode == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(skipInit);
   if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);

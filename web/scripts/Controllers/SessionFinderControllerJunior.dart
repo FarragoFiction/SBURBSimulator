@@ -8,6 +8,7 @@ num initial_seed = 0;
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
 
 main() {
+  doNotRender = true;
   loadNavbar();
   new SessionFinderControllerJunior();
   self = SimController.instance;
@@ -21,12 +22,18 @@ main() {
   self.formInit();
 }
 
+void checkSessionsJunior() {
+  window.alert("TODO");
+}
+
 
 class SessionFinderControllerJunior extends SimController {
   Random rand = new Random(initial_seed);
+  List<int> sessionsSimulated = [];
   SessionFinderControllerJunior() : super();
 
   void formInit(){
+    querySelector("#button").onClick.listen((e) => checkSessionsJunior());
     (querySelector("#button")as ButtonElement).disabled =false;
     (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
 
@@ -55,8 +62,25 @@ class SessionFinderControllerJunior extends SimController {
 
   @override
   void easterEggCallBack() {
-    throw "todo";
-    // TODO: implement easterEggCallBack
+    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
+    //aaaaand. done.
+    sessionsSimulated.add(curSessionGlobalVar.session_id);
+    var sum = curSessionGlobalVar.generateSummary();
+    var sumJR = sum.getSessionSummaryJunior();
+    allSessionsSummaries.add(sumJR);
+    sessionSummariesDisplayed.add(sumJR);
+    var str = sumJR.generateHTML();
+    debug("<br><hr><font color = 'orange'> ABJ: " + getQuipAboutSessionJunior() + "</font><Br>" );
+    debug(str);
+    printStatsJunior();
+    numSimulationsDone ++;
+    if(numSimulationsDone >= numSimulationsToDo){
+      querySelector("#button").prop('disabled', false);
+    }else{
+      Math.seed =  getRandomSeed();
+      initial_seed = Math.seed;
+      startSession();
+    }
   }
 
   @override
@@ -121,8 +145,7 @@ class SessionFinderControllerJunior extends SimController {
 
   @override
   void startSession() {
-    throw "todo";
-    // TODO: implement startSession
+    super.startSession(); //the only difference is the callback.
   }
 
   @override

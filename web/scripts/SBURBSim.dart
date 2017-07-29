@@ -89,7 +89,7 @@ part "Scenes/YellowYard.dart";
 Session curSessionGlobalVar;
 int canvasWidth = 1000;
 int canvasHeight = 400;
-bool simulationMode; //TODO won't need this with AB having her own shit, can just ask what SimController.instance is.
+bool doNotRender = false; //can happen even outside of AB
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.
 DateTime stopTime;
@@ -330,7 +330,7 @@ void scratchEasterEggCallBack(){
   print("about to switch players");
 
   querySelector("#story").setInnerHtml(scratch);
-  if(!simulationMode) window.scrollTo(0, 0);
+  if(!doNotRender) window.scrollTo(0, 0);
 
   var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 

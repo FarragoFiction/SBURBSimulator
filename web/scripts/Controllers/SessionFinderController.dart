@@ -8,6 +8,7 @@ num initial_seed = 0;
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 main() {
+  doNotRender = true;
   loadNavbar();
   new SessionFinderController();
   self = SimController.instance;
@@ -23,6 +24,10 @@ main() {
   self.formInit();
 }
 
+void checkSessions {
+  window.alert("TODO");
+}
+
 
 
 class SessionFinderController extends SimController { //works exactly like Sim unless otherwise specified.
@@ -34,6 +39,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void formInit(){
+    querySelector("#button").onClick.listen((e) => checkSessions());
     (querySelector("#button")as ButtonInputElement).disabled =false;
     (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
 

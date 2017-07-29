@@ -45,7 +45,7 @@ void coolK1DMode(){
 //rendering shouldu be different
 //making new scenes to be different
 void sbahjMode(){
-	if(!simulationMode) window.alert("where MAKING THIS HAPEN");
+	if(!doNotRender) window.alert("where MAKING THIS HAPEN");
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
 	querySelector("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
@@ -90,7 +90,7 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 	}
 
 	if(getParameterByName("images",null)  == "pumpkin"){
-		simulationMode = true;
+		doNotRender = true;
 	}
 
 	if(getParameterByName("easter",null)  == "egg"){
@@ -225,7 +225,7 @@ void processFanOCs(callBack, that){
 
 
 void babyStuckMode(){
-	if(!simulationMode) window.alert("goo goo GA GAH!");
+	if(!doNotRender) window.alert("goo goo GA GAH!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
@@ -237,7 +237,7 @@ void babyStuckMode(){
 
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 void roboMode(){
-	if(!simulationMode) window.alert("BEEP");
+	if(!doNotRender) window.alert("BEEP");
 	querySelector("#story").append("<img src = 'images/guide_bot.png' style='float:left;'>");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
@@ -265,8 +265,8 @@ void roboMode(){
 
 
 void tricksterMode(){
-	if(!simulationMode) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
-	if(simulationMode)querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
+	if(!doNotRender) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
+	if(doNotRender)querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
 	querySelector("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	querySelector('body').css("background-image", "url(images/zilly.gif)");
 	querySelector('#story').css("background-color", "#ff93e4");
@@ -302,7 +302,7 @@ void tricksterMode(){
 
 
 void debugRoyalRumble(){
-	if(!simulationMode) window.alert("royal rumble!");
+	if(!doNotRender) window.alert("royal rumble!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.isTroll = true; //only .evel 2 players up
