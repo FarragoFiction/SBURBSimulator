@@ -77,10 +77,10 @@ class MurderPlayers extends Scene {
 		return ret;
 
 	}
-	void renderMurder(div, murderer, victim){
+	void renderMurder(Element div, Player murderer, Player victim){
 		var divID = (div.id) + "_" + victim.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
