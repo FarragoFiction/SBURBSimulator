@@ -52,4 +52,5 @@ void testCreateSummary() {
 void testCollateSummaries() {
   setup();
   MultiSessionSummaryJunior mssj = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(testSessionSummaryJuniors);
+  print(mssj.generateHTML());
 }

@@ -305,15 +305,15 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
 class SessionSummaryJunior {
   List<Player> players = [];
   num session_id;
-  var ships = null;
-  num averageMinLuck = null;
-  num averageMaxLuck = null;
-  num averagePower = null;
-  num averageMobility = null;
-  num averageFreeWill = null;
-  num averageHP = null;
-  num averageRelationshipValue = null;
-  num averageSanity = null;
+  var ships = [];
+  num averageMinLuck = 0;
+  num averageMaxLuck = 0;
+  num averagePower = 0;
+  num averageMobility = 0;
+  num averageFreeWill = 0;
+  num averageHP = 0;
+  num averageRelationshipValue = 0;
+  num averageSanity = 0;
 
 
   SessionSummaryJunior(this.players, this.session_id) {}
