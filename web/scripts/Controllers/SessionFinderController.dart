@@ -2,7 +2,6 @@ import '../SBURBSim.dart';
 import 'dart:html';
 import 'dart:typed_data';
 import 'dart:collection';
-import "StoryController.dart";
 
 //replaces the poorly named scenario_controller2.js
 num initial_seed = 0;

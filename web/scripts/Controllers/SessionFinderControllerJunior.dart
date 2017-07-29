@@ -2,17 +2,15 @@ import '../SBURBSim.dart';
 import 'dart:html';
 import 'dart:typed_data';
 import 'dart:collection';
-import 'SessionFinderController.dart';
 
 //replaces the poorly named scenario_controller2.js
 num initial_seed = 0;
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
 
-Random rand;
 main() {
   loadNavbar();
   new SessionFinderControllerJunior();
-  self.percentBullshit();
+  self = SimController.instance;
 
   if(getParameterByName("seed",null) != null){
     initial_seed = int.parse(getParameterByName("seed",null));
@@ -20,14 +18,22 @@ main() {
     var tmp = getRandomSeed();
     initial_seed = tmp;
   }
-  rand = new Random(initial_seed);
   self.formInit();
 }
 
 
-class SessionFinderControllerJunior extends SessionFinderController {
+class SessionFinderControllerJunior extends SimController {
+  Random rand = new Random(initial_seed);
   SessionFinderControllerJunior() : super();
 
+  void formInit(){
+    (querySelector("#button")as ButtonElement).disabled =false;
+    (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
+
+    querySelector("#num_sessions").onChange.listen((Event e) {
+      (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
+    });
+  }
 
   @override
   void callNextIntro(int player_index) {
