@@ -282,9 +282,11 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     summary.setBoolStat("murderMode", session.murdersHappened);
     summary.setBoolStat("grimDark", session.grimDarkPlayers);
 
-    var spacePlayer = session.findBestSpace();
-    var corruptedSpacePlayer = session.findMostCorruptedSpace();
-    if(summary.frogStatus == "Purple Frog" ){
+    Player spacePlayer = session.findBestSpace();
+    Player corruptedSpacePlayer = session.findMostCorruptedSpace();
+    if(spacePlayer == null) {
+      summary.frogLevel = 0;
+    }else if(summary.frogStatus == "Purple Frog" ){
       summary.frogLevel =corruptedSpacePlayer.landLevel;
     }else{
       summary.frogLevel =spacePlayer.landLevel;

@@ -28,7 +28,7 @@ main() {
 void setup() {
   Session testSession = new Session(0);
   testSession.setUpBosses();
-  testSession.makePlayers();
+  testSession.players = [];
   testSessionSummary = testSession.generateSummary();
 }
 

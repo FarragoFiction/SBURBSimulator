@@ -2626,6 +2626,7 @@ Player findClassPlayer(List<Player> playerList, String class_name){
 
 
 Player findStrongestPlayer(List<Player> playerList){
+	if(playerList.length == null) return null;
 	Player strongest = playerList[0];
 
 	for(int i= 0; i<playerList.length; i++){

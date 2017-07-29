@@ -159,17 +159,19 @@ class Session {
 		this.jack.crowned = null;
 		this.queen.crowned = null;
 	}
-	dynamic findBestSpace(){
-		var spaces = findAllAspectPlayers(this.players, "Space");
-		var ret = spaces[0];
+	Player findBestSpace(){
+		List<Player> spaces = findAllAspectPlayers(this.players, "Space");
+		if(spaces.length == 0) return null;
+		Player ret = spaces[0];
 		for(num i = 0; i<spaces.length; i++){
 			if(spaces[i].landLevel > ret.landLevel) ret = spaces[i];
 		}
 		return ret;
 	}
-	dynamic findMostCorruptedSpace(){
-		var spaces = findAllAspectPlayers(this.players, "Space");
-		var ret = spaces[0];
+	Player findMostCorruptedSpace(){
+		List<Player> spaces = findAllAspectPlayers(this.players, "Space");
+		if(spaces.length == 0) return null;
+		Player ret = spaces[0];
 		for(num i = 0; i<spaces.length; i++){
 			if(spaces[i].landLevel< ret.landLevel) ret = spaces[i];
 		}
@@ -189,11 +191,11 @@ class Session {
 		}
 	}
 	String frogStatus(){
-		var spacePlayer = this.findBestSpace();
-		var corruptedSpacePlayer = this.findMostCorruptedSpace();
+		Player spacePlayer = this.findBestSpace();
+		Player corruptedSpacePlayer = this.findMostCorruptedSpace();
 		//var spacePlayer = findAspectPlayer(this.players, "Space");
-		if(corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog"; //is this...a REFRANCE???
-		if(spacePlayer.landLevel < this.minFrogLevel){
+		if(corruptedSpacePlayer != null && corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog"; //is this...a REFRANCE???
+		if(spacePlayer == null || spacePlayer.landLevel < this.minFrogLevel){
 			return "No Frog";
 		}else if(spacePlayer.landLevel > this.goodFrogLevel){
 			return "Full Frog";
