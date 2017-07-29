@@ -23,13 +23,21 @@ main() {
 }
 
 void checkSessionsJunior() {
-  window.alert("TODO");
+  self.checkSessions();
 }
 
 
 class SessionFinderControllerJunior extends SimController {
   Random rand = new Random(initial_seed);
   List<int> sessionsSimulated = [];
+
+  List<SessionSummaryJunior> allSessionsSummaries;
+  //how filtering works
+  List<SessionSummaryJunior> sessionSummariesDisplayed;
+
+  int numSimulationsDone = 0;
+
+  num numSimulationsToDo = 0;
   SessionFinderControllerJunior() : super();
 
   void formInit(){
@@ -40,6 +48,18 @@ class SessionFinderControllerJunior extends SimController {
     querySelector("#num_sessions").onChange.listen((Event e) {
       (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
     });
+  }
+
+  void checkSessions() {
+    numSimulationsDone = 0; //but don't reset stats
+    sessionSummariesDisplayed = [];
+    for(num i = 0; i<allSessionsSummaries.length; i++){
+      sessionSummariesDisplayed.add(allSessionsSummaries[i]);
+    }
+    querySelector("#story").setInnerHtml("");
+    numSimulationsToDo = (querySelector("#num_sessions")as InputElement).value as int;
+    (querySelector("#button")as ButtonElement).disabled =true;
+    startSession(); //im junior so deal with it
   }
 
   @override
@@ -65,23 +85,39 @@ class SessionFinderControllerJunior extends SimController {
     initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
     //aaaaand. done.
     sessionsSimulated.add(curSessionGlobalVar.session_id);
-    var sum = curSessionGlobalVar.generateSummary();
-    var sumJR = sum.getSessionSummaryJunior();
+    SessionSummary sum = curSessionGlobalVar.generateSummary();
+    SessionSummaryJunior sumJR = sum.getSessionSummaryJunior();
     allSessionsSummaries.add(sumJR);
     sessionSummariesDisplayed.add(sumJR);
     var str = sumJR.generateHTML();
-    debug("<br><hr><font color = 'orange'> ABJ: " + getQuipAboutSessionJunior() + "</font><Br>" );
+    debug("<br><hr><font color = 'orange'> ABJ: " + getQuipAboutSession() + "</font><Br>" );
     debug(str);
     printStatsJunior();
     numSimulationsDone ++;
     if(numSimulationsDone >= numSimulationsToDo){
-      querySelector("#button").prop('disabled', false);
+      (querySelector("#button")as ButtonElement).disabled =false;
     }else{
-      Math.seed =  getRandomSeed();
-      initial_seed = Math.seed;
+      initial_seed = getRandomSeed();
+      rand.setSeed(initial_seed);
       startSession();
     }
   }
+
+  void printStatsJunior(){
+    var mms = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
+    querySelector("#stats").setInnerHtml(mms.generateHTML());
+    querySelector("#num_players").onChange.listen((Event e) {
+      (querySelector("#num_players_text") as InputElement).value = (querySelector("#num_players")as InputElement).value;
+    });
+  }
+
+
+//oh Dirk/Lil Hal/Lil Hal Junior, why are you so amazing?
+  dynamic getQuipAboutSession(){
+    var quips = ["Hmmm","Yes.","Interesting!!!"];
+    return rand.pickFrom(quips);
+  }
+
 
   @override
   void easterEggCallBackRestart() {

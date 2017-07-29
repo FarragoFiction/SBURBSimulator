@@ -22,7 +22,7 @@ main() {
     SimController.instance.initial_seed = int.parse(getParameterByName("seed",null));
   }else{
     var tmp = getRandomSeed();
-   // Math.seed = tmp; //TOdo do something else here
+   // Math.seed = tmp; //TOdo do something else here but rand is inside of session......
     SimController.instance.initial_seed = tmp;
   }
 
