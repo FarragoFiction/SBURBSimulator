@@ -8,6 +8,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   Session parentSession; //pretty sure this has to be a full session so i can get lineage
   bool scratched = false;
   num frogLevel = 0;
+  List<Player> ghosts = [];
   //the two hashes are for big masses of stats that i just blindly print to screen.
   Map<String, bool> bool_stats; //most things
   Map<String, num> num_stats; //num_living etc
@@ -160,7 +161,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     if(this.getBoolStat("scratched")) scratched = "(scratched)";
     html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id.toString() +"&"+params+ "'>" +this.session_id.toString() + scratched + "</a> ";
     if((lineage.length +1) == 3){
-      this.setBoolStat("threeTimesSessionCombo", true)
+      this.setBoolStat("threeTimesSessionCombo", true);
       html += " 3x SESSIONS COMBO!!!";
     }
     if((lineage.length +1) == 4){
@@ -221,6 +222,81 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return html;
   }
 
+  static SessionSummary makeSummaryForSession(Session session) {
+    SessionSummary summary = new SessionSummary(session.session_id);
+    summary.setMiniPlayers(session.players);
+    summary.setBoolStat("blackKingDead",session.king.dead || session.king.getStat("currentHP") <= 0);
+    summary.setBoolStat("mayorEnding",session.mayorEnding);
+    summary.setBoolStat("waywardVagabondEnding", session.waywardVagabondEnding);
+    summary.setBoolStat("badBreakDeath",session.badBreakDeath);
+    summary.setBoolStat("luckyGodTier",session.luckyGodTier);
+    summary.setBoolStat("choseGodTier",session.choseGodTier);
+    summary.scratched = session.scratched;
+    summary.setBoolStat("opossumVictory",session.opossumVictory);
+    summary.setBoolStat("rocksFell",session.rocksFell);
+    summary.setBoolStat("won",session.won);
+    summary.setBoolStat("hasBreakups",session.hasBreakups);
+    summary.ghosts = session.afterLife.ghosts;
+    summary.setNumStat("sizeOfAfterLife",session.afterLife.ghosts.length);
+    summary.setBoolStat("heroicDeath",session.heroicDeath);
+    summary.setBoolStat("justDeath",session.justDeath);
+    summary.setBoolStat("crashedFromSessionBug",session.crashedFromSessionBug);
+    summary.setBoolStat("crashedFromPlayerActions",session.crashedFromPlayerActions);
+    summary.setBoolStat("hasFreeWillEvents",session.hasFreeWillEvents);
+    summary.setNumStat("averageMinLuck",getAverageMinLuck(session.players));
+    summary.setNumStat("averageMaxLuck",getAverageMaxLuck(session.players));
+    summary.setNumStat("averagePower" , getAveragePower(session.players));
+    summary.setNumStat("averageMobility" , getAverageMobility(session.players));
+    summary.setNumStat("averageFreeWill" , getAverageFreeWill(session.players));
+    summary.setNumStat("averageHP" , getAverageHP(session.players));
+    summary.setNumStat("averageRelationshipValue" , getAverageRelationshipValue(session.players));
+    summary.setNumStat("averageSanity" , getAverageSanity(session.players));
+    summary.session_id = session.session_id;
+    summary.setBoolStat("hasLuckyEvents" , session.goodLuckEvent);
+    summary.setBoolStat("hasUnluckyEvents" , session.badLuckEvent);
+    summary.setBoolStat("rapBattle" , session.rapBattle);
+    summary.setBoolStat("sickFires" , session.sickFires);
+    summary.frogStatus = session.frogStatus();
+    summary.setBoolStat("godTier" , session.godTier);
+    summary.setBoolStat("questBed" , session.questBed);
+    summary.setBoolStat("sacrificialSlab" , session.sacrificialSlab);
+    summary.setNumStat("num_scenes",session.numScenes);
+    summary.players = session.players;
+    summary.mvp = findStrongestPlayer(session.players);
+    summary.parentSession = session.parentSession;
+    summary.setBoolStat("scratchAvailable" , session.scratchAvailable);
+    summary.setBoolStat("yellowYard" ,session.yellowYard);
+    summary.setNumStat("numLiving" ,  findLivingPlayers(session.players).length);
+    summary.setNumStat("numDead" ,  findDeadPlayers(session.players).length);
+    summary.setBoolStat("ectoBiologyStarted", session.ectoBiologyStarted);
+    summary.setBoolStat("denizenBeat", session.denizenBeat);
+    summary.setBoolStat("plannedToExileJack", session.plannedToExileJack);
+    summary.setBoolStat("exiledJack", session.jack.exiled);
+    summary.setBoolStat("exiledQueen", session.queen.exiled);
+    summary.setBoolStat("jackGotWeapon", session.jackGotWeapon);
+    summary.setBoolStat("jackRampage", session.jackRampage);
+    summary.setBoolStat("jackScheme", session.jackScheme);
+    summary.setBoolStat("kingTooPowerful",  session.king.getStat("power")> session.hardStrength);
+    summary.setBoolStat("queenRejectRing",session.queenRejectRing);
+    summary.setBoolStat("democracyStarted",  session.democraticArmy.getStat("power") > 0);
+    summary.setBoolStat("murderMode", session.murdersHappened);
+    summary.setBoolStat("grimDark", session.grimDarkPlayers);
+
+    var spacePlayer = session.findBestSpace();
+    var corruptedSpacePlayer = session.findMostCorruptedSpace();
+    if(summary.frogStatus == "Purple Frog" ){
+      summary.frogLevel =corruptedSpacePlayer.landLevel;
+    }else{
+      summary.frogLevel =spacePlayer.landLevel;
+    }
+
+    summary.setBoolStat("hasDiamonds",session.hasDiamonds);
+    summary.setBoolStat("hasSpades", session.hasSpades);
+    summary.setBoolStat("hasClubs", session.hasClubs);
+    summary.setBoolStat("hasHearts",  session.hasHearts);
+    return summary;
+
+  }
 
 }
 

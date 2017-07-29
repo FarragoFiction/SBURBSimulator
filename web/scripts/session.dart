@@ -494,82 +494,8 @@ class Session {
 			}
 			return [this];
 	}
-	dynamic generateSummary(){
-	  throw"TODO: FIX AB";
-	  /*
-		var summary = new SessionSummary();
-		summary.setMiniPlayers(this.players);
-		summary.blackKingDead = this.king.dead || this.king.getStat("currentHP") <= 0;
-		summary.mayorEnding = this.mayorEnding;
-		summary.waywardVagabondEnding = this.waywardVagabondEnding;
-		summary.badBreakDeath = this.badBreakDeath;
-		summary.luckyGodTier = this.luckyGodTier;
-		summary.choseGodTier = this.choseGodTier;
-		summary.scratched = this.scratched;
-		summary.opossumVictory = this.opossumVictory;
-		summary.rocksFell = this.rocksFell;
-		summary.won = this.won;
-		summary.hasBreakups = this.hasBreakups;
-		summary.ghosts = this.afterLife.ghosts;
-		summary.sizeOfAfterLife = this.afterLife.ghosts.length;
-		summary.heroicDeath = this.heroicDeath;
-		summary.justDeath = this.justDeath;
-		summary.crashedFromSessionBug = this.crashedFromSessionBug;
-		summary.crashedFromPlayerActions = this.crashedFromPlayerActions;
-		summary.hasFreeWillEvents = this.hasFreeWillEvents;
-		summary.averageMinLuck = getAverageMinLuck(this.players);
-		summary.averageMaxLuck = getAverageMaxLuck(this.players);
-		summary.averagePower = getAveragePower(this.players);
-		summary.averageMobility = getAverageMobility(this.players);
-		summary.averageFreeWill = getAverageFreeWill(this.players);
-		summary.averageHP = getAverageHP(this.players);
-		summary.averageRelationshipValue = getAverageRelationshipValue(this.players);
-		summary.averageSanity = getAverageSanity(this.players);
-		summary.session_id = this.session_id;
-		summary.hasLuckyEvents = this.goodLuckEvent;
-		summary.hasUnluckyEvents = this.badLuckEvent;
-		summary.rapBattle = this.rapBattle;
-		summary.sickFires = this.sickFires;
-		summary.frogStatus = this.frogStatus();
-		summary.godTier = this.godTier;
-		summary.questBed = this.questBed;
-		summary.sacrificialSlab = this.sacrificialSlab;
-		summary.num_scenes = this.numScenes;
-		summary.players = this.players;
-		summary.mvp = findStrongestPlayer(this.players);
-		summary.parentSession = this.parentSession;
-		summary.scratchAvailable = this.scratchAvailable;
-		summary.yellowYard = this.yellowYard;
-		summary.numLiving =  findLivingPlayers(this.players).length;
-		summary.numDead =  findDeadPlayers(this.players).length;
-		summary.ectoBiologyStarted = this.ectoBiologyStarted;
-		summary.denizenBeat = this.denizenBeat;
-		summary.plannedToExileJack = this.plannedToExileJack;
-		summary.exiledJack = this.jack.exiled;
-		summary.exiledQueen = this.queen.exiled;
-		summary.jackGotWeapon = this.jackGotWeapon;
-		summary.jackRampage = this.jackRampage;
-		summary.jackScheme = this.jackScheme;
-		summary.kingTooPowerful =  this.king.getStat("power")> this.hardStrength;
-		summary.queenRejectRing = this.queenRejectRing;
-		summary.democracyStarted =  this.democraticArmy.getStat("power") > 0;
-		summary.murderMode = this.murdersHappened;
-		summary.grimDark = this.grimDarkPlayers;
-
-		var spacePlayer = this.findBestSpace();
-		var corruptedSpacePlayer = this.findMostCorruptedSpace();
-		if(summary.frogStatus == "Purple Frog" ){
-			summary.frogLevel =corruptedSpacePlayer.landLevel;
-		}else{
-			summary.frogLevel =spacePlayer.landLevel;
-		}
-		
-		summary.hasDiamonds =this.hasDiamonds;
-		summary.hasSpades = this.hasSpades;
-		summary.hasClubs = this.hasClubs;
-		summary.hasHearts =  this.hasHearts;
-		return summary;
-		*/
+	SessionSummary generateSummary(){
+		return SessionSummary.makeSummaryForSession(this);
 	}
 
 }
