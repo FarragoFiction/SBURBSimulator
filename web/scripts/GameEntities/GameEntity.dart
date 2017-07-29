@@ -368,6 +368,7 @@ class GameEntity implements Comparable<GameEntity> {
 				if (p.aspect == "Void") r += -1; //hard to see
 				if (p.aspect == "Light") r += 1; //easy to see
 			}
+			//print("Added rating of $r to $t");
 			ratings.add(r);
 		}
 		GameEntity ret;
@@ -375,7 +376,11 @@ class GameEntity implements Comparable<GameEntity> {
 		for (num i = 0; i < targets.length; i++) {
 			GameEntity checked = targets[i];
 			num checked_rating = ratings[i];
-			if (checked_rating >= chosen_rating) ret = checked; //equal, because want LAST thing in list to be preffered if all things equal since slowest.
+			if (checked_rating >= chosen_rating) {
+			  //print("found a better target");
+			  chosen_rating = checked_rating;
+        ret = checked; //equal, because want LAST thing in list to be preffered if all things equal since slowest.
+      }
 		}
 		return ret;
 	}

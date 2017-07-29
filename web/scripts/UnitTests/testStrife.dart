@@ -50,7 +50,7 @@ void testChooseTarget()
   GameEntity attacker = testStrife.teams[0].members[1];
   jRAssert("attacker name", attacker.name, "Turtle");
   GameEntity target = attacker.pickATarget(testStrife.teams[1].members);
-  jRAssert("target name", target.name, "DragonFly"); //can one shot it, even though it is faster than Hare.
+  jRAssert("target name", target.name, "Dragonfly"); //can one shot it, even though it is faster than Hare.
   print("choose target passed");
 }
 
