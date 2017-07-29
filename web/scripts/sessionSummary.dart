@@ -301,6 +301,51 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   }
 
 }
+//only initial stats.
+class MultiSessionSummaryJunior {
+  num numSessions = 0;
+  num numPlayers = 0;
+  num numShips = 0;
+  num averageMinLuck = 0;
+  num averageMaxLuck = 0;
+  num averagePower = 0;
+  num averageMobility = 0;
+  num averageFreeWill = 0;
+  num averageHP = 0;
+  num averageRelationshipValue = 0;
+  num averageSanity = 0;
+
+
+  MultiSessionSummaryJunior();
+
+
+  dynamic generateHTML(){
+    String html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
+    String header = "<h2>Stats for All Displayed Sessions: </h2><br>";
+    html += header;
+    html += "<Br><b>Number of Sessions:</b> $numSessions ";
+    html += "<Br><b>Average Players Per Session: ${this.numPlayers/this.numSessions}</b> ";
+
+    html += "<Br><b>averageMinLuck:</b> $averageMinLuck" ;
+    html += "<Br><b>averageMaxLuck:</b> $averageMaxLuck";
+    html += "<Br><b>averagePower:</b>$averagePower ";
+    html += "<Br><b>averageMobility:</b>$averageMobility ";
+    html += "<Br><b>averageFreeWill: $averageFreeWill</b> ";
+    html += "<Br><b>averageHP:</b> $averageHP";
+    html += "<Br><b>averageRelationshipValue:</b> $averageRelationshipValue";
+    html += "<Br><b>averageSanity:</b> $averageSanity";
+
+    html += "<Br><b>Average Initial Ships Per Session:</b> ${this.numShips/this.numSessions} " ;
+    html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12";
+    html += "<br><input type='text' id='num_players_text' value='2' size='2' disabled>";
+    html += "<br><br><button id = 'button' onclick='filterSessionsJunior()'>Filter Sessions</button>";
+    html += "</div><Br>";
+    return html;
+  }
+
+}
+
+
 
 /* TODO fix this l8r
 class SessionSummary {
