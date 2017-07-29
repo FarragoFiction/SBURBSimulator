@@ -161,8 +161,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		//print("Strength for denizen " + name + " is: " + strength);
 		//based off existing denizen code.  care about which aspect i am.
 		//also make minion here.
-		GameEntity denizen = new Denizen("Denizen " +name, this.id, this.session);
-		GameEntity denizenMinion = new DenizenMinion(name + " Minion", this.id, this.session);
+		GameEntity denizen = new Denizen("Denizen " +name, this.session);
+		GameEntity denizenMinion = new DenizenMinion(name + " Minion", this.session);
 		var tmpStatHolder = {};
 		tmpStatHolder["minLuck"] = -10;
 		tmpStatHolder["maxLuck"] = 10;

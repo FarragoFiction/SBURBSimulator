@@ -69,9 +69,9 @@ void setup() {
 
 List<GameEntity> makeSlowTeam() {
   List<GameEntity> ret = [
-  new PotentialSprite("Slug", 0, null)
+  new PotentialSprite("Slug", null)
     ..setStatsHash({"hp": 5, "mobility": -5000, "power": 100}),
-  new PotentialSprite("Turtle", 0, null)
+  new PotentialSprite("Turtle", null)
     ..setStatsHash({"hp": 500, "mobility": -500, "power": 100})
   ];
   return ret;
@@ -80,9 +80,9 @@ List<GameEntity> makeSlowTeam() {
 
 List<GameEntity> makeFastTeam() {
   List<GameEntity> ret = [
-    new PotentialSprite("Hare", 0, null)
+    new PotentialSprite("Hare", null)
       ..setStatsHash({"hp": 500, "mobility": 500, "power": 100}),
-    new PotentialSprite("Dragonfly", 0, null)
+    new PotentialSprite("Dragonfly", null)
       ..setStatsHash({"hp": 5, "mobility": 5000, "power": 100})
   ];
   return ret;
