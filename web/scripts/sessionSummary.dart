@@ -321,7 +321,7 @@ class SessionSummaryJunior {
 
   dynamic generateHTML(){
     this.getAverages();
-    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    var params = window.location.href.substring(window.location.href.indexOf("?")+1);
     if (params == window.location.href) params = "";
     String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
     html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id.toString() + "&"+params+"'>" +this.session_id.toString() + "</a>";
@@ -392,13 +392,13 @@ class SessionSummaryJunior {
     return ret;
   }
   //TODO what was i doing here and how did it ever work???
-  void initialShips(){
+  String initialShips(){
     var shipper = new UpdateShippingGrid(null);
     if(!this.ships){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
       shipper.createShips(this.players, null);
       this.ships = shipper.getGoodShips(null);
     }
-    return  shipper.printShips(this.ships, null);
+    return  shipper.printShips(this.ships);
   }
 
 }
