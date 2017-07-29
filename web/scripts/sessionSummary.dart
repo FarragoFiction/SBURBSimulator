@@ -180,8 +180,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
 
   }
   dynamic getSessionSummaryJunior(){
-    throw "TODO: Do I still need a separate Junior Object???";
-    //return new SessionSummaryJunior(this.players,this.session_id);
+    return new SessionSummaryJunior(this.players,this.session_id);
   }
 
   String generateNumHTML() {
@@ -301,8 +300,113 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   }
 
 }
+
+//junior only cares about players.
+class SessionSummaryJunior {
+  List<Player> players = [];
+  num session_id;
+  var ships = null;
+  num averageMinLuck = null;
+  num averageMaxLuck = null;
+  num averagePower = null;
+  num averageMobility = null;
+  num averageFreeWill = null;
+  num averageHP = null;
+  num averageRelationshipValue = null;
+  num averageSanity = null;
+
+
+  SessionSummaryJunior(this.players, this.session_id) {}
+
+
+  dynamic generateHTML(){
+    this.getAverages();
+    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    if (params == window.location.href) params = "";
+    String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
+    html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id.toString() + "&"+params+"'>" +this.session_id.toString() + "</a>";
+    html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+    html += "<Br><b>Potential God Tiers</b>: " + getPlayersTitlesBasic(this.grabPotentialGodTiers());
+
+
+    html += "<Br><b>Initial Average Min Luck</b>: " + this.averageMinLuck.toString();
+    html += "<Br><b>Initial Average Max Luck</b>: " + this.averageMaxLuck.toString();
+    html += "<Br><b>Initial Average Power</b>: " + this.averagePower.toString();
+    html += "<Br><b>Initial Average Mobility</b>: " + this.averageMobility.toString();
+    html += "<Br><b>Initial Average Free Will</b>: " +this.averageFreeWill.toString();
+    html += "<Br><b>Initial Average HP</b>: " + this.averageHP.toString();
+    html += "<Br><b>Initial Relationship Value</b>: " + this.averageRelationshipValue.toString();
+    html += "<Br><b>Initial Trigger Level</b>: " +this.averageRelationshipValue.toString();
+
+    html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
+    html += "<Br><b>Lands</b>: " + this.grabAllLands().toString();
+    html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
+    html += "<Br><b>Initial Ships</b>:<Br> " + this.initialShips();
+    html += "</div><br>";
+    return html;
+  }
+  void getAverages(){
+    this.averageMinLuck = getAverageMinLuck(this.players);
+    this.averageMaxLuck = getAverageMaxLuck(this.players);
+    this.averagePower = getAveragePower(this.players);
+    this.averageMobility = getAverageMobility(this.players);
+    this.averageFreeWill = getAverageFreeWill(this.players);
+    this.averageHP = getAverageHP(this.players);
+    this.averageRelationshipValue = getAverageRelationshipValue(this.players);
+    this.averageRelationshipValue =  getAverageSanity(this.players);
+  }
+  dynamic grabPotentialGodTiers(){
+    List<dynamic> ret = [];
+    for(num i = 0; i<this.players.length; i++){
+      var player = this.players[i];
+      if(player.godDestiny) ret.add(player);
+    }
+    return ret;
+  }
+  dynamic grabAllInterest(){
+    List<dynamic> ret = [];
+    for(num i = 0; i<this.players.length; i++){
+      var player = this.players[i];
+      ret.add(player.interest1);
+      ret.add(player.interest2);
+
+    }
+    return ret;
+  }
+  dynamic grabAllSprites(){
+    List<dynamic> ret = [];
+    for(num i = 0; i<this.players.length; i++){
+      var player = this.players[i];
+      ret.add(player.object_to_prototype.htmlTitle());
+
+    }
+    return ret;
+  }
+  dynamic grabAllLands(){
+    List<dynamic> ret = [];
+    for(num i = 0; i<this.players.length; i++){
+      var player = this.players[i];
+      ret.add(player.land);
+
+    }
+    return ret;
+  }
+  //TODO what was i doing here and how did it ever work???
+  void initialShips(){
+    var shipper = new UpdateShippingGrid(null);
+    if(!this.ships){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
+      shipper.createShips(this.players, null);
+      this.ships = shipper.getGoodShips(null);
+    }
+    return  shipper.printShips(this.ships, null);
+  }
+
+}
+
+
 //only initial stats.
 class MultiSessionSummaryJunior {
+  //small enough i'm not gonna bother hashing it out
   num numSessions = 0;
   num numPlayers = 0;
   num numShips = 0;
@@ -317,6 +421,34 @@ class MultiSessionSummaryJunior {
 
 
   MultiSessionSummaryJunior();
+
+  static MultiSessionSummaryJunior collateMultipleSessionSummariesJunior(List<SessionSummaryJunior>sessionSummaryJuniors){
+    MultiSessionSummaryJunior mss = new MultiSessionSummaryJunior();
+    mss.numSessions = sessionSummaryJuniors.length;
+    for(num i = 0; i<sessionSummaryJuniors.length; i++){
+      SessionSummaryJunior ssj =sessionSummaryJuniors[i];
+      mss.numPlayers += ssj.players.length;
+      mss.numShips += ssj.ships.length;
+      mss.averageMinLuck += ssj.averageMinLuck;
+      mss.averageMaxLuck += ssj.averageMaxLuck;
+      mss.averagePower += ssj.averagePower;
+      mss.averageMobility += ssj.averageMobility;
+      mss.averageFreeWill += ssj.averageFreeWill;
+      mss.averageHP += ssj.averageHP;
+      mss.averageSanity += ssj.averageSanity;
+      mss.averageRelationshipValue += ssj.averageRelationshipValue;
+    }
+
+    mss.averageMinLuck = (mss.averageMinLuck/sessionSummaryJuniors.length).round();
+    mss.averageMaxLuck = (mss.averageMaxLuck/sessionSummaryJuniors.length).round();
+    mss.averagePower = (mss.averagePower/sessionSummaryJuniors.length).round();
+    mss.averageMobility = (mss.averageMobility/sessionSummaryJuniors.length).round();
+    mss.averageFreeWill = (mss.averageFreeWill/sessionSummaryJuniors.length).round();
+    mss.averageHP = (mss.averageHP/sessionSummaryJuniors.length).round();
+    mss.averageSanity = (mss.averageSanity/sessionSummaryJuniors.length).round();
+    mss.averageRelationshipValue = (mss.averageRelationshipValue/sessionSummaryJuniors.length).round();
+    return mss;
+  }
 
 
   dynamic generateHTML(){
