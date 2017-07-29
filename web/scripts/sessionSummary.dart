@@ -8,8 +8,8 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   int session_id = null;
   Session parentSession; //pretty sure this has to be a full session so i can get lineage
   Map<String, bool> bool_stats; //most things
-  Map<String, num> num_stats; //frog status
-  Map<String, String> string_stats;  //num living, etc
+  Map<String, num> num_stats; //num_living etc
+  String frog_status; //doesn't need to be in a hash.
   List<Map> miniPlayers = []; //array of hashes from players
   List<Player> players = []; //TODO do i need this AND that miniPlayers thing???
   Player mvp;
@@ -37,15 +37,6 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return ret;
   }
 
-  void setStringStat(String statName, String statValue) {
-    this.string_stats[statName] = statValue;
-  }
-
-  String getStringStat(String statName) {
-    String ret = this.string_stats[statName];
-    if (ret == null) throw "What Kind of Stat is: $statName???";
-    return ret;
-  }
 
   void setMiniPlayers(List<Player> players){
     for(num i = 0; i<players.length; i++){
@@ -189,10 +180,30 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     throw "TODO: Do I still need a separate Junior Object???";
     //return new SessionSummaryJunior(this.players,this.session_id);
   }
-  dynamic generateHTML(){
+
+  String generateNumHTML() {
+    String html = "";
+    for(String key in num_stats.keys) {
+      html += "<Br><b>" + key + "</b>: " + getNumStat(key).toString() ;
+    }
+    return html;
+  }
+
+  String generateBoolHTML() {
+    String html = "";
+    for(String key in bool_stats.keys) {
+      html += "<Br><b>" + key + "</b>: " + getBoolStat(key).toString() ;
+    }
+    return html;
+  }
+
+  String generateHTML(){
     var params = window.location.href.substring(window.location.href.indexOf("?")+1);
     if (params == window.location.href) params = "";
     String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
+    html += generateNumHTML();
+    html += generateStringHTML();
+    html += generateBoolHTML();
     for(var propertyName in this) {
       if(propertyName == "players"){
         html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
