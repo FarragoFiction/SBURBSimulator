@@ -10,9 +10,7 @@ part "../fraymotif.dart";
 part "../random_tables.dart"; //needed for global functions
 part "JRTestSuite.dart";
 
-/*
-  TODO: Form two teams of NPCs.  Make a Strife instance out of them.  Use them to test all features.
-*/
+
 
 Strife testStrife = null;
 

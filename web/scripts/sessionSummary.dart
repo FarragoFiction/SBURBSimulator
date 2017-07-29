@@ -6,10 +6,13 @@ part of SBURBSim;
 
 class SessionSummary{ //since stats will be hash, don't need to make junior
   int session_id = null;
+  Session parentSession; //pretty sure this has to be a full session so i can get lineage
   Map<String, bool> bool_stats; //most things
   Map<String, num> num_stats; //frog status
   Map<String, String> string_stats;  //num living, etc
   List<Map> miniPlayers = []; //array of hashes from players
+  List<Player> players = []; //TODO do i need this AND that miniPlayers thing???
+  Player mvp;
 
 
   SessionSummary(this.session_id);
@@ -44,13 +47,13 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return ret;
   }
 
-  void setMiniPlayers(players){
-
+  void setMiniPlayers(List<Player> players){
     for(num i = 0; i<players.length; i++){
       this.miniPlayers.add({"class_name": players[i].class_name, "aspect": players[i].aspect});
     }
   }
-  bool matchesClass(classes){
+
+  bool matchesClass(List<String> classes){
     for(num i = 0; i<classes.length; i++){
       var class_name = classes[i];
       for(num j = 0; j<this.miniPlayers.length; j++){
@@ -61,7 +64,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return false;
   }
 
-  bool matchesAspect(aspects){
+  bool matchesAspect(List<String> aspects){
     for(num i = 0; i<aspects.length; i++){
       var aspect = aspects[i];
       for(num j = 0; j<this.miniPlayers.length; j++){
@@ -72,18 +75,19 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return false;
   }
 
-  bool miniPlayerMatchesAnyClasspect(miniPlayer, classes, aspects){
+  bool miniPlayerMatchesAnyClasspect(miniPlayer, List<String> classes, List<String>  aspects){
     //is my class in the class array AND my aspect in the aspect array.
     if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
     return false;
   }
-  bool matchesBothClassAndAspect(classes, aspects){
+
+  bool matchesBothClassAndAspect(List<String> classes, List<String> aspects){
     for(num j = 0; j<this.miniPlayers.length; j++){
       if(this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j],classes,aspects)) return true;
     }
     return false;
   }
-  bool matchesClasspect(classes, aspects){
+  bool matchesClasspect(List<String> classes, List<String> aspects){
     if(aspects.length > 0 && classes.length == 0){
       return this.matchesAspect(aspects);
     }else if(classes.length > 0 && aspects.length == 0){
@@ -96,7 +100,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     }
 
   }
-  bool satifies_filter_array(filter_array){
+  bool satifies_filter_array(List<String> filter_array){
     //print(filter_array);
     for(num i = 0; i< filter_array.length; i++){
       var filter = filter_array[i];
@@ -127,18 +131,18 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
           return false;
         }
       }else if(filter == "timesAllLived"){
-        if(this.numDead != 0){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+        if(this.getNumStat("numDead") != 0){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
           //print("not all alive");
           return false;
         }
 
       }else if(filter == "comboSessions"){
-        if(!this.parentSession){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+        if(this.parentSession == null){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
           //print("not combo session");
           return false;
         }
 
-      }else if(!this[filter]){
+      }else if(this.getBoolStat(filter) == null && this.getStringStat(filter) == null && this.getNumStat(filter) == null){
         //print("property not true: " + filter);
         return false;
       }
@@ -148,7 +152,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   }
   dynamic decodeLineageGenerateHTML(){
     String html = "";
-    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    var params = window.location.href.substring(window.location.href.indexOf("?")+1); //what am i doing with params here?
     if (params == window.location.href) params = "";
     var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
     String scratched = "";
@@ -159,35 +163,36 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
       if(lineage[i].scratched) scratched = "(scratched)";
       html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched +"</a> ";
     }
-    String scratched = "";
-    if(this.scratched) scratched = "(scratched)";
-    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
+    scratched = "";
+    if(this.getBoolStat("scratched")) scratched = "(scratched)";
+    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id.toString() +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
     if((lineage.length +1) == 3){
-      this.threeTimesSessionCombo = true;
+      this.setBoolStat("threeTimesSessionCombo", true)
       html += " 3x SESSIONS COMBO!!!";
     }
     if((lineage.length +1) == 4){
-      this.fourTimesSessionCombo = true;
+      this.setBoolStat("fourTimesSessionCombo",true);
       html += " 4x SESSIONS COMBO!!!!";
     }
     if((lineage.length +1 ) ==5){
-      this.fiveTimesSessionCombo = true;
+      this.setBoolStat("fiveTimesSessionCombo",true);
       html += " 5x SESSIONS COMBO!!!!!";
     }
     if((lineage.length +1) > 5){
-      this.holyShitMmmmmonsterCombo = true;
+      this.setBoolStat("holyShitMmmmmonsterCombo",true);
       html += " The session pile doesn't stop from getting taller. ";
     }
     return html;
 
   }
   dynamic getSessionSummaryJunior(){
-    return new SessionSummaryJunior(this.players,this.session_id);
+    throw "TODO: Do I still need a separate Junior Object???";
+    //return new SessionSummaryJunior(this.players,this.session_id);
   }
   dynamic generateHTML(){
-    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    var params = window.location.href.substring(window.location.href.indexOf("?")+1);
     if (params == window.location.href) params = "";
-    String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+    String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
     for(var propertyName in this) {
       if(propertyName == "players"){
         html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
