@@ -34,5 +34,8 @@ void setup() {
 
 void testCreateSummary() {
   setup();
+  //can't call regular html cuz gets widnow param like an asshole.
+  print(testSessionSummary.generateNumHTML());
+  print(testSessionSummary.generateBoolHTML());
 
 }
