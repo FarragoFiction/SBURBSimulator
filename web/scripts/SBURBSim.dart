@@ -16,6 +16,7 @@ import "bytebuilder.dart";
 part "Controllers/SimController.dart";
 part "fraymotif.dart";
 part "session.dart";
+part "sessionSummary.dart";
 part "quirk.dart";
 part "random_tables.dart";
 part "loading.dart";

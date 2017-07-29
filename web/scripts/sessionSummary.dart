@@ -1,8 +1,224 @@
-/* TODO fix this l8r
+part of SBURBSim;
 //TODO NOTE FROM JR: This is for the rare session finder and will be a BITCH to convert. wait on this.
 //how AuthorBot summarizes a session
 //eventually moon prophecies will use this.
 //a prophecy can be any of these values that don't match the values in the current session summary.
+
+class SessionSummary{ //since stats will be hash, don't need to make junior
+  int session_id = null;
+  Map<String, bool> bool_stats; //most things
+  Map<String, num> num_stats; //frog status
+  Map<String, String> string_stats;  //num living, etc
+  List<Map> miniPlayers = []; //array of hashes from players
+
+
+  SessionSummary(this.session_id);
+
+  void setBoolStat(String statName, bool statValue) {
+      this.bool_stats[statName] = statValue;
+  }
+
+  bool getBoolStat(String statName) {
+     bool ret = this.bool_stats[statName];
+    if (ret == null) throw "What Kind of Stat is: $statName???";
+    return ret;
+  }
+
+  void setNumStat(String statName, num statValue) {
+    this.num_stats[statName] = statValue;
+  }
+
+  num getNumStat(String statName) {
+    num ret = this.num_stats[statName];
+    if (ret == null) throw "What Kind of Stat is: $statName???";
+    return ret;
+  }
+
+  void setStringStat(String statName, String statValue) {
+    this.string_stats[statName] = statValue;
+  }
+
+  String getStringStat(String statName) {
+    String ret = this.string_stats[statName];
+    if (ret == null) throw "What Kind of Stat is: $statName???";
+    return ret;
+  }
+
+  void setMiniPlayers(players){
+
+    for(num i = 0; i<players.length; i++){
+      this.miniPlayers.add({"class_name": players[i].class_name, "aspect": players[i].aspect});
+    }
+  }
+  bool matchesClass(classes){
+    for(num i = 0; i<classes.length; i++){
+      var class_name = classes[i];
+      for(num j = 0; j<this.miniPlayers.length; j++){
+        var miniPlayer = this.miniPlayers[j];
+        if(miniPlayer["class_name"] == class_name) return true;
+      }
+    }
+    return false;
+  }
+
+  bool matchesAspect(aspects){
+    for(num i = 0; i<aspects.length; i++){
+      var aspect = aspects[i];
+      for(num j = 0; j<this.miniPlayers.length; j++){
+        var miniPlayer = this.miniPlayers[j];
+        if(miniPlayer["aspect"] == aspect) return true;
+      }
+    }
+    return false;
+  }
+
+  bool miniPlayerMatchesAnyClasspect(miniPlayer, classes, aspects){
+    //is my class in the class array AND my aspect in the aspect array.
+    if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
+    return false;
+  }
+  bool matchesBothClassAndAspect(classes, aspects){
+    for(num j = 0; j<this.miniPlayers.length; j++){
+      if(this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j],classes,aspects)) return true;
+    }
+    return false;
+  }
+  bool matchesClasspect(classes, aspects){
+    if(aspects.length > 0 && classes.length == 0){
+      return this.matchesAspect(aspects);
+    }else if(classes.length > 0 && aspects.length == 0){
+      return this.matchesClass(classes);
+    }else if(aspects.length > 0 && classes.length >0){
+      print("returning and");
+      return this.matchesBothClassAndAspect(classes, aspects);
+    }else{
+      return true; //no filters, all are accepted.
+    }
+
+  }
+  bool satifies_filter_array(filter_array){
+    //print(filter_array);
+    for(num i = 0; i< filter_array.length; i++){
+      var filter = filter_array[i];
+
+      if(filter == "numberNoFrog"){
+        if(this.getStringStat("frogStatus")  != "No Frog"){
+          //	print("not no frog");
+          return false;
+        }
+      }else if(filter == "numberSickFrog"){
+        if(this.getStringStat("frogStatus")  != "Sick Frog"){
+          //print("not sick frog");
+          return false;
+        }
+      }else if(filter == "numberFullFrog"){
+        if(this.getStringStat("frogStatus")  != "Full Frog"){
+          //print("not full frog");
+          return false;
+        }
+      }else if(filter == "numberPurpleFrog"){
+        if(this.getStringStat("frogStatus")  != "Purple Frog"){
+          //print("not full frog");
+          return false;
+        }
+      }else if(filter == "timesAllDied"){
+        if(this.getNumStat("numLiving") != 0){
+          //print("not all dead");
+          return false;
+        }
+      }else if(filter == "timesAllLived"){
+        if(this.numDead != 0){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+          //print("not all alive");
+          return false;
+        }
+
+      }else if(filter == "comboSessions"){
+        if(!this.parentSession){  //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+          //print("not combo session");
+          return false;
+        }
+
+      }else if(!this[filter]){
+        //print("property not true: " + filter);
+        return false;
+      }
+    }
+    //print("i pass all filters");
+    return true;
+  }
+  dynamic decodeLineageGenerateHTML(){
+    String html = "";
+    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    if (params == window.location.href) params = "";
+    var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
+    String scratched = "";
+    if(lineage[0].scratched) scratched = "(scratched)";
+    html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + scratched +"</a> ";
+    for(num i = 1; i< lineage.length; i++){
+      String scratched = "";
+      if(lineage[i].scratched) scratched = "(scratched)";
+      html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched +"</a> ";
+    }
+    String scratched = "";
+    if(this.scratched) scratched = "(scratched)";
+    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
+    if((lineage.length +1) == 3){
+      this.threeTimesSessionCombo = true;
+      html += " 3x SESSIONS COMBO!!!";
+    }
+    if((lineage.length +1) == 4){
+      this.fourTimesSessionCombo = true;
+      html += " 4x SESSIONS COMBO!!!!";
+    }
+    if((lineage.length +1 ) ==5){
+      this.fiveTimesSessionCombo = true;
+      html += " 5x SESSIONS COMBO!!!!!";
+    }
+    if((lineage.length +1) > 5){
+      this.holyShitMmmmmonsterCombo = true;
+      html += " The session pile doesn't stop from getting taller. ";
+    }
+    return html;
+
+  }
+  dynamic getSessionSummaryJunior(){
+    return new SessionSummaryJunior(this.players,this.session_id);
+  }
+  dynamic generateHTML(){
+    var params = window.location.href.substr(window.location.href.indexOf("?")+1);
+    if (params == window.location.href) params = "";
+    String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id +"'>";
+    for(var propertyName in this) {
+      if(propertyName == "players"){
+        html += "<Br><b>" + propertyName + "</b>: " + getPlayersTitlesBasic(this.players);
+      }else if(propertyName == "mvp"){
+        html += "<Br><b>" + propertyName + "</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power");
+      }else if(propertyName == "frogLevel"){
+        html += "<Br><b>" + propertyName + "</b>: " + this.frogLevel + " (" + this.frogStatus +")";
+      }else if(propertyName == "session_id"){
+        if(this.parentSession){
+          html += this.decodeLineageGenerateHTML();
+        }else{
+          String scratch = "";
+          if(this.scratched) scratch = "(scratched)";
+
+          html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id + "&"+params+"'>" +this.session_id + scratch +  "</a>";
+        }
+      }else if(propertyName == "matchesClass" || propertyName == "matchesAspect" || propertyName == "miniPlayerMatchesAnyClasspect" || propertyName == "matchesBothClassAndAspect" || propertyName == "matchesClasspect" ||propertyName == "matchesClass" || propertyName == "miniPlayers" || propertyName == "setMiniPlayers" || propertyName == "scratched" || propertyName == "ghosts" || propertyName == "satifies_filter_array" || propertyName == "frogStatus" || propertyName == "decodeLineageGenerateHTML"|| propertyName == "threeTimesSessionCombo" || propertyName == "fourTimesSessionCombo"  || propertyName == "fiveTimesSessionCombo"  || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "parentSession"  ){
+        //do nothing. properties used elsewhere.
+      }else if(propertyName != "generateHTML" && propertyName != "getSessionSummaryJunior"){
+        html += "<Br><b>" + propertyName + "</b>: " + this[propertyName] ;
+      }
+    }
+
+    html += "</div><br>";
+    return html;
+  }
+
+
+}
+
+/* TODO fix this l8r
 class SessionSummary {
 	var session_id = null;
 	var crashedFromSessionBug = null;
