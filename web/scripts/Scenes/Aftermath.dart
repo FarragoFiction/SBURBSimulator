@@ -248,7 +248,7 @@ class Aftermath extends Scene {
 		tmpStatHolder["canAbscond"] = false;
 		tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
 		//print(purpleFrog);
-		GameEntity purpleFrog = new GameEntity(" <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", null, this.session);
+		GameEntity purpleFrog = new GameEntity(" <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", this.session);
 		purpleFrog.setStatsHash(tmpStatHolder);
 		print(purpleFrog);
 		//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
