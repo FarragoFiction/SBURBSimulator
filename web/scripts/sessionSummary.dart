@@ -99,22 +99,22 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
       var filter = filter_array[i];
 
       if(filter == "numberNoFrog"){
-        if(this.getStringStat("frogStatus")  != "No Frog"){
+        if(this.frogStatus  != "No Frog"){
           //	print("not no frog");
           return false;
         }
       }else if(filter == "numberSickFrog"){
-        if(this.getStringStat("frogStatus")  != "Sick Frog"){
+        if(this.frogStatus != "Sick Frog"){
           //print("not sick frog");
           return false;
         }
       }else if(filter == "numberFullFrog"){
-        if(this.getStringStat("frogStatus")  != "Full Frog"){
+        if(this.frogStatus  != "Full Frog"){
           //print("not full frog");
           return false;
         }
       }else if(filter == "numberPurpleFrog"){
-        if(this.getStringStat("frogStatus")  != "Purple Frog"){
+        if(this.frogStatus  != "Purple Frog"){
           //print("not full frog");
           return false;
         }
@@ -135,7 +135,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
           return false;
         }
 
-      }else if(this.getBoolStat(filter) == null && this.getStringStat(filter) == null && this.getNumStat(filter) == null){
+      }else if(this.getBoolStat(filter) == null && this.getNumStat(filter) == null){
         //print("property not true: " + filter);
         return false;
       }
@@ -158,7 +158,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     }
     scratched = "";
     if(this.getBoolStat("scratched")) scratched = "(scratched)";
-    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id.toString() +"&"+params+ "'>" +this.session_id + scratched + "</a> ";
+    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id.toString() +"&"+params+ "'>" +this.session_id.toString() + scratched + "</a> ";
     if((lineage.length +1) == 3){
       this.setBoolStat("threeTimesSessionCombo", true)
       html += " 3x SESSIONS COMBO!!!";
