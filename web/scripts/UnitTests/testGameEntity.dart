@@ -24,7 +24,7 @@ main() {
 }
 
 setup() {
-  testGE = new GameEntity("Firsty Testy", 413, new Session(0));
+  testGE = new GameEntity("Firsty Testy", new Session(0));
 }
 
 testName() {
@@ -40,7 +40,7 @@ testID() {
   setup();
   print(testGE.id);
   assert(
-      testGE.id == 413 ? true : throw "ID should be 413, but is: ${testGE.id}");
+      testGE.id > 0 ? true : throw "ID should be greater than zero, but is: ${testGE.id}");
   print("Id passed");
 }
 

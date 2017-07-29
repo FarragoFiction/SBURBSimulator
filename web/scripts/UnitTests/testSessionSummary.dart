@@ -7,6 +7,7 @@ part "../GameEntities/NPCs.dart";
 part "../GameEntities/Player.dart";
 part "../session.dart";
 part "../fraymotif.dart";
+part "../random_tables.dart"; //needed for global functions
 part "../random.dart";
 part "../v2.0/YellowYardResultController.dart";
 part "../Afterlife.dart";

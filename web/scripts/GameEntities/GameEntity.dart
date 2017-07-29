@@ -3,6 +3,7 @@ part of SBURBSim;
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity implements Comparable<GameEntity> {
+  static int _nextID = 0;
 	//TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
 	Session session;
 
@@ -31,7 +32,8 @@ class GameEntity implements Comparable<GameEntity> {
 	String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 	GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
 
-	GameEntity(this.name, this.id, this.session) {
+	GameEntity(this.name, this.session) {
+	  id = GameEntity. generateID();
 		stats['sanity'] = 0;
 		stats['alchemy'] = 0;
 		stats['currentHP'] = 0;
@@ -81,7 +83,7 @@ class GameEntity implements Comparable<GameEntity> {
 
 	//handles cloning generic stuff important because it's how a PLayer becomes a GameEntity (such as a PLayerSprite)
 	GameEntity clone() {
-		GameEntity clonege = new GameEntity(name, id, session);
+		GameEntity clonege = new GameEntity(name,session);
 		clonege.setStatsHash(stats);
 		clonege.fontColor = fontColor;
 		clonege.ghost = ghost; //if you are ghost, you are rendered spoopy style
@@ -557,6 +559,11 @@ class GameEntity implements Comparable<GameEntity> {
 	static String getEntitiesNames(List<GameEntity> ges) {
 		return ges.join(','); //TODO put an and at the end.
 	}
+
+	static int generateID() {
+      GameEntity._nextID += 1;
+      return GameEntity._nextID;
+  }
 
 	Random get rand => this.session.rand;
 }

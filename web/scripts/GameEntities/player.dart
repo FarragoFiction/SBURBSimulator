@@ -67,7 +67,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	bool denizenDefeated = false;
 	bool denizenMinionDefeated = false;
 
-	Player([Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super("", id, session) {
+	Player([Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny]): super("", session) {
     this.name = this.htmlTitleBasic();
   }
 
@@ -1788,7 +1788,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 	}
 	void initializeSprite(){
-		this.sprite = new Sprite("sprite", 0, session); //unprototyped.
+		this.sprite = new Sprite("sprite",session); //unprototyped.
 		//minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
 		this.sprite.setStatsHash({"hp":10, "currentHP":10});//same as denizen minion, but empty power
 		this.sprite.doomed = true;
@@ -2432,7 +2432,7 @@ dynamic blankPlayerNoDerived(session){
 	var id = seed();
 	//	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
-  var p = new Player(session,"Page","Void",k,m,gd,id);
+  var p = new Player(session,"Page","Void",k,m,gd);
 	p.interest1 = interests[0];
 	p.interest2 = interests[0];
 	p.baby = 1;
@@ -2457,7 +2457,7 @@ dynamic randomPlayerNoDerived(Session session, String c, String a){
 
 	var m = session.rand.pickFrom(moons);
 	var id = seed();
-	Player p = new Player(session,c,a,k,m,gd,id);
+	Player p = new Player(session,c,a,k,m,gd);
 	p.decideTroll();
 	p.interest1 = session.rand.pickFrom(interests);
 	p.interest2 = session.rand.pickFrom(interests);
@@ -2490,8 +2490,7 @@ dynamic randomPlayerWithClaspect(session, c, a){
 	bool gd = false;
 
 	var m = session.rand.pickFrom(moons);
-	var id = seed();
-	var p = new Player(session,c,a,k,m,gd,id);
+	var p = new Player(session,c,a,k,m,gd);
 	p.decideTroll();
 	p.interest1 = session.rand.pickFrom(interests);
 	p.interest2 = session.rand.pickFrom(interests);
