@@ -1535,7 +1535,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 	void initializeLuck(){
 		this.setStat("minLuck",this.session.rand.nextIntRange(-10,0)); //middle of the road.
-		this.setStat("maxLuck", this.getStat("minLuck") + this.session.rand.nextIntRange(1,10));   //max needs to be more than min.
+		this.setStat("maxLuck", this.session.rand.nextIntRange(1,10));   //max needs to be more than min.
 		if(this.trickster && this.aspect != "Doom"){
 			this.setStat("minLuck",11111111111);
 			this.setStat("maxLuck",11111111111);
