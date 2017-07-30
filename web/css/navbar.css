@@ -77,19 +77,21 @@ ul.menuPureCSS {
 		font-size: 18px;
 }
 .refactoringStatus{
-    background-color: white;
+    background-color: #71361a;
     vertical-align: bottom;
     width: 200px;
     display: inline-block;
     padding: 10px;
     height: 460px;
     font-family: "Courier New", Courier, monospace;
+    margin: 0px;
 }
 .banner{
     width: 1000px;
 }
 
 .banner img{
+    margin: 0px;
     display: inline-block;
     margin: 0 auto;
 }
