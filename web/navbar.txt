@@ -1,5 +1,28 @@
-<a href = "index.html"><img src = "images/sburb_sim_page_header_zalgo.png"/></a>
+<div class = "banner">
+    <div class = 'refactoringStatus'>
+        <h2>The Great Refactoring's Status</h2>
+        Done
+        <ul>
+            <li class = 'done'>Fucking Nothing </li>
 
+        </ul>
+        Done (but with Bugs)
+        <ul>
+                    <li class = 'done'>Simulator </li>
+                    <li class = 'shitdone'>ABJ </li>
+        </ul>
+         Not Done
+         <ul>
+                     <li class = 'notdone'>AB </li>
+                     <li class = 'notdone'>OCs </li>
+                     <li class = 'notdone'>Easter Eggs </li>
+                     <li class = 'notdone'>Tournament Arc </li>
+          </ul>
+    </div>
+    <a href = "index.html">
+         <img src = "images/the_great_refactor.gif"/>
+    </a>
+</div>
 <ul class = "menuPureCSS">
   <span class = 'centeredMenu'>
   <li class="dropdown menuButtonPureCSS">

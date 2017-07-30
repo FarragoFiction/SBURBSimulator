@@ -76,6 +76,23 @@ ul.menuPureCSS {
 		font-family: "Franklin Gothinc Demi", arial, sans;
 		font-size: 18px;
 }
+.refactoringStatus{
+    background-color: white;
+    vertical-align: bottom;
+    width: 200px;
+    display: inline-block;
+    padding: 10px;
+    height: 460px;
+    font-family: "Courier New", Courier, monospace;
+}
+.banner{
+    width: 1000px;
+}
+
+.banner img{
+    display: inline-block;
+    margin: 0 auto;
+}
 
 .centeredMenu{
 	width: 800px;
