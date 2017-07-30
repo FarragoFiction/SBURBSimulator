@@ -341,7 +341,7 @@ class SessionSummaryJunior {
     html += "<Br><b>Sprites</b>: " + this.grabAllSprites().toString();
     html += "<Br><b>Lands</b>: " + this.grabAllLands().toString();
     html += "<Br><b>Interests</b>: " + this.grabAllInterest().toString();
-    html += "<Br><b>Initial Ships</b>:<Br> " + this.initialShips();
+    html += "<Br><b>Initial Ships</b>:<Br> ${this.initialShips()}";
     html += "</div><br>";
     return html;
   }
@@ -391,10 +391,10 @@ class SessionSummaryJunior {
     }
     return ret;
   }
-  //TODO what was i doing here and how did it ever work???
+
   String initialShips(){
     var shipper = new UpdateShippingGrid(null);
-    if(this.ships == null){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
+    if(this.ships == null || this.ships.length == 0){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
       shipper.createShips(this.players, null);
       this.ships = shipper.getGoodShips(null);
     }

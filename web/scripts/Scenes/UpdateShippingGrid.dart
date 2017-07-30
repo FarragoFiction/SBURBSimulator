@@ -225,13 +225,9 @@ class UpdateShippingGrid extends Scene{
 			shipperPlayer = new Shipper(players[0]); //abj was calling this with no shipper player.
 			this.chosenShipper = shipperPlayer;
 		}
-		////print("creating ships");
 		List<Ship> ret = [];
 			for(num i = 0; i<players.length; i++){
-
 				Player player = players[i];
-				////print("making ships for: " + player.title())
-
 				for(num j = 0; j<player.relationships.length; j++){
 					Relationship r1 = player.relationships[j];
 					Relationship r2 = r1.target.getRelationshipWith(player);
@@ -711,6 +707,7 @@ class Ship {
 	bool isGoodShip(){
 			Relationship r2 = this.r2;
 			Relationship r1 = this.r1;
+			print("Comparing ships ${r2.saved_type} : ${r2.value} with ${r1.saved_type} : ${r2.value}");
 			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
 			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
 			if(r2.saved_type == "" || r1.saved_type == "" ){

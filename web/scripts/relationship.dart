@@ -21,7 +21,9 @@ class Relationship {
 	String spades = "Kismesissitude";	
 
 
-	Relationship(Player this.source, [num this.value = 0, Player this.target = null]) {}
+	Relationship(Player this.source, [num this.value = 0, Player this.target = null]) {
+    type(); //check to see if it's a crush or not
+  }
 
 
 	String nounDescription(){
@@ -282,7 +284,7 @@ class Relationship {
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
 	static void decideInitialQuadrants(Random rand, List<Player> players){
-		num rollNeeded = 50;
+		num rollNeeded = 5;
 		for(var i =0; i<players.length; i++){
 			Player player = players[i];
 			List<Relationship> relationships = player.relationships;
