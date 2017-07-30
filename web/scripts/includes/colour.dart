@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:math';
 
 class Colour {
     int _red;
@@ -100,6 +101,34 @@ class Colour {
         return data.data[offset] == this.red && data.data[offset+1] == this.green && data.data[offset+2] == this.blue && data.data[offset+3] == this.alpha;
     }
 
+    Colour mixRGB(Colour other, double fraction) {
+        fraction = fraction.clamp(0.0, 1.0);
+        return (this * (1-fraction)) + (other * fraction);
+    }
+
+    Colour mixGamma(Colour other, double fraction, [double gamma = 2.2]) {
+        fraction = fraction.clamp(0.0, 1.0);
+        double inverse = 1.0 / gamma;
+
+        double r = pow( _lerp( pow(this.redDouble, gamma), pow(other.redDouble, gamma), fraction), inverse);
+        double g = pow( _lerp( pow(this.greenDouble, gamma), pow(other.greenDouble, gamma), fraction), inverse);
+        double b = pow( _lerp( pow(this.blueDouble, gamma), pow(other.blueDouble, gamma), fraction), inverse);
+        double a = _lerp(this.alphaDouble, other.alphaDouble, fraction);
+
+        return new Colour.double(r,g,b,a);
+    }
+
+    Colour mix(Colour other, double fraction, [bool useGamma = false, double gamma = 2.2]) {
+        if (useGamma) {
+            return this.mixGamma(other, fraction, gamma);
+        }
+        return this.mixRGB(other, fraction);
+    }
+
+    static double _lerp(double first, double second, double fraction) {
+        return (first * (1-fraction) + second * fraction);
+    }
+
     // Operators ###################################################################################
 
     @override
@@ -111,9 +140,7 @@ class Colour {
     }
 
     @override
-    int hashCode() {
-        return this.toHex(true);
-    }
+    int get hashCode => this.toHex(true);
 
     Colour operator +(dynamic other) {
         if (other is Colour) {
