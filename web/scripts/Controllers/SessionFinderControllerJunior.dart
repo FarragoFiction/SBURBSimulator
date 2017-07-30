@@ -27,6 +27,10 @@ void checkSessionsJunior() {
   self.checkSessions();
 }
 
+void filterSessionsJunior() {
+  self.filterSessionsJunior();
+}
+
 
 class SessionFinderControllerJunior extends SimController {
 
@@ -43,6 +47,30 @@ class SessionFinderControllerJunior extends SimController {
   SessionFinderControllerJunior() : super() {
       rand = new Random();
   }
+
+//kid boy and abj is canon
+//you'll know that ABJ is thinking of kid boi every time she says "Interesting!!!"
+//it will be secret code
+//and definitely not terrifying at all
+    void filterSessionsJunior(){
+      var num_players =int.parse((querySelector("#num_players")as InputElement).value);
+      List<dynamic> tmp = [];
+      sessionSummariesDisplayed = [];
+      for(num i = 0; i<allSessionsSummaries.length; i++){
+        sessionSummariesDisplayed.add(allSessionsSummaries[i]);
+      }
+
+      for(num i = 0; i<sessionSummariesDisplayed.length; i++){
+        var ss = sessionSummariesDisplayed[i];
+        if(ss.players.length == num_players){
+          tmp.add(ss);
+        }
+      }
+      sessionSummariesDisplayed = tmp;
+      printSummariesJunior();
+      printStatsJunior();
+    }
+
 
   void formInit(){
     querySelector("#button").onClick.listen((e) => checkSessionsJunior());
@@ -100,6 +128,7 @@ class SessionFinderControllerJunior extends SimController {
     numSimulationsDone ++;
     if(numSimulationsDone >= numSimulationsToDo){
       (querySelector("#button")as ButtonElement).disabled =false;
+      querySelector("#buttonFilter").onClick.listen((e) => filterSessionsJunior());
     }else{
       initial_seed = getRandomSeed();
       startSession();
@@ -112,6 +141,16 @@ class SessionFinderControllerJunior extends SimController {
     querySelector("#num_players").onChange.listen((Event e) {
       (querySelector("#num_players_text") as InputElement).value = (querySelector("#num_players")as InputElement).value;
     });
+  }
+
+  void printSummariesJunior(){
+    querySelector("#debug").setInnerHtml("");
+    for(num i = 0; i<sessionSummariesDisplayed.length; i++){
+      var ssd = sessionSummariesDisplayed[i];
+      var str = ssd.generateHTML();
+      debug("<br><hr><font color = 'orange'> AB: " + getQuipAboutSession() + "</font><Br>" );
+      debug(str);
+    }
   }
 
 

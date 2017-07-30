@@ -470,7 +470,8 @@ class MultiSessionSummaryJunior {
     html += "<Br><b>Average Initial Ships Per Session:</b> ${this.numShips/this.numSessions} " ;
     html += "<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12";
     html += "<br><input type='text' id='num_players_text' value='2' size='2' disabled>";
-    html += "<br><br><button id = 'button' onclick='filterSessionsJunior()'>Filter Sessions</button>";
+    //on click will be job of code that appends this. cuz can't do inline anymore
+    html += "<br><br><button id = 'buttonFilter'>Filter Sessions</button>";
     html += "</div><Br>";
     return html;
   }
