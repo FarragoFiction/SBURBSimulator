@@ -707,7 +707,7 @@ class Ship {
 	bool isGoodShip(){
 			Relationship r2 = this.r2;
 			Relationship r1 = this.r1;
-			print("Comparing ships ${r2.saved_type} : ${r2.value} with ${r1.saved_type} : ${r2.value}");
+		//	print("Comparing ships ${r2.saved_type} : ${r2.value} with ${r1.saved_type} : ${r2.value}");
 			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
 			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
 			if(r2.saved_type == "" || r1.saved_type == "" ){

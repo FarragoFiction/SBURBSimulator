@@ -1616,7 +1616,6 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 				}
 			}
 		}
-        print("initializing relationships");
 		if(this.robot || this.grimDark>1){ //you can technically start grimDark
 			for(num k = 0; k <this.relationships.length; k++){
 					var r = this.relationships[k];

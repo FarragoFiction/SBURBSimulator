@@ -284,7 +284,7 @@ class Relationship {
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
 	static void decideInitialQuadrants(Random rand, List<Player> players){
-		num rollNeeded = 5;
+		num rollNeeded = 0;
 		for(var i =0; i<players.length; i++){
 			Player player = players[i];
 			List<Relationship> relationships = player.relationships;
@@ -293,14 +293,16 @@ class Relationship {
 				num roll = player.rollForLuck();
 				if(roll > rollNeeded){
 					if(r.type() == r.goodBig){
+					  print("initial diamond/heart");
 						num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
-						if(difference > 2 || roll < rollNeeded + 25){ //pale
+						if(difference > 2 || roll < rollNeeded*2){ //pale
 							makeDiamonds(player, r.target);
 						}else{
 							makeHeart(player, r.target);
 						}
 					}else if(r.type() == r.badBig){
-						if(player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded + 10){ //likely to murder each other
+            print("initial club/spades");
+						if(player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded*2){ //likely to murder each other
 							Player ausp = rand.pickFrom(players);
 							if(ausp != null && ausp != player && ausp != r.target){
 								makeClubs(ausp, player, r.target);
