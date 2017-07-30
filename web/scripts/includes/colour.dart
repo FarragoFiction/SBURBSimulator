@@ -2,10 +2,23 @@ import 'dart:html';
 import 'dart:math';
 
 class Colour {
+    static const double DEFAULT_GAMMA = 2.2;
+
+    int _alpha;
+
     int _red;
     int _green;
     int _blue;
-    int _alpha;
+
+    bool _hsv_dirty = true;
+    double _hue = 0.0;
+    double _saturation = 0.0;
+    double _value = 0.0;
+
+    bool _lab_dirty = true;
+    double _lab_lightness = 0.0;
+    double _lab_a = 0.0;
+    double _lab_b = 0.0;
 
     // Constructors ###################################################################################
 
@@ -17,7 +30,19 @@ class Colour {
     }
 
     factory Colour.from(Colour other) {
-        return new Colour(other.red, other.green, other.blue, other.alpha);
+        Colour col = new Colour(other.red, other.green, other.blue, other.alpha);
+
+        if (!other._hsv_dirty) {
+            col.setHSV(other._hue, other._saturation, other._value);
+            col._hsv_dirty = false;
+        }
+
+        if (!other._lab_dirty) {
+            col.setLAB(other._lab_lightness, other._lab_a, other._lab_b);
+            col._lab_dirty = false;
+        }
+
+        return col;
     }
 
     factory Colour.double(double red, double green, double blue, [double alpha = 1.0]) {
@@ -53,16 +78,26 @@ class Colour {
         return new Colour.fromHexString(hex.substring(1));
     }
 
+    factory Colour.hsv(double h, double s, double v) {
+        return new Colour()..setHSV(h, s, v);
+    }
+
+    factory Colour.lab(double l, double a, double b) {
+        return new Colour()..setLAB(l, a, b);
+    }
+
     // Getters/setters ###################################################################################
+
+    // RGB
 
     int get red =>  _red;
     int get green =>_green;
     int get blue => _blue;
     int get alpha =>_alpha;
 
-    void set red(int val)   { _red =    val.clamp(0,0xFF); }
-    void set green(int val) { _green =  val.clamp(0,0xFF); }
-    void set blue(int val)  { _blue =   val.clamp(0,0xFF); }
+    void set red(int val)   { _red =    val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
+    void set green(int val) { _green =  val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
+    void set blue(int val)  { _blue =   val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
     void set alpha(int val) { _alpha =  val.clamp(0,0xFF); }
 
     double get redDouble =>     red /   0xFF;
@@ -74,6 +109,40 @@ class Colour {
     void set greenDouble(double val){ this.green =  (val*0xFF).floor(); }
     void set blueDouble(double val) { this.blue =   (val*0xFF).floor(); }
     void set alphaDouble(double val){ this.alpha =  (val*0xFF).floor(); }
+
+    // HSV
+
+    double get hue { this._checkHSV(); return _hue; }
+    double get saturation { this._checkHSV(); return _saturation; }
+    double get value { this._checkHSV(); return _value; }
+
+    void set hue(double val) { _hue = val; this._updateRGBfromHSV(); }
+    void set saturation(double val) { _saturation = val; this._updateRGBfromHSV(); }
+    void set value(double val) { _value = val; this._updateRGBfromHSV(); }
+
+    void setHSV(double h, double s, double v) {
+        this._hue = h;
+        this._saturation = s;
+        this._value = v;
+        this._updateRGBfromHSV();
+    }
+
+    // LAB
+
+    double get lab_lightness { this._checkLAB(); return _lab_lightness; }
+    double get lab_a { this._checkLAB(); return _lab_a; }
+    double get lab_b { this._checkLAB(); return _lab_b; }
+
+    void set lab_lightness(double val) { _lab_lightness = val; this._updateRGBfromLAB(); }
+    void set lab_a(double val) { _lab_a = val; this._updateRGBfromLAB(); }
+    void set lab_b(double val) { _lab_b = val; this._updateRGBfromLAB(); }
+
+    void setLAB(double l, double a, double b) {
+        this._lab_lightness = l;
+        this._lab_a = a;
+        this._lab_b = b;
+        this._updateRGBfromLAB();
+    }
 
     // Methods ###################################################################################
 
@@ -106,7 +175,7 @@ class Colour {
         return (this * (1-fraction)) + (other * fraction);
     }
 
-    Colour mixGamma(Colour other, double fraction, [double gamma = 2.2]) {
+    Colour mixGamma(Colour other, double fraction, [double gamma = DEFAULT_GAMMA]) {
         fraction = fraction.clamp(0.0, 1.0);
         double inverse = 1.0 / gamma;
 
@@ -118,7 +187,7 @@ class Colour {
         return new Colour.double(r,g,b,a);
     }
 
-    Colour mix(Colour other, double fraction, [bool useGamma = false, double gamma = 2.2]) {
+    Colour mix(Colour other, double fraction, [bool useGamma = false, double gamma = DEFAULT_GAMMA]) {
         if (useGamma) {
             return this.mixGamma(other, fraction, gamma);
         }
@@ -127,6 +196,60 @@ class Colour {
 
     static double _lerp(double first, double second, double fraction) {
         return (first * (1-fraction) + second * fraction);
+    }
+
+    // HSV ###################################################################################
+
+    void _checkHSV() {
+        if (this._hsv_dirty) {
+            this._updateHSVfromRGB();
+        }
+    }
+
+    void _updateHSVfromRGB() {
+        this._hsv_dirty = false;
+
+        List<double> hsv = RGBtoHSV(this.redDouble, this.greenDouble, this.blueDouble);
+        this._hue = hsv[0];
+        this._saturation = hsv[1];
+        this._value = hsv[2];
+    }
+
+    void _updateRGBfromHSV() {
+        this._hsv_dirty = false;
+
+        List<double> rgb = HSVtoRGB(this._hue, this._saturation, this._value);
+
+        this.redDouble = rgb[0];
+        this.greenDouble = rgb[1];
+        this.blueDouble = rgb[2];
+    }
+
+    // LAB ###################################################################################
+
+    void _checkLAB() {
+        if (this._lab_dirty) {
+            this._updateLABfromRGB();
+        }
+    }
+
+    void _updateLABfromRGB() {
+        this._lab_dirty = false;
+
+        List<double> lab = RGBtoLAB(this.redDouble, this.greenDouble, this.blueDouble);
+        this._lab_lightness = lab[0];
+        this._lab_a = lab[1];
+        this._lab_b = lab[2];
+    }
+
+    void _updateRGBfromLAB() {
+        this._lab_dirty = false;
+
+        List<double> rgb = LABtoRGB(this._lab_lightness, this._lab_a, this._lab_b);
+
+        this.redDouble = rgb[0];
+        this.greenDouble = rgb[1];
+        this.blueDouble = rgb[2];
     }
 
     // Operators ###################################################################################
@@ -213,5 +336,83 @@ class Colour {
                 this.alphaDouble = value;
             }
         }
+    }
+
+    // Static conversions ###################################################################################
+
+    static List<double> RGBtoHSV(double r, double g, double b) {
+        double maximum = max(max(r,g),b);
+        double minimum = min(min(r,g),b);
+
+        double v = maximum;
+        double delta = maximum-minimum;
+
+        double s = maximum == 0.0 ? 0.0 : delta / maximum;
+
+        double h;
+
+        if (maximum == minimum) {
+            h = 0.0;
+        } else {
+            if (maximum == r) {
+                h = (g - b) / delta + (g < b ? 6 : 0);
+            } else if (maximum == g) {
+                h = (b - r) / delta + 2;
+            } else {
+                h = (r - g) / delta + 4;
+            }
+
+            h /= 6.0;
+        }
+
+        return <double>[h,s,v];
+    }
+
+    static List<double> HSVtoRGB(double h, double s, double v) {
+        double r,g,b;
+
+        int i = (h*6).floor();
+        double f = h * 6 - i;
+        double p = v * (1-s);
+        double q = v * (1-f*s);
+        double t = v * (1-(1-f)*s);
+
+        int sec = i % 6;
+
+        if (sec == 0) {
+            r = v;
+            g = t;
+            b = p;
+        } else if (sec == 1) {
+            r = q;
+            g = v;
+            b = p;
+        } else if (sec == 2) {
+            r = p;
+            g = v;
+            b = t;
+        } else if (sec == 3) {
+            r = p;
+            g = q;
+            b = v;
+        } else if (sec == 4) {
+            r = t;
+            g = p;
+            b = v;
+        } else {
+            r = v;
+            g = p;
+            b = q;
+        }
+
+        return <double>[r,g,b];
+    }
+
+    static List<double> RGBtoLAB(double r, double g, double b) {
+
+    }
+
+    static List<double> LABtoRGB(double l, double a, double b) {
+
     }
 }
