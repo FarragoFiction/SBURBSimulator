@@ -210,7 +210,6 @@ class GameEntity implements Comparable<GameEntity> {
             }
         }
         appendHtml(div, "<Br><br>${chosen.useFraymotif(this, living_allies, target, living_enemies)}<br><Br>");
-        appendHtml(div, "<Br><br>${chosen.useFraymotif(this, living_allies, target, living_enemies)}<br><Br>");
         chosen.usable = false;
         return true;
     }
