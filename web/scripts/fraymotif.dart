@@ -383,7 +383,7 @@ class FraymotifCreator {
       return ret;
   }
 	List<Fraymotif> getUsableFraymotifs(owner, allies, enemies){
-    var fraymotifs = owner.fraymotifs;
+    List<Fraymotif> fraymotifs = owner.fraymotifs;
     List<dynamic> ret = [];
     for(num i = 0; i<fraymotifs.length; i++){
       if(fraymotifs[i].canCast(owner, allies, enemies)) ret.add(fraymotifs[i]);
@@ -537,8 +537,8 @@ class FraymotifCreator {
     this.premadeFraymotifNames.add(new Fraymotif(["Doom", "Light"], "Deadly Laser",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Blood", "Mind","Breath", "Light","Space", "Void","Time", "Heart","Hope", "Life","Doom"], "Just...Fuck That Guy",1, "")); ///lol, no gamzee
     //vI would do anything for love, but I won't do that///
-    this.premadeFraymotifNames.add(new Fraymotif(["Blood", "Mind","Breath", "Light","Space", "Void","Time", "Rage","Hope", "Life","Doom"], "I would do anything for love, but I won't do that",1, "")); ///lol, no gamzee
-
+    this.premadeFraymotifNames.add(new Fraymotif(["Blood", "Mind","Breath", "Light","Space", "Void","Time", "Rage","Hope", "Life","Doom"], "I would do anything for love, but I won't do that",1, "")); //
+    this.premadeFraymotifNames.add(new Fraymotif(["Blood", "Mind","Breath", "Light","Space", "Void","Time", "Rage","Hope", "Life","Doom", "Rage"], "Homestuck Anthem",1, "")); ///l
     this.premadeFraymotifNames.add(new Fraymotif(["Life", "Doom"], "Grim Fandango",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Mind", "Time", "Doom"], "Timeline Evisceration",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Heart", "Blood"], "Shipping Grades",1, ""));

@@ -27,6 +27,9 @@ main() {
 
   testMobilitySort();
   testChooseTarget();
+  //TODO I WANT to use test fraymotif's being single use per battle here, but not sure how to do it without hitting a div append.
+  //TODO probably should refactor strifes to only do a single div append from an accumulated list of shit
+  //easier to debug, and more efficient than lots of little appends
 }
 
 void testMobilitySort() {
