@@ -27,10 +27,6 @@ void checkSessionsJunior() {
   self.checkSessions();
 }
 
-void filterSessionsJunior() {
-  self.filterSessionsJunior();
-}
-
 
 class SessionFinderControllerJunior extends SimController {
 
@@ -53,6 +49,7 @@ class SessionFinderControllerJunior extends SimController {
 //it will be secret code
 //and definitely not terrifying at all
     void filterSessionsJunior(){
+    print("going to filter");
       var num_players =int.parse((querySelector("#num_players")as InputElement).value);
       List<dynamic> tmp = [];
       sessionSummariesDisplayed = [];
@@ -128,7 +125,6 @@ class SessionFinderControllerJunior extends SimController {
     numSimulationsDone ++;
     if(numSimulationsDone >= numSimulationsToDo){
       (querySelector("#button")as ButtonElement).disabled =false;
-      querySelector("#buttonFilter").onClick.listen((e) => filterSessionsJunior());
     }else{
       initial_seed = getRandomSeed();
       startSession();
@@ -141,6 +137,9 @@ class SessionFinderControllerJunior extends SimController {
     querySelector("#num_players").onChange.listen((Event e) {
       (querySelector("#num_players_text") as InputElement).value = (querySelector("#num_players")as InputElement).value;
     });
+    //used to be an inline from generateHTML but no more.
+    querySelector("#buttonFilter").onClick.listen((e) => filterSessionsJunior());
+
   }
 
   void printSummariesJunior(){
