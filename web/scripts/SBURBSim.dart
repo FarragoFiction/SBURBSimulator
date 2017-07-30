@@ -33,7 +33,7 @@ part "GameEntities/player.dart";
 part "v2.0/YellowYardResultController.dart";
 part "ShittyRapEngine/shitty_raps.dart";
 part "navbar.dart"; //handles drawing navbar and url param stuff
-part "debugScenarios.dart"; //handles easter eggs
+part "eggs_and_egg_accessories.dart"; //handles easter eggs
 part "OCDataStringHandler.dart";
 
 
