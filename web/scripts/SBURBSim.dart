@@ -128,7 +128,7 @@ int seed() {
 }
 
 int getRandomSeed() {
-  return 3; //TODO make this an actually random number
+  return new Random().nextInt();
 }
 
 bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
