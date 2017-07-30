@@ -424,6 +424,7 @@ class MultiSessionSummaryJunior {
 
   static MultiSessionSummaryJunior collateMultipleSessionSummariesJunior(List<SessionSummaryJunior>sessionSummaryJuniors){
     MultiSessionSummaryJunior mss = new MultiSessionSummaryJunior();
+    if(sessionSummaryJuniors.length == 0) return mss; //don't bother, and definitely don't try to average on zero things.
     mss.numSessions = sessionSummaryJuniors.length;
     for(num i = 0; i<sessionSummaryJuniors.length; i++){
       SessionSummaryJunior ssj =sessionSummaryJuniors[i];
