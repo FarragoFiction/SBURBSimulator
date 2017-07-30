@@ -1,4 +1,4 @@
-import "../lz-string.dart";
+import "../includes/lz-string.dart";
 part "JRTestSuite.dart";
 
 typedef dynamic Compression(String input);
