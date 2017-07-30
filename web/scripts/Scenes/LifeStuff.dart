@@ -180,7 +180,7 @@ class LifeStuff extends Scene {
 			if(ghostName == "murder victim"){  //
 				print("dead murder victims freakouts " + this.session.session_id.toString());
 				str += " It's kind of freaking the " + player.htmlTitleBasic() + " out a little. ";
-				player.addStat("sanity", 1);
+				player.addStat("sanity", -10);
 				player.flipOutReason = "being haunted by the ghost of the Player they killed";
 
 			}else if(ghostName == "less fortunate alternate self"){
