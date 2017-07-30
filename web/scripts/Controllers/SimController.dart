@@ -14,7 +14,6 @@ part of SBURBSim;
 abstract class SimController {
   static SimController instance;
   num initial_seed = 0;
-  //TODO write controller that sets whatever you just made to singleton instance var.
   SimController() {
       SimController.instance = this;
   }

@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
-num initial_seed = 0;
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
 
 main() {
@@ -12,13 +11,15 @@ main() {
   loadNavbar();
   new SessionFinderControllerJunior();
   self = SimController.instance;
+  print(self);
 
   if(getParameterByName("seed",null) != null){
-    initial_seed = int.parse(getParameterByName("seed",null));
+    self.initial_seed = int.parse(getParameterByName("seed",null));
   }else{
     var tmp = getRandomSeed();
-    initial_seed = tmp;
+    self.initial_seed = tmp;
   }
+  print("before I init form, inital_seed is ${self.initial_seed}");
   self.formInit();
 }
 
@@ -28,17 +29,20 @@ void checkSessionsJunior() {
 
 
 class SessionFinderControllerJunior extends SimController {
-  Random rand = new Random(initial_seed);
-  List<int> sessionsSimulated = [];
 
-  List<SessionSummaryJunior> allSessionsSummaries;
+  List<int> sessionsSimulated = [];
+  Random rand;
+
+  List<SessionSummaryJunior> allSessionsSummaries = [];
   //how filtering works
-  List<SessionSummaryJunior> sessionSummariesDisplayed;
+  List<SessionSummaryJunior> sessionSummariesDisplayed = [];
 
   int numSimulationsDone = 0;
 
   num numSimulationsToDo = 0;
-  SessionFinderControllerJunior() : super();
+  SessionFinderControllerJunior() : super() {
+      rand = new Random();
+  }
 
   void formInit(){
     querySelector("#button").onClick.listen((e) => checkSessionsJunior());
@@ -57,7 +61,7 @@ class SessionFinderControllerJunior extends SimController {
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
     querySelector("#story").setInnerHtml("");
-    numSimulationsToDo = (querySelector("#num_sessions")as InputElement).value as int;
+    numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //im junior so deal with it
   }
@@ -98,7 +102,6 @@ class SessionFinderControllerJunior extends SimController {
       (querySelector("#button")as ButtonElement).disabled =false;
     }else{
       initial_seed = getRandomSeed();
-      rand.setSeed(initial_seed);
       startSession();
     }
   }
@@ -155,11 +158,6 @@ class SessionFinderControllerJunior extends SimController {
     // TODO: implement recoverFromCorruption
   }
 
-  @override
-  void reinit() {
-    throw "todo";
-    // TODO: implement reinit
-  }
 
   @override
   void renderScratchButton(Session session) {
@@ -177,11 +175,6 @@ class SessionFinderControllerJunior extends SimController {
   void shareableURL() {
     throw "todo";
     // TODO: implement shareableURL
-  }
-
-  @override
-  void startSession() {
-    super.startSession(); //the only difference is the callback.
   }
 
   @override

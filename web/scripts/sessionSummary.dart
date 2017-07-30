@@ -394,7 +394,7 @@ class SessionSummaryJunior {
   //TODO what was i doing here and how did it ever work???
   String initialShips(){
     var shipper = new UpdateShippingGrid(null);
-    if(!this.ships){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
+    if(this.ships == null){ //thought this was haunted but turns out ABJ is explicity allowed to pass nulls here
       shipper.createShips(this.players, null);
       this.ships = shipper.getGoodShips(null);
     }

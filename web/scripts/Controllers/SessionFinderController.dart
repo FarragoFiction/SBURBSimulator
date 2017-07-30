@@ -8,6 +8,7 @@ num initial_seed = 0;
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 main() {
+  window.alert("IMPORTANT: to get next session, session.rand.nextInt() to get what is the last unused seed from current session");
   doNotRender = true;
   loadNavbar();
   new SessionFinderController();
@@ -24,7 +25,7 @@ main() {
   self.formInit();
 }
 
-void checkSessions {
+void checkSessions() {
   window.alert("TODO");
 }
 
