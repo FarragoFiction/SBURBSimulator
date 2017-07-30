@@ -167,7 +167,7 @@ void processXStuck(){
 	String params1 = window.location.search.substring(0);
 	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
-	var tmp = classes;
+	var tmp = new List<String>.from(classes);
 	tmp.addAll(custom_only_classes);
 	String params = "";
 	if(params1 != null){

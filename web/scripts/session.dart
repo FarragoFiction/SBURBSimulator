@@ -377,9 +377,9 @@ class Session {
 	}
 	void makeGuardians(){
 		//print("Making guardians");
-		available_classes = classes.sublist(0);
-		available_aspects = nonrequired_aspects.sublist(0); //required_aspects
-		available_aspects.addAll(required_aspects.sublist(0));
+		available_classes = new List<String>.from(classes);
+		available_aspects = new List<String>.from(nonrequired_aspects);
+		available_aspects.addAll(new List<String>.from(required_aspects));
 		List<dynamic> guardians = [];
 		for(num i = 0; i<this.players.length; i++){
 			  var player = this.players[i];
