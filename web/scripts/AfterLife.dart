@@ -40,7 +40,7 @@ class AfterLife {
 		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
 	}
 	Player findHatedOneSpirit(Player player){
-		return player.rand.pickFrom(this.findAllDeadLovedOnes(player));
+		return player.rand.pickFrom(this.findAllDeadHatedOnes(player));
 	}
 	List<Player> findAllDeadLovedOnes(Player player){
 		List<Player> lovedOnes = [];
