@@ -23,7 +23,7 @@ class GameEntity implements Comparable<GameEntity> {
     List<Buff> buffs = <Buff>[]; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
     Map<String, num> stats = <String, num>{};
     List<Relationship> relationships = <Relationship>[]; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
-    Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
+    Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly is confusing since it's also 'level')
     num renderingType = 0; //0 means default for this sim.
     List<AssociatedStat> associatedStats = <AssociatedStat>[]; //most players will have a 2x, a 1x and a -1x stat.
     String spriteCanvasID = null; //part of new rendering engine.
@@ -470,6 +470,10 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void addStat(String statName, num value) {
+        if(statName == "MANGRIT") {
+          this.permaBuffs[statName] += value;
+          return;
+        }
         if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
         this.stats[statName] += value;
     }

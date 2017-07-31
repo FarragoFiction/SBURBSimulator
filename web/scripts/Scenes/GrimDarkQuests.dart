@@ -2,7 +2,7 @@ part of SBURBSim;
 
 
 class GrimDarkQuests extends Scene{
-		List<dynamic> players = [];	//grim dark players don't do their jobs. they try to crash the session.
+		List<Player> players = [];	//grim dark players don't do their jobs. they try to crash the session.
 	
 
 
@@ -26,9 +26,9 @@ class GrimDarkQuests extends Scene{
 
 		return this.players.length>0;
 	}
-	dynamic checkSnapOutOfIt(player){
-		var bestFriend = player.getBestFriend();
-		if(bestFriend){
+	String checkSnapOutOfIt(player){
+		Player  bestFriend = player.getBestFriend();
+		if(bestFriend != null){
 			var r = player.getRelationshipWith(bestFriend);
 			if(r.value > 10){
 				String ret = "The " + player.htmlTitle() + " suddenly snaps out of it.  Their friendship with the " + bestFriend.htmlTitle() + " has managed to free them of the Horrorterror's influence. ";
@@ -89,9 +89,9 @@ class GrimDarkQuests extends Scene{
 			String ret = "";
 			for(num i = 0; i<this.players.length; i++){
 				if(this.session.sessionHealth <= 0) return ret;
-				var player = this.players[i];
-				var snop = this.checkSnapOutOfIt(player);
-				if(snop){
+				Player player = this.players[i];
+				String snop = this.checkSnapOutOfIt(player);
+				if(snop != null){
 					//print("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id);
 					ret += snop;
 				}else{
