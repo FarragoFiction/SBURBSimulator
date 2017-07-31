@@ -4,7 +4,7 @@ part of SBURBSim;
 
 
 void bardQuestMode(){
-	if(confirm("Behold the Majesty of the CodTier? Y/N")){
+	if(window.confirm("Behold the Majesty of the CodTier? Y/N")){
 		bardQuest = true;
 	}else{
 		window.alert("But thou must!f");
@@ -29,8 +29,8 @@ void pen15Ouija(){
 	ouija = true;
 	window.alert("thats the spooky thing about penis ouija you can never be sure who did the dicks");
 	window.alert("was it you or me or maybe a ghoooost???");
-	querySelector('body').css("background-color", "#f8c858");
-	querySelector('body').css("background-image", "url(images/pen15_bg1.png)");
+	querySelector('body').style.backgroundColor = "#f8c858";
+	querySelector('body').style.backgroundImage = "url(images/pen15_bg1.png)";
 }
 
 
@@ -48,13 +48,14 @@ void sbahjMode(){
 	if(!doNotRender) window.alert("where MAKING THIS HAPEN");
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
-	querySelector("#story").append("<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
-	setTimeout((){
-		querySelector("#story").append("<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>");
-	}, 10000);
-	querySelector('body').css("background-color", "#0000ff");
-	querySelector('body').css("background-image", "none");
-	querySelector('#story').css("background-color", "#ff00ff");
+	appendHtml(querySelector("#story"),"<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
+
+
+	new Timer(new Duration(milliseconds: 10000), () =>appendHtml(querySelector("#story"),"<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>"));
+
+	querySelector('body').style.backgroundColor = "#0000ff";
+	querySelector('body').style.backgroundImage = "none";
+	querySelector('#story').style.backgroundColor = "#ff00ff";
 	curSessionGlobalVar.sbahj = true;
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
@@ -229,7 +230,7 @@ void babyStuckMode(){
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
-		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.concat([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
+		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.addAll([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
 	}
 }
 
@@ -238,7 +239,7 @@ void babyStuckMode(){
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 void roboMode(){
 	if(!doNotRender) window.alert("BEEP");
-	querySelector("#story").append("<img src = 'images/guide_bot.png' style='float:left;'>");
+	appendHtml(querySelector("#story"),"<img src = 'images/guide_bot.png' style='float:left;'>");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.hairColor = getRandomGreyColor();
@@ -266,15 +267,15 @@ void roboMode(){
 
 void tricksterMode(){
 	if(!doNotRender) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
-	if(doNotRender)querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
-	querySelector("#story").append("<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
-	querySelector('body').css("background-image", "url(images/zilly.gif)");
-	querySelector('#story').css("background-color", "#ff93e4");
+	if(doNotRender) (querySelector("#avatar") as ImageElement).src = "images/CandyAuthorBot.png";
+	appendHtml(querySelector("#story"),"<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
+	querySelector('body').style.backgroundImage =  "url(images/zilly.gif)"; //.style.backgroundColor
+	querySelector('#story').style.backgroundColor ="#ff93e4";
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		if(p.aspect != "Doom"){ //kr says it would be funny if doom plalyers completely immune.
-			p.hairColor = rand.pickFrom(tricksterColors);
-			p.bloodColor = rand.pickFrom(tricksterColors);
+			p.hairColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
+			p.bloodColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
 			p.trickster  = true;
 		}else{
 		}
@@ -309,7 +310,7 @@ void debugRoyalRumble(){
 		p.bloodColor = "#99004d";
 		p.addStat("sanity",-10);
 		p.decideLusus();
-		p.kernel_sprite = p.lusus;
+		p.object_to_prototype = p.myLusus;
 		p.relationships = [];
 		p.quirk = null;
 		p.generateRelationships(curSessionGlobalVar.players);  //heiresses hate each other

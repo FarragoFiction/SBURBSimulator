@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
 
+
 part "../web/scripts/GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
 part "../web/scripts/random_tables.dart"; //needed for global functions
 part "../web/scripts/session.dart";
@@ -11,8 +12,7 @@ part "../web/scripts/Afterlife.dart";
 part "JRTestSuite.dart";
 part "../web/scripts/fraymotif.dart";
 part "../web/scripts/random.dart";
-part "../weux6pbutt"
-    "b/scripts/v2.0/YellowYardResultController.dart";
+part "../web/scripts/v2.0/YellowYardResultController.dart";
 
 var testGE = null;
 main() {
