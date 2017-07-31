@@ -206,7 +206,10 @@ function calculateN(k,yk){
 	var ret = 1;
 	//N[k] = 1 + sum(  y[k][i]*(q**i) for i in range(3))
 	for(var i = 0; i<yk.length; i++){
-		ret += yk[i]*(q**i)  ///WHY??? DM, you are a crazy, crazy mathematician.
+		//ret += yk[i]*(q**i)  ///WHY??? DM, you are a crazy, crazy mathematician.
+		//chrome doesn't know what ** is like an asshole???
+
+		ret += yk[i]*Math.pow(q,i)   ///WHY??? DM, you are a crazy, crazy mathematician.
 	}
 	return ret;
 }
@@ -226,7 +229,7 @@ function compute(k, formula){
 	var newyk = []
 	var newxk = [];  //do i replace this in x, or is it temp?
 	for(var i = 0; i<yk.length; i++){
-		newyk[i] = Math.floor((newnk-1)/(q**i));
+		newyk[i] = Math.floor((newnk-1)/Math.pow(q,i) );
 		newxk[i] = (newyk[i] + targetImage) % q
 	}
 	x[k] = newxk;
