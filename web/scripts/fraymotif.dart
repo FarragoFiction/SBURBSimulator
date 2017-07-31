@@ -454,6 +454,7 @@ class FraymotifCreator {
     if(aspect == "Hope") ret =  this.getRandomHopeName(rand);
     if(aspect == "Life") ret =  this.getRandomLifeName(rand);
     if(aspect == "Doom") ret =  this.getRandomDoomName(rand);
+    if(ret == null || ret.isEmpty) ret = "Null";
     return getFontColorFromAspect(aspect) + ret + "</font>";
   }
 	String getRandomMusicWord(Random rand, String aspect){ //takes in an aspect for color
@@ -658,8 +659,13 @@ class FraymotifEffect {
 		if(player.class_name == "Mage") effect = rand.pickFrom(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-		this.statName = rand.pickFrom(player.associatedStats).name;
+    if(player.associatedStats.length > 0){ //null plyaers have no associated stats
+      	    this.statName = rand.pickFrom(player.associatedStats).name;
+    }else{
+    	    this.statName = "MANGRIT"
+    }
 	}
+
 	dynamic knightEffects(){
 		return [new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false) ];
 	}
