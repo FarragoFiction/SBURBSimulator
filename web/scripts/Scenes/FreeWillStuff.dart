@@ -202,12 +202,12 @@ class FreeWillStuff extends Scene{
 	Player findNonGodTierBesidesMe(Player player){
 		//print(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
 		Relationship ret = null;
-		int ret_abs_value = 0;
+		num ret_abs_value = 0; //apparently HAS to be  a num cause both double and int crash
 		if(player.aspect == "Time" && !player.godTier) return player;  //god tier yourself first.
 		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
 		for(int i = 0; i<player.relationships.length; i++){
 			Relationship r = player.relationships[i];
-			int v = (r.value).abs();
+			num v = (r.value).abs();
 			if(ret == null || (v < ret_abs_value && !r.target.dead && !r.target.godTier)){
 				ret = r;
 				ret_abs_value = v;
