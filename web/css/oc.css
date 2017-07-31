@@ -20,6 +20,13 @@
     font-family: "Courier New", Courier, monospace;
 }
 
+.pesterlog{
+    padding: 10px;
+    margin: 10px;
+    background-color: lightgrey;
+    border 1px solid grey;
+}
+
 .standAloneSummary{
 	display: inline-block;
 }

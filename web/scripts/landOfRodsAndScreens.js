@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 118; //this number MUST be even.
+var maxState = 130; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -179,7 +179,7 @@ function ia(k,nk){
 	if(nk%2 != 0){
 		//punishment. (maybe show on screen in some way)
 		console.log("WRONG!!!")
-		x[k][2] = rand.nextIntRange(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
+		x[k][2] = getRandomInt(0, maxState); //NOW you fucked up!  (i mean, probably, i am still fuzzy on what x even does.)
 	}
 	return nk/2;
 }
@@ -581,7 +581,13 @@ function quip(state){
 		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
 	} else if(state == 116){
      		ret = "Holy fuck, I remember this. That denizen just fucking absconded mid boss fight. Kicked out the player and took their entire lair with them and rocked off into space.  So fucking weird."
-    }   else{
+    } else if(state == 122){
+          		ret = "What the actual FUCK is that!???"
+    } else if(state == 126 || state == 126 || state == 120 || state == 129){
+          		ret = "Ummm...shit. Is LORAS...asking me to KILL it??? Too spoopy for me."
+    } else if(state == 128){
+        ret = "Whoa, I've heard of this! Those are the First Players in Multiverse D!!!"
+    }else{
 		ret = "???"
 	}
 	console.log("JR: " + ret)
@@ -863,7 +869,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 	this.k = k;
 
 	this.randomizeState = function(){
-		this.state = rand.nextIntRange(0,maxState-1)
+		this.state = getRandomInt(0,maxState-1)
 		//this.state = 0;
 		this.display();
 	}

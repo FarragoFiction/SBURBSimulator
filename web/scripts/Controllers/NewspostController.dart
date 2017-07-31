@@ -4,7 +4,6 @@ import 'dart:html';
 import 'StoredNewsposts.dart';
 part '../navbar.dart';
 main() {
-  //TODO render navbar, make bg work like KR wanted.
   loadNavbar();
   renderAuthorNews();
   renderArtistNews();

@@ -16,6 +16,11 @@ window.onload = () {
 		renderFanArtGrimAB();
 	}
 
+	if (getParameterByName("firstPlayer")  == "true"){
+    		$("#header").html("First Player Post Great Refactoring Gallery");
+    		renderFirstPlayerFanArt();
+    }
+
 	if (getParameterByName("stareyes")  == "true"){
 		querySelector("#header").html("star.eyes memes");
 		renderFanArtStarEyes();
@@ -41,6 +46,11 @@ void renderFanArtGrimAB(){
 	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
 }
 
+void renderFirstPlayerFanArt(){
+	String folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/FirstPlayer/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
+
+}
 
 
 //don't hard code fan art, instead, scrape all files of .png or .jpg or .gif or .jpeg out of a given folder and render.
