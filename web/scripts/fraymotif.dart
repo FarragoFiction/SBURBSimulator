@@ -662,7 +662,7 @@ class FraymotifEffect {
     if(player.associatedStats.length > 0){ //null plyaers have no associated stats
       	    this.statName = rand.pickFrom(player.associatedStats).name;
     }else{
-    	    this.statName = "MANGRIT"
+    	    this.statName = "MANGRIT";
     }
 	}
 
