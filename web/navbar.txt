@@ -6,6 +6,7 @@
            <li class = 'done'>ABJ </li>
            <li class = 'done'>Main Newsposts</li>
            <li class = 'done'>Credits/FAQs</li>
+            <li class = 'done'>LORAS</li>
 
         </ul>
         Done (but with Bugs)
@@ -16,9 +17,7 @@
          Not Done
          <ul>
                      <li class = 'notdone'>AB </li>
-                     <li class = 'notdone'>???/LORAS </li>
-                     <li class = 'notdone'>Artist Newsposts</li>
-                     <li class = 'notdone'>AB Newsposts</li>
+                     <li class = 'notdone'>Artist/AB Newsposts</li>
                      <li class = 'notdone'>OC Creator/Viewer </li>
                      <li class = 'notdone'>Image Gallery </li>
                      <li class = 'notdone'>Easter Eggs </li>
