@@ -292,12 +292,12 @@ class RapTemplate {
 		if(rhyme_array != null){
 			results = intersection(rhyme_array, wordTypeArray);
 		}
-		if(!results){
+		if(results == null){
 			return null;
 		}
 		removeFromArray(word, results); //don't even try to rhyme with yourself.
 		//print("trying to rhyme: " + word + " found: " + results);
-		if(results && results.length > 0){
+		if(results != null && results.length > 0){
 			return rand.pickFrom(results);
 		}
 		return null;
