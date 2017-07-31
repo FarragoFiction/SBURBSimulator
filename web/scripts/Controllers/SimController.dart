@@ -196,8 +196,9 @@ abstract class SimController {
         //this is apparently spoilery.
         //alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
         if(session.scratchAvailable){
-          String html = '<img src="images/Scratch.png" onclick="scratchConfirm()"><br>Click To Scratch Session?';
+          String html = '<img src="images/Scratch.png" id="scratchButton"><br>Click To Scratch Session?';
           appendHtml(querySelector("#story"),html);
+          querySelector("#scratchButton").onClick.listen((e) => scratchConfirm());
           renderAfterlifeURL();
         }
       }else{
@@ -210,6 +211,12 @@ abstract class SimController {
     }
   }
 
+  void scratchConfirm(){
+    var scratchConfirmed = window.confirm("This session is doomed. Scratching this session will erase it. A new session will be generated, but you will no longer be able to view this session. Is this okay?");
+    if(scratchConfirmed){
+    scratch();
+    }
+  }
 
   void restartSession() {
     querySelector("#story").setInnerHtml('<canvas id="loading" width="1000" height="354"> ');
