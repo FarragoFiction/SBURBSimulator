@@ -51,18 +51,15 @@ class SessionFinderControllerJunior extends SimController {
     void filterSessionsJunior(){
     print("going to filter");
       int num_players =int.parse((querySelector("#num_players")as InputElement).value);
-      print("Want to look for sessions with $num_players players");
       List<dynamic> tmp = [];
       sessionSummariesDisplayed = [];
       for(int i = 0; i<allSessionsSummaries.length; i++){
         sessionSummariesDisplayed.add(allSessionsSummaries[i]);
       }
-      print("reset to ${sessionSummariesDisplayed.length} summaries");
 
       for(int i = 0; i<sessionSummariesDisplayed.length; i++){
         var ss = sessionSummariesDisplayed[i];
         if(ss.players.length == num_players){
-          print("adding summary because I think it has $num_players players but it actually has {ss.players.length}");
           tmp.add(ss);
         }
       }
