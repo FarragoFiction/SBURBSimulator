@@ -18,7 +18,6 @@ class DoLandQuest extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
 		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
-		print("available players is: $availablePlayers");
     for(num j = 0; j<this.session.availablePlayers.length; j++){
 			Player p = this.session.availablePlayers[j];
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
@@ -28,7 +27,6 @@ class DoLandQuest extends Scene{
 				if(ph[1] != null && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.remove(ph[1]);
 			}
 		}
-		print(this.playersPlusHelpers.length.toString() + " players are available for quests.");
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(p, availablePlayers){
