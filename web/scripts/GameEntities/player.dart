@@ -567,7 +567,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	}
 
 
-	dynamic getNextLevel(){
+	String getNextLevel(){
 		this.level_index ++;
 		var ret= this.mylevels[this.level_index];
 		return ret;

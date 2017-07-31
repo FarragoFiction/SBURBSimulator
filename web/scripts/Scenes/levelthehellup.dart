@@ -12,7 +12,7 @@ class LevelTheHellUp extends Scene {
 		this.playerList = playerList;
 		for(num i = 0; i<playerList.length; i++){  //can happen even after death, because why not?
 			var p = playerList[i];
-			if(p.leveledTheHellUp){
+			if(p.leveledTheHellUp && p.level_index < p.mylevels.length){
 				return true;
 			}
 		}
