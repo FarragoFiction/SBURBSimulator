@@ -10,6 +10,16 @@ class GameEntity implements Comparable<GameEntity> {
 
     //TODO replace 'minLuck' with 'destiny'
     String name = "";
+    //TODO the next few stats are for sprites but since ANY living thing can become a sprite...
+
+    String helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
+    num helpfulness = 0;
+    bool armless = false;
+    bool disaster = false;
+    bool lusus = false; //HAVE to be vars or can't inherit through prototyping.
+    bool player = false;
+    bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
+    //
     String fontColor = "#000000";
     bool ghost = false; //if you are ghost, you are rendered spoopy style
     num grist = 100; //everything has it.

@@ -51,7 +51,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	String bloodColor = "#ff0000"; //human red.
 	num leftHorn = null;
 	num rightHorn = null;
-	PotentialSprite lusus = null;
+	GameEntity lusus = null;
 	Quirk quirk = null;
 
 	bool godDestiny = false;
@@ -1336,8 +1336,8 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		for(num i = 0; i<potentialFriends.length; i++){
 			var p = potentialFriends[i];
 			if(p!=this){
-				var r = this.getRelationshipWith(potentialFriends[i]);
-				if(r.value > 0){
+				Relationship r = this.getRelationshipWith(potentialFriends[i]);
+				if(r!= null && r.value > 0){
 					ret.add(p);
 				}
 			}

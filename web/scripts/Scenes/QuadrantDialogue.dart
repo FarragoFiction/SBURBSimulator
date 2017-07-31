@@ -42,15 +42,15 @@ class QuadrantDialogue extends Scene {
 	}
 	void findQuardrantMate(){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.
-		var potentials = this.player1.getDiamonds();
-		this.player2 = rand.pickFrom(potentials).target;
+		List<Relationship> potentials = this.player1.getDiamonds();
+		if(potentials.length > 0) this.player2 = rand.pickFrom(potentials).target;
 		if(this.player2 != null && !this.player2.dead && rand.nextDouble() > 0.5){ //don't completely ignore your other relationships in favor of your moirail.
 			return;
 		}
 		potentials.addAll(this.player1.getHearts());
 		potentials.addAll(this.player1.getClubs());
 		potentials.addAll(this.player1.getSpades());
-		this.player2 = rand.pickFrom(potentials).target;
+    if(potentials.length > 0) this.player2 = rand.pickFrom(potentials).target;
 		if(this.player2.dead) this.player2 = null;
 		return;
 	}
