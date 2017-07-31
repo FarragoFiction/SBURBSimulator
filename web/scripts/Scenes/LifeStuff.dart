@@ -122,12 +122,12 @@ class LifeStuff extends Scene {
 			Player player = this.enablingPlayerPairs[i][0];
 
 			Player other_player = this.enablingPlayerPairs[i][1]; //could be null or a corpse.
-			bool dreaming = this.enablingPlayerPairs[i][2];
+			bool dreaming = this.enablingPlayerPairs[i][1];
 			if(player.dead && !dreaming){ //if you'e dreaming, you're not a dead life/doom heir/thief
 				if(player.class_name == "Heir" ||  player.class_name == "Thief"){
 					this.drainDeadForReviveSelf(div, "",player, player.class_name, player.aspect);
 				}
-			}else if(!dreaming){
+			}else if(dreaming == null){
 				if(player.class_name == "Mage" ||  player.class_name == "Knight"|| player.class_name == "Sage" || player.class_name == "Scout"){
 					this.communeDead(div, "", player, player.class_name,player.aspect);
 				}else if((player.class_name == "Seer" || player.class_name == "Scribe" || player.class_name == "Page") && other_player != null&& !other_player.dead){
