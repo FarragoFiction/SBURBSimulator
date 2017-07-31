@@ -11,8 +11,7 @@ part "../web/scripts/Afterlife.dart";
 part "JRTestSuite.dart";
 part "../web/scripts/fraymotif.dart";
 part "../web/scripts/random.dart";
-part "../weux6pbutt"
-    "b/scripts/v2.0/YellowYardResultController.dart";
+part "../web/scripts/v2.0/YellowYardResultController.dart";
 
 var testGE = null;
 main() {
