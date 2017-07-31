@@ -1,6 +1,6 @@
 <div class = "banner">
     <div class = 'refactoringStatus'>
-        <h2>The Great Refactoring's Status</h2>
+        <h2>The Great Refactoring: Status</h2>
         Done
         <ul>
            <li class = 'done'>ABJ </li>
@@ -23,7 +23,7 @@
           </ul>
     </div>
     <a href = "index.html">
-         <img src = "images/the_great_refactor.gif"/>
+         <img class = "refactoringGif" src = "images/the_great_refactor.gif"/>
     </a>
 </div>
 <ul class = "menuPureCSS">

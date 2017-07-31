@@ -77,7 +77,7 @@ ul.menuPureCSS {
 		font-size: 18px;
 }
 .refactoringStatus{
-    background-color: #71361a;
+    background-color: #673016;
     vertical-align: bottom;
     width: 200px;
     display: inline-block;
@@ -85,6 +85,19 @@ ul.menuPureCSS {
     height: 460px;
     font-family: "Courier New", Courier, monospace;
     margin: 0px;
+
+    font-weight:bold;
+    color: #FF3300;
+    text-shadow: 0 0 5px black, 0 0 3px black, 0 0 2px black, -1px 0 0 black, 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black;
+
+    position:relative;
+    bottom:4px;
+
+    margin-right:5px;
+    margin-left:60px;
+}
+.refactoringGif, .refactoringStatus {
+    box-shadow: 0 0 5px #FF3300, 0 0 3px #FF3300, 0 0 3px #FF3300, 0 0 9px black, 0 0 7px black, 0 0 7px black;
 }
 .banner{
     width: 1000px;
