@@ -4,6 +4,7 @@
         Done
         <ul>
            <li class = 'done'>ABJ </li>
+           <li class = 'done'>Main Newsposts</li>
 
         </ul>
         Done (but with Bugs)
@@ -14,7 +15,8 @@
          Not Done
          <ul>
                      <li class = 'notdone'>AB </li>
-                     <li class = 'notdone'>Newsposts</li>
+                     <li class = 'notdone'>Artist Newsposts</li>
+                     <li class = 'notdone'>AB Newsposts</li>
                      <li class = 'notdone'>OCs </li>
                      <li class = 'notdone'>Easter Eggs </li>
                      <li class = 'notdone'>Tournament Arc </li>
