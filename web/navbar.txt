@@ -1,10 +1,11 @@
 <div class = "banner">
     <div class = 'refactoringStatus'>
-        <h2>The Great Refactoring: Status</h2>
+        <h2>The Great Refactoring:</h2>
         Done
         <ul>
            <li class = 'done'>ABJ </li>
            <li class = 'done'>Main Newsposts</li>
+           <li class = 'done'>Credits/FAQs</li>
 
         </ul>
         Done (but with Bugs)
@@ -15,10 +16,10 @@
          Not Done
          <ul>
                      <li class = 'notdone'>AB </li>
+                     <li class = 'notdone'>???/LORAS </li>
                      <li class = 'notdone'>Artist Newsposts</li>
                      <li class = 'notdone'>AB Newsposts</li>
-                     <li class = 'notdone'>OC Creator </li>
-                     <li class = 'notdone'>OC Viewer </li>
+                     <li class = 'notdone'>OC Creator/Viewer </li>
                      <li class = 'notdone'>Image Gallery </li>
                      <li class = 'notdone'>Easter Eggs </li>
                      <li class = 'notdone'>Tournament Arc </li>
