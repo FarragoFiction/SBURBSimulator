@@ -51,7 +51,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 	String bloodColor = "#ff0000"; //human red.
 	num leftHorn = null;
 	num rightHorn = null;
-	GameEntity lusus = null;
+	GameEntity myLusus = null;
 	Quirk quirk = null;
 
 	bool godDestiny = false;
@@ -934,7 +934,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 		}
 
 		guardian.bloodColor = player.bloodColor;
-		guardian.lusus = player.lusus;
+		guardian.myLusus = player.myLusus;
 		if(guardian.isTroll == true){ //trolls always use lusus.
 			guardian.object_to_prototype = player.object_to_prototype;
 		}
@@ -1506,9 +1506,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 
 	void decideLusus (){
 		if(this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4" ){
-			this.lusus = session.rand.pickFrom(sea_lusus_objects);
+			this.myLusus = session.rand.pickFrom(sea_lusus_objects);
 		}else{
-			this.lusus = session.rand.pickFrom(lusus_objects);
+			this.myLusus = session.rand.pickFrom(lusus_objects);
 		}
 	}
 
@@ -2860,7 +2860,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   clone.bloodColor = player.bloodColor;
   clone.leftHorn = player.leftHorn;
   clone.rightHorn = player.rightHorn;
-  clone.lusus =  player.lusus;
+  clone.myLusus  player.myLusus;
   clone.quirk = player.quirk; //probably don't have to clone this???
   clone.godDestiny = player.godDestiny;
   clone.canGodTierRevive = player.canGodTierRevive;  //even if a god tier perma dies, a life or time player or whatever can brings them back.

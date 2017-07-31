@@ -4,7 +4,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
 
-part "../GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
+part "web/scripts/GameEntities/GameEntity.dart"; //internet says "part" is functionally like saying "pretend this thing is literally line for line right here".
 part "../random_tables.dart"; //needed for global functions
 part "../session.dart";
 part "../Afterlife.dart";
