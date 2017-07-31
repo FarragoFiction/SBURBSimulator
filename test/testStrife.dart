@@ -2,7 +2,11 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
-part "../web/scripts/GameEntities/GameEntity.dart";
+
+import "../web/scripts/SBURBSim.dart";
+import "JRTestSuite.dart";
+
+/*part "../web/scripts/GameEntities/GameEntity.dart";
 part "../web/scripts/GameEntities/player.dart";
 part "../web/scripts/GameEntities/NPCS.dart";
 part "../web/scripts/Strife.dart";
@@ -12,8 +16,7 @@ part "JRTestSuite.dart";
 part "../web/scripts/Afterlife.dart";
 
 part "../web/scripts/random.dart";
-part "../web/scripts/v2.0/YellowYardResultController.dart";
-
+part "../web/scripts/v2.0/YellowYardResultController.dart";*/
 
 
 Strife testStrife = null;

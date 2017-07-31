@@ -1,4 +1,4 @@
-part of SBURBSim;
+//part of SBURBSim;
 //this is how i want asserts to work
 jRAssert(name, tested, expected) {
   assert(tested == expected

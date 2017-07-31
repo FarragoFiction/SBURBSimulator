@@ -1,5 +1,5 @@
 import "../web/scripts/includes/lz-string.dart";
-part "JRTestSuite.dart";
+import "JRTestSuite.dart";
 
 typedef dynamic Compression(String input);
 typedef String Decompression(dynamic compressed);

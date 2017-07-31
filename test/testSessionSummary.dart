@@ -1,7 +1,10 @@
 import 'dart:math' as Math;
 import 'dart:typed_data';
 
-part "JRTestSuite.dart";
+import "../web/scripts/SBURBSim.dart";
+import "JRTestSuite.dart";
+
+/*part "JRTestSuite.dart";
 part "../web/scripts/GameEntities/GameEntity.dart";
 part "../web/scripts/GameEntities/NPCs.dart";
 part "../web/scripts/GameEntities/Player.dart";
@@ -12,7 +15,7 @@ part "../web/scripts/random.dart";
 part "../web/scripts/v2.0/YellowYardResultController.dart";
 part "../web/scripts/Afterlife.dart";
 part "../web/scripts/sessionSummary.dart";
-part "../web/scripts/Scenes/Scene.dart";
+part "../web/scripts/Scenes/Scene.dart";*/
 
 
 //need to make sure AB will work BEFORE spending all that effort gettering her html page working again
