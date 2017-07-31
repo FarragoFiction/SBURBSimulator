@@ -348,9 +348,9 @@ class CharacterCreatorHelper {
 			var dataBox = querySelector("#dataBoxDiv"+player.id);
 			String bs = "?" + dataBox.val(); //need "?" so i can parse as url
 			print("bs is: " + bs);
-			var b = decodeURIComponent(getParameterByName("b", bs));
+			var b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
 			var s = getParameterByName("s", bs);
-			var x = decodeURIComponent(getParameterByName("x", bs));
+			var x = (getParameterByName("x", bs));
 			print("b: " + b);
 			print("s: " + s);
 			print("x: " + x);
