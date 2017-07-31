@@ -2,17 +2,17 @@ import 'dart:math' as Math;
 import 'dart:typed_data';
 
 part "JRTestSuite.dart";
-part "../GameEntities/GameEntity.dart";
-part "../GameEntities/NPCs.dart";
-part "../GameEntities/Player.dart";
-part "../session.dart";
-part "../fraymotif.dart";
-part "../random_tables.dart"; //needed for global functions
-part "../random.dart";
-part "../v2.0/YellowYardResultController.dart";
-part "../Afterlife.dart";
-part "../sessionSummary.dart";
-part "../Scenes/Scene.dart";
+part "../web/scripts/GameEntities/GameEntity.dart";
+part "../web/scripts/GameEntities/NPCs.dart";
+part "../web/scripts/GameEntities/Player.dart";
+part "../web/scripts/session.dart";
+part "../web/scripts/fraymotif.dart";
+part "../web/scripts/random_tables.dart"; //needed for global functions
+part "../web/scripts/random.dart";
+part "../web/scripts/v2.0/YellowYardResultController.dart";
+part "../web/scripts/Afterlife.dart";
+part "../web/scripts/sessionSummary.dart";
+part "../web/scripts/Scenes/Scene.dart";
 
 
 //need to make sure AB will work BEFORE spending all that effort gettering her html page working again

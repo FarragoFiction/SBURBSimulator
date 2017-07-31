@@ -2,17 +2,17 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as Math;
-part "../GameEntities/GameEntity.dart";
-part "../GameEntities/player.dart";
-part "../GameEntities/NPCS.dart";
-part "../Strife.dart";
-part "../fraymotif.dart";
-part "../random_tables.dart"; //needed for global functions
+part "../web/scripts/GameEntities/GameEntity.dart";
+part "../web/scripts/GameEntities/player.dart";
+part "../web/scripts/GameEntities/NPCS.dart";
+part "../web/scripts/Strife.dart";
+part "../web/scripts/fraymotif.dart";
+part "../web/scripts/random_tables.dart"; //needed for global functions
 part "JRTestSuite.dart";
-part "../Afterlife.dart";
+part "../web/scripts/Afterlife.dart";
 
-part "../random.dart";
-part "../v2.0/YellowYardResultController.dart";
+part "../web/scripts/random.dart";
+part "../web/scripts/v2.0/YellowYardResultController.dart";
 
 
 
