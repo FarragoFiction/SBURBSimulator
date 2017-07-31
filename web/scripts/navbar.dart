@@ -1,5 +1,4 @@
-part of SBURBSim;
-
+import 'dart:html';
 
 String simulatedParamsGlobalVar = "";
 

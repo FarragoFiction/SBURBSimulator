@@ -2,8 +2,8 @@
 //for now, just get main page working. (so no simulator madness)
 import 'dart:html';
 import 'StoredNewsposts.dart';
-part '../navbar.dart';
-main() {
+import '../navbar.dart';
+void main() {
   loadNavbar();
   renderAuthorNews();
   renderArtistNews();

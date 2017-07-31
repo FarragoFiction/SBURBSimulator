@@ -6,6 +6,9 @@ import 'dart:typed_data';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:async';
+
+import 'navbar.dart'; //handles drawing navbar and url param stuff
+
 import "includes/lz-string.dart";
 import "includes/bytebuilder.dart";
 //import 'package:unittest/unittest.dart';  need to do special shit to use. spend no more than 30 minutes trying to install. maybe this isn't in library, but in other thing?
@@ -32,7 +35,6 @@ part "GameEntities/NPCS.dart";
 part "GameEntities/player.dart";
 part "v2.0/YellowYardResultController.dart";
 part "ShittyRapEngine/shitty_raps.dart";
-part "navbar.dart"; //handles drawing navbar and url param stuff
 part "eggs_and_egg_accessories.dart"; //handles easter eggs
 part "OCDataStringHandler.dart";
 
