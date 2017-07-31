@@ -8,29 +8,23 @@ main() {
   loadNavbar();
   renderAuthorNews();
   renderArtistNews();
-  /*
-
-  window.onload = function() {
-			loadNavbar();
-			//pass true so that it formats them differently.
-			newsposts("Main");
-			artNewsposts("Main");
-			reFormatForTinyScreens();
-			$( window ).scroll( function(){
-				var ypos = $( window ).scrollTop(); //pixels the site is scrolled down
-				var visible = $( window ).height(); //visible pixels
-				const img_height = 1500; //replace with height of your image
-				var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
-			//change position of background-image as long as there is something not visible at the bottom
-			if ( max_scroll > ypos) {
-				 $("body").css("background-position", "center -" + ypos + "px");
-				} else {
-				$("body").css("background-position", "center -" + max_scroll + "px");
-				}
-		});
-	}
-   */
+  window.onScroll.listen((Event event){
+    num ypos = window.scrollY; //pixels the site is scrolled down
+    var visible = window.screen.height; //visible pixels
+    const img_height = 1500; //replace with height of your image
+    var max_scroll = img_height - visible; //number of pixels of the image not visible at bottom
+    //change position of background-image as long as there is something not visible at the bottom
+    if ( max_scroll > ypos) {
+      querySelector("body").style.backgroundPosition = "center -" + ypos.toString() + "px";
+    } else {
+      querySelector("body").style.backgroundPosition = "center -" + max_scroll.toString() + "px";
+    }
+  });
+  //reFormatForTinyScreens(); //TODO was this doing anything. definitely didn't work right on mobile
 }
+
+
+
 
 void renderAuthorNews() {
   List<Newspost> authorNews = Newspost.makeAuthorNewsposts();
