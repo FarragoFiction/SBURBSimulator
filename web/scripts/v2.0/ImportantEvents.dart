@@ -564,7 +564,7 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			narration +=  "The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);
 
-			player.object_to_prototype = new GameEntity("Frog",0,null);
+			player.object_to_prototype = new GameEntity("Frog", null); //new GameEntity("Frog",0,null);
 			player.object_to_prototype.setStat("power",20);
 			player.object_to_prototype.illegal = true;
 			player.object_to_prototype.mobility = 100;

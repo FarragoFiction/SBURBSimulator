@@ -1491,7 +1491,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.hairColor = "#000000";
 			this.decideHemoCaste();
 			this.decideLusus();
-			this.object_to_prototype = myLusus;
+			this.object_to_prototype = this.myLusus;
 		}else{
 			this.hairColor = session.rand.pickFrom(human_hair_colors);
 		}
@@ -2860,7 +2860,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
   clone.bloodColor = player.bloodColor;
   clone.leftHorn = player.leftHorn;
   clone.rightHorn = player.rightHorn;
-  clone.myLusus  player.myLusus;
+  clone.myLusus = player.myLusus;
   clone.quirk = player.quirk; //probably don't have to clone this???
   clone.godDestiny = player.godDestiny;
   clone.canGodTierRevive = player.canGodTierRevive;  //even if a god tier perma dies, a life or time player or whatever can brings them back.
