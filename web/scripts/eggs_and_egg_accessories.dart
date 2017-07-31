@@ -320,27 +320,11 @@ void debugRoyalRumble(){
 }
 
 
-
-//does this even work? oh, yeah, it does, but won't trigger until land quests are done
-void debugRelationshipDrama(){
-	var p1 = players[0];
-	var enemy = p1.getWorstEnemyFromList(players);
-	p1.getRelationshipWith(enemy).value += 10;  //suddenly love them.
-	p1.getRelationshipWith(enemy).drama = true;
-	var p2 = players[1];
-	var friend = p2.getBestFriendFromList(players);
-	p2.getRelationshipWith(friend).value += -10;  //suddenly hate them.
-	p2.getRelationshipWith(friend).drama = true;
-
-}
-
-
-
 void session413(){
 	print("413");
 	for(int i = 0; i<8; i++){
-		var player;
-		var guardian;
+		Player player;
+		Player guardian;
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 			print("using existing player");
@@ -348,8 +332,8 @@ void session413(){
 			print("making new player");
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian.quirk = randomHumanSim(guardian);
-			player.quirk = randomHumanSim(player);
+			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
+			player.quirk = randomHumanSim(curSessionGlobalVar.rand, player);
 			player.guardian = guardian;
 			guardian.guardian = player;
 			curSessionGlobalVar.players.add(player);
@@ -357,10 +341,10 @@ void session413(){
 	}
 
 	for(int i = 0; i<8; i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player guardian = player.guardian;
 		player.relationships = [];
-		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+		List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateBlandRelationships(guardians);
 		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToHuman(player, i);
@@ -374,15 +358,15 @@ void session413(){
 
 void session111111(){
 	for(int i = 0; i<8; i++){
-		var player;
-		var guardian;
+		Player  player;
+		Player guardian;
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian.quirk = randomHumanSim(guardian);
-			player.quirk = randomHumanSim(player);
+			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand,guardian);
+			player.quirk = randomHumanSim(curSessionGlobalVar.rand,player);
 			player.guardian = guardian;
 			guardian.guardian = player;
 			curSessionGlobalVar.players.add(player);
@@ -390,8 +374,8 @@ void session111111(){
 	}
 
 	for(int i = 0; i<8; i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player guardian = player.guardian;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateBlandRelationships(guardians);
@@ -596,7 +580,8 @@ void session413IndexToAncestor(player, index){
 //time player is dave space player is either jade
 //all else is 413 human.
 void homestuck(){
-	var savedSeed = Math.seed;
+	//var savedSeed = curSessionGlobalVar.session_id;
+	Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
 	//copyPlayerFromTemplate(p,template);
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
@@ -613,7 +598,6 @@ void homestuck(){
 			session413IndexToAncestor(g,index);
 		}
 	}
-	Math.seed = savedSeed;
 }
 
 
@@ -621,8 +605,9 @@ void homestuck(){
 //time player is aradia, space player is kanaya,
 //all else random alternian troll
 void hivebent(){
-	var savedSeed = Math.seed;
-	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
+  Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
+
+  for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
 		if(p.aspect == "Time"){
@@ -637,7 +622,6 @@ void hivebent(){
 			session612IndexToTrollAncestor(g,index);
 		}
 	}
-	Math.seed = savedSeed;
 }
 
 
@@ -645,8 +629,9 @@ void hivebent(){
 //time player is damara, space player is porrim
 //all else random beforan troll
 void openBound(){
-	var savedSeed = Math.seed;
-	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
+  Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
+
+  for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
 		if(p.aspect == "Time"){
@@ -661,7 +646,6 @@ void openBound(){
 			session612IndexToTrollAncestor(p,index);
 		}
 	}
-	Math.seed = savedSeed;
 }
 
 
@@ -671,8 +655,8 @@ void openBound(){
 //rumpus = fruity;
 //i will have order in this rumpusBlock! Or the opposite !!!
 void fruityRumpusAssholeFactory(){
-	var savedSeed = Math.seed;
-	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
+  Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
+  for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
 		var rand = rand.nextDouble();
@@ -714,7 +698,6 @@ void fruityRumpusAssholeFactory(){
 			}
 		}
 	}
-	Math.seed = savedSeed;
 }
 
 
@@ -756,7 +739,7 @@ void lucky8rk(){
 
 
 
-void copyPlayerFromTemplate(p, template, i){
+void copyPlayerFromTemplate(Player p, Player template){
 	if(p.aspect != "Time" && p.aspect != "Space"){
 		p.aspect = template.aspect;
 	}
@@ -774,7 +757,7 @@ void copyPlayerFromTemplate(p, template, i){
 	p.chatHandle = template.chatHandle;
 	p.interest1 = template.interest1;
 	p.interest2 = template.interest2;
-	p.levels = template.levels;
+	p.mylevels = template.mylevels;
 }
 
 
