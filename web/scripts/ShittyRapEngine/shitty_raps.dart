@@ -115,14 +115,14 @@ List<RapTemplate> rapTemplates = [
 	new RapTemplate("I think you might actually be a ",RapPart.NOUN, " cause how else do you explain why you think you can ", RapPart.VERB),
 	
 	//bop de boop lets rhyme"
-	new RapTemplate("if you can't prove you are not a ",RapPart.NOUN, " then the proof is there that you are nothing but a ",RapPart.NOUN, ),
-	new RapTemplate("if my rhymes are ",RapPart.NOUN," its nothing but me knowing how to ",RapPart.VERB,),
-	new RapTemplate("it is not my fault you are such a ",RapPart.NOUN,", thats what happens when you just can't ",RapPart.VERB,),
-	new RapTemplate("don't even " ,RapPart.VERB," kid, we all know you are a ",RapPart.NOUN,),
-	new RapTemplate("now I am the best fucking ",RapPart.NOUN," that ever did ",RapPart.VERB,),
-	new RapTemplate("it is time to ",RapPart.VERB,", so you best fucking ",RapPart.VERB,),
-	new RapTemplate("because the truth is that I am a ",RapPart.NOUN," and you are a ",RapPart.NOUN,),
-	new RapTemplate("learn your place, if you can't ",RapPart.VERB," you are not a ",RapPart.NOUN,),
+	new RapTemplate("if you can't prove you are not a ",RapPart.NOUN, " then the proof is there that you are nothing but a ",RapPart.NOUN ),
+	new RapTemplate("if my rhymes are ",RapPart.NOUN," its nothing but me knowing how to ",RapPart.VERB),
+	new RapTemplate("it is not my fault you are such a ",RapPart.NOUN,", thats what happens when you just can't ",RapPart.VERB),
+	new RapTemplate("don't even " ,RapPart.VERB," kid, we all know you are a ",RapPart.NOUN),
+	new RapTemplate("now I am the best fucking ",RapPart.NOUN," that ever did ",RapPart.VERB),
+	new RapTemplate("it is time to ",RapPart.VERB,", so you best fucking ",RapPart.VERB),
+	new RapTemplate("because the truth is that I am a ",RapPart.NOUN," and you are a ",RapPart.NOUN),
+	new RapTemplate("learn your place, if you can't ",RapPart.VERB," you are not a ",RapPart.NOUN),
 ];
 
 
