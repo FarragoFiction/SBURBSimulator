@@ -779,7 +779,7 @@ void copyPlayersFromTemplate(template){
 
 //call this ONLY after initializing normal players.
 void nepetaQuest(){
-	querySelector('body').css("background-image", "url(images/cat_background_tile_nep.png)");
+	querySelector('body').style.backgroundImage = "url(images/cat_background_tile_nep.png)";
 	//will it be 12 nepetas roleplaying as their original players?
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
@@ -1408,7 +1408,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 6;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
-		player.quirk.prefix = "8==D"
+		player.quirk.prefix = "8==D";
 		player.quirk.suffix = "";
 		player.kernel_sprite = "Centaur";
 		player.interest1 = "Animals";
