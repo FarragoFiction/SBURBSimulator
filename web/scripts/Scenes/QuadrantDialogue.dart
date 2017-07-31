@@ -681,7 +681,7 @@ class ConversationalPair {
 	dynamic p2GetResponseBasedOnRelationship(player, playerStart, relationship){
 		String chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
-			if(relationship && relationship.value > 0){
+			if(relationship != null && relationship.value > 0){
 				chat += Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.responseLines));
 			}else{ //i don't love you like i should.
 				chat += Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.genericResponses));
