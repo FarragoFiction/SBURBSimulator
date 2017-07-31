@@ -284,7 +284,7 @@ class Relationship {
 //high is flushed or pale (if one player much more triggered than other). low is spades. no clubs for now.
 //yes, claspect boosts might alter relationships from 'initial' value, but that just means they characters are likelyt o break up. realism.
 	static void decideInitialQuadrants(Random rand, List<Player> players){
-		num rollNeeded = 0;
+		num rollNeeded = 5;
 		for(var i =0; i<players.length; i++){
 			Player player = players[i];
 			List<Relationship> relationships = player.relationships;
