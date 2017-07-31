@@ -3,17 +3,18 @@
         <h2>The Great Refactoring's Status</h2>
         Done
         <ul>
-            <li class = 'done'>Fucking Nothing </li>
+           <li class = 'done'>ABJ </li>
 
         </ul>
         Done (but with Bugs)
         <ul>
-                    <li class = 'done'>Simulator </li>
-                    <li class = 'shitdone'>ABJ </li>
+                    <li class = 'shitdone'>Simulator </li>
+
         </ul>
          Not Done
          <ul>
                      <li class = 'notdone'>AB </li>
+                     <li class = 'notdone'>Newsposts</li>
                      <li class = 'notdone'>OCs </li>
                      <li class = 'notdone'>Easter Eggs </li>
                      <li class = 'notdone'>Tournament Arc </li>
