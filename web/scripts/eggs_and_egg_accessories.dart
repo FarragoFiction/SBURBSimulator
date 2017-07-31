@@ -1150,7 +1150,7 @@ void session612IndexToTroll(player, index){
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
-		var f = new Fraymotif([],  "Ghost Communing", 1);
+		f = new Fraymotif([],  "Ghost Communing", 1);
 		f.effects.add(new FraymotifEffect("sanity",3,true));
 		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. ";
@@ -1603,7 +1603,7 @@ void session612IndexToTrollAncestor(player, index){
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
-		var f = new Fraymotif([],  "Optic Blast", 1);
+		f = new Fraymotif([],  "Optic Blast", 1);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. ";
 		player.fraymotifs.add(f);
