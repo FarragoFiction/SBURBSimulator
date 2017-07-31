@@ -969,8 +969,8 @@ void session613(){
 	}
 
 	for(int i = 0; i<12; i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player guardian = player.guardian;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateRelationships(guardians);
@@ -996,8 +996,8 @@ void session612(){
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			player.initialize();
             guardian.initialize();
-			guardian.quirk = randomTrollSim(guardian);
-			player.quirk = randomTrollSim(player);
+			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand,guardian);
+			player.quirk = randomTrollSim(curSessionGlobalVar.rand,player);
 			//curSessionGlobalVar.guardians.add(guardian);
 			curSessionGlobalVar.players.add(player);
 			player.guardian = guardian;
@@ -1006,8 +1006,8 @@ void session612(){
 	}
 
 	for(int i = 0; i<12; i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player guardian = player.guardian;
 		player.relationships = [];
 		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateRelationships(guardians);
@@ -1133,14 +1133,14 @@ void session612IndexToTroll(player, index){
 		player.kernel_sprite = "Frog";
 		player.interest1 = "Archaeology";
 		player.interest2 = "Death";
-		var savedSeed = Math.seed;
-		if(rand.nextDouble() > 0.6){
+    Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
+
+    if(rand.nextDouble() > 0.6){
 			player.robot = true; //not all aradias are robo aradias.
 			player.bloodColor = "#0021cb"; //b100 blood
 			player.hairColor = "#313131";
 		}
 		if(rand.nextDouble() > 0.6) player.dead = true; //not all aradias are ghost aradias.
-		Math.seed = savedSeed;
 		player.chatHandle = "apocalypseArisen";
 		player.godDestiny = true;
 		player.quirk.suffix = "";
@@ -1308,12 +1308,12 @@ void session612IndexToTroll(player, index){
 		player.chatHandle = "twinArmageddons";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		var f = new Fraymotif([],  "Telekinisis", 1);
+		Fraymotif f = new Fraymotif([],  "Telekinisis", 1);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
-		var f = new Fraymotif([],  "Optic Blast", 1);
+		f = new Fraymotif([],  "Optic Blast", 1);
 		f.effects.add(new FraymotifEffect("power",2,true));
 		f.flavorText = " Red and blue eye beams pierce the ENEMY. ";
 		player.fraymotifs.add(f);
@@ -1439,7 +1439,7 @@ void session612IndexToTrollAncestor(player, index){
 		f.flavorText = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
-		var f = new Fraymotif([],  "Ghost Communing", 1);
+		f = new Fraymotif([],  "Ghost Communing", 1);
 		f.effects.add(new FraymotifEffect("sanity",3,true));
 		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.flavorText = " The souls of the dead start hassling all enemies. ";
@@ -1614,15 +1614,15 @@ void session612IndexToTrollAncestor(player, index){
 
 void session1025(){
 	for(int i = 0; i<12; i++){
-		var player;
-		var guardian;
+		Player  player;
+		Player  guardian;
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
 			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian.quirk = randomTrollSim(guardian);
-			player.quirk = randomTrollSim(player);
+			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
+			player.quirk = randomTrollSim(curSessionGlobalVar.rand,player);
 			//curSessionGlobalVar.guardians.add(guardian);
 			player.guardian = guardian;
 			guardian.guardian = player;
@@ -1631,8 +1631,8 @@ void session1025(){
 	}
 
 	for(int i = 0; i<12; i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player  guardian = player.guardian;
 		if(i<8){
 			session413IndexToHuman(player,i);
 			session413IndexToAncestor(guardian,i);
