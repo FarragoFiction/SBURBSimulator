@@ -230,7 +230,7 @@ void babyStuckMode(){
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
-		p.quirk.lettersToReplaceIgnoreCase = p.quirk.lettersToReplaceIgnoreCase.addAll([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
+		p.quirk.lettersToReplaceIgnoreCase.addAll([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
 	}
 }
 
@@ -659,12 +659,12 @@ void fruityRumpusAssholeFactory(){
   for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		var rand = rand.nextDouble();
+		var randNum = rand.nextDouble();
 		if(p.aspect == "Time"){
-			if(rand > 0.6){
+			if(randNum > 0.6){
 				session612IndexToTroll(g,4);
 				session612IndexToTrollAncestor(p,4);
-			}else if(rand > 0.3){
+			}else if(randNum > 0.3){
 				session612IndexToTrollAncestor(p,4);
 				session612IndexToTroll(g,4);
 			}else{
@@ -672,10 +672,10 @@ void fruityRumpusAssholeFactory(){
 				session413IndexToHuman(g,2);
 			}
 		}else if(p.aspect == "Space"){
-			if(rand > 0.6){
+			if(randNum > 0.6){
 				session612IndexToTroll(g,8);
 				session612IndexToTrollAncestor(p,8);
-			}else if(rand > 0.3){
+			}else if(randNum > 0.3){
 				session612IndexToTrollAncestor(p,8);
 				session612IndexToTroll(g,8);
 			}else{
@@ -683,11 +683,11 @@ void fruityRumpusAssholeFactory(){
 				session413IndexToHuman(g,3);
 			}
 		}else{
-			if(rand > 0.6){
+			if(randNum > 0.6){
 				var index = rand.nextIntRange(0,12);
 				session612IndexToTroll(g, index);
 				session612IndexToTrollAncestor(p,index);
-			}else if(rand > 0.3){
+			}else if(randNum > 0.3){
 				var index = rand.nextIntRange(0,12);
 				session612IndexToTrollAncestor(p,index);
 				session612IndexToTroll(g,index);
@@ -783,11 +783,11 @@ void nepetaQuest(){
 	//will it be 12 nepetas roleplaying as their original players?
 	//or 12 canon trolls all roleplaying as nepeta?
 	//it's shrodinger's nepeta!!!
-	var actualRandomNumber = Math.random(); //no fucking seed.
+	var actualRandomNumber = new Random().nextInt(); //no fucking seed.
 
 	for(num i = 0; i< curSessionGlobalVar.players.length ;i++){
-		player = curSessionGlobalVar.players[i];
-		guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+    Player guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
 		if(actualRandomNumber > .5 && player.aspect != "Time" && player.aspect != "Space"){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
@@ -808,8 +808,8 @@ void nepetaQuest(){
 			player.quirk.favoriteNumber = 3;
 			guardian.quirk.favoriteNumber = 3;
 		}else{
-			player.quirk.lettersToReplaceIgnoreCase.add(["ee","33"], ["per","purr"]);//trying to reoleplay as nepeta, but badly.
-			player.quirk.lettersToReplaceIgnoreCase.add(["ee","33"], ["per","purr"]);
+			player.quirk.lettersToReplaceIgnoreCase.addAll([["ee","33"], ["per","purr"]]);//trying to reoleplay as nepeta, but badly.
+			player.quirk.lettersToReplaceIgnoreCase.addAll([["ee","33"], ["per","purr"]]);
 		}
 
 		guardian.hair = 7;
@@ -847,11 +847,11 @@ void session88888888(){
 		if(i == 0){
 			player.leader = true;
 			guardian.leader = true;
-			player.aspect == "Space"
-			guardian.aspect == "Space"
+			player.aspect == "Space";
+			guardian.aspect == "Space";
 		}else if(i == 1){
-			player.aspect == "Time"
-			guardian.aspect == "Time"
+			player.aspect == "Time";
+			guardian.aspect == "Time";
 		}
 		player.relationships = [];
 		guardian.relationships = [];
@@ -918,11 +918,11 @@ void session0(){
 
 	aradiaQuest();
 	for(num i = 0; i<curSessionGlobalVar.players.length;i++){
-		player = curSessionGlobalVar.players[i];
-		var guardian = player.guardian;
+		Player player = curSessionGlobalVar.players[i];
+		Player  guardian = player.guardian;
 		player.relationships = [];
 		guardian.relationships = [];
-		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+		List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateRelationships(guardians);
 		player.generateRelationships(curSessionGlobalVar.players);
 		player.mylevels = getLevelArray(player);
@@ -959,8 +959,8 @@ void session613(){
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
 			player.initialize();
             guardian.initialize();
-			guardian.quirk = randomTrollSim(guardian);
-			player.quirk = randomTrollSim(player);
+			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
+			player.quirk = randomTrollSim(curSessionGlobalVar.rand,player);
 			//curSessionGlobalVar.guardians.add(guardian);
 			curSessionGlobalVar.players.add(player);
 			player.guardian = guardian;
