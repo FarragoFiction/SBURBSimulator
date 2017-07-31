@@ -1491,7 +1491,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			this.hairColor = "#000000";
 			this.decideHemoCaste();
 			this.decideLusus();
-			this.object_to_prototype = lusus;
+			this.object_to_prototype = myLusus;
 		}else{
 			this.hairColor = session.rand.pickFrom(human_hair_colors);
 		}
