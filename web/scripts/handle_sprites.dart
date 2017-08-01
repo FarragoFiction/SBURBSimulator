@@ -100,20 +100,27 @@ void rainbowSwap(CanvasElement canvas){
     int width = img.width;
   	int height = img.height;
 	
-	 CanvasElement rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
-  CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
+	CanvasElement rainbow_canvas = getBufferCanvas(querySelector("#rainbow_template"));
+    CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
   	rctx.drawImage(img,0,0);
 	ImageData img_data_rainbow =rctx.getImageData(0, 0,width, height);
-	//4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
-	for(int i = 0; i<img_data.data.length; i += 4){
-		if(img_data.data[i+3] >= 128){
-			img_data.data[i] =img_data_rainbow.data[4 *(i~/(4000))];
-			img_data.data[i+1] = img_data_rainbow.data[4 *(i~/(4000))+1];
-			img_data.data[i+2] =img_data_rainbow.data[4 *(i~/(4000))+2];
-			img_data.data[i+3] = getRandomIntNoSeed(100,255); //make it look speckled.
 
-		}
-	}
+	int i;
+	for (int x = 0; x < img_data.width; x++) {
+	    for (int y = 0; y < img_data.height; y++) {
+	        i = (y * img_data.width + x) * 4;
+
+	        if(img_data.data[i+3] >= 128){
+                int rainbow = (y % img_data_rainbow.height) * 4;
+
+                img_data.data[i]   = img_data_rainbow.data[rainbow];
+                img_data.data[i+1] = img_data_rainbow.data[rainbow+1];
+                img_data.data[i+2] = img_data_rainbow.data[rainbow+2];
+                img_data.data[i+3] = getRandomIntNoSeed(100,255); //make it look speckled.
+
+            }
+        }
+    }
 	ctx.putImageData(img_data, 0, 0);
 	//ctx.putImageData(img_data_rainbow, 0, 0);
 }
@@ -2468,8 +2475,8 @@ void aspectPalletSwap(CanvasElement canvas, Player player){
 
 
 
-dynamic getBufferCanvas(CanvasElement canvas){
-	return new CanvasElement(width: canvas.width, height: canvas.width);
+CanvasElement getBufferCanvas(CanvasElement canvas){
+	return new CanvasElement(width: canvas.width, height: canvas.height);
 }
 
 
@@ -2520,7 +2527,7 @@ void fillChatTextMultiLineJRPlayer(CanvasElement canvas, chat, player, x, y){
     List<String> lines = chat.split("\n");
 	String playerStart = player.chatHandleShort();
 	String jrStart = "JR: ";
-	double ypos = y;
+	double ypos = y.toDouble();
  	for (int i = 0; i < lines.length; ++i) {
 		//does the text begin with player 1's chat handle short? if so: getChatFontColor
 		String ct = lines[i].trim();
