@@ -9,6 +9,13 @@ class NPC extends GameEntity {
 //carapaces are the only things that can be crowned and have it give anything but fraymotifs.
 class Carapace extends NPC {
   Carapace(String name, Session session) : super(name, session);
+
+  @override
+  num getStat(String statName) {
+    num ret = super.getStat(statName);
+    if(crowned != null) ret += crowned.getStat(statName);
+    return ret;
+  }
 }
 
 //srites are definitely going to behave differntly soon

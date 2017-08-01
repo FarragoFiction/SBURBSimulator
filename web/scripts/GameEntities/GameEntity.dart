@@ -466,6 +466,7 @@ class GameEntity implements Comparable<GameEntity> {
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
             ret = Math.max(0, ret); //no negative power, dunkass.
         }
+
         return (ret).round();
     }
 
