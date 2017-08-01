@@ -92,20 +92,17 @@ class SessionFinderControllerJunior extends SimController {
 
   @override
   void callNextIntro(int player_index) {
-    throw "todo";
-    // TODO: implement callNextIntro
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void checkSGRUB() {
-    throw "todo";
-    // TODO: implement checkSGRUB
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void createInitialSprites() {
-    throw "todo";
-    // TODO: implement createInitialSprites
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
@@ -161,62 +158,52 @@ class SessionFinderControllerJunior extends SimController {
 
   @override
   void easterEggCallBackRestart() {
-    throw "todo";
-    // TODO: implement easterEggCallBackRestart
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void intro() {
-    throw "todo";
-    // TODO: implement intro
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void processCombinedSession() {
-    throw "todo";
-    // TODO: implement processCombinedSession
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void reckoning() {
-    throw "todo";
-    // TODO: implement reckoning
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void reckoningTick() {
-    throw "todo";
-    // TODO: implement reckoningTick
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void recoverFromCorruption() {
-    throw "todo";
-    // TODO: implement recoverFromCorruption
+    throw "ABJ does not actually simulate shit.";
   }
 
 
   @override
   void renderScratchButton(Session session) {
-    throw "todo";
-    // TODO: implement renderScratchButton
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void restartSession() {
-    throw "todo";
-    // TODO: implement restartSession
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void shareableURL() {
-    throw "todo";
-    // TODO: implement shareableURL
+    throw "ABJ does not actually simulate shit.";
   }
 
   @override
   void tick() {
-    throw "todo";
-    // TODO: implement tick
+    throw "ABJ does not actually simulate shit.";
   }
 }

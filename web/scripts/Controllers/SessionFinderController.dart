@@ -26,13 +26,34 @@ void main() {
 }
 
 void checkSessions() {
-  window.alert("TODO");
+  self.checkSessions();
 }
 
 
 
 class SessionFinderController extends SimController { //works exactly like Sim unless otherwise specified.
+  List<int> sessionsSimulated = [];
+
+  List<SessionSummaryJunior> allSessionsSummaries = [];
+  //how filtering works
+  List<SessionSummaryJunior> sessionSummariesDisplayed = [];
+
+  int numSimulationsDone = 0;
+
+  num numSimulationsToDo = 0;
   SessionFinderController() : super();
+
+  void checkSessions() {
+    numSimulationsDone = 0; //but don't reset stats
+    sessionSummariesDisplayed = [];
+    for(num i = 0; i<allSessionsSummaries.length; i++){
+      sessionSummariesDisplayed.add(allSessionsSummaries[i]);
+    }
+    querySelector("#story").setInnerHtml("");
+    numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
+    (querySelector("#button")as ButtonElement).disabled =true;
+    startSession(); //my callback is what will be different
+  }
 
   void percentBullshit(){
     double pr = 90+(new Random().nextDouble())*10; //this is not consuming randomness. what to do?
@@ -70,8 +91,13 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   @override
   void easterEggCallBack() {
-    throw "todo";
-    // TODO: implement easterEggCallBack
+    //only diff from story is don't check SGRUB
+    initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
+    if(doNotRender == true){
+      intro();
+    }else{
+      load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
+    }
   }
 
   @override

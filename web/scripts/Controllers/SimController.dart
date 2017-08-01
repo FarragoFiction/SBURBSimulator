@@ -101,7 +101,11 @@ abstract class SimController {
   void easterEggCallBack() {
     initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
     checkSGRUB();
-    load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
+    if(doNotRender == true){
+      intro();
+    }else{
+      load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
+    }
   }
 
   void easterEggCallBackRestart() {
