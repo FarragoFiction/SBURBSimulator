@@ -14,4 +14,8 @@ dev_dependencies:
   dart_to_js_script_rewriter: ^1.0.1
 
 transformers:
-- dart_to_js_script_rewriter
+#- dart_to_js_script_rewriter
+- $dart2js:
+    sourceMaps: true
+    commandLineOptions: [--fast-startup, --trust-type-annotations]
+
