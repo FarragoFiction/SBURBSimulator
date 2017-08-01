@@ -2,8 +2,8 @@ part of SBURBSim;
 
 
 class Breakup extends Scene {
-	var player = null;
-	var relationshipToBreakUp = null;
+	Player player = null;
+	Relationship relationshipToBreakUp = null;
 	String reason = "";
 	String formerQuadrant = ""; //who are you cheating with?
 	//only can happen for one player at a time.
@@ -41,7 +41,7 @@ class Breakup extends Scene {
 			if(rand.nextDouble()*3 < breakUpChance){
 				this.relationshipToBreakUp = rand.pickFrom(hearts);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-				this.relationshipToBreakUp.target.sanity += -10;
+				this.relationshipToBreakUp.target.addStat("sanity",-10);
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Matesprit, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
@@ -57,7 +57,7 @@ class Breakup extends Scene {
 			if(rand.nextDouble()*3 < breakUpChance){
 				this.relationshipToBreakUp = rand.pickFrom(spades);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-				this.relationshipToBreakUp.target.sanity += -10;
+				this.relationshipToBreakUp.target.addStat("sanity",-10);
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Kismesis, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
@@ -72,7 +72,7 @@ class Breakup extends Scene {
 				this.relationshipToBreakUp = rand.pickFrom(diamonds);
 				this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 				//cheating with diamonds sounds like a terrible idea.
-				this.relationshipToBreakUp.target.sanity += -100;
+				this.relationshipToBreakUp.target.addStat("sanity",-100);
 				this.relationshipToBreakUp.target.flipOut("getting cheated on by their Moirail, the  " + this.player.htmlTitle() );
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = -1;
@@ -100,7 +100,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
-						this.player.sanity += -100;
+						this.player.addStat("sanity",-100);
 						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat";
@@ -117,7 +117,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//not happy with cheating bastards.
-						this.player.sanity += -100;
+						this.player.addStat("sanity",-100);
 						this.player.flipOut("having to confront their Kismesis, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat";
@@ -134,7 +134,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						//dude, cheating on diamonds sounds like a TERRIBLE idea.
-						this.player.sanity += -1000;
+						this.player.addStat("sanity",-1000);
 						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-50;
 						this.reason = "you_cheat";
