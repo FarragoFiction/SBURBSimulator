@@ -846,7 +846,7 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 				ret = true;
 			}
 			//extra likely if you just killed the king/queen, you hero you.
-			if(this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true) {
+			if(this.session.king.getStat("currentHP") <=0 || this.session.king.dead == true && rand.nextDouble()>.4) {
 				ret = true;
 			}
 		}
