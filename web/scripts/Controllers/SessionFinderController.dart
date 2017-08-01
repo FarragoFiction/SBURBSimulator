@@ -183,7 +183,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
     SessionSummary sum = curSessionGlobalVar.generateSummary();
     if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
-    querySelector("#story").html("");
+    querySelector("#story").setInnerHtml("");
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
@@ -194,11 +194,11 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     numSimulationsDone ++;
     initial_seed = curSessionGlobalVar.rand.nextInt(); //child session
     if(numSimulationsDone >= numSimulationsToDo){
-      querySelector("#button").prop('disabled', false);
+      (querySelector("#button")as ButtonElement).disabled =false;
 
-          window.alert("Notice: should be ready to check more sessions.");
-        querySelector("input[name='filter']").each((){;
-        querySelector(this).prop('disabled', false);
+      window.alert("Notice: should be ready to check more sessions.");
+      querySelector("input[name='filter']").each((){;
+      querySelector(this).prop('disabled', false);
         });
     }else{
       //TODO used to have a timeout here, do i really need to?
@@ -207,7 +207,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   }
 
+  String getQuipAboutSession(SessionSummary sum) {
+    throw "todo";
+  }
+
   void printStats() {
+    throw "todo";
 
   }
 
