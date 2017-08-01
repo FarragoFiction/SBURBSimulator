@@ -85,9 +85,10 @@ var disastor_objects = [
       ..effects.add(new FraymotifEffect("mobility", 2, true))
       ..flavorText =
           " The OWNER shimers with radioactive stars, and then teleports behind the ENEMY, sneak-attacking them. "),
-  new PotentialSprite("Horror Terror",  null) //vast glub
+  new PotentialSprite(Zalgo.generate("Horror Terror"),  null) //vast glub
     ..setStatsHash({"hp": 500, "currentHP": 500, "freeWill": 250, "power": 150})
     ..disaster = true
+    ..corrupted = true
     ..helpPhrase =
         "... Oh god. What is going on. Why does just listening to it make your ears bleed!? "
     ..fraymotifs.add(new Fraymotif([], "Vast Glub", 3)
@@ -95,8 +96,9 @@ var disastor_objects = [
       ..flavorText =
           " A galaxy spanning glub damages everyone. The only hope of survival is to spread the damage across so many enemies that everyone only takes a manageable amount. "),
   new PotentialSprite(
-      "Speaker of the Furthest Ring",  null) //vast glub
+      Zalgo.generate("Speaker of the Furthest Ring"),  null) //vast glub
     ..disaster = true
+    ..corrupted = true
     ..setStatsHash(
         {"hp": 1000, "currentHP": 1000, "freeWill": 250, "power": 250})
     ..helpPhrase =
@@ -515,7 +517,7 @@ List<PotentialSprite> sea_lusus_objects = [
 
 //regular
 List<dynamic> prototyping_objects = [
-  new PotentialSprite("Buggy As Fuck Retro Game",null)
+  new PotentialSprite(Zalgo.generate("Buggy As Fuck Retro Game"),null)
     ..setStatsHash({"power": 20})
     ..corrupted = true //no stats, just corrupted. maybe a fraymotif later.
     ..helpPhrase =
@@ -550,7 +552,7 @@ List<dynamic> prototyping_objects = [
         "provides rad as fuck tips and tricks for beating SBURB and getting mad snacks, yo. 5 out of 5 hats. ",
 
 //in joke, lol, google always reports that sessions are crashed. google is a horror terror (see tumblr)
-  new PotentialSprite("Google",null)
+  new PotentialSprite(Zalgo.generate("Google"),null)
     ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..corrupted = true
@@ -737,7 +739,7 @@ List<dynamic> prototyping_objects = [
     ..helpPhrase =
         "is a complete dick, buzzing and fussing and biting. What's its deal? ",
 
-  new PotentialSprite("GitHub",null)
+  new PotentialSprite(Zalgo.generate("GitHub"),null)
     ..setStatsHash({"power": 20})
     ..helpfulness = 1
     ..corrupted = true
