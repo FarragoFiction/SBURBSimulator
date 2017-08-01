@@ -12,7 +12,6 @@ main() {
   loadNavbar();
   new SessionFinderControllerJunior();
   self = SimController.instance;
-  print(self);
 
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));
@@ -20,7 +19,6 @@ main() {
     var tmp = getRandomSeed();
     self.initial_seed = tmp;
   }
-  print("before I init form, inital_seed is ${self.initial_seed}");
   self.formInit();
 }
 

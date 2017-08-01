@@ -22,7 +22,6 @@ void main() {
     var tmp = getRandomSeed();
     initial_seed = tmp;
   }
-  rand = new Random(initial_seed);
   self.formInit();
 }
 
@@ -36,13 +35,13 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   SessionFinderController() : super();
 
   void percentBullshit(){
-    var pr = 90+rand.nextDouble()*10; //this is not consuming randomness. what to do?
+    double pr = 90+(new Random().nextDouble())*10; //this is not consuming randomness. what to do?
     querySelector("#percentBullshit").setInnerHtml("$pr%");
   }
 
   void formInit(){
     querySelector("#button").onClick.listen((e) => checkSessions());
-    (querySelector("#button")as ButtonInputElement).disabled =false;
+    (querySelector("#button")as ButtonElement).disabled =false;
     (querySelector("#num_sessions_text")as InputElement).value =(querySelector("#num_sessions")as InputElement).value;
 
     querySelector("#num_sessions").onChange.listen((Event e) {
