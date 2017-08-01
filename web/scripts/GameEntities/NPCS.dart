@@ -737,6 +737,13 @@ List<dynamic> prototyping_objects = [
     ..helpPhrase =
         "is a complete dick, buzzing and fussing and biting. What's its deal? ",
 
+  new PotentialSprite("GitHub",null)
+    ..setStatsHash({"power": 20})
+    ..helpfulness = 1
+    ..corruption = true
+    ..helpPhrase =
+        "Githubsprite tells all about the latest changes to sburbs code. ",
+
   new PotentialSprite("Cow",null)
     ..setStatsHash({"power": 30}), //cows kill more people a year than sharks.
 

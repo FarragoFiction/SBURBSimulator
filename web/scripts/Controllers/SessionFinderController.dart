@@ -38,9 +38,9 @@ void checkSessions() {
 class SessionFinderController extends SimController { //works exactly like Sim unless otherwise specified.
   List<int> sessionsSimulated = [];
 
-  List<SessionSummaryJunior> allSessionsSummaries = [];
+  List<SessionSummary> allSessionsSummaries = [];
   //how filtering works
-  List<SessionSummaryJunior> sessionSummariesDisplayed = [];
+  List<SessionSummary> sessionSummariesDisplayed = [];
 
   int numSimulationsDone = 0;
   int numSimulationsToDo = 0;
@@ -173,10 +173,63 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void summarizeSession(Session session) {
+    //print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
+    //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
+    if(sessionsSimulated.indexOf(session.session_id) != -1){
+      ////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+      //return;
+    }
+    sessionsSimulated.add(curSessionGlobalVar.session_id);
+
+    SessionSummary sum = curSessionGlobalVar.generateSummary();
+    if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
+    querySelector("#story").html("");
+    allSessionsSummaries.add(sum);
+    sessionSummariesDisplayed.add(sum);
+    //printSummaries();  //this slows things down too much. don't erase and reprint every time.
+    var str = sum.generateHTML();
+    debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+    debug(str);
+    printStats();
+    numSimulationsDone ++;
+    initial_seed = curSessionGlobalVar.rand.nextInt(); //child session
+    if(numSimulationsDone >= numSimulationsToDo){
+      querySelector("#button").prop('disabled', false);
+
+          window.alert("Notice: should be ready to check more sessions.");
+        querySelector("input[name='filter']").each((){;
+        querySelector(this).prop('disabled', false);
+        });
+    }else{
+      //TODO used to have a timeout here, do i really need to?
+        startSession();
+    }
+
+  }
+
+  void printStats() {
 
   }
 
   void summarizeSessionNoFollowup(Session session) {
+    //print("no timeout summarizing: " + curSessionGlobalVar.session_id);
+    //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
+    if(sessionsSimulated.indexOf(session.session_id) != -1){
+      ////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+
+      //return;
+    }
+    sessionsSimulated.add(curSessionGlobalVar.session_id);
+    querySelector("#story").html("");
+    var sum = curSessionGlobalVar.generateSummary();
+    if(nonRareSessionCallback) return null; //tournament doens't support scratches.
+    allSessionsSummaries.add(sum);
+    sessionSummariesDisplayed.add(sum);
+    //printSummaries();  //this slows things down too much. don't erase and reprint every time.
+    var str = sum.generateHTML();
+    debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+    debug(str);
+    printStats();
 
   }
 
