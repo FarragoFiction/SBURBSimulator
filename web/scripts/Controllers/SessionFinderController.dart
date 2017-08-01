@@ -162,7 +162,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       //print("scartch");
       //alert("AB sure loves scratching!");
       session.scratchAvailable = true;
-      summarizeSessionNoTimeout(session);
+      summarizeSessionNoFollowup(session);
       scratch(); //not user input, just straight up do it.
     }else{
       //print("no scratch");
@@ -173,6 +173,10 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void summarizeSession(Session session) {
+
+  }
+
+  void summarizeSessionNoFollowup(Session session) {
 
   }
 
