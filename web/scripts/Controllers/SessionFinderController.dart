@@ -5,6 +5,10 @@ import 'dart:typed_data';
 import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
+/*
+  AB seems to treat sessions normally UNTIL they end. though I WILL override start session to avoid
+  AB rewriting the page title.
+ */
 num initial_seed = 0;
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
@@ -39,8 +43,17 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   List<SessionSummaryJunior> sessionSummariesDisplayed = [];
 
   int numSimulationsDone = 0;
-
-  num numSimulationsToDo = 0;
+  int numSimulationsToDo = 0;
+  bool needToScratch = false;
+  bool displayRomance = true;
+  bool displayEnding = true;
+  bool displayDrama = true;
+  bool displayCorpse = false;
+  bool displayMisc = true;
+  bool displayAverages = true;
+  bool displayClasses = false;
+  bool displayAspects = false;
+  bool tournamentMode = false;
   SessionFinderController() : super();
 
   void checkSessions() {
@@ -118,10 +131,49 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     // TODO: implement processCombinedSession
   }
 
+  //AB's reckoning is like the normal one, but if the session ends at the recknoing, ab knows what to do.
   @override
   void reckoning() {
-    throw "todo";
-    // TODO: implement reckoning
+    Scene s = new Reckoning(curSessionGlobalVar);
+    s.trigger(curSessionGlobalVar.players);
+    s.renderContent(curSessionGlobalVar.newScene());
+    if(!curSessionGlobalVar.doomedTimeline){
+      reckoningTick();
+    }else{
+      if(needToScratch){
+        scratchAB(curSessionGlobalVar);
+        return null;
+      }
+      ////print("doomed timeline prevents reckoning");
+      List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
+      if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
+        //print("doomed scratched timeline");
+        summarizeSession(curSessionGlobalVar);
+      }
+
+    }
+  }
+
+  void scratchAB(Session session) {
+    needToScratch = false;
+    //treat myself as a different session that scratched one?
+    List<Player> living = findLivingPlayers(session.players);
+    if(!session.scratched && living.length > 0 && !tournamentMode){
+      //print("scartch");
+      //alert("AB sure loves scratching!");
+      session.scratchAvailable = true;
+      summarizeSessionNoTimeout(session);
+      scratch(); //not user input, just straight up do it.
+    }else{
+      //print("no scratch");
+      session.scratchAvailable = false;
+      summarizeSession(session);
+    }
+
+  }
+
+  void summarizeSession(Session session) {
+
   }
 
   @override
@@ -166,9 +218,5 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     // TODO: implement startSession
   }
 
-  @override
-  void tick() {
-    throw "todo";
-    // TODO: implement tick
-  }
+
 }

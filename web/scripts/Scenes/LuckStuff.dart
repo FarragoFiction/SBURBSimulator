@@ -88,7 +88,7 @@ class LuckStuff extends Scene{
 	}
 	String roll35(Roll roll){
 		print("unlucky trigger event: " + this.session.session_id.toString());
-		List<String> items = ["soper slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
+		List<String> items = ["sopor slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		String ret = "The " + roll.player.htmlTitle() + " has lost their " + rand.pickFrom(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
 		roll.player.addStat("sanity", -1000);
 		this.session.badLuckEvent = true;
