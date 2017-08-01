@@ -740,7 +740,7 @@ List<dynamic> prototyping_objects = [
   new PotentialSprite("GitHub",null)
     ..setStatsHash({"power": 20})
     ..helpfulness = 1
-    ..corruption = true
+    ..corrupted = true
     ..helpPhrase =
         "Githubsprite tells all about the latest changes to sburbs code. ",
 
