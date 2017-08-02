@@ -33,6 +33,52 @@ void checkSessions() {
   self.checkSessions();
 }
 
+void toggleCorpse(){
+  querySelector('#multiSessionSummaryCorpseParty').toggle();
+  displayCorpse = !displayCorpse;
+  if(displayCorpse){
+    querySelector("#avatar").attr("src","images/corpse_party_robot_author.png");
+  }else{
+    querySelector("#avatar").attr("src","images/robot_author.png");
+  }
+}
+
+
+
+void toggleRomance(){
+  querySelector('#multiSessionSummaryRomance').toggle();
+  displayRomance = !displayRomance;
+}
+
+
+
+void toggleDrama(){
+  querySelector('#multiSessionSummaryDrama').toggle();
+  displayDrama = !displayDrama;
+}
+
+
+
+void toggleMisc(){
+  querySelector('#multiSessionSummaryMisc').toggle();
+  displayMisc = !displayMisc;
+}
+
+
+
+void toggleEnding(){
+  querySelector('#multiSessionSummaryEnding').toggle();
+  displayEnding = !displayEnding;
+}
+
+
+
+void toggleAverage(){
+  querySelector('#multiSessionSummaryAverage').toggle();
+  displayAverages = !displayAverages;
+}
+
+
 
 
 class SessionFinderController extends SimController { //works exactly like Sim unless otherwise specified.
