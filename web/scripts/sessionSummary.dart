@@ -491,8 +491,8 @@ class MultiSessionSummary {
  MultiSessionSummary();
 
   num getNumStat(String statName) {
-    num ret = this.num_stats[statName] = 0; //initialization, not error
-    if (ret == null) throw "What Kind of Stat is: $statName???";
+    num ret = this.num_stats[statName]; //initialization, not error
+    if (ret == null) this.num_stats[statName] = 0;
     return ret;
   }
 
