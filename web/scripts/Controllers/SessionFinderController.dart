@@ -9,7 +9,6 @@ import 'dart:collection';
   AB seems to treat sessions normally UNTIL they end. though I WILL override start session to avoid
   AB rewriting the page title.
  */
-num initial_seed = 0;
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
@@ -20,10 +19,10 @@ void main() {
   self.percentBullshit();
 
   if(getParameterByName("seed",null) != null){
-    initial_seed = int.parse(getParameterByName("seed",null));
+    self.initial_seed = int.parse(getParameterByName("seed",null));
   }else{
     var tmp = getRandomSeed();
-    initial_seed = tmp;
+    self.initial_seed = tmp;
   }
   self.formInit();
 }
