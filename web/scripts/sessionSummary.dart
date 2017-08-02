@@ -480,7 +480,7 @@ class MultiSessionSummaryJunior {
 }
 
 class MultiSessionSummary {
-  List<dynamic> ghosts = [];
+  List<dynamic> ghosts = []; //TODO what is this type? Player? String?
   List<String> checkedCorpseBoxes = [];
   Map<String, num> num_stats = {};
   Map<String,num> classes = {};
@@ -631,80 +631,75 @@ class MultiSessionSummary {
     ];
     for (num i = 0; i < labels.length; i++) {
       var l = labels[i];
-      querySelector("#" + l).change(() {
+      querySelector("#" + l).onChange.listen((Event e) {
         that.filterCorpseParty(that);
       });
     }
 
     for (num i = 0; i < this.checkedCorpseBoxes.length; i++) {
       var l = this.checkedCorpseBoxes[i];
-      querySelector("#" + l).prop("checked", "true");
+      (querySelector("#" + l) as CheckboxInputElement).checked = true;
     }
   }
 
-  dynamic generateHTMLForClassPropertyCorpseParty(label, value, total) {
+  String generateHTMLForClassPropertyCorpseParty(String label, num value, num total) {
     //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-    String input = "<input type='checkbox' name='CorpsefilterClass' value='" +
-        label + "' id='" + label + "'>";
-    String html = "<Br>" + input + label + ": " + value + "(" +
-        Math.round(100 * value / total) + "%)";
+    String input = "<input type='checkbox' name='CorpsefilterClass' value='" + label + "' id='" + label + "'>";
+    String html = "<Br>" + input + label + ": " + value.toString() + "(" + (100 * value / total).round().toString() + "%)";
     return html;
   }
 
-  dynamic generateHTMLForAspectPropertyCorpseParty(label, value, total) {
+  String generateHTMLForAspectPropertyCorpseParty(String label, num value, num total) {
     //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-    String input = "<input type='checkbox' name='CorpsefilterAspect' value='" +
-        label + "' id='" + label + "'>";
-    String html = "<Br>" + input + label + ": " + value + "(" +
-        Math.round(100 * value / total) + "%)";
+    String input = "<input type='checkbox' name='CorpsefilterAspect' value='" + label + "' id='" + label + "'>";
+    String html = "<Br>" + input + label + ": " + value.toString() + "(" + (100 * value / total).round().toString() + "%)";
     return html;
   }
 
-  dynamic generateCorpsePartyHTML(filteredGhosts) {
+  String generateCorpsePartyHTML(filteredGhosts) {
     String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryCorpseParty'>"
+    html += "<div id = 'multiSessionSummaryCorpseParty'>";
     html += this.generateCorpsePartyInnerHTML(filteredGhosts);
     html += "</div></div>";
     return html;
   }
 
-  void generateCorpsePartyInnerHTML(filteredGhosts) {
+  String generateCorpsePartyInnerHTML(filteredGhosts) {
     //first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
     //value is how many times I see something that evaluates to that key.
     // about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
     //okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
     //aspect have  a rougher go of it.
     String html = "";
-    var corpsePartyClasses = {
-      Knight: 0,
-      Seer: 0,
-      Bard: 0,
-      Maid: 0,
-      Heir: 0,
-      Rogue: 0,
-      Page: 0,
-      Thief: 0,
-      Sylph: 0,
-      Prince: 0,
-      Witch: 0,
-      Mage: 0
+    May<String, num> corpsePartyClasses = {
+      "Knight": 0,
+      "Seer": 0,
+      "Bard": 0,
+      "Maid": 0,
+      "Heir": 0,
+      "Rogue": 0,
+      "Page": 0,
+      "Thief": 0,
+      "Sylph": 0,
+      "Prince": 0,
+      "Witch": 0,
+      "Mage": 0
     };
-    var corpsePartyAspects = {
-      Blood: 0,
-      Mind: 0,
-      Rage: 0,
-      Time: 0,
-      Void: 0,
-      Heart: 0,
-      Breath: 0,
-      Light: 0,
-      Space: 0,
-      Hope: 0,
-      Life: 0,
-      Doom: 0
+    Map<String, num> corpsePartyAspects = {
+    "Blood": 0,
+    "Mind": 0,
+    "Rage": 0,
+    "Time": 0,
+    "Void": 0,
+    "Heart": 0,
+    "Breath": 0,
+    "Light": 0,
+    "Space": 0,
+    "Hope": 0,
+    "Life": 0,
+      "Doom": 0
     };
-    var corpseParty = {
-    }; //now to refresh my memory on how javascript hashmaps work;
+    var corpseParty = {}; //now to refresh my memory on how javascript hashmaps work;
     html += "<br><b>  Number of Ghosts: </b>: " + filteredGhosts.length;
     for (num i = 0; i < filteredGhosts.length; i++) {
       var ghost = filteredGhosts[i];
@@ -728,33 +723,33 @@ class MultiSessionSummary {
         corpseParty[ghost.causeOfDeath] ++;
       }
 
-      if (!corpsePartyClasses[ghost.class_name])
+      if (corpsePartyClasses[ghost.class_name] == null)
         corpsePartyClasses[ghost.class_name] = 0; //otherwise NaN;
-      if (!corpsePartyAspects[ghost.aspect])
+      if (corpsePartyAspects[ghost.aspect] == null)
         corpsePartyAspects[ghost.aspect] = 0; //otherwise NaN;
       corpsePartyAspects[ghost.aspect] ++;
       corpsePartyClasses[ghost.class_name] ++;
     }
 
-    for (var corpseType in corpsePartyClasses) {
+    for (String corpseType in corpsePartyClasses.keys) {
       html += this.generateHTMLForClassPropertyCorpseParty(
           corpseType, corpsePartyClasses[corpseType], filteredGhosts.length);
     }
 
-    for (var corpseType in corpsePartyAspects) {
+    for (String corpseType in corpsePartyAspects.keys) {
       html += this.generateHTMLForAspectPropertyCorpseParty(
           corpseType, corpsePartyAspects[corpseType], filteredGhosts.length);
     }
 
-    for (var corpseType in corpseParty) {
-      html += "<Br>" + corpseType + ": " + corpseParty[corpseType] + "(" +
-          Math.round(100 * corpseParty[corpseType] / filteredGhosts.length) +
+    for (String corpseType in corpseParty.keys) {
+      html += "<Br>" + corpseType + ": " + corpseParty[corpseType].toString() + "(" +
+          (100 * corpseParty[corpseType] / filteredGhosts.length).round().toString() +
           "%)"; //todo maybe print out percentages here. we know how many ghosts there are.;
     }
     return html;
   }
 
-  void isRomanceProperty(propertyName) {
+  bool isRomanceProperty(propertyName) {
     return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||
         propertyName == "hasClubs" || propertyName == "hasHearts" ||
         propertyName == "hasBreakups";
