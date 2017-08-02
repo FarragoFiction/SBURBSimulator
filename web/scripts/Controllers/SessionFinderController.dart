@@ -208,8 +208,65 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   }
 
-  String getQuipAboutSession(SessionSummary sum) {
-    throw "todo";
+  String getQuipAboutSession(SessionSummary sessionSummary) {
+    String quip = "";
+    num living = sessionSummary.getNumStat("numLiving");
+    num dead = sessionSummary.getNumStat("numDead");
+    Player strongest = sessionSummary.mvp;
+
+    if(sessionSummary.session_id == 33 || getParameterByName("nepeta","")  == ":33"){
+      quip += "Don't expect any of my reports on those cat trolls to be accurate. They are random as fuck. " ;
+    }
+
+    if(sessionSummary.getBoolStat("crashedFromSessionBug")){
+      quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.  Also, shout out to star.eyes: 'His palms are sweaty, knees weak, arms are heavy. There's vomit on his sweater already, mom's spaghetti'");
+    }else if(sessionSummary.getBoolStat("crashedFromPlayerActions")){
+      quip += Zalgo.generate("Fuck. God damn. Do Grim Dark players even KNOW how much it sucks to crash? Assholes.");
+    }else if(sessionSummary.frogStatus == "Purple Frog" && sessionSummary.getBoolStat("blackKingDead")){
+      quip += "Oh my fucking god is THAT what the Grim Dark players have been trying to do. Are organics really so dumb as to not realize how very little that benefits them?";
+    }else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.getBoolStat("ectoBiologyStarted") && !sessionSummary.getBoolStat("crashedFromCorruption") && !sessionSummary.getBoolStat("crashedFromPlayerActions")){
+      quip += "Everything went better than expected." ; //???
+    }else if(sessionSummary.getBoolStat("yellowYard") == true){
+      quip += "Fuck. I better go grab JR. They'll want to see this. " ;
+    }else if(living == 0){
+      quip += "Shit, you do not even want to KNOW how everybody died." ;
+    }else  if(strongest.getStat("power") > 3000){
+      //alert([!sessionSummary.scratched,dead == 0,sessionSummary.frogStatus == "Full Frog",sessionSummary.ectoBiologyStarted,!sessionSummary.crashedFromCorruption,!sessionSummary.crashedFromPlayerActions ].join(","))
+      quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
+    }else if(sessionSummary.frogStatus == "No Frog" ){
+      quip += "Man, why is it always the frogs? " ;
+      if(sessionSummary.parentSession != null){
+        quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. ";
+      }
+    }else  if(sessionSummary.parentSession != null){
+      quip += "Combo sessions are always so cool. " ;
+    }else  if(sessionSummary.getBoolStat("jackRampage")){
+      quip += "Jack REALLY gave them trouble." ;
+    }else  if(sessionSummary.getNumStat("num_scenes") > 200){
+      quip += "God, this session just would not END." ;
+      if(sessionSummary.parentSession == null){
+        quip += " It didn't even have the excuse of being a combo session. ";
+      }
+    }else  if(sessionSummary.getBoolStat("murderMode")){
+      quip += "It always sucks when the players start trying to kill each other." ;
+    }else  if(sessionSummary.getNumStat("num_scenes") < 50){
+      quip += "Holy shit, were they even in the session an entire hour?" ;
+    }else  if(sessionSummary.getBoolStat("scratchAvailable") == true){
+      quip += "Maybe the scratch would fix things? Now that JR has upgraded me, I guess I'll go find out." ;
+    }else{
+      quip += "It was slightly less boring than calculating pi." ;
+    }
+
+    if(sessionSummary.getBoolStat("threeTimesSessionCombo")){
+      quip+= " Holy shit, 3x SessionCombo!!!";
+    }else if(sessionSummary.getBoolStat("fourTimesSessionCombo")){
+      quip+= " Holy shit, 4x SessionCombo!!!!";
+    }else if(sessionSummary.getBoolStat("fiveTimesSessionCombo")){
+      quip+= " Holy shit, 5x SessionCombo!!!!!";
+    }else if(sessionSummary.getBoolStat("holyShitMmmmmonsterCombo")){
+      quip+= " Holy fuck, what is even HAPPENING here!?";
+    }
+    return quip;
   }
 
   void printStats() {
