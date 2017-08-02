@@ -567,15 +567,15 @@ class MultiSessionSummary {
       var ghost = that.ghosts[i];
       //add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked");
       if (classFiltered && !aspectFiltered) {
-        if (querySelector("#" + ghost.class_name).is (":checked")){
+        if ((querySelector("#" + ghost.class_name) as CheckboxInputElement).checked){
           filteredGhosts.add(ghost);
         }
       } else if(aspectFiltered && !classFiltered){
-          if(querySelector("#"+ghost.aspect).is(":checked")){
+          if((querySelector("#"+ghost.aspect)as CheckboxInputElement).checked){
            filteredGhosts.add(ghost);
          }
       }else if(aspectFiltered && classFiltered){
-          if(querySelector("#"+ghost.class_name).is(":checked") && querySelector("#"+ghost.aspect).is(":checked")){
+          if((querySelector("#"+ghost.class_name)as CheckboxInputElement).checked && (querySelector("#"+ghost.aspect)as CheckboxInputElement).checked){
            filteredGhosts.add(ghost);
           }
       }else{
@@ -588,7 +588,7 @@ class MultiSessionSummary {
     bool noneChecked = true;
     for(num i = 0; i<labels.length;i++){
       String l = labels[i];
-      if(querySelector("#"+l).is(":checked")){
+      if((querySelector("#"+l)as CheckboxInputElement).checked){
         that.checkedCorpseBoxes.add(l);
         noneChecked = false;
       }
