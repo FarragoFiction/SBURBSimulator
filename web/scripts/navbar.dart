@@ -53,8 +53,16 @@ void toggleVoid(){
 void toggle(Element v) {
   String display = v.style.display;
   if(display == "none") {
-    v.style.display = "block";
+    show(v);
   }else {
-    v.style.display = "none";
+    hide(v);
   }
+}
+
+void show(Element v) {
+    v.style.display = "block";
+}
+
+void hide(Element v) {
+    v.style.display = "none";
 }

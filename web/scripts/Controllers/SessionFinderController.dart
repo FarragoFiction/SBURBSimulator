@@ -341,28 +341,28 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   void printStats(List<String> filters, List<String> classes, List<String> aspects) {
     var mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
-    querySelector("#stats").html(mms.generateHTML());
+    querySelector("#stats").setInnerHtml(mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
 
-    if(displayMisc)querySelector('#multiSessionSummaryMisc').show()  //memory. don't always turn off when making new ones.
-    if(!displayMisc)querySelector('#multiSessionSummaryMisc').hide();
+    if(displayMisc) show(querySelector('#multiSessionSummaryMisc'));  //memory. don't always turn off when making new ones.
+    if(!displayMisc) hide(querySelector('#multiSessionSummaryMisc'));
 
-    if(displayRomance)querySelector('#multiSessionSummaryRomance').show()  //memory. don't always turn off when making new ones.
-    if(!displayRomance)querySelector('#multiSessionSummaryRomance').hide();
+    if(displayRomance) show(querySelector('#multiSessionSummaryRomance'));  //memory. don't always turn off when making new ones.
+    if(!displayRomance)hide(querySelector('#multiSessionSummaryRomance'));
 
-    if(displayDrama)querySelector('#multiSessionSummaryDrama').show()  //memory. don't always turn off when making new ones.
-    if(!displayDrama)querySelector('#multiSessionSummaryDrama').hide();
+    if(displayDrama) show(querySelector('#multiSessionSummaryDrama'));  //memory. don't always turn off when making new ones.
+    if(!displayDrama)hide(querySelector('#multiSessionSummaryDrama'));
 
-    if(displayEnding)querySelector('#multiSessionSummaryEnding').show()  //memory. don't always turn off when making new ones.
-    if(!displayEnding)querySelector('#multiSessionSummaryEnding').hide();
+    if(displayEnding) show(querySelector('#multiSessionSummaryEnding'));  //memory. don't always turn off when making new ones.
+    if(!displayEnding)hide(querySelector('#multiSessionSummaryEnding'));
 
-    if(displayAverages)querySelector('#multiSessionSummaryAverage').show()  //memory. don't always turn off when making new ones.
-    if(!displayAverages)querySelector('#multiSessionSummaryAverage').hide();
+    if(displayAverages)show(querySelector('#multiSessionSummaryAverage'));  //memory. don't always turn off when making new ones.
+    if(!displayAverages)hide(querySelector('#multiSessionSummaryAverage'));
 
-    if(displayCorpse)querySelector('#multiSessionSummaryCorpseParty').show()  //memory. don't always turn off when making new ones.
-    if(!displayCorpse)querySelector('#multiSessionSummaryCorpseParty').hide();
+    if(displayCorpse) show(querySelector('#multiSessionSummaryCorpseParty')); //memory. don't always turn off when making new ones.
+    if(!displayCorpse)hide(querySelector('#multiSessionSummaryCorpseParty'));
 
-    if(filters){
+    if(filters != null){
       querySelector("input[name='filter']").each((){;
       querySelector(this).prop('disabled', false);
       if(filters.indexOf(querySelector(this).val()) != -1){
