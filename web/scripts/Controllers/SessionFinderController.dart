@@ -413,16 +413,11 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   }
 
-  @override
-  void reckoningTick() {
-    throw "todo";
-    // TODO: implement reckoningTick
-  }
+
 
   @override
   void recoverFromCorruption() {
-    throw "todo";
-    // TODO: implement recoverFromCorruption
+    summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
   @override
