@@ -8,7 +8,8 @@ class Newspost
 
   static List<Newspost> makeAuthorNewsposts() {
     List<Newspost> ret = [
-      new Newspost("8/1/17","Minor bug fixes here and there as I get AB hooked up to the new stuff.  Royalty, for example, were not getting their prototyping bonus pretty blatantly.")
+      new Newspost("8/2/17","AB seems to weirdly like Aradia. Who knew.")
+     , new Newspost("8/1/17","Minor bug fixes here and there as I get AB hooked up to the new stuff.  Royalty, for example, were not getting their prototyping bonus pretty blatantly.")
     ,new Newspost("7/31/17", "Today I will focus on getting The Great Refactoring (everything is on fire and there are plenty of crashes) on to the Experimental branch. As such, expect this to be the final Main/JavaScript update for awhile. <br><Br>Holy shit guys, Experimental is burning and full of bugs (fire ants???) but here we are!!!<Br><Br>ParadoxLands is officially the Architect for the post javascript SBURBSim, and will continue helping me out with my Authorial duties.")
     ,new Newspost("7/30/17", "Still tracking down ABJ's first bug. When I ask her what classes exist, she lists out the canon ones, and then lists out the fanon ones like 50 times a piece. So. I guess she REALLY likes fanon.")
     ,new Newspost("7/29/17", "I have begun the process of waking AB and ABJ back up so they can help us debug.<Br><Br>Oh shit, ABJ is awake. And...reporting that so many players are Wastes of Blood?  This...this is definitely not creepy at all.<Br><Br>(Also why are wastes in the main sim??? Gotta go find that bug)")
