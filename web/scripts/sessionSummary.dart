@@ -676,7 +676,7 @@ class MultiSessionSummary {
     //okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
     //aspect have  a rougher go of it.
     String html = "";
-    May<String, num> corpsePartyClasses = {
+    Map<String, num> corpsePartyClasses = {
       "Knight": 0,
       "Seer": 0,
       "Bard": 0,
@@ -1085,25 +1085,17 @@ class MultiSessionSummary {
       mss.addNumStat("totalDeadPlayers",ss.getNumStat("numDead"));
       mss.addNumStat("totalLivingPlayers",ss.getNumStat("numLiving"));
     }
-    mss.averageAfterLifeSize =
-        Math.round(mss.sizeOfAfterLife / sessionSummaries.length);
-    mss.averageMinLuck =
-        Math.round(mss.averageMinLuck / sessionSummaries.length);
-    mss.averageMaxLuck =
-        Math.round(mss.averageMaxLuck / sessionSummaries.length);
-    mss.averagePower = Math.round(mss.averagePower / sessionSummaries.length);
-    mss.averageMobility =
-        Math.round(mss.averageMobility / sessionSummaries.length);
-    mss.averageFreeWill =
-        Math.round(mss.averageFreeWill / sessionSummaries.length);
-    mss.averageHP = Math.round(mss.averageHP / sessionSummaries.length);
-    mss.averageSanity = Math.round(mss.averageSanity / sessionSummaries.length);
-    mss.averageRelationshipValue =
-        Math.round(mss.averageRelationshipValue / sessionSummaries.length);
-    mss.averageNumScenes =
-        Math.round(mss.averageNumScenes / sessionSummaries.length);
-    mss.survivalRate = Math.round(100 * (mss.totalLivingPlayers /
-        (mss.totalLivingPlayers + mss.totalDeadPlayers)));
+    mss.setStat("averageAfterLifeSize", (mss.getNumStat("sizeOfAfterLife") / sessionSummaries.length).round());
+    mss.setStat("averageMinLuck", (mss.getNumStat("averageMinLuck") / sessionSummaries.length).round());
+    mss.setStat("averageMaxLuck", (mss.getNumStat("averageMaxLuck") / sessionSummaries.length).round());
+    mss.setStat("averagePower", (mss.getNumStat("averagePower") / sessionSummaries.length).round());
+    mss.setStat("averageMobility", (mss.getNumStat("averageMobility") / sessionSummaries.length).round());
+    mss.setStat("averageFreeWill",(mss.getNumStat("averageFreeWill") / sessionSummaries.length).round());
+    mss.setStat("averageHP",(mss.getNumStat("averageHP") / sessionSummaries.length).round());
+    mss.setStat("averageSanity",(mss.getNumStat("averageSanity") / sessionSummaries.length).round());
+    mss.setStat("averageRelationshipValue",(mss.getNumStat("averageRelationshipValue") / sessionSummaries.length).round());
+    mss.setStat("averageNumScenes",(mss.getNumStat("averageNumScenes") / sessionSummaries.length).round());
+    mss.setStat("survivalRate",(100 * (mss.getNumStat("totalLivingPlayers") /(mss.getNumStat("totalLivingPlayers") + mss.getNumStat("totalDeadPlayers")))).round());
     return mss;
   }
 
