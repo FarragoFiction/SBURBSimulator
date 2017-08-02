@@ -928,23 +928,22 @@ class MultiSessionSummary {
   dynamic generateHTMLForProperty(String propertyName) {
     String html = "";
     if (this.isFilterableProperty(propertyName)) {
-      html +=
-          "<Br><b> <input disabled='true' type='checkbox' name='filter' value='" +
-              propertyName + "' id='" + propertyName +
-              "' onchange='filterSessionSummaries()'>";
-      html += propertyName + "</b>: " + this[propertyName];
-      html += " (" + Math.round(100 * (this[propertyName] / this.total)) + "%)";
+      print("TODO do non inline filter for $propertyName");
+      html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='$propertyName' id='$propertyName' onchange='filterSessionSummaries()'>";
+      html += propertyName + "</b>: " + this.num_stats[propertyName].toString();
+      html += " (${(100 * (this.num_stats[propertyName] / this.num_stats['total'])).round()}%)";
     } else {
-      html += "<br><b>" + propertyName + "</b>: " + this[propertyName];
+      html += "<br><b>" + propertyName + "</b>: " + this.num_stats[propertyName].toString();
     }
     return html;
   }
 
-  dynamic generateRomanceHTML(properties) {
+  dynamic generateRomanceHTML(List<String> properties) {
+    print("TODO get rid of onclick for romance html");
     String html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryRomance' >"
+    html += "<div id = 'multiSessionSummaryRomance' >";
     for (num i = 0; i < properties.length; i++) {
-      var propertyName = properties[i];
+      String propertyName = properties[i];
       html += this.generateHTMLForProperty(propertyName);
     }
     html += "</div></div>";
@@ -953,10 +952,11 @@ class MultiSessionSummary {
   }
 
   dynamic generateDramaHTML(properties) {
+    print("TODO get rid of onclick for drama html");
     String html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryDrama' >"
+    html += "<div id = 'multiSessionSummaryDrama' >";
     for (num i = 0; i < properties.length; i++) {
-      var propertyName = properties[i];
+      String propertyName = properties[i];
       html += this.generateHTMLForProperty(propertyName);
     }
     html += "</div></div>";
@@ -964,10 +964,11 @@ class MultiSessionSummary {
   }
 
   dynamic generateEndingHTML(properties) {
+    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'topligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryEnding' >"
+    html += "<div id = 'multiSessionSummaryEnding' >";
     for (num i = 0; i < properties.length; i++) {
-      var propertyName = properties[i];
+      String propertyName = properties[i];
       html += this.generateHTMLForProperty(propertyName);
     }
     html += "</div></div>";
@@ -975,10 +976,11 @@ class MultiSessionSummary {
   }
 
   dynamic generateMiscHTML(properties) {
+    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryMisc' >"
+    html += "<div id = 'multiSessionSummaryMisc' >";
     for (num i = 0; i < properties.length; i++) {
-      var propertyName = properties[i];
+      String propertyName = properties[i];
       html += this.generateHTMLForProperty(propertyName);
     }
     html += "</div></div>";
@@ -986,10 +988,11 @@ class MultiSessionSummary {
   }
 
   dynamic generateAverageHTML(properties) {
+    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'topAligned multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
-    html += "<div id = 'multiSessionSummaryAverage' >"
+    html += "<div id = 'multiSessionSummaryAverage' >";
     for (num i = 0; i < properties.length; i++) {
-      var propertyName = properties[i];
+      String propertyName = properties[i];
       html += this.generateHTMLForProperty(propertyName);
     }
     html += "</div></div>";
