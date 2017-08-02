@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   js: ^0.6.0
+  source_map_stack_trace: ^1.1.4
 
 dev_dependencies:
   browser: ^0.10.0

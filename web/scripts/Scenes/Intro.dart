@@ -640,6 +640,9 @@ class Intro  extends IntroScene{
 	}
 	@override
 	void renderContent(div, i){
+
+		//throw "testing testing";
+
 		//foundRareSession(div, "This is just a test. " + this.session.session_id);
 		String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
 		appendHtml(div, canvasHTML);
