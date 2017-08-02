@@ -45,11 +45,16 @@ void toggleVoid(){
   //querySelectorAll(".void").forEach((Element e) => WHAT SHOULD I DO HEAR for DISPLAY:none);
   List<Element> voidElements = querySelectorAll(".void");
   for(Element v in voidElements) {
-    String display = v.style.display;
-    if(display == "none") {
-        v.style.display = "inline";
-    }else {
-        v.style.display = "none";
-    }
+    toggle(v);
+  }
+}
+
+//work around for dart not having this jquery function except for classes apparently
+void toggle(Element v) {
+  String display = v.style.display;
+  if(display == "none") {
+    v.style.display = "block";
+  }else {
+    v.style.display = "none";
   }
 }

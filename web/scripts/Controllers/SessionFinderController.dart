@@ -34,48 +34,37 @@ void checkSessions() {
 }
 
 void toggleCorpse(){
-  querySelector('#multiSessionSummaryCorpseParty').toggle();
-  displayCorpse = !displayCorpse;
-  if(displayCorpse){
-    querySelector("#avatar").attr("src","images/corpse_party_robot_author.png");
-  }else{
-    querySelector("#avatar").attr("src","images/robot_author.png");
-  }
+  self.toggleCorpse();
 }
 
 
 
 void toggleRomance(){
-  querySelector('#multiSessionSummaryRomance').toggle();
-  displayRomance = !displayRomance;
+  self.toggleRomance();
 }
 
 
 
 void toggleDrama(){
-  querySelector('#multiSessionSummaryDrama').toggle();
-  displayDrama = !displayDrama;
+  self.toggleDrama();
 }
 
 
 
 void toggleMisc(){
-  querySelector('#multiSessionSummaryMisc').toggle();
-  displayMisc = !displayMisc;
+  self.toggleMisc();
 }
 
 
 
 void toggleEnding(){
-  querySelector('#multiSessionSummaryEnding').toggle();
-  displayEnding = !displayEnding;
+  self.toggleEnding();
 }
 
 
 
 void toggleAverage(){
-  querySelector('#multiSessionSummaryAverage').toggle();
-  displayAverages = !displayAverages;
+  self.toggleAverage();
 }
 
 
@@ -112,6 +101,41 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //my callback is what will be different
+  }
+
+  void toggleCorpse() {
+    toggle(querySelector('#multiSessionSummaryCorpseParty'));
+    displayCorpse = !displayCorpse;
+    if(displayCorpse){
+      (querySelector("#avatar") as ImageElement).src = "images/corpse_party_robot_author.png";
+    }else{
+      (querySelector("#avatar") as ImageElement).src ="images/robot_author.png";
+    }
+  }
+
+  void toggleAverage() {
+    toggle(querySelector('#multiSessionSummaryAverage'));
+    displayAverages = !displayAverages;
+  }
+
+  void toggleEnding() {
+    toggle(querySelector('#multiSessionSummaryEnding'));
+    displayEnding = !displayEnding;
+  }
+
+  void toggleMisc() {
+    toggle(querySelector('#multiSessionSummaryMisc'));
+    displayMisc = !displayMisc;
+  }
+
+  void toggleDrama() {
+    toggle(querySelector('#multiSessionSummaryDrama'));
+    displayDrama = !displayDrama;
+  }
+
+  void toggleRomance() {
+    toggle(querySelector('#multiSessionSummaryRomance'));
+    displayRomance = !displayRomance;
   }
 
   void percentBullshit(){
