@@ -25,7 +25,7 @@
           </ul>
     </div>
     <a href = "index.html">
-         <img class = "refactoringGif" src = "images/the_great_refactor.gif"/>
+         <img class = "refactoringGif" src = "images/the_great_refactor_2.gif"/>
     </a>
 </div>
 <ul class = "menuPureCSS">
