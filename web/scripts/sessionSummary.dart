@@ -749,13 +749,13 @@ class MultiSessionSummary {
     return html;
   }
 
-  bool isRomanceProperty(propertyName) {
+  bool isRomanceProperty(String propertyName) {
     return propertyName == "hasDiamonds" || propertyName == "hasSpades" ||
         propertyName == "hasClubs" || propertyName == "hasHearts" ||
         propertyName == "hasBreakups";
   }
 
-  bool isDramaticProperty(propertyName) {
+  bool isDramaticProperty(String propertyName) {
     if (propertyName == "exiledJack" || propertyName == "plannedToExileJack" ||
         propertyName == "exiledQueen" || propertyName == "jackGotWeapon" ||
         propertyName == "jackScheme") return true;
@@ -774,7 +774,7 @@ class MultiSessionSummary {
     return false;
   }
 
-  bool isEndingProperty(propertyName) {
+  bool isEndingProperty(String propertyName) {
     if (propertyName == "yellowYard" || propertyName == "timesAllLived" ||
         propertyName == "timesAllDied" || propertyName == "scratchAvailable" ||
         propertyName == "won") return true;
@@ -795,7 +795,7 @@ class MultiSessionSummary {
     return false;
   }
 
-  void isAverageProperty(propertyName) {
+  bool isAverageProperty(String propertyName) {
     return propertyName == "sizeOfAfterLife" ||
         propertyName == "averageAfterLifeSize" ||
         propertyName == "averageSanity" ||
@@ -805,7 +805,7 @@ class MultiSessionSummary {
         propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
   }
 
-  bool isPropertyToIgnore(propertyName) {
+  bool isPropertyToIgnore(String propertyName) {
     if (propertyName == "totalLivingPlayers" ||
         propertyName == "survivalRate" || propertyName == "ghosts" ||
         propertyName == "generateCorpsePartyHTML" ||
@@ -843,7 +843,7 @@ class MultiSessionSummary {
     return false;
   }
 
-  void isFilterableProperty(propertyName) {
+  bool isFilterableProperty(String propertyName) {
     return !(propertyName == "sizeOfAfterLife" ||
         propertyName == "averageNumScenes" ||
         propertyName == "averageAfterLifeSize" ||
@@ -854,7 +854,7 @@ class MultiSessionSummary {
         propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
   }
 
-  dynamic generateHTML() {
+  String generateHTML() {
     String html = "<div class = 'multiSessionSummary' id = 'multiSessionSummary'>";
     String header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)";
     html += header;
