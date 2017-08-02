@@ -11,7 +11,8 @@ void onNavbarLoaded(String data) {
   querySelector("#navbar").appendHtml(data,treeSanitizer: NodeTreeSanitizer.trusted);
   if(getParameterByName("seerOfVoid",null)  == "true"){
     window.alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
-    querySelector("#story").appendHtml("<button onclick='toggleVoid()'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
+    querySelector("#story").appendHtml("<button id = 'voidButton'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
+    (querySelector("#story") as ButtonElement).onClick.listen((e) => toggleVoid());
   }
 }
 
@@ -41,6 +42,14 @@ String getRawParameterByName(String name, String url) {
 void toggleVoid(){
 	querySelector('body').style.backgroundColor = "#f8c858";
  	querySelector('body').style.backgroundImage = "url(images/pen15_bg1.png)"; //can not unsee the dics now.
-  throw"TODO get void toggling working";
   //querySelectorAll(".void").forEach((Element e) => WHAT SHOULD I DO HEAR for DISPLAY:none);
+  List<Element> voidElements = querySelectorAll(".void");
+  for(Element v in voidElements) {
+    String display = v.style.display;
+    if(display == "none") {
+        v.style.display = "inline";
+    }else {
+        v.style.display = "none";
+    }
+  }
 }

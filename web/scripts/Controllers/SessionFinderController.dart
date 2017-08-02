@@ -269,8 +269,61 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     return quip;
   }
 
-  void printStats() {
-    throw "todo";
+  void printStats(List<String> filters, List<String> classes, List<String> aspects) {
+    var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+    querySelector("#stats").html(mms.generateHTML());
+    mms.wireUpCorpsePartyCheckBoxes();
+
+    if(displayMisc)querySelector('#multiSessionSummaryMisc').show()  //memory. don't always turn off when making new ones.
+    if(!displayMisc)querySelector('#multiSessionSummaryMisc').hide();
+
+    if(displayRomance)querySelector('#multiSessionSummaryRomance').show()  //memory. don't always turn off when making new ones.
+    if(!displayRomance)querySelector('#multiSessionSummaryRomance').hide();
+
+    if(displayDrama)querySelector('#multiSessionSummaryDrama').show()  //memory. don't always turn off when making new ones.
+    if(!displayDrama)querySelector('#multiSessionSummaryDrama').hide();
+
+    if(displayEnding)querySelector('#multiSessionSummaryEnding').show()  //memory. don't always turn off when making new ones.
+    if(!displayEnding)querySelector('#multiSessionSummaryEnding').hide();
+
+    if(displayAverages)querySelector('#multiSessionSummaryAverage').show()  //memory. don't always turn off when making new ones.
+    if(!displayAverages)querySelector('#multiSessionSummaryAverage').hide();
+
+    if(displayCorpse)querySelector('#multiSessionSummaryCorpseParty').show()  //memory. don't always turn off when making new ones.
+    if(!displayCorpse)querySelector('#multiSessionSummaryCorpseParty').hide();
+
+    if(filters){
+      querySelector("input[name='filter']").each((){;
+      querySelector(this).prop('disabled', false);
+      if(filters.indexOf(querySelector(this).val()) != -1){
+        querySelector(this).prop('checked',true);
+      }else{
+        querySelector(this).prop('checked',false);
+      }
+      });
+
+    }
+
+    if(classes && aspects){
+      querySelector("input[name='filterClass']").each((){;
+      querySelector(this).prop('disabled', false);
+      if(classes.indexOf(querySelector(this).val()) != -1){
+        querySelector(this).prop('checked',true);
+      }else{
+        querySelector(this).prop('checked',false);
+      }
+      });
+
+      querySelector("input[name='filterAspect']").each((){;
+      querySelector(this).prop('disabled', false);
+      if(aspects.indexOf(querySelector(this).val()) != -1){
+        querySelector(this).prop('checked',true);
+      }else{
+        querySelector(this).prop('checked',false);
+      }
+      });
+
+    }
 
   }
 
