@@ -188,22 +188,8 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }else{
       print("can't combo, can't scratch. just do next session.");
       needToScratch = false; //can't scratch if skaiai is a frog
-      curSessionGlobalVar.makeCombinedSession == false
+      curSessionGlobalVar.makeCombinedSession = false;
       summarizeSession(curSessionGlobalVar);
-      /*var living = findLivingPlayers(curSessionGlobalVar.players);
-		if(curSessionGlobalVar.scratched || living.length == 0){
-			//print("not a combo session");
-			curSessionGlobalVar.makeCombinedSession == false
-			summarizeSession(curSessionGlobalVar);
-		}else{
-			if(needToScratch){
-				//scratchAB(curSessionGlobalVar);
-				needToScratch = false; //can't scratch if skaiai is a frog
-				curSessionGlobalVar.makeCombinedSession == false
-				summarizeSession(curSessionGlobalVar);
-				return null;
-			}
-		}*/
     }
   }
 
