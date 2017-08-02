@@ -172,17 +172,17 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   }
 
+  //stripped out tournament stuff, that'll be a different controller.
   void summarizeSession(Session session) {
     //print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if(sessionsSimulated.indexOf(session.session_id) != -1){
       ////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
-      //return;
+      return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
 
     SessionSummary sum = curSessionGlobalVar.generateSummary();
-    if(nonRareSessionCallback) return nonRareSessionCallback(sum); //it will handle calling next session.
     querySelector("#story").setInnerHtml("");
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
@@ -197,12 +197,10 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       (querySelector("#button")as ButtonElement).disabled =false;
 
       window.alert("Notice: should be ready to check more sessions.");
-      throw("todo how to get array of elements here");
-      /*
-      querySelector("input[name='filter']").each((){;
-      querySelector(this).prop('disabled', false);
-        });
-        */
+      List<Element> filters = querySelectorAll("input[name='filter']");
+      for(CheckboxInputElement e in filters) {
+          e.disabled = false;
+      }
     }else{
       //TODO used to have a timeout here, do i really need to?
         startSession();
@@ -224,13 +222,11 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if(sessionsSimulated.indexOf(session.session_id) != -1){
       ////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
-
-      //return;
+      return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
     querySelector("#story").setInnerHtml("");
     var sum = curSessionGlobalVar.generateSummary();
-    if(nonRareSessionCallback) return null; //tournament doens't support scratches.
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
