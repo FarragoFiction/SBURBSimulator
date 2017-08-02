@@ -375,23 +375,27 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }
 
     if(classes != null && aspects != null){
-      querySelector("input[name='filterClass']").each((){;
-      querySelector(this).prop('disabled', false);
-      if(classes.indexOf(querySelector(this).val()) != -1){
-        querySelector(this).prop('checked',true);
-      }else{
-        querySelector(this).prop('checked',false);
-      }
-      });
+      List<Element> filterClass = querySelectorAll("input[name='filterClass']");
+      for(CheckboxInputElement e in filterClass) {
+        e.disabled = false;
+        if(classes.indexOf(e.value) != -1){
+          e.checked = true;
+        }else{
+          e.checked = false;
+        }
 
-      querySelector("input[name='filterAspect']").each((){;
-      querySelector(this).prop('disabled', false);
-      if(aspects.indexOf(querySelector(this).val()) != -1){
-        querySelector(this).prop('checked',true);
-      }else{
-        querySelector(this).prop('checked',false);
       }
-      });
+
+      List<Element> filterAspect = querySelectorAll("input[name='filterAspect']");
+      for(CheckboxInputElement e in filterAspect) {
+        e.disabled = false;
+        if(aspects.indexOf(e.value) != -1){
+          e.checked = true;
+        }else{
+          e.checked = false;
+        }
+
+      }
 
     }
 
@@ -413,7 +417,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     var str = sum.generateHTML();
     debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
     debug(str);
-    printStats();
+    printStats(null, null, null); //not filtering anything
 
   }
 
