@@ -363,19 +363,18 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     if(!displayCorpse)hide(querySelector('#multiSessionSummaryCorpseParty'));
 
     if(filters != null){
-      List<Element> filters = querySelectorAll("input[name='filter']");
-      querySelector("input[name='filter']").each((){
-      querySelector(this).prop('disabled', false);
-      if(filters.indexOf(querySelector(this).val()) != -1){
-        querySelector(this).prop('checked',true);
-      }else{
-        querySelector(this).prop('checked',false);
+      List<Element> allFilters = querySelectorAll("input[name='filter']");
+      for(CheckboxInputElement e in allFilters) {
+        e.disabled = false;
+        if(filters.indexOf(e.value) != -1){
+          e.checked = true;
+        }else{
+          e.checked = false;
+        }
       }
-      });
-
     }
 
-    if(classes && aspects){
+    if(classes != null && aspects != null){
       querySelector("input[name='filterClass']").each((){;
       querySelector(this).prop('disabled', false);
       if(classes.indexOf(querySelector(this).val()) != -1){
