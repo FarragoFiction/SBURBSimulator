@@ -905,14 +905,10 @@ class MultiSessionSummary {
 
   dynamic generateClassFilterHTML() {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
-    for (var propertyName in this.classes) {
-      String input = "<input type='checkbox' name='filterClass' value='" +
-          propertyName + "' id='class" + propertyName +
-          "' onchange='filterSessionSummaries()'>";
-      html +=
-          "<Br>" + input + propertyName + ": " + this.classes[propertyName] +
-              "(" + Math.round(100 * this.classes[propertyName] / this.total) +
-              "%)";
+    for (var propertyName in this.classes.keys) {
+      print("TODO: need to hook up check box not inline for $propertyName");
+      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' onchange='filterSessionSummaries()'>";
+      html += "<Br>$input$propertyName: ${this.classes[propertyName]} ( ${(100 * this.classes[propertyName] / this.num_stats['total']).round()}%)";
     }
     html += "</div>";
     return html;
@@ -920,20 +916,16 @@ class MultiSessionSummary {
 
   dynamic generateAspectFilterHTML() {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
-    for (var propertyName in this.aspects) {
-      String input = "<input type='checkbox' name='filterAspect' value='" +
-          propertyName + "' id='aspect" + propertyName +
-          "' onchange='filterSessionSummaries()'>";
-      html +=
-          "<Br>" + input + propertyName + ": " + this.aspects[propertyName] +
-              "(" + Math.round(100 * this.aspects[propertyName] / this.total) +
-              "%)";
+    for (var propertyName in this.aspects.keys) {
+      print("TODO: need to hook up check box not inline for $propertyName");
+      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' onchange='filterSessionSummaries()'>";
+      html += "<Br>$input$propertyName: ${this.aspects[propertyName]} ( ${(100 * this.aspects[propertyName] / this.num_stats['total']).round()}%)";
     }
     html += "</div>";
     return html;
   }
 
-  dynamic generateHTMLForProperty(propertyName) {
+  dynamic generateHTMLForProperty(String propertyName) {
     String html = "";
     if (this.isFilterableProperty(propertyName)) {
       html +=
