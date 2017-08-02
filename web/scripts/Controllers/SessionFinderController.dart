@@ -437,6 +437,6 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   void shareableURL() {
     throw "AB doesn't do this";
   }
-  
+
 
 }

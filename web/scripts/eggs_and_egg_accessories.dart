@@ -402,7 +402,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "ectoBiologist";
 		player.interest1 = "Pranks";
 		player.interest2 = "Action Movies";
-		player.kernel_sprite = "Clown";
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
@@ -421,7 +420,6 @@ void session413IndexToHuman(player, index){
 		player.interest2 = "Horrorterrors";
 		player.hair  =20;
 		player.hairColor = "#fff3bd";
-		player.kernel_sprite = "Cat";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
@@ -439,7 +437,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "turntechGodhead";
 		player.interest1 = "Rap";
 		player.interest2 = "Irony";
-		player.kernel_sprite = "Puppet";
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
@@ -458,7 +455,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "gardenGnostic";
 		player.interest1 = "Physics";
 		player.interest2 = "Gardening";
-		player.kernel_sprite = "First Guardian";
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 3;
 		player.favoriteNumber = 5;
@@ -479,7 +475,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "gutsyGumshoe";
 		player.interest1 = "Pranks";
 		player.interest2 = "Baking";
-		player.kernel_sprite = "Mistake";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
@@ -505,7 +500,6 @@ void session413IndexToHuman(player, index){
 		player.godDestiny = true;
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		player.kernel_sprite = "Troll";
 	}else if(index == 6){
 		player.moon = "Derse";
 		player.bloodColor = "#ff0000";
@@ -517,7 +511,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "timaeusTestified";
 		player.interest1 = "Irony";
 		player.interest2 = "Robots";
-		player.kernel_sprite = "Robot Horse Weirdo";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
@@ -537,7 +530,6 @@ void session413IndexToHuman(player, index){
 		player.chatHandle = "golgothasTerror";
 		player.interest1 = "Physics";
 		player.interest2 = "Movies";
-		player.kernel_sprite = "Buddy";
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
@@ -1039,7 +1031,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.kernel_sprite = "Crab";
 		player.interest1 = "Romance";
 		player.interest2 = "Leadership";
 		player.chatHandle = "carcinoGeneticist";
@@ -1064,7 +1055,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"],[":\\)", ">: ]"]];
 		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["I","1"],["A","4"]];
-		player.kernel_sprite = "Dragon";
 		player.interest1 = "Justice";
 		player.interest2 = "Live Action Roleplaying";
 		player.chatHandle = "gallowsCalibrator";
@@ -1084,7 +1074,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
-		player.kernel_sprite = "Seagoat";
 		player.interest1 = "Clowns";
 		player.interest2 = "Religion";
 		player.chatHandle = "terminallyCapricious";
@@ -1111,7 +1100,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "D -->";
 		player.quirk.suffix = "";
-		player.kernel_sprite = "Centaur";
 		player.interest1 = "Classism";
 		player.interest2 = "Weight Lifting";
 		player.chatHandle = "centaursTesticle";
@@ -1130,7 +1118,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["o","0"]];
-		player.kernel_sprite = "Frog";
 		player.interest1 = "Archaeology";
 		player.interest2 = "Death";
     Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
@@ -1170,7 +1157,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"], ["per","purr"]];
-		player.kernel_sprite = "Meowbeast";
 		player.interest1 = "Role Playing";
 		player.interest2 = "Romance";
 		player.chatHandle = "arsenicCatnip";
@@ -1190,7 +1176,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","um"]];
-		player.kernel_sprite = "Fairy Bull";
 		player.interest1 = "Faeries";
 		player.interest2 = "Animals";
 		player.chatHandle = "adiosToreador";
@@ -1217,7 +1202,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
 		player.interest1 = "Treasure";
 		player.interest2 = "Live Action Roleplaying";
-		player.kernel_sprite = "Spider";
 		player.chatHandle = "arachnidsGrip";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1242,7 +1226,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.kernel_sprite = "Mother Grub";
 		player.interest1 = "Vampires";
 		player.interest2 = "Fashion";
 		player.chatHandle = "grimAuxiliatrix";
@@ -1262,7 +1245,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vv"], ["w","ww"]];
-		player.kernel_sprite = "Skyhorse";
 		player.interest1 = "Genocide";
 		player.interest2 = "History";
 		player.chatHandle = "caligulasAquarium";
@@ -1282,7 +1264,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 9;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["h",")("],["e","-E"], ["fuck","glub"],  ["god","cod"]];
-		player.kernel_sprite = "Horrorterror";
 		player.interest1 = "Animals";
 		player.interest2 = "Social Justice";
 		player.chatHandle = "cuttlefishCuller";
@@ -1302,7 +1283,6 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
-		player.kernel_sprite = "Bicyclops";
 		player.interest1 = "Hacking";
 		player.interest2 = "Programming";
 		player.chatHandle = "twinArmageddons";
@@ -1339,7 +1319,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"], ["b","6"],["o","9"], ["fuck", "problematic"]];
-		player.kernel_sprite = "Crab";
 		player.interest1 = "Social Justice";
 		player.interest2 = "Leadership";
 		player.chatHandle = "carcinoGeneticist";
@@ -1363,7 +1342,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["e","3"],["i","1"],["a","4"],["for","4"],["four","4"],["fore","4"],["E","3"],["I","1"],["A","4"],["s\\b", "z"],["S\\b", "Z"]];
-		player.kernel_sprite = "Dragon";
 		player.interest1 = "Justice";
 		player.interest2 = "Video Games";
 		player.chatHandle = "gallowsCalibrator";
@@ -1383,7 +1361,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
-		player.kernel_sprite = "Seagoat";
 		player.interest1 = "Death";
 		player.interest2 = "Religion";
 		player.chatHandle = "terminallyCapricious";
@@ -1410,7 +1387,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "8==D";
 		player.quirk.suffix = "";
-		player.kernel_sprite = "Centaur";
 		player.interest1 = "Animals";
 		player.interest2 = "Weight Lifting";
 		player.chatHandle = "centaursTesticle";
@@ -1428,7 +1404,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["\\b[a-z]*\\b","私"]];
-		player.kernel_sprite = "Frog";
 		player.interest1 = "Intimidation";
 		player.interest2 = "Death";
 		player.chatHandle = "apocalypseArisen";
@@ -1458,7 +1433,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"]];
-		player.kernel_sprite = "Meowbeast";
 		player.interest1 = "TV";
 		player.interest2 = "Romance";
 		player.chatHandle = "arsenicCatnip";
@@ -1479,7 +1453,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","1"]];
 		player.quirk.suffix = "";
-		player.kernel_sprite = "Fairy Bull";
 		player.interest1 = "Movies";
 		player.interest2 = "Animals";
 		player.chatHandle = "adiosToreador";
@@ -1506,7 +1479,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
 		player.interest1 = "Writing";
 		player.interest2 = "Live Action Roleplaying";
-		player.kernel_sprite = "Spider";
 		player.chatHandle = "arachnidsGrip";
 		player.godDestiny = true;
 		player.quirk.suffix = "";
@@ -1531,7 +1503,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["o","o+"]];
-		player.kernel_sprite = "Mother Grub";
 		player.interest1 = "Love";
 		player.interest2 = "Fashion";
 		player.chatHandle = "grimAuxiliatrix";
@@ -1551,7 +1522,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vw"], ["w","wv"]];
-		player.kernel_sprite = "Skyhorse";
 		player.interest1 = "Romance";
 		player.interest2 = "History";
 		player.chatHandle = "caligulasAquarium";
@@ -1571,7 +1541,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 9;
 		player.quirk.lettersToReplace = [ ["H",")("],];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"],["e","-E"], ["fuck","glub"],  ["god","cod"]];
-		player.kernel_sprite = "Horrorterror";
 		player.interest1 = "Animals";
 		player.interest2 = "Money";
 		player.chatHandle = "cuttlefishCuller";
@@ -1592,7 +1561,6 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["S","5"],["O","0"],["S","2"],["T","7"],["I","1"],["B","8"]]; // E=3, A=4, S=5, O=0, T=7, I=1 and B=8.;
-		player.kernel_sprite = "Bicyclops";
 		player.interest1 = "Video Games";
 		player.interest2 = "Programming";
 		player.chatHandle = "twinArmageddons";
