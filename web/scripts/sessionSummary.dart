@@ -491,14 +491,19 @@ class MultiSessionSummary {
  MultiSessionSummary();
 
   num getNumStat(String statName) {
-    num ret = this.num_stats[statName];
+    num ret = this.num_stats[statName] = 0; //initialization, not error
     if (ret == null) throw "What Kind of Stat is: $statName???";
     return ret;
   }
 
   void addNumStat(String statName, num value) {
-    if (this.num_stats[statName] == null) throw "What Kind of Stat is: $statName???";
+    if (this.num_stats[statName] == null) this.num_stats[statName] = 0;
     this.num_stats[statName] += value;
+  }
+
+  void setStat(String statName, num value) {
+    if (this.num_stats[statName] == null) this.num_stats[statName] = 0;
+    this.num_stats[statName] = value;
   }
 
   void incNumStat(String statName) {
@@ -1000,87 +1005,85 @@ class MultiSessionSummary {
   }
 
 
-  static MultiSessionSummary collateMultipleSessionSummaries(sessionSummaries) {
-    var mss = new MultiSessionSummary();
+  static MultiSessionSummary collateMultipleSessionSummaries(List<SessionSummary> sessionSummaries) {
+    MultiSessionSummary mss = new MultiSessionSummary();
     mss.setClasses();
     mss.setAspects();
-    for (num i = 0; i < sessionSummaries.length; i++) {
-      var ss = sessionSummaries[i];
-      mss.total ++;
+    for (SessionSummary ss in sessionSummaries) {
+      mss.incNumStat("total");
       mss.integrateAspects(ss.miniPlayers);
       mss.integrateClasses(ss.miniPlayers);
 
+      if (ss.getBoolStat("badBreakDeath")) mss.incNumStat("badBreakDeath");
+      if (ss.getBoolStat("mayorEnding")) mss.incNumStat("mayorEnding");
+      if (ss.getBoolStat("waywardVagabondEnding")) mss.incNumStat("waywardVagabondEnding");
+      if (ss.getBoolStat("choseGodTier")) mss.incNumStat("choseGodTier");
+      if (ss.getBoolStat("luckyGodTier")) mss.incNumStat("luckyGodTier");
+      if (ss.getBoolStat("blackKingDead")) mss.incNumStat("blackKingDead");
+      if (ss.getBoolStat("crashedFromSessionBug")) mss.incNumStat("crashedFromSessionBug");
+      if (ss.getBoolStat("opossumVictory")) mss.incNumStat("opossumVictory");
+      if (ss.getBoolStat("rocksFell")) mss.incNumStat("rocksFell");
+      if (ss.getBoolStat("crashedFromPlayerActions")) mss.incNumStat("crashedFromPlayerActions");
+      if (ss.getBoolStat("scratchAvailable")) mss.incNumStat("scratchAvailable");
+      if (ss.getBoolStat("yellowYard")) mss.incNumStat("yellowYard");
+      if (ss.getNumStat("numLiving") == 0) mss.incNumStat("timesAllDied");
+      if (ss.getNumStat("numDead") == 0) mss.incNumStat("timesAllLived");
+      if (ss.getBoolStat("ectoBiologyStarted")) mss.incNumStat("ectoBiologyStarted");
+      if (ss.getBoolStat("denizenBeat")) mss.incNumStat("denizenBeat");
+      if (ss.getBoolStat("plannedToExileJack")) mss.incNumStat("plannedToExileJack");
+      if (ss.getBoolStat("exiledJack")) mss.incNumStat("exiledJack");
+      if (ss.getBoolStat("exiledQueen")) mss.incNumStat("exiledQueen");
+      if (ss.getBoolStat("jackGotWeapon")) mss.incNumStat("jackGotWeapon");
+      if (ss.getBoolStat("jackRampage")) mss.incNumStat("jackRampage");
+      if (ss.getBoolStat("jackScheme")) mss.incNumStat("jackScheme");
+      if (ss.getBoolStat("kingTooPowerful")) mss.incNumStat("kingTooPowerful");
+      if (ss.getBoolStat("queenRejectRing")) mss.incNumStat("queenRejectRing");
+      if (ss.getBoolStat("democracyStarted")) mss.incNumStat("democracyStarted");
+      if (ss.getBoolStat("murderMode")) mss.incNumStat("murderMode");
+      if (ss.getBoolStat("grimDark")) mss.incNumStat("grimDark");
+      if (ss.getBoolStat("hasDiamonds")) mss.incNumStat("hasDiamonds");
+      if (ss.getBoolStat("hasSpades")) mss.incNumStat("hasSpades");
+      if (ss.getBoolStat("hasClubs")) mss.incNumStat("hasClubs");
+      if (ss.getBoolStat("hasBreakups")) mss.incNumStat("hasBreakups");
+      if (ss.getBoolStat("hasHearts")) mss.incNumStat("hasHearts");
+      if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
+      if (ss.getBoolStat("threeTimesSessionCombo")) mss.incNumStat("threeTimesSessionCombo");
+      if (ss.getBoolStat("fourTimesSessionCombo")) mss.incNumStat("fourTimesSessionCombo");
+      if (ss.getBoolStat("fiveTimesSessionCombo")) mss.incNumStat("fiveTimesSessionCombo");
+      if (ss.getBoolStat("holyShitMmmmmonsterCombo")) mss.incNumStat("holyShitMmmmmonsterCombo");
+      if (ss.frogStatus == "No Frog") mss.incNumStat("numberNoFrog");
+      if (ss.frogStatus == "Sick Frog") mss.incNumStat("numberSickFrog");
+      if (ss.frogStatus == "Full Frog") mss.incNumStat("numberFullFrog");
+      if (ss.frogStatus == "Purple Frog") mss.incNumStat("numberPurpleFrog");
+      if (ss.getBoolStat("godTier")) mss.incNumStat("godTier");
+      if (ss.getBoolStat("questBed")) mss.incNumStat("questBed");
+      if (ss.getBoolStat("sacrificialSlab")) mss.incNumStat("sacrificialSlab");
+      if (ss.getBoolStat("justDeath")) mss.incNumStat("justDeath");
+      if (ss.getBoolStat("heroicDeath")) mss.incNumStat("heroicDeath");
+      if (ss.getBoolStat("rapBattle")) mss.incNumStat("rapBattle");
+      if (ss.getBoolStat("sickFires")) mss.incNumStat("sickFires");
+      if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
+      if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
+      if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
+      if (ss.scratched) mss.incNumStat("scratched");
 
-      if (ss.badBreakDeath) mss.badBreakDeath ++;
-      if (ss.mayorEnding) mss.mayorEnding ++;
-      if (ss.waywardVagabondEnding) mss.waywardVagabondEnding ++;
-      if (ss.choseGodTier) mss.choseGodTier ++;
-      if (ss.luckyGodTier) mss.luckyGodTier ++;
-      if (ss.blackKingDead) mss.blackKingDead ++;
-      if (ss.crashedFromSessionBug) mss.crashedFromSessionBug ++;
-      if (ss.opossumVictory) mss.opossumVictory ++;
-      if (ss.rocksFell) mss.rocksFell ++;
-      if (ss.crashedFromPlayerActions) mss.crashedFromPlayerActions ++;
-      if (ss.scratchAvailable) mss.scratchAvailable ++;
-      if (ss.yellowYard) mss.yellowYard ++;
-      if (ss.numLiving == 0) mss.timesAllDied ++;
-      if (ss.numDead == 0) mss.timesAllLived ++;
-      if (ss.ectoBiologyStarted) mss.ectoBiologyStarted ++;
-      if (ss.denizenBeat) mss.denizenBeat ++;
-      if (ss.plannedToExileJack) mss.plannedToExileJack ++;
-      if (ss.exiledJack) mss.exiledJack ++;
-      if (ss.exiledQueen) mss.exiledQueen ++;
-      if (ss.jackGotWeapon) mss.jackGotWeapon ++;
-      if (ss.jackRampage) mss.jackRampage ++;
-      if (ss.jackScheme) mss.jackScheme ++;
-      if (ss.kingTooPowerful) mss.kingTooPowerful ++;
-      if (ss.queenRejectRing) mss.queenRejectRing ++;
-      if (ss.democracyStarted) mss.democracyStarted ++;
-      if (ss.murderMode) mss.murderMode ++;
-      if (ss.grimDark) mss.grimDark ++;
-      if (ss.hasDiamonds) mss.hasDiamonds ++;
-      if (ss.hasSpades) mss.hasSpades ++;
-      if (ss.hasClubs) mss.hasClubs ++;
-      if (ss.hasBreakups) mss.hasBreakups ++;
-      if (ss.hasHearts) mss.hasHearts ++;
-      if (ss.parentSession) mss.comboSessions ++;
-      if (ss.threeTimesSessionCombo) mss.threeTimesSessionCombo ++;
-      if (ss.fourTimesSessionCombo) mss.fourTimesSessionCombo ++;
-      if (ss.fiveTimesSessionCombo) mss.fiveTimesSessionCombo ++;
-      if (ss.holyShitMmmmmonsterCombo) mss.holyShitMmmmmonsterCombo ++;
-      if (ss.frogStatus == "No Frog") mss.numberNoFrog ++;
-      if (ss.frogStatus == "Sick Frog") mss.numberSickFrog ++;
-      if (ss.frogStatus == "Full Frog") mss.numberFullFrog ++;
-      if (ss.frogStatus == "Purple Frog") mss.numberPurpleFrog ++;
-      if (ss.godTier) mss.godTier ++;
-      if (ss.questBed) mss.questBed ++;
-      if (ss.sacrificialSlab) mss.sacrificialSlab ++;
-      if (ss.justDeath) mss.justDeath ++;
-      if (ss.heroicDeath) mss.heroicDeath ++;
-      if (ss.rapBattle) mss.rapBattle ++;
-      if (ss.sickFires) mss.sickFires ++;
-      if (ss.hasLuckyEvents) mss.hasLuckyEvents ++;
-      if (ss.hasUnluckyEvents) mss.hasUnluckyEvents ++;
-      if (ss.hasFreeWillEvents) mss.hasFreeWillEvents ++;
-      if (ss.scratched) mss.scratched ++;
+      if (ss.getBoolStat("won")) mss.incNumStat("won");
 
-      if (ss.won) mss.won ++;
+      mss.addNumStat("sizeOfAfterLife",ss.getNumStat("sizeOfAfterLife"));
+      mss.ghosts.addAll(ss.ghosts);
+      mss.addNumStat("sizeOfAfterLife",ss.getNumStat("sizeOfAfterLife"));
+      mss.addNumStat("averageMinLuck",ss.getNumStat("averageMinLuck"));
+      mss.addNumStat("averageMaxLuck",ss.getNumStat("averageMaxLuck"));
+      mss.addNumStat("averagePower",ss.getNumStat("averagePower"));
+      mss.addNumStat("averageMobility",ss.getNumStat("averageMobility"));
+      mss.addNumStat("averageFreeWill",ss.getNumStat("averageFreeWill"));
+      mss.addNumStat("averageHP",ss.getNumStat("averageHP"));
+      mss.addNumStat("averageSanity",ss.getNumStat("averageSanity"));
+      mss.addNumStat("averageRelationshipValue",ss.getNumStat("averageRelationshipValue"));
+      mss.addNumStat("averageNumScenes",ss.getNumStat("num_scenes"));
 
-      mss.sizeOfAfterLife += ss.sizeOfAfterLife;
-      mss.ghosts = mss.ghosts.concat(ss.ghosts);
-      mss.averageMinLuck += ss.averageMinLuck;
-      mss.averageMaxLuck += ss.averageMaxLuck;
-      mss.averagePower += ss.averagePower;
-      mss.averageMobility += ss.averageMobility;
-      mss.averageFreeWill += ss.averageFreeWill;
-      mss.averageHP += ss.averageHP;
-      mss.averageSanity += ss.averageSanity;
-      mss.averageRelationshipValue += ss.averageRelationshipValue;
-      mss.averageNumScenes += ss.num_scenes;
-
-
-      mss.totalDeadPlayers += ss.numDead;
-      mss.totalLivingPlayers += ss.numLiving;
+      mss.addNumStat("totalDeadPlayers",ss.getNumStat("numDead"));
+      mss.addNumStat("totalLivingPlayers",ss.getNumStat("numLiving"));
     }
     mss.averageAfterLifeSize =
         Math.round(mss.sizeOfAfterLife / sessionSummaries.length);
