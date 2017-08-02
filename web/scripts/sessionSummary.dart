@@ -859,23 +859,19 @@ class MultiSessionSummary {
     String header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)";
     html += header;
 
-    List<dynamic> romanceProperties = [];
-    List<dynamic> dramaProperties = [];
-    List<dynamic> endingProperties = [];
-    List<dynamic> averageProperties = [];
-    List<dynamic> miscProperties = []; //catchall if i missed something.
+    List<String> romanceProperties = [];
+    List<String> dramaProperties = [];
+    List<String> endingProperties = [];
+    List<String> averageProperties = [];
+    List<String> miscProperties = []; //catchall if i missed something.
 
-    for (var propertyName in this) {
+    for (String propertyName in this.num_stats.keys) {
       if (propertyName == "total") { //it's like a header.
         html += "<Br><b> ";
-        html += propertyName + "</b>: " + this[propertyName];
-        html +=
-            " (" + Math.round(100 * (this[propertyName] / this.total)) + "%)";
+        html += propertyName + "</b>: " + this.num_stats[propertyName].toString();
+        html += " (" + (100 * (this.num_stats[propertyName] / this.num_stats["total"])).round().toString() + "%)";
       } else if (propertyName == "totalDeadPlayers") {
-        html +=
-            "<Br><b>totalDeadPlayers: </b> " + this.totalDeadPlayers + " (" +
-                this.survivalRate +
-                " % survival rate)"; //don't want to EVER ignore this.
+        html += "<Br><b>totalDeadPlayers: </b> ${this.num_stats['totalDeadPlayers']} (${this.num_stats['survivalRate']}% survival rate)"; //don't want to EVER ignore this.
       } else if (propertyName == "crashedFromSessionBug") {
         html += this.generateHTMLForProperty(
             propertyName); //don't ignore bugs, either.;
