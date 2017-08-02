@@ -197,9 +197,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       (querySelector("#button")as ButtonElement).disabled =false;
 
       window.alert("Notice: should be ready to check more sessions.");
+      throw("todo how to get array of elements here");
+      /*
       querySelector("input[name='filter']").each((){;
       querySelector(this).prop('disabled', false);
         });
+        */
     }else{
       //TODO used to have a timeout here, do i really need to?
         startSession();
@@ -225,7 +228,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       //return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
-    querySelector("#story").html("");
+    querySelector("#story").setInnerHtml("");
     var sum = curSessionGlobalVar.generateSummary();
     if(nonRareSessionCallback) return null; //tournament doens't support scratches.
     allSessionsSummaries.add(sum);

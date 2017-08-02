@@ -66,16 +66,18 @@
 
 	   Hi!!! You have found the secret developer FAQ. I figure the stuff I wanted to ramble about that might be a bit too "techy" can go here, you know?
 		 Also, don't mind how warped my fourth wall is, it gets like that whenever I stick it in a javascript comment. (hey, I wonder if this isn't the first time I've opened a
-	 fourth wall into a javascript comment???)
+	 fourth wall into a javascript comment??? (FJR: Actually, now they are all in dart, so can only be viewed from my git hub.))
+
+	    FJR: BE WARNED: I HAVE ATTEMPTED TO UPDATE THIS FOR DART, BUT IT MIGHT NOT BE PERFECT.
 
 		Q:  How the HELL does this pile of glitches even begin to work?
-		A: You're going to want to START looking at "scene_controller.js" . That has a method called: "createScenesForSession".
+		A: You're going to want to START looking at "StoryController.dart" on my GitHub . That creates Sessions which have Scenes.
 				Each scene is in charge of knowing when it triggers, and what happens when it does trigger.  (this.trigger and this.content, respectively)
-				A really straight forward scene to look at is "KingPowerful.js".  It triggers if the king is stronger than the hardcoded "hard strength",
+				A really straight forward scene to look at is "KingPowerful.dart".  It triggers if the king is stronger than the hardcoded "hard strength",
 				and displays a simple message about the game being hard.  The older a scene is in relation to the sim itself, the simpler the scene tends to be.
 				I had this vague idea that scenes were gonna be hella simple and there would be a bunch of them. As the simulation matured, scenes got more and more complex
-				(just look at how fucking huge "RelationshipDrama.js" is). This is because I started nesting triggers within scenes as I realized how fucking stupid it was to have,
-				like, a hundred different javascript files in every html page I wanted to use the sim in. Shit is fucking untenable.
+				(just look at how fucking huge "RelationshipDrama.dart" is). This is because I started nesting triggers within scenes as I realized how fucking stupid it was to have,
+				like, a hundred different javascript files in every html page I wanted to use the sim in. Shit is fucking untenable.  Which is why converting to Dart was such a good idea. Thanks, PL!!!
 
 				In any case, scenes are where most of the intelligence lives. Players are repositories of stats, mostly. I remember reading that the Sims had most of the AI in the
 				objects the Sims interacted with, and that seemed like a highly modable schema, so I took inspiration from it.  If I want something new to happen, I 'just' throw a new
@@ -89,6 +91,8 @@
 				Something that might shed light on the situation is that my chatHandle is not just for show. I'm NOT a software developer, I'm a jaded motherfucking Researcher.
 				Everything I program is designed to be a prototype, or help my team learn something. I.E. I make things that are designed to be used by a handful of people and then thrown away.
 				This is the biggest thing I've ever made, with the biggest user base. I'm learning as I go, here.
+
+				Hopefully The Great Refactoring to Dart will be enough to shake out some of the weirdest shit.
 
 		Q: How are you rendering the sprites?? It's not just layering pngs, is it?
 		A: Nope, very astute of you hypothetical Observer.  If you dig around in my /images/Bodies/ folder, you will see that all of the bodies are colored as if they are Light players.
@@ -118,8 +122,8 @@
 
 		Q:  How are the PesterChum dialogue things handled?
 
-		A:  Scenes/Intro.js is a good example of how the dialogue works.  First, the scene itself knows whether or not there is dialogue in it. The scene will create an entire dialogue all as a single string, using a helper method called
-		"Scene.chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.js.
+		A:  Scenes/Intro.dart is a good example of how the dialogue works.  First, the scene itself knows whether or not there is dialogue in it. The scene will create an entire dialogue all as a single string, using a helper method called
+		"Scene.chatLine" which is kept in scene_controller.js.  Once all the lines are done, it calls "drawChat", in handle_sprites.dart.
 
 		drawChat is reponsible for rendering the players, and rendering the text as lines (seperated by 'new lines' or \n characters) colored in the players' font color. It does this by checking for the players chatHandleInitials at the start of a line.
 
@@ -250,7 +254,7 @@ It turns out SBURBSim has been hella popular, enough (holy shit, thanks guys!!!)
 
 		<li> <b>Did you get all your ideas/writing/programming yourself?</b><br><br>
 
-			Here's a <a href = "credits.html">Credits Page!!!</a>  Basically, I am the only programmer for the SBURB Sim. I accept writting snippets, bug reports, ideas, typo fixes, etc. from fans Just Like You (tm).  In the process of being programmed, things often get warped, and I never guarantee I'll use a submitted whatever in the form it was given to me, or at all.  Wander around this very FAQ to learn more about how to give me shit and end up on the credits page!
+			Here's a <a href = "credits.html">Credits Page!!!</a>  Basically, I am the main programmer for Sim, with ParadoxLands serving as the new Architect who helps with Dart things and has big plans for rendering. I accept writting snippets, bug reports, ideas, typo fixes, etc. from fans Just Like You (tm).  In the process of being programmed, things often get warped, and I never guarantee I'll use a submitted whatever in the form it was given to me, or at all.  Wander around this very FAQ to learn more about how to give me shit and end up on the credits page!
 
 		</li>
 		<br><Br>
@@ -262,7 +266,7 @@ It turns out SBURBSim has been hella popular, enough (holy shit, thanks guys!!!)
 	<br><Br>
 
 		<li> <b>I want to understand your code!</b><br><br>
-			Lol. Wait. You're serious?  Shit, son, not even *I* understand this shit half the time. It mostly works through not looking too closely at the bugs, at this point. If you're serious, and have any javascript experience, then I guess you could START by finding the secret developer FAQ associated with this page.  Finding that is your first task.
+			Lol. Wait. You're serious?  Shit, son, not even *I* understand this shit half the time. It mostly works through not looking too closely at the bugs, at this point. If you're serious, and have any Dart experience, then I guess you could START by finding the secret developer FAQ associated with this page.  Finding that is your first task.
 			<div class = "void"> Although if you start wandering around in the page source, you'll start seeing into the Void, and that'll make the Void players all shy.</div><font color = "white">Nope, this is NOT how you find the secret Developer FAQ. Good try. But...doesn't it still seem like...there's something here??? Something you are missing???</font>
 		</li>
 		<br><Br>
