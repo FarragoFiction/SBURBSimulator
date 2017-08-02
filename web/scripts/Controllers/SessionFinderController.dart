@@ -190,7 +190,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     var str = sum.generateHTML();
     debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
     debug(str);
-    printStats();
+    printStats(null,null,null); //no filters here
     numSimulationsDone ++;
     initial_seed = curSessionGlobalVar.rand.nextInt(); //child session
     if(numSimulationsDone >= numSimulationsToDo){
@@ -270,7 +270,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void printStats(List<String> filters, List<String> classes, List<String> aspects) {
-    var mms = collateMultipleSessionSummaries(sessionSummariesDisplayed);
+    var mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     querySelector("#stats").html(mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
 
