@@ -14,6 +14,12 @@ SessionFinderController self; //want to access myself as more than just a sim co
 void main() {
   doNotRender = true;
   loadNavbar();
+  window.onError.listen((Event event){
+    ErrorEvent e = event as ErrorEvent;
+    //String msg, String url, lineNo, columnNo, error
+    printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
+    return;
+  });
   new SessionFinderController();
   self = SimController.instance;
   self.percentBullshit();
