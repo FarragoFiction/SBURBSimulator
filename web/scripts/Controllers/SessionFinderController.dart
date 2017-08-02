@@ -420,35 +420,23 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
-  @override
-  void reinit() {
-    throw "todo";
-    // TODO: implement reinit
-  }
 
   @override
   void renderScratchButton(Session session) {
-    throw "todo";
-    // TODO: implement renderScratchButton
+    needToScratch = true;
   }
 
   @override
   void restartSession() {
-    throw "todo";
-    // TODO: implement restartSession
+    querySelector("#story").setInnerHtml('');
+    window.scrollTo(0, 0);
+    checkEasterEgg(easterEggCallBackRestart,null);
   }
 
   @override
   void shareableURL() {
-    throw "todo";
-    // TODO: implement shareableURL
+    throw "AB doesn't do this";
   }
-
-  @override
-  void startSession() {
-    throw "todo";
-    // TODO: implement startSession
-  }
-
+  
 
 }
