@@ -179,10 +179,10 @@ bool printCorruptionMessage(ErrorEvent e) {
     errorDiv.style..whiteSpace="pre"..fontFamily="'Courier New', monospace";
     story.append(errorDiv);
 
-    //appendHtml(errorDiv, "${e.error.toString().split("\n").first}<br/>");
-    //Tracer.writeTrace(e.error, errorDiv);
+    appendHtml(errorDiv, "${e.error.toString().split("\n").first}<br/>");
+    Tracer.writeTrace(e.error, errorDiv);
 
-    appendHtml(errorDiv, e.error);
+    //appendHtml(errorDiv, e.error);
 
     appendHtml(story, "<br/><br/>ABORTING");
 

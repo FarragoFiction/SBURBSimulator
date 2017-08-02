@@ -4,12 +4,14 @@ library tracer;
 import 'dart:collection';
 import 'dart:html';
 import 'dart:js' as JavaScript;
+import 'dart:math';
 
 import 'package:js/js.dart';
 import 'package:source_span/source_span.dart';
 import "package:stack_trace/stack_trace.dart";
 import "package:source_map_stack_trace/source_map_stack_trace.dart";
 import "package:source_maps/source_maps.dart" as SourceMaps;
+import "package:package_resolver/package_resolver.dart";
 
 @JS("Tracer")
 class JSTracer {
@@ -40,7 +42,6 @@ class Tracer {
         // tests if we're in js or not... try not to use this, it's really very bad...
         if (0.0 is int) {
             JSTracer.writeTrace(error, JavaScript.allowInterop((JSContainer frames) {
-                print(frames);
                 _processJsTrace(frames, outputContainer);
             }));
         } else {
@@ -53,18 +54,47 @@ class Tracer {
 
         List<Frame> frames = <Frame>[];
 
+        String packageRoot = null;
+        String framePath = null;
+
         for (JSFrame jsframe in jsframes) {
             frames.add(new Frame(Uri.parse(jsframe.fileName), jsframe.lineNumber, jsframe.columnNumber, jsframe.functionName));
+
+            framePath = jsframe.fileName;
+        }
+
+        String pagePath = window.location.href;
+
+        int similar = -1;
+        for (int i=0; i<min(framePath.length, pagePath.length); i++) {
+            if (framePath[i] == pagePath[i]) {
+                similar = i;
+            } else {
+                break;
+            }
+        }
+
+        if (similar >= 0) {
+            String scriptPath = framePath.substring(similar+1);
+            int subdirs = max(0,scriptPath.split("/").length-1);
+            StringBuffer sb = new StringBuffer();
+            for (int i=0; i<subdirs; i++) {
+                sb.write("../");
+            }
+            sb.write("packages");
+            packageRoot = sb.toString();
         }
 
         StackTrace trace = new Trace(frames);
 
         getMappingForCurrentScript((SourceMaps.Mapping mapping) {
-            print("mapping: $mapping");
             if (mapping != null) {
-                trace = mapStackTrace(mapping, trace);//, packageResolver: );
+                if (packageRoot == null) {
+                    trace = mapStackTrace(mapping, trace);
+                } else {
+                    trace = mapStackTrace(mapping, trace, packageResolver: new SyncPackageResolver.root(packageRoot));
+                }
             }
-
             writeTraceToPage(trace, container);
         });
     }
@@ -76,7 +106,7 @@ class Tracer {
     }
 
     static void writeTraceToPage(Trace trace, Element container) {
-        _append(container, Trace.format(trace));
+        _append(container, Trace.format(trace, terse: true));
     }
 
     static void _append(Element e, String text) {
@@ -103,7 +133,7 @@ class Tracer {
         if (current == null) { return null; }
 
         String path = current.src;
-        print("path: $path");
+        //print("path: $path");
 
         if (!path.endsWith(".js")) { return null; }
 
@@ -113,10 +143,10 @@ class Tracer {
             HttpRequest.getString(mapFile)..then((String content) {
                 SourceMaps.Mapping mapping = SourceMaps.parse(content);
                 if (mapping == null) {
-                    print("null mapping");
+                    //print("null mapping");
                     _mappings[path] = _MISSING;
                 } else {
-                    print("ok mapping");
+                    //print("ok mapping");
                     _mappings[path] = mapping;
                 }
 
@@ -128,7 +158,7 @@ class Tracer {
 
                 callback(out);
             })..catchError(() {
-                print("error");
+                //print("error");
                 _mappings[path] = _MISSING;
 
                 callback(null);
