@@ -13,7 +13,6 @@ num initial_seed = 0;
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
-  window.alert("IMPORTANT: to get next session, session.rand.nextInt() to get what is the last unused seed from current session");
   doNotRender = true;
   loadNavbar();
   new SessionFinderController();
@@ -155,22 +154,10 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
 
   @override
-  void callNextIntro(int player_index) {
-    throw "todo";
-    // TODO: implement callNextIntro
-  }
-
-  @override
   void checkSGRUB() {
-    throw "todo";
-    // TODO: implement checkSGRUB
+    throw "ab does not do this";
   }
 
-  @override
-  void createInitialSprites() {
-    throw "todo";
-    // TODO: implement createInitialSprites
-  }
 
   @override
   void easterEggCallBack() {
@@ -185,20 +172,39 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   @override
   void easterEggCallBackRestart() {
-    throw "todo";
-    // TODO: implement easterEggCallBackRestart
+    initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
+    intro();
   }
 
-  @override
-  void intro() {
-    throw "todo";
-    // TODO: implement intro
-  }
 
   @override
   void processCombinedSession() {
-    throw "todo";
-    // TODO: implement processCombinedSession
+    var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+    if(newcurSessionGlobalVar){
+      print("doing a combo session");
+      curSessionGlobalVar = newcurSessionGlobalVar;
+      appendHtml(querySelector("#story"),"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
+      intro();
+    }else{
+      print("can't combo, can't scratch. just do next session.");
+      needToScratch = false; //can't scratch if skaiai is a frog
+      curSessionGlobalVar.makeCombinedSession == false
+      summarizeSession(curSessionGlobalVar);
+      /*var living = findLivingPlayers(curSessionGlobalVar.players);
+		if(curSessionGlobalVar.scratched || living.length == 0){
+			//print("not a combo session");
+			curSessionGlobalVar.makeCombinedSession == false
+			summarizeSession(curSessionGlobalVar);
+		}else{
+			if(needToScratch){
+				//scratchAB(curSessionGlobalVar);
+				needToScratch = false; //can't scratch if skaiai is a frog
+				curSessionGlobalVar.makeCombinedSession == false
+				summarizeSession(curSessionGlobalVar);
+				return null;
+			}
+		}*/
+    }
   }
 
   //AB's reckoning is like the normal one, but if the session ends at the recknoing, ab knows what to do.
