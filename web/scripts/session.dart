@@ -281,7 +281,6 @@ class Session {
 		//print(getPlayersTitles(living));
 		addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
-
 		this.hadCombinedSession = true;
 		newSession.parentSession = this;
 		Scene.createScenesForSession(newSession);
@@ -501,18 +500,6 @@ class Session {
 	}
 
 }
-
-
-
-
-String summarizeScene(scenesTriggered, str){
-	var tmp = findSceneNamed(scenesTriggered,str);
-	if(tmp != "No"){
-		tmp = "Yes";
-	}
-	return "<br>&nbsp&nbsp&nbsp&nbsp" +str + ": " + tmp;
-}
-
 
 
 dynamic findSceneNamed(scenesToCheck, name){

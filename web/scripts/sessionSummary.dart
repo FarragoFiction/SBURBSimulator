@@ -818,6 +818,7 @@ class MultiSessionSummary {
         propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
   }
 
+  //TODO do i still need this one, this was mostly so i wouldn't try to print out functions
   bool isPropertyToIgnore(String propertyName) {
     if (propertyName == "totalLivingPlayers" ||
         propertyName == "survivalRate" || propertyName == "ghosts" ||
@@ -896,7 +897,7 @@ class MultiSessionSummary {
         endingProperties.add(propertyName);
       } else if (this.isAverageProperty(propertyName)) {
         averageProperties.add(propertyName);
-      } else if (!this.isPropertyToIgnore(propertyName)) {
+      } else  {  //TODO used to be !this.isPropertyToIgnore(propertyName)
         miscProperties.add(propertyName);
       }
     }
