@@ -26,7 +26,10 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
 
   bool getBoolStat(String statName) {
      bool ret = this.bool_stats[statName];
-    if (ret == null) throw "What Kind of Stat is: $statName???";
+     if (ret == null) {
+       this.bool_stats[statName] = false;
+       return false;
+     }
     return ret;
   }
 
@@ -492,7 +495,10 @@ class MultiSessionSummary {
 
   num getNumStat(String statName) {
     num ret = this.num_stats[statName]; //initialization, not error
-    if (ret == null) this.num_stats[statName] = 0;
+    if (ret == null) {
+      this.num_stats[statName] = 0;
+      return 0;
+    }
     return ret;
   }
 
