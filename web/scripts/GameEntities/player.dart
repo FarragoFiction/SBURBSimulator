@@ -2551,17 +2551,19 @@ Player randomTimePlayer(Session session){
 	String c = session.rand.pickFrom(available_classes);
 	removeFromArray(c, available_classes);
 	String a = required_aspects[1];
-	return randomPlayerWithClaspect(session,c,a);
-}
+	return randomPlayerWithClaspect(session,c,a);}
 
 
 
-Player findAspectPlayer(List<Player> playerList, String aspect){
+Player findAspectPlayer(List<GameEntity> playerList, String aspect){
 	for(int i= 0; i<playerList.length; i++){
-		Player p = playerList[i];
-		if(p.aspect == aspect){
-			//print("Found " + aspect + " player");
-			return p;
+		GameEntity g = playerList[i]; //could be a sprite
+		if(g is Player) {
+			Player p = playerList[i];
+			if (p.aspect == aspect) {
+				//print("Found " + aspect + " player");
+				return p;
+			}
 		}
 	}
 	return null;
@@ -2569,14 +2571,17 @@ Player findAspectPlayer(List<Player> playerList, String aspect){
 
 
 
-List<Player> findAllAspectPlayers(List<Player> playerList, String aspect){
+List<Player> findAllAspectPlayers(List<GameEntity> playerList, String aspect){
 	List<Player> ret = [];
 	for(int i= 0; i<playerList.length; i++){
-		Player p = playerList[i];
-		if(p.aspect == aspect){
-			//print("Found " + aspect + " player");
-			ret.add(p);
-		}
+    GameEntity g = playerList[i]; //could be a sprite
+    if(g is Player) {
+      Player p = playerList[i];
+      if (p.aspect == aspect) {
+        //print("Found " + aspect + " player");
+        ret.add(p);
+      }
+    }
 	}
 	return ret;
 }
