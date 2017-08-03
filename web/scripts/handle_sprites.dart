@@ -1068,7 +1068,7 @@ void drawChatJRPlayer(CanvasElement canvas, String chat, Player player){
 
 
 //she is the best <3
-void drawChatABJR(CanvasElement canvas, chat){
+void drawChatABJR(CanvasElement canvas, String chat){
   if(checkSimMode() == true){
     return;
   }
@@ -1077,7 +1077,7 @@ void drawChatABJR(CanvasElement canvas, chat){
 
 
 
-void drawChatJRAB(CanvasElement canvas, chat){
+void drawChatJRAB(CanvasElement canvas, String chat){
   if(checkSimMode() == true){
     return;
   }

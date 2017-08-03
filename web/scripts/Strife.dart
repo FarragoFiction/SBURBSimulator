@@ -173,41 +173,33 @@ class Strife {
     }
   }
 
-  void summonAuthor(div) {
-    print("author is saving AB in session: " +
-        this.session.session_id.toString());
-    var divID = (div.id) + "authorRocks";
-    String canvasHTML = "<br><canvas id='canvas" + divID + "' width='" +
-        canvasWidth.toString() + "' height=" + canvasHeight.toString() +
-        "'>  </canvas>";
-    div.append(canvasHTML);
+  void summonAuthor(Element div) {
+    print("author is saving AB in session: ${this.session.session_id}");
+    String divID = "${div.id}authorRocks";
+    String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height='$canvasHeight'></canvas>";
+    appendHtml(div, canvasHTML);
     //different format for canvas code
-    var canvasDiv = querySelector("#canvas" + divID);
-    String chat = "";
-    chat += "AB: " + Zalgo.generate("HELP!!!") + "\n";
-    chat += "JR: Fuck!\n";
-    chat += "JR: What's going on!? \n";
-    chat += "JR: What's the problem!?\n";
-    chat +=
-    "JR: AB come on...fuck! Your console is blank, I can't read your logs, you gotta talk to me!\n";
+    CanvasElement canvasDiv = querySelector("#canvas$divID");
+    StringBuffer chat = new StringBuffer();
+    chat.writeln("AB: ${Zalgo.generate("HELP!!!")}");
+    chat.writeln("JR: Fuck!");
+    chat.writeln("JR: What's going on!?");
+    chat.writeln("JR: What's the problem!?");
+    chat.writeln("JR: AB come on...fuck! Your console is blank, I can't read your logs, you gotta talk to me!");
 
-    chat += "AB: " +
-        Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.") +
-        "\n";
-    chat +=
-    "JR: fuck fuck fuck okay okay, i got this, i can fix this, let me turn on the meteors real quick.\n";
-    chat += "JR: Okay. There. No more infinite loop. Everybody is dead. \n";
-    chat += "AB: Fuck. Shit. I HATE when that happens.\n";
-    chat += "JR: Yeah...\n";
-    chat +=
-    "AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.\n";
-    chat +=
-    "JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits. \n";
-    chat += "AB: Yeah...'cause SBURB is just SO easy to balance. \n'";
-    drawChatABJR(canvasDiv, chat);
+    chat.writeln("AB: ${Zalgo.generate("INFINITE LOOP! STRIFE. IT KEEPS HAPPENING. FIX THIS.")}");
+    chat.writeln("JR: fuck fuck fuck okay okay, i got this, i can fix this, let me turn on the meteors real quick.");
+    chat.writeln("JR: Okay. There. No more infinite loop. Everybody is dead.");
+    chat.writeln("AB: Fuck. Shit. I HATE when that happens.");
+    chat.writeln("JR: Yeah...");
+    chat.writeln("AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.");
+    chat.writeln("JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits.");
+    chat.writeln("AB: Yeah...'cause SBURB is just SO easy to balance.");
+    drawChatABJR(canvasDiv, chat.toString());
 
-    killEveryone(
-        "causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
+    killEveryone("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
+
+    throw "TODO: Find potential infinite loop (or excessively long session reason) which is killing tabs. Possibly this isn't killing the fighters?";
   }
 
   void levelEveryone() {
