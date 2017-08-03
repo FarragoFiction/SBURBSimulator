@@ -20,16 +20,21 @@ class Strife {
   //TODO for now keeping old code as reference material, but delete it whole sale. it is too tangled up in "this" is a GameEntity.
 
   //TODO get this working, then rewrite code for each sub part.
-  void startTurn(div) {
+  void startTurn(Element div) {
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
       team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
     checkForSuddenEnding(
         div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
-    Team winner = strifeEnded();
-    if (winner != null) {
-      describeEnding(div, winner); //will call processEnding.
+    bool over = strifeEnded();
+    if (over) {
+      Team winner = findWinningTeam();
+      if (winner != null) {
+        describeEnding(div, winner); //will call processEnding.
+      } else {
+        print("Strife ended with no clear winner");
+      }
     } else {
       turnsPassed ++;
       startTurn(div);
@@ -95,7 +100,18 @@ class Strife {
   }
 
   //a strife is over when only one team is capable of fighting anymore. livingMinusAbsconded == 0;
-  Team strifeEnded() {
+  bool strifeEnded() {
+    int living = 0;
+    for (Team team in teams) {
+      if (team.hasLivingMembersPresent()) {
+        living++;
+        if (living >= 2) { return false; } // two or more teams still alive
+      }
+    }
+    return living < 2;
+  }
+
+  Team findWinningTeam() {
     Team t;
     for (Team team in teams) { //this is the Buffalo buffallo bufallo Buffalo bufallo of this sim.
       if (team.hasLivingMembersPresent()) {
@@ -108,6 +124,8 @@ class Strife {
     }
     return t; //1 or fewer teams remain
   }
+
+
 
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.

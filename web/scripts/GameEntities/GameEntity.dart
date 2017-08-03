@@ -311,7 +311,7 @@ class GameEntity implements Comparable<GameEntity> {
             return;
         }
         //base damage
-        num hit = offense.getStat("power");
+        num hit = Math.max(1,offense.getStat("power"));
         num offenseRoll = offense.rollForLuck("");
         num defenseRoll = defense.rollForLuck("");
         //critical/glancing hit odds.
