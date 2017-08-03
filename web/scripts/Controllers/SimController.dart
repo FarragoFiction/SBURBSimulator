@@ -237,6 +237,7 @@ abstract class SimController {
   }
 
   void startSession() {
+    print("Starting session $initial_seed");
     curSessionGlobalVar = new Session(initial_seed);
     reinit();
     Scene.createScenesForSession(curSessionGlobalVar);

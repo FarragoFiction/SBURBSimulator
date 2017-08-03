@@ -93,11 +93,11 @@ class MurderPlayers extends Scene {
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
 
 	}
-	void renderDiamonds(div, murderer, diamond){
+	void renderDiamonds(Element div, Player murderer, Player diamond){
 
 		var divID = (div.id) + "_" + diamond.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -114,11 +114,11 @@ class MurderPlayers extends Scene {
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0);
 	}
-	void renderClubs(div, murderer, victim, club){
+	void renderClubs(Element div, Player murderer, Player victim, Player club){
 		//alert("clubs)")
 		var divID = (div.id) + "_" + club.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
 		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -139,7 +139,7 @@ class MurderPlayers extends Scene {
 		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0);
 		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
 	}
-	dynamic contentForRender(div){
+	dynamic contentForRender(Element div){
 		var livePlayers = this.session.availablePlayers; //just because they are alive doesn't mean they are in the medium
 		String ret = "";
 		for(num i = 0; i<this.murderers.length; i++){

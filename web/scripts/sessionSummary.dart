@@ -494,7 +494,7 @@ class MultiSessionSummary {
 
 
  MultiSessionSummary() {
-    //TODO confirm that changint the order here changes the order in AB
+   //can switch order to change order AB displays in
    //if i don't initialize stats here, then AB won't bothe rlisting stats that are zero.
     setStat("timesAllDied",0);
     setStat("yellowYard",0);
@@ -523,15 +523,15 @@ class MultiSessionSummary {
     setStat("democracyStarted",0);
     setStat("murderMode",0);
     setStat("grimDark",0);
-    setStat("hasDiamonds",0);
-    setStat("hasSpades",0);
-    setStat("hasClubs",0);
-    setStat("hasBreakups",0);
-    setStat("hasDiamonds",0);
-    setStat("hasSpades",0);
-    setStat("hasClubs",0);
-    setStat("hasBreakups",0);
     setStat("hasHearts",0);
+    setStat("hasDiamonds",0);
+    setStat("hasSpades",0);
+    setStat("hasClubs",0);
+    setStat("hasBreakups",0);
+    setStat("hasDiamonds",0);
+    setStat("hasSpades",0);
+    setStat("hasClubs",0);
+    setStat("hasBreakups",0);
     setStat("comboSessions",0);
     setStat("threeTimesSessionCombo",0);
     setStat("fourTimesSessionCombo",0);
@@ -786,7 +786,7 @@ class MultiSessionSummary {
         corpseParty["fighting against a MurderMode player"] ++;
       } else
       if (ghost.causeOfDeath.startsWith("being put down like a rabid dog")) {
-        if (!corpseParty["being put down like a rabid dog"])
+        if (corpseParty["being put down like a rabid dog"]==null)
           corpseParty["being put down like a rabid dog"] = 0; //otherwise NaN;
         corpseParty["being put down like a rabid dog"] ++;
       } else if (ghost.causeOfDeath.indexOf("Minion") != -1) {
