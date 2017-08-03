@@ -12,7 +12,7 @@ import 'dart:collection';
 Random rand;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
-  print("remember to check to see if AB is reporting ALL hashes, or only most of them");
+  print("remember to check to see if AB is reporting ALL hashes, or only most of them, like, romance is just straight up empty.");
   doNotRender = true;
   loadNavbar();
   window.onError.listen((Event event){
