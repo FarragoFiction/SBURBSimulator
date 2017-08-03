@@ -199,7 +199,6 @@ class Strife {
 
     killEveryone("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
 
-    throw "TODO: Find potential infinite loop (or excessively long session reason) which is killing tabs. Possibly this isn't killing the fighters?";
   }
 
   void levelEveryone() {

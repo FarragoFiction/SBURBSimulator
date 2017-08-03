@@ -211,7 +211,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     renderAfterlifeURL();
 
     print("Corrupted session: ${scratchedLineageText(curSessionGlobalVar.getLineage())} helping AB return, if she is lost here.");
-
+    print("trying to recover from corruption now.");
     SimController.instance.recoverFromCorruption();
 
     return false; //if i return true here, the real error doesn't show up;

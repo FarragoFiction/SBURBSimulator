@@ -277,7 +277,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     //print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if(sessionsSimulated.indexOf(session.session_id) != -1){
-      ////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+      print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
       return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
@@ -293,6 +293,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     printStats(null,null,null); //no filters here
     numSimulationsDone ++;
     initial_seed = curSessionGlobalVar.rand.nextInt(); //child session
+    print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
     if(numSimulationsDone >= numSimulationsToDo){
       (querySelector("#button")as ButtonElement).disabled =false;
 
@@ -303,6 +304,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       }
     }else{
       //TODO used to have a timeout here, do i really need to?
+        print("going to start new session");
         startSession();
     }
 
@@ -455,6 +457,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   @override
   void recoverFromCorruption() {
+    print("AB thinks she should check a new session after finding a shitty crashed session");
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
