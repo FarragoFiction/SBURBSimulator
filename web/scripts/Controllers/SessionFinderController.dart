@@ -277,7 +277,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     //print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if(sessionsSimulated.indexOf(session.session_id) != -1){
-      print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+      print("should be skipping a repeat session: " + curSessionGlobalVar.session_id.toString());
       return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
@@ -296,7 +296,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
     if(numSimulationsDone >= numSimulationsToDo){
       (querySelector("#button")as ButtonElement).disabled =false;
-
+      print("I think I am done now");
       window.alert("Notice: should be ready to check more sessions.");
       List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
