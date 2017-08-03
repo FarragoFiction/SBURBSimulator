@@ -242,9 +242,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
           return null;
         }
         List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
+        print("debugging AB: about to see if i should summarize session ${curSessionGlobalVar.session_id}");
         if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
-          //print("victory or utter defeat");
+          print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
           summarizeSession(curSessionGlobalVar);
+        }else {
+          print("debugging AB: I think i should not summarize session ${curSessionGlobalVar.session_id}, won is ${curSessionGlobalVar.won} living is ${living.length} and scratched is ${curSessionGlobalVar.scratched}");
         }
       }
     }

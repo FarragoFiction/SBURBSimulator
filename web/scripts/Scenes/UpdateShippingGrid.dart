@@ -527,7 +527,7 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Oh fuck yes!","Oh wow, I sure am glad I listened to " + shipper.chatHandleShort() + "! "], ["<3<"],["JR: This will never hit cause i know they said yes."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					Relationship.makeDiamonds(p1, p2);
+					Relationship.makeSpades(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";

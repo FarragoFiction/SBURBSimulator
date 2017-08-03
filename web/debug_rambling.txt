@@ -2362,3 +2362,49 @@ Either way, shipper will comment on it and get a huge bonus if it was their chos
 can only create one ship at a time, and only when they can otherwise update their shipping grid.
 
 now, think about this awhile.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+oh shit.
+
+time for my first post-dart ramble.
+
+AB is not returning  from all sessions.
+
+She prints:
+
+"Starting session 52369603
+ VM942:1 Starting session 404506237"
+
+ and i can see that the session she ends on does not match the only session she summarizes.
+
+ So, she DOES do the next session, but doesn't summarize it.
+
+ I note that she DOES summarize the next session if it's a crash or a scratch.  Except the session she finished on is a grim dark crash.
+
+ So. the first think i need to look for is what places does AB call "summarizeSession" from, which is gonna be much easier in Dart than in javascript.
+
+ I see it in:
+
+ *process combined session
+ *reckoning
+ *reckoningTick
+ *recoverFromCorruption
+ *scratchAB
+
+
+ The one that SHOULD be most common, that I think I am not seeing is reckoningTick
+
+  if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
+           //print("victory or utter defeat");
+           summarizeSession(curSessionGlobalVar);
+
+
+  }
+  I'll see if it ever gets just above that if statement....
+
+  I'll run the code, but right now what has me worried is that the code itself seems weird. what happens if that
+   if statement is wrong? it doesn't seem to scratch....but it does seem to match js code. i guess scratch haappens just above it.
+
+
+That else i added is literally never printing out. what the hell. So...is it stopping in a timeline doomed even before the king fight?
+
