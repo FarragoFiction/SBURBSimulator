@@ -416,9 +416,9 @@ class Player extends GameEntity{ //TODO trollPlayer subclass of player??? (have 
 			//print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
 		}
 	}
-	dynamic getPactWithGhost(ghost){
+	Player getPactWithGhost(Player ghost){
 		for(num i = 0; i<this.ghostPacts.length; i++){
-			var g = this.ghostPacts[i][0];
+			Player g = this.ghostPacts[i].ghost;
 			if(g == ghost) return g;
 		}
 		return null;

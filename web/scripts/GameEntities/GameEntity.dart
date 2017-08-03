@@ -26,7 +26,7 @@ class GameEntity implements Comparable<GameEntity> {
     bool dead = false;
     String causeOfDrain = null; //if it's ever not null they will be sideways
     bool exiled = false;
-    List<dynamic> ghostPacts = []; //list of two element array [Ghost, enablingAspect]
+    List<GhostPact> ghostPacts = <GhostPact>[]; //list of two element array [Ghost, enablingAspect]
     bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
     List<Fraymotif> fraymotifs = <Fraymotif>[];
     bool usedFraymotifThisTurn = false;
