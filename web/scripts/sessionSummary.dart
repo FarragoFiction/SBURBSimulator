@@ -21,6 +21,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   SessionSummary(this.session_id);
 
   void setBoolStat(String statName, bool statValue) {
+    print("setting stat: $statName to $statValue");
       this.bool_stats[statName] = statValue;
   }
 
@@ -224,6 +225,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return html;
   }
 
+  //todo, could make this a constructor with from, too. whatever.
   static SessionSummary makeSummaryForSession(Session session) {
     SessionSummary summary = new SessionSummary(session.session_id);
     summary.setMiniPlayers(session.players);
@@ -491,7 +493,68 @@ class MultiSessionSummary {
 
 
 
- MultiSessionSummary();
+ MultiSessionSummary() {
+    //TODO confirm that changint the order here changes the order in AB
+   //if i don't initialize stats here, then AB won't bothe rlisting stats that are zero.
+    setStat("timesAllDied",0);
+    setStat("yellowYard",0);
+    setStat("scratchAvailable",0);
+    setStat("crashedFromPlayerActions",0);
+    setStat("rocksFell",0);
+    setStat("opossumVictory",0);
+    setStat("crashedFromSessionBug",0);
+    setStat("blackKingDead",0);
+    setStat("luckyGodTier",0);
+    setStat("choseGodTier",0);
+    setStat("waywardVagabondEnding",0);
+    setStat("mayorEnding",0);
+    setStat("badBreakDeath",0);
+    setStat("timesAllLived",0);
+    setStat("ectoBiologyStarted",0);
+    setStat("denizenBeat",0);
+    setStat("plannedToExileJack",0);
+    setStat("exiledJack",0);
+    setStat("exiledQueen",0);
+    setStat("jackGotWeapon",0);
+    setStat("jackRampage",0);
+    setStat("jackScheme",0);
+    setStat("kingTooPowerful",0);
+    setStat("queenRejectRing",0);
+    setStat("democracyStarted",0);
+    setStat("murderMode",0);
+    setStat("grimDark",0);
+    setStat("hasDiamonds",0);
+    setStat("hasSpades",0);
+    setStat("hasClubs",0);
+    setStat("hasBreakups",0);
+    setStat("hasDiamonds",0);
+    setStat("hasSpades",0);
+    setStat("hasClubs",0);
+    setStat("hasBreakups",0);
+    setStat("hasHearts",0);
+    setStat("comboSessions",0);
+    setStat("threeTimesSessionCombo",0);
+    setStat("fourTimesSessionCombo",0);
+    setStat("fiveTimesSessionCombo",0);
+    setStat("holyShitMmmmmonsterCombo",0);
+    setStat("numberNoFrog",0);
+    setStat("numberSickFrog",0);
+    setStat("numberFullFrog",0);
+    setStat("numberPurpleFrog",0);
+    setStat("godTier",0);
+    setStat("questBed",0);
+    setStat("sacrificialSlab",0);
+    setStat("justDeath",0);
+    setStat("heroicDeath",0);
+    setStat("rapBattle",0);
+    setStat("sickFires",0);
+    setStat("hasLuckyEvents",0);
+    setStat("hasUnluckyEvents",0);
+    setStat("hasFreeWillEvents",0);
+    setStat("scratched",0);
+    setStat("won",0);
+
+ }
 
   num getNumStat(String statName) {
     num ret = this.num_stats[statName]; //initialization, not error
