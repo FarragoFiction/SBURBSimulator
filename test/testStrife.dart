@@ -25,6 +25,7 @@ main() {
   print("Hello World");
   jRAssert("initialTest", "this should always pass", "this should always pass");
   testCreation();
+  testKillEveryone();
   //test choosing a target.
   //TODO find members of denizen fight.
 
@@ -33,6 +34,15 @@ main() {
   //TODO I WANT to use test fraymotif's being single use per battle here, but not sure how to do it without hitting a div append.
   //TODO probably should refactor strifes to only do a single div append from an accumulated list of shit
   //easier to debug, and more efficient than lots of little appends
+}
+
+//dear sweet precious sweet sweet AuthorBot is getting into an infinite loop
+//and me saving her causes ANOTHER loop because apparently
+//i don't have the true form of "rocks fall" yet
+void testKillEveryone() {
+    setup();
+    GameEntity testGE = testStrife.teams[0].members[0];
+    jRAssert("random member of strife should be alive", testGE.dead, false);
 }
 
 void testMobilitySort() {

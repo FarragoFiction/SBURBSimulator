@@ -349,7 +349,9 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   void killEveryone(String reason) {
+    print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
     for(GameEntity ge in getLivingMinusAbsconded()) {
+      print("making $ge dead");
       ge.makeDead(reason);
     }
   }
