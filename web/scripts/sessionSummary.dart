@@ -717,7 +717,7 @@ class MultiSessionSummary {
     for (num i = 0; i < filteredGhosts.length; i++) {
       var ghost = filteredGhosts[i];
       if (ghost.causeOfDeath.startsWith("fighting against the crazy")) {
-        if (!corpseParty["fighting against a MurderMode player"])
+        if (corpseParty["fighting against a MurderMode player"] == null)
           corpseParty["fighting against a MurderMode player"] =
           0; //otherwise NaN;
         corpseParty["fighting against a MurderMode player"] ++;
@@ -727,11 +727,11 @@ class MultiSessionSummary {
           corpseParty["being put down like a rabid dog"] = 0; //otherwise NaN;
         corpseParty["being put down like a rabid dog"] ++;
       } else if (ghost.causeOfDeath.indexOf("Minion") != -1) {
-        if (!corpseParty["fighting a Denizen Minion"])
+        if (corpseParty["fighting a Denizen Minion"] == null)
           corpseParty["fighting a Denizen Minion"] = 0; //otherwise NaN;
         corpseParty["fighting a Denizen Minion"] ++;
       } else { //just use as is
-        if (!corpseParty[ghost.causeOfDeath])
+        if (corpseParty[ghost.causeOfDeath] == null)
           corpseParty[ghost.causeOfDeath] = 0; //otherwise NaN;
         corpseParty[ghost.causeOfDeath] ++;
       }
