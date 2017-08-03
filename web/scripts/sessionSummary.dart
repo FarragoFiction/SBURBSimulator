@@ -728,7 +728,9 @@ class MultiSessionSummary {
   String generateHTMLForAspectPropertyCorpseParty(String label, num value, num total) {
     //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
     String input = "<input type='checkbox' name='CorpsefilterAspect' value='" + label + "' id='" + label + "'>";
-    String html = "<Br>" + input + label + ": " + value.toString() + "(" + (100 * value / total).round().toString() + "%)";
+    num average = 0;
+    if(total != 0) average = (100 * value / total).round(); //stop dividing by zero, dunkass.
+    String html = "<Br>" + input + label + ": $average%)";
     return html;
   }
 
