@@ -225,7 +225,7 @@ class JackBeginScheming extends Scene {
 			this.chatWithFriend(div,player1, player2);
 		}else if(player2 == player1){
 			//leader gossips with friends
-			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players), (){});
+			player2 = player1.getBestFriendFromList(findLivingPlayers(this.session.players));
 			if(player2 == null){
 				div.appendHtml(this.content(), treeSanitizer: NodeTreeSanitizer.trusted);
 				return;

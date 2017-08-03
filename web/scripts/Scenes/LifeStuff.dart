@@ -182,7 +182,7 @@ class LifeStuff extends Scene {
 
         if (ghost != null && ghost.causeOfDeath.contains(player.titleBasic())) {
             ghostName = "murder victim";
-            print("The ${player.title()} did cause: ${ghost.causeOfDeath} ${this.session.session_id.toString()}");
+            print("The ${player.title()} did cause: ${ghost.causeOfDeath} ${this.session.session_id}");
         }
 
         if (ghost != null && !player.ghostPacts.contains(ghost) && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
@@ -190,12 +190,12 @@ class LifeStuff extends Scene {
             String str = "The ${player.htmlTitle()} wanders a shifting and confusing landscape. They think they see a $ghostName? They must be dreaming.";
             String trait = whatDoPlayersHaveInCommon(player, ghost);
             if (ghostName == "murder victim") { //
-                print("dead murder victims freakouts ${this.session.session_id.toString()}");
+                print("dead murder victims freakouts ${this.session.session_id}");
                 str = "$str It's kind of freaking the ${player.htmlTitleBasic()} out a little. ";
                 player.addStat("sanity", -10);
                 player.flipOutReason = "being haunted by the ghost of the Player they killed";
             } else if (ghostName == "less fortunate alternate self") {
-                print("dead alt selves freakouts ${this.session.session_id.toString()}");
+                print("dead alt selves freakouts ${this.session.session_id}");
                 str = "$str It's kind of freaking the ${player.htmlTitleBasic()} out a little. ";
                 player.addStat("sanity", -10);
                 player.flipOutReason = "being haunted by their own ghost";
@@ -267,7 +267,7 @@ class LifeStuff extends Scene {
     String ghostPsionics(Player player) {
         String psychicPowers = player.canGhostCommune();
         if (psychicPowers != null) {
-            print("use psychic powers to commune with ghosts in session: ${this.session.session_id.toString()}");
+            print("use psychic powers to commune with ghosts in session: ${this.session.session_id}");
             return " The ${player.htmlTitleBasic()} uses their $psychicPowers. ";
         } else {
             return "";
@@ -276,7 +276,7 @@ class LifeStuff extends Scene {
 
     CanvasElement drawDreamBubbleH(Element div, Player player, Player ghost) {
         String canvasId = "${div.id}commune_${player.chatHandle}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -299,7 +299,7 @@ class LifeStuff extends Scene {
 
     CanvasElement drawCommuneDead(Element div, Player player, Player ghost) {
         String canvasId = "${div.id}commune_${player.chatHandle}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -313,9 +313,9 @@ class LifeStuff extends Scene {
     }
 
     CanvasElement drawDrainDead(Element div, Player player, Player ghost, bool long) {
-        print("drain dead in: ${this.session.session_id.toString()}");
+        print("drain dead in: ${this.session.session_id}");
         String canvasId = "${div.id}commune_${player.chatHandle}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
@@ -348,7 +348,7 @@ class LifeStuff extends Scene {
             player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
             String effect = "";
             if (player.aspect == ghost.aspect && !ghost.fraymotifs.isEmpty && player.id != ghost.id) { //don't just relearn your own fraymotifs.
-                print("player learning fraymotifs from a ghost ${this.session.session_id.toString()}");
+                print("player learning fraymotifs from a ghost ${this.session.session_id}");
                 player.fraymotifs.addAll(ghost.fraymotifs); //copy not reference
                 effect = "They learn ${turnArrayIntoHumanSentence(ghost.fraymotifs)} from the $ghostName. ";
             } else {
@@ -508,7 +508,7 @@ class LifeStuff extends Scene {
         //print("Turning on dream bubble afterlife: " + this.session.session_id);
         this.session.dreamBubbleAfterlife = true;
         String canvasId = "${div.id}horror_terrors_${player.chatHandle}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));

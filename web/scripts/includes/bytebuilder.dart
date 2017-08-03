@@ -197,7 +197,7 @@ class ByteReader {
 	/// The bit length read depends upon the encoded number.
 	///
 	/// [Wikipedia reference](https://en.wikipedia.org/wiki/Exponential-Golomb_coding)
-	int readExpGolomb(int i) {
+	int readExpGolomb() {
 		int bits = 0;
 
 		while (true) {

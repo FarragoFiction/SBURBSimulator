@@ -460,7 +460,7 @@ class Session {
 		this.currentSceneNum ++;
 		String div;
 		if(this.sbahj){
-			div = "<div class = 'scene' id='scene${this.currentSceneNum.toString()}' style='";
+			div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
 			div += "background-color: #00ff00;";
 			div += "font-family: Comic Sans MS, cursive, sans-serif;";
 			//querySelector("#scene"+this.currentSceneNum).css("background-color", "#00ff00");
