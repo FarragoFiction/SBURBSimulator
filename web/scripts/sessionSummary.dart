@@ -537,15 +537,15 @@ class MultiSessionSummary {
     }
   }
 
-  void integrateClasses(miniPlayers) {
+  void integrateClasses(List<Map> miniPlayers) {
     for (num i = 0; i < miniPlayers.length; i++) {
-      this.classes[miniPlayers[i].class_name] ++;
+      this.classes[miniPlayers[i]["class_name"]] ++;
     }
   }
 
-  void integrateAspects(miniPlayers) {
+  void integrateAspects(List<Map> miniPlayers) {
     for (num i = 0; i < miniPlayers.length; i++) {
-      this.aspects[miniPlayers[i].aspect] ++;
+      this.aspects[miniPlayers[i]["aspect"]] ++;
     }
   }
 
@@ -656,7 +656,9 @@ class MultiSessionSummary {
   String generateHTMLForClassPropertyCorpseParty(String label, num value, num total) {
     //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
     String input = "<input type='checkbox' name='CorpsefilterClass' value='" + label + "' id='" + label + "'>";
-    String html = "<Br>" + input + label + ": " + value.toString() + "(" + (100 * value / total).round().toString() + "%)";
+    int average = 0;
+    if(total != 0) average = (100 * value / total).round();
+    String html = "<Br>" + input + label + ": " + value.toString() + "($average%)";
     return html;
   }
 
@@ -711,7 +713,7 @@ class MultiSessionSummary {
       "Doom": 0
     };
     var corpseParty = {}; //now to refresh my memory on how javascript hashmaps work;
-    html += "<br><b>  Number of Ghosts: </b>: " + filteredGhosts.length;
+    html += "<br><b>  Number of Ghosts: </b>: " + filteredGhosts.length.toString();
     for (num i = 0; i < filteredGhosts.length; i++) {
       var ghost = filteredGhosts[i];
       if (ghost.causeOfDeath.startsWith("fighting against the crazy")) {
