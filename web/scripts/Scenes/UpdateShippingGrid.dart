@@ -574,9 +574,9 @@ class UpdateShippingGrid extends Scene{
 			if(this.chosenShipper.player == player || this.chosenShipper.player == target) return false; // you can't be in a quadrant with yourself, dunkass.
 			int reasonsFor = 1; //come on, you know you like them.
 			int reasonsAgainst = 0;
-			reasonsFor += player.getClubs().length; //I am already in a relationship, so I should stop being black for them.
-			reasonsFor += target.getClubs().length; //they are already in a relationship, so i should stop being black for them.
-			if(player.getClubs().length == 0) reasonsFor ++; //I am single
+			reasonsFor += player.getSpades().length; //I am already in a relationship, so I should stop being black for them.
+			reasonsFor += target.getSpades().length; //they are already in a relationship, so i should stop being black for them.
+			if(player.getSpades().length == 0) reasonsAgainst ++; //I am single
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getWorstEnemyFromList(this.session.players) == target) reasonsFor += 5; //I REALLY like them.
 			Relationship r = player.getRelationshipWith(this.chosenShipper.player);
