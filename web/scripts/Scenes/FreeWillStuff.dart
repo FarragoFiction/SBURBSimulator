@@ -353,7 +353,7 @@ class FreeWillStuff extends Scene{
 			if(rage < -3) ret = "The " + patsy.htmlTitle() + " seems to be upset about this, underneath the control.";
 			if(rage < -9) ret = "The " + patsy.htmlTitle() + " is barely under control. They seem furious. ";
 			//make snapshot of state so they can maybe break free later.
-			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);  //but don't save state if ALREADY controlled.
+			if(patsy.stateBackup == null) patsy.stateBackup = new MiniSnapShot(patsy);  //but don't save state if ALREADY controlled.
 			for(num i = 0; i< enemies.length; i++){
 				Player enemy = enemies[i];
 				if(enemy != patsy){//maybe i SHOULD reneable self-relationships. maybe you hate yourself? try to kill yourself?
@@ -511,7 +511,7 @@ class FreeWillStuff extends Scene{
 		    print(player.title() + " controlling murderer to make them placid ${this.session.session_id}");
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(murderer, this.session.availablePlayers);
-			if(!murderer.stateBackup) murderer.stateBackup = new MiniSnapShot(murderer);
+			if(murderer.stateBackup == null) murderer.stateBackup = new MiniSnapShot(murderer);
 			murderer.nullAllRelationships();
 			murderer.unmakeMurderMode();
 			murderer.setStat("sanity", 100);
@@ -571,18 +571,18 @@ class FreeWillStuff extends Scene{
 	String sendPatsyAfterMurderer(Player player, Player murderer){
 		Player patsy = player.getWorstEnemyFromList(this.session.availablePlayers);
 		if(patsy != null && !patsy.dead && patsy != murderer && patsy.getStat("freeWill")  < player.getStat("freeWill") ){  //they exist and I don't already control them.
-			if(!patsy.stateBackup) patsy.stateBackup = new MiniSnapShot(patsy);
+			if(patsy.stateBackup == null) patsy.stateBackup = new MiniSnapShot(patsy);
 			//print(player.title() + " controlling player to kill murderer. " + this.session.session_id)
 			patsy.nullAllRelationships();
 			Relationship r = patsy.getRelationshipWith(murderer);
-			r.value = -100;;
+			r.value = -100;
 			r.saved_type = r.badBig;
 			r.old_type = r.saved_type; //no drama on my end.
 			patsy.makeMurderMode();
 			removeFromArray(player, this.session.availablePlayers);
 			removeFromArray(patsy, this.session.availablePlayers);
 			patsy.setStat("sanity", -100);
-			patsy.flipOut(" how they are being forced to try to kill the " + murderer.htmlTitleBasic());
+			patsy.flipOut(" how they are being forced to try to kill the ${murderer.htmlTitleBasic()}");
 			patsy.influenceSymbol = this.getInfluenceSymbol(player);
 			patsy.influencePlayer = player;
 			patsy.getRelationshipWith(player).value += (player.getStat("freeWill") - patsy.getStat("freeWill")*2);  //might love or hate you during this.

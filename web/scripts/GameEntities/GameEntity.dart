@@ -198,14 +198,14 @@ class GameEntity implements Comparable<GameEntity> {
         num mine = getStat("sanity");
         num theirs = getAverageSanity(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-            print("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id.toString()}");
+            print("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but they are too crazy to focus. ");
             return false;
         }
         mine = getStat("freeWill");
         theirs = getAverageFreeWill(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-            print("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id.toString()}");
+            print("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but Fate dictates otherwise. ");
             return false;
         }
@@ -280,20 +280,20 @@ class GameEntity implements Comparable<GameEntity> {
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
         //print("gonna roll for luck.");
         if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
-            print("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id.toString()}");
+            print("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
             offense.addStat("currentHP", -1 * offense.getStat("power") / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return;
         } else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
-            print("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id.toString()}");
+            print("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
         }
         //mobility dodge
         int r = this.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
         if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 && r > 25) {
-            print("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id.toString()}");
+            print("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
             if (defense.getStat("currentHP") > 0) {
                 ret = "$ret. They miss so hard the ${defense.htmlTitleHP()} has plenty of time to get a counterattack in.";
@@ -339,7 +339,7 @@ class GameEntity implements Comparable<GameEntity> {
     void reviveViaGhostPact(Element div) {
         List<dynamic> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
         if (!undrainedPacts.isEmpty) {
-            print("using a pact to autorevive in session ${this.session.session_id.toString()}");
+            print("using a pact to autorevive in session ${this.session.session_id}");
             Player source = undrainedPacts[0][0];
             source.causeOfDrain = name;
             String ret = " In the afterlife, the ${htmlTitleBasic()} reminds the ${source.htmlTitleBasic()} of their promise of aid. The ghost agrees to donate their life force to return the ${htmlTitleBasic()} to life ";
@@ -503,7 +503,7 @@ class GameEntity implements Comparable<GameEntity> {
         String pname = this.name;
         if (pname == "Yaldabaoth") {
             List<String> misNames = <String>[ 'Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner', 'Yodelboth'];
-            print("Yaldobooger!!! ${this.session.session_id.toString()}");
+            print("Yaldobooger!!! ${this.session.session_id}");
             pname = this.session.rand.pickFrom(misNames);
         }
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
