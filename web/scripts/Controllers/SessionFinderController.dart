@@ -205,12 +205,16 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     s.trigger(curSessionGlobalVar.players);
     s.renderContent(curSessionGlobalVar.newScene());
     if(!curSessionGlobalVar.doomedTimeline){
+      print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
     }else{
+      print("debugging AB: no reckoning, doomed timeline for ${curSessionGlobalVar.session_id}");
       if(needToScratch){
+        print("debugging AB: scratch ${curSessionGlobalVar.session_id}");
         scratchAB(curSessionGlobalVar);
         return null;
       }
+      print("debugging AB: no scratch ${curSessionGlobalVar.session_id}");
       ////print("doomed timeline prevents reckoning");
       List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
       if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
@@ -219,6 +223,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       }
 
     }
+    print("debugging AB: should never get here ${curSessionGlobalVar.session_id}");
   }
 
   @override
