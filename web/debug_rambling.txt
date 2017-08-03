@@ -2408,3 +2408,164 @@ She prints:
 
 That else i added is literally never printing out. what the hell. So...is it stopping in a timeline doomed even before the king fight?
 
+It doesn't seem like it....
+
+
+oooo fuck. wait, nevermind.
+
+VM46:1 debugging AB: reckoning tick for 3725716184
+VM46:1 debugging AB: about to see if i should summarize session 3725716184
+VM46:1 debugging AB: victory or utter defeat in session session 3725716184
+VM46:1 debugging AB: reckoning tick for 4218245970
+VM46:1 debugging AB: about to see if i should summarize session 4218245970
+VM46:1 debugging AB: victory or utter defeat in session session 4218245970
+2VM46:1 debugging AB: reckoning tick for 1976868187
+VM46:1 debugging AB: about to see if i should summarize session 1976868187
+VM46:1 debugging AB: victory or utter defeat in session session 1976868187
+4VM46:1 debugging AB: should never get here 1976868187
+
+so 4x AB should never get here at the end... okay, let's run a few more sessions see if that's always why she stops.
+(and also, session id matches the one for "victory or utter defeat")...might just mean i was wrong
+that ab can't get there. look at that first...yeah, didn't have a return statment after summarize)
+
+Yeah, that was a a false positive. more debug statements.
+
+Debugging AB: Starting session 2947509373
+VM130:1 debugging AB: reckoning tick for 2947509373
+VM130:1 Debugging AB: Summarizing session 2947509373
+VM130:1 Debugging AB: Starting session 3168072245
+VM130:1 debugging AB: reckoning tick for 3168072245
+
+so it does reckoning, but nothing else....okay, back to there.
+
+okay, same set of sessions, more debug statements:
+
+Debugging AB: Starting session 2947509373
+VM174:1 debugging AB: reckoning tick for 2947509373
+11VM174:1 Debugging AB: reckoning tick in session: curSessionGlobalVar.session_id
+VM174:1 Debugging AB: Aftermath in session: curSessionGlobalVar.session_id
+VM174:1 Debugging AB: Summarizing session 2947509373
+VM174:1 Debugging AB: Starting session 3168072245
+VM174:1 debugging AB: reckoning tick for 3168072245
+11VM174:1 Debugging AB: reckoning tick in session: curSessionGlobalVar.session_id
+VM174:1 Debugging AB: Aftermath in session: curSessionGlobalVar.session_id
+
+nothing looks wrong.  Look at aftermath more closely
+
+Okay. I notice I am confused. AB is in the aftermath and somehow does NOTHING in it. none of the paths
+are lighting up.
+
+make a debug stament RIGHT after that aftermath line.
+
+...I see nothing. Either that print sttment has a copy somewhere....or the srver needs restarted.
+The vm doesn't let me see wehre these print statements are coming from, so look for the words in source.
+
+also restart server just in case. yeah, that did nothing. okay.
+
+a search of source reveals no others and also...changing the content of that debugging line shows up.
+Is it...CRASHING between the lines? fuck. why is it not being caught.can only one crash be caught per page or some shit?
+
+Okay, that aftermath was a false positive. there's plenty of non-aftermath sessions she's not returning from. yes,
+it can be important to focus on specific results but...what do they have in common.
+
+Some of them end on a crash. Haven't seen more than 1 crash ever, but have seen zero crash.
+So that debunks my "can only recover from a crash once" hypothetsis.
+
+Okay, here's something I haven't tried.  Is it something to do with SESSIONS, or with AB.
+Take a session that dies, and run it as the first session she tries.
+
+Fuck okay, that gives me interesting results.
+
+AB took a session that stopped her previously, and ran 4 new sessions from it.
+The session that stopped her was  crash.
+
+Try again.
+
+Ended with: Debugging AB: Starting session 3985658339
+
+then put that as the first session and...
+
+Debugging AB: Starting session 3985658339
+VM371:1 Debugging AB: corruption msg in session: 3985658339
+VM371:1 Debugging AB: trying to recover from corruption now.
+VM371:1 Debugging AB: Summarizing session 3985658339
+VM371:1 Debugging AB: Starting session 1128973609
+
+
+so is the final session always corrupt?  again
+
+
+
+Debugging AB: Starting session 1128973609
+VM401:1 Debugging AB: corruption msg in session: 1128973609
+VM401:1 Debugging AB: trying to recover from corruption now.
+VM401:1 Debugging AB: Summarizing session 1128973609
+VM401:1 Debugging AB: Starting session 2919195549
+VM401:1 debugging AB: reckoning tick for 2919195549
+11VM401:1 Debugging AB: reckoning tick in session:  2919195549
+VM401:1 Debugging AB: Aftermath in session:  2919195549
+VM401:1 Debugging AB:made aftermath session:  2919195549
+VM401:1 Debugging AB: triggered Aftermath in session:  2919195549
+VM401:1 Debugging AB: done with Aftermath in session:  2919195549
+VM401:1 Debugging AB: not a combo in session:  2919195549
+VM401:1 Debugging AB: going to scratch in session: curSessionGlobalVar.session_id
+VM401:1 debugging AB: reckoning tick for 2919195549
+11VM401:1 Debugging AB: reckoning tick in session:  2919195549
+VM401:1 Debugging AB: Aftermath in session:  2919195549
+VM401:1 Debugging AB:made aftermath session:  2919195549
+VM401:1 Debugging AB: triggered Aftermath in session:  2919195549
+VM401:1 Debugging AB: done with Aftermath in session:  2919195549
+VM401:1 Debugging AB: not a combo in session:  2919195549
+VM401:1 debugging AB: about to see if i should summarize session 2919195549
+VM401:1 debugging AB: victory or utter defeat in session session 2919195549
+VM401:1 Debugging AB: Summarizing session 2919195549
+11VM401:1 Debugging AB: should neever get here, should be combo or scratch or victory or SOMEThing.
+VM401:1 debugging AB: should never get here 2919195549
+10VM401:1 Debugging AB: should neever get here, should be combo or scratch or victory or SOMEThing.
+VM401:1 debugging AB: should never get here 2919195549
+
+
+
+whoa, that's new. don't normally get to "should never get here" and it got there....twice?
+and the session it ended on WAS corrupt...
+
+first, look into "should never get here".
+
+Okay, that could be on me. looks like if they manage to reckoning tick they'll get to at least one of those.
+
+I finally got one that freezes stand alone AND with multiple.
+
+no crash.
+
+2919195549
+
+
+it prints out:
+
+Debugging AB: Starting session 2919195549
+VM469:1 debugging AB: reckoning tick for 2919195549
+11VM469:1 Debugging AB: reckoning tick in session:  2919195549
+VM469:1 Debugging AB: Aftermath in session:  2919195549
+VM469:1 Debugging AB:made aftermath session:  2919195549
+VM469:1 Debugging AB: triggered Aftermath in session:  2919195549
+VM469:1 Debugging AB: done with Aftermath in session:  2919195549
+VM469:1 Debugging AB: not a combo in session:  2919195549
+VM469:1 Debugging AB: going to scratch in session: curSessionGlobalVar.session_id
+VM469:1 debugging AB: reckoning tick for 2919195549
+11VM469:1 Debugging AB: reckoning tick in session:  2919195549
+VM469:1 Debugging AB: Aftermath in session:  2919195549
+VM469:1 Debugging AB:made aftermath session:  2919195549
+VM469:1 Debugging AB: triggered Aftermath in session:  2919195549
+VM469:1 Debugging AB: done with Aftermath in session:  2919195549
+VM469:1 Debugging AB: not a combo in session:  2919195549
+VM469:1 debugging AB: about to see if i should summarize session 2919195549
+VM469:1 debugging AB: victory or utter defeat in session session 2919195549
+VM469:1 Debugging AB: Summarizing session 2919195549
+
+
+...There are TWO aftermaths for the same session. Is this normal?  Oh, it scratched.
+
+huh.
+
+and i have code that says "if you already saw this session, don't do anything with it."
+maybe that code used to be broken? what if i just....commented....it out?

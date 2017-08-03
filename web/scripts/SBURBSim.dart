@@ -136,6 +136,7 @@ int getRandomSeed() {
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(ErrorEvent e) {
+    print("Debugging AB: corruption msg in session: ${curSessionGlobalVar.session_id}");
     Element story = querySelector("#story");
 
     String msg = e.message;
@@ -211,7 +212,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     renderAfterlifeURL();
 
     print("Corrupted session: ${scratchedLineageText(curSessionGlobalVar.getLineage())} helping AB return, if she is lost here.");
-    print("trying to recover from corruption now.");
+    print("Debugging AB: trying to recover from corruption now.");
     SimController.instance.recoverFromCorruption();
 
     return false; //if i return true here, the real error doesn't show up;

@@ -207,6 +207,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     if(!curSessionGlobalVar.doomedTimeline){
       print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
+      return null;
     }else{
       print("debugging AB: no reckoning, doomed timeline for ${curSessionGlobalVar.session_id}");
       if(needToScratch){
@@ -220,29 +221,41 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
         //print("doomed scratched timeline");
         summarizeSession(curSessionGlobalVar);
+        return null;
       }
 
     }
-    print("debugging AB: should never get here ${curSessionGlobalVar.session_id}");
+    print("debugging AB: should never get here from reckoning, should either tick or ${curSessionGlobalVar.session_id}");
   }
 
   @override
     void reckoningTick() {
-
+    print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
     //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
       //TODO readd timeout, maybe (i think i was calling it with time of 0 b4
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
       reckoningTick();
+      return null;
     }else{
+      print("Debugging AB: Aftermath in session:  ${curSessionGlobalVar.session_id}");
       Scene s = new Aftermath(curSessionGlobalVar);
+      print("Debugging AB:made aftermath session:  ${curSessionGlobalVar.session_id}");
+
       s.trigger(curSessionGlobalVar.players);
+      print("Debugging AB: triggered Aftermath in session:  ${curSessionGlobalVar.session_id}");
+
       s.renderContent(curSessionGlobalVar.newScene());
+      print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
       if(curSessionGlobalVar.makeCombinedSession == true){
+        print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id}");
         processCombinedSession();  //make sure everything is done rendering first
+        return null;
       }else{
+        print("Debugging AB: not a combo in session:  ${curSessionGlobalVar.session_id}");
         if(needToScratch){
+          print("Debugging AB: going to scratch in session: curSessionGlobalVar.session_id");
           scratchAB(curSessionGlobalVar);
           return null;
         }
@@ -251,13 +264,15 @@ class SessionFinderController extends SimController { //works exactly like Sim u
         if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
           print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
           summarizeSession(curSessionGlobalVar);
+          return null;
         }else {
           print("debugging AB: I think i should not summarize session ${curSessionGlobalVar.session_id}, won is ${curSessionGlobalVar.won} living is ${living.length} and scratched is ${curSessionGlobalVar.scratched}");
+          return null;
         }
       }
     }
 
-
+    print("Debugging AB: should neever get here, should be combo or scratch or victory or SOMEThing.");
   }
 
 
@@ -281,10 +296,11 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   //stripped out tournament stuff, that'll be a different controller.
   void summarizeSession(Session session) {
+    print("Debugging AB: Summarizing session ${session.session_id}");
     //print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
-    if(sessionsSimulated.indexOf(session.session_id) != -1){
-      print("should be skipping a repeat session: " + curSessionGlobalVar.session_id.toString());
+    if(sessionsSimulated.indexOf(session.session_id) != -1 && !session.scratched){ //scratches are allowed to be repeats
+      print("Debugging AB: should be skipping a repeat session: " + curSessionGlobalVar.session_id.toString());
       return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
@@ -303,7 +319,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
     if(numSimulationsDone >= numSimulationsToDo){
       (querySelector("#button")as ButtonElement).disabled =false;
-      print("I think I am done now");
+      print("Debugging AB: I think I am done now");
       window.alert("Notice: should be ready to check more sessions.");
       List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
@@ -311,9 +327,10 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       }
     }else{
       //TODO used to have a timeout here, do i really need to?
-        print("going to start new session");
+        print("Debugging AB: going to start new session");
         startSession();
     }
+    print("Debugging AB: done summarizing session ${curSessionGlobalVar.session_id}");
 
   }
 
