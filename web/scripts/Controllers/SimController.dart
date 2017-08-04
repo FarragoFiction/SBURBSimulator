@@ -287,6 +287,7 @@ abstract class SimController {
   }
 
   void tick() {
+    print("Debugging AB: tick");
     //TODO maybe readd timeout.
     //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
@@ -294,6 +295,7 @@ abstract class SimController {
       curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
       tick();
     }else{
+      print("Debugging AB: reckoning time.");
       reckoning();
     }
   }

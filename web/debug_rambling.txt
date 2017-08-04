@@ -2589,3 +2589,15 @@ Stop trying to find a single cause, just start putting out fires.
  ...
  ...
  pastJR, you dunkass. that's not a bool and dart cares about shit like that.
+
+ There is a chance that this is it, the bug I've been looking for. If she even CHECKS for a combo session she'd crash.
+ But of course, all my notes from last night don't show that she always ends looking at combo. Bluh. Still. Progresss.
+
+ Woo.
+
+ She made it one whole extra session. Godddamit. Clearly there is more.
+
+ (btw, seed i was testing was 3855200721)
+
+ Alright, new problem is starting session 3067887099.  It starts, and then I never see anything else print out,
+ not even the Reckoning.   Should I be as annoying as to check for ticks?
