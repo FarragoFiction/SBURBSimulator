@@ -2692,7 +2692,7 @@ Player findAspectPlayer(List<GameEntity> playerList, String aspect) {
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, String aspect) {
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
-        GameEntity g = playerList[i]; //could be a sprite
+        GameEntity g = playerList[i]; //could be a sprite, only work for player
         if (g is Player) {
             Player p = playerList[i];
             if (p.aspect == aspect) {
@@ -2707,7 +2707,7 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, String aspect) {
 
 Player getLeader(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
-        GameEntity g = playerList[i]; //could be a sprite
+        GameEntity g = playerList[i]; //leader MUST be player
         if (g is Player) {
             Player p = playerList[i];
             if (p.leader) {
@@ -2790,18 +2790,14 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
 
 
 //TODO shove this somewhere mroe useful, rename so not just players
-//Also Todo technically will not let you know if a sprite is dead. fuck.
-List<Player> findLivingPlayers(List<GameEntity>playerList) {
-    List<Player> ret = <Player>[];
+//take in a generic type as long as it extends generic and return a generic type, you get mix of sprites and players, returns that way.i hope
+List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
+  List<T> ret = new List<T>();
     for (int i = 0; i < playerList.length; i++) {
-      GameEntity g = playerList[i]; //could be a sprite
-      if (g is Player) {
-        Player p = playerList[i];
-        if (!p.dead) {
-          ret.add(p);
+        if (!playerList[i].dead) {
+          ret.add(playerList[i]);
         }
       }
-    }
     return ret;
 }
 
