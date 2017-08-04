@@ -923,15 +923,17 @@ class Player extends GameEntity {
         return this.class_name == "Prince" || this.class_name == "Bard" || this.class_name == "Witch" || this.class_name == "Sylph" || this.class_name == "Rogue" || this.class_name == "Thief";
     }
 
-    void associatedStatsInteractionEffect(Player player) {
+    //IMPORTANT, THE WHOLE POINT OF INTERACTION IS YOU CAN STEAL FROM ENEMIES *OR* ALLIES
+    //SO TAKE IN A GAMEENTITY HERE.
+    void associatedStatsInteractionEffect(GameEntity target) {
         if (this.hasInteractionEffect()) { //don't even bother if you don't have an interaction effect.
             for (num i = 0; i < this.associatedStats.length; i++) {
-                this.processStatInteractionEffect(player, this.associatedStats[i]);
+                this.processStatInteractionEffect(target, this.associatedStats[i]);
             }
         }
     }
 
-    void processStatInteractionEffect(Player player, AssociatedStat stat) {
+    void processStatInteractionEffect(GameEntity target, AssociatedStat stat) {
         num powerBoost = this.getStat("power") / 20;
         if (this.class_name == "Witch" || this.class_name == "Sylph") {
             powerBoost = powerBoost * 2; //sylph and witch get their primary boost here, so make it a good one.;
@@ -939,7 +941,7 @@ class Player extends GameEntity {
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
         if (this.class_name == "Rogue" || this.class_name == "Thief") {
             powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
-            player.modifyAssociatedStat((-1 * powerBoost), stat);
+            target.modifyAssociatedStat((-1 * powerBoost), stat);
             if (this.isActive()) { //modify me
                 this.modifyAssociatedStat(powerBoost, stat);
             } else { //modify others.
@@ -951,17 +953,17 @@ class Player extends GameEntity {
             if (this.isActive()) { //modify me
                 this.modifyAssociatedStat(powerBoost, stat);
             } else { //modify others.
-                player.modifyAssociatedStat(powerBoost, stat);
+                target.modifyAssociatedStat(powerBoost, stat);
             }
         }
     }
 
     @override
-    void interactionEffect(GameEntity player) {
-        this.associatedStatsInteractionEffect(player);
+    void interactionEffect(GameEntity target) {
+        this.associatedStatsInteractionEffect(target);
 
         //no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
-        Relationship r1 = this.getRelationshipWith(player);
+        Relationship r1 = this.getRelationshipWith(target);
         if (r1 != null) {
             r1.moreOfSame();
         }
