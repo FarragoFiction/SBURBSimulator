@@ -1426,25 +1426,25 @@ class Player extends GameEntity {
     }
 
     @override
-    List<GameEntity> getFriendsFromList(List<GameEntity> potentialFriends) {
-        List<GameEntity> ret = <GameEntity>[];
+    List<Player> getFriendsFromList(List<GameEntity> potentialFriends) {
+        List<Player> ret = <Player>[];
         for (num i = 0; i < potentialFriends.length; i++) {
             GameEntity p = potentialFriends[i];
-            if (p != this) {
+            if (p != this && p is Player) { //TODO sorry bro, npcs will be allies or some shit
                 Relationship r = this.getRelationshipWith(potentialFriends[i]);
                 if (r != null && r.value > 0) {
-                    ret.add(p);
+                    ret.add(p as Player);
                 }
             }
         }
         return ret;
     }
 
-    List<GameEntity> getEnemiesFromList(List<GameEntity> potentialEnemies) {
-        List<GameEntity> ret = <GameEntity>[];
+    List<Player> getEnemiesFromList(List<GameEntity> potentialEnemies) {
+        List<Player> ret = <Player>[];
         for (num i = 0; i < potentialEnemies.length; i++) {
             GameEntity p = potentialEnemies[i];
-            if (p != this) {
+            if (p != this && p is Player) { //sorry bro, GameEntities will be "bad guys" or some shit
                 Relationship r = this.getRelationshipWith(potentialEnemies[i]);
                 if (r.value < 0) {
                     ret.add(p);

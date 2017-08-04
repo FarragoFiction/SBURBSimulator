@@ -2569,3 +2569,8 @@ huh.
 
 and i have code that says "if you already saw this session, don't do anything with it."
 maybe that code used to be broken? what if i just....commented....it out?
+
+~~~~~~~~
+
+Okay, fresh day, fresh start. What is AB doing right now.  Okay. Crashing on the "Type GameEntity is not subtype of Player" thing
+I thought PL talked me through fixing. Restart server.
