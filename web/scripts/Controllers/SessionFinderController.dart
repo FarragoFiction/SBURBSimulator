@@ -38,6 +38,8 @@ void checkSessions() {
   self.checkSessions();
 }
 
+
+//todo remove these if it turns out i can onclick to instance method
 void toggleCorpse(){
   self.toggleCorpse();
 }
@@ -395,11 +397,36 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     return quip;
   }
 
+  //none can be inline anymore
+  void wireUpAllCheckBoxesAndButtons(Mu) {
+    wireUpAllFilters();
+    wireUpAllButtons();
+  }
+
+  void wireUpAllFilters() {
+    //except for corpse party apparently
+    //todo grab all filters, wire up to: onchange='filterSessionSummaries()
+    //probably grab filtesr same way you do to evealuate them. but ....how to make sure not corpse party?
+  }
+
+
+  //can't be in session summary cuz needs globals only found here, or instance methods only found here.
+  void wireUpAllButtons() {
+  //todo need to show hide buttons, i think through setting a var in SimController.dart?
+  querySelector("#corpseButton").onClick.listen((e) => self.toggleCorpse());
+  querySelector("#romanceButton").onClick.listen((e) => self.toggleRomance());
+  querySelector("#dramaButton").onClick.listen((e) => self.toggleDrama());
+  querySelector("#miscButton").onClick.listen((e) => self.toggleMisc());
+  querySelector("#endingButton").onClick.listen((e) => self.toggleEnding());
+  querySelector("#averageButton").onClick.listen((e) => self.toggleAverage());
+  }
+
   void printStats(List<String> filters, List<String> classes, List<String> aspects) {
     var mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     print("MMS is: ${mms.num_stats}");
     querySelector("#stats").setInnerHtml(mms.generateHTML());
-    mms.wireUpAllCheckBoxesAndButtons();
+    mms.wireUpCorpsePartyCheckBoxes();
+    wireUpAllCheckBoxesAndButtons();
 
     if(displayMisc) show(querySelector('#multiSessionSummaryMisc'));  //memory. don't always turn off when making new ones.
     if(!displayMisc) hide(querySelector('#multiSessionSummaryMisc'));

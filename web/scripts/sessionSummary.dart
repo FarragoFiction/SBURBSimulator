@@ -674,23 +674,7 @@ class MultiSessionSummary {
     that.wireUpCorpsePartyCheckBoxes();
   }
 
-  //none can be inline anymore
-  void wireUpAllCheckBoxesAndButtons() {
-      print("TODO: wire up all checkboxes");
-      wireUpCorpsePartyCheckBoxes();
-      wireUpAllFilters();
-      wireUpAllButtons();
-  }
 
-  void wireUpAllFilters() {
-      //except for corpse party apparently
-     //todo grab all filters, wire up to: onchange='filterSessionSummaries()
-    //probably grab filtesr same way you do to evealuate them. but ....how to make sure not corpse party?
-  }
-
-  void wireUpAllButtons() {
-      //todo need to show hide buttons, i think through setting a var in SimController.dart?
-  }
 
   void wireUpCorpsePartyCheckBoxes() {
     //i know what the labels are, they are just the classes and aspects.
@@ -753,7 +737,7 @@ class MultiSessionSummary {
   }
 
   String generateCorpsePartyHTML(filteredGhosts) {
-    String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button onclick='toggleCorpse()'>Toggle View </button>";
+    String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button id = 'corpseButton'' onclick='toggleCorpse()'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryCorpseParty'>";
     html += this.generateCorpsePartyInnerHTML(filteredGhosts);
     html += "</div></div>";
@@ -901,7 +885,6 @@ class MultiSessionSummary {
         propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
   }
 
-  //TODO do i still need this one, this was mostly so i wouldn't try to print out functions
   bool isPropertyToIgnore(String propertyName) {
     if (propertyName == "totalLivingPlayers" ||
         propertyName == "survivalRate" || propertyName == "ghosts" ||
