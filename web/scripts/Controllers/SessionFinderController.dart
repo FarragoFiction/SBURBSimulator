@@ -398,7 +398,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   //none can be inline anymore
-  void wireUpAllCheckBoxesAndButtons(Mu) {
+  void wireUpAllCheckBoxesAndButtons() {
     wireUpAllFilters();
     wireUpAllButtons();
   }
