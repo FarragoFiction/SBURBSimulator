@@ -12,11 +12,11 @@
         Done (but with Bugs)
         <ul>
                     <li class = 'shitdone'>Simulator </li>
+                    <li class = 'shitdone'>AB </li>
 
         </ul>
          Not Done
          <ul>
-                     <li class = 'notdone'>AB </li>
                      <li class = 'notdone'>Artist/AB Newsposts</li>
                      <li class = 'notdone'>OC Creator/Viewer </li>
                      <li class = 'notdone'>Image Gallery </li>
