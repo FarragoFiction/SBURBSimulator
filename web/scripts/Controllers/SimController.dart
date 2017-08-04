@@ -23,7 +23,6 @@ abstract class SimController {
       tick();//NOW start ticking
       return;
     }
-    //TODO maybe readd timeout
     var s = new Intro(curSessionGlobalVar);
     var p = curSessionGlobalVar.players[player_index];
     //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
@@ -32,7 +31,7 @@ abstract class SimController {
     s.renderContent(curSessionGlobalVar.newScene(),player_index); //new scenes take care of displaying on their own.
     curSessionGlobalVar.processScenes(playersInMedium);
     player_index += 1;
-    callNextIntro(player_index);
+    new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
   }
 
   void checkSGRUB() {
@@ -159,10 +158,9 @@ abstract class SimController {
   void reckoningTick() {
     //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
-      //TODO readd timeout, maybe (i think i was calling it with time of 0 b4
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-      reckoningTick();
+      new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
     }else{
       Scene s = new Aftermath(curSessionGlobalVar);
       s.trigger(curSessionGlobalVar.players);
@@ -288,12 +286,11 @@ abstract class SimController {
 
   void tick() {
     print("Debugging AB: tick");
-    //TODO maybe readd timeout.
     //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
-      tick();
+      new Timer(new Duration(milliseconds: 10), () => tick()); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
     }else{
       print("Debugging AB: reckoning time.");
       reckoning();

@@ -234,10 +234,9 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
     //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
-      //TODO readd timeout, maybe (i think i was calling it with time of 0 b4
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-      reckoningTick();
+      new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
       return null;
     }else{
       print("Debugging AB: Aftermath in session:  ${curSessionGlobalVar.session_id}");
@@ -327,9 +326,8 @@ class SessionFinderController extends SimController { //works exactly like Sim u
           e.disabled = false;
       }
     }else{
-      //TODO used to have a timeout here, do i really need to?
         print("Debugging AB: going to start new session");
-        startSession();
+        new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
     }
     print("Debugging AB: done summarizing session ${curSessionGlobalVar.session_id}");
 

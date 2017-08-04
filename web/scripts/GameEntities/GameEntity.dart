@@ -581,6 +581,10 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     Random get rand => this.session.rand;
+
+  String title() {
+      return name; //players will override this
+  }
 }
 
 
