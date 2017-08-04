@@ -1,6 +1,7 @@
 import '../SBURBSim.dart';
 import '../navbar.dart';
 import 'dart:html';
+import 'dart:async';
 import 'dart:typed_data';
 import 'dart:collection';
 
