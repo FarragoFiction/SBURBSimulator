@@ -2812,8 +2812,9 @@ num getPartyPower(List<GameEntity> party) {
     return ret;
 }
 
-
-String getPlayersTitlesHP(List<Player> playerList) {
+//it says "players" but it won't let me refactor rename it
+//any game entity can be passed here, player is a legacy thing
+String getPlayersTitlesHP(List<GameEntity> playerList) {
     //print(playerList);
     if (playerList.isEmpty) {
         return "";
@@ -2825,8 +2826,9 @@ String getPlayersTitlesHP(List<Player> playerList) {
     return ret;
 }
 
-
-String getPlayersTitlesNoHTML(List<Player> playerList) {
+//it says "players" but it won't let me refactor rename it
+//any game entity can be passed here, player is a legacy thing
+String getPlayersTitlesNoHTML(List<GameEntity> playerList) {
     //print(playerList);
     if (playerList.isEmpty) {
         return "";
@@ -2838,8 +2840,9 @@ String getPlayersTitlesNoHTML(List<Player> playerList) {
     return ret;
 }
 
-
-String getPlayersTitles(List<Player> playerList) {
+//it says "players" but it won't let me refactor rename it
+//any game entity can be passed here, player is a legacy thing
+String getPlayersTitles(List<GameEntity> playerList) {
     //print(playerList);
     if (playerList.isEmpty) {
         return "";
@@ -2851,8 +2854,9 @@ String getPlayersTitles(List<Player> playerList) {
     return ret;
 }
 
-
-num partyRollForLuck(List<Player> players) {
+//it says "players" but it won't let me refactor rename it
+//any game entity can be passed here, player is a legacy thing
+num partyRollForLuck(List<GameEntity> players) {
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
         ret += players[i].rollForLuck();
