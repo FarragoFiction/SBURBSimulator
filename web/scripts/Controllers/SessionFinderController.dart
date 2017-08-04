@@ -184,14 +184,15 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   @override
   void processCombinedSession() {
-    var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
-    if(newcurSessionGlobalVar){
-      print("doing a combo session");
+    print("Debugging AB: Checking process combo session");
+    Session newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+    if(newcurSessionGlobalVar != null){
+      print("debugging AB: doing a combo session");
       curSessionGlobalVar = newcurSessionGlobalVar;
       appendHtml(querySelector("#story"),"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
       intro();
     }else{
-      print("can't combo, can't scratch. just do next session.");
+      print("Debugging AB: can't combo, can't scratch. just do next session.");
       needToScratch = false; //can't scratch if skaiai is a frog
       curSessionGlobalVar.makeCombinedSession = false;
       summarizeSession(curSessionGlobalVar);

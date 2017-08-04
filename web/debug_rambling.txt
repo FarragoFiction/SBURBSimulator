@@ -2574,3 +2574,18 @@ maybe that code used to be broken? what if i just....commented....it out?
 
 Okay, fresh day, fresh start. What is AB doing right now.  Okay. Crashing on the "Type GameEntity is not subtype of Player" thing
 I thought PL talked me through fixing. Restart server.
+
+Alright,I found a session where this is happening:
+
+Debugging AB: going to check for combo in session: 2094419576
+VM52:1 Debugging AB: Checking process combo session
+
+
+even though I theoretically have the two paths in combo session printing shit, neither thing happens.
+Stop trying to find a single cause, just start putting out fires.
+
+ if(newcurSessionGlobalVar){
+ ...
+ ...
+ ...
+ pastJR, you dunkass. that's not a bool and dart cares about shit like that.
