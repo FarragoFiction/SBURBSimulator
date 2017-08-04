@@ -412,13 +412,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   //can't be in session summary cuz needs globals only found here, or instance methods only found here.
   void wireUpAllButtons() {
-  //todo need to show hide buttons, i think through setting a var in SimController.dart?
-  querySelector("#corpseButton").onClick.listen((e) => self.toggleCorpse());
-  querySelector("#romanceButton").onClick.listen((e) => self.toggleRomance());
-  querySelector("#dramaButton").onClick.listen((e) => self.toggleDrama());
-  querySelector("#miscButton").onClick.listen((e) => self.toggleMisc());
-  querySelector("#endingButton").onClick.listen((e) => self.toggleEnding());
-  querySelector("#averageButton").onClick.listen((e) => self.toggleAverage());
+    if(querySelector("#corpseButton") != null) querySelector("#corpseButton").onClick.listen((e) => toggleCorpse());
+    if(querySelector("#romanceButton") != null) querySelector("#romanceButton").onClick.listen((e) => toggleRomance());
+    if(querySelector("#dramaButton") != null) querySelector("#dramaButton").onClick.listen((e) => toggleDrama());
+    if(querySelector("#miscButton") != null) querySelector("#miscButton").onClick.listen((e) => toggleMisc());
+    if(querySelector("#endingButton") != null) querySelector("#endingButton").onClick.listen((e) => toggleEnding());
+    if(querySelector("#averageButton") != null) querySelector("#averageButton").onClick.listen((e) => toggleAverage());
   }
 
   void printStats(List<String> filters, List<String> classes, List<String> aspects) {

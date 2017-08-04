@@ -737,7 +737,7 @@ class MultiSessionSummary {
   }
 
   String generateCorpsePartyHTML(filteredGhosts) {
-    String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button id = 'corpseButton'' onclick='toggleCorpse()'>Toggle View </button>";
+    String html = "<div class = 'multiSessionSummary'>Corpse Party: (filtering here will ONLY modify the corpse party, not the other boxes) <button id = 'corpseButton'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryCorpseParty'>";
     html += this.generateCorpsePartyInnerHTML(filteredGhosts);
     html += "</div></div>";
@@ -1020,7 +1020,7 @@ class MultiSessionSummary {
 
   dynamic generateRomanceHTML(List<String> properties) {
     print("TODO get rid of onclick for romance html");
-    String html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button onclick='toggleRomance()'>Toggle View </button>";
+    String html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button id = 'romanceButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryRomance' >";
     for (num i = 0; i < properties.length; i++) {
       String propertyName = properties[i];
@@ -1033,7 +1033,7 @@ class MultiSessionSummary {
 
   dynamic generateDramaHTML(properties) {
     print("TODO get rid of onclick for drama html");
-    String html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button onclick='toggleDrama()'>Toggle View </button>";
+    String html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button id = 'dramaButton'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryDrama' >";
     for (num i = 0; i < properties.length; i++) {
       String propertyName = properties[i];
@@ -1045,7 +1045,7 @@ class MultiSessionSummary {
 
   dynamic generateEndingHTML(properties) {
     print("TODO get rid of onclick for romance html");
-    String html = "<div class = 'topligned multiSessionSummary'>Ending: <button onclick='toggleEnding()'>Toggle View </button>";
+    String html = "<div class = 'topligned multiSessionSummary'>Ending: <button id = 'endingButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryEnding' >";
     for (num i = 0; i < properties.length; i++) {
       String propertyName = properties[i];
@@ -1057,7 +1057,7 @@ class MultiSessionSummary {
 
   dynamic generateMiscHTML(properties) {
     print("TODO get rid of onclick for romance html");
-    String html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button onclick='toggleMisc()'>Toggle View </button>";
+    String html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button id = 'miscButton'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryMisc' >";
     for (num i = 0; i < properties.length; i++) {
       String propertyName = properties[i];
@@ -1069,7 +1069,7 @@ class MultiSessionSummary {
 
   dynamic generateAverageHTML(properties) {
     print("TODO get rid of onclick for romance html");
-    String html = "<div class = 'topAligned multiSessionSummary' >Averages <button onclick='toggleAverage()'>Toggle View </button>";
+    String html = "<div class = 'topAligned multiSessionSummary' >Averages <button id = 'averageButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryAverage' >";
     for (num i = 0; i < properties.length; i++) {
       String propertyName = properties[i];
