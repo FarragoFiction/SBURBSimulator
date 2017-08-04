@@ -399,7 +399,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     var mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     print("MMS is: ${mms.num_stats}");
     querySelector("#stats").setInnerHtml(mms.generateHTML());
-    mms.wireUpCorpsePartyCheckBoxes();
+    mms.wireUpAllCheckBoxesAndButtons();
 
     if(displayMisc) show(querySelector('#multiSessionSummaryMisc'));  //memory. don't always turn off when making new ones.
     if(!displayMisc) hide(querySelector('#multiSessionSummaryMisc'));

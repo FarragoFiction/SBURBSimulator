@@ -674,6 +674,24 @@ class MultiSessionSummary {
     that.wireUpCorpsePartyCheckBoxes();
   }
 
+  //none can be inline anymore
+  void wireUpAllCheckBoxesAndButtons() {
+      print("TODO: wire up all checkboxes");
+      wireUpCorpsePartyCheckBoxes();
+      wireUpAllFilters();
+      wireUpAllButtons();
+  }
+
+  void wireUpAllFilters() {
+      //except for corpse party apparently
+     //todo grab all filters, wire up to: onchange='filterSessionSummaries()
+    //probably grab filtesr same way you do to evealuate them. but ....how to make sure not corpse party?
+  }
+
+  void wireUpAllButtons() {
+      //todo need to show hide buttons, i think through setting a var in SimController.dart?
+  }
+
   void wireUpCorpsePartyCheckBoxes() {
     //i know what the labels are, they are just the classes and aspects.
     var that = this;

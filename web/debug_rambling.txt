@@ -2609,4 +2609,20 @@ Stop trying to find a single cause, just start putting out fires.
  What now?
 
  i know i got those "todo" printouts, so go find them.  heh, intellij, this is a text file, why turn blue.
+There it is, in session summary.
 
+
+
+for checkboxes, the method is
+onchange='filterSessionSummaries()
+
+i do the same thing for every filter. can i make them all a class and just have all of them have the same onchange?
+how do i normally grab all the filters?
+
+okay, what about the toggle buttons, i think that just sets a formerly-global-variable?
+
+
+
+Open Questions:
+* How do I normally get "all the filter checkboxes" and can i leverage it to give them all the same onchange?
+*  How do I get the toggle buttons?
