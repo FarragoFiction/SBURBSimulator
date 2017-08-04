@@ -28,10 +28,10 @@ class YellowYard extends Scene {
 
 		time.influenceSymbol = "mind_forehead.png";
 		//String html = "<img src = 'images/yellow_yard.png'>";
-		String html = "<div id = '4thwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
+		String html = "<div id = 'fthwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
 		Session session = this.session;
 		appendHtml(div2, html);
-		querySelector("#4thwall").onClick.listen((Event e) {
+		querySelector("#fthwall").onClick.listen((Event e) {
 			//helloWorld();
 			String html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
