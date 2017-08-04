@@ -962,7 +962,7 @@ class MultiSessionSummary {
         endingProperties.add(propertyName);
       } else if (this.isAverageProperty(propertyName)) {
         averageProperties.add(propertyName);
-      } else  {  //TODO used to be !this.isPropertyToIgnore(propertyName)
+      } else if(!this.isPropertyToIgnore(propertyName)) {
         miscProperties.add(propertyName);
       }
     }

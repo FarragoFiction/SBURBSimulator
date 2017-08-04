@@ -2601,3 +2601,12 @@ Stop trying to find a single cause, just start putting out fires.
 
  Alright, new problem is starting session 3067887099.  It starts, and then I never see anything else print out,
  not even the Reckoning.   Should I be as annoying as to check for ticks?
+
+ ~~~
+ okay, hell fucking yes, AB is working.
+ But still isn't filtering because I made the filters inline and need to fix it.
+ So.
+ What now?
+
+ i know i got those "todo" printouts, so go find them.  heh, intellij, this is a text file, why turn blue.
+
