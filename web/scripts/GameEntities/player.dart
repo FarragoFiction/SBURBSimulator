@@ -2720,7 +2720,7 @@ Player getLeader(List<Player> playerList) {
 
 
 //in combo sessions, mibht be more than one rage player, for example.
-Player findClaspectPlayer(List<Player> playerList, String class_name, String aspect) {
+Player findClaspectPlayer(List<GameEntity> playerList, String class_name, String aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, and they don't have classpects.
         if (g is Player) {
@@ -2735,7 +2735,7 @@ Player findClaspectPlayer(List<Player> playerList, String class_name, String asp
 }
 
 
-Player findClassPlayer(List<Player> playerList, String class_name) {
+Player findClassPlayer(List<GameEntity> playerList, String class_name) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
@@ -2790,13 +2790,17 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
 
 
 //TODO shove this somewhere mroe useful, rename so not just players
-List<GameEntity> findLivingPlayers(List<GameEntity>playerList) {
-    List<GameEntity> ret = <GameEntity>[];
+//Also Todo technically will not let you know if a sprite is dead. fuck.
+List<Player> findLivingPlayers(List<GameEntity>playerList) {
+    List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
-        GameEntity p = playerList[i];
+      GameEntity g = playerList[i]; //could be a sprite
+      if (g is Player) {
+        Player p = playerList[i];
         if (!p.dead) {
-            ret.add(p);
+          ret.add(p);
         }
+      }
     }
     return ret;
 }

@@ -52,7 +52,7 @@ class Fraymotif {
 		//first check to see if all aspects are included in the allies array.
 		List<GameEntity> casters = [owner];
 		//List<dynamic> aspects = [];
-		List<Player> living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
+		List<GameEntity> living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
 		for(num i = 1; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
 			var a = this.aspects[i];
 			var p = owner.rand.pickFrom(findAllAspectPlayers(living, a));//ANY player that matches my aspect can do this.;
