@@ -207,11 +207,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     var params = window.location.href.substring(window.location.href.indexOf("?")+1);
     if (params == window.location.href) params = "";
     String html = "<div class = 'sessionSummary' id = 'summarizeSession" + this.session_id.toString() +"'>";
-    html += generateNumHTML();
-    html += generateBoolHTML();
-    html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
-    html += "<Br><b>mvp</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power").toString();
-    html += "<Br><b>Frog Level</b>: " + this.frogLevel.toString() + " (" + this.frogStatus +")";
+
     if(this.parentSession != null){
       html += this.decodeLineageGenerateHTML();
     }else{
@@ -220,6 +216,12 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
 
       html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + this.session_id.toString() + "&"+params+"'>" +this.session_id.toString() + scratch +  "</a>";
     }
+    html += generateNumHTML();
+    html += generateBoolHTML();
+    html += "<Br><b>Players</b>: " + getPlayersTitlesBasic(this.players);
+    html += "<Br><b>mvp</b>: " + this.mvp.htmlTitle() + " With a Power of: " + this.mvp.getStat("power").toString();
+    html += "<Br><b>Frog Level</b>: " + this.frogLevel.toString() + " (" + this.frogStatus +")";
+
 
     html += "</div><br>";
     return html;
