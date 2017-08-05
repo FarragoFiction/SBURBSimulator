@@ -93,7 +93,7 @@ class GameEntity implements Comparable<GameEntity> {
 
 
     //handles cloning generic stuff important because it's how a PLayer becomes a GameEntity (such as a PLayerSprite)
-    GameEntity clone() {
+    T clone<T extends GameEntity>() {
         GameEntity clonege = new GameEntity(name, session);
         clonege.setStatsHash(stats);
         clonege.fontColor = fontColor;
