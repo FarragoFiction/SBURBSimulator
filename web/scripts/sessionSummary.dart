@@ -498,13 +498,11 @@ class MultiSessionSummary {
  MultiSessionSummary() {
    //can switch order to change order AB displays in
    //if i don't initialize stats here, then AB won't bothe rlisting stats that are zero.
+    setStat("total",0);
+    setStat("totalDeadPlayers",0);
     setStat("timesAllDied",0);
     setStat("yellowYard",0);
     setStat("scratchAvailable",0);
-    setStat("crashedFromPlayerActions",0);
-    setStat("rocksFell",0);
-    setStat("opossumVictory",0);
-    setStat("crashedFromSessionBug",0);
     setStat("blackKingDead",0);
     setStat("luckyGodTier",0);
     setStat("choseGodTier",0);
@@ -555,6 +553,10 @@ class MultiSessionSummary {
     setStat("hasFreeWillEvents",0);
     setStat("scratched",0);
     setStat("won",0);
+    setStat("crashedFromPlayerActions",0);
+    setStat("rocksFell",0);
+    setStat("opossumVictory",0);
+    setStat("crashedFromSessionBug",0);
 
  }
 
