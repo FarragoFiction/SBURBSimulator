@@ -95,6 +95,11 @@ class GameEntity implements Comparable<GameEntity> {
     //handles cloning generic stuff important because it's how a PLayer becomes a GameEntity (such as a PLayerSprite)
     GameEntity clone () {
         GameEntity clonege = new GameEntity(name, session);
+        copyStatsToGameEntity(clonege);
+        return clonege;
+    }
+
+    void copyStatsToGameEntity(GameEntity clonege) {
         clonege.setStatsHash(stats);
         clonege.fontColor = fontColor;
         clonege.ghost = ghost; //if you are ghost, you are rendered spoopy style
@@ -114,8 +119,6 @@ class GameEntity implements Comparable<GameEntity> {
         clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
         clonege.causeOfDeath = causeOfDeath; //fill in every time you die. only matters if you're dead at end
         clonege.crowned = crowned; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
-
-        return clonege;
     }
 
     //as each type of entity gets renderable, override this.

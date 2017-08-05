@@ -379,11 +379,7 @@ class Player extends GameEntity {
         flipOut("their own doomed time clones");
     }
 
-    @override
-    Player clone() {
-      Player ret = super.clone();
-      return ret;
-    }
+
 
     @override
     void makeDead(String causeOfDeath) {
@@ -2936,7 +2932,8 @@ List<Player> findPlayersWithoutEctobiologicalSource(List<Player> playerList) {
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
 Player clonePlayer(Player player, Session session, bool isGuardian) {
-    Player clone = player.clone();
+    Player clone = new Player();
+    player.copyStatsToGameEntity(clone);
     //clone stats.
     clone.baby = player.baby;
     clone.interest1Category = player.interest1Category; //used by Replay page for custom interests.
