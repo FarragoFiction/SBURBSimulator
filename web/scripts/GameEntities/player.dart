@@ -380,6 +380,12 @@ class Player extends GameEntity {
     }
 
     @override
+    Player clone() {
+      Player ret = super.clone();
+      return ret;
+    }
+
+    @override
     void makeDead(String causeOfDeath) {
         this.dead = true;
         this.timesDied ++;
@@ -2839,6 +2845,7 @@ String getPlayersTitlesNoHTML(List<GameEntity> playerList) {
     }
     return ret;
 }
+
 
 //it says "players" but it won't let me refactor rename it
 //any game entity can be passed here, player is a legacy thing
