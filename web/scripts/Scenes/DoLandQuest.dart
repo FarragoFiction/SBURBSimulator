@@ -67,8 +67,11 @@ class DoLandQuest extends Scene{
 
 	}
 	String fraymotifFlavorTextForPlayer(player, fraymotif){
-		List<String> normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from the fraymotif store like a sensible person. "];
-		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from the fraymotif store. ");
+		//fraymotif store names came from me looking up what places carry faygo near me and finding out
+		//that i live in the laziest piece of fiction of all time.
+		//"Super Low Grocery Outlet" and "Food Depot #27" sound fake as fuck, but also are the only places to carry faygo practically
+		List<String> normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from Super Low Fraymotif Outlet like a sensible person. "];
+		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from Fraymotif Depot #27, the ONLY store with1n 413 miles. ");
 		if(rand.nextDouble() > 0.5) return rand.pickFrom(normalWays);
 		//otherwise do special shit.
 		if(player.class_name == "Thief") return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.name + ".  I sure hope it's worth the risk of being put in the slammer. ";

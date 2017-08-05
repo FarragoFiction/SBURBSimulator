@@ -125,7 +125,8 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void filterSessionSummaries() {
-      //TODo what needs to happen here?
+    print("attempting to filter");
+     self.filterSessionSummaries();
   }
 
   void toggleAverage() {
@@ -413,10 +414,8 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   void wireUpAllFilters() {
     //except for corpse party apparently
-    //todo grab all filters, wire up to: onchange='filterSessionSummaries()
-    //probably grab filtesr same way you do to evealuate them. but ....how to make sure not corpse party?
-    //name filter
     List<Element> allFilters = querySelectorAll("input[name='filter']");
+    print("debugging AB: wiring up ${allFilters.length} filters"
     for(CheckboxInputElement e in allFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
