@@ -3011,6 +3011,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
    clone.guardian = g;
    g.guardian = clone;
   }
+  print("returning clone $clone");
   return clone;
 }
 

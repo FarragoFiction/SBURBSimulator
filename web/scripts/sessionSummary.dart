@@ -1013,7 +1013,7 @@ class MultiSessionSummary {
     String html = "";
     if (this.isFilterableProperty(propertyName)) {
       print("TODO do non inline filter for $propertyName");
-      html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='$propertyName' id='$propertyName' onchange='filterSessionSummaries()'>";
+      html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='$propertyName' id='$propertyName'>";
       html += propertyName + "</b>: " + this.num_stats[propertyName].toString();
       html += " (${(100 * (this.num_stats[propertyName] / this.num_stats['total'])).round()}%)";
     } else {

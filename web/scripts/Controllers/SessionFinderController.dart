@@ -38,6 +38,10 @@ void checkSessions() {
   self.checkSessions();
 }
 
+void filterSessionSummaries() {
+  self.filterSessionSummaries();
+}
+
 
 //todo remove these if it turns out i can onclick to instance method
 void toggleCorpse(){
@@ -118,6 +122,10 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }else{
       (querySelector("#avatar") as ImageElement).src ="images/robot_author.png";
     }
+  }
+
+  void filterSessionSummaries() {
+      //TODo what needs to happen here?
   }
 
   void toggleAverage() {
@@ -407,6 +415,11 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     //except for corpse party apparently
     //todo grab all filters, wire up to: onchange='filterSessionSummaries()
     //probably grab filtesr same way you do to evealuate them. but ....how to make sure not corpse party?
+    //name filter
+    List<Element> allFilters = querySelectorAll("input[name='filter']");
+    for(CheckboxInputElement e in allFilters) {
+      e.onChange.listen((e) => filterSessionSummaries());
+    }
   }
 
 
