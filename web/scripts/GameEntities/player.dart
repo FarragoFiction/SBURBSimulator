@@ -3007,9 +3007,11 @@ List<Player> findPlayersWithoutEctobiologicalSource(List<Player> playerList) {
 Player clonePlayer(Player player, Session session, bool isGuardian) {
   Player clone = player.clone();
   if (!isGuardian) {
-    clone.guardian = clonePlayer(player.guardian, session, true);
-    clone.guardian.guardian = clone;
+   Player g = clonePlayer(player.guardian, session, true);
+   clone.guardian = g;
+   g.guardian = clone;
   }
+  return clone;
 }
 
 

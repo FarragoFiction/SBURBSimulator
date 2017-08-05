@@ -567,5 +567,5 @@ dynamic findSceneNamed(scenesToCheck, name){
 			}
 	}
 
-	newSession.players= newSession.players.concat(aliens);
+	newSession.players= newSession.players.addAll(aliens);
 }
