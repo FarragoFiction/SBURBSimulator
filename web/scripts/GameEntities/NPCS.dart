@@ -23,6 +23,13 @@ class Sprite extends NPC {
 
   //TODO make sure when prototyped all your specific shit gets added.
   Sprite(String name, Session session) : super(name, session);
+
+  @override
+  Sprite clone() {
+    Sprite clone = new Sprite(name, session);
+    copyStatsTo(clone);
+    return clone;
+  }
 }
 
 class Underling extends NPC {
@@ -39,11 +46,27 @@ class Consort extends NPC {
 //creating a denizen live here in a static method.
 class Denizen extends NPC {
   Denizen(String name, Session session) : super(name, session);
+
+  @override
+  Denizen clone() {
+    Denizen clone = new Denizen(name, session);
+    copyStatsTo(clone);
+    return clone;
+  }
+
 }
 
 class DenizenMinion extends NPC {
   DenizenMinion(String name,  Session session)
       : super(name, session);
+
+
+  @override
+  DenizenMinion clone() {
+    DenizenMinion clone = new DenizenMinion(name, session);
+    copyStatsTo(clone);
+    return clone;
+  }
 }
 
 class PotentialSprite extends NPC {
