@@ -126,7 +126,72 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   void filterSessionSummaries() {
     print("attempting to filter");
-     self.filterSessionSummaries();
+    List<SessionSummary> tmp = [];
+    List<String> filters = [];
+    sessionSummariesDisplayed = [] ;//can filter already filtered arrays.;
+    for(num i = 0; i<allSessionsSummaries.length; i++){
+      sessionSummariesDisplayed.add(allSessionsSummaries[i]);
+    }
+    List<Element> filterCheckBoxes = querySelectorAll("input[name='filter']:checked");
+    for(CheckboxInputElement c in filterCheckBoxes) {
+      filters.add(c.val());
+    }
+
+    for(int i = 0; i<sessionSummariesDisplayed.length; i++){
+      SessionSummary ss = sessionSummariesDisplayed[i];
+      if(ss.satifies_filter_array(filters)){
+        tmp.add(ss);
+      }
+    }
+
+    List<String> classes = [];
+    List<String> aspects = [];
+
+
+    List<Element> filterAspects = querySelectorAll("input[name='filterAspect']:checked");
+    for(CheckboxInputElement c in filterCheckBoxes) {
+       aspects.add(c.val());
+    }
+
+    List<Element> filterClasses = querySelectorAll("input[name='filterClass']:checked");
+    for(CheckboxInputElement c in filterCheckBoxes) {
+      classes.add(c.val());
+    }
+
+    tmp = removeNonMatchingClasspects(tmp,classes,aspects);
+
+
+    ////print(tmp);
+    sessionSummariesDisplayed = tmp;
+    printSummaries();
+    printStats(filters,classes, aspects);
+
+  }
+
+  void printSummaries(){
+    querySelector("#debug").setInnerHtml("");
+    for(num i = 0; i<sessionSummariesDisplayed.length; i++){
+      var ssd = sessionSummariesDisplayed[i];
+      var str = ssd.generateHTML();
+      debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(ssd) + "</font><Br>" );
+      debug(str);
+    }
+  }
+
+  List<SessionSummary> removeNonMatchingClasspects(List<SessionSummary> tmp, List<String> classes, List<String> aspects) {
+    List<SessionSummary> toRemove = [];
+    for(num i = 0; i<tmp.length; i++){
+      var ss = tmp[i];
+      if(!ss.matchesClasspect(classes, aspects)){
+        toRemove.add(ss);
+      }
+    }
+
+    for(num i = 0; i<toRemove.length; i++){
+      removeFromArray(tmp, toRemove[i]);
+    }
+
+    return tmp;
   }
 
   void toggleAverage() {
