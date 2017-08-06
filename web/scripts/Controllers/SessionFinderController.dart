@@ -134,7 +134,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }
     List<Element> filterCheckBoxes = querySelectorAll("input[name='filter']:checked");
     for(CheckboxInputElement c in filterCheckBoxes) {
-      filters.add(c.val());
+      filters.add(c.value);
     }
 
     for(int i = 0; i<sessionSummariesDisplayed.length; i++){
@@ -150,12 +150,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
     List<Element> filterAspects = querySelectorAll("input[name='filterAspect']:checked");
     for(CheckboxInputElement c in filterCheckBoxes) {
-       aspects.add(c.val());
+       aspects.add(c.value);
     }
 
     List<Element> filterClasses = querySelectorAll("input[name='filterClass']:checked");
     for(CheckboxInputElement c in filterCheckBoxes) {
-      classes.add(c.val());
+      classes.add(c.value);
     }
 
     tmp = removeNonMatchingClasspects(tmp,classes,aspects);
