@@ -164,7 +164,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
     ////print(tmp);
     sessionSummariesDisplayed = tmp;
-    print("debugging ab: I think i have this many session summaries: ${filterCheckBoxes.length}");
+    print("debugging ab: I think i have this many session summaries: ${sessionSummariesDisplayed.length}");
     printSummaries();
     printStats(filters,classes, aspects);
 

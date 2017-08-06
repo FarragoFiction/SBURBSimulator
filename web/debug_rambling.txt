@@ -2626,3 +2626,10 @@ okay, what about the toggle buttons, i think that just sets a formerly-global-va
 Open Questions:
 * How do I normally get "all the filter checkboxes" and can i leverage it to give them all the same onchange?
 *  How do I get the toggle buttons?
+
+
+~~~ookay...
+SOMEtIMES filters are working.
+
+debugging ab: I think i have found this summaries after removing non matching claspects: 5
+VM302:1 debugging ab: I think i have this many session summaries: 2
