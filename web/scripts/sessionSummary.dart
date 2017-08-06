@@ -953,7 +953,9 @@ class MultiSessionSummary {
       if (propertyName == "total") { //it's like a header.
         html += "<Br><b> ";
         html += propertyName + "</b>: " + this.num_stats[propertyName].toString();
-        html += " (" + (100 * (this.num_stats[propertyName] / this.num_stats["total"])).round().toString() + "%)";
+        int avg = 0;
+        if(this.num_stats["total"] != 0) avg = (100 * (this.num_stats[propertyName] / this.num_stats["total"])).round()
+        html += " ($avg%)";
       } else if (propertyName == "totalDeadPlayers") {
         html += "<Br><b>totalDeadPlayers: </b> ${this.num_stats['totalDeadPlayers']} (${this.num_stats['survivalRate']}% survival rate)"; //don't want to EVER ignore this.
       } else if (propertyName == "crashedFromSessionBug") {
