@@ -75,7 +75,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
 
   bool miniPlayerMatchesAnyClasspect(miniPlayer, List<String> classes, List<String>  aspects){
     //is my class in the class array AND my aspect in the aspect array.
-    if(classes.indexOf(miniPlayer.class_name) != -1 && aspects.indexOf(miniPlayer.aspect) != -1) return true;
+    if(classes.indexOf(miniPlayer["class_name"]) != -1 && aspects.indexOf(miniPlayer["aspect"]) != -1) return true;
     return false;
   }
 
@@ -991,7 +991,7 @@ class MultiSessionSummary {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
     for (var propertyName in this.classes.keys) {
       print("TODO: need to hook up check box not inline for $propertyName");
-      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' onchange='filterSessionSummaries()'>";
+      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' >";
       html += "<Br>$input$propertyName: ${this.classes[propertyName]} ( ${(100 * this.classes[propertyName] / this.num_stats['total']).round()}%)";
     }
     html += "</div>";
@@ -1002,7 +1002,7 @@ class MultiSessionSummary {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
     for (var propertyName in this.aspects.keys) {
       print("TODO: need to hook up check box not inline for $propertyName");
-      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' onchange='filterSessionSummaries()'>";
+      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName'>";
       html += "<Br>$input$propertyName: ${this.aspects[propertyName]} ( ${(100 * this.aspects[propertyName] / this.num_stats['total']).round()}%)";
     }
     html += "</div>";
@@ -1088,6 +1088,7 @@ class MultiSessionSummary {
     MultiSessionSummary mss = new MultiSessionSummary();
     mss.setClasses();
     mss.setAspects();
+    if(sessionSummaries.length == 0) return mss; //nothing to do here.
     for (SessionSummary ss in sessionSummaries) {
       mss.incNumStat("total");
       mss.integrateAspects(ss.miniPlayers);

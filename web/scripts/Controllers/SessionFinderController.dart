@@ -188,7 +188,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }
 
     for(num i = 0; i<toRemove.length; i++){
-      removeFromArray(tmp, toRemove[i]);
+      removeFromArray(toRemove[i],tmp);
     }
 
     return tmp;
