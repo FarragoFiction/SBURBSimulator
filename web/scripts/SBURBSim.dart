@@ -1,18 +1,9 @@
 library SBURBSim;
 
-import 'SBURBSim.dart';
-import 'dart:async';
-import 'dart:collection';
-import 'dart:convert';
 import 'dart:html';
-import 'dart:math' as Math;
-import 'dart:typed_data';
 
-import "includes/bytebuilder.dart";
-import "includes/lz-string.dart";
-//import "includes/traces.dart";
+import 'SBURBSim.dart';
 import "includes/tracer.dart";
-import 'navbar.dart'; //handles drawing navbar and url param stuff
 
 //import 'package:unittest/unittest.dart';  need to do special shit to use. spend no more than 30 minutes trying to install. maybe this isn't in library, but in other thing?
 //in a different library can import only part by import 'package:lib1/lib1.dart' show foo; might be more useful than doing unit testing here.
@@ -35,6 +26,7 @@ export "Strife.dart";
 export "GameEntities/GameEntity.dart";
 export "GameEntities/NPCS.dart";
 export "GameEntities/player.dart";
+export "GameEntities/player_functions.dart";
 export "v2.0/YellowYardResultController.dart";
 export "ShittyRapEngine/shitty_raps.dart";
 export "eggs_and_egg_accessories.dart"; //handles easter eggs
