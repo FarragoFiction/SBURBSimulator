@@ -498,7 +498,13 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void printStats(List<String> filters, List<String> classes, List<String> aspects) {
-    var mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
+    MultiSessionSummary mms;
+    if(sessionSummariesDisplayed.isEmpty) {
+      mms = new MultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
+    }else {
+      mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
+    }
+
     print("MMS is: ${mms.num_stats}");
     querySelector("#stats").setInnerHtml(mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
