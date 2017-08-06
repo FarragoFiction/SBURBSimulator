@@ -137,7 +137,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     for(CheckboxInputElement c in filterCheckBoxes) {
       filters.add(c.value);
     }
-
+    print("debugging ab: I think i have found this manyfilters: ${filters.length}");
     for(int i = 0; i<sessionSummariesDisplayed.length; i++){
       SessionSummary ss = sessionSummariesDisplayed[i];
       if(ss.satifies_filter_array(filters)){
@@ -150,12 +150,12 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
 
     List<Element> filterAspects = querySelectorAll("input[name='filterAspect']:checked");
-    for(CheckboxInputElement c in filterCheckBoxes) {
+    for(CheckboxInputElement c in filterAspects) {
        aspects.add(c.value);
     }
 
     List<Element> filterClasses = querySelectorAll("input[name='filterClass']:checked");
-    for(CheckboxInputElement c in filterCheckBoxes) {
+    for(CheckboxInputElement c in filterClasses) {
       classes.add(c.value);
     }
 
@@ -164,6 +164,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
     ////print(tmp);
     sessionSummariesDisplayed = tmp;
+    print("debugging ab: I think i have this many session summaries: ${filterCheckBoxes.length}");
     printSummaries();
     printStats(filters,classes, aspects);
 
@@ -183,7 +184,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     List<SessionSummary> toRemove = [];
     for(num i = 0; i<tmp.length; i++){
       var ss = tmp[i];
-      if(!ss.matchesClasspect(classes, aspects)){
+      if(!ss.matchesClasspect(classes, aspects)){ //if no classes or aspects, thenexpect to return true
         toRemove.add(ss);
       }
     }
@@ -191,6 +192,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     for(num i = 0; i<toRemove.length; i++){
       removeFromArray(toRemove[i],tmp);
     }
+    print("debugging ab: I think i have found this summaries after removing non matching claspects: ${tmp.length}");
 
     return tmp;
   }

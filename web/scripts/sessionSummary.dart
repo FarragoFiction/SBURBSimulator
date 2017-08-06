@@ -88,6 +88,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
     return false;
   }
   bool matchesClasspect(List<String> classes, List<String> aspects){
+    print("debugging ab: looking to see if matches $classes or $aspects ");
     if(aspects.length > 0 && classes.length == 0){
       return this.matchesAspect(aspects);
     }else if(classes.length > 0 && aspects.length == 0){
@@ -96,6 +97,7 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
       print("returning and");
       return this.matchesBothClassAndAspect(classes, aspects);
     }else{
+      print('debugging ab: no classes or aspects passed');
       return true; //no filters, all are accepted.
     }
 
