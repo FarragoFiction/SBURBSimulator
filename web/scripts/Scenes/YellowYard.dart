@@ -1,5 +1,5 @@
-part of SBURBSim;
-
+import "dart:html";
+import "../SBURBSim.dart";
 
 class YellowYard extends Scene {
 	Player timePlayer;

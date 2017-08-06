@@ -1,4 +1,6 @@
-part of SBURBSim;
+import "dart:html";
+
+import "../SBURBSim.dart";
 /*
 	Each of these important events have:
 	a session

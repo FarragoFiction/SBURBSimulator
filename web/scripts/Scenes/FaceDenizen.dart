@@ -1,4 +1,5 @@
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 
 
 class FaceDenizen extends Scene{

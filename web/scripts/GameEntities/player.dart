@@ -1,4 +1,10 @@
-part of SBURBSim;
+import "dart:html";
+import "dart:math" as Math;
+import "dart:typed_data";
+import "../SBURBSim.dart";
+import "../includes/bytebuilder.dart";
+import "../navbar.dart";
+import "../includes/lz-string.dart";
 
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
@@ -558,7 +564,7 @@ class Player extends GameEntity {
         return true;
     }
 
-
+    @override
     String title() {
         String ret = "";
 
@@ -1509,7 +1515,7 @@ class Player extends GameEntity {
             if (p != this && p is Player) { //TODO sorry bro, npcs will be allies or some shit
                 Relationship r = this.getRelationshipWith(potentialFriends[i]);
                 if (r != null && r.value > 0) {
-                    ret.add(p as Player);
+                    ret.add(p);
                 }
             }
         }

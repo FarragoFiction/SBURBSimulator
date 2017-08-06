@@ -1,4 +1,5 @@
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 
 
 //only one player at a time.

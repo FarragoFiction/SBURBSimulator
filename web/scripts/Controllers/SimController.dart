@@ -1,4 +1,7 @@
-part of SBURBSim;
+import "dart:async";
+import "dart:html";
+import "../SBURBSim.dart";
+import "../navbar.dart";
 /*
   Each way the sim is able to be used inherits from this abstract class.
 

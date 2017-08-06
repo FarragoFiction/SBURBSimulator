@@ -1,5 +1,5 @@
-
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 class FightKing extends Scene {
 
 

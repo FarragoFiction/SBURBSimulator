@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "../SBURBSim.dart";
 
 //http://www.rhymezone.com/r/rhyme.cgi?Word=back&typeofrhyme=perfect&org1=syl&org2=l&org3=y;
 //if this seems like it will work, move to random tables. based on recursiveSlacker's idea.

@@ -1,4 +1,6 @@
-part of SBURBSim;
+import "dart:html";
+import "dart:math" as Math;
+import "../SBURBSim.dart";
 
 
 

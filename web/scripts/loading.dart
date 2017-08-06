@@ -1,4 +1,6 @@
-part of SBURBSim;
+import "dart:html";
+
+import "SBURBSim.dart";
 
 num imagesWaiting = 0;
 num imagesLoaded = 0;

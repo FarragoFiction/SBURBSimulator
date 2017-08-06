@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "SBURBSim.dart";
 
 /*
 stat effects from a fraymotif are temporary. wear off after battle.

@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "../SBURBSim.dart";
 //most of these are just so I can say "is this a type of npc" and not any real functionality
 //might be the wrong way to do this. can refactor later. they will have more functionality as time goes on, tho.
 

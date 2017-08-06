@@ -1,4 +1,8 @@
-part of SBURBSim;
+import "dart:async";
+import "dart:html";
+import "dart:math" as Math;
+
+import "SBURBSim.dart";
 
 //TODO grab out all the strife parts from GameEntity
 /*

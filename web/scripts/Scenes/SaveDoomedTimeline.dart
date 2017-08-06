@@ -1,4 +1,5 @@
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 
 
 //if leader dies before last player is in OR before performing ectobiology, it's a doomed timeline.

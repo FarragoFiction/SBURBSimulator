@@ -1,7 +1,8 @@
-part of SBURBSim;
+import "dart:async";
+import "dart:html";
 
-
-
+import "SBURBSim.dart";
+import 'navbar.dart';
 
 void bardQuestMode(){
 	if(window.confirm("Behold the Majesty of the CodTier? Y/N")){

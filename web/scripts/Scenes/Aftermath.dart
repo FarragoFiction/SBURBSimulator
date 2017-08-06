@@ -1,9 +1,9 @@
-part of SBURBSim;
+import "dart:async";
+import "dart:html";
+import "dart:math" as Math;
+import "../SBURBSim.dart";
 
 class Aftermath extends Scene {
-
-	
-
 
 	Aftermath(Session session): super(session, false);
 
@@ -105,7 +105,7 @@ class Aftermath extends Scene {
 	}
 
 	@override
-	dynamic renderContent(Element div){
+	void renderContent(Element div){
 		bool yellowYard = false;
 		String end = "<Br>";
 		List<Player> living = findLivingPlayers(this.session.players);

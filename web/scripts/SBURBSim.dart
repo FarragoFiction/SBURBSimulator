@@ -1,5 +1,6 @@
 library SBURBSim;
 
+import 'SBURBSim.dart';
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
@@ -18,73 +19,73 @@ import 'navbar.dart'; //handles drawing navbar and url param stuff
 //if dart load time of code is a problem, can chop this up into sub libraries and use lazy or deffered loading.
 //TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
 
-part "Controllers/SimController.dart";
-part "fraymotif.dart";
-part "session.dart";
-part "sessionSummary.dart";
-part "quirk.dart";
-part "random_tables.dart";
-part "loading.dart";
-part "random.dart";
-part "relationship.dart";
-part "handle_sprites.dart";
-part "AfterLife.dart";
-part "v2.0/ImportantEvents.dart";
-part "Strife.dart";
-part "GameEntities/GameEntity.dart";
-part "GameEntities/NPCS.dart";
-part "GameEntities/player.dart";
-part "v2.0/YellowYardResultController.dart";
-part "ShittyRapEngine/shitty_raps.dart";
-part "eggs_and_egg_accessories.dart"; //handles easter eggs
-part "OCDataStringHandler.dart";
+export "Controllers/SimController.dart";
+export "fraymotif.dart";
+export "session.dart";
+export "sessionSummary.dart";
+export "quirk.dart";
+export "random_tables.dart";
+export "loading.dart";
+export "random.dart";
+export "relationship.dart";
+export "handle_sprites.dart";
+export "AfterLife.dart";
+export "v2.0/ImportantEvents.dart";
+export "Strife.dart";
+export "GameEntities/GameEntity.dart";
+export "GameEntities/NPCS.dart";
+export "GameEntities/player.dart";
+export "v2.0/YellowYardResultController.dart";
+export "ShittyRapEngine/shitty_raps.dart";
+export "eggs_and_egg_accessories.dart"; //handles easter eggs
+export "OCDataStringHandler.dart";
 
 
 //scenes
-part "Scenes/Scene.dart";
-part "Scenes/FightKing.dart";
-part "Scenes/Aftermath.dart";
-part "Scenes/BeTriggered.dart";
-part "Scenes/Breakup.dart";
-part "Scenes/CorpseSmooch.dart";
-part "Scenes/DisengageMurderMode.dart";
-part "Scenes/DoEctobiology.dart";
-part "Scenes/DoLandQuest.dart";
-part "Scenes/EngageMurderMode.dart";
-part "Scenes/ExileJack.dart";
-part "Scenes/ExileQueen.dart";
-part "Scenes/ExploreMoon.dart";
-part "Scenes/FaceDenizen.dart";
-part "Scenes/FightQueen.dart";
-part "Scenes/FreeWillStuff.dart";
-part "Scenes/GetTiger.dart";
-part "Scenes/GiveJackBullshitWeapon.dart";
-part "Scenes/GodTierRevival.dart";
-part "Scenes/GoGrimDark.dart";
-part "Scenes/GrimDarkQuests.dart";
-part "Scenes/Intro.dart";
-part "Scenes/JackBeginScheming.dart"; //all the jack stuff will be refactored into npc update
-part "Scenes/JackPromotion.dart";
-part "Scenes/JackRampage.dart";
-part "Scenes/KingPowerful.dart";
-part "Scenes/levelthehellup.dart";
-part "Scenes/LifeStuff.dart";
-part "Scenes/LuckStuff.dart";
-part "Scenes/MurderPlayers.dart";
-part "Scenes/PlanToExileJack.dart";
-part "Scenes/PowerDemocracy.dart";
-part "Scenes/PrepareToExileJack.dart";
-part "Scenes/PrepareToExileQueen.dart";
-part "Scenes/QuadrantDialogue.dart";
-part "Scenes/QueenRejectRing.dart";
-part "Scenes/Reckoning.dart";
-part "Scenes/RelationshipDrama.dart";
-part "Scenes/SaveDoomedTimeline.dart";
-part "Scenes/SolvePuzzles.dart"; //probably get rid of this after planet update
-part "Scenes/StartDemocracy.dart";
-part "Scenes/UpdateShippingGrid.dart";
-part "Scenes/VoidyStuff.dart";
-part "Scenes/YellowYard.dart";
+export "Scenes/Scene.dart";
+export "Scenes/FightKing.dart";
+export "Scenes/Aftermath.dart";
+export "Scenes/BeTriggered.dart";
+export "Scenes/Breakup.dart";
+export "Scenes/CorpseSmooch.dart";
+export "Scenes/DisengageMurderMode.dart";
+export "Scenes/DoEctobiology.dart";
+export "Scenes/DoLandQuest.dart";
+export "Scenes/EngageMurderMode.dart";
+export "Scenes/ExileJack.dart";
+export "Scenes/ExileQueen.dart";
+export "Scenes/ExploreMoon.dart";
+export "Scenes/FaceDenizen.dart";
+export "Scenes/FightQueen.dart";
+export "Scenes/FreeWillStuff.dart";
+export "Scenes/GetTiger.dart";
+export "Scenes/GiveJackBullshitWeapon.dart";
+export "Scenes/GodTierRevival.dart";
+export "Scenes/GoGrimDark.dart";
+export "Scenes/GrimDarkQuests.dart";
+export "Scenes/Intro.dart";
+export "Scenes/JackBeginScheming.dart"; //all the jack stuff will be refactored into npc update
+export "Scenes/JackPromotion.dart";
+export "Scenes/JackRampage.dart";
+export "Scenes/KingPowerful.dart";
+export "Scenes/levelthehellup.dart";
+export "Scenes/LifeStuff.dart";
+export "Scenes/LuckStuff.dart";
+export "Scenes/MurderPlayers.dart";
+export "Scenes/PlanToExileJack.dart";
+export "Scenes/PowerDemocracy.dart";
+export "Scenes/PrepareToExileJack.dart";
+export "Scenes/PrepareToExileQueen.dart";
+export "Scenes/QuadrantDialogue.dart";
+export "Scenes/QueenRejectRing.dart";
+export "Scenes/Reckoning.dart";
+export "Scenes/RelationshipDrama.dart";
+export "Scenes/SaveDoomedTimeline.dart";
+export "Scenes/SolvePuzzles.dart"; //probably get rid of this after planet update
+export "Scenes/StartDemocracy.dart";
+export "Scenes/UpdateShippingGrid.dart";
+export "Scenes/VoidyStuff.dart";
+export "Scenes/YellowYard.dart";
 
 
 // temporary functions to be replaced later!

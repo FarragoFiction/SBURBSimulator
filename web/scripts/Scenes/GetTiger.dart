@@ -1,4 +1,5 @@
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 
 
 //known to lesser mortals as God Tier

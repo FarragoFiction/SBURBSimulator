@@ -1,4 +1,6 @@
-part of SBURBSim;
+import "dart:html";
+import "dart:math" as Math;
+import "../SBURBSim.dart";
 
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.

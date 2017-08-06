@@ -1,4 +1,5 @@
-part of SBURBSim;
+import "dart:html";
+import "../SBURBSim.dart";
 
 
 //only needs to happen once, but if it DOESN'T happen before reckoning (or leader is permanently killed) doomed timeline.

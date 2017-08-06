@@ -1,5 +1,10 @@
 //put all OCDataString code here.
-part of SBURBSim;
+import "dart:html";
+
+import "SBURBSim.dart";
+import 'includes/bytebuilder.dart';
+import 'includes/lz-string.dart';
+import 'navbar.dart';
 
 
 //don't pollute global name space more than you already are, dunkass

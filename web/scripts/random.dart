@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "dart:math" as Math;
 
 /// Wraps [Math.Random] to allow adding functionality... a bit evil but it'll do.
 ///

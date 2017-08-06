@@ -1,4 +1,6 @@
-part of SBURBSim;
+import "dart:html";
+
+import "SBURBSim.dart";
 //how AuthorBot summarizes a session
 //eventually moon prophecies will use this.
 //a prophecy can be any of these values that don't match the values in the current session summary.

@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "SBURBSim.dart";
 
 
 class Quirk {

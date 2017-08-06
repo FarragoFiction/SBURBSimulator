@@ -1,4 +1,4 @@
-part of SBURBSim;
+import "SBURBSim.dart";
 
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 class AfterLife {
