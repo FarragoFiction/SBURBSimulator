@@ -415,7 +415,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   void wireUpAllFilters() {
     //except for corpse party apparently
     List<Element> allFilters = querySelectorAll("input[name='filter']");
-    print("debugging AB: wiring up ${allFilters.length} filters"
+    print("debugging AB: wiring up ${allFilters.length} filters");
     for(CheckboxInputElement e in allFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
