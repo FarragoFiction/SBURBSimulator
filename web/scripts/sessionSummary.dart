@@ -994,7 +994,6 @@ class MultiSessionSummary {
   dynamic generateClassFilterHTML() {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
     for (var propertyName in this.classes.keys) {
-      print("TODO: need to hook up check box not inline for $propertyName");
       String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' >";
       html += "<Br>$input$propertyName: ${this.classes[propertyName]} ( ${(100 * this.classes[propertyName] / this.num_stats['total']).round()}%)";
     }
@@ -1005,7 +1004,6 @@ class MultiSessionSummary {
   dynamic generateAspectFilterHTML() {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
     for (var propertyName in this.aspects.keys) {
-      print("TODO: need to hook up check box not inline for $propertyName");
       String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName'>";
       html += "<Br>$input$propertyName: ${this.aspects[propertyName]} ( ${(100 * this.aspects[propertyName] / this.num_stats['total']).round()}%)";
     }
@@ -1016,7 +1014,6 @@ class MultiSessionSummary {
   dynamic generateHTMLForProperty(String propertyName) {
     String html = "";
     if (this.isFilterableProperty(propertyName)) {
-      print("TODO do non inline filter for $propertyName");
       html += "<Br><b> <input disabled='true' type='checkbox' name='filter' value='$propertyName' id='$propertyName'>";
       html += propertyName + "</b>: " + this.num_stats[propertyName].toString();
       int avg = 0;
@@ -1029,7 +1026,6 @@ class MultiSessionSummary {
   }
 
   dynamic generateRomanceHTML(List<String> properties) {
-    print("TODO get rid of onclick for romance html");
     String html = "<div  class = 'bottomAligned multiSessionSummary'>Romance: <button id = 'romanceButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryRomance' >";
     for (num i = 0; i < properties.length; i++) {
@@ -1042,7 +1038,6 @@ class MultiSessionSummary {
   }
 
   dynamic generateDramaHTML(properties) {
-    print("TODO get rid of onclick for drama html");
     String html = "<div class = 'bottomAligned multiSessionSummary' >Drama: <button id = 'dramaButton'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryDrama' >";
     for (num i = 0; i < properties.length; i++) {
@@ -1054,7 +1049,6 @@ class MultiSessionSummary {
   }
 
   dynamic generateEndingHTML(properties) {
-    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'topligned multiSessionSummary'>Ending: <button id = 'endingButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryEnding' >";
     for (num i = 0; i < properties.length; i++) {
@@ -1066,7 +1060,6 @@ class MultiSessionSummary {
   }
 
   dynamic generateMiscHTML(properties) {
-    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'bottomAligned multiSessionSummary' >Misc <button id = 'miscButton'>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryMisc' >";
     for (num i = 0; i < properties.length; i++) {
@@ -1078,7 +1071,6 @@ class MultiSessionSummary {
   }
 
   dynamic generateAverageHTML(properties) {
-    print("TODO get rid of onclick for romance html");
     String html = "<div class = 'topAligned multiSessionSummary' >Averages <button id = 'averageButton''>Toggle View </button>";
     html += "<div id = 'multiSessionSummaryAverage' >";
     for (num i = 0; i < properties.length; i++) {

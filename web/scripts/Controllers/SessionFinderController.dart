@@ -133,6 +133,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
     List<Element> filterCheckBoxes = querySelectorAll("input[name='filter']:checked");
+    print("debugging ab: I think i have found this many checked boxes: ${filterCheckBoxes.length}");
     for(CheckboxInputElement c in filterCheckBoxes) {
       filters.add(c.value);
     }

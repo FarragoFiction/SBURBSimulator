@@ -293,6 +293,7 @@ abstract class SimController {
     if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
+      print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
       new Timer(new Duration(milliseconds: 10), () => tick()); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
     }else{
       print("Debugging AB: reckoning time.");
