@@ -490,13 +490,13 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
 
     List<Element> classFilters = querySelectorAll("input[name='filterClass']");
-    print("debugging AB: wiring up ${classFilters.length} filters");
+    print("debugging AB: wiring up class ${classFilters.length} filters");
     for(CheckboxInputElement e in classFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
 
     List<Element> aspectFilters = querySelectorAll("input[name='filterAspect']");
-    print("debugging AB: wiring up ${aspectFilters.length} filters");
+    print("debugging AB: wiring up aspect ${aspectFilters.length} filters");
     for(CheckboxInputElement e in aspectFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }

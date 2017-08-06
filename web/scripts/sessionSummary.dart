@@ -1004,7 +1004,7 @@ class MultiSessionSummary {
   dynamic generateAspectFilterHTML() {
     String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
     for (var propertyName in this.aspects.keys) {
-      String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName'>";
+      String input = "<input type='checkbox' name='filterAspect' value='$propertyName' id='class$propertyName'>";
       html += "<Br>$input$propertyName: ${this.aspects[propertyName]} ( ${(100 * this.aspects[propertyName] / this.num_stats['total']).round()}%)";
     }
     html += "</div>";
