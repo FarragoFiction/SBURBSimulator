@@ -36,9 +36,9 @@ class CharacterCreatorHelper {
 			}
 		}
 	}
-	void drawSinglePlayerSummary(player){
+	void drawSinglePlayerSummary(Player player){
 		//print("drawing: " + player.title())
-		String str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
+		String str = "<div class='standAloneSummary' id='createdCharacter${player.id}'>";
 		String divId = player.id.toString();
 		str += this.drawCanvasSummary(player);
 		//this.drawDataBoxNoButtons(player);
@@ -50,13 +50,13 @@ class CharacterCreatorHelper {
 	}
 
 	//TODO why the fuck did this have the same name as a handle_sprites function?
- 	void drawSinglePlayerForHelper(player){
+ 	void drawSinglePlayerForHelper(Player player){
 		//print("drawing: " + player.title())
 		String str = "";
 		String divId = player.id.toString();
 		if(curSessionGlobalVar.session_id != 612 && curSessionGlobalVar.session_id != 613  && curSessionGlobalVar.session_id != 413 && curSessionGlobalVar.session_id != 1025 &&  curSessionGlobalVar.session_id != 111111)player.chatHandle = "";
 		//divId = divId.replace(new RegExp(r"""\s+""", multiLine:true), '');
-		str += "<div class='createdCharacter' id='createdCharacter"+ player.id + "'>";
+		str += "<div class='createdCharacter' id='createdCharacter${player.id}'>";
 		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='400' height='300'>  </canvas>";
 		str += "<div class = 'folderDealy'>";
 		str += this.drawTabs(player);
@@ -77,7 +77,7 @@ class CharacterCreatorHelper {
 		str += "</div>";
 		appendHtml(div,str);
 
-		player.spriteCanvasID = player.id+player.id+"spriteCanvas";
+		player.spriteCanvasID = "${player.id}spriteCanvas";
 		String canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='400' height='300'>  </canvas>";
 		appendHtml(querySelector("#playerSprites"),canvasHTML);
 
@@ -97,26 +97,26 @@ class CharacterCreatorHelper {
 		this.wireUpDataBox(player);
 		this.syncPlayerToFields(player);
 	}
-	void syncPlayerToFields(player){
+	void syncPlayerToFields(Player player){
 		this.syncPlayerToDropDowns(player);
 		this.syncPlayerToCheckBoxes(player);
 		this.syncPlayerToTextBoxes(player);
 	}
-	void syncPlayerToDropDowns(player){
-    (querySelector("#classNameID" +player.id) as SelectElement).value = (player.class_name);
-    (querySelector("#aspectID" +player.id)as SelectElement).value = (player.aspect);
-    (querySelector("#hairTypeID" +player.id)as SelectElement).value = (player.hair);
-    (querySelector("#hairColorID" +player.id)as SelectElement).value = (player.hairColor);
+	void syncPlayerToDropDowns(Player player){
+    (querySelector("#classNameID${player.id}") as SelectElement).value = (player.class_name);
+    (querySelector("#aspectID${player.id}")as SelectElement).value = (player.aspect);
+    (querySelector("#hairTypeID${player.id}")as SelectElement).value = (player.hair.toString());
+    (querySelector("#hairColorID${player.id}")as SelectElement).value = (player.hairColor);
 		String troll = "Human";
 		if(player.isTroll) troll = "Troll";
-    (querySelector("#speciesID" +player.id)as SelectElement).value = (troll);
-    (querySelector("#leftHornID" +player.id)as SelectElement).value = (player.leftHorn);
-    (querySelector("#rightHornID" +player.id)as SelectElement).value = (player.rightHorn);
-    (querySelector("#bloodColorID" +player.id)as SelectElement).value = (player.bloodColor);
-    (querySelector("#bloodColorID" +player.id)as SelectElement).style.backgroundColor = player.bloodColor;
-    (querySelector("#favoriteNumberID" +player.id)as SelectElement).value = (player.quirk.favoriteNumber);
-    (querySelector("#moonID" +player.id)as SelectElement).value = (player.moon);
-    querySelector("#moonID" +player.id).style.backgroundColor = moonToColor(player.moon);
+    (querySelector("#speciesID${player.id}")as SelectElement).value = (troll);
+    (querySelector("#leftHornID${player.id}")as SelectElement).value = (player.leftHorn.toString());
+    (querySelector("#rightHornID${player.id}")as SelectElement).value = (player.rightHorn.toString());
+    (querySelector("#bloodColorID${player.id}")as SelectElement).value = (player.bloodColor);
+    (querySelector("#bloodColorID${player.id}")as SelectElement).style.backgroundColor = player.bloodColor;
+    (querySelector("#favoriteNumberID${player.id}")as SelectElement).value = (player.quirk.favoriteNumber.toString());
+    (querySelector("#moonID${player.id}")as SelectElement).value = (player.moon);
+    querySelector("#moonID${player.id}").style.backgroundColor = moonToColor(player.moon);
 	}
 	void syncPlayerToCheckBoxes(player){
 		//.prop('checked', true);
@@ -254,9 +254,9 @@ class CharacterCreatorHelper {
 		str += "</div>";
 		return str;
 	}
-	void redrawSinglePlayer(player){
+	void redrawSinglePlayer(Player player){
 		  player.renderSelf();
-			String divId = "canvas" + player.id;
+			String divId = "canvas${player.id}";
 			//divId = divId.replaceAll(new RegExp(r"""\s+""", multiLine:true), ''); //TODO what is going on here?
 			var canvas =querySelector("#"+divId);
 			drawSolidBG(canvas, "#ffffff");
@@ -336,20 +336,20 @@ class CharacterCreatorHelper {
 
 		return "Class help text not found for " + specific + ".";
 	}
-	void wireUpDataBox(player){
+	void wireUpDataBox(Player player){
 		this.writePlayerToDataBox(player);
-		ButtonElement copyButton = querySelector("#copyButton" + player.id);
-		ButtonElement loadButton = querySelector("#loadButton" + player.id);
+		ButtonElement copyButton = querySelector("#copyButton${player.id}");
+		ButtonElement loadButton = querySelector("#loadButton${player.id}");
 		var that = this;
 		copyButton.onClick.listen((Event e) {
-			TextAreaElement dataBox = querySelector("#dataBoxDiv"+player.id);
+			TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
 			dataBox.select();
 			document.execCommand('copy');
 		});
 
 
 		loadButton.onClick.listen((Event e) {
-			InputElement dataBox = querySelector("#dataBoxDiv"+player.id);
+			InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
 			String bs = "?" + dataBox.value; //need "?" so i can parse as url
 			print("bs is: " + bs);
 			String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"

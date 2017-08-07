@@ -297,7 +297,7 @@ List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes)
     players.add(p);
   }
   //if(extensionString) player.readInExtensionsString(extensionString);
-  if(!xbytes.isEmpty) applyExtensionStringToPlayers(players, xbytes);
+  if(xbytes != null && !xbytes.isEmpty) applyExtensionStringToPlayers(players, xbytes);
   return players;
 
 }
