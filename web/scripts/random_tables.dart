@@ -1200,8 +1200,8 @@ dynamic aspectToInt(aspect){
 
 
 
-String intToAspect(num){
-    print("looking for aspect from: " + num);
+String intToAspect(int num){
+    print("looking for aspect from: " + num.toString());
     if(num > all_aspects.length || num == 255) return "Null";  //Heir of Null;
 	return all_aspects[num];
 }
@@ -1239,9 +1239,9 @@ dynamic hexColorToInt(color){
 
 
 
-String intToHexColor(num){
+String intToHexColor(int num){
 	//print("int is " + num);
-	var tmp = num.toString(16);
+	var tmp = num.toRadixString(16);
 	var padding = 6 - tmp.length;
 	for(int i = 0; i<padding; i++){
 		tmp = "0" + tmp;
