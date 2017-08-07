@@ -541,140 +541,139 @@ class CharacterCreatorHelper {
 					helpText.setInnerHtml(that.generateHelpText("Species",player.isTroll));
 			});
 	}
-	void wireUpTabs(player){
-			var ddTab = querySelector("#ddTab" +player.id );
-			var cbTab =$ ("#cbTab" +player.id );
-			var tbTab =$ ("#tbTab" +player.id );
-			var csTab =$ ("#csTab" +player.id );
-			var dataTab =$ ("#dataTab" +player.id );
-			var deleteTab = querySelector("#deleteTab"+player.id);
+	void wireUpTabs(Player player){
+			Element ddTab = querySelector("#ddTab${player.id}");
+			Element cbTab =querySelector("#cbTab${player.id}");
+			Element tbTab =querySelector("#tbTab${player.id}");
+			Element csTab =querySelector("#csTab${player.id}");
+			Element dataTab =querySelector("#dataTab${player.id}");
+			Element deleteTab = querySelector("#deleteTab${player.id}");
 
-			var dropDowns = querySelector("#dropDowns" + player.id);
-			var checkBoxes = querySelector("#checkBoxes" + player.id);
-			var textBoxes = querySelector("#textBoxes" + player.id);
-			var canvasSummary = querySelector("#canvasSummary" + player.id);
-			var dataBox = querySelector("#dataBox" + player.id);
-			var helpText = querySelector("#helpText"+player.id);
-			var that = this;
+			Element dropDowns = querySelector("#dropDowns${player.id}");
+			Element checkBoxes = querySelector("#checkBoxes${player.id}");
+			Element textBoxes = querySelector("#textBoxes${player.id}");
+			Element canvasSummary = querySelector("#canvasSummary${player.id}");
+			Element dataBox = querySelector("#dataBox${player.id}");
+			Element helpText = querySelector("#helpText${player.id}");
+			CharacterCreatorHelper that = this;
 
-			deleteTab.click((){
-				var monster = confirm("Delete player? (You monster)");
+			deleteTab.onClick.listen((Event e){
+				var monster = window.confirm("Delete player? (You monster)");
 				if(monster){
-					querySelector("#createdCharacter"+player.id).hide();
-					curSessionGlobalVar.players.removeFromArray(player);
+					hide(querySelector("#createdCharacter${player.id}"));
+					removeFromArray(player,curSessionGlobalVar.players);
 				}
 
 			})
-			ddTab.click((){
+			ddTab.onClick.listen((Event e){
 				that.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
 				that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox]);
-				helpText.html("...");
-				helpText.show();
+				helpText.setInnerHtml("...");
+				show(helpText);
 			});
 
-			tbTab.click((){
+			tbTab.onClick.listen((Event e){
 				that.selectTab(tbTab, [ddTab,cbTab, csTab, dataTab]);
 				that.displayDiv(textBoxes, [checkBoxes, dropDowns, canvasSummary, dataBox]);
-				helpText.html("...");
-				helpText.show();
+				helpText.setInnerHtml("...");
+				show(helpText);
 			});
 
-			csTab.click((){
+			csTab.onClick.listen((Event e){
 				that.selectTab(csTab, [ddTab,cbTab, tbTab, dataTab]);
 				that.displayDiv(canvasSummary, [checkBoxes, textBoxes, dropDowns, dataBox]);
-				helpText.html("...");
-				helpText.hide();
+				helpText.setInnerHtml("...");
+				hide(helpText);
 			});
 
-			cbTab.click((){
+			cbTab.onClick.listen((Event e){
 				that.selectTab(cbTab, [ddTab, tbTab, csTab, dataTab]);
 				that.displayDiv(checkBoxes, [dropDowns, textBoxes, canvasSummary, dataBox]);
-				helpText.html("...");
-				helpText.show();
+				helpText.setInnerHtml("...");
+				show(helpText);
 			});
 
-			dataTab.click((){
+			dataTab.onClick.listen((Event e){
 				that.selectTab(dataTab, [ddTab, cbTab, tbTab, csTab]);
 				that.displayDiv(dataBox, [checkBoxes, textBoxes, canvasSummary, dropDowns]);
-				helpText.html("You can copy your player's value from this box, or override it by pasting another players value in and clicking 'Load'.");
-				helpText.show();
+				helpText.setInnerHtml("You can copy your player's value from this box, or override it by pasting another players value in and clicking 'Load'.");
+				show(helpText);
 			});
 
 			this.selectTab(ddTab, [cbTab, tbTab, csTab, dataTab]);
 			that.displayDiv(dropDowns, [checkBoxes, textBoxes, canvasSummary, dataBox]);
 		}
-	void displayDiv(displayed, undisplayed){
-			displayed.show();
+	void displayDiv(Element displayed, List<Element> undisplayed){
+			show(displayed);
 			for(num i = 0; i<undisplayed.length; i++){
-				undisplayed[i].hide();
+				hide(undisplayed[i]);
 			}
 		}
-	void selectTab(selected, unselected){
-			selected.addClass("optionTabSelected");
+	void selectTab(Element selected, List<Element> unselected){
+			selected.classes.add("optionTabSelected");
 			for(num i = 0; i<unselected.length; i++){
-				unselected[i].removeClass("optionTabSelected");
+				unselected[i].classes.remove("optionTabSelected");
 			}
 		}
-	void wireUpTextBoxes(player){
+	void wireUpTextBoxes(Player player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
-		var interestCategory1Dom = querySelector("#interestCategory1" +player.id);
-		var interestCategory2Dom = querySelector("#interestCategory2" +player.id);
-		var interest1DropDom = querySelector("#interestDrop1" +player.id);
-		var interest2DropDom = querySelector("#interestDrop2" +player.id);
-		var interest1TextDom = querySelector("#interest1" +player.id); //don't wire these up. instead, get value on url creation.
-		var interest2TextDom = querySelector("#interest2" +player.id);
-		var chatHandle = querySelector("#chatHandle"+player.id);
+		InputElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
+		InputElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
+		InputElement interest1DropDom = querySelector("#interestDrop1${player.id}");
+		InputElement interest2DropDom = querySelector("#interestDrop2${player.id}");
+		InputElement interest1TextDom = querySelector("#interest1${player.id}"); //don't wire these up. instead, get value on url creation.
+		InputElement interest2TextDom = querySelector("#interest2${player.id}");
+		InputElement chatHandle = querySelector("#chatHandle${player.id}");
+		CharacterCreatorHelper that = this;
+		var helpText = querySelector("#helpText${player.id}");
 
-		var that = this;
-		var helpText = querySelector("#helpText"+player.id);
-
-		interest1TextDom.change((){
-			player.interest1 = interest1TextDom.val();
+		interest1TextDom.onChange.listen((Event e){
+			player.interest1 = interest1TextDom.value;
 			that.redrawSinglePlayer(player);
 		})
 
-		interest2TextDom.change((){
-			player.interest2 = interest2TextDom.val();
+		interest2TextDom.onChange.listen((Event e){
+			player.interest2 = interest2TextDom.value;
 			that.redrawSinglePlayer(player);
 		})
 
-		chatHandle.click(() {
-					helpText.html(that.generateHelpText("chatHandle",player.class_name));
+		chatHandle.onClick.listen((Event e){
+					helpText.setInnerHtml(that.generateHelpText("chatHandle",player.class_name));
 		});
 
-		chatHandle.change((){
-			player.chatHandle = chatHandle.val();
+		chatHandle.onChange.listen((Event e){
+			player.chatHandle = chatHandle.value;
 			that.redrawSinglePlayer(player);
 		})
 
 
-		interestCategory1Dom.change(() {
-					var icDropDown = querySelector('[name="interestCategory1' +player.id +'"] option:selected');
-					interest1DropDom.html(that.drawInterestDropDown(icDropDown.val(), 1, player))
-					helpText.html(that.generateHelpText("Interests",player.class_name));
-					player.interest1Category = icDropDown.val();
+		interestCategory1Dom.onChange.listen((Event e){
+					InputElement icDropDown = querySelector('[name="interestCategory1${player.id}"] option:selected');
+					interest1DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 1, player))
+					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
+					player.interest1Category = icDropDown.value;
 		});
 
-		interestCategory2Dom.change(() {
-					var icDropDown = querySelector('[name="interestCategory2' +player.id +'"] option:selected');
-					interest2DropDom.html(that.drawInterestDropDown(icDropDown.val(), 2, player))
-					helpText.html(that.generateHelpText("Interests",player.class_name));
-					player.interest2Category = icDropDown.val();
+		interestCategory2Dom.onChange.listen((Event e){
+					InputElement icDropDown = querySelector('[name="interestCategory2${player.id}"] option:selected');
+					interest2DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 2, player));
+					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
+					player.interest2Category = icDropDown.value;
 		});
 
-		interest1DropDom.change(() {
-					var icDropDown = querySelector('[name="interestDrop1' +player.id +'"] option:selected');
-					interest1TextDom.val(icDropDown.val());
-					helpText.html(that.generateHelpText("Interests",player.class_name));
-					player.interest1 = icDropDown.val();
+		interest1DropDom.onChange.listen((Event e){
+					InputElement icDropDown = querySelector('[name="interestDrop1${player.id}"] option:selected');
+					interest1TextDom.value = (icDropDown.value;
+					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
+					player.interest1 = icDropDown.value;
 					that.redrawSinglePlayer(player);
 		});
 
-		interest2DropDom.change(() {
-					var icDropDown = querySelector('[name="interestDrop2' +player.id +'"] option:selected');
-					interest2TextDom.val(icDropDown.val());
-					helpText.html(that.generateHelpText("Interests",player.class_name));
-					player.interest2 = icDropDown.val();
+		interest2DropDom.onChange.listen((Event e){
+					InputElement icDropDown = querySelector('[name="interestDrop2${player.id}"] option:selected');
+					interest2TextDom.value = (icDropDown.value;
+					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
+					player.interest2 = icDropDown.value;
 					that.redrawSinglePlayer(player);
 		});
 
