@@ -108,7 +108,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     for(num i = 0; i<allSessionsSummaries.length; i++){
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
-    querySelector("#story").setInnerHtml("");
+    setHtml(querySelector("#story"), "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //my callback is what will be different
@@ -171,7 +171,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   void printSummaries(){
-    querySelector("#debug").setInnerHtml("");
+    setHtml(querySelector("#debug"), "");
     for(num i = 0; i<sessionSummariesDisplayed.length; i++){
       var ssd = sessionSummariesDisplayed[i];
       var str = ssd.generateHTML();
@@ -224,7 +224,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   void percentBullshit(){
     double pr = 90+(new Random().nextDouble())*10; //this is not consuming randomness. what to do?
-    querySelector("#percentBullshit").setInnerHtml("$pr%");
+    setHtml(querySelector("#percentBullshit"), "$pr%");
   }
 
   void formInit(){
@@ -386,7 +386,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     sessionsSimulated.add(curSessionGlobalVar.session_id);
 
     SessionSummary sum = curSessionGlobalVar.generateSummary();
-    querySelector("#story").setInnerHtml("");
+    setHtml(querySelector("#story"), "");
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
@@ -522,7 +522,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
     }
 
     print("MMS is: ${mms.num_stats}");
-    querySelector("#stats").setInnerHtml(mms.generateHTML());
+    setHtml(querySelector("#stats"), mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
     wireUpAllCheckBoxesAndButtons();
 
@@ -591,7 +591,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       return;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
-    querySelector("#story").setInnerHtml("");
+    setHtml(querySelector("#story"), "");
     var sum = curSessionGlobalVar.generateSummary();
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
@@ -619,7 +619,7 @@ class SessionFinderController extends SimController { //works exactly like Sim u
 
   @override
   void restartSession() {
-    querySelector("#story").setInnerHtml('');
+    setHtml(querySelector("#story"), '');
     window.scrollTo(0, 0);
     checkEasterEgg(easterEggCallBackRestart,null);
   }

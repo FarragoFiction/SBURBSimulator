@@ -90,7 +90,7 @@ class SessionFinderControllerJunior extends SimController {
     for(num i = 0; i<allSessionsSummaries.length; i++){
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
-    querySelector("#story").setInnerHtml("");
+    setHtml(querySelector("#story"), "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //im junior so deal with it
@@ -135,7 +135,7 @@ class SessionFinderControllerJunior extends SimController {
 
   void printStatsJunior(){
     var mms = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
-    querySelector("#stats").setInnerHtml(mms.generateHTML());
+    setHtml(querySelector("#stats"), mms.generateHTML());
     querySelector("#num_players").onChange.listen((Event e) {
       (querySelector("#num_players_text") as InputElement).value = (querySelector("#num_players")as InputElement).value;
     });
@@ -145,7 +145,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   void printSummariesJunior(){
-    querySelector("#debug").setInnerHtml("");
+    setHtml(querySelector("#debug"), "");
     for(num i = 0; i<sessionSummariesDisplayed.length; i++){
       var ssd = sessionSummariesDisplayed[i];
       var str = ssd.generateHTML();

@@ -651,7 +651,7 @@ class MultiSessionSummary {
 
         if (noneChecked) filteredGhosts = that.ghosts;
         //none means 'all' basically
-        querySelector("#multiSessionSummaryCorpseParty").setInnerHtml(that.generateCorpsePartyInnerHTML(filteredGhosts));
+        setHtml(querySelector("#multiSessionSummaryCorpseParty"), that.generateCorpsePartyInnerHTML(filteredGhosts));
         that.wireUpCorpsePartyCheckBoxes();
     }
 

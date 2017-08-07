@@ -27,7 +27,7 @@ main() {
 		rap(2,player2);
 		rap(1,player1);
 		rap(2,player2);
-		querySelector("#score").setInnerHtml("Player1: $player1Score Player2: $player2Score");
+		setHtml(querySelector("#score"), "Player1: $player1Score Player2: $player2Score");
 
 }
 

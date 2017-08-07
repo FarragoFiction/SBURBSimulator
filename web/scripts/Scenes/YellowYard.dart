@@ -70,7 +70,7 @@ class YellowYard extends Scene {
 			html += "</div>";
 			html += "</div><br>";
 
-			div2.setInnerHtml(html);
+			setHtml(div2, html);
 			//wire up custom radio buttons after they are rendered
 			List<Element> radioButtons = querySelectorAll('input[name="decision"]');
 			for (RadioButtonInputElement radioButton in radioButtons) {

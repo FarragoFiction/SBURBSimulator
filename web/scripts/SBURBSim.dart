@@ -332,7 +332,7 @@ void scratchEasterEggCallBack() {
     scratch += " What will happen?";
     print("about to switch players");
 
-    querySelector("#story").setInnerHtml(scratch);
+    setHtml(querySelector("#story"), scratch);
     if (!doNotRender) window.scrollTo(0, 0);
 
     var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
@@ -409,6 +409,10 @@ String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(lis
 
 void appendHtml(Element element, String html) {
     element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+}
+
+void setHtml(Element element, String html) {
+    element.setInnerHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
 void renderAfterlifeURL() {
