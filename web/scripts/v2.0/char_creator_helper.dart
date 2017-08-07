@@ -1,5 +1,5 @@
-/* Fix l8r
-
+import "../SBURBSim.dart";
+import 'dart:html';
 //need to render all players
 class CharacterCreatorHelper {
 	List<Player> players;
@@ -7,11 +7,7 @@ class CharacterCreatorHelper {
 	//have css for each sprite template.  sprite template is 400 x 300, fit 3 on a line?
 	//max of 4 lines?
 
-	
-
-
 	CharacterCreatorHelper(this.players) {}
-
 
 	void drawAllPlayers(){
 		bloodColors.add("#ff0000"); //for humans
@@ -30,8 +26,8 @@ class CharacterCreatorHelper {
 				this.player_index ++; //okay to mod this in the loop because only initial i value relies on it.
 			}else{
 				//no more players.
-				querySelector("#draw12Button").html("No More Players");
-				querySelector("#draw12Button").prop('disabled', true)();
+				querySelector("#draw12Button").setInnerHtml("No More Players");
+        (querySelector("#draw12Button")as ButtonElement).disabled =true;
 			}
 		}
 	}
@@ -890,12 +886,3 @@ class CharacterCreatorHelper {
 
 
 }
-
-
-
-*/
-
-
-
-
-

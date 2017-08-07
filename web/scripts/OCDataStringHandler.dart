@@ -36,8 +36,8 @@ class CharacterEasterEggEngine {
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
       parseFileContentsToArray(arr, data.trim());
-      if(processForSim && callBack != null) return that.processForSim(callBack);
-      if(!processForSim && callBack != null) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
+      if(processForSim != null && callBack != null) return that.processForSim(callBack);
+      if(processForSim == null && callBack != null) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
     });
 
 
