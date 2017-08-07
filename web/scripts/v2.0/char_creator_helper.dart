@@ -1,5 +1,6 @@
 import "../SBURBSim.dart";
 import 'dart:html';
+import "../v2.0/char_creator_helper.dart";
 import '../navbar.dart';
 //need to render all players
 class CharacterCreatorHelper {
@@ -15,7 +16,7 @@ class CharacterCreatorHelper {
 
 	void drawAllPlayers(){
 		bloodColors.add("#ff0000"); //for humans
-		for(num i = 0; i<this.players.length; i++){
+		for(int i = 0; i<this.players.length; i++){
 			this.drawSinglePlayerForHelper(this.players[i]);
 		}
 	}
@@ -605,13 +606,13 @@ class CharacterCreatorHelper {
 		}
 	void displayDiv(Element displayed, List<Element> undisplayed){
 			show(displayed);
-			for(num i = 0; i<undisplayed.length; i++){
+			for(int i = 0; i<undisplayed.length; i++){
 				hide(undisplayed[i]);
 			}
 		}
 	void selectTab(Element selected, List<Element> unselected){
 			selected.classes.add("optionTabSelected");
-			for(num i = 0; i<unselected.length; i++){
+			for(int i = 0; i<unselected.length; i++){
 				unselected[i].classes.remove("optionTabSelected");
 			}
 		}
@@ -671,7 +672,7 @@ class CharacterCreatorHelper {
 
 		interest2DropDom.onChange.listen((Event e){
 					InputElement icDropDown = querySelector('[name="interestDrop2${player.id}"] option:selected');
-					interest2TextDom.value = (icDropDown.value;
+					interest2TextDom.value = (icDropDown.value);
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
 					player.interest2 = icDropDown.value;
 					that.redrawSinglePlayer(player);
@@ -680,7 +681,7 @@ class CharacterCreatorHelper {
 	}
   String drawOneHairDropDown(Player player){
 		String html = "<select id = 'hairTypeID${player.id}' name='hair${player.id}'>";
-		for(num i = 1; i<= player.maxHairNumber; i++){
+		for(int i = 1; i<= player.maxHairNumber; i++){
 			if(player.hair == i){
 				html += '<option  selected = "selected" value="$i">$i</option>';
 			}else{
@@ -702,7 +703,7 @@ class CharacterCreatorHelper {
 		return str;
 	}
   String drawChatHandleBox(Player player){
-		String html = "Chat Handle: <input type='text' id = 'chatHandle" + player.id + "' name='interest" + player.id +"' + value=''> </input>";
+		String html = "Chat Handle: <input type='text' id = 'chatHandle${player.id}' name='interest${player.id}' + value=''> </input>";
 		return html;
 	}
   String drawInterestTextBox(int num, Player player){
@@ -716,7 +717,7 @@ class CharacterCreatorHelper {
 		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		for(num i = 0; i< interestsInCategory.length; i++){
+		for(int i = 0; i< interestsInCategory.length; i++){
 			var pi = interestsInCategory[i];
 			if(interestToCheck == pi){
 				html += '<option  selected = "selected" value="' + pi +'">' + pi+'</option>';
@@ -727,14 +728,14 @@ class CharacterCreatorHelper {
 		html += '</select>';
 		return html;
 	}
-  String drawInterestCategoryDropDown(int num, Player player){
-		String html = "<select id = 'interestCategory$num${player.id}' name='interestCategory$num${player.id}'>";
-		for(num i = 0; i< interestCategories.length; i++){
+  String drawInterestCategoryDropDown(int n, Player player){
+		String html = "<select id = 'interestCategory$n${player.id}' name='interestCategory$n${player.id}'>";
+		for(int i = 0; i< interestCategories.length; i++){
 			var ic = interestCategories[i];
-			if(player.interestedIn(ic, num)){
-				if(num ==1){
+			if(player.interestedIn(ic, n)){
+				if(n ==1){
 					player.interest1Category = ic;
-				}else if(num == 2){
+				}else if(n == 2){
 					player.interest2Category = ic;
 				}
 				html += '<option  selected = "selected" value="' + ic +'">' + ic+'</option>';
@@ -759,7 +760,7 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneLeftHornDropDown(Player player){
 		String html = "<select id = 'leftHornID$num${player.id}' name='leftHorn$num${player.id}'>";
-		for(num i = 1; i<= player.maxHornNumber; i++){
+		for(int i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="$i">$i</option>';
 			}else{
@@ -767,8 +768,8 @@ class CharacterCreatorHelper {
 			}
 		}
 
-		num maxCustomHorns = 0;  //kr wants no shitty horns widely available
-		for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
+		int maxCustomHorns = 0;  //kr wants no shitty horns widely available
+		for(int i = 255; i> 255-maxCustomHorns; i+=-1){;
             if(player.leftHorn == i){
                 html += '<option  selected = "selected" value=""$i">$i</option>';
             }else{
@@ -782,7 +783,7 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneRightHornDropDown(Player player){
 		String html = "<select id = 'rightHornID${player.id} name='rightHorn${player.id}'>";
-		for(num i = 1; i<= player.maxHornNumber; i++){
+		for(int i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected"  value=""$i">$i</option>';
 			}else{
@@ -790,8 +791,8 @@ class CharacterCreatorHelper {
 			}
 		}
 
-		num maxCustomHorns = 0;
-            for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
+		int maxCustomHorns = 0;
+            for(int i = 255; i> 255-maxCustomHorns; i+=-1){;
                 if(player.rightHorn == i){
                     html += '<option  selected = "selected"  value=""$i">$i</option>';
                 }else{
@@ -804,24 +805,24 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneClassDropDown(Player player){
-		available_classes = classes.slice(0); //re-init available classes. make deep copy
+		available_classes = new List<String>.from(classes); //re-init available classes. make deep copy
 	  available_classes.addAll(custom_only_classes);
-		String html = "<select id = 'classNameID" + player.id + "' name='className" +player.id +"'>";
-		for(num i = 0; i< available_classes.length; i++){
+		String html = "<select id = 'classNameID${player.id}' name='className${player.id}'>";
+		for(int i = 0; i< available_classes.length; i++){
 			if(available_classes[i] == player.class_name){
 				html += '<option  selected = "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
 			}else{
-				html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>'
+				html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
 			}
 		}
 		html += '</select>';
 		return html;
 	}
 	dynamic drawOneMoonDropDown(Player player){
-		String html = "<select style = 'background: " + moonToColor(player.moon) + "' id = 'moonID" + player.id + "' name='moon" +player.id +"'>";
-		for(num i = 0; i< moons.length; i++){
+		String html = "<select style = 'background: " + moonToColor(player.moon) + "' id = 'moonID${player.id}' name='moon${player.id}'>";
+		for(int i = 0; i< moons.length; i++){
 			if(moons[i] == player.moon){
-				html += '<option style="background:' + moonToColor(moons[i]) + '" selected = "moon" value="' + moons[i] +'">' + moons[i]+'</option>'
+				html += '<option style="background:' + moonToColor(moons[i]) + '" selected = "moon" value="' + moons[i] +'">' + moons[i]+'</option>';
 			}else{
 				html += '<option style="background:' + moonToColor(moons[i]) + '" value="' + moons[i] +'">' + moons[i]+'</option>';
 			}
@@ -832,12 +833,12 @@ class CharacterCreatorHelper {
 	}
 	dynamic drawOneSpeciesDropDown(Player player){
 		var species = ["Human", "Troll"];
-		String html = "<select id = 'speciesID" + player.id + "' name='species" +player.id +"'>";
-		for(num i = 0; i< species.length; i++){
+		String html = "<select id = 'speciesID${player.id}' name='species${player.id}'>";
+		for(int i = 0; i< species.length; i++){
 			if((species[i] == "Troll" && player.isTroll) || (species[i] == "Human" && !player.isTroll)){
 				html += '<option  selected = "species" value="' + species[i] +'">' + species[i]+'</option>';
 			}else{
-				html += '<option value="' + species[i] +'">' + species[i]+'</option>'
+				html += '<option value="' + species[i] +'">' + species[i]+'</option>';
 			}
 		}
 		html += '</select>';
@@ -845,15 +846,15 @@ class CharacterCreatorHelper {
 
 	}
 	dynamic drawOneHairColorPicker(Player player){
-		String id = "hairColorID" + player.id;
+		String id = "hairColorID${player.id}";
 		String html = "<input id = '" + id + "' type='color' name='favcolor' value='" + player.hairColor + "'>";
 		return html;
 	}
 	dynamic drawOneHairColorDropDownOLD(Player player){
-		String html = "<select id = 'hairColorID" + player.id + "' name='hairColor" +player.id +"'>";
-		for(num i = 0; i< human_hair_colors.length; i++){
+		String html = "<select id = 'hairColorID${player.id}' name='hairColor${player.id}'>";
+		for(int i = 0; i< human_hair_colors.length; i++){
 			if(human_hair_colors[i] == player.hairColor){
-				html += '<option style="background:' + human_hair_colors[i] + '" selected = "hairColor" value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>'
+				html += '<option style="background:' + human_hair_colors[i] + '" selected = "hairColor" value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>';
 			}else{
 				html += '<option style="background:' + human_hair_colors[i] + '"value="' + human_hair_colors[i] +'">' + human_hair_colors[i]+'</option>';
 			}
@@ -862,10 +863,10 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneBloodColorDropDown(Player player){
-		String html = "<select style='color: black; background:" + player.bloodColor + "' id = 'bloodColorID" + player.id + "' name='bloodColor" +player.id +"'>"
-		for(num i = 0; i< bloodColors.length; i++){
+		String html = "<select style='color: black; background:" + player.bloodColor + "' id = 'bloodColorID${player.id}' name='bloodColor${player.id}'>";
+		for(int i = 0; i< bloodColors.length; i++){
 			if(bloodColors[i] == player.bloodColor){
-				html += '<option style="color: black; background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>'
+				html += '<option style="color: black; background:' + bloodColors[i] + '" selected = "bloodColor" value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>';
 			}else{
 				html += '<option style="color: black; background:' + bloodColors[i] + '"value="' + bloodColors[i] +'">' + bloodColors[i]+'</option>';
 			}
@@ -874,14 +875,14 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneAspectDropDown(Player player){
-		available_aspects = nonrequired_aspects.slice(0); //required_aspects
-		available_aspects.addAll(required_aspects.slice(0));
-		String html = "<select class = 'selectDiv' id = 'aspectID" + player.id + "' name='aspect" +player.id +"'>";
-		for(num i = 0; i< available_aspects.length; i++){
+		available_aspects = new List<String>.from(nonrequired_aspects); //required_aspects
+		available_aspects.addAll(required_aspects);
+		String html = "<select class = 'selectDiv' id = 'aspectID${player.id}' name='aspect${player.id}'>";
+		for(int i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
 				html += '<option selected = "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
 			}else{
-				html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>'
+				html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
 			}
 
 		}

@@ -1,5 +1,6 @@
 import '../SBURBSim.dart';
 import '../navbar.dart';
+import '../v2.0/char_creator_helper.dart';
 import 'dart:html';
 import 'dart:async';
 
@@ -69,7 +70,7 @@ class CharViewerController extends SimController {
 //check box for "guarantee space/time".
 //just generates a URL for the session. that you click right on this page. so only this page needs to load the ocs from file.
   void callBackForLoadOCsFromFile(){
-    players = easterEggEngine.processEasterEggsViewer();
+    players = easterEggEngine.processEasterEggsViewer(new Random());
     charCreatorHelperGlobalVar = new CharacterCreatorHelper(players);
     charCreatorHelperGlobalVar.draw12PlayerSummaries();
   }
