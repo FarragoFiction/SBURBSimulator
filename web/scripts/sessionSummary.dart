@@ -791,7 +791,7 @@ class MultiSessionSummary {
         StringBuffer html = new StringBuffer()
             ..write("<div class = 'multiSessionSummary' id = 'multiSessionSummary'>");
         String header = "<h2>Stats for All Displayed Sessions: </h2>(When done finding, can filter)";
-        html.write("$html$header");
+        html.write("$header");
 
         List<String> romanceProperties = <String>[];
         List<String> dramaProperties = <String>[];
@@ -801,7 +801,7 @@ class MultiSessionSummary {
 
         for (String propertyName in this.num_stats.keys) {
             if (propertyName == "total") { //it's like a header.
-                html.write("$html<Br><b> ");
+                html.write("<Br><b> ");
                 html.write("$propertyName</b>: ${this.num_stats[propertyName]}");
                 int avg = 0;
                 if (this.num_stats["total"] != 0) avg = (100 * (this.num_stats[propertyName] / this.num_stats["total"])).round();
@@ -875,7 +875,7 @@ class MultiSessionSummary {
     }
 
     String generateRomanceHTML(List<String> properties) {
-        String html = "<div class='bottomAligned multiSessionSummary'>Romance: <button id = 'romanceButton''>Toggle View </button>";
+        String html = "<div class = 'bottomAligned multiSessionSummary'>Romance: <button id = 'romanceButton''>Toggle View </button>";
         html = "$html<div id = 'multiSessionSummaryRomance' >";
         for (int i = 0; i < properties.length; i++) {
             String propertyName = properties[i];

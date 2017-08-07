@@ -618,7 +618,7 @@ class Player extends GameEntity {
 
     String getNextLevel() {
         this.level_index ++;
-        String ret = this.mylevels[this.level_index];
+        String ret = this.level_index >= this.mylevels.length ? "[Off the top of the Echeladder]" : this.mylevels[this.level_index];
         return ret;
     }
 
