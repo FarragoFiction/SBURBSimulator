@@ -450,12 +450,13 @@ class GameEntity implements Comparable<GameEntity> {
 
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         //modValue * stat.multiplier.
+        print("Modify associated stat $stat on $this by $modValue");
         if (stat.name == "RELATIONSHIPS") {
             for (num i = 0; i < this.relationships.length; i++) {
                 this.relationships[i].value += modValue * stat.multiplier;
             }
         } else {
-            this.stats[stat.name] += modValue * stat.multiplier;
+            this.addStat(stat.name, modValue * stat.multiplier); // I hope this isn't doing something totally wonky -PL
         }
     }
 
