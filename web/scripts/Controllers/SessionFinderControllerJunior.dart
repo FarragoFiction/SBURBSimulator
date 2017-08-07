@@ -209,7 +209,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   @override
-  void tick() {
+  void tick([num time]) {
     throw "ABJ does not actually simulate shit.";
   }
 }
