@@ -446,100 +446,99 @@ class CharacterCreatorHelper {
 		});
 
 	}
-	void wireUpPlayerDropDowns(player){
-			var c2 = querySelector("#classNameID" +player.id) ;
-			var a2 = querySelector("#aspectID" +player.id) ;
-			var hairDiv = querySelector("#hairTypeID" +player.id) ;
-			var hairColorDiv = querySelector("#hairColorID" +player.id) ;
-			var speciesDiv = querySelector("#speciesID" +player.id) ;
-			var leftHornDiv = querySelector("#leftHornID" +player.id) ;
-			var rightHornDiv = querySelector("#rightHornID" +player.id) ;
-			var bloodDiv = querySelector("#bloodColorID" +player.id) ;
-			var favoriteNumberDiv = querySelector("#favoriteNumberID" +player.id) ;
-			var moonDiv = querySelector("#moonID" +player.id);
-			var helpText = querySelector("#helpText"+player.id);
+	void wireUpPlayerDropDowns(Player player){
+			Element c2 = querySelector("#classNameID${player.id}") ;
+			Element a2 = querySelector("#aspectID${player.id}") ;
+			Element hairDiv = querySelector("#hairTypeID${player.id}") ;
+			Element hairColorDiv = querySelector("#hairColorID${player.id}") ;
+			Element speciesDiv = querySelector("#speciesID${player.id}") ;
+			Element leftHornDiv = querySelector("#leftHornID${player.id}") ;
+			Element rightHornDiv = querySelector("#rightHornID${player.id}") ;
+			Element bloodDiv = querySelector("#bloodColorID${player.id}") ;
+			Element favoriteNumberDiv = querySelector("#favoriteNumberID${player.id}") ;
+			Element moonDiv = querySelector("#moonID${player.id}");
+			Element helpText = querySelector("#helpText${player.id}");
 
 
 			var that = this;
-			c2.change(() {
-					var classDropDown = querySelector('[name="className' +player.id +'"] option:selected') //need to get what is selected inside the .change, otheriise is always the same;
-					player.class_name = classDropDown.val();
+			c2.onChange.listen((Event e)  {
+					InputElement classDropDown = querySelector('[name="className${player.id}""] option:selected'); //need to get what is selected inside the .change, otheriise is always the same;
+					player.class_name = classDropDown.value;
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Class",player.class_name));
+					helpText.setInnerHtml(that.generateHelpText("Class",player.class_name));
 
 			});
 
-			moonDiv.change(() {
-					var moonDropDown = querySelector('[name="moon' +player.id +'"] option:selected');
-					player.moon = moonDropDown.val();
+			moonDiv.onChange.listen((Event e) {
+					InputElement moonDropDown = querySelector('[name="moon${player.id}"] option:selected');
+					player.moon = moonDropDown.value;
 					that.redrawSinglePlayer(player);
-					moonDiv.css("background-color", moonToColor(player.moon));
-					helpText.html(that.generateHelpText("Moon",player.moon));
-
+					moonDiv.style.backgroundColor = moonToColor(player.moon);
+					helpText.setInnerHtml(that.generateHelpText("Moon",player.moon));
 			});
 
-			favoriteNumberDiv.change(() {
-					var numberDropDown = querySelector('[name="favoriteNumber' +player.id +'"] option:selected');
-					player.quirk.favoriteNumber = parseInt(numberDropDown.val());
+			favoriteNumberDiv.onChange.listen((Event e){
+					InputElement numberDropDown = querySelector('[name="favoriteNumber${player.id}"] option:selected');
+					player.quirk.favoriteNumber = int.parse((numberDropDown.value));
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
+					helpText.setInnerHtml(that.generateHelpText("FavoriteNumber",player.quirk.favoriteNumber));
 			});
 
 
-			a2.change(() {
-					var aspectDropDown = querySelector('[name="aspect' +player.id +'"] option:selected');
-					player.aspect = aspectDropDown.val();
+			a2.onChange.listen((Event e){
+					InputElement aspectDropDown = querySelector('[name="aspect${player.id}"] option:selected');
+					player.aspect = aspectDropDown.value;
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Aspect",player.aspect));
+					helpText.setInnerHtml(that.generateHelpText("Aspect",player.aspect));
 			});
 
-			hairDiv.change(() {
-				  var aspectDropDown = querySelector('[name="hair' +player.id +'"] option:selected');
-					player.hair = aspectDropDown.val();
+			hairDiv.onChange.listen((Event e){
+				  InputElement aspectDropDown = querySelector('[name="hair${player.id}"] option:selected');
+					player.hair = int.parse(aspectDropDown.value);
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Hair",player.class_name));
+					helpText.setInnerHtml(that.generateHelpText("Hair",player.class_name));
 			});
 
-			hairColorDiv.change(() {
+			hairColorDiv.onChange.listen((Event e){
 					//var aspectDropDown = querySelector('[name="hairColor' +player.id +'"] option:selected');
-					player.hairColor = hairColorDiv.val();
+					player.hairColor = (hairColorDiv as InputElement).value;
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("HairColor",player.class_name));
+					helpText.setInnerHtml(that.generateHelpText("HairColor",player.class_name));
 			});
 
-			leftHornDiv.change(() {
-					var aspectDropDown = querySelector('[name="leftHorn' +player.id +'"] option:selected');
-					player.leftHorn = aspectDropDown.val();
+			leftHornDiv.onChange.listen((Event e){
+					InputElement aspectDropDown = querySelector('[name="leftHorn${player.id}"] option:selected');
+					player.leftHorn = int.parse(aspectDropDown.value);
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Horns",player.class_name));
+					helpText.setInnerHtml(that.generateHelpText("Horns",player.class_name));
 			});
 
-			rightHornDiv.change(() {
-					var aspectDropDown = querySelector('[name="rightHorn' +player.id +'"] option:selected');
-					player.rightHorn = aspectDropDown.val();
+			rightHornDiv.onChange.listen((Event e){
+					InputElement aspectDropDown = querySelector('[name="rightHorn${player.id}"] option:selected');
+					player.rightHorn = int.parse(aspectDropDown.value);
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Horns",player.class_name));
+					helpText.setInnerHtml(that.generateHelpText("Horns",player.class_name));
 			});
 
-			bloodDiv.change(() {
-					var aspectDropDown = querySelector('[name="bloodColor' +player.id +'"] option:selected');
-					player.bloodColor = aspectDropDown.val();
-					bloodDiv.css("background-color", player.bloodColor);
-					bloodDiv.css("color", "black");
+			bloodDiv.onChange.listen((Event e){
+					InputElement aspectDropDown = querySelector('[name="bloodColor${player.id}"] option:selected');
+					player.bloodColor = aspectDropDown.value;
+					bloodDiv.style.backgroundColor = player.bloodColor;
+					bloodDiv.style.color = "black";
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("BloodColor",player.bloodColor));
+					helpText.setInnerHtml(that.generateHelpText("BloodColor",player.bloodColor));
 			});
 
-			speciesDiv.change(() {
-					var aspectDropDown = querySelector('[name="species' +player.id +'"] option:selected');
-					var str = aspectDropDown.val();
+			speciesDiv.onChange.listen((Event e){
+					InputElement aspectDropDown = querySelector('[name="species${player.id}"] option:selected');
+					String str = aspectDropDown.value;
 					if(str == "Troll"){
 						player.isTroll = true;
 					}else{
 						player.isTroll = false;
 					}
 					that.redrawSinglePlayer(player);
-					helpText.html(that.generateHelpText("Species",player.isTroll));
+					helpText.setInnerHtml(that.generateHelpText("Species",player.isTroll));
 			});
 	}
 	void wireUpTabs(player){
