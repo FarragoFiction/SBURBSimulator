@@ -152,35 +152,35 @@ class SessionSummary{ //since stats will be hash, don't need to make junior
   }
   dynamic decodeLineageGenerateHTML(){
     String html = "";
-    var params = window.location.href.substring(window.location.href.indexOf("?")+1); //what am i doing with params here?
+    String params = window.location.href.substring(window.location.href.indexOf("?")+1); //what am i doing with params here?
     if (params == window.location.href) params = "";
-    var lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
+    List<Session> lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
     String scratched = "";
     if(lineage[0].scratched) scratched = "(scratched)";
-    html += "<Br><b> Session</b>: <a href = 'index2.html?seed=" + lineage[0].session_id +"&"+params+ "'>" +lineage[0].session_id + scratched +"</a> ";
+    html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${lineage[0].session_id}&$params'>${lineage[0].session_id}$scratched</a> ";
     for(num i = 1; i< lineage.length; i++){
       String scratched = "";
       if(lineage[i].scratched) scratched = "(scratched)";
-      html += " combined with: " + "<a href = 'index2.html?seed=" + lineage[i].session_id +"&"+params+ "'>" +lineage[i].session_id + scratched +"</a> ";
+      html = "$html combined with: <a href = 'index2.html?seed=${lineage[i].session_id}&$params'>${lineage[i].session_id}$scratched</a> ";
     }
     scratched = "";
     if(this.getBoolStat("scratched")) scratched = "(scratched)";
-    html += " combined with: " + "<a href = 'index2.html?seed=" + this.session_id.toString() +"&"+params+ "'>" +this.session_id.toString() + scratched + "</a> ";
+    html = "$html combined with: <a href = 'index2.html?seed=${this.session_id.toString()}&$params'>${this.session_id.toString()}$scratched</a> ";
     if((lineage.length +1) == 3){
       this.setBoolStat("threeTimesSessionCombo", true);
-      html += " 3x SESSIONS COMBO!!!";
+      html = "$html 3x SESSIONS COMBO!!!";
     }
     if((lineage.length +1) == 4){
       this.setBoolStat("fourTimesSessionCombo",true);
-      html += " 4x SESSIONS COMBO!!!!";
+      html = "$html 4x SESSIONS COMBO!!!!";
     }
     if((lineage.length +1 ) ==5){
       this.setBoolStat("fiveTimesSessionCombo",true);
-      html += " 5x SESSIONS COMBO!!!!!";
+      html = "$html 5x SESSIONS COMBO!!!!!";
     }
     if((lineage.length +1) > 5){
       this.setBoolStat("holyShitMmmmmonsterCombo",true);
-      html += " The session pile doesn't stop from getting taller. ";
+      html = "$html The session pile doesn't stop from getting taller. ";
     }
     return html;
 

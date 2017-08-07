@@ -123,6 +123,7 @@ abstract class SimController {
   }
 
   void createInitialSprites(){
+    print("players: ${curSessionGlobalVar.players}");
     for(num i = 0; i<curSessionGlobalVar.players.length; i++){
       Player player = curSessionGlobalVar.players[i];
       player.renderSelf();

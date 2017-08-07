@@ -227,7 +227,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			appendHtml(div, narration);
 
 			player.makeAlive();
-			player.sanity += -0.5;
+			player.addStat("sanity", -0.5);
 
 			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard");
 
@@ -290,7 +290,7 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);
-			player.sanity += -10;
+			player.addStat("sanity", -10);
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
@@ -346,7 +346,7 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);
-			player.sanity += -10;
+			player.addStat("sanity", -10);
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
@@ -569,7 +569,7 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			player.object_to_prototype = new GameEntity("Frog", null); //new GameEntity("Frog",0,null);
 			player.object_to_prototype.setStat("power",20);
 			player.object_to_prototype.illegal = true;
-			player.object_to_prototype.mobility = 100;
+			player.object_to_prototype.setStat("mobility", 100);
 			var divID = (div.id) + "_alt_jack_promotion";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 			appendHtml(div, canvasHTML);
