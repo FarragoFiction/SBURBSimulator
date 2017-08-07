@@ -337,27 +337,28 @@ class CharacterCreatorHelper {
 	}
 	void wireUpDataBox(player){
 		this.writePlayerToDataBox(player);
-		var copyButton = querySelector("#copyButton" + player.id);
-		var loadButton = querySelector("#loadButton" + player.id);
+		ButtonElement copyButton = querySelector("#copyButton" + player.id);
+		ButtonElement loadButton = querySelector("#loadButton" + player.id);
 		var that = this;
-		copyButton.click(() {
-			var dataBox = querySelector("#dataBoxDiv"+player.id);
+		copyButton.onClick.listen((Event e) {
+			TextAreaElement dataBox = querySelector("#dataBoxDiv"+player.id);
 			dataBox.select();
 			document.execCommand('copy');
 		});
 
-		loadButton.click(() {
-			var dataBox = querySelector("#dataBoxDiv"+player.id);
-			String bs = "?" + dataBox.val(); //need "?" so i can parse as url
+
+		loadButton.onClick.listen((Event e) {
+			InputElement dataBox = querySelector("#dataBoxDiv"+player.id);
+			String bs = "?" + dataBox.value; //need "?" so i can parse as url
 			print("bs is: " + bs);
-			var b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
-			var s = getParameterByName("s", bs);
-			var x = (getParameterByName("x", bs));
+			String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+			String s = getParameterByName("s", bs);
+			String x = (getParameterByName("x", bs));
 			print("b: " + b);
 			print("s: " + s);
 			print("x: " + x);
 
-			var players = dataBytesAndStringsToPlayers(b, s,x) ;//technically an array of one players.;
+			List<Player> players = dataBytesAndStringsToPlayers(b, s,x) ;//technically an array of one players.;
 			print("Player class name: " + players[0].class_name);
 			player.copyFromPlayer(players[0]);
 			that.redrawSinglePlayer(player);
@@ -366,82 +367,82 @@ class CharacterCreatorHelper {
 
 		//and two buttons, load and copy.
 	}
-	void writePlayerToDataBox(player){
-		var dataBox = querySelector("#dataBoxDiv"+player.id);
-		dataBox.val(player.toOCDataString());
+	void writePlayerToDataBox(Player player){
+		InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
+		dataBox.value = (player.toOCDataString());
 
 	}
-	void wireUpCheckBoxes(player){
-		var grimDark = querySelector("#grimDark"+player.id);
-		var isDreamSelf = querySelector("#isDreamSelf"+player.id);
-		var godTier = querySelector("#godTier"+player.id);
-		var godDestiny = querySelector("#godDestiny"+player.id);
-		var murderMode = querySelector("#murderMode"+player.id);
-		var leftMurderMode = querySelector("#leftMurderMode"+player.id);
-		var dead = querySelector("#dead"+player.id);
-		var robot = querySelector("#robot"+player.id);
-		grimDark.prop('checked', player.grimDark == 4);
-		godTier.prop('checked', player.godTier);
-		isDreamSelf.prop('checked', player.isDreamSelf);
-		godDestiny.prop('checked', player.godDestiny);
-		murderMode.prop('checked', player.murderMode);
-		leftMurderMode.prop('checked', player.leftMurderMode);
-		dead.prop('checked', player.dead);
-		robot.prop('checked', player.robot);
+	void wireUpCheckBoxes(Player player){
+		CheckboxInputElement grimDark = querySelector("#grimDark${player.id}");
+		CheckboxInputElement isDreamSelf = querySelector("#isDreamSelf${player.id}");
+		CheckboxInputElement godTier = querySelector("#godTier${player.id}");
+		CheckboxInputElement godDestiny = querySelector("#godDestiny${player.id}");
+		CheckboxInputElement murderMode = querySelector("#murderMode${player.id}");
+		CheckboxInputElement leftMurderMode = querySelector("#leftMurderMode${player.id}");
+		CheckboxInputElement dead = querySelector("#dead${player.id}");
+		CheckboxInputElement robot = querySelector("#robot${player.id}");
+		grimDark.checked = player.grimDark == 4;
+		godTier.checked = player.godTier;
+		isDreamSelf.checked = player.isDreamSelf;
+		godDestiny.checked = player.godDestiny;
+		murderMode.checked =player.murderMode;
+		leftMurderMode.checked = player.leftMurderMode;
+		dead.checked = player.dead;
+		robot.checked =player.robot;
 
-		var helpText = querySelector("#helpText"+player.id);
+		Element helpText = querySelector("#helpText${player.id}");
 		var that = this;
 
-		grimDark.change(() {
-			if(grimDark.prop('checked')){
+		grimDark.onChange.listen((Event e) {
+			if(grimDark.checked){
 				player.grimDark = 4;
 			}else{
 				player.grimDark = 0;
 			}
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("grimDark",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("grimDark",player.class_name));
 		});
 
-		isDreamSelf.change(() {
-			player.isDreamSelf = isDreamSelf.prop('checked');
+		isDreamSelf.onChange.listen((Event e) {
+			player.isDreamSelf = isDreamSelf.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("isDreamSelf",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("isDreamSelf",player.class_name));
 		});
 
-		godTier.change(() {
-			player.godTier = godTier.prop('checked');
+		godTier.onChange.listen((Event e) {
+			player.godTier = godTier.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("godTier",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("godTier",player.class_name));
 		});
 
-		godDestiny.change(() {
-			player.godDestiny = godDestiny.prop('checked');
+		godDestiny.onChange.listen((Event e) {
+			player.godDestiny = godDestiny.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("godDestiny",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("godDestiny",player.class_name));
 		});
 
-		murderMode.change(() {
-			player.murderMode = murderMode.prop('checked');
+		murderMode.onChange.listen((Event e) {
+			player.murderMode = murderMode.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("murderMode",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("murderMode",player.class_name));
 		});
 
-		leftMurderMode.change(() {
-			player.leftMurderMode = leftMurderMode.prop('checked');
+		leftMurderMode.onChange.listen((Event e) {
+			player.leftMurderMode = leftMurderMode.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("leftMurderMode",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("leftMurderMode",player.class_name));
 		});
 
-		dead.change(() {
-			player.dead = dead.prop('checked');
+		dead.onChange.listen((Event e) {
+			player.dead = dead.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("dead",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("dead",player.class_name));
 		});
 
-		robot.change(() {
-			player.robot = robot.prop('checked');
+		robot.onChange.listen((Event e) {
+			player.robot = robot.checked;
 			that.redrawSinglePlayer(player);
-			helpText.html(that.generateHelpText("robot",player.class_name));
+			helpText.setInnerHtml(that.generateHelpText("robot",player.class_name));
 		});
 
 	}
