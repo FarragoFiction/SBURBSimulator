@@ -328,9 +328,9 @@ dynamic stringToByteArray(str){
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-dynamic dataBytesAndStringsToPlayer(charString, str_arr){
+dynamic dataBytesAndStringsToPlayer(String charString, str_arr){
   var player = new Player();
-  player.quirk = new Quirk(player.rand);
+  player.quirk = new Quirk(null);
   //print("strings is: " + str_arr);
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
@@ -341,33 +341,33 @@ dynamic dataBytesAndStringsToPlayer(charString, str_arr){
   //for bytes, how to convert uri encoded string into char string into unit8 buffer?
   //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
   //print("charString is: " + charString);
-  player.hairColor = intToHexColor((charString.charCodeAt(0) << 16) + (charString.charCodeAt(1) << 8) + (charString.charCodeAt(2)) );
-  player.class_name = intToClassName(charString.charCodeAt(3) >> 4);
-  print("I believe the int value of the class name is: " + (charString.charCodeAt(3) >> 4) + " which is: " + player.class_name);
-  player.aspect = intToAspect(charString.charCodeAt(3) & 15) ;//get 4 bits on end;
-  player.victimBlood = intToBloodColor(charString.charCodeAt(4) >> 4);
-  player.bloodColor = intToBloodColor(charString.charCodeAt(4) & 15);
-  player.interest1Category = intToInterestCategory(charString.charCodeAt(5) >> 4);
-  player.interest2Category = intToInterestCategory(charString.charCodeAt(5) & 15);
-  player.grimDark = charString.charCodeAt(6) >> 5;
-  player.isTroll = 0 != ((1<<4) & charString.charCodeAt(6)); //only is 1 if character at 1<<4 is 1 in charString
-  player.isDreamSelf = 0 != ((1<<3) & charString.charCodeAt(6));
-  player.godTier = 0 != ((1<<2) & charString.charCodeAt(6));
-  player.murderMode = 0 != ((1<<1) & charString.charCodeAt(6));
-  player.leftMurderMode = 0 != ((1) & charString.charCodeAt(6));
-  player.robot = 0 != ((1<<7) & charString.charCodeAt(7));
-  var moon = 0 != ((1<<6) & charString.charCodeAt(7));
+  player.hairColor = intToHexColor((charString.codeUnitAt(0) << 16) + (charString.codeUnitAt(1) << 8) + (charString.codeUnitAt(2)) );
+  player.class_name = intToClassName(charString.codeUnitAt(3) >> 4);
+  //print("I believe the int value of the class name is: " + (charString.codeUnitAt(3) >> 4) + " which is: " + player.class_name);
+  player.aspect = intToAspect(charString.codeUnitAt(3) & 15) ;//get 4 bits on end;
+  player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
+  player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
+  player.interest1Category = intToInterestCategory(charString.codeUnitAt(5) >> 4);
+  player.interest2Category = intToInterestCategory(charString.codeUnitAt(5) & 15);
+  player.grimDark = charString.codeUnitAt(6) >> 5;
+  player.isTroll = 0 != ((1<<4) & charString.codeUnitAt(6)); //only is 1 if character at 1<<4 is 1 in charString
+  player.isDreamSelf = 0 != ((1<<3) & charString.codeUnitAt(6));
+  player.godTier = 0 != ((1<<2) & charString.codeUnitAt(6));
+  player.murderMode = 0 != ((1<<1) & charString.codeUnitAt(6));
+  player.leftMurderMode = 0 != ((1) & charString.codeUnitAt(6));
+  player.robot = 0 != ((1<<7) & charString.codeUnitAt(7));
+  var moon = 0 != ((1<<6) & charString.codeUnitAt(7));
   //print("moon binary is: " + moon);
   player.moon = moon ? "Prospit" : "Derse";
   //print("moon string is: "  + player.moon);
-  player.dead = 0 != ((1<<5) & charString.charCodeAt(7));
+  player.dead = 0 != ((1<<5) & charString.codeUnitAt(7));
   //print("Binary string is: " + charString[7]);
-  player.godDestiny = 0 != ((1<<4) & charString.charCodeAt(7));
-  player.quirk.favoriteNumber = charString.charCodeAt(7) & 15;
+  player.godDestiny = 0 != ((1<<4) & charString.codeUnitAt(7));
+  player.quirk.favoriteNumber = charString.codeUnitAt(7) & 15;
   print("Player favorite number is: ${player.quirk.favoriteNumber}");
-  player.leftHorn = charString.charCodeAt(8);
-  player.rightHorn = charString.charCodeAt(9);
-  player.hair = charString.charCodeAt(10);
+  player.leftHorn = charString.codeUnitAt(8);
+  player.rightHorn = charString.codeUnitAt(9);
+  player.hair = charString.codeUnitAt(10);
   if(player.interest1Category != null) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
   if(player.interest2Category != null)interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
 

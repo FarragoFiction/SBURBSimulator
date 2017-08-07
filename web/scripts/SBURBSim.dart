@@ -129,6 +129,11 @@ int getRandomSeed() {
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(ErrorEvent e) {
+    if(curSessionGlobalVar == null) {
+      appendHtml(querySelector("#story"), "ERROR: CRASHING EVEN IN NON SIMULATION.");
+      SimController.instance.recoverFromCorruption();
+      return false;
+    }
     print("Debugging AB: corruption msg in session: ${curSessionGlobalVar.session_id}");
     Element story = querySelector("#story");
 

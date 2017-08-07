@@ -16,6 +16,7 @@ class Quirk {
 
 
 	Quirk(Random this.rand) {
+	  if(this.rand == null) rand = new Random(); //so that blank players can be made that get overridden l8r
 		this.favoriteNumber = rand.nextInt(12);
 	}
 
