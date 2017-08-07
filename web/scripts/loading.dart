@@ -6,9 +6,10 @@ num imagesWaiting = 0;
 num imagesLoaded = 0;
 var callBack = null;
 
-dynamic loadFuckingEverything(skipInit){
+dynamic loadFuckingEverything(String skipInit, cb){
 	if(doNotRender == true) return checkDone(skipInit);
 	loadAllImages(skipInit);
+	callBack = cb;
 	return null;
 }
 
@@ -123,8 +124,7 @@ dynamic checkDone(String skipInit){
       	throw("not supported yet.");
         //renderGhosts();
       }else{
-				throw("not supported yet.");
-        //renderPlayersForEditing();
+        //SimController.instance as CharrenderPlayersForEditing();
       }
       return null;
     }

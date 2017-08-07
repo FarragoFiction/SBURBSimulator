@@ -22,9 +22,12 @@ void main()
   if (params == window.location.href) params = "";
   appendHtml(querySelector("#character_creator"),"<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target='_blank' href = 'rare_session_finder.html?selfInsertOC=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
   //TODO what does passing true here mean again, really should make it callbacks eventually.
-  loadFuckingEverything(true);
+  loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
 
+void renderPlayersForEditing() {
+  self.renderPlayersForEditing();
+}
 /*
   doesn't do sim stuff, it's overrides are errors, but need it to do a few other things. whatever.
  */

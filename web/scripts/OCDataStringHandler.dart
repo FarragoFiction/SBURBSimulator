@@ -32,12 +32,18 @@ class CharacterEasterEggEngine {
 
   dynamic loadArrayFromFile(arr, String file, processForSim, callBack, that){
     //print("loading" + file);
-    var that = this;
+   // var that = this; //TODO what the hell was i doing here, that comes from a param
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
       parseFileContentsToArray(arr, data.trim());
       if(processForSim != null && callBack != null) return that.processForSim(callBack);
-      if(processForSim == null && callBack != null) callBack(that);  //whoever calls me is responsible for knowing when all are loaded.
+      if(processForSim == null && callBack != null) {
+        if(that == null) {
+          callBack();
+        }else {
+          callBack(that); //whoever calls me is responsible for knowing when all are loaded.
+        }
+      }
     });
 
 
@@ -268,30 +274,30 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 
 
 
-dynamic dataBytesAndStringsToPlayers(bytes, strings, xbytes){
-  print("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
+List<Player> dataBytesAndStringsToPlayers(bytes, strings, xbytes){
+ // print("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
   //bytes are 11 chars per player
   //strings are 5 csv per player.
   //print(bytes);
   //print(bytes.length);
   strings = strings.split(",");
-  List<dynamic> players = [];
+  List<Player> players = [];
   //print(bytes);
   for(num i = 0; i<bytes.length/11; i+=1){;
-  //print("player i: " + i + " being parsed from url");
-  var bi = i*11; //i is which player we are on, which is 11 bytes long
-  var si = i*5; //or 5 strings long
-  var b = bytes.substring(bi, bi+11);
-  //List<dynamic> s = [];
-  var s = strings.slice(si, si +5);
-  //print("passing b to player parser");
-  //print(b);
-  var p = (dataBytesAndStringsToPlayer(b,s));
-  p.id = i; //will be overwritten by sim, but viewer needs it
-  players.add(p);
+    //print("player i: " + i + " being parsed from url");
+    var bi = i*11; //i is which player we are on, which is 11 bytes long
+    var si = i*5; //or 5 strings long
+    var b = bytes.substring(bi, bi+11);
+    //List<dynamic> s = [];
+    var s = strings.substring(si, si +5);  //TODO used to be "slice" in js, is it still?
+    //print("passing b to player parser");
+    //print(b);
+    var p = (dataBytesAndStringsToPlayer(b,s));
+    p.id = i; //will be overwritten by sim, but viewer needs it
+    players.add(p);
   }
   //if(extensionString) player.readInExtensionsString(extensionString);
-  if(xbytes) applyExtensionStringToPlayers(players, xbytes);
+  if(!xbytes.isEmpty) applyExtensionStringToPlayers(players, xbytes);
   return players;
 
 }
