@@ -274,13 +274,13 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 
 
 
-List<Player> dataBytesAndStringsToPlayers(bytes, strings, xbytes){
+List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes){
  // print("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
   //bytes are 11 chars per player
   //strings are 5 csv per player.
   //print(bytes);
   //print(bytes.length);
-  strings = strings.split(",");
+  List<String> strings = s.split(",");
   List<Player> players = [];
   //print(bytes);
   for(num i = 0; i<bytes.length/11; i+=1){;
@@ -289,7 +289,7 @@ List<Player> dataBytesAndStringsToPlayers(bytes, strings, xbytes){
     var si = i*5; //or 5 strings long
     var b = bytes.substring(bi, bi+11);
     //List<dynamic> s = [];
-    var s = strings.substring(si, si +5);  //TODO used to be "slice" in js, is it still?
+    var s = strings.sublist(si, si +5);  //TODO used to be "slice" in js, is it still?
     //print("passing b to player parser");
     //print(b);
     var p = (dataBytesAndStringsToPlayer(b,s));
