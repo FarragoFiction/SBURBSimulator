@@ -1,24 +1,28 @@
 import "../SBURBSim.dart";
 import 'dart:html';
+import '../navbar.dart';
 //need to render all players
 class CharacterCreatorHelper {
 	List<Player> players;
+	Element div;
 	num player_index = 0; //how i draw 12 players at a time.
 	//have css for each sprite template.  sprite template is 400 x 300, fit 3 on a line?
 	//max of 4 lines?
 
-	CharacterCreatorHelper(this.players) {}
+	CharacterCreatorHelper(this.players) {
+	  div = querySelector("#character_creator");
+  }
 
 	void drawAllPlayers(){
 		bloodColors.add("#ff0000"); //for humans
 		for(num i = 0; i<this.players.length; i++){
-			this.drawSinglePlayer(this.players[i]);
+			this.drawSinglePlayerForHelper(this.players[i]);
 		}
 	}
 	void draw12PlayerSummaries(){
-		var start = this.player_index;
-		var num_at_a_time= 12;
-		for(var i = start; i<start+num_at_a_time; i++){
+		int start = this.player_index;
+		int num_at_a_time= 12;
+		for(int i = start; i<start+num_at_a_time; i++){
 
 			if(this.players.length > i){
 				//print("i is: " + i);
@@ -34,27 +38,29 @@ class CharacterCreatorHelper {
 	void drawSinglePlayerSummary(player){
 		//print("drawing: " + player.title())
 		String str = "<div class='standAloneSummary' id='createdCharacter"+ player.id + "'>";
-		var divId = player.id;
+		String divId = player.id.toString();
 		str += this.drawCanvasSummary(player);
 		//this.drawDataBoxNoButtons(player);
 		str += "</div><div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
-		this.div.append(str);
+		appendHtml(div, str);
 		this.createSummaryOnCanvas(player);
-		querySelector(".optionBox").show(); //unlike char creator, always show
+		show(querySelector(".optionBox")); //unlike char creator, always show
 		this.wireUpDataBox(player);
 	}
-	void drawSinglePlayer(player){
+
+	//TODO why the fuck did this have the same name as a handle_sprites function?
+ 	void drawSinglePlayerForHelper(player){
 		//print("drawing: " + player.title())
 		String str = "";
-		var divId = player.id;
+		String divId = player.id.toString();
 		if(curSessionGlobalVar.session_id != 612 && curSessionGlobalVar.session_id != 613  && curSessionGlobalVar.session_id != 413 && curSessionGlobalVar.session_id != 1025 &&  curSessionGlobalVar.session_id != 111111)player.chatHandle = "";
 		//divId = divId.replace(new RegExp(r"""\s+""", multiLine:true), '');
 		str += "<div class='createdCharacter' id='createdCharacter"+ player.id + "'>";
-		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='" +400 + "' height="+300 + "'>  </canvas>";
-		str += "<div class = 'folderDealy'>"
+		str += "<canvas class = 'createdCharacterCanvas' id='canvas" +divId + "' width='400' height='300'>  </canvas>";
+		str += "<div class = 'folderDealy'>";
 		str += this.drawTabs(player);
-		str += "<div class = 'charOptions'>"
-		str += "<div class = 'charOptionsForms'>"
+		str += "<div class = 'charOptions'>";
+		str += "<div class = 'charOptionsForms'>";
 		str += this.drawDropDowns(player);
 		str += this.drawCheckBoxes(player);
 		str += this.drawTextBoxes(player);
@@ -68,11 +74,11 @@ class CharacterCreatorHelper {
 
 
 		str += "</div>";
-		this.div.append(str);
+		appendHtml(div,str);
 
 		player.spriteCanvasID = player.id+player.id+"spriteCanvas";
-		String canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='" +400 + "' height="+300 + "'>  </canvas>";
-		querySelector("#playerSprites").append(canvasHTML);
+		String canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='400' height='300'>  </canvas>";
+		appendHtml(querySelector("#playerSprites"),canvasHTML);
 
 		player.renderSelf();
 
@@ -96,42 +102,41 @@ class CharacterCreatorHelper {
 		this.syncPlayerToTextBoxes(player);
 	}
 	void syncPlayerToDropDowns(player){
-		//TODO is setting the val enough for a drop down???  what if it doesn't match the thing?
-		querySelector("#classNameID" +player.id).val(player.class_name);
-		querySelector("#aspectID" +player.id).val(player.aspect);
-		querySelector("#hairTypeID" +player.id).val(player.hair);
-		querySelector("#hairColorID" +player.id).val(player.hairColor);
+    (querySelector("#classNameID" +player.id) as SelectElement).value = (player.class_name);
+    (querySelector("#aspectID" +player.id)as SelectElement).value = (player.aspect);
+    (querySelector("#hairTypeID" +player.id)as SelectElement).value = (player.hair);
+    (querySelector("#hairColorID" +player.id)as SelectElement).value = (player.hairColor);
 		String troll = "Human";
 		if(player.isTroll) troll = "Troll";
-		querySelector("#speciesID" +player.id).val(troll);
-		querySelector("#leftHornID" +player.id).val(player.leftHorn);
-		querySelector("#rightHornID" +player.id).val(player.rightHorn);
-		querySelector("#bloodColorID" +player.id).val(player.bloodColor);
-		querySelector("#bloodColorID" +player.id).css("background-color", player.bloodColor);
-		querySelector("#favoriteNumberID" +player.id).val(player.quirk.favoriteNumber);
-		querySelector("#moonID" +player.id).val(player.moon);
-		querySelector("#moonID" +player.id).css("background-color", moonToColor(player.moon));
+    (querySelector("#speciesID" +player.id)as SelectElement).value = (troll);
+    (querySelector("#leftHornID" +player.id)as SelectElement).value = (player.leftHorn);
+    (querySelector("#rightHornID" +player.id)as SelectElement).value = (player.rightHorn);
+    (querySelector("#bloodColorID" +player.id)as SelectElement).value = (player.bloodColor);
+    (querySelector("#bloodColorID" +player.id)as SelectElement).style.backgroundColor = player.bloodColor;
+    (querySelector("#favoriteNumberID" +player.id)as SelectElement).value = (player.quirk.favoriteNumber);
+    (querySelector("#moonID" +player.id)as SelectElement).value = (player.moon);
+    querySelector("#moonID" +player.id).style.backgroundColor = moonToColor(player.moon);
 	}
 	void syncPlayerToCheckBoxes(player){
 		//.prop('checked', true);
-		querySelector("#grimDark"+player.id).prop('checked',player.grimDark);
-	  querySelector("#isDreamSelf"+player.id).prop('checked',player.isDreamSelf);
-		querySelector("#godTier"+player.id).prop('checked',player.godTier);
-		querySelector("#godDestiny"+player.id).prop('checked',player.godDestiny);
-		querySelector("#murderMode"+player.id).prop('checked',player.murderMode);
-		querySelector("#leftMurderMode"+player.id).prop('checked',player.leftMurderMode);
-		querySelector("#dead"+player.id).prop('checked',player.dead);
-		querySelector("#robot"+player.id).prop('checked',player.robot);
+    (querySelector("#grimDark"+player.id) as CheckboxInputElement).checked = player.grimDark;
+    (querySelector("#isDreamSelf"+player.id)as CheckboxInputElement).checked =player.isDreamSelf;
+    (querySelector("#godTier"+player.id)as CheckboxInputElement).checked =player.godTier;
+    (querySelector("#godDestiny"+player.id)as CheckboxInputElement).checked =player.godDestiny;
+    (querySelector("#murderMode"+player.id)as CheckboxInputElement).checked =player.murderMode;
+    (querySelector("#leftMurderMode"+player.id)as CheckboxInputElement).checked =player.leftMurderMode;
+    (querySelector("#dead"+player.id)as CheckboxInputElement).checked =player.dead;
+    (querySelector("#robot"+player.id)as CheckboxInputElement).checked =player.robot;
 	}
 	void syncPlayerToTextBoxes(player){
-		querySelector("#interestCategory1" +player.id).val(player.interest1Category);
-		querySelector("#interestCategory2" +player.id).val(player.interest2Category);
-		querySelector("#interest1" +player.id).val(player.interest1);
-		querySelector("#interest2" +player.id).val(player.interest2);
-		querySelector("#chatHandle"+player.id).val(player.chatHandle);
+    (querySelector("#interestCategory1" +player.id) as InputElement).value = (player.interest1Category);
+    (querySelector("#interestCategory2" +player.id) as InputElement).value = (player.interest2Category);
+    (querySelector("#interest1" +player.id) as InputElement).value = (player.interest1);
+    (querySelector("#interest2" +player.id) as InputElement).value = (player.interest2);
+    (querySelector("#chatHandle"+player.id) as InputElement).value = (player.chatHandle);
 	}
-	dynamic drawDropDowns(player){
-		String str = "<div id = 'dropDowns" + player.id + "' class='optionBox'>";
+	dynamic drawDropDowns(Player player){
+		String str = "<div id = 'dropDowns${player.id}' class='optionBox'>";
 		str += "<div>" + (this.drawOneClassDropDown(player));
 		str += (" of ");
 		str+= (this.drawOneAspectDropDown(player)) + "</div>";
@@ -147,50 +152,50 @@ class CharacterCreatorHelper {
 		str += "</div>";
 		return str;
 	}
-	dynamic drawTabs(player){
-		String str = "<div id = 'tabs'"+player.id + " class='optionTabs'>";
-		str += "<span id = 'ddTab" +player.id + "'class='optionTab optionTabSelected'> DropDowns</span>";
-		str += "<span id = 'cbTab" +player.id + "'class='optionTab'> CheckBoxes</span>";
-		str += "<span id = 'tbTab" +player.id + "'class='optionTab'> TextBoxes</span>";
-		str += "<span id = 'csTab" +player.id + "'class='optionTab'> Summary</span>";
-		str += "<span id = 'dataTab" +player.id + "'class='optionTab'> Data</span>";
-		str += "<span id = 'deleteTab" +player.id + "'class='deleteTab'> X </span>";
+	dynamic drawTabs(Player player){
+		String str = "<div id = 'tabs'${player.id}' class='optionTabs'>";
+		str += "<span id = 'ddTab${player.id}'class='optionTab optionTabSelected'> DropDowns</span>";
+		str += "<span id = 'cbTab${player.id}'class='optionTab'> CheckBoxes</span>";
+		str += "<span id = 'tbTab${player.id}'class='optionTab'> TextBoxes</span>";
+		str += "<span id = 'csTab${player.id}'class='optionTab'> Summary</span>";
+		str += "<span id = 'dataTab${player.id}'class='optionTab'> Data</span>";
+		str += "<span id = 'deleteTab${player.id}'class='deleteTab'> X </span>";
 		str += "</div>";
 		return str;
 	}
-	dynamic drawCheckBoxes(player){
-		String str = "<div id = 'checkBoxes"+player.id + "' class='optionBox'>";
-		str += '<span class="formElementLeft">GrimDark:</span> <input id="grimDark' + player.id + '" type="checkbox">'
-		str += '<span class="formElementRight">IsDreamSelf:</span> <input id="isDreamSelf' + player.id + '" type="checkbox">'
-		str += '<span class="formElementLeft">GodDestiny:</span> <input id="godDestiny' + player.id + '" type="checkbox">'
-		str += '<span class="formElementRight">GodTier:</span> <input id="godTier' + player.id + '" type="checkbox">'
-		str += '<span class="formElementLeft">MurderMode:</span> <input id="murderMode' + player.id + '" type="checkbox">'
-		str += '<span class="formElementRight">LeftMurderMode:</span> <input id="leftMurderMode' + player.id + '" type="checkbox">'
-		str += '<span class="formElementLeft">Dead:</span> <input id="dead' + player.id + '" type="checkbox">'
-		str += '<span class="formElementRight">Robot:</span> <input id="robot' + player.id + '" type="checkbox">'
+	dynamic drawCheckBoxes(Player player){
+		String str = "<div id = 'checkBoxes${player.id}' class='optionBox'>";
+		str += '<span class="formElementLeft">GrimDark:</span> <input id="grimDark${player.id}" type="checkbox">';
+		str += '<span class="formElementRight">IsDreamSelf:</span> <input id="isDreamSelf${player.id}" type="checkbox">';
+		str += '<span class="formElementLeft">GodDestiny:</span> <input id="godDestiny${player.id}" type="checkbox">';
+		str += '<span class="formElementRight">GodTier:</span> <input id="godTier${player.id}" type="checkbox">';
+		str += '<span class="formElementLeft">MurderMode:</span> <input id="murderMode${player.id}" type="checkbox">';
+		str += '<span class="formElementRight">LeftMurderMode:</span> <input id="leftMurderMode${player.id}" type="checkbox">';
+		str += '<span class="formElementLeft">Dead:</span> <input id="dead${player.id}" type="checkbox">';
+		str += '<span class="formElementRight">Robot:</span> <input id="robot${player.id}" type="checkbox">';
 
 		str += "</div>";
 		return str;
 	}
-	dynamic drawTextBoxes(player){
-		String str = "<div id = 'textBoxes"+player.id + "'' class='optionBox'>";
+	dynamic drawTextBoxes(Player player){
+		String str = "<div id = 'textBoxes${player.id}'' class='optionBox'>";
 		str += this.drawChatHandleBox(player);
 		str += this.drawInterests(player);
 		str += "</div>";
 		return str;
 	}
-	dynamic drawCanvasSummary(player){
-		String str = "<div id = 'canvasSummary"+player.id + "' class='optionBox'>";
+	dynamic drawCanvasSummary(Player player){
+		String str = "<div id = 'canvasSummary${player.id}' class='optionBox'>";
 		num height = 300;
 		num width = 600;
-		str += "<canvas id='canvasSummarycanvas" + player.id +"' width='" +width + "' height="+height + "'>  </canvas>"
+		str += "<canvas id='canvasSummarycanvas${player.id}' width='" +width.toString() + "' height="+height.toString() + "'>  </canvas>";
 		str += "</div>";
 		return str;
 	}
-	void createSummaryOnCanvas(player){
-		var canvas = querySelector("#canvasSummarycanvas"+  player.id);
-		var ctx = canvas.getContext("2d");
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+	void createSummaryOnCanvas(Player player){
+		CanvasElement canvas = querySelector("#canvasSummarycanvas${player.id}");
+		CanvasRenderingContext2D ctx = canvas.getContext("2d");
+		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
 		ctx.clearRect(0, 0, 600, 300);
 		drawSpriteFromScratch(pSpriteBuffer, player);
 		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-30,0);
@@ -228,37 +233,38 @@ class CharacterCreatorHelper {
 
 
 	}
-	dynamic drawHelpText(player){
-		String str = "<div id = 'helpText" + player.id + "' class ='helpText'>...</div>";
+	dynamic drawHelpText(Player player){
+		String str = "<div id = 'helpText${player.id}' class ='helpText'>...</div>";
 
 		return str;
 	}
-	dynamic drawDataBoxNoButtons(player){
-		String str = "<div id = 'dataBox"+player.id + "'>";
-		str += "<button class = 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
-		str += "<textarea class = 'dataInputSmall' id='dataBoxDiv"+player.id + "'> </textarea>";
+	dynamic drawDataBoxNoButtons(Player player){
+		String str = "<div id = 'dataBox${player.id}'>";
+		str += "<button class = 'charCreatorButton' id = 'copyButton${player.id}'> Copy To ClipBoard</button>  </div>";
+		str += "<textarea class = 'dataInputSmall' id='dataBoxDiv${player.id}'> </textarea>";
 		str += "</div>";
 		return str;
 	}
-	dynamic drawDataBox(player){
-		String str = "<div id = 'dataBox"+player.id + "' class='optionBox'>";
-		str += "<textarea class = 'dataInput' id='dataBoxDiv"+player.id + "'> </textarea>";
-		str += "<div><button class = 'charCreatorButton' id = 'loadButton" + player.id + "'>Load From Text</button>";
-		str += "<button class = 'charCreatorButton' id = 'copyButton" + player.id + "'> Copy To ClipBoard</button>  </div>";
+	dynamic drawDataBox(Player player){
+		String str = "<div id = 'dataBox${player.id}' class='optionBox'>";
+		str += "<textarea class = 'dataInput' id='dataBoxDiv${player.id}'> </textarea>";
+		str += "<div><button class = 'charCreatorButton' id = 'loadButton${player.id}'>Load From Text</button>";
+		str += "<button class = 'charCreatorButton' id = 'copyButton${player.id}'> Copy To ClipBoard</button>  </div>";
 		str += "</div>";
 		return str;
 	}
 	void redrawSinglePlayer(player){
 		  player.renderSelf();
 			String divId = "canvas" + player.id;
-			divId = divId.replace(new RegExp(r"""\s+""", multiLine:true), '');
-			var canvas =querySelector("#"+divId)[0];
+			//divId = divId.replaceAll(new RegExp(r"""\s+""", multiLine:true), ''); //TODO what is going on here?
+			var canvas =querySelector("#"+divId);
 			drawSolidBG(canvas, "#ffffff");
 			drawSinglePlayer(canvas, player);
 			this.createSummaryOnCanvas(player);
 			this.writePlayerToDataBox(player);
 			this.syncPlayerToFields(player);
 	}
+
 	String generateHelpText(topic, specific){
 		if(topic == "Class") return this.generateClassHelp(topic, specific);
 		if(topic == "Aspect") return this.generateAspectHelp(topic, specific);
@@ -281,12 +287,12 @@ class CharacterCreatorHelper {
 		if(topic == "Interests") return "Interests alter how a player speaks (including their skill at finding topics to rap about), some of the rungs on their echeladder, and their derived ChatHandle.";
 		return "Help text not found for " + topic + ".";
 	}
-	void generateMoonHelp(topic, specific){
+	String generateMoonHelp(topic, specific){
 		if(specific == "Prospit") return "Dreamers of Prospit see visions of the inevitable future in the clouds of Skaia. This is not a good thing.";
 		if(specific == "Derse") return "Dreamers of Derse are constantly bombarded by the whispers of the Horror Terrors. This is not a good thing.";
 		return "Moon help text not found for " + specific + ".";
 	}
-	dynamic generateBloodColorHelp(topic, specific){
+	String generateBloodColorHelp(topic, specific){
 		if(specific == "#ff0000") return "Candy red blood has no specific boost.";
 		String str = "The cooler blooded a troll is, the greater their HP and power on entering the medium. Game powers have a way of equalizing things, though. ";
 		str += specific + " is associated with a power and hp increase of: " +bloodColorToBoost(specific);
@@ -323,8 +329,8 @@ class CharacterCreatorHelper {
 		if(specific == "Page") return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly. They give a  boost to the positive parts of their Aspect, while protecting others from the negative parts";
 		if(specific == "Waste") return "Wastes gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop hacking my damn code.";
 		if(specific == "Scribe") return "A Scribe distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They get a great deal of the positive of their aspect, but even more of the negative. ";
-        if(specific == "Sage") return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
-        if(specific == "Scout") return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
+		if(specific == "Sage") return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+		if(specific == "Scout") return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
 
 
 		return "Class help text not found for " + specific + ".";
