@@ -533,24 +533,24 @@ class QuadrantDialogue extends Scene {
 		}
 		return ret;
 	}
-	dynamic getChat(relationship, relationship2){
+	String getChat(Relationship relationship, Relationship relationship2){
 
 		relationship.moreOfSame(); //strengthens bonds in whatever direction.
 		//feelings jams have highest priority.
 		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason != null || this.player2.flipOutReason != null)){
 			return this.feelingsJam(relationship, relationship2);  //whole convo
 		}
-		var trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
+		String trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
 		if(trait != "nice"){
 			return this.interestAndQuadrantChat(trait, relationship, relationship2);
 		}else{  //no option to chat about interests.
 			return this.lackOfInterestAndQuadrantChat(relationship, relationship2);
 		}
 	}
-	dynamic getGreeting(r1, r2){
+	String getGreeting(Relationship r1, Relationship r2){
 		String ret = "";
-		ret += Scene.chatLine(this.player1Start, this.player1,Relationship.getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2) + this.getQuadrantASCII(r1));
-		ret += Scene.chatLine(this.player2Start, this.player2,Relationship.getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)+ this.getQuadrantASCII(r2));
+		ret = "$ret${Scene.chatLine(this.player1Start, this.player1,"${Relationship.getRelationshipFlavorGreeting(r1, r2, this.player1, this.player2)}${this.getQuadrantASCII(r1)}")}";
+		ret = "$ret${Scene.chatLine(this.player2Start, this.player2,"${Relationship.getRelationshipFlavorGreeting(r2, r1, this.player2, this.player1)}${this.getQuadrantASCII(r2)}")}";
 		return ret;
 	}
 	dynamic fareWell(relationship, relationship2){

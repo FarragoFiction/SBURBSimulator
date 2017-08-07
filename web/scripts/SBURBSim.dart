@@ -212,30 +212,30 @@ bool printCorruptionMessage(ErrorEvent e) {
 }
 
 
-String getYellowYardEvents(session) {
+String getYellowYardEvents(Session session) {
     String ret = "";
     for (num i = 0; i < session.yellowYardController.eventsToUndo.length; i++) {
-        var decision = session.yellowYardController.eventsToUndo[i];
-        ret += decision.humanLabel() + ", ";
+        ImportantEvent decision = session.yellowYardController.eventsToUndo[i];
+        ret = "$ret${decision.humanLabel()}, ";
     }
-    return ret + ". ";
+    return "$ret. ";
 }
 
 
-String scratchedLineageText(lineage) {
+String scratchedLineageText(List<Session> lineage) {
     String scratched = "";
     String ret = "";
     String yellowYard = getYellowYardEvents(lineage[0]);
-    if (yellowYard != ". ") yellowYard = "Which had YellowYardEvents:  " + yellowYard;
+    if (yellowYard != ". ") yellowYard = "Which had YellowYardEvents:  $yellowYard";
     if (lineage[0].scratched) scratched = "(scratched)";
-    ret += lineage[0].session_id.toString() + scratched + yellowYard;
-    for (num i = 1; i < lineage.length; i++) {
+    ret = "$ret${lineage[0].session_id}$scratched$yellowYard";
+    for (int i = 1; i < lineage.length; i++) {
         String scratched = "";
         yellowYard = getYellowYardEvents(lineage[i]);
-        if (yellowYard != ". ") yellowYard = " which had YellowYardEvents:  " + yellowYard;
+        if (yellowYard != ". ") yellowYard = " which had YellowYardEvents:  $yellowYard";
 
         if (lineage[i].scratched) scratched = "(scratched)";
-        ret += " which combined with: " + lineage[i].session_id + scratched + yellowYard + " ";
+        ret = "$ret which combined with: ${lineage[i].session_id}$scratched$yellowYard ";
     }
     return ret;
 }
