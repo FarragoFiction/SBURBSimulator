@@ -109,6 +109,7 @@ class CharacterCreatorHelper {
 		if(player.isTroll) troll = "Troll";
     (querySelector("#speciesID${player.id}")as SelectElement).value = (troll);
     (querySelector("#leftHornID${player.id}")as SelectElement).value = (player.leftHorn.toString());
+    print("player right horn is ${player.rightHorn}");
     (querySelector("#rightHornID${player.id}")as SelectElement).value = (player.rightHorn.toString());
     (querySelector("#bloodColorID${player.id}")as SelectElement).value = (player.bloodColor);
     (querySelector("#bloodColorID${player.id}")as SelectElement).style.backgroundColor = player.bloodColor;
@@ -144,8 +145,8 @@ class CharacterCreatorHelper {
 		str += "<span class='formElementRight'>Hair Color:</span>" + this.drawOneHairColorPicker(player);
 		str += "<span class='formElementLeft'>Species:</span>" + this.drawOneSpeciesDropDown(player);
 		str += "<span class='formElementRight'>Moon:</span>" + this.drawOneMoonDropDown(player);
-		str += "<span class='formElementLeft'>L. Horn:</span>" + this.drawOneLeftHornDropDown(player);
-		str += "<span class='formElementRight'>R. Horn:</span>" + this.drawOneRightHornDropDown(player);
+		str += "<span class='formElementLeft'>L. Horn:</span>" + this.drawOneHornDropDown(player,true);
+		str += "<span class='formElementRight'>R. Horn:</span>" + this.drawOneHornDropDown(player,false);
 		str += "<span class='formElementLeft'>BloodColor:</span>" + this.drawOneBloodColorDropDown(player);
 		str += "<span class='formElementRight'>Fav. Num:</span>" + this.drawOneFavoriteNumberDropDown(player);
 		str += "</div>";
@@ -760,10 +761,14 @@ class CharacterCreatorHelper {
 		html += '</select>';
 		return html;
 	}
-	dynamic drawOneLeftHornDropDown(Player player){
-		String html = "<select id = 'leftHornID${player.id}' name='leftHorn${player.id}'>";
+	dynamic drawOneHornDropDown(Player player, bool left){
+	  String side = "right";
+	  if(left) side = "left";
+	  num horn = player.rightHorn;
+    if(left) horn = player.rightHorn;
+		String html = "<select id = '${side}HornID${player.id}' name='${side}Horn${player.id}'>";
 		for(int i = 1; i<= player.maxHornNumber; i++){
-			if(player.leftHorn == i){
+			if(horn == i){
 				html += '<option  selected = "selected" value="$i">$i</option>';
 			}else{
 				html += '<option value="$i">$i</option>';
@@ -772,40 +777,18 @@ class CharacterCreatorHelper {
 
 		int maxCustomHorns = 0;  //kr wants no shitty horns widely available
 		for(int i = 255; i> 255-maxCustomHorns; i+=-1){;
-            if(player.leftHorn == i){
-                html += '<option  selected = "selected" value=""$i">$i</option>';
-            }else{
-                html += '<option value="$i">$i</option>';
-            }
-        }
+      if(horn == i){
+          html += '<option  selected = "selected" value=""$i">$i</option>';
+      }else{
+          html += '<option value="$i">$i</option>';
+      }
+  }
 
 		//another for loop of "non-canon" horns you can choose but aren't part of main sim.
 		html += '</select>';
 		return html;
 	}
-	dynamic drawOneRightHornDropDown(Player player){
-		String html = "<select id = 'rightHornID${player.id}' name='rightHorn${player.id}'>";
-		for(int i = 1; i<= player.maxHornNumber; i++){
-			if(player.rightHorn == i){
-				html += '<option  selected = "selected"  value=""$i">$i</option>';
-			}else{
-				html += '<option  value=""$i">$i</option>';
-			}
-		}
 
-		int maxCustomHorns = 0;
-            for(int i = 255; i> 255-maxCustomHorns; i+=-1){;
-                if(player.rightHorn == i){
-                    html += '<option  selected = "selected"  value=""$i">$i</option>';
-                }else{
-                    html += '<option  value=""$i">$i</option>';
-                }
-            }
-
-
-		html += '</select>';
-		return html;
-	}
 	dynamic drawOneClassDropDown(Player player){
 		available_classes = new List<String>.from(classes); //re-init available classes. make deep copy
 	  available_classes.addAll(custom_only_classes);

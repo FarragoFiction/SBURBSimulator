@@ -2727,7 +2727,14 @@ Huh, okay, maybe not so hard, logs say that things are actually being read from 
     *  What the fuck is up with Right Horn? Form isn't initing and changing doesn't change sprite.
     *  Make sure all elements work.
     *  Test loading a char.
-    *  convert from inline CSS to stylesheet files
+    *  convert from inline CSS to stylesheet files (maybe, looks like it's actually working)
+
+
+    Right horn:  It LOOKS identicle to left horn. If I comment out this line, it is fine, but the underlying value is still blank:
+(querySelector("#rightHornID${player.id}")as SelectElement).value = (player.rightHorn.toString());
+
+
+
 
 
 
