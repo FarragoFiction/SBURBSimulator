@@ -104,7 +104,7 @@ class CharacterCreatorHelper {
     (querySelector("#classNameID${player.id}") as SelectElement).value = (player.class_name);
     (querySelector("#aspectID${player.id}")as SelectElement).value = (player.aspect);
     (querySelector("#hairTypeID${player.id}")as SelectElement).value = (player.hair.toString());
-    (querySelector("#hairColorID${player.id}")as SelectElement).value = (player.hairColor);
+    (querySelector("#hairColorID${player.id}")as InputElement).value = (player.hairColor);
 		String troll = "Human";
 		if(player.isTroll) troll = "Troll";
     (querySelector("#speciesID${player.id}")as SelectElement).value = (troll);
@@ -116,16 +116,16 @@ class CharacterCreatorHelper {
     (querySelector("#moonID${player.id}")as SelectElement).value = (player.moon);
     querySelector("#moonID${player.id}").style.backgroundColor = moonToColor(player.moon);
 	}
-	void syncPlayerToCheckBoxes(player){
+	void syncPlayerToCheckBoxes(Player player){
 		//.prop('checked', true);
-    (querySelector("#grimDark"+player.id) as CheckboxInputElement).checked = player.grimDark;
-    (querySelector("#isDreamSelf"+player.id)as CheckboxInputElement).checked =player.isDreamSelf;
-    (querySelector("#godTier"+player.id)as CheckboxInputElement).checked =player.godTier;
-    (querySelector("#godDestiny"+player.id)as CheckboxInputElement).checked =player.godDestiny;
-    (querySelector("#murderMode"+player.id)as CheckboxInputElement).checked =player.murderMode;
-    (querySelector("#leftMurderMode"+player.id)as CheckboxInputElement).checked =player.leftMurderMode;
-    (querySelector("#dead"+player.id)as CheckboxInputElement).checked =player.dead;
-    (querySelector("#robot"+player.id)as CheckboxInputElement).checked =player.robot;
+    (querySelector("#grimDark${player.id}") as CheckboxInputElement).checked = (player.grimDark > 3);
+    (querySelector("#isDreamSelf${player.id}")as CheckboxInputElement).checked =player.isDreamSelf;
+    (querySelector("#godTier${player.id}")as CheckboxInputElement).checked =player.godTier;
+    (querySelector("#godDestiny${player.id}")as CheckboxInputElement).checked =player.godDestiny;
+    (querySelector("#murderMode${player.id}")as CheckboxInputElement).checked =player.murderMode;
+    (querySelector("#leftMurderMode${player.id}")as CheckboxInputElement).checked =player.leftMurderMode;
+    (querySelector("#dead${player.id}")as CheckboxInputElement).checked =player.dead;
+    (querySelector("#robot${player.id}")as CheckboxInputElement).checked =player.robot;
 	}
 	void syncPlayerToTextBoxes(player){
     (querySelector("#interestCategory1" +player.id) as InputElement).value = (player.interest1Category);
@@ -619,10 +619,10 @@ class CharacterCreatorHelper {
 		}
 	void wireUpTextBoxes(Player player){
 		//first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
-		InputElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
-		InputElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
-		InputElement interest1DropDom = querySelector("#interestDrop1${player.id}");
-		InputElement interest2DropDom = querySelector("#interestDrop2${player.id}");
+		SelectElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
+    SelectElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
+    SelectElement interest1DropDom = querySelector("#interestDrop1${player.id}");
+    SelectElement interest2DropDom = querySelector("#interestDrop2${player.id}");
 		InputElement interest1TextDom = querySelector("#interest1${player.id}"); //don't wire these up. instead, get value on url creation.
 		InputElement interest2TextDom = querySelector("#interest2${player.id}");
 		InputElement chatHandle = querySelector("#chatHandle${player.id}");
@@ -710,11 +710,11 @@ class CharacterCreatorHelper {
   String drawInterestTextBox(int num, Player player){
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		String html = "<input type='text' id = 'interest${player.id}' name='interest${player.id}' + value='" + interestToCheck +"'> </input>";
+		String html = "<input type='text' id = 'interest$num${player.id}' name='interest$num${player.id}' + value='" + interestToCheck +"'> </input>";
 		return html;
 	}
 	String drawInterestDropDown(String category, int num, Player player){
-		String html = "<select id = 'interestDrop${player.id}' name='interestDrop${player.id}'>";
+		String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
