@@ -15,6 +15,7 @@ void main()
     printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
     return;
   });
+  querySelector("#draw12Button").onClick.listen((e) => draw12());
   new CharViewerController();
   self = SimController.instance;
   self.renderHeader();
@@ -23,6 +24,10 @@ void main()
   appendHtml(querySelector("#character_creator"),"<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target='_blank' href = 'rare_session_finder.html?selfInsertOC=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
   //TODO what does passing true here mean again, really should make it callbacks eventually.
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
+}
+
+void draw12() {
+  self.draw12();
 }
 
 void renderPlayersForEditing() {
