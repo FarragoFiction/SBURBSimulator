@@ -13,12 +13,12 @@
         <ul>
                     <li class = 'shitdone'>Simulator </li>
                     <li class = 'shitdone'>AB </li>
+                    <li class = 'shitdone'>OC Creator/Viewer </li>
 
         </ul>
          Not Done
          <ul>
                      <li class = 'notdone'>Artist/AB Newsposts</li>
-                     <li class = 'notdone'>OC Creator/Viewer </li>
                      <li class = 'notdone'>Image Gallery </li>
                      <li class = 'notdone'>Easter Eggs </li>
                      <li class = 'notdone'>Tournament Arc </li>

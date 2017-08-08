@@ -2720,6 +2720,18 @@ Huh, okay, maybe not so hard, logs say that things are actually being read from 
   Haven't tested creating or destroying players, either.
 
 
+
+  TODO:
+    *  Render Url Doesn't work
+    *  Test Create/Destroy Players
+    *  What the fuck is up with Right Horn? Form isn't initing and changing doesn't change sprite.
+    *  Make sure all elements work.
+    *  Test loading a char.
+    *  convert from inline CSS to stylesheet files
+
+
+
+
   lololol
 
   Okay, well, now it's not a mystery.  Time to figure out how to do this right. Hash map this bitch maybe?

@@ -294,7 +294,7 @@ class CharacterCreatorHelper {
 	String generateBloodColorHelp(topic, specific){
 		if(specific == "#ff0000") return "Candy red blood has no specific boost.";
 		String str = "The cooler blooded a troll is, the greater their HP and power on entering the medium. Game powers have a way of equalizing things, though. ";
-		str += specific + " is associated with a power and hp increase of: " +bloodColorToBoost(specific);
+		str += specific + " is associated with a power and hp increase of: " +bloodColorToBoost(specific).toString();
 		if(specific == "#99004d") str += ". Heiress blooded trolls will hate other Heiress bloods, as well as losing making them more likely to flip out. Biological imperatives for murder suck, yo.";
 		return str;
 	}
@@ -651,21 +651,21 @@ class CharacterCreatorHelper {
 
 
 		interestCategory1Dom.onChange.listen((Event e){
-					InputElement icDropDown = querySelector('[name="interestCategory1${player.id}"] option:selected');
+					OptionElement icDropDown = interestCategory1Dom.selectedOptions[0];
 					interest1DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 1, player));
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
 					player.interest1Category = icDropDown.value;
 		});
 
 		interestCategory2Dom.onChange.listen((Event e){
-					InputElement icDropDown = querySelector('[name="interestCategory2${player.id}"] option:selected');
+					OptionElement icDropDown = interestCategory2Dom.selectedOptions[0];
 					interest2DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 2, player));
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
 					player.interest2Category = icDropDown.value;
 		});
 
 		interest1DropDom.onChange.listen((Event e){
-					InputElement icDropDown = querySelector('[name="interestDrop1${player.id}"] option:selected');
+					OptionElement icDropDown = interest1DropDom.selectedOptions[0];
 					interest1TextDom.value = (icDropDown.value);
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
 					player.interest1 = icDropDown.value;
@@ -673,7 +673,7 @@ class CharacterCreatorHelper {
 		});
 
 		interest2DropDom.onChange.listen((Event e){
-					InputElement icDropDown = querySelector('[name="interestDrop2${player.id}"] option:selected');
+					OptionElement icDropDown = interest2DropDom.selectedOptions[0];
 					interest2TextDom.value = (icDropDown.value);
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
 					player.interest2 = icDropDown.value;
@@ -786,7 +786,7 @@ class CharacterCreatorHelper {
 	dynamic drawOneRightHornDropDown(Player player){
 		String html = "<select id = 'rightHornID${player.id}' name='rightHorn${player.id}'>";
 		for(int i = 1; i<= player.maxHornNumber; i++){
-			if(player.leftHorn == i){
+			if(player.rightHorn == i){
 				html += '<option  selected = "selected"  value=""$i">$i</option>';
 			}else{
 				html += '<option  value=""$i">$i</option>';
