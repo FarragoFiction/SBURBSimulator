@@ -332,7 +332,7 @@ dynamic stringToByteArray(str){
 dynamic dataBytesAndStringsToPlayer(String charString, str_arr){
   var player = new Player();
   player.quirk = new Quirk(null);
-  //print("strings is: " + str_arr);
+  print("strings is: $str_arr");
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());

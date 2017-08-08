@@ -1486,7 +1486,7 @@ void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRendering
   }
 
   //they are not dead, only sleeping
-  if(!baby &&(player.causeOfDrain != null)){//only rotate once
+  if(!baby &&((player.causeOfDrain != null && !player.causeOfDrain.isEmpty))){//only rotate once
   	ctx.translate(0, 6*canvas.height/5);
   	ctx.rotate(270*Math.PI/180);
   }
