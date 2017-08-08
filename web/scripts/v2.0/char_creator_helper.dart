@@ -127,12 +127,12 @@ class CharacterCreatorHelper {
     (querySelector("#dead${player.id}")as CheckboxInputElement).checked =player.dead;
     (querySelector("#robot${player.id}")as CheckboxInputElement).checked =player.robot;
 	}
-	void syncPlayerToTextBoxes(player){
-    (querySelector("#interestCategory1" +player.id) as InputElement).value = (player.interest1Category);
-    (querySelector("#interestCategory2" +player.id) as InputElement).value = (player.interest2Category);
-    (querySelector("#interest1" +player.id) as InputElement).value = (player.interest1);
-    (querySelector("#interest2" +player.id) as InputElement).value = (player.interest2);
-    (querySelector("#chatHandle"+player.id) as InputElement).value = (player.chatHandle);
+	void syncPlayerToTextBoxes(Player player){
+    (querySelector("#interestCategory1${player.id}") as SelectElement).value = (player.interest1Category);
+    (querySelector("#interestCategory2${player.id}") as SelectElement).value = (player.interest2Category);
+    (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1);
+    (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2);
+    (querySelector("#chatHandle${player.id}") as InputElement).value = (player.chatHandle);
 	}
 	dynamic drawDropDowns(Player player){
 		String str = "<div id = 'dropDowns${player.id}' class='optionBox'>";
