@@ -449,23 +449,24 @@ class CharacterCreatorHelper {
 
 	}
 	void wireUpPlayerDropDowns(Player player){
-			Element c2 = querySelector("#classNameID${player.id}") ;
-			Element a2 = querySelector("#aspectID${player.id}") ;
-			Element hairDiv = querySelector("#hairTypeID${player.id}") ;
-			Element hairColorDiv = querySelector("#hairColorID${player.id}") ;
-			Element speciesDiv = querySelector("#speciesID${player.id}") ;
-			Element leftHornDiv = querySelector("#leftHornID${player.id}") ;
-			Element rightHornDiv = querySelector("#rightHornID${player.id}") ;
-			Element bloodDiv = querySelector("#bloodColorID${player.id}") ;
-			Element favoriteNumberDiv = querySelector("#favoriteNumberID${player.id}") ;
-			Element moonDiv = querySelector("#moonID${player.id}");
-			Element helpText = querySelector("#helpText${player.id}");
+			SelectElement c2 = querySelector("#classNameID${player.id}") ;
+      SelectElement a2 = querySelector("#aspectID${player.id}") ;
+      SelectElement hairDiv = querySelector("#hairTypeID${player.id}") ;
+      Element hairColorDiv = querySelector("#hairColorID${player.id}") ;
+      SelectElement speciesDiv = querySelector("#speciesID${player.id}") ;
+      SelectElement leftHornDiv = querySelector("#leftHornID${player.id}") ;
+      SelectElement rightHornDiv = querySelector("#rightHornID${player.id}") ;
+      SelectElement bloodDiv = querySelector("#bloodColorID${player.id}") ;
+      SelectElement favoriteNumberDiv = querySelector("#favoriteNumberID${player.id}") ;
+      SelectElement moonDiv = querySelector("#moonID${player.id}");
+      Element helpText = querySelector("#helpText${player.id}");
 
 
 			var that = this;
 			c2.onChange.listen((Event e)  {
-					InputElement classDropDown = querySelector('[name="className${player.id}""] option:selected'); //need to get what is selected inside the .change, otheriise is always the same;
-					player.class_name = classDropDown.value;
+					//InputElement classDropDown = querySelector('[name="className${player.id}""] option:selected'); //need to get what is selected inside the .change, otheriise is always the same;
+          OptionElement classDropDown = c2.selectedOptions[c2.selectedIndex];
+          player.class_name = classDropDown.value;
 					that.redrawSinglePlayer(player);
 					helpText.setInnerHtml(that.generateHelpText("Class",player.class_name));
 

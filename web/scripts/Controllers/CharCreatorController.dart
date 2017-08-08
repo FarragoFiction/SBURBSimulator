@@ -112,11 +112,11 @@ class CharCreatorController extends SimController {
 
 
 
-  void grabPlayerInterests(player){
-    InputElement interestCategory1Dom = querySelector("#interestCategory1" +player.id);
-    InputElement interestCategory2Dom = querySelector("#interestCategory2" +player.id);
-    InputElement interest1TextDom = querySelector("#interest1" +player.id);
-    InputElement interest2TextDom = querySelector("#interest2" +player.id);
+  void grabPlayerInterests(Player player){
+    InputElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
+    InputElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
+    InputElement interest1TextDom = querySelector("#interest1${player.id}");
+    InputElement interest2TextDom = querySelector("#interest2${player.id}");
     player.interest1 = interest1TextDom.value.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine:true), '');
     player.interest1Category = interestCategory1Dom.value;
     player.interest2 = interest2TextDom.value.replaceAll(new RegExp(r"""<(?:.|,\n)*?>""", multiLine:true), '');
