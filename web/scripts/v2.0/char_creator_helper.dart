@@ -109,7 +109,6 @@ class CharacterCreatorHelper {
 		if(player.isTroll) troll = "Troll";
     (querySelector("#speciesID${player.id}")as SelectElement).value = (troll);
     (querySelector("#leftHornID${player.id}")as SelectElement).value = (player.leftHorn.toString());
-    print("player right horn is ${player.rightHorn}");
     (querySelector("#rightHornID${player.id}")as SelectElement).value = (player.rightHorn.toString());
     (querySelector("#bloodColorID${player.id}")as SelectElement).value = (player.bloodColor);
     (querySelector("#bloodColorID${player.id}")as SelectElement).style.backgroundColor = player.bloodColor;
@@ -348,16 +347,16 @@ class CharacterCreatorHelper {
 
     if(loadButton != null) { //will be null for char viewer.
       loadButton.onClick.listen((Event e) {
-        InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
-        String bs = "?" + dataBox.value; //need "?" so i can parse as url
+        TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
+        String bs = "${window.location}?" + dataBox.value; //need "?" so i can parse as url
         print("bs is: " + bs);
-        String b = (getParameterByName("b",
-            bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+        String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
         String s = getParameterByName("s", bs);
         String x = (getParameterByName("x", bs));
-        print("b: " + b);
-        print("s: " + s);
-        print("x: " + x);
+        //TODO oh god why ar eall these null???
+        print("b: $b");
+        print("s: $s");
+        print("x: $x");
 
         List<Player> players = dataBytesAndStringsToPlayers(
             b, s, x); //technically an array of one players.;

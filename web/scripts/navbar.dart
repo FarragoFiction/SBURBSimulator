@@ -24,11 +24,17 @@ void onNavbarLoaded(String data) {
 String getParameterByName(String name, String url) {
   Uri uri = Uri.base;
   if(url != null) {
-    uri = new Uri.file(url); //TODO is there no built in way to parse a string as a URI? need for virtual parameters like ocDataSTrings from selfInsertOC=true
+    uri = Uri.parse(url);
+    print("uri is $uri");
+    String tmp = (uri.queryParameters[name]); //doesn't need decoded, guess it was auto decoded with the parse?
+    return tmp;
+  }else {
+    print("uri is $uri");
+    String tmp = (uri.queryParameters[name]);
+    if(tmp != null) tmp = Uri.decodeComponent(tmp);
+    return tmp;
   }
-  String tmp = (uri.queryParameters[name]);
-  if(tmp != null) tmp = Uri.decodeComponent(tmp);
-  return tmp;
+
 }
 
 String getRawParameterByName(String name, String url) {
