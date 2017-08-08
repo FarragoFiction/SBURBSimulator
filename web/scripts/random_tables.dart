@@ -1201,7 +1201,7 @@ dynamic aspectToInt(aspect){
 
 
 String intToAspect(int num){
-    print("looking for aspect from: " + num.toString());
+   // print("looking for aspect from: " + num.toString());
     if(num > all_aspects.length || num == 255) return "Null";  //Heir of Null;
 	return all_aspects[num];
 }

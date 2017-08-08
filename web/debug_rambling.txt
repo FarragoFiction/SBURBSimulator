@@ -2693,5 +2693,29 @@ I still don't know why things are defaulting to being hidden, but I do know how 
 Okay, that is done. Two problems remain:  Only the Creators are being loaded (oh yeah, need to add PL to that list)
 and also everybody is sideways (and thus corrupt).
 
+~~
+Okay, the sideways thing was hella easy. it was just that chars were sideways unless causeOfDrain was null, and it was "" and not null.
+
+~~~
+
+Now for the hard part, nothing is loading from file.
+
+Huh, okay, maybe not so hard, logs say that things are actually being read from file, so, what's the problem here?
+
+*gasp* I bet it's the arrays. I was doing meta shit, I remember now.
+
+  void parseFileContentsToArray(arr, fileContents){
+    //this[arr] = fileContents.split("\n");
+	  //TODO: parse machine broken -PL
+
+    //print(arr);
+    //print(this[arr]);
+  }
+
+
+  lololol
+
+  Okay, well, now it's not a mystery.  Time to figure out how to do this right. Hash map this bitch maybe?
+
 
 

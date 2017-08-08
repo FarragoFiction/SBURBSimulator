@@ -10,32 +10,35 @@ import 'navbar.dart';
 //don't pollute global name space more than you already are, dunkass
 //call this ONLY inside a function.
 class CharacterEasterEggEngine {
-  //test with reddit first, 'cause it's small
-  List<dynamic> redditCharacters = [];
-  List<dynamic> tumblrCharacters = [];
-  List<dynamic> discordCharcters = [];
   var creatorCharacters = ["b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands"
   , "b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
-  List<dynamic> creditsBuckaroos = [];
-  List<dynamic> ideasWranglers = [];
-  List<dynamic> bards = [];
-  List<dynamic> patrons = [];
-  List<dynamic> patrons2 = [];
-  List<dynamic> patrons3 = [];
-  List<dynamic> canon = [];  //
-  List<dynamic> otherFandoms = [];	//takes in things like this.redditCharacters and "OCs/reddit.txt"
+
+  Map<String, List> ocs = {};
   //parses the text file as newline seperated and load them into the array.
 
 
 
-  CharacterEasterEggEngine() {}
+  CharacterEasterEggEngine() {
+    ocs["otherFandoms"] = new List<String>();
+    ocs["canon"] = new List<String>();
+    ocs["patrons3"] = new List<String>();
+    ocs["patrons2"] = new List<String>();
+    ocs["patrons"] = new List<String>();
+    ocs["bards"] = new List<String>();
+    ocs["ideasWranglers"] = new List<String>();
+    ocs["creditsBuckaroos"] = new List<String>();
+    ocs["discordCharcters"] = new List<String>();
+    ocs["tumblrCharacters"] = new List<String>();
+    ocs["redditCharacters"] = new List<String>();
+  }
 
 
   dynamic loadArrayFromFile(arr, String file, processForSim, callBack, that){
-    //print("loading" + file);
+   // print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
+      //print("got HTTP response with $data");
       parseFileContentsToArray(arr, data.trim());
       if(processForSim != null && callBack != null) return that.processForSim(callBack);
       if(processForSim == null && callBack != null) {
@@ -53,9 +56,7 @@ class CharacterEasterEggEngine {
 
 
   void parseFileContentsToArray(arr, fileContents){
-    //this[arr] = fileContents.split("\n");
-	  //TODO: parse machine broken -PL
-
+    this.ocs[arr] = fileContents.split("\n");
     //print(arr);
     //print(this[arr]);
   }
@@ -122,47 +123,47 @@ class CharacterEasterEggEngine {
     List<dynamic> pool = [];
     //first, parse url params. for each param you find that's right, append the relevant characters into the array.
     if(getParameterByName("reddit",null)  == "true"){
-      pool.addAll(this.redditCharacters);
+      pool.addAll(this.ocs["redditCharacters"]);
     }
 
     if(getParameterByName("tumblr",null)  == "true"){
-      pool.addAll(this.tumblrCharacters);
+      pool.addAll(this.ocs["tumblrCharacters"]);
     }
 
     if(getParameterByName("discord",null)  == "true"){
-      pool.addAll(this.discordCharcters);
+      pool.addAll(this.ocs["discordCharcters"]);
     }
 
     if(getParameterByName("creditsBuckaroos",null)  == "true"){
-      pool.addAll(this.creditsBuckaroos);
+      pool.addAll(this.ocs["creditsBuckaroos"]);
     }
 
     if(getParameterByName("ideasWranglers",null)  == "true"){
-      pool.addAll(this.ideasWranglers);
+      pool.addAll(this.ocs["ideasWranglers"]);
     }
 
     if(getParameterByName("bards",null)  == "true"){
-      pool.addAll(this.bards);
+      pool.addAll(this.ocs["bards"]);
     }
 
     if(getParameterByName("patrons",null)  == "true"){
-      pool.addAll(this.patrons);
+      pool.addAll(this.ocs["patrons"]);
     }
 
     if(getParameterByName("patrons2",null)  == "true"){
-      pool.addAll(this.patrons2);
+      pool.addAll(this.ocs["patrons2"]);
     }
 
     if(getParameterByName("patrons3",null)  == "true"){
-      pool.addAll(this.patrons3);
+      pool.addAll(this.ocs["patrons3"]);
     }
 
     if(getParameterByName("canon",null)  == "true"){
-      pool.addAll(this.canon);
+      pool.addAll(this.ocs["canon"]);
     }
 
     if(getParameterByName("otherFandoms",null)  == "true"){
-      pool.addAll(this.otherFandoms);
+      pool.addAll(this.ocs["otherFandoms"]);
     }
 
 
@@ -172,15 +173,15 @@ class CharacterEasterEggEngine {
 
     if(pool.length == 0){
       //	print("i think i should be returning all characters.");
-      pool.addAll(this.redditCharacters);
-      pool.addAll(this.tumblrCharacters);
-      pool.addAll(this.discordCharcters);
-      pool.addAll(this.creditsBuckaroos);
-      pool.addAll(this.patrons);
-      pool.addAll(this.ideasWranglers);
-      pool.addAll(this.canon);
+      pool.addAll(this.ocs["redditCharacters"]);
+      pool.addAll(this.ocs["tumblrCharacters"]);
+      pool.addAll(this.ocs["discordCharcters"]);
+      pool.addAll(this.ocs["creditsBuckaroos"]);
+      pool.addAll(this.ocs["patrons"]);
+      pool.addAll(this.ocs["ideasWranglers"]);
+      pool.addAll(this.ocs["canon"]);
       pool.addAll(this.creatorCharacters);
-      pool.addAll(this.bards);
+      pool.addAll(this.ocs["bards"]);
     }
 
     //return pool;
@@ -208,7 +209,7 @@ class CharacterEasterEggEngine {
 
   }
   dynamic getAllReddit(){
-    return this.playerDataStringArrayToURLFormat(this.redditCharacters);
+    return this.playerDataStringArrayToURLFormat(this.ocs["redditCharacters"]);
   }
 
 
@@ -332,7 +333,7 @@ dynamic stringToByteArray(str){
 dynamic dataBytesAndStringsToPlayer(String charString, str_arr){
   var player = new Player();
   player.quirk = new Quirk(null);
-  print("strings is: $str_arr");
+  //print("strings is: $str_arr");
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
@@ -365,7 +366,7 @@ dynamic dataBytesAndStringsToPlayer(String charString, str_arr){
   //print("Binary string is: " + charString[7]);
   player.godDestiny = 0 != ((1<<4) & charString.codeUnitAt(7));
   player.quirk.favoriteNumber = charString.codeUnitAt(7) & 15;
-  print("Player favorite number is: ${player.quirk.favoriteNumber}");
+ // print("Player favorite number is: ${player.quirk.favoriteNumber}");
   player.leftHorn = charString.codeUnitAt(8);
   player.rightHorn = charString.codeUnitAt(9);
   player.hair = charString.codeUnitAt(10);
