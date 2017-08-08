@@ -5,7 +5,6 @@ import 'dart:async';
 import '../v2.0/char_creator_helper.dart';
 
 CharCreatorController self;
-int initial_seed = 0;
 void main()
 {
   loadNavbar();
@@ -34,6 +33,7 @@ void newPlayer() {
 }
 
 void renderURLToSendPlayersIntoSBURB() {
+  print("clicked render button");
   self.renderURLToSendPlayersIntoSBURB();
 }
 
@@ -74,10 +74,12 @@ class CharCreatorController extends SimController {
   }
 
   void renderURLToSendPlayersIntoSBURB(){
+    print("getting ready to grab players");
     grabAllPlayerInterests();
     grabCustomChatHandles();
     numURLS ++;
-    String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&" + generateURLParamsForPlayers(curSessionGlobalVar.players,true) + "' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>";
+    print("getting ready to generate urls");
+    String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>";
     appendHtml(querySelector("#character_creator"),html);
   }
 
@@ -89,8 +91,8 @@ class CharCreatorController extends SimController {
 
   }
 
-  void grabCustomChatHandleForPlayer(player){
-    InputElement e = querySelector("#chatHandle" +player.id);
+  void grabCustomChatHandleForPlayer(Player player){
+    InputElement e = querySelector("#chatHandle${player.id}");
     player.chatHandle = e.value.replaceAll(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '');
   }
 
@@ -113,8 +115,8 @@ class CharCreatorController extends SimController {
 
 
   void grabPlayerInterests(Player player){
-    InputElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
-    InputElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
+    SelectElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
+    SelectElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
     InputElement interest1TextDom = querySelector("#interest1${player.id}");
     InputElement interest2TextDom = querySelector("#interest2${player.id}");
     player.interest1 = interest1TextDom.value.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine:true), '');
