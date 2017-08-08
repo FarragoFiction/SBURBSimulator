@@ -49,7 +49,7 @@ class CharacterCreatorHelper {
 
 	//TODO why the fuck did this have the same name as a handle_sprites function?
  	void drawSinglePlayerForHelper(Player player){
-		//print("drawing: " + player.title())
+		print("drawing: " + player.title());
 		String str = "";
 		String divId = player.id.toString();
 		if(curSessionGlobalVar.session_id != 612 && curSessionGlobalVar.session_id != 613  && curSessionGlobalVar.session_id != 413 && curSessionGlobalVar.session_id != 1025 &&  curSessionGlobalVar.session_id != 111111)player.chatHandle = "";
@@ -783,7 +783,7 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneRightHornDropDown(Player player){
-		String html = "<select id = 'rightHornID${player.id} name='rightHorn${player.id}'>";
+		String html = "<select id = 'rightHornID${player.id}' name='rightHorn${player.id}'>";
 		for(int i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected"  value=""$i">$i</option>';
