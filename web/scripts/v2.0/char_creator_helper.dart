@@ -189,7 +189,7 @@ class CharacterCreatorHelper {
 		String str = "<div id = 'canvasSummary${player.id}' class='optionBox'>";
 		num height = 300;
 		num width = 600;
-		str += "<canvas id='canvasSummarycanvas${player.id}' width='" +width.toString() + "' height="+height.toString() + "'>  </canvas>";
+		str += "<canvas id='canvasSummarycanvas${player.id}' width='" +width.toString() + "' height='"+height.toString() + "'>  </canvas>";
 		str += "</div>";
 		return str;
 	}
