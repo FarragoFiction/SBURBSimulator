@@ -75,7 +75,7 @@ class CharacterCreatorHelper {
 		str += "</div>";
 		appendHtml(div,str);
 
-		player.spriteCanvasID = "${player.id}spriteCanvas";
+		player.initSpriteCanvas();
 		String canvasHTML = "<br><canvas style='display:none' id='" + player.spriteCanvasID+"' width='400' height='300'>  </canvas>";
 		appendHtml(querySelector("#playerSprites"),canvasHTML);
 
