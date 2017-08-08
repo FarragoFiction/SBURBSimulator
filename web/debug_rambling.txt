@@ -2627,9 +2627,68 @@ Open Questions:
 * How do I normally get "all the filter checkboxes" and can i leverage it to give them all the same onchange?
 *  How do I get the toggle buttons?
 
-
 ~~~ookay...
 SOMEtIMES filters are working.
 
 debugging ab: I think i have found this summaries after removing non matching claspects: 5
 VM302:1 debugging ab: I think i have this many session summaries: 2
+
+~~~~~~~~~~~~
+Alright, let's define the problem, no panicking:
+
+On the character viewer page, a single character is rendered, and then a bunch of data boxes.
+
+If I go to the html, the mouse over says that other divs that would contain canvases are 0x0.
+
+All the canvas divs appear to be identicle at first glance.  Examples:
+
+<canvas id="canvasSummarycanvas0" width="600" height="300">  </canvas> <-- shown
+
+<canvas id="canvasSummarycanvas1" width="600" height="300">  </canvas>  <-- not shown
+
+
+What about the parent divs?
+
+<div class="standAloneSummary" id="createdCharacter0"><div id="canvasSummary0" class="optionBox" style="display: block;"><canvas id="canvasSummarycanvas0" width="600" height="300">  </canvas></div></div>
+
+<div class="standAloneSummary" id="createdCharacter1"><div id="canvasSummary1" class="optionBox"><canvas id="canvasSummarycanvas1" width="600" height="300">  </canvas></div></div>
+
+Okay, right away for free I see they are different lengths.  Where is that coming from?
+
+ style="display: block;"
+
+ ...
+ ...
+ ...
+
+ Why...
+
+ Okay, well, I know where to focus my efforts now.
+
+ Initial creation is:
+ str += "<canvas id='canvasSummarycanvas${player.id}' width='" +width.toString() + "' height='"+height.toString() + "'>  </canvas>";
+
+ Let's think. Would I be calling show/hide on individually summaries?  For the viewer itself,
+ I am literally only rendering only 12 at a time, no showing or hiding.
+ But....for the char creator I am showing/hiding tabs. Is something like that happening?
+ Put an alert on the show/hide methods.
+
+ Okay, well, I thought it was obvious I was calling show/hide. But....nothing.
+ BUT I do get a 4x showing combo...so. What is up with that?  All of the shows are for canvasSummary0, the one visible one.
+
+ Break point seems useful here.
+
+ Okay, drawSinglePLayer summary makes sure to show.
+
+ 		show(querySelector(".optionBox")); //unlike char creator, always show
+
+But... it's only calling it on the data?
+
+Okay, extra logging has revealed whole new classes of future problems, but let's focus on this.
+that "show" is being called on a class, and apparently in Dart it only gets called on the first member of the class
+not every member of the class. how droll.
+
+I still don't know why things are defaulting to being hidden, but I do know how to fix this.
+
+
+

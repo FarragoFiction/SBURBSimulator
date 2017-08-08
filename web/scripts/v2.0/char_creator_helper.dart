@@ -24,9 +24,7 @@ class CharacterCreatorHelper {
 		int start = this.player_index;
 		int num_at_a_time= 12;
 		for(int i = start; i<start+num_at_a_time; i++){
-
 			if(this.players.length > i){
-				//print("i is: " + i);
 				this.drawSinglePlayerSummary(this.players[i]);
 				this.player_index ++; //okay to mod this in the loop because only initial i value relies on it.
 			}else{
@@ -37,7 +35,7 @@ class CharacterCreatorHelper {
 		}
 	}
 	void drawSinglePlayerSummary(Player player){
-		//print("drawing: " + player.title())
+		//print("drawing: " + player.title());
 		String str = "<div class='standAloneSummary' id='createdCharacter${player.id}'>";
 		String divId = player.id.toString();
 		str += this.drawCanvasSummary(player);
@@ -45,7 +43,7 @@ class CharacterCreatorHelper {
 		str += "</div><div class = 'standAloneSummary'>" + this.drawDataBoxNoButtons(player) + "</div>";
 		appendHtml(div, str);
 		this.createSummaryOnCanvas(player);
-		show(querySelector(".optionBox")); //unlike char creator, always show
+		show(querySelector("#canvasSummary${player.id}")); //unlike char creator, always show
 		this.wireUpDataBox(player);
 	}
 

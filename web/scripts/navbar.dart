@@ -60,9 +60,11 @@ void toggle(Element v) {
 }
 
 void show(Element v) {
+    print("showing ${v.id}");
     v.style.display = "block";
 }
 
 void hide(Element v) {
+    print("hiding ${v.id}");
     v.style.display = "none";
 }

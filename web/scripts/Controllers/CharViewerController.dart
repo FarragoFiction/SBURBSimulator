@@ -36,7 +36,7 @@ class CharViewerController extends SimController {
 
   List<Player> players;
 
-  dynamic charCreatorHelperGlobalVar; //TODO, oh shit, this wasn't done yet. get it working, too. set to right type
+  CharacterCreatorHelper charCreatorHelper; //TODO, oh shit, this wasn't done yet. get it working, too. set to right type
 
   CharViewerController() : super();
 
@@ -74,15 +74,15 @@ class CharViewerController extends SimController {
 //just generates a URL for the session. that you click right on this page. so only this page needs to load the ocs from file.
   void callBackForLoadOCsFromFile(){
     players = easterEggEngine.processEasterEggsViewer(new Random());
-    charCreatorHelperGlobalVar = new CharacterCreatorHelper(players);
-    charCreatorHelperGlobalVar.draw12PlayerSummaries();
+    charCreatorHelper = new CharacterCreatorHelper(players);
+    charCreatorHelper.draw12PlayerSummaries();
   }
 
 
 
 
   void draw12(){
-    charCreatorHelperGlobalVar.draw12PlayerSummaries();
+    charCreatorHelper.draw12PlayerSummaries();
   }
 
 
