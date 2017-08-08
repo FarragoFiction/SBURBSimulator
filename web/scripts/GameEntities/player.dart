@@ -1856,7 +1856,10 @@ class Player extends GameEntity {
 
     String toOCDataString() {
         //for now, only extentsion sequence is for classpect. so....
-        String x = "&x=${this.toDataBytesX()}"; //ALWAYS have it. worst case scenario is 1 bit.
+        String tmpx = this.toDataBytesX();
+        if(tmpx == null) tmpx = ""; //DART is putting null here instead of a blank string, like an asshole.
+        String x = "&x=$tmpx"; //ALWAYS have it. worst case scenario is 1 bit.
+
         return "b=${this.toDataBytes()}&s=${this.toDataStrings(true)}$x";
     }
 
