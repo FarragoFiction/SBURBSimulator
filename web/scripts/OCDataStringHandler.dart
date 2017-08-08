@@ -14,7 +14,8 @@ class CharacterEasterEggEngine {
   List<dynamic> redditCharacters = [];
   List<dynamic> tumblrCharacters = [];
   List<dynamic> discordCharcters = [];
-  var creatorCharacters = ["b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
+  var creatorCharacters = ["b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands"
+  , "b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
   List<dynamic> creditsBuckaroos = [];
   List<dynamic> ideasWranglers = [];
   List<dynamic> bards = [];

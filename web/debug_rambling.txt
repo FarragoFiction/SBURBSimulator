@@ -2689,6 +2689,9 @@ that "show" is being called on a class, and apparently in Dart it only gets call
 not every member of the class. how droll.
 
 I still don't know why things are defaulting to being hidden, but I do know how to fix this.
+~~~~
+Okay, that is done. Two problems remain:  Only the Creators are being loaded (oh yeah, need to add PL to that list)
+and also everybody is sideways (and thus corrupt).
 
 
 
