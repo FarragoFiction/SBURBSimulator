@@ -710,11 +710,11 @@ class CharacterCreatorHelper {
   String drawInterestTextBox(int num, Player player){
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
-		String html = "<input type='text' id = 'interest$num${player.id}' name='interest$num${player.id}' + value='" + interestToCheck +"'> </input>";
+		String html = "<input type='text' id = 'interest${player.id}' name='interest${player.id}' + value='" + interestToCheck +"'> </input>";
 		return html;
 	}
 	String drawInterestDropDown(String category, int num, Player player){
-		String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
+		String html = "<select id = 'interestDrop${player.id}' name='interestDrop${player.id}'>";
 		var interestsInCategory = interestCategoryToInterestList(category);
 		var interestToCheck = player.interest1;
 		if(num == 2) interestToCheck = player.interest2;
@@ -748,7 +748,7 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneFavoriteNumberDropDown(Player player){
-		String html = "<select id = 'favoriteNumberID$num${player.id}' name='favoriteNumber$num${player.id}'>";
+		String html = "<select id = 'favoriteNumberID${player.id}' name='favoriteNumber${player.id}'>";
 		for(int i = 0; i<=12; i++){
 			if(player.quirk.favoriteNumber == i){
 				html += '<option  selected = "selected" value="$i">$i</option>';
@@ -760,7 +760,7 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneLeftHornDropDown(Player player){
-		String html = "<select id = 'leftHornID$num${player.id}' name='leftHorn$num${player.id}'>";
+		String html = "<select id = 'leftHornID${player.id}' name='leftHorn${player.id}'>";
 		for(int i = 1; i<= player.maxHornNumber; i++){
 			if(player.leftHorn == i){
 				html += '<option  selected = "selected" value="$i">$i</option>';
