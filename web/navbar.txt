@@ -20,7 +20,6 @@
          Not Done
          <ul>
                      <li class = 'notdone'>Artist/AB Newsposts</li>
-                     <li class = 'notdone'>Image Gallery </li>
                      <li class = 'notdone'>Easter Eggs </li>
                      <li class = 'notdone'>Tournament Arc </li>
           </ul>
