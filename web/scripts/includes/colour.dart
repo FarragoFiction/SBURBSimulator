@@ -3,6 +3,9 @@ import 'dart:math';
 
 class Colour {
     static const double DEFAULT_GAMMA = 2.2;
+    static const List<double> REFERENCE_WHITE = const <double>[095.047, 100.000, 108.883];
+    static const double XYZ_EPSILON = 0.008856;
+    static const double XYZ_KAPPA = 903.3;
 
     int _alpha;
 
@@ -409,10 +412,70 @@ class Colour {
     }
 
     static List<double> RGBtoLAB(double r, double g, double b) {
-
+        List<double> xyz = RGBtoXYZ(r,g,b);
+        return XYZtoLAB(xyz[0], xyz[1], xyz[2]);
     }
 
-    static List<double> LABtoRGB(double l, double a, double b) {
+    static List<double> RGBtoXYZ(double r, double g, double b) {
+        r = (r > 0.04045 ? pow((r + 0.055) / 1.055, 2.4) : r / 12.92) * 100.0;
+        g = (g > 0.04045 ? pow((g + 0.055) / 1.055, 2.4) : g / 12.92) * 100.0;
+        b = (b > 0.04045 ? pow((b + 0.055) / 1.055, 2.4) : b / 12.92) * 100.0;
 
+        return <double>[
+            r * 0.4124 + g * 0.3576 + b * 0.1805,
+            r * 0.2126 + g * 0.7152 + b * 0.0722,
+            r * 0.0193 + g * 0.1192 + b * 0.9505
+        ];
+    }
+
+    static List<double> XYZtoLAB(double x, double y, double z) {
+        x /= REFERENCE_WHITE[0];
+        y /= REFERENCE_WHITE[1];
+        z /= REFERENCE_WHITE[2];
+
+        x = x > XYZ_EPSILON ? pow(x, 1/3.0) : (XYZ_KAPPA * x + 16) / 116.0;
+        y = y > XYZ_EPSILON ? pow(y, 1/3.0) : (XYZ_KAPPA * y + 16) / 116.0;
+        z = z > XYZ_EPSILON ? pow(z, 1/3.0) : (XYZ_KAPPA * z + 16) / 116.0;
+
+        return <double>[max(0.0, 116 * y - 16), 500 * (x - y), 200 * (y - z)];
+    }
+
+    static List<double> LABtoRGB(double lab_l, double lab_a, double lab_b) {
+        List<double> xyz = LABtoXYZ(lab_l, lab_a, lab_b);
+        return XYZtoRGB(xyz[0], xyz[1], xyz[2]);
+    }
+
+    static List<double> XYZtoRGB(double x, double y, double z) {
+        double r,g,b;
+
+        x /= 100.0;
+        y /= 100.0;
+        z /= 100.0;
+
+        r = x *  3.2406 + y * -1.5372 + z * -0.4986;
+        g = x * -0.9689 + y *  1.8758 + z *  0.0415;
+        b = x *  0.0557 + y * -0.2040 + z *  1.0570;
+
+        r = r > 0.0031308 ? 1.055 * pow(r, 1/2.4) - 0.055 : 12.92 * r;
+        g = g > 0.0031308 ? 1.055 * pow(g, 1/2.4) - 0.055 : 12.92 * g;
+        b = b > 0.0031308 ? 1.055 * pow(b, 1/2.4) - 0.055 : 12.92 * b;
+
+        return <double>[r,g,b];
+    }
+
+    static List<double> LABtoXYZ(double l, double a, double b) {
+        double x,y,z;
+
+        y = (l + 16) / 116.0;
+        x = a / 500.0 + y;
+        z = y - b / 200.0;
+
+        double x3 = x * x * x;
+        double z3 = z * z * z;
+        return <double>[
+            REFERENCE_WHITE[0] * (x3 > XYZ_EPSILON ? x3 : (x - 16 / 116.0) / 7.787),
+            REFERENCE_WHITE[1] * (l > (XYZ_KAPPA * XYZ_EPSILON) ? pow(((l + 16) / 116.0), 3): l / XYZ_KAPPA),
+            REFERENCE_WHITE[2] * (z3 > XYZ_EPSILON ? z3 : (x - 16 / 116.0) / 7.787)
+        ];
     }
 }
