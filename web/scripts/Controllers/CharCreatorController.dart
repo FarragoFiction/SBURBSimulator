@@ -15,6 +15,8 @@ void main()
     printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
     return;
   });
+  new CharCreatorController();
+  self = SimController.instance;
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));
   }else{
@@ -23,8 +25,7 @@ void main()
   }
   querySelector("#button2").onClick.listen((e) => newPlayer());
   querySelector("#button").onClick.listen((e) => renderURLToSendPlayersIntoSBURB());
-  new CharCreatorController();
-  self = SimController.instance;
+  SimController.instance.startSession();
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
 
@@ -46,7 +47,15 @@ class CharCreatorController extends SimController {
   CharacterCreatorHelper charCreatorHelperGlobalVar;
   int numURLS = 0;
 
-  CharCreatorController() : super();
+  CharCreatorController() : super() {
+    charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
+  }
+
+  //don't actually start the session, but get players ready.
+  @override
+  void easterEggCallBack() {
+    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);
+  }
 
   void updateRender(){
     for(num i = 0; i<curSessionGlobalVar.players.length; i++){
