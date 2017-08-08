@@ -2713,6 +2713,13 @@ Huh, okay, maybe not so hard, logs say that things are actually being read from 
   }
 
 
+  ~~~~~
+
+  Okay, figuring out how to select elements in dart is annoying. And the render players to url is getting "JSON is not string" kinda deal.
+
+  Haven't tested creating or destroying players, either.
+
+
   lololol
 
   Okay, well, now it's not a mystery.  Time to figure out how to do this right. Hash map this bitch maybe?
