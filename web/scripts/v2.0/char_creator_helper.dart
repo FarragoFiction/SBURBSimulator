@@ -347,29 +347,32 @@ class CharacterCreatorHelper {
 			document.execCommand('copy');
 		});
 
+    if(loadButton != null) { //will be null for char viewer.
+      loadButton.onClick.listen((Event e) {
+        InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
+        String bs = "?" + dataBox.value; //need "?" so i can parse as url
+        print("bs is: " + bs);
+        String b = (getParameterByName("b",
+            bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+        String s = getParameterByName("s", bs);
+        String x = (getParameterByName("x", bs));
+        print("b: " + b);
+        print("s: " + s);
+        print("x: " + x);
 
-		loadButton.onClick.listen((Event e) {
-			InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
-			String bs = "?" + dataBox.value; //need "?" so i can parse as url
-			print("bs is: " + bs);
-			String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
-			String s = getParameterByName("s", bs);
-			String x = (getParameterByName("x", bs));
-			print("b: " + b);
-			print("s: " + s);
-			print("x: " + x);
-
-			List<Player> players = dataBytesAndStringsToPlayers(b, s,x) ;//technically an array of one players.;
-			print("Player class name: " + players[0].class_name);
-			player.copyFromPlayer(players[0]);
-			that.redrawSinglePlayer(player);
-			//should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
-		});
+        List<Player> players = dataBytesAndStringsToPlayers(
+            b, s, x); //technically an array of one players.;
+        print("Player class name: " + players[0].class_name);
+        player.copyFromPlayer(players[0]);
+        that.redrawSinglePlayer(player);
+        //should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
+      });
+    }
 
 		//and two buttons, load and copy.
 	}
 	void writePlayerToDataBox(Player player){
-		InputElement dataBox = querySelector("#dataBoxDiv${player.id}");
+		TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
 		dataBox.value = (player.toOCDataString());
 
 	}
