@@ -48,13 +48,14 @@ class CharCreatorController extends SimController {
   int numURLS = 0;
 
   CharCreatorController() : super() {
-    charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
   }
 
   //don't actually start the session, but get players ready.
   @override
   void easterEggCallBack() {
     initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);
+    charCreatorHelperGlobalVar = new CharacterCreatorHelper(curSessionGlobalVar.players);
+
   }
 
   void updateRender(){
