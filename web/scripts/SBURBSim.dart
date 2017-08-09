@@ -416,6 +416,8 @@ void appendHtml(Element element, String html) {
     element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
+
+
 void setHtml(Element element, String html) {
     element.setInnerHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
 }

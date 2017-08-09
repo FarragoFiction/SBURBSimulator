@@ -187,10 +187,131 @@ class TournamentController extends SimController {
     querySelector("#roundTitle").setInnerHtml(team1Title +" vs " + team2Title);
     renderTeam(team1, querySelector("#team1"));
     renderTeam(team2, querySelector("#team2"));
-    clearTeam(querySelector("#team1"))
-    clearTeam(querySelector("#team2"))
-    abLeft();
+    clearTeam(querySelector("#team1"));
+    clearTeam(querySelector("#team2"));
+    abLeft(false);
     fight();
+  }
+
+
+  dynamic fight(){
+    querySelector("#story").setInnerHtml("");
+    //TODO how was this supposed to be working? make sure sessions gets this
+    initial_seed = getRandomSeed(); //pick a random session
+    var team = teamsGlobalVar[lastTeamIndex];
+    if(team.numberSessions >= numSimulationsToDo){
+      team = teamsGlobalVar[lastTeamIndex+1];
+      //print("switiching teams in fight");
+    }
+    //print("number of sessions for team: " + team + " is " + team.numberSessions);
+
+    if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
+    //var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
+    String selfInsert = "";
+    if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true"
+    simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
+    startSession(); //TODO used to pass a callback here and i don't know why. hope it works iwth sim controller's easterEggCallBack assumption.
+  }
+
+
+//what will happen if scratch? Will it return here still?;
+//need to make sure scratched sessions don't count. (they get stat boost after all)
+  @override
+  void easterEggCallBack(sessionSummary){
+    if(abj) return abjCallBack(sessionSummary);
+    var team = teamsGlobalVar[lastTeamIndex];
+    num teamNum = 1;
+    if(team.numberSessions >= numSimulationsToDo){
+      //print("switching to team 2 in callback");
+      teamNum = 2;
+      team = teamsGlobalVar[lastTeamIndex+1];
+      abRight();
+    }else{
+      abLeft();
+    }
+    team.numberSessions ++;
+    if(sessionSummary.won) team.win ++;
+    if(sessionSummary.crashedFromPlayerActions){
+      team.crash ++;
+      //grim dark ab turnways if 1
+      if(teamNum == 1){
+        abLeft(true);
+      }else{
+        abRight(true);
+      }
+    }else{
+      if(teamNum == 1){
+        abLeft();
+      }else{
+        abRight();
+      }
+    }
+    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
+      team.mvp_name = sessionSummary.mvp.htmlTitle();
+      team.mvp_score = sessionSummary.mvp.getStat("power");
+    }
+
+    if(team.mvp_score > mvpScore){
+      mvpScore = team.mvp_score;
+      mvpName = team.mvp_name;
+    }
+    renderTeam(team, querySelector("#team"+teamNum));
+    renderGlobalMVP();
+    fight();
+
+  }
+
+
+
+
+
+  void abLeft(bool glitch){
+    if(abj){
+      if(glitch){
+        (querySelector("#avatar") as ImageElement).src =  "images/abj_interesting_turnways.png";
+      }else{
+        (querySelector("#avatar") as ImageElement).src =  "images/authorbot_jr_scout_turnways.png";
+      }
+    }else{
+      if(glitch){
+        (querySelector("#avatar") as ImageElement).src =  "images/guide_bot_turnways_glitch.gif";
+      }else{
+        (querySelector("#avatar") as ImageElement).src =  "images/guide_bot_turnways.png";
+      }
+    }
+
+    querySelector("#team1Title").style.color =  "red";
+    querySelector("#team2Title").style.color =  "black";
+  }
+
+
+
+  void abRight(bool glitch){
+
+    if(abj){
+      if(glitch){
+        (querySelector("#avatar") as ImageElement).src =  "images/abj_interesting.png";
+      }else{
+        (querySelector("#avatar") as ImageElement).src =  "images/authorbot_jr_scout.png";
+      }
+    }else{
+
+      if(glitch){
+        (querySelector("#avatar") as ImageElement).src =  "images/guide_bot_glitch.gif";
+      }else{
+        (querySelector("#avatar") as ImageElement).src = "images/guide_bot.png";
+      }
+    }
+
+    querySelector("#team2Title").style.color ="red";
+    querySelector("#team1Title").style.color= "black";
+  }
+
+
+
+
+  void clearTeam(Element teamDiv){
+    teamDiv.classes.remove("loser");
   }
 
   void renderTeamABJ(TournamentTeam team, Element div){
