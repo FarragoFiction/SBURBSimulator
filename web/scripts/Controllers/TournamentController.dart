@@ -182,9 +182,9 @@ class TournamentController extends SimController {
       doneWithRound();
       return;
     }
-    String team1Title = "<span class = 'vsName' id = 'team1Title'>"+ team1 + "</span>";
-    String team2Title = "<span class = 'vsName' id = 'team2Title'>"+ team2 + "</span>";
-    querySelector("#roundTitle").html(team1Title +" vs " + team2Title);
+    String team1Title = "<span class = 'vsName' id = 'team1Title'>$team1</span>";
+    String team2Title = "<span class = 'vsName' id = 'team2Title'>$team2</span>";
+    querySelector("#roundTitle").setInnerHtml(team1Title +" vs " + team2Title);
     renderTeam(team1, querySelector("#team1"));
     renderTeam(team2, querySelector("#team2"));
     clearTeam(querySelector("#team1"))
@@ -193,6 +193,76 @@ class TournamentController extends SimController {
     fight();
   }
 
+  void renderTeamABJ(TournamentTeam team, Element div){
+    String num = "# of Sessions: ${team.numberSessions}";
+    String win = "<br># of Total Party Wipes: ${ team.numTotalPartyWipe}";
+    String score = "<br><h1>Score:  ${team.score()}</h1><hr>";
+    String mvp = "<br>MVP:  ${team.mvp_name} with a power of: ${ team.mvp_score}";
+    if(team.lostRound){
+      div.style.textDecoration = "overline";
+    }
+    div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win  + mvp + "</div>");
+    querySelector("#score_${team.name}${tierNumber}").setInnerHtml("<B>Score</b>: ${team.score()}");
+    querySelector("#mvp_${team.name}${tierNumber}").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
+  }
+
+
+  void renderTeam(TournamentTeam team, Element div){
+    if(abj) {
+      renderTeamABJ(team, div);
+      return;
+    }
+    String num = "# of Sessions: " + team.numberSessions;
+    String win = "<br># of Won Sessions: " + team.win;
+    String crash = "<br> # of GrimDark Crash Sessions: " + team.crash;
+    String score = "<br><h1>Score:  " + team.score() + "</h1><hr>";
+    String mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
+    if(team.lostRound){
+      div.css("text-decoration", "overline;");
+    }
+    div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>");
+    querySelector("#score_" + team.name+tierNumber).html("<B>Score</b>: " + team.score());
+    querySelector("#mvp_" + team.name+tierNumber).html("<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score);
+  }
+
+
+
+  dynamic doneWithRound(){
+    TournamentTeam team1 = teamsGlobalVar[lastTeamIndex];
+    TournamentTeam team2 = teamsGlobalVar[lastTeamIndex+1];
+    currentTier.rounds.add(new Round(team1, team2,takeColor()));
+    if(team2 == null) return doneWithTier();
+    if(team1.score() > team2.score()){
+      team2.lostRound = true;
+    }else if(team1.score() < team2.score()){
+      team1.lostRound = true;
+    }else{
+      team1.lostRound = false;
+      team2.lostRound = false; //tie.
+    }
+
+    if(team1.lostRound){
+      var listDiv = querySelector("#${team1.name}$tierNumber");
+      var roundDiv = querySelector("#team1");
+      markLoser(listDiv);
+      markLoser(roundDiv);
+    }
+    if(team2.lostRound){
+      var listDiv = querySelector("#${team2.name}$tierNumber");
+      var roundDiv = querySelector("#team2");
+      markLoser(listDiv);
+      markLoser(roundDiv);
+    }
+    startRound();
+  }
+
+  void markLoser(Element loser){
+    //print("marking loser");
+    //print(loser);
+    loser.classes.add("loser");
+  }
+
+
   void doneWithTier(){
     //remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
     //alert("ready for round " + (tierNumber+1) + "?")
@@ -200,6 +270,24 @@ class TournamentController extends SimController {
     removeLosers();
     startTournament();
   }
+
+
+
+  void removeLosers(){
+    List<TournamentTeam> toSave = [];
+    for(num i = 0; i<teamsGlobalVar.length; i++){
+      TournamentTeam team = teamsGlobalVar[i];
+      if(team.lostRound){
+        //do nothing.
+      }else{
+        team = team.resetStats(); //<--otherwise will think they are done nxt round casue already did 10 sessions.
+        toSave.add(team);
+      }
+    }
+    teamsGlobalVar = toSave;
+  }
+
+
 
 
 
@@ -217,7 +305,8 @@ class TournamentController extends SimController {
   void hideAllTiers(){
     for(num i = 1; i<(tierNumber+1); i++){
       //querySelector("#description"+(i)).css('display', 'inline-block');
-      appendHtml(querySelector("#description$i"),"Tier: $i"); //label  //TODO this used to be a prepend but dart doesn't support that?
+      querySelector("#description$i").insertAdjacentHtml('beforeEnd', "Tier: $i",  treeSanitizer: NodeTreeSanitizer.trusted);
+      //appendHtml(querySelector("#description$i"),"Tier: $i"); //label  //this used to be a prepend in js, now above is right
       hide(querySelector("#description$i"));
     }
   }
@@ -340,7 +429,7 @@ class TournamentTeam {
   TournamentTeam resetStats(){
     return new TournamentTeam(this.name, this.abj);
   }
-  dynamic score(){
+  num score(){
     if(this.abj) return this.numTotalPartyWipe;
     return this.win - this.crash;
   }
