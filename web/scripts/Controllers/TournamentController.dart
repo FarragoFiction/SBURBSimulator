@@ -51,7 +51,7 @@ class TournamentController extends AuthorBot {
   void makeDescriptionList(){
     String divHTML = "<div class = 'descriptionBox' id = 'description$tierNumber'></div>";
     appendHtml(querySelector("#descriptions"),divHTML);
-    hide(querySelector("#description${(tierNumber-1)}")); //only current is shown.
+    //TODO what did this do, turn it back on? hide(querySelector("#description${(tierNumber-1)}")); //only current is shown.
   }
 
 
@@ -85,8 +85,8 @@ class TournamentController extends AuthorBot {
   void wireUpTeamSelector(){
     querySelector("#teams").onChange.listen((Event e){
       teamsGlobalVar = [];
-      List<Element> elements = (querySelector('#teams') as SelectElement).selectedOptions;
-      for(InputElement e in elements) {
+      List<Element> elements = (querySelector('#tiers') as SelectElement).selectedOptions;
+      for(OptionElement e in elements) {
         teamsGlobalVar.add(new TournamentTeam(e.value, abj)); //TODO sure hope this works.
       }
       displayTeams(querySelector("#description$tierNumber"));
