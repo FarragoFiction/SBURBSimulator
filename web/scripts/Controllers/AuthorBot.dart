@@ -246,6 +246,7 @@ abstract class AuthorBot extends SimController {
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
+  //this will be called once session has ended. it's up to each child to know what to do here.
   void summarizeSession(Session session);
 
   void summarizeSessionNoFollowup(Session session);

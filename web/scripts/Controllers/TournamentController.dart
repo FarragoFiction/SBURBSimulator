@@ -33,6 +33,8 @@ void main() {
 class TournamentController extends AuthorBot {
   bool abj = false;
   int numSimulationsToDo = 0;
+  String mvpName = "";
+  num mvpScore = 0;
   int tierNumber = 0;
   List<TournamentTeam> startingTeams = new List<TournamentTeam>();
   List<TournamentTeam> teamsGlobalVar = new List<TournamentTeam>();
@@ -211,19 +213,125 @@ class TournamentController extends AuthorBot {
     String selfInsert = "";
     if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true";
     simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
-    startSession(); //TODO used to pass a callback here and i don't know why. hope it works iwth sim controller's easterEggCallBack assumption.
+    startSession(); // used to pass a callback here to try to use rare session finder. now there is inheritance.
+  }
+
+  //don't add selfInsertOC to claspect stuck
+  dynamic isClassOrAspectStuck(TournamentTeam team){
+    var stuck = team.name.split("Stuck");
+    return stuck.length == 2;
   }
 
 
-@override
+
+  @override
 void  summarizeSession(Session session) {
-    aBCallBack(session.generateSummary()); //TODO it's a callback because it originally was in js. need to name it something else nwo
+    aBSummary(session.generateSummary());
   }
 
   @override
   void  summarizeSessionNoFollowup(Session session) {
     throw "Touranment should never call this";
   }
+
+  //what will happen if scratch? Will it return here still?;
+//need to make sure scratched sessions don't count. (they get stat boost after all)
+  dynamic aBSummary(sessionSummary){
+    if(abj) return abjSummary(sessionSummary);
+    var team = teamsGlobalVar[lastTeamIndex];
+    num teamNum = 1;
+    if(team.numberSessions >= numSimulationsToDo){
+      //print("switching to team 2 in callback");
+      teamNum = 2;
+      team = teamsGlobalVar[lastTeamIndex+1];
+      abRight(false);
+    }else{
+      abLeft(false);
+    }
+    team.numberSessions ++;
+    if(sessionSummary.won) team.win ++;
+    if(sessionSummary.crashedFromPlayerActions){
+      team.crash ++;
+      //grim dark ab turnways if 1
+      if(teamNum == 1){
+        abLeft(true);
+      }else{
+        abRight(true);
+      }
+    }else{
+      if(teamNum == 1){
+        abLeft(false);
+      }else{
+        abRight(false);
+      }
+    }
+    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
+      team.mvp_name = sessionSummary.mvp.htmlTitle();
+      team.mvp_score = sessionSummary.mvp.getStat("power");
+    }
+
+    if(team.mvp_score > mvpScore){
+      mvpScore = team.mvp_score;
+      mvpName = team.mvp_name;
+    }
+    renderTeam(team, querySelector("#team$teamNum"));
+    renderGlobalMVP();
+    fight();
+
+  }
+
+  void renderGlobalMVP(){
+    querySelector("#globalMVP").setInnerHtml("Overall MVP:  " + mvpName + " with a power of: $mvpScore<br>");
+  }
+
+
+
+
+
+  void abjSummary(sessionSummary){
+    //print(sessionSummary);
+    var team = teamsGlobalVar[lastTeamIndex];
+    num teamNum = 1;
+    if(team.numberSessions >= numSimulationsToDo){
+      //print("switching to team 2 in callback");
+      teamNum = 2;
+      team = teamsGlobalVar[lastTeamIndex+1];
+      abRight(false);
+    }else{
+      abLeft(false);
+    }
+    team.numberSessions ++;
+    if(sessionSummary.numLiving == 0) team.numTotalPartyWipe ++;
+    if( sessionSummary.numLiving == 0){
+      //grim dark ab turnways if 1
+      if(teamNum == 1){
+        abLeft(true);
+      }else{
+        abRight(true);
+      }
+    }else{
+      if(teamNum == 1){
+        abLeft(false);
+      }else{
+        abRight(false);
+      }
+    }
+    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
+      team.mvp_name = sessionSummary.mvp.htmlTitle();
+      team.mvp_score = sessionSummary.mvp.getStat("power");
+    }
+
+    if(team.mvp_score > mvpScore){
+      mvpScore = team.mvp_score;
+      mvpName = team.mvp_name;
+    }
+    renderTeam(team, querySelector("#team$teamNum"));
+    renderGlobalMVP();
+    fight();
+
+  }
+
+
 
 
 
@@ -296,17 +404,17 @@ void  summarizeSession(Session session) {
       renderTeamABJ(team, div);
       return;
     }
-    String num = "# of Sessions: " + team.numberSessions;
-    String win = "<br># of Won Sessions: " + team.win;
-    String crash = "<br> # of GrimDark Crash Sessions: " + team.crash;
-    String score = "<br><h1>Score:  " + team.score() + "</h1><hr>";
-    String mvp = "<br>MVP:  " + team.mvp_name + " with a power of: " + team.mvp_score;
+    String num = "# of Sessions: ${team.numberSessions}";
+    String win = "<br># of Won Sessions:  ${team.win}";
+    String crash = "<br> # of GrimDark Crash Sessions:  ${team.crash}";
+    String score = "<br><h1>Score:   ${team.score()}</h1><hr>";
+    String mvp = "<br>MVP:  " + team.mvp_name + " with a power of:  ${team.mvp_score}";
     if(team.lostRound){
-      div.css("text-decoration", "overline;");
+      div.style.textDecoration = "overline;";
     }
-    div.html("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>");
-    querySelector("#score_" + team.name+tierNumber).html("<B>Score</b>: " + team.score());
-    querySelector("#mvp_" + team.name+tierNumber).html("<b>MVP:</b>  " + team.mvp_name + " with a power of: " + team.mvp_score);
+    div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>");
+    querySelector("#score_${team.name}$tierNumber").setInnerHtml("<B>Score</b>: ${team.score()}");
+    querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
   }
 
 
