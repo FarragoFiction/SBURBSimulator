@@ -47,14 +47,14 @@ void checkLABRanges() {
             for (int b = 0; b<256; b++) {
                 Colour col = new Colour(r,g,b);
 
-                min_l = Math.min(min_l, col.lab_lightness);
-                max_l = Math.max(max_l, col.lab_lightness);
+                min_l = Math.min(min_l, col.lab_lightness_scaled);
+                max_l = Math.max(max_l, col.lab_lightness_scaled);
 
-                min_a = Math.min(min_a, col.lab_a);
-                max_a = Math.max(max_a, col.lab_a);
+                min_a = Math.min(min_a, col.lab_a_scaled);
+                max_a = Math.max(max_a, col.lab_a_scaled);
 
-                min_b = Math.min(min_b, col.lab_b);
-                max_b = Math.max(max_b, col.lab_b);
+                min_b = Math.min(min_b, col.lab_b_scaled);
+                max_b = Math.max(max_b, col.lab_b_scaled);
             }
         }
     }
@@ -83,8 +83,8 @@ CanvasElement makeGradientSwatch() {
     double l2 = (rand.nextDouble() * 0.6 - 0.3 + lightness);
     l2 = 1-((1-l2)*(1-l2));
 
-    Colour col1 = new Colour.lab(l1*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
-    Colour col2 = new Colour.lab(l2*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
+    Colour col1 = new Colour.labScaled(l1, rand.nextDouble(), rand.nextDouble());
+    Colour col2 = new Colour.labScaled(l2, rand.nextDouble(), rand.nextDouble());
 
     int w = canvas.width;
     int h = canvas.height;
