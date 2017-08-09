@@ -33,15 +33,16 @@ class CharacterEasterEggEngine {
   }
 
 
-  dynamic loadArrayFromFile(arr, String file, processForSim, callBack, that){
+  //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
+  dynamic loadArrayFromFile(arr, String file, p, callBack, that){
    // print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
       //print("got HTTP response with $data");
       parseFileContentsToArray(arr, data.trim());
-      if(processForSim != null && callBack != null) return processForSim(callBack);
-      if(processForSim == null && callBack != null) {
+      if(p != null && callBack != null) return processForSim(callBack);
+      if(p == null && callBack != null) {
         if(that == null) {
           callBack();
         }else {
@@ -67,7 +68,7 @@ class CharacterEasterEggEngine {
     List<dynamic> ret = [];
     List<Player> spacePlayers = findAllAspectPlayers(potentials, "Space");
     var space = rand.pickFrom(spacePlayers);
-    potentials.removeFromArray(space);
+    removeFromArray(space,potentials);
     if(space == null){
       space = randomSpacePlayer(curSessionGlobalVar);
       space.chatHandle = "randomSpace";
@@ -78,7 +79,7 @@ class CharacterEasterEggEngine {
     }
     var timePlayers = findAllAspectPlayers(potentials, "Time");
     var time = rand.pickFrom(timePlayers);
-    potentials.removeFromArray(time);
+    removeFromArray(time,potentials);
     if(time == null){
       time = randomTimePlayer(curSessionGlobalVar);
       time.chatHandle = "randomTime";
@@ -93,8 +94,8 @@ class CharacterEasterEggEngine {
     var numPlayers = rand.nextIntRange(2,12);
     for(int i = 2; i<numPlayers; i++){
       var p = rand.pickFrom(potentials);
-      if(p) ret.add(p);
-      if(p) potentials.removeFromArray(p);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
+      if(p != null) ret.add(p);
+      if(p != null) removeFromArray(p,potentials);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
     }
     //print(ret);
     for(num i = 0; i<ret.length; i++){

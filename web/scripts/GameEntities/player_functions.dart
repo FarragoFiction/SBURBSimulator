@@ -87,6 +87,7 @@ void initializePlayers(List<Player> players, Session session) {
             }
         }
     }
+    players[0].leader == true; //TODO why does this need to happen, why isn't it already true?
     if (!replayPlayers.isEmpty) {
         redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
         //oh because it makes replayed sessions with scratches crash.
