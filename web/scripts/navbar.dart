@@ -14,10 +14,17 @@ void onNavbarLoaded(String data) {
     querySelector("#story").appendHtml("<button id = 'voidButton'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
     (querySelector("#story") as ButtonElement).onClick.listen((e) => toggleVoid());
   }
+  String sessionID = todayToSession();
+  print('sessionID is $sessionID');
+  (querySelector("#today") as AnchorElement).href = "index2.html?seed=$sessionID";
+
 }
 
 
-
+String todayToSession() {
+  DateTime d =  new DateTime.now();
+  return "${d.year}${d.month}${d.day}";
+}
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 //simulatedParamsGlobalVar is the simulated global vars.

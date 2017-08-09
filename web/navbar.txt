@@ -33,6 +33,7 @@
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">SESSIONS</a>
     <div class="dropdown-content">
+      <a id = 'today' href="index2.html">Today's Session</a>
       <a href="index2.html">Read Random</a>
       <a href="character_creator.html">Customize Random</a>
       <a href="rare_session_finder.html">Find Rare</a>
