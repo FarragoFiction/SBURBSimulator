@@ -7,6 +7,7 @@ Random rand;
 TournamentController self; //want to access myself as more than just a sim controller occasionally
 void main() {
   doNotRender = true;
+  rand = new Random();
   loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
@@ -20,7 +21,8 @@ void main() {
     self.abj = true;
     querySelector("#judge").setInnerHtml("Wait, no, get me out of here, I want the  <a href = 'tournament_arc.html'>AuthorBot</a> again.");
   }
-  loadNavbar();
+  querySelector("#tournamentButton").onClick.listen((e) =>  self.startTournament());
+
   self.displayPotentialFighters();
   self.numSimulationsToDo = 10;
   self.makeDescriptionList();
@@ -31,6 +33,15 @@ class TournamentController extends SimController {
   bool abj = false;
   int numSimulationsToDo = 0;
   int tierNumber = 0;
+  List<TournamentTeam> startingTeams = new List<TournamentTeam>();
+  List<TournamentTeam> teamsGlobalVar = new List<TournamentTeam>();
+  Tier currentTier;
+  List<String> allColors = ["#ffdf99","#29ded8","#29de69","#e88cff","#ff8cc5","#b58cff","#8cfff0","#8cffaf","#ddff8c","#ffe88c","#ffa28c","#ffefdb","#faffdb","#dbffef","#dbebff","#ffdbf8","#dfffdb","#ffc5c5","#ff99b8","#ff99fe","#d099ff","#99b1ff","#99ffed","#c9ff99"];
+  List<String> remainingColors = [];
+
+  int lastTeamIndex = -2; //each round starts at index + 2
+
+  List<Tier> tiers = new List<Tier>();
 
   TournamentController() : super();
 
@@ -50,33 +61,300 @@ class TournamentController extends SimController {
 //do i want symbols for teams?
   void displayPotentialFighters(){
     //tiers are EXACTLY the same name as the param, so can generate a "URL" of the right format, for AB to check.
-    var fanTeams = ["reddit","tumblr","discord","creditsBuckaroos","ideasWranglers","patrons","patrons2","patrons3","canon","otherFandoms","creators"];
-    var classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck"];
-    var aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","LightStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
-    var teams = fanTeams.concat(classTeams);
-    teams = teams.concat(aspectTeams);
-    String html = "<b>Choose Combatants!</b><Br><select multiple size = '" + teams.length + "' id = 'tiers' name='tier'>";
+    List<String> teams = new List<String>();
+    List<String> fanTeams = ["reddit","tumblr","discord","creditsBuckaroos","ideasWranglers","patrons","patrons2","patrons3","canon","otherFandoms","creators"];
+    List<String> classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck"];
+    List<String> aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","LightStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
+    teams.addAll(fanTeams);
+    teams.addAll(classTeams);
+    teams.addAll(aspectTeams);
+    String html = "<b>Choose Combatants!</b><Br><select multiple size = '${teams.length}' id = 'tiers' name='tier'>";
     for(num i = 0; i< teams.length; i++){
-      html += '<option value="' + teams[i] +'">' + teams[i]+'</option>'
+      html += '<option value="' + teams[i] +'">' + teams[i]+'</option>';
     }
     html += '</select>';
-    querySelector("#teams").append(html);
+    appendHtml(querySelector("#teams"),html);
     wireUpTeamSelector();
   }
 
 
 
   void wireUpTeamSelector(){
-    querySelector("#teams").change(() {
+    querySelector("#teams").onChange.listen((Event e){
       teamsGlobalVar = [];
-      querySelector('#teams :selected').each((i, selected){
-        teamsGlobalVar.add(new Team(querySelector(selected).text(), abj));
-      });
-      displayTeams(querySelector("#description"+tierNumber));
-      querySelector("#tournamentButtonDiv").css('display', 'inline-block');
+      List<Element> elements = (querySelector('#teams') as SelectElement).selectedOptions;
+      for(InputElement e in elements) {
+        teamsGlobalVar.add(new TournamentTeam(e.value, abj)); //TODO sure hope this works.
+      }
+      displayTeams(querySelector("#description$tierNumber"));
+      querySelector("#tournamentButtonDiv").style.display = 'inline-block';
     });
 
   }
 
+  //oncoe tournament starts, div should be unique for that tier
+  void displayTeams(Element div){
+    //when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
+    //points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
+    //loser is crossed off from team description, and next pair go.
+    String html = "";
+
+    for(num i = 0; i < teamsGlobalVar.length; i++){
+      html +=displayTeamInList(teamsGlobalVar[i]);
+    }
+    div.setInnerHtml(html);
+
+  }
+
+
+  String displayTeamInList(team){
+    String html = "";
+    String divStart = "<div id = '${team.name}$tierNumber' class = 'teamDescription'>";
+    String divEnd = "</div>";
+    html += divStart + getTeamDescription(team) + divEnd;
+    return html;
+  }
+
+
+//when tournament starts up, drop down is set to none, and this is left most thing.
+  String getTeamDescription(TournamentTeam team){
+    var stuck = team.name.split("Stuck");
+    if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_${team.name}$tierNumber'></div>";
+    if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_${team.name}$tierNumber'></div><div id = 'mvp_${team.name}$tierNumber'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)";
+
+    return "<h2>$team</h2><div id = 'score_${team.name}$tierNumber'></div><div id = 'mvp_${team.name}$tierNumber'></div> <hr>Players chosen randomly from the $team fan OCs";
+
+  }
+
+
+
+//hide the teams and button. randomize the teams and reDescribe them to show new order.
+//render AB in center, facing left team.
+//then, render first team on left of AB, and second team on right of AB.
+//then, pass first team to AB (upgrade her to have 'url params' from var as well as actual window location.)
+//number to simulate is 10.
+//when each session is done, need to call a callback in this file instead of printSTats or whatever (minor AB upgrade)
+//callback should note if win (+1 to displayed score), or if grimDark crash (-1 to displayed score, AB flashes corrupt red.)  should also pass MVP value and title (wanna keep track of.)
+//when done, callback to this page so it knows to start next team. AB faces right. repeat.
+//when both teams done, compare scores, show winner, and strikethrough loser.
+//queue up next 2.
+//when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
+  void startTournament(){
+    if (startingTeams.length == 0) setStartingTeams(); //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
+    currentTier = new Tier(); //add rounds to it as it goes on.
+    resetColors();
+    tierNumber ++;
+    querySelector("#currentTier").setInnerHtml("Current Tier: $tierNumber");
+    lastTeamIndex = -2;
+    hide(querySelector("#teams"));
+    querySelector("#roundTitle").style.display = 'inline-block';
+    querySelector("#team1").style.display = 'inline-block';
+    querySelector("#ab").style.display = 'inline-block';
+    querySelector("#team2").style.display = 'inline-block';
+    //render team 1 and team2
+    teamsGlobalVar = shuffle(rand, teamsGlobalVar); //if these were svgs, could be animated???
+    makeDescriptionList();
+    displayTeamsTournament(querySelector("#description$tierNumber"));
+    hide(querySelector("#tournamentButtonDiv"));
+    if(teamsGlobalVar.length == 1) {
+      missionComplete();
+      return;
+    }
+    startRound();
+  }
+
+  void missionComplete(){
+    //have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
+    currentTier.rounds.add(new Round(teamsGlobalVar[0], null,takeColor()));  //so i can display winner.
+    tiers.add(currentTier);
+    hide(querySelector("#tournament"));
+    querySelector("#winner").setInnerHtml("<h1>Winner: " + teamsGlobalVar[0].name+"</h1>");
+    //showAllTiers();
+    hideAllTiers();
+    createEndingTable();
+  }
+
+  void hideAllTiers(){
+    for(num i = 1; i<(tierNumber+1); i++){
+      //querySelector("#description"+(i)).css('display', 'inline-block');
+      appendHtml(querySelector("#description$i"),"Tier: $i"); //label  //TODO this used to be a prepend but dart doesn't support that?
+      hide(querySelector("#description$i"));
+    }
+  }
+
+
+  void createEndingTable(){
+    String html = "(matching colors means they faced each other that tier) <div class = 'tournamentResults'><table id = 'endingTable' >";
+    html += createEndingTableHeader();
+    //for loop on number of tiers.
+    for(num i = 0; i<startingTeams.length; i++){
+      html += createEndingTableRow(startingTeams[i]);
+    }
+    html += "</table></div>" ;//i tried scrolls to make it look better, but it made it harder to navigate, so, fuck that shit.;
+    appendHtml(querySelector("#descriptions"),html);
+  }
+
+
+  dynamic createEndingTableHeader(){
+    String html = "<tr>";
+    for(num i = 1; i<=tiers.length; i++){
+      html += "<th>Tier: $i </th>";
+    }
+    html += "</tr>";
+    return html;
+  }
+
+
+
+  dynamic createEndingTableRow(TournamentTeam team){
+    String html = "<tr>";
+    for(num i = 0; i<tiers.length; i++){
+      Round round = tiers[i].findRoundForTeam(team);
+      if(round != null){
+        var teamInRound = round.getTeam(team.name);
+        if(teamInRound.lostRound){
+          html += "<td style = 'text-decoration: line-through;' class = 'tournamentCell' bgcolor='" +round.color + "'>";
+        }else{
+          html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>";
+        }
+
+        html += team.name + ": " +teamInRound.score();
+        html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: ${(teamInRound.mvp_score).round()}</div>";
+        html += " </td>";
+      }else{ //was disqualified
+        html += "<td></td>";
+      }
+    }
+    html += "</tr>";
+    return html;
+  }
+
+
+
+  String takeColor(){
+    var color = rand.pickFrom(remainingColors);
+    removeFromArray(color,remainingColors);
+    return color;
+  }
+
+
+
+  void setStartingTeams(){
+    for(var i =0; i<teamsGlobalVar.length; i++){
+      startingTeams.add(teamsGlobalVar[i]);
+    }
+  }
+
+
+//pairs teams up instead of straight line.
+  void displayTeamsTournament(Element div){
+    //when teams are displayed, also make sure button to start tournament is displayed. Hides team selector, shows AB in middle, with current fighters on either sidebar
+    //points go up with each won session, AB glitches red with each grim dark crash and a point is lost.
+    //loser is crossed off from team description, and next pair go.
+    String html = "<div>"; //empty so that can end it for i = 0;
+
+    for(num i = 0; i < teamsGlobalVar.length; i++){
+      if(i%2 == 0){
+        html += "</div><div class = 'twoTeams'>";
+      }
+      html +=displayTeamInList(teamsGlobalVar[i]);
+    }
+    if(teamsGlobalVar.length %2 != 0) html += "</div>" ;//didn't get closed;
+
+    div.setInnerHtml(html);
+
+  }
+
+
+
+  void resetColors(){
+    remainingColors = [];
+    for(num i = 0; i<allColors.length; i++){
+      remainingColors.add(allColors[i]);
+    }
+  }
+
+
+
+
 
 }
+
+
+
+
+
+class TournamentTeam {
+  var name;
+  num numberSessions = 0;
+  num win = 0;
+  num numTotalPartyWipe = 0; //only stat ABJ cares about.
+  num crash = 0;
+  String mvp_name = "";
+  num mvp_score = 0;
+  var abj;
+  bool lostRound = false; //set to true if they lost.  cause them to render different.
+
+  TournamentTeam(this.name, this.abj) {}
+
+  TournamentTeam resetStats(){
+    return new TournamentTeam(this.name, this.abj);
+  }
+  dynamic score(){
+    if(this.abj) return this.numTotalPartyWipe;
+    return this.win - this.crash;
+  }
+  void scoreABJ(){
+    this.numTotalPartyWipe;
+  }
+  String toString(){
+    return this.name;
+  }
+
+}
+
+
+//who fought in this tier
+class Tier {
+  List<Round> rounds = [];
+
+
+  Tier() {}
+
+
+  Round findRoundForTeam(team){
+    for(num i = 0; i<this.rounds.length; i++){
+      if(this.rounds[i].hasTeam(team)) return this.rounds[i];
+    }
+  }
+
+}
+
+
+
+//who found in this round.
+class Round {
+  TournamentTeam team1;
+  TournamentTeam team2;
+  String color;
+
+
+  Round(this.team1, this.team2, this.color) {}
+
+
+  bool hasTeam(TournamentTeam team){
+    if(team == null) return false;
+    if(this.team1.name == team.name || (this.team2 != null && this.team2.name == team.name)) return true;
+    return false;
+  }
+  TournamentTeam getTeam(teamName){
+    if(teamName == this.team1) return this.team1;
+    if(teamName == this.team2) return this.team2;
+    return null;
+
+  }
+
+}
+
+
+
