@@ -89,39 +89,43 @@ class Colour {
         return new Colour()..setLAB(l, a, b);
     }
 
+    factory Colour.labScaled(double l, double a, double b) {
+        return new Colour()..setLABScaled(l, a, b);
+    }
+
     // Getters/setters ###################################################################################
 
     // RGB
 
-    int get red =>  _red;
-    int get green =>_green;
-    int get blue => _blue;
-    int get alpha =>_alpha;
+    int get red   => _red;
+    int get green => _green;
+    int get blue  => _blue;
+    int get alpha => _alpha;
 
-    void set red(int val)   { _red =    val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
-    void set green(int val) { _green =  val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
-    void set blue(int val)  { _blue =   val.clamp(0,0xFF); this._hsv_dirty = true; this._lab_dirty = true; }
-    void set alpha(int val) { _alpha =  val.clamp(0,0xFF); }
+    void set red(int val)   { _red   = val.clamp(0,0xFF); this._dirty(); }
+    void set green(int val) { _green = val.clamp(0,0xFF); this._dirty(); }
+    void set blue(int val)  { _blue  = val.clamp(0,0xFF); this._dirty(); }
+    void set alpha(int val) { _alpha = val.clamp(0,0xFF); }
 
     double get redDouble =>     red /   0xFF;
     double get greenDouble =>   green / 0xFF;
     double get blueDouble =>    blue /  0xFF;
     double get alphaDouble =>   alpha / 0xFF;
 
-    void set redDouble(double val)  { this.red =    (val*0xFF).floor(); }
-    void set greenDouble(double val){ this.green =  (val*0xFF).floor(); }
-    void set blueDouble(double val) { this.blue =   (val*0xFF).floor(); }
-    void set alphaDouble(double val){ this.alpha =  (val*0xFF).floor(); }
+    void set redDouble(double val)  { this.red   = (val*0xFF).floor(); }
+    void set greenDouble(double val){ this.green = (val*0xFF).floor(); }
+    void set blueDouble(double val) { this.blue  = (val*0xFF).floor(); }
+    void set alphaDouble(double val){ this.alpha = (val*0xFF).floor(); }
 
     // HSV
 
-    double get hue { this._checkHSV(); return _hue; }
+    double get hue        { this._checkHSV(); return _hue; }
     double get saturation { this._checkHSV(); return _saturation; }
-    double get value { this._checkHSV(); return _value; }
+    double get value      { this._checkHSV(); return _value; }
 
-    void set hue(double val) { _hue = val; this._updateRGBfromHSV(); }
-    void set saturation(double val) { _saturation = val; this._updateRGBfromHSV(); }
-    void set value(double val) { _value = val; this._updateRGBfromHSV(); }
+    void set hue(double val)        { this._checkHSV(); _hue        = val; this._updateRGBfromHSV(); }
+    void set saturation(double val) { this._checkHSV(); _saturation = val; this._updateRGBfromHSV(); }
+    void set value(double val)      { this._checkHSV(); _value      = val; this._updateRGBfromHSV(); }
 
     void setHSV(double h, double s, double v) {
         this._hue = h;
@@ -133,17 +137,72 @@ class Colour {
     // LAB
 
     double get lab_lightness { this._checkLAB(); return _lab_lightness; }
-    double get lab_a { this._checkLAB(); return _lab_a; }
-    double get lab_b { this._checkLAB(); return _lab_b; }
+    double get lab_a         { this._checkLAB(); return _lab_a; }
+    double get lab_b         { this._checkLAB(); return _lab_b; }
 
-    void set lab_lightness(double val) { _lab_lightness = val; this._updateRGBfromLAB(); }
-    void set lab_a(double val) { _lab_a = val; this._updateRGBfromLAB(); }
-    void set lab_b(double val) { _lab_b = val; this._updateRGBfromLAB(); }
+    void set lab_lightness(double val) { this._checkLAB(); _lab_lightness = val; this._updateRGBfromLAB(); }
+    void set lab_a(double val)         { this._checkLAB(); _lab_a         = val; this._updateRGBfromLAB(); }
+    void set lab_b(double val)         { this._checkLAB(); _lab_b         = val; this._updateRGBfromLAB(); }
 
     void setLAB(double l, double a, double b) {
         this._lab_lightness = l;
         this._lab_a = a;
         this._lab_b = b;
+        this._updateRGBfromLAB();
+    }
+
+    double _lab_scale_l(double val, bool reverse) {
+        return reverse ? val*100 : val*0.01;
+    }
+
+    static const double _LAB_MIN_A = -86.18463649762525;
+    static const double _LAB_MAX_A = 98.25421868616114;
+    double _lab_scale_a(double val, bool reverse) {
+        if (reverse) {
+            if (val < 0.5) {
+                return (1 - (val * 2)) * _LAB_MIN_A;
+            } else {
+                return ((val - 0.5) * 2) * _LAB_MAX_A;
+            }
+        } else {
+            if (val < 0) {
+                return (1 - (val / _LAB_MIN_A)) * 0.5;
+            } else {
+                return (val / _LAB_MAX_A) * 0.5 + 0.5;
+            }
+        }
+    }
+
+    static const double _LAB_MIN_B = -107.86368104495168;
+    static const double _LAB_MAX_B = 94.48248544644461;
+    double _lab_scale_b(double val, bool reverse) {
+        if (reverse) {
+            if (val < 0.5) {
+                return (1 - (val * 2)) * _LAB_MIN_B;
+            } else {
+                return ((val - 0.5) * 2) * _LAB_MAX_B;
+            }
+        } else {
+            if (val < 0) {
+                return (1 - (val / _LAB_MIN_B)) * 0.5;
+            } else {
+                return (val / _LAB_MAX_B) * 0.5 + 0.5;
+            }
+        }
+    }
+
+    double get lab_lightness_scaled => _lab_scale_l(this.lab_lightness, false);
+    double get lab_a_scaled         => _lab_scale_a(this.lab_a, false);
+    double get lab_b_scaled         => _lab_scale_b(this.lab_b, false);
+
+    void set lab_lightness_scaled(double val) { this.lab_lightness = _lab_scale_l(val, true); }
+    void set lab_a_scaled(double val)         { this.lab_a = _lab_scale_a(val, true); }
+    void set lab_b_scaled(double val)         { this.lab_b = _lab_scale_b(val, true); }
+
+    void setLABScaled(double l, double a, double b) {
+        this._lab_lightness = _lab_scale_l(l, true);
+        this._lab_a = _lab_scale_a(a, true);
+        this._lab_b = _lab_scale_b(b, true);
         this._updateRGBfromLAB();
     }
 
@@ -199,6 +258,11 @@ class Colour {
 
     static double _lerp(double first, double second, double fraction) {
         return (first * (1-fraction) + second * fraction);
+    }
+
+    void _dirty() {
+        this._hsv_dirty = true;
+        this._lab_dirty = true;
     }
 
     // HSV ###################################################################################
