@@ -244,8 +244,6 @@ class Aftermath extends Scene {
 		tmpStatHolder["freeWill"] = 200;
 		tmpStatHolder["power"] =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 		tmpStatHolder["grist"] = 100000000;
-		tmpStatHolder["abscondable"] = false; //this is still the final battle,
-		tmpStatHolder["canAbscond"] = false;
 		tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
 		//print(purpleFrog);
 		GameEntity purpleFrog = new GameEntity(" <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", this.session);
@@ -310,6 +308,8 @@ class Aftermath extends Scene {
 		fighters.add(Player.makeRenderingSnapshot(trollKidRock)); //sorry trollKidRock you are not REALLY a player.
 		Team pTeam = new Team.withName("The Players", this.session, fighters);
 		Team dTeam = new Team(this.session, [purpleFrog]);
+		pTeam.canAbscond = false;
+		dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 		String ret = "";

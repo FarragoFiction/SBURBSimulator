@@ -537,12 +537,12 @@ void  summarizeSession(Session session) {
 
 
 
-  dynamic createEndingTableRow(TournamentTeam team){
+  dynamic createEndingTableRow(TournamentTeam teamInRound){
     String html = "<tr>";
     for(num i = 0; i<tiers.length; i++){
       Round round = tiers[i].findRoundForTeam(team);
       if(round != null){
-        var teamInRound = round.getTeam(team.name);
+        //TournamentTeam teamInRound = round.getTeam(team.name); //todo oh god what is the point of this, i already have the team, don't I?
         if(teamInRound.lostRound){
           html += "<td style = 'text-decoration: line-through;' class = 'tournamentCell' bgcolor='" +round.color + "'>";
         }else{
@@ -563,6 +563,7 @@ void  summarizeSession(Session session) {
   @override
   void scratchAB(Session session) {
       //do nothing. scratches aren' tallowed.
+    summarizeSession(session);
   }
 
 
