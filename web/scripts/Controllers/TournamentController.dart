@@ -51,7 +51,7 @@ class TournamentController extends AuthorBot {
   void makeDescriptionList(){
     String divHTML = "<div class = 'descriptionBox' id = 'description$tierNumber'></div>";
     appendHtml(querySelector("#descriptions"),divHTML);
-    //TODO what did this do, turn it back on? hide(querySelector("#description${(tierNumber-1)}")); //only current is shown.
+    if(querySelector("#description${(tierNumber-1)}") != null ) hide(querySelector("#description${(tierNumber-1)}")); //only current is shown.
   }
 
 
@@ -114,17 +114,20 @@ class TournamentController extends AuthorBot {
     String html = "";
     String divStart = "<div id = '${team.name}$tierNumber' class = 'teamDescription'>";
     String divEnd = "</div>";
-    html += divStart + getTeamDescription(team) + divEnd;
+    String mid = getTeamDescription(team);
+    print("debugging ab: team description is: $mid");
+    html += divStart + mid + divEnd;
     return html;
   }
 
 
 //when tournament starts up, drop down is set to none, and this is left most thing.
   String getTeamDescription(TournamentTeam team){
+    print("Debugging AB: getting team description,  tier number is: $tierNumber");
     var stuck = team.name.split("Stuck");
     if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_${team.name}$tierNumber'></div>";
     if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_${team.name}$tierNumber'></div><div id = 'mvp_${team.name}$tierNumber'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)";
-
+    //TODO crashing when it can't find mvp...is....this working right? is mvp only a thing if tier is less than zero?
     return "<h2>$team</h2><div id = 'score_${team.name}$tierNumber'></div><div id = 'mvp_${team.name}$tierNumber'></div> <hr>Players chosen randomly from the $team fan OCs";
 
   }
@@ -143,6 +146,7 @@ class TournamentController extends AuthorBot {
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
   void startTournament(){
+    print("Debugging AB: Starting up a tournament");
     if (startingTeams.length == 0) setStartingTeams(); //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
     currentTier = new Tier(); //add rounds to it as it goes on.
     resetColors();
@@ -168,12 +172,14 @@ class TournamentController extends AuthorBot {
 
   //want rounds to take long enough that you can read what happens.
   void startRound(){
+    print("Debugging AB: Starting up a round");
     new Timer(new Duration(milliseconds: 1000), () => startRoundPart2()); //sweet sweet async
   }
 
 
 
   void startRoundPart2(){
+    print("Debugging AB: Starting up a round post timer");
     lastTeamIndex += 2;
     if(lastTeamIndex >= teamsGlobalVar.length) {
       doneWithTier();
@@ -185,9 +191,11 @@ class TournamentController extends AuthorBot {
       doneWithRound();
       return;
     }
+    print("Debugging AB: teams are $team1 and $team2");
     String team1Title = "<span class = 'vsName' id = 'team1Title'>$team1</span>";
     String team2Title = "<span class = 'vsName' id = 'team2Title'>$team2</span>";
     querySelector("#roundTitle").setInnerHtml(team1Title +" vs " + team2Title);
+    print("Debugging AB: Gonna render teams");
     renderTeam(team1, querySelector("#team1"));
     renderTeam(team2, querySelector("#team2"));
     clearTeam(querySelector("#team1"));
@@ -198,10 +206,12 @@ class TournamentController extends AuthorBot {
 
 
   dynamic fight(){
+    print("Debugging AB: Starting up a tournament fight");
     querySelector("#story").setInnerHtml("");
     //TODO how was this supposed to be working? make sure sessions gets this
     initial_seed = getRandomSeed(); //pick a random session
-    var team = teamsGlobalVar[lastTeamIndex];
+    TournamentTeam team = teamsGlobalVar[lastTeamIndex];
+    print("Debugging AB: team is $team");
     if(team.numberSessions >= numSimulationsToDo){
       team = teamsGlobalVar[lastTeamIndex+1];
       //print("switiching teams in fight");
@@ -394,8 +404,8 @@ void  summarizeSession(Session session) {
       div.style.textDecoration = "overline";
     }
     div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win  + mvp + "</div>");
-    querySelector("#score_${team.name}${tierNumber}").setInnerHtml("<B>Score</b>: ${team.score()}");
-    querySelector("#mvp_${team.name}${tierNumber}").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
+    querySelector("#score_${team.name}$tierNumber").setInnerHtml("<B>Score</b>: ${team.score()}");
+    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
   }
 
 
