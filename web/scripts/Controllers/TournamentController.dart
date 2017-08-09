@@ -2,6 +2,7 @@ import '../SBURBSim.dart';
 import '../navbar.dart';
 import 'dart:html';
 import 'dart:async';
+import 'AuthorBot.dart';
 
 Random rand;
 TournamentController self; //want to access myself as more than just a sim controller occasionally
@@ -29,7 +30,7 @@ void main() {
 }
 
 
-class TournamentController extends SimController {
+class TournamentController extends AuthorBot {
   bool abj = false;
   int numSimulationsToDo = 0;
   int tierNumber = 0;
@@ -208,59 +209,21 @@ class TournamentController extends SimController {
     if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
     //var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
     String selfInsert = "";
-    if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true"
+    if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true";
     simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
     startSession(); //TODO used to pass a callback here and i don't know why. hope it works iwth sim controller's easterEggCallBack assumption.
   }
 
 
-//what will happen if scratch? Will it return here still?;
-//need to make sure scratched sessions don't count. (they get stat boost after all)
-  @override
-  void easterEggCallBack(sessionSummary){
-    if(abj) return abjCallBack(sessionSummary);
-    var team = teamsGlobalVar[lastTeamIndex];
-    num teamNum = 1;
-    if(team.numberSessions >= numSimulationsToDo){
-      //print("switching to team 2 in callback");
-      teamNum = 2;
-      team = teamsGlobalVar[lastTeamIndex+1];
-      abRight();
-    }else{
-      abLeft();
-    }
-    team.numberSessions ++;
-    if(sessionSummary.won) team.win ++;
-    if(sessionSummary.crashedFromPlayerActions){
-      team.crash ++;
-      //grim dark ab turnways if 1
-      if(teamNum == 1){
-        abLeft(true);
-      }else{
-        abRight(true);
-      }
-    }else{
-      if(teamNum == 1){
-        abLeft();
-      }else{
-        abRight();
-      }
-    }
-    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
-      team.mvp_name = sessionSummary.mvp.htmlTitle();
-      team.mvp_score = sessionSummary.mvp.getStat("power");
-    }
-
-    if(team.mvp_score > mvpScore){
-      mvpScore = team.mvp_score;
-      mvpName = team.mvp_name;
-    }
-    renderTeam(team, querySelector("#team"+teamNum));
-    renderGlobalMVP();
-    fight();
-
+@override
+void  summarizeSession(Session session) {
+    aBCallBack(session.generateSummary()); //TODO it's a callback because it originally was in js. need to name it something else nwo
   }
 
+  @override
+  void  summarizeSessionNoFollowup(Session session) {
+    throw "Touranment should never call this";
+  }
 
 
 
@@ -479,6 +442,10 @@ class TournamentController extends SimController {
     return html;
   }
 
+  @override
+  void scratchAB(Session session) {
+      //do nothing. scratches aren' tallowed.
+  }
 
 
   String takeColor(){
