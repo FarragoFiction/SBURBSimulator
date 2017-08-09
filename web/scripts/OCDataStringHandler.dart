@@ -40,7 +40,7 @@ class CharacterEasterEggEngine {
       // Do something with the response.
       //print("got HTTP response with $data");
       parseFileContentsToArray(arr, data.trim());
-      if(processForSim != null && callBack != null) return that.processForSim(callBack);
+      if(processForSim != null && callBack != null) return processForSim(callBack);
       if(processForSim == null && callBack != null) {
         if(that == null) {
           callBack();
