@@ -246,7 +246,7 @@ void  summarizeSession(Session session) {
 
   //what will happen if scratch? Will it return here still?;
 //need to make sure scratched sessions don't count. (they get stat boost after all)
-  dynamic aBSummary(sessionSummary){
+  dynamic aBSummary(SessionSummary sessionSummary){
     if(abj) return abjSummary(sessionSummary);
     var team = teamsGlobalVar[lastTeamIndex];
     num teamNum = 1;
@@ -259,8 +259,8 @@ void  summarizeSession(Session session) {
       abLeft(false);
     }
     team.numberSessions ++;
-    if(sessionSummary.won) team.win ++;
-    if(sessionSummary.crashedFromPlayerActions){
+    if(sessionSummary.getBoolStat("won")) team.win ++;
+    if(sessionSummary.getBoolStat("crashedFromPlayerActions")){
       team.crash ++;
       //grim dark ab turnways if 1
       if(teamNum == 1){
@@ -424,7 +424,7 @@ void  summarizeSession(Session session) {
     }
     div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>");
     querySelector("#score_${team.name}$tierNumber").setInnerHtml("<B>Score</b>: ${team.score()}");
-    querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
+    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
   }
 
 
