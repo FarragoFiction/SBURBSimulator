@@ -310,13 +310,14 @@ class SessionFinderController extends SimController { //works exactly like Sim u
   }
 
   @override
-    void reckoningTick() {
+    void reckoningTick([num time]) {
     print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
     //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
+      window.requestAnimationFrame(reckoningTick);
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-      new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
+      //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
       return null;
     }else{
       print("Debugging AB: Aftermath in session:  ${curSessionGlobalVar.session_id}");
@@ -407,7 +408,8 @@ class SessionFinderController extends SimController { //works exactly like Sim u
       }
     }else{
         print("Debugging AB: going to start new session");
-        new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
+        //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
+        window.requestAnimationFrame((num t) => startSession());
     }
     print("Debugging AB: done summarizing session ${curSessionGlobalVar.session_id}");
 

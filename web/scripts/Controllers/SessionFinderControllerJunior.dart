@@ -183,7 +183,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   @override
-  void reckoningTick() {
+  void reckoningTick([num time]) {
     throw "ABJ does not actually simulate shit.";
   }
 
