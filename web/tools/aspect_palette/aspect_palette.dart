@@ -78,9 +78,13 @@ CanvasElement makeGradientSwatch() {
     //Colour col2 = new Colour.fromHex(0x00FF00);
 
     double lightness = rand.nextDouble() * 0.4 + 0.3;
+    double l1 = (rand.nextDouble() * 0.6 - 0.3 + lightness);
+    l1 = 1-((1-l1)*(1-l1));
+    double l2 = (rand.nextDouble() * 0.6 - 0.3 + lightness);
+    l2 = 1-((1-l2)*(1-l2));
 
-    Colour col1 = new Colour.lab((rand.nextDouble() * 0.6 - 0.3 + lightness)*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
-    Colour col2 = new Colour.lab((rand.nextDouble() * 0.6 - 0.3 + lightness)*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
+    Colour col1 = new Colour.lab(l1*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
+    Colour col2 = new Colour.lab(l2*100, rand.nextDouble()*180 - 90, rand.nextDouble()*180 - 90);
 
     int w = canvas.width;
     int h = canvas.height;
