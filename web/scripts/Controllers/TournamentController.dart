@@ -163,6 +163,46 @@ class TournamentController extends SimController {
     startRound();
   }
 
+  //want rounds to take long enough that you can read what happens.
+  void startRound(){
+    new Timer(new Duration(milliseconds: 1000), () => startRoundPart2()); //sweet sweet async
+  }
+
+
+
+  void startRoundPart2(){
+    lastTeamIndex += 2;
+    if(lastTeamIndex >= teamsGlobalVar.length) {
+      doneWithTier();
+      return;
+    }
+    TournamentTeam team1 = teamsGlobalVar[lastTeamIndex];
+    TournamentTeam team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
+    if(team2 == null) {
+      doneWithRound();
+      return;
+    }
+    String team1Title = "<span class = 'vsName' id = 'team1Title'>"+ team1 + "</span>";
+    String team2Title = "<span class = 'vsName' id = 'team2Title'>"+ team2 + "</span>";
+    querySelector("#roundTitle").html(team1Title +" vs " + team2Title);
+    renderTeam(team1, querySelector("#team1"));
+    renderTeam(team2, querySelector("#team2"));
+    clearTeam(querySelector("#team1"))
+    clearTeam(querySelector("#team2"))
+    abLeft();
+    fight();
+  }
+
+  void doneWithTier(){
+    //remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
+    //alert("ready for round " + (tierNumber+1) + "?")
+    tiers.add(currentTier);
+    removeLosers();
+    startTournament();
+  }
+
+
+
   void missionComplete(){
     //have some sort of css pop up with winner, hide tournament, show all team descriptions (hopefully in horizontally scrolling line)
     currentTier.rounds.add(new Round(teamsGlobalVar[0], null,takeColor()));  //so i can display winner.
