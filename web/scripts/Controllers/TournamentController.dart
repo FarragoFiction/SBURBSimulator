@@ -152,7 +152,7 @@ class TournamentController extends AuthorBot {
     resetColors();
     tierNumber ++;
     querySelector("#currentTier").setInnerHtml("Current Tier: $tierNumber");
-    lastTeamIndex = -2;
+    //lastTeamIndex = -2;  //TODO why was this being set to -2 each time? this is dumb as shit.
     hide(querySelector("#teams"));
     querySelector("#roundTitle").style.display = 'inline-block';
     querySelector("#team1").style.display = 'inline-block';
@@ -540,7 +540,7 @@ void  summarizeSession(Session session) {
   dynamic createEndingTableRow(TournamentTeam teamInRound){
     String html = "<tr>";
     for(num i = 0; i<tiers.length; i++){
-      Round round = tiers[i].findRoundForTeam(team);
+      Round round = tiers[i].findRoundForTeam(teamInRound);
       if(round != null){
         //TournamentTeam teamInRound = round.getTeam(team.name); //todo oh god what is the point of this, i already have the team, don't I?
         if(teamInRound.lostRound){
@@ -549,7 +549,7 @@ void  summarizeSession(Session session) {
           html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>";
         }
 
-        html += team.name + ": " +teamInRound.score();
+        html += teamInRound.name + ": $teamInRound.score()";
         html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: ${(teamInRound.mvp_score).round()}</div>";
         html += " </td>";
       }else{ //was disqualified
