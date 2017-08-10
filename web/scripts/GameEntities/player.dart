@@ -1215,6 +1215,9 @@ class Player extends GameEntity {
             case "Waste":
                 powerBoost = powerBoost * 0; //wastes WASTE their abilities, until the cataclysm.
                 break;
+            case "Grace":
+              powerBoost = powerBoost * 0; //graces don't use their abilities, until the cataclysm.
+              break;
             default:
                 print('What the hell kind of class is ${this.class_name}???');
         }
