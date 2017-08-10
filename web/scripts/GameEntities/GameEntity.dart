@@ -468,9 +468,12 @@ class GameEntity implements Comparable<GameEntity> {
             Buff b = this.buffs[i];
             if (b.name == statName) ret += b.value;
         }
+
         if (statName == "power") {
+            //print("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
             ret = Math.max(0, ret); //no negative power, dunkass.
+           // print("$this after mangrit, ret is $ret");
         }
 
         return (ret).round();
@@ -491,8 +494,10 @@ class GameEntity implements Comparable<GameEntity> {
           this.permaBuffs[statName] += value;
           return;
         }
+        if(statName == "power") print("$this boost power from ${this.stats[statName]} with $value");
         if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
         this.stats[statName] += value;
+        if(statName == "power") print("$this boost power to ${this.stats[statName]}");
     }
 
 

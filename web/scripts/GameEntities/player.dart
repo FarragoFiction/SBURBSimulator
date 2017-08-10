@@ -90,6 +90,7 @@ class Player extends GameEntity {
     @override //literally ad value to existing value
     void addStat(String statName, num value) {
         if (statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
+
         super.addStat(statName, value);
     }
 
@@ -1236,7 +1237,7 @@ class Player extends GameEntity {
     @override
     void increasePower([num magnitude = 1, cap = 5.1]) {
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
-        //print("$this  pre boost magnitude is $magnitude on a power of ${getStat('power')}");
+        //print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
@@ -1248,14 +1249,14 @@ class Player extends GameEntity {
 
 
         if (this.godTier) {
-            powerBoost = powerBoost * 20; //god tiers are ridiculously strong.
+            powerBoost = powerBoost * 10; //god tiers are ridiculously strong.
         }
 
         if (this.denizenDefeated) {
             powerBoost = powerBoost * 2; //permanent doubling of stats forever.
         }
 
-        this.addStat("power", powerBoost);
+        this.addStat("power", Math.max(1,powerBoost)); //no negatives
 
         this.associatedStatsIncreasePower(powerBoost);
         //gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
@@ -1267,7 +1268,7 @@ class Player extends GameEntity {
         //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
        // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
 
-        //print("$this  post boost magnitude is $powerBoost on a power of ${getStat('power')}");
+       // print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
     }
 
     String shortLand() {
