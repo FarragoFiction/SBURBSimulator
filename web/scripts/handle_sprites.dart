@@ -869,7 +869,12 @@ void drawWhateverTurnways(CanvasElement canvas, String imageString){
   drawWhatever(canvas, imageString);
 }
 
-
+drawWhateverWithPalleteSwapCallback(CanvasElement canvas, String str,Player player, var palleteSwapCallBack)
+{
+  drawWhatever(canvas, str);
+  print("drawing whatever with pallete swap of $palleteSwapCallBack");
+  palleteSwapCallBack(canvas, player); //regular, trickster, robo, whatever.
+}
 
 //have i really been too lazy to make this until now
 void drawWhatever(CanvasElement canvas, String imageString){
@@ -1553,8 +1558,11 @@ void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRendering
   if(player.isTroll){//wings before sprite
     fin1(canvas,player);
   }
-  if(!baby && player.class_name == "Prince" && player.godTier){
-	  princeTiara(canvas, player);
+  if(!baby  && player.godTier){
+    var callback = aspectPalletSwap;
+    if(player.trickster) callback = candyPalletSwap;
+    if(player.robot) callback = robotPalletSwap;
+    drawWhateverWithPalleteSwapCallback(canvas, playerToCowl(player),player, callback);
   }
 
   if(player.robot == true){
@@ -1808,24 +1816,14 @@ void wasteOfMindSymbol(CanvasElement canvas, Player player){
 }
 
 
-
-void princeTiara(CanvasElement canvas, Player player){
-	String imageString = "prince_hat.png";
-	addImageTag(imageString);
-	ImageElement img = imageSelector(imageString);
-			CanvasElement c2 = getBufferCanvas(canvas); //don't want to do color replacement on the existing image.
-	CanvasRenderingContext2D ctx2 = c2.context2D;
-	ctx2.drawImage(img,0,0);
-	aspectPalletSwap(c2, player);
-	copyTmpCanvasToRealCanvas(canvas, c2);
-}
-
-
-
-//TODO put classes in THIS order and just have a single line that is all_classes.index_of(player.class_name);
 String playerToRegularBody(Player player){
   if(easter_egg) return playerToEggBody(player);
   return "Bodies/" + "reg"+(classNameToInt(player.class_name)+1).toString()+".png";
+}
+
+String playerToCowl(Player player){
+  if(easter_egg) return playerToEggBody(player); //no cowl, just double up on egg.
+  return "Bodies/" + "cowl"+(classNameToInt(player.class_name)+1).toString()+".png";
 }
 
 
