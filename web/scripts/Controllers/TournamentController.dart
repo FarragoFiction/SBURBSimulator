@@ -467,6 +467,7 @@ void  summarizeSession(Session session) {
 
 
   void doneWithTier(){
+    throw "fucking no, get this done first, THEN you get to continue";
     //remove all losers. clear out all "wonRounds" rerender Combatants. start round up with lastTeamIndex of 0.
     //alert("ready for round " + (tierNumber+1) + "?")
     tiers.add(currentTier);
