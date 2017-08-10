@@ -2,6 +2,7 @@ import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 import "../SBURBSim.dart";
+import 'dart:convert';
 import "../includes/bytebuilder.dart";
 
 class Player extends GameEntity {
@@ -1871,20 +1872,18 @@ class Player extends GameEntity {
     }
 
     String toDataBytesX() {
-        /*
 		var builder = new ByteBuilder();
         var j = this.toJSON();
-        if(j.class_name <= 15 && j.aspect <= 15){ //if NEITHER have need of extension, just return size zero;
+        if(j["class_name"] <= 15 && j["aspect"] <= 15){ //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
-            return Uri.encodeComponent(builder.toBuffer()).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
+            return BASE64URL.encode(builder.toBuffer().asUint8List());
         }
         builder.appendExpGolomb(2); //for length
-        builder.appendByte(j.class_name);
-        builder.appendByte(j.aspect);
-        return Uri.encodeComponent(builder.toBuffer()).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
-        */
-        // TODO: Extension machine also broke - PL
-        return null;
+        builder.appendByte(j["class_name"]);
+        builder.appendByte(j["aspect"]);
+        //String data = UTF8.decode(builder.toBuffer().asUint8List());
+        return BASE64URL.encode(builder.toBuffer().asUint8List());
+        //return Uri.encodeComponent(data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
     }
 
     void readInExtensionsString(ByteReader reader) {
@@ -1895,7 +1894,7 @@ class Player extends GameEntity {
         if (numFeatures > 0) {
             int cid = reader.readByte();
             print("Class Name ID : $cid");
-            this.class_name = intToClassName(reader.readByte());
+            this.class_name = intToClassName(cid);
         }
         if (numFeatures > 1) this.aspect = intToAspect(reader.readByte());
         //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.

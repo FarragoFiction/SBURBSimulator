@@ -1,10 +1,12 @@
 //put all OCDataString code here.
 import "dart:html";
+import 'dart:typed_data';
 
 import "SBURBSim.dart";
 import 'includes/bytebuilder.dart';
 import 'includes/lz-string.dart';
 import 'navbar.dart';
+import 'dart:convert';
 
 
 //don't pollute global name space more than you already are, dunkass
@@ -233,11 +235,13 @@ dynamic playersToDataBytes(players){
 
 dynamic playersToExtensionBytes(players){
   String ret = "";
-  return ret; //not working 4 now
-  /*var builder = new ByteBuilder();
+  ByteBuilder builder = new ByteBuilder();
   //do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
   //builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
-  ret += Uri.encodeComponent(builder.data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
+  String data = UTF8.decode(builder.toBuffer().asUint8List());
+  //TODO will data.toString() be enough?
+  ret += BASE64URL.encode(builder.toBuffer().asUint8List());
+ // ret += Uri.encodeComponent(data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
   for(num i = 0; i<players.length; i++){
     //print("player " + i + " to data byte");
     ret += players[i].toDataBytesX();
@@ -308,7 +312,7 @@ List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes)
 
 
 void applyExtensionStringToPlayers(players, xbytes){
-  var reader = new ByteReader(stringToByteArray(xbytes), 0);
+  var reader = new ByteReader((stringToByteArray(xbytes).buffer), 0);
   for(num i = 0; i<players.length; i++){
     players[i].readInExtensionsString(reader);
   }
@@ -316,15 +320,8 @@ void applyExtensionStringToPlayers(players, xbytes){
 
 
 
-dynamic stringToByteArray(str){
-  throw"TODO: do I need to turn string to array buffer anymore???";
-  /*
-  var buffer = new ArrayBuffer(str.length);
-  var uint8View = new Uint8Array(buffer);
-  for(num i = 0; i<str.length; i++){
-    uint8View[i] = str.charCodeAt(i);
-  }
-  return buffer;*/
+Uint8List stringToByteArray(str){
+  return BASE64URL.decode(str);
 }
 
 

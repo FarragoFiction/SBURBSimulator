@@ -1,6 +1,7 @@
 library SBURBSim;
 
 import 'dart:html';
+import 'dart:typed_data';
 
 import 'SBURBSim.dart';
 import "includes/tracer.dart";
