@@ -549,7 +549,7 @@ void  summarizeSession(Session session) {
           html += "<td class = 'tournamentCell' bgcolor='" +round.color + "'>";
         }
 
-        html += teamInRound.name + ": $teamInRound.score()";
+        html += teamInRound.name + ": ${teamInRound.score()}";
         html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: ${(teamInRound.mvp_score).round()}</div>";
         html += " </td>";
       }else{ //was disqualified

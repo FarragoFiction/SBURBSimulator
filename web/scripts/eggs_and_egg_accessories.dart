@@ -165,7 +165,10 @@ void janusReward(){
 //auto works with new claspects, too. genius
 void processXStuck(){
 	//TODO get this working again. window.location.search is empty.
-	if(window.location.search.isEmpty) return ;
+	if(window.location.search.isEmpty) {
+	  print("no params to look at");
+		return;
+	}
 	String params1 = window.location.search.substring(0);
 	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);

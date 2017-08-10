@@ -1234,8 +1234,9 @@ class Player extends GameEntity {
     }
 
     @override
-    void increasePower([num magnitude = 1, cap = 10.1]) {
+    void increasePower([num magnitude = 1, cap = 5.1]) {
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
+        //print("$this  pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
@@ -1262,7 +1263,11 @@ class Player extends GameEntity {
             this.addStat("hp", 5);
             this.addStat("currentHP", 5);
         }
-        if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
+        //TODO figure out what the actual fuck this line was supposed to be doing. set power to ITSELF???
+        //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
+       // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
+
+        //print("$this  post boost magnitude is $powerBoost on a power of ${getStat('power')}");
     }
 
     String shortLand() {
