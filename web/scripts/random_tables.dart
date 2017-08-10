@@ -1287,7 +1287,7 @@ List<String> available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph",
 List<String> available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 
 //if you change the order of ANY of these classes, it will break ocDataStrings
-List<String> custom_only_classes = ["Waste", "Scout", "Sage", "Scribe"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
+List<String> custom_only_classes = ["Waste", "Scout", "Sage", "Scribe", "Guide", "Grace"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 List<String> required_aspects = ["Space", "Time"];
 List<String> all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 List<String> nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
