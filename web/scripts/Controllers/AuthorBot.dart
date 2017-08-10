@@ -113,9 +113,9 @@ abstract class AuthorBot extends SimController {
     print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
     //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
-      window.requestAnimationFrame(reckoningTick);
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
+      window.requestAnimationFrame(reckoningTick);
       //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
       return null;
     }else{

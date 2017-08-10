@@ -26,7 +26,6 @@ abstract class SimController {
             tick(); //NOW start ticking
             return;
         }
-        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
         Intro s = new Intro(curSessionGlobalVar);
         Player p = curSessionGlobalVar.players[player_index];
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
@@ -36,6 +35,7 @@ abstract class SimController {
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
+        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
     void checkSGRUB() {
@@ -162,9 +162,9 @@ abstract class SimController {
     void reckoningTick([num time]) {
         //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
         if (curSessionGlobalVar.timeTillReckoning > -10) {
-            window.requestAnimationFrame(reckoningTick);
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
+            window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
