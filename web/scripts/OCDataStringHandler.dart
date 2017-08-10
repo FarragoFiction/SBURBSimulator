@@ -236,18 +236,15 @@ dynamic playersToDataBytes(players){
 dynamic playersToExtensionBytes(players){
   String ret = "";
   ByteBuilder builder = new ByteBuilder();
-  //do NOT do this because it fucks up the single player strings. i know how many players there are other ways, don't worry about it.
-  //builder.appendExpGolomb(players.length) //encode how many players, doesn't have to be how many bits.
-  String data = UTF8.decode(builder.toBuffer().asUint8List());
-  //TODO will data.toString() be enough?
-  ret += BASE64URL.encode(builder.toBuffer().asUint8List());
- // ret += Uri.encodeComponent(data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
-  for(num i = 0; i<players.length; i++){
-    //print("player " + i + " to data byte");
-    ret += players[i].toDataBytesX();
+  /*
+      ignore what i was doing before, that was flaming garbage. what i need to do is
+      take a byte builder, and shove each player into it. modded player to take in a builder.
+
+   */
+  for(Player p in players) {
+      p.toDataBytesX(builder);
   }
-  return LZString.compressToEncodedURIComponent(ret);
-  //return ret;*/
+  return  BASE64URL.encode(builder.toBuffer().asUint8List());
 }
 
 
@@ -282,7 +279,7 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 
 
 List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes){
- // print("dataBytesAndStringsToPlayers: xbytes is: " + xbytes);
+  print("dataBytesAndStringsToPlayers: xbytes is: $xbytes");
   //bytes are 11 chars per player
   //strings are 5 csv per player.
   //print(bytes);
@@ -311,7 +308,7 @@ List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes)
 
 
 
-void applyExtensionStringToPlayers(players, xbytes){
+void applyExtensionStringToPlayers(List<Player> players, xbytes){
   var reader = new ByteReader((stringToByteArray(xbytes).buffer), 0);
   for(num i = 0; i<players.length; i++){
     players[i].readInExtensionsString(reader);

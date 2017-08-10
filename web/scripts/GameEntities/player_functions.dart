@@ -16,7 +16,8 @@ List<Player> getReplayers() {
     if (raw == null) return <Player>[]; //don't even try getting the rest.
     String b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b", null)));
     String s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s", null));
-    String x = LZString.decompressFromEncodedURIComponent(getRawParameterByName("x", null));
+    String x = (getRawParameterByName("x", null));
+    print(" i think x is $x");
     if (b == null || s == null) return <Player>[];
     if (b == "null" || s == "null") return <Player>[]; //why was this necesassry????????????????
     //print("b is");

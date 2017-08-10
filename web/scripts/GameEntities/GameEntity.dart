@@ -494,10 +494,10 @@ class GameEntity implements Comparable<GameEntity> {
           this.permaBuffs[statName] += value;
           return;
         }
-        if(statName == "power") print("$this boost power from ${this.stats[statName]} with $value");
+        //if(statName == "power") print("$this boost power from ${this.stats[statName]} with $value");
         if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
         this.stats[statName] += value;
-        if(statName == "power") print("$this boost power to ${this.stats[statName]}");
+       // if(statName == "power") print("$this boost power to ${this.stats[statName]}");
     }
 
 

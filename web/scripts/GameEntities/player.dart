@@ -1864,15 +1864,15 @@ class Player extends GameEntity {
 
     String toOCDataString() {
         //for now, only extentsion sequence is for classpect. so....
-        String tmpx = this.toDataBytesX();
+        String tmpx = this.toDataBytesX(new ByteBuilder());
         if(tmpx == null) tmpx = ""; //DART is putting null here instead of a blank string, like an asshole.
         String x = "&x=$tmpx"; //ALWAYS have it. worst case scenario is 1 bit.
 
         return "b=${this.toDataBytes()}&s=${this.toDataStrings(true)}$x";
     }
 
-    String toDataBytesX() {
-		var builder = new ByteBuilder();
+    //take in a builder so when you do a group of players then can use same builder and no padding.
+    String toDataBytesX(ByteBuilder builder) {
         var j = this.toJSON();
         if(j["class_name"] <= 15 && j["aspect"] <= 15){ //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
