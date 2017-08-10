@@ -222,6 +222,7 @@ class TournamentController extends AuthorBot {
     //var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
     String selfInsert = "";
     if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true";
+    //TODO how do i get this working?
     simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
     startSession(); // used to pass a callback here to try to use rare session finder. now there is inheritance.
   }
