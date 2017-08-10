@@ -299,6 +299,8 @@ dynamic getRandomChatHandle(Random rand, String class_name, String aspect, Strin
 	if(second == null || second == ""){
 		second = getBlandHandle2(rand, aspect);
 	}
+	if(first == null) first = "mystery";
+	if(second == null) second = "Mystery";
 	return first+second;
 }
 
