@@ -13,7 +13,7 @@ import 'dart:convert';
 //call this ONLY inside a function.
 class CharacterEasterEggEngine {
   var creatorCharacters = ["b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands"
-  , "b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%00%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
+  , "b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%04%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot&x=hjAA","b=%C3%A8%C3%90%C2%99E%C3%BE)%00%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 
   Map<String, List> ocs = {};
   //parses the text file as newline seperated and load them into the array.
@@ -191,25 +191,30 @@ class CharacterEasterEggEngine {
     return shuffle(rand, pool); //boring if the same peeps are always first.
 
   }
-  dynamic processEasterEggsViewer(Random rand){
+  List<Player> processEasterEggsViewer(Random rand){
     var pool = this.getPoolBasedOnEggs(rand);
     return this.playerDataStringArrayToURLFormat(pool);
   }
-  dynamic playerDataStringArrayToURLFormat(playerDataStringArray){
-    String s = "";
-    String b = "";
+  List<Player> playerDataStringArrayToURLFormat(List<String> playerDataStringArray){
+    List<Player> ret = new List<Player>();
+    String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
+    String base = window.location.href.replaceAll("?$params","");
     //first, take each element in the array and seperate it out into s and b  (getRawParameterByName(name, url))
     for(num i = 0; i<playerDataStringArray.length; i++){
-      //append all b's and all s's together
-      var bs = playerDataStringArray[i];
-      var tmpb = Uri.decodeComponent(bs.split("=")[1].split("&s")[0]);
-      var tmps = bs.split("=")[2];
-      s+= tmps+",";
-      b += tmpb;
+      String bs = "${base}?" +playerDataStringArray[i];
+      print("bs is $bs");
+      String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+      String s = getParameterByName("s", bs);
+      String x = (getParameterByName("x", bs));
+      print ("processing fan oc, bs is $bs and b is $b and s is $s and x is: $x");
+      Player p = (dataBytesAndStringsToPlayer(b,s));
+      if(x != null) {
+        ByteReader reader = new ByteReader((stringToByteArray(x).buffer), 0);
+        p.readInExtensionsString(reader);
+      }
+      ret.add(p);
     }
-    //then,
-    return dataBytesAndStringsToPlayers(b,s,null);
-
+    return ret;
   }
   dynamic getAllReddit(){
     return this.playerDataStringArrayToURLFormat(this.ocs["redditCharacters"]);
