@@ -22,8 +22,16 @@ void onNavbarLoaded(String data) {
 
 
 String todayToSession() {
-  DateTime d =  new DateTime.now();
-  return "${d.year}${d.month}${d.day}";
+  DateTime now =  new DateTime.now();
+  int year = now.year;
+  int month = now.month;
+  int day = now.day;
+  String y = year.toString();
+  String m = month.toString();
+  String d = day.toString();
+  if(month < 10) m = "0$m";
+  if(day < 10) d = "0$d";
+  return "${y}${m}${d}";
 }
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
