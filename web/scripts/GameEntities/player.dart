@@ -1234,7 +1234,8 @@ class Player extends GameEntity {
     }
 
     @override
-    void increasePower([num magnitude = 1]) {
+    void increasePower([num magnitude = 1, cap = 10.1]) {
+        magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
