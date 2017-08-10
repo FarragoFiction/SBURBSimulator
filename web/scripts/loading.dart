@@ -263,7 +263,7 @@ dynamic loadOther(String skipInit){
 dynamic loadAllPossiblePlayers(skipInit){
 	if(doNotRender == true) return checkDone(skipInit);
 	var blankPlayer = new Player(); //need to get num hair and horns.
-    num numBodies = 16;  //1 indexed
+    num numBodies = 18;  //1 indexed
     var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
     var numHorns = blankPlayer.maxHornNumber; //1 indexed.
     //var numWings = 12 ;//0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.;
