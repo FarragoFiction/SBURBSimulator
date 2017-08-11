@@ -296,9 +296,14 @@ class Aftermath extends Scene {
 		List<Player> purpleFighters = this.getGoodGuys(trollKidRock);
 		//var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock);
 		//loadAllImagesForPlayerWithCallback(trollKidRock, callBack);
-		loadAllImagesForPlayerWithCallback(trollKidRock, () {
+		if(doNotRender) {
 			this.finishPurpleStrife(div, purpleFrog, purpleFighters, trollKidRock);
-		});
+		}else {
+			loadAllImagesForPlayerWithCallback(trollKidRock, () {
+				this.finishPurpleStrife(div, purpleFrog, purpleFighters, trollKidRock);
+			});
+		}
+
 	}
 	void finishPurpleStrife(Element div, GameEntity purpleFrog, List<Player> fighters, Player trollKidRock){
 		trollKidRock.renderSelf();  //gotta cache his sprite

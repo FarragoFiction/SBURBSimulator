@@ -73,7 +73,8 @@ void toggleVoid(){
 //work around for dart not having this jquery function except for classes apparently
 void toggle(Element v) {
   String display = v.style.display;
-  if(display == "none") {
+  //print("display is $display");
+  if(display == "none" || display.isEmpty) {
     show(v);
   }else {
     hide(v);

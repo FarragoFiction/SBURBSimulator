@@ -8,6 +8,8 @@ Random rand;
 MysteryController self; //want to access myself as more than just a sim controller occasionally
 void main() {
   doNotRender = true;
+  querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
+  querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
@@ -23,8 +25,7 @@ void main() {
     var tmp = getRandomSeed();
     self.initial_seed = tmp;
   }
-  querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
-  querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
+
 }
 
 class MysteryController extends AuthorBot {
@@ -94,7 +95,7 @@ class MysteryController extends AuthorBot {
     sessionSummariesDisplayed = [];
 
     numSimulationsToDo =1;
-    int tmp = int.parse((querySelector("#pwtext") as InputElement).value);
+    int tmp = int.parse((querySelector("#pwtext") as InputElement).value,onError: (source) => null);
     if(tmp == null){
       window.alert("Not even close!!!");
     }else if(tmp == 33 || getParameterByName("nepeta","")  == ":33"){
