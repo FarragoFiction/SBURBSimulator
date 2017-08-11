@@ -203,8 +203,8 @@ class CharacterEasterEggEngine {
     for(num i = 0; i<playerDataStringArray.length; i++){
       String bs = "${base}?" +playerDataStringArray[i];
       print("bs is $bs");
-      String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
-      String s = getParameterByName("s", bs);
+      String b = (getParameterByName("b", bs));
+      List<String> s = Uri.encodeFull(getParameterByName("s", bs)).split(","); //these are NOT encoded in files, so make sure to encode them
       String x = (getParameterByName("x", bs));
       print ("processing fan oc, bs is $bs and b is $b and s is $s and x is: $x");
       Player p = (dataBytesAndStringsToPlayer(b,s));
@@ -330,10 +330,10 @@ Uint8List stringToByteArray(str){
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-dynamic dataBytesAndStringsToPlayer(String charString, str_arr){
+dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   var player = new Player();
   player.quirk = new Quirk(null);
-  //print("strings is: $str_arr");
+  print("strings is: $str_arr");
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
