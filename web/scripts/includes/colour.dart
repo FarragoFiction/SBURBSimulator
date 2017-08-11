@@ -74,7 +74,7 @@ class Colour {
     }
 
     factory Colour.fromHexString(String hex) {
-        return new Colour.fromHex(int.parse(hex, onError: (String s) => 0), hex.length >= 8);
+        return new Colour.fromHex(int.parse(hex, radix:16, onError: (String s) => 0), hex.length >= 8);
     }
 
     factory Colour.fromStyleString(String hex) {
