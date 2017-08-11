@@ -8,6 +8,7 @@
            <li class = 'done'>Credits/FAQs</li>
             <li class = 'done'>LORAS</li>
             <li class = 'done'>OC Creator/Viewer </li>
+            <li class = 'notdone'>Easter Eggs </li>
 
         </ul>
         Done (but with Bugs)
@@ -20,7 +21,7 @@
          Not Done
          <ul>
                      <li class = 'notdone'>Artist/AB Newsposts</li>
-                     <li class = 'notdone'>Easter Eggs </li>
+
                      <li class = 'notdone'>Tournament Arc </li>
           </ul>
     </div>
