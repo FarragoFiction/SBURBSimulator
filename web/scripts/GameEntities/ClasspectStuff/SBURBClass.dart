@@ -3,7 +3,7 @@ class SBURBClass {
   //static SBURBClass KNIGHT = new ClassKnight();
   String name;
   int id;  //for classNameToInt
-  SBURBClass(this.name);
+  SBURBClass(this.name, this.id);
   List<String> levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
   List<String> quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
   List<String> postDenizenQuests = ["cleaning up after their Denizen in a class approrpiate fashion","absolutly not goofing off instead of cleaing up after their Denizen","vaguely sweeping up rubble"];
