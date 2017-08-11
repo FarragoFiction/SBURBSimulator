@@ -393,7 +393,7 @@ void session111111(){
 
 
 
-void session413IndexToHuman(player, index){
+void session413IndexToHuman(Player player, int index){
 	player.isTroll = false;
 	player.deriveChatHandle = false;
 	if(index == 0){
@@ -461,7 +461,7 @@ void session413IndexToHuman(player, index){
 		player.interest2 = "Gardening";
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 3;
-		player.favoriteNumber = 5;
+		player.quirk.favoriteNumber = 5;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
 		player.godDestiny = true;
@@ -548,7 +548,7 @@ void session413IndexToHuman(player, index){
 
 
 //just hange index and return whatever regular does. pretend janes goes in first;
-void session413IndexToAncestor(player, index){
+void session413IndexToAncestor(Player player, int index){
 	player.isTroll = false;
 	if(index == 0){
 		session413IndexToHuman(player, 4);
