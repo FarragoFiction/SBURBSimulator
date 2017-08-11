@@ -1,4 +1,4 @@
-
+import 'dart:async';
 import 'dart:html';
 
 import 'colour.dart';
@@ -12,6 +12,7 @@ class ColourPicker {
     Element _button;
     Element _buttonSwatch;
     Element _overlay;
+    Element _window;
     
     Colour colour = new Colour();
     Colour previousColour;
@@ -31,6 +32,8 @@ class ColourPicker {
     }
 
     void update() {
+        print("update");
+
         this._buttonSwatch.style.backgroundColor = this.colour.toStyleString();
     }
     
@@ -127,14 +130,19 @@ class ColourPicker {
 
     void createElement() {
         Element overlay = new DivElement()
-            ..className = "colourPicker_overlay"
+            ..className = "colourPicker_overlay";
+
+        this._anchor.append(overlay);
+
+        Element overlay_shade = new DivElement()
+            ..className = "colourPicker_overlay_2"
             ..onClick.listen((MouseEvent e) {
                 this.close();
                 e.preventDefault();
                 e.stopPropagation();
             });
 
-        this._anchor.append(overlay);
+        overlay.append(overlay_shade);
 
         Element w = new DivElement()
             ..className = "colourPicker_window"
@@ -142,6 +150,9 @@ class ColourPicker {
             ..text = "Stuff goes in here";
 
         overlay.append(w);
+        this._window = w;
+
+        new FancySlider(0.0, 100.0, 250, 15, false)..appendTo(w)..onChange.listen((Event e) => this.update());
 
         this._overlay = overlay;
         window.onResize.listen(resizeOverlay);
@@ -156,10 +167,9 @@ class ColourPicker {
             ..width = "${width}px"
             ..height = "${height}px";
 
-        Element w = this._overlay.firstChild as Element;
-        w.style
-            ..left = "${(width - w.clientWidth)~/2}px"
-            ..top = "${(height - w.clientHeight)~/2}px";
+        this._window.style
+            ..left = "${(width - this._window.clientWidth)~/2}px"
+            ..top = "${(height - this._window.clientHeight)~/2}px";
     }
 
     void destroy() {
@@ -188,7 +198,12 @@ class FancySlider {
     bool vertical;
     bool dragging = false;
 
+    StreamController<Event> _streamController;
+    Stream<Event> onChange;
+
     FancySlider(double this.minVal, double this.maxVal, int this.width, int this.height, bool this.vertical) {
+        this._streamController = new StreamController<Event>();
+        this.onChange = this._streamController.stream;
         this.value = minVal;
 
         this.bar = new DivElement()
@@ -222,6 +237,8 @@ class FancySlider {
             int pos = (this.width * percent).floor();
             this.slider.style.left = "${pos}px";
         }
+
+        this._streamController.add(new CustomEvent("update", detail:this));
     }
 
     void _mouseDown(MouseEvent e) {
@@ -241,8 +258,8 @@ class FancySlider {
     }
 
     void setFromMousePos(MouseEvent e) {
-        int relx = e.client.x - (this.bar.clientLeft + this.bar.offsetLeft);
-        int rely = e.client.y - (this.bar.clientTop + this.bar.offsetTop);
+        int relx = e.client.x - this.bar.documentOffset.x;
+        int rely = e.client.y - this.bar.documentOffset.y;
 
         double percent;
         if (this.vertical) {
