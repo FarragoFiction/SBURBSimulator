@@ -14,9 +14,17 @@ class Random implements Math.Random {
 	int nextInt([int max = 0xFFFFFFFF]) {
 		if (max == 0) {return 0;}
 		if (max < 0) {
-			return -this._impl.nextInt(-max);
+			return -this._nextInt(-max);
 		}
-		return this._impl.nextInt(max);
+		return this._nextInt(max);
+	}
+
+	int _nextInt(int max) {
+		if (max > 2<<32) {
+			return (this._impl.nextDouble() * max).floor();
+		} else {
+			return this._impl.nextInt(max);
+		}
 	}
 
 	@override
