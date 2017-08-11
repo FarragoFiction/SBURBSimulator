@@ -1,0 +1,59 @@
+.colourPicker_button {
+    position:relative;
+    display:inline-block;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius:3px;
+
+    cursor:pointer;
+}
+
+.colourPicker_button_inner {
+    position:relative;
+    border:2px solid black;
+    border-radius:2px;
+    box-sizing: border-box;
+}
+
+.colourPicker_button:active > .colourPicker_button_inner_1 {
+    display:none;
+}
+.colourPicker_button_inner_2 {
+    display:none;
+}
+.colourPicker_button:active > .colourPicker_button_inner_2 {
+    display:block;
+}
+
+.colourPicker_swatch {
+    position:absolute;
+    top:5px;
+    left:5px;
+    border:1px solid black;
+    background-color:#FFFFFF;
+}
+
+.colourPicker_button:active > .colourPicker_swatch {
+    top:6px;
+    left:6px;
+}
+
+.colourPicker_overlay {
+    z-index:1000;
+    display:none;
+    position:fixed;
+    background-color:rgba(0,0,0,0.1);
+    top:0px;
+    left:0px;
+}
+
+.colourPicker_window {
+    position:relative;
+    box-sizing: border-box;
+    width:400px;
+    height:300px;
+    background-color:#DDDDDD;
+    outline:1px solid #AAAAAA;
+    box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+    padding:5px;
+}

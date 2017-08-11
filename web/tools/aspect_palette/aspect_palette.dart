@@ -25,11 +25,15 @@ void main() {
         print("-----");
     }*/
 
-    for (int i=0; i<100; i++) {
+    /*for (int i=0; i<100; i++) {
         stuff.append(makeGradientSwatch());
-    }
+    }*/
 
     //checkLABRanges();
+
+    new ColourPicker(querySelector("#testpicker")..onChange.listen((Event e) => print((e.target as InputElement).value)));
+
+
 }
 
 void checkLABRanges() {
