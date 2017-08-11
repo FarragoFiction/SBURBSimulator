@@ -12,7 +12,7 @@ void onNavbarLoaded(String data) {
   if(getParameterByName("seerOfVoid",null)  == "true"){
     window.alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
     querySelector("#story").appendHtml("<button id = 'voidButton'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.",treeSanitizer: NodeTreeSanitizer.trusted);
-    (querySelector("#story") as ButtonElement).onClick.listen((e) => toggleVoid());
+    (querySelector("#voidButton") as ButtonElement).onClick.listen((e) => toggleVoid());
   }
   String sessionID = todayToSession();
   print('sessionID is $sessionID');
@@ -73,7 +73,8 @@ void toggleVoid(){
 //work around for dart not having this jquery function except for classes apparently
 void toggle(Element v) {
   String display = v.style.display;
-  if(display == "none") {
+  //print("display is $display");
+  if(display == "none" || display.isEmpty) {
     show(v);
   }else {
     hide(v);

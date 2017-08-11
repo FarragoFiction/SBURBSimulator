@@ -8,6 +8,9 @@ Random rand;
 MysteryController self; //want to access myself as more than just a sim controller occasionally
 void main() {
   doNotRender = true;
+  rand = new Random();
+  querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
+  querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
@@ -23,8 +26,7 @@ void main() {
     var tmp = getRandomSeed();
     self.initial_seed = tmp;
   }
-  querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
-  querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
+
 }
 
 class MysteryController extends AuthorBot {
@@ -65,9 +67,11 @@ class MysteryController extends AuthorBot {
 
 
   void avatarCarousel(){
+
     var possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
     possibleAvatars.addAll(["images/misc/fanArt/ABFanArt/reDead-ITA.png","images/misc/fanArt/ABFanArt/chaoticConvergence.jpeg", "pumpkin.png", "images/misc/fanArt/ABFanArt/artificialArtificer.png","images/misc/fanArt/ABFanArt/Makin.png","images/misc/fanArt/ABFanArt/waltzingOphidan.png"]);
     (querySelector("#avatar") as ImageElement).src = rand.pickFrom(possibleAvatars);
+    (querySelector("#avatar")).style.float = "left";
     new Timer(new Duration(milliseconds: 10000), () => avatarCarousel()); //sweet sweet async
   }
 
@@ -94,7 +98,7 @@ class MysteryController extends AuthorBot {
     sessionSummariesDisplayed = [];
 
     numSimulationsToDo =1;
-    int tmp = int.parse((querySelector("#pwtext") as InputElement).value);
+    int tmp = int.parse((querySelector("#pwtext") as InputElement).value,onError: (source) => null);
     if(tmp == null){
       window.alert("Not even close!!!");
     }else if(tmp == 33 || getParameterByName("nepeta","")  == ":33"){
