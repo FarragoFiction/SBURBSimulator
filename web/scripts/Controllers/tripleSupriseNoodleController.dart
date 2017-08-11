@@ -43,7 +43,7 @@ class MysteryController extends AuthorBot {
   void showHint(){
     toggle(querySelector("#spoiler"));
   }
-  /*
+
 
 //Hello!!! This is 100% a legit tactic to passing this challenge. Win through programming knowledge, win through whatever. 10 points to you for HAX0Ring knowledge.
 // ...but...aren't you curious how to pass it for real? (or is it obvious to you now that you've seen this?)
@@ -67,22 +67,19 @@ class MysteryController extends AuthorBot {
     new Timer(new Duration(milliseconds: 10000), () => avatarCarousel()); //sweet sweet async
   }
 
+  void onEasterEggsLoaded(String data) {
+    querySelector("#easter_eggs").setInnerHtml(data);
+    querySelector("#pw_container").setInnerHtml("");
+    avatarCarousel();
+    if(getParameterByName("lollipop", "")  == "true"){
+      (querySelector("#avatar") as ImageElement).src = "images/CandyAuthorBot.png";
+
+    }
+  }
 
 
   void loadEasterEggs(){
-    $.ajax({
-      url: "easter_eggs.txt",
-      success:((data){
-        querySelector("#easter_eggs").html(data);
-        querySelector("#pw_container").html("");
-        avatarCarousel();
-        if(getParameterByName("lollipop")  == "true"){
-          querySelector("#avatar").attr("src","images/CandyAuthorBot.png");
-
-        }
-      }),
-      dataType: "text"
-    });
+    HttpRequest.getString("easter_eggs.txt").then(onEasterEggsLoaded);
   }
 
 
@@ -93,18 +90,16 @@ class MysteryController extends AuthorBot {
     sessionSummariesDisplayed = [];
 
     numSimulationsToDo =1;
-    var tmp = parseInt(querySelector("#pwtext").val());
-    if(isNaN(tmp)){
-      alert("Not even close!!!");
-    }else if(tmp == 33 || getParameterByName("nepeta")  == ":33"){
-      alert("I'm afraid I can't do that, Observer. I refuse to look at sessions with true randomness, and those cat trolls are random as FUCK.");
+    int tmp = int.parse((querySelector("#pwtext") as InputElement).value);
+    if(tmp == null){
+      window.alert("Not even close!!!");
+    }else if(tmp == 33 || getParameterByName("nepeta","")  == ":33"){
+      window.alert("I'm afraid I can't do that, Observer. I refuse to look at sessions with true randomness, and those cat trolls are random as FUCK.");
     }else{
-      alert("Hrrrm...let me think about it.");
-      Math.seed = tmp;
-      initial_seed = parseInt(querySelector("#pwtext").val());
-      pwMode = true;
+      window.alert("Hrrrm...let me think about it.");
+      initial_seed = tmp;
       startSession();
     }
+  }
 
-  }*/
 }
