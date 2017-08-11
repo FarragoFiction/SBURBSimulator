@@ -48,8 +48,8 @@
 
 
 <p> <a href = "rap.html">Extended Rap Battles</a>: Okay, so, like the rap battles are just so amazingly shitty, right? And they only get even SHITTIER the longer I let them go on. So, you know, here's a page that's just the rap battles going on for much, much longer. It was the easiest way to test them without waiting for sims to run. </p>
-<p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
-<p> <a href = "quadrantChatTest.html">Quadrant Chat Test</a>: New quadrant based dialogue engine.</p>
+<span class = 'void'><p> <a href = "test_fraymotif.html">Fraymotif Test Page</a>: Gotta test fraymotifs before they are part of the battle engine.</p>
+<p> <a href = "quadrantChatTest.html">Quadrant Chat Test</a>: New quadrant based dialogue engine.</p></span>
 <p><a href = "index2.html?images=pumpkin">What Images</a>: For those who just want to watch the world burn. I mean have 144 player sessions. </p>
 <textarea>b=%C3%BF%C2%83%C2%9A%05%C3%BD%C3%8C%14%03%C3%BE%C3%BE%1B&s=,,Dave,Karkat,specialSnowlake</textarea>
 
