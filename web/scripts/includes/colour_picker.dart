@@ -4,6 +4,8 @@ import 'dart:html';
 import 'colour.dart';
 
 class ColourPicker {
+    static Set<ColourPicker> _pickers = new Set<ColourPicker>();
+
     InputElement _input;
     Element _anchor;
 
@@ -22,6 +24,10 @@ class ColourPicker {
         createElement();
         
         readColourFromInput();
+
+        _pickers.add(this);
+
+        ColourPickerMouseHandler.init();
     }
 
     void update() {
@@ -31,9 +37,17 @@ class ColourPicker {
     void open() {
         this.previousColour = new Colour.from(this.colour);
 
+        this.readColourFromInput();
+        this.update();
+
         this._overlay.style.display = "block";
         this.resizeOverlay();
-        this.update();
+
+        for (ColourPicker p in _pickers) {
+            if (p!=this) {
+                p.close();
+            }
+        }
     }
 
     void close() {
@@ -151,12 +165,15 @@ class ColourPicker {
     void destroy() {
         window.removeEventListener("resize", this.resizeOverlay);
         this._button.replaceWith(this._input);
+        _pickers.remove(this);
     }
 }
 
 typedef Colour FancySliderFill(double fraction);
 
 class FancySlider {
+    static Set<FancySlider> _sliders = new Set<FancySlider>();
+
     Element bar;
     Element slider;
     CanvasElement background;
@@ -172,37 +189,71 @@ class FancySlider {
     bool dragging = false;
 
     FancySlider(double this.minVal, double this.maxVal, int this.width, int this.height, bool this.vertical) {
+        this.value = minVal;
+
         this.bar = new DivElement()
             ..className = "fancySlider_bar"
             ..style.width = "${width}px"
-            ..style.height = "${height}px";
+            ..style.height = "${height}px"
+            ..onMouseDown.listen(this._mouseDown);
 
         this.background = new CanvasElement(width:width, height:height)
             ..className = "fancySlider_background";
 
         this.slider = new DivElement()
-            ..className = "fancySlider_slider_${this.vertical?"vertical":"horizontal"}"
-            ..onMouseDown.listen(this._mouseDown);
+            ..className = "fancySlider_slider_${this.vertical?"vertical":"horizontal"}";
 
         this.bar.append(this.background);
         this.bar.append(this.slider);
         this.update();
+
+        _sliders.add(this);
+
+        ColourPickerMouseHandler.init();
     }
 
     void update() {
+        double percent = (this.value - this.minVal) / (this.maxVal - this.minVal);
 
+        if (this.vertical) {
+            int pos = (this.height * percent).floor();
+            this.slider.style.top = "${pos}px";
+        } else {
+            int pos = (this.width * percent).floor();
+            this.slider.style.left = "${pos}px";
+        }
     }
 
     void _mouseDown(MouseEvent e) {
         this.dragging = true;
+
+        this.setFromMousePos(e);
     }
 
     void _mouseUp(MouseEvent e) {
-
+        this.dragging = false;
     }
 
-    void _drag(MouseEvent e) {
+    void _mouseMove(MouseEvent e) {
+        if (!this.dragging) { return; }
 
+        this.setFromMousePos(e);
+    }
+
+    void setFromMousePos(MouseEvent e) {
+        int relx = e.client.x - (this.bar.clientLeft + this.bar.offsetLeft);
+        int rely = e.client.y - (this.bar.clientTop + this.bar.offsetTop);
+
+        double percent;
+        if (this.vertical) {
+            percent = (rely / this.height).clamp(0.0, 1.0);
+        } else {
+            percent = (relx / this.width).clamp(0.0, 1.0);
+        }
+
+        this.value = percent * (this.maxVal - this.minVal) + this.minVal;
+
+        this.update();
     }
 
     void drawBackground(FancySliderFill filler) {
@@ -211,5 +262,40 @@ class FancySlider {
 
     void appendTo(Node parent) {
         parent.append(this.bar);
+    }
+
+    void destroy() {
+        this.bar.remove();
+        _sliders.remove(this);
+    }
+}
+
+class ColourPickerMouseHandler {
+    static bool _registered = false;
+
+    static void init() {
+        if (_registered) {return;}
+
+        _registered = true;
+
+        window.onMouseUp.listen((MouseEvent e) {
+            for (ColourPicker p in ColourPicker._pickers) {
+
+            }
+
+            for (FancySlider s in FancySlider._sliders) {
+                s._mouseUp(e);
+            }
+        });
+
+        window.onMouseMove.listen((MouseEvent e) {
+            for (ColourPicker p in ColourPicker._pickers) {
+
+            }
+
+            for (FancySlider s in FancySlider._sliders) {
+                s._mouseMove(e);
+            }
+        });
     }
 }

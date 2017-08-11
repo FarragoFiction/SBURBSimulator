@@ -34,7 +34,7 @@ void main() {
     new ColourPicker(querySelector("#testpicker")..onChange.listen((Event e) => print((e.target as InputElement).value)));
 
     new FancySlider(0.0, 100.0, 250, 15, false)..appendTo(stuff);
-
+    new FancySlider(0.0, 100.0, 15, 250, true)..appendTo(stuff);
 }
 
 void checkLABRanges() {
