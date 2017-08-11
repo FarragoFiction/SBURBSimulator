@@ -271,7 +271,7 @@ void roboMode(){
 
 void tricksterMode(){
 	if(!doNotRender) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
-	if(!doNotRender) (querySelector("#avatar") as ImageElement).src = "images/CandyAuthorBot.png";
+	if(!doNotRender &&  querySelector("#avatar") != null) (querySelector("#avatar") as ImageElement).src = "images/CandyAuthorBot.png";
 	appendHtml(querySelector("#story"),"<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	querySelector('body').style.backgroundImage =  "url(images/zilly.gif)"; //.style.backgroundColor
 	querySelector('#story').style.backgroundColor ="#ff93e4";
