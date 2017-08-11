@@ -153,3 +153,63 @@ class ColourPicker {
         this._button.replaceWith(this._input);
     }
 }
+
+typedef Colour FancySliderFill(double fraction);
+
+class FancySlider {
+    Element bar;
+    Element slider;
+    CanvasElement background;
+
+    int width;
+    int height;
+
+    double minVal;
+    double maxVal;
+    double value;
+
+    bool vertical;
+    bool dragging = false;
+
+    FancySlider(double this.minVal, double this.maxVal, int this.width, int this.height, bool this.vertical) {
+        this.bar = new DivElement()
+            ..className = "fancySlider_bar"
+            ..style.width = "${width}px"
+            ..style.height = "${height}px";
+
+        this.background = new CanvasElement(width:width, height:height)
+            ..className = "fancySlider_background";
+
+        this.slider = new DivElement()
+            ..className = "fancySlider_slider_${this.vertical?"vertical":"horizontal"}"
+            ..onMouseDown.listen(this._mouseDown);
+
+        this.bar.append(this.background);
+        this.bar.append(this.slider);
+        this.update();
+    }
+
+    void update() {
+
+    }
+
+    void _mouseDown(MouseEvent e) {
+        this.dragging = true;
+    }
+
+    void _mouseUp(MouseEvent e) {
+
+    }
+
+    void _drag(MouseEvent e) {
+
+    }
+
+    void drawBackground(FancySliderFill filler) {
+
+    }
+
+    void appendTo(Node parent) {
+        parent.append(this.bar);
+    }
+}

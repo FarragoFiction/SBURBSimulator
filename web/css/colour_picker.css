@@ -1,3 +1,5 @@
+/* PICKER STUFF ######################################################################################## */
+
 .colourPicker_button {
     position:relative;
     display:inline-block;
@@ -56,4 +58,27 @@
     outline:1px solid #AAAAAA;
     box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
     padding:5px;
+}
+
+/* FANCY SLIDER STUFF ######################################################################################## */
+
+.fancySlider_bar {
+    position:relative;
+    border:1px solid black;
+}
+
+.fancySlider_background {
+    position:relative;
+}
+
+.fancySlider_slider_horizontal {
+    z-index:10;
+    position:absolute;
+    width:0;
+    height:0;
+    top:0px;
+    left:0px;
+    border-width:7px 7px 0 7px;
+    border-style:solid;
+    border-color:#808080 transparent transparent transparent;
 }
