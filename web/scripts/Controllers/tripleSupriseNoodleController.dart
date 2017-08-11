@@ -8,7 +8,6 @@ Random rand;
 MysteryController self; //want to access myself as more than just a sim controller occasionally
 void main() {
   doNotRender = true;
-  loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
@@ -25,19 +24,24 @@ void main() {
     self.initial_seed = tmp;
   }
   querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
- // querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
+  querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
 }
 
 class MysteryController extends AuthorBot {
 
   @override
   void summarizeSession(Session session) {
-    // TODO: implement summarizeSession
+      checkPasswordAgainstQuip(curSessionGlobalVar.generateSummary());
+  }
+
+  @override
+  void scratchAB(Session session) {
+      summarizeSession(session); //no scratching, you're done here.
   }
 
   @override
   void summarizeSessionNoFollowup(Session session) {
-    // TODO: implement summarizeSessionNoFollowup
+    throw("??? should not check scratches.");
   }
 
   void showHint(){
