@@ -45,58 +45,40 @@ abstract class SimController {
                 sgrub = false;
             }
         }
-
-        // Apparently the main sim doesn't actually *have* a #heading... not that I can see anyway -PL
-        // TODO: confirm heading status?
-        if (querySelector("#heading") == null) {
-            return;
-        }
-
         //can only get here if all are trolls.
         if (sgrub) {
             document.title = "SGRUB Story Generator by jadedResearcher";
-            setHtml(querySelector("#heading"), "SGRUB Story Generator by jadedResearcher (art assistance by karmicRetribution) ");
         }
 
         if (getParameterByName("nepeta", null) == ":33") {
             document.title = "NepetaQuest by jadedResearcher";
-            setHtml(querySelector("#heading"), "NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
         }
         if (curSessionGlobalVar.session_id == 33) {
             document.title = "NepetaQuest by jadedResearcher";
-            setHtml(querySelector("#heading"), "NepetaQuest by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
         } else if (curSessionGlobalVar.session_id == 420) {
             document.title = "FridgeQuest by jadedResearcher";
-            setHtml(querySelector("#heading"), "FridgeQuest by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
         } else if (curSessionGlobalVar.session_id == 88888888) {
             document.title = "SpiderQuuuuuuuuest!!!!!!!! by jadedResearcher";
-            setHtml(querySelector("#heading"), "SpiderQuuuuuuuuest!!!!!!!!  by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
         } else if (curSessionGlobalVar.session_id == 0) {
             document.title = "0_0 by jadedResearcher";
-            setHtml(querySelector("#heading"), "0_0 by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>");
         } else if (curSessionGlobalVar.session_id == 413) { //why the hell is this one not triggering?
             "Homestuck Simulator by jadedResearcher";
-            setHtml(querySelector("#heading"), "Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>");
         } else if (curSessionGlobalVar.session_id == 111111) { //why the hell is this one not triggering?
             document.title = "Homestuck Simulator by jadedResearcher";
-            setHtml(querySelector("#heading"), "Homestuck Simulator by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today she will click it.</a>");
         } else if (curSessionGlobalVar.session_id == 613) {
             document.title = "OpenBound Simulator by jadedResearcher";
-            setHtml(querySelector("#heading"), "OpenBound Simulator by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&open=bound'>Rebubble this link?.</a>", treeSanitizer: NodeTreeSanitizer.trusted);
         } else if (curSessionGlobalVar.session_id == 612) {
             document.title = "HiveBent Simulator by jadedResearcher";
-            setHtml(querySelector("#heading"), "HiveBent Simulator by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>");
         } else if (curSessionGlobalVar.session_id == 1025) {
             document.title = "Fruity Rumpus Asshole Simulator by jadedResearcher";
-            setHtml(querySelector("#heading"), "Fruity Rumpus Asshole Simulator by jadedResearcher (art assistance by karmicRetribution) ");
             querySelector("#story").appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
         }
     }
