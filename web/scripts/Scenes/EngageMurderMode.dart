@@ -184,15 +184,15 @@ class EngageMurderMode extends Scene{
 				chatText += Scene.chatLine(player2Start, player2,"What about " + alternative.chatHandle + " ?");
 				chatText += Scene.chatLine(player2Start, player2,"Haven't they been worse to you?");
 				Relationship r3 = player1.getRelationshipWith(alternative);
-				if(r3.value > 0){
+				if(r3 != null && r3.value > 0){
 					chatText += Scene.chatLine(player1Start, player1,"ARRRRRGGGH! THIS IS WHY I HATE YOU!");
 					chatText += Scene.chatLine(player1Start, player1,"YOU ARE A MILLION TIMES WORSE THAN " + alternative.chatHandle);
 					chatText += Scene.chatLine(player1Start, player1,"Prepare to die.");
 					chatText += Scene.chatLine(player2Start, player2,"Fuck. Worth a shot.");
 					r1.decrease();
-				}else{
+				}else{ //if they get here because r3 is null, then they are i guess suicidal? because that means the player is themself.
 					chatText += Scene.chatLine(player1Start, player1,"... Maybe. Maybe you have a point.");
-					r3.decrease();
+					if(r3 != null) r3.decrease();
 				}
 			}else{
 				chatText += Scene.chatLine(player1Start, player1,"Prepare to die.");
