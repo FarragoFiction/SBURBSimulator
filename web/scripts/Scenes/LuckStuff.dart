@@ -144,7 +144,7 @@ class LuckStuff extends Scene{
 	String roll85(Roll roll){
 		//print("roll85 in " + this.session.session_id);
 		String land = "some random planet";
-		if(roll.player.land == null){
+		if(roll.player.land != null){
 			land = roll.player.shortLand();
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they see a GOLD IMP. Those things are worth a ton of experience points, if you can manage to even damage them. Holy shit, did the " + roll.player.htmlTitle() + " just ONE SHOT them!? ";

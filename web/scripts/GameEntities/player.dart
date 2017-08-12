@@ -1276,6 +1276,7 @@ class Player extends GameEntity {
     }
 
     String shortLand() {
+        if(land == null) throw "Should Never Ask for the Abbreviation for a Null Land";
         RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
         return joinMatches(exp.allMatches(land)).toUpperCase();
     }
