@@ -60,12 +60,19 @@ class Strife {
   }
 
   void denizenManagesToNotKillYou(Element div) {
+    print("Denizen sparing check: $teams");
     List<GameEntity> members = findMembersOfDenizenFight();
+    print("Denizen sparing check, found members of: $members");
     if(members == null || members.length < 2) return; //not a denizen fight
+    print("Denizen sparing check: it was a denizen fight");
     Player player = members[1];
+    print("Player $player is dead: ${player.dead}");
     if(!player.dead) return; //you can't spare a player who won.
+    print("Denizen sparing check: player died.");
     if(player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
-    if(player.godDestiny && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
+    print("Denizen sparing check: player wasn't grim dark");
+    if(player.godDestiny && !player.godTier && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
+    print("Denizen sparing check: player wouldn't have god tiered.");
     print("Denizen sparing player in session ${player.session.session_id}");
     player.makeAlive(); //even if they were accidentally killed, it's not "real".
     denizenIsSoNotPuttingUpWithYourShitAnyLonger(div);
@@ -102,17 +109,19 @@ class Strife {
       if (d == null) {
         d = tmpd;
       } else {
-        return ret; //i found TWO deniznes. Hax. I call hax.
+        //return ret; //i found TWO deniznes. Hax. I call hax.
       }
 
       if (p == null) {
         p = tmpp;
       } else {
-        return ret; //i found TWO players. Hax. I call hax.
+       // return ret; //i found TWO players. Hax. I call hax.
       }
     }
+    print("Denizen sparing check: d is $d and p is $p");
     if (d != null) ret.add(d);
     if (p != null) ret.add(p);
+    print("Denizen sparing check: ret is $ret");
     return ret;
   }
 
@@ -191,21 +200,19 @@ class Strife {
     }
   }
 
-  void denizenIsSoNotPuttingUpWithYourShitAnyLonger(div) {
+  void denizenIsSoNotPuttingUpWithYourShitAnyLonger(Element div) {
     //print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
     List<GameEntity> members = findMembersOfDenizenFight();
     Denizen denizen = members[0];
     Player player = members[1];
-    div.append("<Br><Br>" + denizen.name + " decides that the " +
+    appendHtml(div,"<Br><Br>" + denizen.name + " decides that the " +
         player.htmlTitleBasic() +
         " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +
         player.htmlTitleBasic() +
         "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
-    if (player.session.rand.nextDouble() >
-        .5) { //players don't HAVE to take the advice after all. assholes.
+    if (player.session.rand.nextDouble() > .5) { //players don't HAVE to take the advice after all. assholes.
       player.increasePower();
-      div.append(
-          " They actually seem to be taking " + denizen.name + "'s advice. ");
+      appendHtml(div, " They actually seem to be taking " + denizen.name + "'s advice. ");
     }
   }
 
