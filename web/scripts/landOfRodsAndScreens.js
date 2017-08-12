@@ -592,7 +592,7 @@ function quip(state){
         ret = "Whoa, I've heard of this! Those are the First Players in Multiverse D!!!"
     } else if(state == 131){
                   ret = "Sounds legit."
-    } else if(state == 138){
+    } else if(state == 136){
         ret = "Huh, so that's what happened to all of AB's chassis. I am gonna hafta have a word with ABJ."
     }else{
 		ret = "???"
