@@ -224,11 +224,12 @@ class SessionSummary {
 
             html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
         }
-        html = "$html${generateNumHTML()}";
-        html = "$html${generateBoolHTML()}";
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
         html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Power of: ${this.mvp.getStat("power")}";
         html = "$html<Br><b>Frog Level</b>: ${this.frogLevel} (${this.frogStatus})";
+        html = "$html${generateNumHTML()}";
+        html = "$html${generateBoolHTML()}";
+
 
 
         html = "$html</div><br>";
