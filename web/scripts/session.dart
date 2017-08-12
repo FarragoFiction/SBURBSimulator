@@ -469,7 +469,7 @@ class Session {
 
     @override
     String toString() {
-        return "$this.session_id";
+        return "$session_id";
     }
 
     Element newScene() {
@@ -505,6 +505,7 @@ class Session {
     }
 
     List<Session> getLineage() {
+        print("Getting lineage for session: $session_id");
         if (this.parentSession != null) {
             List<Session> tmp = this.parentSession.getLineage();
             tmp.add(this);

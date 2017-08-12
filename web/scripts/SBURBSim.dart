@@ -229,6 +229,7 @@ String getYellowYardEvents(Session session) {
 
 
 String scratchedLineageText(List<Session> lineage) {
+    print("Generating linage text for crash");
     String scratched = "";
     String ret = "";
     String yellowYard = getYellowYardEvents(lineage[0]);
