@@ -469,7 +469,7 @@ class Session {
 
     @override
     String toString() {
-        return "$session_id";
+        return session_id.toString();
     }
 
     Element newScene() {
