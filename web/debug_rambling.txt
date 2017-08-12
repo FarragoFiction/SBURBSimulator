@@ -2780,3 +2780,27 @@ Cool.
 
 Seems a simple fix. i'm checking for null, but not "false", which in js was the same thing.
 
+
+~~~~
+
+Okay, i've been debugging shit for AB and ran into one more filter stumper.
+Every filter seems to work: EXCEPT FOR SCRATCHES.
+
+I am not sure what to think about this.  There are 16 scratches, I click it, and then 0.
+
+I need to look for how scratches are different.
+
+"scratched" is the name of the box and contents.
+setStat("scratched", 0) is how it's initialized.
+
+
+Huh, okay, is it a bool stat in sessionSummary, then?
+
+Oh.
+shit.
+
+It's not in the hash. It's still a var.
+summary.scratched = session.scratched;
+
+I guess I thought it was important enough to be easily accessible.
+That's an easy fix, tho, just gotta make it a special case, just like timesAllLived

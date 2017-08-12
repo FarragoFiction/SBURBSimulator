@@ -139,6 +139,10 @@ class SessionSummary {
                     //print("not all alive");
                     return false;
                 }
+            } else if (filter == "scratched") {
+              if (!this.scratched) { // a special thing that isn't in hash.
+                return false;
+              }
             } else if (filter == "comboSessions") {
                 if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
                     //print("not combo session");
@@ -251,7 +255,7 @@ class SessionSummary {
         summary.setBoolStat("heroicDeath", session.heroicDeath);
         summary.setBoolStat("justDeath", session.justDeath);
         summary.setBoolStat("crashedFromSessionBug", session.crashedFromSessionBug);
-        summary.setBoolStat("crashedFromPlayerActions", session.crashedFromPlayerActions);
+        summary.setBoolStat("xcrashedFromPlayerActions", session.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.hasFreeWillEvents);
         summary.setNumStat("averageMinLuck", getAverageMinLuck(session.players));
         summary.setNumStat("averageMaxLuck", getAverageMaxLuck(session.players));

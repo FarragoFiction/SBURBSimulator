@@ -285,13 +285,13 @@ class GameEntity implements Comparable<GameEntity> {
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
         //print("gonna roll for luck.");
         if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
-            print("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //print("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
             offense.addStat("currentHP", -1 * offense.getStat("power") / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return;
         } else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
-            print("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
+           // print("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
         }
@@ -450,7 +450,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         //modValue * stat.multiplier.
-        print("Modify associated stat $stat on $this by $modValue");
+        //print("Modify associated stat $stat on $this by $modValue");
         if (stat.name == "RELATIONSHIPS") {
             for (num i = 0; i < this.relationships.length; i++) {
                 this.relationships[i].value += modValue * stat.multiplier;

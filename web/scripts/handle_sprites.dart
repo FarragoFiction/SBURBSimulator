@@ -872,7 +872,7 @@ void drawWhateverTurnways(CanvasElement canvas, String imageString){
 drawWhateverWithPalleteSwapCallback(CanvasElement canvas, String str,Player player, var palleteSwapCallBack)
 {
   drawWhatever(canvas, str);
-  print("drawing whatever with pallete swap of $palleteSwapCallBack");
+  //print("drawing whatever with pallete swap of $palleteSwapCallBack");
   palleteSwapCallBack(canvas, player); //regular, trickster, robo, whatever.
 }
 
