@@ -144,8 +144,7 @@ class SessionSummary {
                     //print("not combo session");
                     return false;
                 }
-            } else if (this.getBoolStat(filter) == null && this.getNumStat(filter) == null) {
-                //print("property not true: " + filter);
+            } else if (!this.getBoolStat(filter)) { //assume it exists
                 return false;
             }
         }
@@ -504,6 +503,8 @@ class MultiSessionSummary {
         //if i don't initialize stats here, then AB won't bothe rlisting stats that are zero.
         setStat("total", 0);
         setStat("totalDeadPlayers", 0);
+        setStat("won", 0);
+        setStat("crashedFromPlayerActions", 0);
         setStat("timesAllDied", 0);
         setStat("yellowYard", 0);
         setStat("scratchAvailable", 0);
@@ -556,8 +557,6 @@ class MultiSessionSummary {
         setStat("hasUnluckyEvents", 0);
         setStat("hasFreeWillEvents", 0);
         setStat("scratched", 0);
-        setStat("won", 0);
-        setStat("crashedFromPlayerActions", 0);
         setStat("rocksFell", 0);
         setStat("opossumVictory", 0);
         setStat("crashedFromSessionBug", 0);

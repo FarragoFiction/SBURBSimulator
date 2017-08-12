@@ -2765,3 +2765,18 @@ Alright, first step: how is "timesAllLived" treated differently than ectoBiology
 
 Checked boxes is the same and correct for both, so next step is: satifies_filter_array
 
+Okay, there we go:
+
+            } else if (this.getBoolStat(filter) == null && this.getNumStat(filter) == null) {
+vs
+            } else if (filter == "timesAllLived") {
+
+
+So i would expect timesAllDied and combo and frog shit to ALSO be working, and only that line to not work.
+
+Yes, my expectations match reality.
+
+Cool.
+
+Seems a simple fix. i'm checking for null, but not "false", which in js was the same thing.
+

@@ -59,20 +59,13 @@ class Strife {
   }
 
   void denizenManagesToNotKillYou(Element div) {
-    print("Denizen sparing check: $teams");
     List<GameEntity> members = findMembersOfDenizenFight();
-    print("Denizen sparing check, found members of: $members");
     if(members == null || members.length < 2) return; //not a denizen fight
-    print("Denizen sparing check: it was a denizen fight");
     Player player = members[1];
     print("Player $player is dead: ${player.dead}");
     if(!player.dead) return; //you can't spare a player who won.
-    print("Denizen sparing check: player died.");
     if(player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
-    print("Denizen sparing check: player wasn't grim dark");
     if(player.godDestiny && !player.godTier && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
-    print("Denizen sparing check: player wouldn't have god tiered.");
-    print("Denizen sparing player in session ${player.session.session_id}");
     player.makeAlive(); //even if they were accidentally killed, it's not "real".
     denizenIsSoNotPuttingUpWithYourShitAnyLonger(div);
   }
@@ -117,10 +110,8 @@ class Strife {
        // return ret; //i found TWO players. Hax. I call hax.
       }
     }
-    print("Denizen sparing check: d is $d and p is $p");
     if (d != null) ret.add(d);
     if (p != null) ret.add(p);
-    print("Denizen sparing check: ret is $ret");
     return ret;
   }
 

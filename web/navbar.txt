@@ -7,14 +7,14 @@
            <li class = 'done'>Main Newsposts</li>
            <li class = 'done'>Credits/FAQs</li>
             <li class = 'done'>LORAS</li>
+            <li class = 'done'>AB </li>
             <li class = 'done'>OC Creator/Viewer </li>
-            <li class = 'notdone'>Easter Eggs </li>
+            <li class = 'done'>Easter Eggs </li>
 
         </ul>
         Done (but with Bugs)
         <ul>
                     <li class = 'shitdone'>Simulator </li>
-                    <li class = 'shitdone'>AB </li>
 
 
         </ul>
