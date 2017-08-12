@@ -49,8 +49,7 @@ class Strife {
     if (turnsPassed > timeTillRocks) {
       this.rocksFallEverybodyDies(div);
       processEnding();
-    } else if (denizenDoneWithYourShit(
-        div)) { //highest priority. Denizen will take care of ending their fights.
+    } else if (denizenDoneWithYourShit(div)) { //highest priority. Denizen will take care of ending their fights.
       denizenIsSoNotPuttingUpWithYourShitAnyLonger(div);
       processEnding();
     } else if (turnsPassed > 30) { //holy shit are you not finished yet???
@@ -210,8 +209,8 @@ class Strife {
         " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +
         player.htmlTitleBasic() +
         "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
-    if (player.session.rand.nextDouble() > .5) { //players don't HAVE to take the advice after all. assholes.
-      player.increasePower();
+    if (player.session.rand.nextBool()) { //players don't HAVE to take the advice after all. assholes.
+      player.increasePower(3);
       appendHtml(div, " They actually seem to be taking " + denizen.name + "'s advice. ");
     }
   }
