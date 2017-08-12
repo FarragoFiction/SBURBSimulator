@@ -10,6 +10,7 @@
             <li class = 'done'>AB </li>
             <li class = 'done'>OC Creator/Viewer </li>
             <li class = 'done'>Easter Eggs </li>
+             <li class = 'done'>Artist Newsposts</li>
 
         </ul>
         Done (but with Bugs)
@@ -20,10 +21,8 @@
         </ul>
          Not Done
          <ul>
-                     <li class = 'notdone'>Artist/AB Newsposts</li>
-
-                     <li class = 'notdone'>Tournament Arc </li>
-          </ul>
+            <li class = 'notdone'>Tournament Arc </li>
+         </ul>
     </div>
     <a href = "index.html">
          <img class = "refactoringGif" src = "images/the_great_refactor_2.gif"/>
@@ -58,7 +57,6 @@
     <a href="javascript:void(0)" class="dropbtn">INFO</a>
     <div class="dropdown-content">
       <a href="landing.html">About</a>
-      <a href="newsposts.html">Author Newposts</a>
       <a href="art_newsposts.html">Artist Newposts</a>
       <a href="about.html">FAQ</a>
       <a href="todo.html">TODO Pile</a>
