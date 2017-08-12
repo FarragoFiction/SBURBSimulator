@@ -51,11 +51,24 @@ class Strife {
       processEnding();
     } else if (denizenDoneWithYourShit(
         div)) { //highest priority. Denizen will take care of ending their fights.
+      denizenIsSoNotPuttingUpWithYourShitAnyLonger(div);
       processEnding();
     } else if (turnsPassed > 30) { //holy shit are you not finished yet???
       summonAuthor(div);
       processEnding();
     }
+  }
+
+  void denizenManagesToNotKillYou(Element div) {
+    List<GameEntity> members = findMembersOfDenizenFight();
+    if(members == null || members.length < 2) return; //not a denizen fight
+    Player player = members[1];
+    if(!player.dead) return; //you can't spare a player who won.
+    if(player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
+    if(player.godDestiny && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
+    print("Denizen sparing player in session ${player.session.session_id}");
+    player.makeAlive(); //even if they were accidentally killed, it's not "real".
+    denizenIsSoNotPuttingUpWithYourShitAnyLonger(div);
   }
 
   bool denizenDoneWithYourShit(Element div) {
@@ -134,6 +147,7 @@ class Strife {
 
   //need to list out who is dead, who absconded, and who is alive.  Who WON.
   void describeEnding(Element div, Team winner) {
+    denizenManagesToNotKillYou(div); //only for player on denizen matches.
     processEnding();
     winner.level();
     winner.giveGristFromTeams(teams); //will filter out 'me'

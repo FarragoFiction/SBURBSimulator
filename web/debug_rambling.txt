@@ -2745,3 +2745,23 @@ Huh, okay, maybe not so hard, logs say that things are actually being read from 
 
 
 
+
+~~~~~~~~~~~~~~~~~~~
+
+
+Okay. Time to find my zen.
+
+I banged my head for too long on AB's filters, then gave up and did other pages.
+
+But now AB is standing between me and being mostly done with this shit.
+
+Define the problem:
+
+* EVERY time I click "timesAllLived" it works as intended.
+* clicking other things, like 'ectoBiologyStarted' triggers the code, but it believes no filter has been applied.
+
+
+Alright, first step: how is "timesAllLived" treated differently than ectoBiologyStarted.
+
+Checked boxes is the same and correct for both, so next step is: satifies_filter_array
+
