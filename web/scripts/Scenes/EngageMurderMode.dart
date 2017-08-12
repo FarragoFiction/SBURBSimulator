@@ -192,7 +192,11 @@ class EngageMurderMode extends Scene{
 					r1.decrease();
 				}else{ //if they get here because r3 is null, then they are i guess suicidal? because that means the player is themself.
 					chatText += Scene.chatLine(player1Start, player1,"... Maybe. Maybe you have a point.");
-					if(r3 != null) r3.decrease();
+					if(r3 != null) {
+						r3.decrease();
+					}else {
+						chatText += Scene.chatLine(player1Start, player1," Maybe I'm my own worst enemy...");
+					}
 				}
 			}else{
 				chatText += Scene.chatLine(player1Start, player1,"Prepare to die.");
