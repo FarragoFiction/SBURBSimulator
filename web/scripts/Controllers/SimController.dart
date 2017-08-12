@@ -223,7 +223,7 @@ abstract class SimController {
     }
 
     void startSession() {
-        print("Debugging AB: Starting session $initial_seed");
+       // print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
         reinit();
         Scene.createScenesForSession(curSessionGlobalVar);
@@ -273,7 +273,7 @@ abstract class SimController {
     }
 
     void tick([num time]) {
-        print("Debugging AB: tick");
+        //print("Debugging AB: tick");
         //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline) {
             window.requestAnimationFrame(tick);
@@ -282,7 +282,7 @@ abstract class SimController {
             //print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {
-            print("Debugging AB: reckoning time.");
+            //print("Debugging AB: reckoning time.");
             reckoning();
         }
     }

@@ -26,7 +26,7 @@ class SessionSummary {
     SessionSummary(int this.session_id);
 
     void setBoolStat(String statName, bool statValue) {
-        print("setting stat: $statName to $statValue");
+       // print("setting stat: $statName to $statValue");
         this.bool_stats[statName] = statValue;
     }
 
@@ -99,7 +99,7 @@ class SessionSummary {
         } else if (!aspects.isEmpty && !classes.isEmpty) {
             return this.matchesBothClassAndAspect(classes, aspects);
         } else {
-            print('debugging ab: no classes or aspects passed');
+            //print('debugging ab: no classes or aspects passed');
             return true; //no filters, all are accepted.
         }
     }
