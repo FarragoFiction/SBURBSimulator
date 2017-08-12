@@ -13,18 +13,35 @@ import "Mage.dart";
 
 
 class SBURBClassManager {
-  static SBURBClass KNIGHT = new Knight();
-  static SBURBClass SEER = new Seer();
-  static SBURBClass BARD = new Bard();
-  static SBURBClass HEIR = new Heir();
-  static SBURBClass MAID = new Maid();
-  static SBURBClass ROGUE = new Rogue();
-  static SBURBClass PAGE = new Page();
-  static SBURBClass THIEF = new Thief();
-  static SBURBClass SYLPH = new Sylph();
-  static SBURBClass PRINCE = new Prince();
-  static SBURBClass WITCH = new Witch();
-  static SBURBClass MAGE = new Mage();
+  static SBURBClass KNIGHT;
+  static SBURBClass SEER;
+  static SBURBClass BARD;
+  static SBURBClass HEIR;
+  static SBURBClass MAID;
+  static SBURBClass ROGUE;
+  static SBURBClass PAGE;
+  static SBURBClass THIEF;
+  static SBURBClass SYLPH;
+  static SBURBClass PRINCE;
+  static SBURBClass WITCH;
+  static SBURBClass MAGE;
+
+  //did you know that static attributes are lazy loaded, and so you can't access them until
+  //you interact with the class? Yes, this IS bullshit, thanks for asking!
+  static void init() {
+    KNIGHT = new Knight();
+    SEER = new Seer();
+    BARD = new Bard();
+    HEIR = new Heir();
+    MAID = new Maid();
+    ROGUE = new Rogue();
+    PAGE = new Page();
+    THIEF = new Thief();
+    SYLPH = new Sylph();
+    PRINCE = new Prince();
+    WITCH = new Witch();
+    MAGE = new Mage();
+  }
 
   static List<SBURBClass> _classes = []; // gets filled by class constrcutor
   static Iterable<SBURBClass> get canon => _classes.where((SBURBClass c) => c.isCanon);
@@ -47,7 +64,7 @@ class SBURBClass {
 
 
   SBURBClass(this.name, this.id, this.isCanon) {
-    print("Making a sburb class $this.name");
+    print("Making a sburb class ${this.name}");
     SBURBClassManager.addClass(this);
   }
   List<String> levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];

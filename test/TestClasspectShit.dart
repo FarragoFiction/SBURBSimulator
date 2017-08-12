@@ -3,6 +3,7 @@ import "JRTestSuite.dart";
 
 SBURBClass globalSC;
 main() {
+  SBURBClassManager.init();
   testBasics();
 }
 
