@@ -33,7 +33,7 @@ class EngageMurderMode extends Scene{
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
 		bool ret = (rand.nextDouble() * this.player.getStat("sanity") < triggerMinimum);
 		if(ret && diamond != null) print("flipping shit even with moirail ${this.session.session_id}");
-		if(ret) print("flipping shit naturally ${this.session.session_id}");
+		//if(ret) print("flipping shit naturally ${this.session.session_id}");
 		return ret;
 	}
 	String grimChat2(Element div, Player player1, Player player2){

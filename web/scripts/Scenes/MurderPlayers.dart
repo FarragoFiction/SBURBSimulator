@@ -251,7 +251,7 @@ class MurderPlayers extends Scene {
 						if(worstEnemy.sprite.name == "sprite"){
 							ret += " The " + m.htmlTitle() + " is too enraged to think things through.  The " + worstEnemy.htmlTitle() + " that they want to kill isn't even in the Medium, yet, dunkass!";
 						}else if(worstEnemy.aspect == "Void"){
-							print("void avoiding murderer: " + this.session.session_id.toString());
+							//print("void avoiding murderer: " + this.session.session_id.toString());
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost.";
 						}else if (worstEnemy.aspect == "Space"){
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost.";
