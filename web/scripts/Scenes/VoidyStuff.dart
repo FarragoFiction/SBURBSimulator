@@ -125,7 +125,7 @@ class VoidyStuff extends Scene {
 		appendHtml(newDiv,  ret + " " + rand.pickFrom(phrases));
 	}
 	void findFraymotif(Element div, Element specialDiv){
-		print("Void/Rage fraymotif acquired: " + this.session.session_id.toString());
+		//print("Void/Rage fraymotif acquired: " + this.session.session_id.toString());
 		appendHtml(div, " What's that music playing? ");
 		Fraymotif f = this.player.getNewFraymotif(this.enablingPlayer);
 		appendHtml(specialDiv, "A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");

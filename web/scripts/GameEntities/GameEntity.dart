@@ -203,14 +203,14 @@ class GameEntity implements Comparable<GameEntity> {
         num mine = getStat("sanity");
         num theirs = getAverageSanity(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-            print("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
+           // print("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but they are too crazy to focus. ");
             return false;
         }
         mine = getStat("freeWill");
         theirs = getAverageFreeWill(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-            print("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
+            //print("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but Fate dictates otherwise. ");
             return false;
         }

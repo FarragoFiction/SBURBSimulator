@@ -601,7 +601,7 @@ class UpdateShippingGrid extends Scene{
 	}
 	String content(){
 		////print("Updating shipping grid in: " + this.session.session_id);
-		print("Chosen Shipper: ${this.chosenShipper.player}");
+		//print("Chosen Shipper: ${this.chosenShipper.player}");
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
