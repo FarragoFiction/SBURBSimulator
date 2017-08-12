@@ -103,16 +103,16 @@ class SaveDoomedTimeLine extends Scene {
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r != null && r.value != 0){
 					if(r.value > 0){
-						print(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
+						//print(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
 						this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
 					}else{
-						print(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
+						//print(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
             this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
 					}
 			}else{
-				print(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
+				//print(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
         this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}

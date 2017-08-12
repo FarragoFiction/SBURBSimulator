@@ -298,7 +298,7 @@ class GameEntity implements Comparable<GameEntity> {
         //mobility dodge
         int r = this.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
         if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 && r > 25) {
-            print("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //print("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
             if (defense.getStat("currentHP") > 0) {
                 ret = "$ret. They miss so hard the ${defense.htmlTitleHP()} has plenty of time to get a counterattack in.";
@@ -311,7 +311,7 @@ class GameEntity implements Comparable<GameEntity> {
 
             return;
         } else if (defense.getStat("mobility") > offense.getStat("mobility") * 5 + 100 && r > 25) {
-            print("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //print("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, " The ${defense.htmlTitleHP()} dodges the attack completely. ");
             return;
         }

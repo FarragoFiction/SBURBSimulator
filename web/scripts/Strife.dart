@@ -62,7 +62,7 @@ class Strife {
     List<GameEntity> members = findMembersOfDenizenFight();
     if(members == null || members.length < 2) return; //not a denizen fight
     Player player = members[1];
-    print("Player $player is dead: ${player.dead}");
+    //print("Player $player is dead: ${player.dead}");
     if(!player.dead) return; //you can't spare a player who won.
     if(player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
     if(player.godDestiny && !player.godTier && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.

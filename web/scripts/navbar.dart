@@ -40,11 +40,11 @@ String getParameterByName(String name, String url) {
   Uri uri = Uri.base;
   if(url != null) {
     uri = Uri.parse(url);
-    print("uri is $uri");
+   // print("uri is $uri");
     String tmp = (uri.queryParameters[name]); //doesn't need decoded, guess it was auto decoded with the parse?
     return tmp;
   }else {
-    print("uri is $uri");
+    //print("uri is $uri");
     String tmp = (uri.queryParameters[name]);
     if(tmp != null) tmp = Uri.decodeComponent(tmp);
     return tmp;

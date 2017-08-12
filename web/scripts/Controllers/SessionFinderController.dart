@@ -330,7 +330,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     }
 
-    print("MMS is: ${mms.num_stats}");
+    //print("MMS is: ${mms.num_stats}");
     setHtml(querySelector("#stats"), mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
     wireUpAllCheckBoxesAndButtons();
