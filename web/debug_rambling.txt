@@ -2804,3 +2804,39 @@ summary.scratched = session.scratched;
 
 I guess I thought it was important enough to be easily accessible.
 That's an easy fix, tho, just gotta make it a special case, just like timesAllLived
+
+
+~~~~~~~
+
+Alright, here's another bug I abandoned:  why are initial relationships so low.
+And free will, come to notice.  and Mobility is kinda high.
+
+You would figure this would be easy to debug, cuz it's just initial conditions.
+
+Let's find out.
+
+Okay, free will is on the lower side cause of time, probably.
+
+What about relationships.
+
+I turn off associated stats entirely, and they are still just as low. Is it interests?
+
+Huh, somehow it is lower.
+
+Turning off intiailize relationships entirely doesn't help either. Is it from makeTroll? or decideTroll? whatever.
+
+No, no relationship stuff.
+
+Okay.
+
+generateRelationships then.
+
+which really is just: Relationship.randomRelationship(this, friends[i]);
+
+which is
+        Relationship r = new Relationship(source, source.session.rand.nextIntRange(-21, 21), targetPlayer);
+
+
+I notice I am confused.  I put it into robot mode. And correctly get 0 ships. Everyone is 0_0. But...
+the relationship value is still -5.  Why? is it from heiress trolls?
+

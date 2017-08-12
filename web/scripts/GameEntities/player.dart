@@ -1789,7 +1789,7 @@ class Player extends GameEntity {
     }
 
     void initializeMobility() {
-        this.setStat("mobility", this.session.rand.nextIntRange(0, 10));
+        this.setStat("mobility", this.session.rand.nextIntRange(-10, 10));
         if (this.trickster && this.aspect != "Doom") {
             this.setStat("mobility", 11111111111);
         }
