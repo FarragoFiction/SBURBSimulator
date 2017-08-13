@@ -11,6 +11,21 @@ class Thief extends SBURBClass {
   }
 
   @override
+  double getAttackerModifier() {
+    return 1.5;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 0.8;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.0;
+  }
+
+  @override
   bool hasInteractionEffect() {
     return true;
   }

@@ -15,6 +15,21 @@ class Sylph extends SBURBClass {
   }
 
   @override
+  double getAttackerModifier() {
+    return 1.0;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 1.0;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.5;
+  }
+
+  @override
   bool hasInteractionEffect() {
     return true;
   }

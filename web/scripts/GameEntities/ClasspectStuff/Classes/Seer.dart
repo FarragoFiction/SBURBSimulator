@@ -14,4 +14,19 @@ class Seer extends SBURBClass {
     return powerBoost;
   }
 
+  @override
+  double getAttackerModifier() {
+    return 0.67;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 0.67;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.0;
+  }
+
 }

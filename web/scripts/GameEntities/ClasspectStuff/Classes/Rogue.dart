@@ -11,6 +11,21 @@ class Rogue extends SBURBClass {
   }
 
   @override
+  double getAttackerModifier() {
+    return 1.25;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 1.25;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.0;
+  }
+
+  @override
   bool hasInteractionEffect() {
     return true;
   }
