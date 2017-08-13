@@ -20,7 +20,8 @@ class Random implements Math.Random {
 	}
 
 	int _nextInt(int max) {
-		if (false && max > 2<<31) { //JR: turns out this path makes random do things differently compiled vs dart. let's keep this off for now.
+		//if (max > 2<<31) { //JR: turns out this path makes random do things differently compiled vs dart. let's keep this off for now.
+		if (max > 0xFFFFFFFF) { //PL: THIS works fine though. I blame js and its bitshifting
 			return (this._impl.nextDouble() * max).floor();
 		} else {
 			return this._impl.nextInt(max);

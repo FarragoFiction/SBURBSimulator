@@ -31,7 +31,15 @@ void main() {
 
     //checkLABRanges();
 
-    new ColourPicker(querySelector("#testpicker")..onChange.listen((Event e) => print((e.target as InputElement).value)));
+    //new ColourPicker(querySelector("#testpicker")..onChange.listen((Event e) => print((e.target as InputElement).value)));
+
+    Random testrand = new Random(1);
+
+    int testmax = 0xFFFFFFFF -20;
+
+    for (int i=0; i<50; i++) {
+        print("$i: ${testrand.nextInt(testmax+i)}");
+    }
 }
 
 void checkLABRanges() {
