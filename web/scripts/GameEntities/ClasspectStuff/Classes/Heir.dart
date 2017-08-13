@@ -7,5 +7,20 @@ class Heir extends SBURBClass {
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     return powerBoost * 1.5;
   }
+  @override
+  double getAttackerModifier() {
+    return 0.5;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 2.0;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.5;
+  }
+
 
 }

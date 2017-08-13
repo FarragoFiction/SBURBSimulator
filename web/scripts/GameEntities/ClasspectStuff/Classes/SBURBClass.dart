@@ -106,6 +106,7 @@ class SBURBClass {
     return powerBoost; //does nothing.
   }
 
+  //These three are called by players getPVPModifier.
   double getAttackerModifier() {
     return 1.0;
   }
@@ -115,10 +116,6 @@ class SBURBClass {
   }
 
   double getDefenderModifier() {
-    return 1.0;
-  }
-
-  double getPVPModifier() {
     return 1.0;
   }
 

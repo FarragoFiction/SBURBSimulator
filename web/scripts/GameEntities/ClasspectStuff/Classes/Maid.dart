@@ -9,4 +9,19 @@ class Maid extends SBURBClass {
     return powerBoost * 1.5;
   }
 
+  @override
+  double getAttackerModifier() {
+    return 0.33;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 3.0;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.5;
+  }
+
 }

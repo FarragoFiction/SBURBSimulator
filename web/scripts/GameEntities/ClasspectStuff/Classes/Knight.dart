@@ -14,4 +14,19 @@ class Knight extends SBURBClass {
     return powerBoost;
   }
 
+  @override
+  double getAttackerModifier() {
+    return 1.0;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 2.5;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 0.75;
+  }
+
 }

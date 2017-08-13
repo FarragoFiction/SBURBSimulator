@@ -29,4 +29,19 @@ class Bard extends SBURBClass {
 
   }
 
+  @override
+  double getAttackerModifier() {
+    return 2.0;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 0.5;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 3.0;
+  }
+
 }

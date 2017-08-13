@@ -28,5 +28,21 @@ class Witch extends SBURBClass {
     p.modifyAssociatedStat(powerBoost, stat);
   }
 
+  @override
+  double getAttackerModifier() {
+    return 2.0;
+  }
+
+  @override
+  double getMurderousModifier() {
+    return 1.5;
+  }
+
+  @override
+  double getDefenderModifier() {
+    return 1.0;
+  }
+
+
 
 }
