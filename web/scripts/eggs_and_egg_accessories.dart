@@ -356,6 +356,7 @@ void session413(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
+	curSessionGlobalVar.players.length = 8; //no more, no less.
 }
 
 
@@ -389,6 +390,7 @@ void session111111(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
+	curSessionGlobalVar.players.length = 8; //no more, no less.
 }
 
 
