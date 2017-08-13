@@ -102,8 +102,8 @@ class SBURBClass {
     //do nothing.
   }
 
-  num  modPowerBoostByClass() {
-
+  num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
+    return powerBoost; //does nothing.
   }
 
   double getAttackerModifier() {

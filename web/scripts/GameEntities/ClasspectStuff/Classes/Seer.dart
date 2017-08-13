@@ -1,5 +1,17 @@
 import "SBURBClass.dart";
+import "../../Player.dart";
+import "../../GameEntity.dart";
 class Seer extends SBURBClass {
   Seer() : super("Seer", 7, true);
+
+  @override
+  num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
+    if (stat.multiplier > 0) {
+      powerBoost = powerBoost * 2;
+    } else {
+      powerBoost = powerBoost * 2.5;
+    }
+    return powerBoost;
+  }
 
 }

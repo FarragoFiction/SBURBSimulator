@@ -6,6 +6,11 @@ class Thief extends SBURBClass {
   Thief() : super("Thief", 8, true);
 
   @override
+  num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
+    return powerBoost * 0.5;
+  }
+
+  @override
   bool hasInteractionEffect() {
     return true;
   }
@@ -14,6 +19,7 @@ class Thief extends SBURBClass {
   void processStatInteractionEffect(Player p,GameEntity target, AssociatedStat stat) {
     num powerBoost = p.getStat("power") / 20;
     powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
+    powerBoost = this.modPowerBoostByClass(powerBoost, stat);
     target.modifyAssociatedStat((-1 * powerBoost), stat);
     p.modifyAssociatedStat(powerBoost, stat);
   }
