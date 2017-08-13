@@ -1733,8 +1733,8 @@ class Player extends GameEntity {
         this.setStat("minLuck", this.session.rand.nextIntRange(-10, 0)); //middle of the road.
         this.setStat("maxLuck", this.session.rand.nextIntRange(1, 10)); //max needs to be more than min.
         if (this.trickster && this.aspect != "Doom") {
-            this.setStat("minLuck", 111111);
-            this.setStat("maxLuck", 111111);
+            this.setStat("minLuck", 11111111111);
+            this.setStat("maxLuck", 11111111111);
         }
     }
 
@@ -1742,7 +1742,7 @@ class Player extends GameEntity {
     void initializeFreeWill() {
         this.setStat("freeWill", this.session.rand.nextIntRange(-10, 10));
         if (this.trickster && this.aspect != "Doom") {
-            this.setStat("freeWill", 111111);
+            this.setStat("freeWill", 11111111111);
         }
     }
 
@@ -1750,8 +1750,8 @@ class Player extends GameEntity {
         this.setStat("hp", this.session.rand.nextIntRange(40, 60));
         this.setStat("currentHP", this.getStat("hp"));
         if (this.trickster && this.aspect != "Doom") {
-            this.setStat("currentHP", 111111);
-            this.setStat("hp", 111111);
+            this.setStat("currentHP", 11111111111);
+            this.setStat("hp", 11111111111);
         }
 
         if (this.isTroll && this.bloodColor != "#ff0000") {
@@ -1791,7 +1791,7 @@ class Player extends GameEntity {
     void initializeMobility() {
         this.setStat("mobility", this.session.rand.nextIntRange(-10, 10));
         if (this.trickster && this.aspect != "Doom") {
-            this.setStat("mobility", 111111);
+            this.setStat("mobility", 11111111111);
         }
     }
 
@@ -1803,7 +1803,7 @@ class Player extends GameEntity {
         if (this.trickster && this.aspect != "Doom" && this.aspect != "Heart") {
             for (num k = 0; k < this.relationships.length; k++) {
                 Relationship r = this.relationships[k];
-                r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
+                r.value = 11111111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
                 r.saved_type = r.goodBig;
             }
         }
@@ -1845,7 +1845,7 @@ class Player extends GameEntity {
     void initializePower() {
         this.setStat("power", 0);
         if (this.trickster && this.aspect != "Doom") {
-            this.setStat("power", 111111);
+            this.setStat("power", 11111111111);
         }
 
         if (this.robot) {

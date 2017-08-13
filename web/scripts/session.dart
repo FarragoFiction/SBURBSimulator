@@ -89,7 +89,7 @@ class Session {
 
 
     Session(int this.session_id) {
-        print("Made a new session with an id of $session_id");
+        //print("Made a new session with an id of $session_id");
         this.rand = new Random(session_id);
     }
 
