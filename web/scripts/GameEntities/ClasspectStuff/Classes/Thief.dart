@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
-import "../../Player.dart";
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
+
 
 class Thief extends SBURBClass {
   Thief() : super("Thief", 8, true);

@@ -16,9 +16,8 @@ import "Scribe.dart";
 import "Sage.dart";
 import "Guide.dart";
 import "Grace.dart";
-import "../../Player.dart";
-import "../../GameEntity.dart";
 
+import "../../../SBURBSim.dart";
 class SBURBClassManager {
   static SBURBClass KNIGHT;
   static SBURBClass SEER;
@@ -38,6 +37,7 @@ class SBURBClassManager {
   static SBURBClass SCRIBE;
   static SBURBClass GUIDE;
   static SBURBClass GRACE;
+  static SBURBClass NULL;
 
   //did you know that static attributes are lazy loaded, and so you can't access them until
   //you interact with the class? Yes, this IS bullshit, thanks for asking!
@@ -60,6 +60,7 @@ class SBURBClassManager {
     SAGE = new Sage();
     GUIDE = new Guide();
     GRACE = new Grace();
+    NULL = new SBURBClass("Null", 256,false);
   }
 
   static List<SBURBClass> _classes = []; // gets filled by class constrcutor
@@ -71,6 +72,13 @@ class SBURBClassManager {
   }
 
   static List<SBURBClass> get allClasses => new List<SBURBClass>.from(_classes);
+
+  static SBURBClass findClassWithID(num id) {
+      for(SBURBClass c in _classes) {
+        if(c.id == id) return c;
+      }
+      return NULL;
+  }
 
 }
 
@@ -127,6 +135,12 @@ class SBURBClass {
 
   void intializeAssociatedClassStatReferences() {
   //none by default.  and in fact only sburblore should be here.
+  }
+
+  //don't need to customize for classes, they already handle this shit because of their quests.
+  String getQuest(Random rand,bool postDenizen) {
+    if(!postDenizen) return rand.pickFrom(quests);
+    if(postDenizen) return rand.pickFrom(postDenizenQuests);
   }
 
 

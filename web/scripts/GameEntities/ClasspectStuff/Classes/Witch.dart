@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
-import "../../Player.dart";
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
+
 
 class Witch extends SBURBClass {
   Witch() : super("Witch", 12, true);

@@ -11,6 +11,7 @@ import "includes/tracer.dart";
 //if dart load time of code is a problem, can chop this up into sub libraries and use lazy or deffered loading.
 //TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
 
+export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
 export "Controllers/SimController.dart";
 export "fraymotif.dart";
 export "session.dart";

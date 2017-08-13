@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
-import "../../Player.dart";
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
+
 class Sylph extends SBURBClass {
   Sylph() : super("Sylph", 6, true);
 

@@ -29,7 +29,7 @@ class Player extends GameEntity {
     List<dynamic> sickRhymes = <dynamic>[]; //oh hell yes. Hell. FUCKING. Yes! TODO: make this its own type -PL
     bool robot = false;
     num ectoBiologicalSource = null; //might not be created in their own session now.
-    String class_name; //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
+    SBURBClass class_name; //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
     Player guardian = null; //no longer the sessions job to keep track.
     num number_confessions = 0;
     num number_times_confessed_to = 0;
@@ -632,7 +632,7 @@ class Player extends GameEntity {
             if (this.session.rand.nextDouble() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
                 return getRandomQuestFromAspect(this.session.rand, this.aspect, false);
             } else {
-                return getRandomQuestFromClass(this.session.rand, this.class_name, false);
+                return this.class_name.getQuest(rand, false);
             }
         } else if (this.denizenDefeated) {
             //print("post denizen quests " +this.session.session_id);
@@ -640,7 +640,7 @@ class Player extends GameEntity {
             if (this.session.rand.nextDouble() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
                 return getRandomQuestFromAspect(this.session.rand, this.aspect, true);
             } else {
-                return getRandomQuestFromClass(this.session.rand, this.class_name, true);
+              return this.class_name.getQuest(rand, true);
             }
         }
         return null;
@@ -769,69 +769,15 @@ class Player extends GameEntity {
     }
 
     num getAttackerModifier() {
-        if (this.class_name == "Knight") return 1.0;
-        if (this.class_name == "Seer") return 0.67;
-        if (this.class_name == "Bard") return 2.0;
-        if (this.class_name == "Maid") return 0.33;
-        if (this.class_name == "Heir") return 0.5;
-        if (this.class_name == "Rogue") return 1.25;
-        if (this.class_name == "Page") {
-            if (this.godTier) {
-                return 5.0;
-            } else {
-                return 1.0;
-            }
-        }
-        if (this.class_name == "Thief") return 1.5;
-        if (this.class_name == "Sylph") return 2.5;
-        if (this.class_name == "Prince") return 5.0;
-        if (this.class_name == "Witch") return 2.0;
-        if (this.class_name == "Mage") return 0.67;
-        return 1.0;
+     return this.class_name.getAttackerModifier();
     }
 
     num getDefenderModifier() {
-        if (this.class_name == "Knight") return 2.5;
-        if (this.class_name == "Seer") return 0.67;
-        if (this.class_name == "Bard") return 0.5;
-        if (this.class_name == "Maid") return 3.0;
-        if (this.class_name == "Heir") return 2.0;
-        if (this.class_name == "Rogue") return 1.25;
-        if (this.class_name == "Page") {
-            if (this.godTier) {
-                return 5.0;
-            } else {
-                return 1.0;
-            }
-        }
-        if (this.class_name == "Thief") return 0.8;
-        if (this.class_name == "Sylph") return 1.0;
-        if (this.class_name == "Prince") return 0.33;
-        if (this.class_name == "Witch") return 1.0;
-        if (this.class_name == "Mage") return 0.67;
-        return 1.0;
+      return this.class_name.getDefenderModifier();
     }
 
     num getMurderousModifier() {
-        if (this.class_name == "Knight") return 0.75;
-        if (this.class_name == "Seer") return 1.0;
-        if (this.class_name == "Bard") return 3.0;
-        if (this.class_name == "Maid") return 1.5;
-        if (this.class_name == "Heir") return 1.5;
-        if (this.class_name == "Rogue") return 1.0;
-        if (this.class_name == "Page") {
-            if (this.godTier) {
-                return 5.0;
-            } else {
-                return 1.0;
-            }
-        }
-        if (this.class_name == "Thief") return 1.0;
-        if (this.class_name == "Sylph") return 1.5;
-        if (this.class_name == "Prince") return 1.5;
-        if (this.class_name == "Witch") return 1.5;
-        if (this.class_name == "Mage") return 1.5;
-        return 1.0;
+      return this.class_name.getMurderousModifier();
     }
 
     String getDenizen() {
@@ -926,7 +872,7 @@ class Player extends GameEntity {
     }
 
     bool hasInteractionEffect() {
-        return this.class_name == "Prince" || this.class_name == "Bard" || this.class_name == "Witch" || this.class_name == "Sylph" || this.class_name == "Rogue" || this.class_name == "Thief";
+      return this.class_name.hasInteractionEffect();
     }
 
     //IMPORTANT, THE WHOLE POINT OF INTERACTION IS YOU CAN STEAL FROM ENEMIES *OR* ALLIES
@@ -940,28 +886,7 @@ class Player extends GameEntity {
     }
 
     void processStatInteractionEffect(GameEntity target, AssociatedStat stat) {
-        num powerBoost = this.getStat("power") / 20;
-        if (this.class_name == "Witch" || this.class_name == "Sylph") {
-            powerBoost = powerBoost * 2; //sylph and witch get their primary boost here, so make it a good one.;
-        }
-        powerBoost = this.modPowerBoostByClass(powerBoost, stat);
-        if (this.class_name == "Rogue" || this.class_name == "Thief") {
-            powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
-            target.modifyAssociatedStat((-1 * powerBoost), stat);
-            if (this.isActive()) { //modify me
-                this.modifyAssociatedStat(powerBoost, stat);
-            } else { //modify others.
-                for (num i = 0; i < this.session.players.length; i++) {
-                    this.session.players[i].modifyAssociatedStat(powerBoost / this.session.players.length, stat);
-                }
-            }
-        } else {
-            if (this.isActive()) { //modify me
-                this.modifyAssociatedStat(powerBoost, stat);
-            } else { //modify others.
-                target.modifyAssociatedStat(powerBoost, stat);
-            }
-        }
+        class_name.processStatInteractionEffect(this, target, stat);
     }
 
     @override
@@ -975,6 +900,7 @@ class Player extends GameEntity {
         }
     }
 
+    //TODO this will be sburb lore.
     bool knowsAboutSburb() {
         //time might not innately get it, but they have future knowledge
         bool rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time";
@@ -989,7 +915,7 @@ class Player extends GameEntity {
     }
 
     bool isActive() {
-        return active_classes.contains(this.class_name);
+        return class_name.isActive();
     }
 
 
@@ -1112,117 +1038,7 @@ class Player extends GameEntity {
     }
 
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-        switch (this.class_name) {
-            case "Knight":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 0.5;
-                }
-                break;
-            case "Scout":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 0.5;
-                }
-                break;
-            case "Guide":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 0.5;
-                }
-                break;
-            case "Seer":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 2.5;
-                }
-                break;
-            case "Bard":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * -0.5; //good things invert to bad.
-                } else {
-                    powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
-                }
-                break;
-            case "Heir":
-                powerBoost = powerBoost * 1.5;
-                break;
-            case "Maid":
-                powerBoost = powerBoost * 1.5;
-                break;
-            case "Rogue":
-                powerBoost = powerBoost * 0.5;
-                break;
-            case "Page":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 0.5;
-                }
-                break;
-            case "Thief":
-                powerBoost = powerBoost * 0.5;
-                break;
-            case "Sylph":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 0.5;
-                } else {
-                    powerBoost = powerBoost * -0.5;
-                }
-                break;
-            case "Prince":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * -0.5; //good things invert to bad.
-                } else {
-                    powerBoost = powerBoost * -2.0; //bad thigns invert to good, with a boost to make up for the + to bad things
-                }
-                break;
-            case "Witch":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 0.5;
-                } else {
-                    powerBoost = powerBoost * -0.5;
-                }
-                break;
-            case "Mage":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 2;
-                } else {
-                    powerBoost = powerBoost * 2.5;
-                }
-                break;
-
-            case "Sage":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 1;
-                } else {
-                    powerBoost = powerBoost * 0.25;
-                }
-                break;
-
-            case "Scribe":
-                if (stat.multiplier > 0) {
-                    powerBoost = powerBoost * 1;
-                } else {
-                    powerBoost = powerBoost * 0.25;
-                }
-                break;
-
-            case "Waste":
-                powerBoost = powerBoost * 0; //wastes WASTE their abilities, until the cataclysm.
-                break;
-            case "Grace":
-              powerBoost = powerBoost * 0; //graces don't use their abilities, until the cataclysm.
-              break;
-            default:
-                print('What the hell kind of class is ${this.class_name}???');
-        }
-
-        return powerBoost;
+       this.class_name.modPowerBoostByClass(powerBoost, stat);
     }
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
@@ -1725,8 +1541,7 @@ class Player extends GameEntity {
     }
 
     bool highInit() {
-        //TODO eventually part of class object
-        return (this.class_name == "Rogue" || this.class_name == "Sage" || this.class_name == "Waste" || this.class_name == "Guide" || this.class_name == "Knight" || this.class_name == "Maid" || this.class_name == "Mage" || this.class_name == "Sylph" || this.class_name == "Prince");
+      return this.class_name.highHinit();
     }
 
     void initializeLuck() {
@@ -2016,66 +1831,8 @@ class Player extends GameEntity {
         return <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
     }
 
-    dynamic intializeAssociatedClassStatReferences() {
-        return null; //don't do this for now, too confusing.;
-        /*var allStats = this.allStats().slice(0); //make copy
-		allStats = allStats.concat("MANGRIT");
-		allStats.removeFromArray("power"); //can't buff power directly
-		switch (this.class_name) {
-			case "Knight":
-				this.associatedStats.add(new AssociatedStat("mobility", 0.5)); //will run to protect you.
-				this.associatedStats.add(new AssociatedStat("hp", 0.5));
-				this.associatedStats.add(new AssociatedStat("freeWill", -1));
-				break;
-			case  "Seer":
-				this.associatedStats.add(new AssociatedStat("freeWill", 0.9));
-				this.associatedStats.add(new AssociatedStat("MANGRIT", -0.9));
-				break;
-			case  "Bard":
-				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), 1));
-				this.associatedStats.add(new AssociatedStat( this.session.rand.pickFrom(allStats), -1));
-				break;
-			case  "Heir":
-				this.associatedStats.add(new AssociatedStat("maxLuck", 0.5));
-				this.associatedStats.add(new AssociatedStat("minLuck", 0.5));
-				this.associatedStats.add(new AssociatedStat("freeWill", -1));
-				break;
-			case  "Maid":
-				this.associatedStats.add(new AssociatedStat("sanity", 1));
-				this.associatedStats.add(new AssociatedStat("minLuck", -1));
-				break;
-			case  "Rogue":
-				this.associatedStats.add(new AssociatedStat("mobility", 0.5));
-				this.associatedStats.add(new AssociatedStat("sanity", -0.5));
-				break;
-			case  "Page":
-				this.associatedStats.add(new AssociatedStat("mobility", -0.5));
-				this.associatedStats.add(new AssociatedStat("hp", 0.5));
-				break;
-			case  "Thief":
-				this.associatedStats.add(new AssociatedStat("maxLuck", 0.5));
-				this.associatedStats.add(new AssociatedStat("MANGRIT", -0.5));
-				break;
-			case  "Sylph":
-				this.associatedStats.add(new AssociatedStat("hp", 0.5));
-				this.associatedStats.add(new AssociatedStat("sanity", -0.5));
-				break;
-			case  "Prince":
-				this.associatedStats.add(new AssociatedStat("MANGRIT", 1));
-				this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1));
-				break;
-			case  "Witch":
-				this.associatedStats.add(new AssociatedStat("MANGRIT", 0.5));
-				this.associatedStats.add(new AssociatedStat("freeWill", 0.5));
-				this.associatedStats.add(new AssociatedStat("sanity", -1));
-				break;
-			case  "Mage":
-				this.associatedStats.add(new AssociatedStat("freeWill", 1));
-				this.associatedStats.add(new AssociatedStat("hp", -1));
-				break;
-			default:
-				print('What the hell kind of class is ' + this.class_name + '???');
-		}*/
+    void intializeAssociatedClassStatReferences() {
+        this.class_name.intializeAssociatedClassStatReferences();
     }
 
     List<AssociatedStat> getOnlyAspectAssociatedStats() {

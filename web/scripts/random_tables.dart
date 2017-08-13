@@ -1049,64 +1049,6 @@ int getRandomIntNoSeed(min, max) {
     return min + rnd * (max - min);
 }*/
 
-dynamic getRandomQuestFromClass(Random rand, String class_name, bool postDenizen){
-	//print("looking for level from class");
-	List<dynamic> first_arr = [];
-	if(class_name == "Maid"){
-		if(!postDenizen) first_arr = maid_quests;
-		if(postDenizen) first_arr = postdenizen_maid_quests;
-	}else if(class_name == "Page"){
-		if(!postDenizen) first_arr = page_quests;
-		if(postDenizen) first_arr = postdenizen_page_quests;
-	}else if(class_name == "Mage"){
-		if(!postDenizen) first_arr = mage_quests;
-		if(postDenizen) first_arr = postdenizen_mage_quests;
-	}else if(class_name == "Knight"){
-		if(!postDenizen) first_arr = knight_quests;
-		if(postDenizen) first_arr = postdenizen_knight_quests;
-	}else if(class_name == "Rogue"){
-		if(!postDenizen) first_arr = rogue_quests;
-		if(postDenizen) first_arr = postdenizen_rogue_quests;
-	}else if(class_name == "Sylph"){
-		if(!postDenizen) first_arr = sylph_quests;
-		if(postDenizen) first_arr = postdenizen_sylph_quests;
-	}else if(class_name == "Seer"){
-		if(!postDenizen) first_arr = seer_quests;
-		if(postDenizen) first_arr = postdenizen_seer_quests;
-	}else if(class_name == "Thief"){
-		if(!postDenizen) first_arr = thief_quests;
-		if(postDenizen) first_arr = postdenizen_thief_quests;
-	}else if(class_name == "Heir"){
-		if(!postDenizen) first_arr = heir_quests;
-		if(postDenizen) first_arr = postdenizen_heir_quests;
-	}else if(class_name == "Bard"){
-		if(!postDenizen) first_arr = bard_quests;
-		if(postDenizen) first_arr = postdenizen_bard_quests;
-	}else if(class_name == "Prince"){
-		if(!postDenizen) first_arr = prince_quests;
-		if(postDenizen) first_arr = postdenizen_prince_quests;
-	}else if(class_name == "Witch"){
-		if(!postDenizen) first_arr = witch_quests;
-		if(postDenizen) first_arr = postdenizen_witch_quests;
-	}else if(class_name == "Waste"){
-     		if(!postDenizen) first_arr = waste_quests;
-     		if(postDenizen) first_arr = postdenizen_waste_quests;
-    }else if(class_name == "Scout"){
-      		if(!postDenizen) first_arr = scout_quests;
-      		if(postDenizen) first_arr = postdenizen_scout_quests;
-    }else if(class_name == "Scribe"){
-     		if(!postDenizen) first_arr = scribe_quests;
-     		if(postDenizen) first_arr = postdenizen_scribe_quests;
-    }else if(class_name == "Sage"){
-     		if(!postDenizen) first_arr = sage_quests;
-     		if(postDenizen) first_arr = postdenizen_sage_quests;
-    }else{
-		if(!postDenizen) first_arr = generic_quests;
-		if(postDenizen) first_arr = postdenizen_generic_quests;
-	}
-	return rand.pickFrom(first_arr);
-}
-
 
 
 List<T> randomFromTwoArrays<T>(Random rand, List<T> arr1, List<T> arr2){
@@ -1175,21 +1117,14 @@ void removeFromArray(item, array){
 
 
 
-dynamic classNameToInt(class_name){
-	List<String> tmp = new List<String>.from(classes);
-	tmp.addAll(custom_only_classes);
-	var ret = tmp.indexOf(class_name);
-	if (ret == -1) ret = 255;
-	return ret;
+dynamic classNameToInt(SBURBClass class_name){
+	return class_name.id;
 }
 
 
 
-String intToClassName(num){
-	List<String> tmp = new List<String>.from(classes);
-	tmp.addAll(custom_only_classes);
-	if(num > tmp.length || num == 255) return "Null"; //Null of Mind;
-	return tmp[num];
+SBURBClass intToClassName(int num){
+	return SBURBClassManager.findClassWithID(num);
 }
 
 
@@ -1280,16 +1215,7 @@ String moonToColor(moon){
 
 List<String> moons = ["Prospit", "Derse"];
 
-List<String> active_classes = ["Thief","Knight","Heir","Mage","Witch", "Prince", "Waste", "Scout", "Scribe"];
-List<String> passive_classes = ["Rogue","Page","Maid","Seer","Sylph", "Bard"];
-//if you change the order of ANY of these classes, it will break ocDataStrings
-List<String> classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-//when a class is used, remove from below list. //if you change the order of ANY of these classes, it will break ocDataStrings
-List<String> available_classes = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
-List<String> available_classes_guardians = ["Maid","Page","Mage","Knight","Rogue","Sylph","Seer","Thief","Heir","Bard","Prince","Witch"];
 
-//if you change the order of ANY of these classes, it will break ocDataStrings
-List<String> custom_only_classes = ["Waste", "Scout", "Sage", "Scribe", "Guide", "Grace"]; //Lord, Muse, Guide, Scout, Scribe, Smith, Wright
 List<String> required_aspects = ["Space", "Time"];
 List<String> all_aspects = ["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 List<String> nonrequired_aspects = ["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
