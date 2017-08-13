@@ -20,7 +20,7 @@ class Random implements Math.Random {
 	}
 
 	int _nextInt(int max) {
-		if (max > 2<<31) {
+		if (false && max > 2<<31) {
 			return (this._impl.nextDouble() * max).floor();
 		} else {
 			return this._impl.nextInt(max);
