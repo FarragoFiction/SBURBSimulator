@@ -126,7 +126,7 @@ class SBURBClass {
   }
 
   void intializeAssociatedClassStatReferences() {
-
+  //none by default.  and in fact only sburblore should be here.
   }
 
 
