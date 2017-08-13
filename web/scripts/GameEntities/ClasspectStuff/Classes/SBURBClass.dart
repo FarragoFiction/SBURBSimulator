@@ -16,7 +16,8 @@ import "Scribe.dart";
 import "Sage.dart";
 import "Guide.dart";
 import "Grace.dart";
-
+import "../../Player.dart";
+import "../../GameEntity.dart";
 
 class SBURBClassManager {
   static SBURBClass KNIGHT;
@@ -96,8 +97,9 @@ class SBURBClass {
       return false;
   }
 
-  void processStatInteractionEffect() {
-
+  //players version of this method will just call class_name.method(this, target, stat);
+  void processStatInteractionEffect(Player p,GameEntity target, AssociatedStat stat) {
+    //do nothing.
   }
 
   num  modPowerBoostByClass() {
