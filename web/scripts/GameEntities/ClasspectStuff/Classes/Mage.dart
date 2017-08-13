@@ -4,6 +4,18 @@ import "../../GameEntity.dart";
 class Mage extends SBURBClass {
   Mage() : super("Mage", 3, true);
 
+
+
+  @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return true;
+  }
+
   @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.multiplier > 0) {

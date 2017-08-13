@@ -5,6 +5,16 @@ import "../../GameEntity.dart";
 class Prince extends SBURBClass {
   Prince() : super("Prince", 11, true);
 
+  @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return true;
+  }
+
 
   @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {

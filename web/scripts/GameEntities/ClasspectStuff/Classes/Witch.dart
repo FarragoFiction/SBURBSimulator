@@ -6,6 +6,17 @@ class Witch extends SBURBClass {
   Witch() : super("Witch", 12, true);
 
   @override
+  bool highHinit() {
+    return false;
+  }
+
+  @override
+  bool isActive() {
+    return true;
+  }
+
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.multiplier > 0) {
       powerBoost = powerBoost * 0.5;

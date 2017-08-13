@@ -5,6 +5,16 @@ class Maid extends SBURBClass {
   Maid() : super("Maid", 1, true);
 
   @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return false;
+  }
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     return powerBoost * 1.5;
   }

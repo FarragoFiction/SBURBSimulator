@@ -5,6 +5,16 @@ class Waste extends SBURBClass {
   Waste() : super("Waste", 13, false);
 
   @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return true;
+  }
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.isFromAspect) {
       powerBoost = powerBoost * 0;  //wasted aspect

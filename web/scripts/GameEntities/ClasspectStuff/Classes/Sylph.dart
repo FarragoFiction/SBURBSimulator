@@ -4,6 +4,19 @@ import "../../GameEntity.dart";
 class Sylph extends SBURBClass {
   Sylph() : super("Sylph", 6, true);
 
+
+
+  @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return false;
+  }
+
+
   @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.multiplier > 0) {

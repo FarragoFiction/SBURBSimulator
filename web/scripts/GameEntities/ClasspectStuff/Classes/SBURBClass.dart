@@ -92,7 +92,9 @@ class SBURBClass {
   List<String> handles = ["nothing","never","mysterious","nebulous","null","missing","negative"];
 
 
-
+  bool isActive() {
+    return false;
+  }
   bool hasInteractionEffect() {
       return false;
   }

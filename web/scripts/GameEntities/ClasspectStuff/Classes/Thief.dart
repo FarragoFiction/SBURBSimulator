@@ -6,6 +6,16 @@ class Thief extends SBURBClass {
   Thief() : super("Thief", 8, true);
 
   @override
+  bool highHinit() {
+    return false;
+  }
+
+  @override
+  bool isActive() {
+    return true;
+  }
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     return powerBoost * 0.5;
   }

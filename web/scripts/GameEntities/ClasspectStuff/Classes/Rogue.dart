@@ -6,6 +6,16 @@ class Rogue extends SBURBClass {
   Rogue() : super("Rogue", 5, true);
 
   @override
+  bool highHinit() {
+    return true;
+  }
+
+  @override
+  bool isActive() {
+    return false;
+  }
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     return powerBoost * 0.5;
   }
