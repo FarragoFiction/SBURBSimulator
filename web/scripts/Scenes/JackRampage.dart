@@ -120,7 +120,7 @@ class JackRampage extends Scene{
 				ret = "Jack has caught the " + getPlayersTitlesBasic(stabbings) + ".  Will he show them his stabs? Strife!";
         appendHtml(div,""+ret);
 				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
-				Team pTeam = new Team(this.session, stabbings);
+				Team pTeam = new Team.withName("The Players",this.session, stabbings);
 				Team dTeam = new Team(this.session, [this.session.jack]);
 				Strife strife = new Strife(this.session, [pTeam, dTeam]);
 				strife.startTurn(div);

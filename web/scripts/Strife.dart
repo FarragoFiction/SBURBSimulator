@@ -4,7 +4,6 @@ import "dart:math" as Math;
 
 import "SBURBSim.dart";
 
-//TODO grab out all the strife parts from GameEntity
 /*
   Though this FEELS like it should take a back burner to the general refactoring effort, the fact
   remains that GameEntities, Players and PlayerSnapshots are all treated as interchangeable
@@ -21,9 +20,7 @@ class Strife {
 
   num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
-  //TODO for now keeping old code as reference material, but delete it whole sale. it is too tangled up in "this" is a GameEntity.
 
-  //TODO get this working, then rewrite code for each sub part.
   void startTurn(Element div) {
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
@@ -258,7 +255,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   List<GameEntity> members;
   List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
   List<GameEntity> absconded = new List<GameEntity>(); //this only matters for one strife, so save to the team.
-  String name = ""; //TODO like The Midnight Crew.  If not given, just make it a list of all members of the team.
+  String name = "";
   bool canAbscond = true; //sometimes you are forced to keep fighting.
   Team.withName(this.name, this.session, this.members){
     resetFraymotifsForMembers();

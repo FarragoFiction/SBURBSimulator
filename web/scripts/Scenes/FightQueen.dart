@@ -47,7 +47,7 @@ class FightQueen extends Scene {
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
 		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
-		Team pTeam = new Team(this.session, fighting);
+		Team pTeam = new Team.withName("The Players",this.session, fighting);
     pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.queen]);
     dTeam.canAbscond = false;

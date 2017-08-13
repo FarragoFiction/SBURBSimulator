@@ -69,7 +69,7 @@ class FaceDenizen extends Scene{
 		String ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". ";
 		if(p.sprite != null && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! ";
     appendHtml(div,ret);
-		Team pTeam = new Team(this.session, [p]);
+		Team pTeam = new Team.withName("The Players",this.session, [p]);
 		Team dTeam = new Team(this.session, [denizenMinion]);
     dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
