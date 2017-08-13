@@ -89,6 +89,7 @@ class Session {
 
 
     Session(int this.session_id) {
+        print("Made a new session with an id of $session_id");
         this.rand = new Random(session_id);
     }
 
@@ -329,7 +330,6 @@ class Session {
     }
 
     void makePlayers() {
-        //print("Making players with seed: " + Math.seed);
         this.players = <Player>[];
         available_classes = classes.sublist(0); //re-initPlayers available classes.
         available_classes_guardians = classes.sublist(0);
