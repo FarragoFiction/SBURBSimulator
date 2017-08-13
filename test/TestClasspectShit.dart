@@ -8,8 +8,8 @@ main() {
 }
 
 void testBasics() {
-  jRAssert("numberOfClasses", SBURBClassManager.allClasses.length, 12);
+  jRAssert("numberOfClasses", SBURBClassManager.allClasses.length, 18);
   jRAssert("numberOfCanonClasses", SBURBClassManager.canon.length, 12);
-  jRAssert("numberOfFanonClasses", SBURBClassManager.fanon.length, 0);
+  jRAssert("numberOfFanonClasses", SBURBClassManager.fanon.length, 6);
 }
 

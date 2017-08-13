@@ -1,5 +1,5 @@
 import "SBURBClass.dart";
 class Waste extends SBURBClass {
-  Waste() : super("Waste", 13, true);
+  Waste() : super("Waste", 13, false);
 
 }

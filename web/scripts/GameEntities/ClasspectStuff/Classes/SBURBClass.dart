@@ -10,6 +10,12 @@ import "Sylph.dart";
 import "Prince.dart";
 import "Witch.dart";
 import "Mage.dart";
+import "Waste.dart";
+import "Scout.dart";
+import "Scribe.dart";
+import "Sage.dart";
+import "Guide.dart";
+import "Grace.dart";
 
 
 class SBURBClassManager {
@@ -25,6 +31,12 @@ class SBURBClassManager {
   static SBURBClass PRINCE;
   static SBURBClass WITCH;
   static SBURBClass MAGE;
+  static SBURBClass WASTE;
+  static SBURBClass SCOUT;
+  static SBURBClass SAGE;
+  static SBURBClass SCRIBE;
+  static SBURBClass GUIDE;
+  static SBURBClass GRACE;
 
   //did you know that static attributes are lazy loaded, and so you can't access them until
   //you interact with the class? Yes, this IS bullshit, thanks for asking!
@@ -41,6 +53,12 @@ class SBURBClassManager {
     PRINCE = new Prince();
     WITCH = new Witch();
     MAGE = new Mage();
+    WASTE = new Waste();
+    SCOUT = new Scout();
+    SCRIBE = new Scribe();
+    SAGE = new Sage();
+    GUIDE = new Guide();
+    GRACE = new Grace();
   }
 
   static List<SBURBClass> _classes = []; // gets filled by class constrcutor
