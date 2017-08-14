@@ -268,7 +268,7 @@ class Fraymotif {
         enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
         var jakeisms = ["GADZOOKS!","BOY HOWDY!","TALLY HO!","BY GUM"];
         print("Hope Rides Alone in session: ${owner.session.session_id}");
-        var scream = getFontColorFromAspect(owner.aspect) + owner.rand.pickFrom(jakeisms) + "</font>";
+        var scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
         return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +  " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
     }
     List<GameEntity> dead = findDeadPlayers(allies);
@@ -455,7 +455,7 @@ class FraymotifCreator {
     if(aspect == "Life") ret =  this.getRandomLifeName(rand);
     if(aspect == "Doom") ret =  this.getRandomDoomName(rand);
     if(ret == null || ret.isEmpty) ret = "Null";
-    return getFontColorFromAspect(aspect) + ret + "</font>";
+    return aspect.fontTag() + ret + "</font>";
   }
 	String getRandomMusicWord(Random rand, String aspect){ //takes in an aspect for color
     List<String> names = ["Fortississimo", "Leitmotif", "Liberetto", "Sarabande", "Serenade", "Anthem", "Crescendo", "Vivace", "Encore", "Vivante", "Allegretto", "Fugue", "Choir", "Nobilmente", "Hymn", "Eroico", "Chant", "Mysterioso", "Diminuendo", "Perdendo", "Staccato", "Allegro", "Caloroso", "Nocturne"];

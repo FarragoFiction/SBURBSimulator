@@ -37,7 +37,7 @@ class Player extends GameEntity {
     String influenceSymbol = null; //multiple aspects can influence/mind control.
     Player influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
-    String aspect; //TODO eventually a full object
+    Aspect aspect; //TODO eventually a full object
     String land = null;
     String interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
     String interest2 = null;
@@ -73,7 +73,7 @@ class Player extends GameEntity {
     bool denizenDefeated = false;
     bool denizenMinionDefeated = false;
 
-    Player([Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny]) : super("", session) {
+    Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
         this.name = this.htmlTitleBasic();
     }
 
@@ -148,7 +148,7 @@ class Player extends GameEntity {
     }
 
     void generateDenizen() {
-        List<String> possibilities = this.getDenizenNameArray();
+        List<String> possibilities = this.aspect.denizenNames;
         num strength = this.getOverallStrength();
         num expectedMaxStrength = 150; //if i change how stats work, i need to update this value
         num strengthPerTier = (expectedMaxStrength) / possibilities.length;
@@ -213,70 +213,6 @@ class Player extends GameEntity {
         this.denizen = denizen;
         this.denizenMinion = denizenMinion;
         this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);
-    }
-
-    List<String> getDenizenNameArray() {
-        if (this.aspect == "Blood") return this.bloodDenizenNames();
-        if (this.aspect == "Mind") return this.mindDenizenNames();
-        if (this.aspect == "Rage") return this.rageDenizenNames();
-        if (this.aspect == "Void") return this.voidDenizenNames();
-        if (this.aspect == "Time") return this.timeDenizenNames();
-        if (this.aspect == "Heart") return this.heartDenizenNames();
-        if (this.aspect == "Breath") return this.breathDenizenNames();
-        if (this.aspect == "Light") return this.lightDenizenNames();
-        if (this.aspect == "Space") return this.spaceDenizenNames();
-        if (this.aspect == "Hope") return this.hopeDenizenNames();
-        if (this.aspect == "Life") return this.lifeDenizenNames();
-        if (this.aspect == "Doom") return this.doomDenizenNames();
-        return <String>["ERROR 404: DENIZEN NOT FOUND"];
-    }
-
-    List<String> bloodDenizenNames() {
-        return <String>['Blood', 'Hera', 'Hestia', 'Bastet', 'Bes', 'Vesta', 'Eleos', 'Sanguine', 'Medusa', 'Frigg', 'Debella', 'Juno', 'Moloch', 'Baal', 'Eusebeia', 'Horkos', 'Homonia', 'Harmonia', 'Philotes'];
-    }
-
-    List<String> mindDenizenNames() {
-        return <String>['Mind', 'Athena', 'Forseti', 'Janus', 'Anubis', 'Maat', 'Seshat', 'Thoth', 'Jyglag', 'Peryite', 'Nomos', 'Lugus', 'Sithus', 'Dike', 'Epimetheus', 'Metis', 'Morpheus', 'Omoikane', 'Argus', 'Hermha', 'Morha', 'Sespille', 'Selcric', 'Tzeench'];
-    }
-
-    List<String> rageDenizenNames() {
-        return <String>['Rage', 'Ares', 'Dyonisus', 'Bacchus', 'Abbadon', 'Mammon', 'Mania', 'Asmodeus', 'Belphegor', 'Set', 'Apophis', 'Nemesis', 'Menoetius', 'Shogorath', 'Loki', 'Alastor', 'Mol Bal', 'Deimos', 'Achos', 'Pallas', 'Deimos', 'Ania', 'Lupe', 'Lyssa', 'Ytilibatsni', 'Discord'];
-    }
-
-    List<String> voidDenizenNames() {
-        return <String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hœnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova'];
-    }
-
-    List<String> timeDenizenNames() {
-        return <String>['Time', 'Ignis', 'Saturn', 'Cronos', 'Aion', 'Hephaestus', 'Vulcan', 'Perses', 'Prometheus', 'Geras', 'Acetosh', 'Styx', 'Kairos', 'Veter', 'Gegute', 'Etu', 'Postverta and Antevorta', 'Emitus', 'Moirai'];
-    }
-
-    List<String> heartDenizenNames() {
-        return <String>['Heart', 'Aphrodite', 'Baldur', 'Eros', 'Hathor', 'Philotes', 'Anubis', 'Psyche', 'Mora', 'Isis', 'Jupiter', 'Narcissus', 'Hecate', 'Izanagi', 'Izanami', 'Ishtar', 'Anteros', 'Agape', 'Peitho', 'Mahara', 'Naidraug', 'Snoitome', 'Walthidian', 'Slanesh', 'Benu'];
-    }
-
-    List<String> breathDenizenNames() {
-        return <String>['Breath', 'Ninlil', 'Ouranos', 'Typheus', 'Aether', 'Amun', 'Hermes', 'Shu', 'Sobek', 'Aura', 'Theia', 'Lelantos', 'Keenarth', 'Aeolus', 'Aurai', 'Zephyrus', 'Ventus', 'Sora', 'Htaerb', 'Worlourier', 'Quetzalcoatl'];
-    }
-
-    List<String> lightDenizenNames() {
-        return <String>['Light', 'Helios', 'Ra', 'Cetus', 'Iris', 'Heimdall', 'Apollo', 'Coeus', 'Hyperion', "Belobog", 'Phoebe', 'Metis', 'Eos', 'Dagr', 'Asura', 'Amaterasu', 'Sol', 'Tyche', 'Odin ', 'Erutuf'];
-    }
-
-    List<String> spaceDenizenNames() {
-        return <String>['Space', 'Gaea', 'Nut', 'Echidna', 'Wadjet', 'Qetesh', 'Ptah', 'Geb', 'Fryja', 'Atlas', 'Hebe', 'Lork', 'Eve', 'Genesis', 'Morpheus', 'Veles ', 'Arche', 'Rekinom', 'Iago', 'Pilera', 'Tiamat', 'Gilgamesh', 'Implexel'];
-    }
-
-    List<String> hopeDenizenNames() {
-        return <String>['Hope', 'Isis', 'Marduk', 'Fenrir', 'Apollo', 'Sekhmet', 'Votan', 'Wadjet', 'Baldur', 'Zanthar', 'Raphael', 'Metatron', 'Jerahmeel', 'Gabriel', 'Michael', 'Cassiel', 'Gavreel', 'Aariel', 'Uriel', 'Barachiel ', 'Jegudiel', 'Samael', 'Taylus', 'Tzeench'];
-    }
-
-    List<String> lifeDenizenNames() {
-        return <String>['Life', 'Demeter', 'Pan', 'Nephthys', 'Ceres', 'Isis', 'Hemera', 'Andhrímnir', 'Agathodaemon', 'Eir', 'Baldur', 'Prometheus', 'Adonis', 'Geb', 'Panacea', 'Aborof', 'Nurgel', 'Adam'];
-    }
-
-    List<String> doomDenizenNames() {
-        return <String>['Doom', 'Hades', 'Achlys', 'Cassandra', 'Osiris', 'Ananke', 'Thanatos', 'Moros', 'Iapetus', 'Themis', 'Aisa', 'Oizys', 'Styx', 'Keres', 'Maat', 'Castor and Pollux', 'Anubis', 'Azrael', 'Ankou', 'Kapre', 'Moros', 'Atropos', 'Oizys', 'Korne', 'Odin'];
     }
 
     String strongDenizenNames() {
@@ -392,13 +328,6 @@ class Player extends GameEntity {
         this.buffs.clear();
         this.causeOfDeath = sanitizeString(causeOfDeath);
         if (this.getStat("currentHP") > 0) this.setStat("currentHP", -1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
-        //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
-        if (this.aspect == "Doom") { //powered by their own doom.
-            //print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
-            this.addStat("power", 50);
-            this.addStat("hp", Math.max(100, this.getStat("hp"))); //prophecy fulfilled. but hp and luck will probably drain again.
-            this.setStat("minLuck", 30); //prophecy fulfilled. you are no longer doomed.
-        }
         if (!this.godTier) { //god tiers only make ghosts in GodTierRevivial
             Player g = Player.makeRenderingSnapshot(this);
             g.fraymotifs = new List<Fraymotif>.from(this.fraymotifs); //copy not reference
@@ -606,7 +535,7 @@ class Player extends GameEntity {
 
     @override
     String htmlTitleBasic() {
-        return "${getFontColorFromAspect(this.aspect)}${this.titleBasic()}</font>";
+        return "${this.aspect.fontTag()}${this.titleBasic()}</font>";
     }
 
     //@override
@@ -629,7 +558,7 @@ class Player extends GameEntity {
             //print("denizen quest");
             return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
         } else if ((this.landLevel < 9 || this.denizen_index >= 3) && this.denizenDefeated == false) { //can do more land quests if denizen kicked your ass. need to grind.
-            if (this.session.rand.nextDouble() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
+            if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
                 return getRandomQuestFromAspect(this.session.rand, this.aspect, false);
             } else {
                 return this.class_name.getQuest(rand, false);
@@ -637,7 +566,7 @@ class Player extends GameEntity {
         } else if (this.denizenDefeated) {
             //print("post denizen quests " +this.session.session_id);
             //return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
-            if (this.session.rand.nextDouble() > .5 || this.aspect == "Space") { //back to having space players be locked to frogs.
+            if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
                 return getRandomQuestFromAspect(this.session.rand, this.aspect, true);
             } else {
               return this.class_name.getQuest(rand, true);
@@ -1099,12 +1028,12 @@ class Player extends GameEntity {
 
     @override
     String htmlTitle() {
-        return "${getFontColorFromAspect(this.aspect)}${this.title()}</font>";
+        return "${this.aspect.fontTag()}${this.title()}</font>";
     }
 
     @override
     String htmlTitleHP() {
-        return "${getFontColorFromAspect(this.aspect)}${this.title()} (${(this.getStat("currentHP")).round()}hp, ${(this.getStat("power")).round()} power)</font>";
+        return "${this.aspect.fontTag()}${this.title()} (${(this.getStat("currentHP")).round()}hp, ${(this.getStat("power")).round()} power)</font>";
     }
 
     void generateBlandRelationships(List<Player> friends) {
@@ -1143,7 +1072,7 @@ class Player extends GameEntity {
     }
 
     void checkBloodBoost(List<Player> players) {
-        if (this.aspect == "Blood") {
+        if (this.aspect == Aspects.BLOOD) { // TODO: ASPECTS - migrate to per-aspect boost?
             for (num i = 0; i < players.length; i++) {
                 players[i].boostAllRelationships();
             }
@@ -1327,7 +1256,7 @@ class Player extends GameEntity {
         if (this.isTroll) {
             return this.bloodColor;
         } else {
-            return getColorFromAspect(this.aspect);
+            return this.aspect.textColour.toStyleString();
         }
     }
 
@@ -1506,7 +1435,7 @@ class Player extends GameEntity {
     }
 
     void decideHemoCaste() {
-        if (this.aspect != "Blood") { //sorry karkat
+        if (this.aspect != Aspects.BLOOD) { //sorry karkat
             this.bloodColor = session.rand.pickFrom(bloodColors);
         }
         this.applyPossiblePsionics();
@@ -1547,7 +1476,7 @@ class Player extends GameEntity {
     void initializeLuck() {
         this.setStat("minLuck", this.session.rand.nextIntRange(-10, 0)); //middle of the road.
         this.setStat("maxLuck", this.session.rand.nextIntRange(1, 10)); //max needs to be more than min.
-        if (this.trickster && this.aspect != "Doom") {
+        if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat("minLuck", 11111111111);
             this.setStat("maxLuck", 11111111111);
         }
@@ -1556,7 +1485,7 @@ class Player extends GameEntity {
 
     void initializeFreeWill() {
         this.setStat("freeWill", this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && this.aspect != "Doom") {
+        if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat("freeWill", 11111111111);
         }
     }
@@ -1564,7 +1493,7 @@ class Player extends GameEntity {
     void initializeHP() {
         this.setStat("hp", this.session.rand.nextIntRange(40, 60));
         this.setStat("currentHP", this.getStat("hp"));
-        if (this.trickster && this.aspect != "Doom") {
+        if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat("currentHP", 11111111111);
             this.setStat("hp", 11111111111);
         }
@@ -1605,7 +1534,7 @@ class Player extends GameEntity {
 
     void initializeMobility() {
         this.setStat("mobility", this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && this.aspect != "Doom") {
+        if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat("mobility", 11111111111);
         }
     }
@@ -1615,7 +1544,7 @@ class Player extends GameEntity {
     }
 
     void initializeRelationships() {
-        if (this.trickster && this.aspect != "Doom" && this.aspect != "Heart") {
+        if (this.trickster && !this.aspect.deadpan) {
             for (num k = 0; k < this.relationships.length; k++) {
                 Relationship r = this.relationships[k];
                 r.value = 11111111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
@@ -1659,7 +1588,7 @@ class Player extends GameEntity {
 
     void initializePower() {
         this.setStat("power", 0);
-        if (this.trickster && this.aspect != "Doom") {
+        if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat("power", 11111111111);
         }
 
@@ -1692,7 +1621,7 @@ class Player extends GameEntity {
 
     //take in a builder so when you do a group of players then can use same builder and no padding.
     String toDataBytesX(ByteBuilder builder) {
-        var j = this.toJSON();
+        Map<String,dynamic> j = this.toJSON();
         if(j["class_name"] <= 15 && j["aspect"] <= 15){ //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
             return BASE64URL.encode(builder.toBuffer().asUint8List());
@@ -1715,7 +1644,7 @@ class Player extends GameEntity {
             print("Class Name ID : $cid");
             this.class_name = intToClassName(cid);
         }
-        if (numFeatures > 1) this.aspect = intToAspect(reader.readByte());
+        if (numFeatures > 1) this.aspect = Aspects.get(reader.readByte());
         //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
     }
 
@@ -1747,7 +1676,7 @@ class Player extends GameEntity {
         String cod = this.causeOfDrain;
         if (cod == null) cod = "";
         if (this.moon == "Prospit") moon = 1;
-        Map<String, dynamic> json = <String, dynamic>{"aspect": aspectToInt(this.aspect), "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair, "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon, "causeOfDrain": cod, "victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf": this.isDreamSelf ? 1 : 0, "murderMode": this.murderMode ? 1 : 0, "leftMurderMode": this.leftMurderMode ? 1 : 0, "grimDark": this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0};
+        Map<String, dynamic> json = <String, dynamic>{"aspect": this.aspect.id, "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair, "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": interestCategoryToInt(this.interest1Category), "interest2Category": interestCategoryToInt(this.interest2Category), "interest1": this.interest1, "interest2": this.interest2, "robot": this.robot ? 1 : 0, "moon": moon, "causeOfDrain": cod, "victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf": this.isDreamSelf ? 1 : 0, "murderMode": this.murderMode ? 1 : 0, "leftMurderMode": this.leftMurderMode ? 1 : 0, "grimDark": this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0};
         return json;
     }
 

@@ -206,12 +206,6 @@ String getDarkShirtColorFromAspect(String aspect) {
     return color;
 }
 
-
-String getFontColorFromAspect(String aspect) {
-    return "<font color='${getColorFromAspect(aspect)}'> ";
-}
-
-
 Player blankPlayerNoDerived(Session session) {
     GameEntity k = prototyping_objects[0];
     bool gd = true;

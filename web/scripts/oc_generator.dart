@@ -167,7 +167,7 @@ void describe(){
 		if(players[i].isTroll){
 			intro += "<font color= '" + players[i].bloodColor + "'> "
 		}else{
-			intro += getFontColorFromAspect(players[i].aspect);
+			intro += players[i].aspect.fontTag();
 		}
 		intro += players[i].quirk.translate(" The quick brown fox (named Lacy) jumped over the lazy dog (named Barkey) over 1234567890 times for reasons. It sure was exciting! I wonder why he did that? Was he going to be late? I wonder....I guess we'll just have to wait and see.");
 		intro += " <br><br> <div id = 'gibberish" +i+"'>"

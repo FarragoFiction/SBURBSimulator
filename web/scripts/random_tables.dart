@@ -274,10 +274,10 @@ List<String> getRandomLandFromPlayer(Player player){
 
 
 //handle can either be about interests, or your claspect. each word can be separately origined
-dynamic getRandomChatHandle(Random rand, SBURBClass class_name, String aspect, String interest1, String interest2){
+String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, String interest1, String interest2){
 	//print("Class: " + class_name + "aspect: " + aspect);
 	String first = "";
-	var r = rand.nextDouble();
+	double r = rand.nextDouble();
 	if(r>0.3){
 		first = getInterestHandle1(rand, class_name, interest1);
 	}else if(r > .6){
@@ -301,7 +301,7 @@ dynamic getRandomChatHandle(Random rand, SBURBClass class_name, String aspect, S
 	}
 	if(first == null) first = "mystery";
 	if(second == null) second = "Mystery";
-	return first+second;
+	return "$first$second";
 }
 
 

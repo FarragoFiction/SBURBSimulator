@@ -12,6 +12,7 @@ import "includes/tracer.dart";
 //TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
 
 export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
+export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
 export "Controllers/SimController.dart";
 export "fraymotif.dart";
 export "session.dart";
@@ -80,6 +81,8 @@ export "Scenes/StartDemocracy.dart";
 export "Scenes/UpdateShippingGrid.dart";
 export "Scenes/VoidyStuff.dart";
 export "Scenes/YellowYard.dart";
+
+export "includes/colour.dart";
 
 
 // temporary functions to be replaced later!

@@ -22,7 +22,7 @@ linter:
     - empty_catches
     - implementation_imports
     - one_member_abstracts
-    - overridden_fields
+    #- overridden_fields # PL: still unsure about turning this off but overriding fields is part of class/aspect now
     - prefer_contains
     - prefer_function_declarations_over_variables
     - prefer_interpolation_to_compose_strings
