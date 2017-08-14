@@ -40,7 +40,7 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
         //print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
         for (int i = 0; i < numNeeded; i++) {
             // print("making new player: " + i);
-            curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, "Page", "Void"));
+            curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, SBURBClassManager.PAGE, "Void"));
         }
         //print("Number of players is now: " + curSessionGlobalVar.players.length);
         return;
@@ -218,7 +218,7 @@ Player blankPlayerNoDerived(Session session) {
     String m = "Prospit";
     //	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
-    Player p = new Player(session, "Page", "Void", k, m, gd);
+    Player p = new Player(session, SBURBClassManager.PAGE, "Void", k, m, gd);
     p.interest1 = interests[0];
     p.interest2 = interests[0];
     p.baby = 1;
@@ -234,7 +234,7 @@ Player blankPlayerNoDerived(Session session) {
 }
 
 
-Player randomPlayerNoDerived(Session session, String c, String a) {
+Player randomPlayerNoDerived(Session session, SBURBClass c, String a) {
     GameEntity k = session.rand.pickFrom(prototyping_objects);
 
 
@@ -263,7 +263,7 @@ Player randomPlayerNoDerived(Session session, String c, String a) {
 }
 
 
-Player randomPlayerWithClaspect(Session session, String c, String a) {
+Player randomPlayerWithClaspect(Session session, SBURBClass c, String a) {
     //print("random player");
 
     GameEntity k = session.rand.pickFrom(prototyping_objects);
@@ -296,8 +296,8 @@ Player randomPlayerWithClaspect(Session session, String c, String a) {
 
 Player randomPlayer(Session session) {
     //remove class AND aspect from available
-    String c = session.rand.pickFrom(available_classes);
-    removeFromArray(c, available_classes);
+    SBURBClass c = session.rand.pickFrom(session.available_classes_players);
+    removeFromArray(c, session.available_classes_players);
     String a = session.rand.pickFrom(available_aspects);
     removeFromArray(a, available_aspects);
     return randomPlayerWithClaspect(session, c, a);
@@ -306,7 +306,7 @@ Player randomPlayer(Session session) {
 
 dynamic randomPlayerWithoutRemoving(Session session) {
     //remove class AND aspect from available
-    String c = session.rand.pickFrom(available_classes);
+    SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     //removeFromArray(c, available_classes);
     String a = session.rand.pickFrom(available_aspects);
     //removeFromArray(a, available_aspects);
@@ -316,8 +316,8 @@ dynamic randomPlayerWithoutRemoving(Session session) {
 
 Player randomSpacePlayer(Session session) {
     //remove class from available
-    String c = session.rand.pickFrom(available_classes);
-    removeFromArray(c, available_classes);
+    SBURBClass c = session.rand.pickFrom(session.available_classes_players);
+    removeFromArray(c, session.available_classes_players);
     String a = required_aspects[0];
     return randomPlayerWithClaspect(session, c, a);
 }
@@ -325,8 +325,8 @@ Player randomSpacePlayer(Session session) {
 
 Player randomTimePlayer(Session session) {
     //remove class from available
-    String c = session.rand.pickFrom(available_classes);
-    removeFromArray(c, available_classes);
+    SBURBClass c = session.rand.pickFrom(session.available_classes_players);
+    removeFromArray(c, session.available_classes_players);
     String a = required_aspects[1];
     return randomPlayerWithClaspect(session, c, a);
 }
@@ -378,7 +378,7 @@ Player getLeader(List<Player> playerList) {
 
 
 //in combo sessions, mibht be more than one rage player, for example.
-Player findClaspectPlayer(List<GameEntity> playerList, String class_name, String aspect) {
+Player findClaspectPlayer(List<GameEntity> playerList, SBURBClass class_name, String aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, and they don't have classpects.
         if (g is Player) {
@@ -393,7 +393,7 @@ Player findClaspectPlayer(List<GameEntity> playerList, String class_name, String
 }
 
 
-Player findClassPlayer(List<GameEntity> playerList, String class_name) {
+Player findClassPlayer(List<GameEntity> playerList, SBURBClass class_name) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
@@ -777,7 +777,7 @@ class MiniSnapShot {
 
     num grimDark;
     bool isTroll;
-    String class_name;
+    SBURBClass class_name;
     String aspect;
 
 

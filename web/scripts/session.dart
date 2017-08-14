@@ -86,11 +86,15 @@ class Session {
     bool crashedFromCustomShit = false;
     num democracyStrength = 0;
     Random rand;
+    List<SBURBClass> available_classes_players;
+    List<SBURBClass> available_classes_guardians;
 
 
     Session(int this.session_id) {
         //print("Made a new session with an id of $session_id");
         this.rand = new Random(session_id);
+        this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
+        this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
     }
 
     //  //makes copy of player list (no shallow copies!!!!)

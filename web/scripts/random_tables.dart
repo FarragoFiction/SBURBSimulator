@@ -274,7 +274,7 @@ List<String> getRandomLandFromPlayer(Player player){
 
 
 //handle can either be about interests, or your claspect. each word can be separately origined
-dynamic getRandomChatHandle(Random rand, String class_name, String aspect, String interest1, String interest2){
+dynamic getRandomChatHandle(Random rand, SBURBClass class_name, String aspect, String interest1, String interest2){
 	//print("Class: " + class_name + "aspect: " + aspect);
 	String first = "";
 	var r = rand.nextDouble();
@@ -584,35 +584,35 @@ List<String> interestCategoryToInterestList(interestWord){
 
 
 
-dynamic getInterestHandle1(Random rand, String class_name, String interest){
+dynamic getInterestHandle1(Random rand, SBURBClass class_name, String interest){
 	if(music_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, music_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, music_handles1, class_name.name.toLowerCase()[0]);
 	}else if (culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, culture_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, culture_handles1, class_name.name.toLowerCase()[0]);
 	}else if (writing_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, writing_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, writing_handles1, class_name.name.toLowerCase()[0]);
 	}else if (pop_culture_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles1, class_name.name.toLowerCase()[0]);
 	}else if (technology_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, class_name.name.toLowerCase()[0]);
 	}else if (social_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, social_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, social_handles1, class_name.name.toLowerCase()[0]);
 	}else if (romantic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, romantic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, romantic_handles1, class_name.name.toLowerCase()[0]);
 	}else if (academic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, academic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, academic_handles1, class_name.name.toLowerCase()[0]);
 	}else if (comedy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, comedy_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, comedy_handles1, class_name.name.toLowerCase()[0]);
 	}else if (domestic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, domestic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, domestic_handles1, class_name.name.toLowerCase()[0]);
 	}else if (athletic_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, athletic_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, athletic_handles1, class_name.name.toLowerCase()[0]);
 	}else if (terrible_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, terrible_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, terrible_handles1, class_name.name.toLowerCase()[0]);
 	}else if (fantasy_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles1, class_name.name.toLowerCase()[0]);
 	}else if (justice_interests.indexOf(interest) != -1){
-			return getRandomElementFromArrayThatStartsWith(rand, justice_handles1, class_name.toLowerCase()[0]);
+			return getRandomElementFromArrayThatStartsWith(rand, justice_handles1, class_name.name.toLowerCase()[0]);
 	}
 	print("I didn't return anything!? What was my interest: " + interest);
 	return null;
