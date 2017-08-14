@@ -138,6 +138,9 @@ class Aspect {
     // ##################################################################################################
     // Methods
 
+    /// Sets up associated stats for this Aspect
+    void initAssociatedStats(Player player) {}
+
     /// Executed when a player with this aspect dies.
     /// e.g. Doom prophecies
     void onDeath(Player player) {}

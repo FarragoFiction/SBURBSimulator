@@ -440,7 +440,7 @@ class FraymotifCreator {
       var names = ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
       return rand.pickFrom(names);
   }
- String getRandomNameForAspect(Random rand, String aspect){
+ String getRandomNameForAspect(Random rand, Aspect aspect){
     String ret = "";
     if(aspect == "Blood") ret = this.getRandomBloodName(rand);
     if(aspect == "Mind") ret = this.getRandomMindName(rand);

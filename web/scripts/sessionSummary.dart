@@ -52,7 +52,7 @@ class SessionSummary {
 
     void setMiniPlayers(List<Player> players) {
         for (num i = 0; i < players.length; i++) {
-            this.miniPlayers.add(<String, String>{"class_name": players[i].class_name.name, "aspect": players[i].aspect});
+            this.miniPlayers.add(<String, String>{"class_name": players[i].class_name.name, "aspect": players[i].aspect.name});
         }
     }
 
@@ -730,8 +730,8 @@ class MultiSessionSummary {
             }
 
             if (corpsePartyClasses[ghost.class_name] == null) corpsePartyClasses[ghost.class_name.name] = 0; //otherwise NaN;
-            if (corpsePartyAspects[ghost.aspect] == null) corpsePartyAspects[ghost.aspect] = 0; //otherwise NaN;
-            corpsePartyAspects[ghost.aspect] ++;
+            if (corpsePartyAspects[ghost.aspect] == null) corpsePartyAspects[ghost.aspect.name] = 0; //otherwise NaN;
+            corpsePartyAspects[ghost.aspect.name] ++;
             corpsePartyClasses[ghost.class_name.name] ++;
         }
 

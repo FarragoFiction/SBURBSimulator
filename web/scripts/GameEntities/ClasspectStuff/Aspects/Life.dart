@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Life extends Aspect {
@@ -28,4 +29,10 @@ class Life extends Aspect {
 
     Life(int id):super(id, "Life", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("hp", 2, true));
+        player.associatedStats.add(new AssociatedStat("MANGRIT", 1, true));
+        player.associatedStats.add(new AssociatedStat("alchemy", -2, true));
+    }
 }

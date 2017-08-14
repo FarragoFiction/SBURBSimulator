@@ -339,9 +339,9 @@ dynamic loadPlayer(Player player, String skipInit){
   loadImage(playerToDreamBody(player),skipInit);
 	loadImage(playerToGodBody(player),skipInit);
   loadImage(playerToCowl(player),skipInit);
-	loadImage(player.aspect + ".png",skipInit);
+	loadImage("${player.aspect}.png",skipInit);
 
-	loadImage(player.aspect + "Big.png",skipInit);
+	loadImage("${player.aspect}Big.png",skipInit);
 	loadImage("Hair/hair"+player.hair.toString()+".png",skipInit);
   loadImage("Hair/hair_back"+player.hair.toString()+".png",skipInit);
 

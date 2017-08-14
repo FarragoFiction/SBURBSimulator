@@ -1,7 +1,6 @@
+import 'dart:html';
 import '../SBURBSim.dart';
 import '../navbar.dart';
-import 'dart:html';
-import 'dart:async';
 import '../v2.0/char_creator_helper.dart';
 
 CharCreatorController self;
@@ -19,11 +18,11 @@ void main()
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));
   }else{
-    var tmp = getRandomSeed();
+    int tmp = getRandomSeed();
     self.initial_seed = tmp;
   }
-  querySelector("#button2").onClick.listen((e) => newPlayer());
-  querySelector("#button").onClick.listen((e) => renderURLToSendPlayersIntoSBURB());
+  querySelector("#button2").onClick.listen((Event e) => newPlayer());
+  querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
   SimController.instance.startSession();
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
@@ -84,7 +83,7 @@ class CharCreatorController extends SimController {
   }
 
   void newPlayer(){
-    var p = randomPlayerWithClaspect(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+    Player p = randomPlayerWithClaspect(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
     curSessionGlobalVar.players.add(p);
     if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
     charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
