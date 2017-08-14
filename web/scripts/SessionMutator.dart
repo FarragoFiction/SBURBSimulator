@@ -107,7 +107,64 @@ class SessionMutator {
         TOOD:
         * available players is always all players.
         * all quest chains are active (npc shit)
-
+        * *uses true random instead of seed, for freedom from story
        */
   }
+
+  void light(Session s) {
+    /*TODO
+        *EVERything is displayed, not just void.
+          *   how to do this with code not being js anymore?
+          *   can i co-opt the console printouts to put on screen?
+        * all players are VERY LUCKY
+        * maybe gives everyone almost waste level gnosis...what else?
+        * literal spotlight when rendered, all players set to unavailable except light player, light player is always available
+     */
+  }
+
+  void space(Session s) {
+    /*
+          TODO:
+          * Cccccccombo sessions.   (with "go" button to keep it from being infinite)
+            *   If frog, combo into new session (whether sick or full),
+             *   if no frog and can scratch, combo into scratch
+             *   gets WEIRD if you enter a purple frog (extra squiddle boss fight with savior?)
+     */
+  }
+
+  void hope(Session s) {
+    /* TODO
+        * Facts about session is denised.
+        * Ppl hope player likes are alive,
+        * ppl they dislike are erased entirely (not even in player list)
+        * session health is 111111
+        * rings are owned by hope player
+        * royalty only prototyped weak shit
+        * nobody is murder mode, etc
+        *
+     */
+  }
+
+  void life(Session s) {
+    /*
+        TODO:
+          * Everyone is trickster
+          * makeDead does nothing anymore
+          * anybody dead (including enemies) is brought back
+          *
+     */
+  }
+
+  void doom(Session s) {
+    /*
+      TODO:
+        * all stats flip
+          * healing hurts, hurting heals
+          * all stats are multiplied by -1 so high is bad and low is good.
+          * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
+          * doomed time clones aren't doomed
+     */
+  }
+
+
 }
