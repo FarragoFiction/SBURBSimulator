@@ -457,22 +457,22 @@ class FraymotifCreator {
     if(ret == null || ret.isEmpty) ret = "Null";
     return aspect.fontTag() + ret + "</font>";
   }
-	String getRandomMusicWord(Random rand, String aspect){ //takes in an aspect for color
+	String getRandomMusicWord(Random rand, Aspect aspect){ //takes in an aspect for color
     List<String> names = ["Fortississimo", "Leitmotif", "Liberetto", "Sarabande", "Serenade", "Anthem", "Crescendo", "Vivace", "Encore", "Vivante", "Allegretto", "Fugue", "Choir", "Nobilmente", "Hymn", "Eroico", "Chant", "Mysterioso", "Diminuendo", "Perdendo", "Staccato", "Allegro", "Caloroso", "Nocturne"];
     names.addAll(["Cadenza", "Cadence", "Waltz", "Concerto", "Finale", "Requiem", "Coda", "Dirge", "Battaglia", "Leggiadro", "Capriccio", "Presto", "Largo", "Accelerando", "Polytempo", "Overture", "Reprise", "Orchestra"]);
 
     var ret = rand.pickFrom(names);
     if(rand.nextDouble() > 0.5){
-      return "<span style='color:" + getColorFromAspect(aspect) + "'>" + ret.toLowerCase()+"</span>";  //tacked onto existin word
+      return "<span style='color:${aspect.textColour.toStyleString()}'>${ret.toLowerCase()}</span>";  //tacked onto existin word
     }else{
-      return " " + ret; //extra word
+      return " $ret"; //extra word
     }
   }
 	String tryToGetPreMadeName(Random rand, List<Player> players){
 	  if(players == null || players.isEmpty) return null;
     if(rand.nextDouble() > 0.5) return null; //just use the procedural name.
 
-    if(this.premadeFraymotifNames.length == 0) this.initializePremadeNames();
+    if(this.premadeFraymotifNames.isEmpty) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
         var f = this.premadeFraymotifNames[i];
         var casters = f.getCastersNoOwner(players[0].session.rand, players);
