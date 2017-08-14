@@ -23,7 +23,7 @@ class PlanToExileJack extends Scene {
 		}else if(this.planner == null){
 			this.planner =  findAspectPlayer(living, "Light");
 		}else if(this.planner == null){
-			this.planner =  findClassPlayer(living, "Seer");
+			this.planner =  findClassPlayer(living, SBURBClassManager.SEER);
 		}
 	}
 	dynamic grimChat2(div, player1, player2){

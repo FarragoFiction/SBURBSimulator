@@ -101,7 +101,7 @@ class CharacterCreatorHelper {
 		this.syncPlayerToTextBoxes(player);
 	}
 	void syncPlayerToDropDowns(Player player){
-    (querySelector("#classNameID${player.id}") as SelectElement).value = (player.class_name);
+    (querySelector("#classNameID${player.id}") as SelectElement).value = (player.class_name.name);
     (querySelector("#aspectID${player.id}")as SelectElement).value = (player.aspect);
     (querySelector("#hairTypeID${player.id}")as SelectElement).value = (player.hair.toString());
     (querySelector("#hairColorID${player.id}")as InputElement).value = (player.hairColor);
@@ -360,7 +360,7 @@ class CharacterCreatorHelper {
 
         List<Player> players = dataBytesAndStringsToPlayers(
             b, s, x); //technically an array of one players.;
-        print("Player class name: " + players[0].class_name);
+        print("Player class name: " + players[0].class_name.name);
         player.copyFromPlayer(players[0]);
         that.redrawSinglePlayer(player);
         //should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
@@ -466,7 +466,7 @@ class CharacterCreatorHelper {
 			c2.onChange.listen((Event e)  {
 					//InputElement classDropDown = querySelector('[name="className${player.id}""] option:selected'); //need to get what is selected inside the .change, otheriise is always the same;
           OptionElement classDropDown = c2.selectedOptions[0];
-          player.class_name = classDropDown.value;
+          player.class_name = SBURBClassManager.stringToSBURBClass(classDropDown.value);
 					that.redrawSinglePlayer(player);
 					helpText.setInnerHtml(that.generateHelpText("Class",player.class_name));
 
@@ -789,14 +789,13 @@ class CharacterCreatorHelper {
 	}
 
 	dynamic drawOneClassDropDown(Player player){
-		available_classes = new List<String>.from(classes); //re-init available classes. make deep copy
-	  available_classes.addAll(custom_only_classes);
+
 		String html = "<select id = 'classNameID${player.id}' name='className${player.id}'>";
-		for(int i = 0; i< available_classes.length; i++){
-			if(available_classes[i] == player.class_name){
-				html += '<option  selected = "selected" value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
+		for(int i = 0; i< SBURBClassManager.allClasses.length; i++){
+			if(SBURBClassManager.allClasses[i] == player.class_name){
+				html += '<option  selected = "selected" value="${SBURBClassManager.allClasses[i]}">${SBURBClassManager.allClasses[i]}</option>';
 			}else{
-				html += '<option value="' + available_classes[i] +'">' + available_classes[i]+'</option>';
+				html += '<option value="${SBURBClassManager.allClasses[i]}">${SBURBClassManager.allClasses[i]}</option>';
 			}
 		}
 		html += '</select>';

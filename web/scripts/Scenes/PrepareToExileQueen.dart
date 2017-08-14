@@ -15,8 +15,8 @@ class PrepareToExileQueen extends Scene {
 		var potentials = [findAspectPlayer(this.session.availablePlayers, "Void")];
 		potentials.add(findAspectPlayer(this.session.availablePlayers, "Mind"));
 		potentials.add(findAspectPlayer(this.session.availablePlayers, "Hope"));
-		potentials.add(findClassPlayer(this.session.availablePlayers, "Thief"));
-		potentials.add(findClassPlayer(this.session.availablePlayers, "Rogue"));
+		potentials.add(findClassPlayer(this.session.availablePlayers, SBURBClassManager.THIEF));
+		potentials.add(findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE));
 		this.player =  rand.pickFrom(potentials);
 	}
 

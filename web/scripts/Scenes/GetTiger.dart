@@ -98,7 +98,7 @@ class GetTiger extends Scene{
 		
 		
 
-		if(findClassPlayer(this.deadPlayersToGodTier, "Page") != null){
+		if(findClassPlayer(this.deadPlayersToGodTier, SBURBClassManager.PAGE) != null){
 			ret += " Everyone fails to ignore the Page's outfit. ";
 		}
 

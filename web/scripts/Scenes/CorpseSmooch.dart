@@ -96,7 +96,7 @@ class CorpseSmooch extends Scene {
 		royalty = this.ignoreEnemies(d, royalty);
 		if(royalty == null){
 			//okay, princes are traditional...
-			royalty = findClassPlayer(findLivingPlayers(this.session.availablePlayers), "Prince");
+			royalty = findClassPlayer(findLivingPlayers(this.session.availablePlayers), SBURBClassManager.PRINCE);
 			if(royalty != null && royalty.grimDark  > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}

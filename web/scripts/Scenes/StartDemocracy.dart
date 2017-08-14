@@ -25,7 +25,7 @@ class StartDemocracy extends Scene {
 
 
 	dynamic findSympatheticPlayer(){
-		this.friend =  findClassPlayer(this.session.availablePlayers, "Rogue");
+		this.friend =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE);
 		if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(this.session.availablePlayers, "Hope");
 		}

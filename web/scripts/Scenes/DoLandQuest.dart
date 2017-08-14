@@ -105,7 +105,7 @@ class DoLandQuest extends Scene{
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == "Space"){//this shit is so illegal
-			helper = findClassPlayer(availablePlayers, "Knight");
+			helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
 			}else{

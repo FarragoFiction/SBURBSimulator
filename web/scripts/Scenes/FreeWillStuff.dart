@@ -535,7 +535,7 @@ class FreeWillStuff extends Scene{
 		Player murderer = this.findMurderModePlayerBesides(player);
 		if(murderer != null && !player.isActive() && !murderer.dead && this.isValidTargets([murderer], player) && player.getStat("power") > 25 && this.canInfluenceEnemies(player)){
 			return this.sendPatsyAfterMurderer(player, murderer);
-		}else if(murderer != null && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name) == -1)){  //you haven't killed me recently.
+		}else if(murderer != null && !murderer.dead && (player.causeOfDeath.indexOf(murderer.class_name.name) == -1)){  //you haven't killed me recently.
 			//print(player.title() + " want to kill murdermode player and my causeOfeath is" + player.causeOfDeath +  " and session is: " + this.session.session_id)
 			return this.killMurderer(player, murderer);
 		}

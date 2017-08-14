@@ -17,11 +17,11 @@ class prepareToExileJack extends Scene {
 		if(this.player == null){
 			this.player =  findAspectPlayer(this.session.availablePlayers, "Mind");
 		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, "Thief");
+			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.THIEF);
 		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, "Rogue");
+			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE);
 		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, "Seer");
+			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.SEER);
 		}else if(this.player == null){
 			this.player =  findAspectPlayer(this.session.availablePlayers, "Doom");
 		}else if(this.player == null){

@@ -172,8 +172,7 @@ void processXStuck(){
 	String params1 = window.location.search.substring(0);
 	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
-	var tmp = new List<String>.from(classes);
-	tmp.addAll(custom_only_classes);
+	List<String> tmp = SBURBClassManager.allClassNames;
 	String params = "";
 	if(params1 != null){
 		params = params1;
@@ -334,8 +333,8 @@ void session413(){
 			print("using existing player");
 		}else{
 			print("making new player");
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
 			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
 			player.quirk = randomHumanSim(curSessionGlobalVar.rand, player);
 			player.guardian = guardian;
@@ -368,8 +367,8 @@ void session111111(){
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
 			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand,guardian);
 			player.quirk = randomHumanSim(curSessionGlobalVar.rand,player);
 			player.guardian = guardian;
@@ -400,7 +399,7 @@ void session413IndexToHuman(Player player, int index){
 	player.deriveChatHandle = false;
 	if(index == 0){
 		player.bloodColor = "#ff0000";
-		player.class_name = "Heir";
+		player.class_name = SBURBClassManager.HEIR;
 		player.godDestiny = true;
 		player.aspect = "Breath";
 		player.hair  =3;
@@ -418,7 +417,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = "Derse";
 		player.bloodColor = "#ff0000";
 		player.godDestiny = true;
-		player.class_name = "Seer";
+		player.class_name = SBURBClassManager.SEER;
 		player.land = "Land of Light and Rain";
 		player.aspect = "Light";
 		player.chatHandle = "tentacleTherapist";
@@ -435,7 +434,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 2){
 		player.moon = "Derse";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Knight";
+		player.class_name = SBURBClassManager.KNIGHT;
 		player.land = "Land of Heat and Clockwork";
 		player.aspect = "Time";
 		player.hairColor = "#feffd7";
@@ -453,7 +452,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 3){
 		player.moon = "Prospit";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Witch";
+		player.class_name = SBURBClassManager.WITCH;
 		player.land = "Land of Frost and Frogs";
 		player.aspect = "Space";
 		player.hair  =9;
@@ -472,7 +471,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 4){
 		player.moon = "Prospit";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Maid";
+		player.class_name = SBURBClassManager.MAID;
 		player.godDestiny = true;
 		player.aspect = "Life";
 		player.land = "Land of Crypts and Helium";
@@ -490,7 +489,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 5){
 		player.moon = "Derse";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Rogue";
+		player.class_name = SBURBClassManager.ROGUE;
 		player.land = "Land of Pyramids and Neon";
 		player.aspect = "Void";
 		player.hair  =24;
@@ -509,7 +508,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 6){
 		player.moon = "Derse";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Prince";
+		player.class_name = SBURBClassManager.PRINCE;
 		player.land = "Land of Tombs and Krypton";
 		player.aspect = "Heart";
 		player.hair  =36;
@@ -528,7 +527,7 @@ void session413IndexToHuman(Player player, int index){
 	}else if(index == 7){
 		player.moon = "Prospit";
 		player.bloodColor = "#ff0000";
-		player.class_name = "Page";
+		player.class_name = SBURBClassManager.PAGE;
 		player.land = "Land of Mounds and Xenon";
 		player.aspect = "Hope";
 		player.hair  =37;
@@ -791,12 +790,12 @@ void nepetaQuest(){
 		if(actualRandomNumber > .5 && player.aspect != "Time" && player.aspect != "Space"){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
 			player.aspect = "Heart";
 		}
-		player.class_name = "Rogue";
+		player.class_name = SBURBClassManager.ROGUE;
 		if(guardian.aspect != "Time" && guardian.aspect != "Space"){
 			guardian.aspect = "Heart";
 
 		}
-		guardian.class_name = "Rogue";
+		guardian.class_name = SBURBClassManager.ROGUE;
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
@@ -953,8 +952,8 @@ void session613(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
 			player.initialize();
             guardian.initialize();
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
@@ -990,8 +989,8 @@ void session612(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
 			player.initialize();
             guardian.initialize();
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand,guardian);
@@ -1593,8 +1592,8 @@ void session1025(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,"Page", "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
 			player.quirk = randomTrollSim(curSessionGlobalVar.rand,player);
 			//curSessionGlobalVar.guardians.add(guardian);

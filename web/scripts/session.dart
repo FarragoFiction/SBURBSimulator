@@ -93,8 +93,12 @@ class Session {
     Session(int this.session_id) {
         //print("Made a new session with an id of $session_id");
         this.rand = new Random(session_id);
-        this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
-        this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
+       resetAvailableClasses();
+    }
+
+    void resetAvailableClasses() {
+      this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
+      this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
     }
 
     //  //makes copy of player list (no shallow copies!!!!)
@@ -335,9 +339,7 @@ class Session {
 
     void makePlayers() {
         this.players = <Player>[];
-        available_classes = classes.sublist(0); //re-initPlayers available classes.
-        available_classes_guardians = classes.sublist(0);
-        available_aspects = nonrequired_aspects.sublist(0);
+        resetAvailableClasses();
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
         this.players.add(randomSpacePlayer(this));
         this.players.add(randomTimePlayer(this));
@@ -392,7 +394,7 @@ class Session {
 
     void makeGuardians() {
         //print("Making guardians");
-        available_classes = new List<String>.from(classes);
+        resetAvailableClasses();
         available_aspects = new List<String>.from(nonrequired_aspects);
         available_aspects.addAll(new List<String>.from(required_aspects));
         List<Player> guardians = <Player>[];

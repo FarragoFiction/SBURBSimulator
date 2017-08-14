@@ -84,7 +84,7 @@ class CharCreatorController extends SimController {
   }
 
   void newPlayer(){
-    var p = randomPlayerWithClaspect(curSessionGlobalVar,"Page", "Void");
+    var p = randomPlayerWithClaspect(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
     curSessionGlobalVar.players.add(p);
     if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
     charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);

@@ -19,11 +19,11 @@ class JackBeginScheming extends Scene {
 		var living = findLivingPlayers(this.session.players);
 		this.friend =  findAspectPlayer(living, "Blood");
 		if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(living, "Page");
+			this.friend =  findClassPlayer(living, SBURBClassManager.PAGE);
 		}else if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(living, "Thief");
+			this.friend =  findClassPlayer(living, SBURBClassManager.THIEF);
 		}else if(this.friend == null || this.friend.land == null){
-			this.friend =  findClassPlayer(living, "Rogue");
+			this.friend =  findClassPlayer(living, SBURBClassManager.ROGUE);
 		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(living, "Hope");
 		}else{

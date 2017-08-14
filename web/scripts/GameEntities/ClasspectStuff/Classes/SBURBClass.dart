@@ -67,6 +67,14 @@ class SBURBClassManager {
   static Iterable<SBURBClass> get canon => _classes.where((SBURBClass c) => c.isCanon);
   static Iterable<SBURBClass> get fanon => _classes.where((SBURBClass c) => !c.isCanon);
 
+  static List<String> get allClassNames{
+      List<String> ret = new List<String>();
+      for(SBURBClass c in _classes) {
+        ret.add(c.name); //in ruby i'd map one list to another, not sure what dart equivalent without forloop is
+      }
+      return ret;
+  }
+
   static void addClass(SBURBClass c) {
       _classes.add(c);
   }
@@ -78,6 +86,13 @@ class SBURBClassManager {
         if(c.id == id) return c;
       }
       return NULL;
+  }
+
+  static SBURBClass stringToSBURBClass(String id) {
+    for(SBURBClass c in _classes) {
+      if(c.name == id) return c;
+    }
+    return NULL;
   }
 
 }
