@@ -12,6 +12,27 @@ class Doom extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Doom', 'Hades', 'Achlys', 'Cassandra', 'Osiris', 'Ananke', 'Thanatos', 'Moros', 'Iapetus', 'Themis', 'Aisa', 'Oizys', 'Styx', 'Keres', 'Maat', 'Castor and Pollux', 'Anubis', 'Azrael', 'Ankou', 'Kapre', 'Moros', 'Atropos', 'Oizys', 'Korne', 'Odin']);
 
+    @override
+    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
+        "calculating the exact moment a planet quake will destroy a consort village with enough time remaining to perform evacuation",
+        "setting up increasingly complex Rube Goldberg machines to defeat all enemies in a dungeon at once",
+        "obnoxiously memorizing the rules of a minigame, and then blatantly  abusing them to achieve an otherwise impossible victory"
+    ]);
+    @override
+    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
+        "assuring the local consorts that with Denizen's defeat, the prophecy has been avoided",
+        "establishing an increasingly esoteric rubric of potential post-Denizen problems and relating them in detail to the consorts. Doom players sure are cheery",
+        "inferring the new possibilities of defeat should the local consorts lack vigilance",
+        "finding a worryingly complete list of their own future deaths, both potential and definite"
+    ]);
+
+    @override
+    List<String> denizenQuests = new List<String>.unmodifiable(<String>[
+        "listening to consorts relate a doomsday prophecy that will take place soon",
+        "realizing technicalities in the doomsday prophecy that would allow it to take place but NOT doom everyone",
+        "narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything"
+    ]);
+
     Doom(int id):super(id, "Doom", isCanon:true);
 
     @override

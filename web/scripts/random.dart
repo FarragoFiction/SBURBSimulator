@@ -32,7 +32,7 @@ class Random implements Math.Random {
 	bool nextBool() => this._impl.nextBool();
 
 	@override
-	double nextDouble() => this._impl.nextDouble();
+	double nextDouble([double max = 1.0]) => this._impl.nextDouble() * max;
 
 	// new stuff #######################################
 
@@ -42,8 +42,8 @@ class Random implements Math.Random {
 
 	int nextIntRange(int min, int max) => this.nextInt(max-min) + min;
 
-	T pickFrom<T>(List<T> list) {
+	T pickFrom<T>(Iterable<T> list) {
 		if (list.isEmpty) { return null; }
-		return list[this.nextInt(list.length)];
+		return list.elementAt(this.nextInt(list.length));
 	}
 }

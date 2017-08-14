@@ -201,7 +201,7 @@ bool printCorruptionMessage(ErrorEvent e) {
 
         String words = curSessionGlobalVar.rand.pickFrom(rand);
         words = Zalgo.generate(words);
-        String plea = "${start}style = 'color: ${getColorFromAspect(player.aspect)}; $end$str$words</b>";
+        String plea = "${start}style = 'color: ${player.aspect.textColour.toStyleString()}; $end$str$words</b>";
 
         appendHtml(story, plea);
     }

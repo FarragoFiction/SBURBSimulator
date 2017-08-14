@@ -5,6 +5,27 @@ class Light extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Light', 'Helios', 'Ra', 'Cetus', 'Iris', 'Heimdall', 'Apollo', 'Coeus', 'Hyperion', "Belobog", 'Phoebe', 'Metis', 'Eos', 'Dagr', 'Asura', 'Amaterasu', 'Sol', 'Tyche', 'Odin ', 'Erutuf']);
 
+    @override
+    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
+        "winning at increasingly unfair gambling challenges",
+        "researching way too much lore and minutia to win at trivia contests",
+        "explaining how to play a mini game to particularly stupid consorts until they finally get it"
+    ]);
+    @override
+    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
+        "distracting underlings by with over the top displays of their game powers",
+        "teaching the local consorts how to count cards without eating them.",
+        "educating themselves on the consequences of betting against the house. As it happens, there are no consequences.",
+        "collecting the complete history and mythos of their land into an easy to navigate 1,000 volume encyclopedia."
+    ]);
+
+    @override
+    List<String> denizenQuests = new List<String>.unmodifiable(<String>[
+        "realizing the the entire point of SBURB has been a lie",
+        "learning the true purpose of SBURB",
+        "realizing just how important frogs and grist and the Ultimate Alchemy truly are"
+    ]);
+
     Light(int id):super(id, "Light", isCanon:true);
 
 }

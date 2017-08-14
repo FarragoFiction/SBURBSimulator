@@ -17,4 +17,6 @@ class Page extends SBURBClass {
     return powerBoost;
   }
 
+  @override
+  double powerBoostMultiplier = 5.0; //they don't have many quests, but once they get going they are hard to stop.
 }

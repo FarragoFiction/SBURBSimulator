@@ -350,7 +350,7 @@ var fortune_objects = [
 
 
 //////////////////////lusii are a little stronger in general
-List<dynamic> lusus_objects = [
+List<GameEntity> lusus_objects = [
   new PotentialSprite("Hoofbeast",null)
   ..lusus = true
   ..setStatsHash({"power": 30}),
@@ -546,7 +546,7 @@ List<PotentialSprite> sea_lusus_objects = [
 ];
 
 //regular
-List<dynamic> prototyping_objects = [
+List<GameEntity> prototyping_objects = [
   new PotentialSprite(Zalgo.generate("Buggy As Fuck Retro Game"),null)
     ..setStatsHash({"power": 20})
     ..corrupted = true //no stats, just corrupted. maybe a fraymotif later.

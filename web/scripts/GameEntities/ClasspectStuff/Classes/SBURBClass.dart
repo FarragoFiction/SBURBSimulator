@@ -127,6 +127,9 @@ class SBURBClass {
     //do nothing.
   }
 
+  /// Multiplier for Player.increasePower. e.g. Pages get 5.0.
+  double powerBoostMultiplier = 1.0;
+
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     return powerBoost; //does nothing.
   }

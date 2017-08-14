@@ -767,167 +767,17 @@ dynamic getLevelFromAspect(num i, String aspect){
 	return first_arr[i];
 }
 
-
-
-dynamic getLevelFromClass(int i, SBURBClass class_name){
+String getLevelFromClass(int i, SBURBClass class_name){
 	return class_name.levels[i];
 }
 
-
-
-dynamic getRandomDenizenQuestFromAspect(player){
-	//print("looking for level from aspect");
-	List<dynamic> first_arr = [];
-	var aspect = player.aspect;
-	if(aspect == "Space"){
-		first_arr = denizen_space_quests;
-	}else if(aspect == "Time"){
-		first_arr = denizen_time_quests;
-	}else if(aspect == "Breath"){
-		first_arr = denizen_breath_quests;
-	}else if(aspect == "Doom"){
-		first_arr = denizen_doom_quests;
-	}else if(aspect == "Blood"){
-		first_arr = denizen_blood_quests;
-	}else if(aspect == "Heart"){
-		first_arr = denizen_heart_quests;
-	}else if(aspect == "Mind"){
-		first_arr = denizen_mind_quests;
-	}else if(aspect == "Light"){
-		first_arr = denizen_light_quests;
-	}else if(aspect == "Void"){
-		first_arr = denizen_void_quests;
-	}else if(aspect == "Rage"){
-		first_arr = denizen_rage_quests;
-	}else if(aspect == "Hope"){
-		first_arr = denizen_hope_quests;
-	}else if(aspect == "Life"){
-		first_arr = denizen_life_quests;
-	}
-	if(player.denizen_index > first_arr.length -1 ){
-		throw(player.title() + " denizen index too high: " + curSessionGlobalVar.session_id);
-	}
-	var ret = first_arr[player.denizen_index];
-	//print(ret);
-	player.denizen_index ++;
-	return ret;
+String truncateString(String str, int length) {
+	return str.length > length ? "${str.substring(0, length > 3 ? length - 3 : length)}..." : str;
 }
-
-
-
-
-dynamic getRandomQuestFromAspect(Random rand, String aspect, bool postDenizen){
-	//print("looking for level from aspect");
-	List<dynamic> first_arr = [];
-	if(aspect == "Space"){
-		if(!postDenizen) first_arr = space_quests;
-		if(postDenizen) first_arr = postdenizen_space_quests;
-	}else if(aspect == "Time"){
-		if(!postDenizen) first_arr = time_quests;
-		if(postDenizen) first_arr = postdenizen_time_quests;
-	}else if(aspect == "Breath"){
-		if(!postDenizen) first_arr = breath_quests;
-		if(postDenizen) first_arr = postdenizen_breath_quests;
-	}else if(aspect == "Doom"){
-		if(!postDenizen) first_arr = doom_quests;
-		if(postDenizen) first_arr = postdenizen_doom_quests;
-	}else if(aspect == "Blood"){
-		if(!postDenizen) first_arr = blood_quests;
-		if(postDenizen) first_arr = postdenizen_blood_quests;
-	}else if(aspect == "Heart"){
-		if(!postDenizen) first_arr = heart_quests;
-		if(postDenizen) first_arr = postdenizen_heart_quests;
-	}else if(aspect == "Mind"){
-		if(!postDenizen) first_arr = mind_quests;
-		if(postDenizen) first_arr = postdenizen_mind_quests;
-	}else if(aspect == "Light"){
-		if(!postDenizen) first_arr = light_quests;
-		if(postDenizen) first_arr = postdenizen_light_quests;
-	}else if(aspect == "Void"){
-		if(!postDenizen) first_arr = void_quests;
-		if(postDenizen) first_arr = postdenizen_void_quests;
-	}else if(aspect == "Rage"){
-		if(!postDenizen) first_arr = rage_quests;
-		if(postDenizen) first_arr = postdenizen_rage_quests;
-	}else if(aspect == "Hope"){
-		if(!postDenizen) first_arr = hope_quests;
-		if(postDenizen) first_arr = postdenizen_hope_quests;
-	}else if(aspect == "Life"){
-		if(!postDenizen) first_arr = life_quests;
-		if(postDenizen) first_arr = postdenizen_life_quests;
-	}
-	return rand.pickFrom(first_arr);
-}
-
-
-
-String truncateString(str, num) {
-	return str.length > num ?
-	str.substring(0, num > 3 ? num - 3 : num) + "..." :
-	str;
-}
-
 
 String sanitizeString(String string){
 	return truncateString(string.replaceAll(new RegExp(r"""<(,?:.|\n)*?>""", multiLine:true), '').replaceAll(new RegExp(",", multiLine:true),''), 144); //good enough for twitter.
 }
-
-
-
-
-/**
- * Returns a random integer between min (inclusive) and max (inclusive)
- * Using Math.round() will give you a non-uniform distribution!
- */
-/*int rand.nextIntRange(min, max) {
-    return (rand.nextDouble() * (max - min + 1)).floor() + min;
-}
-
-int getRandomIntNoSeed(min, max) {
-    return (random() * (max - min + 1)).floor() + min;
-}*/
-
-//
-//using a seed will let me make the simulations predictable. This enables sharing AND bullshit cloud predictions.
-//and stable time loops. and god, i'm getting the vapors here.
-/*num getRandomSeed() {
-	//print("getting a random seed, probably to reinit the seed");
-	num min = 0;
-	var max = 413*612*1025;
-    return (random() * (max - min + 1)).floor() + min;
-}*/
-
-
- //I am in love:  http://indiegamr.com/generate-repeatable-random-numbers-in-js/
-// in order to work 'Math.seed' must NOT be undefined,
-// so in any case, you HAVE to provide a Math.seed
-//this only gave be 200k random numbers. upgarding.
-/*seededRandomOld = (max, min) {
-	//print("getting seeded random");
-    max = max || 1;
-    min = min || 0;
-
-    Math.seed = (Math.seed * 9301 + 49297) % 233280;
-    var rnd = Math.seed / 233280;
-
-    return min + rnd * (max - min);
-}*/
-////https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use if i want to have more possible sessions, use 2^32 or 2^64. see wiki
-//have modulus be 2^32 (4294967296), a = 1664525, c = 1013904223
-/*seededRandom = (max, min){
-	/*random_number = (lcg.previous * a + c) % modulus;
-    lcg.previous = random_number;
-    return random_number;
-	*/
-	max = max || 1;
-    min = min || 0;
-	Math.seed = (Math.seed * 1664525 + 1013904223) % 4294967296;
-    var rnd = Math.seed / 4294967296;
-
-    return min + rnd * (max - min);
-}*/
-
-
 
 List<T> randomFromTwoArrays<T>(Random rand, List<T> arr1, List<T> arr2){
 	if(rand.nextDouble() > .5){
@@ -936,8 +786,6 @@ List<T> randomFromTwoArrays<T>(Random rand, List<T> arr1, List<T> arr2){
 		return [rand.pickFrom(arr1), rand.pickFrom(arr2)];
 	}
 }
-
-
 
 List<T> randomFromTwoArraysOrdered<T>(Random rand, List<T> arr1, List<T> arr2){
 	return [rand.pickFrom(arr1), rand.pickFrom(arr2)];
@@ -1168,113 +1016,11 @@ List<String> justice_levels = ["JUSTICE JUICER","BALANCE RUMBLER"];
 List<String> level_bg_colors = ["#8ff74a","#ba1212","#ffffee","#f0ff00","#9c00ff","#2b6ade","#003614","#f8e69f","#0000ff","#eaeaea","#ff9600","#581212","#ffa6ac","#1f7636","#ffe1fc","#fcff00"];
 List<String> level_font_colors = ["#264d0c","#ff00d2","#ff0000","#626800","#da92e0","#022e41","#aaffa6","#000052","#6dffdb","#e5d200","#00911b","#ff0000","#5e005f","#fbff8d","#000000","#"];
 
-List<String> space_quests = ["seeking out out potential Frog sources"]
-	..add("restoring a half-ruined Frog shrine in the wilds of the Land")
-	..add("interogating consorts as to what the point of Frogs even is")
-	..add("navigating one's way through a deudly dungeon in complete darkness, relying only on one's spatial senses");
-List<String> time_quests = ["manipulating the local stock exchange through a series of cunningly disguised time doubles"]
-	..add("stopping a variety of disasters from happening before even the first player enters the medium")
-	..add("cheating at obstacle course time trials to get a finishing value of exactly 0.0 seconds");
-List<String> breath_quests = ["putting out fires in consort villages through serendipitous gales of wind"]
-	..add("delivering mail through a complicated series of pneumatic tubes")
-	..add("paragliding through increasingly elaborate obstacle courses to become the champion (it is you)");
-List<String> doom_quests = ["calculating the exact moment a planet quake will destroy a consort village with enough time remaining to perform evacuation"]
-	..add("setting up increasingly complex Rube Goldberg machines to defeat all enemies in a dungeon at once")
-	..add("obnoxiously memorizing the rules of a minigame, and then blatantly  abusing them to achieve an otherwise impossible victory");
-List<String> blood_quests = ["uniting warring consort nations against a common enemy"]
-	..add("organizing 5 bickering consorts long enough to transverse a dungeon with any degree of competence")
-	..add("learning the true meaning of this human disease called friendship");
-List<String> heart_quests = ["providing a matchmaking service for the local consorts (ships guaranteed)"]
-	..add("doing battle with shadow clones that are eventually defeated when you accept them as a part of you")
-	..add("correctly picking out which item represents them out of a vault of a thousand bullshit shitty stuffed animals");
-List<String> mind_quests = ["manipulating the local consorts into providing dungeon clearing services"]
-	..add("presiding over increasingly hard consort court cases, punishing the guilty and pardoning the innocent")
-	..add("pulling pranks as a minigame, with bonus points awarded for pranks performed on those who 'had it coming'");
-List<String> light_quests = ["winning at increasingly unfair gambling challenges"]
-	..add("researching way too much lore and minutia to win at trivia contests")
-	..add("explaining how to play a mini game to particularly stupid consorts until they finally get it");
-List<String> void_quests = ["destroying and/or censoring embarrassing consort records"]
-	..add("definitely doing quests, just...not where we can see them")
-	..add("playing a hilariously fun boxing minigame");
-List<String> rage_quests = ["fighting hordes upon hordes of enemies in increasingly unfair odds until defeating them all in a berserk rage"] //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
-	..add("figuring out increasingly illogical puzzles until lateral thinking becomes second nature")
-	..add("dealing with the most annoying dungeon challenges ever, each more irritating and aneurysm inducing than the last");
-List<String> hope_quests = ["performing bullshit acts of faith, like walking across invisible bridges"]
-	..add("becoming the savior of the local consorts, through fulfillment of various oddly specific prophecies")
-	..add("brainstorming a variety of ways the local consorts can solve their challenges");
-List<String> life_quests = ["coaxing the fallow farms of the local consorts into becoming fertile"]
-	..add("healing a seemingly endless parade of stricken consorts")
-	..add("finding and rescuing consort children trapped in a burning building");
-
-
-
-
 //if bike quests are too common, lock them to real selves only, no dream selves.
 List<String> bike_quests = ["performing the SWEETEST bike stunts in all of SBURB", "doing bike stunts so sick they are illegal by Dersite standards", "doing bike stunts with air so unreal time just stops and everybody wishes to be them", "performing an endless grind on prospit's moon chain"]
 	..add("getting air so unreal that they jump from one planet to another on their sick nasty bike")
 	..add("writing dope as fuck Bike Stunt FAQs to keep their sanity")
 	..add("singing a song, you know, from that shitty kids cartoon? 'wake up in the morning there's a brand new day ahead the sun is bright and the clouds smile down and all your friends are dead '");
-
-
-List<String> denizen_space_quests = ["trying to figure out why the Forge is unlit"]
-	..add("clearing various bullshit obstacles to lighting the Forge")
-	..add("lighting the Forge");  //TODO requires a magic ring.
-
-List<String> denizen_time_quests = ["searching through time for an unbroken legendary piece of shit weapon"]
-	..add("realizing that the legendary piece of shit weapon was broken WAY before they got here")
-	..add("alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus");
-
-List<String> denizen_breath_quests = ["realizing that the Denizen has thoroughly clogged up the pneumatic system"]
-	..add("trying to manually unclog the pneumatic system")
-	..add("using Breath powers to unclog the pneumatic system");
-
-List<String> denizen_doom_quests = ["listening to consorts relate a doomsday prophecy that will take place soon"]
-	..add("realizing technicalities in the doomsday prophecy that would allow it to take place but NOT doom everyone")
-	..add("narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything");
-
-List<String> denizen_blood_quests = ["convincing the local consorts to rise up against the Denizen"]
-	..add(" give unending speeches about the power of friendship and how they are all fighting for loved ones back home to confused and impressionable consorts")
-	..add("completely overthrowing the Denizen's underlings in a massive battle");
-
-List<String> denizen_heart_quests = ["starting an underground rebel group to free the consorts from the oppressive underling government"]
-	..add("having a huge public protest against the underling government, displaying several banned fashion items")
-	..add("convincing the local consorts that the only thing that can stifle their identity is their own fear");
-
-List<String> denizen_mind_quests = ["learning of the systemic corruption in the local consort's justice system"]
-	..add("rooting out corrupt consort officials, and exposing their underling backers")
-	..add("setting up a self-sufficient consort justice system");
-
-
-List<String> denizen_light_quests = ["realizing the the entire point of SBURB has been a lie"]
-	..add("learning the true purpose of SBURB")
-	..add("realizing just how important frogs and grist and the Ultimate Alchemy truly are");
-
-
-List<String> denizen_void_quests = ["???"]
-	..add("[redacted]")
-	..add("[void players, am I right?]");
-
-//http://rumkin.com/tools/cipher/atbash.php (thinking of lOSS here)
-//var denizen_rage_quests = ["~~~You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.~~~"]; //
-//denizen_rage_quests.add("~~~ The denizen, Bacchus, thinks that grammar is important. That rules are important. That so much is important. You'll show him. ~~~");
-//denizen_rage_quests.add("~~~ Nothing makes sense here anymore. Just the way you like it. The consorts are whipped into a frothing fury. Bacchus is awake.  ~~~");
-
-var denizen_rage_quests = ["~~~You can't believe how vzhb it is. You just have to go... a little xizab. Zmw gsvm, suddenly, rg all makes sense, zmw everything blf wl gfimh gl gold. ~~~"] //
-	..add("~~~ Gsv denizen, XXXXXX, gsrmph gszg grammar rh important. Gszg rules ziv important. Gszg hl nfxs rh rnkligzmg. You'll show him.  ~~~")
-	..add("~~~ Mlgsrmt nzpvh hvmhv sviv zmbnliv. Qfhg gsv dzb blf orpv rg. Gsv xlmhligh ziv dsrkkvw rmgl z uilgsrmt ufib. XXXXXX rh zdzpv.   ~~~");
-
-
-var denizen_hope_quests = ["realizing that the consorts real problem is their lack of morale"]
-	..add("inspiring impressionable consorts who then go on to inspire others ")
-	..add("defeating the underling that was causing the local consorts to not believe in themselves");
-
-var denizen_life_quests = ["defeating an endless array of locust underlings"]
-	..add("realizing that Hemera is somehow spawning the endless hoard of locust underlings ")
-	..add("preventing the next generation of locust underlings, thus ending the consort famine");
-
-
-
-
 
 /*
 this.goodMild = "Friends";
@@ -1353,7 +1099,7 @@ var terrible_interests = ["Arson","Clowns", "Treasure","Money","Violence", "Deat
 var fantasy_interests = ["Wizards", "Horrorterrors", "Mermaids", "Unicorns", "Science Fiction", "Fantasy","Ninjas","Aliens","Conspiracies","Faeries", "Elves", "Vampires", "Undead"];
 var justice_interests = ["Social Justice","Detectives","Mysteries","Leadership","Revolution","Justice","Equality","Sherlock Holmes"];
 
-List<dynamic> interests = []
+List<String> interests = []
 	..addAll(music_interests)
 	..addAll(culture_interests)
 	..addAll(writing_interests)
@@ -1465,83 +1211,6 @@ var athletic_handles2 = ["Swimmer","Trainer","Baller","Handler","Runner","Leaper
 var terrible_handles2 = ["Butcher","Blasphemer","Barbarian","Tyrant","Superior","Bastard","Dastard","Despot","Bitch","Horror","Victim","Hellhound","Devil","Demon","Shark","Lupin", "Mindflayer","Mummy","Hoarder","Demigod"];
 var fantasy_handles2 = ["Believer","Dragon","Magician","Sandman","Shinigami","Tengu","Harpy","Dwarf","Vampire","Lamia","Roc","Mermaid","Siren","Manticore","Banshee","Basilisk","Boggart"];
 var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liaison","Vigilante","Tracker","Moralist","Retribution","Watchman","Searcher","Perception","Rebel"];
-
-
-
-
-
-
-var postdenizen_space_quests = ["stoking the forge and preparing to create a new universe"]
-	..add("cloning ribbiting assholes till you’re up to your eyeballs in frogs")
-	..add("cleaning up volcanic debris from the Forge. Man that magma is hot")
-	..add("alchemizing geothermal power infrastructure for the consort villagers. The local consorts babble excitedly at indoor lightning ")
-	..add("making sure they don't accidentally clone a toad instead of a frog by mistake")
-	..add("messing with a variety of frogs that were previously paradox cloned")
-	..add("paradox cloning a variety of frogs, after making a serious note to mess with them later")
-	..add("combining paradox slime from multiple frogs together to make paradox offspring")
-	..add("listening to the ridiculously similar croaks of cloned frogs to figure out where their flaws are");
-
-var postdenizen_time_quests = ["securing the alpha timeline and keeping the corpse pile from getting any taller"]
-	..add("high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect")
-	..add("restoring the consort’s destroyed villages through time shenanigans. The consorts boggle at their newly restored houses")
-	..add("building awesome things way in the past for themselves to find later");
-
-
-
-var postdenizen_breath_quests = ["riding the wind through the pneumatic system, delivering packages to the local consorts"]
-	..add("doing the windy thing to clean up all of the pneumatic system’s leavings. Wow, that’s a lot of junk")
-	..add("soothing the local consorts with a cool summer breeze")
-	..add("whipping up a flurry of wind, the debris of Denizen rampage are blown far into the Outer Rim");
-
-var postdenizen_doom_quests = ["assuring the local consorts that with Denizen's defeat, the prophecy has been avoided"]
-	..add("establishing an increasingly esoteric rubric of potential post-Denizen problems and relating them in detail to the consorts. Doom players sure are cheery")
-	..add("inferring the new possibilities of defeat should the local consorts lack vigilance")
-	..add("finding a worryingly complete list of their own future deaths, both potential and definite");
-
-var postdenizen_blood_quests = ["undoing the last remnants of Denizen-inflicted emotional damage in the consorts"]
-	..add("putting together a crack team of emotionally bonded consorts to help the recovery of their land")
-	..add("weeping tears of joy as their consorts manage to help each other instead of running to a player anytime the smallest thing goes wrong")
-	..add("preaching a resounding message of ‘don't be a total dick all the time’ to a clamoring crowd of consorts");
-
-var postdenizen_heart_quests = ["rescuing a copy of themselves from extreme peril"]
-	..add("creating clones of themselves to complete a variety of bullshit puzzles and fights")
-	..add("swapping around the souls of underlings, causing mass mayhem")
-	..add("removing the urge to kill from the identity of underlings, rendering them harmless pacifists");
-
-var postdenizen_mind_quests = ["forcing mini bosses to choose between two equally horrible options "]
-	..add("binding the minds of ogres and using them as battle mounts")
-	..add("manipulating underlings into madness and infighting")
-	..add("navigating the countless possible outcomes of whatever bullhit colour the local consorts want to repaint this temple. Great use of their time!");
-
-var postdenizen_light_quests = ["distracting underlings by with over the top displays of their game powers"]
-	..add("teaching the local consorts how to count cards without eating them.")
-	..add("educating themselves on the consequences of betting against the house. As it happens, there are no consequences. ")
-	..add("collecting the complete history and mythos of their land into an easy to navigate 1,000 volume encyclopedia.");
-
-var postdenizen_void_quests = ["Wait, yes! The Void player is… nope. They’re gone."]
-	..add("doing something about their land, but it’s difficult to make out.")
-	..add("fixing temples from the ravages of… something? It’s a best guess. Those temples were totally ravaged a minute ago though.")
-	..add("somehow just doing normal quests with no void interference whatsoever. Huh");
-
-var postdenizen_rage_quests = ["ripping underlings apart with loud, violent screams"]
-	..add("throwing the mother of all temper tantrums")
-	..add("fighting through millions of enemies in search of the fabled ‘chill-pill’")
-	..add("ripping a mini boss a literal new one. Ouch");
-
-var postdenizen_hope_quests = ["leading a huge army of zealous consorts into battle"]
-	..add("learning ancient chants and forgotten mythos of their lands strange almost-religion")
-	..add("willing enemies out of existence with but a thought")
-	..add("winning an argument with gravity");
-
-var postdenizen_life_quests = ["using the Denizen's lair to breed thousands of pollinating insects"]
-	..add("breeding a strain of plant that spreads across the planet in seconds")
-	..add("terraforming their land to be more suited to their desires")
-	..add("resurrecting an ancient civilization of consorts, complete with buildings and culture");
-
-
-
-
-
 
 var human_hair_colors = ["#68410a","#fffffe", "#000000","#000000","#000000","#f3f28d","#cf6338","#feffd7","#fff3bd","#724107","#382207","#ff5a00","#3f1904","#ffd46d","#473200","#91683c"];
 

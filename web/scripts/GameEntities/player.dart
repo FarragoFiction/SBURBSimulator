@@ -556,10 +556,10 @@ class Player extends GameEntity {
     String getRandomQuest() {
         if (this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false) { //three quests before denizen
             //print("denizen quest");
-            return getRandomDenizenQuestFromAspect(this); //denizen quests are aspect only, no class.
+            return this.aspect.getDenizenQuest(this); //denizen quests are aspect only, no class.
         } else if ((this.landLevel < 9 || this.denizen_index >= 3) && this.denizenDefeated == false) { //can do more land quests if denizen kicked your ass. need to grind.
             if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
-                return getRandomQuestFromAspect(this.session.rand, this.aspect, false);
+                return this.aspect.getRandomQuest(rand, denizenDefeated);
             } else {
                 return this.class_name.getQuest(rand, false);
             }
@@ -567,7 +567,7 @@ class Player extends GameEntity {
             //print("post denizen quests " +this.session.session_id);
             //return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
             if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
-                return getRandomQuestFromAspect(this.session.rand, this.aspect, true);
+                return this.aspect.getRandomQuest(rand, denizenDefeated);
             } else {
               return this.class_name.getQuest(rand, true);
             }
@@ -832,7 +832,7 @@ class Player extends GameEntity {
     //TODO this will be sburb lore.
     bool knowsAboutSburb() {
         //time might not innately get it, but they have future knowledge
-        bool rightClass = this.class_name == "Sage" || this.class_name == "Scribe" || this.class_name == "Seer" || this.class_name == "Mage" || this.aspect == "Light" || this.aspect == "Mind" || this.aspect == "Doom" || this.aspect == "Time";
+        bool rightClass = this.class_name == SBURBClassManager.SAGE || this.class_name == SBURBClassManager.SCRIBE || this.class_name == SBURBClassManager.SEER || this.class_name == SBURBClassManager.MAGE || this.aspect == Aspects.LIGHT || this.aspect == Aspects.MIND || this.aspect == Aspects.DOOM || this.aspect == Aspects.TIME;
         return rightClass && this.getStat("power") > 20; //need to be far enough in my claspect
     }
 
@@ -967,7 +967,7 @@ class Player extends GameEntity {
     }
 
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-       this.class_name.modPowerBoostByClass(powerBoost, stat);
+       return this.class_name.modPowerBoostByClass(powerBoost, stat);
     }
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
@@ -984,18 +984,13 @@ class Player extends GameEntity {
     }
 
     @override
-    void increasePower([num magnitude = 1, cap = 5.1]) {
+    void increasePower([num magnitude = 1, num cap = 5.1]) {
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
         //print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
-        num powerBoost = magnitude; //1; // oh man, ghost channellers are going to get absolutely RIPPED from this -PL
-
-        if (this.class_name == "Page") { //they don't have many quests, but once they get going they are hard to stop.
-            powerBoost = powerBoost * 5;
-        }
-
+        num powerBoost = magnitude * this.class_name.powerBoostMultiplier * this.aspect.powerBoostMultiplier; // this applies the page 5x mult
 
         if (this.godTier) {
             powerBoost = powerBoost * 10; //god tiers are ridiculously strong.

@@ -110,6 +110,9 @@ class Aspect {
     /// Values >= 1.0 yield only aspect quests.
     double aspectQuestChance = 0.5;
 
+    /// Multiplier to Player.increasePower magnitude.
+    double powerBoostMultiplier = 1.0;
+
     // ##################################################################################################
     // Colours
 
@@ -119,6 +122,11 @@ class Aspect {
     // Lists
 
     List<String> denizenNames = new List<String>.unmodifiable(<String>["ERROR 404: DENIZEN NOT FOUND"]);
+
+    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[]);
+    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[]);
+
+    List<String> denizenQuests = new List<String>.unmodifiable(<String>[]);
 
     // ##################################################################################################
     // Constructor
@@ -134,7 +142,20 @@ class Aspect {
     /// e.g. Doom prophecies
     void onDeath(Player player) {}
 
-    /// Returns an opening font tag with the class text colour
+    String getRandomQuest(Random rand, bool denizenDefeated) {
+        return rand.pickFrom(denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
+    }
+
+    String getDenizenQuest(Player player) {
+        if(player.denizen_index > this.denizenQuests.length ){
+            throw("${player.title()} denizen index too high: ${player.session.session_id}");
+        }
+        String quest = this.denizenQuests[player.denizen_index];
+        player.denizen_index ++;
+        return quest;
+    }
+
+    /// Returns an opening font tag with the class text colour.
     String fontTag() {
         return "<font color='${this.textColour.toStyleString()}'> ";
     }
