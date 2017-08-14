@@ -13,10 +13,10 @@ num player2Score = 0;
 main() {
 		//Math.seed = 612;
 		Session session = new Session(83475);
-		var player1 = randomPlayerWithClaspect(session, "Witch", "Time" );
+		var player1 = randomPlayerWithClaspect(session, SBURBClassManager.WITCH, "Time" );
 		player1.chatHandle = "squareWave";
 		player1.quirk = randomTrollSim(session.rand, player1);
-		var player2 = randomPlayerWithClaspect(session, "Mage", "Space" );//why was it so hard to not type 'ace of space'???;
+		var player2 = randomPlayerWithClaspect(session, SBURBClassManager.WITCH, "Space" );//why was it so hard to not type 'ace of space'???;
 		player2.chatHandle = "sawTooth";
 		player2.quirk = randomHumanSim(session.rand, player2);
 		//player2.interest1 = "Programming";

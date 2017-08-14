@@ -318,6 +318,7 @@ class Session {
     }
 
     void reinit() {
+        resetAvailableClasses();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
         //print("reinit with seed: "  + Math.seed);

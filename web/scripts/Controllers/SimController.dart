@@ -166,7 +166,6 @@ abstract class SimController {
     }
 
     void reinit() {
-        available_classes = new List<String>.from(classes);
         available_aspects = new List<String>.from(nonrequired_aspects);
         available_aspects.addAll(required_aspects);
         curSessionGlobalVar.reinit();
