@@ -655,34 +655,8 @@ dynamic getInterestHandle2(Random rand, String aspect, String interest){
 
 
 
-String getBlandHandle1(Random rand, String class_name){
-	List<dynamic> second_arr = [];
-	if(class_name == "Maid"){
-		second_arr = maid_handles;
-	}else if(class_name == "Page"){
-		second_arr = page_handles;
-	}else if(class_name == "Mage"){
-		second_arr = mage_handles;
-	}else if(class_name == "Knight"){
-		second_arr = knight_handles;
-	}else if(class_name == "Rogue"){
-		second_arr = rogue_handles;
-	}else if(class_name == "Sylph" || class_name =="Sage" || class_name =="Scout"){
-		second_arr = sylph_handles;
-	}else if(class_name == "Seer"|| class_name =="Scribe"){
-		second_arr = seer_handles;
-	}else if(class_name == "Thief"){
-		second_arr = thief_handles;
-	}else if(class_name == "Heir"){
-		second_arr = heir_handles;
-	}else if(class_name == "Bard"){
-		second_arr = bard_handles;
-	}else if(class_name == "Prince"){
-		second_arr = prince_handles;
-	}else if(class_name == "Witch"||class_name =="Waste"){
-		second_arr = witch_handles;
-	}
-	return rand.pickFrom(second_arr);
+String getBlandHandle1(Random rand, SBURBClass class_name){
+	return rand.pickFrom(class_name.handles);
 }
 
 
@@ -718,65 +692,6 @@ String getBlandHandle2(Random rand, String aspect){
 }
 
 
-
-
-String getRandomChatHandleOld(Random rand, String class_name, String aspect){
-	List<dynamic> first_arr = [];
-	if(aspect == "Space"){
-		first_arr = space_handles;
-	}else if(aspect == "Time"){
-		first_arr = time_handles;
-	}else if(aspect == "Breath"){
-		first_arr = breath_handles;
-	}else if(aspect == "Doom"){
-		first_arr = doom_handles;
-	}else if(aspect == "Blood"){
-		first_arr = blood_handles;
-	}else if(aspect == "Heart"){
-		first_arr = heart_handles;
-	}else if(aspect == "Mind"){
-		first_arr = mind_handles;
-	}else if(aspect == "Light"){
-		first_arr = light_handles;
-	}else if(aspect == "Void"){
-		first_arr = void_handles;
-	}else if(aspect == "Rage"){
-		first_arr = rage_handles;
-	}else if(aspect == "Hope"){
-		first_arr = hope_handles;
-	}else if(aspect == "Life"){
-		first_arr = life_handles;
-	}
-
-	List<dynamic> second_arr = [];
-	if(class_name == "Maid"){
-		second_arr = maid_handles;
-	}else if(class_name == "Page"){
-		second_arr = page_handles;
-	}else if(class_name == "Mage"){
-		second_arr = mage_handles;
-	}else if(class_name == "Knight"){
-		second_arr = knight_handles;
-	}else if(class_name == "Rogue"){
-		second_arr = rogue_handles;
-	}else if(class_name == "Sylph"){
-		second_arr = sylph_handles;
-	}else if(class_name == "Seer"){
-		second_arr = seer_handles;
-	}else if(class_name == "Thief"){
-		second_arr = thief_handles;
-	}else if(class_name == "Heir"){
-		second_arr = heir_handles;
-	}else if(class_name == "Bard"){
-		second_arr = bard_handles;
-	}else if(class_name == "Prince"){
-		second_arr = prince_handles;
-	}else if(class_name == "Witch"){
-		second_arr = witch_handles;
-	}
-	var tmp = randomFromTwoArraysOrdered(rand, second_arr, first_arr);
-	return tmp[0]  + tmp[1];
-}
 
 
 
@@ -854,45 +769,8 @@ dynamic getLevelFromAspect(num i, String aspect){
 
 
 
-dynamic getLevelFromClass(i, class_name){
-	//print("looking for level from class");
-	List<dynamic> first_arr = [];
-	if(class_name == "Maid"){
-		first_arr = maid_levels;
-	}else if(class_name == "Page"){
-		first_arr = page_levels;
-	}else if(class_name == "Mage"){
-		first_arr = mage_levels;
-	}else if(class_name == "Knight"){
-		first_arr = knight_levels;
-	}else if(class_name == "Rogue"){
-		first_arr = rogue_levels;
-	}else if(class_name == "Sylph"){
-		first_arr = sylph_levels;
-	}else if(class_name == "Seer"){
-		first_arr = seer_levels;
-	}else if(class_name == "Thief"){
-		first_arr = thief_levels;
-	}else if(class_name == "Heir"){
-		first_arr = heir_levels;
-	}else if(class_name == "Bard"){
-		first_arr = bard_levels;
-	}else if(class_name == "Prince"){
-		first_arr = prince_levels;
-	}else if(class_name == "Witch"){
-		first_arr = witch_levels;
-	}else if(class_name == "Waste"){
-     	first_arr = waste_levels;
-    }else if(class_name == "Scout"){
-      	first_arr = scout_levels;
-    }else if(class_name == "Sage"){
-     	first_arr = sage_levels;
-    }else if(class_name == "Scribe"){
-     	first_arr = scribe_levels;
-    }else{
-	    first_arr = generic_levels;
-	}
-	return first_arr[i];
+dynamic getLevelFromClass(int i, SBURBClass class_name){
+	return class_name.levels[i];
 }
 
 
@@ -1269,23 +1147,6 @@ List<String> rage_levels = ["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN R
 List<String> hope_levels = ["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"];
 List<String> life_levels = ["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"];
 
-List<String> maid_levels = ["SCURRYWART SERVANT", "SAUCY PILGRIM", "MADE OF SUCCESS"];
-List<String> page_levels = ["APPRENTICE ANKLEBITER", "JOURNEYING JUNIOR", "OUTFOXED BUCKAROO"];
-List<String> mage_levels = ["WIZARDING TIKE", "THE SORCERER'S SCURRYWART", "FAMILIAR FRAYMOTTIFICTIONADO"];
-List<String> knight_levels = ["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
-List<String> rogue_levels = ["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
-List<String> sylph_levels = ["SERENE SCALLYWAG", "MYSTICAL RUGMUFFIN","FAE FLEDGLING"];
-List<String> thief_levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
-List<String> heir_levels = ["UNREAL HEIR","HEIR CONDITIONER","EXTRAORDINHEIR"];
-List<String> bard_levels = ["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
-List<String> prince_levels = ["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
-List<String> witch_levels = ["WESTWORD WORRYBITER","BUBBLETROUBLER","EYE OF GRINCH"];
-List<String> seer_levels = ["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
-List<String> waste_levels = ["4TH WALL AFICIONADO","CATACLYSM COMMANDER","AUTHOR"];
-List<String> scout_levels = ["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
-List<String> scribe_levels = ["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
-List<String> sage_levels = ["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
-List<String> generic_levels = ["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"];
 
 List<String> free_levels = ["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"];
 //only need two for each. since each player has two interests, combines to 4
@@ -1346,47 +1207,6 @@ List<String> life_quests = ["coaxing the fallow farms of the local consorts into
 	..add("finding and rescuing consort children trapped in a burning building");
 
 
-List<String> maid_quests = ["doing the consorts' menial errands, like delivering an item to a dude standing RIGHT FUCKING THERE"]
-	..add("repairing various ways the session has been broken")
-	..add("protecting various consorts with game powers");
-List<String> page_quests = ["going on various quests of self discovery and confidence building"]
-	..add("partnering with a local consort hero to do great deeds and slay evil foes")
-	..add("learning to deal with disapointment after dungeon after dungeon proves to have all the enemies, and none of the treasure");
-List<String> mage_quests = ["performing increasingly complex alchemy for demanding, moody consorts"]
-	..add("learning to silence their Mage Senses long enough to not go insane")
-	..add("learning to just let go and let things happen");
-List<String> knight_quests = ["protecting the local consorts from a fearsome foe"]
-	..add("protecting the session from various ways it can go shithive maggots")
-	..add("questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader");
-List<String> rogue_quests = ["robbing various tombs and imp settlements to give to impoverished consorts"]
-	..add("stealing a priceless artifact in order to fund consort orphanages")
-	..add("planning an elaborate heist to steal priceless grist from a boss ogre in order to alchemize shoes for orphans");
-List<String> sylph_quests = ["restoring a consort city to its former glory"]
-	..add("preserving the legacy of a doomed people")
-	..add("providing psychological counseling to homeless consorts");
-List<String> thief_quests = ["robbing various enemy imps and ogres to obtain vast riches"]
-	..add("planning an elaborate heist that relies on several hard-to-predict factors going absolutely perfectly")
-	..add("torrenting vast amounts of grist from the other players");
-List<String> heir_quests = ["retrieving a sword from a stone"]
-	..add("completing increasingly unlikely challenges through serendepitious coincidences")
-	..add("inheriting and running a successful, yet complex company");
-List<String> bard_quests = ["allowing events to transpire such that various quests complete themselves"]
-	..add("baiting various enemies into traps for an easy victory")
-	..add("watching as their manipulations result in consorts rising up to defeat imps");
-List<String> prince_quests = ["destroying enemies thoroughly"]
-	..add("riding in at the last minute to defeat the local consorts hated enemies")
-	..add("learning to grow as a person, despite the holes in their personality");
-List<String> seer_quests = ["making the various bullshit rules of SBURB part of their personal mythos"]
-	..add("collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go")
-	..add("suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't");
-List<String> witch_quests = ["performing elaborate punch card alchemy through the use of a novelty witch's cauldron"]
-	..add("deciding which way to go in a series of way-too-long mazes")
-	..add("solving puzzles in ways that completely defy expectations");
-List<String> waste_quests = ["being a useless piece of shit and reading FAQs to skip the hard shit in levels","causing ridiculous amounts of destruction trying to skip quest lines","learning that sometimes you have to do things right, and can't just skip ahead"];
-List<String> scout_quests = ["exploring areas no Consort has dared to trespass in","getting lost in ridiculously convoluted mazes","playing map-creating mini games"];
-List<String> scribe_quests = ["taking down the increasingly random and nonsensical oral history of a group of local Consorts","playing typing themed mini games.","saving an important piece of a riddle from a crumbling building"];
-List<String> sage_quests = ["making the lore of SBURB part of their personal mythos","learning to nod wisely and remain silent when Consorts start yammering on about the Ultimate Riddle","participating in riddle contests to prove their intelligence to local Consorts"];
-List<String> generic_quests = ["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
 
 
 //if bike quests are too common, lock them to real selves only, no dream selves.
@@ -1600,19 +1420,7 @@ var smiley_quirks = [[":\\)", ":)"],[":\\)", ":0)"],[":\\)", ":]"],[":\\)", ":B"
 
 
 
-//get something that matches your class/aspect title on your own.
-var maid_handles = ["meandering","motley","musing","mischievous","macabre", "maiden", "morose"];
-var page_handles = ["passionate","patient","peaceful","perfect","perceptive", "practical", "pathetic"];
-var mage_handles = ["magnificent","managerial","major","majestic","mannerly", "malignant", "morbid"];
-var knight_handles = ["keen","knightly","kooky","kindred", "kaos",];
-var rogue_handles = ["rouge","radical","retrobate","roguish","retroactive", "robins", "red"];
-var sylph_handles = ["surly","sour","sweet","stylish","soaring", "serene", "salacious"];
-var thief_handles = ["talented","terrible","talkative","tenacious","tried", "torrented"];
-var heir_handles = ["honorable","humble","hot","horrific","hardened", "havocs"];
-var bard_handles = ["benign","blissful","boisterous","bonkers","broken", "bizarre", "barking"];
-var prince_handles = ["precocious","priceless","proficient","prominent","proper", "perfect", "pantheon"];
-var witch_handles = ["wondering","wonderful","wacky","withering","worldly","weighty"];
-var seer_handles = ["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
+
 
 var music_handles1 = ["musical","pianist","melodious","keyboard","rhythmic","singing","tuneful","harmonious","beating","pitch","waltzing","synthesized","piano","serenading","mozarts","swelling","staccato","pianissimo","monotone","polytempo"];
 var culture_handles1 = ["monochrome","poetic","majestic","keen","realistic","serious","theatrical","haute","beautiful","priceless","watercolor","sensational","highbrow","refined","precise","melodramatic"];
@@ -1659,75 +1467,6 @@ var fantasy_handles2 = ["Believer","Dragon","Magician","Sandman","Shinigami","Te
 var justice_handles2 = ["Detective","Defender","Laywer","Loyalist","Liaison","Vigilante","Tracker","Moralist","Retribution","Watchman","Searcher","Perception","Rebel"];
 
 
-//thanks manicInsomniac and ersatzGlottologist and recursiveSlacker!!!
-var postdenizen_maid_quests = ["using their powers to help clean up the debris left from their Denizen actions. Who knew the term maid would be so literal"]
-	..add("watching over the consorts as they begin to rebuild")
-	..add("following their consorts to ever larger pieces of debris")
-	..add("empowering an army of consorts to clean out the last of the debris from their Denizen");
-
-var postdenizen_page_quests = ["learning to control their newfound prowess, accidentally wiping out a consort village or two"]
-	..add("getting all mopey about their new powers, because apparently actually being competent is too much for them")
-	..add("finishing the ‘legendary’ tests of valor with a never before seen aplomb")
-	..add("accepting the role Sburb has placed upon them. They are themselves, and that is all that needs be said on the matter");
-
-var postdenizen_mage_quests = ["finding yet another series of convoluted puzzles, buried deep in their land. These puzzles pour poison into the land, and will continue to do so until solved"]
-	..add("realizing the voices are gone. Not just quiet, but… gone. Without them, they can finally get down to work on their land puzzles")
-	..add("solving the more of the puzzles of their land. Not that that's the end of the horseshit, but hey! Less horseshit always helps")
-	..add("getting sick to death of puzzles and just utterly annihilating one with their game powers");
-
-var postdenizen_knight_quests = ["setting up a series of knight-beacons so the consorts can call them whenever they are needed"]
-	..add("spending way too much time hustling from village to village, saving the consorts from the denizens last few minions")
-	..add("breaking a siege on a consort village, saving its population and slaughtering thousands of underlings")
-	..add("finishing the ‘legendary’ tests of valor dispensed by an elder consort");
-
-var postdenizen_rogue_quests = ["scouring the land for targets, and then freaking out when they realize there's no bad guys left to steal from"]
-	..add("stealing from enemies on other players planets, acquiring enough boonbucks to lift every consort on the planet out of poverty")
-	..add("doing a little dance on their pile soon-to-be distributed wealth")
-	..add("literally stealing another player's planet. They put it back, but still. A planet. Wow")
-	..add("loaning money to needy consorts, then surprising them by waiving every last cent of debt they owe");
-
-
-var postdenizen_sylph_quests = ["beginning to heal the vast psychological damage their consorts have endured from the denizen’s ravages"]
-	..add("setting up counseling booths around their land and staffing them with well trained consort professionals")
-	..add("bugging and fussing and meddling with the consorts, but now using their NEW FOUND POWERS")
-	..add("realizing that maybe their bugging and fussing and meddling isn’t always the best way to deal with things");
-
-var postdenizen_thief_quests = ["literally stealing another player’s planet. Well, the deed to another player's planet, but still. A planet. Wow"]
-	..add("stealing every last piece of grist in every last dungeon. Hell fucking yes")
-	..add("crashing the consort economy when they spend their hellaciously devious wealth")
-	..add("doing a dance on their pile of ill earned goods and wealth");
-
-
-var postdenizen_heir_quests = ["recruiting denizen villages, spreading a modest nation under their (Democratic!) control"]
-	..add("assuming control of yet more denizen villages. Turns out a mind bogglingly large number of consorts have the Heir named in their will")
-	..add("chillaxing with their aspect and while talking to it as if it were a real person.")
-	..add("wiping a dungeon off the map with their awe inspiring powers");
-
-var postdenizen_bard_quests = ["musing on the nature of death as they wander from desolate consort graveyard to desolate consort graveyard"]
-	..add("staring vacantly into the middle distance as every challenge that rises before them falls away before it even has a chance to do anything")
-	..add("putting on a performance for a huge crowd of awestruck consorts and underlings")
-	..add("playing pranks and generally messing around with the most powerful enemies left in the game");
-
-var postdenizen_prince_quests = ["thinking on endings. The end of their planet. The end of their denizen problems. The end of that very, very stupid imp that just tried to jump them"]
-	..add("defeating every single mini boss, including a few on other players planets")
-	..add("burning down libraries of horror terror grimoires, shedding a few tears for the valuable knowledge lost along side the accursed texts")
-	..add("hunting down and killing the last of a particularly annoying underling class");
-
-var postdenizen_seer_quests = ["casting their sight around the land to find the causes of their land’s devastation"]
-	..add("taking a consort under their wing and teaching it the craft of magic")
-	..add("predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize")
-	..add("alchemizing more and more complex seer aids, such as crystal balls or space-specs");
-
-var postdenizen_witch_quests = ["alchemizing a mind crushingly huge number of computers in various forms"]
-	..add("whizzing around their land like it's fucking christmas")
-	..add("defeating a completely out of nowhere mini boss")
-	..add("wondering if their sprite prototyping choice was the right one after all");
-
-var postdenizen_generic_quests = ["cleaning up after their Denizen in a class approrpiate fashion","absolutly not goofing off instead of cleaing up after their Denizen","vaguely sweeping up rubble"];
-var postdenizen_waste_quests = ["figuring out the least-disruptive way to help the local Consorts recover from the Denizen's rule","being a useless piece of shit and not joining cleanup efforts.","accidentally causing MORE destruction in an attempt to help clean up after their epic as fuck fight agains their Denizen"];
-var postdenizen_scout_quests = ["finding Consorts that still need help even after the Denizen has been defeated", "scouting out areas that have opened up following the Denizen's defeat","looking for rare treasures that are no longer being guarded by the Denizen"];
-var postdenizen_scribe_quests = ["documenting the various Consorts lost to the Denizen.","writing up a recovery plan for the Local Consorts","figuring out the best way to explain how to recover from the ravages of Denizen"];
-var postdenizen_sage_quests = ["learning everything there is learn about the Denizen, now that it is safely defeated","learning what Consort civilization was like before the Denizen, to better help them return to 'normal'","demonstrating to the local Consorts the best way to move on from the tyranny of the Denizen"];
 
 
 
