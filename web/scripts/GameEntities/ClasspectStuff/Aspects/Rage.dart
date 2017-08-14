@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Rage extends Aspect {
@@ -33,4 +34,11 @@ class Rage extends Aspect {
 
     Rage(int id):super(id, "Rage", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("MANGRIT", 2, true));
+        player.associatedStats.add(new AssociatedStat("mobility", 1, true));
+        player.associatedStats.add(new AssociatedStat("sanity", -1, true));
+        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
+    }
 }

@@ -1,8 +1,8 @@
+import 'dart:convert';
 import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 import "../SBURBSim.dart";
-import 'dart:convert';
 import "../includes/bytebuilder.dart";
 
 class Player extends GameEntity {
@@ -685,7 +685,7 @@ class Player extends GameEntity {
     }
 
     bool isVoidAvailable() {
-        Player light = findAspectPlayer(findLivingPlayers(this.session.players), "Light");
+        Player light = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.LIGHT);
         if (light != null && light.godTier) return false;
         return true;
     }
@@ -1755,10 +1755,6 @@ class Player extends GameEntity {
         return <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
     }
 
-    void intializeAssociatedClassStatReferences() {
-        this.class_name.intializeAssociatedClassStatReferences();
-    }
-
     List<AssociatedStat> getOnlyAspectAssociatedStats() {
         List<AssociatedStat> ret = <AssociatedStat>[];
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -1781,82 +1777,6 @@ class Player extends GameEntity {
             if (this.associatedStats[i].isFromAspect && this.associatedStats[i].multiplier < 0) ret.add(this.associatedStats[i]);
         }
         return ret;
-    }
-
-    void intializeAssociatedAspectStatReferences() {
-        List<String> allStats = new List<String>.from(this.allStats());
-        allStats.add("MANGRIT");
-        removeFromArray("power", allStats); //can't buff power directly
-
-        switch (this.aspect) {
-            case "Blood":
-                this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 2, true));
-                this.associatedStats.add(new AssociatedStat("sanity", 1, true));
-                this.associatedStats.add(new AssociatedStat("maxLuck", -2, true));
-                break;
-            case "Mind":
-                this.associatedStats.add(new AssociatedStat("freeWill", 2, true));
-                this.associatedStats.add(new AssociatedStat("minLuck", 1, true));
-                this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
-                this.associatedStats.add(new AssociatedStat("maxLuck", -1, true)); //LUCK DO3SN'T M4TT3R!!!
-                break;
-            case "Rage":
-                this.associatedStats.add(new AssociatedStat("MANGRIT", 2, true));
-                this.associatedStats.add(new AssociatedStat("mobility", 1, true));
-                this.associatedStats.add(new AssociatedStat("sanity", -1, true));
-                this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
-                break;
-            case "Void":
-                this.associatedStats.add(new AssociatedStat(this.session.rand.pickFrom(allStats), 3, true)); //really good at one thing
-                this.associatedStats.add(new AssociatedStat(this.session.rand.pickFrom(allStats), -1, true)); //hit to another thing.
-                this.associatedStats.add(new AssociatedStat("minLuck", -1, true)); //hit to another thing.
-                break;
-            case "Time":
-                this.associatedStats.add(new AssociatedStat("minLuck", 2, true));
-                this.associatedStats.add(new AssociatedStat("mobility", 1, true));
-                this.associatedStats.add(new AssociatedStat("freeWill", -2, true));
-                break;
-            case "Heart":
-                this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 1, true));
-                this.associatedStats.addAll(this.getInterestAssociatedStats(this.interest1));
-                this.associatedStats.addAll(this.getInterestAssociatedStats(this.interest2));
-                break;
-            case "Breath":
-                this.associatedStats.add(new AssociatedStat("mobility", 2, true));
-                this.associatedStats.add(new AssociatedStat("sanity", 1, true));
-                this.associatedStats.add(new AssociatedStat("hp", -1, true));
-                this.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
-                break;
-            case "Light":
-                this.associatedStats.add(new AssociatedStat("maxLuck", 2, true));
-                this.associatedStats.add(new AssociatedStat("freeWill", 1, true));
-                this.associatedStats.add(new AssociatedStat("sanity", -1, true));
-                this.associatedStats.add(new AssociatedStat("hp", -1, true));
-                break;
-            case "Space":
-                this.associatedStats.add(new AssociatedStat("alchemy", 2, true));
-                this.associatedStats.add(new AssociatedStat("hp", 1, true));
-                this.associatedStats.add(new AssociatedStat("mobility", -2, true));
-                break;
-            case "Hope":
-                this.associatedStats.add(new AssociatedStat("sanity", 2, true));
-                this.associatedStats.add(new AssociatedStat("maxLuck", 1, true));
-                this.associatedStats.add(new AssociatedStat(this.session.rand.pickFrom(allStats), -2, true));
-                break;
-            case "Life":
-                this.associatedStats.add(new AssociatedStat("hp", 2, true));
-                this.associatedStats.add(new AssociatedStat("MANGRIT", 1, true));
-                this.associatedStats.add(new AssociatedStat("alchemy", -2, true));
-                break;
-            case "Doom": //fool, doom will toot as it pleases
-                this.associatedStats.add(new AssociatedStat("alchemy", 2, true));
-                this.associatedStats.add(new AssociatedStat("freeWill", 1, true));
-                this.associatedStats.add(new AssociatedStat("minLuck", -1, true));
-                this.associatedStats.add(new AssociatedStat("hp", -1, true));
-                break;
-            default:
-                print('What the hell kind of aspect is ${this.aspect}???');
-        }
     }
 
     String voidDescription() {
@@ -1950,10 +1870,10 @@ class Player extends GameEntity {
     }
 
     void initializeStats() {
-        if (this.trickster && this.aspect == "Doom") this.trickster == false; //doom players break rules
+        if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
-        this.intializeAssociatedAspectStatReferences();
-        this.intializeAssociatedClassStatReferences();
+        this.aspect.initAssociatedStats(this);
+        this.class_name.intializeAssociatedClassStatReferences();
         this.initializeLuck();
         this.initializeFreeWill();
         this.initializeHP();

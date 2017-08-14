@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Breath extends Aspect {
@@ -28,4 +29,11 @@ class Breath extends Aspect {
 
     Breath(int id):super(id, "Breath", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("mobility", 2, true));
+        player.associatedStats.add(new AssociatedStat("sanity", 1, true));
+        player.associatedStats.add(new AssociatedStat("hp", -1, true));
+        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true)); //somebody pointed out breath seems to destroy connections, sure, i'll roll with it.
+    }
 }

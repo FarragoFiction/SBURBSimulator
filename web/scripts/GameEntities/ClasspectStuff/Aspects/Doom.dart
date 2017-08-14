@@ -36,6 +36,14 @@ class Doom extends Aspect {
     Doom(int id):super(id, "Doom", isCanon:true);
 
     @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("alchemy", 2, true));
+        player.associatedStats.add(new AssociatedStat("freeWill", 1, true));
+        player.associatedStats.add(new AssociatedStat("minLuck", -1, true));
+        player.associatedStats.add(new AssociatedStat("hp", -1, true));
+    }
+
+    @override
     void onDeath(Player player) {
         //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
         //print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.

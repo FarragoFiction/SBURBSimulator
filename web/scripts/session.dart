@@ -88,17 +88,18 @@ class Session {
     Random rand;
     List<SBURBClass> available_classes_players;
     List<SBURBClass> available_classes_guardians;
-
+    List<Aspect> available_aspects;
 
     Session(int this.session_id) {
         //print("Made a new session with an id of $session_id");
         this.rand = new Random(session_id);
-       resetAvailableClasses();
+       resetAvailableClasspects();
     }
 
-    void resetAvailableClasses() {
+    void resetAvailableClasspects() {
       this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
       this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
+      this.available_aspects = new List<Aspect>.from(Aspects.canon);
     }
 
     //  //makes copy of player list (no shallow copies!!!!)
@@ -318,7 +319,7 @@ class Session {
     }
 
     void reinit() {
-        resetAvailableClasses();
+        resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
         //print("reinit with seed: "  + Math.seed);
@@ -340,7 +341,7 @@ class Session {
 
     void makePlayers() {
         this.players = <Player>[];
-        resetAvailableClasses();
+        resetAvailableClasspects();
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
         this.players.add(randomSpacePlayer(this));
         this.players.add(randomTimePlayer(this));
@@ -395,9 +396,7 @@ class Session {
 
     void makeGuardians() {
         //print("Making guardians");
-        resetAvailableClasses();
-        available_aspects = new List<String>.from(nonrequired_aspects);
-        available_aspects.addAll(new List<String>.from(required_aspects));
+        resetAvailableClasspects();
         List<Player> guardians = <Player>[];
         for (num i = 0; i < this.players.length; i++) {
             Player player = this.players[i];

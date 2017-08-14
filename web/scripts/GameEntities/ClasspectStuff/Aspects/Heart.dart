@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Heart extends Aspect {
@@ -31,4 +32,10 @@ class Heart extends Aspect {
 
     Heart(int id):super(id, "Heart", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 1, true));
+        player.associatedStats.addAll(player.getInterestAssociatedStats(player.interest1));
+        player.associatedStats.addAll(player.getInterestAssociatedStats(player.interest2));
+    }
 }

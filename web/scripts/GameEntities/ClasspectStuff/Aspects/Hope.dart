@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Hope extends Aspect {
@@ -28,4 +29,12 @@ class Hope extends Aspect {
 
     Hope(int id):super(id, "Hope", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        List<String> allStats = player.allStats()..remove("power")..add("MANGRIT");
+
+        player.associatedStats.add(new AssociatedStat("sanity", 2, true));
+        player.associatedStats.add(new AssociatedStat("maxLuck", 1, true));
+        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), -2, true));
+    }
 }

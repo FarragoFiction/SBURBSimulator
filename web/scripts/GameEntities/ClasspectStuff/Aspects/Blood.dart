@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Blood extends Aspect {
@@ -9,7 +10,7 @@ class Blood extends Aspect {
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "uniting warring consort nations against a common enemy",
         "organizing 5 bickering consorts long enough to transverse a dungeon with any degree of competence",
-        "learning the true meaning of this human disease called friendship"
+        "learning the true meaning of player human disease called friendship"
     ]);
     @override
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
@@ -27,4 +28,11 @@ class Blood extends Aspect {
     ]);
 
     Blood(int id):super(id, "Blood", isCanon:true);
+
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 2, true));
+        player.associatedStats.add(new AssociatedStat("sanity", 1, true));
+        player.associatedStats.add(new AssociatedStat("maxLuck", -2, true));
+    }
 }

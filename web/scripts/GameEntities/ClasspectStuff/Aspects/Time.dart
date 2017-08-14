@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Time extends Aspect {
@@ -28,4 +29,10 @@ class Time extends Aspect {
 
     Time(int id):super(id, "Time", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("minLuck", 2, true));
+        player.associatedStats.add(new AssociatedStat("mobility", 1, true));
+        player.associatedStats.add(new AssociatedStat("freeWill", -2, true));
+    }
 }

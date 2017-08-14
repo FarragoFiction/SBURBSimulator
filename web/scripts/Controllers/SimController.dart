@@ -166,13 +166,11 @@ abstract class SimController {
     }
 
     void reinit() {
-        available_aspects = new List<String>.from(nonrequired_aspects);
-        available_aspects.addAll(required_aspects);
         curSessionGlobalVar.reinit();
     }
 
     void renderScratchButton(Session session) {
-        Player timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
+        Player timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
         if (timePlayer == null) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS";
         print("scratch possible, button");
         //alert("scratch [possible]");

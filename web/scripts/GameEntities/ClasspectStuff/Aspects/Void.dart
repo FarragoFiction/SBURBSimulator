@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Void extends Aspect {
@@ -28,4 +29,12 @@ class Void extends Aspect {
 
     Void(int id):super(id, "Void", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        List<String> allStats = player.allStats()..remove("power")..add("MANGRIT");
+
+        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), 3, true)); //really good at one thing
+        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), -1, true)); //hit to another thing.
+        player.associatedStats.add(new AssociatedStat("minLuck", -1, true)); //hit to another thing.
+    }
 }

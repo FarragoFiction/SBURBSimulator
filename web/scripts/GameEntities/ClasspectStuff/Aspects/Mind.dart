@@ -1,3 +1,4 @@
+import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
 class Mind extends Aspect {
@@ -28,4 +29,11 @@ class Mind extends Aspect {
 
     Mind(int id):super(id, "Mind", isCanon:true);
 
+    @override
+    void initAssociatedStats(Player player) {
+        player.associatedStats.add(new AssociatedStat("freeWill", 2, true));
+        player.associatedStats.add(new AssociatedStat("minLuck", 1, true));
+        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
+        player.associatedStats.add(new AssociatedStat("maxLuck", -1, true)); //LUCK DO3SN'T M4TT3R!!!
+    }
 }

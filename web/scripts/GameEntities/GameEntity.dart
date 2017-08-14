@@ -606,8 +606,11 @@ class AssociatedStat {
     num multiplier;
     bool isFromAspect;
 
-
     AssociatedStat(String this.name, num this.multiplier, bool this.isFromAspect) {}
+
+    factory AssociatedStat.from(AssociatedStat source) {
+        return new AssociatedStat(source.name, source.multiplier, source.isFromAspect);
+    }
 
     @override
     String toString() {

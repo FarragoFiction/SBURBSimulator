@@ -40,7 +40,7 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
         //print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
         for (int i = 0; i < numNeeded; i++) {
             // print("making new player: " + i);
-            curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, SBURBClassManager.PAGE, "Void"));
+            curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, SBURBClassManager.PAGE, Aspects.VOID));
         }
         //print("Number of players is now: " + curSessionGlobalVar.players.length);
         return;
@@ -212,7 +212,7 @@ Player blankPlayerNoDerived(Session session) {
     String m = "Prospit";
     //	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
-    Player p = new Player(session, SBURBClassManager.PAGE, "Void", k, m, gd);
+    Player p = new Player(session, SBURBClassManager.PAGE, Aspects.VOID, k, m, gd);
     p.interest1 = interests[0];
     p.interest2 = interests[0];
     p.baby = 1;
@@ -288,17 +288,17 @@ Player randomPlayer(Session session) {
     //remove class AND aspect from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
-    String a = session.rand.pickFrom(available_aspects);
+    Aspect a = session.rand.pickFrom(session.available_aspects);
     removeFromArray(a, available_aspects);
     return randomPlayerWithClaspect(session, c, a);
 }
 
 
-dynamic randomPlayerWithoutRemoving(Session session) {
+Player randomPlayerWithoutRemoving(Session session) {
     //remove class AND aspect from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     //removeFromArray(c, available_classes);
-    String a = session.rand.pickFrom(available_aspects);
+    Aspect a = session.rand.pickFrom(session.available_aspects);
     //removeFromArray(a, available_aspects);
     return randomPlayerWithClaspect(session, c, a);
 }
@@ -308,7 +308,7 @@ Player randomSpacePlayer(Session session) {
     //remove class from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
-    String a = required_aspects[0];
+    Aspect a = required_aspects[0];
     return randomPlayerWithClaspect(session, c, a);
 }
 
@@ -317,12 +317,12 @@ Player randomTimePlayer(Session session) {
     //remove class from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
-    String a = required_aspects[1];
+    Aspect a = required_aspects[1];
     return randomPlayerWithClaspect(session, c, a);
 }
 
 
-Player findAspectPlayer(List<GameEntity> playerList, String aspect) {
+Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
@@ -337,7 +337,7 @@ Player findAspectPlayer(List<GameEntity> playerList, String aspect) {
 }
 
 
-List<Player> findAllAspectPlayers(List<GameEntity> playerList, String aspect) {
+List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player
@@ -368,7 +368,7 @@ Player getLeader(List<Player> playerList) {
 
 
 //in combo sessions, mibht be more than one rage player, for example.
-Player findClaspectPlayer(List<GameEntity> playerList, SBURBClass class_name, String aspect) {
+Player findClaspectPlayer(List<GameEntity> playerList, SBURBClass class_name, Aspect aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, and they don't have classpects.
         if (g is Player) {
@@ -768,7 +768,7 @@ class MiniSnapShot {
     num grimDark;
     bool isTroll;
     SBURBClass class_name;
-    String aspect;
+    Aspect aspect;
 
 
     MiniSnapShot(this.player) {
