@@ -61,7 +61,7 @@ abstract class Aspects {
         if (_aspects.containsKey(id)) {
             return _aspects[id];
         }
-        return NULL; // return the NULL aspect instead
+        return NULL; // return the NULL aspect instead of null
     }
 
     static Aspect getByName(String name) {
@@ -73,7 +73,7 @@ abstract class Aspects {
         return NULL;
     }
 
-    static List<Aspect> get all => new List<Aspect>.from(_aspects.values);
+    static Iterable<Aspect> get all => _aspects.values;
     static Iterable<Aspect> get canon => _aspects.values.where((Aspect a) => a.isCanon);
     static Iterable<Aspect> get fanon => _aspects.values.where((Aspect a) => !a.isCanon);
 
@@ -140,7 +140,7 @@ class Aspect {
     }
 
     // ##################################################################################################
-    // Util
+    // Utility
 
     @override
     String get toString => this.name;
