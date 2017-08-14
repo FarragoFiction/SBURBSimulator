@@ -321,23 +321,11 @@ class FraymotifCreator {
   }
 	dynamic getDenizenFraymotifNameFromAspect(Aspect aspect){
 	    return aspect.denizenSongTitle;
-      String ret = "";
-      else if(aspect == "Void"){
-         ret = "Silence" ;//;
-      }else if(aspect == "Time"){
-         ret = "Canon" ;//a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops);
-
-      return ret;
   }
 	dynamic getDenizenFraymotifDescriptionForAspect(Aspect aspect){
 	    return aspect.denizenSongDesc;
-      String ret = "";
-         }else if(aspect == "Void"){
-         ret = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Time"){
-
-      return ret;
   }
+  
 	List<Fraymotif> getUsableFraymotifs(owner, allies, enemies){
     List<Fraymotif> fraymotifs = owner.fraymotifs;
     List<dynamic> ret = [];
