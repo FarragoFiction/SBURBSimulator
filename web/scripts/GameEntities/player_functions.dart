@@ -112,6 +112,7 @@ void initializePlayersNoDerived(List<Player> players, Session session) {
 }
 
 
+//TODO wipe out
 String getColorFromAspect(String aspect) {
     String color = "";
     if (aspect == "Space") {

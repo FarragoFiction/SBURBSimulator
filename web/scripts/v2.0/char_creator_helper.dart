@@ -490,7 +490,7 @@ class CharacterCreatorHelper {
 
 			a2.onChange.listen((Event e){
           OptionElement aspectDropDown = a2.selectedOptions[0];
-					player.aspect = aspectDropDown.value;
+					player.aspect = Aspects.stringToAspect(aspectDropDown.value);
 					that.redrawSinglePlayer(player);
 					helpText.setInnerHtml(that.generateHelpText("Aspect",player.aspect));
 			});

@@ -3,7 +3,15 @@ import 'Aspect.dart';
 
 class Blood extends Aspect {
 
-    @override
+  @override
+  String denizenSongTitle = "Ballad " ;//a song passed over generations in an oral history;
+
+  @override
+  String denizenSongDesc = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+
+  @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Blood', 'Hera', 'Hestia', 'Bastet', 'Bes', 'Vesta', 'Eleos', 'Sanguine', 'Medusa', 'Frigg', 'Debella', 'Juno', 'Moloch', 'Baal', 'Eusebeia', 'Horkos', 'Homonia', 'Harmonia', 'Philotes']);
 
     @override

@@ -4,6 +4,14 @@ import 'Aspect.dart';
 class Heart extends Aspect {
 
     @override
+    String denizenSongTitle = "Leitmotif" ;//a musical theme representing a particular character;
+
+    @override
+    String denizenSongDesc = " A chord begins to echo. It is the one Damnation will play at their brith. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+
+    @override
     bool deadpan = true; // heart cares not for your trickster bullshit
 
     @override

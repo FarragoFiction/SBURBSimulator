@@ -6,6 +6,14 @@ class Space extends Aspect {
     @override
     double aspectQuestChance = 1.0; // No items. Frogs only. FINAL DESTINATION.
 
+
+    @override
+    String denizenSongTitle = "Sonata";//a composition for a soloist.  Space players are stuck doing something different from everyone,;
+
+    @override
+    String denizenSongDesc =  " An echoing note is plucked. It is the one Isolation plays to chart the depths of reality. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Space', 'Gaea', 'Nut', 'Echidna', 'Wadjet', 'Qetesh', 'Ptah', 'Geb', 'Fryja', 'Atlas', 'Hebe', 'Lork', 'Eve', 'Genesis', 'Morpheus', 'Veles ', 'Arche', 'Rekinom', 'Iago', 'Pilera', 'Tiamat', 'Gilgamesh', 'Implexel']);
 

@@ -6,6 +6,13 @@ import 'Aspect.dart';
 class Doom extends Aspect {
 
     @override
+    String denizenSongTitle = "Dirge" ;//a song for the dead;
+
+    @override
+    String denizenSongDesc = " A slow dirge begins to play. It is the one Death plays to keep in practice. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+    @override
     bool deadpan = true; // Ain't havin' none 'o' that trickster shit
     @override
     bool ultimateDeadpan = true; // now what did I *just* say?!

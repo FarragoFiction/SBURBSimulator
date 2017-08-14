@@ -149,8 +149,8 @@ bool printCorruptionMessage(ErrorEvent e) {
     String error = e.toString();
 
     String recomendedAction = "";
-    Player space = findAspectPlayer(curSessionGlobalVar.players, "Space");
-    Player time = findAspectPlayer(curSessionGlobalVar.players, "Time");
+    Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
+    Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
     if (curSessionGlobalVar.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
         recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
@@ -324,8 +324,8 @@ void scratchEasterEggCallBack() {
     scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
     scratch += " The new players will be given stat boosts to give them a better chance than the previous generation.";
 
-    Player suddenDeath = findAspectPlayer(raggedPlayers, "Life");
-    if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, "Doom");
+    Player suddenDeath = findAspectPlayer(raggedPlayers, Aspects.LIFE);
+    if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
 
     //NOT over time. literally sudden death. thanks meenah!
     var livingRagged = findLivingPlayers(raggedPlayers);

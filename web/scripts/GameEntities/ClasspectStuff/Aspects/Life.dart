@@ -4,6 +4,15 @@ import 'Aspect.dart';
 class Life extends Aspect {
 
     @override
+    String denizenSongTitle = "Lament" ;//passionate expression of grief. so much life has been lost to SBURB.;
+
+    @override
+    String denizenSongDesc =  " A plucked note echos in the stillness. It is the one Desire plays to summon it's audience. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+
+
+    @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Life', 'Demeter', 'Pan', 'Nephthys', 'Ceres', 'Isis', 'Hemera', 'Andhrímnir', 'Agathodaemon', 'Eir', 'Baldur', 'Prometheus', 'Adonis', 'Geb', 'Panacea', 'Aborof', 'Nurgel', 'Adam']);
 
     @override

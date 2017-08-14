@@ -4,6 +4,14 @@ import 'Aspect.dart';
 class Mind extends Aspect {
 
     @override
+    String denizenSongTitle = "Fugue"  ;//a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and lo
+
+    @override
+    String denizenSongDesc =" A fractured chord is prepared. It is the one Regret plays to make insomnia reign. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+
+    @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Mind', 'Athena', 'Forseti', 'Janus', 'Anubis', 'Maat', 'Seshat', 'Thoth', 'Jyglag', 'Peryite', 'Nomos', 'Lugus', 'Sithus', 'Dike', 'Epimetheus', 'Metis', 'Morpheus', 'Omoikane', 'Argus', 'Hermha', 'Morha', 'Sespille', 'Selcric', 'Tzeench']);
 
     @override

@@ -3,6 +3,16 @@ import 'Aspect.dart';
 
 class Time extends Aspect {
 
+
+    @override
+    String denizenSongTitle = "Canon" ;//a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops);
+
+    @override
+    String denizenSongDesc = "  A sun skips on a groove its tracing 'round the earth, the one-two beat Despair plays to turn cause and effect meaningless. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is/was/will be to say on the matter. ";
+
+
+
+
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Time', 'Ignis', 'Saturn', 'Cronos', 'Aion', 'Hephaestus', 'Vulcan', 'Perses', 'Prometheus', 'Geras', 'Acetosh', 'Styx', 'Kairos', 'Veter', 'Gegute', 'Etu', 'Postverta and Antevorta', 'Emitus', 'Moirai']);
 

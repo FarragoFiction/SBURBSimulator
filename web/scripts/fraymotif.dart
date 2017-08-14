@@ -7,7 +7,7 @@ and their getPower, getHP etc stats must use these.
 at start AND end of battle (can't be too careful), wipe applied fraymotifs
 */
 class Fraymotif {
-	var aspects; //expect to be an array
+	List<Aspect> aspects; //expect to be an array
 	String name;
     int tier;
 	bool usable = true; //when used in a fight, switches to false. IMPORTANT: fights should turn it back on when over.
@@ -41,7 +41,7 @@ class Fraymotif {
 	List<Player> getCastersNoOwner(Random rand, List<Player> players){
 	    List<Player> casters = [];
         for(num i = 0; i<this.aspects.length; i++){ //skip the first aspect, because that's owner.
-            String a = this.aspects[i];
+            Aspect a = this.aspects[i];
             Player p = rand.pickFrom(findAllAspectPlayers(players, a));//ANY player that matches my aspect can do this.;
             if(p != null) casters.add(p); //don't add 'undefined' to this array like a dunkass.
         }
@@ -319,66 +319,22 @@ class FraymotifCreator {
     }
     player.denizen.fraymotifs.add(f);
   }
-	dynamic getDenizenFraymotifNameFromAspect(aspect){
+	dynamic getDenizenFraymotifNameFromAspect(Aspect aspect){
+	    return aspect.denizenSongTitle;
       String ret = "";
-      if(aspect == "Blood"){
-          ret = "Ballad " ;//a song passed over generations in an oral history;
-      }else if(aspect == "Mind"){
-        ret = "Fugue"  ;//a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and loss of identity  (alternate selves that made different choices);
-      }else if(aspect == "Rage"){
-         ret = " Aria" ;// a musical piece full of emotion;
-      }else if(aspect == "Void"){
+      else if(aspect == "Void"){
          ret = "Silence" ;//;
       }else if(aspect == "Time"){
          ret = "Canon" ;//a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops);
-      }else if(aspect == "Heart"){
-        ret = "Leitmotif" ;//a musical theme representing a particular character;
-      }else if(aspect == "Breath"){
-        ret = "Refrain";
-      }else if(aspect == "Light"){
-        ret = "Opera" ;//lol, cuz light players never shut up;
-      }else if(aspect == "Space"){
-        ret = "Sonata" ;//a composition for a soloist.  Space players are stuck doing something different from everyone,;
-      }else if(aspect == "Hope"){
-        ret = "Etude" ;//a musical exercise designed to improve the performer;
-      }else if(aspect == "Life"){
-        ret = "Lament" ;//passionate expression of grief. so much life has been lost to SBURB.;
-      }else if(aspect == "Doom"){
-        ret = "Dirge" ;//a song for the dead;
-      }else{
-        ret = "Song";
-      }
+
       return ret;
   }
-	dynamic getDenizenFraymotifDescriptionForAspect(aspect){
+	dynamic getDenizenFraymotifDescriptionForAspect(Aspect aspect){
+	    return aspect.denizenSongDesc;
       String ret = "";
-      if(aspect == "Blood"){
-          ret = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Mind"){
-        ret = " A fractured chord is prepared. It is the one Regret plays to make insomnia reign. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Rage"){
-         ret = " A hsirvprmt xslri begins to tryyvi. It is the one Madness plays gl pvvk rgh rmhgifnvmg rm gfmv. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And yes, The OWNER know you're watching them. ";
-      }else if(aspect == "Void"){
+         }else if(aspect == "Void"){
          ret = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
       }else if(aspect == "Time"){
-         ret = "  A sun skips on a groove its tracing 'round the earth, the one-two beat Despair plays to turn cause and effect meaningless. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is/was/will be to say on the matter. ";
-      }else if(aspect == "Heart"){
-        ret = " A chord begins to echo. It is the one Damnation will play at their brith. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Breath"){
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Light"){
-        ret = " A beautiful opera begins to be performed. It starts to really pick up around Act 4. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Space"){
-        ret = " An echoing note is plucked. It is the one Isolation plays to chart the depths of reality. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Hope"){
-        ret = " A resounding hootenanny begins to play. It is the one Irony performs to remember the past. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Life"){
-        ret = " A plucked note echos in the stillness. It is the one Desire plays to summon it's audience. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else if(aspect == "Doom"){
-        ret = " A slow dirge begins to play. It is the one Death plays to keep in practice. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }else{
-        ret = " A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-      }
 
       return ret;
   }
@@ -482,15 +438,15 @@ class FraymotifCreator {
   }
 	void initializePremadeNames(){
     this.premadeFraymotifNames = [];
-    this.premadeFraymotifNames.add(new Fraymotif(["Light", "Mind"], "Blinded By The Light",1, ""));
-		this.premadeFraymotifNames.add(new Fraymotif(["Light", "Heart"], "Total Eclipse of the Heart",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Breath", "Time"], "Stop, Hammertime",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Breath", "Hope"], "Wings of Freedom",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Doom", "Hope"], "Happy Ending",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Space", "Time"], "Adagio Redshift",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Life", "Time"], "Time Heals All Wounds",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Heart", "Doom"], "Madrigal Melancholia",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif(["Space", "Time", "Breath", "Light"], "Canon in HS Major",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.MIND], "Blinded By The Light",1, ""));
+		this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.HEART], "Total Eclipse of the Heart",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.TIME], "Stop, Hammertime",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.HOPE], "Wings of Freedom",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.HOPE], "Happy Ending",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.TIME], "Adagio Redshift",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.TIME], "Time Heals All Wounds",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HEART, Aspects.DOOM], "Madrigal Melancholia",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.TIME, Aspects.BREATH, Aspects.LIGHT], "Canon in HS Major",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Life", "Void", "Heart", "Hope"], "Canon in HS Minor",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Doom", "Time"], "Another One Bites The Dust",1, ""));
     this.premadeFraymotifNames.add(new Fraymotif(["Hope", "Time"], "Maybe Someday",1, ""));
@@ -645,18 +601,18 @@ class FraymotifEffect {
 	void setEffectForPlayer(Player player){
 		Random rand = player.rand;
 		var effect = new FraymotifEffect("",this.e, true); //default to just damaging the enemy.
-		if(player.class_name == "Knight") effect = rand.pickFrom(this.knightEffects());
-		if(player.class_name == "Seer") effect = rand.pickFrom(this.seerEffects());
-		if(player.class_name == "Bard") effect = rand.pickFrom(this.bardEffects());
-		if(player.class_name == "Heir") effect = rand.pickFrom(this.heirEffects());
-		if(player.class_name == "Maid") effect = rand.pickFrom(this.maidEffects());
-		if(player.class_name == "Rogue") effect = rand.pickFrom(this.rogueEffects());
-		if(player.class_name == "Page") effect = rand.pickFrom(this.pageEffects());
-		if(player.class_name == "Thief") effect = rand.pickFrom(this.thiefEffects());
-		if(player.class_name == "Sylph") effect = rand.pickFrom(this.sylphEffects());
-		if(player.class_name == "Prince") effect = rand.pickFrom(this.princeEffects());
-		if(player.class_name == "Witch") effect = rand.pickFrom(this.witchEffects());
-		if(player.class_name == "Mage") effect = rand.pickFrom(this.mageEffects());
+		if(player.class_name == SBURBClassManager.KNIGHT) effect = rand.pickFrom(this.knightEffects());
+		if(player.class_name == SBURBClassManager.SEER) effect = rand.pickFrom(this.seerEffects());
+		if(player.class_name == SBURBClassManager.BARD) effect = rand.pickFrom(this.bardEffects());
+		if(player.class_name == SBURBClassManager.HEIR) effect = rand.pickFrom(this.heirEffects());
+		if(player.class_name == SBURBClassManager.MAID) effect = rand.pickFrom(this.maidEffects());
+		if(player.class_name == SBURBClassManager.ROGUE) effect = rand.pickFrom(this.rogueEffects());
+		if(player.class_name == SBURBClassManager.PAGE) effect = rand.pickFrom(this.pageEffects());
+		if(player.class_name == SBURBClassManager.THIEF) effect = rand.pickFrom(this.thiefEffects());
+		if(player.class_name == SBURBClassManager.SYLPH) effect = rand.pickFrom(this.sylphEffects());
+		if(player.class_name == SBURBClassManager.PRINCE) effect = rand.pickFrom(this.princeEffects());
+		if(player.class_name == SBURBClassManager.WITCH) effect = rand.pickFrom(this.witchEffects());
+		if(player.class_name == SBURBClassManager.MAGE) effect = rand.pickFrom(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
     if(player.associatedStats.length > 0){ //null plyaers have no associated stats

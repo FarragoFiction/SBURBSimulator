@@ -79,6 +79,14 @@ abstract class Aspects {
 
     static Iterable<int> get ids => _aspects.keys;
     static Iterable<String> get names => _aspects.values.map((Aspect a) => a.name);
+
+    static Aspect stringToAspect(String id) {
+        List<Aspect> values = new List<Aspect>.from(_aspects.values);
+        for(Aspect a in values) {
+            if(a.name == id) return a;
+        }
+        return NULL;
+    }
 }
 
 // ####################################################################################################################################
@@ -122,7 +130,9 @@ class Aspect {
     // Lists
 
     List<String> denizenNames = new List<String>.unmodifiable(<String>["ERROR 404: DENIZEN NOT FOUND"]);
-
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>[]);
+    String denizenSongTitle = "Song";
+    String denizenSongDesc = "A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[]);
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[]);
 
