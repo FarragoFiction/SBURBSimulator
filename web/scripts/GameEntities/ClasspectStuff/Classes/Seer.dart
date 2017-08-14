@@ -2,9 +2,13 @@ import "SBURBClass.dart";
 import "../../Player.dart";
 import "../../GameEntity.dart";
 class Seer extends SBURBClass {
+  @override
   List<String> levels =["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
+  @override
   List<String> quests =["making the various bullshit rules of SBURB part of their personal mythos","collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go","suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't"];
+  @override
   List<String> postDenizenQuests =["casting their sight around the land to find the causes of their land’s devastation","taking a consort under their wing and teaching it the craft of magic","predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize","alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
+  @override
   List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
   Seer() : super("Seer", 7, true);
 

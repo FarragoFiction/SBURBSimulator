@@ -325,7 +325,7 @@ class FraymotifCreator {
 	dynamic getDenizenFraymotifDescriptionForAspect(Aspect aspect){
 	    return aspect.denizenSongDesc;
   }
-  
+
 	List<Fraymotif> getUsableFraymotifs(owner, allies, enemies){
     List<Fraymotif> fraymotifs = owner.fraymotifs;
     List<dynamic> ret = [];

@@ -3,6 +3,16 @@ import "../../Player.dart";
 import "../../GameEntity.dart";
 class Heir extends SBURBClass {
 
+  @override
+  List<String> levels =["SKAIA'S TOP IDOL","POPSTAR BOPPER","SONGSCUFFER"];
+  @override
+  List<String> quests = ["retrieving a sword from a stone","completing increasingly unlikely challenges through serendepitious coincidences","inheriting and running a successful, yet complex company"];
+  @override
+  List<String> postDenizenQuests  = ["recruiting denizen villages, spreading a modest nation under their (Democratic!) control","assuming control of yet more denizen villages. Turns out a mind bogglingly large number of consorts have the Heir named in their will","chillaxing with their aspect and while talking to it as if it were a real person.","wiping a dungeon off the map with their awe inspiring powers"];
+  @override
+  List<String> handles =["honorable","humble","hot","horrific","hardened", "havocs"];
+
+
   Heir() : super("Heir", 9, true);
 
   @override

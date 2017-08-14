@@ -3,9 +3,13 @@ import "../../../SBURBSim.dart";
 
 
 class Thief extends SBURBClass {
+  @override
   List<String> levels =["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
+  @override
   List<String> quests =["robbing various enemy imps and ogres to obtain vast riches","planning an elaborate heist that relies on several hard-to-predict factors going absolutely perfectly","torrenting vast amounts of grist from the other players"];
+  @override
   List<String> postDenizenQuests =["literally stealing another player’s planet. Well, the deed to another player's planet, but still. A planet. Wow","stealing every last piece of grist in every last dungeon. Hell fucking yes","crashing the consort economy when they spend their hellaciously devious wealth","doing a dance on their pile of ill earned goods and wealth"];
+  @override
   List<String> handles =["talented","terrible","talkative","tenacious","tried", "torrented"];
   Thief() : super("Thief", 8, true);
 

@@ -2,10 +2,13 @@ import "SBURBClass.dart";
 import "../../Player.dart";
 import "../../GameEntity.dart";
 class Knight extends SBURBClass {
+  @override
   List<String> levels =["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
+  @override
   List<String> quests =  ["protecting the local consorts from a fearsome foe","protecting the session from various ways it can go shithive maggots","questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader"];
-
+  @override
   List<String> postDenizenQuests  = ["","spending way too much time hustling from village to village, saving the consorts from the denizens last few minions","breaking a siege on a consort village, saving its population and slaughtering thousands of underlings","finishing the ‘legendary’ tests of valor dispensed by an elder consort"];
+  @override
   List<String> handles =["keen","knightly","kooky","kindred", "kaos",];
   Knight() : super("Knight", 4, true);
 
