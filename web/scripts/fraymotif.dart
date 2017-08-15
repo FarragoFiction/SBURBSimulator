@@ -17,23 +17,25 @@ class Fraymotif {
     //make sure ENEMY is the same for all effects, dunkass.
     String desc;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
 	bool used = false; //when start fight, set to false. set to true when used. once per fight
-	List<dynamic> effects = [];  //each effect is a target, a revive, a statName
+	List<FraymotifEffect> effects = <FraymotifEffect>[];  //each effect is a target, a revive, a statName
 	num baseValue;
 
 
 	Fraymotif(String this.name, int this.tier, {List<Aspect> this.aspects = null, String this.desc=""}) {
+	    if (this.aspects == null) {
+	        this.aspects = <Aspect>[];
+        }
 		this.baseValue = 50 * this.tier;
 		if(this.tier >=3)
 			this.baseValue = 1000 * this.tier-2;//so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
 	}
 
+    @override
+	String get toString => this.name;
 
-	String toString(){
-      return this.name;
-    }
 	void addEffectsForPlayers(List<Player> players){
 		for(num i = 0; i<players.length; i++){
-			var effect = new FraymotifEffect(null, null, null);
+			FraymotifEffect effect = new FraymotifEffect(null, null, null);
 			effect.setEffectForPlayer(players[i]);
 			this.effects.add(effect);
 		}
@@ -173,12 +175,12 @@ class Fraymotif {
         for(num i = 0; i<this.effects.length; i++){
           var e = this.effects[i];
           if(e.damageInsteadOfBuff){
-            if(effectTypes["damage"+ e.target].length == 0)   effectTypes["damage"+ e.target].add(e.toString());
+            if(effectTypes["damage${e.target}"].length == 0)   effectTypes["damage${e.target}"].add(e.toString());
             //no repeats
-            if( effectTypes["damage"+ e.target].indexOf(e.statName) == -1) effectTypes["damage"+ e.target].add(e.statName);
+            if( effectTypes["damage${e.target}"].indexOf(e.statName) == -1) effectTypes["damage${e.target}"].add(e.statName);
           }else{
-            if(effectTypes["buff"+ e.target].length == 0)   effectTypes["buff"+ e.target].add(e.toString());
-            if( effectTypes["buff"+ e.target].indexOf(e.statName) == -1) effectTypes["buff"+ e.target].add(e.statName);
+            if(effectTypes["buff${e.target}"].length == 0)   effectTypes["buff${e.target}"].add(e.toString());
+            if( effectTypes["buff${e.target}"].indexOf(e.statName) == -1) effectTypes["buff${e.target}"].add(e.statName);
           }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
@@ -349,7 +351,7 @@ class FraymotifCreator {
 
     var ret = rand.pickFrom(names);
     if(rand.nextDouble() > 0.5){
-      return "<span style='color:${aspect.textColour.toStyleString()}'>${ret.toLowerCase()}</span>";  //tacked onto existin word
+      return "<span style='color:${aspect.palette.text.toStyleString()}'>${ret.toLowerCase()}</span>";  //tacked onto existin word
     }else{
       return " $ret"; //extra word
     }

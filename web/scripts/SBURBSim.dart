@@ -83,6 +83,7 @@ export "Scenes/VoidyStuff.dart";
 export "Scenes/YellowYard.dart";
 
 export "includes/colour.dart";
+export "includes/palette.dart";
 
 
 // temporary functions to be replaced later!
@@ -201,7 +202,7 @@ bool printCorruptionMessage(ErrorEvent e) {
 
         String words = curSessionGlobalVar.rand.pickFrom(rand);
         words = Zalgo.generate(words);
-        String plea = "${start}style = 'color: ${player.aspect.textColour.toStyleString()}; $end$str$words</b>";
+        String plea = "${start}style = 'color: ${player.aspect.palette.text.toStyleString()}; $end$str$words</b>";
 
         appendHtml(story, plea);
     }

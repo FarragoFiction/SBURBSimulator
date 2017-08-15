@@ -205,7 +205,7 @@ class CharacterCreatorHelper {
 		num current = 30;
 		//title
 	    ctx.font = "30px Times New Roman";
-		ctx.fillStyle = player.aspect.textColour.toStyleString();
+		ctx.fillStyle = player.aspect.palette.text.toStyleString();
 		ctx.fillText(player.titleBasic(),left_margin,current);
 
 		//interests

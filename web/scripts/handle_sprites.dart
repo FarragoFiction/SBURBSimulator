@@ -648,7 +648,7 @@ void drawCharSheet(CanvasElement canvas, Player player){
   ctx.font = "42px Times New Roman";
   ctx.fillStyle = "#000000";
   ctx.fillText(player.titleBasic(),left_margin+1,current+1);
-  ctx.fillStyle = player.aspect.textColour.toStyleString();
+  ctx.fillStyle = player.aspect.palette.text.toStyleString();
   ctx.fillText(player.titleBasic(),left_margin,current);
   ctx.font = "24px Times New Roman";
   ctx.fillText("(" +player.chatHandle+")",left_margin,current+ 42);
@@ -758,7 +758,7 @@ void drawLevelUp(CanvasElement canvas, Player player){
   addImageTag(imageString);
   ImageElement img = imageSelector(imageString);
   ctx.drawImage(img,0,0,);
-  swapColors(canvasSpriteBuffer, "#4a92f7", player.aspect.textColour.toStyleString());
+  swapColors(canvasSpriteBuffer, "#4a92f7", player.aspect.palette.text.toStyleString());
   //set fill before you start, don't set it in the for loop, expensive
   ctx.fillStyle="#000000";
   for(int i = 0; i<level_bg_colors.length; i++){
@@ -1738,7 +1738,7 @@ void hairBack(CanvasElement canvas, Player player){
 		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
 		swapColors(canvas, "#313131", player.hairColor);
-		swapColors(canvas, "#202020", player.aspect.textColour.toStyleString());
+		swapColors(canvas, "#202020", player.aspect.palette.text.toStyleString());
 	}
 }
 
@@ -1757,7 +1757,7 @@ void hair(CanvasElement canvas, Player player){
 		swapColors(canvas, "#202020", player.bloodColor);
 	}else{
 		swapColors(canvas, "#313131", player.hairColor);
-		swapColors(canvas, "#202020", player.aspect.textColour.toStyleString());
+		swapColors(canvas, "#202020", player.aspect.palette.text.toStyleString());
 	}
 }
 

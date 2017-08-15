@@ -1251,7 +1251,7 @@ class Player extends GameEntity {
         if (this.isTroll) {
             return this.bloodColor;
         } else {
-            return this.aspect.textColour.toStyleString();
+            return this.aspect.palette.text.toStyleString();
         }
     }
 
