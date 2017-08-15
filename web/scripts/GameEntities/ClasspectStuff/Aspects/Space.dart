@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Space extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"]);
+
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"]);
 
 

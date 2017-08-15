@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Time extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Teetotaler","Traveler","Tailor","Taster","Target", "Teacher", "Therapist","Testicle"]);
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Time","Paradox", "Chrono", "Moment", "Foregone", "Reset", "Endless", "Temporal", "Shenanigans", "Clock", "Tick-Tock", "Spinning", "Repeat", "Rhythm", "Redshift",  "Epoch", "Beatdown", "Slow", "Remix", "Clockwork", "Lock", "Eternal"]);
 
 

@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Mind extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Machine","Magician","Magistrate","Mechanic","Mediator", "Messenger"]);
+
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Mind", "Modulation", "Shock", "Awe", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination",  "Psycho", "Control", "Execution", "Bolt"]);
 
 

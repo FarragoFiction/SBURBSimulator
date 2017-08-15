@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Life extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Leader","Lecturer","Liaison","Loyalist","Lyricist"]);
+
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Life" ,"Pastoral", "Green", "Relief", "Healing", "Plant", "Vitality", "Growing", "Garden", "Multiplying", "Rising", "Survival", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"]);
 
 

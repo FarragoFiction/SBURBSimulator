@@ -653,38 +653,9 @@ dynamic getInterestHandle2(Random rand, Aspect aspect, String interest){
 	return null;
 }
 
-String getBlandHandle2(Random rand, String aspect){
-	List<dynamic> first_arr = [];
-	if(aspect == "Space"){
-		first_arr = space_handles;
-	}else if(aspect == "Time"){
-		first_arr = time_handles;
-	}else if(aspect == "Breath"){
-		first_arr = breath_handles;
-	}else if(aspect == "Doom"){
-		first_arr = doom_handles;
-	}else if(aspect == "Blood"){
-		first_arr = blood_handles;
-	}else if(aspect == "Heart"){
-		first_arr = heart_handles;
-	}else if(aspect == "Mind"){
-		first_arr = mind_handles;
-	}else if(aspect == "Light"){
-		first_arr = light_handles;
-	}else if(aspect == "Void"){
-		first_arr = void_handles;
-	}else if(aspect == "Rage"){
-		first_arr = rage_handles;
-	}else if(aspect == "Hope"){
-		first_arr = hope_handles;
-	}else if(aspect == "Life"){
-		first_arr = life_handles;
-	}
-	return rand.pickFrom(first_arr);
+String getBlandHandle2(Random rand, Aspect aspect){
+	return rand.pickFrom(aspect.handles);
 }
-
-
-
 
 
 String getLevelFromFree(Random rand){
@@ -1168,18 +1139,6 @@ List<String> fantasy_handles1 = <String>["musing","pacific","minotaurs","kappas"
 List<String> justice_handles1 = <String>["karmic","mysterious","police","mind","keen","retribution","saving","tracking","hardboiled","broken","perceptive","watching","searching"];
 
 
-List<String> space_handles = <String>["Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"];
-List<String> time_handles = <String>["Teetotaler","Traveler","Tailor","Taster","Target", "Teacher", "Therapist","Testicle"];
-List<String> breath_handles = <String>["Biologist","Backpacker","Babysitter","Baker","Balooner","Braid"];
-List<String> doom_handles = <String>["Dancer","Dean","Decorator","Deliverer","Director","Delegate"];
-List<String> blood_handles = <String>["Buyer","Butler","Butcher","Barber","Bowler","Belligerent"];
-List<String> heart_handles = <String>["Heart","Hacker","Harbinger","Handler","Helper", "Historian", "Hobbyist"];
-List<String> mind_handles = <String>["Machine","Magician","Magistrate","Mechanic","Mediator", "Messenger"];
-List<String> light_handles = <String>["Laborer","Launderer","Layabout","Legend","Lawyer", "Lifeguard"];
-List<String> void_handles = <String>["Vagrant","Vegetarian","Veterinarian","Vigilante","Virtuoso"];
-List<String> rage_handles = <String>["Raconteur","Reveler","Reader","Reporter","Racketeer"];
-List<String> hope_handles = <String>["Honcho","Humorist","Horse","Haberdasher","Hooligan"];
-List<String> life_handles = <String>["Leader","Lecturer","Liaison","Loyalist","Lyricist"];
 
 List<String> music_handles2 = <String>["Siren","Singer","Tenor","Trumpeter","Baritone","Dancer","Ballerina","Harpsicordist","Musician","Lutist","Violist","Rapper","Harpist","Lyricist","Virtuoso","Bass"];
 List<String> culture_handles2 = <String>["Dramatist","Repository","Museum","Librarian","Hegemony","Hierarchy","Davinci","Renaissance","Viniculture","Treaty","Balmoral","Beauty","Business"];

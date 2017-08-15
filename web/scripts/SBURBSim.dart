@@ -429,7 +429,7 @@ void setHtml(Element element, String html) {
 }
 
 void renderAfterlifeURL() {
-    if (curSessionGlobalVar.afterLife.ghosts.length > 0) {
+    if (!curSessionGlobalVar.afterLife.ghosts.isEmpty) {
         stopTime = new DateTime.now();
         var params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";

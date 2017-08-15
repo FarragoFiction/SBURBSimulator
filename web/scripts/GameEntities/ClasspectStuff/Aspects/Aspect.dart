@@ -134,6 +134,7 @@ class Aspect {
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[]);
+    List<String> handles = new List<String>.unmodifiable(<String>[]);
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[]);
 
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[]);

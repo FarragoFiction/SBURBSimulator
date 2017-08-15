@@ -6,6 +6,10 @@ import 'Aspect.dart';
 class Doom extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Dancer","Dean","Decorator","Deliverer","Director","Delegate"]);
+
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Dark", "Broken", "Meteoric", "Diseased","Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"]);
 
 

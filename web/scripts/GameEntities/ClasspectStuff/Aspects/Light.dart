@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Light extends Aspect {
 
     @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Laborer","Launderer","Layabout","Legend","Lawyer", "Lifeguard"]);
+
+
+    @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Lucky", "LIGHT", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"]);
 
 

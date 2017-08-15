@@ -70,12 +70,19 @@ class DenizenMinion extends NPC {
 }
 
 class PotentialSprite extends NPC {
+  @override
   String helpPhrase = "provides the requisite amount of gigglesnort hideytalk to be juuuust barely helpful. ";
+  @override
   num helpfulness = 0;
+  @override
   bool armless = false;
+  @override
   bool disaster = false;
+  @override
   bool lusus = false; //HAVE to be vars or can't inherit through prototyping.
+  @override
   bool player = false;
+  @override
   bool illegal = false; //maybe AR won't help players with ILLEGAL sprites?
   PotentialSprite(String name, Session session): super(name, session);
 }
@@ -102,7 +109,7 @@ sooooo...things that go in sprites are gameEntities. Just like jack/Queen/King. 
 //seperate 'cause of witches and bad luck and good luck
 //DinceJof -  you prototype your kernel sprite with the ashes of your ancestor. They used to be a SBURB player like you, until they took a scratch to the timeline.
 
-var disastor_objects = [
+List<GameEntity> disastor_objects = [
   new PotentialSprite(
       "First Guardian",  null) //also a custom fraymotif.
     ..disaster = true

@@ -171,7 +171,7 @@ class Session {
     }
 
     Player findBestSpace() {
-        List<Player> spaces = findAllAspectPlayers(this.players, "Space");
+        List<Player> spaces = findAllAspectPlayers(this.players, Aspects.SPACE);
         if (spaces.isEmpty) return null;
         Player ret = spaces[0];
         for (num i = 0; i < spaces.length; i++) {
@@ -181,7 +181,7 @@ class Session {
     }
 
     Player findMostCorruptedSpace() {
-        List<Player> spaces = findAllAspectPlayers(this.players, "Space");
+        List<Player> spaces = findAllAspectPlayers(this.players, Aspects.SPACE);
         if (spaces.isEmpty) return null;
         Player ret = spaces[0];
         for (num i = 0; i < spaces.length; i++) {
@@ -437,13 +437,13 @@ class Session {
 
     void setUpBosses() {
         this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", this);
-        Fraymotif f = new Fraymotif(<String>[], "Red Miles", 3);
+        Fraymotif f = new Fraymotif(<Aspect>[], "Red Miles", 3);
         f.effects.add(new FraymotifEffect("power", 2, true));
         f.flavorText = " You cannot escape them ";
         this.queensRing.fraymotifs.add(f);
 
         this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", this);
-        f = new Fraymotif(<String>[], "Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+        f = new Fraymotif(<Aspect>[], "Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
         f.effects.add(new FraymotifEffect("power", 2, true));
         f.flavorText = " The very meteors from the Reckoning rain down. ";
         this.kingsScepter.fraymotifs.add(f);
@@ -461,13 +461,13 @@ class Session {
         this.jack = new Carapace("Jack", this);
         //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
         jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 10, "sanity": -100, "hp": 20, "freeWill": -100, "power": 30});
-        f = new Fraymotif(<String>[], "Stab To Meet You", 1);
+        f = new Fraymotif(<Aspect>[], "Stab To Meet You", 1);
         f.effects.add(new FraymotifEffect("power", 3, true));
         f.flavorText = " It's pretty much how he says 'Hello'. ";
         this.jack.fraymotifs.add(f);
 
         this.democraticArmy = new Carapace("Democratic Army", this); //doesn't actually exist till WV does his thing.
-        f = new Fraymotif(<String>[], "Democracy Charge", 2);
+        f = new Fraymotif(<Aspect>[], "Democracy Charge", 2);
         f.effects.add(new FraymotifEffect("power", 3, true));
         f.flavorText = " The people have chosen to Rise Up against their oppressors. ";
         this.democraticArmy.fraymotifs.add(f);
