@@ -17,11 +17,11 @@ class PlanToExileJack extends Scene {
 	}
 	void findSympatheticPlayer(){
 		var living = findLivingPlayers(this.session.players);
-		this.planner =  findAspectPlayer(living, "Mind");
+		this.planner =  findAspectPlayer(living, Aspects.MIND);
 		if(this.planner == null){
-			this.planner =  findAspectPlayer(living, "Doom");
+			this.planner =  findAspectPlayer(living, Aspects.DOOM);
 		}else if(this.planner == null){
-			this.planner =  findAspectPlayer(living, "Light");
+			this.planner =  findAspectPlayer(living, Aspects.LIGHT);
 		}else if(this.planner == null){
 			this.planner =  findClassPlayer(living, SBURBClassManager.SEER);
 		}

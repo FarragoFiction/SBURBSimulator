@@ -12,10 +12,10 @@ class prepareToExileJack extends Scene {
 
 
 	void findSufficientPlayer(){
-		this.player =  findAspectPlayer(this.session.availablePlayers, "Void");
+		this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.VOID);
 
 		if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, "Mind");
+			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.MIND);
 		}else if(this.player == null){
 			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.THIEF);
 		}else if(this.player == null){
@@ -23,9 +23,9 @@ class prepareToExileJack extends Scene {
 		}else if(this.player == null){
 			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.SEER);
 		}else if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, "Doom");
+			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.DOOM);
 		}else if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, "Light");
+			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.LIGHT);
 		}
 	}
 
