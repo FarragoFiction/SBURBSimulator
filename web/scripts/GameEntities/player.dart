@@ -664,19 +664,19 @@ class Player extends GameEntity {
         }
         //special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
         if (this.bloodColor == "#631db4") {
-            Fraymotif f = new Fraymotif(<String>[], "Chucklevoodoos", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Chucklevoodoos", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, false));
             f.effects.add(new FraymotifEffect("sanity", 3, true));
             f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#658200") {
-            Fraymotif f = new Fraymotif(<String>[], "Limeade Refreshment", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Limeade Refreshment", 1);
             f.effects.add(new FraymotifEffect("sanity", 1, false));
             f.effects.add(new FraymotifEffect("sanity", 1, true));
             f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#ffc3df") {
-            Fraymotif f = new Fraymotif(<String>[], "'<font color='pink'>${this.chatHandle} and the Power of Looove~~~~~<3<3<3</font>'", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "'<font color='pink'>${this.chatHandle} and the Power of Looove~~~~~<3<3<3</font>'", 1);
             f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, false));
             f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, true));
             f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with ${this.htmlTitleHP()}. ";

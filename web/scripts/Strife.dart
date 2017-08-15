@@ -42,7 +42,7 @@ class Strife {
     }
   }
 
-  void checkForSuddenEnding(div) {
+  void checkForSuddenEnding(Element div) {
     if (turnsPassed > timeTillRocks) {
       this.rocksFallEverybodyDies(div);
       processEnding();
@@ -153,7 +153,7 @@ class Strife {
     //if even one player is on the winning side, it's a victory.
     if (winner.findPlayer() != null)
       icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
-    String endingHTML = "<Br><br> ${icon} The fight is over. ${winner
+    String endingHTML = "<Br><br> $icon The fight is over. ${winner
         .name} remains alive and unabsconded. <br>";
     appendHtml(div, endingHTML);
     if (winner.findPlayer() != null) winner.renderPoseAsATeam(div); //only call this if winning team has a player in it. (otherwise blank canvas)
@@ -169,12 +169,10 @@ class Strife {
     }
   }
 
-  void rocksFallEverybodyDies(div) {
-    print("Rocks fall, everybody dies in session: " +
-        session.session_id.toString());
-    div.append(
-        "<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
-    var spacePlayer = findAspectPlayer(session.players, "Space");
+  void rocksFallEverybodyDies(Element div) {
+    print("Rocks fall, everybody dies in session: ${session.session_id.toString()}");
+    appendHtml(div,"<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
+    var spacePlayer = findAspectPlayer(session.players, Aspects.SPACE);
     session.rocksFell = true;
     spacePlayer.landLevel =
     0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
@@ -242,7 +240,7 @@ class Strife {
   List<Player> removeAllNonPlayers(List<GameEntity>players) {
     List<Player> ret = [];
     for (num i = 0; i < players.length; i++) {
-      var p = players[i];
+      GameEntity p = players[i];
       if (p is Player) ret.add(p);
     }
     return ret;
@@ -281,6 +279,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     better than fussing with div down here and up there too.
 
    */
+  @override
   String toString() {
     return name;
   }
@@ -294,7 +293,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   void takeTurn(div, num numTurnOn, List<Team> teams) {
     resetPlayersAvailability();
-    if(potentialMembers.length > 0) checkForBackup(numTurnOn,div); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
+    if(!potentialMembers.isEmpty) checkForBackup(numTurnOn,div); //longer fight goes on, more likely to get backup.  IMPORTANT: BACK UP HAS TO BE GIVEN TO THIS TEAM ON CREATION
     List<Team> otherTeams = getOtherTeams(teams);
     //loop on all members each member takes turn.
     for(GameEntity member in members) { //member will take care of checking if they are absconded or dead.
@@ -302,24 +301,24 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }
   }
 
-  void remainingPlayersHateYou(div, GameEntity coward){
+  void remainingPlayersHateYou(Element div, GameEntity coward){
     List<GameEntity> present = getLivingMinusAbsconded();
     for(GameEntity m in present){
-       var r = m.getRelationshipWith(coward);
+       Relationship r = m.getRelationshipWith(coward);
        if(r != null) r.value += -5; //could be a sprite, after all.
     }
   }
 
   //back up can be any player in the potentialMembers list. You are responsible for populating that list on team creation.
   //doomed time players will NOT be treated any differently anymore. (though a player marked as doomed might have a different narrative).
-  void checkForBackup(numTurnOn,div) {
-      if(potentialMembers.length == 0) return;
+  void checkForBackup(int numTurnOn,Element div) {
+      if(potentialMembers.isEmpty) return;
       potentialMembers.sort(); //fasted members get dibs.
       List<Player> timePlayers = new List<Player>();
       for(GameEntity member in members) {
         if(member is Player){
           Player p = member;
-          if(p.aspect == "Time") timePlayers.add(p);
+          if(p.aspect == Aspects.TIME) timePlayers.add(p);
         }
         if(!member.dead && member.session.rand.nextDouble() > .75){
           session.availablePlayers.remove(member);
@@ -340,19 +339,19 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   //handle doomed time clones here, too
-  void summonBackup(GameEntity backup, div) {
+  void summonBackup(GameEntity backup, Element div) {
     String canvasHTML = "<br><canvas id='canvasBackup${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
     appendHtml(div, canvasHTML);
-    var canvasDiv = querySelector("#canvasBackup"+ div.id);
+    CanvasElement canvasDiv = querySelector("#canvasBackup"+ div.id);
     if(backup.doomed){
-      var canvasDiv = querySelector("#canvas"+ div.id);
+      CanvasElement canvasDiv = querySelector("#canvas"+ div.id);
       drawTimeGears(canvasDiv);
       //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
       div.appendHTML("suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
     }else{
       if(backup is Player){
         Player p = backup;
-        if(p.aspect == "Time" && p.session.rand.nextDouble() > .5){
+        if(p.aspect == Aspect.TIME && p.session.rand.nextDouble() > .5){
           drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
           div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)",treeSanitizer: NodeTreeSanitizer.trusted);
@@ -363,7 +362,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
       appendHtml(div, canvasHTML);
 
-      div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!!",treeSanitizer: NodeTreeSanitizer.trusted);
+     appendHTML(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
     }
     drawSinglePlayer(canvasDiv, backup);
   }
@@ -387,14 +386,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   List<GameEntity> getLivingMinusAbsconded(){
-    var living = getLiving();
+    List<GameEntity> living = getLiving();
     for(num i = 0; i<this.absconded.length; i++){
       removeFromArray(this.absconded[i], living);
     }
     return living;
   }
 
-  num getTeamStatTotal(statName) {
+  num getTeamStatTotal(String statName) {
     num ret = 0;
     for(GameEntity ge in members) {
       ret += ge.getStat(statName);
@@ -402,9 +401,9 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     return ret;
   }
 
-  num getTeamStatAverage(statName) {
+  num getTeamStatAverage(String statName) {
     num ret = 0;
-    if(members.length <= 0) return ret;
+    if(members.length.isEmpty) return ret;
     for(GameEntity ge in members) {
       ret += ge.getStat(statName);
     }
@@ -412,12 +411,12 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
-  int compareTo(other) {
+  int compareTo(Team other) {
     return (other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility")).round();
   }
 
   bool hasLivingMembersPresent() {
-      return this.getLivingMinusAbsconded().length > 0;
+      return !this.getLivingMinusAbsconded().isEmpty
   }
 
   void level() {
@@ -483,14 +482,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       if(members[i].renderable()) poseable.add(members[i]);
     }
 
-    var ch = canvasHeight;
+    num ch = canvasHeight;
     if(poseable.length > 6){
       ch = (canvasHeight*1.5).round(); //a little bigger than two rows, cause time clones
     }
     String canvasHTML = "<br><canvas id='canvas${div.id}${members[0].id}' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
     appendHtml(div, canvasHTML);
     //different format for canvas code
-    var canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
+    CanvasElement canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
     poseAsATeam(canvasDiv, poseable); //in handle sprites
   }
 
@@ -538,7 +537,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     return ret;
   }
 
-  static num getTeamsStatAverage(List<Team> teams, statName) {
+  static num getTeamsStatAverage(List<Team> teams, String statName) {
     num ret = 0;
     for(Team team in teams) {
      ret += (team.getTeamStatAverage(statName));
@@ -546,7 +545,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     return ret;
   }
 
-  static num getTeamsStatTotal(List<Team> teams, statName) {
+  static num getTeamsStatTotal(List<Team> teams, String statName) {
     num ret = 0;
     for(Team team in teams) {
       ret += (team.getTeamStatTotal(statName));
