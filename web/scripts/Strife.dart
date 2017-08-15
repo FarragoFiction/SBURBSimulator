@@ -347,14 +347,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       CanvasElement canvasDiv = querySelector("#canvas"+ div.id);
       drawTimeGears(canvasDiv);
       //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
-      div.appendHTML("suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
+      appendHtml(div, "suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
     }else{
       if(backup is Player){
         Player p = backup;
         if(p.aspect == Aspect.TIME && p.session.rand.nextDouble() > .5){
           drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
-          div.appendHTML("The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)",treeSanitizer: NodeTreeSanitizer.trusted);
+          appendHtml(div,"The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)",treeSanitizer: NodeTreeSanitizer.trusted);
           return;
           }
       }//not a time player
@@ -362,7 +362,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
       String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
       appendHtml(div, canvasHTML);
 
-     appendHTML(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
+      appendHtml(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
     }
     drawSinglePlayer(canvasDiv, backup);
   }
@@ -403,7 +403,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
   num getTeamStatAverage(String statName) {
     num ret = 0;
-    if(members.length.isEmpty) return ret;
+    if(members.isEmpty) return ret;
     for(GameEntity ge in members) {
       ret += ge.getStat(statName);
     }
@@ -411,12 +411,12 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   @override  //sorting Teams automatically sorts them by mobility so strife knows turn order
-  int compareTo(Team other) {
+  int compareTo(other) {
     return (other.getTeamStatAverage("mobility") - getTeamStatAverage("mobility")).round();
   }
 
   bool hasLivingMembersPresent() {
-      return !this.getLivingMinusAbsconded().isEmpty
+      return !this.getLivingMinusAbsconded().isEmpty;
   }
 
   void level() {

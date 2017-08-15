@@ -361,7 +361,7 @@ class FraymotifCreator {
 
     if(this.premadeFraymotifNames.isEmpty) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
-        String f = this.premadeFraymotifNames[i];
+        Fraymotif f = this.premadeFraymotifNames[i];
         List<GameEntity> casters = f.getCastersNoOwner(players[0].session.rand, players);
         if (casters.length == f.aspects.length) return f.name;
     }
@@ -486,7 +486,7 @@ class FraymotifCreator {
     return null;
   }
 	dynamic makeFraymotif(Random rand, List<Player> players, int tier){ //asumming first player in that array is the owner of the framotif later on.
-    if(players.length == 1 && players[0].class_name == SBURBClass.WASTE && tier == 3){
+    if(players.length == 1 && players[0].class_name == SBURBClassManager.WASTE && tier == 3){
         //check to see if we are upgrading rocks fall.
         Fraymotif f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies");
         if(f && f.tier < 10){

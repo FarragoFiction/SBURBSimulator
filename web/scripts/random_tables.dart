@@ -698,36 +698,10 @@ String getLevelFromInterests(int i, String interest){
 }
 
 
-dynamic getLevelFromAspect(num i, String aspect){
+dynamic getLevelFromAspect(num i, Aspect aspect){
 	//print("looking for level from aspect, i is " + i.toString());
-	List<dynamic> first_arr = [];
-	if(aspect == "Space"){
-		first_arr = space_levels;
-	}else if(aspect == "Time"){
-		first_arr = time_levels;
-	}else if(aspect == "Breath"){
-		first_arr = breath_levels;
-	}else if(aspect == "Doom"){
-		first_arr = doom_levels;
-	}else if(aspect == "Blood"){
-		first_arr = blood_levels;
-	}else if(aspect == "Heart"){
-		first_arr = heart_levels;
-	}else if(aspect == "Mind"){
-		first_arr = mind_levels;
-	}else if(aspect == "Light"){
-		first_arr = light_levels;
-	}else if(aspect == "Void"){
-		first_arr = void_levels;
-	}else if(aspect == "Rage"){
-		first_arr = rage_levels;
-	}else if(aspect == "Hope"){
-		first_arr = hope_levels;
-	}else if(aspect == "Life"){
-		first_arr = life_levels;
-	}
-	//print("found: " + first_arr[i]);
-	return first_arr[i];
+		//print("found: " + first_arr[i]);
+	return aspect.levels[i];
 }
 
 String truncateString(String str, int length) {
@@ -933,22 +907,6 @@ List<String> free_land_titles = <String>["Snowlake", "Heat","Sand","Brains","Haz
 ..addAll(<String>["Obsolescence","Deceit","Ruse","Distraction","Libraries","Blocks","Video Games","Vermin","Butchers","Meat","Clouds", "Horses"])
 
 ..addAll(corruptedOtherLandTitles);
-
-
-
-
-List<String> space_levels = <String>;
-List<String> time_levels = <String>;
-List<String> breath_levels = <String>;
-List<String> doom_levels = <String>;
-List<String> blood_levels = <String>;
-List<String> heart_levels = <String>;
-List<String> mind_levels = <String>;
-List<String> light_levels = <String>;
-List<String> void_levels = <String>["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"];
-List<String> rage_levels = <String>;
-List<String> hope_levels = <String>;
-List<String> life_levels = <String>;
 
 
 List<String> free_levels = <String>["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"];
