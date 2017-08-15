@@ -68,7 +68,7 @@ class CharacterEasterEggEngine {
     var pool = this.getPoolBasedOnEggs(rand);
     var potentials = this.playerDataStringArrayToURLFormat(pool);
     List<dynamic> ret = [];
-    List<Player> spacePlayers = findAllAspectPlayers(potentials, "Space");
+    List<Player> spacePlayers = findAllAspectPlayers(potentials, Aspects.SPACE);
     var space = rand.pickFrom(spacePlayers);
     removeFromArray(space,potentials);
     if(space == null){
@@ -79,7 +79,7 @@ class CharacterEasterEggEngine {
       space.quirk.favoriteNumber = 0;
       space.deriveChatHandle = false;
     }
-    var timePlayers = findAllAspectPlayers(potentials, "Time");
+    var timePlayers = findAllAspectPlayers(potentials, Aspects.TIME);
     var time = rand.pickFrom(timePlayers);
     removeFromArray(time,potentials);
     if(time == null){

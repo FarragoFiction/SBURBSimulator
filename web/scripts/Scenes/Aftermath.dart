@@ -206,28 +206,28 @@ class Aftermath extends Scene {
 		String trollKidRockString = "b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard" ;//Ancient, thank you for best meme. ;
 		Player trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
 		trollKidRock.session = this.session;
-		Fraymotif f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+		Fraymotif f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 		f.effects.add(new FraymotifEffect("power",1,false));
-		f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
+		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
-		f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 		f.effects.add(new FraymotifEffect("power",1,false));
-		f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
+		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
-		f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 		f.effects.add(new FraymotifEffect("power",1,false));
-		f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
+		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
-		f = new Fraymotif([],  "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
+		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
 		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
 		f.effects.add(new FraymotifEffect("power",1,false));
-		f.flavorText = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
+		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 		initializePlayers([trollKidRock], null); //TODO: confirm -PL
 		trollKidRock.setStat("currentHP", 1000);
@@ -253,23 +253,23 @@ class Aftermath extends Scene {
 
 		Fraymotif f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
 		f.effects.add(new FraymotifEffect("mobility",3,true));
-		f.flavorText = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. ";
+		f.desc = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3);//DM, the owner of the purple frog website came up with this one.;
 		f.effects.add(new FraymotifEffect("mobility",3,false));
-		f.flavorText = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. ";
+		f.desc = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3);//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.;
 		f.effects.add(new FraymotifEffect("sanity",3,false));
-		f.flavorText = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. ";
+		f.desc = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3);//DM, the owner of the purple frog website came up with this one.;
 		f.effects.add(new FraymotifEffect("mobility",2,false));
 		f.effects.add(new FraymotifEffect("mobility",2,true));
-		f.flavorText = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. ";
+		f.desc = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. ";
 		purpleFrog.fraymotifs.add(f);
 
 		return purpleFrog;

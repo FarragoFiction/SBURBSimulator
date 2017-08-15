@@ -45,7 +45,7 @@ testStats() {
   assert(testGE.getStat("hp") == 0
       ? true
       : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
-  testGE.setStatsHash({"hp": 100, "currentHP": 10, "power": 3, "maxLuck": 100});
+  testGE.setStatsHash(<String,num>{"hp": 100, "currentHP": 10, "power": 3, "maxLuck": 100});
   jRAssert("hp", testGE.getStat("hp"), 100);
   jRAssert("currentHP", testGE.getStat("currentHP"),
       100); //even though i set it to 10, setSTatsHash should not let it e less than HP
@@ -66,13 +66,13 @@ testStats() {
   try {
     testGE.setStat("bogus413", 345); //test that it throws an error
   }catch(exception, stackTrace) {
-    print("Exception: " + exception + " caught as expected for setting a stat.");
+    print("Exception: $exception caught as expected for setting a stat.");
   }
 
   try {
     testGE.addStat("bogus413", 345); //test that it throws an error
   }catch(exception, stackTrace) {
-    print("Exception: " + exception + " caught as expected for adding a stat.");
+    print("Exception: $exception caught as expected for adding a stat.");
   }
 
   testGE.setStat("power", 0);
@@ -81,25 +81,22 @@ testStats() {
   print("Stats passed");
 }
 
-testBuffs() {
+void testBuffs() {
   setup();
   jRAssert("currentHP", testGE.getStat("currentHP"), 0);
   jRAssert("number of buffs", testGE.buffs.length, 0);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 0);
-  var hpBuff1 = new Buff("currentHP", 10);
-  testGE.buffs.add(
-      hpBuff1); //TODO maybe eventaully should be a funciton instead of exposed array.
+  Buff hpBuff1 = new Buff("currentHP", 10);
+  testGE.buffs.add(hpBuff1); //TODO maybe eventaully should be a funciton instead of exposed array.
   jRAssert("number of buffs", testGE.buffs.length, 1);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 10);
-  var hpBuff2 = new Buff("currentHP", 5);
+  Buff hpBuff2 = new Buff("currentHP", 5);
   testGE.buffs.add(hpBuff2);
   jRAssert("number of buffs", testGE.buffs.length, 2);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 15);
-  jRAssert("functional hp", testGE.getStat("currentHP"),
-      15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
+  jRAssert("functional hp", testGE.getStat("currentHP"), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
   jRAssert("real hp", testGE.stats["currentHP"], 0); //real hp is unmodified.
-  jRAssert("glitch stat", testGE.stats["bogus413"],
-      null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
+  jRAssert("glitch stat", testGE.stats["bogus413"], null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
   print(testGE.describeBuffs());
   testGE.buffs
     ..add(new Buff("minLuck", 5))
@@ -107,7 +104,7 @@ testBuffs() {
     ..add(new Buff("mobility", 5))
     ..add(new Buff("alchemy", 5));
   print(testGE.describeBuffs()); //not gonna try to do unit testing for a narrative thing but at least call it and make sure it doesn't crash.
-  testGE.buffs = [];
+  testGE.buffs = <Buff>[];
   testGE.buffs
     ..add(new Buff("minLuck", -5))
     ..add(new Buff("MANGRIT", -5))
@@ -119,9 +116,9 @@ testBuffs() {
 }
 
 //do you feel lucky, punk?
-testLuck() {
+void testLuck() {
   setup();
-  testGE.setStatsHash({"minLuck": -100,"maxLuck": 100});
+  testGE.setStatsHash(<String,num>{"minLuck": -100,"maxLuck": 100});
   num roll = testGE.rollForLuck("");
   assert((roll < 100 && roll > -100)); //expect this to fail, for now. random numbers don't REALLY work yet.
 }
@@ -130,28 +127,3 @@ testLuck() {
 int canvasWidth;
 int canvasHeight;
 bool simulationMode;
-
-T getRandomElementFromArray<T>(List<T> list) {
-  return list[0];
-}
-
-int getRandomInt(int lower, int upper) {
-  return lower;
-}
-
-int getRandomIntNoSeed(int lower, int upper) {
-  return lower;
-}
-
-double seededRandom() {
-  return 0.0;
-}
-
-double random() {
-  return 0.0;
-}
-
-//placeholder for now. need a way to know "what is the next random number in the list without using that number"
-double seed() {
-
-}

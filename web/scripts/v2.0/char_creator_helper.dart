@@ -205,7 +205,7 @@ class CharacterCreatorHelper {
 		num current = 30;
 		//title
 	    ctx.font = "30px Times New Roman";
-		ctx.fillStyle = getColorFromAspect(player.aspect);
+		ctx.fillStyle = player.aspect.textColour.toStyleString();
 		ctx.fillText(player.titleBasic(),left_margin,current);
 
 		//interests
@@ -858,8 +858,7 @@ class CharacterCreatorHelper {
 		return html;
 	}
 	dynamic drawOneAspectDropDown(Player player){
-		available_aspects = new List<String>.from(nonrequired_aspects); //required_aspects
-		available_aspects.addAll(required_aspects);
+		List<Aspect> available_aspects = Aspects.all.toList();
 		String html = "<select class = 'selectDiv' id = 'aspectID${player.id}' name='aspect${player.id}'>";
 		for(int i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){

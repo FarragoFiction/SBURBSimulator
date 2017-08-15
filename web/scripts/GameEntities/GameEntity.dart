@@ -71,10 +71,10 @@ class GameEntity implements Comparable<GameEntity> {
         this.name = "${object.name}${this.name}"; //sprite becomes puppetsprite.
         this.fraymotifs.addAll(object.fraymotifs);
         if (object.fraymotifs.isEmpty) {
-            Fraymotif f = new Fraymotif(<Aspect>[], "${object.name}Sprite Beam!", 1);
+            Fraymotif f = new Fraymotif("${object.name}Sprite Beam!", 1);
             f.effects.add(new FraymotifEffect("power", 2, true)); //do damage
             f.effects.add(new FraymotifEffect("hp", 1, true)); //heal
-            f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. ";
+            f.desc = " An appropriately themed beam of light damages enemies and heals allies. ";
             this.fraymotifs.add(f);
         }
         this.corrupted = object.corrupted;

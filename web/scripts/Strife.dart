@@ -351,15 +351,15 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     }else{
       if(backup is Player){
         Player p = backup;
-        if(p.aspect == Aspect.TIME && p.session.rand.nextDouble() > .5){
+        if(p.aspect == Aspects.TIME && p.session.rand.nextDouble() > .5){
           drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
-          appendHtml(div,"The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)",treeSanitizer: NodeTreeSanitizer.trusted);
+          appendHtml(div,"The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
           return;
           }
       }//not a time player
       //console.log("summoning a player to this fight. " +this.session.session_id)
-      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
+      String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}${div.id}' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
       appendHtml(div, canvasHTML);
 
       appendHtml(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
