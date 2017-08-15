@@ -326,7 +326,7 @@ class FraymotifCreator {
 	    return aspect.denizenSongDesc;
   }
 
-	List<Fraymotif> getUsableFraymotifs(owner, allies, enemies){
+	List<Fraymotif> getUsableFraymotifs(GameEntity owner, List<GameEntity> allies, List<GameEntity> enemies){
     List<Fraymotif> fraymotifs = owner.fraymotifs;
     List<dynamic> ret = [];
     for(num i = 0; i<fraymotifs.length; i++){
@@ -354,15 +354,15 @@ class FraymotifCreator {
       return " $ret"; //extra word
     }
   }
-  
+
 	String tryToGetPreMadeName(Random rand, List<Player> players){
 	  if(players == null || players.isEmpty) return null;
     if(rand.nextDouble() > 0.5) return null; //just use the procedural name.
 
     if(this.premadeFraymotifNames.isEmpty) this.initializePremadeNames();
     for(num i = 0; i<this.premadeFraymotifNames.length; i++){
-        var f = this.premadeFraymotifNames[i];
-        var casters = f.getCastersNoOwner(players[0].session.rand, players);
+        String f = this.premadeFraymotifNames[i];
+        List<GameEntity> casters = f.getCastersNoOwner(players[0].session.rand, players);
         if (casters.length == f.aspects.length) return f.name;
     }
     return null;
@@ -437,14 +437,14 @@ class FraymotifCreator {
 
   }
 	dynamic getFraymotifName(Random rand, List<Player> players, int tier){
-    var name = this.tryToGetPreMadeName(rand, players);
+    String name = this.tryToGetPreMadeName(rand, players);
     if(name != null){
         //print("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id);
         return name; //premade is good enough here. let the called function handle randomness.
     }else{
         name = "";
     }
-    var indexOfMusic = players.length-1;  //used to be random now always at end.
+    int indexOfMusic = players.length-1;  //used to be random now always at end.
     if(players.length == 1){
       indexOfMusic = rand.nextIntRange(0,tier-1);
       for(int i = 0; i<tier; i++){
@@ -486,9 +486,9 @@ class FraymotifCreator {
     return null;
   }
 	dynamic makeFraymotif(Random rand, List<Player> players, int tier){ //asumming first player in that array is the owner of the framotif later on.
-    if(players.length == 1 && players[0].class_name == "Waste" && tier == 3){
+    if(players.length == 1 && players[0].class_name == SBURBClass.WASTE && tier == 3){
         //check to see if we are upgrading rocks fall.
-        var f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies");
+        Fraymotif f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies");
         if(f && f.tier < 10){
             f.tier = 99;
             f.baseValue = 9999;
@@ -498,13 +498,13 @@ class FraymotifCreator {
         }
     }
 
-    var name = this.getFraymotifName(rand, players, tier);
+    String name = this.getFraymotifName(rand, players, tier);
   	List<dynamic> aspects = [];
   	for(num i = 0; i<players.length; i++){
   		aspects.add(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
   	}
     name += " (Tier $tier)";
-   var f= new Fraymotif(aspects, name, tier);
+   Fraymotif f= new Fraymotif(aspects, name, tier);
    f.addEffectsForPlayers(players);
   	return f;
     }

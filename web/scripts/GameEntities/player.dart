@@ -593,28 +593,28 @@ class Player extends GameEntity {
         List<Fraymotif> psionics = <Fraymotif>[];
         //telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
             {
-            Fraymotif f = new Fraymotif(<String>[], "Telekinisis", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Telekinisis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.flavorText = " Large objects begin pelting the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Pyrokinisis", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Pyrokinisis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.flavorText = " Who knew shaving cream was so flammable? ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Aquakinesis", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Aquakinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.flavorText = " A deluge begins damaging the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Mind Control", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Mind Control", 1);
             f.effects.add(new FraymotifEffect("freeWill", 3, true));
             f.effects.add(new FraymotifEffect("freeWill", 3, false));
             f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
@@ -622,14 +622,14 @@ class Player extends GameEntity {
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Optic Blast", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Optic Blast", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.flavorText = " Appropriately colored eye beams pierce the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Ghost Communing", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Ghost Communing", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, true));
             f.effects.add(new FraymotifEffect("sanity", 3, false));
             f.flavorText = " The souls of the dead start hassling all enemies. ";
@@ -637,7 +637,7 @@ class Player extends GameEntity {
         }
 
         {
-            Fraymotif f = new Fraymotif(<String>[], "Animal Communing", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "Animal Communing", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, true));
             f.effects.add(new FraymotifEffect("sanity", 3, false));
             f.flavorText = " Local animal equivalents start hassling all enemies. ";
@@ -1898,21 +1898,21 @@ class Player extends GameEntity {
         }
         this.setStat("currentHP", getStat("hp")); //could have been altered by associated stats
 
-        if (this.class_name == "Waste") {
-            Fraymotif f = new Fraymotif(<String>[], "Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
+        if (this.class_name == SBURBClassManager.WASTE) {
+            Fraymotif f = new Fraymotif(<Aspect>[], "Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
             f.effects.add(new FraymotifEffect("power", 3, true));
             f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. ";
             this.fraymotifs.add(f);
-        } else if (this.class_name == "Null") {
+        } else if (this.class_name == SBURBClassManager.NULL) {
             {
-                Fraymotif f = new Fraymotif(<String>[], "What class???", 1);
+                Fraymotif f = new Fraymotif(<Aspect>[], "What class???", 1);
                 f.effects.add(new FraymotifEffect("power", 1, true));
                 f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. ";
                 this.fraymotifs.add(f);
             }
 
             {
-                Fraymotif f = new Fraymotif(<String>[], "Nulzilla", 2);
+                Fraymotif f = new Fraymotif(<Aspect>[], "Nulzilla", 2);
                 f.effects.add(new FraymotifEffect("power", 1, true));
                 f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  ";
                 this.fraymotifs.add(f);
@@ -2012,7 +2012,7 @@ class Player extends GameEntity {
         }
 
         if (timeClone.grimDark > 3) {
-            Fraymotif f = new Fraymotif(<String>[], Zalgo.generate("The Broodfester Tongues"), 3);
+            Fraymotif f = new Fraymotif(<Aspect>[], Zalgo.generate("The Broodfester Tongues"), 3);
             f.effects.add(new FraymotifEffect("power", 3, true));
             f.effects.add(new FraymotifEffect("power", 0, false));
             f.flavorText = " They are stubborn throes. ";
