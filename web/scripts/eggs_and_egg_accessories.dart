@@ -59,7 +59,7 @@ void sbahjMode(){
 	querySelector('#story').style.backgroundColor = "#ff00ff";
 	curSessionGlobalVar.sbahj = true;
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
-		var p = curSessionGlobalVar.players[j];
+		Player p = curSessionGlobalVar.players[j];
 		p.sbahj = true;
 		p.quirk.lettersToReplaceIgnoreCase =sbahj_quirks;
 	}
@@ -198,18 +198,20 @@ void processXStuck(){
 
 
 
-void setAllAspectsTo(aspect){
-	print("Setting all aspects to: " + aspect);
+void setAllAspectsTo(String a){
+	print("Setting all aspects to: $a");
+	Aspect aspect = Aspects.stringToAspect(a);
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
-		if(curSessionGlobalVar.players[i].aspect != "Time" && curSessionGlobalVar.players[i].aspect != "Space" ) curSessionGlobalVar.players[i].aspect = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
-		if(curSessionGlobalVar.players[i].guardian.aspect != "Time" && curSessionGlobalVar.players[i].guardian.aspect != "Space" ) curSessionGlobalVar.players[i].guardian.aspect = aspect;
+		if(curSessionGlobalVar.players[i].aspect != Aspects.TIME && curSessionGlobalVar.players[i].aspect != Aspects.SPACE ) curSessionGlobalVar.players[i].aspect = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
+		if(curSessionGlobalVar.players[i].guardian.aspect != Aspects.TIME && curSessionGlobalVar.players[i].guardian.aspect != Aspects.SPACE ) curSessionGlobalVar.players[i].guardian.aspect = aspect;
 	}
 }
 
 
 
-void setAllClassesTo(class_name){
-	print("Setting all classes to: " + class_name);
+void setAllClassesTo(String c){
+	print("Setting all classes to: $c");
+	SBURBClass class_name = SBURBClassManager.stringToSBURBClass(c);
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		curSessionGlobalVar.players[i].class_name = class_name;
 		curSessionGlobalVar.players[i].guardian.class_name = class_name;
@@ -231,7 +233,7 @@ void processFanOCs(callBack, that){
 void babyStuckMode(){
 	if(!doNotRender) window.alert("goo goo GA GAH!");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
-		var p = curSessionGlobalVar.players[j];
+		Player p = curSessionGlobalVar.players[j];
 		p.baby_stuck = true;
 		p.quirk.lettersToReplaceIgnoreCase.addAll([["e", "goo"],["a","gah"],["i","ga"],["o","blooo"],["u","guuuu"]]);
 	}
@@ -276,7 +278,7 @@ void tricksterMode(){
 	querySelector('#story').style.backgroundColor ="#ff93e4";
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
-		if(p.aspect != "Doom"){ //kr says it would be funny if doom plalyers completely immune.
+		if(p.aspect != Aspects.DOOM){ //kr says it would be funny if doom plalyers completely immune.
 			p.hairColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
 			p.bloodColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
 			p.trickster  = true;
@@ -284,7 +286,7 @@ void tricksterMode(){
 		}
 
 
-		if(p.aspect != "Heart" && p.aspect != "Doom"){//no personality changes.
+		if(p.aspect != Aspects.HEART && p.aspect != Aspects.DOOM){//no personality changes.
 			p.quirk.capitalization = 2;
 			p.quirk.punctuation = 3;
 			p.quirk.favoriteNumber = 11;
@@ -293,7 +295,7 @@ void tricksterMode(){
 				r.value = 111111; //EVERYTHIGN IS BETTER!!!!!!!!!!!
 			}
 		}
-		if(p.aspect != "Doom"){
+		if(p.aspect != Aspects.DOOM){
 			p.setStat("power",  111111);
 			p.landLevel = 111111;
 			p.level_index = 111111;
@@ -333,8 +335,8 @@ void session413(){
 			print("using existing player");
 		}else{
 			print("making new player");
-			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
 			player.quirk = randomHumanSim(curSessionGlobalVar.rand, player);
 			player.guardian = guardian;
@@ -367,8 +369,8 @@ void session111111(){
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand,guardian);
 			player.quirk = randomHumanSim(curSessionGlobalVar.rand,player);
 			player.guardian = guardian;
@@ -381,7 +383,7 @@ void session111111(){
 		Player player = curSessionGlobalVar.players[i];
 		Player guardian = player.guardian;
 		player.relationships = [];
-		var guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+		List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
 		guardian.generateBlandRelationships(guardians);
 		player.generateBlandRelationships(curSessionGlobalVar.players);
 		session413IndexToAncestor(player, i);
@@ -401,7 +403,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.HEIR;
 		player.godDestiny = true;
-		player.aspect = "Breath";
+		player.aspect = Aspects.BREATH;
 		player.hair  =3;
 		player.hairColor = "#000000";
 		player.chatHandle = "ectoBiologist";
@@ -419,7 +421,7 @@ void session413IndexToHuman(Player player, int index){
 		player.godDestiny = true;
 		player.class_name = SBURBClassManager.SEER;
 		player.land = "Land of Light and Rain";
-		player.aspect = "Light";
+		player.aspect = Aspects.LIGHT;
 		player.chatHandle = "tentacleTherapist";
 		player.interest1 = "Writing";
 		player.interest2 = "Horrorterrors";
@@ -436,7 +438,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.KNIGHT;
 		player.land = "Land of Heat and Clockwork";
-		player.aspect = "Time";
+		player.aspect = Aspects.TIME;
 		player.hairColor = "#feffd7";
 		player.hair  =1;
 		player.chatHandle = "turntechGodhead";
@@ -454,7 +456,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.WITCH;
 		player.land = "Land of Frost and Frogs";
-		player.aspect = "Space";
+		player.aspect = Aspects.SPACE;
 		player.hair  =9;
 		player.hairColor = "#3f1904";
 		player.chatHandle = "gardenGnostic";
@@ -473,7 +475,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.MAID;
 		player.godDestiny = true;
-		player.aspect = "Life";
+		player.aspect = Aspects.LIFE;
 		player.land = "Land of Crypts and Helium";
 		player.hair  =38;
 		player.hairColor = "#000000";
@@ -491,7 +493,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.ROGUE;
 		player.land = "Land of Pyramids and Neon";
-		player.aspect = "Void";
+		player.aspect = Aspects.VOID;
 		player.hair  =24;
 		player.hairColor = "#fff3bd";
 		player.chatHandle = "tipsyGnostalgic";
@@ -510,7 +512,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.PRINCE;
 		player.land = "Land of Tombs and Krypton";
-		player.aspect = "Heart";
+		player.aspect = Aspects.HEART;
 		player.hair  =36;
 		player.hairColor = "#feffd7";
 		player.chatHandle = "timaeusTestified";
@@ -529,7 +531,7 @@ void session413IndexToHuman(Player player, int index){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.PAGE;
 		player.land = "Land of Mounds and Xenon";
-		player.aspect = "Hope";
+		player.aspect = Aspects.HOPE;
 		player.hair  =37;
 		player.hairColor = "#3f1904";
 		player.chatHandle = "golgothasTerror";
@@ -583,10 +585,10 @@ void homestuck(){
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		if(p.aspect == "Time"){
+		if(p.aspect == Aspects.TIME){
 			session413IndexToHuman(p,2);
 			session413IndexToAncestor(g,2);
-		}else if(p.aspect == "Space"){
+		}else if(p.aspect == Aspects.SPACE){
 			session413IndexToHuman(p,3);
 			session413IndexToHuman(g,3);
 		}else{
@@ -607,10 +609,10 @@ void hivebent(){
   for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		if(p.aspect == "Time"){
+		if(p.aspect == Aspects.TIME){
 			session612IndexToTroll(p,4);
 			session612IndexToTrollAncestor(g,4);
-		}else if(p.aspect == "Space"){
+		}else if(p.aspect == Aspects.SPACE){
 			session612IndexToTroll(p,8);
 			session612IndexToTrollAncestor(g,8);
 		}else{
@@ -631,10 +633,10 @@ void openBound(){
   for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
-		if(p.aspect == "Time"){
+		if(p.aspect == Aspects.TIME){
 			session612IndexToTroll(g,4);
 			session612IndexToTrollAncestor(p,4);
-		}else if(p.aspect == "Space"){
+		}else if(p.aspect == Aspects.SPACE){
 			session612IndexToTroll(g,8);
 			session612IndexToTrollAncestor(p,8);
 		}else{
@@ -657,7 +659,7 @@ void fruityRumpusAssholeFactory(){
 		var p = curSessionGlobalVar.players[i];
 		var g = p.guardian;
 		var randNum = rand.nextDouble();
-		if(p.aspect == "Time"){
+		if(p.aspect == Aspects.TIME){
 			if(randNum > 0.6){
 				session612IndexToTroll(g,4);
 				session612IndexToTrollAncestor(p,4);
@@ -668,7 +670,7 @@ void fruityRumpusAssholeFactory(){
 				session413IndexToHuman(p,2);
 				session413IndexToHuman(g,2);
 			}
-		}else if(p.aspect == "Space"){
+		}else if(p.aspect == Aspects.SPACE){
 			if(randNum > 0.6){
 				session612IndexToTroll(g,8);
 				session612IndexToTrollAncestor(p,8);
@@ -737,7 +739,7 @@ void lucky8rk(){
 
 
 void copyPlayerFromTemplate(Player p, Player template){
-	if(p.aspect != "Time" && p.aspect != "Space"){
+	if(p.aspect != Aspects.TIME && p.aspect != Aspects.SPACE){
 		p.aspect = template.aspect;
 	}
 	p.isTroll = template.isTroll;
@@ -787,12 +789,12 @@ void nepetaQuest(){
     Player guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
-		if(actualRandomNumber > .5 && player.aspect != "Time" && player.aspect != "Space"){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
-			player.aspect = "Heart";
+		if(actualRandomNumber > .5 && player.aspect != Aspects.TIME && player.aspect != Aspects.SPACE){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
+			player.aspect = Aspects.HEART;
 		}
 		player.class_name = SBURBClassManager.ROGUE;
-		if(guardian.aspect != "Time" && guardian.aspect != "Space"){
-			guardian.aspect = "Heart";
+		if(guardian.aspect != Aspects.TIME && guardian.aspect != Aspects.SPACE){
+			guardian.aspect = Aspects.HEART;
 
 		}
 		guardian.class_name = SBURBClassManager.ROGUE;
@@ -827,11 +829,11 @@ void session88888888(){
 		if(i == 0){
 			player.leader = true;
 			guardian.leader = true;
-			player.aspect = "Space";
-			guardian.aspect = "Space";
+			player.aspect = Aspects.SPACE;
+			guardian.aspect = Aspects.SPACE;
 		}else if(i == 1){
-			player.aspect = "Time";
-			guardian.aspect = "Time";
+			player.aspect = Aspects.TIME;
+			guardian.aspect = Aspects.TIME;
 		}
 		player.guardian = guardian;
 		guardian.guardian = player;
@@ -844,11 +846,11 @@ void session88888888(){
 		if(i == 0){
 			player.leader = true;
 			guardian.leader = true;
-			player.aspect == "Space";
-			guardian.aspect == "Space";
+			player.aspect == Aspects.SPACE;
+			guardian.aspect == Aspects.SPACE;
 		}else if(i == 1){
-			player.aspect == "Time";
-			guardian.aspect == "Time";
+			player.aspect == Aspects.TIME;
+			guardian.aspect == Aspects.TIME;
 		}
 		player.relationships = [];
 		guardian.relationships = [];
@@ -952,8 +954,8 @@ void session613(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			player.initialize();
             guardian.initialize();
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
@@ -989,8 +991,8 @@ void session612(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			player.initialize();
             guardian.initialize();
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand,guardian);
@@ -1092,8 +1094,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 3){
 		player.moon = "Derse";
 		player.land = "Land of Caves and Silence";
-		player.aspect = "Void";
-		player.class_name = "Heir";
+		player.aspect = Aspects.VOID;
+		player.class_name = SBURBClassManager.HEIR;
 		player.hair = 8;
 		player.leftHorn = 43;
 		player.rightHorn = 43;
@@ -1111,7 +1113,7 @@ void session612IndexToTroll(player, index){
 
 	}else if(index == 4){
 		player.moon = "Derse";
-		player.aspect = "Time";
+		player.aspect = Aspects.TIME;
 		player.class_name = "Maid";
 		player.land = "Land of Quartz and Melody";
 		player.hair = 40;
@@ -1150,9 +1152,9 @@ void session612IndexToTroll(player, index){
 
 	}else if(index == 5){
 		player.moon = "Derse";
-		player.aspect = "Heart";
+		player.aspect = Aspects.HEART;
 		player.land = "Land of Little Cubes and Tea";
-		player.class_name = "Rogue";
+		player.class_name = SBURBClassManager.ROGUE;
 		player.hair = 7;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
@@ -1169,9 +1171,9 @@ void session612IndexToTroll(player, index){
 		player.quirk.prefix = "";
 	}else if(index == 6){
 		player.moon = "Prospit";
-		player.aspect = "Breath";
+		player.aspect = Aspects.BREATH;
 		player.land = "Land of Sand and Zephyr";
-		player.class_name = "Page";
+		player.class_name = SBURBClassManager.PAGE;
 		player.hair = 42;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
@@ -1194,8 +1196,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 7){
 		player.moon = "Prospit";
 		player.land = "Land of Maps and Treasure";
-		player.aspect = "Light";
-		player.class_name = "Thief";
+		player.aspect = Aspects.LIGHT;
+		player.class_name = SBURBClassManager.THIEF;
 		player.hair = 14;
 		player.leftHorn = 27;
 		player.rightHorn = 27;
@@ -1220,8 +1222,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 8){
 		player.moon = "Prospit";
 		player.land = "Land of Rays and Frogs";
-		player.aspect = "Space";
-		player.class_name = "Sylph";
+		player.aspect = Aspects.SPACE;
+		player.class_name = SBURBClassManager.SYLPH;
 		player.hair = 39;
 		player.leftHorn = 26;
 		player.rightHorn = 26;
@@ -1239,8 +1241,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 9){
 		player.moon = "Derse";
 		player.land = "Land of Wrath and Angels";
-		player.aspect = "Hope";
-		player.class_name = "Prince";
+		player.aspect = Aspects.HOPE;
+		player.class_name = SBURBClassManager.PRINCE;
 		player.hair = 6;
 		player.leftHorn = 19;
 		player.rightHorn = 19;
@@ -1258,8 +1260,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 10){
 		player.moon = "Derse";
 		player.land = "Land of Dew and Glass";
-		player.aspect = "Life";
-		player.class_name = "Witch";
+		player.aspect = Aspects.LIFE;
+		player.class_name = SBURBClassManager.WITCH;
 		player.hair = 19;
 		player.leftHorn = 35;
 		player.rightHorn = 35;
@@ -1277,8 +1279,8 @@ void session612IndexToTroll(player, index){
 	}else if(index == 11){
 		player.moon = "Derse";//no way to have two dream selves righ tnow.;
 		player.land = "Land of Brains and Fire";
-		player.aspect = "Doom";
-		player.class_name = "Mage";
+		player.aspect = Aspects.DOOM;
+		player.class_name = SBURBClassManager.MAGE;
 		player.hair = 2;
 		player.leftHorn = 33;
 		player.rightHorn = 33;
@@ -1356,7 +1358,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit";
 		player.land = "Land of Mirth and Tents";
 		player.aspect = "Rage";
-		player.class_name = "Prince";
+		player.class_name = SBURBClassManager.PRINCE;
 		player.hair = 45;
 		player.leftHorn = 29;
 		player.rightHorn = 29;
@@ -1378,9 +1380,9 @@ void session612IndexToTrollAncestor(player, index){
 		player.fraymotifs.add(f);
 	}else if(index == 3){
 		player.moon = "Derse";
-		player.aspect = "Void";
+		player.aspect = Aspects.VOID;
 		player.land = "Land of Caves and Silence";
-		player.class_name = "Page";
+		player.class_name = SBURBClassManager.PAGE;
 		player.hair = 53;
 		player.leftHorn = 43;
 		player.rightHorn = 43;
@@ -1397,8 +1399,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.chatHandle = "centaursTesticle";
 	}else if(index == 4){
 		player.moon = "Derse";
-		player.aspect = "Time";
-		player.class_name = "Witch";
+		player.aspect = Aspects.TIME;
+		player.class_name = SBURBClassManager.WITCH;
 		player.land = "Land of Quartz and Melody";
 		player.hair = 50;
 		player.leftHorn = 36;
@@ -1425,9 +1427,9 @@ void session612IndexToTrollAncestor(player, index){
 		f.flavorText = " The souls of the dead start hassling all enemies. ";
 		player.fraymotifs.add(f);
 	}else if(index == 5){
-		player.aspect = "Heart";
+		player.aspect = Aspects.HEART;
 		player.moon = "Derse";
-		player.class_name = "Mage";
+		player.class_name = SBURBClassManager.MAGE;
 		player.land = "Land of Little Cubes and Tea";
 		player.hair = 51;
 		player.leftHorn = 22;
@@ -1444,10 +1446,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 	}else if(index == 6){
-		player.aspect = "Breath";
+		player.aspect = Aspects.BREATH;
 		player.moon = "Prospit";
 		player.land = "Land of Sand and Zephyr";
-		player.class_name = "Rogue";
+		player.class_name = SBURBClassManager.ROGUE;
 		player.hair = 254;
 		player.leftHorn = 28;
 		player.rightHorn = 28;
@@ -1469,10 +1471,10 @@ void session612IndexToTrollAncestor(player, index){
 		f.flavorText = " Local animal equivalents start hassling all enemies. ";
 		player.fraymotifs.add(f);
 	}else if(index == 7){
-		player.aspect = "Light";
+		player.aspect = Aspects.LIGHT;
 		player.moon = "Prospit";
 		player.land = "Land of Maps and Treasure";
-		player.class_name = "Sylph";
+		player.class_name = SBURBClassManager.SYLPH;
 		player.hair = 52;
 		player.leftHorn = 27;
 		player.rightHorn = 27;
@@ -1495,7 +1497,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.fraymotifs.add(f);
 
 	}else if(index == 8){
-		player.aspect = "Space";
+		player.aspect = Aspects.SPACE;
 		player.moon = "Prospit";
 		player.land = "Land of Frost and Frogs";
 		player.class_name = "Maid";
@@ -1514,7 +1516,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 	}else if(index == 9){
-		player.aspect = "Hope";
+		player.aspect = Aspects.HOPE;
 		player.moon = "Derse";
 		player.land = "Land of Wrath and Angels";
 		player.class_name = "Bard";
@@ -1534,9 +1536,9 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.prefix = "";
 	}else if(index == 10){
 		player.moon = "Derse";
-		player.aspect = "Life";
+		player.aspect = Aspects.LIFE;
 		player.land = "Land of Dew and Glass";
-		player.class_name = "Thief";
+		player.class_name = SBURBClassManager.THIEF;
 		player.hair = 57;
 		player.leftHorn = 35;
 		player.rightHorn = 35;
@@ -1553,10 +1555,10 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 	}else if(index == 11){
-		player.aspect = "Doom";
+		player.aspect = Aspects.DOOM;
 		player.moon = "Derse";
 		player.land = "Land of Brains and Fire";
-		player.class_name = "Heir";
+		player.class_name = SBURBClassManager.HEIR;
 		player.hair = 48;
 		player.leftHorn = 33;
 		player.rightHorn = 33;
@@ -1592,8 +1594,8 @@ void session1025(){
 		if(i<curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
 		}else{
-			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
-			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, "Void");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			guardian.quirk = randomTrollSim(curSessionGlobalVar.rand, guardian);
 			player.quirk = randomTrollSim(curSessionGlobalVar.rand,player);
 			//curSessionGlobalVar.guardians.add(guardian);
