@@ -118,9 +118,9 @@ class UpdateShippingGrid extends Scene{
 		this.romanceChat = null;
 		Player tmpPlayer = null;
 		if(rand.nextDouble() > 0.5){
-			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Heart");
+			tmpPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.HEART);
 		}else{
-			tmpPlayer = findAspectPlayer(this.session.availablePlayers, "Blood");
+			tmpPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.BLOOD);
 		}
 
 		if(tmpPlayer == null || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
@@ -177,7 +177,7 @@ class UpdateShippingGrid extends Scene{
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
 		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
-		if(player1.aspect == "Heart"){
+		if(player1.aspect == Aspects.HEART){
 			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig ){
 				image = "discuss_romance.png";
 			}else{
@@ -203,7 +203,7 @@ class UpdateShippingGrid extends Scene{
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
 		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
-		if(this.chosenShipper.player.aspect == "Heart"){
+		if(this.chosenShipper.player.aspect == Aspects.HEART){
 			if(otp.r1.saved_type == otp.r1.heart || otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_romance.png";
 			}else{
@@ -281,7 +281,7 @@ class UpdateShippingGrid extends Scene{
 		String p1Start = p1.chatHandleShort()+ ": ";
 		Player p2 = otp.r1.target;
 		String p2Start = p2.chatHandleShort()+ ": ";
-		if(this.chosenShipper.player.aspect == "Blood"){
+		if(this.chosenShipper.player.aspect == Aspects.BLOOD){
 			if(otp.r1.saved_type == otp.r1.goodBig){
 				 //print("trying to make a pale ship happen: " + this.session.session_id);
 				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
@@ -347,7 +347,7 @@ class UpdateShippingGrid extends Scene{
 					Relationship.makeHeart(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
-					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect.name + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. ","I… really?", "But I thought-", "Fuck my life.", "Ugh, I'm such an idiot! I shouldn't have- I'm sorry for bothering you.", "Please?", "Are you sure?"],["JR: this won't happen because i know they got rejected.", "MI: How sad."], ["I'm sorry. I really am.","Its not your fault, okay?", "I'm sorry. I can't change how I feel.", "Its not you its me.", "I just can't commit like that, not now.","You can find someone else, It'll be all right.","I have to go."]);
 					chat += c.getOpeningLine(p1, p1Start);
@@ -409,7 +409,7 @@ class UpdateShippingGrid extends Scene{
 					Relationship.makeDiamonds(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
-					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect.name + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
@@ -469,7 +469,7 @@ class UpdateShippingGrid extends Scene{
 					Relationship.makeClubs(shipper,p1, p2);  //they get a relationship!!!
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
-					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect.name + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(shipper, shipperStart);
@@ -529,7 +529,7 @@ class UpdateShippingGrid extends Scene{
 					Relationship.makeSpades(p1, p2);
 					this.chosenShipper.player.increasePower();
 					this.chosenShipper.player.leveledTheHellUp = true;
-					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect + " player. ";
+					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is estatic that their ship worked out so well. They grow as a " + this.chosenShipper.player.aspect.name + " player. ";
 				}else{ //response to being rejected.
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. "],["JR: this won't happen because i know they got rejected."], ["I'm sorry. I really am."]);
 					chat += c.getOpeningLine(p1, p1Start);
@@ -605,7 +605,7 @@ class UpdateShippingGrid extends Scene{
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
-		if(this.chosenShipper.player.aspect == "Heart") shippingStyle = "They like the concupiscient ships best, and default to those for people not yet in a quadrant.";
+		if(this.chosenShipper.player.aspect == Aspects.HEART) shippingStyle = "They like the concupiscient ships best, and default to those for people not yet in a quadrant.";
 		String fuckPile = "";
 		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += " How did this session turn into such a scandalous fuckpile? ";
@@ -662,7 +662,7 @@ class Ship {
 
 		//since these are speculative, player will assume it's gonna end up their favorite quadrant half
 		if(r.saved_type ==  r.goodBig){
-			if(this.player.aspect == "Heart"){
+			if(this.player.aspect == Aspects.HEART){
 				return "<font color = 'red'>&#x2661</font>";
 			}else{
 				return "<font color = 'red'>&#x2662</font>" ;//i assume you are gonna end up as diamonds;
@@ -671,7 +671,7 @@ class Ship {
 		}
 
 		if(r.saved_type ==  r.badBig){
-			if(this.player.aspect == "Heart"){
+			if(this.player.aspect == Aspects.HEART){
 				return "<font color = 'black'>&#x2664</font>";
 			}else{
 				return "<font color = 'black'>&#x2667</font>" ;//i assume you are gonna end up as clubs;

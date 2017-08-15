@@ -35,7 +35,7 @@ class Reckoning extends Scene {
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. ";
 			intro += " And to defend itself, Skaia totally teleported those babies back in time, and to Earth. ";
 			intro += "We are all blown away by this stunning revelation.  Wow, those babies were the players? Really?  Like, a paradox?  Huh. ";
-		}else if(!this.session.ectoBiologyStarted && leader.aspect == "Time" &&!leader.dead){
+		}else if(!this.session.ectoBiologyStarted && leader.aspect == Aspects.TIME &&!leader.dead){
 			leader.performEctobiology(this.session);
 			intro += " Okay. Don't panic. But it turns out that the " + leader.htmlTitle() + " completly forgot to close one of their time loops. ";
 			intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
@@ -46,7 +46,7 @@ class Reckoning extends Scene {
 			intro += " was totally supposed to have taken care of the ectobiology. ";
 			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
 			intro += " Textbook case of a doomed timeline.  Apparently the Time Player ";
-			if(findAspectPlayer(session.players, "Time").doomedTimeClones.length >0){
+			if(findAspectPlayer(session.players, Aspects.TIME).doomedTimeClones.length >0){
 				intro += ", despite all the doomed time clone shenanigans, ";
 			}
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";

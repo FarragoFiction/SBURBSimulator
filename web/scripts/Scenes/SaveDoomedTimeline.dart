@@ -18,7 +18,7 @@ class SaveDoomedTimeLine extends Scene {
 	bool trigger(playerList){
 		this.timePlayer = null;
 		this.enablingPlayer = null;
-		var times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+		var times = findAllAspectPlayers(this.session.players, Aspects.TIME); //they don't have to be in the medium, though
 		this.enablingPlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
 		this.leaderPlayer = getLeader(session.players);
 		this.playerList = playerList;

@@ -17,11 +17,11 @@ class VoidyStuff extends Scene {
 		this.playerList = playerList;
 		this.player = null;
 		if(rand.nextDouble() > .5){
-			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void");
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage"); //if there is no void player
+			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.VOID);
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.RAGE); //if there is no void player
 		}else{
-			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Rage");
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, "Void"); //if there is no rage player
+			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.RAGE);
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.VOID); //if there is no rage player
 		}
 
 		if(this.enablingPlayer != null){
@@ -38,7 +38,7 @@ class VoidyStuff extends Scene {
 	void renderContent(Element div){
 		this.player.increasePower();
 		this.player.increasePower();
-		if(this.enablingPlayer.aspect == "Void") this.player.corruptionLevelOther += rand.nextIntRange(1,5); //void isn't a safe place to be.
+		if(this.enablingPlayer.aspect == Aspects.VOID) this.player.corruptionLevelOther += rand.nextIntRange(1,5); //void isn't a safe place to be.
 		//div.append("<br>"+this.content());
         appendHtml(div,"<br><img src = 'images/sceneIcons/shenanigans_icon.png'> ");
 		this.chooseShenanigans(div);
@@ -47,13 +47,13 @@ class VoidyStuff extends Scene {
 		removeFromArray(this.player, this.session.availablePlayers);
 		String ret = "";
 		String classDiv = "";
-		if(this.enablingPlayer.aspect == "Void"){
+		if(this.enablingPlayer.aspect == Aspects.VOID){
 			classDiv = "void";
 
 			if(!this.player.isVoidAvailable()){
 					classDiv = "light";  //void players can't be hidden in the light.
 			}
-		}else if(this.enablingPlayer.aspect == "Rage"){
+		}else if(this.enablingPlayer.aspect == Aspects.RAGE){
 			classDiv = "rage";
 		}
 
@@ -150,7 +150,7 @@ class VoidyStuff extends Scene {
 		this.player.landLevel +=2;
 		appendHtml(div, " Their consorts seem pretty happy, though. ") ;
 		if(rand.nextDouble() > .95){ //small chance of serious.
-			appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + getRandomQuestFromAspect(rand, this.player.aspect,false) + ". ");
+			appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(this.player.aspect.preDenizenQuests) + ". ");
 		}else{
 			List<String> specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
 			specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
@@ -186,8 +186,8 @@ class VoidyStuff extends Scene {
 				this.player.denizenDefeated = false;
 				appendHtml(div, " That didn't sound good... ");
 				this.player.dead = true;
-				if(this.enablingPlayer.aspect == "Void") this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
-				if(this.enablingPlayer.aspect == "Rage") this.player.makeDead("fighting their Denizen way too early, lost in Madness");
+				if(this.enablingPlayer.aspect == Aspects.VOID) this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
+				if(this.enablingPlayer.aspect == Aspects.RAGE) this.player.makeDead("fighting their Denizen way too early, lost in Madness");
 				ret += " The " +this.player.htmlTitleBasic() + " lies dead on the ground. ";
 				appendHtml(specialDiv, ret);
 
@@ -219,7 +219,7 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
-		if(this.enablingPlayer.aspect == "Void"){
+		if(this.enablingPlayer.aspect == Aspects.VOID){
 			this.player.makeDead("hidden in void on their way to godhood");
 		} else{
 			this.player.makeDead("with ridiculous bullshit clown shenanigans");

@@ -251,22 +251,22 @@ class Aftermath extends Scene {
 		print(purpleFrog);
 		//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 
-		Fraymotif f = new Fraymotif([], Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
+		Fraymotif f = new Fraymotif( Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
 		f.effects.add(new FraymotifEffect("mobility",3,true));
 		f.desc = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. ";
 		purpleFrog.fraymotifs.add(f);
 
-		f = new Fraymotif([],  Zalgo.generate("HYPERBOLIC GEOMETRY"), 3);//DM, the owner of the purple frog website came up with this one.;
+		f = new Fraymotif(Zalgo.generate("HYPERBOLIC GEOMETRY"), 3);//DM, the owner of the purple frog website came up with this one.;
 		f.effects.add(new FraymotifEffect("mobility",3,false));
 		f.desc = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. ";
 		purpleFrog.fraymotifs.add(f);
 
-		f = new Fraymotif([],  Zalgo.generate("ANURA JARATE"), 3);//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.;
+		f = new Fraymotif(Zalgo.generate("ANURA JARATE"), 3);//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.;
 		f.effects.add(new FraymotifEffect("sanity",3,false));
 		f.desc = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. ";
 		purpleFrog.fraymotifs.add(f);
 
-		f = new Fraymotif([],  Zalgo.generate("LITERAL TONGUE LASHING"), 3);//DM, the owner of the purple frog website came up with this one.;
+		f = new Fraymotif(Zalgo.generate("LITERAL TONGUE LASHING"), 3);//DM, the owner of the purple frog website came up with this one.;
 		f.effects.add(new FraymotifEffect("mobility",2,false));
 		f.effects.add(new FraymotifEffect("mobility",2,true));
 		f.desc = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. ";

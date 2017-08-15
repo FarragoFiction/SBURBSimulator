@@ -68,7 +68,7 @@ class GoGrimDark extends Scene {
 				ret +=  "The " + this.player.htmlTitleBasic() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";
 				ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The ";
 				ret += this.player.htmlTitle() + " has officially gone grimdark. ";
-				var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3);
+				var f = new Fraymotif(Zalgo.generate("The Broodfester Tongues"), 3);
 				f.effects.add(new FraymotifEffect("power",3,true));
 				f.effects.add(new FraymotifEffect("power",0,false));
 				f.desc = " They are stubborn throes. ";
