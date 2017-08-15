@@ -593,54 +593,54 @@ class Player extends GameEntity {
         List<Fraymotif> psionics = <Fraymotif>[];
         //telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
             {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Telekinisis", 1);
+            Fraymotif f = new Fraymotif("Telekinisis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
-            f.flavorText = " Large objects begin pelting the ENEMY. ";
+            f.desc = " Large objects begin pelting the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Pyrokinisis", 1);
+            Fraymotif f = new Fraymotif("Pyrokinisis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
-            f.flavorText = " Who knew shaving cream was so flammable? ";
+            f.desc = " Who knew shaving cream was so flammable? ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Aquakinesis", 1);
+            Fraymotif f = new Fraymotif("Aquakinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
-            f.flavorText = " A deluge begins damaging the ENEMY. ";
+            f.desc = " A deluge begins damaging the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Mind Control", 1);
+            Fraymotif f = new Fraymotif("Mind Control", 1);
             f.effects.add(new FraymotifEffect("freeWill", 3, true));
             f.effects.add(new FraymotifEffect("freeWill", 3, false));
-            f.flavorText = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
+            f.desc = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Optic Blast", 1);
+            Fraymotif f = new Fraymotif("Optic Blast", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
-            f.flavorText = " Appropriately colored eye beams pierce the ENEMY. ";
+            f.desc = " Appropriately colored eye beams pierce the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Ghost Communing", 1);
+            Fraymotif f = new Fraymotif("Ghost Communing", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, true));
             f.effects.add(new FraymotifEffect("sanity", 3, false));
-            f.flavorText = " The souls of the dead start hassling all enemies. ";
+            f.desc = " The souls of the dead start hassling all enemies. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Animal Communing", 1);
+            Fraymotif f = new Fraymotif("Animal Communing", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, true));
             f.effects.add(new FraymotifEffect("sanity", 3, false));
-            f.flavorText = " Local animal equivalents start hassling all enemies. ";
+            f.desc = " Local animal equivalents start hassling all enemies. ";
             psionics.add(f);
         }
 
@@ -664,22 +664,22 @@ class Player extends GameEntity {
         }
         //special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
         if (this.bloodColor == "#631db4") {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Chucklevoodoos", 1);
+            Fraymotif f = new Fraymotif("Chucklevoodoos", 1);
             f.effects.add(new FraymotifEffect("sanity", 3, false));
             f.effects.add(new FraymotifEffect("sanity", 3, true));
-            f.flavorText = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
+            f.desc = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#658200") {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Limeade Refreshment", 1);
+            Fraymotif f = new Fraymotif("Limeade Refreshment", 1);
             f.effects.add(new FraymotifEffect("sanity", 1, false));
             f.effects.add(new FraymotifEffect("sanity", 1, true));
-            f.flavorText = " All allies just settle their shit for a little while. Cool it. ";
+            f.desc = " All allies just settle their shit for a little while. Cool it. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#ffc3df") {
-            Fraymotif f = new Fraymotif(<Aspect>[], "'<font color='pink'>${this.chatHandle} and the Power of Looove~~~~~<3<3<3</font>'", 1);
+            Fraymotif f = new Fraymotif("'<font color='pink'>${this.chatHandle} and the Power of Looove~~~~~<3<3<3</font>'", 1);
             f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, false));
             f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, true));
-            f.flavorText = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with ${this.htmlTitleHP()}. ";
+            f.desc = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with ${this.htmlTitleHP()}. ";
             this.fraymotifs.add(f);
         }
     }
@@ -1899,22 +1899,22 @@ class Player extends GameEntity {
         this.setStat("currentHP", getStat("hp")); //could have been altered by associated stats
 
         if (this.class_name == SBURBClassManager.WASTE) {
-            Fraymotif f = new Fraymotif(<Aspect>[], "Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
+            Fraymotif f = new Fraymotif("Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
             f.effects.add(new FraymotifEffect("power", 3, true));
-            f.flavorText = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. ";
+            f.desc = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. ";
             this.fraymotifs.add(f);
         } else if (this.class_name == SBURBClassManager.NULL) {
             {
-                Fraymotif f = new Fraymotif(<Aspect>[], "What class???", 1);
+                Fraymotif f = new Fraymotif("What class???", 1);
                 f.effects.add(new FraymotifEffect("power", 1, true));
-                f.flavorText = " I am certain there is not a class here and it is laughable to imply otherwise. ";
+                f.desc = " I am certain there is not a class here and it is laughable to imply otherwise. ";
                 this.fraymotifs.add(f);
             }
 
             {
-                Fraymotif f = new Fraymotif(<Aspect>[], "Nulzilla", 2);
+                Fraymotif f = new Fraymotif("Nulzilla", 2);
                 f.effects.add(new FraymotifEffect("power", 1, true));
-                f.flavorText = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  ";
+                f.desc = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  ";
                 this.fraymotifs.add(f);
             }
         }
@@ -2012,10 +2012,10 @@ class Player extends GameEntity {
         }
 
         if (timeClone.grimDark > 3) {
-            Fraymotif f = new Fraymotif(<Aspect>[], Zalgo.generate("The Broodfester Tongues"), 3);
+            Fraymotif f = new Fraymotif(Zalgo.generate("The Broodfester Tongues"), 3);
             f.effects.add(new FraymotifEffect("power", 3, true));
             f.effects.add(new FraymotifEffect("power", 0, false));
-            f.flavorText = " They are stubborn throes. ";
+            f.desc = " They are stubborn throes. ";
             timeClone.fraymotifs.add(f);
         }
 

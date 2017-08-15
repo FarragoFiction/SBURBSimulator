@@ -71,7 +71,7 @@ class GoGrimDark extends Scene {
 				var f = new Fraymotif([],  Zalgo.generate("The Broodfester Tongues"), 3);
 				f.effects.add(new FraymotifEffect("power",3,true));
 				f.effects.add(new FraymotifEffect("power",0,false));
-				f.flavorText = " They are stubborn throes. ";
+				f.desc = " They are stubborn throes. ";
 				this.player.fraymotifs.add(f);
 				ret +=" They learn " + f.name + ". " ;
 			}

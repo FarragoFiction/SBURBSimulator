@@ -15,13 +15,13 @@ class Fraymotif {
     //you don't call flavor text directly, instead expecting the use of the fraymotif to return something;
     //based on it.
     //make sure ENEMY is the same for all effects, dunkass.
-    String flavorText;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
+    String desc;  //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
 	bool used = false; //when start fight, set to false. set to true when used. once per fight
 	List<dynamic> effects = [];  //each effect is a target, a revive, a statName
 	num baseValue;
 
 
-	Fraymotif(this.aspects, this.name, this.tier, [this.flavorText=""]) {
+	Fraymotif(String this.name, int this.tier, {List<Aspect> this.aspects = null, String this.desc=""}) {
 		this.baseValue = 50 * this.tier;
 		if(this.tier >=3)
 			this.baseValue = 1000 * this.tier-2;//so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
@@ -61,12 +61,12 @@ class Fraymotif {
 		return casters;  //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 	}
 	dynamic processFlavorText(GameEntity owner, List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies, revives){
-      if(this.flavorText == null || this.flavorText.length == 0){
-         this.flavorText = this.proceduralFlavorText(owner.rand);
+      if(this.desc == null || this.desc.length == 0){
+         this.desc = this.proceduralFlavorText(owner.rand);
       }
       String phrase = "The CASTERS use FRAYMOTIF. ";//shitty example.
       if(casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. ";
-      phrase += this.flavorText + revives;
+      phrase += this.desc + revives;
       return this.replaceKeyWords(phrase, owner, casters, allies,  enemy, enemies);
   }
 	dynamic proceduralFlavorText(Random rand){
@@ -301,10 +301,10 @@ class FraymotifCreator {
 	FraymotifCreator() {}
 
 
-	void createFraymotifForPlayerDenizen(player, name){
+	void createFraymotifForPlayerDenizen(Player player, String name){
     //var denizen = player.denizen;
-    var f = new Fraymotif([], name + "'s " + this.getDenizenFraymotifNameFromAspect(player.aspect), 2); //CAN I have an aspectless fraymotif?
-    f.flavorText = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
+    Fraymotif f = new Fraymotif("$name's ${this.getDenizenFraymotifNameFromAspect(player.aspect)}", 2); //CAN I have an aspectless fraymotif?
+    f.desc = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
 
     //statName, target, damageInsteadOfBuff, flavorText
     var plus = player.associatedStats ;//buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
@@ -370,69 +370,69 @@ class FraymotifCreator {
 	void initializePremadeNames(){
     this.premadeFraymotifNames = [];
 
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.MIND], "Blinded By The Light",1, ""));
-		this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.HEART], "Total Eclipse of the Heart",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.TIME], "Stop, Hammertime",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.HOPE], "Wings of Freedom",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.HOPE], "Happy Ending",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.TIME], "Adagio Redshift",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.TIME], "Time Heals All Wounds",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HEART, Aspects.DOOM], "Madrigal Melancholia",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.TIME, Aspects.BREATH, Aspects.LIGHT], "Canon in HS Major",1, ""));
-   // this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.VOID, Aspects.HEART, Aspects.HOPE], "Canon in HS Minor",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.TIME], "Another One Bites The Dust",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.TIME], "Maybe Someday",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.MIND, Aspects.SPACE], "Mind Over Matter",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.LIFE], "Extraterrestrial Ensemble",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.TIME], "Lifetime Special",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.BREATH], "Air on a Cosmic String",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.VOID], "Rhapsody in Blue",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.MIND, Aspects.BREATH], "Brainstorm",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.VOID], "Spaced Out",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.LIGHT], "Look On The Bright Side",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.VOID], "Lights Out",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.VOID], "Lost Hope",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.HOPE], "Grandiose Illuminations",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.VOID], "Lost Hope",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.VOID, Aspects.LIGHT, Aspects.HEART], "Flipping the Light Fantastic",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HEART, Aspects.VOID], "Hotel California",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.HEART], "Feel Good",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HEART, Aspects.VOID, Aspects.SPACE], "Heart's Not In It",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.MIND, Aspects.BREATH], "Freedom of Thought",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.RAGE], "Brick in The Wall",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BLOOD, Aspects.DOOM, Aspects.LIFE], "Ancestral Awakening",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.TIME], "You're Gonna Have a Bad Time",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.HOPE], "I Hope You Die",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.RAGE, Aspects.BREATH], "Free Rage Chicken",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.TIME, Aspects.RAGE], "Gears of War",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.VOID], "You Suck",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.BREATH], "Apollo's Chariot",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.HOPE], "Planck Fandango",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.LIFE], "Emancipation Proclamation",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.VOID], "Glass Half Empty",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BLOOD, Aspects.HOPE, Aspects.MIND], "It's Raining Zen (Hallelujah)",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIGHT, Aspects.SPACE], "She Blinded Me With Science",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.TIME, Aspects.LIFE, Aspects.BLOOD], "Never Gonna Let You Down",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.BREATH], "Bad Breath",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.RAGE, Aspects.BLOOD], "Opposites Attract",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.DOOM, Aspects.HEART, Aspects.SPACE], "Life and Death and Love and Birth",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.DOOM], "Freedom is Slavery",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.TIME, Aspects.SPACE], "Alternate Universe",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.VOID, Aspects.LIFE], "Tangle Buddies",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BREATH, Aspects.HOPE], "Let's Pierce the Heavens",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.VOID, Aspects.TIME], "Volatile Times",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.SPACE, Aspects.VOID], "Mom's Spaghettification",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.RAGE, Aspects.DOOM, Aspects.LIGHT], "Kill the Light",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.DOOM, Aspects.LIGHT], "Deadly Laser",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.HEART,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM], "Just...Fuck That Guy",1, "")); ///lol, no gamzee
+    this.premadeFraymotifNames.add(new Fraymotif("Blinded By The Light", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.MIND]));
+		this.premadeFraymotifNames.add(new Fraymotif("Total Eclipse of the Heart", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.HEART]));
+    this.premadeFraymotifNames.add(new Fraymotif("Stop, Hammertime", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Wings of Freedom", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Happy Ending", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Adagio Redshift", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Time Heals All Wounds", 1, aspects:<Aspect>[Aspects.LIFE, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Madrigal Melancholia", 1, aspects:<Aspect>[Aspects.HEART, Aspects.DOOM]));
+    this.premadeFraymotifNames.add(new Fraymotif("Canon in HS Major", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.TIME, Aspects.BREATH, Aspects.LIGHT]));
+   // this.premadeFraymotifNames.add(new Fraymotif("Canon in HS Minor", 1, aspects:<Aspect>[Aspects.LIFE, Aspects.VOID, Aspects.HEART, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Another One Bites The Dust", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Maybe Someday", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Mind Over Matter", 1, aspects:<Aspect>[Aspects.MIND, Aspects.SPACE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Extraterrestrial Ensemble", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.LIFE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Lifetime Special", 1, aspects:<Aspect>[Aspects.LIFE, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Air on a Cosmic String", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Rhapsody in Blue", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Brainstorm", 1, aspects:<Aspect>[Aspects.MIND, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Spaced Out", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Look On The Bright Side", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.LIGHT]));
+    this.premadeFraymotifNames.add(new Fraymotif("Lights Out", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Lost Hope", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Grandiose Illuminations", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Lost Hope", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Flipping the Light Fantastic", 1, aspects:<Aspect>[Aspects.VOID, Aspects.LIGHT, Aspects.HEART]));
+    this.premadeFraymotifNames.add(new Fraymotif("Hotel California", 1, aspects:<Aspect>[Aspects.HEART, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Feel Good", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.HEART]));
+    this.premadeFraymotifNames.add(new Fraymotif("Heart's Not In It", 1, aspects:<Aspect>[Aspects.HEART, Aspects.VOID, Aspects.SPACE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Freedom of Thought", 1, aspects:<Aspect>[Aspects.MIND, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Brick in The Wall", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.RAGE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Ancestral Awakening", 1, aspects:<Aspect>[Aspects.BLOOD, Aspects.DOOM, Aspects.LIFE]));
+    this.premadeFraymotifNames.add(new Fraymotif("You're Gonna Have a Bad Time", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("I Hope You Die", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Free Rage Chicken", 1, aspects:<Aspect>[Aspects.RAGE, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Gears of War", 1, aspects:<Aspect>[Aspects.TIME, Aspects.RAGE]));
+    this.premadeFraymotifNames.add(new Fraymotif("You Suck", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Apollo's Chariot", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Planck Fandango", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Emancipation Proclamation", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.LIFE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Glass Half Empty", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("It's Raining Zen (Hallelujah)", 1, aspects:<Aspect>[Aspects.BLOOD, Aspects.HOPE, Aspects.MIND]));
+    this.premadeFraymotifNames.add(new Fraymotif("She Blinded Me With Science", 1, aspects:<Aspect>[Aspects.LIGHT, Aspects.SPACE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Never Gonna Let You Down", 1, aspects:<Aspect>[Aspects.TIME, Aspects.LIFE, Aspects.BLOOD]));
+    this.premadeFraymotifNames.add(new Fraymotif("Bad Breath", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.BREATH]));
+    this.premadeFraymotifNames.add(new Fraymotif("Opposites Attract", 1, aspects:<Aspect>[Aspects.RAGE, Aspects.BLOOD]));
+    this.premadeFraymotifNames.add(new Fraymotif("Life and Death and Love and Birth", 1, aspects:<Aspect>[Aspects.LIFE, Aspects.DOOM, Aspects.HEART, Aspects.SPACE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Freedom is Slavery", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.DOOM]));
+    this.premadeFraymotifNames.add(new Fraymotif("Alternate Universe", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.TIME, Aspects.SPACE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Tangle Buddies", 1, aspects:<Aspect>[Aspects.VOID, Aspects.LIFE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Let's Pierce the Heavens", 1, aspects:<Aspect>[Aspects.BREATH, Aspects.HOPE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Volatile Times", 1, aspects:<Aspect>[Aspects.VOID, Aspects.TIME]));
+    this.premadeFraymotifNames.add(new Fraymotif("Mom's Spaghettification", 1, aspects:<Aspect>[Aspects.SPACE, Aspects.VOID]));
+    this.premadeFraymotifNames.add(new Fraymotif("Kill the Light", 1, aspects:<Aspect>[Aspects.RAGE, Aspects.DOOM, Aspects.LIGHT]));
+    this.premadeFraymotifNames.add(new Fraymotif("Deadly Laser", 1, aspects:<Aspect>[Aspects.DOOM, Aspects.LIGHT]));
+    this.premadeFraymotifNames.add(new Fraymotif("Just...Fuck That Guy", 1, aspects:<Aspect>[Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.HEART,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM])); ///lol, no gamzee
     //vI would do anything for love, but I won't do that///
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.RAGE,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM], "I would do anything for love, but I won't do that",1, "")); //
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.RAGE,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM, Aspects.RAGE], "Homestuck Anthem",1, "")); ///l
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.LIFE, Aspects.DOOM], "Grim Fandango",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.MIND, Aspects.TIME, Aspects.DOOM], "Timeline Evisceration",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HEART, Aspects.BLOOD], "Shipping Grades",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.VOID, Aspects.SPACE, Aspects.RAGE], "In Space, No One Can Hear You Scream",1, ""));
-    this.premadeFraymotifNames.add(new Fraymotif([Aspects.HOPE, Aspects.TIME], "Hope For The Future",1, ""));
+    this.premadeFraymotifNames.add(new Fraymotif("I would do anything for love, but I won't do that", 1, aspects:<Aspect>[Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.RAGE,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM])); //
+    this.premadeFraymotifNames.add(new Fraymotif("Homestuck Anthem", 1, aspects:<Aspect>[Aspects.BLOOD, Aspects.MIND,Aspects.BREATH, Aspects.LIGHT,Aspects.SPACE, Aspects.VOID,Aspects.TIME, Aspects.RAGE,Aspects.HOPE, Aspects.LIFE,Aspects.DOOM, Aspects.RAGE])); ///l
+    this.premadeFraymotifNames.add(new Fraymotif("Grim Fandango", 1, aspects:<Aspect>[Aspects.LIFE, Aspects.DOOM]));
+    this.premadeFraymotifNames.add(new Fraymotif("Timeline Evisceration", 1, aspects:<Aspect>[Aspects.MIND, Aspects.TIME, Aspects.DOOM]));
+    this.premadeFraymotifNames.add(new Fraymotif("Shipping Grades", 1, aspects:<Aspect>[Aspects.HEART, Aspects.BLOOD]));
+    this.premadeFraymotifNames.add(new Fraymotif("In Space, No One Can Hear You Scream", 1, aspects:<Aspect>[Aspects.VOID, Aspects.SPACE, Aspects.RAGE]));
+    this.premadeFraymotifNames.add(new Fraymotif("Hope For The Future", 1, aspects:<Aspect>[Aspects.HOPE, Aspects.TIME]));
 
 
   }
@@ -489,11 +489,11 @@ class FraymotifCreator {
     if(players.length == 1 && players[0].class_name == SBURBClassManager.WASTE && tier == 3){
         //check to see if we are upgrading rocks fall.
         Fraymotif f = this.findFraymotifNamed(players[0].fraymotifs, "Rocks Fall, Everyone Dies");
-        if(f && f.tier < 10){
+        if(f != null && f.tier < 10){
             f.tier = 99;
             f.baseValue = 9999;
             f.name += " (True Form)";
-            f.flavorText = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax! I call hax!";
+            f.desc = "Incredibly huge meteors rain down from above. What the hell??? Didn't this used to suck?  Hax! I call hax!";
             return f;
         }
     }
@@ -504,7 +504,7 @@ class FraymotifCreator {
   		aspects.add(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
   	}
     name += " (Tier $tier)";
-   Fraymotif f= new Fraymotif(aspects, name, tier);
+   Fraymotif f= new Fraymotif(name, tier, aspects:aspects);
    f.addEffectsForPlayers(players);
   	return f;
     }
@@ -548,7 +548,7 @@ class FraymotifEffect {
 		if(player.class_name == SBURBClassManager.MAGE) effect = rand.pickFrom(this.mageEffects());
 		this.target = effect.target;
 		this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-    if(player.associatedStats.length > 0){ //null plyaers have no associated stats
+    if(!player.associatedStats.isEmpty){ //null plyaers have no associated stats
       	    this.statName = rand.pickFrom(player.associatedStats).name;
     }else{
     	    this.statName = "MANGRIT";
@@ -562,7 +562,7 @@ class FraymotifEffect {
 		return [new FraymotifEffect("",this.a,true),new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
 	}
 	dynamic bardEffects(){
-    var ret = [new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
+    List<FraymotifEffect> ret = [new FraymotifEffect("",this.s,false),new FraymotifEffect("",this.e,false),new FraymotifEffect("",this.e2,false),new FraymotifEffect("",this.a,false) ];
     ret.addAll([new FraymotifEffect("",this.s,true),new FraymotifEffect("",this.e,true),new FraymotifEffect("",this.e2,true),new FraymotifEffect("",this.a,true) ]);
     return ret;
   }
