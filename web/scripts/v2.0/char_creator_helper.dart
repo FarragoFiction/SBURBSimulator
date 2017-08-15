@@ -102,7 +102,7 @@ class CharacterCreatorHelper {
 	}
 	void syncPlayerToDropDowns(Player player){
     (querySelector("#classNameID${player.id}") as SelectElement).value = (player.class_name.name);
-    (querySelector("#aspectID${player.id}")as SelectElement).value = (player.aspect);
+    (querySelector("#aspectID${player.id}")as SelectElement).value = (player.aspect.name);
     (querySelector("#hairTypeID${player.id}")as SelectElement).value = (player.hair.toString());
     (querySelector("#hairColorID${player.id}")as InputElement).value = (player.hairColor);
 		String troll = "Human";
@@ -793,9 +793,9 @@ class CharacterCreatorHelper {
 		String html = "<select id = 'classNameID${player.id}' name='className${player.id}'>";
 		for(int i = 0; i< SBURBClassManager.allClasses.length; i++){
 			if(SBURBClassManager.allClasses[i] == player.class_name){
-				html += '<option  selected = "selected" value="${SBURBClassManager.allClasses[i]}">${SBURBClassManager.allClasses[i]}</option>';
+				html += '<option  selected = "selected" value="${SBURBClassManager.allClasses[i].name}">${SBURBClassManager.allClasses[i].name}</option>';
 			}else{
-				html += '<option value="${SBURBClassManager.allClasses[i]}">${SBURBClassManager.allClasses[i]}</option>';
+				html += '<option value="${SBURBClassManager.allClasses[i].name}">${SBURBClassManager.allClasses[i]}</option>';
 			}
 		}
 		html += '</select>';
@@ -862,9 +862,9 @@ class CharacterCreatorHelper {
 		String html = "<select class = 'selectDiv' id = 'aspectID${player.id}' name='aspect${player.id}'>";
 		for(int i = 0; i< available_aspects.length; i++){
 			if(available_aspects[i] == player.aspect){
-				html += '<option selected = "selected" value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
+				html += '<option selected = "selected" value="' + available_aspects[i].name + '" >' + available_aspects[i].name+'</option>';
 			}else{
-				html += '<option value="' + available_aspects[i] + '" >' + available_aspects[i]+'</option>';
+				html += '<option value="${available_aspects[i].name}" >' + available_aspects[i].name+'</option>';
 			}
 
 		}

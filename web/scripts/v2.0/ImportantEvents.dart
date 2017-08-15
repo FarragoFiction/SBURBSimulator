@@ -245,7 +245,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
-			var alphaTimePlayer = findAspectPlayer(this.session.players, "Time");
+			var alphaTimePlayer = findAspectPlayer(this.session.players, Aspects.TIME);
 			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
 			this.session.afterLife.addGhost(this.doomedTimeClone);
 			return true;
@@ -426,13 +426,13 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 
   @override
 	String humanLabel(){
-		var spacePlayer = findAspectPlayer(this.session.players, "Space");
+		var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 		String ret = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
 		return ret;
 	}
   @override
 	bool alternateScene(div){
-			var spacePlayer = findAspectPlayer(this.session.players, "Space");
+			var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
 			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
