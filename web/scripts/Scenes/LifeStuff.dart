@@ -467,7 +467,7 @@ class LifeStuff extends Scene {
 
             appendHtml(div, "<br><br>$str");
             ghost.causeOfDrain = player.title();
-            CanvasElement canvas = drawReviveDead(div, player, ghost, enablingAspect);
+            CanvasElement canvas = drawReviveDead(div, player, ghost, enablingAspect.name);
             player.makeAlive();
             if (enablingAspect == Aspects.LIFE) {
                 player.addStat("currentHP", 100); //i won't let you die again.
