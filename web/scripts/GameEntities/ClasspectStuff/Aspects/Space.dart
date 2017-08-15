@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Space extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"]);
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"]);
 
 

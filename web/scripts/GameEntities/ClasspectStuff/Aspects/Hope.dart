@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Hope extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"]);
+
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Honcho","Humorist","Horse","Haberdasher","Hooligan"]);
 
 

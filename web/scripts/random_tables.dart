@@ -937,18 +937,18 @@ List<String> free_land_titles = <String>["Snowlake", "Heat","Sand","Brains","Haz
 
 
 
-List<String> space_levels = <String>["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"];
-List<String> time_levels = <String>["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"];
-List<String> breath_levels = <String>["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"];
-List<String> doom_levels = <String>["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"];
-List<String> blood_levels = <String>["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"];
-List<String> heart_levels = <String>["SHARKBAIT HEARTHROB", "FEDORA FLEDGLING","PENCILWART PHYLACTERY"];
-List<String> mind_levels = <String>["NIPPER-CADET", "COIN-FLIPPER CONFIDANTE", "TWO-FACED BUCKAROO"];
-List<String> light_levels = <String>["SHOWOFF SQUIRT","JUNGLEGYM SWASHBUCKLER","SUPERSTITIOUS SCURRYWART"];
+List<String> space_levels = <String>;
+List<String> time_levels = <String>;
+List<String> breath_levels = <String>;
+List<String> doom_levels = <String>;
+List<String> blood_levels = <String>;
+List<String> heart_levels = <String>;
+List<String> mind_levels = <String>;
+List<String> light_levels = <String>;
 List<String> void_levels = <String>["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"];
-List<String> rage_levels = <String>["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"];
-List<String> hope_levels = <String>["GADABOUT PIPSQUEAK","BELIVER EXTRAORDINAIRE","DOCTOR FEELGOOD"];
-List<String> life_levels = <String>["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"];
+List<String> rage_levels = <String>;
+List<String> hope_levels = <String>;
+List<String> life_levels = <String>;
 
 
 List<String> free_levels = <String>["NIPPER CADET","PESKY URCHIN","BRAVESPROUT","JUVESQUIRT","RUMPUS BUSTER","CHAMP-FRY","ANKLEBITER","CALLOUSED TENDERFOOT","RASCALSPRAT","GRITTY MIDGET","BRITCHES RIPPER","ALIEN URCHIN", "NESTING NEWB"];

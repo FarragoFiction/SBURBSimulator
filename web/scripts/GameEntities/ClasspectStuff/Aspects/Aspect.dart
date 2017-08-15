@@ -129,6 +129,8 @@ class Aspect {
     // ##################################################################################################
     // Lists
 
+    //TODO maybe eventually quest lines are in charge of levels, so two pages of breath with the same interest don't have exact same ladder?
+    List<String> levels = new List<String>.unmodifiable(<String>["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"]);
     List<String> denizenNames = new List<String>.unmodifiable(<String>["ERROR 404: DENIZEN NOT FOUND"]);
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Blank", "Null", "Boring", "Error"]);
     String denizenSongTitle = "Song";

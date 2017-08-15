@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Breath extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"]);
+
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Biologist","Backpacker","Babysitter","Baker","Balooner","Braid"]);
 
 

@@ -3,7 +3,11 @@ import 'Aspect.dart';
 
 class Rage extends Aspect {
 
-    @override
+  @override
+  List<String> levels = new List<String>.unmodifiable(<String>["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"]);
+
+
+  @override
     List<String> handles = new List<String>.unmodifiable(<String>["Raconteur","Reveler","Reader","Reporter","Racketeer"]);
 
 

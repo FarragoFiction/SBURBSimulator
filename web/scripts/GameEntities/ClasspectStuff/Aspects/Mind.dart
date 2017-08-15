@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Mind extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["NIPPER-CADET", "COIN-FLIPPER CONFIDANTE", "TWO-FACED BUCKAROO"]);
+
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Machine","Magician","Magistrate","Mechanic","Mediator", "Messenger"]);
 
 

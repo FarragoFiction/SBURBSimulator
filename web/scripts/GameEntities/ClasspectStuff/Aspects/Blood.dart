@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Blood extends Aspect {
 
   @override
+  List<String> levels = new List<String>.unmodifiable(<String>["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"]);
+
+  @override
   List<String> handles = new List<String>.unmodifiable(<String>["Buyer","Butler","Butcher","Barber","Bowler","Belligerent"]);
 
   @override

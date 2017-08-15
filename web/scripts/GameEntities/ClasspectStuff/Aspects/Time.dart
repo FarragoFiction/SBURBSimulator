@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Time extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["MARQUIS MCFLY", "JUNIOR CLOCK BLOCKER", "DEAD KID COLLECTOR"]);
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Teetotaler","Traveler","Tailor","Taster","Target", "Teacher", "Therapist","Testicle"]);
 
     @override

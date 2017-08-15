@@ -6,6 +6,10 @@ import 'Aspect.dart';
 class Doom extends Aspect {
 
     @override
+    List<String> levels = new List<String>.unmodifiable(<String>["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"]);
+
+
+    @override
     List<String> handles = new List<String>.unmodifiable(<String>["Dancer","Dean","Decorator","Deliverer","Director","Delegate"]);
 
 
