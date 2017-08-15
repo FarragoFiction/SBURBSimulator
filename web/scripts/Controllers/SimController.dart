@@ -279,9 +279,9 @@ abstract class SimController {
         //print("Debugging AB: tick");
         //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline) {
-            window.requestAnimationFrame(tick);
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
+            window.requestAnimationFrame(tick);
             //print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {
