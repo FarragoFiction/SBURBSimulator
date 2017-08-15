@@ -99,7 +99,7 @@ class FreeWillStuff extends Scene{
 			//print("disengage murde mode");
 				String ret = "";
 				var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
-				var spacePlayerEnemy = findAspectPlayer(enemies, "Space");
+				var spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
 				var ectobiologistEnemy = getLeader(enemies);
 				//not everybody knows about ectobiology.
 				if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.knowsAboutSburb() && player.grimDark < 2)){
@@ -134,7 +134,7 @@ class FreeWillStuff extends Scene{
 		return null;
 	}
 	bool isValidTargets(List<Player> enemies, Player player){
-		Player spacePlayerEnemy = findAspectPlayer(enemies, "Space");
+		Player spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
 		Player ectobiologistEnemy = getLeader(enemies);
 		if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
 			return false;
@@ -197,14 +197,14 @@ class FreeWillStuff extends Scene{
 			}
 		}
 		if(!ret.murderMode) ret = null;
-		if(ret == player && player.aspect != "Time") ret = null;  //you should TOTALLY be able to calm your past selves shit.
+		if(ret == player && player.aspect != Aspects.TIME) ret = null;  //you should TOTALLY be able to calm your past selves shit.
 		return ret;
 	}
 	Player findNonGodTierBesidesMe(Player player){
 		//print(player.title() + " is looking for a god tier besides themselves: " + this.session.session_id)
 		Relationship ret = null;
 		num ret_abs_value = 0; //apparently HAS to be  a num cause both double and int crash
-		if(player.aspect == "Time" && !player.godTier) return player;  //god tier yourself first.
+		if(player.aspect == Aspects.TIME && !player.godTier) return player;  //god tier yourself first.
 		//ideally somebody i wouldn't miss too much if they were gone, and wouldn't fear too much if they had phenomenal cosmic power. so. lowest abs value.
 		for(int i = 0; i<player.relationships.length; i++){
 			Relationship r = player.relationships[i];
@@ -215,7 +215,7 @@ class FreeWillStuff extends Scene{
 			}
 		}
 
-		if(ret.target == player && player.aspect != "Time") ret = null;
+		if(ret.target == player && player.aspect != Aspects.TIME) ret = null;
 		return ret.target;
 	}
 	List<dynamic> findBestPatsy(Player player, List<Player> enemies){
@@ -224,7 +224,7 @@ class FreeWillStuff extends Scene{
 			List<Player> friends = player.getFriendsFromList(living);
 			for(num i = 0; i<living.length; i++){
 				var p = living[i];
-				if(p != player || player.aspect == "Time"){ //can't be own patsy
+				if(p != player || player.aspect == Aspects.TIME){ //can't be own patsy
 					if(bestPatsy == null){
 						bestPatsy = [p,this.howManyEnemiesInCommon(enemies, p)];
 					}else if(!p.murderMode){ //not already in murder mode
@@ -241,14 +241,14 @@ class FreeWillStuff extends Scene{
 			return bestPatsy;
 	}
 	bool canInfluenceEnemies(Player player){
-		if(player.aspect == "Blood" || player.aspect == "Heart" ||player.aspect == "Mind" ){
-			if(player.class_name == "Maid" || player.class_name == "Seer" || player.class_name == "Bard" || player.class_name == "Rogue"){
+		if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART ||player.aspect == Aspects.MIND ){
+			if(player.class_name == SBURBClassManager.MAID || player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.BARD || player.class_name == SBURBClassManager.ROGUE){
 				return true;
 			}
 		}
 
-		if(player.aspect == "Rage"){
-			if( player.class_name == "Seer" || player.class_name == "Maid"){
+		if(player.aspect == Aspects.RAGE){
+			if( player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.MAID){
 				return true;
 			}
 
@@ -257,14 +257,14 @@ class FreeWillStuff extends Scene{
 
 	}
 	bool canAlterNegativeFate(Player player){
-		if(player.aspect == "Light" || player.aspect == "Life" || player.aspect == "Heart" || player.aspect == "Mind"){
-			if(player.class_name == "Maid" || player.class_name == "Seer"){
+		if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.LIFE || player.aspect == Aspects.HEART || player.aspect == Aspects.MIND){
+			if(player.class_name == SBURBClassManager.MAID || player.class_name == SBURBClassManager.SEER){
 				return true;
 			}
 		}
 
-		if(player.aspect == "Doom"){
-			if(player.class_name == "Bard" || player.class_name == "Rogue" || player.class_name == "Maid" || player.class_name == "Seer"){
+		if(player.aspect == Aspects.DOOM){
+			if(player.class_name == SBURBClassManager.BARD || player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID || player.class_name == SBURBClassManager.SEER){
 				return true;
 			}
 		}
@@ -272,26 +272,26 @@ class FreeWillStuff extends Scene{
 	}
 	String getManipulatableTrait(Player player){
 		String ret = "";
-		if(player.aspect == "Heart") ret = "identity";
-		if(player.aspect == "Blood") ret = "relationships";
-		if(player.aspect == "Mind") ret = "mind";
-		if(player.aspect == "Rage") ret = "sanity";
-		if(player.aspect == "Hope") ret = "beliefs";
-		if(player.aspect == "Doom") ret = "fear";
-		if(player.aspect == "Breath") ret = "motivation";
-		if(player.aspect == "Space") ret = "commitment";
-		if(player.aspect == "Time") ret = "fate";
-		if(player.aspect == "Light") ret = "luck";
-		if(player.aspect == "Void") ret = "nothing";
-		if(player.aspect == "Life") ret = "purpose";
+		if(player.aspect == Aspects.HEART) ret = "identity";
+		if(player.aspect == Aspects.BLOOD) ret = "relationships";
+		if(player.aspect == Aspects.MIND) ret = "mind";
+		if(player.aspect == Aspects.RAGE) ret = "sanity";
+		if(player.aspect == Aspects.HOPE) ret = "beliefs";
+		if(player.aspect == Aspects.DOOM) ret = "fear";
+		if(player.aspect == Aspects.BREATH) ret = "motivation";
+		if(player.aspect == Aspects.SPACE) ret = "commitment";
+		if(player.aspect == Aspects.TIME) ret = "fate";
+		if(player.aspect == Aspects.LIGHT) ret = "luck";
+		if(player.aspect == Aspects.VOID) ret = "nothing";
+		if(player.aspect == Aspects.LIFE) ret = "purpose";
 		return ret;
 	}
 
 	String getInfluenceSymbol(player){
-		if(player.aspect == "Mind") return "mind_forehead.png";
-		if(player.aspect == "Rage") return "rage_forehead.png";
-		if(player.aspect == "Blood") return "blood_forehead.png";
-		if(player.aspect == "Heart") return "heart_forehead.png";
+		if(player.aspect == Aspects.MIND) return "mind_forehead.png";
+		if(player.aspect == Aspects.RAGE) return "rage_forehead.png";
+		if(player.aspect == Aspects.BLOOD) return "blood_forehead.png";
+		if(player.aspect == Aspects.HEART) return "heart_forehead.png";
 		return null;
 	}
 	dynamic forceSomeOneElseMurderMode(Player player){
@@ -313,7 +313,7 @@ class FreeWillStuff extends Scene{
 						if(player == patsy){
 							loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they only go crazy because their future self went crazy because THEIR future self went crazy....? Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 							//print(player.title() +" convincing past/future self to go murder mode " + this.session.session_id);
-						}else if(player.aspect == "Time" && rand.nextDouble()>.25){ //most manipulative time bastards are from teh future
+						}else if(player.aspect == Aspects.TIME && rand.nextDouble()>.25){ //most manipulative time bastards are from teh future
 							timeIntro = " from the future";
 						}
 						//print("forcing someone else to be flipping shit");
@@ -387,7 +387,7 @@ class FreeWillStuff extends Scene{
 			if(player == sacrifice){
 				loop = "You get dizzy trying to follow the time logic that must have caused this to happen. Did they try to god tier because their future self told them to? But the future self only told them to because THEIR future self told them... Or wait, is this a doomed time clone...? Fuck. Time is the shittiest aspect.";
 				print(player.title() +" convincing past/future self to go god tier ${this.session.session_id}");
-			}else if(player.aspect == "Time" && rand.nextDouble()>.25){
+			}else if(player.aspect == Aspects.TIME && rand.nextDouble()>.25){
 				timeIntro = " from the future";
 			}
 			String intro = "The " + player.htmlTitleBasic() + timeIntro + " knows how the god tiering mechanic works";
@@ -597,7 +597,7 @@ class FreeWillStuff extends Scene{
 	String considerMakingEctobiologistDoJob(Player player){
 		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
 			String timeIntro = "";
-			if(player.aspect == "Time" && rand.nextDouble()>.25){
+			if(player.aspect == Aspects.TIME && rand.nextDouble()>.25){
 				timeIntro = " from the future";
 			}
 			if(player.leader){
@@ -630,7 +630,7 @@ class FreeWillStuff extends Scene{
 		return null;
 	}
 	String considerMakingSpacePlayerDoJob(Player player){
-		Player space = findAspectPlayer(this.session.availablePlayers, "Space");
+		Player space = findAspectPlayer(this.session.availablePlayers, Aspects.SPACE);
 		if(space != null && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
 			if(player == space){
 				//print(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
@@ -639,7 +639,7 @@ class FreeWillStuff extends Scene{
 				return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
 			}else{
 				String timeIntro = "";
-				if(player.aspect == "Time" && rand.nextDouble()>.25){
+				if(player.aspect == Aspects.TIME && rand.nextDouble()>.25){
 					timeIntro = " from the future";
 				}
 				if(!space.dead){

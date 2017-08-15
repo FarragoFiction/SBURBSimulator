@@ -57,7 +57,7 @@ class BeTriggered extends Scene{
 		String ret = "";
 		for(num i = 0; i<this.triggeredPlayers.length; i++){
 			Player p = this.triggeredPlayers[i];
-			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), "Hope");
+			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.HOPE);
 			if(hope!=null && hope.getStat("power") > 100){
 
 				//print("Hope Survives: " + this.session.session_id);
