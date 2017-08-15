@@ -1886,7 +1886,7 @@ class Player extends GameEntity {
         this.initializeInterestStats(); //takes the place of old random intial stats.
         //reroll goddestiny and sprite as well. luck might have changed.
         num luck = this.rollForLuck();
-        if (this.class_name == "Witch" || luck < -9) {
+        if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
             this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
             //print("disastor");
         } else if (luck > 25) {

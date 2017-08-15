@@ -71,7 +71,7 @@ class GameEntity implements Comparable<GameEntity> {
         this.name = "${object.name}${this.name}"; //sprite becomes puppetsprite.
         this.fraymotifs.addAll(object.fraymotifs);
         if (object.fraymotifs.isEmpty) {
-            Fraymotif f = new Fraymotif(<String>[], "${object.name}Sprite Beam!", 1);
+            Fraymotif f = new Fraymotif(<Aspect>[], "${object.name}Sprite Beam!", 1);
             f.effects.add(new FraymotifEffect("power", 2, true)); //do damage
             f.effects.add(new FraymotifEffect("hp", 1, true)); //heal
             f.flavorText = " An appropriately themed beam of light damages enemies and heals allies. ";
@@ -382,8 +382,8 @@ class GameEntity implements Comparable<GameEntity> {
             if (t.getStat("currentHP") < getStat("power")) r += 1; //i can kill you in one hit.
             if (t is Player) {
                 Player p = t;
-                if (p.aspect == "Void") r += -1; //hard to see
-                if (p.aspect == "Light") r += 1; //easy to see
+                if (p.aspect == Aspects.VOID) r += -1; //hard to see
+                if (p.aspect == Aspects.LIGHT) r += 1; //easy to see
             }
             //print("Added rating of $r to $t");
             ratings.add(r);
