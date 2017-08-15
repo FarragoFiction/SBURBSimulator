@@ -789,13 +789,13 @@ class CharacterCreatorHelper {
 	}
 
 	dynamic drawOneClassDropDown(Player player){
-
+		List<SBURBClass> available_classes = SBURBClassManager.all.toList();
 		String html = "<select id = 'classNameID${player.id}' name='className${player.id}'>";
-		for(int i = 0; i< SBURBClassManager.allClasses.length; i++){
-			if(SBURBClassManager.allClasses[i] == player.class_name){
-				html += '<option  selected = "selected" value="${SBURBClassManager.allClasses[i].name}">${SBURBClassManager.allClasses[i].name}</option>';
+		for(int i = 0; i< available_classes.length; i++){
+			if(available_classes[i] == player.class_name){
+				html += '<option  selected = "selected" value="${available_classes[i].name}">${available_classes[i].name}</option>';
 			}else{
-				html += '<option value="${SBURBClassManager.allClasses[i].name}">${SBURBClassManager.allClasses[i]}</option>';
+				html += '<option value="${available_classes[i].name}">${available_classes[i]}</option>';
 			}
 		}
 		html += '</select>';

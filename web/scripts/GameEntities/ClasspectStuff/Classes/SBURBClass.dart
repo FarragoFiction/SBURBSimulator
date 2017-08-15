@@ -63,33 +63,37 @@ class SBURBClassManager {
     NULL = new SBURBClass("Null", 256,false);
   }
 
-  static List<SBURBClass> _classes = []; // gets filled by class constrcutor
-  static Iterable<SBURBClass> get canon => _classes.where((SBURBClass c) => c.isCanon);
-  static Iterable<SBURBClass> get fanon => _classes.where((SBURBClass c) => !c.isCanon);
+
+  static Map<int, SBURBClass> _classes = <int, SBURBClass>{}; // gets filled by class constrcutor
+  static Iterable<SBURBClass> get canon => _classes.values.where((SBURBClass c) => c.isCanon);
+  static Iterable<SBURBClass> get fanon => _classes.values.where((SBURBClass c) => !c.isCanon);
 
   static List<String> get allClassNames{
       List<String> ret = new List<String>();
-      for(SBURBClass c in _classes) {
+      for(SBURBClass c in _classes.values) {
         ret.add(c.name); //in ruby i'd map one list to another, not sure what dart equivalent without forloop is
       }
       return ret;
   }
 
   static void addClass(SBURBClass c) {
-      _classes.add(c);
+    if (_classes.containsKey(c.id)) {
+      throw "Duplicate class id for $c: ${c.id} is already registered for ${_classes[c.id]}.";
+    }
+    _classes[c.id] = c;
   }
 
-  static List<SBURBClass> get allClasses => new List<SBURBClass>.from(_classes);
+  static Iterable<SBURBClass> get all => _classes.values;
 
   static SBURBClass findClassWithID(num id) {
-      for(SBURBClass c in _classes) {
-        if(c.id == id) return c;
-      }
-      return NULL;
+    if (_classes.containsKey(id)) {
+      return _classes[id];
+    }
+    return NULL; // return the NULL aspect instead of null
   }
 
   static SBURBClass stringToSBURBClass(String id) {
-    for(SBURBClass c in _classes) {
+    for(SBURBClass c in _classes.values) {
       if(c.name == id) return c;
     }
     return NULL;
