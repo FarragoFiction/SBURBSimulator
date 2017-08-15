@@ -133,11 +133,11 @@ class Aspect {
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Blank", "Null", "Boring", "Error"]);
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[]);
-    List<String> handles = new List<String>.unmodifiable(<String>[]);
-    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[]);
+    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Null", "Nothing", "Mystery"]);
+    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>["cleaning up after their Denizen in a class approrpiate fashion","absolutly not goofing off instead of cleaing up after their Denizen","vaguely sweeping up rubble"]);
 
-    List<String> denizenQuests = new List<String>.unmodifiable(<String>[]);
+    List<String> denizenQuests = new List<String>.unmodifiable(<String>["learning of how the Denizen destroyed their land","begining to oppose the damage the Denizen has done to the land","preparing to challeng their Denizen to prevent future damage"]);
 
     // ##################################################################################################
     // Constructor
