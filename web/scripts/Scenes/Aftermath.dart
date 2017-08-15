@@ -94,14 +94,14 @@ class Aftermath extends Scene {
 		appendHtml(div, canvasHTML);
 		var canvasDiv = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,friend);
+		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,friend);
 
-		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(dSpriteBuffer,dead_player);
+		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(dSpriteBuffer,dead_player);
 
-		copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-		copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 	}
 
 	@override
@@ -308,8 +308,8 @@ class Aftermath extends Scene {
 	void finishPurpleStrife(Element div, GameEntity purpleFrog, List<Player> fighters, Player trollKidRock){
 		trollKidRock.renderSelf();  //gotta cache his sprite
 		var tkrCanvas = querySelector("#trollKidRockAppears");
-		drawTimeGears(tkrCanvas);//, trollKidRock);
-		drawSinglePlayer(tkrCanvas, trollKidRock);
+		Drawing.drawTimeGears(tkrCanvas);//, trollKidRock);
+		Drawing.drawSinglePlayer(tkrCanvas, trollKidRock);
 		fighters.add(Player.makeRenderingSnapshot(trollKidRock)); //sorry trollKidRock you are not REALLY a player.
 		Team pTeam = new Team.withName("The Players", this.session, fighters);
 		Team dTeam = new Team(this.session, [purpleFrog]);
@@ -335,10 +335,10 @@ class Aftermath extends Scene {
 			appendHtml(div, canvasHTML);
 			CanvasElement canvasDiv = querySelector("#lastcanvas${this.session.players[i].id}_${this.session.session_id}");
 			CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
-			CanvasElement tmp_canvas = getBufferCanvas(canvasDiv);
-			drawCharSheet(tmp_canvas,this.session.players[i]);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas,0,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, tmp_canvas,400,0);
+			CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv);
+			Drawing.drawCharSheet(tmp_canvas,this.session.players[i]);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas,0,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, tmp_canvas,400,0);
 		}
 	}
 	void content(Element div, i){

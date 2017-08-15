@@ -47,7 +47,7 @@ class GetTiger extends Scene{
 			//different format for canvas code
 			Element canvasDiv = querySelector("#canvas"+ divID);
 
-			drawGetTiger(canvasDiv, players); //only draw revivial if it actually happened.
+			Drawing.drawGetTiger(canvasDiv, players); //only draw revivial if it actually happened.
 		}
 
 

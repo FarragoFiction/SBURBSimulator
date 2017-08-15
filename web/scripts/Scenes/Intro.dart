@@ -65,8 +65,8 @@ class Intro  extends IntroScene{
 			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
 			List<Player> times = findAllAspectPlayers(this.session.players, Aspects.TIME); //they don't have to be in the medium, though
 			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
-			drawTimeGears(canvas);
-			drawSinglePlayer(canvas, timePlayer);
+			Drawing.drawTimeGears(canvas);
+			Drawing.drawSinglePlayer(canvas, timePlayer);
 			String ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 			if(timePlayer.dead){
 				ret += "It's a little alarming how much they are bleeding. ";
@@ -637,7 +637,7 @@ class Intro  extends IntroScene{
 
 		var chatText = this.getChat(player1,player2,div);
 		//alien chat won't get here, renders itself cause can talk to dead
-		drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
+		Drawing.drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_sburb.png");
 	}
 	@override
 	void renderContent(div, i){
@@ -648,7 +648,7 @@ class Intro  extends IntroScene{
 		String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
-		drawCharSheet(canvasDiv,this.player);
+		Drawing.drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
 		var alt = this.addImportantEvent();
 		if(alt != null && alt.alternateScene(div)){

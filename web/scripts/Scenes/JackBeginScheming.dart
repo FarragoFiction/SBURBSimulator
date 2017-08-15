@@ -205,7 +205,7 @@ class JackBeginScheming extends Scene {
 			chatText += this.normalConvo(div,player1, player2);
 		}
 
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_jack.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_jack.png");
 	}
 
 	@override

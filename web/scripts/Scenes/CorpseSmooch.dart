@@ -58,28 +58,28 @@ class CorpseSmooch extends Scene {
 		d.dead = true;
 	}
 	void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty, repeatTime){
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,royalty);
+		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,royalty);
 
 		dead_player.dead = true;
 		dead_player.isDreamSelf = false;  //temporarily show non dream version
-		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSpriteFromScratch(dSpriteBuffer,dead_player);
+		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSpriteFromScratch(dSpriteBuffer,dead_player);
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
 
-		var moonBuffer = getBufferCanvas(querySelector("#canvas_template"));
-		drawMoon(moonBuffer, dead_player);
+		var moonBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
+		Drawing.drawMoon(moonBuffer, dead_player);
 		this.makeAlive(dead_player);
-		drawSprite(moonBuffer,dead_player);
-		copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0);
+		Drawing.drawSprite(moonBuffer,dead_player);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0);
 		//dead_player.renderSelf();
 		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
 	void drawCombo(canvas, comboNum){
-		drawComboText(canvas, comboNum);
+		Drawing.drawComboText(canvas, comboNum);
 	}
 	dynamic ignoreEnemies(player, royalty){
 		if(royalty == null){

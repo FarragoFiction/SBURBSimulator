@@ -110,6 +110,9 @@ class Aspect {
     /// Should set deadpan true when setting this true or they'll still start macking on everyone!
     bool ultimateDeadpan = false;
 
+    /// Do god-tier trolls of this aspect have wings?
+    bool trollWings = true;
+
     // ##################################################################################################
     // Values
 
@@ -191,7 +194,7 @@ class Aspect {
     // Utility
 
     @override
-    String get toString => this.name;
+    String toString() => this.name;
 }
 
 /// Convenience class for getting/setting aspect palettes

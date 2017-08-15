@@ -84,14 +84,14 @@ class MurderPlayers extends Scene {
 		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,murderer);
+		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,murderer);
 
-		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(dSpriteBuffer,victim);
+		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(dSpriteBuffer,victim);
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
 
 	}
 	void renderDiamonds(Element div, Player murderer, Player diamond){
@@ -101,19 +101,19 @@ class MurderPlayers extends Scene {
 		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,murderer);
+		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,murderer);
 
 
-		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSpriteTurnways(dSpriteBuffer,diamond);
+		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSpriteTurnways(dSpriteBuffer,diamond);
 
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
-		var diSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawDiamond(diSpriteBuffer);
-		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,175,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0);
+		var diSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawDiamond(diSpriteBuffer);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,175,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,150,0);
 	}
 	void renderClubs(Element div, Player murderer, Player victim, Player club){
 		//alert("clubs)")
@@ -122,23 +122,23 @@ class MurderPlayers extends Scene {
 		appendHtml(div, canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
 
-		var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,murderer);
+		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,murderer);
 
-		var vSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(vSpriteBuffer,victim);
+		var vSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(vSpriteBuffer,victim);
 
-		var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSpriteTurnways(dSpriteBuffer,club);  //facing non-middle leafs
+		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSpriteTurnways(dSpriteBuffer,club);  //facing non-middle leafs
 
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
-		var diSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawClub(diSpriteBuffer); //Auspisticism
-		copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,475,50);
+		var diSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawClub(diSpriteBuffer); //Auspisticism
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,475,50);
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0);
-		copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, vSpriteBuffer,200,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
 	}
 	dynamic contentForRender(Element div){
 		var livePlayers = this.session.availablePlayers; //just because they are alive doesn't mean they are in the medium

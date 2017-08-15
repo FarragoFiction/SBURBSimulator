@@ -152,7 +152,7 @@ class PlanToExileJack extends Scene {
 			chatText += this.normalConvo(div,player1, player2);
 		}
 
-		drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
+		Drawing.drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
 	}
 	bool smart(player){
 		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));

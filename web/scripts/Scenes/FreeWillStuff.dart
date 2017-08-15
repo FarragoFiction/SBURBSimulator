@@ -54,14 +54,14 @@ class FreeWillStuff extends Scene{
 		appendHtml(div, canvasHTML);
 		CanvasElement canvas = querySelector("#canvas"+ divID);
 
-		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,this.renderPlayer1);
+		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,this.renderPlayer1);
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
 		if(this.renderPlayer2 != null){
-			CanvasElement dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(dSpriteBuffer,this.renderPlayer2);
-			copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
+			CanvasElement dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(dSpriteBuffer,this.renderPlayer2);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
 		}
 
 	}
@@ -77,7 +77,7 @@ class FreeWillStuff extends Scene{
 
 
 
-		drawGetTiger(canvas, [this.playerGodTiered]); //only draw revivial if it actually happened.
+		Drawing.drawGetTiger(canvas, [this.playerGodTiered]); //only draw revivial if it actually happened.
 	}
 	@override
 	void renderContent(Element div){

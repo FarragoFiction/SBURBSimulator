@@ -68,13 +68,13 @@ class LevelTheHellUp extends Scene {
 				String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 				appendHtml(div, canvasHTML);
 			  var canvasDiv = querySelector("#canvas"+ divID);
-				drawLevelUp(canvasDiv, player);
+				Drawing.drawLevelUp(canvasDiv, player);
 		}else if(levelName != null && player.godTier){
 			//god tier has to be taller.
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +1000.toString() + "' height="+572.toString() + "'>  </canvas>";
       appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
-			drawLevelUpGodTier(canvasDiv, player);
+			Drawing.drawLevelUpGodTier(canvasDiv, player);
 		}
 
 	}

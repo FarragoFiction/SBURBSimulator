@@ -45,7 +45,7 @@ class GoGrimDark extends Scene {
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
       appendHtml(div,canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
-			drawSinglePlayer(canvasDiv, this.player);
+			Drawing.drawSinglePlayer(canvasDiv, this.player);
 		}
 	}
 	dynamic raiseGrimDarkLevel(){

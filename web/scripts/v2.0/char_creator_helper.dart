@@ -83,10 +83,10 @@ class CharacterCreatorHelper {
 
 		var canvas = querySelector("#canvas"+ divId);
 		//drawSinglePlayer(canvas, player);
-		var p1SpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSpriteFromScratch(p1SpriteBuffer,player);
+		var p1SpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSpriteFromScratch(p1SpriteBuffer,player);
 		//drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
-		copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer,0,0);
 		this.wireUpTabs(player);
 		this.wireUpPlayerDropDowns(player);
 		this.wireUpTextBoxes(player);
@@ -194,10 +194,10 @@ class CharacterCreatorHelper {
 	void createSummaryOnCanvas(Player player){
 		CanvasElement canvas = querySelector("#canvasSummarycanvas${player.id}");
 		CanvasRenderingContext2D ctx = canvas.getContext("2d");
-		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
 		ctx.clearRect(0, 0, 600, 300);
-		drawSpriteFromScratch(pSpriteBuffer, player);
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-30,0);
+		Drawing.drawSpriteFromScratch(pSpriteBuffer, player);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,-30,0);
 		num space_between_lines = 25;
 		num left_margin = 350;
 		num line_height = 350;
@@ -257,8 +257,8 @@ class CharacterCreatorHelper {
 			String divId = "canvas${player.id}";
 			//divId = divId.replaceAll(new RegExp(r"""\s+""", multiLine:true), ''); //TODO what is going on here?
 			var canvas =querySelector("#"+divId);
-			drawSolidBG(canvas, "#ffffff");
-			drawSinglePlayer(canvas, player);
+		  Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
+		  Drawing.drawSinglePlayer(canvas, player);
 			this.createSummaryOnCanvas(player);
 			this.writePlayerToDataBox(player);
 			this.syncPlayerToFields(player);

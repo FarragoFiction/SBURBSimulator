@@ -230,7 +230,7 @@ class LuckStuff extends Scene{
 			appendHtml(div, ret);
 			appendHtml(div, canvasHTML);
 			CanvasElement canvas = querySelector("#canvas"+ divID);
-			drawGetTiger(canvas, [roll.player]); //only draw revivial if it actually happened.
+			Drawing.drawGetTiger(canvas, [roll.player]); //only draw revivial if it actually happened.
 			return "";
 		}else{
 			if(!roll.player.godDestiny && roll.player.dreamSelf && !roll.player.godTier ){
@@ -260,10 +260,10 @@ class LuckStuff extends Scene{
 		appendHtml(div, canvasHTML);
 		CanvasElement canvas = querySelector("#canvas"+ divID);
 
-		CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-		drawSprite(pSpriteBuffer,roll.player);
+		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,roll.player);
 
-		copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
 		this.session.badLuckEvent = true;
 		this.session.badBreakDeath = true;
 		return "";

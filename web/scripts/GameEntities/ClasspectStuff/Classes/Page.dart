@@ -1,5 +1,5 @@
 import "SBURBClass.dart";
-import "../../Player.dart";
+import "../../player.dart";
 import "../../GameEntity.dart";
 class Page extends SBURBClass {
   Page() : super("Page", 2, true);

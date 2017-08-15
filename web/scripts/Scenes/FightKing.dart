@@ -34,7 +34,7 @@ class FightKing extends Scene {
 		appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
-		poseAsATeam(canvasDiv, fightingPlayers);
+		Drawing.poseAsATeam(canvasDiv, fightingPlayers);
 	}
 
 	@override

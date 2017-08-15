@@ -990,7 +990,39 @@ List<String> heavyQueenQuests = <String>["turns one the Black Queen’s most val
 
 
 
-List<String> tricksterColors = <String>["#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#efffff","#5ef89c","#5ed6f8","#f85edd","#ffcaf6","#d0ffca","#cafcff","#fffdca","#ffd200","#a7caff","#ff6c00","#fffc00","#f5b4ff","#ffceb1","#ffcaca","#e0efc6","#c5ffed","#c5dcff","#ebdbff","#ffdbec","#ecfff4","#f0ecff","#c0ff00","#f7bfff","#dfffbf"];
+List<Colour> tricksterColors = <Colour>[
+	new Colour.fromStyleString("#FF0000"),
+	new Colour.fromStyleString("#00FF00"),
+	new Colour.fromStyleString("#0000FF"),
+	new Colour.fromStyleString("#FFFF00"),
+	new Colour.fromStyleString("#00FFFF"),
+	new Colour.fromStyleString("#FF00FF"),
+	new Colour.fromStyleString("#efffff"),
+	new Colour.fromStyleString("#5ef89c"),
+	new Colour.fromStyleString("#5ed6f8"),
+	new Colour.fromStyleString("#f85edd"),
+	new Colour.fromStyleString("#ffcaf6"),
+	new Colour.fromStyleString("#d0ffca"),
+	new Colour.fromStyleString("#cafcff"),
+	new Colour.fromStyleString("#fffdca"),
+	new Colour.fromStyleString("#ffd200"),
+	new Colour.fromStyleString("#a7caff"),
+	new Colour.fromStyleString("#ff6c00"),
+	new Colour.fromStyleString("#fffc00"),
+	new Colour.fromStyleString("#f5b4ff"),
+	new Colour.fromStyleString("#ffceb1"),
+	new Colour.fromStyleString("#ffcaca"),
+	new Colour.fromStyleString("#e0efc6"),
+	new Colour.fromStyleString("#c5ffed"),
+	new Colour.fromStyleString("#c5dcff"),
+	new Colour.fromStyleString("#ebdbff"),
+	new Colour.fromStyleString("#ffdbec"),
+	new Colour.fromStyleString("#ecfff4"),
+	new Colour.fromStyleString("#f0ecff"),
+	new Colour.fromStyleString("#c0ff00"),
+	new Colour.fromStyleString("#f7bfff"),
+	new Colour.fromStyleString("#dfffbf")
+];
 
 List<String> bloodColors = <String>["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"];
 

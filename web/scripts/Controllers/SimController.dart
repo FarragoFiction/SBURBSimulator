@@ -220,6 +220,8 @@ abstract class SimController {
     }
 
     void startSession() {
+        globalInit(); // initialise classes and aspects if necessary
+
        // print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
       //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");

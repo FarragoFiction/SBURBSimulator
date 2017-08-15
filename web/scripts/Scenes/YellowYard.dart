@@ -158,9 +158,9 @@ class YellowYard extends Scene {
 		}else{
 			chat = this.regularChat(player);
 		}
-		
 
-		drawChatABJR(canvasDiv, chat);
+
+		Drawing.drawChatABJR(canvasDiv, chat);
 
 		canvasHTML = "<br><canvas id='canvasJRAB22${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -172,7 +172,7 @@ class YellowYard extends Scene {
 		chat += "AB: I still say you could just let me interact with sessions like this. \n";
 		chat += "JR: Holy shit, I do that and you might NEVER come back. I almost lost you in a 5x Session Combo already. Denied. \n";
 
-		drawChatABJR(canvasDiv, chat);
+		Drawing.drawChatABJR(canvasDiv, chat);
 
 		String canvasHTML2 = "<br><canvas id='canvasJRAB2${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML2);
@@ -184,7 +184,7 @@ class YellowYard extends Scene {
 			chat += this.timeChat();
 		}
 
-		drawChatJRPlayer(canvasDiv2, chat, player);
+		Drawing.drawChatJRPlayer(canvasDiv2, chat, player);
 
 		chat = "";
 		if(this.timePlayer.dead){
@@ -197,7 +197,7 @@ class YellowYard extends Scene {
 			String canvasHTML3 = "<br><canvas id='canvasJRAB3${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 			appendHtml(div, canvasHTML3);
 			var canvasDiv3 = querySelector("#canvasJRAB3${div.id}");
-			drawChatJRPlayer(canvasDiv3, chat, player);
+			Drawing.drawChatJRPlayer(canvasDiv3, chat, player);
 		}
 
 		this.yellowYardTime(div);

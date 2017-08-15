@@ -254,7 +254,7 @@ class EngageMurderMode extends Scene{
 		List<dynamic> raps2 = getRapForPlayer(player2,"",0);
 		chatText += raps2[0];
 		p2score = raps1[1];
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.appendHtml("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.",treeSanitizer: NodeTreeSanitizer.trusted);
@@ -274,7 +274,7 @@ class EngageMurderMode extends Scene{
 			chatText2 += Scene.chatLine(player1Start, player1,"All I FUCKING wanted was one tiny rap battle, and you can't even fucking do THAT!?");
 			chatText2 += Scene.chatLine(player2Start, player2,"Now wait a second...");
 			chatText2 += Scene.chatLine(player1Start, player1,"Fuck it. I'm done trying to hold back. See you soon.");
-			drawChat(canvasDiv2, player1, player2, chatText2,"discuss_murder.png");
+			Drawing.drawChat(canvasDiv2, player1, player2, chatText2,"discuss_murder.png");
 		}
 	}
 	void chat(Element div){
@@ -304,7 +304,7 @@ class EngageMurderMode extends Scene{
 		}else{
 			chatText += this.normalConvo(div,player1, player2);
 		}
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_murder.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_murder.png");
 	}
 	dynamic addImportantEvent(){
 		Player current_mvp = findStrongestPlayer(this.session.players);

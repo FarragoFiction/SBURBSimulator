@@ -74,7 +74,7 @@ class Player extends GameEntity {
     bool denizenMinionDefeated = false;
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
-        this.name = this.htmlTitleBasic();
+        this.name = "player_$id"; //this.htmlTitleBasic();
     }
 
 
@@ -1514,9 +1514,9 @@ class Player extends GameEntity {
         //var ctx = canvasDiv.context2D;
         this.clearSelf();
         //var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(querySelector("#sprite_template"));
-        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSpriteFromScratch(pSpriteBuffer, this);
-        copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, 0, 0);
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSpriteFromScratch(pSpriteBuffer, this);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, 0, 0);
         //this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
         //this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0);
     }

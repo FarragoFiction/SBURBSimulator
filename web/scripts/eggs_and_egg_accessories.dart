@@ -279,8 +279,8 @@ void tricksterMode(){
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		if(p.aspect != Aspects.DOOM){ //kr says it would be funny if doom plalyers completely immune.
-			p.hairColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
-			p.bloodColor = curSessionGlobalVar.rand.pickFrom(tricksterColors);
+			p.hairColor = curSessionGlobalVar.rand.pickFrom(tricksterColors).toStyleString();
+			p.bloodColor = curSessionGlobalVar.rand.pickFrom(tricksterColors).toStyleString();
 			p.trickster  = true;
 		}else{
 		}

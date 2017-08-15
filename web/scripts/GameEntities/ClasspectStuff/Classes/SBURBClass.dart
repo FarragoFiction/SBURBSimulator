@@ -162,8 +162,9 @@ class SBURBClass {
   //don't need to customize for classes, they already handle this shit because of their quests.
   String getQuest(Random rand,bool postDenizen) {
     if(!postDenizen) return rand.pickFrom(quests);
-    if(postDenizen) return rand.pickFrom(postDenizenQuests);
+    return rand.pickFrom(postDenizenQuests);
   }
 
-
+  @override
+  String toString() => this.name;
 }

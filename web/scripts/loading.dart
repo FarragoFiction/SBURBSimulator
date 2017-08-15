@@ -335,10 +335,10 @@ dynamic loadPlayer(Player player, String skipInit){
   if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);
-	loadImage(playerToRegularBody(player),skipInit);
-  loadImage(playerToDreamBody(player),skipInit);
-	loadImage(playerToGodBody(player),skipInit);
-  loadImage(playerToCowl(player),skipInit);
+	loadImage(Drawing.playerToRegularBody(player),skipInit);
+  loadImage(Drawing.playerToDreamBody(player),skipInit);
+	loadImage(Drawing.playerToGodBody(player),skipInit);
+  loadImage(Drawing.playerToCowl(player),skipInit);
 	loadImage("${player.aspect}.png",skipInit);
 
 	loadImage("${player.aspect}Big.png",skipInit);

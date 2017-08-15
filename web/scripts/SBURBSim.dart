@@ -86,7 +86,8 @@ export "includes/colour.dart";
 export "includes/palette.dart";
 
 
-// temporary functions to be replaced later!
+/// if false, still need to init classes/aspects
+bool doneGlobalInit = false;
 
 Session curSessionGlobalVar;
 int canvasWidth = 1000;
@@ -99,26 +100,19 @@ DateTime stopTime;
 var raggedPlayers = null; //just for scratch'
 var numPlayersPreScratch = 0;
 
+void globalInit() {
+    if (doneGlobalInit) { return; }
+    doneGlobalInit = true;
+
+    SBURBClassManager.init();
+    Aspects.init();
+}
+
 Random globalRand = new Random();
-
-// comment out for random conversion, left in for the sake of hiding errors while I'm not working on them -PL
-/*T getRandomElementFromArray<T>(List<T> list) {
-	return list[0];
-}*/
-
-// also conversion
-/*int getRandomInt(int lower, int upper) {
-	return lower;
-}*/
 
 int getRandomIntNoSeed(int lower, int upper) {
     return globalRand.nextIntRange(lower, upper);
 }
-
-// also conversion
-/*double seededRandom() {
-	return 0.0;
-}*/
 
 double random() {
     return globalRand.nextDouble();
@@ -282,7 +276,7 @@ void crashEasterEgg(String url) {
     chat += "RS:" + convoTangents + "\n";
     chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n";
 
-    drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000");
+    Drawing.drawChatNonPlayer(canvas, chat, "-- recursiveSlacker [RS] began pestering authorBot" + " [AB] --", "Credits/recursiveSlacker.png", "ab.png", "RS:", "AB:", "#000066", "#ff0000");
 }
 
 
@@ -359,7 +353,7 @@ void scratchEasterEggCallBack() {
 
     appendHtml(guardianDiv, canvasHTML);
     Element canvasDiv = querySelector("#canvas" + guardianID);
-    poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
+    Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
     var playerDiv = curSessionGlobalVar.newScene();
@@ -377,7 +371,7 @@ void scratchEasterEggCallBack() {
     for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
         curSessionGlobalVar.players[i].renderSelf();
     }
-    poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
+    Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
 
     SimController.instance.intro();
 }

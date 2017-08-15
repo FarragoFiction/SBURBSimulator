@@ -48,8 +48,8 @@ class SaveDoomedTimeLine extends Scene {
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div,canvasHTML);
 		var canvas = querySelector("#canvas"+ divID);
-		drawTimeGears(canvas);
-		drawSinglePlayer(canvas, this.doomedTimeClone);
+		Drawing.drawTimeGears(canvas);
+		Drawing.drawSinglePlayer(canvas, this.doomedTimeClone);
 
 	}
 	bool leaderIsFucked(){

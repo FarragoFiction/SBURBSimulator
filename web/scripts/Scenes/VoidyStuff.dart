@@ -196,10 +196,10 @@ class VoidyStuff extends Scene {
 				appendHtml(specialDiv, canvasHTML);
 				CanvasElement canvas = querySelector("#canvas"+ divID);
 
-				CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-				drawSprite(pSpriteBuffer,this.player);
+				CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+				Drawing.drawSprite(pSpriteBuffer,this.player);
 
-				copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+				Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
 		}
 	}
 	void ectoBiologyStarted(Element div, Element specialDiv){
@@ -215,7 +215,7 @@ class VoidyStuff extends Scene {
 		appendHtml(specialDiv, canvasHTML);
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
-		poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade));
+		Drawing.poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade));
 
 	}
 	void godTier(Element div, Element specialDiv){
@@ -235,7 +235,7 @@ class VoidyStuff extends Scene {
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(specialDiv, canvasHTML);
 		CanvasElement canvas = querySelector("#canvas"+ divID);
-		drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.
+		Drawing.drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.
 
 	}
 

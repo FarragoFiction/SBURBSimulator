@@ -53,7 +53,7 @@ class RelationshipDrama extends Scene {
 		List<dynamic> raps2 = getRapForPlayer(player2,"",0);
 		chatText += raps2[0];
 		p2score = raps1[1];
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			appendHtml(div, "<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
@@ -156,7 +156,7 @@ class RelationshipDrama extends Scene {
 		}
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		drawRelationshipChat(canvasDiv, player1, player2, chatText);
+		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
 
 		if(makeHate == true){
 			player1.addStat("sanity", -10);
@@ -264,7 +264,7 @@ class RelationshipDrama extends Scene {
 
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
-		drawRelationshipChat(canvasDiv, player1, player2, chatText);
+		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
 		if(makeHate == true){
 			player1.addStat("sanity", -10);
 			r1.value = -20;
@@ -292,7 +292,7 @@ class RelationshipDrama extends Scene {
 		chatText += Scene.chatLine(player1Start, player1,"Shit...I just want to punch them in their " + trait + " face.");
 		chatText += Scene.chatLine(player1Start, player1,"Fuck. I need to just avoid them. This stupid game is dangerous enough without me flying off the handle. ");
 		chatText += Scene.chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
 	}
 	void corpseAdvice(Element div, Player player1, Player player2, Player crush){
 		//alert("tell jadedResearcher you saw corpse advice in session: " + this.session.session_id);
@@ -318,7 +318,7 @@ class RelationshipDrama extends Scene {
 		chatText += Scene.chatLine(player1Start, player1,"Shit... maybe I should just tell them? God, why is it so hard being in love. It's hard and nobody understands.");
 		chatText += Scene.chatLine(player1Start, player1,"You're right. I'm going to tell them. Soon. When the time is right. ");
 		chatText += Scene.chatLine(player1Start, player1,"You're always so good at advice.  Thanks!");
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
 	}
 	void relationshipAdvice(Element div, Player player, Player crush){
 		Relationship relationship = player.getRelationshipWith(crush);
@@ -448,7 +448,7 @@ class RelationshipDrama extends Scene {
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
 	}
 	void ventAboutJerk(Element div, Player player, Player jerk){
 		Relationship relationship = player.getRelationshipWith(jerk);
@@ -535,7 +535,7 @@ class RelationshipDrama extends Scene {
 				}
 			}
 		}
-		drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
+		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
 
 	}
 	void antagonizeJerk(Element div, Player player, Player jerk){
@@ -609,7 +609,7 @@ class RelationshipDrama extends Scene {
 				}
 			}
 		}
-		drawRelationshipChat(canvasDiv, player1, player2, chatText);
+		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
 	}
 	Player getBestFriendBesidesCrush(Player player, Player crush){
 		List<Player> living = findLivingPlayers(this.session.players);

@@ -7,7 +7,7 @@ import "JRTestSuite.dart";
 /*part "JRTestSuite.dart";
 part "../web/scripts/GameEntities/GameEntity.dart";
 part "../web/scripts/GameEntities/NPCs.dart";
-part "../web/scripts/GameEntities/Player.dart";
+part "../web/scripts/GameEntities/player.dart";
 part "../web/scripts/session.dart";
 part "../web/scripts/fraymotif.dart";
 part "../web/scripts/random_tables.dart"; //needed for global functions

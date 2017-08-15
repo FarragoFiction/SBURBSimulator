@@ -48,7 +48,7 @@ class GodTierRevival extends Scene {
 			}
 		}
 
-		drawGodRevival(canvasDiv, live_players, dead_players);
+		Drawing.drawGodRevival(canvasDiv, live_players, dead_players);
 	}
 	dynamic addImportantEvent(player){
 			return null;

@@ -280,19 +280,19 @@ class LifeStuff extends Scene {
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
-        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSprite(pSpriteBuffer, player);
-        CanvasElement bubbleSpriteBuffer = getBufferCanvas(querySelector("#canvas_template"));
-        drawDreamBubble(bubbleSpriteBuffer);
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer, player);
+        CanvasElement bubbleSpriteBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
+        Drawing.drawDreamBubble(bubbleSpriteBuffer);
 
         //leave room on left for possible 'guide' player.
-        copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer, 0, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer, 0, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
         if (ghost != null) {
-            CanvasElement gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-            drawSpriteTurnways(gSpriteBuffer, ghost);
+            CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
             //copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0);
-            copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 400, 0);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 400, 0);
         }
 
         return canvas;
@@ -303,13 +303,13 @@ class LifeStuff extends Scene {
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
-        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSprite(pSpriteBuffer, player);
-        CanvasElement gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSpriteTurnways(gSpriteBuffer, ghost);
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer, player);
+        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
         //leave room on left for possible 'guide' player.
-        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
         return canvas;
     }
 
@@ -319,23 +319,23 @@ class LifeStuff extends Scene {
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
-        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSprite(pSpriteBuffer, player);
-        CanvasElement gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSpriteTurnways(gSpriteBuffer, ghost);
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer, player);
+        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
 
 
         //leave room on left for possible 'guide' player.
         if (long) {
-            drawWhatever(canvas, "drain_lightning_long.png");
+            Drawing.drawWhatever(canvas, "drain_lightning_long.png");
         } else {
-            drawWhatever(canvas, "drain_lightning.png");
+            Drawing.drawWhatever(canvas, "drain_lightning.png");
         }
-        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
         //CanvasElement canvasBuffer = getBufferCanvas(querySelector("#canvas_template"));
 
-        drawWhatever(canvas, "drain_halo.png");
+        Drawing.drawWhatever(canvas, "drain_halo.png");
 
         return canvas;
     }
@@ -379,9 +379,9 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
             //print("Help communing with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-            drawSprite(pSpriteBuffer, player1);
-            copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            Drawing.drawSprite(pSpriteBuffer, player1);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
             player1.interactionEffect(player2);
             player2.interactionEffect(player1);
         }
@@ -440,10 +440,10 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
             //print("Help draining power with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-            drawSprite(pSpriteBuffer, player1);
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            Drawing.drawSprite(pSpriteBuffer, player1);
 
-            copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
             player1.interactionEffect(player2);
             player2.interactionEffect(player1);
         }
@@ -467,7 +467,7 @@ class LifeStuff extends Scene {
 
             appendHtml(div, "<br><br>$str");
             ghost.causeOfDrain = player.title();
-            CanvasElement canvas = drawReviveDead(div, player, ghost, enablingAspect.name);
+            CanvasElement canvas = Drawing.drawReviveDead(div, player, ghost, enablingAspect.name);
             player.makeAlive();
             if (enablingAspect == Aspects.LIFE) {
                 player.addStat("currentHP", 100); //i won't let you die again.
@@ -497,9 +497,9 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
             //print("Help revive with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-            drawSprite(pSpriteBuffer, player1);
-            copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            Drawing.drawSprite(pSpriteBuffer, player1);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
             player1.interactionEffect(player2);
             player2.interactionEffect(player1);
         }
@@ -512,13 +512,13 @@ class LifeStuff extends Scene {
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
-        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSprite(pSpriteBuffer, player);
-        CanvasElement horrorSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawHorrorterror(canvas);
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer, player);
+        CanvasElement horrorSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawHorrorterror(canvas);
         //leave room on left for possible 'guide' player.
-        copyTmpCanvasToRealCanvasAtPos(canvas, horrorSpriteBuffer, 0, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, horrorSpriteBuffer, 0, 0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
         String str = "${this.ghostPsionics(player)} What is the ${player.htmlTitleBasic()} doing out near the furthest ring? Oh GOD, what are they DOING!?  Oh, wait, never mind. False alarm. Looks like they're just negotiating with the horrorterrors to give players without dreamselves access to the afterlife in Dream Bubbles. Carry on.";
         appendHtml(div, str);
     }

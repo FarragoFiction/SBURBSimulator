@@ -102,17 +102,17 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   appendHtml(div, canvasHTML);
   var canvasDiv = querySelector("#canvas"+ divID);
 
-  var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-  drawTimeGears(pSpriteBuffer);
-  drawSprite(pSpriteBuffer,timeClone1);
+  var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+  Drawing.drawTimeGears(pSpriteBuffer);
+  Drawing.drawSprite(pSpriteBuffer,timeClone1);
 
-  var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-  drawTimeGears(dSpriteBuffer);
-  drawSpriteTurnways(dSpriteBuffer,timeClone2);
+  var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+  Drawing.drawTimeGears(dSpriteBuffer);
+  Drawing.drawSpriteTurnways(dSpriteBuffer,timeClone2);
 
 
-  copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-  copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+  Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+  Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
   removeFromArray(event, session.yellowYardController.eventsToUndo);
   return false;
@@ -169,14 +169,14 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(dSpriteBuffer,this.player);
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(dSpriteBuffer,this.player);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
 			player.makeGodTier();
@@ -187,7 +187,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			var canvasDiv2 = querySelector("#canvas"+ divID2);
 			List<dynamic> players = [];
 			players.add(player);
-			drawGetTiger(canvasDiv2, players);//,repeatTime);
+			Drawing.drawGetTiger(canvasDiv2, players);//,repeatTime);
 			return true;
 	}
 
@@ -236,14 +236,14 @@ class PlayerDiedForever  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,player);
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 
 			var alphaTimePlayer = findAspectPlayer(this.session.players, Aspects.TIME);
 			removeFromArray(this.doomedTimeClone, alphaTimePlayer.doomedTimeClones);   //DEAD
@@ -298,15 +298,15 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,player);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return true;
 	}
 
@@ -354,15 +354,15 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,player);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return true;
 	}
 
@@ -405,10 +405,10 @@ class JackPromoted  extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			return true;
 	}
 
@@ -461,15 +461,15 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSpriteTurnways(dSpriteBuffer,spacePlayer);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSpriteTurnways(dSpriteBuffer,spacePlayer);
 
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			//print("done helping frog a scene, seed is at: " + Math.seed);
 			return true;
 	}
@@ -518,15 +518,15 @@ class PlayerEnteredSession  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(dSpriteBuffer,player);
+			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		Drawing.drawSprite(dSpriteBuffer,player);
 
-			drawTimeGears(canvasDiv);//, this.doomedTimeClone);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+		Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+		Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 			return false; //let the original scene happen as well.
 	}
 
@@ -575,10 +575,10 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-			drawSprite(pSpriteBuffer,this.doomedTimeClone);
-			drawTimeGears(canvasDiv);
-			copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
+			Drawing.drawTimeGears(canvasDiv);
+			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			return false;  //let original scene happen as well.
 	}
 

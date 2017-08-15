@@ -223,7 +223,7 @@ class Strife {
     chat.writeln("AB: Like, yeah, it fucking SUCKS for me, but...then the players have to die, too.");
     chat.writeln("JR: That's why we're working so hard to balance the system. We'll get there, eventually. Scenes like this'll never trigger. Fights'll end naturally and not just go on forever if players find exploits.");
     chat.writeln("AB: Yeah...'cause SBURB is just SO easy to balance.");
-    drawChatABJR(canvasDiv, chat.toString());
+    Drawing.drawChatABJR(canvasDiv, chat.toString());
 
     killEveryone("causing dear sweet precious sweet, sweet AuthorBot to go into an infinite loop");
 
@@ -345,14 +345,14 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     CanvasElement canvasDiv = querySelector("#canvasBackup"+ div.id);
     if(backup.doomed){
       CanvasElement canvasDiv = querySelector("#canvas"+ div.id);
-      drawTimeGears(canvasDiv);
+      Drawing.drawTimeGears(canvasDiv);
       //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
       appendHtml(div, "suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
     }else{
       if(backup is Player){
         Player p = backup;
         if(p.aspect == Aspects.TIME && p.session.rand.nextDouble() > .5){
-          drawTimeGears(canvasDiv);
+          Drawing.drawTimeGears(canvasDiv);
           //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
           appendHtml(div,"The " + backup.htmlTitleHP() + " has joined the Strife!!! (Don't worry about the time bullshit, they have their stable time loops on LOCK. No doom for them.)");
           return;
@@ -364,7 +364,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
 
       appendHtml(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
     }
-    drawSinglePlayer(canvasDiv, backup);
+    Drawing.drawSinglePlayer(canvasDiv, backup);
   }
 
 
@@ -490,7 +490,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     appendHtml(div, canvasHTML);
     //different format for canvas code
     CanvasElement canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
-    poseAsATeam(canvasDiv, poseable); //in handle sprites
+    Drawing.poseAsATeam(canvasDiv, poseable); //in handle sprites
   }
 
   //Denizen fights work differently

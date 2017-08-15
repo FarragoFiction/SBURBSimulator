@@ -190,7 +190,7 @@ class UpdateShippingGrid extends Scene{
 				image = "discuss_ashenmance.png";
 			}
 		}
-		drawChat(canvasDiv, player1, player2, this.shippingChat,image);
+		Drawing.drawChat(canvasDiv, player1, player2, this.shippingChat,image);
 
 	}
 	void drawRomanceChat(Element div){
@@ -217,7 +217,7 @@ class UpdateShippingGrid extends Scene{
 				player1 = this.chosenShipper.player ;//shipper messages BOTH side leafs.;
 			}
 		}
-		drawChat(canvasDiv, player1, player2, this.romanceChat,image);
+		Drawing.drawChat(canvasDiv, player1, player2, this.romanceChat,image);
 	}
 	List<Ship> createShips(List<Player> players, Shipper shipperPlayer){
 		if(shipperPlayer == null){
