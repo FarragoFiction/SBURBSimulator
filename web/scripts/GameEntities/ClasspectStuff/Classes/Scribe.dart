@@ -8,7 +8,7 @@ class Scribe extends SBURBClass {
   @override
   List<String> postDenizenQuests  = ["documenting the various Consorts lost to the Denizen.","writing up a recovery plan for the Local Consorts","figuring out the best way to explain how to recover from the ravages of Denizen"];
   @override
-  List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
+  List<String> handles =["serious", "sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
   @override
   bool highHinit() {
     return false;

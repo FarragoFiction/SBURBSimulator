@@ -7,7 +7,7 @@ class Blood extends Aspect {
   List<String> levels = new List<String>.unmodifiable(<String>["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"]);
 
   @override
-  List<String> handles = new List<String>.unmodifiable(<String>["Buyer","Butler","Butcher","Barber","Bowler","Belligerent"]);
+  List<String> handles = new List<String>.unmodifiable(<String>["Business", "Buyer","Butler","Butcher","Barber","Bowler","Belligerent"]);
 
   @override
   List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Blood", "Trigger","Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"]);

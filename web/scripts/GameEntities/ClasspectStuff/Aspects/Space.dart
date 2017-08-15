@@ -7,7 +7,7 @@ class Space extends Aspect {
     List<String> levels = new List<String>.unmodifiable(<String>["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Stuck",""Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"]);
 
 
     @override
