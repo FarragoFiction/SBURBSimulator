@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Hope extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Hope","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Prophet", "Apocryphal"]);
+
+
+    @override
     String denizenSongTitle = "Etude" ;//a musical exercise designed to improve the performer;
 
     @override

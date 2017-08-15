@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Breath extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Gale", "Wiznado", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breat", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"]);
+
+
+    @override
     String denizenSongTitle = "Refrain ";//cuz canon
 
     @override

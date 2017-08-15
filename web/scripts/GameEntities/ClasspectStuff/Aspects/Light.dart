@@ -3,6 +3,9 @@ import 'Aspect.dart';
 
 class Light extends Aspect {
 
+    @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Lucky", "LIGHT", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"]);
+
 
     @override
     String denizenSongTitle = "Opera" ;//lol, cuz light players never shut up;

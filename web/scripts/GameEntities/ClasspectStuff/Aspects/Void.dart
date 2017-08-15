@@ -3,6 +3,9 @@ import 'Aspect.dart';
 
 class Void extends Aspect {
 
+    @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"]);
+
 
     @override
     String denizenSongTitle = "Silence" ;

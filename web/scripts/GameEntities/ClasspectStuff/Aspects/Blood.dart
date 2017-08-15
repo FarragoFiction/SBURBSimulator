@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Blood extends Aspect {
 
   @override
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Blood", "Trigger","Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"]);
+
+  @override
   String denizenSongTitle = "Ballad " ;//a song passed over generations in an oral history;
 
   @override

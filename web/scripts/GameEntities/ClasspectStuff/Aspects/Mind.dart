@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Mind extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Mind", "Modulation", "Shock", "Awe", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination",  "Psycho", "Control", "Execution", "Bolt"]);
+
+
+    @override
     String denizenSongTitle = "Fugue"  ;//a musical core that is altered and changed and interwoven with itself. Also, a mental state of confusion and lo
 
     @override

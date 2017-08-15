@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Heart extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Heart","Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Beat", "Pulchritude"]);
+
+
+    @override
     String denizenSongTitle = "Leitmotif" ;//a musical theme representing a particular character;
 
     @override

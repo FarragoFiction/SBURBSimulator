@@ -3,6 +3,9 @@ import 'Aspect.dart';
 
 class Time extends Aspect {
 
+    @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Time","Paradox", "Chrono", "Moment", "Foregone", "Reset", "Endless", "Temporal", "Shenanigans", "Clock", "Tick-Tock", "Spinning", "Repeat", "Rhythm", "Redshift",  "Epoch", "Beatdown", "Slow", "Remix", "Clockwork", "Lock", "Eternal"]);
+
 
     @override
     String denizenSongTitle = "Canon" ;//a musical piece in which a section is repeated (but unchanged) at different times, layered until it's unreconizable  (stable time loops);

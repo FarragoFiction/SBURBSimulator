@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Life extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Life" ,"Pastoral", "Green", "Relief", "Healing", "Plant", "Vitality", "Growing", "Garden", "Multiplying", "Rising", "Survival", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"]);
+
+
+    @override
     String denizenSongTitle = "Lament" ;//passionate expression of grief. so much life has been lost to SBURB.;
 
     @override

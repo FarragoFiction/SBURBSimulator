@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Rage extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"]);
+
+
+    @override
     String denizenSongTitle = " Aria" ;// a musical piece full of emotion;
 
     @override

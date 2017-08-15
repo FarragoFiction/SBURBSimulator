@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Space extends Aspect {
 
     @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"]);
+
+
+    @override
     double aspectQuestChance = 1.0; // No items. Frogs only. FINAL DESTINATION.
 
 

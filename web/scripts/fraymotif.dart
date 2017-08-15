@@ -335,69 +335,11 @@ class FraymotifCreator {
     //print("Found: " + ret.length + " usable fraymotifs for " + owner);
     return ret;
   }
-	String getRandomBreathName(Random rand){
-      List<String> names = ["Gale", "Wiznado", "Feather", "Lifting", "Breathless","Jetstream", "Hurricane", "Tornado"," Kansas", "Breat", "Breeze", "Twister", "Storm", "Wild", "Inhale", "Windy", "Skylark", "Fugue", "Pneumatic", "Wheeze", "Forward", "Vertical", "Whirlwind", "Jetstream"];
-      return rand.pickFrom(names);
-  }
- String getRandomRageName(Random rand){
-      var names = ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"];
-      return rand.pickFrom(names);
-  }
- String getRandomLifeName(Random rand){
-      var names = ["Life" ,"Pastoral", "Green", "Relief", "Healing", "Plant", "Vitality", "Growing", "Garden", "Multiplying", "Rising", "Survival", "Phoenix", "Respawn", "Mangrit", "Animato", "Gaia", "Increasing", "Overgrowth", "Jungle", "Harvest", "Lazarus"];
-      return rand.pickFrom(names);
-  }
- String getRandomHopeName(Random rand){
-      var names = ["Hope","Fake", "Belief", "Bullshit", "Determination", "Burn", "Stubborn", "Religion", "Will", "Hero", "Undying", "Dream", "Sepulchritude", "Prophet", "Apocryphal"];
-      return rand.pickFrom(names);
-  }
- String getRandomVoidName(Random rand){
-      String randBonus = "<span class = 'void'>" + rand.pickFrom(interests) +  "</span>";
-      var names = ["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"];
-      return rand.pickFrom(names)+ randBonus;
-  }
- String getRandomLightName(Random rand){
-      var names = ["Lucky", "LIGHT", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"];
-      return rand.pickFrom(names);
-  }
- String getRandomMindName(Random rand){
-      var names = ["Mind", "Modulation", "Shock", "Awe", "Coin", "Judgement", "Mind", "Decision", "Spark", "Path", "Trial", "Variations", "Thunder", "Logical", "Telekinetic", "Brainiac", "Hysteria", "Deciso", "Thesis", "Imagination",  "Psycho", "Control", "Execution", "Bolt"];
-      return rand.pickFrom(names);
-  }
- String getRandomHeartName(Random rand){
-      var names = ["Heart","Soul", "Jazz", "Blues", "Spirit", "Splintering", "Clone", "Self", "Havoc", "Noble", "Animus", "Astral", "Shatter", "Breakdown", "Ethereal", "Beat", "Pulchritude"];
-      return rand.pickFrom(names);
-  }
- String getRandomBloodName(Random rand){
-      var names = ["Blood", "Trigger","Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"];
-      return rand.pickFrom(names);
-  }
- String getRandomDoomName(Random rand){
-      var names = ["Dark", "Broken", "Meteoric", "Diseased","Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"];
-      return rand.pickFrom(names);
-  }
- String getRandomTimeName(Random rand){
-      var names = ["Time","Paradox", "Chrono", "Moment", "Foregone", "Reset", "Endless", "Temporal", "Shenanigans", "Clock", "Tick-Tock", "Spinning", "Repeat", "Rhythm", "Redshift",  "Epoch", "Beatdown", "Slow", "Remix", "Clockwork", "Lock", "Eternal"];
-      return rand.pickFrom(names);
-  }
- String getRandomSpaceName(Random rand){
-      var names = ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"];
-      return rand.pickFrom(names);
-  }
+
+
+
  String getRandomNameForAspect(Random rand, Aspect aspect){
-    String ret = "";
-    if(aspect == Aspects.BLOOD) ret = this.getRandomBloodName(rand);
-    if(aspect == Aspects.MIND) ret = this.getRandomMindName(rand);
-    if(aspect == Aspects.RAGE) ret =  this.getRandomRageName(rand);
-    if(aspect == Aspects.TIME) ret =  this.getRandomTimeName(rand);
-    if(aspect == Aspects.VOID) ret =  this.getRandomVoidName(rand);
-    if(aspect == Aspects.HEART) ret =  this.getRandomHeartName(rand);
-    if(aspect == Aspects.BREATH) ret =  this.getRandomBreathName(rand);
-    if(aspect == Aspects.LIGHT) ret =  this.getRandomLightName(rand);
-    if(aspect == Aspects.SPACE) ret =  this.getRandomSpaceName(rand);
-    if(aspect == Aspects.HOPE) ret =  this.getRandomHopeName(rand);
-    if(aspect == Aspects.LIFE) ret =  this.getRandomLifeName(rand);
-    if(aspect == Aspects.DOOM) ret =  this.getRandomDoomName(rand);
+    String ret = rand.pickFrom(aspect.fraymotifNames);
     if(ret == null || ret.isEmpty) ret = "Null";
     return aspect.fontTag() + ret + "</font>";
   }
@@ -412,6 +354,7 @@ class FraymotifCreator {
       return " $ret"; //extra word
     }
   }
+  
 	String tryToGetPreMadeName(Random rand, List<Player> players){
 	  if(players == null || players.isEmpty) return null;
     if(rand.nextDouble() > 0.5) return null; //just use the procedural name.
