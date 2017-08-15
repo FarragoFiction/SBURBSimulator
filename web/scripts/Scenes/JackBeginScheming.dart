@@ -17,7 +17,7 @@ class JackBeginScheming extends Scene {
 	Player findSympatheticPlayer(){
 		//not available, living. jack inerupts whatever they are doingv
 		var living = findLivingPlayers(this.session.players);
-		this.friend =  findAspectPlayer(living, "Blood");
+		this.friend =  findAspectPlayer(living, Aspects.BLOOD);
 		if(this.friend == null || this.friend.land == null){
 			this.friend =  findClassPlayer(living, SBURBClassManager.PAGE);
 		}else if(this.friend == null || this.friend.land == null){
@@ -25,7 +25,7 @@ class JackBeginScheming extends Scene {
 		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findClassPlayer(living, SBURBClassManager.ROGUE);
 		}else if(this.friend == null || this.friend.land == null){
-			this.friend =  findAspectPlayer(living, "Hope");
+			this.friend =  findAspectPlayer(living, Aspects.HOPE);
 		}else{
 			this.friend = rand.pickFrom(curSessionGlobalVar.availablePlayers);
 		}

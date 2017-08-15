@@ -38,7 +38,7 @@ class LifeStuff extends Scene {
         List<Player> dead = findDeadPlayers(this.session.players); //don't care about availability.;
         for (num i = 0; i < dead.length; i++) {
             Player d = dead[i];
-            if (d.aspect == "Life" || d.aspect == "Doom") {
+            if (d.aspect == Aspects.LIFE || d.aspect == Aspects.DOOM) {
                 if (d.class_name == SBURBClassManager.THIEF || d.class_name == SBURBClassManager.HEIR) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(d, null)); //gonna revive myself.
                 }
@@ -52,8 +52,8 @@ class LifeStuff extends Scene {
         //for each nonGuide, see if you can do something on your own.
         for (num i = 0; i < nonGuides.length; i++) {
             Player player = nonGuides[i];
-            if (player.aspect == "Life" || player.aspect == "Doom" || player.canGhostCommune() != null) {
-                if (player.class_name != "Witch" && player.class_name != "Sylph") {
+            if (player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM || player.canGhostCommune() != null) {
+                if (player.class_name != SBURBClassManager.WITCH && player.class_name != SBURBClassManager.SYLPH) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null));
                     removeNonGuides.add(player);
                 } else if (!this.session.dreamBubbleAfterlife) {
@@ -106,7 +106,7 @@ class LifeStuff extends Scene {
         List<Player> chosenSuplicants = <Player>[];
         for (num i = 0; i < this.session.availablePlayers.length; i++) {
             Player possibleGuide = this.session.availablePlayers[i];
-            if (possibleGuide.aspect == "Doom" || possibleGuide.aspect == "Life" || possibleGuide.canGhostCommune() != null) {
+            if (possibleGuide.aspect == Aspects.DOOM || possibleGuide.aspect == Aspects.LIFE || possibleGuide.canGhostCommune() != null) {
                 if (possibleGuide.class_name == SBURBClassManager.SEER || possibleGuide.class_name == SBURBClassManager.SCRIBE || possibleGuide.class_name == SBURBClassManager.PAGE || possibleGuide.class_name == SBURBClassManager.BARD || possibleGuide.class_name == SBURBClassManager.ROGUE || possibleGuide.class_name == SBURBClassManager.MAID) {
                     chosenGuides.add(possibleGuide);
                 }
@@ -118,7 +118,7 @@ class LifeStuff extends Scene {
             Player possibleGuide = this.session.availablePlayers[i];
             if (possibleGuide.class_name == SBURBClassManager.HEIR || possibleGuide.class_name == SBURBClassManager.THIEF || possibleGuide.class_name == SBURBClassManager.PRINCE || possibleGuide.class_name == SBURBClassManager.WITCH || possibleGuide.class_name == SBURBClassManager.SYLPH || possibleGuide.class_name == SBURBClassManager.KNIGHT || possibleGuide.class_name == SBURBClassManager.MAGE) {
                 chosenSuplicants.add(possibleGuide);
-            } else if (possibleGuide.aspect != "Doom" && possibleGuide.aspect != "Life" || possibleGuide.canGhostCommune() == null) {
+            } else if (possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
                 if (!chosenGuides.contains(possibleGuide)) { //can't be both guide and non guide.
                     ////print("supplicant is: " + possibleGuide.title());
                     chosenSuplicants.add(possibleGuide);
@@ -144,7 +144,7 @@ class LifeStuff extends Scene {
             } else if (dreaming == null) {
                 if (player.class_name == SBURBClassManager.MAGE || player.class_name == SBURBClassManager.KNIGHT || player.class_name == SBURBClassManager.SAGE || player.class_name == SBURBClassManager.SCOUT) {
                     this.communeDead(div, "", player, player.class_name, player.aspect);
-                } else if ((player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.SCRIBE|| player.class_name == "Page") && other_player != null && !other_player.dead) {
+                } else if ((player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.SCRIBE|| player.class_name == SBURBClassManager.PAGE) && other_player != null && !other_player.dead) {
                     this.helpPlayerCommuneDead(div, player, other_player);
                 } else if (player.class_name == SBURBClassManager.PRINCE) {
                     this.drainDeadForPower(div, "", player, false);
@@ -221,7 +221,7 @@ class LifeStuff extends Scene {
         return null;
     }
 
-    dynamic communeDead(Element div, String str, Player player, SBURBClass playerClass, String enablingAspect) {
+    dynamic communeDead(Element div, String str, Player player, SBURBClass playerClass, Aspect enablingAspect) {
         //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
         Player ghost = this.session.afterLife.findGuardianSpirit(player);
         String ghostName = "";
@@ -340,9 +340,9 @@ class LifeStuff extends Scene {
         return canvas;
     }
 
-    String communeDeadResult(SBURBClass playerClass, Player player, Player ghost, String ghostName, String enablingAspect) {
+    String communeDeadResult(SBURBClass playerClass, Player player, Player ghost, String ghostName, Aspect enablingAspect) {
         if (playerClass == SBURBClassManager.KNIGHT || playerClass == SBURBClassManager.PAGE) {
-            player.ghostPacts.add(new GhostPact(ghost, enablingAspect)); //help with a later fight.
+            player.ghostPacts.add(new GhostPact(ghost, enablingAspect.name)); //help with a later fight.
             //print("Knight or Page promise of ghost attack: " + this.session.session_id);
             return " The ${player.htmlTitleBasic()} gains a promise of aid from the $ghostName. ";
         } else if (playerClass == SBURBClassManager.SEER || playerClass == SBURBClassManager.MAGE) {
@@ -449,7 +449,7 @@ class LifeStuff extends Scene {
         }
     }
 
-    CanvasElement drainDeadForReviveSelf(Element div, String str, Player player, SBURBClass className, String enablingAspect) {
+    CanvasElement drainDeadForReviveSelf(Element div, String str, Player player, SBURBClass className, Aspect enablingAspect) {
         Player ghost = this.session.afterLife.findAnyUndrainedGhost(player.rand); //not picky in a crisis.
         String ghostName = "dead player";
         //need to find my own ghost and remove it from the afterlife.
@@ -469,10 +469,10 @@ class LifeStuff extends Scene {
             ghost.causeOfDrain = player.title();
             CanvasElement canvas = drawReviveDead(div, player, ghost, enablingAspect);
             player.makeAlive();
-            if (enablingAspect == "Life") {
+            if (enablingAspect == Aspects.LIFE) {
                 player.addStat("currentHP", 100); //i won't let you die again.
                 player.addStat("hp", 100); //i won't let you die again.
-            } else if (enablingAspect == "Doom") {
+            } else if (enablingAspect == Aspects.DOOM) {
                 player.addStat("minLuck", 100); //you've fulfilled the prophecy. you are no longer doomed.
                 str = "${str}The prophecy is fulfilled. ";
             }

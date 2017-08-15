@@ -29,32 +29,32 @@ class Intro  extends IntroScene{
 		return "";
 	}
 	String changeBoggle(){
-			if(this.player.aspect == "Blood"){
+			if(this.player.aspect == Aspects.BLOOD){
 				return " They boggle vacantly at the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Mind"){
+			}else if(this.player.aspect == Aspects.MIND){
 				return " They ogle at the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Rage"){
+			}else if(this.player.aspect == Aspects.RAGE){
 				return " They glare with bafflement at the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Time"){
+			}else if(this.player.aspect == Aspects.TIME){
 				return " They are very confused by the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Void"){
+			}else if(this.player.aspect == Aspects.VOID){
 				return " They stare blankly at the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Heart"){
+			}else if(this.player.aspect == Aspects.HEART){
 				return " They run around excitedly in the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Breath"){
+			}else if(this.player.aspect == Aspects.BREATH){
 				return " They grin excitedly at the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Light"){
+			}else if(this.player.aspect == Aspects.LIGHT){
 				return " They stare at the " + this.player.land + " with unrestrained curiosity. ";
-			}else if(this.player.aspect == "Space"){
+			}else if(this.player.aspect == Aspects.SPACE){
 				return " They do not even understand the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Hope"){
+			}else if(this.player.aspect == Aspects.HOPE){
 				return " They are enthused about the " + this.player.land + ". ";
-			}else if(this.player.aspect == "Life"){
+			}else if(this.player.aspect == Aspects.LIFE){
 				return " They are obviously pleased with " + this.player.land + ". ";
-			}else if(this.player.aspect == "Doom"){
+			}else if(this.player.aspect == Aspects.DOOM){
 				return " They stare with trepidation at the " + this.player.land + ". ";
 			}
-			return null;
+			return  "They boggle vacantly at the " + this.player.land + ". ";
 	}
 	String changePrototyping(Element div){
 	  String ret = "";
@@ -63,7 +63,7 @@ class Intro  extends IntroScene{
 			String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, canvasHTML);
 			CanvasElement canvas = querySelector("#canvaskernel"+ divID);
-			List<Player> times = findAllAspectPlayers(this.session.players, "Time"); //they don't have to be in the medium, though
+			List<Player> times = findAllAspectPlayers(this.session.players, Aspects.TIME); //they don't have to be in the medium, though
 			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
 			drawTimeGears(canvas);
 			drawSinglePlayer(canvas, timePlayer);
@@ -97,7 +97,7 @@ class Intro  extends IntroScene{
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//print("Entering session, mvp is: " + current_mvp.getStat("power"));
-		if(this.player.aspect == "Time" && !this.player.object_to_prototype.illegal){
+		if(this.player.aspect == Aspects.TIME && !this.player.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
 		}else{
 			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat("power"),this.player,null) );
@@ -153,7 +153,7 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
 			}else{
@@ -161,7 +161,7 @@ class Intro  extends IntroScene{
 				chatText += Scene.chatLine(player1Start, player1, "Agreed.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
 			}else{
@@ -201,13 +201,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 				chatText += Scene.chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
@@ -244,13 +244,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -289,7 +289,7 @@ class Intro  extends IntroScene{
 			}
 			chatText += Scene.chatLine(player1Start, player1,"Yay! We're SBURB buddies!");
 		}else{
-			if(player2.aspect != "Time"){
+			if(player2.aspect != Aspects.TIME){
 			chatText +=Scene.chatLine(player2Start, player2,"Nope, still waiting.");
 			chatText += Scene.chatLine(player1Start, player1,"Aww... I'll make sure to grind extra hard to help you out when you're in!");
 			chatText +=Scene.chatLine(player2Start, player2,"Thanks!");
@@ -310,13 +310,13 @@ class Intro  extends IntroScene{
 			return chatText; // too depressing to keep going.
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -353,13 +353,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -399,13 +399,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -446,7 +446,7 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
 			}else{
@@ -455,7 +455,7 @@ class Intro  extends IntroScene{
 				chatText += Scene.chatLine(player2Start, player2,"Eh.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "Obviously give me an advantage.");
 				chatText += Scene.chatLine(player2Start, player2,"Huh. Probably. ");
@@ -499,13 +499,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != "Light" && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
 				chatText += Scene.chatLine(player2Start, player2,"No. Probably didn't mean anything at all. I'm sure of it.");
@@ -580,7 +580,7 @@ class Intro  extends IntroScene{
 			 return this.grimPlayer2Chat(player1, player2);
 		}
 
-		if(player1.aspect == "Light" || player1.class_name == "Seer"){
+		if(player1.aspect == Aspects.LIGHT || player1.class_name == "Seer"){
 			return this.lightChat(player1, player2);
 		}
 		if(playerLikesCulture(player1)){
@@ -671,7 +671,7 @@ class Intro  extends IntroScene{
 		}else{
 			this.changePrototyping(div);
 			narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
-			if(this.player.aspect == "Void") narration += "They are " + this.player.voidDescription() +". ";
+			if(this.player.aspect == Aspects.VOID) narration += "They are " + this.player.voidDescription() +". ";
 			narration += " They manage to prototype their kernel sprite with a " + this.player.object_to_prototype.htmlTitle() + " pre-entry. ";
 			narration += this.corruptedSprite();
 
