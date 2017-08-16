@@ -142,7 +142,7 @@ class RapTemplate {
 
 
 	List<String> getRapLineForPlayer(Player player){
-			String interest = player.session.rand.pickFrom([player.interest1, player.interest2]);
+			String interest = player.session.rand.pickFrom(<Interest>[player.interest1, player.interest2]).name;
 			String firstWord = this.findWordBasedOnPart1AndInterest(player.session.rand, interest);
 			String secondWord = null;
 		  firstWord = tryToUseRhyme(firstWord, player);

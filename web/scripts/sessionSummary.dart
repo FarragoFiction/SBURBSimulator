@@ -384,8 +384,8 @@ class SessionSummaryJunior {
         List<String> ret = <String>[];
         for (num i = 0; i < this.players.length; i++) {
             Player player = this.players[i];
-            ret.add(player.interest1);
-            ret.add(player.interest2);
+            ret.add(player.interest1.name);
+            ret.add(player.interest2.name);
         }
         return ret;
     }

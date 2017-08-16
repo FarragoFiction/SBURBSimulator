@@ -224,10 +224,10 @@ dynamic getLevelArray(Player player){
 				ret.add(player.aspect.levels[((i-5)/4).round()]); //5 because fuck you futureJR, that's why.
 			}else if(i%4==1){
 				if(i<8){
-					ret.add(getLevelFromInterests((i/4).round(), player.interest1));
+					ret.add(player.interest1.category.levels[i]);
 				}else{
 					//only 0 and 2 are valid, so if 3 or 4, go backwards.
-					ret.add(getLevelFromInterests(((i-8)/4).round(), player.interest2));
+					ret.add(player.interest2.category.levels[i]);
 				}
 			}else if(i%4 == 0 || i < 4){
 				ret.add(getLevelFromFree(player.session.rand)); //don't care about repeats here. should be long enough.
@@ -245,7 +245,7 @@ List<String> getRandomLandFromPlayer(Player player){
 
 
 //handle can either be about interests, or your claspect. each word can be separately origined
-String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, String interest1, String interest2){
+String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, Interest interest1, Interest interest2){
 	//print("Class: " + class_name + "aspect: " + aspect);
 	String first = "";
 	double r = rand.nextDouble();
@@ -275,235 +275,17 @@ String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, St
 	return "$first$second";
 }
 
-bool playerLikesMusic(Player player){
-		if(music_interests.contains(player.interest1) || music_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
+
+
+
+dynamic getInterestHandle1(Random rand, SBURBClass class_name, Interest interest){
+  return getRandomElementFromArrayThatStartsWith(rand, interest.category.handles1, class_name.name.toLowerCase()[0]);
 }
 
 
-
-bool playerLikesCulture(Player player){
-		if(culture_interests.contains(player.interest1) || culture_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesWriting(Player player){
-		if(writing_interests.contains(player.interest1) || writing_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesPopculture(Player player){
-		if(pop_culture_interests.contains(player.interest1) || pop_culture_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-
-bool playerLikesTechnology(Player player){
-		if(technology_interests.contains(player.interest1) || technology_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesSocial(Player player){
-		if(social_interests.contains(player.interest1) || social_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesRomantic(Player player){
-		if(romantic_interests.contains(player.interest1) || romantic_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesAcademic(Player player){
-		if(academic_interests.contains(player.interest1) || academic_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesComedy(Player player){
-		if(comedy_interests.contains(player.interest1) || comedy_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesDomestic(Player player){
-		if(domestic_interests.contains(player.interest1) || domestic_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesAthletic(Player player){
-		if(athletic_interests.contains(player.interest1) || athletic_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesTerrible(Player player){
-		if(terrible_interests.contains(player.interest1) || terrible_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesFantasy(Player player){
-		if(fantasy_interests.contains(player.interest1) || fantasy_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-bool playerLikesJustice(Player player){
-		if(justice_interests.contains(player.interest1) || justice_interests.contains(player.interest2) ){
-			return true;
-		}else{
-			return false;
-		}
-}
-
-
-
-List<String> interestCategoryToInterestList(interestWord){
-	//alert(interestWord);
-	if(interestWord == "Comedy") return comedy_interests;
-	if(interestWord == "Music") return music_interests;
-	if(interestWord == "Culture") return culture_interests;
-	if(interestWord == "Writing") return writing_interests;
-	if(interestWord == "Athletic") return athletic_interests;
-	if(interestWord == "Terrible") return terrible_interests;
-	if(interestWord == "Justice") return justice_interests;
-	if(interestWord == "Fantasy") return fantasy_interests;
-	if(interestWord == "Domestic") return domestic_interests;
-	if(interestWord == "PopCulture") return pop_culture_interests;
-	if(interestWord == "Technology") return technology_interests;
-	if(interestWord == "Social") return social_interests;
-	if(interestWord == "Romance") return romantic_interests;
-	if(interestWord == "Academic") return academic_interests;
-	return null;
-}
-
-
-
-dynamic getInterestHandle1(Random rand, SBURBClass class_name, String interest){
-	if(music_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, music_handles1, class_name.name.toLowerCase()[0]);
-	}else if (culture_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, culture_handles1, class_name.name.toLowerCase()[0]);
-	}else if (writing_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, writing_handles1, class_name.name.toLowerCase()[0]);
-	}else if (pop_culture_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles1, class_name.name.toLowerCase()[0]);
-	}else if (technology_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, class_name.name.toLowerCase()[0]);
-	}else if (social_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, social_handles1, class_name.name.toLowerCase()[0]);
-	}else if (romantic_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, romantic_handles1, class_name.name.toLowerCase()[0]);
-	}else if (academic_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, academic_handles1, class_name.name.toLowerCase()[0]);
-	}else if (comedy_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, comedy_handles1, class_name.name.toLowerCase()[0]);
-	}else if (domestic_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, domestic_handles1, class_name.name.toLowerCase()[0]);
-	}else if (athletic_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, athletic_handles1, class_name.name.toLowerCase()[0]);
-	}else if (terrible_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, terrible_handles1, class_name.name.toLowerCase()[0]);
-	}else if (fantasy_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles1, class_name.name.toLowerCase()[0]);
-	}else if (justice_interests.contains(interest)){
-			return getRandomElementFromArrayThatStartsWith(rand, justice_handles1, class_name.name.toLowerCase()[0]);
-	}
-	print("I didn't return anything!? What was my interest: " + interest);
-	return null;
-}
-
-
-
-dynamic getInterestHandle2(Random rand, Aspect aspect, String interest){
-	if(music_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, music_handles2, aspect.name.toUpperCase()[0]);
-	}else if (culture_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, culture_handles2, aspect.name.toUpperCase()[0]);
-	}else if (writing_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, writing_handles2, aspect.name.toUpperCase()[0]);
-	}else if (pop_culture_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, pop_culture_handles2, aspect.name.toUpperCase()[0]);
-	}else if (technology_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, technology_handles2, aspect.name.toUpperCase()[0]);
-	}else if (social_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, social_handles2, aspect.name.toUpperCase()[0]);
-	}else if (romantic_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, romantic_handles2, aspect.name.toUpperCase()[0]);
-	}else if (academic_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, academic_handles2, aspect.name.toUpperCase()[0]);
-	}else if (comedy_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, comedy_handles2, aspect.name.toUpperCase()[0]);
-	}else if (domestic_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, domestic_handles2, aspect.name.toUpperCase()[0]);
-	}else if (athletic_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, athletic_handles2, aspect.name.toUpperCase()[0]);
-	}else if (terrible_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, terrible_handles2, aspect.name.toUpperCase()[0]);
-	}else if (fantasy_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, fantasy_handles2, aspect.name.toUpperCase()[0]);
-	}else if (justice_interests.contains(interest)){
-		return getRandomElementFromArrayThatStartsWith(rand, justice_handles2, aspect.name.toUpperCase()[0]);
-	}
-	return null;
+//not just rand.pick from, do not replace this yet
+dynamic getInterestHandle2(Random rand, Aspect aspect, Interest interest){
+  return getRandomElementFromArrayThatStartsWith(rand, interest.category.handles2, aspect.name.toUpperCase()[0]);
 }
 
 String getBlandHandle2(Random rand, Aspect aspect){
@@ -515,47 +297,6 @@ String getLevelFromFree(Random rand){
 	return rand.pickFrom(free_levels);
 }
 
-
-
-String getLevelFromInterests(int i, String interest){
-	if(music_interests.contains(interest)){
-			return music_levels[i];
-	}else if (culture_interests.contains(interest)){
-			return culture_levels[i];
-	}else if (writing_interests.contains(interest)){
-			return writing_levels[i];
-	}else if (pop_culture_interests.contains(interest)){
-			return pop_culture_levels[i];
-	}else if (technology_interests.contains(interest)){
-			return technology_levels[i];
-	}else if (social_interests.contains(interest)){
-			return social_levels[i];
-	}else if (romantic_interests.contains(interest)){
-			return romantic_levels[i];
-	}else if (academic_interests.contains(interest)){
-			return academic_levels[i];
-	}else if (comedy_interests.contains(interest)){
-			return comedy_levels[i];
-	}else if (domestic_interests.contains(interest)){
-			return domestic_levels[i];
-	}else if (athletic_interests.contains(interest)){
-			return athletic_levels[i];
-	}else if (terrible_interests.contains(interest)){
-			return terrible_levels[i];
-	}else if (fantasy_interests.contains(interest)){
-			return fantasy_levels[i];
-	}else if (justice_interests.contains(interest)){
-			return justice_levels[i];
-	}
-	return null;
-}
-
-
-dynamic getLevelFromAspect(num i, Aspect aspect){
-	//print("looking for level from aspect, i is " + i.toString());
-		//print("found: " + first_arr[i]);
-	return aspect.levels[i];
-}
 
 String truncateString(String str, int length) {
 	return str.length > length ? "${str.substring(0, length > 3 ? length - 3 : length)}..." : str;

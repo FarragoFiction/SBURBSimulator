@@ -408,7 +408,7 @@ void session413IndexToHuman(Player player, int index){
 		player.hairColor = "#000000";
 		player.chatHandle = "ectoBiologist";
 		player.interest1 = new Interest("Pranks", InterestManager.COMEDY);
-		player.interest2 = "Action Movies";
+		player.interest2 = new Interest("Action Movies", InterestManager.POPCULTURE);
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];

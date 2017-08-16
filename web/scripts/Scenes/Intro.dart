@@ -675,7 +675,7 @@ class Intro  extends IntroScene{
 			narration += " They manage to prototype their kernel sprite with a " + this.player.object_to_prototype.htmlTitle() + " pre-entry. ";
 			narration += this.corruptedSprite();
 
-			narration += " They have many INTERESTS, including " +this.player.interest1 + " and " + this.player.interest2 + ". ";
+			narration += " They have many INTERESTS, including " +this.player.interest1.name + " and " + this.player.interest2.name + ". ";
 			narration += " Their chat handle is " + this.player.chatHandle + ". ";
 			if(this.player.leader){
 				narration += "They are definitely the leader.";
