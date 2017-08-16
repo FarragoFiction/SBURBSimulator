@@ -3,29 +3,41 @@ import 'Aspect.dart';
 
 class Rage extends Aspect {
 
-  @override
-  List<String> landNames = new List<String>.unmodifiable(<String>["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"]);
+    @override
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#9900cc"
+        ..aspect_light = '#974AA7'
+        ..aspect_dark = '#6B347D'
+        ..shoe_light = '#3D190A'
+        ..shoe_dark = '#2C1207'
+        ..cloak_light = '#7C3FBA'
+        ..cloak_mid = '#6D34A6'
+        ..cloak_dark = '#592D86'
+        ..shirt_light = '#381B76'
+        ..shirt_dark = '#1E0C47'
+        ..pants_light = '#281D36'
+        ..pants_dark = '#1D1526';
 
-  @override
-  List<String> levels = new List<String>.unmodifiable(<String>["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"]);
+    @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Mirth", "Whimsy", "Madness", "Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams", "Denial"]);
 
-
-  @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Raconteur","Reveler","Reader","Reporter","Racketeer"]);
+    @override
+    List<String> levels = new List<String>.unmodifiable(<String>["MOPPET OF MADNESS", "FLEDGLING HATTER", "RAGAMUFFIN REVELER"]);
 
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo","Horrorcore" ,"Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Raconteur", "Reveler", "Reader", "Reporter", "Racketeer"]);
 
 
     @override
-    String denizenSongTitle = " Aria" ;// a musical piece full of emotion;
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Rage", "Barbaric", "Impossible", "Tantrum", "Juggalo", "Horrorcore", "Madness", "Carnival", "Mirthful", "Screaming", "Berserk", "MoThErFuCkInG", "War", "Haze", "Murder", "Furioso", "Aggressive", "ATBasher", "Violent", "Unbound", "Purple", "Unholy", "Hateful", "Fearful", "Inconceivable", "Impossible"]);
+
+
+    @override
+    String denizenSongTitle = " Aria"; // a musical piece full of emotion;
 
     @override
     String denizenSongDesc = " A hsirvprmt xslri begins to tryyvi. It is the one Madness plays gl pvvk rgh rmhgifnvmg rm gfmv. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And yes, The OWNER know you're watching them. ";
-
-
-
 
 
     @override
@@ -57,7 +69,7 @@ class Rage extends Aspect {
         "~~~ Mlgsrmt nzpvh hvmhv sviv zmbnliv. Qfhg gsv dzb blf orpv rg. Gsv xlmhligh ziv dsrkkvw rmgl z uilgsrmt ufib. XXXXXX rh zdzpv.   ~~~"
     ]);
 
-    Rage(int id):super(id, "Rage", isCanon:true);
+    Rage(int id) :super(id, "Rage", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {

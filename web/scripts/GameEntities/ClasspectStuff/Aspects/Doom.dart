@@ -6,22 +6,37 @@ import 'Aspect.dart';
 class Doom extends Aspect {
 
     @override
-    List<String> landNames = new List<String>.unmodifiable( <String>["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"]);
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#003300"
+        ..aspect_light = '#0F0F0F'
+        ..aspect_dark = '#010101'
+        ..shoe_light = '#E8C15E'
+        ..shoe_dark = '#C7A140'
+        ..cloak_light = '#1E211E'
+        ..cloak_mid = '#141614'
+        ..cloak_dark = '#0B0D0B'
+        ..shirt_light = '#204020'
+        ..shirt_dark = '#11200F'
+        ..pants_light = '#192C16'
+        ..pants_dark = '#121F10';
+
+    @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"]);
 
     @override
     List<String> levels = new List<String>.unmodifiable(<String>["APOCALYPSE HOW", "REVELATION RUMBLER", "PESSIMISM PILGRIM"]);
 
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Dancer","Dean","Decorator","Deliverer","Director","Delegate"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Dancer", "Dean", "Decorator", "Deliverer", "Director", "Delegate"]);
 
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Dark", "Broken", "Meteoric", "Diseased","Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"]);
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Dark", "Broken", "Meteoric", "Diseased", "Fate", "Doomed", "Inevitable", "Doom", "End", "Final", "Dead", "Ruin", "Rot", "Coffin", "Apocalypse", "Morendo", "Smorzando", "~Ath", "Armistyx", "Grave", "Corpse", "Ashen", "Reaper", "Diseased", "Armageddon", "Cursed"]);
 
 
     @override
-    String denizenSongTitle = "Dirge" ;//a song for the dead;
+    String denizenSongTitle = "Dirge"; //a song for the dead;
 
     @override
     String denizenSongDesc = " A slow dirge begins to play. It is the one Death plays to keep in practice. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
@@ -55,7 +70,7 @@ class Doom extends Aspect {
         "narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything"
     ]);
 
-    Doom(int id):super(id, "Doom", isCanon:true);
+    Doom(int id) :super(id, "Doom", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {

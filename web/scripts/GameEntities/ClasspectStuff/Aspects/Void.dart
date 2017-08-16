@@ -4,25 +4,38 @@ import 'Aspect.dart';
 class Void extends Aspect {
 
     @override
-    List<String> landNames = new List<String>.unmodifiable(<String>["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"]);
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#000066"
+        ..aspect_light = '#0B1030'
+        ..aspect_dark = '#04091A'
+        ..shoe_light = '#CCC4B5'
+        ..shoe_dark = '#A89F8D'
+        ..cloak_light = '#00164F'
+        ..cloak_mid = '#00103C'
+        ..cloak_dark = '#00071A'
+        ..shirt_light = '#033476'
+        ..shirt_dark = '#02285B'
+        ..pants_light = '#004CB2'
+        ..pants_dark = '#003E91';
 
     @override
-    List<String> levels = new List<String>.unmodifiable(<String>["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"]);
+    List<String> landNames = new List<String>.unmodifiable(<String>["Silence", "Nothing", "Void", "Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Vagrant","Vegetarian","Veterinarian","Vigilante","Virtuoso"]);
+    List<String> levels = new List<String>.unmodifiable(<String>["KNOW-NOTHING ANKLEBITER", "INKY BLACK SORROWMASTER", "FISTICUFFSAFICTIONADO"]);
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Undefined", "untitled.mp4", "Void","Disappearification","Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Vagrant", "Vegetarian", "Veterinarian", "Vigilante", "Virtuoso"]);
+
+    @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Undefined", "untitled.mp4", "Void", "Disappearification", "Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"]);
 
 
     @override
-    String denizenSongTitle = "Silence" ;
+    String denizenSongTitle = "Silence";
 
     @override
-    String denizenSongDesc =" A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-
-
+    String denizenSongDesc = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
     @override
@@ -49,11 +62,13 @@ class Void extends Aspect {
         "[void players, am I right?]"
     ]);
 
-    Void(int id):super(id, "Void", isCanon:true);
+    Void(int id) :super(id, "Void", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {
-        List<String> allStats = player.allStats()..remove("power")..add("MANGRIT");
+        List<String> allStats = player.allStats()
+            ..remove("power")
+            ..add("MANGRIT");
 
         player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), 3, true)); //really good at one thing
         player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), -1, true)); //hit to another thing.

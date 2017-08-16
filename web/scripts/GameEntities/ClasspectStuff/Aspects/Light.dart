@@ -4,26 +4,39 @@ import 'Aspect.dart';
 class Light extends Aspect {
 
     @override
-    List<String> landNames = new List<String>.unmodifiable(<String>["Treasure", "Light","Knowledge","Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"]);
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#ff9933"
+        ..aspect_light = '#FEFD49'
+        ..aspect_dark = '#FEC910'
+        ..shoe_light = '#10E0FF'
+        ..shoe_dark = '#00A4BB'
+        ..cloak_light = '#FA4900'
+        ..cloak_mid = '#E94200'
+        ..cloak_dark = '#C33700'
+        ..shirt_light = '#FF8800'
+        ..shirt_dark = '#D66E04'
+        ..pants_light = '#E76700'
+        ..pants_dark = '#CA5B00';
 
     @override
-    List<String> levels = new List<String>.unmodifiable(<String>["SHOWOFF SQUIRT","JUNGLEGYM SWASHBUCKLER","SUPERSTITIOUS SCURRYWART"]);
+    List<String> landNames = new List<String>.unmodifiable(<String>["Treasure", "Light", "Knowledge", "Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Laborer","Launderer","Layabout","Legend","Lawyer", "Lifeguard"]);
+    List<String> levels = new List<String>.unmodifiable(<String>["SHOWOFF SQUIRT", "JUNGLEGYM SWASHBUCKLER", "SUPERSTITIOUS SCURRYWART"]);
+
+    @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Laborer", "Launderer", "Layabout", "Legend", "Lawyer", "Lifeguard"]);
 
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String>  ["Lucky", "LIGHT", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"]);
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Lucky", "LIGHT", "Knowledge", "Blinding", "Brilliant", "Break", "Blazing", "Glow", "Flare", "Gamble", "Omnifold", "Apollo", "Helios", "Scintillating", "Horseshoe", "Leggiero", "Star", "Kindle", "Gambit", "Blaze"]);
 
 
     @override
-    String denizenSongTitle = "Opera" ;//lol, cuz light players never shut up;
+    String denizenSongTitle = "Opera"; //lol, cuz light players never shut up;
 
     @override
     String denizenSongDesc = " A beautiful opera begins to be performed. It starts to really pick up around Act 4. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-
-
 
 
     @override
@@ -50,7 +63,7 @@ class Light extends Aspect {
         "realizing just how important frogs and grist and the Ultimate Alchemy truly are"
     ]);
 
-    Light(int id):super(id, "Light", isCanon:true);
+    Light(int id) :super(id, "Light", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {

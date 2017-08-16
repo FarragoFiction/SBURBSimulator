@@ -1655,7 +1655,7 @@ abstract class Drawing {
             swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, new Colour.fromStyleString(player.bloodColor));
         } else {
             swapColors(canvas, ReferenceColours.HAIR, new Colour.fromStyleString(player.hairColor));
-            swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, player.aspect.palette.aspect_light);
+            swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, player.aspect.palette.accent);
         }
     }
 
@@ -1674,7 +1674,7 @@ abstract class Drawing {
             swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, new Colour.fromStyleString(player.bloodColor));
         } else {
             swapColors(canvas, ReferenceColours.HAIR, new Colour.fromStyleString(player.hairColor));
-            swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, player.aspect.palette.aspect_light);
+            swapColors(canvas, ReferenceColours.HAIR_ACCESSORY, player.aspect.palette.accent);
         }
     }
 
@@ -1876,7 +1876,7 @@ abstract class Drawing {
     static void dreamPalletSwap(CanvasElement canvas, Player player) {
         Palette shoes = new AspectPalette()
             ..shoe_light = player.aspect.palette.shirt_light
-            ..shoe_dark = player.aspect.palette.shoe_dark;
+            ..shoe_dark = player.aspect.palette.shirt_dark;
 
         Palette dream = player.moon == "Prospit" ? ReferenceColours.PROSPIT_PALETTE : ReferenceColours.DERSE_PALETTE;
 

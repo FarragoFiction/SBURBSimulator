@@ -4,17 +4,32 @@ import 'Aspect.dart';
 class Space extends Aspect {
 
     @override
-    List<String> landNames = new List<String>.unmodifiable( <String>["Frogs"]);
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#00ff00"
+        ..aspect_light = '#EFEFEF'
+        ..aspect_dark = '#DEDEDE'
+        ..shoe_light = '#FF2106'
+        ..shoe_dark = '#B01200'
+        ..cloak_light = '#2F2F30'
+        ..cloak_mid = '#1D1D1D'
+        ..cloak_dark = '#080808'
+        ..shirt_light = '#030303'
+        ..shirt_dark = '#242424'
+        ..pants_light = '#333333'
+        ..pants_dark = '#141414';
+
+    @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Frogs"]);
 
     @override
     List<String> levels = new List<String>.unmodifiable(<String>["GREENTIKE", "RIBBIT RUSTLER", "FROG-WRANGLER"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Stuck","Salamander","Salientia","Spacer","Scientist","Synergy","Spaceman"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Stuck", "Salamander", "Salientia", "Spacer", "Scientist", "Synergy", "Spaceman"]);
 
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Canon","Space","Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"]);
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Canon", "Space", "Frogs", "Location", "Spatial", "Universe", "Infinite", "Spiral", "Physics", "Star", "Galaxy", "Nuclear", "Atomic", "Nucleus", "Horizon", "Event", "CROAK", "Spatium", "Squiddle", "Engine", "Meteor", "Gravity", "Crush"]);
 
 
     @override
@@ -22,10 +37,10 @@ class Space extends Aspect {
 
 
     @override
-    String denizenSongTitle = "Sonata";//a composition for a soloist.  Space players are stuck doing something different from everyone,;
+    String denizenSongTitle = "Sonata"; //a composition for a soloist.  Space players are stuck doing something different from everyone,;
 
     @override
-    String denizenSongDesc =  " An echoing note is plucked. It is the one Isolation plays to chart the depths of reality. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+    String denizenSongDesc = " An echoing note is plucked. It is the one Isolation plays to chart the depths of reality. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
     @override
@@ -55,10 +70,10 @@ class Space extends Aspect {
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[
         "trying to figure out why the Forge is unlit",
         "clearing various bullshit obstacles to lighting the Forge",
-        "lighting the Forge"  //TODO requires a magic ring.
+        "lighting the Forge" //TODO requires a magic ring.
     ]);
 
-    Space(int id):super(id, "Space", isCanon:true);
+    Space(int id) :super(id, "Space", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {

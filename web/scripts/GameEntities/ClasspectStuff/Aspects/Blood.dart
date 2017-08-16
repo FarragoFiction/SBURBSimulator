@@ -3,27 +3,41 @@ import 'Aspect.dart';
 
 class Blood extends Aspect {
 
-  @override
-  List<String> landNames = new List<String>.unmodifiable(<String>["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"]);
+    @override
+    AspectPalette palette = new AspectPalette()
+        ..accent = "#993300"
+        ..aspect_light = '#BA1016'
+        ..aspect_dark = '#820B0F'
+        ..shoe_light = '#381B76'
+        ..shoe_dark = '#1E0C47'
+        ..cloak_light = '#290704'
+        ..cloak_mid = '#230200'
+        ..cloak_dark = '#110000'
+        ..shirt_light = '#3D190A'
+        ..shirt_dark = '#2C1207'
+        ..pants_light = '#5C2913'
+        ..pants_dark = '#4C1F0D';
 
-  @override
-  List<String> levels = new List<String>.unmodifiable(<String>["FRIEND HOARDER YOUTH","HEMOGOBLIN", "SOCIALIST BUTTERFLY"]);
+    @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"]);
 
-  @override
-  List<String> handles = new List<String>.unmodifiable(<String>["Business", "Buyer","Butler","Butcher","Barber","Bowler","Belligerent"]);
+    @override
+    List<String> levels = new List<String>.unmodifiable(<String>["FRIEND HOARDER YOUTH", "HEMOGOBLIN", "SOCIALIST BUTTERFLY"]);
 
-  @override
-  List<String> fraymotifNames = new List<String>.unmodifiable(<String> ["Blood", "Trigger","Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"]);
+    @override
+    List<String> handles = new List<String>.unmodifiable(<String>["Business", "Buyer", "Butler", "Butcher", "Barber", "Bowler", "Belligerent"]);
 
-  @override
-  String denizenSongTitle = "Ballad " ;//a song passed over generations in an oral history;
+    @override
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Blood", "Trigger", "Chain", "Flow", "Charge", "Awakening", "Ichorial", "Friendship", "Trusting", "Clotting", "Union", "Bleeding", "Team", "Transfusion", "Pulse", "Sanguine", "Positive", "Negative", "Cruor", "Vim", "Chorus", "Iron", "Ichorial", "Fever", "Heat"]);
 
-  @override
-  String denizenSongDesc = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+    @override
+    String denizenSongTitle = "Ballad "; //a song passed over generations in an oral history;
+
+    @override
+    String denizenSongDesc = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
-
-  @override
+    @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Blood', 'Hera', 'Hestia', 'Bastet', 'Bes', 'Vesta', 'Eleos', 'Sanguine', 'Medusa', 'Frigg', 'Debella', 'Juno', 'Moloch', 'Baal', 'Eusebeia', 'Horkos', 'Homonia', 'Harmonia', 'Philotes']);
 
     @override
@@ -47,7 +61,7 @@ class Blood extends Aspect {
         "completely overthrowing the Denizen's underlings in a massive battle"
     ]);
 
-    Blood(int id):super(id, "Blood", isCanon:true);
+    Blood(int id) :super(id, "Blood", isCanon: true);
 
     @override
     void initAssociatedStats(Player player) {
