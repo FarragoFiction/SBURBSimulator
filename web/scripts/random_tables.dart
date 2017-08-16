@@ -239,36 +239,7 @@ dynamic getLevelArray(Player player){
 
 
 List<String> getRandomLandFromPlayer(Player player){
-	List<dynamic> first_arr = [];
-	var aspect = player.aspect;
-	if(aspect == "Space"){
-		first_arr = space_land_titles;
-	}else if(aspect == "Time"){
-		first_arr = time_land_titles;
-	}else if(aspect == "Breath"){
-		first_arr = breath_land_titles;
-	}else if(aspect == "Doom"){
-		first_arr = doom_land_titles;
-	}else if(aspect == "Blood"){
-		first_arr = blood_land_titles;
-	}else if(aspect == "Heart"){
-		first_arr = heart_land_titles;
-	}else if(aspect == "Mind"){
-		first_arr = mind_land_titles;
-	}else if(aspect == "Light"){
-		first_arr = light_land_titles;
-	}else if(aspect == "Void"){
-		first_arr = void_land_titles;
-	}else if(aspect == "Rage"){
-		first_arr = rage_land_titles;
-	}else if(aspect == "Hope"){
-		first_arr = hope_land_titles;
-	}else if(aspect == "Life"){
-		first_arr = life_land_titles;
-	}
-	List<String> tmp = randomFromTwoArrays(player.session.rand, first_arr, free_land_titles);
-	return tmp;
-	//return "Land of " + tmp[0] + " and " + tmp[1];
+	return randomFromTwoArrays(player.session.rand, player.aspect.landNames, free_land_titles);
 }
 
 
