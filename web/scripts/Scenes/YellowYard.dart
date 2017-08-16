@@ -58,7 +58,7 @@ class YellowYard extends Scene {
 
 
 			html +=
-			"</div><button style = 'position: relative; top: 133px; left: 280px;' onclick='decision()'>Decide</button>";
+			"</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;' onclick='decision()'>Decide</button>";
 			html +=
 			"<div id = 'undo_decisions' style='position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
 			for (num i = 0; i <
@@ -71,7 +71,10 @@ class YellowYard extends Scene {
 			html += "</div><br>";
 
 			setHtml(div2, html);
-			//wire up custom radio buttons after they are rendered
+      (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision());
+
+
+      //wire up custom radio buttons after they are rendered
 			List<Element> radioButtons = querySelectorAll('input[name="decision"]');
 			for (RadioButtonInputElement radioButton in radioButtons) {
 				radioButton.onClick.listen((Event e) {
