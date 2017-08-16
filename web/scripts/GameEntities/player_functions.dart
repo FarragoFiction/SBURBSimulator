@@ -291,7 +291,7 @@ Player randomPlayer(Session session) {
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
     Aspect a = session.rand.pickFrom(session.available_aspects);
-    removeFromArray(a, available_aspects);
+    removeFromArray(a, session.available_aspects);
     return randomPlayerWithClaspect(session, c, a);
 }
 
@@ -310,7 +310,7 @@ Player randomSpacePlayer(Session session) {
     //remove class from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
-    Aspect a = required_aspects[0];
+    Aspect a = Aspects.SPACE;
     return randomPlayerWithClaspect(session, c, a);
 }
 
@@ -319,7 +319,7 @@ Player randomTimePlayer(Session session) {
     //remove class from available
     SBURBClass c = session.rand.pickFrom(session.available_classes_players);
     removeFromArray(c, session.available_classes_players);
-    Aspect a = required_aspects[1];
+    Aspect a = Aspects.TIME;
     return randomPlayerWithClaspect(session, c, a);
 }
 

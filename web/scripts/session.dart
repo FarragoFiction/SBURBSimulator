@@ -89,6 +89,7 @@ class Session {
     List<SBURBClass> available_classes_players;
     List<SBURBClass> available_classes_guardians;
     List<Aspect> available_aspects;
+    List<Aspect> required_aspects;
 
     Session(int this.session_id) {
         //print("Made a new session with an id of $session_id");
@@ -100,6 +101,7 @@ class Session {
       this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
       this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
       this.available_aspects = new List<Aspect>.from(Aspects.canon);
+      this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
     //  //makes copy of player list (no shallow copies!!!!)

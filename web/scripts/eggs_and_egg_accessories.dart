@@ -173,6 +173,7 @@ void processXStuck(){
 	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
 	List<String> tmp = SBURBClassManager.allClassNames;
+	List<String> all_aspects =  Aspects.names;
 	String params = "";
 	if(params1 != null){
 		params = params1;
