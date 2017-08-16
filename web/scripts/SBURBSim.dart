@@ -107,6 +107,7 @@ void globalInit() {
 
     SBURBClassManager.init();
     Aspects.init();
+    InterestManager.init();
 }
 
 Random globalRand = new Random();

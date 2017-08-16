@@ -810,8 +810,6 @@ class Player extends GameEntity {
         super.copyStatsTo(clone);
         //clone stats.
         clone.baby = baby;
-        clone.interest1Category = interest1Category; //used by Replay page for custom interests.
-        clone.interest2Category = interest2Category; //both should be null once they have been used to add the custom interest to the right place
         clone.pvpKillCount = pvpKillCount; //for stats.
         clone.timesDied = timesDied;
         if (denizen != null) clone.denizen = denizen.clone();
@@ -1557,7 +1555,7 @@ class Player extends GameEntity {
         if (includeChatHandle) ch = sanitizeString(this.chatHandle);
         String cod = this.causeOfDrain;
         if (cod == null) cod = "";
-        String ret = "${sanitizeString(cod)},${sanitizeString(this.causeOfDeath)},${sanitizeString(this.interest1)},${sanitizeString(this.interest2)},${sanitizeString(ch)}";
+        String ret = "${sanitizeString(cod)},${sanitizeString(this.causeOfDeath)},${sanitizeString(this.interest1.name)},${sanitizeString(this.interest2.name)},${sanitizeString(ch)}";
         return ret;
     }
 
@@ -1648,10 +1646,9 @@ class Player extends GameEntity {
         this.bloodColor = replayPlayer.bloodColor;
         this.leftHorn = replayPlayer.leftHorn;
         this.rightHorn = replayPlayer.rightHorn;
-        this.interest1 = replayPlayer.interest1.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), '');
-        this.interest2 = replayPlayer.interest2.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), '');
-        this.interest1Category = replayPlayer.interest1Category;
-        this.interest2Category = replayPlayer.interest2Category;
+        this.interest1 = replayPlayer.interest1;
+        this.interest2 = replayPlayer.interest2;
+
         this.causeOfDrain = replayPlayer.causeOfDrain;
         this.causeOfDeath = replayPlayer.causeOfDeath;
         if (replayPlayer.chatHandle != "") {

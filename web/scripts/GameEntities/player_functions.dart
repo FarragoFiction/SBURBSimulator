@@ -214,8 +214,8 @@ Player blankPlayerNoDerived(Session session) {
     //	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
     Player p = new Player(session, SBURBClassManager.PAGE, Aspects.VOID, k, m, gd);
-    p.interest1 = interests[0];
-    p.interest2 = interests[0];
+    p.interest1 = InterestManager.getRandomInterest(session.rand);
+    p.interest2 = InterestManager.getRandomInterest(session.rand);
     p.baby = 1;
     p.hair = 1;
     p.leftHorn = 1;
@@ -238,8 +238,8 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
     String m = session.rand.pickFrom(moons);
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
-    p.interest1 = session.rand.pickFrom(interests);
-    p.interest2 = session.rand.pickFrom(interests);
+    p.interest1 = InterestManager.getRandomInterest(session.rand);
+    p.interest2 = InterestManager.getRandomInterest(session.rand);
     p.baby = session.rand.nextIntRange(1, 3);
 
 
@@ -268,8 +268,8 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
     String m = session.rand.pickFrom(moons);
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
-    p.interest1 = session.rand.pickFrom(interests);
-    p.interest2 = session.rand.pickFrom(interests);
+    p.interest1 = InterestManager.getRandomInterest(session.rand);
+    p.interest2 = InterestManager.getRandomInterest(session.rand);
     p.initialize();
 
     //no longer any randomness directly in player class. don't want to eat seeds if i don't have to.

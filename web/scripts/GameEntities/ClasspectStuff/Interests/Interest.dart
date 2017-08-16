@@ -1,7 +1,59 @@
 import "../../../random.dart";
 import "../../../GameEntities/player.dart";
+import "Academic.dart";
+import "Athletic.dart";
+import "Comedy.dart";
+import "Culture.dart";
+import "Domestic.dart";
+import "Fantasy.dart";
+import "Justice.dart";
+import "Music.dart";
+import "PopCulture.dart";
+import "Romantic.dart";
+import "Social.dart";
+import "Technology.dart";
+import "Terrible.dart";
+import "Writing.dart";
+
 //because "interests" is too easy to misstype to Interest and i am made of typos
 class InterestManager {
+
+  static Map<String, InterestCategory> _categories = <String, InterestCategory>{};
+
+  static InterestCategory MUSIC;
+  static InterestCategory ACADEMIC;
+  static InterestCategory ATHLETIC;
+  static InterestCategory COMEDY;
+  static InterestCategory CULTURE;
+  static InterestCategory DOMESTIC;
+  static InterestCategory FANTASY;
+  static InterestCategory JUSTICE;
+  static InterestCategory POPCULTURE;
+  static InterestCategory ROMANTIC;
+  static InterestCategory SOCIAL;
+  static InterestCategory TECHNOLOGY;
+  static InterestCategory TERRIBLE;
+  static InterestCategory WRITING;
+
+  static void init() {
+      MUSIC = new Music();
+      ACADEMIC = new Academic();
+      ATHLETIC = new Athletic();
+      COMEDY = new Comedy();
+      CULTURE = new Culture();
+      DOMESTIC = new Domestic();
+      FANTASY = new Fantasy();
+      JUSTICE = new Justice();
+      POPCULTURE = new PopCulture();
+      ROMANTIC = new Romantic();
+      SOCIAL = new Social();
+      TERRIBLE = new Terrible();
+      WRITING = new Writing();
+  }
+
+  static Interest getRandomInterest(Random rand) {
+    return new Interest.randomFromCategory(rand, rand.pickFrom(_categories.values));
+  }
 }
 
 class InterestCategory {
@@ -10,13 +62,20 @@ class InterestCategory {
   List<String> levels = <String> ["Nobody"];
 
   //this is what char creator should modify.
-  List<String> interestStrings = ["NONE"];
+  List<String> _interestStrings = ["NONE"];
 
   String negative_descriptor;
   String positive_descriptor;
   String name;
   //p much no vars to set.
   InterestCategory(this.name, this.positive_descriptor, this.negative_descriptor);
+  //clunky name to remind me that modding this does nothing
+  List<String> get copyOfInterestStrings => new List<String>.from(_interestStrings);
+
+  //interests are auto sanitized.
+  void addInterest(String i) {
+    _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
+  }
 }
 
 /*
@@ -28,7 +87,7 @@ class Interest {
   Interest(this.name, this.category);
 
   Interest.randomFromCategory(Random rand, InterestCategory category){
-      String s = rand.pickFrom(category.interestStrings);
+      String s = rand.pickFrom(category.copyOfInterestStrings);
       this.category = category;
       this.name = s;
   }
