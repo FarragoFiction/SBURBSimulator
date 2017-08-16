@@ -31,7 +31,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
     List<dynamic> eventsToRemove = []; //don't mod an array as you loop over it.
     num frogsSoFar = 0;
     for(num i = 0; i<events.length; i++){
-      if(events[i].constructor.name == "FrogBreedingNeedsHelp"){
+      if(events[i] is FrogBreedingNeedsHelp){
         frogsSoFar ++;
         if(frogsSoFar > 1){
           eventsToRemove.add(events[i]);
