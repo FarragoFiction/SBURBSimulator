@@ -876,19 +876,6 @@ List<String> all_aspects = <String>["Space", "Time","Breath","Doom","Blood","Hea
 List<String> nonrequired_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 List<String> available_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
 
-//TODO eventually implent null land titles, like Mounds and Xenon.
-List<String> space_land_titles = <String>["Frogs"];
-List<String> time_land_titles = <String>["Quartz", "Clockwork", "Gears", "Melody","Cesium", "Clocks", "Ticking", "Beats", "Mixtapes","Songs", "Music", "Vuvuzelas", "Drums", "Pendulums"];
-List<String> breath_land_titles = <String>["Wind","Breeze","Zephyr","Gales","Storms","Planes","Twisters", "Hurricanes","Gusts", "Windmills", "Pipes", "Whistles"];
-List<String> doom_land_titles = <String>["Fire", "Death", "Prophecy", "Blight", "Rules", "Prophets", "Poison", "Funerals", "Graveyards", "Ash", "Disaster", "Fate", "Destiny", "Bones"];
-List<String> blood_land_titles = <String>["Pulse", "Bonds", "Clots", "Bloodlines", "Ichor", "Veins", "Chambers", "Arteries", "Unions"];
-List<String> heart_land_titles = <String>["Little Cubes","Hats","Dolls","Selfies","Mirrors", "Spirits", "Souls", "Jazz", "Shards", "Splinters"];
-List<String> mind_land_titles = <String>["Thought", "Rationality", "Decisions","Consequences", "Choices", "Paths", "Trails", "Trials"];
-List<String> light_land_titles = <String>["Treasure", "Light","Knowledge","Radiance", "Gambling", "Casinos", "Fortune", "Sun", "Glow", "Chance"];
-List<String> void_land_titles = <String>["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"];
-List<String> rage_land_titles = <String>["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"];
-List<String> hope_land_titles = <String>["Angels","Hope","Belief","Faith","Determination", "Possibility", "Hymns", "Heroes", "Chapels", "Lies", "Bullshit"];
-List<String> life_land_titles = <String>["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"];
 
 
 //google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.

@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Void extends Aspect {
 
     @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Silence", "Nothing","Void","Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"]);
+
+    @override
     List<String> levels = new List<String>.unmodifiable(<String>["KNOW-NOTHING ANKLEBITER","INKY BLACK SORROWMASTER","FISTICUFFSAFICTIONADO"]);
 
     @override

@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Rage extends Aspect {
 
   @override
+  List<String> landNames = new List<String>.unmodifiable(<String>["Mirth","Whimsy","Madness","Impossibility", "Chaos", "Hate", "Violence", "Joy", "Murder", "Noise", "Screams","Denial"]);
+
+  @override
   List<String> levels = new List<String>.unmodifiable(<String>["MOPPET OF MADNESS","FLEDGLING HATTER","RAGAMUFFIN REVELER"]);
 
 

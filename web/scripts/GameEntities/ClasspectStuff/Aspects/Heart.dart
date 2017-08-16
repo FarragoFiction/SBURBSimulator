@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Heart extends Aspect {
 
     @override
+    List<String> landNames = new List<String>.unmodifiable( <String> ["Little Cubes","Hats","Dolls","Selfies","Mirrors", "Spirits", "Souls", "Jazz", "Shards", "Splinters"]);
+
+    @override
     List<String> levels = new List<String>.unmodifiable(<String>["SHARKBAIT HEARTHROB", "FEDORA FLEDGLING","PENCILWART PHYLACTERY"]);
 
     @override

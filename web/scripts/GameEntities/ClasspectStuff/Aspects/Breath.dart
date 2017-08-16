@@ -4,6 +4,9 @@ import 'Aspect.dart';
 class Breath extends Aspect {
 
     @override
+    List<String> landNames = new List<String>.unmodifiable( <String>["Wind","Breeze","Zephyr","Gales","Storms","Planes","Twisters", "Hurricanes","Gusts", "Windmills", "Pipes", "Whistles"]);
+
+    @override
     List<String> levels = new List<String>.unmodifiable(<String>["BOY SKYLARK", "SODAJERK'S CONFIDANTE", "MAN SKYLARK"]);
 
 

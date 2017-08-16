@@ -147,6 +147,7 @@ class Aspect {
     List<String> levels = new List<String>.unmodifiable(<String>["SNOWMAN SAVIOR","NOBODY NOWHERE","NULLZILLA"]);
     List<String> denizenNames = new List<String>.unmodifiable(<String>["ERROR 404: DENIZEN NOT FOUND"]);
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Blank", "Null", "Boring", "Error"]);
+    List<String> landNames = new List<String>.unmodifiable(<String>["Blank", "Null", "Boring", "Error"]);
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"]);

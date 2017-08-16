@@ -3,6 +3,10 @@ import 'Aspect.dart';
 
 class Life extends Aspect {
 
+
+    @override
+    List<String> landNames = new List<String>.unmodifiable(<String>["Dew","Spring","Beginnings","Vitality", "Jungles", "Swamps", "Gardens", "Summer", "Chlorophyll", "Moss", "Rot", "Mold"]);
+
     @override
     List<String> levels = new List<String>.unmodifiable(<String>["BRUISE BUSTER","LODESTAR LIFER","BREACHES HEALER"]);
 
