@@ -58,7 +58,7 @@ class YellowYard extends Scene {
 
 
 			html +=
-			"</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;' onclick='decision()'>Decide</button>";
+			"</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;'>Decide</button>";
 			html +=
 			"<div id = 'undo_decisions' style='position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
 			for (num i = 0; i <
@@ -78,8 +78,10 @@ class YellowYard extends Scene {
 			List<Element> radioButtons = querySelectorAll('input[name="decision"]');
 			for (RadioButtonInputElement radioButton in radioButtons) {
 				radioButton.onClick.listen((Event e) {
+					print("a radio button was clicked");
 					if (radioButton.checked) {
-						radioButton.classes.add("selected");
+						print("the radio button should be selected");
+						radioButton.parent.classes.add("selected");
 					}
 					for (RadioButtonInputElement r in radioButtons) {
 						if (r != radioButton) {
