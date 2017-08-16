@@ -275,124 +275,6 @@ String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, St
 	return "$first$second";
 }
 
-
-
-//can also repurpose this by passing in same plaeyr for both slots to get an adjative about them. Hell yes. Laziness FTW.
-//What do you like about them? They are just so X. (Yes. Hell Yes. Hell FUCKING Yes.)
-String whatDoPlayersHaveInCommon(player1, player2){
-	if(playerLikesMusic(player1) && playerLikesMusic(player2) ){
-		return "musical";
-	}
-	if(playerLikesCulture(player1) && playerLikesCulture(player2) ){
-		return "cultured";
-	}
-	if(playerLikesWriting(player1) && playerLikesWriting(player2) ){
-		return "lettered";
-	}
-	if(playerLikesPopculture(player1) && playerLikesPopculture(player2) ){
-		return "geeky";
-	}
-	if(playerLikesTechnology(player1) && playerLikesTechnology(player2) ){
-		return "techy";
-	}
-	if(playerLikesSocial(player1) && playerLikesSocial(player2) ){
-		return "extroverted";
-	}
-	if(playerLikesRomantic(player1) && playerLikesRomantic(player2) ){
-		return "romantic";
-	}
-	if(playerLikesAcademic(player1) && playerLikesAcademic(player2) ){
-		return "smart";
-	}
-	if(playerLikesComedy(player1) && playerLikesComedy(player2) ){
-		return "funny";
-	}
-
-	if(playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
-		return "domestic";
-	}
-	if(playerLikesAthletic(player1) && playerLikesAthletic(player2) ){
-		return "athletic";
-	}
-	if(playerLikesTerrible(player1) && playerLikesTerrible(player2) ){
-		return "honest"; //'just telling it like it is' *rolls eyes*
-	}
-	if(playerLikesFantasy(player1) && playerLikesFantasy(player2) ){
-		return "imaginative";
-	}
-	if(playerLikesJustice(player1) && playerLikesJustice(player2) ){
-		return "fair-minded";
-	}
-
-	return "nice";//the defaultiest of traits.
-}
-
-
-
-//what are bad words to describe these traits?
-String whatDontPlayersHaveInCommon(player1, player2){
-
-	if(!playerLikesCulture(player1) && playerLikesCulture(player2) ){
-		return "pretentious";
-	}
-
-	if(!playerLikesTerrible(player1) && playerLikesTerrible(player2) ){
-		return "terrible"; //'just telling it like it is' *rolls eyes*
-	}
-
-	if(!playerLikesPopculture(player1) && playerLikesPopculture(player2) ){
-		return "frivolous";
-	}
-
-	if(!playerLikesSocial(player1) && playerLikesSocial(player2) ){
-		return "shallow";
-	}
-
-	if(!playerLikesAcademic(player1) && playerLikesAcademic(player2) ){
-		return "nerdy";
-	}
-
-	if(!playerLikesComedy(player1) && playerLikesComedy(player2) ){
-		return "dorky";
-	}
-
-	if(!playerLikesMusic(player1) && playerLikesMusic(player2) ){
-		return "loud";
-	}
-
-	if(!playerLikesWriting(player1) && playerLikesWriting(player2) ){
-		return "wordy";
-	}
-
-	if(!playerLikesTechnology(player1) && playerLikesTechnology(player2) ){
-		return "awkward";
-	}
-
-	if(!playerLikesRomantic(player1) && playerLikesRomantic(player2) ){
-		return "obsessive";
-	}
-
-	if(!playerLikesDomestic(player1) && playerLikesDomestic(player2) ){
-		return "boring";
-	}
-
-	if(!playerLikesAthletic(player1) && playerLikesAthletic(player2) ){
-		return "dumb";
-	}
-
-	if(!playerLikesFantasy(player1) && playerLikesFantasy(player2) ){
-		return "whimpy";
-	}
-	if(!playerLikesJustice(player1) && playerLikesJustice(player2) ){
-		return "harsh";
-	}
-
-	return "annoying";//the defaultiest of traits.
-}
-
-
-
-
 bool playerLikesMusic(Player player){
 		if(music_interests.contains(player.interest1) || music_interests.contains(player.interest2) ){
 			return true;
@@ -842,12 +724,6 @@ String moonToColor(moon){
 List<String> moons = <String>["Prospit", "Derse"];
 
 
-List<Aspect> required_aspects = <Aspect>[Aspects.SPACE, Aspects.TIME];
-List<String> all_aspects = <String>["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-List<String> nonrequired_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-List<String> available_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-
-
 
 //google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
 List<String> corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")];
@@ -1022,21 +898,7 @@ List<String> interests = []
 List<String> prefixes = <String>["8=D",">->","//", "tumut",")","><>","(", "\$", "?", "=begin", "=end"]
 	..addAll(<String>["<3","<3<","<>","c3<","{","}","<String>[","]","'",".",",","~","!","~","^","&","#","@","%","*"]);
 
-//debug("TODO: interest quirks, is it worth it?");
-List<dynamic> music_quirks = [];
-List<dynamic> culture_quirks = [];
-List<dynamic> writing_quirks = [];
-List<dynamic> pop_culture_quirks = [];
-List<dynamic> technology_quirks = [];
-List<dynamic> social_quirks = [];
-List<dynamic> romantic_quirks = [];
-List<dynamic> academic_quirks = [];
-List<dynamic> comedy_quirks = [];
-List<dynamic> domestic_quirks = [];
-List<dynamic> athletic_quirks = [];
-List<dynamic> terrible_quirks = [];
-List<List<String>> fantasy_quirks = <List<String>>[<String>["very","fairy"]];
-List<dynamic> justice_quirks = [];
+
 
 List<List<String>> sbahj_quirks = <List<String>>[<String>["asshole","dunkass"],<String>["happen","hapen"],<String>["we're","where"],<String>["were","where"],<String>["has","hass"],<String>["lol","ahahahaha"],<String>["dog","god"],<String>["god","dog"],<String>["know","no"]]
 	..addAll(<List<String>>[<String>["they're","there"],<String>["their","there"],<String>["theyre","there"],<String>["through","threw"],<String>["lying","lyong"],<String>["distraction","distaction"],<String>["garbage","gargbage"],<String>["angel","angle"]])

@@ -940,7 +940,7 @@ abstract class Drawing {
             if (player.level_index + 1 > i) {
                 ctx.fillStyle = level_font_colors[i];
             } else {
-                ctx.fillStyle = ReferenceColours.WHITE;
+                ctx.fillStyle = ReferenceColours.WHITE.toStyleString();
             }
             ctx.fillText(player.mylevels[i], left_margin, current);
             current = current - line_height;

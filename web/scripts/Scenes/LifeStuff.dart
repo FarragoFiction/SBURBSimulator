@@ -189,7 +189,7 @@ class LifeStuff extends Scene {
         if (ghost != null && !player.ghostPacts.contains(ghost) && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
             //print("dream bubble onion" +this.session.session_id);
             String str = "The ${player.htmlTitle()} wanders a shifting and confusing landscape. They think they see a $ghostName? They must be dreaming.";
-            String trait = whatDoPlayersHaveInCommon(player, ghost);
+            String trait = Interest.getSharedCategoryWordForPlayers(player, ghost,true);
             if (ghostName == "murder victim") { //
                 print("dead murder victims freakouts ${this.session.session_id}");
                 str = "$str It's kind of freaking the ${player.htmlTitleBasic()} out a little. ";
