@@ -286,7 +286,7 @@ class RelationshipDrama extends Scene {
 		Relationship r1 = relationship;
 		Relationship r2 = player2.getRelationshipWith(player1);
 		chatText = "";
-		String trait = whatDontPlayersHaveInCommon(player1, crush);
+		String trait = Interest.getUnsharedCategoryWordForPlayers(player1, crush, false);
 		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		chatText += Scene.chatLine(player1Start, player1,"Shit...I just want to punch them in their " + trait + " face.");
@@ -311,7 +311,7 @@ class RelationshipDrama extends Scene {
 		Relationship r2 = player2.getRelationshipWith(player1);
 		 chatText = "";
 		//print("player1: " + player1.title() + 'player2: ' + player2.title())
-		String trait = whatDoPlayersHaveInCommon(player1, crush);
+		String trait = Interest.getSharedCategoryWordForPlayers(player1, crush,true);
 		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 	  chatText += Scene.chatLine(player1Start, player1,"Like, maybe I didn't see that at first, but now all I can do is think about how " + trait + " they are.");
@@ -434,7 +434,7 @@ class RelationshipDrama extends Scene {
 					}
 				}else{  //generic advice
 					chatText += Scene.chatLine(player2Start, player2,"Cool! What do you like about them?");
-					var trait = whatDoPlayersHaveInCommon(player1, crush);
+					var trait = Interest.getSharedCategoryWordForPlayers(player1, crush,true);
 					chatText += Scene.chatLine(player1Start, player1,"They are just so...so...so " + trait);
 					if(trait != "nice"){
 						chatText += Scene.chatLine(player2Start, player2,"Heh, they sound perfect for you, then.");
@@ -491,7 +491,7 @@ class RelationshipDrama extends Scene {
 			print("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ");
 		}
 		 chatText = "";
-		var trait = whatDontPlayersHaveInCommon(player1, jerk);
+		var trait =Interest.getUnsharedCategoryWordForPlayers(player1, jerk, false);
 		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"Oh my god, I can't STAND " + jerk.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
@@ -575,8 +575,8 @@ class RelationshipDrama extends Scene {
 		if(r2.saved_type == r2.badBig){
 			chatText += Scene.chatLine(player2Start, player2,"The feeling is mutual, asshole. ");
 			chatText += Scene.chatLine(player2Start, player2,"You are " + this.generateNewOpinion(r2) + ", times a million.");
-			var trait = whatDontPlayersHaveInCommon(player1, player2);
-			var trait2 = whatDontPlayersHaveInCommon(player2, player1);
+			var trait = Interest.getUnsharedCategoryWordForPlayers(player1, player2, false);
+			var trait2 = Interest.getUnsharedCategoryWordForPlayers(player2, player1, false);
 			chatText += Scene.chatLine(player1Start, player1,"God, why are you so " + trait + "?");
 			chatText += Scene.chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			Relationship.makeSpades(player1, player2);
@@ -587,7 +587,7 @@ class RelationshipDrama extends Scene {
 
 		}else if(r2.type == r2.goodBig){
 			chatText += Scene.chatLine(player2Start, player2,"Wow. Yes. Way to be an asshole. ");
-			var trait = whatDontPlayersHaveInCommon(player1, player2);
+			var trait = Interest.getUnsharedCategoryWordForPlayers(player1, player2, false);
 			chatText += Scene.chatLine(player1Start, player1,"God, why are you so " + trait + "?");
 			chatText += Scene.chatLine(player2Start, player2,"And that's my cue to leave this chat. ");
 			r2.decrease();

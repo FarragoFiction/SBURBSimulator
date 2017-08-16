@@ -13,6 +13,7 @@ import "includes/tracer.dart";
 
 export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
+export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "Controllers/SimController.dart";
 export "fraymotif.dart";
 export "session.dart";

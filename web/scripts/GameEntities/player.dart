@@ -8,8 +8,6 @@ import "../includes/bytebuilder.dart";
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
-    String interest1Category = null; //used by Replay page for custom interests.
-    String interest2Category = null; //both should be null once they have been used to add the custom interest to the right place
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
     GameEntity denizen = null;
@@ -39,8 +37,8 @@ class Player extends GameEntity {
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
     Aspect aspect; //TODO eventually a full object
     String land = null;
-    String interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
-    String interest2 = null;
+    Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
+    Interest interest2 = null;
     String chatHandle = null;
     GameEntity object_to_prototype; //mostly will be potential sprites, but sometimes a player
     //List<Relationship> relationships = [];  //TODO keep a list of player relationships and npc relationships. MAYBE don't wax red for npcs? dunno though.
@@ -80,6 +78,10 @@ class Player extends GameEntity {
 
     bool fromThisSession(Session session) {
         return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id);
+    }
+
+    bool interestedInCategory(InterestCategory c) {
+        return (interest1.category == c || interest2.category == c);
     }
 
     @override
@@ -234,53 +236,7 @@ class Player extends GameEntity {
     }
 
     bool interestedIn(String interestWord, [int interestNum = 0]) {
-        if (interestNum == 0) {
-            if (interestWord == "Comedy") return playerLikesComedy(this);
-            if (interestWord == "Music") return playerLikesMusic(this);
-            if (interestWord == "Culture") return playerLikesCulture(this);
-            if (interestWord == "Writing") return playerLikesWriting(this);
-            if (interestWord == "Athletic") return playerLikesAthletic(this);
-            if (interestWord == "Terrible") return playerLikesTerrible(this);
-            if (interestWord == "Justice") return playerLikesJustice(this);
-            if (interestWord == "Fantasy") return playerLikesFantasy(this);
-            if (interestWord == "Domestic") return playerLikesDomestic(this);
-            if (interestWord == "PopCulture") return playerLikesPopculture(this);
-            if (interestWord == "Technology") return playerLikesTechnology(this);
-            if (interestWord == "Social") return playerLikesSocial(this);
-            if (interestWord == "Romance") return playerLikesRomantic(this);
-            if (interestWord == "Academic") return playerLikesAcademic(this);
-            return false;
-        } else if (interestNum == 1) {
-            if (interestWord == "Comedy") return comedy_interests.contains(this.interest1);
-            if (interestWord == "Music") return music_interests.contains(this.interest1);
-            if (interestWord == "Culture") return culture_interests.contains(this.interest1);
-            if (interestWord == "Writing") return writing_interests.contains(this.interest1);
-            if (interestWord == "Athletic") return athletic_interests.contains(this.interest1);
-            if (interestWord == "Terrible") return terrible_interests.contains(this.interest1);
-            if (interestWord == "Justice") return justice_interests.contains(this.interest1);
-            if (interestWord == "Fantasy") return fantasy_interests.contains(this.interest1);
-            if (interestWord == "Domestic") return domestic_interests.contains(this.interest1);
-            if (interestWord == "PopCulture") return pop_culture_interests.contains(this.interest1);
-            if (interestWord == "Technology") return technology_interests.contains(this.interest1);
-            if (interestWord == "Social") return social_interests.contains(this.interest1);
-            if (interestWord == "Romance") return romantic_interests.contains(this.interest1);
-            if (interestWord == "Academic") return academic_interests.contains(this.interest1);
-        } else if (interestNum == 2) {
-            if (interestWord == "Comedy") return comedy_interests.contains(this.interest2);
-            if (interestWord == "Music") return music_interests.contains(this.interest2);
-            if (interestWord == "Culture") return culture_interests.contains(this.interest2);
-            if (interestWord == "Writing") return writing_interests.contains(this.interest2);
-            if (interestWord == "Athletic") return athletic_interests.contains(this.interest2);
-            if (interestWord == "Terrible") return terrible_interests.contains(this.interest2);
-            if (interestWord == "Justice") return justice_interests.contains(this.interest2);
-            if (interestWord == "Fantasy") return fantasy_interests.contains(this.interest2);
-            if (interestWord == "Domestic") return domestic_interests.contains(this.interest2);
-            if (interestWord == "PopCulture") return pop_culture_interests.contains(this.interest2);
-            if (interestWord == "Technology") return technology_interests.contains(this.interest2);
-            if (interestWord == "Social") return social_interests.contains(this.interest2);
-            if (interestWord == "Romance") return romantic_interests.contains(this.interest2);
-            if (interestWord == "Academic") return academic_interests.contains(this.interest2);
-        }
+        throw("TODO: pastJR says this needs to be reworked entirely,yo, for new interest objects");
         return false;
     }
 

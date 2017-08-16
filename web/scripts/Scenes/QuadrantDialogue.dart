@@ -540,7 +540,7 @@ class QuadrantDialogue extends Scene {
 		if(relationship.saved_type == relationship.diamond && (this.player1.flipOutReason != null || this.player2.flipOutReason != null)){
 			return this.feelingsJam(relationship, relationship2);  //whole convo
 		}
-		String trait = whatDoPlayersHaveInCommon(this.player1, this.player2);
+		String trait = Interest.getSharedCategoryWordForPlayers(player1, player2,true);
 		if(trait != "nice"){
 			return this.interestAndQuadrantChat(trait, relationship, relationship2);
 		}else{  //no option to chat about interests.
