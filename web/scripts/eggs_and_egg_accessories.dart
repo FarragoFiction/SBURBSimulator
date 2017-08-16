@@ -169,7 +169,7 @@ void processXStuck(){
 	  print("no params to look at");
 		return;
 	}
-	String params1 = window.location.search.substring(0);
+	String params1 = window.location.search.substring(1);
 	String params2 = simulatedParamsGlobalVar;
 	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
 	List<String> tmp = SBURBClassManager.allClassNames;
@@ -180,12 +180,11 @@ void processXStuck(){
 			params += "&" + params2;
 		}
 	}else if(params2 != null) params = params2;
-	var paramsArray = params.split("&");
+	List<String> paramsArray = params.split("&");
 	for(num i = 0; i<paramsArray.length; i++){
-		var stuck = paramsArray[i].split("Stuck");
+		List<String> stuck = paramsArray[i].split("Stuck");
 		print("stuck is: " + stuck.toString());
 		if(stuck.length == 2){
-			var classOrAspect = stuck[0];
 			if(tmp.indexOf(stuck[0]) != -1){
 				setAllClassesTo(stuck[0].trim());
 			}else if(all_aspects.indexOf(stuck[0]) != -1){
