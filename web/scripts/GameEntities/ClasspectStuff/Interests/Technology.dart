@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Technology extends InterestCategory {
 
-  Technology():super("Technology", "techy","");
+  Technology():super("Technology", "techy","awkward");
 
 }

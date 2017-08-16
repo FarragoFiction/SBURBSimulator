@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Romantic extends InterestCategory {
 
-  Romantic():super("Romantic", "romantic","");
+  Romantic():super("Romantic", "romantic","obsessive");
 
 }
