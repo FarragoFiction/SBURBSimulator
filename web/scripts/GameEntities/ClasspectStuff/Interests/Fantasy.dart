@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Fantasy extends InterestCategory {
 
-  Fantasy():super("Fantasy", "","");
+  Fantasy():super("Fantasy", "imaginative","");
 
 }

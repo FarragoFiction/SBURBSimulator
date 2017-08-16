@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Writing extends InterestCategory {
 
-  Writing():super("Writing", "","");
+  Writing():super("Writing", "lettered","");
 
 }
