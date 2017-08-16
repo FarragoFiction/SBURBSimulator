@@ -842,12 +842,6 @@ String moonToColor(moon){
 List<String> moons = <String>["Prospit", "Derse"];
 
 
-List<Aspect> required_aspects = <Aspect>[Aspects.SPACE, Aspects.TIME];
-List<String> all_aspects = <String>["Space", "Time","Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-List<String> nonrequired_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-List<String> available_aspects = <String>["Breath","Doom","Blood","Heart","Mind","Light","Void","Rage","Hope","Life"];
-
-
 
 //google is an in joke because apparently google reports that all sessions are crashed and it is beautiful and google is a horrorterror.
 List<String> corruptedOtherLandTitles = [Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"),Zalgo.generate("Glitches"),Zalgo.generate("Grimoires"),Zalgo.generate("Fluthlu"),Zalgo.generate("The Zoologically Dubious")];
@@ -1022,21 +1016,7 @@ List<String> interests = []
 List<String> prefixes = <String>["8=D",">->","//", "tumut",")","><>","(", "\$", "?", "=begin", "=end"]
 	..addAll(<String>["<3","<3<","<>","c3<","{","}","<String>[","]","'",".",",","~","!","~","^","&","#","@","%","*"]);
 
-//debug("TODO: interest quirks, is it worth it?");
-List<dynamic> music_quirks = [];
-List<dynamic> culture_quirks = [];
-List<dynamic> writing_quirks = [];
-List<dynamic> pop_culture_quirks = [];
-List<dynamic> technology_quirks = [];
-List<dynamic> social_quirks = [];
-List<dynamic> romantic_quirks = [];
-List<dynamic> academic_quirks = [];
-List<dynamic> comedy_quirks = [];
-List<dynamic> domestic_quirks = [];
-List<dynamic> athletic_quirks = [];
-List<dynamic> terrible_quirks = [];
-List<List<String>> fantasy_quirks = <List<String>>[<String>["very","fairy"]];
-List<dynamic> justice_quirks = [];
+
 
 List<List<String>> sbahj_quirks = <List<String>>[<String>["asshole","dunkass"],<String>["happen","hapen"],<String>["we're","where"],<String>["were","where"],<String>["has","hass"],<String>["lol","ahahahaha"],<String>["dog","god"],<String>["god","dog"],<String>["know","no"]]
 	..addAll(<List<String>>[<String>["they're","there"],<String>["their","there"],<String>["theyre","there"],<String>["through","threw"],<String>["lying","lyong"],<String>["distraction","distaction"],<String>["garbage","gargbage"],<String>["angel","angle"]])
