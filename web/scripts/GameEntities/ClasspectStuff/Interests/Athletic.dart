@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Athletic extends InterestCategory {
 
-  Athletic():super("Athletic", "athletic","dumb");
+  Athletic():super(4,"Athletic", "athletic","dumb");
 
 }

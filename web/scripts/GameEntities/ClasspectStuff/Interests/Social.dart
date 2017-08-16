@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Social extends InterestCategory {
 
-  Social():super("Social", "extroverted","shallow");
+  Social():super(11,"Social", "extroverted","shallow");
 
 }

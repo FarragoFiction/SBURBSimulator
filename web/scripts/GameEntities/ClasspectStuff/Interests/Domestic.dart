@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Domestic extends InterestCategory {
 
-  Domestic():super("Domestic", "domestic","boring");
+  Domestic():super(8,"Domestic", "domestic","boring");
 
 }

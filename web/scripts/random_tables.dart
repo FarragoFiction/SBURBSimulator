@@ -380,24 +380,9 @@ SBURBClass intToClassName(int id){
 	return SBURBClassManager.findClassWithID(id);
 }
 
-
-
-int aspectToInt(Aspect aspect){
-    aspect.id;
-}
-
-
-
-Aspect intToAspect(int id){
-	Aspects.get(id);
-}
-
-
-
 dynamic bloodColorToBoost(color){
 	 return 2* bloodColorToInt(color); //high blood are STRONG why is this always returning 45??? huh, thinks color is numb.
 }
-
 
 
 dynamic bloodColorToInt(color){

@@ -119,22 +119,22 @@ class RelationshipDrama extends Scene {
 				player1.addStat("sanity", -10);
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
-				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
+				if(InterestManager.ROMANTIC.playerLikes(player1) || player1.aspect == Aspects.MIND){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. I'm sorry I didn't keep it to myself. ");
-					if(playerLikesRomantic(player2) || player2.aspect == "Mind" || player2.aspect == "Rage"){
+					if(InterestManager.ROMANTIC.playerLikes(player2)|| player2.aspect == Aspects.MIND || player2.aspect == Aspects.RAGE){
 						chatText += Scene.chatLine(player2Start, player2,"Better than keeping it bottled up. ");
 					}
 					player1.addStat("sanity", -10);
-				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
+				}else if(player2.class_name == SBURBClassManager.BARD || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. Why don't I ever learn that people suck?");
-					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
+					if(player2.class_name == SBURBClassManager.SEER || player2.aspect == Aspects.BLOOD || InterestManager.ROMANTIC.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"Holy fucking shit. And you wonder why nobody likes you? ");
 						makeHate = true;  //easier to hate after so many rejections. poor eridan.
 					}
 					player1.addStat("sanity", -10);
-				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
+				}else if(player2.class_name == SBURBClassManager.PAGE || player2.aspect == Aspects.BLOOD || InterestManager.ACADEMIC.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
-					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesAcademic(player2)){
+					if(player2.class_name == SBURBClassManager.KNIGHT || player2.aspect == Aspects.RAGE || InterestManager.ACADEMIC.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"Fuck. But you've been 'brave' enough to hit on EVERYBODY! ");
 						chatText += Scene.chatLine(player1Start, player1,"What else am I supposed to do? Ignoring how I feel is cowardice, right?");
 						chatText += Scene.chatLine(player2Start, player2,"Man, it's like your emotions are calibrated wrong. I can't just tell you 'fall in love less easily'. Fuck.");
@@ -226,24 +226,24 @@ class RelationshipDrama extends Scene {
 				player1.addStat("sanity", -10);
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
-				if(playerLikesRomantic(player1) || player1.aspect == "Mind"){
+				if(InterestManager.ROMANTIC.playerLikes(player1) || player1.aspect == Aspects.MIND){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
 					player1.addStat("sanity", -0.5); //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
-				}else if(player1.class_name == "Bard" || player2.aspect == "Rage" || playerLikesTerrible(player1)){
+				}else if(player2.class_name == "Bard" || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
-					if(player2.class_name == "Seer" || player2.aspect == "Blood" || playerLikesRomantic(player2)){
+					if(player2.class_name == SBURBClassManager.SEER || player2.aspect == Aspects.BLOOD || InterestManager.ROMANTIC.playerLikes(player2)){
 						chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";
 					}else{
 						chatText += Scene.chatLine(player2Start, player2,"Fuck. I just don't. I'm sorry. ");
 					}
 					chatText += Scene.chatLine(player1Start, player1,"Fuck.");
 					player1.addStat("sanity", -0.5);
-				}else if(player1.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player1)){
+				}else if(player1.class_name == SBURBClassManager.PAGE || player1.aspect == Aspects.BLOOD || InterestManager.ACADEMIC.playerLikes(player1)){
 					chatText += Scene.chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
-					if(player2.class_name == "Knight" || player2.aspect == "Rage" || playerLikesCulture(player2)){
+					if(player2.class_name == SBURBClassManager.KNIGHT || player2.aspect == Aspects.RAGE || InterestManager.CULTURE.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"And that's really impressive! But... I can't MAKE myself like you back? You know? ");
 						chatText += Scene.chatLine(player1Start, player1,"I know...");
-					}else if(player2.class_name == "Page" || player2.aspect == "Blood" || playerLikesAcademic(player2)){
+					}else if(player2.class_name == SBURBClassManager.PAGE || player2.aspect == Aspects.BLOOD || InterestManager.ACADEMIC.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"And I get that! And I wish I liked you back. But I don't.");
 						chatText += Scene.chatLine(player1Start, player1,"Fuck.");
 					}else{
@@ -374,11 +374,11 @@ class RelationshipDrama extends Scene {
 		}else{
 			if(r2crush != null && r2crush.saved_type == r2crush.goodBig){ //best friend has a crush on them, too.
 				//try to put aside feelings
-				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
+				if(player2.class_name == SBURBClassManager.PAGE || player2.class_name == SBURBClassManager.MAID || player2.class_name == SBURBClassManager.SYLPH || player2.aspect == Aspects.BLOOD){
 					chatText += Scene.chatLine(player2Start, player2,"Wow! You should definitely, definitely tell them that! Right away!");
 					chatText += Scene.chatLine(player1Start, player1,"You think so?");
 					chatText += Scene.chatLine(player2Start, player2,"Absolutely.");
-				}else if(player2.class_name == "Knight" || player2.class_name == "Seer" || player2.class_name == "Heir" || player2.aspect == "Mind"){ //fight player1
+				}else if(player2.class_name == SBURBClassManager.KNIGHT || player2.class_name == SBURBClassManager.SEER || player2.class_name == SBURBClassManager.HEIR || player2.aspect == Aspects.MIND){ //fight player1
 					chatText += Scene.chatLine(player2Start, player2,"Fuck! I like them, too.");
 					chatText += Scene.chatLine(player1Start, player1,"Well, fuck.");
 					chatText += Scene.chatLine(player1Start, player1,"At least we have good taste?");
@@ -390,11 +390,11 @@ class RelationshipDrama extends Scene {
 					r2.decrease();
 				}
 			}else if(r2crush != null && r2crush.saved_type == r2crush.badBig){ //friend thinks they are an asshole.
-				if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
+				if(player2.class_name == SBURBClassManager.PAGE || player2.class_name == SBURBClassManager.MAID || player2.class_name == SBURBClassManager.SYLPH || player2.aspect == Aspects.BLOOD){
 					chatText += Scene.chatLine(player2Start, player2,"Wow! Huh. You should follow your heart.");
 					chatText += Scene.chatLine(player1Start, player1,"You think so?");
 					chatText += Scene.chatLine(player2Start, player2,"Absolutely.");
-				}else if(player2.class_name == "Knight" || player2.class_name == "Seer" || player2.class_name == "Heir" || player2.aspect == "Mind"){ //fight player1
+				}else if(player2.class_name == SBURBClassManager.KNIGHT || player2.class_name == SBURBClassManager.SEER || player2.class_name == SBURBClassManager.HEIR || player2.aspect == Aspects.MIND){ //fight player1
 					chatText += Scene.chatLine(player2Start, player2,"Gonna be honest, I think they are " + this.generateNewOpinion(r2crush)  + ".");
 					chatText += Scene.chatLine(player2Start, player2,"Sure you can't do better?");
 					chatText += Scene.chatLine(player1Start, player1,"Screw you, you're just jealous.");
@@ -408,11 +408,11 @@ class RelationshipDrama extends Scene {
 			}else{  //friend has no particular opinion about the crush.
 				if(r2crush != null && r2.saved_type == r2crush.goodBig){  //but has a crush on the player (du-DUH!)
 					//try to put aside feelings
-					if(player2.class_name == "Page" || player2.class_name == "Maid" || player2.class_name == "Sylph" || player2.aspect == "Blood"){
+					if(player2.class_name == SBURBClassManager.PAGE || player2.class_name == SBURBClassManager.MAID || player2.class_name == SBURBClassManager.SYLPH || player2.aspect == Aspects.BLOOD){
 						chatText += Scene.chatLine(player2Start, player2,"Wow! You should definitely, definitely tell them that! Right away!");
 						chatText += Scene.chatLine(player1Start, player1,"You think so?");
 						chatText += Scene.chatLine(player2Start, player2,"Absolutely.");
-					}else if(player2.class_name == "Knight" || player2.class_name == "Seer" || player2.class_name == "Heir" || player2.aspect == "Mind"){ //fight player1
+					}else if(player2.class_name == SBURBClassManager.KNIGHT || player2.class_name == SBURBClassManager.SEER || player2.class_name == SBURBClassManager.HEIR || player2.aspect == Aspects.MIND){ //fight player1
 						chatText += Scene.chatLine(player2Start, player2,"Fuck! Um... Okay, I hate to do this to you...but...I think you're " + this.generateNewOpinion(r2) + ".");
 						chatText += Scene.chatLine(player1Start, player1,"Oh!");
 						chatText += Scene.chatLine(player1Start, player1,"Um...");

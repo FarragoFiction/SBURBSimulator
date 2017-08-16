@@ -284,7 +284,7 @@ class EngageMurderMode extends Scene{
 		Player player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 != null && !player2.dead){
 			Relationship r2 = player2.getRelationshipWith(player1);
-			if((r2.value < -2 && r2.value > -12 ) || playerLikesMusic(player1)){ //only if i generically dislike you. o rlike raps
+			if((r2.value < -2 && r2.value > -12 ) || InterestManager.MUSIC.playerLikes(player1)){ //only if i generically dislike you. o rlike raps
 				//print("rap battle. session: " + this.session.session_id);
 				this.rapBattle(div,player1, player2);
 			}

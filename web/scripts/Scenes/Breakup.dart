@@ -185,39 +185,39 @@ class Breakup extends Scene {
 		return false;
 	}
 	num getModifierForClass(){
-		if(this.player.class_name == "Thief" || this.player.class_name == "Knight" || this.player.class_name == "Heir"|| this.player.class_name == "Seer"|| this.player.class_name == "Witch"|| this.player.class_name == "Prince"){
+		if(this.player.class_name == SBURBClassManager.THIEF || this.player.class_name == SBURBClassManager.KNIGHT || this.player.class_name == SBURBClassManager.HEIR|| this.player.class_name == SBURBClassManager.SEER|| this.player.class_name == SBURBClassManager.WITCH|| this.player.class_name == SBURBClassManager.PRINCE){
 			return 1;
 		}
 		return 0;
 	}
 	num getModifierForAspect(){
-		if(this.player.aspect == "Doom" ||  this.player.aspect == "Rage" ||this.player.aspect == "Breath" ||this.player.aspect == "Light" ||this.player.aspect == "Heart" ||this.player.aspect == "Mind" ){
+		if(this.player.aspect == Aspects.DOOM ||  this.player.aspect == Aspects.RAGE ||this.player.aspect == Aspects.BREATH ||this.player.aspect == Aspects.LIGHT ||this.player.aspect == Aspects.HEART ||this.player.aspect == Aspects.MIND ){
 			return 1;
 		}
 		return 0;
 	}
 	num getModifierForInterestsAdmitCheating(){
-		if(playerLikesTerrible(this.player)){
+		if(InterestManager.TERRIBLE.playerLikes(this.player)){
 			return -12;
-		}else if(playerLikesSocial(this.player) || playerLikesRomantic(this.player) || playerLikesJustice(this.player)){
+		}else if(InterestManager.SOCIAL.playerLikes(this.player) || InterestManager.ROMANTIC.playerLikes(this.player) || InterestManager.JUSTICE.playerLikes(this.player)){
 			return 1;
 		}
 		return 0.1;
 	}
 	num getModifierForInterestsAccuseCheating(){
-		if(playerLikesTerrible(this.player)){
+		if(InterestManager.TERRIBLE.playerLikes(this.player)){
 			return 2;
-		}else if(playerLikesPopculture(this.player) || playerLikesJustice(this.player)){  //the TV always makes breakups dramatic, right?
+		}else if(InterestManager.POPCULTURE.playerLikes(this.player) || InterestManager.JUSTICE.playerLikes(this.player)){  //the TV always makes breakups dramatic, right?
 			return 1;
-		}else if(playerLikesDomestic(this.player)){  //care more about stability.
+		}else if(InterestManager.DOMESTIC.playerLikes(this.player)){  //care more about stability.
 			return -1;
 		}
 		return 0.1;
 	}
 	num getModifierForInterestsBored(){
-		if(playerLikesTerrible(this.player)){
+		if(InterestManager.TERRIBLE.playerLikes(this.player)){
 			return 12;
-		}else if(playerLikesPopculture(this.player) || playerLikesTechnology(this.player)){
+		}else if(InterestManager.POPCULTURE.playerLikes(this.player) || InterestManager.TECHNOLOGY.playerLikes(this.player)){
 			return 1;
 		}
 		return 0.1;

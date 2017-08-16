@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Music extends InterestCategory {
 
-  Music():super("Music", "musical","loud");
+  Music():super(1,"Music", "musical","loud");
 
 }

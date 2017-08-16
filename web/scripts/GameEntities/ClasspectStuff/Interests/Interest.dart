@@ -18,7 +18,7 @@ import "Writing.dart";
 //because "interests" is too easy to misstype to Interest and i am made of typos
 class InterestManager {
 
-  static Map<String, InterestCategory> _categories = <String, InterestCategory>{};
+  static Map<int, InterestCategory> _categories = <int, InterestCategory>{};
 
   static InterestCategory MUSIC;
   static InterestCategory ACADEMIC;
@@ -51,6 +51,13 @@ class InterestManager {
       WRITING = new Writing();
   }
 
+  static void register(InterestCategory ic) {
+    if (_categories.containsKey(ic.id)) {
+      throw "Duplicate aspect id for $ic: ${ic.id} is already registered for ${_categories[ic.id]}.";
+    }
+    _categories[ic.id] = ic;
+  }
+
   static Interest getRandomInterest(Random rand) {
     return new Interest.randomFromCategory(rand, rand.pickFrom(_categories.values));
   }
@@ -60,6 +67,7 @@ class InterestCategory {
   List<String> handles1 = <String> ["nobody"];
   List<String> handles2 = <String> ["Nobody"];
   List<String> levels = <String> ["Nobody"];
+  int id;
 
   //this is what char creator should modify.
   List<String> _interestStrings = ["NONE"];
@@ -68,13 +76,19 @@ class InterestCategory {
   String positive_descriptor;
   String name;
   //p much no vars to set.
-  InterestCategory(this.name, this.positive_descriptor, this.negative_descriptor);
+  InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor) {
+    InterestManager.register(this);
+  }
   //clunky name to remind me that modding this does nothing
   List<String> get copyOfInterestStrings => new List<String>.from(_interestStrings);
 
   //interests are auto sanitized.
   void addInterest(String i) {
     _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
+  }
+
+  bool playerLikes(Player p) {
+    return p.interest1.category == this || p.interest2.category == this;
   }
 }
 

@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class Justice extends InterestCategory {
 
-  Justice():super("Justice", "fair-minded","harsh");
+  Justice():super(6,"Justice", "fair-minded","harsh");
 
 }

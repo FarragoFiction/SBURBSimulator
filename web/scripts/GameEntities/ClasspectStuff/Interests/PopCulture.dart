@@ -2,6 +2,6 @@ import "Interest.dart";
 
 class PopCulture extends InterestCategory {
 
-  PopCulture():super("PopCulture", "geeky","frivolous");
+  PopCulture():super(9,"PopCulture", "geeky","frivolous");
 
 }
