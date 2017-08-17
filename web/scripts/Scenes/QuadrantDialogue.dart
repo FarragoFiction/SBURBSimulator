@@ -318,20 +318,20 @@ class QuadrantDialogue extends Scene {
 			interest = p1.interest2;
 		}
 		//print("chatting about lack of interests.");
-		if(academic_interests.indexOf(interest) != -1 ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(music_interests.indexOf(interest) != -1 ) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(culture_interests.indexOf(interest) != -1 ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(writing_interests.indexOf(interest) != -1 ) return this.chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(pop_culture_interests.indexOf(interest) != -1 ) return this.chatAboutPopCulture(p1, p2,  p1Start, p2Start,relationship, relationship2);
-		if(technology_interests.indexOf(interest) != -1 ) return this.chatAboutTechnology(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(social_interests.indexOf(interest) != -1 ) return this.chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(romantic_interests.indexOf(interest) != -1 ) return this.chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(comedy_interests.indexOf(interest) != -1 ) return this.chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(domestic_interests.indexOf(interest) != -1 ) return this.chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(athletic_interests.indexOf(interest) != -1 ) return this.chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(terrible_interests.indexOf(interest) != -1 ) return this.chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(justice_interests.indexOf(interest) != -1 ) return this.chatAboutJustice(p1, p2, p1Start, p2Start, relationship, relationship2);
-		if(fantasy_interests.indexOf(interest) != -1 ) return this.chatAboutFantasy(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.ACADEMIC ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.MUSIC) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.CULTURE ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.WRITING ) return this.chatAboutWriting(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.POPCULTURE ) return this.chatAboutPopCulture(p1, p2,  p1Start, p2Start,relationship, relationship2);
+		if(interest.category == InterestManager.TECHNOLOGY) return this.chatAboutTechnology(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.SOCIAL) return this.chatAboutSocial(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.ROMANTIC ) return this.chatAboutRomance(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.COMEDY) return this.chatAboutComedy(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.DOMESTIC) return this.chatAboutDomestic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.ATHLETIC) return this.chatAboutAthletic(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.TERRIBLE) return this.chatAboutTerrible(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.JUSTICE) return this.chatAboutJustice(p1, p2, p1Start, p2Start, relationship, relationship2);
+		if(interest.category == InterestManager.FANTASY) return this.chatAboutFantasy(p1, p2, p1Start, p2Start, relationship, relationship2);
 		return null;
 	}
 	String chatAboutQuadrant(relationship, relationship2){
