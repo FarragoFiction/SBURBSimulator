@@ -128,10 +128,10 @@ class CharacterCreatorHelper {
     (querySelector("#robot${player.id}")as CheckboxInputElement).checked =player.robot;
 	}
 	void syncPlayerToTextBoxes(Player player){
-    (querySelector("#interestCategory1${player.id}") as SelectElement).value = (player.interest1Category);
-    (querySelector("#interestCategory2${player.id}") as SelectElement).value = (player.interest2Category);
-    (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1);
-    (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2);
+    (querySelector("#interestCategory1${player.id}") as SelectElement).value = (player.interest1.category.name);
+    (querySelector("#interestCategory2${player.id}") as SelectElement).value = (player.interest2.category.name);
+    (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1.name);
+    (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2.name);
     (querySelector("#chatHandle${player.id}") as InputElement).value = (player.chatHandle);
 	}
 	dynamic drawDropDowns(Player player){
@@ -214,8 +214,8 @@ class CharacterCreatorHelper {
 		ctx.fillStyle = player.getChatFontColor();
 		if(player.chatHandle != "") ctx.fillText("(" + player.chatHandle + ")",left_margin,current + space_between_lines);
 		ctx.fillStyle = "#000000";
-		ctx.fillText("Interest1: " + player.interest1,left_margin,current + space_between_lines*i++); //i++ returns the value of i before you ++ed
-		ctx.fillText("Interest2: " + player.interest2,left_margin,current + space_between_lines*i++);
+		ctx.fillText("Interest1: " + player.interest1.name,left_margin,current + space_between_lines*i++); //i++ returns the value of i before you ++ed
+		ctx.fillText("Interest2: " + player.interest2.name,left_margin,current + space_between_lines*i++);
 		ctx.fillText("BloodColor: ",left_margin,current + space_between_lines*i++);
 		ctx.fillStyle =  player.bloodColor;
 		ctx.fillRect(left_margin + 100, current+space_between_lines*(i-1) -18, 18,18);
@@ -631,12 +631,16 @@ class CharacterCreatorHelper {
 		var helpText = querySelector("#helpText${player.id}");
 
 		interest1TextDom.onChange.listen((Event e){
-			player.interest1 = interest1TextDom.value;
+      String ic1 = interestCategory1Dom.value;
+			String i1 = interest1TextDom.value;
+			player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
 			that.redrawSinglePlayer(player);
 		});
 
 		interest2TextDom.onChange.listen((Event e){
-			player.interest2 = interest2TextDom.value;
+      String ic2 = interestCategory2Dom.value;
+      String i2 = interest2TextDom.value;
+      player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
 			that.redrawSinglePlayer(player);
 		});
 
@@ -652,23 +656,31 @@ class CharacterCreatorHelper {
 
 		interestCategory1Dom.onChange.listen((Event e){
 					OptionElement icDropDown = interestCategory1Dom.selectedOptions[0];
-					interest1DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 1, player));
+          InterestCategory ic1 = InterestManager.getCategoryFromString(icDropDown.value);
+					interest1DropDom.setInnerHtml(that.drawInterestDropDown(ic1, 1, player));
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
-					player.interest1Category = icDropDown.value;
+          player.interest1.category.removeInterest(player.interest1.name);
+					player.interest1.category = ic1;
+					player.interest1.category.addInterest(player.interest1.name);
 		});
 
 		interestCategory2Dom.onChange.listen((Event e){
 					OptionElement icDropDown = interestCategory2Dom.selectedOptions[0];
-					interest2DropDom.setInnerHtml(that.drawInterestDropDown(icDropDown.value, 2, player));
+					InterestCategory ic2 = InterestManager.getCategoryFromString(icDropDown.value);
+					interest2DropDom.setInnerHtml(that.drawInterestDropDown(ic2, 2, player));
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
-					player.interest2Category = icDropDown.value;
+          player.interest2.category.removeInterest(player.interest2.name);
+          player.interest2.category = ic2;
+          player.interest2.category.addInterest(player.interest2.name);
 		});
 
 		interest1DropDom.onChange.listen((Event e){
 					OptionElement icDropDown = interest1DropDom.selectedOptions[0];
 					interest1TextDom.value = (icDropDown.value);
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
-					player.interest1 = icDropDown.value;
+          String ic1 = interestCategory1Dom.value;
+          String i1 = icDropDown.value;
+          player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
 					that.redrawSinglePlayer(player);
 		});
 
@@ -676,7 +688,9 @@ class CharacterCreatorHelper {
 					OptionElement icDropDown = interest2DropDom.selectedOptions[0];
 					interest2TextDom.value = (icDropDown.value);
 					helpText.setInnerHtml(that.generateHelpText("Interests",player.class_name));
-					player.interest2 = icDropDown.value;
+          String ic2 = interestCategory1Dom.value;
+          String i2 = icDropDown.value;
+          player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
 					that.redrawSinglePlayer(player);
 		});
 
@@ -696,10 +710,10 @@ class CharacterCreatorHelper {
   String drawInterests(Player player){
 		String str = "";
 		str += " <div class = 'formSection'><b>Interest1</b>:</div><div class = 'formSection'>Category: " + this.drawInterestCategoryDropDown(1,player);
-		str += " Existing: " +this.drawInterestDropDown(player.interest1Category, 1,player);
+		str += " Existing: " +this.drawInterestDropDown(player.interest1.category, 1,player);
 		str += " Write In: " + this.drawInterestTextBox(1,player) +"</div>";
 		str += "<div class = 'formSection'><b>Interest2</b>:</div><div class = 'formSection'>Category: " +this.drawInterestCategoryDropDown(2,player);
-		str += " Existing: " +this.drawInterestDropDown(player.interest2Category, 2,player);
+		str += " Existing: " +this.drawInterestDropDown(player.interest2.category, 2,player);
 		str += " Write In: " + this.drawInterestTextBox(2,player);
 		str += "</div>";
 		return str;
@@ -709,16 +723,16 @@ class CharacterCreatorHelper {
 		return html;
 	}
   String drawInterestTextBox(int num, Player player){
-		var interestToCheck = player.interest1;
-		if(num == 2) interestToCheck = player.interest2;
+		String interestToCheck = player.interest1.name;
+		if(num == 2) interestToCheck = player.interest2.name;
 		String html = "<input type='text' id = 'interest$num${player.id}' name='interest$num${player.id}' + value='" + interestToCheck +"'> </input>";
 		return html;
 	}
-	String drawInterestDropDown(String category, int num, Player player){
+	String drawInterestDropDown(InterestCategory category, int num, Player player){
 		String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
-		var interestsInCategory = interestCategoryToInterestList(category);
-		var interestToCheck = player.interest1;
-		if(num == 2) interestToCheck = player.interest2;
+		List<String> interestsInCategory = category.copyOfInterestStrings;
+		String interestToCheck = player.interest1.name;
+		if(num == 2) interestToCheck = player.interest2.name;
 		for(int i = 0; i< interestsInCategory.length; i++){
 			var pi = interestsInCategory[i];
 			if(interestToCheck == pi){
@@ -732,17 +746,11 @@ class CharacterCreatorHelper {
 	}
   String drawInterestCategoryDropDown(int n, Player player){
 		String html = "<select id = 'interestCategory$n${player.id}' name='interestCategory$n${player.id}'>";
-		for(int i = 0; i< interestCategories.length; i++){
-			var ic = interestCategories[i];
-			if(player.interestedIn(ic, n)){
-				if(n ==1){
-					player.interest1Category = ic;
-				}else if(n == 2){
-					player.interest2Category = ic;
-				}
-				html += '<option  selected = "selected" value="' + ic +'">' + ic+'</option>';
+		for(InterestCategory ic in InterestManager.allCategories){
+			if(player.interestedInCategory(ic)){
+				html += '<option  selected = "selected" value="' + ic.name +'">' + ic.name+'</option>';
 			}else{
-				html += '<option value="' + ic +'">' + ic+'</option>';
+				html += '<option value="' + ic.name +'">' + ic.name+'</option>';
 			}
 		}
 		html += '</select>';

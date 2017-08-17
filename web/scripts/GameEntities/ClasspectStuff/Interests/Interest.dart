@@ -1,6 +1,5 @@
-import "../../../random.dart";
-import "../../../GameEntities/player.dart";
-import "../../../GameEntities/GameEntity.dart";
+import "../../../SBURBSim.dart";
+
 import "Academic.dart";
 import "Athletic.dart";
 import "Comedy.dart";
@@ -62,6 +61,15 @@ class InterestManager {
   static Interest getRandomInterest(Random rand) {
     return new Interest.randomFromCategory(rand, rand.pickFrom(_categories.values));
   }
+
+  static Iterable<InterestCategory> get allCategories => _categories.values;
+
+  static InterestCategory getCategoryFromString(String s) {
+      for(InterestCategory c in _categories.values) {
+          if(c.name == s) return c;
+      }
+      return null;
+  }
 }
 
 class InterestCategory {
@@ -90,6 +98,10 @@ class InterestCategory {
     _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
   }
 
+  void removeInterest(String i) {
+    removeFromArray(i, _interestStrings);
+  }
+
   bool playerLikes(Player p) {
     return p.interest1.category == this || p.interest2.category == this;
   }
@@ -102,6 +114,9 @@ class Interest {
   InterestCategory category;
   String name;
   Interest(this.name, this.category) {
+    //since the interest has the category in it, this is good enough.
+    //it's okay if the category doesn't have a list of all interests
+    //but for char creator want new interests to be in the drop downs.
     this.category.addInterest(this.name); //the method will make sure no duplicates.
   }
 

@@ -235,11 +235,6 @@ class Player extends GameEntity {
         this.flipOutReason = reason;
     }
 
-    bool interestedIn(String interestWord, [int interestNum = 0]) {
-        throw("TODO: pastJR says this needs to be reworked entirely,yo, for new interest objects");
-        return false;
-    }
-
     @override
     void changeGrimDark(num val) {
         //this.grimDark += val;
