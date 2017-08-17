@@ -1,7 +1,6 @@
-<code_scheme name="Project">
+<code_scheme name="SBURBSim">
   <codeStyleSettings language="Dart">
     <option name="RIGHT_MARGIN" value="999" />
-    <option name="KEEP_LINE_BREAKS" value="false" />
     <option name="CALL_PARAMETERS_WRAP" value="0" />
     <option name="METHOD_PARAMETERS_WRAP" value="0" />
     <option name="BINARY_OPERATION_WRAP" value="0" />
