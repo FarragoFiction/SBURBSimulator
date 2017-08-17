@@ -10,6 +10,9 @@ class Music extends InterestCategory {
 
     List<String> handles2 = <String>["Siren", "Singer", "Tenor", "Trumpeter", "Baritone", "Dancer", "Ballerina", "Harpsicordist", "Musician", "Lutist", "Violist", "Rapper", "Harpist", "Lyricist", "Virtuoso", "Bass"];
 
+    @override
+    List<String> levels =<String>["SINGING SCURRYWORT", "MUSICAL MOPPET"];
+
 
     Music() :super(1, "Music", "musical", "loud");
 

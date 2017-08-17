@@ -11,6 +11,9 @@ class PopCulture extends InterestCategory {
     @override
     List<String> handles2 = <String>["Superhero", "Supervillain", "Hero", "Villain", "Liaison", "Director", "Repeat", "Blockbuster", "Movie", "Mission", "Legend", "Buddy", "Spy", "Bystander", "Talent"];
 
+    @override
+    List<String> levels = <String>["TRIVIA SMARTYPANTS", "NIGHTLY NABBER"];
+
 
     PopCulture() :super(9, "PopCulture", "geeky", "frivolous");
 

@@ -435,20 +435,6 @@ List<String> free_land_titles = <String>["Snowlake", "Heat", "Sand", "Brains", "
 
 List<String> free_levels = <String>["NIPPER CADET", "PESKY URCHIN", "BRAVESPROUT", "JUVESQUIRT", "RUMPUS BUSTER", "CHAMP-FRY", "ANKLEBITER", "CALLOUSED TENDERFOOT", "RASCALSPRAT", "GRITTY MIDGET", "BRITCHES RIPPER", "ALIEN URCHIN", "NESTING NEWB"];
 //only need two for each. since each player has two interests, combines to 4
-List<String> music_levels = <String>["SINGING SCURRYWORT", "MUSICAL MOPPET"];
-List<String> culture_levels = <String>["APPRENTICE ARTIST", "CULTURE BUCKAROO"];
-List<String> writing_levels = <String>["SHAKY SHAKESPEARE", "QUILL RUINER"];
-List<String> pop_culture_levels = <String>["TRIVIA SMARTYPANTS", "NIGHTLY NABBER"];
-List<String> technology_levels = <String>["HURRYWORTH HACKER", "CLANKER CURMUDGEON"];
-List<String> social_levels = <String>["FRIEND-TO-ALL", "FRIEND COLLECTOR"];
-List<String> romantic_levels = <String>["QUESTING CUPID", "ROMANCE EXPERT"];
-List<String> academic_levels = <String>["NERDY NOODLER", "SCAMPERING SCIENTIST"];
-List<String> comedy_levels = <String>["PRATFALL PRIEST", "BEAGLE PUSS DARTABOUT"];
-List<String> domestic_levels = <String>["BATTERBRAT", "GRITTY GUARDIAN"];
-List<String> athletic_levels = <String>["MUSCLES HOARDER", "BODY BOOSTER"];
-List<String> terrible_levels = <String>["ENEMY #1", "JERKWAD JOURNEYER"];
-List<String> fantasy_levels = <String>["FAKEY FAKE LOVER", "FANTASTIC DREAMER"];
-List<String> justice_levels = <String>["JUSTICE JUICER", "BALANCE RUMBLER"];
 
 List<String> level_bg_colors = <String>["#8ff74a", "#ba1212", "#ffffee", "#f0ff00", "#9c00ff", "#2b6ade", "#003614", "#f8e69f", "#0000ff", "#eaeaea", "#ff9600", "#581212", "#ffa6ac", "#1f7636", "#ffe1fc", "#fcff00"];
 List<String> level_font_colors = <String>["#264d0c", "#ff00d2", "#ff0000", "#626800", "#da92e0", "#022e41", "#aaffa6", "#000052", "#6dffdb", "#e5d200", "#00911b", "#ff0000", "#5e005f", "#fbff8d", "#000000", "#"];

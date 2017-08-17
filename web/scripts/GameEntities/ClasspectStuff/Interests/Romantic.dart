@@ -11,6 +11,8 @@ class Romantic extends InterestCategory {
     @override
     List<String> handles2 =<String>["Romantic", "Dreamer", "Beau", "Hearthrob", "Virtue", "Beauty", "Rainbow", "Heart", "Magnet", "Miracle", "Serendipity", "Team"];
 
+    @override
+    List<String> levels = <String>["QUESTING CUPID", "ROMANCE EXPERT"];
 
 
     Romantic() :super(12, "Romantic", "romantic", "obsessive");

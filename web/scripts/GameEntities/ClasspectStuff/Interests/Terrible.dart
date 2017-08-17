@@ -11,6 +11,9 @@ class Terrible extends InterestCategory {
     @override
     List<String> handles2 = <String>["Butcher", "Blasphemer", "Barbarian", "Tyrant", "Superior", "Bastard", "Dastard", "Despot", "Bitch", "Horror", "Victim", "Hellhound", "Devil", "Demon", "Shark", "Lupin", "Mindflayer", "Mummy", "Hoarder", "Demigod"];
 
+    @override
+    List<String> levels = <String>["ENEMY #1", "JERKWAD JOURNEYER"];
+
 
     Terrible() :super(5, "Terrible", "honest", "terrible");
 

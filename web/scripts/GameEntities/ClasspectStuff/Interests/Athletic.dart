@@ -12,6 +12,9 @@ class Athletic extends InterestCategory {
     @override
     List<String> handles2 =<String>["Swimmer", "Trainer", "Baller", "Handler", "Runner", "Leaper", "Racer", "Vaulter", "Major", "Tracker", "Heavy", "Brawn", "Darter", "Brawler"];
 
+    @override
+    List<String> levels = <String>["MUSCLES HOARDER", "BODY BOOSTER"];
+
 
     Athletic() :super(4, "Athletic", "athletic", "dumb");
 

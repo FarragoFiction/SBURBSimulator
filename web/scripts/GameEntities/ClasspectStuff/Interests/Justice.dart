@@ -11,6 +11,9 @@ class Justice extends InterestCategory {
     @override
     List<String> handles2 =  <String>["Detective", "Defender", "Laywer", "Loyalist", "Liaison", "Vigilante", "Tracker", "Moralist", "Retribution", "Watchman", "Searcher", "Perception", "Rebel"];
 
+    @override
+    List<String> levels = <String>["JUSTICE JUICER", "BALANCE RUMBLER"];
+
 
     Justice() :super(6, "Justice", "fair-minded", "harsh");
 

@@ -11,6 +11,9 @@ class Technology extends InterestCategory {
     @override
     List<String> handles2 = <String>["Roboticist", "Hacker", "Haxor", "Technologist", "Robot", "Machine", "Machinist", "Droid", "Binary", "Breaker", "Vaporware", "Lag", "Laptop", "Spaceman", "Runner", "L33T", "Data"];
 
+    @override
+    List<String> levels = <String>["HURRYWORTH HACKER", "CLANKER CURMUDGEON"];
+
 
     Technology() :super(10, "Technology", "techy", "awkward");
 

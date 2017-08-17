@@ -12,6 +12,8 @@ class Fantasy extends InterestCategory {
     @override
     List<String> handles2 =<String>["Believer", "Dragon", "Magician", "Sandman", "Shinigami", "Tengu", "Harpy", "Dwarf", "Vampire", "Lamia", "Roc", "Mermaid", "Siren", "Manticore", "Banshee", "Basilisk", "Boggart"];
 
+    @override
+    List<String> levels = <String>["FAKEY FAKE LOVER", "FANTASTIC DREAMER"];
 
 
     Fantasy() :super(7, "Fantasy", "imaginative", "whimpy");
