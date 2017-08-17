@@ -118,10 +118,13 @@ class CharCreatorController extends SimController {
     SelectElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
     InputElement interest1TextDom = querySelector("#interest1${player.id}");
     InputElement interest2TextDom = querySelector("#interest2${player.id}");
-    player.interest1 = interest1TextDom.value.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine:true), '');
-    player.interest1Category = interestCategory1Dom.value;
-    player.interest2 = interest2TextDom.value.replaceAll(new RegExp(r"""<(?:.|,\n)*?>""", multiLine:true), '');
-    player.interest2Category = interestCategory2Dom.value;
+    String i1 = interest1TextDom.value.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine:true), '');
+    String ic1 = interestCategory1Dom.value;
+    String i2 = interest2TextDom.value.replaceAll(new RegExp(r"""<(?:.|,\n)*?>""", multiLine:true), '');
+    String ic2 = interestCategory2Dom.value;
+    //always make a new interest, it'll either add it or not.
+    player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
+    player.interest1 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
   }
 
 

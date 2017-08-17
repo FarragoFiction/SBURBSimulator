@@ -235,11 +235,6 @@ class Player extends GameEntity {
         this.flipOutReason = reason;
     }
 
-    bool interestedIn(String interestWord, [int interestNum = 0]) {
-        throw("TODO: pastJR says this needs to be reworked entirely,yo, for new interest objects");
-        return false;
-    }
-
     @override
     void changeGrimDark(num val) {
         //this.grimDark += val;
@@ -1765,23 +1760,6 @@ class Player extends GameEntity {
         return "CONFUSING";
     }
 
-    List<AssociatedStat> getInterestAssociatedStats(String interest) {
-        if (pop_culture_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("mobility", 2, true)];
-        if (music_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("sanity", 1, true), new AssociatedStat("maxLuck", 1, true)];
-        if (culture_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("sanity", -1, true), new AssociatedStat("hp", -1, true)]; //SBURB is NOT high art.
-        if (writing_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("freeWill", 2, true)]; //they know how stories go.
-        if (technology_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("alchemy", 2, true)];
-        if (social_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("sanity", 2, true)];
-        if (romantic_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("RELATIONSHIPS", 2, true)];
-        if (academic_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("freeWill", -2, true)]; //dont' get so caught up in how the old rules worked
-        if (comedy_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("minLuck", -1, true), new AssociatedStat("maxLuck", 1, true)]; //hilarious (to SBURB) pratfalls abound.
-        if (domestic_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("sanity", 1, true), new AssociatedStat("RELATIONSHIPS", 1, true)];
-        if (athletic_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("MANGRIT", 2, true)]; //so STRONG
-        if (terrible_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("RELATIONSHIPS", -1, true), new AssociatedStat("sanity", -1, true)];
-        if (fantasy_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("maxLuck", 1, true), new AssociatedStat("alchemy", 1, true)];
-        if (justice_interests.contains(interest)) return <AssociatedStat>[new AssociatedStat("MANGRIT", 1, true), new AssociatedStat("hp", 1, true)];
-        return <AssociatedStat>[];
-    }
 
     void initializeAssociatedStats() {
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -1811,8 +1789,8 @@ class Player extends GameEntity {
     //oh my fuck, how was this ever allowed in javascript, it was trying to add stats to the LIST OF STATS.
     void initializeInterestStats() {
         //getInterestAssociatedStats
-        List<AssociatedStat> interest1Stats = this.getInterestAssociatedStats(this.interest1);
-        List<AssociatedStat> interest2Stats = this.getInterestAssociatedStats(this.interest2);
+        List<AssociatedStat> interest1Stats = this.interest1.category.stats;
+        List<AssociatedStat> interest2Stats = this.interest2.category.stats;
         for (AssociatedStat stat in interest1Stats) {
             this.modifyAssociatedStat(10, stat);
         }

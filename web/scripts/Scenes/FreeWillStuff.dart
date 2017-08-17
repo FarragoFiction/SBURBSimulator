@@ -274,7 +274,7 @@ class FreeWillStuff extends Scene{
 		String ret = "";
 		if(player.aspect == Aspects.HEART) ret = "identity";
 		if(player.aspect == Aspects.BLOOD) ret = "relationships";
-		if(player.aspect == Aspects.MIND) ret = Aspects.MIND;
+		if(player.aspect == Aspects.MIND) ret = "mind";
 		if(player.aspect == Aspects.RAGE) ret = "sanity";
 		if(player.aspect == Aspects.HOPE) ret = "beliefs";
 		if(player.aspect == Aspects.DOOM) ret = "fear";

@@ -71,7 +71,7 @@ class Heart extends Aspect {
     @override
     void initAssociatedStats(Player player) {
         player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 1, true));
-        player.associatedStats.addAll(player.getInterestAssociatedStats(player.interest1));
-        player.associatedStats.addAll(player.getInterestAssociatedStats(player.interest2));
+        player.associatedStats.addAll(player.interest1.category.stats);
+        player.associatedStats.addAll(player.interest2.category.stats);
     }
 }

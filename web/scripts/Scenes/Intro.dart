@@ -583,27 +583,27 @@ class Intro  extends IntroScene{
 		if(player1.aspect == Aspects.LIGHT || player1.class_name == SBURBClassManager.SEER){
 			return this.lightChat(player1, player2);
 		}
-		if(playerLikesCulture(player1)){
+		if(InterestManager.CULTURE.playerLikes(player)){
 			return this.cultureChat(player1, player2);
 		}
 
-		if(playerLikesTerrible(player1)){
+		if(InterestManager.TERRIBLE.playerLikes(player)){
 			return this.terribleChat(player1, player2);
 		}
 
-		if(playerLikesAcademic(player1)){
+		if(InterestManager.ACADEMIC.playerLikes(player)){
 			return this.academicChat(player1, player2);
 		}
 
-		if(playerLikesPopculture(player1)){
+		if(InterestManager.POPCULTURE.playerLikes(player)){
 			return this.popcultureChat(player1, player2);
 		}
 
-		if(playerLikesSocial(player1)){
+		if(InterestManager.SOCIAL.playerLikes(player)){
 			return this.socialChat(player1, player2);
 		}
 
-		if(playerLikesFantasy(player1) || playerLikesWriting(player1) ){
+		if(InterestManager.FANTASY.playerLikes(player)|| InterestManager.WRITING.playerLikes(player) ){
 			return this.fantasyChat(player1, player2);
 		}
 
