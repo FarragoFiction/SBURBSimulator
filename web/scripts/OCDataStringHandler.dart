@@ -337,9 +337,8 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
-  //TODO making a new interest will add it to category if not already there, so get rid of any redundant code
-  player.interest1 = sanitizeString(Uri.decodeFull(str_arr[2]).trim());
-  player.interest2 = sanitizeString(Uri.decodeFull(str_arr[3]).trim());
+  String i1= sanitizeString(Uri.decodeFull(str_arr[2]).trim());
+  String i2 = sanitizeString(Uri.decodeFull(str_arr[3]).trim());
   player.chatHandle = sanitizeString(Uri.decodeFull(str_arr[4]).trim());
   //for bytes, how to convert uri encoded string into char string into unit8 buffer?
   //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
@@ -350,8 +349,13 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.aspect = Aspects.get(charString.codeUnitAt(3) & 15) ;//get 4 bits on end;
   player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
   player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
-  player.interest1Category = intToInterestCategory(charString.codeUnitAt(5) >> 4);
-  player.interest2Category = intToInterestCategory(charString.codeUnitAt(5) & 15);
+
+  String ic1 = intToInterestCategory(charString.codeUnitAt(5) >> 4);
+  String ic2 = intToInterestCategory(charString.codeUnitAt(5) & 15);
+  //TODO this probably means interest category can't be null.
+  player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
+  player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
+
   player.grimDark = charString.codeUnitAt(6) >> 5;
   player.isTroll = 0 != ((1<<4) & charString.codeUnitAt(6)); //only is 1 if character at 1<<4 is 1 in charString
   player.isDreamSelf = 0 != ((1<<3) & charString.codeUnitAt(6));
@@ -371,8 +375,7 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.leftHorn = charString.codeUnitAt(8);
   player.rightHorn = charString.codeUnitAt(9);
   player.hair = charString.codeUnitAt(10);
-  if(player.interest1Category != null) interestCategoryToInterestList(player.interest1Category ).add(player.interest1); //maybe don't add if already exists but whatevs for now.
-  if(player.interest2Category != null)interestCategoryToInterestList(player.interest2Category ).add(player.interest2);
+
 
   return player;
 }
