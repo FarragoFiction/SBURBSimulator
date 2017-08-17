@@ -217,10 +217,10 @@ dynamic getLevelArray(Player player) {
             ret.add(player.aspect.levels[((i - 5) / 4).round()]); //5 because fuck you futureJR, that's why.
         } else if (i % 4 == 1) {
             if (i < 8) {
-                ret.add(player.interest1.category.levels[i]);
+                ret.add(player.interest1.category.levels[(i/4).round()]);
             } else {
                 //only 0 and 2 are valid, so if 3 or 4, go backwards.
-                ret.add(player.interest2.category.levels[i]);
+                ret.add(player.interest2.category.levels[((i-8)/4).round()]);
             }
         } else if (i % 4 == 0 || i < 4) {
             ret.add(getLevelFromFree(player.session.rand)); //don't care about repeats here. should be long enough.

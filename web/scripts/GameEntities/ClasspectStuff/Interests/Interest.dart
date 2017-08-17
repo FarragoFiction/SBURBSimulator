@@ -49,6 +49,7 @@ class InterestManager {
         SOCIAL = new Social();
         TERRIBLE = new Terrible();
         WRITING = new Writing();
+        TECHNOLOGY = new Technology();
     }
 
     static void register(InterestCategory ic) {
