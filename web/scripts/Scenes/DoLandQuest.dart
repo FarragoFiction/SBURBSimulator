@@ -36,7 +36,7 @@ class DoLandQuest extends Scene{
 		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
 
-		if((p.aspect == "Blood" || p.class_name == "Page") ){// if page or blood player, can't do it on own.
+		if((p.aspect == "Blood" || p.class_name == SBURBClassManager.PAGE) ){// if page or blood player, can't do it on own.
 			if(playerPlusHelper[1] != null){
 				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || rand.nextDouble() > .5){
 					return (playerPlusHelper);
@@ -75,18 +75,18 @@ class DoLandQuest extends Scene{
 		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from Fraymotif Depot #27, the ONLY store with1n 413 miles. ");
 		if(rand.nextDouble() > 0.5) return rand.pickFrom(normalWays);
 		//otherwise do special shit.
-		if(player.class_name == "Thief") return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.name + ".  I sure hope it's worth the risk of being put in the slammer. ";
-		if(player.class_name == "Rogue") return "The " + player.htmlTitle() + " daringly heists fraymotif store, scoring " + fraymotif.name + ".  Nobody will notice it's missing for days. ";
-		if(player.class_name == "Knight") return "The " + player.htmlTitle() + " vallantly defends the fraymotif store from underlings, scoring " + fraymotif.name + " as a reward. ";
-		if(player.class_name == "Seer") return "The " + player.htmlTitle() + " is made aware that " + fraymotif.name + " is hidden in a secret location, and claims it. ";
-		if(player.class_name == "Bard") return "The " + player.htmlTitle() + " just suddenly knows " + fraymotif.name + ".  I sure hope you aren't expecting to find out HOW they learned it. ";
-		if(player.class_name == "Page") return "The " + player.htmlTitle() + " has worked hard and put in the hours and now knows " + fraymotif.name + ".  Sometimes hard work pays off!. ";
-		if(player.class_name == "Sylph") return "The " + player.htmlTitle() + " has built up a rapport with the consort running the fraymotif shop. They receive " + fraymotif.name + " on the house. ";
-		if(player.class_name == "Heir") return "The " + player.htmlTitle() + " finds out that " + fraymotif.name + " was bequeathed to them by a wealthy consort. Their death will not be in vain!  ";
-		if(player.class_name == "Maid") return "The " + player.htmlTitle() + " helps the consort that runs the fraymotif shop organize everything.  They are rewarded with " + fraymotif.name + ". ";
-		if(player.class_name == "Prince") return "The " + player.htmlTitle() + " scores " + fraymotif.name + " for a stupidly discounted 'going out of business' price. ";
-		if(player.class_name == "Witch") return "The " + player.htmlTitle() + " joins a coven of Secret Wizards to learn " + fraymotif.name + ".   ";
-		if(player.class_name == "Mage") return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.name + ". ";
+		if(player.class_name == SBURBClassManager.THIEF) return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.name + ".  I sure hope it's worth the risk of being put in the slammer. ";
+		if(player.class_name == SBURBClassManager.ROGUE) return "The " + player.htmlTitle() + " daringly heists fraymotif store, scoring " + fraymotif.name + ".  Nobody will notice it's missing for days. ";
+		if(player.class_name == SBURBClassManager.KNIGHT) return "The " + player.htmlTitle() + " vallantly defends the fraymotif store from underlings, scoring " + fraymotif.name + " as a reward. ";
+		if(player.class_name == SBURBClassManager.SEER) return "The " + player.htmlTitle() + " is made aware that " + fraymotif.name + " is hidden in a secret location, and claims it. ";
+		if(player.class_name == SBURBClassManager.BARD) return "The " + player.htmlTitle() + " just suddenly knows " + fraymotif.name + ".  I sure hope you aren't expecting to find out HOW they learned it. ";
+		if(player.class_name == SBURBClassManager.PAGE) return "The " + player.htmlTitle() + " has worked hard and put in the hours and now knows " + fraymotif.name + ".  Sometimes hard work pays off!. ";
+		if(player.class_name == SBURBClassManager.SYLPH) return "The " + player.htmlTitle() + " has built up a rapport with the consort running the fraymotif shop. They receive " + fraymotif.name + " on the house. ";
+		if(player.class_name == SBURBClassManager.HEIR) return "The " + player.htmlTitle() + " finds out that " + fraymotif.name + " was bequeathed to them by a wealthy consort. Their death will not be in vain!  ";
+		if(player.class_name == SBURBClassManager.MAID) return "The " + player.htmlTitle() + " helps the consort that runs the fraymotif shop organize everything.  They are rewarded with " + fraymotif.name + ". ";
+		if(player.class_name == SBURBClassManager.PRINCE) return "The " + player.htmlTitle() + " scores " + fraymotif.name + " for a stupidly discounted 'going out of business' price. ";
+		if(player.class_name == SBURBClassManager.WITCH) return "The " + player.htmlTitle() + " joins a coven of Secret Wizards to learn " + fraymotif.name + ".   ";
+		if(player.class_name == SBURBClassManager.MAGE) return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.name + ". ";
 		return rand.pickFrom(normalWays);
 	}
 	@override
@@ -117,7 +117,7 @@ class DoLandQuest extends Scene{
 			return player;
 		}
 
-		if(player.aspect == "Blood" || player.class_name == "Page"){ //they NEED help.
+		if(player.aspect == "Blood" || player.class_name == SBURBClassManager.PAGE){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
 				helper = findHighestMobilityPlayer(availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
 			}else{
@@ -144,7 +144,7 @@ class DoLandQuest extends Scene{
 	dynamic calculateClasspectBoost(Player player, Player helper){
 
 
-		if(helper.aspect == "Heart" && helper.class_name == "Sylph"){
+		if(helper.aspect == "Heart" && helper.class_name == SBURBClassManager.SYLPH){
 			print("Will i heal corruption? grim dark is: ${player.grimDark}");
 			print("sylph of heart corruption helping ${this.session.session_id}");
 			if(player.grimDark > 1){
@@ -195,7 +195,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.class_name == "Page" || helper.class_name == "Seer"){
+		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
 			player.landLevel ++;
 			helper.increasePower();
 			if(r2.value > 0){
@@ -227,7 +227,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.class_name == "Thief"){
+		if(helper.class_name == SBURBClassManager.THIEF){
 			player.landLevel += -1;
 			helper.landLevel ++;
 			if(r2.value > 0){

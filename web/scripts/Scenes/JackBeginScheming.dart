@@ -44,7 +44,7 @@ class JackBeginScheming extends Scene {
 		return (this.session.jack.getStat("power") >= this.session.queen.getStat("power")) && (this.friend != null);
 	}
 	bool smart(player){
-		return ((player.aspect == "Light" || player.class_name == "Seer") ||(player.aspect == "Doom" || player.aspect == "Mind"));
+		return ((player.aspect == "Light" || player.class_name == SBURBClassManager.SEER) ||(player.aspect == "Doom" || player.aspect == "Mind"));
 	}
 	dynamic grimChat2(div, player1, player2){
 		var player1Start = player1.chatHandleShort()+ ": ";
@@ -81,7 +81,7 @@ class JackBeginScheming extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		chatText += Scene.chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
-		if(player2.aspect == "Light" || player2.class_name == "Seer"){
+		if(player2.aspect == "Light" || player2.class_name == SBURBClassManager.SEER){
 			chatText += Scene.chatLine(player2Start, player2,"... are you SURE that's a good idea?");
 			if(this.smart(player1)){
 				chatText += Scene.chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
@@ -111,7 +111,7 @@ class JackBeginScheming extends Scene {
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String chatText = "";
 		chatText += Scene.chatLine(player1Start, player1,"In order to beat the Queen, we will be working with a Dersite named Jack to exile her. ");
-		if(player2.aspect == "Light" || player2.class_name == "Seer"){
+		if(player2.aspect == "Light" || player2.class_name == SBURBClassManager.SEER){
 			chatText += Scene.chatLine(player2Start, player2,"I forsee problems.");
 			if(this.smart(player1)){
 				chatText += Scene.chatLine(player1Start, player1,"The Queen needs exiled. Jack gaining power is a risk I am willing to take.");
@@ -146,7 +146,7 @@ class JackBeginScheming extends Scene {
 		chatText += Scene.chatLine(player1Start, player1,"So, this Dersite named Jack showed up. Apparently he wants to help us exile the Black Queen?");
 		chatText += Scene.chatLine(player1Start, player1,"Something about a grudge?");
 		chatText += Scene.chatLine(player1Start, player1,"So I told him we'd see what we could do. ");
-		if(player2.aspect == "Light" || player2.class_name == "Seer"){
+		if(player2.aspect == "Light" || player2.class_name == SBURBClassManager.SEER){
 			chatText += Scene.chatLine(player2Start, player2,"... are you SURE that's a good idea?");
 			if(this.smart(player1)){
 				chatText += Scene.chatLine(player1Start, player1,"I'm pretty sure it isn't. But a WORSE idea would have been telling that psycho 'no'.  ");

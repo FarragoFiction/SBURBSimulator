@@ -18,7 +18,7 @@ class SolvePuzzles extends Scene {
 	void checkPlayer(Player player){
 		this.player1 = player;
 		this.player2 = null;
-		if(player.aspect == "Blood" || player.class_name == "Page"){
+		if(player.aspect == "Blood" || player.class_name == SBURBClassManager.PAGE){
 			if(this.session.availablePlayers.length > 1){
 				this.player2 = rand.pickFrom(this.session.availablePlayers);
 				if(this.player2 == this.player1 && this.player2.aspect != "Time"){

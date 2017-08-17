@@ -446,7 +446,7 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + spacePlayer.htmlTitleBasic() + " needs to be helped with their Frog Breeding duties. ";
 			narration += " No matter what anybody says about time travel frog breeding being an overly elaborate and dangerous undertaking.  Desperate times, Desperate measures. ";
-			if(this.doomedTimeClone.class_name == "Knight"){
+			if(this.doomedTimeClone.class_name == SBURBClassManager.KNIGHT){
 				narration += " Luckily they were SUPPOSED to be helping breed the frog in the first place, so it's just a matter of making enough stable time loops to make a huge dent in the process. ";
 				spacePlayer.landLevel += 10;
 			}else{

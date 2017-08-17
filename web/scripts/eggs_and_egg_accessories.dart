@@ -1030,7 +1030,7 @@ void session612IndexToTroll(player, index){
 		player.moon = "Prospit";
 		player.bloodColor = "#ff0000";
 		player.land = "Land of Pulse and Haze";
-		player.class_name = "Knight";
+		player.class_name = SBURBClassManager.KNIGHT;
 		player.hair = 29;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
@@ -1052,7 +1052,7 @@ void session612IndexToTroll(player, index){
 		player.moon = "Prospit";
 		player.aspect = "Mind";
 		player.land = "Land of Thought and Flow";
-		player.class_name = "Seer";
+		player.class_name = SBURBClassManager.SEER;
 		player.hair = 10;
 		player.leftHorn = 46;
 		player.rightHorn = 46;
@@ -1071,7 +1071,7 @@ void session612IndexToTroll(player, index){
 		player.moon = "Prospit";
 		player.aspect = "Rage";
 		player.land = "Land of Mirth and Tents";
-		player.class_name = "Bard";
+		player.class_name = SBURBClassManager.BARD;
 		player.hair = 41;
 		player.leftHorn = 29;
 		player.rightHorn = 29;
@@ -1114,7 +1114,7 @@ void session612IndexToTroll(player, index){
 	}else if(index == 4){
 		player.moon = "Derse";
 		player.aspect = Aspects.TIME;
-		player.class_name = "Maid";
+		player.class_name = SBURBClassManager.MAID;
 		player.land = "Land of Quartz and Melody";
 		player.hair = 40;
 		player.leftHorn = 36;
@@ -1318,7 +1318,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.aspect = "Blood";
 		player.bloodColor = "#ff0000";
 		player.land = "Land of Pulse and Haze";
-		player.class_name = "Seer";
+		player.class_name = SBURBClassManager.SEER;
 		player.hair = 44;
 		player.leftHorn = 21;
 		player.rightHorn = 21;
@@ -1340,7 +1340,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.moon = "Prospit";
 		player.land = "Land of Thought and Flow";
 		player.aspect = "Mind";
-		player.class_name = "Knight";
+		player.class_name = SBURBClassManager.KNIGHT;
 		player.hair = 47;
 		player.leftHorn = 46;
 		player.rightHorn = 46;
@@ -1500,7 +1500,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.aspect = Aspects.SPACE;
 		player.moon = "Prospit";
 		player.land = "Land of Frost and Frogs";
-		player.class_name = "Maid";
+		player.class_name = SBURBClassManager.MAID;
 		player.hair = 55;
 		player.leftHorn = 26;
 		player.rightHorn = 26;
@@ -1519,7 +1519,7 @@ void session612IndexToTrollAncestor(player, index){
 		player.aspect = Aspects.HOPE;
 		player.moon = "Derse";
 		player.land = "Land of Wrath and Angels";
-		player.class_name = "Bard";
+		player.class_name = SBURBClassManager.BARD;
 		player.hair = 56;
 		player.leftHorn = 19;
 		player.rightHorn = 19;

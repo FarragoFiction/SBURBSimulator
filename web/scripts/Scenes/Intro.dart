@@ -153,7 +153,7 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
 			}else{
@@ -161,7 +161,7 @@ class Intro  extends IntroScene{
 				chatText += Scene.chatLine(player1Start, player1, "Agreed.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very good idea.");
 			}else{
@@ -201,13 +201,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 				chatText += Scene.chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
@@ -244,13 +244,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -310,13 +310,13 @@ class Intro  extends IntroScene{
 			return chatText; // too depressing to keep going.
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -353,13 +353,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -399,13 +399,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
@@ -446,7 +446,7 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
 			}else{
@@ -455,7 +455,7 @@ class Intro  extends IntroScene{
 				chatText += Scene.chatLine(player2Start, player2,"Eh.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "Obviously give me an advantage.");
 				chatText += Scene.chatLine(player2Start, player2,"Huh. Probably. ");
@@ -499,13 +499,13 @@ class Intro  extends IntroScene{
 
 		}
 		if(player1.object_to_prototype.getStat("power")>200) {
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Somehow, I have a bad feeling about that.");
 			}
 		}else if(player1.object_to_prototype.illegal){
-			if(player2.aspect != Aspects.LIGHT && player2.class_name != "Seer"){
+			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
 				chatText += Scene.chatLine(player1Start, player1, "I'm not sure. Do you think it was symbolic?");
 				chatText += Scene.chatLine(player2Start, player2,"No. Probably didn't mean anything at all. I'm sure of it.");
@@ -580,7 +580,7 @@ class Intro  extends IntroScene{
 			 return this.grimPlayer2Chat(player1, player2);
 		}
 
-		if(player1.aspect == Aspects.LIGHT || player1.class_name == "Seer"){
+		if(player1.aspect == Aspects.LIGHT || player1.class_name == SBURBClassManager.SEER){
 			return this.lightChat(player1, player2);
 		}
 		if(playerLikesCulture(player1)){

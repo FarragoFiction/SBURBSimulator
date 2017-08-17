@@ -229,7 +229,7 @@ class RelationshipDrama extends Scene {
 				if(InterestManager.ROMANTIC.playerLikes(player1) || player1.aspect == Aspects.MIND){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
 					player1.addStat("sanity", -0.5); //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
-				}else if(player2.class_name == "Bard" || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
+				}else if(player2.class_name == SBURBClassManager.BARD || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
 					if(player2.class_name == SBURBClassManager.SEER || player2.aspect == Aspects.BLOOD || InterestManager.ROMANTIC.playerLikes(player2)){
 						chatText += player2Start+"  Look, I'll level with you. I'm even dropping my dumb quirk, okay? It doesn't matter if you're nice. I'm sorry.  I can't just change the way I feel just because maybe you deserve it.\n";

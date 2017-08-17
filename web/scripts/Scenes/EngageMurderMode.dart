@@ -60,11 +60,11 @@ class EngageMurderMode extends Scene{
 		chatText += Scene.chatLine(player1Start, player1,"You're going to die. And I'm going to see it. I'm going to DO it.");
 		if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d"){
 			chatText += this.heirressConvo(div, player1, player2);
-		}else if(player2.aspect == "Blood" || player2.aspect == "Sylph"){  //try to repair relationship
+		}else if(player2.aspect == "Blood" || player2.aspect == SBURBClassManager.SYLPH){  //try to repair relationship
 			chatText += this.repairConvo(div, player1, player2);
-		}else if(player2.aspect == "Mind" || player2.class_name == "Bard" ){ //try to redirect madness at another target
+		}else if(player2.aspect == "Mind" || player2.class_name == SBURBClassManager.BARD ){ //try to redirect madness at another target
 			chatText += this.redirectConvo(div, player1, player2);
-		}else if(player2.aspect == "Rage" || player2.class_name == "Knight" ){ //welcome the challenge
+		}else if(player2.aspect == "Rage" || player2.class_name == SBURBClassManager.KNIGHT ){ //welcome the challenge
 			chatText += this.blusterConvo(div, player1, player2);
 		}else{
 			chatText += this.panicConvo(div, player1, player2);

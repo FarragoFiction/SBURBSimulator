@@ -22,7 +22,7 @@ class JackRampage extends Scene{
 		List<Player> potentialPlayers = [];
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			Player p = this.session.availablePlayers[i];
-			if(p.class_name != "Witch"){
+			if(p.class_name != SBURBClassManager.WITCH){
 				potentialPlayers.add(p); //don't make a big deal out of it, but jack doesn't want to hurt the witch. familiar loyalty, yo.
 				//this is actually a bad thing, too, cause it means the witch's OP sprite doesn't get to kick Jack's ass.
 			}

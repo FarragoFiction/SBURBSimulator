@@ -257,7 +257,7 @@ class YellowYard extends Scene {
 		String chat = "";
 		var playerStart = this.timePlayer.chatHandleShort()+ ": ";
 		chat += "JR: Hey. I think I can help you. \n";
-		if(this.timePlayer.class_name == "Seer"){
+		if(this.timePlayer.class_name == SBURBClassManager.SEER){
 			chat += Scene.chatLine(playerStart, this.timePlayer,"Hey. Look who finally showed up. ");
 			chat += "JR: What? Oh. You're a Seer. Right, that makes things way easier. \n";
 			chat += Scene.chatLine(playerStart, this.timePlayer,"Yes. You're gonna help me fix this.");
@@ -278,7 +278,7 @@ class YellowYard extends Scene {
 	String timeChat2(){
 		String chat = "";
 		String playerStart = this.timePlayer.chatHandleShort()+ ": ";
-		if(this.timePlayer.class_name == "Seer"){
+		if(this.timePlayer.class_name == SBURBClassManager.SEER){
 
 
 		}else{
@@ -293,7 +293,7 @@ class YellowYard extends Scene {
 			String chat = "";
 			var playerStart = player.chatHandleShort()+ ": ";
 			chat += "JR: Hey. Uh. Don't panic. I think I can help you. \n";
-			if(this.timePlayer.class_name == "Seer"){
+			if(this.timePlayer.class_name == SBURBClassManager.SEER){
 				chat += Scene.chatLine(playerStart, player,"Hey. I was hoping to find you here. ");
 				chat += "JR: What? Oh. You're a Seer. Right, that makes things WAY easier. \n";
 				chat += Scene.chatLine(playerStart, player,"Yes. You're gonna help me make the right decisions in order to prevent this from ever happening.  Somehow. I'm actually not all that clear on the details.");
@@ -315,7 +315,7 @@ class YellowYard extends Scene {
 		  Player player = this.getDoomedTimeClone();
 			String chat = "";
 			var playerStart = this.timePlayer.chatHandleShort()+ ": ";
-			if(this.timePlayer.class_name == "Seer"){
+			if(this.timePlayer.class_name == SBURBClassManager.SEER){
 			}else{
 				chat += Scene.chatLine(playerStart, player,"Who?");
 				chat += "JR: Shit. Ignore that. You're not my only audience here. Hell, all this practically doesn't even concern you at this point. \n";
