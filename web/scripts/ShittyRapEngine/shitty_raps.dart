@@ -186,9 +186,9 @@ class RapTemplate {
 		}
 		return null;
 	}
-	List<String> matchInterestToWordTypeArray(String interest, RapPart type){
+	List<String> matchInterestToWordTypeArray(Interest interest, RapPart type){
 		List<String> ret = null;
-		if(comedy_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		if(interest.category && type == RapPart.NOUN){
 				ret = comedyInterestNouns;
 		}else if(comedy_interests.indexOf(interest) != -1 && type == RapPart.VERB){
 			ret = comedyInterestVerbs;
