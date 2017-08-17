@@ -14,6 +14,10 @@ class Academic extends InterestCategory {
     @override
     List<String> levels = <String>["NERDY NOODLER", "SCAMPERING SCIENTIST"];
 
+    @override
+    List<String> _interestStrings =<String>["Archaeology", "Mathematics", "Astronomy", "Knowledge", "Physics", "Biology", "Chemistry", "Geneology", "Science", "Molecular Gastronomy", "Model Trains", "Politics", "Geography", "Cartography", "Typography", "History"];
+
+
 
     Academic() :super(13, "Academic", "smart", "nerdy");
 

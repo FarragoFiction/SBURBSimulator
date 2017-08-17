@@ -15,6 +15,9 @@ class Culture extends InterestCategory {
     @override
     List<String> levels = <String>["APPRENTICE ARTIST", "CULTURE BUCKAROO"];
 
+    @override
+    List<String> _interestStrings =  <String>["Drawing", "Painting", "Documentaries", "Fan Art", "Graffiti", "Theater", "Fine Art", "Literature", "Books", "Movie Making"];
+
 
     Culture() :super(2, "Culture", "cultured", "pretentious");
 

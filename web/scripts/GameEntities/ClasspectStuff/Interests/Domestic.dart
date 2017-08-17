@@ -15,6 +15,10 @@ class Domestic extends InterestCategory {
     @override
     List<String> levels =<String>["BATTERBRAT", "GRITTY GUARDIAN"];
 
+    @override
+    List<String> _interestStrings =<String>["Sewing", "Fashion", "Meditation", "Babies", "Peace", "Knitting", "Cooking", "Baking", "Gardening", "Crochet", "Scrapbooking"];
+
+
 
     Domestic() :super(8, "Domestic", "domestic", "boring");
 

@@ -14,6 +14,11 @@ class Justice extends InterestCategory {
     @override
     List<String> levels = <String>["JUSTICE JUICER", "BALANCE RUMBLER"];
 
+    @override
+    List<String> _interestStrings = <String>["Social Justice", "Detectives", "Mysteries", "Leadership", "Revolution", "Justice", "Equality", "Sherlock Holmes"];
+
+
+
 
     Justice() :super(6, "Justice", "fair-minded", "harsh");
 

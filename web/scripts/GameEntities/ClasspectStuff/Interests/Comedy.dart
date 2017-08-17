@@ -17,6 +17,9 @@ class Comedy extends InterestCategory {
     @override
     List<String> levels =  <String>["PRATFALL PRIEST", "BEAGLE PUSS DARTABOUT"];
 
+    @override
+    List<String> _interestStrings = <String>["Puppets", "Pranks", "Comedy", "Jokes", "Puns", "Stand-up Comedy", "Humor", "Comics", "Satire", "Knock Knock Jokes"];
+
 
     Comedy() : super(0, "Comedy", "funny", "dorky");
 }

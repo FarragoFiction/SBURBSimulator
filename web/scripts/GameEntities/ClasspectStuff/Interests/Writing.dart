@@ -13,6 +13,10 @@ class Writing extends InterestCategory {
     @override
     List<String> levels = <String>["SHAKY SHAKESPEARE", "QUILL RUINER"];
 
+    @override
+    List<String> _interestStrings =  <String>["Writing", "Fan Fiction", "Script Writing", "Character Creation", "Dungeon Mastering", "Authoring"];
+
+
 
     Writing() :super(3, "Writing", "lettered", "wordy");
 

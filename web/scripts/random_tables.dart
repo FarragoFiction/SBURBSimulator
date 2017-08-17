@@ -513,22 +513,7 @@ List<String> bloodColors = <String>["#A10000", "#a25203", "#a1a100", "#658200", 
 List<String> interestCategories = <String>["Comedy", "Music", "Culture", "Writing", "Athletic", "Terrible", "Justice", "Fantasy", "Domestic", "PopCulture", "Technology", "Social", "Romance", "Academic"];
 
 
-List<String> music_interests = <String>["Rap", "Music", "Song Writing", "Musicals", "Dance", "Singing", "Ballet", "Playing Guitar", "Playing Piano", "Mixtapes", "Turntables"];
-List<String> culture_interests = <String>["Drawing", "Painting", "Documentaries", "Fan Art", "Graffiti", "Theater", "Fine Art", "Literature", "Books", "Movie Making"];
-List<String> writing_interests = <String>["Writing", "Fan Fiction", "Script Writing", "Character Creation", "Dungeon Mastering", "Authoring"];
-List<String> pop_culture_interests = <String>["Irony", "Action Movies", "Superheroes", "Supervillains", "Video Games", "Movies", "Television", "Comic Books", "TV", "Heroes"];
-List<String> technology_interests = <String>["Programming", "Hacking", "Coding", "Robots", "Artificial Intelligence", "Engineering", "Manufacturing", "Cyborgs", "Androids", "A.I.", "Automation"];
-List<String> social_interests = <String>["Psychology", "Religion", "Animal Training", "Pets", "Animals", "Online Roleplaying", "Live Action Roleplaying", "Tabletop Roleplaying", "Role Playing", "Social Media", "Charity", "Mediating"];
-List<String> romantic_interests = <String>["Girls", "Boys", "Romance", "Shipping", "Relationships", "Love", "Romantic Comedies", "Fate", "Dating"];
-List<String> academic_interests = <String>["Archaeology", "Mathematics", "Astronomy", "Knowledge", "Physics", "Biology", "Chemistry", "Geneology", "Science", "Molecular Gastronomy", "Model Trains", "Politics", "Geography", "Cartography", "Typography", "History"];
-List<String> comedy_interests = <String>["Puppets", "Pranks", "Comedy", "Jokes", "Puns", "Stand-up Comedy", "Humor", "Comics", "Satire", "Knock Knock Jokes"];
-List<String> domestic_interests = <String>["Sewing", "Fashion", "Meditation", "Babies", "Peace", "Knitting", "Cooking", "Baking", "Gardening", "Crochet", "Scrapbooking"];
-List<String> athletic_interests = <String>["Yoga", "Fitness", "Sports", "Boxing", "Track and Field", "Swimming", "Baseball", "Hockey", "Football", "Basketball", "Weight Lifting"];
-List<String> terrible_interests = <String>["Arson", "Clowns", "Treasure", "Money", "Violence", "Death", "Animal Fights", "Insults", "Hoarding", "Status", "Classism", "Online Trolling", "Intimidation", "Fighting", "Genocide", "Murder", "War"];
-List<String> fantasy_interests = <String>["Wizards", "Horrorterrors", "Mermaids", "Unicorns", "Science Fiction", "Fantasy", "Ninjas", "Aliens", "Conspiracies", "Faeries", "Elves", "Vampires", "Undead"];
-List<String> justice_interests = <String>["Social Justice", "Detectives", "Mysteries", "Leadership", "Revolution", "Justice", "Equality", "Sherlock Holmes"];
 
-List<String> interests = []..addAll(music_interests)..addAll(culture_interests)..addAll(writing_interests)..addAll(pop_culture_interests)..addAll(technology_interests)..addAll(social_interests)..addAll(romantic_interests)..addAll(academic_interests)..addAll(comedy_interests)..addAll(domestic_interests)..addAll(athletic_interests)..addAll(terrible_interests)..addAll(fantasy_interests)..addAll(justice_interests);
 
 
 List<String> prefixes = <String>["8=D", ">->", "//", "tumut", ")", "><>", "(", "\$", "?", "=begin", "=end"]
