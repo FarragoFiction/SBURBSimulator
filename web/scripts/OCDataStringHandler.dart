@@ -337,6 +337,7 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   //print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
+  //TODO making a new interest will add it to category if not already there, so get rid of any redundant code
   player.interest1 = sanitizeString(Uri.decodeFull(str_arr[2]).trim());
   player.interest2 = sanitizeString(Uri.decodeFull(str_arr[3]).trim());
   player.chatHandle = sanitizeString(Uri.decodeFull(str_arr[4]).trim());

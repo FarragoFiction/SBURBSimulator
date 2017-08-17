@@ -423,8 +423,8 @@ void session413IndexToHuman(Player player, int index){
 		player.land = "Land of Light and Rain";
 		player.aspect = Aspects.LIGHT;
 		player.chatHandle = "tentacleTherapist";
-		player.interest1 = "Writing";
-		player.interest2 = "Horrorterrors";
+		player.interest1 = new Interest("Writing", InterestManager.WRITING);
+		player.interest2 = new Interest("HorrorTerrors", InterestManager.FANTASY);
 		player.hair  =20;
 		player.hairColor = "#fff3bd";
 		player.quirk.capitalization = 1;
@@ -442,8 +442,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hairColor = "#feffd7";
 		player.hair  =1;
 		player.chatHandle = "turntechGodhead";
-		player.interest1 = "Rap";
-		player.interest2 = "Irony";
+		player.interest1 = new Interest("Rap", InterestManager.MUSIC);
+		player.interest2 = new Interest("Irony", InterestManager.POPCULTURE);
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 0;
 		player.quirk.lettersToReplace = [];
@@ -460,8 +460,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hair  =9;
 		player.hairColor = "#3f1904";
 		player.chatHandle = "gardenGnostic";
-		player.interest1 = "Physics";
-		player.interest2 = "Gardening";
+		player.interest1 = new Interest("Physics", InterestManager.ACADEMIC);
+		player.interest2 = new Interest("Gardening", InterestManager.DOMESTIC);
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 3;
 		player.quirk.favoriteNumber = 5;
@@ -480,8 +480,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hair  =38;
 		player.hairColor = "#000000";
 		player.chatHandle = "gutsyGumshoe";
-		player.interest1 = "Pranks";
-		player.interest2 = "Baking";
+		player.interest1 = new Interest("Pranks", InterestManager.COMEDY);
+		player.interest2 = new Interest("Baking", InterestManager.DOMESTIC);
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
@@ -497,8 +497,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hair  =24;
 		player.hairColor = "#fff3bd";
 		player.chatHandle = "tipsyGnostalgic";
-		player.interest1 = "Writing";
-		player.interest2 = "Wizards";
+		player.interest1 = new Interest("Writing", InterestManager.WRITING);
+		player.interest2 = new Interest("Wizards", InterestManager.FANTASY);
 		//HI!!! HOW ARE YOU!?
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 0;
@@ -516,8 +516,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hair  =36;
 		player.hairColor = "#feffd7";
 		player.chatHandle = "timaeusTestified";
-		player.interest1 = "Irony";
-		player.interest2 = "Robots";
+		player.interest1 = new Interest("Irony", InterestManager.POPCULTURE);
+		player.interest2 = new Interest("Writing", InterestManager.WRITING);
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
@@ -535,8 +535,8 @@ void session413IndexToHuman(Player player, int index){
 		player.hair  =37;
 		player.hairColor = "#3f1904";
 		player.chatHandle = "golgothasTerror";
-		player.interest1 = "Physics";
-		player.interest2 = "Movies";
+		player.interest1 = new Interest("Physics", InterestManager.ACADEMIC);
+		player.interest2 = new Interest("Movies", InterestManager.POPCULTURE);
 		player.quirk.capitalization = 1;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
@@ -1021,7 +1021,7 @@ void session612(){
 
 //["#A10000","#a25203","#a1a100","#658200","#416600","#078446","#008282","#004182","#0021cb","#631db4","#610061","#99004d"]
 //karkat, terezi, gamzee, equius, aradia, nepeta, tavros, vriska, kanaya, eridan, feferi, sollux
-void session612IndexToTroll(player, index){
+void session612IndexToTroll(Player player, int index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
@@ -1038,8 +1038,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.interest1 = "Romance";
-		player.interest2 = "Leadership";
+		player.interest1 = new Interest("Romance", InterestManager.ROMANTIC);
+		player.interest2 = new Interest("Leadership", InterestManager.SOCIAL);
 		player.chatHandle = "carcinoGeneticist";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1062,8 +1062,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["E","3"],["I","1"],["A","4"],[":\\)", ">: ]"]];
 		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["I","1"],["A","4"]];
-		player.interest1 = "Justice";
-		player.interest2 = "Live Action Roleplaying";
+		player.interest1 = new Interest("Justice", InterestManager.JUSTICE);
+		player.interest2 = new Interest("Live Action Roleplaying", InterestManager.SOCIAL);
 		player.chatHandle = "gallowsCalibrator";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1081,8 +1081,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
-		player.interest1 = "Clowns";
-		player.interest2 = "Religion";
+		player.interest1 =new Interest("Clowns", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("Religion", InterestManager.SOCIAL);
 		player.chatHandle = "terminallyCapricious";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1107,8 +1107,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "D -->";
 		player.quirk.suffix = "";
-		player.interest1 = "Classism";
-		player.interest2 = "Weight Lifting";
+		player.interest1 = new Interest("Classism", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("Weight Lifting", InterestManager.ATHLETIC);
 		player.chatHandle = "centaursTesticle";
 
 	}else if(index == 4){
@@ -1125,8 +1125,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["o","0"]];
-		player.interest1 = "Archaeology";
-		player.interest2 = "Death";
+		player.interest1 = new Interest("Archeology", InterestManager.ACADEMIC);
+		player.interest2 = new Interest("Death", InterestManager.TERRIBLE);
     Random rand = new Random(curSessionGlobalVar.session_id); //don't use session's rand cuz want to not eat seeds here but also don't allow true random
 
     if(rand.nextDouble() > 0.6){
@@ -1164,8 +1164,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"], ["per","purr"]];
-		player.interest1 = "Role Playing";
-		player.interest2 = "Romance";
+		player.interest1 = new Interest("Role Playing", InterestManager.SOCIAL);
+		player.interest2 = new Interest("Romance", InterestManager.ROMANTIC);
 		player.chatHandle = "arsenicCatnip";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1183,8 +1183,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","um"]];
-		player.interest1 = "Faeries";
-		player.interest2 = "Animals";
+		player.interest1 = new Interest("Fairies", InterestManager.FANTASY);
+		player.interest2 = new Interest("Animals", InterestManager.SOCIAL);
 		player.chatHandle = "adiosToreador";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1207,8 +1207,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.favoriteNumber = 8;
 		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
-		player.interest1 = "Treasure";
-		player.interest2 = "Live Action Roleplaying";
+		player.interest1 = new Interest("Treasure", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("Life Action Roleplaying", InterestManager.SOCIAL);
 		player.chatHandle = "arachnidsGrip";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1233,8 +1233,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.interest1 = "Vampires";
-		player.interest2 = "Fashion";
+		player.interest1 = new Interest("Vampires", InterestManager.FANTASY);
+		player.interest2 = new Interest("Fashion", InterestManager.DOMESTIC);
 		player.chatHandle = "grimAuxiliatrix";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1252,8 +1252,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vv"], ["w","ww"]];
-		player.interest1 = "Genocide";
-		player.interest2 = "History";
+		player.interest1 = new Interest("Genocide", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("History", InterestManager.ACADEMIC);
 		player.chatHandle = "caligulasAquarium";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1271,8 +1271,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 9;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["h",")("],["e","-E"], ["fuck","glub"],  ["god","cod"]];
-		player.interest1 = "Animals";
-		player.interest2 = "Social Justice";
+		player.interest1 = new Interest("Animals", InterestManager.SOCIAL);
+		player.interest2 = new Interest("Justice", InterestManager.JUSTICE);
 		player.chatHandle = "cuttlefishCuller";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1290,8 +1290,8 @@ void session612IndexToTroll(player, index){
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","ii"],["s","2"]];
-		player.interest1 = "Hacking";
-		player.interest2 = "Programming";
+		player.interest1 = new Interest("Hacking", InterestManager.TECHNOLOGY);
+		player.interest2 = new Interest("Programming", InterestManager.TECHNOLOGY);
 		player.chatHandle = "twinArmageddons";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1309,7 +1309,7 @@ void session612IndexToTroll(player, index){
 
 
 
-void session612IndexToTrollAncestor(player, index){
+void session612IndexToTrollAncestor(Player player, index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
@@ -1326,8 +1326,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["oo","69"], ["b","6"],["o","9"], ["fuck", "problematic"]];
-		player.interest1 = "Social Justice";
-		player.interest2 = "Leadership";
+		player.interest1 = new Interest("Social Justice", InterestManager.JUSTICE);
+		player.interest2 = new Interest("Leadership", InterestManager.SOCIAL);
 		player.chatHandle = "carcinoGeneticist";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1349,8 +1349,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.favoriteNumber = 4;
 		player.quirk.lettersToReplace = [["e","3"],["i","1"],["a","4"],["for","4"],["four","4"],["fore","4"],["E","3"],["I","1"],["A","4"],["s\\b", "z"],["S\\b", "Z"]];
-		player.interest1 = "Justice";
-		player.interest2 = "Video Games";
+		player.interest1 = new Interest("Justice", InterestManager.JUSTICE);
+		player.interest2 = new Interest("Video Games", InterestManager.POPCULTURE);
 		player.chatHandle = "gallowsCalibrator";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1368,8 +1368,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 10;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["fuck","motherfuck"],[":\\)", ":o)"]];
-		player.interest1 = "Death";
-		player.interest2 = "Religion";
+		player.interest1 = new Interest("Death", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("Religion", InterestManager.SOCIAL);
 		player.chatHandle = "terminallyCapricious";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1394,8 +1394,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplaceIgnoreCase = [["x","%"],["fuck","fiddlesticks"]];
 		player.quirk.prefix = "8==D";
 		player.quirk.suffix = "";
-		player.interest1 = "Animals";
-		player.interest2 = "Weight Lifting";
+		player.interest1 = new Interest("Animals", InterestManager.SOCIAL);
+		player.interest2 = new Interest("Weight Lifting", InterestManager.ATHLETIC);
 		player.chatHandle = "centaursTesticle";
 	}else if(index == 4){
 		player.moon = "Derse";
@@ -1411,8 +1411,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 0;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["\\b[a-z]*\\b","私"]];
-		player.interest1 = "Intimidation";
-		player.interest2 = "Death";
+		player.interest1 = new Interest("Intimidation", InterestManager.TERRIBLE);
+		player.interest2 = new Interest("Death", InterestManager.TERRIBLE);
 		player.chatHandle = "apocalypseArisen";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1440,8 +1440,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 3;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ee","33"]];
-		player.interest1 = "TV";
-		player.interest2 = "Romance";
+		player.interest1 = new Interest("Memes", InterestManager.POPCULTURE);
+		player.interest2 = new Interest("Romance", InterestManager.ROMANTIC);
 		player.chatHandle = "arsenicCatnip";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1460,8 +1460,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["i","1"]];
 		player.quirk.suffix = "";
-		player.interest1 = "Movies";
-		player.interest2 = "Animals";
+		player.interest1 = new Interest("Anime", InterestManager.POPCULTURE);
+		player.interest2 = new Interest("Animals", InterestManager.SOCIAL);
 		player.chatHandle = "adiosToreador";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1484,8 +1484,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.lettersToReplace = [];
 		player.quirk.favoriteNumber = 8;
 		player.quirk.lettersToReplaceIgnoreCase = [["b","8"]];
-		player.interest1 = "Writing";
-		player.interest2 = "Live Action Roleplaying";
+		player.interest1 = new Interest("Writings", InterestManager.WRITING);
+		player.interest2 = new Interest("Live Action Role-playing", InterestManager.SOCIAL);
 		player.chatHandle = "arachnidsGrip";
 		player.godDestiny = true;
 		player.quirk.suffix = "";
@@ -1510,8 +1510,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.punctuation = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["o","o+"]];
-		player.interest1 = "Love";
-		player.interest2 = "Fashion";
+		player.interest1 = new Interest("Love", InterestManager.ROMANTIC);
+		player.interest2 = new Interest("Fashion", InterestManager.DOMESTIC);
 		player.chatHandle = "grimAuxiliatrix";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1529,8 +1529,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 7;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"], ["v","vw"], ["w","wv"]];
-		player.interest1 = "Romance";
-		player.interest2 = "History";
+		player.interest1 = new Interest("Romance", InterestManager.ROMANTIC);
+		player.interest2 = new Interest("History", InterestManager.ACADEMIC);
 		player.chatHandle = "caligulasAquarium";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
@@ -1548,8 +1548,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 9;
 		player.quirk.lettersToReplace = [ ["H",")("],];
 		player.quirk.lettersToReplaceIgnoreCase = [["ing","in"],["e","-E"], ["fuck","glub"],  ["god","cod"]];
-		player.interest1 = "Animals";
-		player.interest2 = "Money";
+		player.interest1 = new Interest("Animals", InterestManager.SOCIAL);
+		player.interest2 = new Interest("Money", InterestManager.TERRIBLE);
 		player.chatHandle = "cuttlefishCuller";
 		player.godDestiny = true;
 		player.quirk.suffix = "";
@@ -1568,8 +1568,8 @@ void session612IndexToTrollAncestor(player, index){
 		player.quirk.favoriteNumber = 2;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["E","3"],["S","5"],["O","0"],["S","2"],["T","7"],["I","1"],["B","8"]]; // E=3, A=4, S=5, O=0, T=7, I=1 and B=8.;
-		player.interest1 = "Video Games";
-		player.interest2 = "Programming";
+		player.interest1 = new Interest("Video Games", InterestManager.POPCULTURE);
+		player.interest2 = new Interest("Programming", InterestManager.TECHNOLOGY);
 		player.chatHandle = "twinArmageddons";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";

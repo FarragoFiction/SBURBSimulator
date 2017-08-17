@@ -1,5 +1,6 @@
 import "../../../random.dart";
 import "../../../GameEntities/player.dart";
+import "../../../GameEntities/GameEntity.dart";
 import "Academic.dart";
 import "Athletic.dart";
 import "Comedy.dart";
@@ -65,6 +66,7 @@ class InterestManager {
 
 class InterestCategory {
   List<String> handles1 = <String> ["nobody"];
+  List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[]);
   List<String> handles2 = <String> ["Nobody"];
   List<String> levels = <String> ["Nobody"];
   int id;
@@ -84,6 +86,7 @@ class InterestCategory {
 
   //interests are auto sanitized.
   void addInterest(String i) {
+    if(_interestStrings.contains(i)) return;
     _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
   }
 
@@ -98,7 +101,9 @@ class InterestCategory {
 class Interest {
   InterestCategory category;
   String name;
-  Interest(this.name, this.category);
+  Interest(this.name, this.category) {
+    this.category.addInterest(this.name); //the method will make sure no duplicates.
+  }
 
   Interest.randomFromCategory(Random rand, InterestCategory category){
       String s = rand.pickFrom(category.copyOfInterestStrings);
