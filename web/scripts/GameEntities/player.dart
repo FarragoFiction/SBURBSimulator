@@ -1759,7 +1759,7 @@ class Player extends GameEntity {
         }
         return "CONFUSING";
     }
-    
+
 
     void initializeAssociatedStats() {
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -1790,7 +1790,7 @@ class Player extends GameEntity {
     void initializeInterestStats() {
         //getInterestAssociatedStats
         List<AssociatedStat> interest1Stats = this.interest1.category.stats;
-        List<AssociatedStat> interest2Stats = this.interest2.category.stats);
+        List<AssociatedStat> interest2Stats = this.interest2.category.stats;
         for (AssociatedStat stat in interest1Stats) {
             this.modifyAssociatedStat(10, stat);
         }
