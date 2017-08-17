@@ -142,7 +142,7 @@ class RapTemplate {
 
 
 	List<String> getRapLineForPlayer(Player player){
-			String interest = player.session.rand.pickFrom(<Interest>[player.interest1, player.interest2]).name;
+			Interest interest = player.session.rand.pickFrom(<Interest>[player.interest1, player.interest2]);
 			String firstWord = this.findWordBasedOnPart1AndInterest(player.session.rand, interest);
 			String secondWord = null;
 		  firstWord = tryToUseRhyme(firstWord, player);
@@ -179,7 +179,7 @@ class RapTemplate {
 			}
 			return [player.chatHandleShort()+ ": "+player.quirk.translate(str), firstWord, secondWord];
 	}
-	String findWordBasedOnPart1AndInterest(Random rand, String interest){
+	String findWordBasedOnPart1AndInterest(Random rand, Interest interest){
 		List<String> wordTypeArray = this.matchInterestToWordTypeArray(interest, this.part1Type);
 		if(wordTypeArray != null){
 				return rand.pickFrom(wordTypeArray);
@@ -188,61 +188,61 @@ class RapTemplate {
 	}
 	List<String> matchInterestToWordTypeArray(Interest interest, RapPart type){
 		List<String> ret = null;
-		if(interest.category && type == RapPart.NOUN){
+		if(interest.category == InterestManager.COMEDY && type == RapPart.NOUN){
 				ret = comedyInterestNouns;
-		}else if(comedy_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.COMEDY && type == RapPart.VERB){
 			ret = comedyInterestVerbs;
-		}else if(athletic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.ATHLETIC && type == RapPart.NOUN){
 			ret = athleticInterestNouns;
-		}else if(athletic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.ATHLETIC && type == RapPart.VERB){
 			ret = athleticInterestVerbs;
-		}else if(music_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.MUSIC && type == RapPart.NOUN){
 			ret = musicInterestNouns;
-		}else if(music_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.MUSIC && type == RapPart.VERB){
 			ret = musicInterestVerbs;
-		}else if(writing_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.WRITING && type == RapPart.NOUN){
 			ret = writingInterestNouns;
-		}else if(writing_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.WRITING && type == RapPart.VERB){
 			ret = writingInterestVerbs;
-		}else if(pop_culture_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.POPCULTURE && type == RapPart.NOUN){
 			ret = popCultureInterestNouns;
-		}else if(pop_culture_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.POPCULTURE && type == RapPart.VERB){
 			ret = popCultureInterestVerbs;
-		}else if(technology_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.TECHNOLOGY && type == RapPart.NOUN){
 			ret = technologyInterestNouns;
-		}else if(technology_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.TECHNOLOGY && type == RapPart.VERB){
 			ret = technologyInterestVerbs;
-		}else if(social_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.SOCIAL && type == RapPart.NOUN){
 			ret = socialInterestNouns;
-		}else if(social_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.SOCIAL && type == RapPart.VERB){
 			ret = socialInterestVerbs;
-		}else if(romantic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.ROMANTIC && type == RapPart.NOUN){
 			ret = romanticInterestNouns;
-		}else if(romantic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.ROMANTIC && type == RapPart.VERB){
 			ret = romanticInterestVerbs;
-		}else if(academic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.ACADEMIC && type == RapPart.NOUN){
 			ret = academicInterestNouns;
-		}else if(academic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.ACADEMIC && type == RapPart.VERB){
 			ret = academicInterestVerbs;
-		}else if(domestic_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.DOMESTIC&& type == RapPart.NOUN){
 			ret = domesticInterestNouns;
-		}else if(domestic_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.DOMESTIC && type == RapPart.VERB){
 			ret = domesticInterestVerbs;
-		}else if(terrible_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.TERRIBLE && type == RapPart.NOUN){
 			ret = terribleInterestNouns;
-		}else if(terrible_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.TERRIBLE && type == RapPart.VERB){
 			ret = terribleInterestVerbs;
-		}else if(fantasy_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.FANTASY && type == RapPart.NOUN){
 			ret = fantasyInterestNouns;
-		}else if(fantasy_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.FANTASY && type == RapPart.VERB){
 			ret = fantasyInterestVerbs;
-		}else if(justice_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.JUSTICE && type == RapPart.NOUN){
 			ret = justiceInterestNouns;
-		}else if(justice_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.JUSTICE && type == RapPart.VERB){
 			ret = justiceInterestVerbs;
-		}else if(culture_interests.indexOf(interest) != -1 && type == RapPart.NOUN){
+		}else if(interest.category == InterestManager.CULTURE && type == RapPart.NOUN){
 			ret = cultureInterestNouns;
-		}else if(culture_interests.indexOf(interest) != -1 && type == RapPart.VERB){
+		}else if(interest.category == InterestManager.CULTURE && type == RapPart.VERB){
 			ret = cultureInterestVerbs;
 		}
 		return ret;
@@ -283,7 +283,7 @@ class RapTemplate {
 		return null;
 	}
 
-	dynamic findWordBasedOnPart2AndInterestAndPart1Word(Random rand, String interest, String word){
+	dynamic findWordBasedOnPart2AndInterestAndPart1Word(Random rand, Interest interest, String word){
 		//first, I need to know which set of rhyming words the word falls in.
 		List<String> rhyme_array = this.matchWordWithRhymeArray(word);
 		//once I know that, see if I can find one of the rhyming words in the interest verb/noun list.
