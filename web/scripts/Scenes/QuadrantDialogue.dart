@@ -280,7 +280,7 @@ class QuadrantDialogue extends Scene {
 		//print("interest is: " + interest);
 		String chat = "";
 		if(relationship != null && relationship.value > 0){
-			if(player.interestedIn(interest)){
+			if(player.interestedInCategory(InterestManager.getCategoryFromString(interest))){
 				//print("interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.responseLinesSharedInterestPositive));
 			}else{
@@ -288,7 +288,7 @@ class QuadrantDialogue extends Scene {
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.genericResponses));
 			}
 		}else{
-			if(player.interestedIn(interest)){
+			if(player.interestedInCategory(InterestManager.getCategoryFromString(interest))){
 				//print("interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.responseLinesSharedInterestNegative));
 				//print("adding negative shared interest response: " + chat);
