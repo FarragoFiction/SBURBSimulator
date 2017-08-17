@@ -115,29 +115,29 @@ void initializePlayersNoDerived(List<Player> players, Session session) {
 //TODO wipe out
 String getColorFromAspect(String aspect) {
     String color = "";
-    if (aspect == "Space") {
+    if (aspect == Aspects.SPACE) {
         color = "#00ff00";
-    } else if (aspect == "Time") {
+    } else if (aspect == Aspects.TIME) {
         color = "#ff0000";
-    } else if (aspect == "Breath") {
+    } else if (aspect == Aspects.BREATH) {
         color = "#3399ff";
-    } else if (aspect == "Doom") {
+    } else if (aspect == Aspects.DOOM) {
         color = "#003300";
-    } else if (aspect == "Blood") {
+    } else if (aspect == Aspects.BLOOD) {
         color = "#993300";
-    } else if (aspect == "Heart") {
+    } else if (aspect == Aspects.HEART) {
         color = "#ff3399";
-    } else if (aspect == "Mind") {
+    } else if (aspect == Aspects.MIND) {
         color = "#3da35a";
-    } else if (aspect == "Light") {
+    } else if (aspect == Aspects.LIGHT) {
         color = "#ff9933";
-    } else if (aspect == "Void") {
+    } else if (aspect == Aspects.VOID) {
         color = "#000066";
-    } else if (aspect == "Rage") {
+    } else if (aspect == Aspects.RAGE) {
         color = "#9900cc";
-    } else if (aspect == "Hope") {
+    } else if (aspect == Aspects.HOPE) {
         color = "#ffcc66";
-    } else if (aspect == "Life") {
+    } else if (aspect == Aspects.LIFE) {
         color = "#494132";
     } else {
         color = "#efefef";
@@ -148,29 +148,29 @@ String getColorFromAspect(String aspect) {
 
 String getShirtColorFromAspect(String aspect) {
     String color = "";
-    if (aspect == "Space") {
+    if (aspect == Aspects.SPACE) {
         color = "#030303";
-    } else if (aspect == "Time") {
+    } else if (aspect == Aspects.TIME) {
         color = "#b70d0e";
-    } else if (aspect == "Breath") {
+    } else if (aspect == Aspects.BREATH) {
         color = "#0087eb";
-    } else if (aspect == "Doom") {
+    } else if (aspect == Aspects.DOOM) {
         color = "#204020";
-    } else if (aspect == "Blood") {
+    } else if (aspect == Aspects.BLOOD) {
         color = "#3d190a";
-    } else if (aspect == "Heart") {
+    } else if (aspect == Aspects.HEART) {
         color = "#6b0829";
-    } else if (aspect == "Mind") {
+    } else if (aspect == Aspects.MIND) {
         color = "#3da35a";
-    } else if (aspect == "Light") {
+    } else if (aspect == Aspects.LIGHT) {
         color = "#ff7f00";
-    } else if (aspect == "Void") {
+    } else if (aspect == Aspects.VOID) {
         color = "#000066";
-    } else if (aspect == "Rage") {
+    } else if (aspect == Aspects.RAGE) {
         color = "#9900cc";
-    } else if (aspect == "Hope") {
+    } else if (aspect == Aspects.HOPE) {
         color = "#ffe094";
-    } else if (aspect == "Life") {
+    } else if (aspect == Aspects.LIFE) {
         color = "#ccc4b5";
     }
     return color;
@@ -179,29 +179,29 @@ String getShirtColorFromAspect(String aspect) {
 
 String getDarkShirtColorFromAspect(String aspect) {
     String color = "";
-    if (aspect == "Space") {
+    if (aspect == Aspects.SPACE) {
         color = "#242424";
-    } else if (aspect == "Time") {
+    } else if (aspect == Aspects.TIME) {
         color = "#970203";
-    } else if (aspect == "Breath") {
+    } else if (aspect == Aspects.BREATH) {
         color = "#0070ED";
-    } else if (aspect == "Doom") {
+    } else if (aspect == Aspects.DOOM) {
         color = "#11200F";
-    } else if (aspect == "Blood") {
+    } else if (aspect == Aspects.BLOOD) {
         color = "#2C1207";
-    } else if (aspect == "Heart") {
+    } else if (aspect == Aspects.HEART) {
         color = "#6B0829";
-    } else if (aspect == "Mind") {
+    } else if (aspect == Aspects.MIND) {
         color = "#3DA35A";
-    } else if (aspect == "Light") {
+    } else if (aspect == Aspects.LIGHT) {
         color = "#D66E04";
-    } else if (aspect == "Void") {
+    } else if (aspect == Aspects.VOID) {
         color = "#02285B";
-    } else if (aspect == "Rage") {
+    } else if (aspect == Aspects.RAGE) {
         color = "#1E0C47";
-    } else if (aspect == "Hope") {
+    } else if (aspect == Aspects.HOPE) {
         color = "#E8C15E";
-    } else if (aspect == "Life") {
+    } else if (aspect == Aspects.LIFE) {
         color = "#CCC4B5";
     }
     return color;

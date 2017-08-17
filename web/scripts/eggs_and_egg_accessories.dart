@@ -1026,7 +1026,7 @@ void session612IndexToTroll(player, index){
 	player.isTroll = true;
 	player.deriveChatHandle = false;
 	if(index == 0){
-		player.aspect = "Blood";
+		player.aspect = Aspects.BLOOD;
 		player.moon = "Prospit";
 		player.bloodColor = "#ff0000";
 		player.land = "Land of Pulse and Haze";
@@ -1050,7 +1050,7 @@ void session612IndexToTroll(player, index){
 		player.fraymotifs.add(f);
 	}else if(index == 1){
 		player.moon = "Prospit";
-		player.aspect = "Mind";
+		player.aspect = Aspects.MIND;
 		player.land = "Land of Thought and Flow";
 		player.class_name = SBURBClassManager.SEER;
 		player.hair = 10;
@@ -1069,7 +1069,7 @@ void session612IndexToTroll(player, index){
 		player.quirk.prefix = "";
 	}else if(index == 2){
 		player.moon = "Prospit";
-		player.aspect = "Rage";
+		player.aspect = Aspects.RAGE;
 		player.land = "Land of Mirth and Tents";
 		player.class_name = SBURBClassManager.BARD;
 		player.hair = 41;
@@ -1315,7 +1315,7 @@ void session612IndexToTrollAncestor(player, index){
 	player.deriveChatHandle = false;
 	if(index == 0){
 		player.moon = "Prospit";
-		player.aspect = "Blood";
+		player.aspect = Aspects.BLOOD;
 		player.bloodColor = "#ff0000";
 		player.land = "Land of Pulse and Haze";
 		player.class_name = SBURBClassManager.SEER;
@@ -1339,7 +1339,7 @@ void session612IndexToTrollAncestor(player, index){
 	}else if(index == 1){
 		player.moon = "Prospit";
 		player.land = "Land of Thought and Flow";
-		player.aspect = "Mind";
+		player.aspect = Aspects.MIND;
 		player.class_name = SBURBClassManager.KNIGHT;
 		player.hair = 47;
 		player.leftHorn = 46;
@@ -1357,7 +1357,7 @@ void session612IndexToTrollAncestor(player, index){
 	}else if(index == 2){
 		player.moon = "Prospit";
 		player.land = "Land of Mirth and Tents";
-		player.aspect = "Rage";
+		player.aspect = Aspects.RAGE;
 		player.class_name = SBURBClassManager.PRINCE;
 		player.hair = 45;
 		player.leftHorn = 29;

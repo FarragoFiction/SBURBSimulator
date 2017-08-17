@@ -43,7 +43,7 @@ class GrimDarkQuests extends Scene{
 	}
 	String workToCrashSession(player){
 			var tasks = ["try to explode a gate using dark magicks. ", "try to destroy a temple meant to help them with their Quests.","search for the game disk for SBURB itself.","seek the counsel of the noble circle of the Horrorterrors. ","begin asking the local consorts VERY uncomfortable questsions.","meet with the Dersites to discuss game destroying options.","attempt to use their powers to access the Game's source code.","exploit glitches to access areas of the game meant never to be seen by players. ","seek forbidden knowledge hidden deep within the glitchiest parts of the Furthest Ring. "];
-			if(player.aspect == "Space"){
+			if(player.aspect == Aspects.SPACE){
 				tasks.add("try to destroy frog breeding equipment");
 				tasks.add("just straight up murdering frogs out of frustration");
 				tasks.add("try to tamper with the Forge");

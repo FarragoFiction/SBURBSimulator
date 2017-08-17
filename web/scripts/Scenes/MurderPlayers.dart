@@ -160,7 +160,7 @@ class MurderPlayers extends Scene {
 			if(worstEnemy !=null && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
 				removeFromArray(worstEnemy, this.session.availablePlayers);
 				//if blood player is at all competant, can talk down murder mode player.
-				if(worstEnemy.aspect == "Blood" && worstEnemy.getStat("power") > 25){
+				if(worstEnemy.aspect == Aspects.BLOOD && worstEnemy.getStat("power") > 25){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitleBasic() + " is calmed down, and hug bumps are shared. ";
 					if(m.dead) ret += " It is especially tragic that the burgeoning palemance is cut short with the " + m.htmlTitleBasic() + "'s untimely death. ";
@@ -250,10 +250,10 @@ class MurderPlayers extends Scene {
 						//print("murder thwarted by mobility: " + this.session.session_id);
 						if(worstEnemy.sprite.name == "sprite"){
 							ret += " The " + m.htmlTitle() + " is too enraged to think things through.  The " + worstEnemy.htmlTitle() + " that they want to kill isn't even in the Medium, yet, dunkass!";
-						}else if(worstEnemy.aspect == "Void"){
+						}else if(worstEnemy.aspect == Aspects.VOID){
 							//print("void avoiding murderer: " + this.session.session_id.toString());
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost.";
-						}else if (worstEnemy.aspect == "Space"){
+						}else if (worstEnemy.aspect == Aspects.SPACE){
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost.";
 						}else{
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost.";
@@ -272,8 +272,8 @@ class MurderPlayers extends Scene {
 	bool canCatch(Player m, Player worstEnemy){
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
 		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
-		if(worstEnemy.aspect == "Void" && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
-		if(worstEnemy.aspect == "Space" && worstEnemy.getStat("power") > 50){
+		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
+		if(worstEnemy.aspect == Aspects.SPACE && worstEnemy.getStat("power") > 50){
 			print("high level space player avoiding a murderer" + this.session.session_id.toString());
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 		}

@@ -24,8 +24,8 @@ class DoLandQuest extends Scene{
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
 			if(ph != null){
 				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != "Time" && ph[0].aspect != "Breath") availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] != null && ph[0].aspect != "Time" && ph[0].aspect != "Breath" )availablePlayers.remove(ph[1]);
+				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
+				if(ph[1] != null && ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH )availablePlayers.remove(ph[1]);
 			}
 		}
 		return this.playersPlusHelpers.length > 0;
@@ -36,15 +36,15 @@ class DoLandQuest extends Scene{
 		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
 
-		if((p.aspect == "Blood" || p.class_name == SBURBClassManager.PAGE) ){// if page or blood player, can't do it on own.
+		if((p.aspect == Aspects.BLOOD || p.class_name == SBURBClassManager.PAGE) ){// if page or blood player, can't do it on own.
 			if(playerPlusHelper[1] != null){
-				if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || rand.nextDouble() > .5){
+				if((p.landLevel < this.landLevelNeeded || p.aspect == Aspects.SPACE) || rand.nextDouble() > .5){
 					return (playerPlusHelper);
 				}
 
 			}
 		}else{
-			if((p.landLevel < this.landLevelNeeded || p.aspect == "Space") || rand.nextDouble() > .5){
+			if((p.landLevel < this.landLevelNeeded || p.aspect == Aspects.SPACE) || rand.nextDouble() > .5){
 				return (playerPlusHelper);
 			}
 		}
@@ -104,7 +104,7 @@ class DoLandQuest extends Scene{
 		Player helper = null;
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
-		if(player.aspect == "Space"){//this shit is so illegal
+		if(player.aspect == Aspects.SPACE){//this shit is so illegal
 			helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
 			if(helper != player){ //a knight of space can't help themselves.
 				return helper;
@@ -113,11 +113,11 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(player.aspect == "Time" && rand.nextDouble() > .2){ //time players often partner up with themselves
+		if(player.aspect == Aspects.TIME && rand.nextDouble() > .2){ //time players often partner up with themselves
 			return player;
 		}
 
-		if(player.aspect == "Blood" || player.class_name == SBURBClassManager.PAGE){ //they NEED help.
+		if(player.aspect == Aspects.BLOOD || player.class_name == SBURBClassManager.PAGE){ //they NEED help.
 			if(this.session.availablePlayers.length > 1){
 				helper = findHighestMobilityPlayer(availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
 			}else{
@@ -134,7 +134,7 @@ class DoLandQuest extends Scene{
 				return null;
 			}
 		}
-		if(helper != player || player.aspect == "Time"){
+		if(helper != player || player.aspect == Aspects.TIME){
 			return helper;
 		}
 
@@ -144,7 +144,7 @@ class DoLandQuest extends Scene{
 	dynamic calculateClasspectBoost(Player player, Player helper){
 
 
-		if(helper.aspect == "Heart" && helper.class_name == SBURBClassManager.SYLPH){
+		if(helper.aspect == Aspects.HEART && helper.class_name == SBURBClassManager.SYLPH){
 			print("Will i heal corruption? grim dark is: ${player.grimDark}");
 			print("sylph of heart corruption helping ${this.session.session_id}");
 			if(player.grimDark > 1){
@@ -162,7 +162,7 @@ class DoLandQuest extends Scene{
 			return " Partnering up with your own time clones sure is efficient. ";
 		}
 
-		if(player.grimDark>0 && helper.aspect == "Void"){
+		if(player.grimDark>0 && helper.aspect == Aspects.VOID){
 			print("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
 		}
@@ -171,7 +171,7 @@ class DoLandQuest extends Scene{
 		Relationship r1 = player.getRelationshipWith(helper);
 		Relationship r2 = helper.getRelationshipWith(player);
 
-		if(helper.aspect == "Breath"){
+		if(helper.aspect == Aspects.BREATH){
 			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
 			helper.increasePower();
 			player.landLevel ++;
@@ -184,7 +184,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Blood"){
+		if(helper.aspect == Aspects.BLOOD){
 			player.boostAllRelationships();
 			player.boostAllRelationshipsWithMe();
 			player.addStat("sanity", 1);
@@ -195,7 +195,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Time" || helper.aspect == "Light" || helper.aspect == "Hope" || helper.aspect == "Mind" || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
+		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
 			player.landLevel ++;
 			helper.increasePower();
 			if(r2.value > 0){
@@ -205,7 +205,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Rage"){
+		if(helper.aspect == Aspects.RAGE){
 			player.damageAllRelationships();
 			player.damageAllRelationshipsWithMe();
 			player.addStat("sanity", -10);
@@ -217,7 +217,7 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if(helper.aspect == "Doom"){
+		if(helper.aspect == Aspects.DOOM){
 			player.landLevel += 1;
 			helper.landLevel +=-1;
 			if(r2.value > 0){
@@ -295,12 +295,12 @@ class DoLandQuest extends Scene{
 	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
-		if(player.aspect != "Time") removeFromArray(player, this.session.availablePlayers);
+		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
 		player.increasePower();
 		player.landLevel ++;
 		if(helper != null){
-			if(helper.aspect != "Time") removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
+			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
 			player.landLevel ++;
@@ -346,7 +346,7 @@ class DoLandQuest extends Scene{
 
 			//print("doing land quests at: " + player.land);
 			var helper = this.playersPlusHelpers[i][1]; //might be null
-			if(player.aspect == "Space" && helper == null){
+			if(player.aspect == Aspects.SPACE && helper == null){
 
 				var alt = this.addImportantEvent();
 				if(alt != null && alt.alternateScene(div)){

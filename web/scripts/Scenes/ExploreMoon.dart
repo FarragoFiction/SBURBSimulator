@@ -53,7 +53,7 @@ class ExploreMoon extends Scene {
 			String whisper = "The whisperings of the HorrorTerrors provided a nice backdrop.";
 			if(dead.length > 0) whisper = "...so, THAT's what it sounds like when a horrorterror laughs. Good to know." ;//the dead won't be rare. replace this if at all possible.;
 			if(this.session.timeTillReckoning < 3 && this.session.king.getStat("power")> getAverageHP(living) * 2) whisper = "Oh god, did the Horrorterrors get LOUDER!?";
-			if(this.player1.aspect == "Void" || (this.player2 != null && this.player2.aspect == "Void")) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
+			if(this.player1.aspect == Aspects.VOID || (this.player2 != null && this.player2.aspect == Aspects.VOID)) whisper = "The Horrorterrors are strangely quiet, their whisperings strained, like someone trying to speak through a broken speaker.";
 			if(this.player1.grimDark > 0 || (this.player2 != null && this.player2.grimDark > 0)) whisper = "The Horrorterrors whisperings call to them. ";
 
 			return "whimsical Derse activities, such as " + thing1 + " and " + thing2 + ". " + whisper;
@@ -85,11 +85,11 @@ class ExploreMoon extends Scene {
 	}
 	//TODO get rid of this, don't need it anymore.
 	void checkBloodBoost(){
-		if(this.player1.aspect == "Blood" && this.player2 != null){
+		if(this.player1.aspect == Aspects.BLOOD && this.player2 != null){
 			this.player2.boostAllRelationships();
 		}
 
-		if(this.player2!=null && this.player2.aspect == "Blood"){
+		if(this.player2!=null && this.player2.aspect == Aspects.BLOOD){
 			this.player1.boostAllRelationships();
 		}
 	}

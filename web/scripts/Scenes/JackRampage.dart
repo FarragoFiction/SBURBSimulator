@@ -57,8 +57,8 @@ class JackRampage extends Scene{
 	}
 	bool canCatch(Player victim){
 			if(this.session.jack.getStat("mobility") < victim.getStat("mobility")) return false;
-			if(victim.aspect == "Void" && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
-			if(victim.aspect == "Space" && victim.getStat("power") > 50){
+			if(victim.aspect == Aspects.VOID && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
+			if(victim.aspect == Aspects.SPACE && victim.getStat("power") > 50){
 				//print("high level space player avoiding jack" + this.session.session_id.toString());
 				return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 			}

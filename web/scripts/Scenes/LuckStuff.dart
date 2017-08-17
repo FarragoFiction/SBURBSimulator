@@ -57,7 +57,7 @@ class LuckStuff extends Scene{
 	}
 	String roll60(Roll roll){
 		//print("roll60 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
@@ -132,7 +132,7 @@ class LuckStuff extends Scene{
 	}
 	String roll80(Roll roll){
 		//print("roll80 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
@@ -178,11 +178,11 @@ class LuckStuff extends Scene{
 	}
 	String roll95(Roll roll){
 		//print("roll95 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != "Space" && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll90(roll);
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a catapult, which throws impudent fruit at a nearby Ogre, which wakes him up, which makes him wander away, which frees the local consorts from his tyranny, who then celebrate an end to their famine by eating the fruit.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be completed. ";
-		if(roll.player.aspect == "Space"){
+		if(roll.player.aspect == Aspects.SPACE){
 			ret += "Wait. What the HELL!? Is that last Frog!? Just sitting there? Right in front of the " + roll.player.htmlTitle() + "!? No time shenanigans or prophecies or god damned Choices!? It's just...there. Well. Damn. That'll make the frog breeding WAY easier.";
 		}
 		roll.player.landLevel ++;

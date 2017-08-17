@@ -155,7 +155,7 @@ class PlanToExileJack extends Scene {
 		Drawing.drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
 	}
 	bool smart(player){
-		return ((player.aspect == "Light" || player.class_name == SBURBClassManager.SEER) ||(player.aspect == "Doom" || player.aspect == "Mind"));
+		return ((player.aspect == Aspects.LIGHT || player.class_name == SBURBClassManager.SEER) ||(player.aspect == Aspects.DOOM || player.aspect == Aspects.MIND));
 	}
 
 	@override

@@ -18,10 +18,10 @@ class SolvePuzzles extends Scene {
 	void checkPlayer(Player player){
 		this.player1 = player;
 		this.player2 = null;
-		if(player.aspect == "Blood" || player.class_name == SBURBClassManager.PAGE){
+		if(player.aspect == Aspects.BLOOD || player.class_name == SBURBClassManager.PAGE){
 			if(this.session.availablePlayers.length > 1){
 				this.player2 = rand.pickFrom(this.session.availablePlayers);
-				if(this.player2 == this.player1 && this.player2.aspect != "Time"){
+				if(this.player2 == this.player1 && this.player2.aspect != Aspects.TIME){
 					this.player1 = null;
 					this.player2 = null;
 					return;
@@ -36,7 +36,7 @@ class SolvePuzzles extends Scene {
 		//if i'm not blood or page, random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && rand.nextDouble() > .5){
 			this.player2 = findHighestMobilityPlayer(this.session.availablePlayers);
-			if(this.player2 == this.player1 && this.player1.aspect != "Time"){  //only time player can help themselves out.
+			if(this.player2 == this.player1 && this.player1.aspect != Aspects.TIME){  //only time player can help themselves out.
 				this.player2 == null;
 			}
 		}
@@ -60,11 +60,11 @@ class SolvePuzzles extends Scene {
 
 	}
 	void checkBloodBoost(){ //TODO seriously rip this out
-		if(this.player1.aspect == "Blood" && this.player2 != null){
+		if(this.player1.aspect == Aspects.BLOOD && this.player2 != null){
 			this.player2.boostAllRelationships();
 		}
 
-		if(this.player2!=null && this.player2.aspect == "Blood"){
+		if(this.player2!=null && this.player2.aspect == Aspects.BLOOD){
 			this.player1.boostAllRelationships();
 		}
 	}
@@ -141,7 +141,7 @@ class SolvePuzzles extends Scene {
 		this.checkBloodBoost();
 
 		ret += "The " + this.player1.htmlTitle();
-		if(this.player2 != null && (this.player2.aspect != this.player1.aspect ||this.player2.aspect == "Time")){ //seriously, stop having clones of non time players!!!!
+		if(this.player2 != null && (this.player2.aspect != this.player1.aspect ||this.player2.aspect == Aspects.TIME)){ //seriously, stop having clones of non time players!!!!
 			ret += " and the " + this.player2.htmlTitle() + " do ";
 		}else{
 			ret += " does ";

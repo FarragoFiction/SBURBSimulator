@@ -111,7 +111,7 @@ class Aftermath extends Scene {
 		List<Player> living = findLivingPlayers(this.session.players);
 		Player spacePlayer = this.session.findBestSpace();
 		Player corruptedSpacePlayer = this.session.findMostCorruptedSpace();
-		//var spacePlayer = findAspectPlayer(this.session.players, "Space");
+		//var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
 		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
 
