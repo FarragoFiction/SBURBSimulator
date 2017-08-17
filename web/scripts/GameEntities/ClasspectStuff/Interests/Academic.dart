@@ -1,11 +1,17 @@
-import "Interest.dart";
 import "../../GameEntity.dart";
+import "Interest.dart";
 
 
 class Academic extends InterestCategory {
-  @override
-  List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat("freeWill", -2, true)]);
+    @override
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat("freeWill", -2, true)]);
+    @override
+    List<String> handles1 = <String>["serious", "researching", "machiavellian", "princeton", "pedagogical", "theoretical", "hypothetical", "meandering", "scholarly", "biological", "pants", "spectacled", "scientist", "scholastic", "scientific", "particular", "measured"];
 
-  Academic():super(13,"Academic", "smart","nerdy");
+    @override
+    List<String> handles2 = <String>["Business", "Stuck", "Student", "Scholar", "Researcher", "Scientist", "Trainee", "Biologist", "Minerologist", "Lecturer", "Herbalist", "Dean", "Director", "Honcho", "Minder", "Verbalist", "Botanist"];
+
+
+    Academic() :super(13, "Academic", "smart", "nerdy");
 
 }

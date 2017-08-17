@@ -520,7 +520,7 @@ class Player extends GameEntity {
             if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
                 return this.aspect.getRandomQuest(rand, denizenDefeated);
             } else {
-              return this.class_name.getQuest(rand, true);
+                return this.class_name.getQuest(rand, true);
             }
         }
         return null;
@@ -649,15 +649,15 @@ class Player extends GameEntity {
     }
 
     num getAttackerModifier() {
-     return this.class_name.getAttackerModifier();
+        return this.class_name.getAttackerModifier();
     }
 
     num getDefenderModifier() {
-      return this.class_name.getDefenderModifier();
+        return this.class_name.getDefenderModifier();
     }
 
     num getMurderousModifier() {
-      return this.class_name.getMurderousModifier();
+        return this.class_name.getMurderousModifier();
     }
 
     String getDenizen() {
@@ -752,7 +752,7 @@ class Player extends GameEntity {
     }
 
     bool hasInteractionEffect() {
-      return this.class_name.hasInteractionEffect();
+        return this.class_name.hasInteractionEffect();
     }
 
     //IMPORTANT, THE WHOLE POINT OF INTERACTION IS YOU CAN STEAL FROM ENEMIES *OR* ALLIES
@@ -916,7 +916,7 @@ class Player extends GameEntity {
     }
 
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-       return this.class_name.modPowerBoostByClass(powerBoost, stat);
+        return this.class_name.modPowerBoostByClass(powerBoost, stat);
     }
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
@@ -949,7 +949,7 @@ class Player extends GameEntity {
             powerBoost = powerBoost * 2; //permanent doubling of stats forever.
         }
 
-        this.addStat("power", Math.max(1,powerBoost)); //no negatives
+        this.addStat("power", Math.max(1, powerBoost)); //no negatives
 
         this.associatedStatsIncreasePower(powerBoost);
         //gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
@@ -959,13 +959,13 @@ class Player extends GameEntity {
         }
         //TODO figure out what the actual fuck this line was supposed to be doing. set power to ITSELF???
         //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
-       // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
+        // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
 
-       // print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
+        // print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
     }
 
     String shortLand() {
-        if(land == null) throw "Should Never Ask for the Abbreviation for a Null Land";
+        if (land == null) throw "Should Never Ask for the Abbreviation for a Null Land";
         RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
         return joinMatches(exp.allMatches(land)).toUpperCase();
     }
@@ -1414,7 +1414,7 @@ class Player extends GameEntity {
     }
 
     bool highInit() {
-      return this.class_name.highHinit();
+        return this.class_name.highHinit();
     }
 
     void initializeLuck() {
@@ -1557,7 +1557,7 @@ class Player extends GameEntity {
     String toOCDataString() {
         //for now, only extentsion sequence is for classpect. so....
         String tmpx = this.toDataBytesX(new ByteBuilder());
-        if(tmpx == null) tmpx = ""; //DART is putting null here instead of a blank string, like an asshole.
+        if (tmpx == null) tmpx = ""; //DART is putting null here instead of a blank string, like an asshole.
         String x = "&x=$tmpx"; //ALWAYS have it. worst case scenario is 1 bit.
 
         return "b=${this.toDataBytes()}&s=${this.toDataStrings(true)}$x";
@@ -1565,8 +1565,8 @@ class Player extends GameEntity {
 
     //take in a builder so when you do a group of players then can use same builder and no padding.
     String toDataBytesX(ByteBuilder builder) {
-        Map<String,dynamic> j = this.toJSON();
-        if(j["class_name"] <= 15 && j["aspect"] <= 15){ //if NEITHER have need of extension, just return size zero;
+        Map<String, dynamic> j = this.toJSON();
+        if (j["class_name"] <= 15 && j["aspect"] <= 15) { //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
             return BASE64URL.encode(builder.toBuffer().asUint8List());
         }
