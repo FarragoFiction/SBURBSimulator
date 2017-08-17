@@ -872,7 +872,7 @@ class Player extends GameEntity {
         //print("guardian for " + player.titleBasic());
         Player player = this;
         List<SBURBClass> possibilities = session.available_classes_guardians;
-        if (possibilities.isEmpty) possibilities = SBURBClassManager.canon;
+        if (possibilities.isEmpty) possibilities = new List<SBURBClass>.from(SBURBClassManager.canon);
         //print("class names available for guardians is: " + possibilities);
         Player guardian = randomPlayerWithClaspect(this.session, this.session.rand.pickFrom(possibilities), this.aspect);
         removeFromArray(guardian.class_name, session.available_classes_guardians);

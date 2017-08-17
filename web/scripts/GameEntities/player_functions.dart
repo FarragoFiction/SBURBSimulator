@@ -365,7 +365,8 @@ Player getLeader(List<Player> playerList) {
             }
         }
     }
-    return null;
+    if (!playerList.isEmpty) playerList[0].leader = true; //SOMEONE be the leader god damn it
+    return playerList[0];
 }
 
 
