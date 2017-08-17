@@ -1,4 +1,5 @@
 import "dart:math" as Math;
+import "weighted_lists.dart";
 
 /// Wraps [Math.Random] to allow adding functionality... a bit evil but it'll do.
 ///
@@ -42,8 +43,11 @@ class Random implements Math.Random {
 
 	int nextIntRange(int min, int max) => this.nextInt(max-min) + min;
 
-	T pickFrom<T>(Iterable<T> list) {
+	T pickFrom<T>(Iterable<T> list, [bool useWeights = true]) {
 		if (list.isEmpty) { return null; }
+		if (useWeights && list is WeightedList<T>) {
+			return list.get(this.nextDouble());
+		}
 		return list.elementAt(this.nextInt(list.length));
 	}
 }

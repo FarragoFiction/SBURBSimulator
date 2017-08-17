@@ -22,6 +22,7 @@ export "quirk.dart";
 export "random_tables.dart";
 export "loading.dart";
 export "random.dart";
+export "weighted_lists.dart";
 export "relationship.dart";
 export "handle_sprites.dart";
 export "AfterLife.dart";
@@ -181,6 +182,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     story.append(errorDiv);
 
     appendHtml(errorDiv, "${e.error.toString().split("\n").first}<br/>");
+    //appendHtml(errorDiv, e.error);
     Tracer.writeTrace(e.error, errorDiv);
 
     //appendHtml(errorDiv, e.error);
