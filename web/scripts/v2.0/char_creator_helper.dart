@@ -927,9 +927,9 @@ class CharacterCreatorHelper {
     }
 
     String drawInterestDropDown(InterestCategory category, int num, Player player) {
-        String html =
-            "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
+        String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
         List<String> interestsInCategory = category.copyOfInterestStrings;
+        //print("Interests in category $category are $interestsInCategory");
         String interestToCheck = player.interest1.name;
         if (num == 2) interestToCheck = player.interest2.name;
         for (int i = 0; i < interestsInCategory.length; i++) {

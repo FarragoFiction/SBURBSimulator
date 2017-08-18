@@ -15,7 +15,7 @@ class Social extends InterestCategory {
     List<String> levels =<String>["FRIEND-TO-ALL", "FRIEND COLLECTOR"];
 
     @override
-    List<String> _interestStrings = <String>["Psychology", "Religion", "Animal Training", "Pets", "Animals", "Online Roleplaying", "Live Action Roleplaying", "Tabletop Roleplaying", "Role Playing", "Social Media", "Charity", "Mediating"];
+    List<String> interestStrings = <String>["Psychology", "Religion", "Animal Training", "Pets", "Animals", "Online Roleplaying", "Live Action Roleplaying", "Tabletop Roleplaying", "Role Playing", "Social Media", "Charity", "Mediating"];
 
 
     Social() :super(11, "Social", "extroverted", "shallow");

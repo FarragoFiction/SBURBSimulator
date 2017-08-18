@@ -14,7 +14,7 @@ class Music extends InterestCategory {
     List<String> levels =<String>["SINGING SCURRYWORT", "MUSICAL MOPPET"];
 
     @override
-    List<String> _interestStrings = <String>["Rap", "Music", "Song Writing", "Musicals", "Dance", "Singing", "Ballet", "Playing Guitar", "Playing Piano", "Mixtapes", "Turntables"];
+    List<String> interestStrings = <String>["Rap", "Music", "Song Writing", "Musicals", "Dance", "Singing", "Ballet", "Playing Guitar", "Playing Piano", "Mixtapes", "Turntables"];
 
 
     Music() :super(1, "Music", "musical", "loud");

@@ -14,7 +14,7 @@ class Writing extends InterestCategory {
     List<String> levels = <String>["SHAKY SHAKESPEARE", "QUILL RUINER"];
 
     @override
-    List<String> _interestStrings =  <String>["Writing", "Fan Fiction", "Script Writing", "Character Creation", "Dungeon Mastering", "Authoring"];
+    List<String> interestStrings =  <String>["Writing", "Fan Fiction", "Script Writing", "Character Creation", "Dungeon Mastering", "Authoring"];
 
 
 

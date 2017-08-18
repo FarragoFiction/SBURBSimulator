@@ -15,7 +15,7 @@ class Justice extends InterestCategory {
     List<String> levels = <String>["JUSTICE JUICER", "BALANCE RUMBLER"];
 
     @override
-    List<String> _interestStrings = <String>["Social Justice", "Detectives", "Mysteries", "Leadership", "Revolution", "Justice", "Equality", "Sherlock Holmes"];
+    List<String> interestStrings = <String>["Social Justice", "Detectives", "Mysteries", "Leadership", "Revolution", "Justice", "Equality", "Sherlock Holmes"];
 
 
 

@@ -97,8 +97,8 @@ class InterestCategory {
     List<String> levels = <String>["Nobody"];
     int id;
 
-    //this is what char creator should modify.
-    List<String> _interestStrings = ["NONE"];
+    //this is what char creator should modify. making it private meant that children apparently couldn't override it. i guess i want protected, but does dart even have that?
+    List<String> interestStrings = ["NONE"];
 
     String negative_descriptor;
     String positive_descriptor;
@@ -111,18 +111,18 @@ class InterestCategory {
     }
 
     //clunky name to remind me that modding this does nothing
-    List<String> get copyOfInterestStrings => new List<String>.from(_interestStrings);
+    List<String> get copyOfInterestStrings => new List<String>.from(interestStrings);
 
     //interests are auto sanitized.
     void addInterest(String i) {
       print("maybe adding interest $i");
-      if (_interestStrings.contains(i)) return;
+      if (interestStrings.contains(i)) return;
         print("def adding interest $i");
-        _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
+        interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
     }
 
     void removeInterest(String i) {
-        removeFromArray(i, _interestStrings);
+        removeFromArray(i, interestStrings);
     }
 
     bool playerLikes(Player p) {

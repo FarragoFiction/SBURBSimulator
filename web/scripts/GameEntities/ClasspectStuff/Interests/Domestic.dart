@@ -16,7 +16,7 @@ class Domestic extends InterestCategory {
     List<String> levels =<String>["BATTERBRAT", "GRITTY GUARDIAN"];
 
     @override
-    List<String> _interestStrings =<String>["Sewing", "Fashion", "Meditation", "Babies", "Peace", "Knitting", "Cooking", "Baking", "Gardening", "Crochet", "Scrapbooking"];
+    List<String> interestStrings =<String>["Sewing", "Fashion", "Meditation", "Babies", "Peace", "Knitting", "Cooking", "Baking", "Gardening", "Crochet", "Scrapbooking"];
 
 
 

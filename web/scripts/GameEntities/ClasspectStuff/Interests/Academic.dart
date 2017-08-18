@@ -15,7 +15,7 @@ class Academic extends InterestCategory {
     List<String> levels = <String>["NERDY NOODLER", "SCAMPERING SCIENTIST"];
 
     @override
-    List<String> _interestStrings =<String>["Archaeology", "Mathematics", "Astronomy", "Knowledge", "Physics", "Biology", "Chemistry", "Geneology", "Science", "Molecular Gastronomy", "Model Trains", "Politics", "Geography", "Cartography", "Typography", "History"];
+    List<String> interestStrings =<String>["Archaeology", "Mathematics", "Astronomy", "Knowledge", "Physics", "Biology", "Chemistry", "Geneology", "Science", "Molecular Gastronomy", "Model Trains", "Politics", "Geography", "Cartography", "Typography", "History"];
 
 
 
