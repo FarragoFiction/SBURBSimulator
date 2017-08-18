@@ -10,7 +10,7 @@ class Waste extends SBURBClass {
   List<String> postDenizenQuests =["figuring out the least-disruptive way to help the local Consorts recover from the Denizen's rule","being a useless piece of shit and not joining cleanup efforts.","accidentally causing MORE destruction in an attempt to help clean up after their epic as fuck fight agains their Denizen"];
   @override
   List<String> handles =["wasteful","worrying","wacky","withering","worldly","weighty"];
-  Waste() : super("Waste", 13, false);
+  Waste() : super("Waste", 12, false);
 
   @override
   bool highHinit() {

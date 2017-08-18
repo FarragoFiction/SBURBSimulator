@@ -2,7 +2,7 @@ import "SBURBClass.dart";
 import "../../player.dart";
 import "../../GameEntity.dart";
 class Page extends SBURBClass {
-  Page() : super("Page", 2, true);
+  Page() : super("Page", 1, true);
   @override
   List<String> levels =["APPRENTICE ANKLEBITER", "JOURNEYING JUNIOR", "OUTFOXED BUCKAROO"];
   @override

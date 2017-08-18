@@ -13,7 +13,7 @@ class Heir extends SBURBClass {
   List<String> handles =["home","honorable","humble","hot","horrific","hardened", "havocs"];
 
 
-  Heir() : super("Heir", 9, true);
+  Heir() : super("Heir", 8, true);
 
   @override
   bool highHinit() {

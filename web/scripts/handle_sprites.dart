@@ -1728,23 +1728,23 @@ abstract class Drawing {
 
     static String playerToRegularBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/reg${(classNameToInt(player.class_name))}.png";
+        return "Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
     }
 
     static String playerToCowl(Player player) {
         if (easter_egg) return playerToEggBody(player); //no cowl, just double up on egg.
-        return "Bodies/cowl${(classNameToInt(player.class_name))}.png";
+        return "Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToDreamBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/dream${(classNameToInt(player.class_name))}.png";
+        return "Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToEggBody(Player player) {
-        return "Bodies/egg${(classNameToInt(player.class_name))}.png";
+        return "Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
@@ -1806,7 +1806,7 @@ abstract class Drawing {
 
     static String playerToGodBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/god${(classNameToInt(player.class_name))}.png";
+        return "Bodies/god${(classNameToInt(player.class_name)+1)}.png";
     }
 
 

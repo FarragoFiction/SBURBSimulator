@@ -6,7 +6,7 @@ class Grace extends SBURBClass {
   List<String> levels =["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
   @override
   List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
-  Grace() : super("Grace", 18, false);
+  Grace() : super("Grace", 17, false);
 
   @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {

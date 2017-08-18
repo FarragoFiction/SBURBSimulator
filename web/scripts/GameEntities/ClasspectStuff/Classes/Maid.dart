@@ -10,7 +10,7 @@ class Maid extends SBURBClass {
   List<String> postDenizenQuests  = ["using their powers to help clean up the debris left from their Denizen actions. Who knew the term maid would be so literal","watching over the consorts as they begin to rebuild","following their consorts to ever larger pieces of debris","empowering an army of consorts to clean out the last of the debris from their Denizen"];
   @override
   List<String> handles =["meandering","motley","musing","mischievous","macabre", "maiden", "morose"];
-  Maid() : super("Maid", 1, true);
+  Maid() : super("Maid", 0, true);
 
   @override
   bool highHinit() {

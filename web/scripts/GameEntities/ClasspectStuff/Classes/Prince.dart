@@ -3,7 +3,7 @@ import "../../../SBURBSim.dart";
 
 
 class Prince extends SBURBClass {
-  Prince() : super("Prince", 11, true);
+  Prince() : super("Prince", 10, true);
   @override
   List<String> levels =["PRINCE HARMING","ROYAL RUMBLER","DIGIT PRINCE"];
   @override

@@ -11,7 +11,7 @@ class Thief extends SBURBClass {
   List<String> postDenizenQuests =["literally stealing another player’s planet. Well, the deed to another player's planet, but still. A planet. Wow","stealing every last piece of grist in every last dungeon. Hell fucking yes","crashing the consort economy when they spend their hellaciously devious wealth","doing a dance on their pile of ill earned goods and wealth"];
   @override
   List<String> handles =["talented","terrible","talkative","tenacious","tried", "torrented"];
-  Thief() : super("Thief", 8, true);
+  Thief() : super("Thief", 7, true);
 
   @override
   bool highHinit() {

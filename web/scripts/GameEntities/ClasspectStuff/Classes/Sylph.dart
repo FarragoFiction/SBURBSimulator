@@ -10,7 +10,7 @@ class Sylph extends SBURBClass {
   List<String> postDenizenQuests =["beginning to heal the vast psychological damage their consorts have endured from the denizen’s ravages","setting up counseling booths around their land and staffing them with well trained consort professionals","bugging and fussing and meddling with the consorts, but now using their NEW FOUND POWERS","realizing that maybe their bugging and fussing and meddling isn’t always the best way to deal with things"];
   @override
   List<String> handles =["serious", "surly","sour","sweet","stylish","soaring", "serene", "salacious"];
-  Sylph() : super("Sylph", 6, true);
+  Sylph() : super("Sylph", 5, true);
 
 
 

@@ -3,7 +3,7 @@ import "../../../SBURBSim.dart";
 
 
 class Rogue extends SBURBClass {
-  Rogue() : super("Rogue", 5, true);
+  Rogue() : super("Rogue", 4, true);
   @override
   List<String> levels =["KNEEHIGH ROBINHOOD","DASHING DARTABOUT", "COMMUNIST COMMANDER"];
   @override

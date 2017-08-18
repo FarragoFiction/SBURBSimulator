@@ -10,7 +10,7 @@ class Seer extends SBURBClass {
   List<String> postDenizenQuests =["casting their sight around the land to find the causes of their land’s devastation","taking a consort under their wing and teaching it the craft of magic","predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize","alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
   @override
   List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
-  Seer() : super("Seer", 7, true);
+  Seer() : super("Seer", 6, true);
 
   @override
   bool highHinit() {

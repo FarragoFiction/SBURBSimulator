@@ -1,7 +1,7 @@
 import "SBURBClass.dart";
 class Guide extends SBURBClass {
 
-  Guide() : super("Guide", 17, false);
+  Guide() : super("Guide", 16, false);
 
   @override
   bool highHinit() {

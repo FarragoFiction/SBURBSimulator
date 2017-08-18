@@ -11,7 +11,7 @@ class Witch extends SBURBClass {
   List<String> postDenizenQuests =["alchemizing a mind crushingly huge number of computers in various forms","whizzing around their land like it's fucking christmas","defeating a completely out of nowhere mini boss","wondering if their sprite prototyping choice was the right one after all"];
   @override
   List<String> handles =["wondering","wonderful","wacky","withering","worldly","weighty"];
-  Witch() : super("Witch", 12, true);
+  Witch() : super("Witch", 11, true);
 
   @override
   bool highHinit() {

@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
 class Sage extends SBURBClass {
-  Sage() : super("Sage", 15, false);
+  Sage() : super("Sage", 14, false);
   @override
   List<String> levels =["HERBAL ESSENCE","CHICKEN SEASONER","TOMEMASTER"];
   @override

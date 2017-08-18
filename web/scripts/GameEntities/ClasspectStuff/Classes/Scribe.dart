@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
 class Scribe extends SBURBClass {
-  Scribe() : super("Scribe", 16, false);
+  Scribe() : super("Scribe", 15, false);
   @override
   List<String> levels =["MIDNIGHT BURNER","WRITER WATCHER","DIARY DEAREST"];
   @override

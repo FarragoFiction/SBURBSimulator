@@ -13,7 +13,7 @@ class Bard extends SBURBClass {
   @override
   List<String> handles =["benign","blissful","boisterous","bonkers","broken", "bizarre", "barking"];
 
-  Bard() : super("Bard", 10, true);
+  Bard() : super("Bard", 9, true);
 
   @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {

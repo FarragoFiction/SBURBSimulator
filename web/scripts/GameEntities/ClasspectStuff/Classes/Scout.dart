@@ -1,6 +1,6 @@
 import "SBURBClass.dart";
 class Scout extends SBURBClass {
-  Scout() : super("Scout", 14, false);
+  Scout() : super("Scout", 13, false);
   @override
   List<String> levels =["BOSTON SCREAMPIE","COOKIE OFFERER","FIRE FRIEND"];
   @override

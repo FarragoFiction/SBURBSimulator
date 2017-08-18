@@ -10,7 +10,7 @@ class Knight extends SBURBClass {
   List<String> postDenizenQuests  = ["","spending way too much time hustling from village to village, saving the consorts from the denizens last few minions","breaking a siege on a consort village, saving its population and slaughtering thousands of underlings","finishing the ‘legendary’ tests of valor dispensed by an elder consort"];
   @override
   List<String> handles =["keen","knightly","kooky","kindred", "kaos",];
-  Knight() : super("Knight", 4, true);
+  Knight() : super("Knight", 3, true);
 
   @override
   bool highHinit() {
