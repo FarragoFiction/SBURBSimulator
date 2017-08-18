@@ -73,5 +73,6 @@ class Void extends Aspect {
         player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), 3, true)); //really good at one thing
         player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), -1, true)); //hit to another thing.
         player.associatedStats.add(new AssociatedStat("minLuck", -1, true)); //hit to another thing.
+        player.associatedStats.add(new AssociatedStat("sburbLore", 0.25, false)); //yes, technically it's from an aspect, but it's not NORMAL.
     }
 }

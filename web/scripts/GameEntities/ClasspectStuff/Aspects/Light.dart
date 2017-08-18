@@ -71,5 +71,6 @@ class Light extends Aspect {
         player.associatedStats.add(new AssociatedStat("freeWill", 1, true));
         player.associatedStats.add(new AssociatedStat("sanity", -1, true));
         player.associatedStats.add(new AssociatedStat("hp", -1, true));
+        player.associatedStats.add(new AssociatedStat("sburbLore", 0.25, false));//yes, technically it's from an aspect, but it's not NORMAL.
     }
 }

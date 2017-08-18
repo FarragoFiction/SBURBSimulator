@@ -13,6 +13,11 @@ class Waste extends SBURBClass {
   Waste() : super("Waste", 12, false);
 
   @override
+  void intializeAssociatedClassStatReferences(Player p) {
+    p.associatedStats.add(new AssociatedStat("sburbLore", 3.0, false)); //basically all Wastes have.
+  }
+
+  @override
   bool highHinit() {
     return true;
   }

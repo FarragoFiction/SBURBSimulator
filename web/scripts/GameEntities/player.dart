@@ -1806,7 +1806,7 @@ class Player extends GameEntity {
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
         this.aspect.initAssociatedStats(this);
-        this.class_name.intializeAssociatedClassStatReferences();
+        this.class_name.intializeAssociatedClassStatReferences(this);
         this.setStat("sburbLore",0); //all start ignorant.
         this.initializeLuck();
         this.initializeFreeWill();

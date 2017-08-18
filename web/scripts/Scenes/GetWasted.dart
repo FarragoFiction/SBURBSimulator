@@ -12,7 +12,7 @@ import "../SBURBSim.dart";
 
 class GetWasted extends Scene {
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 1000;
+    int tippingPointBase = 1;
     GetWasted(Session session): super(session);
 
   @override
@@ -34,6 +34,7 @@ class GetWasted extends Scene {
 
   @override
   void renderContent(Element div) {
-      appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ");
+      print("Getting Wasted in session ${session.session_id}");
+      appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. Player has: ${player.getStat("sburbLore")} sburbLore and ${player.gnosis} gnosis.");
   }
 }

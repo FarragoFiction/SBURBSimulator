@@ -12,6 +12,12 @@ class Seer extends SBURBClass {
   List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
   Seer() : super("Seer", 6, true);
 
+
+  @override
+  void intializeAssociatedClassStatReferences(Player p) {
+    p.associatedStats.add(new AssociatedStat("sburbLore", 0.5, false));
+  }
+
   @override
   bool highHinit() {
     return false;

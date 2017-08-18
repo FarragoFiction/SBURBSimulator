@@ -157,7 +157,7 @@ class SBURBClass {
     return false;
   }
 
-  void intializeAssociatedClassStatReferences() {
+  void intializeAssociatedClassStatReferences(Player p) {
   //none by default.  and in fact only sburblore should be here.
   }
 

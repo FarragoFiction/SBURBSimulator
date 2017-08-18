@@ -12,7 +12,10 @@ class Mage extends SBURBClass {
   List<String> handles =["magnificent","managerial","major","majestic","mannerly", "malignant", "morbid"];
   Mage() : super("Mage", 2, true);
 
-
+  @override
+  void intializeAssociatedClassStatReferences(Player p) {
+    p.associatedStats.add(new AssociatedStat("sburbLore", 0.5, false));
+  }
 
   @override
   bool highHinit() {

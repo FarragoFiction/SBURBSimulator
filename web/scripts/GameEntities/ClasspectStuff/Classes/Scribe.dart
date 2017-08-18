@@ -1,4 +1,6 @@
 import "SBURBClass.dart";
+import "../../player.dart";
+import "../../GameEntity.dart";
 class Scribe extends SBURBClass {
   Scribe() : super("Scribe", 15, false);
   @override
@@ -9,6 +11,12 @@ class Scribe extends SBURBClass {
   List<String> postDenizenQuests  = ["documenting the various Consorts lost to the Denizen.","writing up a recovery plan for the Local Consorts","figuring out the best way to explain how to recover from the ravages of Denizen"];
   @override
   List<String> handles =["serious", "sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
+
+  @override
+  void intializeAssociatedClassStatReferences(Player p) {
+    p.associatedStats.add(new AssociatedStat("sburbLore", 0.5, false));
+  }
+
   @override
   bool highHinit() {
     return false;

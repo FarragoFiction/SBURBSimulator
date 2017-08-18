@@ -9,6 +9,12 @@ class Grace extends SBURBClass {
   Grace() : super("Grace", 17, false);
 
   @override
+  void intializeAssociatedClassStatReferences(Player p) {
+    p.associatedStats.add(new AssociatedStat("sburbLore", 3.0, false)); //basically all Wastes have.
+  }
+
+
+  @override
   num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.isFromAspect) {
       powerBoost = powerBoost * 0;  //wasted aspect
