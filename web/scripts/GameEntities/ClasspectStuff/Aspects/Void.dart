@@ -62,17 +62,17 @@ class Void extends Aspect {
         "[void players, am I right?]"
     ]);
 
-    Void(int id) :super(id, "Void", isCanon: true);
+    static List<String> _randomStats = Player.playerStats.toList()
+        ..remove("power")
+        ..add("MANGRIT");
 
     @override
-    void initAssociatedStats(Player player) {
-        List<String> allStats = player.allStats()
-            ..remove("power")
-            ..add("MANGRIT");
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStatRandom(_randomStats, 3, true), //really good at one thing
+        new AssociatedStatRandom(_randomStats, -1, true), //hit to another thing.
+        new AssociatedStat("minLuck", -1, true), //hit to another thing.
+        new AssociatedStat("sburbLore", 0.25, false) //yes, technically it's from an aspect, but it's not NORMAL.
+    ]);
 
-        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), 3, true)); //really good at one thing
-        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(allStats), -1, true)); //hit to another thing.
-        player.associatedStats.add(new AssociatedStat("minLuck", -1, true)); //hit to another thing.
-        player.associatedStats.add(new AssociatedStat("sburbLore", 0.25, false)); //yes, technically it's from an aspect, but it's not NORMAL.
-    }
+    Void(int id) :super(id, "Void", isCanon: true);
 }

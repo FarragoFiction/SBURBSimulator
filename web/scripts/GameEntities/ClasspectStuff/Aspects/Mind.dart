@@ -64,13 +64,13 @@ class Mind extends Aspect {
         "setting up a self-sufficient consort justice system"
     ]);
 
-    Mind(int id) :super(id, "Mind", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("freeWill", 2, true));
-        player.associatedStats.add(new AssociatedStat("minLuck", 1, true));
-        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
-        player.associatedStats.add(new AssociatedStat("maxLuck", -1, true)); //LUCK DO3SN'T M4TT3R!!!
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("freeWill", 2, true),
+        new AssociatedStat("minLuck", 1, true),
+        new AssociatedStat("RELATIONSHIPS", -1, true),
+        new AssociatedStat("maxLuck", -1, true) //LUCK DO3SN'T M4TT3R!!!
+    ]);
+
+    Mind(int id) :super(id, "Mind", isCanon: true);
 }

@@ -73,12 +73,12 @@ class Space extends Aspect {
         "lighting the Forge" //TODO requires a magic ring.
     ]);
 
-    Space(int id) :super(id, "Space", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("alchemy", 2, true));
-        player.associatedStats.add(new AssociatedStat("hp", 1, true));
-        player.associatedStats.add(new AssociatedStat("mobility", -2, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("alchemy", 2, true),
+        new AssociatedStat("hp", 1, true),
+        new AssociatedStat("mobility", -2, true)
+    ]);
+
+    Space(int id) :super(id, "Space", isCanon: true);
 }

@@ -70,15 +70,15 @@ class Doom extends Aspect {
         "narrowly averting the doomsday prophecy through technicalities, seeming coincidence, and a plan so convoluted that at the end of it no one can be sure the plan actually DID anything"
     ]);
 
-    Doom(int id) :super(id, "Doom", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("alchemy", 2, true));
-        player.associatedStats.add(new AssociatedStat("freeWill", 1, true));
-        player.associatedStats.add(new AssociatedStat("minLuck", -1, true));
-        player.associatedStats.add(new AssociatedStat("hp", -1, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("alchemy", 2, true),
+        new AssociatedStat("freeWill", 1, true),
+        new AssociatedStat("minLuck", -1, true),
+        new AssociatedStat("hp", -1, true)
+    ]);
+
+    Doom(int id) :super(id, "Doom", isCanon: true);
 
     @override
     void onDeath(Player player) {

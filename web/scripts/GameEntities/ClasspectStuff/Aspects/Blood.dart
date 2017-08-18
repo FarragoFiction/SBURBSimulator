@@ -61,12 +61,12 @@ class Blood extends Aspect {
         "completely overthrowing the Denizen's underlings in a massive battle"
     ]);
 
-    Blood(int id) :super(id, "Blood", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 2, true));
-        player.associatedStats.add(new AssociatedStat("sanity", 1, true));
-        player.associatedStats.add(new AssociatedStat("maxLuck", -2, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("RELATIONSHIPS", 2, true),
+        new AssociatedStat("sanity", 1, true),
+        new AssociatedStat("maxLuck", -2, true)
+    ]);
+
+    Blood(int id) :super(id, "Blood", isCanon: true);
 }

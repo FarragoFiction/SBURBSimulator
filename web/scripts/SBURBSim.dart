@@ -1,24 +1,18 @@
 library SBURBSim;
 
 import 'dart:html';
-import 'dart:typed_data';
 
 import 'SBURBSim.dart';
 import "includes/tracer.dart";
 
-//import 'package:unittest/unittest.dart';  need to do special shit to use. spend no more than 30 minutes trying to install. maybe this isn't in library, but in other thing?
-//in a different library can import only part by import 'package:lib1/lib1.dart' show foo; might be more useful than doing unit testing here.
-//if dart load time of code is a problem, can chop this up into sub libraries and use lazy or deffered loading.
-//TODO DEAD SESSIONS will only have a small subset of this, so will need to make a different library
-
-export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
-export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
-export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "Controllers/SimController.dart";
+export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
+export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
+export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "fraymotif.dart";
 export "session.dart";
 export "sessionSummary.dart";
-export "quirk.dart";
+
 export "random_tables.dart";
 export "loading.dart";
 export "random.dart";
@@ -36,6 +30,7 @@ export "v2.0/YellowYardResultController.dart";
 export "ShittyRapEngine/shitty_raps.dart";
 export "eggs_and_egg_accessories.dart"; //handles easter eggs
 export "OCDataStringHandler.dart";
+export "quirk.dart";
 
 
 //scenes
@@ -100,8 +95,8 @@ var nonRareSessionCallback = null; //AB is already storing a callback for easter
 DateTime startTime = new DateTime.now(); //gets page load.
 DateTime stopTime;
 
-var raggedPlayers = null; //just for scratch'
-var numPlayersPreScratch = 0;
+List<Player> raggedPlayers = null; //just for scratch'
+int numPlayersPreScratch = 0;
 
 void globalInit() {
     if (doneGlobalInit) { return; }
@@ -141,11 +136,11 @@ bool printCorruptionMessage(ErrorEvent e) {
     print("Debugging AB: corruption msg in session: ${curSessionGlobalVar.session_id}");
     Element story = querySelector("#story");
 
-    String msg = e.message;
+    //String msg = e.message;
     String url = e.path.toString();
-    String lineNo = e.lineno.toString();
-    String columnNo = e.colno.toString();
-    String error = e.toString();
+    //String lineNo = e.lineno.toString();
+    //String columnNo = e.colno.toString();
+    //String error = e.toString();
 
     String recomendedAction = "";
     Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
@@ -328,7 +323,7 @@ void scratchEasterEggCallBack() {
     if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
 
     //NOT over time. literally sudden death. thanks meenah!
-    var livingRagged = findLivingPlayers(raggedPlayers);
+    List<Player> livingRagged = findLivingPlayers(raggedPlayers);
     if (suddenDeath != null && !suddenDeath.dead) {
         print("sudden death in: ${curSessionGlobalVar.session_id}");
         for (num i = 0; i < livingRagged.length; i++) {
@@ -346,34 +341,34 @@ void scratchEasterEggCallBack() {
     setHtml(querySelector("#story"), scratch);
     if (!doNotRender) window.scrollTo(0, 0);
 
-    var guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
+    List<Player> guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 
-    var guardianDiv = curSessionGlobalVar.newScene();
-    var guardianID = (guardianDiv.id) + "_guardians";
+    Element guardianDiv = curSessionGlobalVar.newScene();
+    String guardianID = "${guardianDiv.id}_guardians";
     num ch = canvasHeight;
     if (guardians.length > 6) {
         ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
     }
-    String canvasHTML = "<br><canvas id='canvas" + guardianID + "' width='" + canvasWidth.toString() + "' height=" + ch.toString() + "'>  </canvas>";
+    String canvasHTML = "<br><canvas id='canvas$guardianID' width='$canvasWidth' height='$ch'>  </canvas>";
 
     appendHtml(guardianDiv, canvasHTML);
-    Element canvasDiv = querySelector("#canvas" + guardianID);
+    Element canvasDiv = querySelector("#canvas$guardianID");
     Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
-    var playerDiv = curSessionGlobalVar.newScene();
-    var playerID = (playerDiv.id) + "_players";
+    Element playerDiv = curSessionGlobalVar.newScene();
+    String playerID = "${playerDiv.id}_players";
     ch = canvasHeight;
     if (curSessionGlobalVar.players.length > 6) {
         ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
     }
-    canvasHTML = "<br><canvas id='canvas" + playerID + "' width='" + canvasWidth.toString() + "' height=" + ch.toString() + "'>  </canvas>";
+    canvasHTML = "<br><canvas id='canvas$playerID' width='$canvasWidth' height='$ch'>  </canvas>";
 
     appendHtml(playerDiv, canvasHTML);
-    canvasDiv = querySelector("#canvas" + playerID);
+    canvasDiv = querySelector("#canvas$playerID");
 
     //need to render self for caching to work for this
-    for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
+    for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
         curSessionGlobalVar.players[i].renderSelf();
     }
     Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
@@ -431,19 +426,19 @@ void setHtml(Element element, String html) {
 void renderAfterlifeURL() {
     if (!curSessionGlobalVar.afterLife.ghosts.isEmpty) {
         stopTime = new DateTime.now();
-        var params = window.location.href.substring(window.location.href.indexOf("?") + 1);
+        String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
 
-        String html = "<Br><br><a href = 'rip.html?" + generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts, false) + "' target='_blank'>View Afterlife In New Tab?</a>";
-        html += '<br><br><a href = "character_creator.html?seed=' + curSessionGlobalVar.session_id.toString() + '&' + params + ' " target="_blank">Replay Session </a> ';
-        html += "<br><br><a href = 'index2.html'>Random New Session?</a>";
-        html += '<br><br><a href = "index2.html?seed=' + curSessionGlobalVar.session_id.toString() + '&' + params + ' " target="_blank">Shareable URL </a> ';
-        html += "<Br><Br>Simulation took: " + msToTime(stopTime.difference(startTime)) + " to render. ";
+        String html = "<Br><br><a href = 'rip.html?${generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts, false)}' target='_blank'>View Afterlife In New Tab?</a>";
+        html = '$html<br><br><a href = "character_creator.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Replay Session </a> ';
+        html = "$html<br><br><a href = 'index2.html'>Random New Session?</a>";
+        html = '$html<br><br><a href = "index2.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Shareable URL </a> ';
+        html = "$html<Br><Br>Simulation took: ${msToTime(stopTime.difference(startTime))} to render. ";
         //print("gonna append: " + html);
         querySelector("#story").appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
     } else {
         stopTime = new DateTime.now();
-        var params = window.location.href.substring(window.location.href.indexOf("?") + 1);
+        String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
 
         String html = "";

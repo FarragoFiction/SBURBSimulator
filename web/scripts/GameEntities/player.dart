@@ -1701,9 +1701,10 @@ class Player extends GameEntity {
         this.sprite.doomed = true;
     }
 
+    static List<String> playerStats = <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
     @override
-    List<String> allStats() {
-        return <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
+    Iterable<String> allStats() {
+        return playerStats;
     }
 
     List<AssociatedStat> getOnlyAspectAssociatedStats() {

@@ -69,13 +69,13 @@ class Rage extends Aspect {
         "~~~ Mlgsrmt nzpvh hvmhv sviv zmbnliv. Qfhg gsv dzb blf orpv rg. Gsv xlmhligh ziv dsrkkvw rmgl z uilgsrmt ufib. XXXXXX rh zdzpv.   ~~~"
     ]);
 
-    Rage(int id) :super(id, "Rage", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("MANGRIT", 2, true));
-        player.associatedStats.add(new AssociatedStat("mobility", 1, true));
-        player.associatedStats.add(new AssociatedStat("sanity", -1, true));
-        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", -1, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("MANGRIT", 2, true),
+        new AssociatedStat("mobility", 1, true),
+        new AssociatedStat("sanity", -1, true),
+        new AssociatedStat("RELATIONSHIPS", -1, true)
+    ]);
+
+    Rage(int id) :super(id, "Rage", isCanon: true);
 }

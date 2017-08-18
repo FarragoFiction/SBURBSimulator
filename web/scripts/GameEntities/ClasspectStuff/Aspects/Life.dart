@@ -64,12 +64,12 @@ class Life extends Aspect {
         "preventing the next generation of locust underlings, thus ending the consort famine"
     ]);
 
-    Life(int id) :super(id, "Life", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("hp", 2, true));
-        player.associatedStats.add(new AssociatedStat("MANGRIT", 1, true));
-        player.associatedStats.add(new AssociatedStat("alchemy", -2, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("hp", 2, true),
+        new AssociatedStat("MANGRIT", 1, true),
+        new AssociatedStat("alchemy", -2, true)
+    ]);
+
+    Life(int id) :super(id, "Life", isCanon: true);
 }

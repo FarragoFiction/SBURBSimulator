@@ -611,18 +611,47 @@ class AssociatedStat {
 
     AssociatedStat(String this.name, num this.multiplier, bool this.isFromAspect) {}
 
-    factory AssociatedStat.from(AssociatedStat source) {
-        return new AssociatedStat(source.name, source.multiplier, source.isFromAspect);
+    factory AssociatedStat.from(AssociatedStat other) {
+        return new AssociatedStat(other.name, other.multiplier, other.isFromAspect);
+    }
+
+    void applyToPlayer(Player player) {
+        player.associatedStats.add(new AssociatedStat(this.name, this.multiplier, this.isFromAspect));
     }
 
     @override
-    String toString() {
-        String tmp = "";
-        if (this.isFromAspect) tmp = " (from Aspect) ";
-        return "[$name x $multiplier$tmp]";
-    }
+    String toString() => "[$name x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
 }
 
+/// AssociatedStat variant for use as a reference for "this will be random when given to a player" like in Void
+class AssociatedStatRandom extends AssociatedStat {
+    List<String> names;
+
+    AssociatedStatRandom(List<String> this.names, num multiplier, bool isFromAspect):super("RANDOM LIST", multiplier, isFromAspect);
+
+    @override
+    void applyToPlayer(Player player) {
+        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(this.names), this.multiplier, this.isFromAspect));
+    }
+
+    @override
+    String toString() => "[(Random from $names) x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
+}
+
+/// AssociatedStat variant for use as a reference for "will apply the player's interest stats when given" like in Heart
+class AssociatedStatInterests extends AssociatedStat {
+
+    AssociatedStatInterests():super("INTERESTS", 0.0, false);
+
+    @override
+    void applyToPlayer(Player player) {
+        player.associatedStats.addAll(player.interest1.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier, true)));
+        player.associatedStats.addAll(player.interest2.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier, true)));
+    }
+
+    @override
+    String toString() => "[Stats assigned from player Interests]";
+}
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
 class Buff {

@@ -52,8 +52,7 @@ abstract class Aspects {
 
     static void register(Aspect aspect) {
         if (_aspects.containsKey(aspect.id)) {
-            throw "Duplicate aspect id for $aspect: ${aspect
-                .id} is already registered for ${_aspects[aspect.id]}.";
+            throw "Duplicate aspect id for $aspect: ${aspect.id} is already registered for ${_aspects[aspect.id]}.";
         }
         _aspects[aspect.id] = aspect;
     }
@@ -78,16 +77,13 @@ abstract class Aspects {
 
     static Iterable<Aspect> get all => _aspects.values;
 
-    static Iterable<Aspect> get canon =>
-        _aspects.values.where((Aspect a) => a.isCanon);
+    static Iterable<Aspect> get canon => _aspects.values.where((Aspect a) => a.isCanon);
 
-    static Iterable<Aspect> get fanon =>
-        _aspects.values.where((Aspect a) => !a.isCanon);
+    static Iterable<Aspect> get fanon => _aspects.values.where((Aspect a) => !a.isCanon);
 
     static Iterable<int> get ids => _aspects.keys;
 
-    static Iterable<String> get names =>
-        _aspects.values.map((Aspect a) => a.name);
+    static Iterable<String> get names => _aspects.values.map((Aspect a) => a.name);
 
     static Aspect stringToAspect(String id) {
         List<Aspect> values = new List<Aspect>.from(_aspects.values);
@@ -157,14 +153,26 @@ class Aspect {
     // Lists
 
     //TODO maybe eventually quest lines are in charge of levels, so two pages of breath with the same interest don't have exact same ladder?
-    List<String> levels = new List<String>.unmodifiable(
-        <String>["SNOWMAN SAVIOR", "NOBODY NOWHERE", "NULLZILLA"]);
-    List<String> denizenNames = new List<String>.unmodifiable(
-        <String>["ERROR 404: DENIZEN NOT FOUND"]);
-    List<String> fraymotifNames = new List<String>.unmodifiable(
-        <String>["Blank", "Null", "Boring", "Error"]);
-    List<String> landNames = new List<String>.unmodifiable(
-        <String>["Blank", "Null", "Boring", "Error"]);
+    List<String> levels = new List<String>.unmodifiable(<String>[
+        "SNOWMAN SAVIOR",
+        "NOBODY NOWHERE",
+        "NULLZILLA"
+    ]);
+    List<String> denizenNames = new List<String>.unmodifiable(<String>[
+        "ERROR 404: DENIZEN NOT FOUND"
+    ]);
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>[
+        "Blank",
+        "Null",
+        "Boring",
+        "Error"
+    ]);
+    List<String> landNames = new List<String>.unmodifiable(<String>[
+        "Blank",
+        "Null",
+        "Boring",
+        "Error"
+    ]);
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A haunting refrain begins to play. It is the one Desolation plays to keep its instrument in tune. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
@@ -186,6 +194,10 @@ class Aspect {
         "preparing to challeng their Denizen to prevent future damage"
     ]);
 
+    /// DO NOT transfer these directly to a Player - they may not be valid for use and require processing!
+    /// Use initAssociatedStats for adding stats to a Player!
+    List<AssociatedStat> stats = <AssociatedStat>[];
+
     // ##################################################################################################
     // Constructor
 
@@ -197,21 +209,24 @@ class Aspect {
     // Methods
 
     /// Sets up associated stats for this Aspect
-    void initAssociatedStats(Player player) {}
+    /// Prefer to override [stats] instead.
+    void initAssociatedStats(Player player) {
+        for (AssociatedStat stat in stats) {
+            stat.applyToPlayer(player);
+        }
+    }
 
     /// Executed when a player with this aspect dies.
     /// e.g. Doom prophecies
     void onDeath(Player player) {}
 
     String getRandomQuest(Random rand, bool denizenDefeated) {
-        return rand.pickFrom(
-            denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
+        return rand.pickFrom(denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
     }
 
     String getDenizenQuest(Player player) {
         if (player.denizen_index > this.denizenQuests.length) {
-            throw("${player.title()} denizen index too high: ${player.session
-                .session_id}");
+            throw("${player.title()} denizen index too high: ${player.session.session_id}");
         }
         String quest = this.denizenQuests[player.denizen_index];
         player.denizen_index ++;
@@ -273,18 +288,15 @@ class AspectPalette extends Palette {
 
     Colour get aspect_light => this[_ASPECT_LIGHT];
 
-    void set aspect_light(dynamic c) =>
-        this.add(_ASPECT_LIGHT, _handleInput(c), true);
+    void set aspect_light(dynamic c) => this.add(_ASPECT_LIGHT, _handleInput(c), true);
 
     Colour get aspect_dark => this[_ASPECT_DARK];
 
-    void set aspect_dark(dynamic c) =>
-        this.add(_ASPECT_DARK, _handleInput(c), true);
+    void set aspect_dark(dynamic c) => this.add(_ASPECT_DARK, _handleInput(c), true);
 
     Colour get shoe_light => this[_SHOE_LIGHT];
 
-    void set shoe_light(dynamic c) =>
-        this.add(_SHOE_LIGHT, _handleInput(c), true);
+    void set shoe_light(dynamic c) => this.add(_SHOE_LIGHT, _handleInput(c), true);
 
     Colour get shoe_dark => this[_SHOE_DARK];
 
@@ -292,8 +304,7 @@ class AspectPalette extends Palette {
 
     Colour get cloak_light => this[_CLOAK_LIGHT];
 
-    void set cloak_light(dynamic c) =>
-        this.add(_CLOAK_LIGHT, _handleInput(c), true);
+    void set cloak_light(dynamic c) => this.add(_CLOAK_LIGHT, _handleInput(c), true);
 
     Colour get cloak_mid => this[_CLOAK_MID];
 
@@ -301,26 +312,21 @@ class AspectPalette extends Palette {
 
     Colour get cloak_dark => this[_CLOAK_DARK];
 
-    void set cloak_dark(dynamic c) =>
-        this.add(_CLOAK_DARK, _handleInput(c), true);
+    void set cloak_dark(dynamic c) => this.add(_CLOAK_DARK, _handleInput(c), true);
 
     Colour get shirt_light => this[_SHIRT_LIGHT];
 
-    void set shirt_light(dynamic c) =>
-        this.add(_SHIRT_LIGHT, _handleInput(c), true);
+    void set shirt_light(dynamic c) => this.add(_SHIRT_LIGHT, _handleInput(c), true);
 
     Colour get shirt_dark => this[_SHIRT_DARK];
 
-    void set shirt_dark(dynamic c) =>
-        this.add(_SHIRT_DARK, _handleInput(c), true);
+    void set shirt_dark(dynamic c) => this.add(_SHIRT_DARK, _handleInput(c), true);
 
     Colour get pants_light => this[_PANTS_LIGHT];
 
-    void set pants_light(dynamic c) =>
-        this.add(_PANTS_LIGHT, _handleInput(c), true);
+    void set pants_light(dynamic c) => this.add(_PANTS_LIGHT, _handleInput(c), true);
 
     Colour get pants_dark => this[_PANTS_DARK];
 
-    void set pants_dark(dynamic c) =>
-        this.add(_PANTS_DARK, _handleInput(c), true);
+    void set pants_dark(dynamic c) => this.add(_PANTS_DARK, _handleInput(c), true);
 }

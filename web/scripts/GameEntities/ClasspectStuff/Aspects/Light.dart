@@ -63,14 +63,14 @@ class Light extends Aspect {
         "realizing just how important frogs and grist and the Ultimate Alchemy truly are"
     ]);
 
-    Light(int id) :super(id, "Light", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("maxLuck", 2, true));
-        player.associatedStats.add(new AssociatedStat("freeWill", 1, true));
-        player.associatedStats.add(new AssociatedStat("sanity", -1, true));
-        player.associatedStats.add(new AssociatedStat("hp", -1, true));
-        player.associatedStats.add(new AssociatedStat("sburbLore", 0.25, false));//yes, technically it's from an aspect, but it's not NORMAL.
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("maxLuck", 2, true),
+        new AssociatedStat("freeWill", 1, true),
+        new AssociatedStat("sanity", -1, true),
+        new AssociatedStat("hp", -1, true),
+        new AssociatedStat("sburbLore", 0.25, false) //yes, technically it's from an aspect, but it's not NORMAL.
+    ]);
+
+    Light(int id) :super(id, "Light", isCanon: true);
 }

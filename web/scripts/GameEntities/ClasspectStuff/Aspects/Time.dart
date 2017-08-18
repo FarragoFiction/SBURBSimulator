@@ -62,12 +62,12 @@ class Time extends Aspect {
         "alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus"
     ]);
 
-    Time(int id) :super(id, "Time", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("minLuck", 2, true));
-        player.associatedStats.add(new AssociatedStat("mobility", 1, true));
-        player.associatedStats.add(new AssociatedStat("freeWill", -2, true));
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("minLuck", 2, true),
+        new AssociatedStat("mobility", 1, true),
+        new AssociatedStat("freeWill", -2, true)
+    ]);
+
+    Time(int id) :super(id, "Time", isCanon: true);
 }

@@ -66,12 +66,11 @@ class Heart extends Aspect {
         "convincing the local consorts that the only thing that can stifle their identity is their own fear"
     ]);
 
-    Heart(int id) :super(id, "Heart", isCanon: true);
-
     @override
-    void initAssociatedStats(Player player) {
-        player.associatedStats.add(new AssociatedStat("RELATIONSHIPS", 1, true));
-        player.associatedStats.addAll(player.interest1.category.stats);
-        player.associatedStats.addAll(player.interest2.category.stats);
-    }
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("RELATIONSHIPS", 1, true),
+        new AssociatedStatInterests()
+    ]);
+
+    Heart(int id) :super(id, "Heart", isCanon: true);
 }
