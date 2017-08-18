@@ -19,13 +19,14 @@ class GetWasted extends Scene {
   bool trigger(List<Player> playerList){
       this.playerList = playerList;
       this.player = null;
+      List<Player> possibilities = new List<Player>();
       for(Player p in session.availablePlayers){ //unlike grim dark, corpses are not allowed to have eureka moments.
           if(this.loreReachedTippingPoint(p)){
-              this.player = p;
-              return true;
+              possibilities.add(p);
           }
       }
-      return false;
+      this.player = rand.pickFrom(possibilities);
+      return this.player != null;
   }
 
   bool loreReachedTippingPoint(Player p){
@@ -35,6 +36,8 @@ class GetWasted extends Scene {
   @override
   void renderContent(Element div) {
       print("Getting Wasted in session ${session.session_id}");
+      this.player.setStat("sburbLore",0);
+      this.player.gnosis ++;
       appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. Player has: ${player.getStat("sburbLore")} sburbLore and ${player.gnosis} gnosis.");
   }
 }

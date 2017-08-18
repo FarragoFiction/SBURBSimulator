@@ -325,15 +325,15 @@ class FraymotifCreator {
         f.desc = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
 
         //statName, target, damageInsteadOfBuff, flavorText
-        var plus = player.associatedStats; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
-        for (num i = 0; i < plus.length; i++) {
-            f.effects.add(new FraymotifEffect(plus[i].name, 0, true));
-            f.effects.add(new FraymotifEffect(plus[i].name, 0, false));
+        Iterable<AssociatedStat> plus = player.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
+        for (AssociatedStat p in plus) {
+            f.effects.add(new FraymotifEffect(p.name, 0, true));
+            f.effects.add(new FraymotifEffect(p.name, 0, false));
         }
-        var minus = player.associatedStats; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
-        for (num i = 0; i < minus.length; i++) {
-            f.effects.add(new FraymotifEffect(minus[i].name, 2, true));
-            f.effects.add(new FraymotifEffect(minus[i].name, 2, false));
+        Iterable<AssociatedStat> minus = player.associatedStatsFromAspect; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
+        for (AssociatedStat m in minus) {
+            f.effects.add(new FraymotifEffect(m.name, 2, true));
+            f.effects.add(new FraymotifEffect(m.name, 2, false));
         }
         player.denizen.fraymotifs.add(f);
     }
@@ -574,7 +574,7 @@ class FraymotifEffect {
         if (player.class_name == SBURBClassManager.MAGE) effect = rand.pickFrom(this.mageEffects());
         this.target = effect.target;
         this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-        if (!player.associatedStats.isEmpty) { //null plyaers have no associated stats
+        if (!player.associatedStatsFromAspect.isEmpty) { //null plyaers have no associated stats
             this.statName = rand.pickFrom(player.associatedStatsFromAspect).name;
         } else {
             this.statName = "MANGRIT";
