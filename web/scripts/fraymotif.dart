@@ -575,9 +575,7 @@ class FraymotifEffect {
         this.target = effect.target;
         this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
         if (!player.associatedStats.isEmpty) { //null plyaers have no associated stats
-            this.statName = rand
-                .pickFrom(player.associatedStats)
-                .name;
+            this.statName = rand.pickFrom(player.associatedStatsFromAspect).name;
         } else {
             this.statName = "MANGRIT";
         }

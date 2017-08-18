@@ -45,6 +45,8 @@ class GameEntity implements Comparable<GameEntity> {
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
     GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
 
+    Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
+
     GameEntity(this.name, this.session) {
         id = GameEntity.generateID();
         stats['sanity'] = 0;
@@ -474,7 +476,7 @@ class GameEntity implements Comparable<GameEntity> {
             //print("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
             ret = Math.max(0, ret); //no negative power, dunkass.
-           // print("$this after mangrit, ret is $ret");
+           if(ret < 0 ) print("$this after mangrit, power is $ret in session ${session.session_id}");
         }
 
         return (ret).round();

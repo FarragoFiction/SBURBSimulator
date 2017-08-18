@@ -676,6 +676,10 @@ abstract class Drawing {
         ctx.fillText("Grim Dark Level: ", left_margin, current + line_height * i);
         ctx.fillText("${player.grimDark}/4", right_margin, current + line_height * i);
 
+        i++;
+        ctx.fillText("Gnosis Level: ", left_margin, current + line_height * i);
+        ctx.fillText("${player.gnosis}/4", right_margin, current + line_height * i);
+
 
         i++;
         ctx.fillText("Doomed Clones: ", left_margin, current + line_height * i);

@@ -193,6 +193,7 @@ class Player extends GameEntity {
         tmpStatHolder["freeWill"] = 10;
         tmpStatHolder["power"] = 5 * strength;
         tmpStatHolder["grist"] = 1000;
+        tmpStatHolder["sburbLore"] = 0; //needed so associated stats don't crash
         tmpStatHolder["RELATIONSHIPS"] = 10; //not REAL relationships, but real enough for our purposes.
         for (num i = 0; i < this.associatedStats.length; i++) {
             //alert("I have associated stats: " + i);
