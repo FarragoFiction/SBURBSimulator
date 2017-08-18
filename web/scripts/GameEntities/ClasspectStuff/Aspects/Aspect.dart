@@ -248,17 +248,17 @@ class Aspect {
 /// Convenience class for getting/setting aspect palettes
 class AspectPalette extends Palette {
     static String _ACCENT = "accent";
-    static String _ASPECT_LIGHT = "a1";
-    static String _ASPECT_DARK = "a2";
-    static String _SHOE_LIGHT = "f1";
-    static String _SHOE_DARK = "f2";
-    static String _CLOAK_LIGHT = "c1";
-    static String _CLOAK_MID = "c2";
-    static String _CLOAK_DARK = "c3";
-    static String _SHIRT_LIGHT = "s1";
-    static String _SHIRT_DARK = "s2";
-    static String _PANTS_LIGHT = "p1";
-    static String _PANTS_DARK = "p2";
+    static String _ASPECT_LIGHT = "aspect1";
+    static String _ASPECT_DARK = "aspect2";
+    static String _SHOE_LIGHT = "shoe1";
+    static String _SHOE_DARK = "shoe2";
+    static String _CLOAK_LIGHT = "cloak1";
+    static String _CLOAK_MID = "cloak2";
+    static String _CLOAK_DARK = "cloak3";
+    static String _SHIRT_LIGHT = "shirt1";
+    static String _SHIRT_DARK = "shirt2";
+    static String _PANTS_LIGHT = "pants1";
+    static String _PANTS_DARK = "pants2";
 
     static Colour _handleInput(Object input) {
         if (input is Colour) {

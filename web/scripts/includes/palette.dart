@@ -116,7 +116,7 @@ class Palette extends Object with IterableMixin<Colour>{
 
             DivElement div = new DivElement();
 
-            DivElement swatch = new DivElement();
+            DivElement swatch = new DivElement()..title=col.toStyleString().toUpperCase();
             swatch.style
                 ..position = "relative"
                 ..display = "inline-block"

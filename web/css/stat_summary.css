@@ -1,0 +1,111 @@
+body {
+    position:relative;
+    background-color:#EEEEEE;
+}
+
+div.box {
+    display:inline-block;
+    background-color:#FFFFFF;
+    padding:10px;
+    margin:5px;
+    flex-grow: 1;
+    min-width:200px;
+    max-width:300px;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.3);
+}
+
+div.title {
+    vertical-align:middle;
+    padding:5px 15px 0 5px;
+    margin:0;
+    height:54px;
+    overflow:hidden;
+}
+
+div.aspectIcon {
+    width:48px;
+    height:48px;
+    overflow:hidden;
+    position:relative;
+    display:inline-block;
+}
+
+div.aspectIcon img {
+    position:absolute;
+    top:-190px;
+    left:-190px;
+}
+
+h1,h2,h3,h4 {
+    margin:4px 0 2px 0;
+}
+
+h1 {
+    position:relative;
+    display:inline-block;
+    top:-14px;
+}
+
+p {
+    margin:2px 0 2px 0;
+}
+
+table {
+    width:100%;
+}
+
+td {
+    padding:0px 8px 0px 0px;
+    white-space:nowrap;
+}
+
+td.number {
+    text-align:right;
+}
+
+div#content {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+}
+
+div.section {
+    margin-bottom:10px;
+    background-color:rgba(0,0,0,0.02);
+    border-top:1px solid rgba(0,0,0,0.1);
+    border-bottom:1px solid rgba(0,0,0,0.1);
+}
+
+.toggleBox {
+    margin: 4px 0 10px 0;
+}
+
+.toggleClickable {
+    display:inline-block;
+    width:100%;
+    cursor:pointer;
+    margin-top:6px;
+}
+
+.toggleTitle {
+    font-weight:bold;
+    margin-right:6px;
+}
+
+.toggleButton {
+    font-family: "courier new", monospace;
+    float:right;
+}
+
+.listItem {
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    padding:7px 5px 7px 5px;
+}
+
+.canon {
+    color:#008800;
+}
+
+.fanon {
+    color:#880000;
+}
