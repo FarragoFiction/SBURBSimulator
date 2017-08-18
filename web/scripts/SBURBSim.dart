@@ -56,6 +56,7 @@ export "Scenes/FaceDenizen.dart";
 export "Scenes/FightQueen.dart";
 export "Scenes/FreeWillStuff.dart";
 export "Scenes/GetTiger.dart";
+export "Scenes/GetWasted.dart";
 export "Scenes/GiveJackBullshitWeapon.dart";
 export "Scenes/GodTierRevival.dart";
 export "Scenes/GoGrimDark.dart";

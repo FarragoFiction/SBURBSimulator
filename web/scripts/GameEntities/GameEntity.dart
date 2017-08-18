@@ -57,6 +57,7 @@ class GameEntity implements Comparable<GameEntity> {
         stats['freeWill'] = 0;
         stats['mobility'] = 0;
         stats['power'] = 0; //power is generic sign of level.
+        stats["sburbLore"] = 0;
     }
 
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.

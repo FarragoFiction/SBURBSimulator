@@ -64,6 +64,7 @@ class Player extends GameEntity {
     bool murderMode = false; //kill all players you don't like. odds of a just death skyrockets.
     bool leftMurderMode = false; //have scars, unless left via death.
     num corruptionLevelOther = 0; //every 100 points, sends you to next grimDarkLevel.
+    num gnosis = 0; //sburbLore causes you to increase a level of this.
     num grimDark = 0; //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
     bool leader = false;
     num landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
@@ -857,6 +858,7 @@ class Player extends GameEntity {
         clone.murderMode = murderMode; //kill all players you don't like. odds of a just death skyrockets.
         clone.leftMurderMode = leftMurderMode; //have scars, unless left via death.
         clone.corruptionLevelOther = corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
+        clone.gnosis = gnosis;
         clone.grimDark = grimDark; //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
         clone.leader = leader;
         clone.landLevel = landLevel; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
@@ -1805,6 +1807,7 @@ class Player extends GameEntity {
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
         this.aspect.initAssociatedStats(this);
         this.class_name.intializeAssociatedClassStatReferences();
+        this.setStat("sburbLore",0); //all start ignorant.
         this.initializeLuck();
         this.initializeFreeWill();
         this.initializeHP();

@@ -29,11 +29,11 @@ class GetWasted extends Scene {
   }
 
   bool loreReachedTippingPoint(Player p){
-      return p.sburbLore >= tippingPointBase * p.gnosis //linear growth, but the base is high.
+      return p.getStat("sburbLore") >= tippingPointBase * p.gnosis; //linear growth, but the base is high.
   }
 
   @override
   void renderContent(Element div) {
-      appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ";
+      appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ");
   }
 }
