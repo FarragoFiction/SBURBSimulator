@@ -2840,3 +2840,39 @@ which is
 I notice I am confused.  I put it into robot mode. And correctly get 0 ships. Everyone is 0_0. But...
 the relationship value is still -5.  Why? is it from heiress trolls?
 
+~~~~~~~~~~~
+
+alright, it's like days later, can i figure this shit out?  I can confirm that relationships are set to 0 fo ra completely new player.
+What about a new "random player"? should be the same cuz no generateRelationships or whatever called.
+
+And really this is kinda barking up the wrong tree, cuz it's not the getStats("REALTIONSHIPS") that is the problem, it's the individual ones, too.
+
+Like....too many spades and clubs in init relationships. where are they coming from?
+
+Earlier tests showed i could weight the initial values as highly positive as i wanted and it did nothing.  Can i reproduce those tests?
+
+
+TO FUTURE JR: HOLY FUCKING SHIT, ABJ IS LYING TO ME. SET RELATIONSHIPS TO ABSURD HIGH VALUES AND THEY INIT FLUSHED/PALE, BUT 'AVERAGE RELATIONSHIPS VALUE' IS STILL -4
+
+I should have paid attention to the fact that earlier when i put it into robot mode it was still negative. omfg. gotta notice when i'm confused.
+
+getAverageRelationshipValue(curSessionGlobalVar.players)
+67499994
+
+Okay, so that's clearly not negative 4.  is that just like....on ABJ's part then?
+
+self.allSessionsSummaries[0].averageRelationshipValue
+4
+self.allSessionsSummaries[2].averageRelationshipValue
+-7
+self.allSessionsSummaries[3].averageRelationshipValue
+-13
+self.allSessionsSummaries[4].averageRelationshipValue
+4
+
+
+The summaries themselves truly belives the values are that low. So. What gives?
+
+OMFG i have to stop now, but there is no fucking reason why abj would be doing shit like this. the makePlayers calls genereate relationships, and this happens before abj summariezes.
+
+futureJR: good luck to you.

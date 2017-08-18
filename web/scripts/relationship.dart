@@ -265,9 +265,8 @@ class Relationship {
 
 
     static dynamic randomRelationship(Player source, Player targetPlayer) {
-        Relationship r = new Relationship(source, source.session.rand.nextIntRange(-21, 21), targetPlayer);
-
-        return r;
+        return new Relationship(source, source.session.rand.nextIntRange(-21, 21), targetPlayer);
+       // return  new Relationship(source, 10000000, targetPlayer);;
     }
 
 
