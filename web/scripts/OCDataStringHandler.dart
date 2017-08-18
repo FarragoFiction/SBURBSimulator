@@ -350,11 +350,11 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
   player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
 
-  String ic1 = intToInterestCategory(charString.codeUnitAt(5) >> 4);
-  String ic2 = intToInterestCategory(charString.codeUnitAt(5) & 15);
+  InterestCategory ic1 = InterestManager.get(charString.codeUnitAt(5) >> 4);
+  InterestCategory ic2 = InterestManager.get(charString.codeUnitAt(5) & 15);
   //TODO this probably means interest category can't be null.
-  player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
-  player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
+  player.interest1 = new Interest(i1, ic1);
+  player.interest2 = new Interest(i2, ic2);
 
   player.grimDark = charString.codeUnitAt(6) >> 5;
   player.isTroll = 0 != ((1<<4) & charString.codeUnitAt(6)); //only is 1 if character at 1<<4 is 1 in charString

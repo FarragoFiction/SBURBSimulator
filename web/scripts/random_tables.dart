@@ -402,17 +402,6 @@ String intToHexColor(int num) {
     return "#" + tmp;
 }
 
-
-dynamic interestCategoryToInt(cat) {
-    return interestCategories.indexOf(cat);
-}
-
-
-dynamic intToInterestCategory(num) {
-    return interestCategories[num];
-}
-
-
 String moonToColor(moon) {
     if (moon == "Prospit") {
         return "#ffff00";
@@ -509,11 +498,6 @@ List<Colour> tricksterColors = <Colour>[
 ];
 
 List<String> bloodColors = <String>["#A10000", "#a25203", "#a1a100", "#658200", "#416600", "#078446", "#008282", "#004182", "#0021cb", "#631db4", "#610061", "#99004d"];
-
-List<String> interestCategories = <String>["Comedy", "Music", "Culture", "Writing", "Athletic", "Terrible", "Justice", "Fantasy", "Domestic", "PopCulture", "Technology", "Social", "Romance", "Academic"];
-
-
-
 
 
 List<String> prefixes = <String>["8=D", ">->", "//", "tumut", ")", "><>", "(", "\$", "?", "=begin", "=end"]

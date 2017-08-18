@@ -354,7 +354,7 @@ class CharacterCreatorHelper {
     this.syncPlayerToFields(player);
   }
 
-  String generateHelpText(topic, specific) {
+  String generateHelpText(String topic, String specific) {
     if (topic == "Class") return this.generateClassHelp(topic, specific);
     if (topic == "Aspect") return this.generateAspectHelp(topic, specific);
     if (topic == "BloodColor")
@@ -414,7 +414,7 @@ class CharacterCreatorHelper {
     return str;
   }
 
-  String generateAspectHelp(topic, specific) {
+  String generateAspectHelp(String topic, String specific) {
     if (specific == "Space")
       return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests, good alchemy ability, and good health. ";
     if (specific == "Time")
@@ -442,7 +442,7 @@ class CharacterCreatorHelper {
     return "Aspect help text not found for " + specific + ".";
   }
 
-  String generateClassHelp(topic, specific) {
+  String generateClassHelp(String topic, String specific) {
     if (specific == "Maid")
       return "A Maid distributes their associated aspect to the entire party and starts with a lot of it. They give a boost to their Aspect, embracing even the bad parts.";
     if (specific == "Mage")
@@ -554,54 +554,54 @@ class CharacterCreatorHelper {
       }
       that.redrawSinglePlayer(player);
       helpText
-          .setInnerHtml(that.generateHelpText("grimDark", player.class_name));
+          .setInnerHtml(that.generateHelpText("grimDark", player.class_name.name));
     });
 
     isDreamSelf.onChange.listen((Event e) {
       player.isDreamSelf = isDreamSelf.checked;
       that.redrawSinglePlayer(player);
       helpText.setInnerHtml(
-          that.generateHelpText("isDreamSelf", player.class_name));
+          that.generateHelpText("isDreamSelf", player.class_name.name));
     });
 
     godTier.onChange.listen((Event e) {
       player.godTier = godTier.checked;
       that.redrawSinglePlayer(player);
       helpText
-          .setInnerHtml(that.generateHelpText("godTier", player.class_name));
+          .setInnerHtml(that.generateHelpText("godTier", player.class_name.name));
     });
 
     godDestiny.onChange.listen((Event e) {
       player.godDestiny = godDestiny.checked;
       that.redrawSinglePlayer(player);
       helpText
-          .setInnerHtml(that.generateHelpText("godDestiny", player.class_name));
+          .setInnerHtml(that.generateHelpText("godDestiny", player.class_name.name));
     });
 
     murderMode.onChange.listen((Event e) {
       player.murderMode = murderMode.checked;
       that.redrawSinglePlayer(player);
       helpText
-          .setInnerHtml(that.generateHelpText("murderMode", player.class_name));
+          .setInnerHtml(that.generateHelpText("murderMode", player.class_name.name));
     });
 
     leftMurderMode.onChange.listen((Event e) {
       player.leftMurderMode = leftMurderMode.checked;
       that.redrawSinglePlayer(player);
       helpText.setInnerHtml(
-          that.generateHelpText("leftMurderMode", player.class_name));
+          that.generateHelpText("leftMurderMode", player.class_name.name));
     });
 
     dead.onChange.listen((Event e) {
       player.dead = dead.checked;
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("dead", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("dead", player.class_name.name));
     });
 
     robot.onChange.listen((Event e) {
       player.robot = robot.checked;
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("robot", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("robot", player.class_name.name));
     });
   }
 
@@ -626,7 +626,7 @@ class CharacterCreatorHelper {
       player.class_name =
           SBURBClassManager.stringToSBURBClass(classDropDown.value);
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Class", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("Class", player.class_name.name));
     });
 
     moonDiv.onChange.listen((Event e) {
@@ -642,21 +642,21 @@ class CharacterCreatorHelper {
       player.quirk.favoriteNumber = int.parse((numberDropDown.value));
       that.redrawSinglePlayer(player);
       helpText.setInnerHtml(
-          that.generateHelpText("FavoriteNumber", player.quirk.favoriteNumber));
+          that.generateHelpText("FavoriteNumber", player.quirk.favoriteNumber.toString()));
     });
 
     a2.onChange.listen((Event e) {
       OptionElement aspectDropDown = a2.selectedOptions[0];
       player.aspect = Aspects.stringToAspect(aspectDropDown.value);
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Aspect", player.aspect));
+      helpText.setInnerHtml(that.generateHelpText("Aspect", player.aspect.name));
     });
 
     hairDiv.onChange.listen((Event e) {
       OptionElement aspectDropDown = hairDiv.selectedOptions[0];
       player.hair = int.parse(aspectDropDown.value);
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Hair", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("Hair", player.class_name.name));
     });
 
     hairColorDiv.onChange.listen((Event e) {
@@ -664,21 +664,21 @@ class CharacterCreatorHelper {
       player.hairColor = (hairColorDiv as InputElement).value;
       that.redrawSinglePlayer(player);
       helpText
-          .setInnerHtml(that.generateHelpText("HairColor", player.class_name));
+          .setInnerHtml(that.generateHelpText("HairColor", player.class_name.name));
     });
 
     leftHornDiv.onChange.listen((Event e) {
       OptionElement aspectDropDown = leftHornDiv.selectedOptions[0];
       player.leftHorn = int.parse(aspectDropDown.value);
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Horns", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("Horns", player.class_name.name));
     });
 
     rightHornDiv.onChange.listen((Event e) {
       OptionElement aspectDropDown = rightHornDiv.selectedOptions[0];
       player.rightHorn = int.parse(aspectDropDown.value);
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Horns", player.class_name));
+      helpText.setInnerHtml(that.generateHelpText("Horns", player.class_name.name));
     });
 
     bloodDiv.onChange.listen((Event e) {
@@ -700,7 +700,7 @@ class CharacterCreatorHelper {
         player.isTroll = false;
       }
       that.redrawSinglePlayer(player);
-      helpText.setInnerHtml(that.generateHelpText("Species", player.isTroll));
+      helpText.setInnerHtml(that.generateHelpText("Species", player.isTroll ? "Troll" : "Human"));
     });
   }
 
@@ -821,7 +821,7 @@ class CharacterCreatorHelper {
 
     chatHandle.onClick.listen((Event e) {
       helpText
-          .setInnerHtml(that.generateHelpText("chatHandle", player.class_name));
+          .setInnerHtml(that.generateHelpText("chatHandle", player.class_name.name));
     });
 
     chatHandle.onChange.listen((Event e) {
@@ -835,7 +835,7 @@ class CharacterCreatorHelper {
           InterestManager.getCategoryFromString(icDropDown.value);
       interest1DropDom.setInnerHtml(that.drawInterestDropDown(ic1, 1, player));
       helpText
-          .setInnerHtml(that.generateHelpText("Interests", player.class_name));
+          .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
       player.interest1.category.removeInterest(player.interest1.name);
       player.interest1.category = ic1;
       player.interest1.category.addInterest(player.interest1.name);
@@ -847,7 +847,7 @@ class CharacterCreatorHelper {
           InterestManager.getCategoryFromString(icDropDown.value);
       interest2DropDom.setInnerHtml(that.drawInterestDropDown(ic2, 2, player));
       helpText
-          .setInnerHtml(that.generateHelpText("Interests", player.class_name));
+          .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
       player.interest2.category.removeInterest(player.interest2.name);
       player.interest2.category = ic2;
       player.interest2.category.addInterest(player.interest2.name);
@@ -857,7 +857,7 @@ class CharacterCreatorHelper {
       OptionElement icDropDown = interest1DropDom.selectedOptions[0];
       interest1TextDom.value = (icDropDown.value);
       helpText
-          .setInnerHtml(that.generateHelpText("Interests", player.class_name));
+          .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
       String ic1 = interestCategory1Dom.value;
       String i1 = icDropDown.value;
       player.interest1 =
@@ -869,7 +869,7 @@ class CharacterCreatorHelper {
       OptionElement icDropDown = interest2DropDom.selectedOptions[0];
       interest2TextDom.value = (icDropDown.value);
       helpText
-          .setInnerHtml(that.generateHelpText("Interests", player.class_name));
+          .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
       String ic2 = interestCategory1Dom.value;
       String i2 = icDropDown.value;
       player.interest2 =

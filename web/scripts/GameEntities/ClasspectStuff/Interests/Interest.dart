@@ -59,6 +59,22 @@ class InterestManager {
         _categories[ic.id] = ic;
     }
 
+    static InterestCategory get(int id) {
+        if (_categories.containsKey(id)) {
+            return _categories[id];
+        }
+        throw "ERROR: could not find interest cateogry and null is not supported";
+    }
+
+    static InterestCategory getByName(String name) {
+        for (InterestCategory ic in _categories.values) {
+            if (ic.name == name) {
+                return ic;
+            }
+        }
+        throw "ERROR: could not find interest cateogry and null is not supported";
+    }
+
     static Interest getRandomInterest(Random rand) {
         return new Interest.randomFromCategory(rand, rand.pickFrom(_categories.values));
     }
