@@ -36,6 +36,7 @@ class InterestManager {
     static InterestCategory WRITING;
 
     static void init() {
+        print("initializing interests");
         MUSIC = new Music();
         ACADEMIC = new Academic();
         ATHLETIC = new Athletic();
@@ -106,6 +107,7 @@ class InterestCategory {
     //p much no vars to set.
     InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor) {
         InterestManager.register(this);
+
     }
 
     //clunky name to remind me that modding this does nothing
@@ -113,7 +115,9 @@ class InterestCategory {
 
     //interests are auto sanitized.
     void addInterest(String i) {
-        if (_interestStrings.contains(i)) return;
+      print("maybe adding interest $i");
+      if (_interestStrings.contains(i)) return;
+        print("def adding interest $i");
         _interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
     }
 
