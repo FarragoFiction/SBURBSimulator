@@ -611,10 +611,6 @@ class AssociatedStat {
 
     AssociatedStat(String this.name, num this.multiplier, bool this.isFromAspect) {}
 
-    factory AssociatedStat.from(AssociatedStat other) {
-        return new AssociatedStat(other.name, other.multiplier, other.isFromAspect);
-    }
-
     void applyToPlayer(Player player) {
         player.associatedStats.add(new AssociatedStat(this.name, this.multiplier, this.isFromAspect));
     }
@@ -641,16 +637,16 @@ class AssociatedStatRandom extends AssociatedStat {
 /// AssociatedStat variant for use as a reference for "will apply the player's interest stats when given" like in Heart
 class AssociatedStatInterests extends AssociatedStat {
 
-    AssociatedStatInterests():super("INTERESTS", 0.0, false);
+    AssociatedStatInterests(bool isFromAspect, [num multiplier = 1.0]):super("INTERESTS", multiplier, isFromAspect);
 
     @override
     void applyToPlayer(Player player) {
-        player.associatedStats.addAll(player.interest1.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier, true)));
-        player.associatedStats.addAll(player.interest2.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier, true)));
+        player.associatedStats.addAll(player.interest1.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier * this.multiplier, this.isFromAspect)));
+        player.associatedStats.addAll(player.interest2.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier * this.multiplier, this.isFromAspect)));
     }
 
     @override
-    String toString() => "[Stats assigned from player Interests]";
+    String toString() => "[Stats assigned from player Interests x$multiplier]";
 }
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.

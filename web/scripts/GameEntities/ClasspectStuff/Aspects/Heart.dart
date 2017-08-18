@@ -69,7 +69,7 @@ class Heart extends Aspect {
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat("RELATIONSHIPS", 1, true),
-        new AssociatedStatInterests()
+        new AssociatedStatInterests(true)
     ]);
 
     Heart(int id) :super(id, "Heart", isCanon: true);

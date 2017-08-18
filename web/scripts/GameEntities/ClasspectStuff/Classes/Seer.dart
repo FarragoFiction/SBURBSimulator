@@ -1,56 +1,58 @@
 import "SBURBClass.dart";
 import "../../player.dart";
 import "../../GameEntity.dart";
+
 class Seer extends SBURBClass {
-  @override
-  List<String> levels =["SEEING iDOG","PIPSQUEAK PROGNOSTICATOR","SCAMPERVIEWER 5000"];
-  @override
-  List<String> quests =["making the various bullshit rules of SBURB part of their personal mythos","collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go","suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't"];
-  @override
-  List<String> postDenizenQuests =["casting their sight around the land to find the causes of their land’s devastation","taking a consort under their wing and teaching it the craft of magic","predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize","alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
-  @override
-  List<String> handles =["sightly","sanctimonious","sarcastic","sassy","scintillating","synergistic","savant"];
-  Seer() : super("Seer", 6, true);
+    @override
+    List<String> levels = ["SEEING iDOG", "PIPSQUEAK PROGNOSTICATOR", "SCAMPERVIEWER 5000"];
+    @override
+    List<String> quests = ["making the various bullshit rules of SBURB part of their personal mythos", "collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go", "suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't"];
+    @override
+    List<String> postDenizenQuests = ["casting their sight around the land to find the causes of their land’s devastation", "taking a consort under their wing and teaching it the craft of magic", "predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize", "alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
+    @override
+    List<String> handles = ["sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
+
+    Seer() : super("Seer", 6, true);
 
 
-  @override
-  void intializeAssociatedClassStatReferences(Player p) {
-    p.associatedStats.add(new AssociatedStat("sburbLore", 0.5, false));
-  }
+    @override
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("sburbLore", 0.5, false)
+    ]);
 
-  @override
-  bool highHinit() {
-    return false;
-  }
-
-  @override
-  bool isActive() {
-    return false;
-  }
-
-  @override
-  num  modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-    if (stat.multiplier > 0) {
-      powerBoost = powerBoost * 2;
-    } else {
-      powerBoost = powerBoost * 2.5;
+    @override
+    bool highHinit() {
+        return false;
     }
-    return powerBoost;
-  }
 
-  @override
-  double getAttackerModifier() {
-    return 0.67;
-  }
+    @override
+    bool isActive() {
+        return false;
+    }
 
-  @override
-  double getDefenderModifier() {
-    return 0.67;
-  }
+    @override
+    num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
+        if (stat.multiplier > 0) {
+            powerBoost = powerBoost * 2;
+        } else {
+            powerBoost = powerBoost * 2.5;
+        }
+        return powerBoost;
+    }
 
-  @override
-  double getMurderousModifier() {
-    return 1.0;
-  }
+    @override
+    double getAttackerModifier() {
+        return 0.67;
+    }
+
+    @override
+    double getDefenderModifier() {
+        return 0.67;
+    }
+
+    @override
+    double getMurderousModifier() {
+        return 1.0;
+    }
 
 }
