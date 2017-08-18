@@ -12,7 +12,7 @@ import "../SBURBSim.dart";
 
 class GetWasted extends Scene {
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 1;
+    int tippingPointBase = 2;
     GetWasted(Session session): super(session);
 
   @override
@@ -30,7 +30,7 @@ class GetWasted extends Scene {
   }
 
   bool loreReachedTippingPoint(Player p){
-      return p.getStat("sburbLore") >= tippingPointBase * p.gnosis; //linear growth, but the base is high.
+      return p.getStat("sburbLore") >= tippingPointBase * (p.gnosis+1); //linear growth, but the base is high.
   }
 
   @override
