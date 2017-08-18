@@ -1,23 +1,22 @@
-import "Knight.dart";
-import "Seer.dart";
+import "../../../SBURBSim.dart";
 import "Bard.dart";
+import "Grace.dart";
+import "Guide.dart";
 import "Heir.dart";
-import "Maid.dart";
-import "Rogue.dart";
-import "Page.dart";
-import "Thief.dart";
-import "Sylph.dart";
-import "Prince.dart";
-import "Witch.dart";
+import "Knight.dart";
 import "Mage.dart";
-import "Waste.dart";
+import "Maid.dart";
+import "Page.dart";
+import "Prince.dart";
+import "Rogue.dart";
+import "Sage.dart";
 import "Scout.dart";
 import "Scribe.dart";
-import "Sage.dart";
-import "Guide.dart";
-import "Grace.dart";
-
-import "../../../SBURBSim.dart";
+import "Seer.dart";
+import "Sylph.dart";
+import "Thief.dart";
+import "Waste.dart";
+import "Witch.dart";
 
 class SBURBClassManager {
     static SBURBClass KNIGHT;

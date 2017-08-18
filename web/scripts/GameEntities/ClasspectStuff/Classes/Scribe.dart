@@ -1,6 +1,5 @@
-import "SBURBClass.dart";
-import "../../player.dart";
 import "../../GameEntity.dart";
+import "SBURBClass.dart";
 
 class Scribe extends SBURBClass {
     Scribe() : super("Scribe", 15, false);

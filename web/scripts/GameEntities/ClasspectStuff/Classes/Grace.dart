@@ -1,6 +1,5 @@
-import "SBURBClass.dart";
-import "../../player.dart";
 import "../../GameEntity.dart";
+import "SBURBClass.dart";
 
 class Grace extends SBURBClass {
     @override
