@@ -55,29 +55,35 @@ class InterestManager {
 
     static void register(InterestCategory ic) {
         if (_categories.containsKey(ic.id)) {
-            throw "Duplicate aspect id for $ic: ${ic.id} is already registered for ${_categories[ic.id]}.";
+            throw "Duplicate aspect id for $ic: ${ic
+                .id} is already registered for ${_categories[ic.id]}.";
         }
         _categories[ic.id] = ic;
     }
 
     static InterestCategory get(int id) {
+        if (_categories.isEmpty) init();
         if (_categories.containsKey(id)) {
             return _categories[id];
         }
-        throw "ERROR: could not find interest cateogry and null is not supported";
+        throw "ERROR: could not find interest category $id  and null is not supported. I have ${_categories
+            .length} categories";
     }
 
     static InterestCategory getByName(String name) {
+        if (_categories.isEmpty) init();
         for (InterestCategory ic in _categories.values) {
             if (ic.name == name) {
                 return ic;
             }
         }
-        throw "ERROR: could not find interest cateogry and null is not supported";
+        throw "ERROR: could not find interest category $name and null is not supported. I have ${_categories
+            .length} categories";
     }
 
     static Interest getRandomInterest(Random rand) {
-        return new Interest.randomFromCategory(rand, rand.pickFrom(_categories.values));
+        return new Interest.randomFromCategory(
+            rand, rand.pickFrom(_categories.values));
     }
 
     static Iterable<InterestCategory> get allCategories => _categories.values;
@@ -92,7 +98,8 @@ class InterestManager {
 
 class InterestCategory {
     List<String> handles1 = <String>["nobody"];
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(
+        <AssociatedStat>[]);
     List<String> handles2 = <String>["Nobody"];
     List<String> levels = <String>["Nobody"];
     int id;
@@ -105,20 +112,22 @@ class InterestCategory {
     String name;
 
     //p much no vars to set.
-    InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor) {
+    InterestCategory(this.id, this.name, this.positive_descriptor,
+        this.negative_descriptor) {
         InterestManager.register(this);
-
     }
 
     //clunky name to remind me that modding this does nothing
-    List<String> get copyOfInterestStrings => new List<String>.from(interestStrings);
+    List<String> get copyOfInterestStrings =>
+        new List<String>.from(interestStrings);
 
     //interests are auto sanitized.
     void addInterest(String i) {
-      print("maybe adding interest $i");
-      if (interestStrings.contains(i)) return;
-        print("def adding interest $i");
-        interestStrings.add(i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
+        //print("maybe adding interest $i");
+        if (interestStrings.contains(i)) return;
+        //print("def adding interest $i");
+        interestStrings.add(
+            i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
     }
 
     void removeInterest(String i) {
@@ -141,7 +150,8 @@ class Interest {
         //since the interest has the category in it, this is good enough.
         //it's okay if the category doesn't have a list of all interests
         //but for char creator want new interests to be in the drop downs.
-        this.category.addInterest(this.name); //the method will make sure no duplicates.
+        this.category.addInterest(
+            this.name); //the method will make sure no duplicates.
     }
 
     Interest.randomFromCategory(Random rand, InterestCategory category){
@@ -151,11 +161,14 @@ class Interest {
     }
 
 
-    static String getSharedCategoryWordForPlayers(Player p1, Player p2, bool positive) {
+    static String getSharedCategoryWordForPlayers(Player p1, Player p2,
+        bool positive) {
         InterestCategory chosen;
         //don't care that interest2 overrides interest 1 if they are both shared.
-        if (p2.interestedInCategory(p1.interest1.category)) chosen = p1.interest1.category;
-        if (p2.interestedInCategory(p1.interest2.category)) chosen = p1.interest2.category;
+        if (p2.interestedInCategory(p1.interest1.category))
+            chosen = p1.interest1.category;
+        if (p2.interestedInCategory(p1.interest2.category))
+            chosen = p1.interest2.category;
         if (chosen != null) {
             if (positive) {
                 return chosen.positive_descriptor;
@@ -171,11 +184,14 @@ class Interest {
         }
     }
 
-    static getUnsharedCategoryWordForPlayers(Player p1, Player p2, bool positive) {
+    static getUnsharedCategoryWordForPlayers(Player p1, Player p2,
+        bool positive) {
         InterestCategory chosen;
         //don't care that interest2 overrides interest 1 if they are both unshared.
-        if (!p2.interestedInCategory(p1.interest1.category)) chosen = p1.interest1.category;
-        if (!p2.interestedInCategory(p1.interest2.category)) chosen = p1.interest2.category;
+        if (!p2.interestedInCategory(p1.interest1.category))
+            chosen = p1.interest1.category;
+        if (!p2.interestedInCategory(p1.interest2.category))
+            chosen = p1.interest2.category;
         if (chosen != null) {
             if (positive) {
                 return chosen.positive_descriptor;

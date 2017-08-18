@@ -86,6 +86,7 @@ class SBURBClassManager {
   static Iterable<SBURBClass> get all => _classes.values;
 
   static SBURBClass findClassWithID(num id) {
+    if (_classes.isEmpty) init();
     if (_classes.containsKey(id)) {
       return _classes[id];
     }
@@ -93,6 +94,7 @@ class SBURBClassManager {
   }
 
   static SBURBClass stringToSBURBClass(String id) {
+    if (_classes.isEmpty) init();
     for(SBURBClass c in _classes.values) {
       if(c.name == id) return c;
     }
