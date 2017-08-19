@@ -102,7 +102,7 @@ class FreeWillStuff extends Scene{
 				var spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
 				var ectobiologistEnemy = getLeader(enemies);
 				//not everybody knows about ectobiology.
-				if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.knowsAboutSburb() && player.grimDark < 2)){
+				if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)){
 					//print("Free will stop from killing ectobiologist: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
 					ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
@@ -112,7 +112,7 @@ class FreeWillStuff extends Scene{
 					return ret;
 				}
 				//not everybody knows why frog breeding is important.
-				if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){
+				if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.gnosis >= 2 && player.grimDark < 2)){
 					//print("Free will stop from killing space player: " + this.session.session_id);
 					ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + spacePlayerEnemy.htmlTitle();
 					ret += " and then they will NEVER have frog breeding done. They can always kill them AFTER they've escaped to the new Universe, right? ";
@@ -136,10 +136,10 @@ class FreeWillStuff extends Scene{
 	bool isValidTargets(List<Player> enemies, Player player){
 		Player spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
 		Player ectobiologistEnemy = getLeader(enemies);
-		if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.knowsAboutSburb() && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
+		if(spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel  && (player.gnosis >= 2 && player.grimDark < 2)){ //grim dark players don't care if it dooms things.
 			return false;
 		}
-		if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.knowsAboutSburb() && player.grimDark < 2)){
+		if(!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)){
 				return false;
 		}
 
@@ -368,7 +368,7 @@ class FreeWillStuff extends Scene{
 			return ret;
 	}
 	String considerForceGodTier(Player player){
-		if(!player.knowsAboutSburb()) return null; //regular players will never do this
+		if(player.gnosis < 3) return null; //regular players will never do this
 		if(player.getStat("freeWill") < 50) return null; //requires great will power to commit suicide or murder for the greater good.
 		if(player.isActive() && (player.getStat("sanity") > 0 || player.murderMode)){
 			return this.becomeGod(player);
@@ -595,7 +595,7 @@ class FreeWillStuff extends Scene{
 		return null;
 	}
 	String considerMakingEctobiologistDoJob(Player player){
-		if(!this.session.ectoBiologyStarted && player.knowsAboutSburb() && player.grimDark < 2 ){
+		if(!this.session.ectoBiologyStarted && player.gnosis > 0 && player.grimDark < 2 ){
 			String timeIntro = "";
 			if(player.aspect == Aspects.TIME && rand.nextDouble()>.25){
 				timeIntro = " from the future";
@@ -631,7 +631,7 @@ class FreeWillStuff extends Scene{
 	}
 	String considerMakingSpacePlayerDoJob(Player player){
 		Player space = findAspectPlayer(this.session.availablePlayers, Aspects.SPACE);
-		if(space != null && space.landLevel < this.session.goodFrogLevel && player.knowsAboutSburb() && player.grimDark < 2 ){ //grim dark players don't care about sburb
+		if(space != null && space.landLevel < this.session.goodFrogLevel && player.gnosis >0 && player.grimDark < 2 ){ //grim dark players don't care about sburb
 			if(player == space){
 				//print(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
 				space.landLevel += 10;
