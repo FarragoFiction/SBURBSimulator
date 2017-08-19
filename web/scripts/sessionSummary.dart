@@ -368,7 +368,7 @@ class SessionSummaryJunior {
         this.averageFreeWill = getAverageFreeWill(this.players);
         this.averageHP = getAverageHP(this.players);
         this.averageRelationshipValue = getAverageRelationshipValue(this.players);
-        this.averageRelationshipValue = getAverageSanity(this.players);
+        this.averageSanity = getAverageSanity(this.players);
     }
 
     List<Player> grabPotentialGodTiers() {
