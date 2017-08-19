@@ -285,14 +285,14 @@ class Relationship {
                     if (r.type() == r.goodBig) {
                         print("initial diamond/heart");
                         num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
-                        if (difference > 2 || roll < rollNeeded + 5) { //pale
+                        if (difference > 2 || roll < rollNeeded ) { //pale
                             makeDiamonds(player, r.target);
                         } else {
                             makeHeart(player, r.target);
                         }
                     } else if (r.type() == r.badBig) {
                         print("initial club/spades");
-                        if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded + 5) { //likely to murder each other
+                        if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded) { //likely to murder each other
                             Player ausp = rand.pickFrom(players);
                             if (ausp != null && ausp != player && ausp != r.target) {
                                 makeClubs(ausp, player, r.target);
