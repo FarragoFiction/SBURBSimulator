@@ -782,12 +782,6 @@ class Player extends GameEntity {
         }
     }
 
-    //TODO this will be sburb lore.
-    bool knowsAboutSburb() {
-        //time might not innately get it, but they have future knowledge
-        bool rightClass = this.class_name == SBURBClassManager.SAGE || this.class_name == SBURBClassManager.SCRIBE || this.class_name == SBURBClassManager.SEER || this.class_name == SBURBClassManager.MAGE || this.aspect == Aspects.LIGHT || this.aspect == Aspects.MIND || this.aspect == Aspects.DOOM || this.aspect == Aspects.TIME;
-        return rightClass && this.getStat("power") > 20; //need to be far enough in my claspect
-    }
 
     List<Player> performEctobiology(Session session) {
         session.ectoBiologyStarted = true;
