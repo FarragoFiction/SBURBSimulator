@@ -60,7 +60,7 @@ class SBURBClassManager {
         SAGE = new Sage();
         GUIDE = new Guide();
         GRACE = new Grace();
-        NULL = new SBURBClass("Null", 256, false);
+        NULL = new SBURBClass("Null", 255, false);
     }
 
 
