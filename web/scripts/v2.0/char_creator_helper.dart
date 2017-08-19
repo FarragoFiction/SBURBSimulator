@@ -355,8 +355,9 @@ class CharacterCreatorHelper {
     }
 
     String generateHelpText(String topic, String specific) {
-        if (topic == "Class") return this.generateClassHelp(topic, specific);
-        if (topic == "Aspect") return this.generateAspectHelp(topic, specific);
+        if (topic == "Class") return this.generateClassHelp(topic, specific) + "";
+        if (topic == "Aspect") return this.generateAspectHelp(topic, specific) + " <a target = '_blank' href =' tools/stat_summary/index.html'>Aspect Explanations</a>";
+
         if (topic == "BloodColor")
             return this.generateBloodColorHelp(topic, specific);
         if (topic == "Moon") return this.generateMoonHelp(topic, specific);
