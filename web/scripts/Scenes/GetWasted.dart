@@ -12,32 +12,55 @@ import "../SBURBSim.dart";
 
 class GetWasted extends Scene {
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 2;
-    GetWasted(Session session): super(session);
+    int tippingPointBase = 3;
 
-  @override
-  bool trigger(List<Player> playerList){
-      this.playerList = playerList;
-      this.player = null;
-      List<Player> possibilities = new List<Player>();
-      for(Player p in session.availablePlayers){ //unlike grim dark, corpses are not allowed to have eureka moments.
-          if(this.loreReachedTippingPoint(p)){
-              possibilities.add(p);
-          }
-      }
-      this.player = rand.pickFrom(possibilities);
-      return this.player != null;
-  }
+    GetWasted(Session session) : super(session);
 
-  bool loreReachedTippingPoint(Player p){
-      return p.getStat("sburbLore") >= tippingPointBase * (p.gnosis+1); //linear growth, but the base is high.
-  }
+    @override
+    bool trigger(List<Player> playerList) {
+        this.playerList = playerList;
+        this.player = null;
+        List<Player> possibilities = new List<Player>();
+        for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
+            if (this.loreReachedTippingPoint(p)) {
+                possibilities.add(p);
+            }
+        }
+        this.player = rand.pickFrom(possibilities);
+        return this.player != null;
+    }
 
-  @override
-  void renderContent(Element div) {
-      print("Getting Wasted in session ${session.session_id}");
-      this.player.setStat("sburbLore",0);
-      this.player.gnosis ++;
-      appendHtml(div,"OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. Player has: ${player.getStat("sburbLore")} sburbLore and ${player.gnosis} gnosis.");
-  }
+    bool loreReachedTippingPoint(Player p) {
+        return p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1); //linear growth, but the base is high.
+    }
+
+    @override
+    void renderContent(Element div) {
+        print("Getting Wasted in session ${session.session_id}");
+        this.player.setStat("sburbLore", 0);
+        this.player.gnosis ++;
+        processTier(div);
+    }
+
+    void processTier(Element div) {
+        if (player.gnosis == 1) {
+            tier1(div);
+        } else if (player.gnosis == 2) {
+            tier2(div);
+        } else {
+            appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
+        }
+    }
+
+    //simple, foreshadowing things
+    void tier1(Element div) {
+        //from manic i have hope, breath, doom and time, murder mode and rage upcoming
+        //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
+        appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. It's almost like they've been reading a FAQ or something.");
+    }
+
+    void tier2(Element div) {
+        //this tier will unlock frog breeding and various free will shits besides english tier.
+        appendHtml(div, "The ${player.htmlTitle()} has been trying to explain to anyone who will listen how this bullshit game works. Maybe they should just write a FAQ?");
+    }
 }

@@ -155,6 +155,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void resetFraymotifs() {
+        this.buffs.clear();
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
         }
