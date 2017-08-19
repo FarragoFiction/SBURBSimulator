@@ -8,6 +8,10 @@ import "../SBURBSim.dart";
     This scene is the parallel of goGrim dark. When you go up by a gnosis level, this scene
     will say shit about it.  It will use Session Mutator to
 
+    some sprites should give sburb lore just like corruption
+
+    apparently i was cut out mid dispensing giggle snort and ppl lost their shit
+
  */
 
 class GetWasted extends Scene {
