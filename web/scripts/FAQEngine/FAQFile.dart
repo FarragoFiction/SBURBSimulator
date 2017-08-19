@@ -1,23 +1,21 @@
 import "../quirk.dart";
-/*
-        A faq file is a wrapper for a .txt file. Once it loads, it creates subSections which other things can use. (get a random subsection).
-        Once a subsection is used, it's no longer available.
 
-        I think classes/aspects should handle having FAQFiles, and the GetWasted scene handles special ones like grim dark and murder mode.
-
- */
-
-
-
+//i expect class and aspect to creat their own FAQFiles, and GetWasted to handle murder mode and grim dark and (trickster??? and bike faqs!???)
+///handles knowing what file it should load, loading it on request, and parsing and distributing the subsections of the file.
 class FAQFile {
-
+    String filePath;
+    //TODO be able to load your file path and create sections. this shit is a prime candidate for unit testing, maybe if i get rid of quirk for now.
 }
 
+///a section of a faq, can belong to a FAQFile or a GeneratedFAQ
 class FAQSection {
-
+    String header;
+    String body;
 }
 
-class generatedFAQ {
+///the faq that gets printed ontosb screen, complete with quirk
+class GeneratedFAQ {
+    String asciiHeader; //print this first, and no quirk.
     Quirk quirk;
     List<FAQSection> sections = new List<FAQSection>();
 }
