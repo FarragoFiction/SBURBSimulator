@@ -924,7 +924,7 @@ abstract class Drawing {
         ctx.font = "bold 32px Times New Roman";
         ctx.fillStyle = "#000000";
         ctx.fillText(player.mylevels[player.level_index], canvas.width / 2, 32);
-        ctx.fillStyle = ReferenceColours.WHITE;
+        ctx.fillStyle = ReferenceColours.WHITE.toStyleString();
         ctx.fillText(player.mylevels[player.level_index], canvas.width / 2 + 1, 32); //shadow
     }
 
@@ -938,7 +938,7 @@ abstract class Drawing {
         CanvasRenderingContext2D ctx = canvas.getContext("2d");
         ctx.textAlign = "center";
         ctx.font = "bold 12px Courier New";
-        ctx.fillStyle = ReferenceColours.WHITE;
+        ctx.fillStyle = ReferenceColours.WHITE.toStyleString();
 
         for (int i = 0; i < player.mylevels.length; i++) {
             if (player.level_index + 1 > i) {
