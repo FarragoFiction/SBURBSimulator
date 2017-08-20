@@ -67,7 +67,7 @@
 .colourPicker_window {
     position:relative;
     box-sizing: border-box;
-    width:600px;
+    width:650px;
     height:350px;
     background-color:#DDDDDD;
     outline:1px solid #AAAAAA;
@@ -80,6 +80,15 @@
     margin:4px;
     top:0px;
     left:0px;
+}
+
+.colourPicker_number {
+    display:inline-block;
+    margin-top:4px;
+    height:12px;
+    width:40px;
+    padding-left:10px;
+    text-align:right;
 }
 
 /* FANCY SLIDER STUFF ######################################################################################## */

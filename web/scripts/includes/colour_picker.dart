@@ -38,6 +38,7 @@ class ColourPicker {
     TextInputElement _hex_input;
 
     int pickMode = 3; // 0-8 = r,g,b, h,s,v, l,a,b
+    bool picking = false;
 
     List<FancySlider> _sliders = <FancySlider>[];
     List<FancySliderFill> _fillers = <FancySliderFill>[];
@@ -83,9 +84,9 @@ class ColourPicker {
             this._rgb_slider_green.value = colour.greenDouble;
             this._rgb_slider_blue.value = colour.blueDouble;
 
-            /*this._rgb_input_red.valueAsNumber = colour.red;
+            this._rgb_input_red.valueAsNumber = colour.red;
             this._rgb_input_green.valueAsNumber = colour.green;
-            this._rgb_input_blue.valueAsNumber = colour.blue;*/
+            this._rgb_input_blue.valueAsNumber = colour.blue;
         }
 
         if (hsv) {
@@ -93,9 +94,9 @@ class ColourPicker {
             this._hsv_slider_sat.value = colour.saturation;
             this._hsv_slider_val.value = colour.value;
 
-            /*this._hsv_input_hue.valueAsNumber = (colour.hue * 360).floor();
+            this._hsv_input_hue.valueAsNumber = (colour.hue * 360).floor();
             this._hsv_input_sat.valueAsNumber = (colour.saturation * 100).floor();
-            this._hsv_input_val.valueAsNumber = (colour.value * 100).floor();*/
+            this._hsv_input_val.valueAsNumber = (colour.value * 100).floor();
         }
 
         for (int i=0; i<_sliders.length; i++) {
@@ -251,31 +252,59 @@ class ColourPicker {
         _place(_mainSlider.bar, 268, 0);
 
         int bar_left = 300;
+        int input_left = 570;
 
         // RGB #####################################################
+
+        this._rgb_input_red = new NumberInputElement()..className="colourPicker_number"..min="0"..max="255"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_rgb_input_red, 0, 255, 0);
+                _rgb_slider_red.value = _rgb_input_red.valueAsNumber/255.0;
+                this.setFromRGB();
+            });
+        _place(_rgb_input_red, input_left, 0);
+        w.append(_rgb_input_red);
 
         this._rgb_slider_red = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                //this._rgb_input_red.valueAsNumber = (this._rgb_slider_red.value * 255).round();
+                this._rgb_input_red.valueAsNumber = (this._rgb_slider_red.value * 255).round();
                 this.setFromRGB();
             });
         _place(_rgb_slider_red.bar, bar_left,0);
         _sliders.add(_rgb_slider_red);
 
+        this._rgb_input_green = new NumberInputElement()..className="colourPicker_number"..min="0"..max="255"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_rgb_input_green, 0, 255, 0);
+                _rgb_slider_green.value = _rgb_input_green.valueAsNumber/255.0;
+                this.setFromRGB();
+            });
+        _place(_rgb_input_green, input_left, 30);
+        w.append(_rgb_input_green);
+        
         this._rgb_slider_green = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                //this._rgb_input_green.valueAsNumber = (this._rgb_slider_green.value * 255).round();
+                this._rgb_input_green.valueAsNumber = (this._rgb_slider_green.value * 255).round();
                 this.setFromRGB();
             });
         _place(_rgb_slider_green.bar, bar_left,30);
         _sliders.add(_rgb_slider_green);
 
+        this._rgb_input_blue = new NumberInputElement()..className="colourPicker_number"..min="0"..max="255"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_rgb_input_blue, 0, 255, 0);
+                _rgb_slider_blue.value = _rgb_input_blue.valueAsNumber/255.0;
+                this.setFromRGB();
+            });
+        _place(_rgb_input_blue, input_left, 60);
+        w.append(_rgb_input_blue);
+        
         this._rgb_slider_blue = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                //this._rgb_input_blue.valueAsNumber = (this._rgb_slider_blue.value * 255).round();
+                this._rgb_input_blue.valueAsNumber = (this._rgb_slider_blue.value * 255).round();
                 this.setFromRGB();
             });
         _place(_rgb_slider_blue.bar, bar_left,60);
@@ -283,28 +312,55 @@ class ColourPicker {
 
         // HSV #####################################################
 
+        this._hsv_input_hue = new NumberInputElement()..className="colourPicker_number"..min="0"..max="360"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_hsv_input_hue, 0, 360, 0);
+                _hsv_slider_hue.value = _hsv_input_hue.valueAsNumber/360.0;
+                this.setFromHSV();
+            });
+        _place(_hsv_input_hue, input_left, 100);
+        w.append(_hsv_input_hue);
+        
         this._hsv_slider_hue = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-
+                this._hsv_input_hue.valueAsNumber = (this._hsv_slider_hue.value * 360).round();
                 this.setFromHSV();
             });
         _place(_hsv_slider_hue.bar, bar_left,100);
         _sliders.add(_hsv_slider_hue);
 
+        this._hsv_input_sat = new NumberInputElement()..className="colourPicker_number"..min="0"..max="100"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_hsv_input_sat, 0, 100, 0);
+                _hsv_slider_sat.value = _hsv_input_sat.valueAsNumber/100.0;
+                this.setFromHSV();
+            });
+        _place(_hsv_input_sat, input_left, 130);
+        w.append(_hsv_input_sat);
+        
         this._hsv_slider_sat = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-
+                this._hsv_input_sat.valueAsNumber = (this._hsv_slider_sat.value * 100).round();
                 this.setFromHSV();
             });
         _place(_hsv_slider_sat.bar, bar_left,130);
         _sliders.add(_hsv_slider_sat);
 
+        this._hsv_input_val = new NumberInputElement()..className="colourPicker_number"..min="0"..max="100"..step="1"
+            ..onChange.listen((Event e){
+                _limitInputValue(_hsv_input_val, 0, 100, 0);
+                _hsv_slider_val.value = _hsv_input_val.valueAsNumber/100.0;
+                this.setFromHSV();
+            });
+        _place(_hsv_input_val, input_left, 160);
+        w.append(_hsv_input_val);
+        
         this._hsv_slider_val = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-
+                this._hsv_input_val.valueAsNumber = (this._hsv_slider_val.value * 100).round();
                 this.setFromHSV();
             });
         _place(_hsv_slider_val.bar, bar_left,160);
@@ -323,8 +379,20 @@ class ColourPicker {
             ..left = "${x}px";
     }
 
-    void _pickerDrag(MouseEvent e) {
+    static void _limitInputValue(NumberInputElement input, num min, num max, int decimals) {
+        num val = input.valueAsNumber;
+        for (int i=0; i<decimals; i++) {
+            val *= 10;
+        }
+        val = val.roundToDouble();
+        for (int i=0; i<decimals; i++) {
+            val *= 0.1;
+        }
+        input.valueAsNumber = val.clamp(min, max);
+    }
 
+    void _pickerDrag(MouseEvent e) {
+        if (!picking) { return; }
         this.update();
     }
 
