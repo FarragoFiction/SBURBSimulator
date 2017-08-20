@@ -67,7 +67,7 @@
 .colourPicker_window {
     position:relative;
     box-sizing: border-box;
-    width:650px;
+    width:660px;
     height:350px;
     background-color:#DDDDDD;
     outline:1px solid #AAAAAA;
@@ -89,6 +89,12 @@
     width:40px;
     padding-left:10px;
     text-align:right;
+}
+
+.colourPicker_text {
+    font-family: "Arial", sans-serif;
+    font-size:10px;
+    margin: 2px 2px 2px 4px;
 }
 
 /* FANCY SLIDER STUFF ######################################################################################## */
