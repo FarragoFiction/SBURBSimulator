@@ -31,9 +31,6 @@ class ColourPicker {
     NumberInputElement _hsv_input_sat;
     NumberInputElement _hsv_input_val;
 
-    FancySlider _lab_slider_l;
-    FancySlider _lab_slider_a;
-    FancySlider _lab_slider_b;
     NumberInputElement _lab_input_l;
     NumberInputElement _lab_input_a;
     NumberInputElement _lab_input_b;
@@ -64,25 +61,42 @@ class ColourPicker {
         ColourPickerMouseHandler.init();
     }
 
-    void update() {
+    void setFromRGB() {
+        this.colour.redDouble = this._rgb_slider_red.value;
+        this.colour.greenDouble = this._rgb_slider_green.value;
+        this.colour.blueDouble = this._rgb_slider_blue.value;
+        this.update(rgb:false);
+    }
+
+    void setFromHSV() {
+        this.colour.hue = this._hsv_slider_hue.value;
+        this.colour.saturation = this._hsv_slider_sat.value;
+        this.colour.value = this._hsv_slider_val.value;
+        this.update(hsv:false);
+    }
+
+    void update({bool rgb = true, bool hsv = true}) {
         print("update");
 
-        this._rgb_slider_red.value = colour.redDouble;
-        this._rgb_slider_green.value = colour.greenDouble;
-        this._rgb_slider_blue.value = colour.blueDouble;
+        if (rgb) {
+            this._rgb_slider_red.value = colour.redDouble;
+            this._rgb_slider_green.value = colour.greenDouble;
+            this._rgb_slider_blue.value = colour.blueDouble;
 
-        this._hsv_slider_hue.value = colour.hue;
-        this._hsv_slider_sat.value = colour.saturation;
-        this._hsv_slider_val.value = colour.value;
+            /*this._rgb_input_red.valueAsNumber = colour.red;
+            this._rgb_input_green.valueAsNumber = colour.green;
+            this._rgb_input_blue.valueAsNumber = colour.blue;*/
+        }
 
-        this._lab_slider_l.value = colour.lab_lightness_scaled;
+        if (hsv) {
+            this._hsv_slider_hue.value = colour.hue;
+            this._hsv_slider_sat.value = colour.saturation;
+            this._hsv_slider_val.value = colour.value;
 
-        this._lab_slider_a.minVal = (new Colour.from(this.colour)..lab_a = -127.0).lab_a;
-        this._lab_slider_a.maxVal = (new Colour.from(this.colour)..lab_a = 128.0).lab_a;
-        this._lab_slider_a.value = colour.lab_a;
-        this._lab_slider_b.minVal = (new Colour.from(this.colour)..lab_b = -127.0).lab_b;
-        this._lab_slider_b.maxVal = (new Colour.from(this.colour)..lab_b = 128.0).lab_b;
-        this._lab_slider_b.value = colour.lab_b;
+            /*this._hsv_input_hue.valueAsNumber = (colour.hue * 360).floor();
+            this._hsv_input_sat.valueAsNumber = (colour.saturation * 100).floor();
+            this._hsv_input_val.valueAsNumber = (colour.value * 100).floor();*/
+        }
 
         for (int i=0; i<_sliders.length; i++) {
             _sliders[i]
@@ -243,8 +257,8 @@ class ColourPicker {
         this._rgb_slider_red = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.redDouble = this._rgb_slider_red.value;
-                this.update();
+                //this._rgb_input_red.valueAsNumber = (this._rgb_slider_red.value * 255).round();
+                this.setFromRGB();
             });
         _place(_rgb_slider_red.bar, bar_left,0);
         _sliders.add(_rgb_slider_red);
@@ -252,8 +266,8 @@ class ColourPicker {
         this._rgb_slider_green = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.greenDouble = this._rgb_slider_green.value;
-                this.update();
+                //this._rgb_input_green.valueAsNumber = (this._rgb_slider_green.value * 255).round();
+                this.setFromRGB();
             });
         _place(_rgb_slider_green.bar, bar_left,30);
         _sliders.add(_rgb_slider_green);
@@ -261,19 +275,19 @@ class ColourPicker {
         this._rgb_slider_blue = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.blueDouble = this._rgb_slider_blue.value;
-                this.update();
+                //this._rgb_input_blue.valueAsNumber = (this._rgb_slider_blue.value * 255).round();
+                this.setFromRGB();
             });
         _place(_rgb_slider_blue.bar, bar_left,60);
         _sliders.add(_rgb_slider_blue);
 
-        // RGB #####################################################
+        // HSV #####################################################
 
         this._hsv_slider_hue = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.hue = this._hsv_slider_hue.value;
-                this.update();
+
+                this.setFromHSV();
             });
         _place(_hsv_slider_hue.bar, bar_left,100);
         _sliders.add(_hsv_slider_hue);
@@ -281,8 +295,8 @@ class ColourPicker {
         this._hsv_slider_sat = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.saturation = this._hsv_slider_sat.value;
-                this.update();
+
+                this.setFromHSV();
             });
         _place(_hsv_slider_sat.bar, bar_left,130);
         _sliders.add(_hsv_slider_sat);
@@ -290,40 +304,11 @@ class ColourPicker {
         this._hsv_slider_val = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this.colour.value = this._hsv_slider_val.value;
-                this.update();
+
+                this.setFromHSV();
             });
         _place(_hsv_slider_val.bar, bar_left,160);
         _sliders.add(_hsv_slider_val);
-
-        // HSV #####################################################
-
-        this._lab_slider_l = new FancySlider(0.0, 1.0, 256, 16, false)
-            ..appendTo(w)
-            ..onChange.listen((Event e) {
-                this.colour.lab_lightness_scaled = this._lab_slider_l.value;
-                this.update();
-            });
-        _place(_lab_slider_l.bar, bar_left,200);
-        _sliders.add(_lab_slider_l);
-
-        this._lab_slider_a = new FancySlider(0.0, 1.0, 256, 16, false)
-            ..appendTo(w)
-            ..onChange.listen((Event e) {
-                this.colour.lab_a = this._lab_slider_a.value;
-                this.update();
-            });
-        _place(_lab_slider_a.bar, bar_left,230);
-        _sliders.add(_lab_slider_a);
-
-        this._lab_slider_b = new FancySlider(0.0, 1.0, 256, 16, false)
-            ..appendTo(w)
-            ..onChange.listen((Event e) {
-                this.colour.lab_b = this._lab_slider_b.value;
-                this.update();
-            });
-        _place(_lab_slider_b.bar, bar_left,260);
-        _sliders.add(_lab_slider_b);
 
         // #########################################################
 
