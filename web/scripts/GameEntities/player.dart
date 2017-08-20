@@ -1585,7 +1585,15 @@ class Player extends GameEntity {
             print("Class Name ID : $cid");
             this.class_name = intToClassName(cid);
         }
-        if (numFeatures > 1) this.aspect = Aspects.get(reader.readByte());
+        if (numFeatures > 1) {
+            int i = reader.readByte();
+            print("extension byte for aspect is  ${i}");
+
+            this.aspect = Aspects.get(i);
+            print("after extension byte, aspect is  ${aspect}");
+        }
+
+
         //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
     }
 

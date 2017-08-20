@@ -43,7 +43,7 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
 
-        NULL = new Aspect(256, "Null");
+        NULL = new Aspect(255, "Null");
     }
 
     // ##################################################################################################

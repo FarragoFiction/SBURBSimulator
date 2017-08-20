@@ -318,6 +318,7 @@ void applyExtensionStringToPlayers(List<Player> players, xbytes){
   for(num i = 0; i<players.length; i++){
     players[i].readInExtensionsString(reader);
   }
+
 }
 
 
@@ -345,8 +346,9 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   //print("charString is: " + charString);
   player.hairColor = intToHexColor((charString.codeUnitAt(0) << 16) + (charString.codeUnitAt(1) << 8) + (charString.codeUnitAt(2)) );
   player.class_name = intToClassName(charString.codeUnitAt(3) >> 4);
-  //print("I believe the int value of the class name is: " + (charString.codeUnitAt(3) >> 4) + " which is: " + player.class_name);
   player.aspect = Aspects.get(charString.codeUnitAt(3) & 15) ;//get 4 bits on end;
+  print("I believe the int value of the aspect is: ${charString.codeUnitAt(3) & 15} which is: ${player.aspect}");
+
   player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
   player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
 
