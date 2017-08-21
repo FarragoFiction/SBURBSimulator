@@ -7,21 +7,18 @@ class FAQSection {
     String body;
 
     FAQSection(this.header, this.body);
-    FAQSection.fromString(String s){
-        print("gettin sections out of $s");
-        Iterable<Match> headerMatches = new RegExp("<header>.*</header>", multiLine:true).allMatches(s);
-        print("matches is ${headerMatches.length}");
-        header = headerMatches.first.group(0);
-        Iterable<Match> bodyMatches = new RegExp("<body>.*</body>", multiLine:true).allMatches(s);
-        body = bodyMatches.first.group(0);
-        print("created section with $header and $body");
+    FAQSection.fromXMLDoc(Xml.XmlNode s){
+        print("making FAQSection from $s which has document of ${s.document}");
+        header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).toString();
+        body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).toString();
     }
 
     ///assume sections start with <section> and have no ending tag cuz i am lazy
-    static List<String> mainTextToSubStrings(String text) {
+    static List<Xml.XmlNode> mainTextToSubStrings(String text) {
         print("text is $text");
         Xml.XmlDocument document = Xml.parse(text);
-        print("children are ${document.children}");
-        return text.split("<section>");
+        Xml.XmlElement ele = document.findElements("faq").first;
+        print("document is $document, children are ${ele.children} elements that are section are: ${ele.findElements("section")}");
+        return ele.findElements("section").toList();
     }
 }

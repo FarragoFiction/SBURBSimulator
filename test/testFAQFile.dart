@@ -23,4 +23,5 @@ void basicTests() {
     jRAssert("fileName", f.fileName, "Rage.txt");
     f.parseRawTextIntoSections(pretendFileContents);
     jRAssert("number of sections", f.sections.length, 2);
+    jRAssert("section 1 header", f.sections[0].header, "Question: Does this parser work?");
 }

@@ -1,5 +1,7 @@
 //import "../quirk.dart";
 import "FAQSection.dart";
+import 'package:xml/xml.dart' as Xml;
+
 import "GeneratedFAQ.dart";
 //import 'dart:html'; //<--needed for loading the file this is fucking bullshit. means i can't unit test this part. oh well, unit test parsing first.
 
@@ -34,12 +36,12 @@ class FAQFile {
     /// looking for <section></section>, <header </header> and <body></body>
     void parseRawTextIntoSections(String text) {
         //first, i need to turn the string into a list of substrings that are a single section
-        List<String> sectionStrings = FAQSection.mainTextToSubStrings(text);
+        List<Xml.XmlNode> sectionStrings = FAQSection.mainTextToSubStrings(text);
         print("after parsing main text, sectionStrings are $sectionStrings");
         //then, I need to call a new function on that substring to turn it into a section.
-        for(String tmp in sectionStrings) {
+        for(Xml.XmlNode tmp in sectionStrings) {
             print("after parsing main text, trying to parse  $tmp");
-            if (!tmp.isEmpty) sections.add(new FAQSection.fromString(tmp));  //because of my bad laziness, can have blanks.
+            sections.add(new FAQSection.fromXMLDoc(tmp));
         }
     }
 
