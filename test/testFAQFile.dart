@@ -5,7 +5,7 @@ import "../web/scripts/FAQEngine/FAQFile.dart";
 
 //god, i hate that i can't do simple unit tests if any html gets anywhere, so can't test file loading yet.
 //experimenting with different scripting bs. should only need two tags for now.
-String pretendFileContents = "<header>+++++++++++++++++++++Question: Does this parser work?  +++++++++++++++++++++++</header>\n<body>Apparently.\n</body>\n<header>+++++++++++++++++++++Question: How bullshit is everything.+++++++++++++++++++++++</header>\n<body>Extremely.\n</body>";
+String pretendFileContents = "<section><header>+++++++++++++++++++++Question: Does this parser work?  +++++++++++++++++++++++</header>\n<body>Apparently.\n</body></section>\n<section><header>+++++++++++++++++++++Question: How bullshit is everything.+++++++++++++++++++++++</header>\n<body>Extremely.\n</body></section>";
 
 main() {
     print("Hello World");

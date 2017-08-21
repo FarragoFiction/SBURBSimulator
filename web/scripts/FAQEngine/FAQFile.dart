@@ -31,9 +31,15 @@ class FAQFile {
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit
-    /// looking for <header </header> and <body></body>
+    /// looking for <section></section>, <header </header> and <body></body>
     void parseRawTextIntoSections(String text) {
-
+        //first, i need to turn the string into a list of substrings that are a single section
+        List<String> sectionStrings = FAQSection.mainTextToSubStrings(text);
+        //then, I need to call a new function on that substring to turn it into a section.
+        for(String s in sectionStrings) {
+            sections.add(new FAQSection.fromString(s));
+        }
     }
+
 }
 
