@@ -1,9 +1,9 @@
-//import "../quirk.dart";
+import "../SBURBSim.dart";
 import "FAQSection.dart";
 import 'package:xml/xml.dart' as Xml;
+import 'dart:html'; //<--needed for loading the file this is fucking bullshit. means i can't unit test this part. oh well, unit test parsing first.
 
 import "GeneratedFAQ.dart";
-//import 'dart:html'; //<--needed for loading the file this is fucking bullshit. means i can't unit test this part. oh well, unit test parsing first.
 
 
 
@@ -14,22 +14,35 @@ class FAQFile {
     String filePath = "../GameFaqs/";
     ///what is the name of the FAQ file you reference.
     String fileName;
+    dynamic callback;
 
     List<FAQSection> sections = new List<FAQSection>();
 
     FAQFile(this.fileName);
 
+    ///passed a callback since it might have to load
+    FAQSection getRandomSection(Random rand) {
+        if(sections.isEmpty) {
+            loadWithCallBack(getRandomSection(rand));
+        }else {
+            rand.pickFrom(sections);
+        }
+    }
+
+
+
     /// it will load it's file from the server, parse it into sections,  then call the callback when it's done.
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
     void loadWithCallBack(callBack) {
-        /*  TODO uncomment this out when i'm done unit testing and uncomment out import for dart html
-        HttpRequest.getString("navbar.txt").then(HttpRequest resp) {
-            parseRawTextIntoSections(resp.responseText);
-            callBack();
+        callback = callBack;
+        HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
-        });
-        */
+    }
+
+    void afterLoaded(String data) {
+        parseRawTextIntoSections(data);
+        callback();
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit

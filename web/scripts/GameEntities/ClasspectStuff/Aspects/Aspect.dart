@@ -99,6 +99,7 @@ abstract class Aspects {
 class Aspect {
     /// Used for OCData save/load.
     final int id;
+    FAQFile faqFile;
 
     /// Used for string representations of the aspect.
     final String name;
@@ -202,6 +203,7 @@ class Aspect {
     // Constructor
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
+        faqFile = new FAQFile("name.png");
         Aspects.register(this);
     }
 

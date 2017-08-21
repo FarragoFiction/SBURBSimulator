@@ -17,12 +17,15 @@ import "../SBURBSim.dart";
 class GetWasted extends Scene {
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
+    List<FAQSection> sections = new List<FAQSection>();
+    int numSegmentsPerFAQ = 2;
 
     GetWasted(Session session) : super(session);
 
     @override
     bool trigger(List<Player> playerList) {
         this.playerList = playerList;
+        sections.clear();
         this.player = null;
         List<Player> possibilities = new List<Player>();
         for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
@@ -55,6 +58,16 @@ class GetWasted extends Scene {
             appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
         }
     }
+
+    ///this isn't WRITING an faq, it's finding one.  less constraints.
+    void findRandomFAQ(Element div) {
+        FAQFile f = rand.pickFrom(Aspects.all).faqFile;
+        FAQSection s = f.getRandomSection(rand);
+        if(s != null) sections.add(s);
+        if(sections.length < numSegmentsPerFAQ) findRandomFAQ(div);
+    }
+
+
 
     //simple, foreshadowing things
     void tier1(Element div) {

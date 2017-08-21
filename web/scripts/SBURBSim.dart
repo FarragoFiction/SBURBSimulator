@@ -12,7 +12,8 @@ export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "fraymotif.dart";
 export "session.dart";
 export "sessionSummary.dart";
-
+export "FAQEngine/FAQFile.dart";
+export "FAQEngine/FAQSection.dart";
 export "random_tables.dart";
 export "loading.dart";
 export "random.dart";
