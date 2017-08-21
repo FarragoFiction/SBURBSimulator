@@ -71,7 +71,7 @@ testStats() {
 
   try {
     testGE.addStat("bogus413", 345); //test that it throws an error
-  }catch(exception, stackTrace) {
+  }catch(exception) {
     print("Exception: $exception caught as expected for adding a stat.");
   }
 

@@ -3,7 +3,8 @@ import "../SBURBSim.dart";
 
 
 class LuckStuff extends Scene{
-	List<Player> playerList = [];  //what players are already in the medium when i trigger?
+	@override
+	List<Player> playerList = <Player>[];  //what players are already in the medium when i trigger?
 	List<Roll> rolls = [];	//luck can be good or it can be bad.
 	num minLowValue = -100;
 	num minHighValue = 200;

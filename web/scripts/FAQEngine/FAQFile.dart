@@ -31,6 +31,7 @@ class FAQFile {
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit
+    /// looking for <header </header> and <body></body>
     void parseRawTextIntoSections(String text) {
 
     }
