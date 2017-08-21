@@ -18,6 +18,7 @@ class GetWasted extends Scene {
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
     List<FAQSection> sections = new List<FAQSection>();
+    int numTries = 0;
     int numSegmentsPerFAQ = 2;
 
     GetWasted(Session session) : super(session);
@@ -26,6 +27,7 @@ class GetWasted extends Scene {
     bool trigger(List<Player> playerList) {
         this.playerList = playerList;
         sections.clear();
+        numTries = 0;
         this.player = null;
         List<Player> possibilities = new List<Player>();
         for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
@@ -60,11 +62,19 @@ class GetWasted extends Scene {
     }
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
-    void findRandomFAQ(Element div) {
+    void findRandomFAQSection() {
+        numTries ++;
+        print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
         FAQSection s = f.getRandomSection(rand);
         if(s != null) sections.add(s);
-        if(sections.length < numSegmentsPerFAQ) findRandomFAQ(div);
+        if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+    }
+
+    void findRandomFAQ(Element div) {
+        findRandomFAQSection();
+        print ("found sections: ${sections}" );
+
     }
 
 
@@ -73,7 +83,8 @@ class GetWasted extends Scene {
     void tier1(Element div) {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
-        //very low chance of finding a faq
+        //chance of finding a faq
+        findRandomFAQ(div);
         appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. It's almost like they've been reading a FAQ or something.");
     }
 
