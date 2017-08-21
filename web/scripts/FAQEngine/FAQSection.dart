@@ -7,10 +7,17 @@ class FAQSection {
 
     FAQSection(this.header, this.body);
     FAQSection.fromString(String s){
-        throw "TODO: parse a section from a string";
+        print("gettin sections out of $s");
+        Iterable<Match> headerMatches = new RegExp("<header>.*</header>", multiLine:true).allMatches(s);
+        print("matches is ${headerMatches.length}");
+        header = headerMatches.first.group(0);
+        Iterable<Match> bodyMatches = new RegExp("<body>.*</body>", multiLine:true).allMatches(s);
+        body = bodyMatches.first.group(0);
+        print("created section with $header and $body");
     }
 
+    ///assume sections start with <section> and have no ending tag cuz i am lazy
     static List<String> mainTextToSubStrings(String text) {
-        throw "TODO: parse a list of section texts from a main text";
+        return text.split("<section>");
     }
 }

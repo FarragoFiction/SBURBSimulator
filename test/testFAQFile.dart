@@ -5,7 +5,8 @@ import "../web/scripts/FAQEngine/FAQFile.dart";
 
 //god, i hate that i can't do simple unit tests if any html gets anywhere, so can't test file loading yet.
 //experimenting with different scripting bs. should only need two tags for now.
-String pretendFileContents = "<section><header>+++++++++++++++++++++Question: Does this parser work?  +++++++++++++++++++++++</header>\n<body>Apparently.\n</body></section>\n<section><header>+++++++++++++++++++++Question: How bullshit is everything.+++++++++++++++++++++++</header>\n<body>Extremely.\n</body></section>";
+//TODO might not work for real one. \n in here breaks it, will actual new lines break it from html? either way probably should replace with <Br>
+String pretendFileContents = "<section><header>+++++++++++++++++++++Question: Does this parser work?  +++++++++++++++++++++++</header><body>Apparently.</body><section><header>+++++++++++++++++++++Question: How bullshit is everything.+++++++++++++++++++++++<body>Extremely.</body>";
 
 main() {
     print("Hello World");

@@ -35,9 +35,11 @@ class FAQFile {
     void parseRawTextIntoSections(String text) {
         //first, i need to turn the string into a list of substrings that are a single section
         List<String> sectionStrings = FAQSection.mainTextToSubStrings(text);
+        print("after parsing main text, sectionStrings are $sectionStrings");
         //then, I need to call a new function on that substring to turn it into a section.
-        for(String s in sectionStrings) {
-            sections.add(new FAQSection.fromString(s));
+        for(String tmp in sectionStrings) {
+            print("after parsing main text, trying to parse  $tmp");
+            if (!tmp.isEmpty) sections.add(new FAQSection.fromString(tmp));  //because of my bad laziness, can have blanks.
         }
     }
 
