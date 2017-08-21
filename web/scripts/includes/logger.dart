@@ -44,6 +44,7 @@ class Logger {
     static LoggerPrintFunction _getPrintForLevel(LogLevel level) {
         if (level == LogLevel.ERROR) { return window.console.error; }
         if (level == LogLevel.WARN) { return window.console.warn; }
+        if (level == LogLevel.VERBOSE) { return window.console.info; }
         return print;
     }
 
