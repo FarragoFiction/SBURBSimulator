@@ -15,4 +15,5 @@ FAQFile setupFF() {
 void basicTests() {
     FAQFile f = setupFF();
     jRAssert("faqFIle object existing", f != null, true);
+    jRAssert("fileName", f.fileName, "Rage.txt");
 }
