@@ -19,6 +19,7 @@ class FAQSection {
 
     ///assume sections start with <section> and have no ending tag cuz i am lazy
     static List<String> mainTextToSubStrings(String text) {
+        print("text is $text");
         Xml.XmlDocument document = Xml.parse(text);
         print("children are ${document.children}");
         return text.split("<section>");
