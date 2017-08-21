@@ -221,7 +221,7 @@ class Colour {
     }
 
     String toHexString([bool useAlpha = false]) {
-        return this.toHex(useAlpha).toRadixString(16).padLeft(useAlpha ? 8 : 6, "0");
+        return this.toHex(useAlpha).toRadixString(16).padLeft(useAlpha ? 8 : 6, "0").toUpperCase();
     }
 
     String toStyleString([bool useAlpha = false]) {

@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:html';
+import 'dart:math' as Math;
 
 import 'colour.dart';
+import 'logger.dart';
 
 class ColourPicker {
+    static Logger logger = Logger.get("ColourPicker");
+
     static Set<ColourPicker> _pickers = new Set<ColourPicker>();
 
     bool isOpen = false;
@@ -69,22 +73,35 @@ class ColourPicker {
         ColourPickerMouseHandler.init();
     }
 
-    void setFromRGB() {
+    void setFromRGB([bool fromMain = false]) {
+        logger.debug("setFromRGB");
         this.colour.redDouble = this._rgb_slider_red.value;
         this.colour.greenDouble = this._rgb_slider_green.value;
         this.colour.blueDouble = this._rgb_slider_blue.value;
-        this.update(rgb:false);
+        this.update(rgb:false, fromMain: fromMain);
     }
 
-    void setFromHSV() {
+    void setFromHSV([bool fromMain = false]) {
+        logger.debug("setFromRGB");
         this.colour.hue = this._hsv_slider_hue.value;
         this.colour.saturation = this._hsv_slider_sat.value;
         this.colour.value = this._hsv_slider_val.value;
-        this.update(hsv:false);
+        this.update(hsv:false, fromMain: fromMain);
     }
 
-    void update({bool rgb = true, bool hsv = true, bool force = false}) {
+    void setFromLab() {
+        this.colour.setLAB(
+            _lab_input_l.valueAsNumber.toDouble(),
+            _lab_input_a.valueAsNumber.toDouble(),
+            _lab_input_b.valueAsNumber.toDouble()
+        );
+        this.update(lab:false);
+    }
+
+    void update({bool rgb = true, bool hsv = true, bool lab = true, bool fromMain = false, bool force = false}) {
         if (!(this.isOpen || force)) { return; }
+
+        logger.debug("update: rgb: $rgb, hsv: $hsv, fromMain: $fromMain, force: $force");
 
         if (rgb) {
             this._rgb_slider_red.value = colour.redDouble;
@@ -106,20 +123,29 @@ class ColourPicker {
             this._hsv_input_val.valueAsNumber = (colour.value * 100).floor();
         }
 
+        if (lab) {
+            this._lab_input_l.value = this.colour.lab_lightness.toStringAsFixed(2);
+            this._lab_input_a.value = this.colour.lab_a.toStringAsFixed(2);
+            this._lab_input_b.value = this.colour.lab_b.toStringAsFixed(2);
+        }
+
         for (int i=0; i<_sliders.length; i++) {
             _sliders[i]
                 ..update(true)
                 ..drawBackground(_fillers[i]);
         }
 
-        this._updateMainPicker();
+        this._updateMainPicker(!fromMain);
+
+        this._hex_input.value = this.colour.toHexString();
 
         this._buttonSwatch.style.backgroundColor = this.colour.toStyleString();
 
         this.modeButtons[pickMode].checked = true;
     }
 
-    void _updateMainPicker() {
+    void _updateMainPicker(bool setValue) {
+        logger.debug("updateMainPicker: setValue: $setValue");
         FancySliderFill sfill = _mainSliderFillers[pickMode];
         MainPickerFill pfill = _mainPickerFillers[pickMode];
 
@@ -130,53 +156,76 @@ class ColourPicker {
 
         int i;
         Colour fill;
-        for (int x=0; x<256; x++) {
-            for (int y=0; y<256; y++) {
+        for (int x = 0; x < 256; x++) {
+            for (int y = 0; y < 256; y++) {
                 i = (y * 256 + x) * 4;
 
-                fill = pfill(x/255, 1.0 - (y/255));
+                fill = pfill(x / 255, 1.0 - (y / 255));
 
                 idata.data[i] = fill.red;
-                idata.data[i+1] = fill.green;
-                idata.data[i+2] = fill.blue;
-                idata.data[i+3] = 255;
+                idata.data[i + 1] = fill.green;
+                idata.data[i + 2] = fill.blue;
+                idata.data[i + 3] = 255;
             }
         }
 
         ctx.putImageData(idata, 0, 0);
 
-        double x,y,s;
+        List<FancySlider> sliders = _getSlidersForMode();
+        double x = sliders[0].value;
+        double y = sliders[1].value;
+        double s = sliders[2].value;
 
+        String selectorFill = this.colour.lab_lightness > 50 ? "#000000" : "#FFFFFF";
+        ctx
+            ..beginPath()
+            ..arc((x * 255).round(), ((1.0-y) * 255).round(), 5, 0, Math.PI * 2)
+            ..strokeStyle = selectorFill
+            ..stroke();
+
+        if (setValue) {
+            this._mainSlider.value = s;
+        }
+        this._mainSlider.update(true);
+    }
+
+    List<FancySlider> _getSlidersForMode() {
+        FancySlider x,y,s;
         if (pickMode == 0) {
             //red
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            x = _rgb_slider_blue;
+            y = _rgb_slider_green;
+            s = _rgb_slider_red;
         } else if (pickMode == 1) {
             // green
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            x = _rgb_slider_blue;
+            y = _rgb_slider_red;
+            s = _rgb_slider_green;
         } else if (pickMode == 2) {
             // blue
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            x = _rgb_slider_red;
+            y = _rgb_slider_green;
+            s = _rgb_slider_blue;
         } else if (pickMode == 3) {
-            //
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            // hue
+            x = _hsv_slider_sat;
+            y = _hsv_slider_val;
+            s = _hsv_slider_hue;
         } else if (pickMode == 4) {
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            // sat
+            x = _hsv_slider_hue;
+            y = _hsv_slider_val;
+            s = _hsv_slider_sat;
         } else if (pickMode == 5) {
-            x = _rgb_slider_blue.value;
-            y = _rgb_slider_green.value;
-            s = _rgb_slider_red.value;
+            // val
+            x = _hsv_slider_hue;
+            y = _hsv_slider_sat;
+            s = _hsv_slider_val;
         }
+        return <FancySlider>[x,y,s];
     }
+
+    ColourPickerUpdateFunction _getUpdaterForMode() => pickMode >= 3 ? this.setFromHSV : this.setFromRGB;
 
     void open() {
         this.isOpen = true;
@@ -238,9 +287,9 @@ class ColourPicker {
         _mainSliderFillers.add((double val) => new Colour.from(this.colour)..saturation = val);
         _mainSliderFillers.add((double val) => new Colour.from(this.colour)..value = val);
 
-        _mainPickerFillers.add((double x, double y) => new Colour.from(this.colour)..saturation = x..value = y);
-        _mainPickerFillers.add((double x, double y) => new Colour.from(this.colour)..hue = x..value = y);
-        _mainPickerFillers.add((double x, double y) => new Colour.from(this.colour)..hue = x..saturation = y);
+        _mainPickerFillers.add((double x, double y) => new Colour.hsv(_hsv_slider_hue.value, x,y));
+        _mainPickerFillers.add((double x, double y) => new Colour.hsv(x, _hsv_slider_sat.value, y));
+        _mainPickerFillers.add((double x, double y) => new Colour.hsv(x, y, _hsv_slider_val.value));
     }
 
     // element and getter stuff ###############################################################
@@ -330,14 +379,17 @@ class ColourPicker {
 
         this._mainPicker = new CanvasElement(width:256, height:256)
             ..className="colourPicker_canvas"
-            ..onMouseDown.listen(this._pickerDrag)
-            ..onMouseMove.listen(this._pickerDrag);
+            ..onMouseDown.listen((MouseEvent e) {
+                logger.debug("PICKER CLICK");
+                this.picking = true;
+                this._pickerDrag(e);
+            });
         w.append(_mainPicker);
 
-        this._mainSlider = new FancySlider(0.0, 1.0, 25, 256, true)..appendTo(w)..onChange.listen((Event e) => _setFromPicker());
+        this._mainSlider = new FancySlider(0.0, 1.0, 25, 256, true)..appendTo(w)..onChange.listen(_setFromPicker);
         _place(_mainSlider.bar, 268, 0);
 
-        int radio_left = 300;
+        int radio_left = 305;
         int bar_left = 330;
         int input_left = 600;
 
@@ -427,11 +479,12 @@ class ColourPicker {
         }
 
         // HUE #########
+        double huemax = 360.0;
 
         this._hsv_input_hue = new NumberInputElement()..className="colourPicker_number"..min="0"..max="360"..step="1"
             ..onChange.listen((Event e){
-                _limitInputValue(_hsv_input_hue, 0, 360, 0);
-                _hsv_slider_hue.value = _hsv_input_hue.valueAsNumber/360.0;
+                _limitInputValue(_hsv_input_hue, 0, huemax, 0);
+                _hsv_slider_hue.value = _hsv_input_hue.valueAsNumber/huemax;
                 this.setFromHSV();
             });
         _place(_hsv_input_hue, input_left, hsv_top + slider_title_height);
@@ -440,7 +493,7 @@ class ColourPicker {
         this._hsv_slider_hue = new FancySlider(0.0, 1.0, 256, 16, false)
             ..appendTo(w)
             ..onChange.listen((Event e) {
-                this._hsv_input_hue.valueAsNumber = (this._hsv_slider_hue.value * 360).round();
+                this._hsv_input_hue.valueAsNumber = (this._hsv_slider_hue.value * huemax).round();
                 this.setFromHSV();
             });
         _place(_hsv_slider_hue.bar, bar_left, hsv_top + slider_title_height);
@@ -493,44 +546,138 @@ class ColourPicker {
         // buttons and stuff
 
         Element radiobox = new FormElement();
+        int radio_offset = -1;
 
         // RGB #####################################################
         
         RadioButtonInputElement r_red = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(0); });
         radiobox.append(r_red);
-        _place(r_red, radio_left, rgb_top + slider_title_height);
+        _place(r_red, radio_left, rgb_top + slider_title_height + radio_offset);
         this.modeButtons.add(r_red);
 
         RadioButtonInputElement r_green = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(1); });
         radiobox.append(r_green);
-        _place(r_green, radio_left, rgb_top + per_slider + slider_title_height);
+        _place(r_green, radio_left, rgb_top + per_slider + slider_title_height + radio_offset);
         this.modeButtons.add(r_green);
 
         RadioButtonInputElement r_blue = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(2); });
         radiobox.append(r_blue);
-        _place(r_blue, radio_left, rgb_top + per_slider * 2 + slider_title_height);
+        _place(r_blue, radio_left, rgb_top + per_slider * 2 + slider_title_height + radio_offset);
         this.modeButtons.add(r_blue);
 
         // HSV #####################################################
 
         RadioButtonInputElement r_hue = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(3); });
         radiobox.append(r_hue);
-        _place(r_hue, radio_left, hsv_top + slider_title_height);
+        _place(r_hue, radio_left, hsv_top + slider_title_height + radio_offset);
         this.modeButtons.add(r_hue);
 
         RadioButtonInputElement r_sat = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(4); });
         radiobox.append(r_sat);
-        _place(r_sat, radio_left, hsv_top + per_slider + slider_title_height);
+        _place(r_sat, radio_left, hsv_top + per_slider + slider_title_height + radio_offset);
         this.modeButtons.add(r_sat);
 
         RadioButtonInputElement r_val = new RadioButtonInputElement()..name="mode"..onChange.listen((Event e) { this._setMode(5); });
         radiobox.append(r_val);
-        _place(r_val, radio_left, hsv_top + per_slider * 2 + slider_title_height);
+        _place(r_val, radio_left, hsv_top + per_slider * 2 + slider_title_height + radio_offset);
         this.modeButtons.add(r_val);
-        
+
         // #########################################################
         
         w.append(radiobox);
+
+        // #########################################################
+        // #########################################################
+        // #########################################################
+
+        // Lab
+        int lab_left = bar_left;
+        int lab_box_left = lab_left + 4 + 10;
+        int lab_width = 78;
+        int lab_top = 226;
+        int label_offset = 4;
+        
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "CIEL*a*b";
+            _place(title, lab_left, lab_top);
+            w.append(title);
+        }
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "L";
+            _place(title, lab_left, lab_top + slider_title_height + label_offset);
+            w.append(title);
+        }
+
+        this._lab_input_l = new NumberInputElement()..className="colourPicker_number colourPicker_lab"..min="0"..max="100"..step="0.01"
+            ..onChange.listen((Event e){
+                _limitInputValue(_lab_input_l, 0, 100, 2);
+                this.setFromLab();
+            });
+        _place(_lab_input_l, lab_box_left, lab_top + slider_title_height);
+        w.append(_lab_input_l);
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "a";
+            _place(title, lab_left + lab_width, lab_top + slider_title_height + label_offset);
+            w.append(title);
+        }
+
+        this._lab_input_a = new NumberInputElement()..className="colourPicker_number colourPicker_lab"..min="-127"..max="128"..step="0.01"
+            ..onChange.listen((Event e){
+                _limitInputValue(_lab_input_a, -127, 128, 2);
+                this.setFromLab();
+            });
+        _place(_lab_input_a, lab_box_left + lab_width, lab_top + slider_title_height);
+        w.append(_lab_input_a);
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "b";
+            _place(title, lab_left + lab_width * 2, lab_top + slider_title_height + label_offset);
+            w.append(title);
+        }
+
+        this._lab_input_b = new NumberInputElement()..className="colourPicker_number colourPicker_lab"..min="-127"..max="128"..step="0.01"
+            ..onChange.listen((Event e){
+                _limitInputValue(_lab_input_b, -127, 128, 2);
+                this.setFromLab();
+            });
+        _place(_lab_input_b, lab_box_left + lab_width * 2, lab_top + slider_title_height);
+        w.append(_lab_input_b);
+
+        // #########################################################
+        
+        // hex
+        
+        int hex_left = 573;
+        int hex_top = 226;
+        
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "Hex";
+            _place(title, hex_left, hex_top);
+            w.append(title);
+        }
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "#";
+            _place(title, hex_left, hex_top + slider_title_height + label_offset);
+            w.append(title);
+        }
+
+        this._hex_input = new TextInputElement()..className="colourPicker_hex"
+            ..onChange.listen((Event e){
+                String hex = _hex_input.value; // TODO: SANITISE!
+                Colour col = new Colour.fromHexString(hex);
+                this.colour
+                    ..red = col.red
+                    ..green = col.green
+                    ..blue = col.blue;
+                this.update();
+            });
+        _place(_hex_input, hex_left + 12, hex_top + slider_title_height);
+        w.append(_hex_input);
+        
+        // #########################################################
 
         this._overlay = overlay;
         window.onResize.listen(resizeOverlay);
@@ -544,24 +691,48 @@ class ColourPicker {
     }
 
     static void _limitInputValue(NumberInputElement input, num min, num max, int decimals) {
-        num val = input.valueAsNumber;
+        num val = _roundToPoints(input.valueAsNumber, decimals);
+        input.value = val.clamp(min, max).toStringAsFixed(decimals);
+    }
+
+    static num _roundToPoints(num input, int decimals) {
+        num val = input;
         for (int i=0; i<decimals; i++) {
             val *= 10;
         }
-        val = val.roundToDouble();
+        val = (val).roundToDouble();
         for (int i=0; i<decimals; i++) {
             val *= 0.1;
         }
-        input.valueAsNumber = val.clamp(min, max);
+        return val;
     }
 
     void _pickerDrag(MouseEvent e) {
         if (!picking) { return; }
-        this.update();
+        logger.debug("pickerDrag");
+
+        int relx = e.client.x - this._mainPicker.documentOffset.x -1;
+        int rely = e.client.y - this._mainPicker.documentOffset.y -1;
+
+        relx = relx.clamp(0, 255);
+        rely = rely.clamp(0, 255);
+
+        List<FancySlider> sliders = _getSlidersForMode();
+
+        sliders[0].value = relx/255.0;
+        sliders[1].value = 1.0 - (rely/255.0);
+
+        //_getUpdaterForMode()(true);
+        _setFromPicker();
     }
 
-    void _setFromPicker() {
-        this.update();
+    void _setFromPicker([Event e]) {
+        logger.debug("setFromPicker");
+        List<FancySlider> sliders = _getSlidersForMode();
+        sliders[2].value = _mainSlider.value;
+        _getUpdaterForMode()(true);
+
+        //this.update();
     }
 
     void resizeOverlay([Event e]) {
@@ -586,8 +757,11 @@ class ColourPicker {
 
 typedef Colour MainPickerFill(double x, double y);
 typedef Colour FancySliderFill(double fraction);
+typedef void ColourPickerUpdateFunction(bool fromMain);
 
 class FancySlider {
+    Logger logger = Logger.get("FancySlider", false);
+
     static Set<FancySlider> _sliders = new Set<FancySlider>();
 
     Element bar;
@@ -634,6 +808,7 @@ class FancySlider {
     }
 
     void update([bool silent = false]) {
+        logger.debug("update: silent: $silent");
         double percent = (this.value - this.minVal) / (this.maxVal - this.minVal);
 
         if (this.vertical) {
@@ -650,6 +825,7 @@ class FancySlider {
     }
 
     void _mouseDown(MouseEvent e) {
+        logger.debug("SLIDER CLICK");
         this.dragging = true;
 
         this.setFromMousePos(e);
@@ -732,7 +908,7 @@ class ColourPickerMouseHandler {
 
         window.onMouseMove.listen((MouseEvent e) {
             for (ColourPicker p in ColourPicker._pickers) {
-
+                p._pickerDrag(e);
             }
 
             for (FancySlider s in FancySlider._sliders) {
