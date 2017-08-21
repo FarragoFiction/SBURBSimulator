@@ -9,8 +9,8 @@ class FAQSection {
     FAQSection(this.header, this.body);
     FAQSection.fromXMLDoc(Xml.XmlNode s){
         print("making FAQSection from $s which has document of ${s.document}");
-        header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).toString();
-        body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).toString();
+        header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).first.text;
+        body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).first.text;
     }
 
     ///assume sections start with <section> and have no ending tag cuz i am lazy
