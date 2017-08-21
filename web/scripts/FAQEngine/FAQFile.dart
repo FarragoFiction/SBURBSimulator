@@ -1,6 +1,8 @@
 //import "../quirk.dart";
 import "FAQSection.dart";
 import "GeneratedFAQ.dart";
+//import 'dart:html'; //<--needed for loading the file this is fucking bullshit. means i can't unit test this part. oh well, unit test parsing first.
+
 
 
 ///handles knowing what file it should load, loading it on request, and parsing and distributing the subsections of the file.
@@ -10,7 +12,27 @@ class FAQFile {
     String filePath = "../GameFaqs/";
     ///what is the name of the FAQ file you reference.
     String fileName;
-    //TODO be able to load your file path and create sections. this shit is a prime candidate for unit testing, maybe if i get rid of quirk for now.
+
+    List<FAQSection> sections = new List<FAQSection>();
+
     FAQFile(this.fileName);
+
+    /// it will load it's file from the server, parse it into sections,  then call the callback when it's done.
+    /// which is basically used for letting whoever called it know it's done.
+    /// REMINDER TO FUTUREJR: loading is async. Never forget this.
+    void loadWithCallBack(callBack) {
+        /*  TODO uncomment this out when i'm done unit testing and uncomment out import for dart html
+        HttpRequest.getString("navbar.txt").then(HttpRequest resp) {
+            parseRawTextIntoSections(resp.responseText);
+            callBack();
+
+        });
+        */
+    }
+
+    ///take the raw text that was loaded from the file and turn it into your sections and shit
+    void parseRawTextIntoSections(String text) {
+
+    }
 }
 
