@@ -15,6 +15,8 @@ class FAQFile {
     ///what is the name of the FAQ file you reference.
     String fileName;
     dynamic callback;
+    ///no matter what, only try once.
+    bool loadedOnce = false;
 
     List<FAQSection> sections = new List<FAQSection>();
 
@@ -22,10 +24,15 @@ class FAQFile {
 
     ///passed a callback since it might have to load
     FAQSection getRandomSection(Random rand) {
-        if(sections.isEmpty) {
+        print("getting random section");
+        if(sections.isEmpty && !loadedOnce) {
+            print("can't find any sections for $fileName, gonna load");
             loadWithCallBack(getRandomSection(rand));
+            loadedOnce = true;
         }else {
-            rand.pickFrom(sections);
+            print("there are ${sections.length} sections");
+            //TODO remove picked section
+            return rand.pickFrom(sections);
         }
     }
 
@@ -35,12 +42,14 @@ class FAQFile {
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
     void loadWithCallBack(callBack) {
+        print("loading with callback");
         callback = callBack;
         HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
 
     void afterLoaded(String data) {
+        print("loading finished");
         parseRawTextIntoSections(data);
         callback();
     }

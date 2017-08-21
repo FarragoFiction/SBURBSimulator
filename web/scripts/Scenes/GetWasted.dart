@@ -68,7 +68,7 @@ class GetWasted extends Scene {
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
         FAQSection s = f.getRandomSection(rand);
         if(s != null) sections.add(s);
-        if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+       // if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
     }
 
     void findRandomFAQ(Element div) {
