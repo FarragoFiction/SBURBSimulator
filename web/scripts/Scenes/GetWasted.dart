@@ -91,7 +91,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ) {
         Quirk quirk;
         String text;
-        print("gonna display generated faq with sections $sections");
+        print("gonna display generated faq with ${sections.length} sections $sections");
         //TODO take one of the headers from sections and pass it here.
         GeneratedFAQ gfaq = new GeneratedFAQ("THIS IS JUST A TEST OKAY???", sections);
         if(wroteFAQ) {
