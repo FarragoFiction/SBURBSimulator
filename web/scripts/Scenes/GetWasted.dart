@@ -72,6 +72,7 @@ class GetWasted extends Scene {
     }
 
     void findRandomFAQ(Element div) {
+        //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         findRandomFAQSection();
         print ("found sections: ${sections}" );
 

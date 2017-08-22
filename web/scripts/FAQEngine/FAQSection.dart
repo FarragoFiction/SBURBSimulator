@@ -5,9 +5,11 @@ class FAQSection {
     String header;
     ///  what is the content of the section?  Answer to question, anywhere from a word to a few paragraphs.
     String body;
+    /// each segment has an associated ascii header, will pick from one header at random for generated faq.
+    String associatedAscii;
 
-    FAQSection(this.header, this.body);
-    FAQSection.fromXMLDoc(Xml.XmlNode s){
+    FAQSection(this.header, this.body, this.associatedAscii);
+    FAQSection.fromXMLDoc(Xml.XmlNode s, this.associatedAscii){
         print("making FAQSection from $s which has document of ${s.document}");
         header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).first.text;
         body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).first.text;

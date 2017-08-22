@@ -12,6 +12,8 @@ import "GeneratedFAQ.dart";
 class FAQFile {
     ///how do you get to the folders with the FAQs in the,
     String filePath = "../GameFaqs/";
+    ///what header is associated with content from this file?
+    String ascii;
     Random rand;
     ///what is the name of the FAQ file you reference.
     String fileName;
@@ -21,7 +23,7 @@ class FAQFile {
 
     List<FAQSection> sections = new List<FAQSection>();
 
-    FAQFile(this.fileName);
+    FAQFile(this.fileName,this.ascii);
     FAQSection getRandomSection(Random r) {
        rand = r;
        _getRandomSectionInternal();
@@ -35,7 +37,7 @@ class FAQFile {
             loadedOnce = true;
         }else {
             print("there are ${sections.length} sections");
-            //TODO remove picked section
+            //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
             return rand.pickFrom(sections);
         }
     }
@@ -67,7 +69,7 @@ class FAQFile {
         //then, I need to call a new function on that substring to turn it into a section.
         for(Xml.XmlNode tmp in sectionStrings) {
             print("after parsing main text, trying to parse  $tmp");
-            sections.add(new FAQSection.fromXMLDoc(tmp));
+            sections.add(new FAQSection.fromXMLDoc(tmp, ascii));
         }
     }
 
