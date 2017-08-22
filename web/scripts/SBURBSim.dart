@@ -13,6 +13,7 @@ export "fraymotif.dart";
 export "session.dart";
 export "sessionSummary.dart";
 export "FAQEngine/FAQFile.dart";
+export "FAQEngine/GeneratedFAQ.dart";
 export "FAQEngine/FAQSection.dart";
 export "random_tables.dart";
 export "loading.dart";

@@ -84,8 +84,9 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ) {
         Quirk quirk;
         String text;
+        GeneratedFAQ gfaq;
         if(wroteFAQ) {
-            text = "The ${player.htmlTitle()} is reading an FAQ? Huh, I wonder where they found that?";
+            text = "The ${player.htmlTitle()} is writing an FAQ? I wonder what it says?";
             quirk = player.quirk;
         }else {
             text = "The ${player.htmlTitle()} is reading an FAQ? Huh, I wonder where they found that?";
@@ -95,9 +96,11 @@ class GetWasted extends Scene {
                 quirk = randomTrollSim(rand, player);  //probably
             }
         }
+        String id = "faq${div.id}${player.id}";
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
+        appendHtml(div, "$text <button id = '$id'>Read FAQ?</button> ${} ");
 
     }
 
