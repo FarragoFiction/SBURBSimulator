@@ -17,28 +17,31 @@ class FAQFile {
     Random rand;
     ///what is the name of the FAQ file you reference.
     String fileName;
-    dynamic callback;
+    //when i am done loading, what do i call?
+    dynamic externalCallback;
     ///no matter what, only try once.
     bool loadedOnce = false;
 
     List<FAQSection> sections = new List<FAQSection>();
 
     FAQFile(this.fileName,this.ascii);
-    FAQSection getRandomSection(Random r) {
+
+    void getRandomSectionAsync(Random r, callBack) {
        rand = r;
+       externalCallback = callBack;
        _getRandomSectionInternal();
     }
     ///passed a callback since it might have to load
-    FAQSection _getRandomSectionInternal() {
+    void _getRandomSectionInternal() {
        // print("getting random section");
         if(sections.isEmpty && !loadedOnce) {
             print("can't find any sections for $fileName, gonna load");
-            loadWithCallBack(_getRandomSectionInternal);
+            load();
             loadedOnce = true;
         }else {
             //print("there are ${sections.length} sections");
             //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
-            return rand.pickFrom(sections);
+            externalCallback(rand.pickFrom(sections));
         }
     }
 
@@ -47,9 +50,7 @@ class FAQFile {
     /// it will load it's file from the server, parse it into sections,  then call the callback when it's done.
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
-    void loadWithCallBack(callBack) {
-        //print("loading with callback");
-        callback = callBack;
+    void load() {
         HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
@@ -57,7 +58,7 @@ class FAQFile {
     void afterLoaded(String data) {
        // print("loading finished");
         parseRawTextIntoSections(data);
-        callback();
+        _getRandomSectionInternal();
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit

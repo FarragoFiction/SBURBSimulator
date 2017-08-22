@@ -2915,3 +2915,41 @@ Step 1: Check my file structure.
     Yep, that did it. So at least I know what the problem is. And i'll see if it still works on windows l8r.
 
 
+~~~~~~
+alright, current problem is an inability to get sections for the generatedFAQ.
+
+I can see that the sections are being created, but wheenver I do f.getRandomSection(rand), it returns null.
+
+My initial instincts is that it's async stuff, and that i'm returning from the call before i've finished loading the sections.
+
+One argument against taht is i went out of my way to use callbacks so it WOULDN't happen.......
+
+Hrrrm....but.....actually....
+
+if(sections.isEmpty && !loadedOnce) {
+            print("can't find any sections for $fileName, gonna load");
+            loadWithCallBack(_getRandomSectionInternal);
+            loadedOnce = true;
+
+right. I'm dumb.  It returns immediatly afterloadWith Callback. sure i have my nice call back and all.
+but doens't matter if control is returned to calling method immediatly.
+
+Let's look at what is calling this.
+
+ FAQSection s = f.getRandomSection(rand);
+        print("chose section $s");
+        if(s != null) sections.add(s);
+        if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+
+Yup, look at this dumb shit. I'm doing shit after a potentially async call.  Gonna mark that shit.
+
+  FAQSection s = f.getRandomSectionAsync(rand);
+        //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
+        //print("chose section $s");
+        //if(s != null) sections.add(s);
+        //if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+
+
+Okay. So. I can't return anything at all. It's gonna have to be a void method.  I need to pass the callback
+when i call it......what even happened to the callback?  I also need to have the callback method in
+GetWasted take in a FAQSection.

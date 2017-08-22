@@ -63,20 +63,25 @@ class GetWasted extends Scene {
     }
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
-    void findRandomFAQSection() {
+    void getRandomFAQSection() {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
-        FAQSection s = f.getRandomSection(rand);
+        f.getRandomSectionAsync(rand,getRandomFAQSectionCallback);
+        //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
+    }
+
+    ///since the getting a section might be async, can't rely on returns, only callbacks
+    void getRandomFAQSectionCallback(FAQSection s) {
         print("chose section $s");
         if(s != null) sections.add(s);
-        if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+        //if(sections.length < numSegmentsPerFAQ && numTries < 10) getRandomFAQSection();
     }
 
     void findRandomFAQ(Element div) {
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
-        findRandomFAQSection();
+        getRandomFAQSection();
         print ("found sections: ${sections}" );
         displayFAQ(div, false);
 
