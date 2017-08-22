@@ -2876,3 +2876,42 @@ The summaries themselves truly belives the values are that low. So. What gives?
 OMFG i have to stop now, but there is no fucking reason why abj would be doing shit like this. the makePlayers calls genereate relationships, and this happens before abj summariezes.
 
 futureJR: good luck to you.
+
+~~~~~~~~~~
+Okay. I'm finally at the waste update. I've been fighting the faqs for an entire day already, which is just such flagrant bullshit.
+Right now, they are saying they can't find things like Light.xml. Even though I just wrote it. What gives?
+
+Let's review the possibilities:
+*  There is a typo in the file, so it can't find it.
+* Somehow the file path is valid in windows but not mac (but wasn't I seeing some files work on mac last night?)
+* The error is actually something else, and being misreported.
+* Cause and event have become unhinged and logic has no place in this universe.
+
+
+I'd say the liklihood of possibilities are probably 1,3,2,4. So, first step: check for typos, even though I did already. Let's
+do it again with a clear head.
+
+I get a 404 for: http://localhost:63342/SBURBSimulator/GameFaqs/Light.xml
+
+Step 1: Check my file structure.
+    I see GameFaqs/Light.xml   .  Inside of it, I see the standard bullshit test section.
+    Although I'm not yet at bullet point 3, I note that I remember sometimes needing /web and sometimes not.
+    And that that was basically windows/mac.  Am I accidentally looking at it /GameFaqs and not GameFaqs?
+
+    Stored File path is:     String filePath = "../GameFaqs/";
+
+    That's because it's relative to inside the FAQEngine folder. BUT....that's not true is it? That folder itself is inside of scripts.
+
+    Think.
+
+    This was working last night on pc. Yes, I was tired, but I know I was getting it to load.
+
+    Do I really need to have the file path relative to scripts? I don't think so. I think just not starting with a / makes it relative to
+    the top level of the site.  But then i remember stuff like html css importing needing to be relative to the page and
+    bluuuuuuuuuuuuuh.
+
+    Okay, Maybe it will be different on windows, but for now just make it GameFaqs and no ../
+
+    Yep, that did it. So at least I know what the problem is. And i'll see if it still works on windows l8r.
+
+

@@ -11,7 +11,7 @@ import "GeneratedFAQ.dart";
 ///i expect class and aspect to creat their own FAQFiles, and GetWasted to handle murder mode and grim dark and (trickster??? and bike faqs!???)
 class FAQFile {
     ///how do you get to the folders with the FAQs in the,
-    String filePath = "../GameFaqs/";
+    String filePath = "GameFaqs/";
     ///what header is associated with content from this file?
     String ascii;
     Random rand;
