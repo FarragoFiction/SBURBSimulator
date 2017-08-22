@@ -112,7 +112,7 @@ class GetWasted extends Scene {
         appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${gfaq.makeHtml(quirk)}</div>");
         hide(querySelector("#$id"));
         querySelector("#button$id").onClick.listen((e) {
-            toggle(querySelector("$id")); //todo maybe not toggle, think about it later.
+            toggle(querySelector("#$id")); //todo maybe not toggle, think about it later.
         });
 
     }
