@@ -14,13 +14,13 @@ main() {
 }
 
 FAQFile setupFF() {
-    return new FAQFile("Rage.txt");
+    return new FAQFile("Rage.xml");
 }
 
 void basicTests() {
     FAQFile f = setupFF();
     jRAssert("faqFIle object existing", f != null, true);
-    jRAssert("fileName", f.fileName, "Rage.txt");
+    jRAssert("fileName", f.fileName, "Rage.xml");
     f.parseRawTextIntoSections(pretendFileContents);
     jRAssert("number of sections", f.sections.length, 2);
     jRAssert("section 1 header", f.sections[0].header, "Question: Does this parser work?");
