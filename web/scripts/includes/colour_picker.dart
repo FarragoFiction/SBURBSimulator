@@ -6,7 +6,7 @@ import 'colour.dart';
 import 'logger.dart';
 
 class ColourPicker {
-    static Logger logger = Logger.get("ColourPicker");
+    static Logger logger = Logger.get("ColourPicker", false);
 
     static Set<ColourPicker> _pickers = new Set<ColourPicker>();
 
@@ -43,6 +43,9 @@ class ColourPicker {
 
     TextInputElement _hex_input;
 
+    Element _previewOld;
+    Element _previewNew;
+
     List<RadioButtonInputElement> modeButtons = <RadioButtonInputElement>[];
 
     static int pickMode = 3; // 0-5 = r,g,b, h,s,v - shared between all pickers
@@ -73,11 +76,20 @@ class ColourPicker {
         ColourPickerMouseHandler.init();
     }
 
+    Element get anchor => this._anchor;
+
     void setFromRGB([bool fromMain = false]) {
         logger.debug("setFromRGB");
         this.colour.redDouble = this._rgb_slider_red.value;
         this.colour.greenDouble = this._rgb_slider_green.value;
         this.colour.blueDouble = this._rgb_slider_blue.value;
+
+        if (fromMain) {
+            this._rgb_input_red.valueAsNumber = colour.red;
+            this._rgb_input_green.valueAsNumber = colour.green;
+            this._rgb_input_blue.valueAsNumber = colour.blue;
+        }
+
         this.update(rgb:false, fromMain: fromMain);
     }
 
@@ -86,6 +98,13 @@ class ColourPicker {
         this.colour.hue = this._hsv_slider_hue.value;
         this.colour.saturation = this._hsv_slider_sat.value;
         this.colour.value = this._hsv_slider_val.value;
+
+        if (fromMain) {
+            this._hsv_input_hue.valueAsNumber = (colour.hue * 360).floor();
+            this._hsv_input_sat.valueAsNumber = (colour.saturation * 100).floor();
+            this._hsv_input_val.valueAsNumber = (colour.value * 100).floor();
+        }
+
         this.update(hsv:false, fromMain: fromMain);
     }
 
@@ -139,9 +158,13 @@ class ColourPicker {
 
         this._hex_input.value = this.colour.toHexString();
 
-        this._buttonSwatch.style.backgroundColor = this.colour.toStyleString();
+        this._previewNew.style.backgroundColor = this.colour.toStyleString();
 
         this.modeButtons[pickMode].checked = true;
+    }
+
+    void _updateButtonSwatch() {
+        this._buttonSwatch.style.backgroundColor = this.colour.toStyleString();
     }
 
     void _updateMainPicker(bool setValue) {
@@ -230,6 +253,7 @@ class ColourPicker {
     void open() {
         this.isOpen = true;
         this.previousColour = new Colour.from(this.colour);
+        this._previewOld.style.backgroundColor = this.previousColour.toStyleString();
 
         this.readColourFromInput();
         this.update(force:true);
@@ -249,6 +273,16 @@ class ColourPicker {
         this._overlay.style.display = "none";
     }
 
+    void _confirm([Event e]) {
+        this.writeColourToInput();
+        this.close();
+    }
+
+    void _cancel([Event e]) {
+        this.colour.setFrom(this.previousColour);
+        this.close();
+    }
+
     void _setMode(int mode) {
         pickMode = mode;
         this.update();
@@ -256,11 +290,13 @@ class ColourPicker {
 
     void readColourFromInput() { 
         this.colour = new Colour.fromStyleString(_input.value);
+        this._updateButtonSwatch();
         this.update(force:true);
     }
     
     void writeColourToInput() { 
-        this._input.value = this.colour.toStyleString(); 
+        this._input.value = this.colour.toStyleString();
+        this._updateButtonSwatch();
         this._input.dispatchEvent(new Event("change"));
     }
 
@@ -299,6 +335,8 @@ class ColourPicker {
     void createButton(Colour colour, int width, int height) {
         Element anchor = new DivElement()
             ..className = "colourPicker_anchor";
+
+        CssStyleDeclaration inputstyle = this._input.getComputedStyle();
 
         Element b = new DivElement()
             ..className = "colourPicker_button"
@@ -351,6 +389,8 @@ class ColourPicker {
         this._buttonSwatch = swatch;
 
         this._input.replaceWith(anchor);
+
+        this._anchor.append(new DivElement()..className="colourPicker_hidden"..append(this._input));
     }
 
     void createElement() {
@@ -362,7 +402,7 @@ class ColourPicker {
         Element overlay_shade = new DivElement()
             ..className = "colourPicker_overlay_2"
             ..onClick.listen((MouseEvent e) {
-                this.close();
+                //this._cancel();
                 e.preventDefault();
                 e.stopPropagation();
             });
@@ -388,6 +428,34 @@ class ColourPicker {
 
         this._mainSlider = new FancySlider(0.0, 1.0, 25, 256, true)..appendTo(w)..onChange.listen(_setFromPicker);
         _place(_mainSlider.bar, 268, 0);
+
+        // #########################################################
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "Old"..style.textAlign="center";
+            _place(title, 57, 263);
+            w.append(title);
+        }
+
+        {
+            Element title = new DivElement()..className="colourPicker_text"..text = "New"..style.textAlign="center";
+            _place(title, 183, 263);
+            w.append(title);
+        }
+
+        Element previewbox = new DivElement()..className = "colourPicker_previewbox";
+        _place(previewbox, 4, 279);
+        w.append(previewbox);
+
+        _previewOld = new DivElement()..style.cursor="pointer"..onClick.listen((Event e) {
+            this.colour.setFrom(this.previousColour);
+            this.update();
+        });
+        previewbox.append(_previewOld);
+        _previewNew = new DivElement()..style.left = "50%";
+        previewbox.append(_previewNew);
+
+        // #########################################################
 
         int radio_left = 305;
         int bar_left = 330;
@@ -664,19 +732,27 @@ class ColourPicker {
             w.append(title);
         }
 
-        this._hex_input = new TextInputElement()..className="colourPicker_hex"
+        this._hex_input = new TextInputElement()..maxLength=6..pattern=r"[\d|a-f|A-F]{6}"..className="colourPicker_hex"
             ..onChange.listen((Event e){
-                String hex = _hex_input.value; // TODO: SANITISE!
+                String hex = _hex_input.value;
                 Colour col = new Colour.fromHexString(hex);
-                this.colour
-                    ..red = col.red
-                    ..green = col.green
-                    ..blue = col.blue;
+                this.colour.setFrom(col);
                 this.update();
             });
         _place(_hex_input, hex_left + 12, hex_top + slider_title_height);
         w.append(_hex_input);
         
+        // #########################################################
+        // buttons
+
+        ButtonElement okbutton = new ButtonElement()..className="colourPicker_innerButton"..text="OK"..onClick.listen(_confirm);
+        _place(okbutton, 570, 285);
+        w.append(okbutton);
+
+        ButtonElement cancelbutton = new ButtonElement()..className="colourPicker_innerButton"..text="Cancel"..onClick.listen(_cancel);
+        _place(cancelbutton, 470, 285);
+        w.append(cancelbutton);
+
         // #########################################################
 
         this._overlay = overlay;
@@ -705,6 +781,14 @@ class ColourPicker {
             val *= 0.1;
         }
         return val;
+    }
+
+    static void notifyAllPickers() {
+        for (ColourPicker p in _pickers) {
+            if (p._input.value != p.colour.toStyleString()) {
+                p.readColourFromInput();
+            }
+        }
     }
 
     void _pickerDrag(MouseEvent e) {

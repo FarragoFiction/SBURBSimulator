@@ -1,4 +1,20 @@
+.colourPicker_window input {
+    margin:initial;
+    padding:initial;
+    background-color:#FFFFFF;
+    border:1px solid black;
+    width:auto;
+    /*height:auto;*/
+    color:#000000;
+    box-sizing:content-box;
+}
+
 /* PICKER STUFF ######################################################################################## */
+
+.colourPicker_anchor {
+    position:relative;
+    display:inline-block;
+}
 
 .colourPicker_button {
     position:relative;
@@ -15,6 +31,12 @@
     border:2px solid black;
     border-radius:2px;
     box-sizing: border-box;
+}
+
+.colourPicker_hidden {
+    width:0px;
+    height:0px;
+    display:none;
 }
 
 .colourPicker_button:active > .colourPicker_button_inner_1 {
@@ -68,7 +90,7 @@
     position:relative;
     box-sizing: border-box;
     width:660px;
-    height:350px;
+    height:315px;
     background-color:#DDDDDD;
     outline:1px solid #AAAAAA;
     box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
@@ -85,30 +107,49 @@
 
 .colourPicker_number, .colourPicker_hex {
     display:inline-block;
-    margin-top:4px;
-    height:12px;
-    padding-left:10px;
+    margin-top:4px !important;
+    height:16px !important;
+    padding-left:10px !important;
 }
 
 .colourPicker_number {
-    width:40px;
+    width:40px !important;
     text-align:right;
 }
 
 .colourPicker_hex {
-    width:60px;
-    padding-left:5px;
+    width:62px !important;
+    padding-left:3px !important;
+}
+
+.colourPicker_innerButton {
+    width:85px;
+    height:25px;
 }
 
 .colourPicker_lab {
-    width:60px;
-    padding-left:0px;
+    width:60px !important;
+    padding-left:0px !important;
 }
 
 .colourPicker_text {
     font-family: "Arial", sans-serif;
     font-size:10px;
     margin: 2px 2px 2px 4px;
+}
+
+.colourPicker_previewbox {
+    position:relative;
+    width:256px;
+    height:30px;
+    border:1px solid black;
+}
+
+.colourPicker_previewbox div {
+    display:inline-block;
+    width:50%;
+    height:100%;
+    background-color:#FF0000;
 }
 
 /* FANCY SLIDER STUFF ######################################################################################## */
@@ -179,4 +220,5 @@
 
 .colourPicker_window * {
     position:absolute;
+    color: #000000
 }

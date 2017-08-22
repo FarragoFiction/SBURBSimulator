@@ -3,6 +3,8 @@ import 'dart:html';
 import "../v2.0/char_creator_helper.dart";
 import '../navbar.dart';
 
+import "../includes/colour_picker.dart";
+
 //need to render all players
 class CharacterCreatorHelper {
     List<Player> players;
@@ -87,6 +89,9 @@ class CharacterCreatorHelper {
         str += "</div>";
         appendHtml(div, str);
 
+        new ColourPicker(querySelector("#hairColorID${player.id}"), width:94, height:18, colourInt:0xCC87E8 )
+            ..anchor.style.top = "5px";
+
         player.initSpriteCanvas();
         String canvasHTML = "<br><canvas style='display:none' id='" +
             player.spriteCanvasID +
@@ -144,6 +149,8 @@ class CharacterCreatorHelper {
         (player.moon);
         querySelector("#moonID${player.id}").style.backgroundColor =
             moonToColor(player.moon);
+
+        ColourPicker.notifyAllPickers();
     }
 
     void syncPlayerToCheckBoxes(Player player) {

@@ -117,6 +117,12 @@ class Colour {
     void set blueDouble(double val) { this.blue  = (val*0xFF).floor(); }
     void set alphaDouble(double val){ this.alpha = (val*0xFF).floor(); }
 
+    void setRGB(int red, int green, int blue) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+    }
+
     // HSV
 
     double get hue        { this._checkHSV(); return _hue; }
@@ -208,6 +214,13 @@ class Colour {
 
     // Methods ###################################################################################
 
+    void setFrom(Colour colour) {
+        this._red = colour._red;
+        this._green = colour._green;
+        this._blue = colour._blue;
+        this._dirty();
+    }
+
     @override
     String toString() {
         return "rgb($red, $green, $blue, $alpha)";
@@ -277,9 +290,12 @@ class Colour {
         this._hsv_dirty = false;
 
         List<double> hsv = RGBtoHSV(this.redDouble, this.greenDouble, this.blueDouble);
+
         this._hue = hsv[0];
         this._saturation = hsv[1];
         this._value = hsv[2];
+
+        hsv = null;
     }
 
     void _updateRGBfromHSV() {
@@ -290,6 +306,8 @@ class Colour {
         this.redDouble = rgb[0];
         this.greenDouble = rgb[1];
         this.blueDouble = rgb[2];
+
+        rgb = null;
     }
 
     // LAB ###################################################################################
@@ -307,6 +325,8 @@ class Colour {
         this._lab_lightness = lab[0];
         this._lab_a = lab[1];
         this._lab_b = lab[2];
+
+        lab = null;
     }
 
     void _updateRGBfromLAB() {
@@ -317,6 +337,8 @@ class Colour {
         this.redDouble = rgb[0];
         this.greenDouble = rgb[1];
         this.blueDouble = rgb[2];
+
+        rgb = null;
     }
 
     // Operators ###################################################################################
