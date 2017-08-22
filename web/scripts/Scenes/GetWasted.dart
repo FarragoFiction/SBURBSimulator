@@ -76,8 +76,31 @@ class GetWasted extends Scene {
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
         findRandomFAQSection();
         print ("found sections: ${sections}" );
+        displayFAQ(div, false);
 
     }
+
+    ///if you wrote it it will say that and also use your own quirk.
+    void displayFAQ(Element div, bool wroteFAQ) {
+        Quirk quirk;
+        String text;
+        if(wroteFAQ) {
+            text = "The ${player.htmlTitle()} is reading an FAQ? Huh, I wonder where they found that?";
+            quirk = player.quirk;
+        }else {
+            text = "The ${player.htmlTitle()} is reading an FAQ? Huh, I wonder where they found that?";
+            if(rand.nextBool()) {
+                quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
+            }else {
+                quirk = randomTrollSim(rand, player);  //probably
+            }
+        }
+        //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
+        //then i need to make clicking that link do something, specifically make the faq visible.
+        //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
+
+    }
+
 
 
 

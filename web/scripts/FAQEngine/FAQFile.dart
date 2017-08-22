@@ -30,13 +30,13 @@ class FAQFile {
     }
     ///passed a callback since it might have to load
     FAQSection _getRandomSectionInternal() {
-        print("getting random section");
+       // print("getting random section");
         if(sections.isEmpty && !loadedOnce) {
             print("can't find any sections for $fileName, gonna load");
             loadWithCallBack(_getRandomSectionInternal);
             loadedOnce = true;
         }else {
-            print("there are ${sections.length} sections");
+            //print("there are ${sections.length} sections");
             //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
             return rand.pickFrom(sections);
         }
@@ -48,14 +48,14 @@ class FAQFile {
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
     void loadWithCallBack(callBack) {
-        print("loading with callback");
+        //print("loading with callback");
         callback = callBack;
         HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
 
     void afterLoaded(String data) {
-        print("loading finished");
+       // print("loading finished");
         parseRawTextIntoSections(data);
         callback();
     }
@@ -65,10 +65,10 @@ class FAQFile {
     void parseRawTextIntoSections(String text) {
         //first, i need to turn the string into a list of substrings that are a single section
         List<Xml.XmlNode> sectionStrings = FAQSection.mainTextToSubStrings(text);
-        print("after parsing main text, sectionStrings are $sectionStrings");
+       // print("after parsing main text, sectionStrings are $sectionStrings");
         //then, I need to call a new function on that substring to turn it into a section.
         for(Xml.XmlNode tmp in sectionStrings) {
-            print("after parsing main text, trying to parse  $tmp");
+            //print("after parsing main text, trying to parse  $tmp");
             sections.add(new FAQSection.fromXMLDoc(tmp, ascii));
         }
     }
