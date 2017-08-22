@@ -6,6 +6,7 @@ class FAQSection {
     ///  what is the content of the section?  Answer to question, anywhere from a word to a few paragraphs.
     String body;
     /// each segment has an associated ascii header, will pick from one header at random for generated faq.
+    /// header comes from file itself, special xml section, sibling of sections
     String associatedAscii;
 
     FAQSection(this.header, this.body, this.associatedAscii);

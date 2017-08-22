@@ -9,7 +9,9 @@ class GeneratedFAQ {
     ///what are the parts of this FAQ, loaded from different source files
     List<FAQSection> sections = new List<FAQSection>();
 
-    String makeHtml(Quirk quirk) {
+    GeneratedFAQ(this.asciiHeader, this.sections);
 
+    String makeHtml(Quirk quirk) {
+        return "<span class = 'FAQ'>TODO: make the faqs be here with fixed position.</span>";
     }
 }

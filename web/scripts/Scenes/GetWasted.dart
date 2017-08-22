@@ -1,5 +1,6 @@
 import "dart:html";
 import "../SBURBSim.dart";
+import "../navbar.dart";
 /*
     These are how Wastes, and things that aspire to be Wastes, do their shit.
     sburbLore and Gnosis will function similarly to corruption and GrimDark.
@@ -84,7 +85,8 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ) {
         Quirk quirk;
         String text;
-        GeneratedFAQ gfaq;
+        //TODO take one of the headers from sections and pass it here.
+        GeneratedFAQ gfaq = new GeneratedFAQ("THIS IS JUST A TEST OKAY???", sections);
         if(wroteFAQ) {
             text = "The ${player.htmlTitle()} is writing an FAQ? I wonder what it says?";
             quirk = player.quirk;
@@ -100,7 +102,10 @@ class GetWasted extends Scene {
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = '$id'>Read FAQ?</button> ${gfaq.makeHtml()} ");
+        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <div id = '$id' class = 'void'></div>${gfaq.makeHtml(quirk)}</div>");
+        (querySelector("button$id") as ButtonElement).onClick.listen((e) {
+            toggle(querySelector("$id")); //todo maybe not toggle, think about it later.
+        });
 
     }
 
