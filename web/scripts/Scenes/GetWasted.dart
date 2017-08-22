@@ -75,7 +75,7 @@ class GetWasted extends Scene {
     void getRandomFAQSectionCallback(FAQSection s) {
         print("chose section $s");
         if(s != null) sections.add(s);
-        //if(sections.length < numSegmentsPerFAQ && numTries < 10) getRandomFAQSection();
+        if(sections.length < numSegmentsPerFAQ && numTries < 10) getRandomFAQSection();
     }
 
     void findRandomFAQ(Element div) {
@@ -95,10 +95,10 @@ class GetWasted extends Scene {
         //TODO take one of the headers from sections and pass it here.
         GeneratedFAQ gfaq = new GeneratedFAQ("THIS IS JUST A TEST OKAY???", sections);
         if(wroteFAQ) {
-            text = "The ${player.htmlTitle()} is writing an FAQ? I wonder what it says?";
+            text = "The ${player.htmlTitle()} is writing a FAQ? I wonder what it says?";
             quirk = player.quirk;
         }else {
-            text = "The ${player.htmlTitle()} is reading an FAQ? Huh, I wonder where they found that?";
+            text = "The ${player.htmlTitle()} is reading a FAQ? Huh, I wonder where they found that?";
             if(rand.nextBool()) {
                 quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
             }else {
