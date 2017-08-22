@@ -68,8 +68,9 @@ class GetWasted extends Scene {
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
         FAQSection s = f.getRandomSection(rand);
+        print("chose section $s");
         if(s != null) sections.add(s);
-       // if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
+        if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
     }
 
     void findRandomFAQ(Element div) {
@@ -85,6 +86,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ) {
         Quirk quirk;
         String text;
+        print("gonna display generated faq with sections $sections");
         //TODO take one of the headers from sections and pass it here.
         GeneratedFAQ gfaq = new GeneratedFAQ("THIS IS JUST A TEST OKAY???", sections);
         if(wroteFAQ) {
@@ -103,7 +105,7 @@ class GetWasted extends Scene {
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
         appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <div id = '$id' class = 'void'></div>${gfaq.makeHtml(quirk)}</div>");
-        (querySelector("button$id") as ButtonElement).onClick.listen((e) {
+        querySelector("#button$id").onClick.listen((e) {
             toggle(querySelector("$id")); //todo maybe not toggle, think about it later.
         });
 

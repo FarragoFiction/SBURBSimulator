@@ -11,9 +11,10 @@ class FAQSection {
 
     FAQSection(this.header, this.body, this.associatedAscii);
     FAQSection.fromXMLDoc(Xml.XmlNode s, this.associatedAscii){
-       // print("making FAQSection from $s which has document of ${s.document}");
+        //print("making FAQSection from $s which has document of ${s.document}");
         header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).first.text;
         body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).first.text;
+        print("made FAQSection with header $header and body $body");
     }
 
     ///assume sections start with <section> and have no ending tag cuz i am lazy
