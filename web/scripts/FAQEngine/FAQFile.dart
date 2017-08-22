@@ -12,6 +12,7 @@ import "GeneratedFAQ.dart";
 class FAQFile {
     ///how do you get to the folders with the FAQs in the,
     String filePath = "../GameFaqs/";
+    Random rand;
     ///what is the name of the FAQ file you reference.
     String fileName;
     dynamic callback;
@@ -21,13 +22,16 @@ class FAQFile {
     List<FAQSection> sections = new List<FAQSection>();
 
     FAQFile(this.fileName);
-
+    FAQSection getRandomSection(Random r) {
+       rand = r;
+       _getRandomSectionInternal();
+    }
     ///passed a callback since it might have to load
-    FAQSection getRandomSection(Random rand) {
+    FAQSection _getRandomSectionInternal() {
         print("getting random section");
         if(sections.isEmpty && !loadedOnce) {
             print("can't find any sections for $fileName, gonna load");
-            loadWithCallBack(getRandomSection(rand));
+            loadWithCallBack(_getRandomSectionInternal);
             loadedOnce = true;
         }else {
             print("there are ${sections.length} sections");
@@ -44,7 +48,7 @@ class FAQFile {
     void loadWithCallBack(callBack) {
         print("loading with callback");
         callback = callBack;
-        HttpRequest.getString("$filePath$fileName").then(afterLoaded);
+        //HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
 
