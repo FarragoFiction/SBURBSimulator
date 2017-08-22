@@ -48,7 +48,7 @@ class FAQFile {
     void loadWithCallBack(callBack) {
         print("loading with callback");
         callback = callBack;
-        //HttpRequest.getString("$filePath$fileName").then(afterLoaded);
+        HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
 
