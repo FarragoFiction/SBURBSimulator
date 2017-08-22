@@ -100,7 +100,7 @@ class GetWasted extends Scene {
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = '$id'>Read FAQ?</button> ${} ");
+        appendHtml(div, "$text <button id = '$id'>Read FAQ?</button> ${gfaq.makeHtml()} ");
 
     }
 
