@@ -7,8 +7,21 @@ Logger logger = Logger.get("Xml Editor");
 
 void main() {
     querySelector("#new").onClick.listen(newFile);
-    querySelector("#load").onClick.listen(loadFile);
+    querySelector("#load").onClick.listen((Event e) => querySelector("#file").click());
     querySelector("#save").onClick.listen(saveFile);
+
+    FileReader reader = new FileReader();
+    reader..onLoadEnd.listen((ProgressEvent e){
+        loadFile(reader.result);
+    });
+
+    FileUploadInputElement load = querySelector("#file");
+    load.onChange.listen((Event e) {
+        if (load.files.isEmpty) {return;}
+
+        File f = load.files.first;
+        reader.readAsText(f);
+    });
 }
 
 void newFile([Event event]) {
@@ -34,8 +47,8 @@ void newFile([Event event]) {
     querySelector("#editor").append(project.element);
 }
 
-void loadFile([Event event]) {
-
+void loadFile(String content) {
+    logger.debug(content);
 }
 
 void saveFile([Event event]) {
@@ -49,7 +62,7 @@ void saveFile([Event event]) {
 
     logger.debug(datauri);
 
-    AnchorElement link = new AnchorElement(href:datauri.toString())..download="${project.root.type.tag}.xml" ..className="download";
+    AnchorElement link = new AnchorElement(href:datauri.toString())..download="${project.root.type.tag}.xml" ..className="hidden";
     querySelector("#menu").append(link);
     link.click();
     link.remove();
