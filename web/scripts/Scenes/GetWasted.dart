@@ -109,7 +109,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-        print("gonna display generated faq with ${faq.sections.length} sections $faq.sections");
+        print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections $faq.sections");
         //TODO take one of the headers from sections and pass it here.
         if(wroteFAQ) {
             text = "They are writing a FAQ? I wonder what it says?";
@@ -129,6 +129,7 @@ class GetWasted extends Scene {
             print("toggling ${id}");
             toggle(querySelector("#$id"));
         });
+        faq.rendered = true;
     }
 
 
