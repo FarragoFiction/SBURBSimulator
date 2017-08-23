@@ -31,24 +31,32 @@ class FAQFile {
           print("adding new callback $callBack to callbacks");
        _getRandomSectionInternal(new CallBackObject(div, callBack, gfaq));
     }
+
+    
     ///passed a callback since it might have to load
     void _getRandomSectionInternal(CallBackObject callBack) {
        // print("getting random section");
-        if(sections.isEmpty && !loadedOnce) {
-            print("can't find any sections for $fileName, gonna load");
-            load();
-            loadedOnce = true;
-            callbacks.add(callBack);
-        }else {
-            print("$fileName about to loop ${callbacks.length} callbacks");
-            for(CallBackObject c in callbacks) {
-                print(" $fileName looping callbacks, now on $c");
-                c.call(sections);
+        callbacks.add(callBack);
+        if(sections.isEmpty) {
+            if(!loadedOnce) {
+                print("jrdebugfest: can't find any sections for $fileName, gonna load");
+                loadedOnce = true;
+                load(); ///nothing can happen after async
+                return;
             }
-            print(" $fileName callbacks should be done looping, gonna clear");
-            callbacks.clear();
-            if(callBack != null) callBack.call(sections); //last thing i do is call any callbacks that i didn't add to list
+        }else{ //this only happens if sections
+            giveLoadedFileToCallBacks();
         }
+    }
+
+    void giveLoadedFileToCallBacks() {
+        print("jrdebugfest: $fileName about to loop ${callbacks.length} callbacks");
+        for(CallBackObject c in callbacks) {
+            print("jrdebugfest: $fileName looping callbacks, now on $c");
+            c.call(sections);
+        }
+        print("jrdebugfest: $fileName callbacks should be done looping, gonna clear");
+        callbacks.clear();
     }
 
 
@@ -57,6 +65,7 @@ class FAQFile {
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
     void load() {
+        print("jrdebugfest: fired off a thread to load $fileName");
         HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
@@ -64,7 +73,7 @@ class FAQFile {
     void afterLoaded(String data) {
        // print("loading finished");
         parseRawTextIntoSections(data);
-        _getRandomSectionInternal(null); //<--pass null because no new callback is needed
+        giveLoadedFileToCallBacks(); //<--pass null because no new callback is needed
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit

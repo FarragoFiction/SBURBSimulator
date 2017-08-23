@@ -66,7 +66,7 @@ class GetWasted extends Scene {
     ///gotta take in a random or i'll lose determinism
     void getRandomFAQSections(Element div, GeneratedFAQ gfaq) {
         gfaq.sectionsRequested ++;
-        print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
+        print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
         FAQFile f;
         if(gfaq.rand.nextBool()) {
             f = gfaq.rand.pickFrom(Aspects.all).faqFile;
@@ -86,7 +86,7 @@ class GetWasted extends Scene {
             print ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,gfaq); //get more
         }else if (gfaq.sections.length == gfaq.sectionsRequested) {
-            print ("gonna display ${div.id}, callback found sections: ${gfaq.sections}" );
+            print ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div, false,gfaq);
         }else{
             print("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
@@ -109,7 +109,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, bool wroteFAQ, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-        print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections $faq.sections");
+        print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(wroteFAQ) {
             text = "They are writing a FAQ? I wonder what it says?";
