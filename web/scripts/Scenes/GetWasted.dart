@@ -22,15 +22,13 @@ class GetWasted extends Scene {
     //static Logger logger = Logger.get("GetWasted", false);
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
-    int numTries = 0;
-    int numSegmentsPerFAQ = 10;
+
 
     GetWasted(Session session) : super(session);
 
     @override
     bool trigger(List<Player> playerList) {
         this.playerList = playerList;
-        numTries = 0;
         this.player = null;
         List<Player> possibilities = new List<Player>();
         for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
@@ -67,7 +65,7 @@ class GetWasted extends Scene {
     ///this isn't WRITING an faq, it's finding one.  less constraints.
     ///gotta take in a random or i'll lose determinism
     void getRandomFAQSections(Element div, GeneratedFAQ gfaq) {
-        numTries ++;
+        gfaq.sectionsRequested ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f;
         if(gfaq.rand.nextBool()) {
@@ -84,12 +82,14 @@ class GetWasted extends Scene {
     void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
         print("callback chose section $s");
         if(s != null) gfaq.sections.add(s);
-        if(gfaq.sections.length < numSegmentsPerFAQ && numTries < 10) {
+        if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
             print ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,gfaq); //get more
-        }else {
+        }else if (gfaq.sections.length == gfaq.sectionsRequested {
             print ("gonna display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div, false,gfaq);
+        }else{
+            print("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
         }
     }
 

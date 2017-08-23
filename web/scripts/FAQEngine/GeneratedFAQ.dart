@@ -10,10 +10,10 @@ class GeneratedFAQ {
     String symbol = "*";
     //which symbols are used for headers is consisten in a generated faq but not between them
     List<String> _possibleSymbols = <String>["*","@","#","!","~",".","=","-","%","\$"];
-    int amount = 10;
     Random rand;
     bool rendered = false;
-
+    int sectionsRequested = 0;
+    int sectionsWanted = 10;
     ///what are the parts of this FAQ, loaded from different source files
     List<FAQSection> sections = new List<FAQSection>();
 
@@ -23,6 +23,7 @@ class GeneratedFAQ {
 
     //TODO better be courier new, bro
     String makeHtml() {
+        int amount = 10;
         print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
         String ret =  "<br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.<Br><Br><center>By ${author.chatHandle}</center>";
