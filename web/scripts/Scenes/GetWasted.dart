@@ -92,7 +92,7 @@ class GetWasted extends Scene {
             getRandomFAQSections(div,author,r); //get more
         }else {
             print ("found sections: ${sections}" );
-            displayFAQ(div, false,author);
+            displayFAQ(div, false,author, r);
         }
     }
 
@@ -107,12 +107,12 @@ class GetWasted extends Scene {
 
     ///if you wrote it it will say that and also use your own quirk.
     ///IMPORTANT: FUTURE JR CAN'T RELY ON INSTANCE OF PLAYER BECAUSE ALL THIS SHIT IS ASYNC. player could be swapped for next scene.
-    void displayFAQ(Element div, bool wroteFAQ, Player author) {
+    void displayFAQ(Element div, bool wroteFAQ, Player author, Random r) {
         Quirk quirk;
         String text;
         print("gonna display generated faq with ${sections.length} sections $sections");
         //TODO take one of the headers from sections and pass it here.
-        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", sections);
+        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", sections,r);
         if(wroteFAQ) {
             text = "They are writing a FAQ? I wonder what it says?";
             quirk = player.quirk;
