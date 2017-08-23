@@ -23,3 +23,7 @@ h1 {
     font-size:15px;
     border-bottom:1px solid rgba(0,0,0,0.2);
 }
+
+.download {
+    display:none;
+}

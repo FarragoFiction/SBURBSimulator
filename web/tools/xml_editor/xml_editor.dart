@@ -39,7 +39,20 @@ void loadFile([Event event]) {
 }
 
 void saveFile([Event event]) {
+    if (project == null) { return; }
 
+    String content = project.root.write(0);
+
+    logger.debug(content);
+
+    Uri datauri = new Uri.dataFromString(content, mimeType: "text/xml", base64:true);
+
+    logger.debug(datauri);
+
+    AnchorElement link = new AnchorElement(href:datauri.toString())..download="${project.root.type.tag}.xml" ..className="download";
+    querySelector("#menu").append(link);
+    link.click();
+    link.remove();
 }
 
 String ind(int count, String text) {
@@ -115,7 +128,7 @@ class XmlObjectType {
             b.writeln(child.write(indent + 1));
         }
 
-        b.writeln(ind(indent, "<tag>"));
+        b.write(ind(indent, "</$tag>"));
 
         return b.toString();
     }
@@ -151,7 +164,7 @@ class XmlObjectType {
 
 class XmlObject {
     final XmlObjectType type;
-    String text;
+    String text = "";
     
     Element _element;
     Element _inner;
@@ -220,13 +233,18 @@ class TextObject extends XmlObjectType {
 
     @override
     String write(XmlObject object, int indent) {
+        logger.debug("Write text element: ${object.text}");
         return object.text.split("\n").map((String line) => ind(indent, line)).join("\n");
     }
 
     @override
     List<Element> createElement(XmlObject object) {
         Element div = new DivElement();
-        Element textbox = new TextAreaElement();
+        TextAreaElement textbox = new TextAreaElement();
+        textbox.onChange.listen((Event e) {
+            logger.debug("textbox onChange: ${textbox.value}");
+            object.text = textbox.value;
+        });
         div.append(textbox);
         return <Element>[div, textbox];
     }
