@@ -108,11 +108,13 @@ class SBURBClassManager {
 class SBURBClass {
 
     String name = "Null";
+    FAQFile faqFile;
     int id = 256; //for classNameToInt
     bool isCanon = false; //you gotta earn canon, baby.
 
 
     SBURBClass(this.name, this.id, this.isCanon) {
+        faqFile = new FAQFile("$name.xml", "${name}ASCII.txt");
         print("Making a sburb class ${this.name}");
         SBURBClassManager.addClass(this);
     }

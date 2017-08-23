@@ -72,7 +72,13 @@ class GetWasted extends Scene {
     void getRandomFAQSections(Element div, Player author, Random r) {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
-        FAQFile f = rand.pickFrom(Aspects.all).faqFile;
+        FAQFile f;
+        if(rand.nextBool()) {
+            f = rand.pickFrom(Aspects.all).faqFile;
+        }else {
+            f = rand.pickFrom(SBURBClassManager.all).faqFile;
+        }
+
         f.getRandomSectionAsync(rand,getRandomFAQSectionsCallback, div, author);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
