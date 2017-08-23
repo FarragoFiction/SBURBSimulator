@@ -114,7 +114,7 @@ class SBURBClass {
 
 
     SBURBClass(this.name, this.id, this.isCanon) {
-        faqFile = new FAQFile("$name.xml", "${name}ASCII.txt");
+        faqFile = new FAQFile("Classes/${name}.xml", "${name}ASCII.txt");
         print("Making a sburb class ${this.name}");
         SBURBClassManager.addClass(this);
     }

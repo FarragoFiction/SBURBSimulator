@@ -32,7 +32,7 @@ class FAQFile {
        _getRandomSectionInternal(new CallBackObject(div, callBack, gfaq));
     }
 
-    
+
     ///passed a callback since it might have to load
     void _getRandomSectionInternal(CallBackObject callBack) {
        // print("getting random section");
@@ -45,12 +45,12 @@ class FAQFile {
                 return;
             }
         }else{ //this only happens if sections
-            giveLoadedFileToCallBacks();
+            giveLoadedFileToCallBacks(true);
         }
     }
 
-    void giveLoadedFileToCallBacks() {
-        print("jrdebugfest: $fileName about to loop ${callbacks.length} callbacks");
+    void giveLoadedFileToCallBacks(bool mainThread) {
+        print("jrdebugfest: $fileName about to loop ${callbacks.length} callbacks, should be on main thread: $mainThread");
         for(CallBackObject c in callbacks) {
             print("jrdebugfest: $fileName looping callbacks, now on $c");
             c.call(sections);
@@ -73,7 +73,7 @@ class FAQFile {
     void afterLoaded(String data) {
        // print("loading finished");
         parseRawTextIntoSections(data);
-        giveLoadedFileToCallBacks(); //<--pass null because no new callback is needed
+        giveLoadedFileToCallBacks(false); //<--pass null because no new callback is needed
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit
