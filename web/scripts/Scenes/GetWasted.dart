@@ -91,7 +91,7 @@ class GetWasted extends Scene {
             getRandomFAQSections(div,author,r); //get more
         }else {
             print ("gonna display, callback found sections: ${sections}" );
-            displayFAQ(div, false,author, r);
+            //displayFAQ(div, false,author, r);
         }
     }
 

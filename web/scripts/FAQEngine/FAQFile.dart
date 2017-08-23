@@ -41,12 +41,12 @@ class FAQFile {
             loadedOnce = true;
             callbacks.add(callBack);
         }else {
-            print("about to loop callbacks, now on ");
+            print("$fileName about to loop ${callbacks.length} callbacks");
             for(CallBackObject c in callbacks) {
-                print("looping callbacks, now on $c");
+                print(" $fileName looping callbacks, now on $c");
                 c.call(sections);
             }
-            print("callbacks should be done looping, gonna clear");
+            print(" $fileName callbacks should be done looping, gonna clear");
             callbacks.clear();
             if(callBack != null) callBack.call(sections); //last thing i do is call any callbacks that i didn't add to list
         }
