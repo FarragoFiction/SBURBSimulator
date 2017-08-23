@@ -6,6 +6,7 @@ import 'dart:html'; //<--needed for loading the file this is fucking bullshit. m
 import "GeneratedFAQ.dart";
 
 
+typedef LoadingCallback(FAQSection s, Element div, Player author, Random r);
 
 ///handles knowing what file it should load, loading it on request, and parsing and distributing the subsections of the file.
 ///i expect class and aspect to creat their own FAQFiles, and GetWasted to handle murder mode and grim dark and (trickster??? and bike faqs!???)
@@ -26,23 +27,28 @@ class FAQFile {
 
     FAQFile(this.fileName,this.ascii);
 
-    void getRandomSectionAsync(Random r, callBack, Element div, Player player) {
+    void getRandomSectionAsync(Random r, LoadingCallback callBack, Element div, Player player) {
        rand = r;
-       callbacks.add(new CallBackObject(div, callBack, player,r));
-       _getRandomSectionInternal();
+       print("adding new callback $callBack to callbacks");
+       _getRandomSectionInternal(new CallBackObject(div, callBack, player,r));
     }
     ///passed a callback since it might have to load
-    void _getRandomSectionInternal() {
+    void _getRandomSectionInternal(CallBackObject callBack) {
        // print("getting random section");
         if(sections.isEmpty && !loadedOnce) {
             print("can't find any sections for $fileName, gonna load");
             load();
             loadedOnce = true;
+            callbacks.add(callBack);
         }else {
+            print("about to loop callbacks, now on ");
             for(CallBackObject c in callbacks) {
+                print("looping callbacks, now on $c");
                 c.call(sections);
             }
+            print("callbacks should be done looping, gonna clear");
             callbacks.clear();
+            if(callBack != null) callBack.call(sections); //last thing i do is call any callbacks that i didn't add to list
         }
     }
 
@@ -59,7 +65,7 @@ class FAQFile {
     void afterLoaded(String data) {
        // print("loading finished");
         parseRawTextIntoSections(data);
-        _getRandomSectionInternal();
+        _getRandomSectionInternal(null); //<--pass null because no new callback is needed
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit
@@ -82,7 +88,7 @@ class FAQFile {
 class CallBackObject
 {
     //when i am done loading, what do i call?
-    dynamic externalCallback;
+    LoadingCallback externalCallback;
     //need to take in an element because whatever calls me probably wants to write to page but can't without callback
     Element externalDiv;
     ///last thing i need for callback. GetWasted is in charge of making sure I dont' get called a second time while i'm still loading myself.
@@ -93,6 +99,7 @@ class CallBackObject
     CallBackObject(this.externalDiv, this.externalCallback, this.externalPlayer, this.rand);
 
     void call(List<FAQSection> sections) {
+        print("Calling callback for ${externalDiv.id} with $externalPlayer");
         this.externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer, rand);
     }
 }

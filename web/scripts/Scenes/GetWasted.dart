@@ -84,12 +84,13 @@ class GetWasted extends Scene {
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
     void getRandomFAQSectionsCallback(FAQSection s, Element div, Player author, Random r) {
-        print("chose section $s");
+        print("callback chose section $s");
         if(s != null) sections.add(s);
         if(sections.length < numSegmentsPerFAQ && numTries < 10) {
+            print ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,author,r); //get more
         }else {
-            print ("found sections: ${sections}" );
+            print ("gonna display, callback found sections: ${sections}" );
             displayFAQ(div, false,author, r);
         }
     }
