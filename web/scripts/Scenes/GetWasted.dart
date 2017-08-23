@@ -24,7 +24,7 @@ class GetWasted extends Scene {
     int tippingPointBase = 3;
     List<FAQSection> sections = new List<FAQSection>();
     int numTries = 0;
-    int numSegmentsPerFAQ = 2;
+    int numSegmentsPerFAQ = 10;
 
     GetWasted(Session session) : super(session);
 
