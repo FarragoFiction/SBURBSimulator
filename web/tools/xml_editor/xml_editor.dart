@@ -2,6 +2,8 @@ import 'dart:html';
 import "package:xml/xml.dart" as Xml;
 import '../../scripts/includes/logger.dart';
 
+const String xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
+
 XmlProject project;
 Logger logger = Logger.get("Xml Editor");
 
@@ -21,34 +23,61 @@ void main() {
 
         File f = load.files.first;
         reader.readAsText(f);
+        load.value = null;
     });
 }
 
-void newFile([Event event]) {
+void makeProject(String projectType) {
+    if (projectType == "faq") {
+        project = new FaqProject();
+    } else {
+        logger.error("invalid project type");
+        return;
+    }
+}
+
+bool clearProject(String message) {
     if (project != null) {
-        if (!window.confirm("Starting a new project will discard the current one. Are you sure?")) {
-            return;
+        if (!window.confirm(message)) {
+            return false;
         }
         project.destroy();
         project = null;
     }
+    return true;
+}
 
+void newFile([Event event]) {
+    if (!clearProject("Starting a new project will discard the current one. Are you sure?")) { return; }
 
     String projectType = (querySelector("#filetype") as SelectElement).value;
 
     logger.debug("Project type: $projectType");
 
-    if (projectType == "faq") {
-        project = new FaqProject();
-    } else {
-        logger.error("invalid project type");
-    }
-
+    makeProject(projectType);
     querySelector("#editor").append(project.element);
 }
 
 void loadFile(String content) {
+    if (!clearProject("Loading an existing project will discard the current one. Are you sure?")) { return; }
+
     logger.debug(content);
+
+    Xml.XmlDocument doc = Xml.parse(content);
+    for (Xml.XmlNode child in doc.children) {
+        if (child is Xml.XmlElement) {
+            String name = child.name.local;
+            if (OTypes.mapping.containsKey(name)) {
+                makeProject(name);
+                if (project != null) {
+                    project.root.load(child);
+                    querySelector("#editor").append(project.element);
+                }
+                break;
+            }
+        }
+    }
+
 }
 
 void saveFile([Event event]) {
@@ -58,7 +87,7 @@ void saveFile([Event event]) {
 
     logger.debug(content);
 
-    Uri datauri = new Uri.dataFromString(content, mimeType: "text/xml", base64:true);
+    Uri datauri = new Uri.dataFromString("$xmlHeader\n${sanitiseQuotes(content)}", mimeType: "text/xml", base64:true);
 
     logger.debug(datauri);
 
@@ -71,6 +100,12 @@ void saveFile([Event event]) {
 String ind(int count, String text) {
     return "${"    " * count}$text";
 }
+
+String trimText(String input) => input.split("\n").map((String line) => line.trimLeft()).where((String line) => !line.isEmpty).join("\n");
+
+RegExp quoteSingle = new RegExp(r"[‘’]");
+RegExp quoteDouble = new RegExp(r"[“”]");
+String sanitiseQuotes(String input) => input.replaceAll(quoteSingle, "'").replaceAll(quoteDouble, '"');
 
 // #################################################################################
 
@@ -90,6 +125,7 @@ abstract class OTypes {
         "body" : faqBody,
     };
 }
+
 
 // #################################################################################
 
@@ -127,9 +163,10 @@ class XmlProject {
 class XmlObjectType {
     final String tag;
     final bool fixedChildren = false;
+    final bool topLevel = false;
 
     final List<XmlObjectType> requiredChildren = null;
-    final List<XmlObjectType> allowedChildren = null;
+    final List<XmlObjectType> allowedChildren = <XmlObjectType>[];
     
     XmlObjectType(String this.tag);
 
@@ -144,6 +181,14 @@ class XmlObjectType {
         b.write(ind(indent, "</$tag>"));
 
         return b.toString();
+    }
+
+    bool isTypeAllowed(XmlObjectType type, int slot) {
+        if (this.fixedChildren) {
+            if (slot >= this.requiredChildren.length) { return false; }
+            return this.requiredChildren[slot] == type;
+        }
+        return this.allowedChildren.contains(type);
     }
 
     List<Element> createElement(XmlObject object) {
@@ -173,6 +218,36 @@ class XmlObjectType {
 
         return <Element>[div, inner];
     }
+
+    void load(XmlObject object, Xml.XmlNode node) {
+        int i = 0;
+        for (Xml.XmlNode child in node.children) {
+            if (child is Xml.XmlElement) {
+                logger.debug("xml: ${child.name.local}");
+                for (XmlObjectType type in OTypes.mapping.values) {
+                    if (type.tag == child.name.local) {
+                        logger.debug("match: ${type.tag}");
+                        if (this.isTypeAllowed(type, i)) {
+                            logger.debug("allowed");
+                            XmlObject o = new XmlObject(type);
+                            object.setChild(i, o);
+                            i++;
+                            o.load(child);
+                        }
+
+                        break;
+                    }
+                }
+            } else if (child is Xml.XmlText) {
+                if (this.isTypeAllowed(OTypes.text, i)) {
+                    XmlObject o = new XmlObject(OTypes.text);
+                    o.text = sanitiseQuotes(trimText(child.text));
+                    object.setChild(i, o);
+                    i++;
+                }
+            }
+        }
+    }
 }
 
 class XmlObject {
@@ -199,11 +274,14 @@ class XmlObject {
         return this._element;
     }
 
-    void addChild(XmlObject child) {
+    void addChild(XmlObject child, [bool append = false]) {
         if (type.fixedChildren) {
             return;
         }
         this.children.add(child);
+        if (append) {
+            this._inner.append(child.element);
+        }
     }
 
     void removeChild(XmlObject child) {
@@ -217,8 +295,9 @@ class XmlObject {
         if (this.type.fixedChildren) {
             return child.element;
         } else {
-            Element childwrapper = new DivElement();
-            childwrapper.append(new DivElement()..className="delete"..text = "-"..onClick.listen((Event e){
+            Element childwrapper = new DivElement()..className="elementwrapper";
+            childwrapper.append(new DivElement()..className="delete"..text = "[X]"..title="Delete element below"..onClick.listen((Event e){
+                if (!window.confirm("Delete element?")) { return; }
                 this.removeChild(child);
                 childwrapper.remove();
             }));
@@ -235,6 +314,18 @@ class XmlObject {
         List<Element> elements = this.type.createElement(this);
         this._element = elements[0];
         this._inner = elements[1];
+    }
+
+    void load(Xml.XmlNode node) {
+        this.type.load(this,node);
+    }
+
+    void setChild(int i, XmlObject other) {
+        if (i >= this.children.length) {
+            this.children.add(other);
+        } else {
+            this.children[i] = other;
+        }
     }
 }
 
@@ -253,13 +344,20 @@ class TextObject extends XmlObjectType {
     @override
     List<Element> createElement(XmlObject object) {
         Element div = new DivElement();
-        TextAreaElement textbox = new TextAreaElement();
+        TextAreaElement textbox = new TextAreaElement()..cols=150..rows=8..value = object.text;
         textbox.onChange.listen((Event e) {
             logger.debug("textbox onChange: ${textbox.value}");
             object.text = textbox.value;
         });
         div.append(textbox);
         return <Element>[div, textbox];
+    }
+
+    @override
+    void load(XmlObject object, Xml.XmlNode node) {
+        for (Xml.XmlNode child in node.children) {
+            logger.debug(child.runtimeType);
+        }
     }
 }
 
@@ -287,6 +385,8 @@ class FaqProject extends XmlProject {
 class FaqObject extends XmlObjectType {
     @override
     final List<XmlObjectType> allowedChildren = <XmlObjectType>[OTypes.faqSection];
+    @override
+    final bool topLevel = true;
 
     FaqObject():super("faq") {}
 }

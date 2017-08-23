@@ -1,5 +1,4 @@
 body {
-    width:100%;
     padding:0;
     margin:0;
     font-family:"Arial", sans-serif;
@@ -9,6 +8,7 @@ body {
     background-color:#fcf9bd;
     padding:3px;
     border-bottom:1px solid #bdb968;
+    display:block;
 }
 
 div.xmlobject {
@@ -16,9 +16,12 @@ div.xmlobject {
     border:1px solid rgba(0,0,0,0.1);
     background-color:rgba(0,0,0,0.02);
     padding:5px;
+    white-space:initial;
 }
 
 h1 {
+    display:block;
+    width:100%;
     margin:0 0 5px 0;
     font-size:15px;
     border-bottom:1px solid rgba(0,0,0,0.2);
@@ -26,4 +29,19 @@ h1 {
 
 .hidden {
     display:none;
+}
+
+.elementwrapper {
+    display:flexbox;
+    white-space:nowrap;
+}
+
+.delete {
+    cursor:pointer;
+    display:inline-block;
+    margin:3px;
+}
+
+.delete:hover {
+    color:#CC0000;
 }
