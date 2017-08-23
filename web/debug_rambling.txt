@@ -3021,3 +3021,19 @@ hasn't helped.  Is there a hole I'm missing?
 I continue to be tempted to just do away with the async problem entirely and pre-load the faqs just like i'm doing for images.
 
 BUT PL thinks they have a solution.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Why.  Why is this happenining.
+
+*head desk*
+
+ranting on the discord is getting distracting, and it's always less clear than ranting here. What do I need to be doing, what am I obbserving:
+
+Observations:
+
+*NonDeterminism
+    * mvp changes, sometimes it crashes, sometimes a faq popups without me clicking (before that meant there was two divs with same id)
+* Popups without clicking (two divs same ID?)

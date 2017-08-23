@@ -11,11 +11,13 @@ class GeneratedFAQ {
     //which symbols are used for headers is consisten in a generated faq but not between them
     List<String> _possibleSymbols = <String>["*","@","#","!","~",".","=","-","%","\$"];
     int amount = 10;
+    Random rand;
+    bool rendered = false;
 
     ///what are the parts of this FAQ, loaded from different source files
     List<FAQSection> sections = new List<FAQSection>();
 
-    GeneratedFAQ(this.author, this.asciiHeader, this.sections, Random rand) {
+    GeneratedFAQ(this.author, this.asciiHeader, this.sections, this.rand) {
         symbol = rand.pickFrom(_possibleSymbols);
     }
 

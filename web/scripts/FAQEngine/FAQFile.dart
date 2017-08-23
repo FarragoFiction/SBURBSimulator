@@ -6,7 +6,7 @@ import 'dart:html'; //<--needed for loading the file this is fucking bullshit. m
 import "GeneratedFAQ.dart";
 
 
-typedef LoadingCallback(FAQSection s, Element div, Player author, Random r);
+typedef LoadingCallback(FAQSection s, Element div, GeneratedFAQ);
 
 ///handles knowing what file it should load, loading it on request, and parsing and distributing the subsections of the file.
 ///i expect class and aspect to creat their own FAQFiles, and GetWasted to handle murder mode and grim dark and (trickster??? and bike faqs!???)
@@ -15,7 +15,6 @@ class FAQFile {
     String filePath = "GameFaqs/";
     ///what header is associated with content from this file?
     String ascii;
-    Random rand;
     ///what is the name of the FAQ file you reference.
     String fileName;
 
@@ -27,10 +26,10 @@ class FAQFile {
 
     FAQFile(this.fileName,this.ascii);
 
-    void getRandomSectionAsync(Random r, LoadingCallback callBack, Element div, Player player) {
-       rand = r;
-       print("adding new callback $callBack to callbacks");
-       _getRandomSectionInternal(new CallBackObject(div, callBack, player,r));
+    ///takes in a generated faq because i need to keep track of what sessiosn i have and isntance variables can suck it
+    void getRandomSectionAsync(LoadingCallback callBack, Element div, GeneratedFAQ gfaq) {
+          print("adding new callback $callBack to callbacks");
+       _getRandomSectionInternal(new CallBackObject(div, callBack, gfaq));
     }
     ///passed a callback since it might have to load
     void _getRandomSectionInternal(CallBackObject callBack) {
@@ -92,14 +91,12 @@ class CallBackObject
     //need to take in an element because whatever calls me probably wants to write to page but can't without callback
     Element externalDiv;
     ///last thing i need for callback. GetWasted is in charge of making sure I dont' get called a second time while i'm still loading myself.
-    Player externalPlayer;
-    ///don't let seeds leak
-    Random rand;
+    GeneratedFAQ gfaq;
 
-    CallBackObject(this.externalDiv, this.externalCallback, this.externalPlayer, this.rand);
+    CallBackObject(this.externalDiv, this.externalCallback, this.gfaq);
 
     void call(List<FAQSection> sections) {
-        print("Calling callback for ${externalDiv.id} with $externalPlayer");
-        this.externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer, rand);
+        print("Calling callback for ${externalDiv.id} with $gfaq");
+        this.externalCallback(gfaq.rand.pickFrom(sections),externalDiv, gfaq);
     }
 }

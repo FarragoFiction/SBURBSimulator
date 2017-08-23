@@ -22,7 +22,6 @@ class GetWasted extends Scene {
     //static Logger logger = Logger.get("GetWasted", false);
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
-    List<FAQSection> sections = new List<FAQSection>();
     int numTries = 0;
     int numSegmentsPerFAQ = 10;
 
@@ -31,7 +30,6 @@ class GetWasted extends Scene {
     @override
     bool trigger(List<Player> playerList) {
         this.playerList = playerList;
-        sections.clear();
         numTries = 0;
         this.player = null;
         List<Player> possibilities = new List<Player>();
@@ -68,30 +66,30 @@ class GetWasted extends Scene {
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
     ///gotta take in a random or i'll lose determinism
-    void getRandomFAQSections(Element div, Player author, Random r) {
+    void getRandomFAQSections(Element div, GeneratedFAQ gfaq) {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f;
-        if(r.nextBool()) {
-            f = r.pickFrom(Aspects.all).faqFile;
+        if(gfaq.rand.nextBool()) {
+            f = gfaq.rand.pickFrom(Aspects.all).faqFile;
         }else {
-            f = r.pickFrom(SBURBClassManager.all).faqFile;
+            f = gfaq.rand.pickFrom(SBURBClassManager.all).faqFile;
         }
 
-        f.getRandomSectionAsync(r,getRandomFAQSectionsCallback, div, author);
+        f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
-    void getRandomFAQSectionsCallback(FAQSection s, Element div, Player author, Random r) {
+    void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
         print("callback chose section $s");
-        if(s != null) sections.add(s);
-        if(sections.length < numSegmentsPerFAQ && numTries < 10) {
+        if(s != null) gfaq.sections.add(s);
+        if(gfaq.sections.length < numSegmentsPerFAQ && numTries < 10) {
             print ("callback gonna keep looking for sections" );
-            getRandomFAQSections(div,author,r); //get more
+            getRandomFAQSections(div,gfaq); //get more
         }else {
-            print ("gonna display, callback found sections: ${sections}" );
-            //displayFAQ(div, false,author, r);
+            print ("gonna display ${div.id}, callback found sections: ${gfaq.sections}" );
+            displayFAQ(div, false,gfaq);
         }
     }
 
@@ -100,40 +98,37 @@ class GetWasted extends Scene {
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
         ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
         /// it's because async is a fickle fucking bitch, and since i can't predict how long it will take, other scenes can eat the rand
-        getRandomFAQSections(div, author, new Random(rand.nextInt())); //<-- this is async, don't do anything after this dunkass
+        Random r = new Random(rand.nextInt());
+        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
+
+        getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
     }
 
     ///if you wrote it it will say that and also use your own quirk.
     ///IMPORTANT: FUTURE JR CAN'T RELY ON INSTANCE OF PLAYER BECAUSE ALL THIS SHIT IS ASYNC. player could be swapped for next scene.
-    void displayFAQ(Element div, bool wroteFAQ, Player author, Random r) {
-        Quirk quirk;
+    void displayFAQ(Element div, bool wroteFAQ, GeneratedFAQ faq) {
+        if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-        print("gonna display generated faq with ${sections.length} sections $sections");
+        print("gonna display generated faq with ${faq.sections.length} sections $faq.sections");
         //TODO take one of the headers from sections and pass it here.
-        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", sections,r);
         if(wroteFAQ) {
             text = "They are writing a FAQ? I wonder what it says?";
-            quirk = player.quirk;
         }else {
-            text = "The ${author.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
-            if(rand.nextBool()) {
-                quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
-            }else {
-                quirk = randomTrollSim(rand, player);  //probably
-            }
+            text = "The ${faq.author.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
+            Player author = randomPlayer(session);
+            faq.author = author; //new author, not me, i jsut found this
         }
-        String id = "faq${div.id}${player.id}";
+        String id = "faq${div.id}${faq.author.id}";
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${gfaq.makeHtml()}</div>");
+        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${faq.makeHtml()}</div>");
         //appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>DIV: Be Hidden</div>");
         hide(querySelector("#$id"));
         querySelector("#button$id").onClick.listen((e) {
             print("toggling ${id}");
             toggle(querySelector("#$id"));
         });
-
     }
 
 
