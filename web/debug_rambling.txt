@@ -3005,3 +3005,9 @@ Second: track down where the generated faq is getting the random from.
 
 Okay, befoe i do anything else, i think i need loads to stop crashing. async crashes could b ea source of randomness. I'm gonna rip out all the
 non placeholder faqs that aren't xml, readd them later.
+
+Okay....how instead of randomly starting with an faq open it ALWAYS starts with an faq open. WHY???
+
+Alright, also, clicking on the button that used to show/hide is causing it to be called TWICE so it show/hides in same click. WHY???
+
+Wait, what, why is there multiple GetWasted things in the same scene. what is even happening

@@ -25,6 +25,8 @@ class GetWasted extends Scene {
     List<FAQSection> sections = new List<FAQSection>();
     int numTries = 0;
     int numSegmentsPerFAQ = 10;
+    ///instead of a random chance of faq, don't try to make one if you're still making one from previous scene. fucking async bullshit.
+    bool  stillMakingFAQ = false;
 
     GetWasted(Session session) : super(session);
 
@@ -67,44 +69,46 @@ class GetWasted extends Scene {
     }
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
-    void getRandomFAQSections(Element div) {
+    void getRandomFAQSections(Element div, Player author) {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
-        f.getRandomSectionAsync(rand,getRandomFAQSectionsCallback, div);
+        f.getRandomSectionAsync(rand,getRandomFAQSectionsCallback, div, author);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
-    void getRandomFAQSectionsCallback(FAQSection s, Element div) {
+    void getRandomFAQSectionsCallback(FAQSection s, Element div, Player author) {
         print("chose section $s");
         if(s != null) sections.add(s);
         if(sections.length < numSegmentsPerFAQ && numTries < 10) {
-            getRandomFAQSections(div); //get more
+            getRandomFAQSections(div,author); //get more
         }else {
             print ("found sections: ${sections}" );
-            displayFAQ(div, false);
+            displayFAQ(div, false,author);
         }
     }
 
-    void findRandomFAQ(Element div) {
+    void findRandomFAQ(Element div, Player author) {
+        stillMakingFAQ = true;
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
-        getRandomFAQSections(div); //<-- this is async, don't do anything after this dunkass
+        getRandomFAQSections(div, author); //<-- this is async, don't do anything after this dunkass
     }
 
     ///if you wrote it it will say that and also use your own quirk.
-    void displayFAQ(Element div, bool wroteFAQ) {
+    ///IMPORTANT: FUTURE JR CAN'T RELY ON INSTANCE OF PLAYER BECAUSE ALL THIS SHIT IS ASYNC. player could be swapped for next scene.
+    void displayFAQ(Element div, bool wroteFAQ, Player author) {
         Quirk quirk;
         String text;
         print("gonna display generated faq with ${sections.length} sections $sections");
         //TODO take one of the headers from sections and pass it here.
-        GeneratedFAQ gfaq = new GeneratedFAQ("THIS IS JUST A TEST OKAY???", sections);
+        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", sections);
         if(wroteFAQ) {
-            text = "The ${player.htmlTitle()} is writing a FAQ? I wonder what it says?";
+            text = "They are writing a FAQ? I wonder what it says?";
             quirk = player.quirk;
         }else {
-            text = "The ${player.htmlTitle()} is reading a FAQ? Huh, I wonder where they found that?";
+            text = "They are reading a FAQ? Huh, I wonder where they found that?";
             if(rand.nextBool()) {
                 quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
             }else {
@@ -115,11 +119,15 @@ class GetWasted extends Scene {
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${gfaq.makeHtml(quirk)}</div>");
+        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${gfaq.makeHtml()}</div>");
+        //appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>DIV: Be Hidden</div>");
         hide(querySelector("#$id"));
         querySelector("#button$id").onClick.listen((e) {
-            toggle(querySelector("#$id")); //todo maybe not toggle, think about it later.
+            print("toggling ${id}");
+            toggle(querySelector("#$id"));
         });
+
+        stillMakingFAQ = false;
 
     }
 
@@ -131,8 +139,8 @@ class GetWasted extends Scene {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
-        findRandomFAQ(div);
-        appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. It's almost like they've been reading a FAQ or something.");
+        if(!stillMakingFAQ) findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
+        appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. ");
     }
 
     void tier2(Element div) {

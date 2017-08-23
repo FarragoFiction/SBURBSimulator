@@ -21,6 +21,8 @@ class FAQFile {
     dynamic externalCallback;
     //need to take in an element because whatever calls me probably wants to write to page but can't without callback
     Element externalDiv;
+    ///last thing i need for callback. GetWasted is in charge of making sure I dont' get called a second time while i'm still loading myself.
+    Player externalPlayer;
     ///no matter what, only try once.
     bool loadedOnce = false;
 
@@ -28,10 +30,11 @@ class FAQFile {
 
     FAQFile(this.fileName,this.ascii);
 
-    void getRandomSectionAsync(Random r, callBack, Element div) {
+    void getRandomSectionAsync(Random r, callBack, Element div, Player player) {
        rand = r;
        externalDiv = div;
        externalCallback = callBack;
+       externalPlayer = player;
        _getRandomSectionInternal();
     }
     ///passed a callback since it might have to load
@@ -44,7 +47,7 @@ class FAQFile {
         }else {
             //print("there are ${sections.length} sections");
             //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
-            externalCallback(rand.pickFrom(sections),externalDiv);
+            externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer);
         }
     }
 
