@@ -69,7 +69,7 @@ class GetWasted extends Scene {
     }
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
-    void getRandomFAQSections(Element div, Player author) {
+    void getRandomFAQSections(Element div, Player author, Random r) {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
@@ -78,11 +78,11 @@ class GetWasted extends Scene {
     }
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
-    void getRandomFAQSectionsCallback(FAQSection s, Element div, Player author) {
+    void getRandomFAQSectionsCallback(FAQSection s, Element div, Player author, Random r) {
         print("chose section $s");
         if(s != null) sections.add(s);
         if(sections.length < numSegmentsPerFAQ && numTries < 10) {
-            getRandomFAQSections(div,author); //get more
+            getRandomFAQSections(div,author,r); //get more
         }else {
             print ("found sections: ${sections}" );
             displayFAQ(div, false,author);
@@ -93,7 +93,9 @@ class GetWasted extends Scene {
         stillMakingFAQ = true;
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
-        getRandomFAQSections(div, author); //<-- this is async, don't do anything after this dunkass
+        ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
+        /// it's because async is a fickle fucking bitch, and since i can't predict how long it will take, other scenes can eat the rand
+        getRandomFAQSections(div, author, new Random(rand.nextInt())); //<-- this is async, don't do anything after this dunkass
     }
 
     ///if you wrote it it will say that and also use your own quirk.

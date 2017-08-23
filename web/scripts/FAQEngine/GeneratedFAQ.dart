@@ -12,6 +12,7 @@ class GeneratedFAQ {
 
     GeneratedFAQ(this.author, this.asciiHeader, this.sections);
 
+    //TODO better be courier new, bro
     String makeHtml() {
         print("I'm making html for a generated faq with ${sections.length} sections");
         String ret =  "<br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.<Br><Br>By ${author.chatHandle}";

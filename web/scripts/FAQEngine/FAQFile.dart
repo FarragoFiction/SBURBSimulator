@@ -47,7 +47,7 @@ class FAQFile {
         }else {
             //print("there are ${sections.length} sections");
             //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
-            externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer);
+            externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer, rand);
         }
     }
 
