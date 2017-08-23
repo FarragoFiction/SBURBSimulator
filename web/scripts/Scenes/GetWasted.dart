@@ -110,7 +110,7 @@ class GetWasted extends Scene {
             text = "They are writing a FAQ? I wonder what it says?";
             quirk = player.quirk;
         }else {
-            text = "They are reading a FAQ? Huh, I wonder where they found that?";
+            text = "The ${player.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
             if(rand.nextBool()) {
                 quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
             }else {
@@ -141,8 +141,11 @@ class GetWasted extends Scene {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
-        if(!stillMakingFAQ) findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
-        appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. ");
+        if(!stillMakingFAQ) {
+            findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
+        }else {
+            appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. ");
+        }
     }
 
     void tier2(Element div) {
