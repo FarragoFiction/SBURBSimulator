@@ -110,7 +110,7 @@ class GetWasted extends Scene {
             text = "They are writing a FAQ? I wonder what it says?";
             quirk = player.quirk;
         }else {
-            text = "The ${player.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
+            text = "The ${author.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
             if(rand.nextBool()) {
                 quirk = randomHumanSim(rand, player);  //eeeeeeh...it's probably fine to just pass myself
             }else {
