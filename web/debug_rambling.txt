@@ -3011,3 +3011,13 @@ Okay....how instead of randomly starting with an faq open it ALWAYS starts with 
 Alright, also, clicking on the button that used to show/hide is causing it to be called TWICE so it show/hides in same click. WHY???
 
 Wait, what, why is there multiple GetWasted things in the same scene. what is even happening
+
+~~~~~~~~~~
+Okay my current problem is that using the FAQs at all is leaking seeds like crazy. Async means that seeds are happening in different orders.
+
+Is there any way i can plug this hole? PL suggested making a copy of random for the process to use, but that
+hasn't helped.  Is there a hole I'm missing?
+
+I continue to be tempted to just do away with the async problem entirely and pre-load the faqs just like i'm doing for images.
+
+BUT PL thinks they have a solution.
