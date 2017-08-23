@@ -2994,3 +2994,14 @@ displayFAQ(div, false);
 
 Actually, in retrospect, I bet it DID work before and my memory is accurate, it's just on my other computer
 it would manage to load in time.
+
+~~~~~~~~~~~~~
+
+Okay, i'v egot the basic css of the faq pages working. no "dismiss popup" code yet, tho clickingon the button again toggles it.
+But what I need to figure out is why the contents of a faq are true random. Where is that coming from, and why isn't is the same thing each time.
+
+First: Confirm it is NOT true random. Am I sure I'm in the same session each time?
+Second: track down where the generated faq is getting the random from.
+
+Okay, befoe i do anything else, i think i need loads to stop crashing. async crashes could b ea source of randomness. I'm gonna rip out all the
+non placeholder faqs that aren't xml, readd them later.
