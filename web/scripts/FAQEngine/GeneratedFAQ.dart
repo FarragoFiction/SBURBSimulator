@@ -13,11 +13,10 @@ class GeneratedFAQ {
 
     String makeHtml(Quirk quirk) {
         print("I'm making html for a generated faq with ${sections.length} sections");
-        String ret =  "<span class = 'FAQ'><br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.</span>";
+        String ret =  "<div class = 'FAQ'><br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.";
         for(FAQSection s in sections) {
             ret = "$ret <br><Br>${s.header}<br><br>${s.body}<br><Br>";
         }
-        print(ret);
-        return ret;
+        return "$ret</div>";
     }
 }

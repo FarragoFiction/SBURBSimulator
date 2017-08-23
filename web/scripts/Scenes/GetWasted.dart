@@ -1,7 +1,7 @@
 import "dart:html";
 
 import "../SBURBSim.dart";
-import "../includes/Logger.dart";
+//import "../includes/Logger.dart";
 import "../navbar.dart";
 
 /*
@@ -19,7 +19,7 @@ import "../navbar.dart";
  */
 
 class GetWasted extends Scene {
-    static Logger logger = Logger.get("GetWasted", false);
+    //static Logger logger = Logger.get("GetWasted", false);
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
     List<FAQSection> sections = new List<FAQSection>();
@@ -50,7 +50,7 @@ class GetWasted extends Scene {
 
     @override
     void renderContent(Element div) {
-        logger.verbose("Getting Wasted in session ${session.session_id}");
+       // logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
         processTier(div);

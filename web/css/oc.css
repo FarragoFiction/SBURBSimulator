@@ -2,6 +2,20 @@
     display: none;
 }
 
+.FAQ{
+    background-color: white;
+    position:fixed;
+    width: 1000px;
+    height: 50%;
+    top: 15%;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 999;
+    border 1px solid grey;
+    box-shadow: 0 0 5px #88CE21, 0 0 3px #88CE21, 0 0 3px #88CE21, 0 0 9px black, 0 0 7px black, 0 0 7px black;
+}
+
 #story{
 	width:1000px;
 	background-color: white;
