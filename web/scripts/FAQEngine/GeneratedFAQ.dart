@@ -9,7 +9,7 @@ class GeneratedFAQ {
     ///what symbold do you spam for the header
     String symbol = "*";
     //which symbols are used for headers is consisten in a generated faq but not between them
-    List<String> _possibleSymbols = <String>["*","@","#","!","~",".","=","-","(",")"];
+    List<String> _possibleSymbols = <String>["*","@","#","!","~",".","=","-","%","\$"];
     int amount = 10;
 
     ///what are the parts of this FAQ, loaded from different source files
@@ -22,9 +22,10 @@ class GeneratedFAQ {
     //TODO better be courier new, bro
     String makeHtml() {
         print("I'm making html for a generated faq with ${sections.length} sections");
+        Quirk q = author.quirk;
         String ret =  "<br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.<Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
-            ret = "$ret <br><Br>${symbol*amount}${s.header}${symbol*amount}<br><br>${s.body}<br><Br>";
+            ret = "$ret <br><Br>${symbol*amount}${q.translate(s.header)}${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
         }
         return "<div class = 'FAQ'>$ret</div>";
     }
