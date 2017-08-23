@@ -85,7 +85,7 @@ class GetWasted extends Scene {
         if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
             print ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,gfaq); //get more
-        }else if (gfaq.sections.length == gfaq.sectionsRequested {
+        }else if (gfaq.sections.length == gfaq.sectionsRequested) {
             print ("gonna display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div, false,gfaq);
         }else{
