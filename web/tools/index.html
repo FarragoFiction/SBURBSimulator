@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SBURBSim Development Tools</title>
+        <link rel="stylesheet" href="../css/navbar.css">
+        <link rel="stylesheet" href="../css/oc.css">
+        <script type="application/dart" src="../scripts/Controllers/NavBarOnlyController.dart"></script>
+        <script src="packages/browser/dart.js"></script>
+        <style>
+            body {
+                background-image: url("../images/copypasta_pl.png");
+            }
+
+            .nyi {
+                color: #CC0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "navbar"></div>
+        <img src = "../images/paradoxLands.png" style="float:left;">
+        <div id = "story">
+            <h1> Development Tools </h1>
+            <p>Seems you've found your way to the (not very) hidden page for SBURBSim's dev tools.
+                They were written to assist further development post Great Refactoring, and for future plans which are going to need some of them.</p>
+
+            <p>They might not make much sense if you don't know much about the sim's internals, but that's ok.
+                They're mainly for us or anyone who wants to make a mod, but it seemed like a cool idea to leave them in as extra things to find.</p>
+
+
+            <a href = "aspect_palette/"><h2>Palette Builder</h2></a>
+            <p><span class="nyi">Very unfinished:</span> Will be a tool for creating, editing and saving palette files for the new sprite format. Currently the testbed for a new colour picker.</p>
+
+            <a href = "stat_summary/"><h2>Class and Aspect Stats</h2></a>
+            <p><span class="nyi">Half complete:</span> The reference page for the internal values related to classes and aspects. Currently only has aspects.</p>
+
+            <a href = "xml_editor/"><h2>XML Editor</h2></a>
+            <p><span class="nyi">Very unfinished:</span> A visual editor for XML files used as data around the sim. The first use will be FAQs.</p>
+
+        </div>
+    </body>
+</html>
