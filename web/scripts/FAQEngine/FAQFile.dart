@@ -17,14 +17,10 @@ class FAQFile {
     Random rand;
     ///what is the name of the FAQ file you reference.
     String fileName;
-    //when i am done loading, what do i call?
-    dynamic externalCallback;
-    //need to take in an element because whatever calls me probably wants to write to page but can't without callback
-    Element externalDiv;
-    ///last thing i need for callback. GetWasted is in charge of making sure I dont' get called a second time while i'm still loading myself.
-    Player externalPlayer;
+
     ///no matter what, only try once.
     bool loadedOnce = false;
+    List<CallBackObject> callbacks = new List<CallBackObject>();
 
     List<FAQSection> sections = new List<FAQSection>();
 
@@ -32,9 +28,7 @@ class FAQFile {
 
     void getRandomSectionAsync(Random r, callBack, Element div, Player player) {
        rand = r;
-       externalDiv = div;
-       externalCallback = callBack;
-       externalPlayer = player;
+       callbacks.add(new CallBackObject(div, callBack, player,r));
        _getRandomSectionInternal();
     }
     ///passed a callback since it might have to load
@@ -45,9 +39,10 @@ class FAQFile {
             load();
             loadedOnce = true;
         }else {
-            //print("there are ${sections.length} sections");
-            //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
-            externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer, rand);
+            for(CallBackObject c in callbacks) {
+                c.call(sections);
+            }
+            callbacks.clear();
         }
     }
 
@@ -82,3 +77,22 @@ class FAQFile {
 
 }
 
+
+///used to hold all info needed to give a callback, useful if multiple things try to access a file that's still loading
+class CallBackObject
+{
+    //when i am done loading, what do i call?
+    dynamic externalCallback;
+    //need to take in an element because whatever calls me probably wants to write to page but can't without callback
+    Element externalDiv;
+    ///last thing i need for callback. GetWasted is in charge of making sure I dont' get called a second time while i'm still loading myself.
+    Player externalPlayer;
+    ///don't let seeds leak
+    Random rand;
+
+    CallBackObject(this.externalDiv, this.externalCallback, this.externalPlayer, this.rand);
+
+    void call(List<FAQSection> sections) {
+        this.externalCallback(rand.pickFrom(sections),externalDiv, externalPlayer, rand);
+    }
+}

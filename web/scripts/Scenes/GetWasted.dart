@@ -25,8 +25,6 @@ class GetWasted extends Scene {
     List<FAQSection> sections = new List<FAQSection>();
     int numTries = 0;
     int numSegmentsPerFAQ = 10;
-    ///instead of a random chance of faq, don't try to make one if you're still making one from previous scene. fucking async bullshit.
-    bool  stillMakingFAQ = false;
 
     GetWasted(Session session) : super(session);
 
@@ -97,7 +95,6 @@ class GetWasted extends Scene {
     }
 
     void findRandomFAQ(Element div, Player author) {
-        stillMakingFAQ = true;
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
         ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
@@ -136,8 +133,6 @@ class GetWasted extends Scene {
             toggle(querySelector("#$id"));
         });
 
-        stillMakingFAQ = false;
-
     }
 
 
@@ -148,11 +143,7 @@ class GetWasted extends Scene {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
-        if(!stillMakingFAQ) {
-            findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
-        }else {
-            appendHtml(div, "The ${player.htmlTitle()} seems to understand how this bullshit game works. ");
-        }
+        findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
     }
 
     void tier2(Element div) {
@@ -179,3 +170,4 @@ class GetWasted extends Scene {
         //todo waste tier, will be dope as fuk
     }
 }
+
