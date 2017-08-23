@@ -2953,3 +2953,44 @@ Yup, look at this dumb shit. I'm doing shit after a potentially async call.  Gon
 Okay. So. I can't return anything at all. It's gonna have to be a void method.  I need to pass the callback
 when i call it......what even happened to the callback?  I also need to have the callback method in
 GetWasted take in a FAQSection.
+
+~~~~
+Alright, what am I doing now? I'm styling the faqs to look like popups, maybe with that drop shadowy thing PL uses.
+I also want to edit at least some of the placeholder xml to say How bullshit is Life/Time/Breath etc so I know where it's
+getting the faqs from.
+
+I need to confirm that the "found" faqs are appropriately random and not just one element.
+
+Oh, and somebody on the discord made ascii art of aspects and I want to ask if i can use it.
+
+Oh yeah and i wanted to look into the combo session bug somebody found, too
+
+Alright: Confusion.  Why...why do all the faqs claim to have zero sections when I can see that they are loading right?
+This problem is familiar from yesterday, but didn't I fix it?  Or is this async bullshit again?
+
+trying to find random faq in session: 20170823, this is 1 time
+VM166:1 can't find any sections for Light.xml, gonna load
+VM166:1 found sections: []
+VM166:1 gonna display generated faq with 0 sections []
+
+
+I'm making html for a generated faq with 0 sections
+VM166:1 <span class = 'FAQ'><br><br>TODO: make the faqs be here with fixed position. There are 0 sections to this faq.</span>
+VM166:1 made FAQSection with header
+             +++++++++++++++++++++Question: How bullshit is Light.+++++++++++++++++++++++
+         and body
+            Extremely.
+
+
+
+So yes, it does seem I attempt to display before creating sections.  Why?  Did I forget to commit on my other machine or something?
+
+Hrrrrm....do I know it was ever working? Current observations show it shouldn't have been.  It looks like I need to handle async
+further up the chain than anticipated.
+
+getRandomFAQSection();  <-- this will return immidiatly, with 0 sections
+print ("found sections: ${sections}" );
+displayFAQ(div, false);
+
+Actually, in retrospect, I bet it DID work before and my memory is accurate, it's just on my other computer
+it would manage to load in time.

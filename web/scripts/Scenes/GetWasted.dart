@@ -1,6 +1,9 @@
 import "dart:html";
+
 import "../SBURBSim.dart";
+import "../includes/Logger.dart";
 import "../navbar.dart";
+
 /*
     These are how Wastes, and things that aspire to be Wastes, do their shit.
     sburbLore and Gnosis will function similarly to corruption and GrimDark.
@@ -16,6 +19,7 @@ import "../navbar.dart";
  */
 
 class GetWasted extends Scene {
+    static Logger logger = Logger.get("GetWasted", false);
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
     List<FAQSection> sections = new List<FAQSection>();
@@ -46,7 +50,7 @@ class GetWasted extends Scene {
 
     @override
     void renderContent(Element div) {
-        print("Getting Wasted in session ${session.session_id}");
+        logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
         processTier(div);
@@ -63,28 +67,30 @@ class GetWasted extends Scene {
     }
 
     ///this isn't WRITING an faq, it's finding one.  less constraints.
-    void getRandomFAQSection() {
+    void getRandomFAQSections(Element div) {
         numTries ++;
         print ("trying to find random faq in session: ${session.session_id}, this is $numTries time" );
         FAQFile f = rand.pickFrom(Aspects.all).faqFile;
-        f.getRandomSectionAsync(rand,getRandomFAQSectionCallback);
+        f.getRandomSectionAsync(rand,getRandomFAQSectionsCallback, div);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
-    void getRandomFAQSectionCallback(FAQSection s) {
+    void getRandomFAQSectionsCallback(FAQSection s, Element div) {
         print("chose section $s");
         if(s != null) sections.add(s);
-        if(sections.length < numSegmentsPerFAQ && numTries < 10) getRandomFAQSection();
+        if(sections.length < numSegmentsPerFAQ && numTries < 10) {
+            getRandomFAQSections(div); //get more
+        }else {
+            print ("found sections: ${sections}" );
+            displayFAQ(div, false);
+        }
     }
 
     void findRandomFAQ(Element div) {
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
-        getRandomFAQSection();
-        print ("found sections: ${sections}" );
-        displayFAQ(div, false);
-
+        getRandomFAQSections(div); //<-- this is async, don't do anything after this dunkass
     }
 
     ///if you wrote it it will say that and also use your own quirk.

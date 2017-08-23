@@ -19,6 +19,8 @@ class FAQFile {
     String fileName;
     //when i am done loading, what do i call?
     dynamic externalCallback;
+    //need to take in an element because whatever calls me probably wants to write to page but can't without callback
+    Element externalDiv;
     ///no matter what, only try once.
     bool loadedOnce = false;
 
@@ -26,8 +28,9 @@ class FAQFile {
 
     FAQFile(this.fileName,this.ascii);
 
-    void getRandomSectionAsync(Random r, callBack) {
+    void getRandomSectionAsync(Random r, callBack, Element div) {
        rand = r;
+       externalDiv = div;
        externalCallback = callBack;
        _getRandomSectionInternal();
     }
@@ -41,7 +44,7 @@ class FAQFile {
         }else {
             //print("there are ${sections.length} sections");
             //TODO remove picked section, wait, no don't do it here, cuz what generic file to never remove.
-            externalCallback(rand.pickFrom(sections));
+            externalCallback(rand.pickFrom(sections),externalDiv);
         }
     }
 
