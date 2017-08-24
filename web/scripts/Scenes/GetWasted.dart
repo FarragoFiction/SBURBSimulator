@@ -132,7 +132,9 @@ class GetWasted extends Scene {
         Player author = this.player; //can't use standard means cuz it uses wrong random
         GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
         gfaq.reader = author;
+        //procedurally generated rap faqs. Question: How sick are your beats?
         getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
+
     }
 
 
