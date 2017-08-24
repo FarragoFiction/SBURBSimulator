@@ -14,7 +14,7 @@ class FAQFile {
     ///how do you get to the folders with the FAQs in the,
     String filePath = "GameFaqs/";
     ///what header is associated with content from this file?
-    String ascii;
+    String ascii = "ASCII GOES HERE";
     ///what is the name of the FAQ file you reference.
     String fileName;
 
@@ -76,11 +76,19 @@ class FAQFile {
         giveLoadedFileToCallBacks(false); //<--pass null because no new callback is needed
     }
 
+    static String parseASCIIOut(String text) {
+        //if there IS no asci, just use default for now.
+        Xml.XmlDocument document = Xml.parse(text);
+        Xml.XmlElement ele = document.findElements("faq").first;
+        Xml.XmlNode node = ele.findElements("ascii").first;
+    }
+
     ///take the raw text that was loaded from the file and turn it into your sections and shit
     /// looking for <section></section>, <header </header> and <body></body>
     void parseRawTextIntoSections(String text) {
         //first, i need to turn the string into a list of substrings that are a single section
         List<Xml.XmlNode> sectionStrings = FAQSection.mainTextToSubStrings(text);
+        ascii = FAQFile.parseASCIIOut(text);
        // print("after parsing main text, sectionStrings are $sectionStrings");
         //then, I need to call a new function on that substring to turn it into a section.
         for(Xml.XmlNode tmp in sectionStrings) {

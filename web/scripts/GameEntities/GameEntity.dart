@@ -476,7 +476,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (statName == "power") {
             //print("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
-            ret = Math.max(0, ret); //no negative power, dunkass.
+            ret = Math.max(1, ret); //no negative power, dunkass.
            if(ret < 0 ) print("$this after mangrit, power is $ret in session ${session.session_id}");
         }
 
