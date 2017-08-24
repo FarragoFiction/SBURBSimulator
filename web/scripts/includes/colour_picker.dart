@@ -6,14 +6,14 @@ import 'colour.dart';
 import 'logger.dart';
 
 class ColourPicker {
-    static Logger logger = Logger.get("ColourPicker", false);
+    /*static Logger logger = Logger.get("ColourPicker", false);
 
     static Set<ColourPicker> _pickers = new Set<ColourPicker>();
 
-    bool isOpen = false;
+    bool isOpen = false;*/
 
     InputElement _input;
-    Element _anchor;
+    /*Element _anchor;
 
     Element _button;
     Element _buttonSwatch;
@@ -58,10 +58,10 @@ class ColourPicker {
     List<FancySliderFill> _mainSliderFillers = <FancySliderFill>[];
     
     Colour colour = new Colour();
-    Colour previousColour;
+    Colour previousColour;*/
 
-    ColourPicker(InputElement this._input, {int width = 48, int height = 25, int colourInt = 0xDDDDDD, Colour colour}) {
-        if (colour == null) {
+    ColourPicker(InputElement this._input){//, {int width = 48, int height = 25, int colourInt = 0xDDDDDD, Colour colour}) {
+        /*if (colour == null) {
             colour = new Colour.fromHex(colourInt);
         }
         createButton(colour, width, height);
@@ -73,10 +73,10 @@ class ColourPicker {
 
         _pickers.add(this);
 
-        ColourPickerMouseHandler.init();
+        ColourPickerMouseHandler.init();*/
     }
 
-    Element get anchor => this._anchor;
+    /*Element get anchor => this._anchor;
 
     void setFromRGB([bool fromMain = false]) {
         logger.debug("setFromRGB");
@@ -836,9 +836,9 @@ class ColourPicker {
         window.removeEventListener("resize", this.resizeOverlay);
         this._button.replaceWith(this._input);
         _pickers.remove(this);
-    }
+    }*/
 }
-
+/*
 typedef Colour MainPickerFill(double x, double y);
 typedef Colour FancySliderFill(double fraction);
 typedef void ColourPickerUpdateFunction(bool fromMain);
@@ -970,9 +970,9 @@ class FancySlider {
         this.bar.remove();
         _sliders.remove(this);
     }
-}
+}*/
 
-class ColourPickerMouseHandler {
+/*class ColourPickerMouseHandler {
     static bool _registered = false;
 
     static void init() {
@@ -1000,4 +1000,4 @@ class ColourPickerMouseHandler {
             }
         });
     }
-}
+}*/

@@ -31,7 +31,10 @@ void main() {
 
     //checkLABRanges();
 
-    new ColourPicker(querySelector("#testpicker")..onChange.listen((Event e) => print((e.target as InputElement).value)));
+    print("event stuff:");
+    print(querySelector("#testpicker"));//.onChange);
+
+    new ColourPicker(querySelector("#testpicker"));//..onChange.listen((Event e) => print((e.target as InputElement).value)));
 }
 
 void checkLABRanges() {
