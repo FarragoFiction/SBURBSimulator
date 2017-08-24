@@ -81,6 +81,9 @@ class FAQFile {
         Xml.XmlDocument document = Xml.parse(text);
         Xml.XmlElement ele = document.findElements("faq").first;
         Xml.XmlNode node = ele.findElements("ascii").first;
+        String ret = "NO ASCII HAS BEEN LOADED HERE, JR WHAT ARE YOU DOING???";
+        if(node != null) ret = node.text;
+        return ret;
     }
 
     ///take the raw text that was loaded from the file and turn it into your sections and shit
