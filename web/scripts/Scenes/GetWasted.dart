@@ -30,7 +30,7 @@ class GetWasted extends Scene {
     FAQFile robotFAQ = new FAQFile("Misc/Robot.xml");
     FAQFile grimDarkFAQ = new FAQFile("Misc/GrimDark.xml");
     FAQFile bikeStuntsFAQ = new FAQFile("Misc/BikeStunts.xml");
-    WeightedList<Aspect> possibleAspects = new WeightedList<Aspect>.from(Aspects.all, initialWeightSetter:(Aspect a, double w) => w * (a.isCanon ? 1.0 : 0.1)
+    WeightedList<Aspect> possibleAspects = new WeightedList<Aspect>.from(Aspects.all, initialWeightSetter:(Aspect a, double w) => w * (a.isCanon ? 1.0 : 0.1));
 
     GetWasted(Session session) : super(session) {
         //TODO if i get enough generic shit, separate out into categories and weight as appropriate
