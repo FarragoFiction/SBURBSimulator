@@ -185,7 +185,11 @@ class GetWasted extends Scene {
 
     void tier3(Element div) {
         //TODO 3 will write a faq guaranteed, as well as doing some exploitation shit, like breeding combat frogs and shit, and unlocking free will english tier
-        //woomod
+        // breed combat from (post npc update)
+        // english tier (unlocks in free will)
+        // english tier (small chance of it happening here without free will)
+        // if no ecto yet, plan to kill leader a bunch to get a bunch of doomed time clones
+        // woomod
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
         if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.'");
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.'");
