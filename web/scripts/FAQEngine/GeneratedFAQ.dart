@@ -12,7 +12,7 @@ class GeneratedFAQ {
     List<String> _possibleSymbols = <String>["*","@","#","!","~",".","=","-","%","\$"];
     Random rand;
     bool rendered = false;
-    int sectionsRequested = 0;
+    int sectionsRequested = 0; //TODO<--keep track of which section goes in which slot of the array, or order will be slightly random
     int sectionsWanted = 10;
     ///what are the parts of this FAQ, loaded from different source files
     List<FAQSection> sections = new List<FAQSection>();
