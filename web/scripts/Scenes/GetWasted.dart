@@ -87,7 +87,7 @@ class GetWasted extends Scene {
             getRandomFAQSections(div,gfaq); //get more
         }else if (gfaq.sections.length == gfaq.sectionsRequested) {
             print ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
-            displayFAQ(div, false,gfaq);
+            displayFAQ(div,gfaq);
         }else{
             print("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
         }
@@ -111,7 +111,7 @@ class GetWasted extends Scene {
         return p;
     }
 
-    void findRandomFAQ(Element div) {
+    void findRandomFAQ(Element div, Player reader) {
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
         ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
@@ -119,21 +119,34 @@ class GetWasted extends Scene {
         Random r = new Random(rand.nextInt());
         Player author = makeRandomPlayer(r); //can't use standard means cuz it uses wrong random
         GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
+        gfaq.reader = reader; //have to store
 
         getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
     }
+    void writeFAQ(Element div) {
+        //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
+        //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
+        ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
+        /// it's because async is a fickle fucking bitch, and since i can't predict how long it will take, other scenes can eat the rand
+        Random r = new Random(rand.nextInt());
+        Player author = this.player; //can't use standard means cuz it uses wrong random
+        GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
+        gfaq.reader = author;
+        getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
+    }
+
 
     ///if you wrote it it will say that and also use your own quirk.
     ///IMPORTANT: FUTURE JR CAN'T RELY ON INSTANCE OF PLAYER BECAUSE ALL THIS SHIT IS ASYNC. player could be swapped for next scene.
-    void displayFAQ(Element div, bool wroteFAQ, GeneratedFAQ faq) {
+    void displayFAQ(Element div, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
         print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
-        if(wroteFAQ) {
-            text = "They are writing a FAQ? I wonder what it says?";
+        if(faq.reader == faq.author) {
+            text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
         }else {
-            text = "The ${faq.author.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
+            text = "The ${faq.reader.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
         }
         String id = "faq${div.id}${faq.author.id}";
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
@@ -160,13 +173,14 @@ class GetWasted extends Scene {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
-        findRandomFAQ(div); //have to pass player cause async bs means i can't trust instance vars to not change
+        findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
     }
 
     void tier2(Element div) {
         //this tier will unlock frog breeding and various free will shits besides english tier.
         //can also write a faq
-        appendHtml(div, "The ${player.htmlTitle()} has been trying to explain to anyone who will listen how this bullshit game works. Maybe they should just write a FAQ?");
+        writeFAQ(div);
+        //appendHtml(div, "The ${player.htmlTitle()} has been trying to explain to anyone who will listen how this bullshit game works. Maybe they should just write a FAQ?");
     }
 
     void tier3(Element div) {

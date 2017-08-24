@@ -6,6 +6,7 @@ class GeneratedFAQ {
     ///will be printed first, no quirk.
     String asciiHeader;
     Player author;
+    Player reader;
     ///what symbold do you spam for the header
     String symbol = "*";
     //which symbols are used for headers is consisten in a generated faq but not between them
