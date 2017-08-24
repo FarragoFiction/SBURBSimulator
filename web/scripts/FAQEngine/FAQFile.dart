@@ -14,7 +14,7 @@ class FAQFile {
     ///how do you get to the folders with the FAQs in the,
     String filePath = "GameFaqs/";
     ///what header is associated with content from this file?
-    String ascii = "ASCII GOES HERE";
+    String ascii = "IF YOU SEE THIS SOMETHING IS WRONG";
     ///what is the name of the FAQ file you reference.
     String fileName;
 
@@ -80,9 +80,9 @@ class FAQFile {
         //if there IS no asci, just use default for now.
         Xml.XmlDocument document = Xml.parse(text);
         Xml.XmlElement ele = document.findElements("faq").first;
-        Xml.XmlNode node = ele.findElements("ascii").first;
+        Iterable<Xml.XmlNode> nodes = ele.findElements("ascii");
         String ret = "NO ASCII HAS BEEN LOADED HERE, JR WHAT ARE YOU DOING???";
-        if(node != null) ret = node.text;
+        if(!nodes.isEmpty) ret = nodes.first.text;
         return ret;
     }
 
