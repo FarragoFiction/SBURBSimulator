@@ -69,9 +69,9 @@ class GetWasted extends Scene {
         print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
         FAQFile f;
         if(gfaq.rand.nextBool()) {
-            f = gfaq.rand.pickFrom(Aspects.all).faqFile;
+            f = gfaq.author.aspect.faqFile;
         }else {
-            f = gfaq.rand.pickFrom(SBURBClassManager.all).faqFile;
+            f = gfaq.author.class_name.faqFile;
         }
 
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
@@ -93,12 +93,29 @@ class GetWasted extends Scene {
         }
     }
 
-    void findRandomFAQ(Element div, Player author) {
+    //TODO leave this here for now, but put with other player stuff later when i shove into a class
+    Player makeRandomPlayer(r) {
+        SBURBClass c = r.pickFrom(SBURBClassManager.all);
+        Aspect a = r.pickFrom(Aspects.all);
+        Player p = new Player(session, c, a, null, null, null);
+        p.interest1 = InterestManager.getRandomInterest(r);
+        p.interest2 = InterestManager.getRandomInterest(r);
+        if (p.isTroll) {
+            p.quirk = randomTrollSim(r, p); //not same quirk as guardian;
+        } else {
+            p.quirk = randomHumanSim(r, p);
+        }
+        p.chatHandle = getRandomChatHandle(r, p.class_name, p.aspect, p.interest1, p.interest2);
+        return p;
+        }
+
+    void findRandomFAQ(Element div) {
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
         //TODO have local list of faq files for meta bullshit, like the First Player, the creators and wranglers, or maybe some of debug rambling
         ///futureJR: you're gonna wonder why i'm making a new random with the existing seed here
         /// it's because async is a fickle fucking bitch, and since i can't predict how long it will take, other scenes can eat the rand
         Random r = new Random(rand.nextInt());
+        Player author = makeRandomPlayer(r); //can't use standard means cuz it uses wrong random
         GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
 
         getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
@@ -115,8 +132,6 @@ class GetWasted extends Scene {
             text = "They are writing a FAQ? I wonder what it says?";
         }else {
             text = "The ${faq.author.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
-            Player author = randomPlayer(session);
-            faq.author = author; //new author, not me, i jsut found this
         }
         String id = "faq${div.id}${faq.author.id}";
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
@@ -140,7 +155,7 @@ class GetWasted extends Scene {
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
-        findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
+        findRandomFAQ(div); //have to pass player cause async bs means i can't trust instance vars to not change
     }
 
     void tier2(Element div) {
