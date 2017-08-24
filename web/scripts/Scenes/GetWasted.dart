@@ -109,7 +109,7 @@ class GetWasted extends Scene {
         }
         p.chatHandle = getRandomChatHandle(r, p.class_name, p.aspect, p.interest1, p.interest2);
         return p;
-        }
+    }
 
     void findRandomFAQ(Element div) {
         //TODO pick an ascii out, aspect symbols generically, but if there's any rare segments could be bike or 4th wall etc.
@@ -139,12 +139,15 @@ class GetWasted extends Scene {
         //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${faq.makeHtml()}</div>");
+        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${faq.makeHtml(id)}</div>");
         //appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>DIV: Be Hidden</div>");
         hide(querySelector("#$id"));
         querySelector("#button$id").onClick.listen((e) {
-            print("toggling ${id}");
             toggle(querySelector("#$id"));
+        });
+
+        querySelector("#close$id").onClick.listen((e) {
+            hide(querySelector("#$id"));
         });
         faq.rendered = true;
     }
