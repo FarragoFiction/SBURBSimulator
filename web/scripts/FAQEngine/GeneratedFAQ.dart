@@ -26,7 +26,8 @@ class GeneratedFAQ {
         int amount = 10;
         print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
-        String ret =  "<br><br>TODO: make the faqs be here with fixed position. There are ${sections.length} sections to this faq.<Br><Br><center>By ${author.chatHandle}</center>";
+        String ascii = "ASCIIWILLGOHERE"*5;
+        String ret =  "<br><br>$ascii<Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
             ret = "$ret <br><Br>${symbol*amount}${q.translate(s.header)}${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
         }
