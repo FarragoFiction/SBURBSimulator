@@ -20,6 +20,7 @@ div.title {
     margin:0;
     height:54px;
     overflow:hidden;
+    position:relative;
 }
 
 div.aspectIcon {
@@ -36,14 +37,36 @@ div.aspectIcon img {
     left:-190px;
 }
 
+div.classIcon {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:absolute;
+    display:inline-block;
+    top:0;
+    left:0;
+}
+
+div.classIcon img {
+    position:absolute;
+    top:-85px;
+    left:-80px;
+    width:200px;
+}
+
 h1,h2,h3,h4 {
     margin:4px 0 2px 0;
 }
 
-h1 {
+h1.title {
     position:relative;
     display:inline-block;
     top:-14px;
+}
+
+h1.outer {
+    margin-bottom:12px;
+    margin-left:6px;
 }
 
 p {
@@ -63,10 +86,13 @@ td.number {
     text-align:right;
 }
 
-div#content {
+div.content {
     display:flex;
     flex-wrap:wrap;
     justify-content: flex-start;
+    border-bottom:2px solid #CCCCCC;
+    margin-bottom: 10px;
+    padding-bottom:20px;
 }
 
 div.section {

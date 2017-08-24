@@ -8,12 +8,20 @@ void main() {
     Aspects.init();
     SBURBClassManager.init();
 
-    Element div = querySelector("#content");
+    Element aspectdiv = querySelector("#aspects");
 
     List<Aspect> aspects = Aspects.all.toList()..sort((Aspect a, Aspect b) => a.name.compareTo(b.name));
 
     for (Aspect aspect in aspects) {
-        div.append(getAspectInfo(aspect));
+        aspectdiv.append(getAspectInfo(aspect));
+    }
+
+    Element classdiv = querySelector("#classes");
+
+    List<SBURBClass> classes = SBURBClassManager.all.toList()..sort((SBURBClass a, SBURBClass b) => a.name.compareTo(b.name));
+
+    for (SBURBClass clazz in classes) {
+        classdiv.append(getClassInfo(clazz));
     }
 }
 
@@ -31,6 +39,7 @@ Element getAspectInfo(Aspect aspect) {
             )
         )
         ..append(new HeadingElement.h1()
+            ..className="title"
             ..style.color = aspect.palette.aspect_light.toStyleString()
             ..text = aspect.name
         )
@@ -44,7 +53,7 @@ Element getAspectInfo(Aspect aspect) {
     );
 
     element.append(aspectDetails(aspect));
-    element.append(aspectStats(aspect));
+    element.append(drawStats(aspect.stats));
 
     element.append(toggleList("Levels", aspect.levels));
 
@@ -89,7 +98,7 @@ Element aspectDetails(Aspect aspect) {
     return div;
 }
 
-Element aspectStats(Aspect aspect) {
+Element drawStats(Iterable<AssociatedStat> stats) {
     Element div = new DivElement()..className="section";
 
     div.append(new HeadingElement.h4()..text="Stats");
@@ -97,9 +106,78 @@ Element aspectStats(Aspect aspect) {
     Element table = new TableElement();
     div.append(table);
 
-    for (AssociatedStat stat in aspect.stats) {
+    for (AssociatedStat stat in stats) {
         div.append(prettyStat(stat));
     }
+
+    return div;
+}
+
+Element getClassInfo(SBURBClass clazz) {
+    DivElement element = new DivElement()
+        ..className="box";
+
+    element.append(new DivElement()
+        ..className = "title"
+        ..style.backgroundColor = "#CCCCCC"
+        ..append(new DivElement()
+            ..className = "classIcon"
+            ..append(new ImageElement()
+                ..src="../../images/Bodies/god${clazz.id+1}.png"
+            )
+        )
+        ..append(new HeadingElement.h1()
+            ..className="title"
+            ..style.color = "#FFFFFF"
+            ..style.marginLeft = "48px"
+            ..style.marginTop = "19px"
+            ..style.textShadow = "-1px -1px 0px black, -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black, -1px 0px 0px black, 1px 0px 0px black, 0px 1px 0px black, 0px -1px 0px black"
+            ..text = clazz.name
+        )
+    );
+    element.append(new HeadingElement.h3()
+        ..append(new SpanElement()
+            ..className = clazz.isCanon ? "canon" : "fanon"
+            ..text = "${clazz.isCanon ? "Canon" : "Fanon"}"
+        )
+        ..appendText(", id: ${clazz.id}")
+    );
+
+    element.append(classDetails(clazz));
+    element.append(drawStats(clazz.stats));
+
+    element.append(toggleList("Levels", clazz.levels));
+
+    element.append(toggleBox("Quests", new DivElement()..className="section"
+        ..append(toggleList("Pre-Denizen", clazz.quests))
+        ..append(toggleList("Post-Denizen", clazz.postDenizenQuests))
+    ));
+
+    element.append(toggleList("ChumHandles", clazz.handles));
+
+    element.append(toggleBox("PvP Stats", new DivElement()..className="section"
+        ..append( new ParagraphElement()..text = "Attacker multiplier: ${clazz.getAttackerModifier()}")
+        ..append( new ParagraphElement()..text = "Defender multiplier: ${clazz.getDefenderModifier()}")
+        ..append( new ParagraphElement()..text = "Murderous mlultiplier: ${clazz.getMurderousModifier()}")
+    ));
+
+    return element;
+}
+
+Element classDetails(SBURBClass clazz) {
+    Element div = new DivElement()..className="section";
+
+    div.append(new HeadingElement.h4()..text="Properties");
+
+    if (clazz.isActive()) {
+        div.append(new ParagraphElement()..text="Active");
+    } else {
+        div.append(new ParagraphElement()..text="Passive");
+    }
+    if (clazz.hasInteractionEffect()) { div.append(new ParagraphElement()..text="Has interaction effect"..title="Affects the stats of friends or enemies."); }
+    if (clazz.highHinit()) { div.append(new ParagraphElement()..text="High initial stats"); }
+
+    div.append( new ParagraphElement()..text = "Power boost mult: ${clazz.powerBoostMultiplier}");
 
     return div;
 }
