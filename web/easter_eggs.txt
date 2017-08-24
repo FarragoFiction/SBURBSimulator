@@ -53,6 +53,8 @@
 <p><a href = "index2.html?images=pumpkin">What Images</a>: For those who just want to watch the world burn. I mean have 144 player sessions. </p>
 <textarea>b=%C3%BF%C2%83%C2%9A%05%C3%BD%C3%8C%14%03%C3%BE%C3%BE%1B&s=,,Dave,Karkat,specialSnowlake</textarea>
 
+<p><a href = "tools/">Development Tools</a>: A selection of tools made to help with SBURBSim development. Take a(nother) peek behind the curtain.</p>
+
 <p>Is 'void' class a thing in CSS???  What could this mean??? <div class = 'void'> Do you think it has something to do with this??? A better question: Do you really think this would be an easter egg if this were the only place with a div hidden in void???</div> </p>
 <p>DID YOU KNOW: In addition to sharing hair color/blood color with their guardians, players share at least one interest with them as well.  So a player might like Wizards and Writing while their Guardian might enjoy Wizards and Hacking.
 <p><font color = "white"> Things like this won't be hidden if AB is in trickster mode. I find this hilarious. Some of the hints to this page were white font on a white page. There's actually tons of extra easter egg content throughout the site, mostly within the code itself, which understandably isn't a place your average Observer is gonna go rummaging around in.
