@@ -97,7 +97,9 @@ class GetWasted extends Scene {
     Player makeRandomPlayer(r) {
         SBURBClass c = r.pickFrom(SBURBClassManager.all);
         Aspect a = r.pickFrom(Aspects.all);
+
         Player p = new Player(session, c, a, null, null, null);
+        print("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
         if (p.isTroll) {

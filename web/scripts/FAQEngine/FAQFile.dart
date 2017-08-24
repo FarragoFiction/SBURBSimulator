@@ -36,8 +36,8 @@ class FAQFile {
     ///passed a callback since it might have to load
     void _getRandomSectionInternal(CallBackObject callBack) {
        // print("getting random section");
-        callbacks.add(callBack);
         if(sections.isEmpty) {
+            callbacks.add(callBack);
             if(!loadedOnce) {
                 print("jrdebugfest: can't find any sections for $fileName, gonna load");
                 loadedOnce = true;
@@ -45,7 +45,7 @@ class FAQFile {
                 return;
             }
         }else{ //this only happens if sections
-            giveLoadedFileToCallBacks(true);
+            callBack.call(sections);
         }
     }
 
