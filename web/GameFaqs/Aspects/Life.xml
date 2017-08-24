@@ -2,10 +2,102 @@
 <faq>
     <section>
         <header>
-            +++++++++++++++++++++Question: How bullshit is Life.+++++++++++++++++++++++
+            Question: What's happening in this game?
         </header>
         <body>
-            Extremely.
+            Short answer: Stuff about kids growing up.
+            Long answer: This game is a coming-of-age story simulator. It is also a role-playing videogame.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Wow, that's cool! Can I pick a class?
+        </header>
+        <body>
+            Answer: Sorry, no. The game has already picked for you, and you're a/an [X] of Life. If you're not a Life player, you're better off reading another FAQ.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: So...I was assigned to be a Life player. Why?
+        </header>
+        <body>
+            Answer: Most Life players tend to be people who strive to leave a mark on the world, to be in control of something. As to quote doctor Alan Grant: "Life, uh, finds a way.". Apparently you are one of such people, eager to influence the world...well, welcome to the Life club.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: So I am a Life player. What does that mean?
+
+        </header>
+        <body>
+            Answer: You're stuck on healer duty. Yes, you'll eventually learn how to use Life powers in offensive way. Yes, you can commune with ghosts and raise dead. But for your teammates, you're a healbot. Deal with it.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Healer duty sucks.
+        </header>
+        <body>
+            Answer: It has been statistically proven that Life players who heal their teammates have a much higher survival rate than Life players who don't heal their teammates. Don't ask me where the rates come from.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Can I just...not heal people? Kill enemies faster than they damage my allies?
+        </header>
+        <body>
+            Answer: I'd like to see you try. Late-game enemies are notoriously tough, and eventually, you'll be better off sticking to healer duty, lest you find yourself alone against the final boss.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Okay, fine. Now, there's a Time player yelling at me. What do?
+        </header>
+        <body>
+            Answer: Do what they tell you to do. Time players tend to deal with their constantly dying clones from doomed timelines. Don't think about all this temporal bullshit too much, this is not your domain. This Time player's likely to be a doomed clone who's seen some unpleasant shit and is now trying to ensure that this shit doesn't happen. In fact, if said bullshit happens, the timeline is doomed.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What's up with all these doomed timelines? Can't I just resurrect the doomed dead?
+        </header>
+        <body>
+            Answer: Imagine a boat. A doomed timeline is a boat with an unpatchable hole below the waterline, i.e. everybody's in this boat (timeline) is going to die. However, even if the Time player brings somebody back, they are still doomed and will eventually die.
+            Therefore: Don't waste your powers on resurrecting doomed characters. They'll die anyway.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Holy shit. I can resurrect people?
+        </header>
+        <body>
+            Answer: Yes. To do that, you must use a ghost's residual energy. Additionally, every player can be revived once without using a ghost. That is, don't waste your resurrections.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: The person I don't like is dying!
+        </header>
+        <body>
+            Answer: Heal them, then brag about it.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Are there any combat applications of my powers?
+        </header>
+        <body>
+            Answer: Be creative. Most Life players can create toxins to poison enemies, summon vines to deal damage, or straight up mess with the enemy's integrity. Your class might give you an...another creative insight into power exploitation.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Okay, what the fuck is Space player doing with Frogs?
+        </header>
+        <body>
+            Answer: Frog duty. Just like you're on healing duty, the Space player is on frog duty. This is just as important. Ensure that the Space player and the Time player are not dead, lest you're all fucked.
         </body>
     </section>
 </faq>
