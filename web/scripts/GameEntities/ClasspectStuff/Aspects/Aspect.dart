@@ -203,7 +203,7 @@ class Aspect {
     // Constructor
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
-        faqFile = new FAQFile("Aspects/${name}.xml", "${name}ASCII.txt");
+        faqFile = new FAQFile("Aspects/${name}.xml");
         Aspects.register(this);
     }
 

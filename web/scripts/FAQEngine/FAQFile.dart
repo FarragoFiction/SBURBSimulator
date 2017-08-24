@@ -24,7 +24,7 @@ class FAQFile {
 
     List<FAQSection> sections = new List<FAQSection>();
 
-    FAQFile(this.fileName,this.ascii);
+    FAQFile(this.fileName);
 
     ///takes in a generated faq because i need to keep track of what sessiosn i have and isntance variables can suck it
     void getRandomSectionAsync(LoadingCallback callBack, Element div, GeneratedFAQ gfaq) {

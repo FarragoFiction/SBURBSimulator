@@ -22,9 +22,21 @@ class GetWasted extends Scene {
     //static Logger logger = Logger.get("GetWasted", false);
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
+    //for everything that's not a class or aspect but can be in any faq
+    WeightedList<FAQFile> miscFAQS = new WeightedList<FAQFile>();
+    //special ones based on current circumstances
+    FAQFile murderModeFAQ = new FAQFile("Misc/MurderMode.xml");
+    FAQFile tricksterFAQ = new FAQFile("Misc/Trickster.xml");
+    FAQFile robotFAQ = new FAQFile("Misc/Robot.xml");
+    FAQFile grimDarkFAQ = new FAQFile("Misc/GrimDark.xml");
+    FAQFile bikeStuntsFAQ = new FAQFile("Misc/BikeStunts.xml");
 
-
-    GetWasted(Session session) : super(session);
+    GetWasted(Session session) : super(session) {
+        //TODO if i get enough generic shit, separate out into categories and weight as appropriate
+        miscFAQS.add(new FAQFile("Misc/Meta.xml"), 0.1);
+        miscFAQS.add(new FAQFile("Misc/FirstPlayers.xml"), 0.1);
+        miscFAQS.add(new FAQFile("Misc/Generic.xml"));
+    }
 
     @override
     bool trigger(List<Player> playerList) {
