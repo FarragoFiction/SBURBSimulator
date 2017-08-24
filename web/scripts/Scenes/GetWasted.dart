@@ -120,7 +120,7 @@ class GetWasted extends Scene {
         Player author = makeRandomPlayer(r); //can't use standard means cuz it uses wrong random
         GeneratedFAQ gfaq = new GeneratedFAQ(author,"THIS IS JUST A TEST OKAY???", <FAQSection>[],r);
         gfaq.reader = reader; //have to store
-
+        //TODO misc faqs and also only way to get meta faqs, like about First Players or Session 13
         getRandomFAQSections(div, gfaq); //<-- this is async, don't do anything after this dunkass
     }
     void writeFAQ(Element div) {
