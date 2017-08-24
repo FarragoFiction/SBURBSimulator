@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faq>
+    <ascii>
+        #################
+        #############################
+        #############                            ####################################
+        ####################                    ###########################################
+        ##########         ###                 ################################################
+        #########             #               ###################################################
+        #########                           ########################################################
+        #########                         ############################             ####################
+        #########                        #########################                       ################
+        ##########                     ########################                            ##############
+        ###########                  #########################                               ############
+        #############            ##########################                                  ###########
+        ################################################                                     ##########
+        ###########################################     ###############                    ##########
+        ######################################    ######################                  #########
+        #################################     ###########################               #########
+        #########################       ###############################               ########
+        ##                 ############             ##################################               #######
+        ##                                     ################           ############              ######
+        ##                                 ###############                ############             #####
+        #####                          ###############                   ############             #####
+        ######                   #################                     #############             ####
+        ############        ###################                      ##############             ###
+        ###############################                         ###############             ##
+        #########################                           ################             ##
+        ##########                                   ################             #
+        ################             #
+        ################
+
+
+    </ascii>
     <section>
         <header>
-            ========================================================================
-            ========================The Coolest Spots to Fly By!===========================
-            ========================================================================
+            The Coolest Spots to Fly By!
+            
         </header>
         <body>
             Yay, flying! Flying is good and amazing and anyone who says it is bad is wrong and a fuckface. Fuck the
@@ -13,7 +44,7 @@
     </section>
     <section>
         <header>
-            ==========================How can I get Flight?==============================
+            How can I get Flight?
         </header>
         <body>
             There's so many ways to fly in Sburb! The easiest way to get flight early to alchemize something with
@@ -25,7 +56,8 @@
     </section>
     <section>
         <header>
-            ===================Which is the better dream moon to fly on?======================
+            Which is the better dream moon to fly on?
+            
         </header>
         <body>
             Both of the dream moons are so good for flying. Both have these really great peaks and valleys formed by the
@@ -35,7 +67,8 @@
     </section>
     <section>
         <header>
-            =====================Should I fly between the planets?==========================
+            Should I fly between the planets?
+            
         </header>
         <body>
             No on so many levels. It's not fun at all to just fly in the void, it gets all boring and it just sucks. Fly
@@ -44,7 +77,8 @@
     </section>
     <section>
         <header>
-            ======================How's the battlefield for flying?==========================
+            How's the battlefield for flying?
+            
         </header>
         <body>
             The battlefield becomes more awesome the more players get in. If you're the only player in, it's barely
