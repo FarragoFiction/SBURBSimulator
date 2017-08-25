@@ -89,8 +89,8 @@ class CharacterCreatorHelper {
         str += "</div>";
         appendHtml(div, str);
 
-        //new ColourPicker(querySelector("#hairColorID${player.id}"), width:94, height:18, colourInt:0xCC87E8 )
-        //    ..anchor.style.top = "5px";
+        ColourPicker p = ColourPicker.create(querySelector("#hairColorID${player.id}"), width:94, height:18, colourInt:0xCC87E8 );
+        if (p != null) { p..anchor.style.top = "5px"; }
 
         player.initSpriteCanvas();
         String canvasHTML = "<br><canvas style='display:none' id='" +
@@ -150,7 +150,7 @@ class CharacterCreatorHelper {
         querySelector("#moonID${player.id}").style.backgroundColor =
             moonToColor(player.moon);
 
-        //ColourPicker.notifyAllPickers();
+        ColourPicker.notifyAllPickers();
     }
 
     void syncPlayerToCheckBoxes(Player player) {

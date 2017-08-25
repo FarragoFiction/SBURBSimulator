@@ -29,7 +29,7 @@ class GeneratedFAQ {
     //TODO better be courier new, bro
     String makeHtml(String id) {
         int amount = 10;
-        print("I'm making html for a generated faq with ${sections.length} sections");
+       // print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
         String ret =  "<button class='red_x'id = 'close$id'>X</button><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";

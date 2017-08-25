@@ -10,7 +10,7 @@ class Page extends SBURBClass {
     @override
     List<String> postDenizenQuests = ["learning to control their newfound prowess, accidentally wiping out a consort village or two", "getting all mopey about their new powers, because apparently actually being competent is too much for them", "finishing the ‘legendary’ tests of valor with a never before seen aplomb", "accepting the role Sburb has placed upon them. They are themselves, and that is all that needs be said on the matter"];
     @override
-    List<String> handles = ["sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
+    List<String> handles =  ["passionate","patient","peaceful","perfect","perceptive", "practical", "pathetic"];
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {

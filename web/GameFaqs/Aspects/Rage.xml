@@ -240,6 +240,97 @@
             Ignore them. If they're talking about shipping, punch. Repeat as needed.
         </body>
     </section>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <faq>
+        <section>
+            <header>
+                Question: What is Time?
+            </header>
+            <body>
+                Doom with Time Travel.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: The Time player is talking.
+            </header>
+            <body>
+                Listen. If they're whining about dead selves, direct them towards blood player. If a blood player doesn't exist, and you can't get into the session customizer, deliver punches as necessary.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Knights?
+            </header>
+            <body>
+                Fight with their aspect, if your knight is breath or life all the better.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Heirs?
+            </header>
+            <body>
+                Start kinda pansy, but grow to be pretty badass based on aspect quickly.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Thieves?
+            </header>
+            <body>
+                Want to steal your stuff, your metaphysical stuff. High priority target.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Mages?
+            </header>
+            <body>
+                Either whining pitifully in a corner because they don't know what to do, or setting everything up for your victory. Just, leave em be.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Witches?
+            </header>
+            <body>
+                No matter how crazy everyone thinks you are, The Witch is crazier. Unless she's rage.
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Princes?
+            </header>
+            <body>
+                Start off as incredibly awesome badasses who happen to be insufferable pricks, become less so over time.
+
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Maids?
+            </header>
+            <body>
+                Useful.
+            </body>
+        </section>
+        <section>
+            <header>
+                Question: How are Rogues?
+            </header>
+            <body>
+                They also want your metaphysical stuff, but they like to share it.
+
+            </body>
+        </section>
+    </faq>
 
 
 </faq>
