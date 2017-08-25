@@ -2,6 +2,7 @@ import "../../../SBURBSim.dart";
 
 import "Blood.dart";
 import "Breath.dart";
+import "Dice.dart";
 import "Doom.dart";
 import "Heart.dart";
 import "Hope.dart";
@@ -29,6 +30,7 @@ abstract class Aspects {
     static Aspect HOPE;
     static Aspect LIFE;
     static Aspect SPARK;
+    static Aspect DICE;
 
     static Aspect NULL;
 
@@ -46,6 +48,8 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
         SPARK = new Spark(12);
+
+        DICE = new Dice(14);
 
         NULL = new Aspect(255, "Null");
     }
