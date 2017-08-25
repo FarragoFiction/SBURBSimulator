@@ -125,6 +125,7 @@ class GetWasted extends Scene {
         Aspect a = r.pickFrom(possibleAspects);
 
         Player p = new Player(session, c, a, null, null, null);
+        //TODO let the player be one of us, if so, VERY high chance of meta FAQ
        // print("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
