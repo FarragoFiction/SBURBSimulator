@@ -22,8 +22,16 @@ class GeneratedFAQ {
         symbol = rand.pickFrom(_possibleSymbols);
     }
 
+    //get first piece of ascii art associated with any section. make sure sections without art are empty, no default values anymore
     static String pickASCIIHeaderFromSections(Random r, List<FAQSection> sections) {
-        return r.pickFrom(sections).associatedAscii;
+       // return r.pickFrom(sections).associatedAscii;
+        String ret = "";
+        for(FAQSection s in sections) {
+            //prefer more complicated ascii
+            if(s.associatedAscii.length > ret.length) ret = s.associatedAscii;
+        }
+        if(ret.isEmpty) ret = "<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<br><3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<br><3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3";
+        return ret;
     }
 
     //TODO better be courier new, bro
