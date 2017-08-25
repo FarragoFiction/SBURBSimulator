@@ -31,7 +31,7 @@ class GetWasted extends Scene {
     FAQFile grimDarkFAQ = new FAQFile("Misc/GrimDark.xml");
     FAQFile bikeStuntsFAQ = new FAQFile("Misc/BikeStunts.xml");
     WeightedList<Aspect> possibleAspects = new WeightedList<Aspect>.from(Aspects.all, initialWeightSetter:(Aspect a, double w) => w * (a.isCanon ? 1.0 : 0.1));
-    WeightedList<SBURBClass> possibleClasses = new WeightedList<SBURBClass>.from(SBURBClassManager.all, initialWeightSetter:(SBURBClass a, double w) => w * (a.isCanon ? 1.0 : 0.1));
+    WeightedList<SBURBClass> possibleClasses = new WeightedList<SBURBClass>.from(SBURBClassManager.all, initialWeightSetter:(SBURBClass c, double w) => w * (c.isCanon ? 1.0 : 0.1));
 
 
     GetWasted(Session session) : super(session) {
@@ -111,8 +111,8 @@ class GetWasted extends Scene {
     //TODO leave this here for now, but put with other player stuff later when i shove into a class
     Player makeRandomPlayer(r) {
         //weighted against fanon
-        SBURBClass c = r.pickFrom(possibleAspects);
-        Aspect a = r.pickFrom(possibleClasses);
+        SBURBClass c = r.pickFrom(possibleClasses);
+        Aspect a = r.pickFrom(possibleAspects);
 
         Player p = new Player(session, c, a, null, null, null);
         print("making an faq from player $p");
