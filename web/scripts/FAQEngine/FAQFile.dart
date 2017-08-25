@@ -28,7 +28,7 @@ class FAQFile {
 
     ///takes in a generated faq because i need to keep track of what sessiosn i have and isntance variables can suck it
     void getRandomSectionAsync(LoadingCallback callBack, Element div, GeneratedFAQ gfaq) {
-          print("adding new callback $callBack to callbacks");
+          //print("adding new callback $callBack to callbacks");
        _getRandomSectionInternal(new CallBackObject(div, callBack, gfaq));
     }
 
@@ -39,7 +39,7 @@ class FAQFile {
         if(sections.isEmpty) {
             callbacks.add(callBack);
             if(!loadedOnce) {
-                print("jrdebugfest: can't find any sections for $fileName, gonna load");
+               // print("jrdebugfest: can't find any sections for $fileName, gonna load");
                 loadedOnce = true;
                 load(); ///nothing can happen after async
                 return;
@@ -50,12 +50,12 @@ class FAQFile {
     }
 
     void giveLoadedFileToCallBacks(bool mainThread) {
-        print("jrdebugfest: $fileName about to loop ${callbacks.length} callbacks, should be on main thread: $mainThread");
+        //print("jrdebugfest: $fileName about to loop ${callbacks.length} callbacks, should be on main thread: $mainThread");
         for(CallBackObject c in callbacks) {
-            print("jrdebugfest: $fileName looping callbacks, now on $c");
+           // print("jrdebugfest: $fileName looping callbacks, now on $c");
             c.call(sections);
         }
-        print("jrdebugfest: $fileName callbacks should be done looping, gonna clear");
+        //print("jrdebugfest: $fileName callbacks should be done looping, gonna clear");
         callbacks.clear();
     }
 
@@ -65,7 +65,7 @@ class FAQFile {
     /// which is basically used for letting whoever called it know it's done.
     /// REMINDER TO FUTUREJR: loading is async. Never forget this.
     void load() {
-        print("jrdebugfest: fired off a thread to load $fileName");
+       // print("jrdebugfest: fired off a thread to load $fileName");
         HttpRequest.getString("$filePath$fileName").then(afterLoaded);
 
     }
@@ -116,7 +116,7 @@ class CallBackObject
     CallBackObject(this.externalDiv, this.externalCallback, this.gfaq);
 
     void call(List<FAQSection> sections) {
-        print("Calling callback for ${externalDiv.id} with $gfaq");
+        //print("Calling callback for ${externalDiv.id} with $gfaq");
         this.externalCallback(gfaq.rand.pickFrom(sections),externalDiv, gfaq);
     }
 }
