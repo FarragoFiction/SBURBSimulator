@@ -5,6 +5,7 @@
 .FAQ{
     background-color: white;
     position:fixed;
+    white-space: pre;
     width: 1000px;
     height: 50%;
     top: 15%;
