@@ -10,8 +10,10 @@ import "Light.dart";
 import "Mind.dart";
 import "Rage.dart";
 import "Space.dart";
+import "Spark.dart";
 import "Time.dart";
 import "Void.dart";
+
 
 abstract class Aspects {
     static Aspect SPACE;
@@ -26,6 +28,7 @@ abstract class Aspects {
     static Aspect RAGE;
     static Aspect HOPE;
     static Aspect LIFE;
+    static Aspect SPARK;
 
     static Aspect NULL;
 
@@ -42,6 +45,7 @@ abstract class Aspects {
         RAGE = new Rage(9);
         HOPE = new Hope(10);
         LIFE = new Life(11);
+        SPARK = new Spark(12);
 
         NULL = new Aspect(255, "Null");
     }
