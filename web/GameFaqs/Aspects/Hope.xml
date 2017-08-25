@@ -1,11 +1,238 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <faq>
+    <ascii>
+   ####              ######                               ######             ####
+ ####          ###############                        ###############           ####
+ ###        ####################                     ####################        ###
+ ################################                   ################################
+   ############        ##########                  ###########        ############  
+ ##             ######   #########                 #########   ######             ##
+  ####     #############  ########                #########  #############     ####
+     ########     #######  ########               ########  ######      ########
+                    #####  ########              ########  ######
+          ######     #####  #########           #########  #####     ######
+        ##########    ####   #########         #########  #####   ###########
+        ###  #  ###   #####  ###########    ############ ######  ####  #  ###
+         ##   #  ###   ######  ########### ###########  #####   ####  #   ##
+           ###    ####   ######    ####### #######   ######    ####    ###
+                   #####       ####    ### ###   ####        #####
+                     ##############   #### ####  ##############
+                         ########  ####       ####  ########
+                                ###              ###
+                             ###                     ###
+                           #                             #
+    </ascii>
     <section>
         <header>
-            +++++++++++++++++++++Question: How bullshit is Blood.+++++++++++++++++++++++
+            HOW AWESOME IS SBURB?
         </header>
         <body>
-            Extremely.
+            Hello! Welcome to Sburb, the happiest, awesomest, best, greatest, supremest game you can ever play! I will be guiding you through some of the most frequently asked questions, and answering them with an aplomb never before seen! Remember: Keep up a happy face and everything will be okay!
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What is Sburb?
+        </header>
+        <body>
+            Good question! Sburb is a really good game that you and your friends have decided to play. The end result of this game is not yet known, but signs point to happiness and joy as common side effects.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Will anyone die?
+        </header>
+        <body>
+            Of course not! Sburb is a family friendly game, death would be against everything it stands for.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Do Carapacians Bleed?
+        </header>
+        <body>
+            No no no no no! Prospit carapaces are super awesome, and thus should never be attacked for this to be tested, and Derse carapaces are all evil-bad monsters, so of course the game wouldn’t give them blood! They probably just explode into grist, like underlings do.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: How do I get God-Tier?
+        </header>
+        <body>
+            Why would you ever need god tier? Its probably all stupid and bad, and you don’t need to go looking into that at all, no! Ignore god-tier, and remember that it's all for the best!
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Ahhh a dumb meany keeps punching me?
+        </header>
+        <body>
+            If it’s not a species you recognize, that's an underling! Just defeat it and it’ll pop back to wherever they come from, leaving you with grist! If its wearing purple, it’s your rage player. Ignore that big dumb meanie, they’re too stupid to be helped.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Frogs?
+        </header>
+        <body>
+            Frogs. Leave them to the space player.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: My doom/time player says we’re in a “doomed timeline”?
+        </header>
+        <body>
+            Oh, thats nothing to worry about! Just keep playing the game, it’ll all turn out okay. Note: if you see a dark screaming void where everything should be, it's probably just a temporary graphics bug, ignore it and it’ll go away.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: My doom player is ranting about how we’re all going to die?
+        </header>
+        <body>
+            Ignore them. Sburb is a happy game, death would be stupid and pointless. Of course no one’s going to die!
+
+        </body>
+    </section>
+
+    <section>
+        <header>
+            A GUIDE TO BELIEVING!
+        </header>
+        <body>
+            Always Remember.
+            Don’t panic.
+            Stay determined.
+            All will be well.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: My planet blew up!?
+        </header>
+        <body>
+            It did yes, but realize it doing so serves a higher purpose, sburb is the mechanism through which reality propagates. Should you win(and there’s no reason you shouldn’t.), then you be able to create a new universe and populate it with an idealized version of your culture.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Will anyone die?
+        </header>
+        <body>
+            Probably, but Sburb provides a lot of ways to recover from death. Dream selves, Life players, at it’s worst doomed timelines. It’s likely you and your friends will die many times, but don’t worry none of them will stick.
+
+        </body>
+    </section>
+    <section>
+        <header>
+
+        </header>
+        <body>
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: How do I god Tier?
+        </header>
+        <body>
+            Looking for some swanky PJ’s and powers? You’ll need to die on your quest bed. This is just another one of those ways People keep coming back in sburb.
+            Remember to ascend you must descend.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: So I have this sprite and I can prototype it again?
+        </header>
+        <body>
+            Yes! The Sprite is yet another miracle provided to you by partaking in the ultimate alchemy!
+            Is there a loved one, someone you hold dear? Toss their ashes, a picture, or memento and lo they are reborn in the flesh!
+            Is there a fictional character you always idolized, who spoke to you in some way? Toss in a picture or toy and they shall become real.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What is this grist stuff the enemies keep dropping?
+        </header>
+        <body>
+            Grist is how you use the alchemy system, it’s the raw stuff of ideas for which you fill in the holes by combining other ideas. Eventually you will transcend the alchemy system creating from your thoughts and imagination alone, but for now grist will have to do.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Is….Is what I’m doing magic?
+        </header>
+        <body>
+            Magic isn’t real, it’s fakey fake shit. But you can make anything you believe real so the question is……
+
+            Do you believe in magic?
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What is Hope?
+        </header>
+        <body>
+            Hope is what gives our lives meaning and value.
+
+            Hope is our beliefs and dreams, and it is the power to make them real. That means hope can do anything! By believing in something you are taking the first step to making it real.
+
+            Hope is the most powerful and greatest of all aspects.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: I hear voices
+        </header>
+        <body>
+            Those are the people you are imagining, they are a good source of information.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Ok but the voices are saying kill people
+        </header>
+        <body>
+            Ohhh.
+
+            Talk to your blood or breath player to remind yourself what you are fighting for.
+
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: How do I activate [Either Way It's All Gonna Burn]?
+        </header>
+        <body>
+            [Cut Me Down Or Let Me Run], [Either Way It's All Gonna Burn].
+            It's the only way that they'll ever learn.
+            You've got to turn it off, flip a switch.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: Help! I'm going to die!
+        </header>
+        <body>
+            That's not a question, but [Light Up The Night]! There is a city that this darkness can't hide!
         </body>
     </section>
 </faq>

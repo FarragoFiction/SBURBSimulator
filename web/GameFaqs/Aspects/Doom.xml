@@ -1,11 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faq>
+    <ascii>
+                                          #
+                                         ###
+                                        #####
+                                       #######
+                                ####################
+                           ###############################
+            ##          #####################################          ##
+             ######  ###########################################  ######
+              #########################################################
+              #########################################################
+               #######################################################
+              #########################################################
+            ############################################################
+           ##############################################################
+          ##########           #######################           #########
+         ########                 #################                 #######
+        #######                      ###########                      ######
+        #####                         #########                         #####
+        ####                           #######                           ####
+       ####                             #####                             ####
+      #####                             #####                             ####
+   #######                              #####                             #######
+##########                               ###                              ##########
+    #######                             #####                             ######
+       ####                             #####                             ####
+       #####                           #######                           #####
+        #####                         #########                         #####
+        ######                      ############                      #######
+         ########                 ################                  ########
+         ###########           #######################          ###########
+          ################################################################
+           ########        ###############################       #########
+            #####              #######################              #####
+              ##                 ###################                 ##
+               #                  ################                   #
+              ###                  ##############                   ###
+             ######                 ############                  ######
+             ##                     ############                      ##
+                                    ############
+                                   ##############
+                                 ##################
+                                       #######
+                                         ###
+                                          #
+    </ascii>
     <section>
         <header>
             +++++++++++++++++++++Question: How bullshit is Doom.+++++++++++++++++++++++
         </header>
         <body>
             Extremely.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            HOW TO STOP BOTHERING YOUR DOOM PLAYER
+        </header>
+        <body>
+            Welcome to Prophecy and You, where I teach you how to stop worrying and love your incoming DOOM! (Not to be confused with doom, no capitals). Here, you will learn the true meaning of death and disaster, along with how that true meaning can be twisted so you end up not dying, or at least dying in a good way!
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Whats a Prophecy?
+        </header>
+        <body>
+            A Prophecy is any event that Skaia has decided will come to pass, no matter what we do to stop it. Prophecies include not just those mystic scribbles you find in temples, but also the mumblings of your denizen, the clouds of Skaia, and that strange feeling you get down the back of your neck like everything’s about to go wrong.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: How can I avoid a Prophecy?
+        </header>
+        <body>
+            You can’t.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What are some Prophecy Sources?
+        </header>
+        <body>
+            The most common source of prophecy is the dungeons that are scattered around your lands. Whether as a reward, or simply as scribbles on the wall, these dungeons are full of prophecy. Most of these prophecies are meaningless. Prophecies of you eating a sandwich, prophecies of you going to sleep- nothing important. On rare occasions, you will find a prophecy of something important, of death or battle or explosions or whatever. Make careful note of these. Another good source is the clouds of Skaia, visible from the battlefield and from Prospit. While most of these clouds show yet more meaningless stupid stuff, it can still be worth keeping track of any important visions. (Meaningless bullshit emerges as a bit of a pattern, the more you find out about prophecies). The last, but perhaps most important source is your doom player. Whether plagued by horrible nightmares or tormented by the screams of the soon-to-be-dead, doom players attract prophecies like a candle surronded by horrible, horrible prophecy moths. Check in with them from time to time to get the updates on your prophecies.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: What’s A Prophecy Chart?
+        </header>
+        <body>
+            A chart that contains all the Prophecies you have seen. Make sure to keep it current, so you can bullshit your way around them and avoid the worst of the consequences. Don’t miss a prophecy, that could be bad.
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: I’ve got a Prophecy of my death, What do?
+        </header>
+        <body>
+            Don’t panic! Sburb has thousands of ways of making sure that players who die don’t stay dead. A prophecy of death doesn’t mean you’re going to stay dead! Its important to always read the fine print of a prophecy.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Ghosts?
+        </header>
+        <body>
+            Ghosts. Doom players are haunted by the souls of the damned. Particularly good doom players can channel these ghosts to do totally biz nasty uncannyburtal bonuses.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Am I going to die?
+        </header>
+        <body>
+            Probably.
+
         </body>
     </section>
 </faq>

@@ -22,12 +22,12 @@ class Strife {
 
 
   void startTurn(Element div) {
+    if(turnsPassed > 30) print("AB: $turnsPassed turns passed in strife in session ${session.session_id}");
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
       team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
     }
-    checkForSuddenEnding(
-        div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
+    checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
     bool over = strifeEnded();
     if (over) {
       Team winner = findWinningTeam();
@@ -170,12 +170,11 @@ class Strife {
   }
 
   void rocksFallEverybodyDies(Element div) {
-    print("Rocks fall, everybody dies in session: ${session.session_id.toString()}");
+    print("AB: Rocks fall, everybody dies in session: ${session.session_id.toString()}");
     appendHtml(div,"<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
     var spacePlayer = findAspectPlayer(session.players, Aspects.SPACE);
     session.rocksFell = true;
-    spacePlayer.landLevel =
-    0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
+    spacePlayer.landLevel = 0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
     killEveryone("from terminal meteors to the face");
   }
 
@@ -202,7 +201,7 @@ class Strife {
   }
 
   void summonAuthor(Element div) {
-    print("author is saving AB in session: ${this.session.session_id}");
+    print("AB: ${Zalgo.generate("HELP!!!")} ${this.session.session_id}");
     String divID = "${div.id}authorRocks";
     String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height='$canvasHeight'></canvas>";
     appendHtml(div, canvasHTML);

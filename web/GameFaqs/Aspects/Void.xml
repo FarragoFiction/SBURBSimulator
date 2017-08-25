@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faq>
+<faq>  <ascii>
+                                                   #######
+                                            ##################
+                    ##                    #######
+                 ###                   #####
+                ###                   ####
+               ###                   ###
+              ###                   ##
+             ###                   ##
+            ###                    #
+            ###                    #
+            ###
+            ###                                              #######
+            ###                                         ################
+            ###                                                      ######
+             ###                                                         #####
+              ###                                                           ###
+               ##                                                             ###
+                 #                                                             ###
+                   #                                                             ##
+                                                                                  ##
+                                                                                   #
+#
+ #
+ ##                                                            #
+  ##                                                             ##
+   ###                                                            ##
+    ###                                                            ###
+      ###                                                           ###
+        #####                                                       ###
+           #######         ##                                        ###
+              ############                                           ###
+                                                                     ###
+                                                 #                   ###
+                                                ##                   ###
+                                               ##                   ###
+                                              ###                   ###
+                                             ###                   ###
+                                           ####                   ###
+                                         #####                   ##
+                                     ######                    ##
+                     ##         ########                     ##
+                      ##############
+
+</ascii>
+
     <section>
         <header>
             Q: What the fuck is this aspect's deal?
@@ -90,4 +135,5 @@
             This aspect's players have a limit break achieved when they are low on health known as "MAW OF THE ABYSS", which turns you invisible, boosts your attack through the roof, and limits visibility in a half-kilometer radius to around three feet with inky black smoke, which the player can see through clearly.  They also become insubstantial to all physical attacks, and can take the form of a horrible SHADOW MONSTROSITY.  It's fuckin badass.
         </body>
     </section>
+    <section> <header> Question: The Light Player is always going on about stupid shit and I always tune out halfway through their rants. But when I start listening again they're implying some freaky stuff. What do I do? </header> <body> They're just doing their thing, ignore them. Flashy jerks. </body> </section>
 </faq>

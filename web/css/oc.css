@@ -5,6 +5,7 @@
 .FAQ{
     background-color: white;
     position:fixed;
+    white-space: pre-wrap;
     width: 1000px;
     height: 50%;
     top: 15%;
@@ -19,7 +20,9 @@
 }
 
 .ascii{
- font-size: 5px;
+ font-size: 10px;
+ align: center;
+ text-align: center;
 }
 #story{
 	width:1000px;

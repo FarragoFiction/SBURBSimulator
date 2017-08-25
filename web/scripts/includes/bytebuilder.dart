@@ -47,6 +47,11 @@ class ByteBuilder {
 		appendBits(byte, 8);
 	}
 
+	/// Appends 16 bits of [i] to the buffer.
+	void appendShort(int i) {
+		appendBits(i, 16);
+	}
+
 	/// Appends 32 bits of [i] to the buffer.
 	void appendInt32(int i) {
 		appendBits(i, 32);
@@ -65,6 +70,25 @@ class ByteBuilder {
 		}
 
 		this.appendBitsReversed(i, bits+1);
+	}
+
+	/// Appends all numbers in [bits] to the buffer as [length] bit long segments.
+	void appendAllBits(List<int> bits, int length) {
+		for (int number in bits) {
+			this.appendBits(number, length);
+		}
+	}
+
+	/// Appends all numbers in [bytes] as bytes.
+	void appendAllBytes(List<int> bytes) {
+		this.appendAllBits(bytes, 8);
+	}
+
+	/// Appends all numbers in [numbers] using Exponential-Golomb encoding.
+	void appendAllExpGolomb(List<int> numbers) {
+		for (int number in numbers) {
+			this.appendExpGolomb(number);
+		}
 	}
 
 	/// Creates a new [ByteBuffer] containing the data in this ByteBuilder.
@@ -185,6 +209,11 @@ class ByteReader {
 	/// Reads the next 8 bits from the buffer.
 	int readByte() {
 		return readBits(8);
+	}
+
+	/// Reads the next 16 bits from the buffer.
+	int readShort() {
+		return readBits(16);
 	}
 
 	/// Reads the next 32 bits from the buffer.
