@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:html';
 import "package:xml/xml.dart" as Xml;
 import '../../scripts/includes/logger.dart';
@@ -87,7 +88,7 @@ void saveFile([Event event]) {
 
     logger.debug(content);
 
-    Uri datauri = new Uri.dataFromString("$xmlHeader\n${sanitiseQuotes(content)}", mimeType: "text/xml", base64:true);
+    Uri datauri = new Uri.dataFromString("$xmlHeader\n${sanitiseQuotes(content)}", encoding: UTF8, mimeType: "text/xml", base64:true);
 
     logger.debug(datauri);
 
@@ -105,7 +106,11 @@ String trimText(String input) => input.split("\n").map((String line) => line.tri
 
 RegExp quoteSingle = new RegExp(r"[‘’]");
 RegExp quoteDouble = new RegExp(r"[“”]");
-String sanitiseQuotes(String input) => input.replaceAll(quoteSingle, "'").replaceAll(quoteDouble, '"');
+RegExp elipsis = new RegExp(r"[“…”]");
+String sanitiseQuotes(String input) => input;
+    //.replaceAll(quoteSingle, "'")
+   // .replaceAll(quoteDouble, '"')
+   // .replaceAll(elipsis, '...');
 
 // #################################################################################
 
