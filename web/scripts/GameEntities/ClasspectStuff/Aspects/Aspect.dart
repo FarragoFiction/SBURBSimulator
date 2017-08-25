@@ -12,6 +12,7 @@ import "Mind.dart";
 import "Rage.dart";
 import "Space.dart";
 import "Spark.dart";
+import "Sweets.dart";
 import "Time.dart";
 import "Void.dart";
 
@@ -31,6 +32,7 @@ abstract class Aspects {
     static Aspect LIFE;
     static Aspect SPARK;
     static Aspect DICE;
+    static Aspect SWEETS;
 
     static Aspect NULL;
 
@@ -50,6 +52,7 @@ abstract class Aspects {
         SPARK = new Spark(12);
 
         DICE = new Dice(14);
+        SWEETS = new Sweets(15);
 
         NULL = new Aspect(255, "Null");
     }
