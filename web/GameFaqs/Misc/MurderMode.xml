@@ -259,4 +259,21 @@
             YOU FORGET WHO PLUGGED THIS CITY IN!
         </body>
     </section>
+
+    <section>
+        <header>
+            Question: I think I'm going insane!
+        </header>
+        <body>
+            Don't worry, you're good.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: I've never felt so right before! Everything is so clear! I know what must be done.
+        </header>
+        <body>
+            You're insane! Get help NOW!
+        </body>
+    </section>
 </faq>
