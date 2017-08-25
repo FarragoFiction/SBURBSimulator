@@ -41,9 +41,12 @@ class GeneratedFAQ {
         Quirk q = author.quirk;
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
         if(asciiHeader == Aspects.TIME.faqFile.ascii) print("Displaying time ascii art in session ${author.session.session_id}");
+
         String ret =  "<button class='red_x'id = 'close$id'>X</button><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
-            ret = "$ret <br><Br>${symbol*amount}${q.translate(s.header)}${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
+            String header ="${symbol*amount}${q.translate(s.header)}";
+            header.replaceAll("\n", ""); //no new lines in header plz
+            ret = "$ret <br><Br>$header${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
         }
         return "<div class = 'FAQ'>$ret</div>";
     }
