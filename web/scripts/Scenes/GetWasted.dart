@@ -31,6 +31,8 @@ class GetWasted extends Scene {
     FAQFile grimDarkFAQ = new FAQFile("Misc/GrimDark.xml");
     FAQFile bikeStuntsFAQ = new FAQFile("Misc/BikeStunts.xml");
     WeightedList<Aspect> possibleAspects = new WeightedList<Aspect>.from(Aspects.all, initialWeightSetter:(Aspect a, double w) => w * (a.isCanon ? 1.0 : 0.1));
+    WeightedList<SBURBClass> possibleClasses = new WeightedList<SBURBClass>.from(SBURBClassManager.all, initialWeightSetter:(SBURBClass c, double w) => w * (c.isCanon ? 1.0 : 0.1));
+
 
     GetWasted(Session session) : super(session) {
         //TODO if i get enough generic shit, separate out into categories and weight as appropriate
@@ -79,27 +81,36 @@ class GetWasted extends Scene {
     ///gotta take in a random or i'll lose determinism
     void getRandomFAQSections(Element div, GeneratedFAQ gfaq) {
         gfaq.sectionsRequested ++;
-        print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
+       // print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
         FAQFile f;
-        if(gfaq.rand.nextBool()) {
-            f = gfaq.author.aspect.faqFile;
-        }else {
-            f = gfaq.author.class_name.faqFile;
-        }
+        WeightedList<FAQFile> possibilities = new WeightedList<FAQFile>();
+        possibilities.add(gfaq.author.aspect.faqFile);
+        possibilities.add(gfaq.author.class_name.faqFile);
+        possibilities.addAll(miscFAQS);
+        //conditional
+        if(gfaq.author.murderMode)   possibilities.add(murderModeFAQ);
+        if(gfaq.author.trickster)   possibilities.add(tricksterFAQ);
+        if(gfaq.author.robot)   possibilities.add(robotFAQ);
+        if(gfaq.author.grimDark > 3)   possibilities.add(grimDarkFAQ);
 
+        f = gfaq.rand.pickFrom(possibilities);
+        if(f == murderModeFAQ) print("AB: MurderModeFAQ in session ${session.session_id} ");
+        if(f == tricksterFAQ) print("AB: TricksterFAQ in session ${session.session_id} ");
+        if(f == robotFAQ) print("AB: RobotFAQ in session ${session.session_id} ");
+        if(f == grimDarkFAQ) print("AB: GrimDarkFAQ in session ${session.session_id} ");
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
     void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
-        print("callback chose section $s");
+        //print("callback chose section $s");
         if(s != null) gfaq.sections.add(s);
         if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
-            print ("callback gonna keep looking for sections" );
+            //print ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,gfaq); //get more
         }else if (gfaq.sections.length == gfaq.sectionsRequested) {
-            print ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
+            //print ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div,gfaq);
         }else{
             print("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
@@ -108,11 +119,12 @@ class GetWasted extends Scene {
 
     //TODO leave this here for now, but put with other player stuff later when i shove into a class
     Player makeRandomPlayer(r) {
-        SBURBClass c = r.pickFrom(SBURBClassManager.all);
-        Aspect a = r.pickFrom(Aspects.all);
+        //weighted against fanon
+        SBURBClass c = r.pickFrom(possibleClasses);
+        Aspect a = r.pickFrom(possibleAspects);
 
         Player p = new Player(session, c, a, null, null, null);
-        print("making an faq from player $p");
+       // print("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
         if (p.isTroll) {
@@ -120,6 +132,11 @@ class GetWasted extends Scene {
         } else {
             p.quirk = randomHumanSim(r, p);
         }
+        //so they can make stupid faqs
+        if(rand.nextDouble() < .1) p.murderMode = true;
+        if(rand.nextDouble() < .01) p.trickster = true;
+        if(rand.nextDouble() < .01) p.robot = true;
+        if(rand.nextDouble() < .1) p.grimDark = 4;
         p.chatHandle = getRandomChatHandle(r, p.class_name, p.aspect, p.interest1, p.interest2);
         return p;
     }
@@ -156,7 +173,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-        print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
+       // print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(faq.reader == faq.author) {
             text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";

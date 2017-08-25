@@ -11,7 +11,7 @@ class Prince extends SBURBClass {
     @override
     List<String> postDenizenQuests = ["thinking on endings. The end of their planet. The end of their denizen problems. The end of that very, very stupid imp that just tried to jump them", "defeating every single mini boss, including a few on other players planets", "burning down libraries of horror terror grimoires, shedding a few tears for the valuable knowledge lost along side the accursed texts", "hunting down and killing the last of a particularly annoying underling class"];
     @override
-    List<String> handles = ["sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
+    List<String> handles = ["precocious","priceless","proficient","prominent","proper", "perfect", "pantheon"];
 
     @override
     bool highHinit() {

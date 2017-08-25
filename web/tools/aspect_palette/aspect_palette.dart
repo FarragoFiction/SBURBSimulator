@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
 
@@ -32,9 +33,16 @@ void main() {
     //checkLABRanges();
 
     print("event stuff:");
-    print(querySelector("#testpicker"));//.onChange);
+    print(querySelector("#testpicker"));
+    new Timer(new Duration(seconds: 1),()
+    {
+        print("event stuff:");
+        print(querySelector("#testpicker")); //.onChange);
 
-    new ColourPicker(querySelector("#testpicker"));//..onChange.listen((Event e) => print((e.target as InputElement).value)));
+        ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => print((e.target as InputElement).value)));
+    });
+
+
 }
 
 void checkLABRanges() {

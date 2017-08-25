@@ -1587,10 +1587,10 @@ class Player extends GameEntity {
         }
         if (numFeatures > 1) {
             int i = reader.readByte();
-            print("extension byte for aspect is  ${i}");
+            print("extension byte for aspect is  $i");
 
             this.aspect = Aspects.get(i);
-            print("after extension byte, aspect is  ${aspect}");
+            print("after extension byte, aspect is  $aspect");
         }
 
 
