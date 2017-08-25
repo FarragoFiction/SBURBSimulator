@@ -81,7 +81,7 @@ class FAQFile {
         Xml.XmlDocument document = Xml.parse(text);
         Xml.XmlElement ele = document.findElements("faq").first;
         Iterable<Xml.XmlNode> nodes = ele.findElements("ascii");
-        String ret = "NO ASCII HAS BEEN LOADED HERE, JR WHAT ARE YOU DOING???";
+        String ret = ""; //needs to be empty so that it doesn't get used
         if(!nodes.isEmpty) ret = nodes.first.text;
         return ret;
     }

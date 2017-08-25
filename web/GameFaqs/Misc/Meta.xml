@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faq>
+<ascii>
+
+</ascii>
+
     <section>
     <header>
         Question: How bullshit is SBURBSim?
@@ -25,4 +29,63 @@
             Players are...the people who play SBURB?
         </body>
     </section>
+
+    
+    <section>
+        <header>
+            Question: HOW DO YOU SOLVE [???]!!!!"!1!!!!!ONE!!!ELEVENTWELVE
+        </header>
+        <body>
+            the answer is [insert gigglesnort here]
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: Where is everything better than expected?
+        </header>
+        <body>
+            Holy shit, I'm not just going to TELL you. It's a myserty.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            The consorts say I have the Denizen.... JavaScript?  What is up with that.
+        </header>
+        <body>
+            console.log("I sure hope you like typos!")
+
+            console.log("Because the Denizen JavaScript is gonna be full of them");
+
+            console.log("And you get to spend a bullshit amount of time finding all of them before you can even BEGIN to fight your true Denizen.")
+
+            if(player.aspect == "Viod") console.log("But at least whole sections of your denizens quests can never even happen.")
+
+        </body>
+    </section>
+    <section>
+        <header>
+            Apparently I have the Denizen....  Hair7?
+        </header>
+        <body>
+            JR Hacks the FAQ:  Lololool.
+
+            Okay.   Hold on. Let me just....take over for a bit.
+
+            Hair7 is my personal nemesis, enshrined as a Denizen for all time. It is the stupidest possible bug, and yet it keeps coming back.  I accidentally archived Nepeta's hair as 'Hair7.png" and not "hair7.png" and no amount of effort and yelling could convince the archive to remember the true name for very long.
+
+            And yes.  Nepeta breaking the sim is canon. AB's irrational hatred is justified.
+        </body>
+    </section>
+    <section>
+        <header>
+            My denizen is Yaldabaoth?
+        </header>
+        <body>
+            Congrats, you got the hardest possible denizen tier, it doesn't even relate to your aspect. Good luck!
+        </body>
+    </section>
+    <section> <header> Question: What is "Duthulu"? </header> <body> Shit! Who told you about that!? I... I mean uh. There is no such thing and anyone you tells you different is insane and likely to go Murder Mode any minute. I advise you to kill them as quickly as possible. Multiple times. </body> </section>
+
 </faq>

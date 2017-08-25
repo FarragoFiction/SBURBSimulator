@@ -52,6 +52,7 @@ class FightQueen extends Scene {
 		Team dTeam = new Team(this.session, [this.session.queen]);
     dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		strife.timeTillRocks = 10;
 		strife.startTurn(div);
 
 	}

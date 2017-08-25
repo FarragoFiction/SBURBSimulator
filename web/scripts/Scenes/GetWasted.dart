@@ -84,8 +84,9 @@ class GetWasted extends Scene {
        // print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
         FAQFile f;
         WeightedList<FAQFile> possibilities = new WeightedList<FAQFile>();
-        possibilities.add(gfaq.author.aspect.faqFile);
-        possibilities.add(gfaq.author.class_name.faqFile);
+        //class and aspect are less likely than generic, since they will have less entries
+        possibilities.add(gfaq.author.aspect.faqFile,0.5);
+        possibilities.add(gfaq.author.class_name.faqFile,0.5);
         possibilities.addAll(miscFAQS);
         //conditional
         if(gfaq.author.murderMode)   possibilities.add(murderModeFAQ);
@@ -124,6 +125,7 @@ class GetWasted extends Scene {
         Aspect a = r.pickFrom(possibleAspects);
 
         Player p = new Player(session, c, a, null, null, null);
+        //TODO let the player be one of us, if so, VERY high chance of meta FAQ
        // print("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
