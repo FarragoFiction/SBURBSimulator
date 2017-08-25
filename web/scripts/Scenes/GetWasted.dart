@@ -132,6 +132,11 @@ class GetWasted extends Scene {
         } else {
             p.quirk = randomHumanSim(r, p);
         }
+        //so they can make stupid faqs
+        if(rand.nextDouble() < .1) p.murderMode = true;
+        if(rand.nextDouble() < .01) p.trickster = true;
+        if(rand.nextDouble() < .01) p.robot = true;
+        if(rand.nextDouble() < .1) p.grimDark = 4;
         p.chatHandle = getRandomChatHandle(r, p.class_name, p.aspect, p.interest1, p.interest2);
         return p;
     }
