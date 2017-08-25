@@ -130,7 +130,7 @@ class DoLandQuest extends Scene{
 		//if i'm not blood or page, or space, or maybe time random roll for a friend.
 		if(this.session.availablePlayers.length > 1 && rand.nextDouble() > .5){
 			helper = findHighestMobilityPlayer(availablePlayers);
-			if(player == helper || helper.aspect == Aspects.SPACE ){ //space players are stuck on their planet
+			if(player == helper || (helper != null && helper.aspect == Aspects.SPACE) ){ //space players are stuck on their planet
 				return null;
 			}
 		}
