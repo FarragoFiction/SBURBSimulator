@@ -22,7 +22,7 @@ class Strife {
 
 
   void startTurn(Element div) {
-    if(turnsPassed > 10) print("AB: $turnsPassed turns passed in strife in session ${session.session_id}");
+    if(turnsPassed > 30) print("AB: $turnsPassed turns passed in strife in session ${session.session_id}");
     teams.sort(); //we do this every turn because mobility can change and should effect turn order.
     for (Team team in teams) {
       team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
@@ -201,7 +201,7 @@ class Strife {
   }
 
   void summonAuthor(Element div) {
-    print("author is saving AB in session: ${this.session.session_id}");
+    print("AB: ${Zalgo.generate("HELP!!!")} ${this.session.session_id}");
     String divID = "${div.id}authorRocks";
     String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height='$canvasHeight'></canvas>";
     appendHtml(div, canvasHTML);
