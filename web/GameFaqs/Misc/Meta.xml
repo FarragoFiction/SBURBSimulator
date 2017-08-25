@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faq>
     <section>
+    <header>
+        Question: How bullshit is SBURBSim?
+    </header>
+    <body>
+        Extremely.
+    </body>
+</section>
+
+    <section>
         <header>
-            Question: How bullshit is SBURBSim?
+            Question: What are Players?
         </header>
         <body>
-           Extremely.
+            Faceless dolls who communicate entirely through failing the turing test.
+
+            Oh.
+
+            Wait.
+
+            You were serious. Uh.
+
+            Players are...the people who play SBURB?
         </body>
     </section>
 </faq>

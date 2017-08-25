@@ -600,7 +600,7 @@ class MultiSessionSummary {
 
     void integrateClasses(List<Map<String, String>> miniPlayers) {
         for (num i = 0; i < miniPlayers.length; i++) {
-            this.classes[miniPlayers[i]["class_name"]] ++;
+            if(this.classes[miniPlayers[i]["class_name"]] != null) this.classes[miniPlayers[i]["class_name"]] ++;
         }
     }
 
