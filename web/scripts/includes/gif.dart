@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'bytebuilder.dart';
 import 'colour.dart';
+import 'logger.dart';
 import 'lz-string.dart';
 import 'palette.dart';
 
@@ -17,6 +18,8 @@ import 'palette.dart';
 /// a gif with Palette, ByteBuilder and LZ-String!
 /// -PL
 class Gif {
+    static Logger logger = Logger.get("GIF");
+
     int width;
     int height;
 
