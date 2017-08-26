@@ -7,7 +7,7 @@ import 'bitmapfont.dart';
 import 'fonts.dart';
 
 abstract class WordGif {
-    static Element dropText(String text, int size, List<Colour> foreground, List<Colour> background, num ox, num oy, int depth) {
+    static Element dropText(String text, int size, List<Colour> foreground, List<Colour> background, [num ox = 1, num oy = 1, int depth = 3]) {
         Element container = new DivElement();
 
         BitmapFont.get(Fonts.courier_new_14px).then((BitmapFont font) {

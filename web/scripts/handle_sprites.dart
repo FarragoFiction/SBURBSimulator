@@ -1204,6 +1204,7 @@ abstract class Drawing {
     }
 
 
+    @deprecated
     static void drawComboText(CanvasElement canvas, int comboNum) {
         //alert(comboNum + "x CORPSESMOOCH COMBO!!!");
         CanvasRenderingContext2D ctx = canvas.getContext("2d");
