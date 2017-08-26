@@ -19,9 +19,9 @@ class Reve extends SBURBClass {
   @override
   num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.multiplier > 0) {
-      powerBoost = powerBoost * 0.1;
+      powerBoost = powerBoost * 0.25;
     } else {
-      powerBoost = powerBoost * -0.9;
+      powerBoost = powerBoost * -0.75;
     }
     return powerBoost;
   }
