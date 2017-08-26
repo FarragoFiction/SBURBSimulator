@@ -44,6 +44,7 @@ class Bro extends SBURBClass {
   num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.isFromAspect) {
       if (stat.multiplier > 0) {
+        powerBoost = powerBoost * -1.0; //positive boosts become negative.
       } else {
         powerBoost = powerBoost * 1.5; //negative boosts become more significant.
       }
