@@ -34,21 +34,21 @@ class Bro extends SBURBClass {
   @override
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(
       <AssociatedStat>[
-        new AssociatedStat(
-            "sburbLore", 2.0, false) //dennis was so wasted. ha ha, i mean damn.
+        new AssociatedStat("sburbLore", 1.5, false),//dennis was so wasted. ha ha, i mean damn.
+        new AssociatedStat("MANGRIT", 3.0, false) //"But all im saying is, when do you get to THRASH something?"
       ]);
+
 
 
   @override
   num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
     if (stat.isFromAspect) {
       if (stat.multiplier > 0) {
-        powerBoost = powerBoost * -1.0;
       } else {
-        powerBoost = powerBoost * 2.0;
+        powerBoost = powerBoost * 1.5; //negative boosts become more significant.
       }
     } else {
-      powerBoost = powerBoost * 2.0;
+      powerBoost = powerBoost * 1.0;
     }
     return powerBoost;
   }
