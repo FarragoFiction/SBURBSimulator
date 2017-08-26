@@ -66,7 +66,7 @@ class TournamentController extends AuthorBot {
     //tiers are EXACTLY the same name as the param, so can generate a "URL" of the right format, for AB to check.
     List<String> teams = new List<String>();
     List<String> fanTeams = ["reddit","tumblr","discord","creditsBuckaroos","ideasWranglers","patrons","patrons2","patrons3","canon","otherFandoms","creators"];
-    List<String> classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck"];
+    List<String> classTeams = ["KnightStuck", "SeerStuck","BardStuck","HeirStuck","MaidStuck","RogueStuck","PageStuck","ThiefStuck","SylphStuck","PrinceStuck","WitchStuck","MageStuck","WasteStuck", "GraceStuck", "GuideStuck", "NullStuck", "SageStuck","ScoutStuck","BroStuck"];
     List<String> aspectTeams = ["BloodStuck", "MindStuck","RageStuck","VoidStuck","TimeStuck","HeartStuck","BreathStuck","LightStuck","SpaceStuck","HopeStuck","LifeStuck","DoomStuck"];
     teams.addAll(fanTeams);
     teams.addAll(classTeams);
