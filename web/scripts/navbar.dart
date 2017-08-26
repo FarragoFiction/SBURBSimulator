@@ -1,16 +1,17 @@
 import 'dart:html';
-import 'dart:math' as Math;
+
+import 'includes/path_utils.dart';
 
 String simulatedParamsGlobalVar = "";
 
 //just loads the navbar.text into the appropriate div.
 void loadNavbar() {
-    int subdirs = getSubDirectoryCount();
-    HttpRequest.getString("${"../" * subdirs}navbar.txt").then((String data) => onNavbarLoaded(data, subdirs));
+    HttpRequest.getString(PathUtils.adjusted("navbar.txt")).then(onNavbarLoaded);
 }
 
-void onNavbarLoaded(String data, int subdirs) {
+void onNavbarLoaded(String data) {
     // PL: oh boy fixing those urls
+    int subdirs = PathUtils.getPathDepth();
     data = data.replaceAllMapped(new RegExp("(href|src) ?= ?([\"'])(?!https?:)"), (Match m) => "${m.group(1)} = ${m.group(2)}${"../"*subdirs}");
     
     querySelector("#navbar").appendHtml(data, treeSanitizer: NodeTreeSanitizer.trusted);
@@ -94,24 +95,3 @@ void hide(Element v) {
     v.style.display = "none";
 }
 
-/// PL: WOW THIS IS TOTAL BULLSHIT
-int getSubDirectoryCount() {
-    Uri here = Uri.base;
-    String hereUrl = here.toString();
-    List<Element> links = querySelectorAll("link");
-    for (Element e in links) {
-        if (e is LinkElement && e.rel == "stylesheet") {
-            print("is sheet: ${e.href}");
-            int shorter = Math.min(hereUrl.length, e.href.length);
-            for (int i=0; i<shorter; i++) {
-                if (!(hereUrl[i] == e.href[i])) {
-                    String local = hereUrl.substring(i);
-                    print(local);
-                    return local.split("/").length-1;
-                }
-                continue;
-            }
-        }
-    }
-    return 0;
-}
