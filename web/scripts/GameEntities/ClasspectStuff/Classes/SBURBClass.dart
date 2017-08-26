@@ -18,6 +18,7 @@ import "Sylph.dart";
 import "Thief.dart";
 import "Waste.dart";
 import "Witch.dart";
+import "Writ.dart";
 
 class SBURBClassManager {
     static SBURBClass KNIGHT;
@@ -40,6 +41,7 @@ class SBURBClassManager {
     static SBURBClass GRACE;
     static SBURBClass NULL;
     static SBURBClass REVE;
+    static SBURBClass WRIT;
 
     //did you know that static attributes are lazy loaded, and so you can't access them until
     //you interact with the class? Yes, this IS bullshit, thanks for asking!
@@ -63,6 +65,7 @@ class SBURBClassManager {
         GUIDE = new Guide();
         GRACE = new Grace();
         REVE = new Reve();
+        WRIT = new Writ();
         NULL = new SBURBClass("Null", 255, false);
     }
 
