@@ -19,6 +19,9 @@ class Sweets extends Aspect {
     ..pants_dark = '#056A00';
 
   @override
+  List<String> levels = new List<String>.unmodifiable(<String>["CHERUB HISTORIAN", "CANDY LORD", "TRICKS MASTER"]);
+
+  @override
   List<String> handles = new List<String>.unmodifiable(<String>["Smasher","Sweety","Sexlord"]);
 
   @override
@@ -26,6 +29,7 @@ class Sweets extends Aspect {
     new AssociatedStat("freeWill", 11, true),
     new AssociatedStat("alchemy", 11, true),
     new AssociatedStat("minLuck", 11, true),
+    new AssociatedStat("maxLuck", 11, true),
     new AssociatedStat("mobility", 11, true),
     new AssociatedStat("RELATIONSHIPS", 11, true),
     new AssociatedStat("MANGRIT", 11, true),
