@@ -121,7 +121,7 @@ class SolvePuzzles extends Scene {
 		//Relationship r2 = null;
 		List<Player> living = findLivingPlayers(this.session.players);
 		List<Player> dead = findDeadPlayers(this.session.players);
-		if(living.length == 1 && dead.length > 2){  //less of a reference if it's just one dead dude.
+		if(living.length == 1 && dead.length > 2 || player1.class_name == SBURBClassManager.BRO){  //less of a reference if it's just one dead dude.
 			print("SWEET BIKE STUNTS, BRO: " + this.session.session_id.toString());
 			String realSelf = "";
 			if(!this.player1.isDreamSelf && !this.player1.godTier){
