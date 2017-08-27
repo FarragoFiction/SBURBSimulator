@@ -102,6 +102,7 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 
 
 	if(getParameterByName("selfInsertOC",null)  == "true"){
+		print("Self Insert OC was true, so I'm going hunting for what ocs I want");
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
 		processFanOCs(callBack,that);
 		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
@@ -221,6 +222,7 @@ void setAllClassesTo(String c){
 
 
 void processFanOCs(callBack, that){
+	print("making a new easte egg engine");
 	//start up an easterEggEngine.
 	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }

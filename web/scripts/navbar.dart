@@ -56,7 +56,7 @@ String getParameterByName(String name, String url) {
         if(tmp != null) return tmp;
     }
     print("gonna check simulated params");
-/*
+
     //one last shot with simulatedParamsGlobalVar;//lets me use existing framework to parse simulated params for tourney
     if(tmp == null && simulatedParamsGlobalVar.isNotEmpty) {
         print ("Debugging tourney: can't find param $name, so going to check $simulatedParamsGlobalVar");
@@ -67,8 +67,9 @@ String getParameterByName(String name, String url) {
         uri = Uri.parse(tmpurl);
         String tmp = (uri.queryParameters[name]);
         if(tmp != null) print ("Debugging tourney: found param $name, it was $tmp!");
+        return tmp;
     }
-    */
+
     return tmp;
 }
 
