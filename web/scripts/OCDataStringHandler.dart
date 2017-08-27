@@ -65,6 +65,7 @@ class CharacterEasterEggEngine {
   }
   void processForSim(callBack){
   	Random rand = curSessionGlobalVar.rand;
+  	print("processing eggs for sim");
     var pool = this.getPoolBasedOnEggs(rand);
     var potentials = this.playerDataStringArrayToURLFormat(pool);
     List<dynamic> ret = [];
@@ -123,6 +124,7 @@ class CharacterEasterEggEngine {
     this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that); //last one in list has callback so I know to do next thing.
   }
   dynamic getPoolBasedOnEggs(Random rand){
+    print("checking egg pools");
     List<dynamic> pool = [];
     //first, parse url params. for each param you find that's right, append the relevant characters into the array.
     if(getParameterByName("reddit",null)  == "true"){
@@ -162,6 +164,7 @@ class CharacterEasterEggEngine {
     }
 
     if(getParameterByName("canon",null)  == "true"){
+      print("Adding canon to pool");
       pool.addAll(this.ocs["canon"]);
     }
 
