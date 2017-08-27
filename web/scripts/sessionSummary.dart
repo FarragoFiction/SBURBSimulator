@@ -606,7 +606,7 @@ class MultiSessionSummary {
 
     void integrateAspects(List<Map<String, String>> miniPlayers) {
         for (num i = 0; i < miniPlayers.length; i++) {
-            this.aspects[miniPlayers[i]["aspect"]] ++;
+            if(this.aspects[miniPlayers[i]["aspect"]]  != null) this.aspects[miniPlayers[i]["aspect"]] ++;
         }
     }
 

@@ -1,4 +1,6 @@
 import "dart:html";
+import '../Rendering/sbahj.dart';
+import '../Rendering/wordgif.dart';
 import "../SBURBSim.dart";
 
 
@@ -39,11 +41,17 @@ class CorpseSmooch extends Scene {
 		div.appendHtml("<br>"+this.contentForRender(div),treeSanitizer: NodeTreeSanitizer.trusted);
 
 		if(this.combo>1){
-			var divID = (div.id) + "_" + "combo";
+			/*var divID = (div.id) + "_" + "combo";
 			String canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='$canvasWidth' height='${canvasHeight/3}'>  </canvas>";
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvasCombo"+ divID);
-			this.drawCombo(canvasDiv, this.combo);
+			this.drawCombo(canvasDiv, this.combo);*/
+			if (curSessionGlobalVar.sbahj) {
+				div.append(SBAHJ.sbahjText("${this.combo}x COPRSSMOOCH COMBOB${"!!" * this.combo}", 50, SBAHJGradients.horizon));
+			} else {
+				Colour col = new Colour(255, 0, 0);
+				div.append(WordGif.dropText("${this.combo}x CORPSESMOOCH COMBO${"!" * this.combo}", 5, <Colour>[col, col * 0.9], <Colour>[col * 0.5, col * 0.4], 1, 1, 5));
+			}
 		}
 	}
 	void makeAlive(Player d){
@@ -78,6 +86,7 @@ class CorpseSmooch extends Scene {
 		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
 
 	}
+	@deprecated
 	void drawCombo(canvas, comboNum){
 		Drawing.drawComboText(canvas, comboNum);
 	}
