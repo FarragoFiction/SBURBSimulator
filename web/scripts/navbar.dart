@@ -55,18 +55,18 @@ String getParameterByName(String name, String url) {
         if (tmp != null) tmp = Uri.decodeComponent(tmp);
         if(tmp != null) return tmp;
     }
-    print("gonna check simulated params");
+    //print("gonna check simulated params");
 
     //one last shot with simulatedParamsGlobalVar;//lets me use existing framework to parse simulated params for tourney
     if(tmp == null && simulatedParamsGlobalVar.isNotEmpty) {
-        print ("Debugging tourney: can't find param $name, so going to check $simulatedParamsGlobalVar");
+        //print ("Debugging tourney: can't find param $name, so going to check $simulatedParamsGlobalVar");
         String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
         String base = window.location.href.replaceAll("?$params","");
         String tmpurl = "${base}?$simulatedParamsGlobalVar";
-        print("Debugging tourney: base is $base, tmpurl is $tmpurl");
+        //print("Debugging tourney: base is $base, tmpurl is $tmpurl");
         uri = Uri.parse(tmpurl);
         String tmp = (uri.queryParameters[name]);
-        if(tmp != null) print ("Debugging tourney: found param $name, it was $tmp!");
+        //if(tmp != null) print ("Debugging tourney: found param $name, it was $tmp!");
         return tmp;
     }
 
