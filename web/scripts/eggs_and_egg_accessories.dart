@@ -164,14 +164,14 @@ void janusReward(){
 //if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
 //auto works with new claspects, too. genius
 void processXStuck(){
-	//TODO get this working again. window.location.search is empty.
-	if(window.location.search.isEmpty) {
+	if(window.location.search.isEmpty && simulatedParamsGlobalVar.isEmpty) {
 	  print("no params to look at");
 		return;
 	}
-	String params1 = window.location.search.substring(1);
+	String params1 = null;
+	if(window.location.search.isNotEmpty) params1 = window.location.search.substring(1);
 	String params2 = simulatedParamsGlobalVar;
-	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
+	print("~~~~~~params1 is $params1 ~~~~~~and~~~~~~params2 is $params2");
 	List<String> tmp = SBURBClassManager.allClassNames;
 	List<String> all_aspects =  Aspects.names.toList();
 	String params = "";
