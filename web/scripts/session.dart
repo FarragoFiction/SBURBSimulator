@@ -46,6 +46,10 @@ class Session {
     bool won = false;
     bool justDeath = false;
     bool mayorEnding = false;
+    bool gnosisEnding = false;
+    bool loveEnding = false;
+    bool hateEnding = false;
+    bool monoTheismEnding = false;
     bool waywardVagabondEnding = false;
     num hardStrength = 1000;
     num minFrogLevel = 18;

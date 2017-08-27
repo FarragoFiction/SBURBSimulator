@@ -6,12 +6,80 @@ import "../SBURBSim.dart";
 class Aftermath extends Scene {
 
 	Aftermath(Session session): super(session, false);
-
+	int numEntered = 0;
 	@override
 	bool trigger(playerList){
+		numEntered = 0;
 		this.playerList = playerList;
 		return true; //this should never be in the main array. call manually.
 	}
+
+
+	//vriska never even bothered to go into the frog. hussie was still in the medium
+	//high gnosis can mean you can't be happy in a
+	//semblance of your old life.
+	String whoEnters() {
+		List<Player> living = findLivingPlayers(session.players);
+		numEntered = 0;
+		String ret = "";
+		for(Player p in living) {
+			if(p.gnosis < 3) {
+				numEntered ++;
+				ret += "The ${p.htmlTitle()} enters the door new Universe.<Br><Br>";
+			}else {
+				if(p.gnosis == 3 && rand.nextBool()) {
+					numEntered ++;
+					ret += "The ${p.htmlTitle()} stands for a long time outside the door to the new Universe. Finally, they enter. <Br><br>";
+				}else if(p.gnosis == 3) {
+					ret += "The ${p.htmlTitle()} stands for a long time outside the door to the new Universe. Finally, they turn away. <Br><br>";
+				}else {
+					ret += "The ${p.htmlTitle()} never even bothers to go see the door to the new Universe. There is still so much to do.<Br><br>";
+				}
+			}
+		}
+
+		return ret;
+	}
+
+
+	// only called if full frog
+	String miniEpliogueFull() {
+		if(findLivingPlayers(session.players).isNotEmpty  && numEntered == 0) return gnosisEnding();
+		if(findLivingPlayers(session.players).length == 1) return monoTheismEnding();
+		if(getAverageRelationshipValue(findLivingPlayers(session.players)) > 1000) return loveEnding();
+		if(getAverageRelationshipValue(findLivingPlayers(session.players)) < -1000) return hateEnding();
+		return "";
+	}
+
+	String loveEnding() {
+		session.loveEnding = true;
+		//who has highest relationship?
+	}
+
+	String hateEnding() {
+		session.hateEnding = true;
+		//who has lowest relationship?
+	}
+
+	String monoTheismEnding() {
+		session.monoTheismEnding = true;
+		Player god = findLivingPlayers(session.players).first;
+		String ret =  "The ${god.htmlTitle()} rules the new Universe absolutely. ";
+		if(god.getStat("RELATIONSHIPS") > 100) {
+			ret += "The people flourish under their loving guidance. ";
+		}else if (god.getStat("RELATIONSHIPS") < -100 {
+			ret += "The people wither under their iron fist. ";
+		}else{
+			ret += " They do their best, but ultimately allow the people to make their own decisions.";
+		}
+		return ret;
+	}
+
+	String gnosisEnding() {
+		session.gnosisEnding = true;
+		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. The Players remain inside the Medium supporting Reality from within.";
+	}
+
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
 		if(this.session.democraticArmy.getStat("power") == 0){
@@ -155,9 +223,12 @@ class Aftermath extends Scene {
 
 				}else{
 					end += this.democracyBonus();
-					end += " <Br><br> The door to the new universe is revealed. Everyone files in. <Br><Br> Thanks for Playing. ";
+					end += " <Br><br> The door to the new universe is revealed.";
+					end += whoEnters();
+					end += "<Br><Br> Thanks for Playing. <Br><Br>";
 					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
 					this.session.won = true;
+					end += miniEpliogueFull();
 				}
 			}else{
 				if(this.session.rocksFell){
