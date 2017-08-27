@@ -39,7 +39,8 @@ class Bro extends SBURBClass {
         new AssociatedStat("RELATIONSHIPS", -0.5, false)//It wasn't a long fall, but hey I guess a thumb bone wasn't made for supporting the brunt of a huge useless tool against wet grass.
       ]);
 
-
+  @override
+  double aspectQuestChance = 0.1; //bros dont want to develop as a player of X, they want to develop as a Bro.
 
   @override
   num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
