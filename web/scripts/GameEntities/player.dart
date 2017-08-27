@@ -1681,12 +1681,13 @@ class Player extends GameEntity {
 
     void initializeDerivedStuff() {
         List<String> tmp = getRandomLandFromPlayer(this);
+
         this.land1 = tmp[0];
         this.land2 = tmp[1];
         this.land = "Land of ${tmp[0]} and ${tmp[1]}";
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
         this.mylevels = getLevelArray(this); //make them ahead of time for echeladder graphic
-
+        if(class_name == SBURBClassManager.WRIT)  landLevel = -10;
         if (this.isTroll) {
             if (this.quirk == null) this.quirk = randomTrollSim(this.session.rand, this); //if i already have a quirk it was defined already. don't override it.;
             this.addStat("sanity", -10); //trolls are slightly less stable

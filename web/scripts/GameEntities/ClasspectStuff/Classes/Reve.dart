@@ -4,7 +4,7 @@ import "SBURBClass.dart";
 class Reve extends SBURBClass {
 
 
-  Reve() : super("Reve", 18, false);
+  Reve() : super("Reve", 18, true);
 
   @override
   bool highHinit() {
