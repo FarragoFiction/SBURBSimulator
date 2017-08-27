@@ -1,6 +1,8 @@
-import '../handle_sprites.dart';
 import 'dart:async';
 import 'dart:html';
+
+import '../handle_sprites.dart';
+import '../includes/colour.dart';
 
 typedef CanvasGradient Gradient(CanvasRenderingContext2D ctx, num top, num bottom, num left, num right);
 
@@ -12,6 +14,32 @@ abstract class SBAHJGradients {
             ..addColorStop(0.52, "#906A00")
             ..addColorStop(0.64, "#D99F00")
             ..addColorStop(1.0,  "#FFFFFF");
+    }
+
+    static CanvasGradient rainbow(CanvasRenderingContext2D ctx, num top, num bottom, num left, num right) {
+        CanvasGradient grad = ctx.createLinearGradient(left, top, right, top);
+
+        int stops = 16;
+
+        for (int i=0; i<stops; i++) {
+            double f = (1.0 / (stops-1)) * i;
+
+            grad.addColorStop(f, new Colour.hsv(f,1.0,1.0).toStyleString());
+        }
+
+        return grad;
+    }
+
+    static CanvasGradient fire(CanvasRenderingContext2D ctx, num top, num bottom, num left, num right) {
+        return ctx.createLinearGradient(left, bottom, left, top)
+            ..addColorStop(0.0,  "#FFFFFF")
+            ..addColorStop(0.21, "#FFF000")
+            ..addColorStop(0.33, "#FFC600")
+            ..addColorStop(0.49, "#FF7D00")
+            ..addColorStop(0.62, "#FF4302")
+            ..addColorStop(0.71, "#FF0000")
+            ..addColorStop(0.85, "#9A0000")
+            ..addColorStop(1.0,  "#000000");
     }
 }
 

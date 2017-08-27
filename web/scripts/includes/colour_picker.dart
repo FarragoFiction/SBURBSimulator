@@ -7,7 +7,7 @@ import 'colour.dart';
 import 'logger.dart';
 
 class ColourPicker {
-    static Logger logger = Logger.get("ColourPicker");
+    static Logger logger = Logger.get("ColourPicker", false);
 
     static Set<ColourPicker> _pickers = new Set<ColourPicker>();
 
