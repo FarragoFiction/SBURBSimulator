@@ -525,28 +525,37 @@ String findBadPrototyping(List<Player> playerList) {
 }
 
 
-Player findHighestMobilityPlayer(List<Player> playerList) {
+Player findHighestStatPlayer(String statName, List<Player> playerList) {
     if (playerList.isEmpty) return null; //it's empty you dunkass
     Player ret = playerList[0];
     for (int i = 0; i < playerList.length; i++) {
         Player p = playerList[i];
-        if (p.getStat("mobility") > ret.getStat("mobility")) {
+        if (p.getStat(statName) > ret.getStat(statName)) {
             ret = p;
         }
     }
     return ret;
 }
 
-
-Player findLowestMobilityPlayer(List<Player> playerList) {
+Player findLowestStatPlayer(String statName, List<Player> playerList) {
+    if (playerList.isEmpty) return null; //it's empty you dunkass
     Player ret = playerList[0];
     for (int i = 0; i < playerList.length; i++) {
         Player p = playerList[i];
-        if (p.getStat("mobility") < ret.getStat("mobility")) {
+        if (p.getStat(statName) < ret.getStat(statName)) {
             ret = p;
         }
     }
     return ret;
+}
+
+Player findHighestMobilityPlayer(List<Player> playerList) {
+    findHighestStatPlayer("mobility", playerList);
+}
+
+
+Player findLowestMobilityPlayer(List<Player> playerList) {
+    findLowestStatPlayer("mobility", playerList);
 }
 
 
