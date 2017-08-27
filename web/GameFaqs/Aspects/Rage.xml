@@ -275,8 +275,6 @@
             Ignore them. If they're talking about shipping, punch. Repeat as needed.
         </body>
     </section>
-    <?xml version="1.0" encoding="UTF-8"?>
-    <faq>
         <section>
             <header>
                 Question: What is Time?
@@ -366,7 +364,6 @@
             </body>
         </section>
         <section> <header> I don't have any Ketchup for my chicken nuggets. What should I use? </header> <body> Mayonaise. </body> </section>
-    </faq>
 
 
 </faq>
