@@ -44,10 +44,11 @@ class Aftermath extends Scene {
 
 	// only called if full frog. care about who enters new universe, not living
 	String miniEpliogueFull() {
-		if(findLivingPlayers(session.players).isNotEmpty  && entered.length == findLivingPlayers(session.players).length) return gnosisEnding();
+		//window.alert("${entered.length} players entered the new universe, they are $entered");
+		if(entered.isEmpty &&  findLivingPlayers(session.players).length != 0) return gnosisEnding();
 		if(entered.length == 1) return monoTheismEnding();
-		if(getAverageRelationshipValue(entered) > 1000) return loveEnding();
-		if(getAverageRelationshipValue(entered) < -1000) return hateEnding();
+		if(getAverageRelationshipValue(entered) > 20) return loveEnding();
+		if(getAverageRelationshipValue(entered) < -20) return hateEnding();
 		return "Everything seems normal.";
 	}
 
@@ -59,7 +60,7 @@ class Aftermath extends Scene {
 		//does anybody have an abnormally low relationships?
 		Player troubleMaker = findLowestStatPlayer("RELATIONSHIPS", living);
 		String ret = "The ${friendLeader.htmlTitle()} organizes everyone and makes sure everybody gets along and treats the people of the new Universe right. ";
-		if(troubleMaker.getStat("RELATIONSHIPS") < -100) {
+		if(troubleMaker.getStat("RELATIONSHIPS") < -10) {
 			ret += "The ${troubleMaker.htmlTitle()} stirs up trouble ";
 			if(friendLeader.getStat("power") + friendLeader.getStat("RELATIONSHIPS") > troubleMaker.getStat("power")) {
 				ret += "but it's nothing the ${friendLeader.htmlTitle()} can't handle with their friends by their side.";
@@ -76,7 +77,7 @@ class Aftermath extends Scene {
 		Player shoutLeader = findLowestStatPlayer("RELATIONSHIPS",living);
 		Player peaceMaker = findHighestStatPlayer("RELATIONSHIPS", living);
 		String ret = "The ${shoutLeader.htmlTitle()}  rules with an iron fist and insists that they live as gods. ";
-		if(peaceMaker.getStat("RELATIONSHIPS") > 100) {
+		if(peaceMaker.getStat("RELATIONSHIPS") > 10) {
 			ret += "The ${peaceMaker.htmlTitle()} begins to rebel ";
 			//not changing this from lvoe ending.  i want it to be a good ending, evil is easy to defeat (because they likely have negative relationship stats weighting them down)
 			if(shoutLeader.getStat("power") + shoutLeader.getStat("RELATIONSHIPS") > peaceMaker.getStat("power")) {
@@ -91,7 +92,7 @@ class Aftermath extends Scene {
 	String monoTheismEnding() {
 		session.monoTheismEnding = true;
 		Player god = entered.first;
-		String ret =  "The ${god.htmlTitle()} rules the new Universe absolutely. ";
+		String ret =  "The ${god.htmlTitle()} rules the new Universe absolutely, with no fellow players to challenge them. ";
 		if(god.getStat("RELATIONSHIPS") > 100) {
 			ret += "The people flourish under their loving guidance. ";
 		}else if (god.getStat("RELATIONSHIPS") < -100) {
@@ -104,7 +105,7 @@ class Aftermath extends Scene {
 
 	String gnosisEnding() {
 		session.gnosisEnding = true;
-		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. The Players remain inside the Medium supporting Reality from within.";
+		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. It is a glorious shade of pink. The Players remain inside the Medium supporting Reality from within. ";
 	}
 
 	dynamic democracyBonus(){
@@ -252,10 +253,10 @@ class Aftermath extends Scene {
 					end += this.democracyBonus();
 					end += " <Br><br> The door to the new universe is revealed.";
 					end += whoEnters();
-					end += "<Br><Br> Thanks for Playing. <Br><Br>";
+					end += "<Br><Br>";
 					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
 					this.session.won = true;
-					end += "You get a brief glance of the future of the new Universe. ${miniEpliogueFull()}";
+					end += "You get a brief glance of the future of the new Universe. ${miniEpliogueFull()}<br><br>";
 				}
 			}else{
 				if(this.session.rocksFell){
