@@ -35,7 +35,8 @@ class Bro extends SBURBClass {
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(
       <AssociatedStat>[
         new AssociatedStat("sburbLore", 1.5, false),//dennis was so wasted. ha ha, i mean damn.
-        new AssociatedStat("MANGRIT", 3.0, false) //"But all im saying is, when do you get to THRASH something?"
+        new AssociatedStat("MANGRIT", 3.0, false), //"But all im saying is, when do you get to THRASH something?"
+        new AssociatedStat("RELATIONSHIPS", -0.5, false)//It wasn't a long fall, but hey I guess a thumb bone wasn't made for supporting the brunt of a huge useless tool against wet grass.
       ]);
 
 
