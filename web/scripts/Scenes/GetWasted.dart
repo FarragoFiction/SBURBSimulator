@@ -72,7 +72,9 @@ class GetWasted extends Scene {
             tier1(div);
         } else if (player.gnosis == 2) {
             tier2(div);
-        } else {
+        }else if (player.gnosis == 3) {
+            tier3(div);
+        }else {
             appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
         }
     }
@@ -199,6 +201,54 @@ class GetWasted extends Scene {
         faq.rendered = true;
     }
 
+    String processTier3(Element div) {
+        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.BREATH) return exploitMobility(div);
+        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
+        if(player.aspect == Aspects.TIME || player.aspect == Aspects.MIND) return exploitTime(div);
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.VOID) return exploitGlitches(div);
+        if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
+        if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
+    }
+
+    //set up teleporters or flying mounts so quests are WAY easier to do
+    String exploitMobility(Element div) {
+
+    }
+
+    //auto english tier someone who it will work for
+    String exploitFate(Element div) {
+
+    }
+
+    //make doomed timeclone army
+    String exploitTime(Element div) {
+
+    }
+
+    //skaian magicent kinda deal
+    String exploitGlitches(Element div) {
+
+    }
+
+    //throw a huge party to get those interaction buffs going
+    String exploitFriendship(Element div) {
+
+    }
+
+    //make a prophecy, then make the prophecy happen and get around it (like that doom buff for makeDead)
+    //so make dead auto works
+    String exploitDoom(Element div) {
+        //if it's doom it's straight up exploiting a prophecy
+        //if life, it's using your ghost to buff yourself a LOT.
+        //either way, need one back up life or be a god tier for this to work.
+
+        //first, find a player who can be revived. Either they have dream self, are god tier, or there are ghosts.
+
+        //then, make a prophecy, then kill them. makeDead("exploiting a loophole", true);
+
+        //then, revive them. RENDER THE REVIVE.  smooch, god tier or ghost. USE THE GHOST OR DREAM SELF if appropriate.
+    }
+
 
 
 
@@ -219,12 +269,6 @@ class GetWasted extends Scene {
     }
 
     void tier3(Element div) {
-        //TODO 3 will write a faq guaranteed, as well as doing some exploitation shit, like breeding combat frogs and shit, and unlocking free will english tier
-        // breed combat from (post npc update)
-        // english tier (unlocks in free will)
-        // english tier (small chance of it happening here without free will)
-        // if no ecto yet, plan to kill leader a bunch to get a bunch of doomed time clones
-        // woomod
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
         if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.'");
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.'");
@@ -232,7 +276,8 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.BREATH || player.aspect == Aspects.MIND)     flavorText.add("'Reality is written in the ink of people's lives.'");
         if(player.aspect == Aspects.RAGE || player.aspect == Aspects.LIFE)     flavorText.add("'Knowledge and Desire are meaningless without the strengh to see them through.'");
         if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART)     flavorText.add("'When we combine the light that shines within, there is nothing we can't do.'");
-
+        if(flavorText.length == 1) flavorText.add("Nothing is true, everything is permitted."); //i.e. aspect not found
+        flavorText.add(processTier3(div));
         appendHtml(div,flavorText.join("")); //won't let me just add strings without yellow squiggle.
     }
 

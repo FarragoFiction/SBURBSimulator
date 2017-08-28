@@ -275,7 +275,7 @@ class Player extends GameEntity {
 
 
     @override
-    void makeDead(String causeOfDeath) {
+    void makeDead(String causeOfDeath,[bool prophecyFullfilled = false]) {
         this.dead = true;
         this.timesDied ++;
         this.buffs.clear();
@@ -285,6 +285,15 @@ class Player extends GameEntity {
             Player g = Player.makeRenderingSnapshot(this);
             g.fraymotifs = new List<Fraymotif>.from(this.fraymotifs); //copy not reference
             this.session.afterLife.addGhost(g);
+        }
+
+
+        //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
+        if(this.aspect == Aspects.DOOM || prophecyFullfilled){ //powered by their own doom.
+            //console.log("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
+            this.addStat("power", 50);
+            this.setStat("hp", Math.max(100, this.getStat("hp"))); //prophecy fulfilled. but hp and luck will probably drain again.
+            this.setStat("minLuck", Math.max(100, this.getStat("minLuck"))); //prophecy fulfilled. you are no longer doomed.
         }
 
         this.renderSelf();
