@@ -280,7 +280,7 @@ class GetWasted extends Scene {
                 }else if(ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
-                    drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,divID,[p, player]));
+                    drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,divID,[p, ghost, player]));
                     p.makeAlive();
                     ret += subRet;
                 }
@@ -291,17 +291,21 @@ class GetWasted extends Scene {
 
     ///first player is corpse, second is smoocher
     void drawCorpseSmooch(String canvasID, List<Player> players) {
-        throw "TODO";
+        Drawing.drawCorpseSmooch(querySelector(canvasID), players[0], players[1]);
     }
 
-    ///first player is corpse, don't care about others.
+    ///first player is corpse,second is ghost, third is player
     void drawGodRevive(String canvasID, List<Player> players) {
-        throw "TODO";
+        Drawing.drawGodRevival(querySelector(canvasID), [players[0]], []);
     }
 
     ///first player is corpse, second is ghost wrangler
     void drawGhostRevive(String canvasID, List<Player> players) {
-        throw "TODO";
+        CanvasElement canvas = Drawing.drawReviveDead(querySelector(canvasID), players[0], players[1], players[2].name);
+
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer, players[2]);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
     }
 
 

@@ -570,6 +570,28 @@ abstract class Drawing {
         }
     }
 
+    ///revives the player mid drawing because that is how the rendering works.
+    static void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty){
+        var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSprite(pSpriteBuffer,royalty);
+
+        dead_player.dead = true;
+        dead_player.isDreamSelf = false;  //temporarily show non dream version
+        var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.drawSpriteFromScratch(dSpriteBuffer,dead_player);
+
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
+
+        var moonBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
+        Drawing.drawMoon(moonBuffer, dead_player);
+        dead_player.dreamSelf = false; //only one self now.
+        dead_player.isDreamSelf = true;
+        dead_player.makeAlive();
+        Drawing.drawSprite(moonBuffer,dead_player);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0);
+    }
+
 
     static void drawGodRevival(CanvasElement canvas, List<Player> live_players, List<Player> dead_players) {
         if (checkSimMode() == true) {

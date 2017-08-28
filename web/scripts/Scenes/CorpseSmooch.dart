@@ -54,38 +54,13 @@ class CorpseSmooch extends Scene {
 			}
 		}
 	}
-	void makeAlive(Player d){
-		//foundRareSession(div, "A player was corpse smooched alive.");
-		d.dreamSelf = false; //only one self now.
-		d.isDreamSelf = true;
-		d.makeAlive();
-	}
+
 	void makeDead(Player d){
 		//print("make dead " + d.title())
 		d.dreamSelf = false;
 		d.dead = true;
 	}
-	void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty, repeatTime){
-		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
-		Drawing.drawSprite(pSpriteBuffer,royalty);
 
-		dead_player.dead = true;
-		dead_player.isDreamSelf = false;  //temporarily show non dream version
-		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
-		Drawing.drawSpriteFromScratch(dSpriteBuffer,dead_player);
-
-		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
-
-		var moonBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
-		Drawing.drawMoon(moonBuffer, dead_player);
-		this.makeAlive(dead_player);
-		Drawing.drawSprite(moonBuffer,dead_player);
-		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0);
-		//dead_player.renderSelf();
-		//this.makeAlive(dead_player); //make SURE the player is alive after smooches.
-
-	}
 	@deprecated
 	void drawCombo(canvas, comboNum){
 		Drawing.drawComboText(canvas, comboNum);
@@ -149,7 +124,7 @@ class CorpseSmooch extends Scene {
 			ret += royalty.interactionEffect(deadPlayer);
 			appendHtml(div, ret + canvasHTML);
 			Element canvasDiv = querySelector("#canvas"+ divID);
-			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000);
+			Drawing.drawCorpseSmooch(canvasDiv, deadPlayer, royalty);
 		}else{
 			print("dream self dies from no corpse smooch: " + this.session.session_id.toString());
 			deadPlayer.isDreamSelf = true;
