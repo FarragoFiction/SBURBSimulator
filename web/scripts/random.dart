@@ -45,7 +45,7 @@ class Random implements Math.Random {
 
 	T pickFrom<T>(Iterable<T> list, [bool useWeights = true]) {
 		if (list.isEmpty) { return null; }
-		if (useWeights && list is WeightedList<T>) {
+		if (useWeights && list is WeightedIterable<T>) {
 			return list.get(this.nextDouble());
 		}
 		return list.elementAt(this.nextInt(list.length));
