@@ -158,7 +158,7 @@ class DoLandQuest extends Scene{
 
 
 		String ret = "";
-		print("Debugging: Getting a helper in session ${session.session_id}");
+		//print("Debugging: Getting a helper in session ${session.session_id}");
 		ret += player.interactionEffect(helper);
 		ret += helper.interactionEffect(player);
 
