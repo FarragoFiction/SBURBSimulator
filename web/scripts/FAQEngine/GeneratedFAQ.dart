@@ -47,7 +47,9 @@ class GeneratedFAQ {
         for(FAQSection s in sections) {
             String header ="${symbol*amount}${q.translate(s.header)}";
             header.replaceAll("\n", ""); //no new lines in header plz
-            ret = "$ret <br><Br>${header}${symbol*amount}<br><br>${Zalgo.generate(q.translate(s.body))}<br><Br>";
+            String computedBody = q.translate(s.body);
+            if(grimDark && rand.nextBool()) computedBody = Zalgo.generate(computedBody);
+            ret = "$ret <br><Br>${header}${symbol*amount}<br><br>${computedBody}<br><Br>";
         }
         return "<div class = 'FAQ'>$ret</div></div>";
     }
