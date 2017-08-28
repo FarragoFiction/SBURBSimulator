@@ -476,7 +476,7 @@ class LifeStuff extends Scene {
             if (enablingAspect == Aspects.LIFE) {
                 player.addStat("currentHP", 100); //i won't let you die again.
                 player.addStat("hp", 100); //i won't let you die again.
-            } else if (enablingAspect == Aspects.DOOM || player.prophecy == ProphecyState.FULLFILLED_PROPHECY ) {
+            } else if (enablingAspect == Aspects.DOOM || player.prophecy == ProphecyState.FULLFILLED ) {
                 player.addStat("minLuck", 100); //you've fulfilled the prophecy. you are no longer doomed.
                 str = "${str}The prophecy is fulfilled. ";
             }

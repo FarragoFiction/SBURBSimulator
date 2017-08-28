@@ -20,7 +20,7 @@ class Rogue extends SBURBClass {
 
     @override
     String interactionFlavorText(GameEntity me, GameEntity target) {
-        return "The ${me.htmlTitle()} appears to be taking something from the ${target.htmlTitle()} and distributing it to everyone.";
+        return " The ${me.htmlTitle()} appears to be taking something from the ${target.htmlTitle()} and distributing it to everyone. ";
     }
 
     @override

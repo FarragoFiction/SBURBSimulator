@@ -686,6 +686,11 @@ abstract class Drawing {
         ctx.fillText(player.doomedTimeClones.length.toString(), right_margin, current + line_height * i);
 
         i++;
+        ctx.fillText("Prophecy Status: ", left_margin, current + line_height * i);
+        //can't just print out the value of the enum, too dumb for that.
+        ctx.fillText("${player.prophecy.toString().substring(player.prophecy.toString().indexOf('.')+1)}", right_margin-50, current + line_height * i);
+
+        i++;
         ctx.fillText("Times Died: ", left_margin, current + line_height * i);
         ctx.fillText(player.timesDied.toString(), right_margin, current + line_height * i);
 

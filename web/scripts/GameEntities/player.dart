@@ -290,8 +290,8 @@ class Player extends GameEntity {
             this.session.afterLife.addGhost(g);
         }
         //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
-        if(prophecy == ProphecyState.ACTIVE_PROPHECY){ //powered by their own doom.
-            prophecy = ProphecyState.FULLFILLED_PROPHECY;
+        if(prophecy == ProphecyState.ACTIVE){ //powered by their own doom.
+            prophecy = ProphecyState.FULLFILLED;
             ret += " The prophecy is fullfilled. ";
         }
         this.renderSelf();
@@ -792,9 +792,9 @@ class Player extends GameEntity {
 
         //doom players with an interaction effect also spread doom. this is bad in short term and good in long
         //SHOULD be only bad against enemies, since they don't have revival mechanisms. right???
-        if(aspect == Aspects.DOOM && target.prophecy == ProphecyState.NO_PROPHECY) {
+        if(hasInteractionEffect() && aspect == Aspects.DOOM && target.prophecy == ProphecyState.NONE) {
             ret = "There is a prophecy of the ${target.htmlTitle()}'s death.";
-            target.prophecy = ProphecyState.ACTIVE_PROPHECY;
+            target.prophecy = ProphecyState.ACTIVE;
         }
 
         if(hasInteractionEffect()) {
@@ -1716,7 +1716,7 @@ class Player extends GameEntity {
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
         }
 
-        if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE_PROPHECY; //sorry doom players
+        if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
     }
 
     void initializeSprite() {

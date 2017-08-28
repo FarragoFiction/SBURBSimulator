@@ -40,7 +40,7 @@ class Prince extends SBURBClass {
     }
     @override
     String interactionFlavorText(GameEntity me, GameEntity target) {
-        return "The ${me.htmlTitle()} appears to be destroying something in themselves.";
+        return " The ${me.htmlTitle()} appears to be destroying something in themselves. ";
     }
 
     @override
