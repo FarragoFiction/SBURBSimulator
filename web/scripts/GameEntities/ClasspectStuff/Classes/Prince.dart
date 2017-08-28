@@ -38,6 +38,10 @@ class Prince extends SBURBClass {
     bool hasInteractionEffect() {
         return true;
     }
+    @override
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return "The ${me.htmlTitle()} appears to be destroying something in themselves.";
+    }
 
     @override
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {

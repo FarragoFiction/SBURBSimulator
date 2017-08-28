@@ -796,6 +796,10 @@ class Player extends GameEntity {
             ret = "There is a prophecy of the ${target.htmlTitle()}'s death.";
             target.prophecy = ProphecyState.ACTIVE_PROPHECY;
         }
+
+        if(hasInteractionEffect()) {
+            ret += class_name.interactionFlavorText(this, target);
+        }
         return ret;
     }
 

@@ -31,6 +31,11 @@ class Bard extends SBURBClass {
     }
 
     @override
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return "The ${me.htmlTitle()} appears to be destroying something in everyone.";
+    }
+
+    @override
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
         num powerBoost = p.getStat("power") / 20;
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
