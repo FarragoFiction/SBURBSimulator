@@ -24,8 +24,9 @@
     color: white;
     position: fixed;
     top: 15%;
-    right: 5.5%;
-     z-index: 999;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 999;
 }
 
 .ascii{

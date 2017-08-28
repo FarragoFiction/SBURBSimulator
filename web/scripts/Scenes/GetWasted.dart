@@ -271,6 +271,18 @@ class GetWasted extends Scene {
         writeFAQ(div);
         //in addition to unlocking other scenes, have some tier 2 shit here as well
         //small boost to space player land leve, for example. maybe some grist for everyone (once that's a thing)
+        Player space = findAspectPlayer(this.session.availablePlayers, Aspects.SPACE);
+        space.landLevel += 10;
+        String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
+        if(space == player) {
+            ret += " They waste no time and just fucking DO it. ";
+            if(player.class_name == SBURBClassManager.WASTE) ret += " They DO waste some space though. It's only natural. ";
+        }else {
+            ret += " They bug and fuss and meddle until the ${space.htmlTitle()} just fucking DOES it. ";
+        }
+        ret += "<br><br>";
+        appendHtml(div, ret );
+
     }
 
     void tier3(Element div) {
