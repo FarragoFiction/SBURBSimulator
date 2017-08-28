@@ -83,7 +83,7 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
         }
     }
 
-    factory WeightedList.from(Iterable<dynamic> other, {bool growable = true, WeightFunction<T> initialWeightSetter}) {
+    factory WeightedList.from(Iterable<dynamic> other, {bool growable = true, WeightFunction<T> initialWeightSetter, bool copyPairs = false}) {
         WeightedList<T> list;
         if (growable) {
             list = new WeightedList<T>(initialWeightSetter: initialWeightSetter)..length = other.length;
@@ -94,7 +94,11 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
             if (other is WeightedIterable<T>) {
                 int i=0;
                 for (WeightPair<T> pair in other.pairs) {
-                    list._list[i] = pair;
+                    if (copyPairs) {
+                        list._list[i] = new WeightPair<T>.from(pair);
+                    }else{
+                        list._list[i] = pair;
+                    }
                     i++;
                 }
             } else {
@@ -110,7 +114,11 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
                 if (entry is T) {
                     list[i] = entry;
                 } else if (entry is WeightPair<T>) {
-                    list._list[i] = entry;
+                    if (copyPairs) {
+                        list._list[i] = new WeightPair<T>.from(entry);
+                    } else {
+                        list._list[i] = entry;
+                    }
                 } else {
                     throw "Invalid entry type ${entry.runtimeType} for WeightedList<$T>. Should be $T or WeightPair<$T>.";
                 }
@@ -212,6 +220,10 @@ class WeightPair<T> {
     double weight;
 
     WeightPair(T this.item, double this.weight);
+
+    factory WeightPair.from(WeightPair<T> other) {
+        return new WeightPair<T>(other.item, other.weight);
+    }
 }
 
 abstract class WeightedItem {
