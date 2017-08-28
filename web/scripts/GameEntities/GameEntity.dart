@@ -2,10 +2,17 @@ import "dart:html";
 import "dart:math" as Math;
 import "../SBURBSim.dart";
 
+enum ProphecyState {
+    NO_PROPHECY,
+    ACTIVE_PROPHECY,
+    FULLFILLED_PROPHECY
+}
+
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity implements Comparable<GameEntity> {
     static int _nextID = 0;
+    ProphecyState prophecy = ProphecyState.NO_PROPHECY; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     static int minPower = 1;  //<-- this is PRIME fucking real estate for a waste to change, so don't make it final even though it's tempting
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
     Session session;
@@ -479,6 +486,15 @@ class GameEntity implements Comparable<GameEntity> {
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
             ret = Math.max(GameEntity.minPower, ret); //no negative power, dunkass.
            if(ret < 0 ) print("$this after mangrit, power is $ret in session ${session.session_id}");
+        }
+
+        //simple doom prophecy mechanic.  more likely to die, but buff if you get around it somehow (i.e. die but then revive)
+        if(prophecy == ProphecyState.ACTIVE_PROPHECY) {
+            print("Debugging: Lost half of $statName to prophecy");
+            ret += -1* ret/2;  //lose half your stats
+        }else if(prophecy == ProphecyState.FULLFILLED_PROPHECY) {
+            ret += ret/2;  //gain half your stats
+            print("Debugging: gained half of $statName to prophecy");
         }
 
         return (ret).round();

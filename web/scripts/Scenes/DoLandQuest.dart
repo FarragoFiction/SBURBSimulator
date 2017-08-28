@@ -153,9 +153,15 @@ class DoLandQuest extends Scene{
 			return " The " + helper.htmlTitle() + " innoculates the " + player.htmlTitle() + "'s identity' against future attacks of GrimDarkness. ";
 
 		}
-		player.interactionEffect(helper);
-		helper.interactionEffect(player);
+
+
+
+
 		String ret = "";
+
+		ret += player.interactionEffect(helper);
+		ret += helper.interactionEffect(player);
+
 		if(helper == player){
 			player.landLevel ++;
 			player.increasePower();

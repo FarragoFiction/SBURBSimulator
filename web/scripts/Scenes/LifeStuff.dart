@@ -382,8 +382,10 @@ class LifeStuff extends Scene {
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
-            player1.interactionEffect(player2);
-            player2.interactionEffect(player1);
+            String ret = "";
+            ret += player1.interactionEffect(player2);
+            ret += player2.interactionEffect(player1);
+            appendHtml(div, ret);
         }
     }
 
@@ -444,8 +446,10 @@ class LifeStuff extends Scene {
             Drawing.drawSprite(pSpriteBuffer, player1);
 
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
-            player1.interactionEffect(player2);
-            player2.interactionEffect(player1);
+            String ret = "";
+            ret += player1.interactionEffect(player2);
+            ret += player2.interactionEffect(player1);
+            appendHtml(div, ret);
         }
     }
 
@@ -472,7 +476,7 @@ class LifeStuff extends Scene {
             if (enablingAspect == Aspects.LIFE) {
                 player.addStat("currentHP", 100); //i won't let you die again.
                 player.addStat("hp", 100); //i won't let you die again.
-            } else if (enablingAspect == Aspects.DOOM) {
+            } else if (enablingAspect == Aspects.DOOM || player.prophecy == ProphecyState.FULLFILLED_PROPHECY ) {
                 player.addStat("minLuck", 100); //you've fulfilled the prophecy. you are no longer doomed.
                 str = "${str}The prophecy is fulfilled. ";
             }
@@ -500,8 +504,10 @@ class LifeStuff extends Scene {
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
-            player1.interactionEffect(player2);
-            player2.interactionEffect(player1);
+            String ret = "";
+            ret += player1.interactionEffect(player2);
+            ret += player2.interactionEffect(player1);
+            appendHtml(div, ret);
         }
     }
 

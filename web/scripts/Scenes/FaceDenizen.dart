@@ -144,7 +144,7 @@ class FaceDenizen extends Scene{
 					p.denizenDefeated = false;
 					ret += " Huh.  They were NOT ready for that.  They are easily crushed by their Denizen. DEAD.";
 					p.dead = true;
-					p.makeDead("fighting their Denizen way too early");
+					ret += p.makeDead("fighting their Denizen way too early");
 				}
 			}else{//do The Choice
 				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";

@@ -139,13 +139,14 @@ class CorpseSmooch extends Scene {
 		return royalty;
 	}
 	void renderForPlayer(Element div, Player deadPlayer){
+		String ret = "";
 		Player royalty = this.getRoyalty(deadPlayer);
 		if(royalty != null){
-			deadPlayer.interactionEffect(royalty);
-			royalty.interactionEffect(deadPlayer);
+			ret += deadPlayer.interactionEffect(royalty);
+			ret += royalty.interactionEffect(deadPlayer);
 			String divID = (div.id) + "_" + deadPlayer.chatHandle;
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			appendHtml(div, canvasHTML);
+			appendHtml(div, ret + canvasHTML);
 			Element canvasDiv = querySelector("#canvas"+ divID);
 			this.drawCorpseSmooch(canvasDiv, deadPlayer, royalty, 1000);
 		}else{

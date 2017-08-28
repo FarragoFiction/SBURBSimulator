@@ -244,9 +244,11 @@ class GetWasted extends Scene {
 
         //first, find a player who can be revived. Either they have dream self, are god tier, or there are ghosts.
 
-        //then, make a prophecy, then kill them. makeDead("exploiting a loophole", true);
+        //then, make a prophecy (ACTIVE_PROPHECY), then kill them, which will make it fullfilled.
 
         //then, revive them. RENDER THE REVIVE.  smooch, god tier or ghost. USE THE GHOST OR DREAM SELF if appropriate.
+
+        //do this for EVERYONE YOU CAN
     }
 
 
