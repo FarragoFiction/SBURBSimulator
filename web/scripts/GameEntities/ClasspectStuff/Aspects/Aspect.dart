@@ -7,6 +7,7 @@ import "Heart.dart";
 import "Hope.dart";
 import "Life.dart";
 import "Light.dart";
+import "Might.dart";
 import "Mind.dart";
 import "Rage.dart";
 import "Space.dart";
@@ -27,6 +28,8 @@ abstract class Aspects {
     static Aspect HOPE;
     static Aspect LIFE;
 
+    static Aspect MIGHT;
+
     static Aspect NULL;
 
     static void init() {
@@ -42,6 +45,8 @@ abstract class Aspects {
         RAGE = new Rage(9);
         HOPE = new Hope(10);
         LIFE = new Life(11);
+
+        MIGHT = new Might(12);
 
         NULL = new Aspect(255, "Null");
     }
