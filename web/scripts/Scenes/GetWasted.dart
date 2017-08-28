@@ -271,7 +271,8 @@ class GetWasted extends Scene {
         writeFAQ(div);
         //in addition to unlocking other scenes, have some tier 2 shit here as well
         //small boost to space player land leve, for example. maybe some grist for everyone (once that's a thing)
-        Player space = findAspectPlayer(this.session.availablePlayers, Aspects.SPACE);
+        Player space = findAspectPlayer(this.session.players, Aspects.SPACE);
+        if(space == null) return;
         space.landLevel += 10;
         String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
         if(space == player) {

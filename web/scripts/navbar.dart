@@ -103,12 +103,19 @@ void toggle(Element v) {
 }
 
 void show(Element v) {
+    if(v == null) {
+        print("ERROR: trying to show a null element");
+        return;
+    }
     //print("showing ${v.id}");
     v.style.display = "block";
 }
 
 void hide(Element v) {
-    //print("hiding ${v.id}");
+    if(v == null) {
+        print("ERROR: trying to hide a null element");
+        return;
+    }
     v.style.display = "none";
 }
 
