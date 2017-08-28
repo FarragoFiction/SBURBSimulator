@@ -297,7 +297,7 @@ class SessionSummary {
         summary.setBoolStat("jackScheme", session.jackScheme);
         summary.setBoolStat("kingTooPowerful", session.king.getStat("power") > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.queenRejectRing);
-        summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > 0);
+        summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > GameEntity.minPower);
         summary.setBoolStat("murderMode", session.murdersHappened);
         summary.setBoolStat("grimDark", session.grimDarkPlayers);
 

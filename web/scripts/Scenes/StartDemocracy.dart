@@ -46,7 +46,7 @@ class StartDemocracy extends Scene {
 		}
 		this.findSympatheticPlayer();
 
-		return (this.session.democracyStrength <= 0 ) && this.session.king.getStat("power") >  this.session.hardStrength && (this.friend != null);
+		return (this.session.democraticArmy.getStat("power") == GameEntity.minPower ) && this.session.king.getStat("power") >  this.session.hardStrength && (this.friend != null);
 	}
 	dynamic content(){
 		this.friend.increasePower();
@@ -61,7 +61,7 @@ class StartDemocracy extends Scene {
 		ret += " The Warweary Villein just hates the Monarchy.  They are petty, bossy tyrants and are really full of themselves and are basically awful in every way. ";
 		ret += " The " + this.friend.htmlTitle() + " can't help but be persuaded by the adorable rant. Look at the little guy's clenched fists! ";
 		ret += " A plan is hatched to exile the Queen, and the Dersite promises an army to help fight the King. ";
-		this.session.democracyStrength += 50;
+		this.session.democraticArmy.setStat("power",50);
 		return ret;
 	}
 

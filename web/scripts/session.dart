@@ -88,7 +88,6 @@ class Session {
 
     // extra fields
     bool crashedFromCustomShit = false;
-    num democracyStrength = 0;
     Random rand;
     List<SBURBClass> available_classes_players;
     List<SBURBClass> available_classes_guardians;
@@ -337,7 +336,6 @@ class Session {
         //curSessionGlobalVar.doomedTimeline = false;
         this.doomedTimeline = false;
         this.setUpBosses();
-        this.democracyStrength = 0;
         this.reckoningStarted = false;
         this.importantEvents = <ImportantEvent>[];
         this.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
