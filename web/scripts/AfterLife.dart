@@ -139,7 +139,7 @@ class AfterLife {
 	dynamic findAnyGhost(player){
 		return player.rand.pickFrom(this.ghosts);
 	}
-	dynamic findAnyUndrainedGhost(Random rand){
+	Player findAnyUndrainedGhost(Random rand){
 		List<dynamic> ret = [];
 		for(var i=0; i<this.ghosts.length; i++){
 			if(this.ghosts[i].causeOfDrain == null) ret.add(this.ghosts[i]);

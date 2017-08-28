@@ -18,8 +18,13 @@ import "../navbar.dart";
 
  */
 
+//thing that creates the canvas happens before drawing can be a thing
+//keep track of the methods you'll need to call for drawing to happen once appendHTML is called.
+typedef DrawingMethod(String canvasID, List<Player> players);
+
 class GetWasted extends Scene {
     //static Logger logger = Logger.get("GetWasted", false);
+    List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 3;
     //for everything that's not a class or aspect but can be in any faq
@@ -56,7 +61,7 @@ class GetWasted extends Scene {
     }
 
     bool loreReachedTippingPoint(Player p) {
-        return p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1); //linear growth, but the base is high.
+        return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1) && p.gnosis < 4); //linear growth, but the base is high.
     }
 
     @override
@@ -74,7 +79,7 @@ class GetWasted extends Scene {
             tier2(div);
         }else if (player.gnosis == 3) {
             tier3(div);
-        }else {
+        }else if(player.gnosis == 4) {
             appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
         }
     }
@@ -211,30 +216,35 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.RAGE || player.aspect == Aspects.VOID) return exploitGlitches(div);
         if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
         if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
     }
 
     //set up teleporters or flying mounts so quests are WAY easier to do
     String exploitMobility(Element div) {
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
 
     }
 
     //auto english tier someone who it will work for
     String exploitFate(Element div) {
-
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
     }
 
     //make doomed timeclone army
     String exploitTime(Element div) {
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
 
     }
 
     //skaian magicent kinda deal
     String exploitGlitches(Element div) {
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
 
     }
 
     //throw a huge party to get those interaction buffs going
     String exploitFriendship(Element div) {
+        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
 
     }
 
@@ -243,15 +253,55 @@ class GetWasted extends Scene {
     String exploitDoom(Element div) {
         //if it's doom it's straight up exploiting a prophecy
         //if life, it's using your ghost to buff yourself a LOT.
-        //either way, need one back up life or be a god tier for this to work.
+        String ret = "";
+        for(Player p in session.players) {
+            //can't exploit a prophecy if they are already dead.
+            if(!p.dead) {
+                Player ghost = session.afterLife.findAnyUndrainedGhost(rand);
+                ///only added if somebody has this apply.
+                String subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
+                if(player.aspect == Aspects.LIFE) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
 
-        //first, find a player who can be revived. Either they have dream self, are god tier, or there are ghosts.
+                String divID = "gnosis3${div.id}";
+                subRet += "<br><canvas id='canvas='${divID}' width='${canvasWidth.toString()}' height='{canvasHeight.toString()}'>  </canvas>";
+                //picture shown differs based on method.
+                if(p.dreamSelf && !p.isDreamSelf) { //corpse smooch
+                    p.prophecy = ProphecyState.ACTIVE;
+                    p.makeDead("exploiting SBURB mechanics");
+                    drawingMethods.add(new DrawMethodWithParameter(drawCorpseSmooch,divID, [p, player]));
+                    p.makeAlive();
+                    ret += subRet;
+                }else if(p.godTier) { //they will god tier revive
+                    p.prophecy = ProphecyState.ACTIVE;
+                    p.makeDead("exploiting SBURB mechanics");
+                    drawingMethods.add(new DrawMethodWithParameter(drawGodRevive,divID,[p, player]));
+                    p.makeAlive();
+                    ret += subRet;
+                }else if(ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
+                    p.prophecy = ProphecyState.ACTIVE;
+                    p.makeDead("exploiting SBURB mechanics");
+                    drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,divID,[p, player]));
+                    p.makeAlive();
+                    ret += subRet;
+                }
+            }
+        }
+        return ret;
+    }
 
-        //then, make a prophecy (ACTIVE_PROPHECY), then kill them, which will make it fullfilled.
+    ///first player is corpse, second is smoocher
+    void drawCorpseSmooch(String canvasID, List<Player> players) {
+        throw "TODO";
+    }
 
-        //then, revive them. RENDER THE REVIVE.  smooch, god tier or ghost. USE THE GHOST OR DREAM SELF if appropriate.
+    ///first player is corpse, don't care about others.
+    void drawGodRevive(String canvasID, List<Player> players) {
+        throw "TODO";
+    }
 
-        //do this for EVERYONE YOU CAN
+    ///first player is corpse, second is ghost wrangler
+    void drawGhostRevive(String canvasID, List<Player> players) {
+        throw "TODO";
     }
 
 
@@ -297,11 +347,31 @@ class GetWasted extends Scene {
         if(flavorText.length == 1) flavorText.add("Nothing is true, everything is permitted."); //i.e. aspect not found
         flavorText.add(processTier3(div));
         appendHtml(div,flavorText.join("")); //won't let me just add strings without yellow squiggle.
+        drawAll();
     }
 
     void tier4(Element div) {
         //todo waste tier, will be dope as fuk
         //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
+    }
+
+    //i have been keeping track of every canvas i have created. now that it's appended, draw them.
+    void drawAll() {
+        for(DrawMethodWithParameter m in drawingMethods) {
+            m.call();
+        }
+        drawingMethods.clear();
+    }
+}
+
+class DrawMethodWithParameter {
+    DrawingMethod method;
+    String parameter;
+    List<Player> players;
+    DrawMethodWithParameter(this.method, this.parameter, this.players);
+
+    void call() {
+        method(parameter, players);
     }
 }
 
