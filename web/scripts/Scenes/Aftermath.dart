@@ -110,7 +110,7 @@ class Aftermath extends Scene {
 
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.democraticArmy.getStat("power") == 1){
+		if(this.session.democraticArmy.getStat("power") == GameEntity.minPower){
 			return "";
 		}
 		if(this.session.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){

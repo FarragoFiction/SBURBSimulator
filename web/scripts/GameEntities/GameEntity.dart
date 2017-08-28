@@ -6,7 +6,7 @@ import "../SBURBSim.dart";
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity implements Comparable<GameEntity> {
     static int _nextID = 0;
-
+    static int minPower = 1;  //<-- this is PRIME fucking real estate for a waste to change, so don't make it final even though it's tempting
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
     Session session;
 
@@ -48,6 +48,7 @@ class GameEntity implements Comparable<GameEntity> {
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     GameEntity(this.name, this.session) {
+
         id = GameEntity.generateID();
         stats['sanity'] = 0;
         stats['alchemy'] = 0;
@@ -476,7 +477,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (statName == "power") {
             //print("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
-            ret = Math.max(1, ret); //no negative power, dunkass.
+            ret = Math.max(GameEntity.minPower, ret); //no negative power, dunkass.
            if(ret < 0 ) print("$this after mangrit, power is $ret in session ${session.session_id}");
         }
 

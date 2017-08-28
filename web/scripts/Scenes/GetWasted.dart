@@ -238,6 +238,7 @@ class GetWasted extends Scene {
 
     void tier4(Element div) {
         //todo waste tier, will be dope as fuk
+        //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
     }
 }
 
