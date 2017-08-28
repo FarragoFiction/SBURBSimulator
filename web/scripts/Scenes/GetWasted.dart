@@ -253,17 +253,17 @@ class GetWasted extends Scene {
     String exploitDoom(Element div) {
         //if it's doom it's straight up exploiting a prophecy
         //if life, it's using your ghost to buff yourself a LOT.
-        String ret = "";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
         for(Player p in session.players) {
             //can't exploit a prophecy if they are already dead.
-            if(!p.dead) {
+            if(!p.dead && p.prophecy != ProphecyState.FULLFILLED) {
                 Player ghost = session.afterLife.findAnyUndrainedGhost(rand);
                 ///only added if somebody has this apply.
-                String subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
+                String subRet = "They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
                 if(player.aspect == Aspects.LIFE) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
 
-                String divID = "gnosis3${div.id}";
-                subRet += "<br><canvas id='canvas='${divID}' width='${canvasWidth.toString()}' height='{canvasHeight.toString()}'>  </canvas>";
+                String divID = "gnosis3${div.id}player${p.id}";
+                subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
                 //picture shown differs based on method.
                 if(p.dreamSelf && !p.isDreamSelf) { //corpse smooch
                     p.prophecy = ProphecyState.ACTIVE;
@@ -291,17 +291,17 @@ class GetWasted extends Scene {
 
     ///first player is corpse, second is smoocher
     void drawCorpseSmooch(String canvasID, List<Player> players) {
-        Drawing.drawCorpseSmooch(querySelector(canvasID), players[0], players[1]);
+        Drawing.drawCorpseSmooch(querySelector("#${canvasID}"), players[0], players[1]);
     }
 
     ///first player is corpse,second is ghost, third is player
     void drawGodRevive(String canvasID, List<Player> players) {
-        Drawing.drawGodRevival(querySelector(canvasID), [players[0]], []);
+        Drawing.drawGodRevival(querySelector("#${canvasID}"), [players[0]], []);
     }
 
     ///first player is corpse, second is ghost wrangler
     void drawGhostRevive(String canvasID, List<Player> players) {
-        CanvasElement canvas = Drawing.drawReviveDead(querySelector(canvasID), players[0], players[1], players[2].name);
+        CanvasElement canvas = Drawing.drawReviveDead(querySelector("#${canvasID}"), players[0], players[1], players[2].name);
 
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, players[2]);
@@ -342,13 +342,14 @@ class GetWasted extends Scene {
 
     void tier3(Element div) {
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
-        if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.'");
-        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.'");
-        if(player.aspect == Aspects.DOOM || player.aspect == Aspects.TIME)     flavorText.add("'Fate is just the choices we have yet to make.'");
-        if(player.aspect == Aspects.BREATH || player.aspect == Aspects.MIND)     flavorText.add("'Reality is written in the ink of people's lives.'");
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.LIFE)     flavorText.add("'Knowledge and Desire are meaningless without the strengh to see them through.'");
-        if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART)     flavorText.add("'When we combine the light that shines within, there is nothing we can't do.'");
+        if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
+        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.' ");
+        if(player.aspect == Aspects.DOOM || player.aspect == Aspects.TIME)     flavorText.add("'Fate is just the choices we have yet to make.' ");
+        if(player.aspect == Aspects.BREATH || player.aspect == Aspects.MIND)     flavorText.add("'Reality is written in the ink of people's lives.' ");
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.LIFE)     flavorText.add("'Knowledge and Desire are meaningless without the strengh to see them through.' ");
+        if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART)     flavorText.add("'When we combine the light that shines within, there is nothing we can't do.' ");
         if(flavorText.length == 1) flavorText.add("Nothing is true, everything is permitted."); //i.e. aspect not found
+        flavorText.add("<BR><BR>");
         flavorText.add(processTier3(div));
         appendHtml(div,flavorText.join("")); //won't let me just add strings without yellow squiggle.
         drawAll();
