@@ -490,11 +490,11 @@ class GameEntity implements Comparable<GameEntity> {
 
         //simple doom prophecy mechanic.  more likely to die, but buff if you get around it somehow (i.e. die but then revive)
         if(prophecy == ProphecyState.ACTIVE) {
-            print("Debugging: ${htmlTitle()} Lost half of $statName to prophecy in session ${session.session_id}");
-            ret += -1* ret/2;  //lose half your stats
+            //print("Debugging: ${htmlTitle()} Lost half of $statName to prophecy in session ${session.session_id}");
+            ret += -1* (ret/2).abs();  //lose half your stats
         }else if(prophecy == ProphecyState.FULLFILLED) {
-            ret += ret/2;  //gain half your stats
-            print("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
+            ret += (ret/2).abs();  //gain half your stats
+            //print("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
         }
 
         return (ret).round();

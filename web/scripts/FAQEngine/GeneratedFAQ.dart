@@ -5,6 +5,7 @@ import "../SBURBSim.dart";
 class GeneratedFAQ {
     ///will be printed first, no quirk.
     String asciiHeader;
+    bool grimDark = false; //if true, zalgo
     Player author;
     Player reader;
     ///what symbold do you spam for the header
@@ -46,7 +47,7 @@ class GeneratedFAQ {
         for(FAQSection s in sections) {
             String header ="${symbol*amount}${q.translate(s.header)}";
             header.replaceAll("\n", ""); //no new lines in header plz
-            ret = "$ret <br><Br>$header${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
+            ret = "$ret <br><Br>${header}${symbol*amount}<br><br>${Zalgo.generate(q.translate(s.body))}<br><Br>";
         }
         return "<div class = 'FAQ'>$ret</div>";
     }

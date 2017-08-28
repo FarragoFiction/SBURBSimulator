@@ -100,7 +100,10 @@ class GetWasted extends Scene {
         if(f == murderModeFAQ) print("AB: MurderModeFAQ in session ${session.session_id} ");
         if(f == tricksterFAQ) print("AB: TricksterFAQ in session ${session.session_id} ");
         if(f == robotFAQ) print("AB: RobotFAQ in session ${session.session_id} ");
-        if(f == grimDarkFAQ) print("AB: GrimDarkFAQ in session ${session.session_id} ");
+        if(f == grimDarkFAQ) {
+            gfaq.grimDark = true;
+            print("AB: GrimDarkFAQ in session ${session.session_id} ");
+        }
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
     }
