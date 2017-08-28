@@ -361,7 +361,7 @@ class Session {
 
         Relationship.decideInitialQuadrants(rand, this.players);
 
-        this.hardStrength = 1000 + 50 * this.players.length;
+        this.hardStrength = 500 + 20 * this.players.length;
     }
 
     String convertPlayerNumberToWords() {
