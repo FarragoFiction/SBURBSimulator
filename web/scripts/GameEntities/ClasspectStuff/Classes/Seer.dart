@@ -16,7 +16,7 @@ class Seer extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 0.06, false)
+        new AssociatedStat("sburbLore", 0.2, false)
     ]);
 
     @override
