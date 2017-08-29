@@ -221,7 +221,32 @@ class GetWasted extends Scene {
 
     //set up teleporters or flying mounts so quests are WAY easier to do
     String exploitMobility(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
+        if(player.aspect == Aspects.BREATH) {
+            ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
+        }else if(player.aspect == Aspects.SPACE) {
+            ret = " They set up a frankly scandalous series of transportalizers";
+        }else {
+            ret = "";
+        }
+        ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
+
+        //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
+        print("AB: Exploiting mobility in session ${session.session_id}.");
+        for(int i = 0; i<5; i++) {
+            for(Player p in session.players) {
+                if(p.land != null) {
+                    //print out random quest
+                    ret += "The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
+                    p.increaseLandLevel();
+                }else {
+                    ret += "The ${p.htmlTitle()} grinds against random enemies. ";
+                }
+                p.increasePower();
+            }
+        }
+
+        return ret;
 
     }
 
