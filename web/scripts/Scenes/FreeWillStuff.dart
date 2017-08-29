@@ -368,9 +368,9 @@ class FreeWillStuff extends Scene{
 			return ret;
 	}
 	String considerForceGodTier(Player player){
-		if(player.getStat("freeWill") < 25) return null; //requires great will power to commit suicide or murder for the greater good.
+		if(player.getStat("freeWill") < 0) return null; //requires great will power to commit suicide or murder for the greater good.
 		if(player.gnosis < 3) return null; //regular players will never do this
-		window.alert("I have enough gnosis to consider god tiering");
+		print("Debugging Gnosis: I have enough gnosis to consider god tiering in session ${session.session_id}");
 		if(player.isActive() && (player.getStat("sanity") > 0 || player.murderMode)){
 			return this.becomeGod(player);
 		}else if(player.getStat("sanity") > 0 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.
@@ -445,36 +445,36 @@ class FreeWillStuff extends Scene{
 		return null;
 	}
 	String becomeGod(Player player){
+		print("Debugging Gnosis: trying to become god in session ${session.session_id}");
+
 		if(!player.godTier){
+			print("Debugging Gnosis: not god tier in session ${session.session_id}");
+
 			String intro = "The " + player.htmlTitleBasic()+" knows how the god tiering mechanic works";
 			if(player.murderMode){
 				intro += " and they are too far gone to care about the consequences of failure";
 			}
 			if(player.godDestiny){
+				print("Debugging Gnosis: god destiny in session ${session.session_id}");
 
 				removeFromArray(player, this.session.availablePlayers);
 				if((player.dreamSelf || player.isDreamSelf)){
 					var ret = this.godTierHappens(player);
 					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
-				}else{
-					print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
-					intro += player.makeDead( "trying to go God Tier without a dream self.");
-					return intro + ". They steel their will and prepare to commit a trivial act of self suicide.  They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 				}
 				//print(player.title() + " commits suicide and gets tiger " + this.session.session_id);
 			}else{
 				if(player.rollForLuck() > 100){
+					print("Debugging Gnosis: lucky in session ${session.session_id}");
+
 					removeFromArray(player, this.session.availablePlayers);
 					if((player.dreamSelf || player.isDreamSelf)){
 						var ret = this.godTierHappens(player);
 						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
-					}else{
-						print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
-						intro += player.makeDead( "trying to go God Tier without a dream self.");
-						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. "  + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
-
 					}
 					}else{
+					print("Debugging Gnosis: died god tiering ${session.session_id}");
+
 					player.dead = true;
 					String bed = "bed";
 					if(player.isDreamSelf) bed = "slab";
