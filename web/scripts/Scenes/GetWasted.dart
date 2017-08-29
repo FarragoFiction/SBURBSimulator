@@ -242,7 +242,7 @@ class GetWasted extends Scene {
                 }else if(!p.dead) {
                     ret += "The ${p.htmlTitle()} grinds against random enemies. ";
                 }
-
+                //i will let even the dead get power tho, cuz the mobility exploit is still there when they get revived
                 p.increasePower();
             }
         }
