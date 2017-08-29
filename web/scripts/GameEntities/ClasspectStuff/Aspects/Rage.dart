@@ -74,7 +74,8 @@ class Rage extends Aspect {
         new AssociatedStat("MANGRIT", 2, true),
         new AssociatedStat("mobility", 1, true),
         new AssociatedStat("sanity", -1, true),
-        new AssociatedStat("RELATIONSHIPS", -1, true)
+        new AssociatedStat("RELATIONSHIPS", -1, true),
+        new AssociatedStat("sburbLore", 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Rage(int id) :super(id, "Rage", isCanon: true);
