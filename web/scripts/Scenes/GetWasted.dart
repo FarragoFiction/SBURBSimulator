@@ -265,7 +265,7 @@ class GetWasted extends Scene {
                 String divID = "gnosis3${div.id}player${p.id}";
                 subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
                 //picture shown differs based on method.
-                if(p.dreamSelf && !p.isDreamSelf) { //corpse smooch
+                if(p.dreamSelf && !p.isDreamSelf && p != player) { //corpse smooch
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
                     drawingMethods.add(new DrawMethodWithParameter(drawCorpseSmooch,divID, [p, player]));
@@ -277,7 +277,7 @@ class GetWasted extends Scene {
                     drawingMethods.add(new DrawMethodWithParameter(drawGodRevive,divID,[p, player]));
                     p.makeAlive();
                     ret += subRet;
-                }else if(ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
+                }else if(player != player && ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
                     drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,divID,[p, ghost, player]));

@@ -163,7 +163,7 @@ class Player extends GameEntity {
         String denizenName = "";
         num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
         //print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
-        if (denizenIndex == 0) {
+        if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
             print("strength demands a weak denizen ${this.session.session_id}");
