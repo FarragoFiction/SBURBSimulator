@@ -237,7 +237,9 @@ class GetWasted extends Scene {
             for(Player p in session.players) {
                 if(p.land != null && p.grimDark <2) {
                     //print out random quest
-                    ret += "<Br>The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
+                    if(!p.dead) {
+                        ret += "<Br>The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
+                    }
                     p.increaseLandLevel();
                 }else if(!p.dead) {
                     ret += "The ${p.htmlTitle()} grinds against random enemies. ";
