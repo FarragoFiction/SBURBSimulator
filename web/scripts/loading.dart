@@ -110,7 +110,7 @@ String escapeId(String toEscape) {
 
 
 dynamic checkDone(String skipInit){
-  querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
+    if(querySelector("#loading_stats") != null) querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
     if(skipInit != null && !skipInit.isEmpty){

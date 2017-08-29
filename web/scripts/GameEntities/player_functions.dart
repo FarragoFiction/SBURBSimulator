@@ -652,12 +652,29 @@ dynamic getAverageRelationshipValue(List<GameEntity> players) {
     return (ret / players.length).round();
 }
 
+num getTotalGrist(List<GameEntity> players) {
+    if (players.isEmpty) return 0;
+    num ret = 0;
+    for (int i = 0; i < players.length; i++) {
+        ret += players[i].grist;
+    }
+    return ret;
+}
 
 num getAveragePower(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
         ret += players[i].getStat("power");
+    }
+    return (ret / players.length).round();
+}
+
+num getAverageGrist(List<GameEntity> players) {
+    if (players.isEmpty) return 0;
+    num ret = 0;
+    for (int i = 0; i < players.length; i++) {
+        ret += players[i].grist;
     }
     return (ret / players.length).round();
 }

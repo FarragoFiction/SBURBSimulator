@@ -69,7 +69,7 @@ class Light extends Aspect {
         new AssociatedStat("freeWill", 1, true),
         new AssociatedStat("sanity", -1, true),
         new AssociatedStat("hp", -1, true),
-        new AssociatedStat("sburbLore", 0.25, false) //yes, technically it's from an aspect, but it's not NORMAL.
+        new AssociatedStat("sburbLore", 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Light(int id) :super(id, "Light", isCanon: true);

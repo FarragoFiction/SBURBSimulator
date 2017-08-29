@@ -69,7 +69,7 @@ class Player extends GameEntity {
     num gnosis = 0; //sburbLore causes you to increase a level of this.
     num grimDark = 0; //  0 = none, 1 = some, 2 = some more 3 = full grim dark with aura and font and everything.
     bool leader = false;
-    num landLevel = 0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
+    double landLevel = 0.0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
     bool denizenFaced = false;
     bool denizenDefeated = false;
     bool denizenMinionDefeated = false;
@@ -126,6 +126,19 @@ class Player extends GameEntity {
             }
         }
         return ret;
+    }
+
+    double get trashMobGrist => 10.0;
+
+    ///not the only way to get grist, but you get a small base amount just for doing that shit
+    void increaseLandLevel([double points = 1.0]) {
+        landLevel += points;
+       increaseGrist();
+    }
+
+    void increaseGrist([double points = -1.0]) {
+        if(points < 0) points = trashMobGrist;
+        grist += points;
     }
 
     @override
@@ -194,7 +207,7 @@ class Player extends GameEntity {
         tmpStatHolder["alchemy"] = 10;
         tmpStatHolder["freeWill"] = 10;
         tmpStatHolder["power"] = 5 * strength;
-        tmpStatHolder["grist"] = 1000;
+        tmpStatHolder["grist"] = 100;
         tmpStatHolder["sburbLore"] = 0; //needed so associated stats don't crash
         tmpStatHolder["RELATIONSHIPS"] = 10; //not REAL relationships, but real enough for our purposes.
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -216,6 +229,7 @@ class Player extends GameEntity {
         }
         //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHoldergetStat("sanity"),tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000000);
         denizen.setStatsHash(tmpStatHolder);
+        denizen.grist = 1000; //denizen matters MOST for if you can frog or not
         this.denizen = denizen;
         this.denizenMinion = denizenMinion;
         this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);

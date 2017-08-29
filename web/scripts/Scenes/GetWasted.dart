@@ -26,7 +26,7 @@ class GetWasted extends Scene {
     //static Logger logger = Logger.get("GetWasted", false);
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 3;
+    int tippingPointBase = 13; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
     //for everything that's not a class or aspect but can be in any faq
     WeightedList<FAQFile> miscFAQS = new WeightedList<FAQFile>();
     //special ones based on current circumstances
@@ -61,7 +61,13 @@ class GetWasted extends Scene {
     }
 
     bool loreReachedTippingPoint(Player p) {
-        return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1) && p.gnosis < 4); //linear growth, but the base is high.
+        if(p.gnosis >=4) return false; //you are done yo
+        //linear works well for these
+        if(p.gnosis == 1 || p.gnosis == 4) {
+            return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
+        }else {
+            return (p.getStat("sburbLore") >= tippingPointBase/2 * (p.gnosis + 1));
+        }
     }
 
     @override
@@ -80,7 +86,7 @@ class GetWasted extends Scene {
         }else if (player.gnosis == 3) {
             tier3(div);
         }else if(player.gnosis == 4) {
-            appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
+            tier4(div);
         }
     }
 
@@ -221,7 +227,35 @@ class GetWasted extends Scene {
 
     //set up teleporters or flying mounts so quests are WAY easier to do
     String exploitMobility(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
+        if(player.aspect == Aspects.BREATH) {
+            ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
+        }else if(player.aspect == Aspects.SPACE) {
+            ret = " They set up a frankly scandalous series of transportalizers";
+        }else {
+            ret = "";
+        }
+        ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
+
+        //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
+        print("AB: Exploiting mobility in session ${session.session_id}.");
+        for(int i = 0; i<5; i++) {
+            for(Player p in session.players) {
+                if(p.land != null && p.grimDark <2) {
+                    //print out random quest
+                    if(!p.dead) {
+                        ret += "<Br>The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
+                    }
+                    p.increaseLandLevel();
+                }else if(!p.dead) {
+                    ret += "The ${p.htmlTitle()} grinds against random enemies. ";
+                }
+                //i will let even the dead get power tho, cuz the mobility exploit is still there when they get revived
+                p.increasePower();
+            }
+        }
+
+        return ret;
 
     }
 
@@ -313,6 +347,7 @@ class GetWasted extends Scene {
 
     //simple, foreshadowing things
     void tier1(Element div) {
+        session.hasTier1Events = true;
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
@@ -320,6 +355,7 @@ class GetWasted extends Scene {
     }
 
     void tier2(Element div) {
+        session.hasTier2Events = true;
         //this tier will unlock frog breeding and various free will shits besides english tier.
         //can also write a faq
         writeFAQ(div);
@@ -327,7 +363,7 @@ class GetWasted extends Scene {
         //small boost to space player land leve, for example. maybe some grist for everyone (once that's a thing)
         Player space = findAspectPlayer(this.session.players, Aspects.SPACE);
         if(space == null) return;
-        space.landLevel += 10;
+        space.increaseLandLevel(5.0);
         String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
         if(space == player) {
             ret += " They waste no time and just fucking DO it. ";
@@ -341,6 +377,7 @@ class GetWasted extends Scene {
     }
 
     void tier3(Element div) {
+        session.hasTier3Events = true;
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
         if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.' ");
@@ -356,8 +393,14 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        session.hasTier4Events = true;
         //todo waste tier, will be dope as fuk
         //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
+        /*	//if i have less than expected grist, then no frog, bucko
+	int expectedGristContributionPerPlayer = 8000;
+	int minimumGristPerPlayer = 5000; //less than this, and no frog is possible. can also be moded by hope player
+	*/
+        appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.

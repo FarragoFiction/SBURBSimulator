@@ -11,6 +11,11 @@ class Sylph extends SBURBClass {
     @override
     List<String> handles = ["serious", "surly", "sour", "sweet", "stylish", "soaring", "serene", "salacious"];
 
+    @override
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("sburbLore", 0.1, false)
+    ]);
+
     Sylph() : super("Sylph", 5, true);
 
 
