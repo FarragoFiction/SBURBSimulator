@@ -265,6 +265,7 @@ class SessionSummary {
         summary.setNumStat("averageMinLuck", getAverageMinLuck(session.players));
         summary.setNumStat("averageMaxLuck", getAverageMaxLuck(session.players));
         summary.setNumStat("averagePower", getAveragePower(session.players));
+        summary.setNumStat("averageGrist", getAverageGrist(session.players));
         summary.setNumStat("averageMobility", getAverageMobility(session.players));
         summary.setNumStat("averageFreeWill", getAverageFreeWill(session.players));
         summary.setNumStat("averageHP", getAverageHP(session.players));
@@ -574,6 +575,7 @@ class MultiSessionSummary {
         setStat("rocksFell", 0);
         setStat("opossumVictory", 0);
         setStat("crashedFromSessionBug", 0);
+        setStat("averageGrist", 0);
     }
 
     num getNumStat(String statName) {
@@ -781,7 +783,7 @@ class MultiSessionSummary {
     }
 
     bool isAverageProperty(String propertyName) {
-        return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
+        return propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
     }
 
     bool isPropertyToIgnore(String propertyName) {
@@ -797,7 +799,7 @@ class MultiSessionSummary {
     }
 
     bool isFilterableProperty(String propertyName) {
-        return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
+        return !(propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
     }
 
     String generateHTML() {
@@ -1017,6 +1019,7 @@ class MultiSessionSummary {
             mss.ghosts.addAll(ss.ghosts);
             mss.addNumStat("sizeOfAfterLife", ss.getNumStat("sizeOfAfterLife"));
             mss.addNumStat("averageMinLuck", ss.getNumStat("averageMinLuck"));
+            mss.addNumStat("averageGrist", ss.getNumStat("averageGrist"));
             mss.addNumStat("averageMaxLuck", ss.getNumStat("averageMaxLuck"));
             mss.addNumStat("averagePower", ss.getNumStat("averagePower"));
             mss.addNumStat("averageMobility", ss.getNumStat("averageMobility"));
@@ -1036,6 +1039,7 @@ class MultiSessionSummary {
         mss.setStat("averageMobility", (mss.getNumStat("averageMobility") / sessionSummaries.length).round());
         mss.setStat("averageFreeWill", (mss.getNumStat("averageFreeWill") / sessionSummaries.length).round());
         mss.setStat("averageHP", (mss.getNumStat("averageHP") / sessionSummaries.length).round());
+        mss.setStat("averageGrist", (mss.getNumStat("averageGrist") / sessionSummaries.length).round());
         mss.setStat("averageSanity", (mss.getNumStat("averageSanity") / sessionSummaries.length).round());
         mss.setStat("averageRelationshipValue", (mss.getNumStat("averageRelationshipValue") / sessionSummaries.length).round());
         mss.setStat("averageNumScenes", (mss.getNumStat("averageNumScenes") / sessionSummaries.length).round());

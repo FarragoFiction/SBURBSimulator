@@ -662,6 +662,15 @@ num getAveragePower(List<GameEntity> players) {
     return (ret / players.length).round();
 }
 
+num getAverageGrist(List<GameEntity> players) {
+    if (players.isEmpty) return 0;
+    num ret = 0;
+    for (int i = 0; i < players.length; i++) {
+        ret += players[i].grist;
+    }
+    return (ret / players.length).round();
+}
+
 
 String getPVPQuip(Player deadPlayer, Player victor, String deadRole, String victorRole) {
     if (victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)) {
