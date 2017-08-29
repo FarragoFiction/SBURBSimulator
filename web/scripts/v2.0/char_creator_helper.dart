@@ -174,16 +174,11 @@ class CharacterCreatorHelper {
     }
 
     void syncPlayerToTextBoxes(Player player) {
-        (querySelector("#interestCategory1${player.id}") as SelectElement).value =
-        (player.interest1.category.name);
-        (querySelector("#interestCategory2${player.id}") as SelectElement).value =
-        (player.interest2.category.name);
-        (querySelector("#interest1${player.id}") as InputElement).value =
-        (player.interest1.name);
-        (querySelector("#interest2${player.id}") as InputElement).value =
-        (player.interest2.name);
-        (querySelector("#chatHandle${player.id}") as InputElement).value =
-        (player.chatHandle);
+        (querySelector("#interestCategory1${player.id}") as SelectElement).value = (player.interest1.category.name);
+        (querySelector("#interestCategory2${player.id}") as SelectElement).value = (player.interest2.category.name);
+        (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1.name);
+        (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2.name);
+        (querySelector("#chatHandle${player.id}") as InputElement).value = (player.chatHandle);
     }
 
     dynamic drawDropDowns(Player player) {
@@ -795,16 +790,11 @@ class CharacterCreatorHelper {
 
     void wireUpTextBoxes(Player player) {
         //first, choosing interest category should change the contents of interestDrop1 or 2 (but NOT any value in the player or the text box.)
-        SelectElement interestCategory1Dom =
-        querySelector("#interestCategory1${player.id}");
-        SelectElement interestCategory2Dom =
-        querySelector("#interestCategory2${player.id}");
-        SelectElement interest1DropDom =
-        querySelector("#interestDrop1${player.id}");
-        SelectElement interest2DropDom =
-        querySelector("#interestDrop2${player.id}");
-        InputElement interest1TextDom = querySelector(
-            "#interest1${player.id}"); //don't wire these up. instead, get value on url creation.
+        SelectElement interestCategory1Dom = querySelector("#interestCategory1${player.id}");
+        SelectElement interestCategory2Dom = querySelector("#interestCategory2${player.id}");
+        SelectElement interest1DropDom = querySelector("#interestDrop1${player.id}");
+        SelectElement interest2DropDom = querySelector("#interestDrop2${player.id}");
+        InputElement interest1TextDom = querySelector("#interest1${player.id}"); //don't wire these up. instead, get value on url creation.
         InputElement interest2TextDom = querySelector("#interest2${player.id}");
         InputElement chatHandle = querySelector("#chatHandle${player.id}");
         CharacterCreatorHelper that = this;
@@ -821,14 +811,12 @@ class CharacterCreatorHelper {
         interest2TextDom.onChange.listen((Event e) {
             String ic2 = interestCategory2Dom.value;
             String i2 = interest2TextDom.value;
-            player.interest2 =
-            new Interest(i2, InterestManager.getCategoryFromString(ic2));
+            player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
             that.redrawSinglePlayer(player);
         });
 
         chatHandle.onClick.listen((Event e) {
-            helpText
-                .setInnerHtml(that.generateHelpText("chatHandle", player.class_name.name));
+            helpText.setInnerHtml(that.generateHelpText("chatHandle", player.class_name.name));
         });
 
         chatHandle.onChange.listen((Event e) {
@@ -850,11 +838,9 @@ class CharacterCreatorHelper {
 
         interestCategory2Dom.onChange.listen((Event e) {
             OptionElement icDropDown = interestCategory2Dom.selectedOptions[0];
-            InterestCategory ic2 =
-            InterestManager.getCategoryFromString(icDropDown.value);
+            InterestCategory ic2 = InterestManager.getCategoryFromString(icDropDown.value);
             interest2DropDom.setInnerHtml(that.drawInterestDropDown(ic2, 2, player));
-            helpText
-                .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
+            helpText.setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
             player.interest2.category.removeInterest(player.interest2.name);
             player.interest2.category = ic2;
             player.interest2.category.addInterest(player.interest2.name);
@@ -875,12 +861,10 @@ class CharacterCreatorHelper {
         interest2DropDom.onChange.listen((Event e) {
             OptionElement icDropDown = interest2DropDom.selectedOptions[0];
             interest2TextDom.value = (icDropDown.value);
-            helpText
-                .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
-            String ic2 = interestCategory1Dom.value;
+            helpText.setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
+            String ic2 = interestCategory2Dom.value;
             String i2 = icDropDown.value;
-            player.interest2 =
-            new Interest(i2, InterestManager.getCategoryFromString(ic2));
+            player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
             that.redrawSinglePlayer(player);
         });
     }

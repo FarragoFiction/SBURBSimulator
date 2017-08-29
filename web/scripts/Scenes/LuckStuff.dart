@@ -6,8 +6,8 @@ class LuckStuff extends Scene{
 	@override
 	List<Player> playerList = <Player>[];  //what players are already in the medium when i trigger?
 	List<Roll> rolls = [];	//luck can be good or it can be bad.
-	num minLowValue = -100;
-	num minHighValue = 50;
+	num minLowValue = -25;
+	num minHighValue = 25;
 	num landLevelNeeded = 12;
 	num numberTriggers = 0; //can't just spam this.
 
