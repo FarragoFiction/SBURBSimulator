@@ -235,7 +235,7 @@ class GetWasted extends Scene {
         print("AB: Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
             for(Player p in session.players) {
-                if(p.land != null && !p.dead && p.grimDark <2) {
+                if(p.land != null && p.grimDark <2) {
                     //print out random quest
                     ret += "<Br>The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
                     p.increaseLandLevel();
