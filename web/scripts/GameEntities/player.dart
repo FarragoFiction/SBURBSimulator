@@ -229,6 +229,7 @@ class Player extends GameEntity {
         }
         //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHoldergetStat("sanity"),tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000000);
         denizen.setStatsHash(tmpStatHolder);
+        denizen.grist = 1000; //denizen matters MOST for if you can frog or not
         this.denizen = denizen;
         this.denizenMinion = denizenMinion;
         this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);

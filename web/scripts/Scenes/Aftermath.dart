@@ -16,6 +16,7 @@ class Aftermath extends Scene {
 
 	//if i have less than expected grist, then no frog, bucko
 	int expectedGristContributionPerPlayer = 400;
+	int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
 
 
 	//vriska never even bothered to go into the frog. hussie was still in the medium
@@ -208,14 +209,22 @@ class Aftermath extends Scene {
 		//there is  a frog but it's not good enough
 		bool frogSick = spacePlayer.landLevel < session.goodFrogLevel;
 		bool frog = !noFrogCheck(spacePlayer);
-		bool grist = enoughGrist();
+		bool grist = enoughGristForFull();
 		//frog is sick if it was bred wrong, or if it was nutured wrong
 		return (frog && (frogSick || !grist));
 
 	}
 
-	bool enoughGrist() {
+	bool enoughGristForFull() {
 		return getTotalGrist(session.players) > expectedGristContributionPerPlayer * session.players.length;
+	}
+
+	bool enoughGristForAny() {
+		return getTotalGrist(session.players) > minimumGristPerPlayer * session.players.length;
+	}
+
+	int gristPercent() {
+		return (100*(getTotalGrist(session.players)/minimumGristPerPlayer * session.players.length)).round();
 	}
 
 
@@ -223,20 +232,24 @@ class Aftermath extends Scene {
 		//there is  a frog but it's not good enough
 		bool frogSick = spacePlayer.landLevel < session.goodFrogLevel;
 		bool frog = !noFrogCheck(spacePlayer);
-		bool grist = enoughGrist();
+		bool grist = enoughGristForFull();
 		//frog is full if it was bred AND nurtured right.
 		return (frog && (!frogSick &&  grist));
 	}
 
 	//don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
 	bool purpleFrogCheck(Player spacePlayer) {
-		return spacePlayer.landLevel <= (this.session.minFrogLevel * -1);
+		bool frog = spacePlayer.landLevel <= (this.session.minFrogLevel * -1);
+		bool grist = enoughGristForAny();
+		return (frog && grist);
 	}
 
 
 	//don't care about grist, if there's no frog to deploy at all. eventually check for rings
 	bool noFrogCheck(Player spacePlayer) {
-		return spacePlayer.landLevel <= this.session.minFrogLevel;
+		bool frog =  spacePlayer.landLevel <= this.session.minFrogLevel;
+		bool grist = !enoughGristForAny();
+		return (frog || grist);
 	}
 
 	@override
@@ -271,10 +284,10 @@ class Aftermath extends Scene {
 			}
 			if(!noFrogCheck(spacePlayer)){
 				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
-				if(enoughGrist()) {
+				if(enoughGristForFull()) {
 					end += "The entire party showers the battlefield with hard earned grist. ";
 				}else {
-					print("AB: Not enough grist in session ${"session.session_id"}");
+					print("AB: Not enough grist in session ${session.session_id}");
 					end += "Huh. There doesn't seem to be much grist to deploy to the battlefied.  ";
 				}
 				if(sickFrogCheck(spacePlayer)){
@@ -307,14 +320,22 @@ class Aftermath extends Scene {
 				if(this.session.rocksFell){
 					end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
 				}else{
-					end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-					end += " They only got ${(spacePlayer.landLevel/this.session.minFrogLevel*100).round()}% of the way through. ";
-					print("${(spacePlayer.landLevel/this.session.minFrogLevel*100).round()} % frog in session: ${this.session.session_id}");
-					if(spacePlayer.landLevel < 0){
-						end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
+					if(noFrogCheck(spacePlayer) && enoughGristForAny()) {
+						end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
+						end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()}% of the way through. ";
+						print("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
+						if (spacePlayer.landLevel < 0) {
+							end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
+						}
+						end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
+						end += " No universe frog, no new universe to live in. Thems the breaks. ";
+					}else if(!enoughGristForAny()){
+						end += "<br>Unfortunately, the players did not collect enough grist to even BEGIN to nurture the battlefield. They only got ${gristPercent()}% of the needed amount. ";
+						end += "Apparently it wasn't enough to focus on beating the game, you had to actually PLAY it, too.";
+					}else {
+						print("AB: Frog glitched out, should exist but doesn't in session ${session.session_id}");
+						end += "<br> Whoa.  Tell JR that this shouldn't happen. There's apparently no Universe Frog, but there IS a frog and also enough grist.";
 					}
-					end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
-					end += " No universe frog, no new universe to live in. Thems the breaks. ";
 				}
 
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
