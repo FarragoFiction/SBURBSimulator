@@ -124,7 +124,7 @@ class CharCreatorController extends SimController {
     String ic2 = interestCategory2Dom.value;
     //always make a new interest, it'll either add it or not.
     player.interest1 = new Interest(i1, InterestManager.getCategoryFromString(ic1));
-    player.interest1 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
+    player.interest2 = new Interest(i2, InterestManager.getCategoryFromString(ic2));
   }
 
 
