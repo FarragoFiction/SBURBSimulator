@@ -611,7 +611,7 @@ class MultiSessionSummary {
     }
 
     void setAspects() {
-        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Might"];
         for (num i = 0; i < labels.length; i++) {
             this.aspects[labels[i]] = 0;
         }

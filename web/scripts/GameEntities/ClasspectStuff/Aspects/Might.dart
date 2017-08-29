@@ -39,10 +39,10 @@ class Might extends Aspect {
   String denizenSongDesc = "A low note is hummed. It is the one Perseverance plays to keep itself going. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
-  /* Because i dont know what to put here yet.
+  //Because i dont know what to put here yet.
   @override
   List<String> denizenNames = new List<String>.unmodifiable(<String>['Light', 'Helios', 'Ra', 'Cetus', 'Iris', 'Heimdall', 'Apollo', 'Coeus', 'Hyperion', "Belobog", 'Phoebe', 'Metis', 'Eos', 'Dagr', 'Asura', 'Amaterasu', 'Sol', 'Tyche', 'Odin ', 'Erutuf']);
-*/
+
 
   @override
   List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[

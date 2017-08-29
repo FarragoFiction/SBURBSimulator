@@ -41,6 +41,7 @@ export "Scenes/FightKing.dart";
 export "Scenes/Aftermath.dart";
 export "Scenes/BeTriggered.dart";
 export "Scenes/Breakup.dart";
+export "Scenes/ConfrontJack.dart";
 export "Scenes/CorpseSmooch.dart";
 export "Scenes/DisengageMurderMode.dart";
 export "Scenes/DoEctobiology.dart";
