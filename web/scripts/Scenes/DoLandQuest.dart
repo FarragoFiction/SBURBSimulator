@@ -225,7 +225,7 @@ class DoLandQuest extends Scene{
 
 		if(helper.aspect == Aspects.DOOM){
 			player.increaseLandLevel();
-			helper.increaseLandLevel(-1);
+			helper.increaseLandLevel(-1.0);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " figures the " + player.htmlTitle() + " could make better use of some quest items, so generously donates them to the cause. ";
 			}else{
