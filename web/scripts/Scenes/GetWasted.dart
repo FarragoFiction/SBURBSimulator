@@ -327,7 +327,7 @@ class GetWasted extends Scene {
         //small boost to space player land leve, for example. maybe some grist for everyone (once that's a thing)
         Player space = findAspectPlayer(this.session.players, Aspects.SPACE);
         if(space == null) return;
-        space.landLevel += 10;
+        space.increaseLandLevel(5.0);
         String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
         if(space == player) {
             ret += " They waste no time and just fucking DO it. ";

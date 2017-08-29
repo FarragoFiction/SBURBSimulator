@@ -147,7 +147,7 @@ class VoidyStuff extends Scene {
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");
 	}
 	void dolandQuests(Element div, Element specialDiv){
-		this.player.landLevel +=2;
+		this.player.increaseLandLevel(2.0);
 		appendHtml(div, " Their consorts seem pretty happy, though. ") ;
 		if(rand.nextDouble() > .95){ //small chance of serious.
 			appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(this.player.aspect.preDenizenQuests) + ". ");

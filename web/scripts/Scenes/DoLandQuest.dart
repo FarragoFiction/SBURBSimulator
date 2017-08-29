@@ -163,7 +163,7 @@ class DoLandQuest extends Scene{
 		ret += helper.interactionEffect(player);
 
 		if(helper == player){
-			player.landLevel ++;
+			player.increaseLandLevel();
 			player.increasePower();
 			return " Partnering up with your own time clones sure is efficient. ";
 		}
@@ -180,7 +180,7 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == Aspects.BREATH){
 			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
 			helper.increasePower();
-			player.landLevel ++;
+			player.increaseLandLevel();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " tells the " + player.htmlTitle() + " that they are going to run on ahead and do some quests on " + player.shortLand() + " on their own. The " + player.htmlTitle() + " is freed up to do other shit, now. " ;
 				//print("breath player doing quests for a friend: " + this.session.session_id);
@@ -202,7 +202,7 @@ class DoLandQuest extends Scene{
 		}
 
 		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
-			player.landLevel ++;
+			player.increaseLandLevel();
 			helper.increasePower();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " is doing a kickass job of helping the " + player.htmlTitle() + ". " ;
@@ -224,8 +224,8 @@ class DoLandQuest extends Scene{
 		}
 
 		if(helper.aspect == Aspects.DOOM){
-			player.landLevel += 1;
-			helper.landLevel +=-1;
+			player.increaseLandLevel();
+			helper.increaseLandLevel(-1);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " figures the " + player.htmlTitle() + " could make better use of some quest items, so generously donates them to the cause. ";
 			}else{
@@ -234,8 +234,8 @@ class DoLandQuest extends Scene{
 		}
 
 		if(helper.class_name == SBURBClassManager.THIEF){
-			player.landLevel += -1;
-			helper.landLevel ++;
+			player.increaseLandLevel(-1);
+			helper.increaseLandLevel();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " covertly spends at least half of their time diverting resources to complete their own quests. ";
 			}else{
@@ -283,17 +283,17 @@ class DoLandQuest extends Scene{
 		if(player.sprite.dead) return "";//nothing to see here.
 		String ret = player.sprite.htmlTitle();
 		if(player.sprite.corrupted){
-			player.landLevel += -0.75;
+			player.increaseLandLevel(-0.75);
 		}else if(player.sprite.helpfulness > 0){
 			//print("good sprite: " + this.session.session_id);
-			player.landLevel += 1;
+			player.increaseLandLevel();
 		}else if(player.sprite.helpfulness < 0){
 			//print("bad sprite: " + this.session.session_id);
-			player.landLevel += -0.5;
+			player.increaseLandLevel(-0.5);
 			player.addStat("sanity", -0.1);
 		}else{
 			//print("normal sprite: " + this.session.session_id);
-			player.landLevel += 0.5;
+			player.increaseLandLevel(0.5);
 		}
 		ret +=  " " + player.sprite.helpPhrase + " "; //best idea.
 		return ret;
@@ -304,12 +304,12 @@ class DoLandQuest extends Scene{
 		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
 		player.increasePower();
-		player.landLevel ++;
+		player.increaseLandLevel();
 		if(helper != null){
 			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
-			player.landLevel ++;
+			player.increaseLandLevel();
 		}else{
 			ret += " does";
 		}
