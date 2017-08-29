@@ -358,6 +358,10 @@ class GetWasted extends Scene {
     void tier4(Element div) {
         //todo waste tier, will be dope as fuk
         //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
+        /*	//if i have less than expected grist, then no frog, bucko
+	int expectedGristContributionPerPlayer = 8000;
+	int minimumGristPerPlayer = 5000; //less than this, and no frog is possible. can also be moded by hope player
+	*/
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.
