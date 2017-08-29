@@ -368,8 +368,9 @@ class FreeWillStuff extends Scene{
 			return ret;
 	}
 	String considerForceGodTier(Player player){
+		if(player.getStat("freeWill") < 25) return null; //requires great will power to commit suicide or murder for the greater good.
 		if(player.gnosis < 3) return null; //regular players will never do this
-		if(player.getStat("freeWill") < 50) return null; //requires great will power to commit suicide or murder for the greater good.
+		window.alert("I have enough gnosis to consider god tiering");
 		if(player.isActive() && (player.getStat("sanity") > 0 || player.murderMode)){
 			return this.becomeGod(player);
 		}else if(player.getStat("sanity") > 0 || player.murderMode) {  //don't risk killing a friend unless you're already crazy or the idea of failure hasn't even occured to you.

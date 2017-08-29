@@ -51,19 +51,22 @@ class PrepareToExileQueen extends Scene {
 		//also, maybe it SHOULD be fucking nothing to a first guardian queen. why the fuck does she care about whatever bullshit you doing. she's a GOD.
 		return ret + rand.pickFrom(lightQueenQuests);
 	}
-	dynamic content(){
-
+	String content(){
 		removeFromArray(this.player, this.session.availablePlayers);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
+		this.player.increasePower();
 		if(this.player.getStat("power")  < this.session.queen.getStat("power")* .25){ //queen is 100 and you are less than 25
 			return this.lightDamage();
-		}else if(this.player.getStat("power") < this.session.queen.getStat("power")){ //queen is 100 and you are at least 50
+		}else if(this.player.getStat("power") <= this.session.queen.getStat("power")){ //queen is 100 and you are at least 50
 			return this.moderateDamage();
 		}else if(this.player.getStat("power") > this.session.queen.getStat("power")){
 			return this.heavyDamage();
+		}else {
+			print("AB: a nonsensical amount of damage is being done to the queen in session ${session.session_id}");
+			return this.lightDamage();
 		}
-		this.player.increasePower();
+
 	}
 
 }
