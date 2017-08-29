@@ -80,7 +80,7 @@ class GetWasted extends Scene {
         }else if (player.gnosis == 3) {
             tier3(div);
         }else if(player.gnosis == 4) {
-            appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
+            tier4(div);
         }
     }
 
@@ -391,6 +391,7 @@ class GetWasted extends Scene {
 	int expectedGristContributionPerPlayer = 8000;
 	int minimumGristPerPlayer = 5000; //less than this, and no frog is possible. can also be moded by hope player
 	*/
+        appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.
