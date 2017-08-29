@@ -213,7 +213,7 @@ class LuckStuff extends Scene{
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
-				roll.player.makeDead("luckily on their Quest Bed");
+				ret += roll.player.makeDead("luckily on their Quest Bed");
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit.";
 				this.session.sacrificialSlab = true;
@@ -253,7 +253,7 @@ class LuckStuff extends Scene{
 			return ret;
 		}
 		String ret = "What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. How unlucky do you even need to BE!? They are DEAD.";
-		roll.player.makeDead("from a Bad Break.");
+		ret += roll.player.makeDead("from a Bad Break.");
 		appendHtml(div, ret);
 
 		String divID = (div.id) + "_badLuckDeath" + roll.player.chatHandle;

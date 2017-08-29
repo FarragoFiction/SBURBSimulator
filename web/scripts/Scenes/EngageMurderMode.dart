@@ -234,6 +234,7 @@ class EngageMurderMode extends Scene{
 		return chatText;
 	}
 	void rapBattle(Element div, Player player1, Player player2){
+		print("AB: murder rap battles :${this.session.session_id}");
 		this.session.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		appendHtml(div, narration);
@@ -254,6 +255,7 @@ class EngageMurderMode extends Scene{
 		List<dynamic> raps2 = getRapForPlayer(player2,"",0);
 		chatText += raps2[0];
 		p2score = raps1[1];
+		//window.alert("about to draw raps");
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
 			//print("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
@@ -287,6 +289,7 @@ class EngageMurderMode extends Scene{
 			if((r2.value < -2 && r2.value > -12 ) || InterestManager.MUSIC.playerLikes(player1)){ //only if i generically dislike you. o rlike raps
 				//print("rap battle. session: " + this.session.session_id);
 				this.rapBattle(div,player1, player2);
+				return; //reap battle will handle it from here.
 			}
 		}
 

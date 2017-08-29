@@ -104,8 +104,8 @@ class ExploreMoon extends Scene {
 		this.player1.increasePower();
 		if(this.player2 != null){
 			this.player2.increasePower();
-			this.player1.interactionEffect(this.player2);
-			this.player2.interactionEffect(this.player1);
+			ret += this.player1.interactionEffect(this.player2);
+			ret += this.player2.interactionEffect(this.player1);
 		}
 
 		this.checkBloodBoost();

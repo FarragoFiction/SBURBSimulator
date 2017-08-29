@@ -507,9 +507,10 @@ class PlayerEnteredSession  extends ImportantEvent {
 			narration += " No matter what 'fate' says. ";
 
 			narration +=  "After a brief struggle, the doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
-			appendHtml(div, narration);
 			player.dead = true;
-			player.makeDead("apparantly displeasing the Observer.");
+			narration += player.makeDead("apparantly displeasing the Observer.");
+			appendHtml(div, narration);
+
 			this.doomedTimeClone.victimBlood = player.bloodColor;
 
 

@@ -134,8 +134,8 @@ class SolvePuzzles extends Scene {
 		if(this.player2 != null &&  this.player1  != this.player2){  //could be a time double, don't have a relationship with a time double (it never works out)
 			this.player1.increasePower();
 			this.player2.increasePower();
-			this.player1.interactionEffect(this.player2);
-			this.player2.interactionEffect(this.player1);
+			ret += this.player1.interactionEffect(this.player2);
+			ret += this.player2.interactionEffect(this.player1);
 		}
 
 		this.checkBloodBoost();

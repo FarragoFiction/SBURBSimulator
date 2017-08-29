@@ -49,6 +49,11 @@ class Witch extends SBURBClass {
     }
 
     @override
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return " The ${me.htmlTitle()} appears to be feeling more powerful after being around the ${target.htmlTitle()} ";
+    }
+
+    @override
     double getAttackerModifier() {
         return 2.0;
     }

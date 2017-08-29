@@ -26,7 +26,7 @@ class Mind extends Aspect {
 
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Machine", "Magician", "Magistrate", "Mechanic", "Mediator", "Messenger"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Man","Machine", "Magician", "Magistrate", "Mechanic", "Mediator", "Messenger"]);
 
 
     @override

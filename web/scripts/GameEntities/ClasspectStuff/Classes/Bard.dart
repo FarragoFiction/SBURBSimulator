@@ -11,7 +11,7 @@ class Bard extends SBURBClass {
     @override
     List<String> postDenizenQuests = ["musing on the nature of death as they wander from desolate consort graveyard to desolate consort graveyard", "staring vacantly into the middle distance as every challenge that rises before them falls away before it even has a chance to do anything", "putting on a performance for a huge crowd of awestruck consorts and underlings", "playing pranks and generally messing around with the most powerful enemies left in the game"];
     @override
-    List<String> handles = ["benign", "blissful", "boisterous", "bonkers", "broken", "bizarre", "barking"];
+    List<String> handles = ["bat","benign", "blissful", "boisterous", "bonkers", "broken", "bizarre", "barking"];
 
     Bard() : super("Bard", 9, true);
 
@@ -28,6 +28,11 @@ class Bard extends SBURBClass {
     @override
     bool hasInteractionEffect() {
         return true;
+    }
+
+    @override
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return " The ${me.htmlTitle()} appears to be destroying something in everyone. ";
     }
 
     @override

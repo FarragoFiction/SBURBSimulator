@@ -9,20 +9,32 @@
     width: 1000px;
     height: 50%;
     top: 15%;
-    padding: 50px;
+    padding: 5px;
     margin-left: auto;
     margin-right: auto;
     font-family: "Courier New", Courier, monospace;
-    z-index: 999;
+    z-index: 998;
     border 1px solid grey;
-    overflow-y: scroll;
     box-shadow: 0 0 5px #88CE21, 0 0 3px #88CE21, 0 0 3px #88CE21, 0 0 9px black, 0 0 7px black, 0 0 7px black;
+}
+
+.innerFAQ{
+    overflow-y: scroll;
+    width: 1000px;
+    height: 100%;
+}
+
+.red_x{
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 999;
 }
 
 .ascii{
  font-size: 10px;
- align: center;
- text-align: center;
 }
 #story{
 	width:1000px;

@@ -5,6 +5,7 @@ import "../SBURBSim.dart";
 class GeneratedFAQ {
     ///will be printed first, no quirk.
     String asciiHeader;
+    bool grimDark = false; //if true, zalgo
     Player author;
     Player reader;
     ///what symbold do you spam for the header
@@ -42,12 +43,14 @@ class GeneratedFAQ {
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
         if(asciiHeader == Aspects.TIME.faqFile.ascii) print("Displaying time ascii art in session ${author.session.session_id}");
 
-        String ret =  "<button class='red_x'id = 'close$id'>X</button><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
+        String ret =  "<button class='red_x'id = 'close$id'>X</button><div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
             String header ="${symbol*amount}${q.translate(s.header)}";
             header.replaceAll("\n", ""); //no new lines in header plz
-            ret = "$ret <br><Br>$header${symbol*amount}<br><br>${q.translate(s.body)}<br><Br>";
+            String computedBody = q.translate(s.body);
+            if(grimDark && rand.nextBool()) computedBody = Zalgo.generate(computedBody);
+            ret = "$ret <br><Br>${header}${symbol*amount}<br><br>${computedBody}<br><Br>";
         }
-        return "<div class = 'FAQ'>$ret</div>";
+        return "<div class = 'FAQ'>$ret</div></div>";
     }
 }
