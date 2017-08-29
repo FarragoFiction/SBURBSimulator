@@ -422,11 +422,11 @@ class FreeWillStuff extends Scene{
 					//print(player.title() + " commits murder for god tier but doesn't get tiger " + this.session.session_id);
 					var ret = intro + ". They conjole and wheedle and bug and fuss and meddle until the " + sacrifice.htmlTitleBasic() + " agrees to go along with the plan and be killed on their " + bed;
 					if(!sacrifice.godDestiny){
-						sacrifice.makeDead("trying to go God Tier against destiny.");
+						ret += sacrifice.makeDead("trying to go God Tier against destiny.");
 						ret +=  ". A frankly ridiculous series of events causes the " + sacrifice.htmlTitleBasic() + "'s dying body to fall off their " + bed + ". They were never destined to GodTier, and SBURB neurotically enforces such things. The " + player.htmlTitleBasic() + timeIntro + " tries desparately to get them to their " + bed + " in time, but in vain. They are massively triggered by their own astonishing amount of hubris. ";
 					}else{
 						print(" could not god tier because lack of dream self in session: " + this.session.session_id.toString());
-						sacrifice.makeDead("trying to go God Tier wthout a dream self.");
+						ret += sacrifice.makeDead("trying to go God Tier wthout a dream self.");
 						ret += ".  Unfortunately, you need a dream self to go GodTier, and the " + sacrifice.htmlTitleBasic() + " does not have one. They die for no reason. Nothing glows, their body does not float, and the magnitude of the " + player.htmlTitleBasic() + timeIntro +"'s hubris astonishes everyone. ";
 					}
 					return ret + loop;
@@ -457,7 +457,7 @@ class FreeWillStuff extends Scene{
 					return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is not a very big deal at all. ";  //caliborn
 				}else{
 					print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
-					player.makeDead( "trying to go God Tier without a dream self.");
+					intro += player.makeDead( "trying to go God Tier without a dream self.");
 					return intro + ". They steel their will and prepare to commit a trivial act of self suicide.  They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 				}
 				//print(player.title() + " commits suicide and gets tiger " + this.session.session_id);
@@ -469,7 +469,7 @@ class FreeWillStuff extends Scene{
 						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. " + ret + " It is probably for the best that they don't know how huge a deal this is. If they hadn't caught a LUCKY BREAK, they would have died here forever. They were never destined to go God Tier, even if they commited suicide.  ";
 					}else{
 						print(player.title() + " player accidentally suicided trying to god tier without a dream self : "  + this.session.session_id.toString());
-						player.makeDead( "trying to go God Tier without a dream self.");
+						intro += player.makeDead( "trying to go God Tier without a dream self.");
 						return intro + ". They steel their will and prepare to commit a trivial act of self suicide. "  + " They may have known enough to exploit the God Tiering mechanic, but apparently hadn't taken into account the fact that you need a DREAM SELF to ascend to the GOD TIERS. Whoops. DEAD. ";
 
 					}
@@ -478,7 +478,7 @@ class FreeWillStuff extends Scene{
 					String bed = "bed";
 					if(player.isDreamSelf) bed = "slab";
 					removeFromArray(player, this.session.availablePlayers);
-					player.makeDead( "trying to go God Tier against destiny."); //if slab, no corpse produced.
+					intro += player.makeDead( "trying to go God Tier against destiny."); //if slab, no corpse produced.
 					this.renderPlayer1 = player;
 					//print(player.title() + " commits suicide but doesn't get tiger " + this.session.session_id);
 
@@ -493,7 +493,7 @@ class FreeWillStuff extends Scene{
 		if(!player.isDreamSelf){
 				ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. "+"On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.questBed = true;
-				player.makeDead("on their quest bed");
+				ret += player.makeDead("on their quest bed");
 		}else{
 			ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit.";
 			this.session.sacrificialSlab = true;
@@ -550,21 +550,21 @@ class FreeWillStuff extends Scene{
 				removeFromArray(murderer, this.session.availablePlayers);
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
-				murderer.makeDead("being put down like a rabid dog by the " + player.titleBasic());
+				String ret = murderer.makeDead("being put down like a rabid dog by the " + player.titleBasic());
 				player.pvpKillCount ++;
 				this.session.murdersHappened = true;
-				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ". " + getPVPQuip(murderer,player, "Defender", "Attacker") + " Everyone is a little bit safer.";
+				return ret  + "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ". " + getPVPQuip(murderer,player, "Defender", "Attacker") + " Everyone is a little bit safer.";
 			}else{
 				//print(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
 				murderer.victimBlood = player.bloodColor;
 				removeFromArray(murderer, this.session.availablePlayers);
 				removeFromArray(player, this.session.availablePlayers);
-				player.makeDead("fighting against the crazy " + murderer.titleBasic());
+				String ret = player.makeDead("fighting against the crazy " + murderer.titleBasic());
 				murderer.pvpKillCount ++;
 				this.session.murdersHappened = true;
 				this.renderPlayer1 = player;
 				this.renderPlayer2 = murderer;
-				return "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  " + getPVPQuip(player,murderer, "Attacker", "Defender") + " Everyone is a little bit less safe.";
+				return ret +"The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  " + getPVPQuip(player,murderer, "Attacker", "Defender") + " Everyone is a little bit less safe.";
 			}
 		}
 		return null;

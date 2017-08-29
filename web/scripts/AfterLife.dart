@@ -107,6 +107,7 @@ class AfterLife {
 	}
 	dynamic findClosesToRealSelf(player){
 		var selves = this.findAllAlternateSelves(player);
+		if(selves.length == 0) return null;
 		num bestCanidateValue = 9999999;
 		var bestCanidate = selves[0];
 		//can't just check directly for mvp because i let corpses level up. the revived player could be stronger than the original.
@@ -138,8 +139,8 @@ class AfterLife {
 	dynamic findAnyGhost(player){
 		return player.rand.pickFrom(this.ghosts);
 	}
-	dynamic findAnyUndrainedGhost(Random rand){
-		List<dynamic> ret = [];
+	Player findAnyUndrainedGhost(Random rand){
+		List<Player> ret = [];
 		for(var i=0; i<this.ghosts.length; i++){
 			if(this.ghosts[i].causeOfDrain == null) ret.add(this.ghosts[i]);
 		}

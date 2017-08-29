@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Image Tools</title>
+    <link rel="stylesheet" href="../../css/colour_picker.css">
+    <script type="application/dart" src="text_tools.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+</head>
+<body>
+    <h1>Gif Words</h1>
+    <p>Makes animated text at 20fps. Be careful about high contrast flashing if you're posting results anywhere. Please be considerate.</p>
+    <input id="wordgif_text" title="Text"/><br/>
+    <input id="wordgif_size" type="number" min="1" title="Scale" value="3"/><br/>
+    <input id="wordgif_x" type="number" title="x offset" value = "1"/><br/>
+    <input id="wordgif_y" type="number" title="y offset" value = "1"/><br/>
+    <input id="wordgif_depth" type="number" min="0" title="Depth" value="5"/><br/>
+    <h3>Frames</h3>
+    <div id="wordgif_list"></div>
+    <button id="wordgif_add" title="Add frame">Add frame</button><br/>
+    <button id="wordgif_generate" title="Generate" >Make word gif</button>
+
+    <div id="wordgif"></div>
+
+    <h1>Shitty Word Art</h1>
+    <p>Just, the shittiest.</p>
+    <input id="shitty_text" title="Text"/><br/>
+    <input id="shitty_size" type="number" min="1" title="Font size" value="50"/><br/>
+    <select id="shitty_gradient">
+        <option value="horizon">Horizon</option>
+        <option value="rainbow">Rainbow</option>
+        <option value="fire">Fire</option>
+    </select>
+    <button id="shitty_generate"title="Generate" >Make shitty word art</button>
+
+    <div id="shitty"></div>
+</body>
+</html>

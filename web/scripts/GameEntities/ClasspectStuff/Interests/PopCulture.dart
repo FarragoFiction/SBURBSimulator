@@ -6,10 +6,10 @@ class PopCulture extends InterestCategory {
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat("mobility", 2, true)]);
 
     @override
-    List<String> handles1 = <String>["worthy", "mega", "player", "mighty", "knightly", "roguish", "super", "turbo", "titanic", "heroic", "bitchin", "power", "wonder", "wonderful", "sensational", "thors", "bat"];
+    List<String> handles1 = <String>["bat","worthy", "mega", "player", "mighty", "knightly", "roguish", "super", "turbo", "titanic", "heroic", "bitchin", "power", "wonder", "wonderful", "sensational", "thors", "bat"];
 
     @override
-    List<String> handles2 = <String>["Superhero", "Supervillain", "Hero", "Villain", "Liaison", "Director", "Repeat", "Blockbuster", "Movie", "Mission", "Legend", "Buddy", "Spy", "Bystander", "Talent"];
+    List<String> handles2 = <String>["Man","Superhero", "Supervillain", "Hero", "Villain", "Liaison", "Director", "Repeat", "Blockbuster", "Movie", "Mission", "Legend", "Buddy", "Spy", "Bystander", "Talent"];
 
     @override
     List<String> levels = <String>["TRIVIA SMARTYPANTS", "NIGHTLY NABBER"];

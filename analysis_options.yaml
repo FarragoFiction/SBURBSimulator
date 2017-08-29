@@ -29,7 +29,6 @@ linter:
     - prefer_is_empty
     - recursive_getters
     - sort_constructors_first
-    - unawaited_futures
     - unnecessary_brace_in_string_interps
     - unnecessary_getters_setters
     - unnecessary_lambdas

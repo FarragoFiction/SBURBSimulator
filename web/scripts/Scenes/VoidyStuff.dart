@@ -186,8 +186,8 @@ class VoidyStuff extends Scene {
 				this.player.denizenDefeated = false;
 				appendHtml(div, " That didn't sound good... ");
 				this.player.dead = true;
-				if(this.enablingPlayer.aspect == Aspects.VOID) this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
-				if(this.enablingPlayer.aspect == Aspects.RAGE) this.player.makeDead("fighting their Denizen way too early, lost in Madness");
+				if(this.enablingPlayer.aspect == Aspects.VOID) ret += this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
+				if(this.enablingPlayer.aspect == Aspects.RAGE) ret += this.player.makeDead("fighting their Denizen way too early, lost in Madness");
 				ret += " The " +this.player.htmlTitleBasic() + " lies dead on the ground. ";
 				appendHtml(specialDiv, ret);
 
@@ -219,15 +219,16 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
+		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
-			this.player.makeDead("hidden in void on their way to godhood");
+			ret += this.player.makeDead("hidden in void on their way to godhood");
 		} else{
-			this.player.makeDead("with ridiculous bullshit clown shenanigans");
+			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans");
 		}
 		this.player.makeGodTier();
 		this.session.godTier = true;
 
-		appendHtml(div, " What was that light on " + this.player.shortLand() + "? ");
+		appendHtml(div, ret +" What was that light on " + this.player.shortLand() + "? ");
 		Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif
 		this.player.fraymotifs.add(f);
 		appendHtml(specialDiv, "Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );

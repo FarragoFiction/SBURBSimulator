@@ -46,6 +46,10 @@ class Session {
     bool won = false;
     bool justDeath = false;
     bool mayorEnding = false;
+    bool gnosisEnding = false;
+    bool loveEnding = false;
+    bool hateEnding = false;
+    bool monoTheismEnding = false;
     bool waywardVagabondEnding = false;
     num hardStrength = 1000;
     num minFrogLevel = 18;
@@ -84,7 +88,6 @@ class Session {
 
     // extra fields
     bool crashedFromCustomShit = false;
-    num democracyStrength = 0;
     Random rand;
     List<SBURBClass> available_classes_players;
     List<SBURBClass> available_classes_guardians;
@@ -333,7 +336,6 @@ class Session {
         //curSessionGlobalVar.doomedTimeline = false;
         this.doomedTimeline = false;
         this.setUpBosses();
-        this.democracyStrength = 0;
         this.reckoningStarted = false;
         this.importantEvents = <ImportantEvent>[];
         this.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
@@ -359,7 +361,7 @@ class Session {
 
         Relationship.decideInitialQuadrants(rand, this.players);
 
-        this.hardStrength = 1000 + 50 * this.players.length;
+        this.hardStrength = 500 + 20 * this.players.length;
     }
 
     String convertPlayerNumberToWords() {

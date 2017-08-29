@@ -141,6 +141,10 @@ class SBURBClass {
         return false;
     }
 
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return "The ${me.htmlTitle()} interacts with the ${target.htmlTitle()} in a class appropriate way.";
+    }
+
     //players version of this method will just call class_name.method(this, target, stat);
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
         //do nothing.

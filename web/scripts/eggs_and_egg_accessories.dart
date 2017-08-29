@@ -102,6 +102,7 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 
 
 	if(getParameterByName("selfInsertOC",null)  == "true"){
+		print("Self Insert OC was true, so I'm going hunting for what ocs I want");
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
 		processFanOCs(callBack,that);
 		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
@@ -164,14 +165,14 @@ void janusReward(){
 //if last word is stuck, look for first word in either all class, or all aspects, mod the approriate thing to be the first word.
 //auto works with new claspects, too. genius
 void processXStuck(){
-	//TODO get this working again. window.location.search is empty.
-	if(window.location.search.isEmpty) {
+	if(window.location.search.isEmpty && simulatedParamsGlobalVar.isEmpty) {
 	  print("no params to look at");
 		return;
 	}
-	String params1 = window.location.search.substring(1);
+	String params1 = null;
+	if(window.location.search.isNotEmpty) params1 = window.location.search.substring(1);
 	String params2 = simulatedParamsGlobalVar;
-	print("~~~~~~~~~~~~~~~~~~params2 is " + params2);
+	print("~~~~~~params1 is $params1 ~~~~~~and~~~~~~params2 is $params2");
 	List<String> tmp = SBURBClassManager.allClassNames;
 	List<String> all_aspects =  Aspects.names.toList();
 	String params = "";
@@ -221,6 +222,7 @@ void setAllClassesTo(String c){
 
 
 void processFanOCs(callBack, that){
+	print("making a new easte egg engine");
 	//start up an easterEggEngine.
 	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }

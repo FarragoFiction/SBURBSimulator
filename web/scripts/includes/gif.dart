@@ -148,12 +148,12 @@ class Gif {
 
     void startImage(ByteBuilder builder) {
         builder
-            ..appendByte(0x2C)
+            ..appendByte(0x2C) // Image Descriptor block
             ..appendShort(0x0000) // top
             ..appendShort(0x0000) // left
             ..appendShort(width) // width
             ..appendShort(height) // height
-            ..appendByte(0x00);
+            ..appendByte(0x00); // no local colour table, no interlace
     }
 
     void frameData(ByteBuilder builder, Uint8List frame, int colourBits) {
@@ -184,7 +184,7 @@ class Gif {
     }
 
     void footer(ByteBuilder builder) {
-        builder.appendByte(0x3B);
+        builder.appendByte(0x3B); // GIF terminator
     }
 
     static Uri dataUri(ByteBuffer data) {

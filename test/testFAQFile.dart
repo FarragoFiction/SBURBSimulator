@@ -14,7 +14,7 @@ main() {
 }
 
 FAQFile setupFF() {
-    return new FAQFile("Rage.xml","");
+    return new FAQFile("Rage.xml");
 }
 
 void basicTests() {

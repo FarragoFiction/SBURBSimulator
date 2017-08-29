@@ -380,7 +380,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
     print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
     for(GameEntity ge in getLivingMinusAbsconded()) {
       print("making $ge dead");
-      ge.makeDead(reason);
+      ge.makeDead(reason);  ///bluh, no way to talk about prophecies here.
     }
   }
 
@@ -433,7 +433,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   void interact() {
     for(GameEntity ge1 in members) {
       for(GameEntity ge2 in members) {
-        ge2.interactionEffect(ge1); //it'll handle friendship and aspect stuff.
+        ge2.interactionEffect(ge1); //it'll handle friendship and aspect stuff. no way to write this to screen tho.
       }
     }
   }

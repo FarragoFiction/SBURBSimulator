@@ -5,6 +5,8 @@ import "dart:typed_data";
 import "../SBURBSim.dart";
 import "../includes/bytebuilder.dart";
 
+
+
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
@@ -161,7 +163,7 @@ class Player extends GameEntity {
         String denizenName = "";
         num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
         //print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
-        if (denizenIndex == 0) {
+        if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
             print("strength demands a weak denizen ${this.session.session_id}");
@@ -275,7 +277,8 @@ class Player extends GameEntity {
 
 
     @override
-    void makeDead(String causeOfDeath) {
+    String makeDead(String causeOfDeath) {
+        String ret = "";
         this.dead = true;
         this.timesDied ++;
         this.buffs.clear();
@@ -286,9 +289,14 @@ class Player extends GameEntity {
             g.fraymotifs = new List<Fraymotif>.from(this.fraymotifs); //copy not reference
             this.session.afterLife.addGhost(g);
         }
-
+        //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
+        if(prophecy == ProphecyState.ACTIVE){ //powered by their own doom.
+            prophecy = ProphecyState.FULLFILLED;
+            ret += " The prophecy is fullfilled. ";
+        }
         this.renderSelf();
         this.triggerOtherPlayersWithMyDeath();
+        return ret;
     }
 
     void triggerOtherPlayersWithMyDeath() {
@@ -768,11 +776,12 @@ class Player extends GameEntity {
     }
 
     void processStatInteractionEffect(GameEntity target, AssociatedStat stat) {
-        class_name.processStatInteractionEffect(this, target, stat);
+            class_name.processStatInteractionEffect(this, target, stat);
     }
 
     @override
-    void interactionEffect(GameEntity target) {
+    String interactionEffect(GameEntity target) {
+        String ret = "";
         this.associatedStatsInteractionEffect(target);
 
         //no longer do this seperate. if close enough to modify with powers, close enough to be...closer.
@@ -780,6 +789,18 @@ class Player extends GameEntity {
         if (r1 != null) {
             r1.moreOfSame();
         }
+
+        //doom players with an interaction effect also spread doom. this is bad in short term and good in long
+        //SHOULD be only bad against enemies, since they don't have revival mechanisms. right???
+        if(hasInteractionEffect() && aspect == Aspects.DOOM && target.prophecy == ProphecyState.NONE) {
+            ret = "There is a prophecy of the ${target.htmlTitle()}'s death.";
+            target.prophecy = ProphecyState.ACTIVE;
+        }
+
+        if(hasInteractionEffect()) {
+            ret += class_name.interactionFlavorText(this, target);
+        }
+        return ret;
     }
 
 
@@ -1695,6 +1716,8 @@ class Player extends GameEntity {
         } else {
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
         }
+
+        if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
     }
 
     void initializeSprite() {

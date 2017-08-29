@@ -33,7 +33,7 @@ class RelationshipDrama extends Scene {
 		print("TODO");
 	}
 	void celebratoryRapBattle(Element div, Player player1, Player player2){
-		//print("celbratory rap battles: " + this.session.session_id);
+		print("AB: celebratoryRapBattle :${this.session.session_id}");
 		this.session.rapBattle = true;
 		String divId = (div.id) + player1.chatHandle + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";
@@ -259,6 +259,8 @@ class RelationshipDrama extends Scene {
 			if(player2.number_times_confessed_to > 3){
 				chatText += Scene.chatLine(player2Start, player2,"What is it with everybody having a crush on me? ");
 			}
+			player1.increasePower();
+			player2.increasePower();
 
 		}
 
@@ -449,6 +451,8 @@ class RelationshipDrama extends Scene {
 			}
 		}
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_romance.png");
+		player1.increasePower();
+		player2.increasePower();
 	}
 	void ventAboutJerk(Element div, Player player, Player jerk){
 		Relationship relationship = player.getRelationshipWith(jerk);
@@ -536,6 +540,8 @@ class RelationshipDrama extends Scene {
 			}
 		}
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_hatemance.png");
+		player1.increasePower();
+		player2.increasePower();
 
 	}
 	void antagonizeJerk(Element div, Player player, Player jerk){
@@ -610,6 +616,8 @@ class RelationshipDrama extends Scene {
 			}
 		}
 		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
+		player1.increasePower();
+		player2.increasePower();
 	}
 	Player getBestFriendBesidesCrush(Player player, Player crush){
 		List<Player> living = findLivingPlayers(this.session.players);
