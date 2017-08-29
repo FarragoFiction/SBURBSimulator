@@ -601,7 +601,7 @@ class MultiSessionSummary {
 
 
     void setClasses() {
-        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage"];
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage","Writ","Reve"];
         for (num i = 0; i < labels.length; i++) {
             this.classes[labels[i]] = 0;
         }
@@ -620,7 +620,7 @@ class MultiSessionSummary {
     }
 
     void setAspects() {
-        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Spark"];
         for (num i = 0; i < labels.length; i++) {
             this.aspects[labels[i]] = 0;
         }
@@ -652,7 +652,7 @@ class MultiSessionSummary {
             }
         } //end for loop
 
-        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Writ", "Reve", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom" "Spark"];
         bool noneChecked = true;
         for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
@@ -672,7 +672,7 @@ class MultiSessionSummary {
     void wireUpCorpsePartyCheckBoxes() {
         //i know what the labels are, they are just the classes and aspects.
         MultiSessionSummary that = this;
-        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Writ", "Reve", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Spark"];
         for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
             querySelector("#$l").onChange.listen((Event e) {
@@ -718,8 +718,8 @@ class MultiSessionSummary {
         // about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
         //okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
         //aspect have  a rougher go of it.
-        Map<String, int> corpsePartyClasses = <String, int>{"Knight": 0, "Seer": 0, "Bard": 0, "Maid": 0, "Heir": 0, "Rogue": 0, "Page": 0, "Thief": 0, "Sylph": 0, "Prince": 0, "Witch": 0, "Mage": 0};
-        Map<String, int> corpsePartyAspects = <String, int>{"Blood": 0, "Mind": 0, "Rage": 0, "Time": 0, "Void": 0, "Heart": 0, "Breath": 0, "Light": 0, "Space": 0, "Hope": 0, "Life": 0, "Doom": 0};
+        Map<String, int> corpsePartyClasses = <String, int>{"Knight": 0, "Seer": 0, "Bard": 0, "Maid": 0, "Heir": 0, "Rogue": 0, "Page": 0, "Thief": 0, "Sylph": 0, "Prince": 0, "Witch": 0, "Mage": 0, "Writ": 0, "Reve":0 };
+        Map<String, int> corpsePartyAspects = <String, int>{"Blood": 0, "Mind": 0, "Rage": 0, "Time": 0, "Void": 0, "Heart": 0, "Breath": 0, "Light": 0, "Space": 0, "Hope": 0, "Life": 0, "Doom": 0, "Spark": 0};
         Map<String, int> corpseParty = <String, int>{}; //now to refresh my memory on how javascript hashmaps work;
         String html = "<br><b>  Number of Ghosts: </b>: ${filteredGhosts.length}";
         for (int i = 0; i < filteredGhosts.length; i++) {

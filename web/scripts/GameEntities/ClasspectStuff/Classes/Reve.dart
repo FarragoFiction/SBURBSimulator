@@ -7,6 +7,11 @@ class Reve extends SBURBClass {
   Reve() : super("Reve", 18, true);
 
   @override
+  List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+    new AssociatedStat("sburbLore", 0.2, false)
+  ]);
+
+  @override
   bool highHinit() {
     return true;
   }
