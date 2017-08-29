@@ -14,6 +14,9 @@ class Aftermath extends Scene {
 		return true; //this should never be in the main array. call manually.
 	}
 
+	//if i have less than expected grist, then no frog, bucko
+	int expectedGristContributionPerPlayer = 400;
+
 
 	//vriska never even bothered to go into the frog. hussie was still in the medium
 	//high gnosis can mean you can't be happy in a
@@ -200,6 +203,42 @@ class Aftermath extends Scene {
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
 	}
 
+	///frog status is part actual tadpole, part grist
+	bool sickFrogCheck(Player spacePlayer) {
+		//there is  a frog but it's not good enough
+		bool frogSick = spacePlayer.landLevel < session.goodFrogLevel;
+		bool frog = !noFrogCheck(spacePlayer);
+		bool grist = enoughGrist();
+		//frog is sick if it was bred wrong, or if it was nutured wrong
+		return (frog && (frogSick || !grist));
+
+	}
+
+	bool enoughGrist() {
+		return getTotalGrist(session.players) > expectedGristContributionPerPlayer * session.players.length;
+	}
+
+
+	bool fullFrogCheck(Player spacePlayer) {
+		//there is  a frog but it's not good enough
+		bool frogSick = spacePlayer.landLevel < session.goodFrogLevel;
+		bool frog = !noFrogCheck(spacePlayer);
+		bool grist = enoughGrist();
+		//frog is full if it was bred AND nurtured right.
+		return (frog && (!frogSick &&  grist));
+	}
+
+	//don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
+	bool purpleFrogCheck(Player spacePlayer) {
+		return spacePlayer.landLevel <= (this.session.minFrogLevel * -1);
+	}
+
+
+	//don't care about grist, if there's no frog to deploy at all. eventually check for rings
+	bool noFrogCheck(Player spacePlayer) {
+		return spacePlayer.landLevel <= this.session.minFrogLevel;
+	}
+
 	@override
 	void renderContent(Element div){
 		bool yellowYard = false;
@@ -227,16 +266,22 @@ class Aftermath extends Scene {
 
 		if(living.length > 0){
 			//check for inverted frog.
-			if(corruptedSpacePlayer.landLevel <= (this.session.minFrogLevel * -1)){
+			if(purpleFrogCheck(corruptedSpacePlayer)){
 			    return this.purpleFrogEnding(div, end);
 			}
-			if(spacePlayer.landLevel >= this.session.minFrogLevel){
+			if(!noFrogCheck(spacePlayer)){
 				end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
-				if(spacePlayer.landLevel < 28){
+				if(enoughGrist()) {
+					end += "The entire party showers the battlefield with hard earned grist. ";
+				}else {
+					print("AB: Not enough grist in session ${"session.session_id"}");
+					end += "Huh. There doesn't seem to be much grist to deploy to the battlefied.  ";
+				}
+				if(sickFrogCheck(spacePlayer)){
 					end += " The frog looks... a little sick or something, though... That probably won't matter. You're sure of it. ";
 				}
 				end += " The frog is deployed, and grows to massive proportions, and lets out a breath taking Vast Croak.  ";
-				if(spacePlayer.landLevel < this.session.goodFrogLevel){
+				if(sickFrogCheck(spacePlayer)){
 					end += " The door to the new universe is revealed.  As the leader reaches for it, a disaster strikes.   ";
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
