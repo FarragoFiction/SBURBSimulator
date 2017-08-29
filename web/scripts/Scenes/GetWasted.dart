@@ -244,7 +244,7 @@ class GetWasted extends Scene {
                 if(p.land != null && p.grimDark <2) {
                     //print out random quest
                     if(!p.dead) {
-                        ret += "<Br>The ${p.htmlTitle()} does quests at ${player.shortLand()}, ${player.getRandomQuest()}. ";
+                        ret += "<Br>The ${p.htmlTitle()} does quests at ${p.shortLand()}, ${p.getRandomQuest()}. ";
                     }
                     p.increaseLandLevel();
                 }else if(!p.dead) {
