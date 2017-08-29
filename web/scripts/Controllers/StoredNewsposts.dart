@@ -8,7 +8,9 @@ class Newspost
 
   static List<Newspost> makeAuthorNewsposts() {
     List<Newspost> ret = [
-      new Newspost("8/26/17", "Been importing various FAQs from you, the fans.  <br><br>Oh, and a few minor bug fixes.")
+      new Newspost("8/28/17","A little flavor text is added for interaction effects, and there's a new mini-prophecy system for Doom to exploit for tier 3 gnosis.<br><Br>A few bug fixes, too.")
+     , new Newspost("8/27/17", "Relationships are a little less shitty in the sim now, and I added a bunch of extremely short and vague alternate endings.")
+     , new Newspost("8/26/17", "Been importing various FAQs from you, the fans.  <br><br>Oh, and a few minor bug fixes.")
       ,new Newspost("8/25/17","FAQS have ascii art now, and I'm startin to flesh things out from the 'how bullshit is X' level of stuff we had before.")
      , new Newspost("8/24/17","FAQs are going p good, all the structure is in place for the whole shebang, besides ASCII art which if fighting me.<BR><BR>The discord has opened up a FAQ channel for ppl to submit shit.  It's important to remember that FAQs can be written by any classpect, not just Wastes.  Wastes just have a huge bonus towards meta shit.<BR><BR>I'm gonna be slowly adding the various faq entries while also doing bug fixes.  Once FAQs seem p close to finished (or I get bored) I'll start up the tier 3 gnosis events as well.")
       ,new Newspost("8/23/17","Getting the FAQs working had been kicking my ass so hard. Not even fair.  Sometimes sessions with faqs in them were a little random, which makes AB lose her shit. BLUH.  But they are working better than they were, so enjoy checking out the placeholder shit for tier 1 and 2 gnosis (i.e. players find and write random faqs).<br><Br>ParadoxLands wrote a <a href = 'tools/xml_editor/index.html'>xml editor</a> for ppl on teh discord to use to submit faq sections, which I'll start up once I get the FAQs right. You can use it to create sections for the FAQ. We'll probably get a tutorial up and running (maybe on the discord) before officially opening it, but until then you can check it out.")

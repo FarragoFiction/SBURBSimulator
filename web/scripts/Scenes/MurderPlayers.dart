@@ -146,7 +146,7 @@ class MurderPlayers extends Scene {
 		for(num i = 0; i<this.murderers.length; i++){
 			Player m = this.murderers[i];
 			Player worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
-			if(worstEnemy != null) m.interactionEffect(worstEnemy);
+			if(worstEnemy != null) ret += m.interactionEffect(worstEnemy);
 			if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") print("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
 			removeFromArray(worstEnemy, living);
@@ -209,7 +209,7 @@ class MurderPlayers extends Scene {
 							ret += " Every one is very impressed that they managed to do it while dying.";
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
-						worstEnemy.makeDead("fighting against the crazy " + m.title());
+						ret += worstEnemy.makeDead("fighting against the crazy " + m.title());
 						m.pvpKillCount ++;
 						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
@@ -229,7 +229,7 @@ class MurderPlayers extends Scene {
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. ";
 						}
-						m.makeDead("being put down like a rabid dog by the " + worstEnemy.title());
+						ret += m.makeDead("being put down like a rabid dog by the " + worstEnemy.title());
 						worstEnemy.pvpKillCount ++;
 						this.session.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);

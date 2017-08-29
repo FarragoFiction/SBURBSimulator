@@ -102,8 +102,10 @@ class GetTiger extends Scene{
 			ret += " Everyone fails to ignore the Page's outfit. ";
 		}
 
+
+
 		for(num i = 0; i<this.deadPlayersToGodTier.length; i++){
-			var p = this.deadPlayersToGodTier[i];
+			Player p = this.deadPlayersToGodTier[i];
 			p.makeGodTier();
 		}
 		return ret;

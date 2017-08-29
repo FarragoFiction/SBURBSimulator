@@ -56,6 +56,11 @@ class Sylph extends SBURBClass {
     }
 
     @override
+    String interactionFlavorText(GameEntity me, GameEntity target) {
+        return " The ${me.htmlTitle()} appears to be feeling more helpful after being around the ${target.htmlTitle()}. ";
+    }
+
+    @override
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
         num powerBoost = 2 * p.getStat("power") / 20;
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);

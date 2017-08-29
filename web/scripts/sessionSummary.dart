@@ -242,6 +242,10 @@ class SessionSummary {
         summary.setMiniPlayers(session.players);
         summary.setBoolStat("blackKingDead", session.king.dead || session.king.getStat("currentHP") <= 0);
         summary.setBoolStat("mayorEnding", session.mayorEnding);
+        summary.setBoolStat("gnosisEnding", session.gnosisEnding);
+        summary.setBoolStat("loveEnding", session.loveEnding);
+        summary.setBoolStat("hateEnding", session.hateEnding);
+        summary.setBoolStat("monoTheismEnding", session.monoTheismEnding);
         summary.setBoolStat("waywardVagabondEnding", session.waywardVagabondEnding);
         summary.setBoolStat("badBreakDeath", session.badBreakDeath);
         summary.setBoolStat("luckyGodTier", session.luckyGodTier);
@@ -293,7 +297,8 @@ class SessionSummary {
         summary.setBoolStat("jackScheme", session.jackScheme);
         summary.setBoolStat("kingTooPowerful", session.king.getStat("power") > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.queenRejectRing);
-        summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > 0);
+        //print("Debugging: King strength is ${session.king.getStat("power")} and hardStrength is ${session.hardStrength}");
+        summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > GameEntity.minPower);
         summary.setBoolStat("murderMode", session.murdersHappened);
         summary.setBoolStat("grimDark", session.grimDarkPlayers);
 
@@ -518,7 +523,11 @@ class MultiSessionSummary {
         setStat("choseGodTier", 0);
         setStat("waywardVagabondEnding", 0);
         setStat("mayorEnding", 0);
-        setStat("badBreakDeath", 0);
+        setStat("gnosisEnding", 0);
+        setStat("loveEnding", 0);
+        setStat("hateEnding", 0);
+        setStat("mayorEnding", 0);
+        setStat("monoTheismEnding", 0);
         setStat("timesAllLived", 0);
         setStat("ectoBiologyStarted", 0);
         setStat("denizenBeat", 0);
@@ -767,7 +776,7 @@ class MultiSessionSummary {
         if (propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
         if (propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
         if (propertyName == "numberPurpleFrog" || propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
-        if (propertyName == "blackKingDead" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
+        if (propertyName == "blackKingDead"|| propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
         return false;
     }
 
@@ -947,6 +956,10 @@ class MultiSessionSummary {
 
             if (ss.getBoolStat("badBreakDeath")) mss.incNumStat("badBreakDeath");
             if (ss.getBoolStat("mayorEnding")) mss.incNumStat("mayorEnding");
+            if (ss.getBoolStat("gnosisEnding")) mss.incNumStat("gnosisEnding");
+            if (ss.getBoolStat("loveEnding")) mss.incNumStat("loveEnding");
+            if (ss.getBoolStat("hateEnding")) mss.incNumStat("hateEnding");
+            if (ss.getBoolStat("monoTheismEnding")) mss.incNumStat("monoTheismEnding");
             if (ss.getBoolStat("waywardVagabondEnding")) mss.incNumStat("waywardVagabondEnding");
             if (ss.getBoolStat("choseGodTier")) mss.incNumStat("choseGodTier");
             if (ss.getBoolStat("luckyGodTier")) mss.incNumStat("luckyGodTier");
