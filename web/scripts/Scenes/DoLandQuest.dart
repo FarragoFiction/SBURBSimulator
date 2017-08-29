@@ -234,7 +234,7 @@ class DoLandQuest extends Scene{
 		}
 
 		if(helper.class_name == SBURBClassManager.THIEF){
-			player.increaseLandLevel(-1);
+			player.increaseLandLevel(-1.0);
 			helper.increaseLandLevel();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " covertly spends at least half of their time diverting resources to complete their own quests. ";
