@@ -25,7 +25,7 @@ class Aftermath extends Scene {
 		for(Player p in living) {
 			if(p.gnosis < 3) {
 				entered.add(p);
-				ret += "The ${p.htmlTitle()} enters the door new Universe.<Br><Br>";
+				ret += "The ${p.htmlTitle()} enters the door to the new Universe.<Br><Br>";
 			}else {
 				if(p.gnosis == 3 && rand.nextBool()) {
 					entered.add(p);
