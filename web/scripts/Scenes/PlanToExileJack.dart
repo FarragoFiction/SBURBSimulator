@@ -154,14 +154,14 @@ class PlanToExileJack extends Scene {
 
 		Drawing.drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
 	}
-	bool smart(player){
+	bool smart(Player player){
 		return ((player.aspect == Aspects.LIGHT || player.class_name == SBURBClassManager.SEER) ||(player.aspect == Aspects.DOOM || player.aspect == Aspects.MIND));
 	}
 
 	@override
 	void renderContent(Element div){
 		this.session.plannedToExileJack = true;
-		if(!this.planner){
+		if(this.planner == null){
 			return;
 		}
 		this.planner.increasePower();

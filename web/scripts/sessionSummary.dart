@@ -576,6 +576,7 @@ class MultiSessionSummary {
         setStat("opossumVictory", 0);
         setStat("crashedFromSessionBug", 0);
         setStat("averageGrist", 0);
+        setStat("averageFrogLevel", 0);
     }
 
     num getNumStat(String statName) {
@@ -783,7 +784,7 @@ class MultiSessionSummary {
     }
 
     bool isAverageProperty(String propertyName) {
-        return propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
+        return propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
     }
 
     bool isPropertyToIgnore(String propertyName) {
@@ -799,7 +800,7 @@ class MultiSessionSummary {
     }
 
     bool isFilterableProperty(String propertyName) {
-        return !(propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
+        return !(propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
     }
 
     String generateHTML() {
@@ -1020,6 +1021,7 @@ class MultiSessionSummary {
             mss.addNumStat("sizeOfAfterLife", ss.getNumStat("sizeOfAfterLife"));
             mss.addNumStat("averageMinLuck", ss.getNumStat("averageMinLuck"));
             mss.addNumStat("averageGrist", ss.getNumStat("averageGrist"));
+            mss.addNumStat("averageFrogLevel", ss.frogLevel);
             mss.addNumStat("averageMaxLuck", ss.getNumStat("averageMaxLuck"));
             mss.addNumStat("averagePower", ss.getNumStat("averagePower"));
             mss.addNumStat("averageMobility", ss.getNumStat("averageMobility"));
@@ -1040,6 +1042,7 @@ class MultiSessionSummary {
         mss.setStat("averageFreeWill", (mss.getNumStat("averageFreeWill") / sessionSummaries.length).round());
         mss.setStat("averageHP", (mss.getNumStat("averageHP") / sessionSummaries.length).round());
         mss.setStat("averageGrist", (mss.getNumStat("averageGrist") / sessionSummaries.length).round());
+        mss.setStat("averageFrogLevel", (mss.getNumStat("averageFrogLevel") / sessionSummaries.length).round());
         mss.setStat("averageSanity", (mss.getNumStat("averageSanity") / sessionSummaries.length).round());
         mss.setStat("averageRelationshipValue", (mss.getNumStat("averageRelationshipValue") / sessionSummaries.length).round());
         mss.setStat("averageNumScenes", (mss.getNumStat("averageNumScenes") / sessionSummaries.length).round());
