@@ -71,7 +71,7 @@ class Void extends Aspect {
         new AssociatedStatRandom(_randomStats, 3, true), //really good at one thing
         new AssociatedStatRandom(_randomStats, -1, true), //hit to another thing.
         new AssociatedStat("minLuck", -1, true), //hit to another thing.
-        new AssociatedStat("sburbLore", 0.25, false) //yes, technically it's from an aspect, but it's not NORMAL.
+        new AssociatedStat("sburbLore", 0.03, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Void(int id) :super(id, "Void", isCanon: true);

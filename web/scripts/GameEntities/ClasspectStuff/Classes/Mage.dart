@@ -15,7 +15,7 @@ class Mage extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 0.5, false)
+        new AssociatedStat("sburbLore", 0.06, false)
     ]);
 
     @override
