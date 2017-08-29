@@ -242,7 +242,7 @@ class GetWasted extends Scene {
 
     }
 
-    //throw a huge party to get those interaction buffs going
+    //gather everyone on a planet with fast, repatable quests, have everybody do speed questing to get max interaction effects for effort given
     String exploitFriendship(Element div) {
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
 
