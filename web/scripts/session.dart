@@ -64,6 +64,10 @@ class Session {
     bool goodLuckEvent = false;
     bool badLuckEvent = false;
     bool hasFreeWillEvents = false;
+    bool hasTier1Events = false;
+    bool hasTier2Events = false;
+    bool hasTier3Events = false;
+    bool hasTier4Events = false;
     bool ectoBiologyStarted = false;
     bool doomedTimeline = false;
     bool makeCombinedSession = false; //happens if sick frog and few living players

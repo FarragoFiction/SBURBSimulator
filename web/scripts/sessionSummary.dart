@@ -262,6 +262,10 @@ class SessionSummary {
         summary.setBoolStat("crashedFromSessionBug", session.crashedFromSessionBug);
         summary.setBoolStat("xcrashedFromPlayerActions", session.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.hasFreeWillEvents);
+        summary.setBoolStat("hasTier1GnosisEvents", session.hasTier1Events);
+        summary.setBoolStat("hasTier2GnosisEvents", session.hasTier2Events);
+        summary.setBoolStat("hasTier3GnosisEvents", session.hasTier3Events);
+        summary.setBoolStat("hasTier4GnosisEvents", session.hasTier4Events);
         summary.setNumStat("averageMinLuck", getAverageMinLuck(session.players));
         summary.setNumStat("averageMaxLuck", getAverageMaxLuck(session.players));
         summary.setNumStat("averagePower", getAveragePower(session.players));
@@ -570,6 +574,10 @@ class MultiSessionSummary {
         setStat("sickFires", 0);
         setStat("hasLuckyEvents", 0);
         setStat("hasUnluckyEvents", 0);
+        setStat("hasTier1GnosisEvents", 0);
+        setStat("hasTier2GnosisEvents", 0);
+        setStat("hasTier3GnosisEvents", 0);
+        setStat("hasTier4GnosisEvents", 0);
         setStat("hasFreeWillEvents", 0);
         setStat("scratched", 0);
         setStat("rocksFell", 0);
@@ -770,7 +778,7 @@ class MultiSessionSummary {
         if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murderMode" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
-        if (propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
+        if (propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" ||propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
         return false;
     }
 
@@ -1012,6 +1020,10 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
             if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
             if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
+            if (ss.getBoolStat("hasTier1GnosisEvents")) mss.incNumStat("hasTier1GnosisEvents");
+            if (ss.getBoolStat("hasTier2GnosisEvents")) mss.incNumStat("hasTier2GnosisEvents");
+            if (ss.getBoolStat("hasTier3GnosisEvents")) mss.incNumStat("hasTier3GnosisEvents");
+            if (ss.getBoolStat("hasTier4GnosisEvents")) mss.incNumStat("hasTier4GnosisEvents");
             if (ss.scratched) mss.incNumStat("scratched");
 
             if (ss.getBoolStat("won")) mss.incNumStat("won");

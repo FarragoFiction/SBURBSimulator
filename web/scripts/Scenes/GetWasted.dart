@@ -338,6 +338,7 @@ class GetWasted extends Scene {
 
     //simple, foreshadowing things
     void tier1(Element div) {
+        session.hasTier1Events = true;
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
@@ -345,6 +346,7 @@ class GetWasted extends Scene {
     }
 
     void tier2(Element div) {
+        session.hasTier2Events = true;
         //this tier will unlock frog breeding and various free will shits besides english tier.
         //can also write a faq
         writeFAQ(div);
@@ -366,6 +368,7 @@ class GetWasted extends Scene {
     }
 
     void tier3(Element div) {
+        session.hasTier3Events = true;
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
         if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.' ");
@@ -381,6 +384,7 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        session.hasTier4Events = true;
         //todo waste tier, will be dope as fuk
         //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
         /*	//if i have less than expected grist, then no frog, bucko
