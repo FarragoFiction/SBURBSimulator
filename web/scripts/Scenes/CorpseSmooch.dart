@@ -187,33 +187,7 @@ class CorpseSmooch extends Scene {
 		}
 		return null;
 	}
-	dynamic content(){
-		String ret = "";
-		num combo = 0;
-		for(num i = 0; i<this.dreamersToRevive.length; i++){
-			var d = this.dreamersToRevive[i];
-			//have best friend mac on you.
-			var royalty = this.getRoyalty(d);
 
-			if(royalty){
-				royalty.sanity += -10;
-				ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
-				ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
-				this.makeAlive(d);
-				combo ++;
-			}else{
-				ret += d.htmlTitle() + "'s waits patiently for the kiss of life. But nobody came. ";
-				ret += " Their dream self dies as well. ";
-				this.makeDead(d);
-			}
-		}
-		if(combo > 1){
-			ret += "${combo}X CORPSEMOOCH COMBO!!!";
-		}
-		//x times corpse smooch combo
-		return ret;
-
-	}
 
 
 }
