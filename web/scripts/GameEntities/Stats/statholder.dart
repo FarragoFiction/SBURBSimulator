@@ -1,11 +1,15 @@
 import "../../SBURBSim.dart";
 
 class StatHolder {
-    Map<Stat, double> _map = <Stat, double>{};
+    final Map<Stat, double> base = <Stat, double>{};
 
-    double operator [](Stat key) => _map.containsKey(key) ? _map[key] : 0.0;
+    List<Buff> buffs = <Buff>[];
+
+    double operator [](Stat key) => base.containsKey(key) ? base[key] : 0.0;
+
+
 }
 
 abstract class StatOwner extends StatHolder {
-    StatHolder stats;
+    StatHolder _stats;
 }

@@ -9,6 +9,7 @@ export "Controllers/SimController.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
 export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
 export "GameEntities/ClasspectStuff/Interests/Interest.dart";
+export "GameEntities/Stats/buff.dart";
 export "GameEntities/Stats/stat.dart";
 export "GameEntities/Stats/statholder.dart";
 export "fraymotif.dart";
