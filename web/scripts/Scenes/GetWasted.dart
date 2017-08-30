@@ -272,7 +272,12 @@ class GetWasted extends Scene {
 
     //skaian magicent kinda deal
     String exploitGlitches(Element div) {
-        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
+        if(player.aspect == Aspects.VOID) {
+            ret += " Uh.  Where did they go? <div class = 'void'> ";
+        }
+        ret += " They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
+
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
             String title = "Skaian Magicant Hidden Track: ${p.aspect.name} Edition";
@@ -293,6 +298,9 @@ class GetWasted extends Scene {
             p.fraymotifs.add(f);
             p.grist += 1000;
 
+        }
+        if(player.aspect == Aspects.VOID) {
+            ret += "</div>";
         }
         return ret;
     }
