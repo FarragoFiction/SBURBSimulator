@@ -272,11 +272,11 @@ class GetWasted extends Scene {
 
     //skaian magicent kinda deal
     String exploitGlitches(Element div) {
-        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
             String title = "Skaian Magicant Hidden Track: ${p.aspect.name} Edition";
-            if(!p.dead) ret += "<br> The {p.htmlTitle()} collects the fraymotif $title, as well as a sizeable hoarde of grist.";
+            if(!p.dead) ret += "<br> The ${p.htmlTitle()} collects the fraymotif $title, as well as a sizeable hoarde of grist.";
             Fraymotif f = new Fraymotif(title, 2);
             Iterable<AssociatedStat> plus = p.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
             //just like real denizen songs, but way stronger
