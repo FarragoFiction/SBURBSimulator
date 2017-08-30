@@ -346,9 +346,11 @@ class GetWasted extends Scene {
         for(Player p1 in session.players) {
                 for(Player p2 in session.players) {
                     if(p1 != p2) {
-                        ret += p1.interactionEffect(p2);
-                        ret += p1.interactionEffect(p2);
-                        ret += p1.interactionEffect(p2);
+                        String subret = "";
+                        subret += p1.interactionEffect(p2);
+                        subret += p1.interactionEffect(p2);
+                        subret += p1.interactionEffect(p2);
+                        ret += subret;
                     }
                 }
         }

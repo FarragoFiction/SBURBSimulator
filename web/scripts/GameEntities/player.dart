@@ -810,10 +810,8 @@ class Player extends GameEntity {
             ret = "There is a prophecy of the ${target.htmlTitle()}'s death.";
             target.prophecy = ProphecyState.ACTIVE;
         }
-
-        if(hasInteractionEffect()) {
-            ret += class_name.interactionFlavorText(this, target);
-        }
+        //even if there is no effect, still is doing relationship shit.
+        ret += class_name.interactionFlavorText(this, target);
         return ret;
     }
 

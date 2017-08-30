@@ -136,7 +136,12 @@ class SBURBClass {
     }
 
     String interactionFlavorText(GameEntity me, GameEntity target) {
-        return "The ${me.htmlTitle()} interacts with the ${target.htmlTitle()} in a class appropriate way.";
+        Relationship r = me.getRelationshipWith(target);
+        if(r.value >= 0) {
+            return "The ${me.htmlTitle()} appears to be getting even closer to the  ${target.htmlTitle()}.";
+        }else {
+            return "The ${me.htmlTitle()} appears to be finding new and exciting things to hate about the  ${target.htmlTitle()}.";
+        }
     }
 
     //players version of this method will just call class_name.method(this, target, stat);
