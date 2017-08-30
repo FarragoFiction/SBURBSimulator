@@ -506,7 +506,7 @@ class Session {
         this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", this);
         Fraymotif f = new Fraymotif("Red Miles", 3);
         f.effects.add(new FraymotifEffect("power", 2, true));
-        f.desc = " You cannot escape them ";
+        f.desc = " You cannot escape them. ";
         this.queensRing.fraymotifs.add(f);
 
         this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", this);
