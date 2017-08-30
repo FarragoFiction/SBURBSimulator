@@ -299,7 +299,8 @@ void tricksterMode(){
 		}
 		if(p.aspect != Aspects.DOOM){
 			p.setStat("power",  111111);
-			p.landLevel = 111111;
+			p.landLevel = 111111.0;
+			p.grist = 11111111111;
 			p.level_index = 111111;
 		}
 

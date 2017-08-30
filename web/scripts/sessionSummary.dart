@@ -262,9 +262,14 @@ class SessionSummary {
         summary.setBoolStat("crashedFromSessionBug", session.crashedFromSessionBug);
         summary.setBoolStat("xcrashedFromPlayerActions", session.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.hasFreeWillEvents);
+        summary.setBoolStat("hasTier1GnosisEvents", session.hasTier1Events);
+        summary.setBoolStat("hasTier2GnosisEvents", session.hasTier2Events);
+        summary.setBoolStat("hasTier3GnosisEvents", session.hasTier3Events);
+        summary.setBoolStat("hasTier4GnosisEvents", session.hasTier4Events);
         summary.setNumStat("averageMinLuck", getAverageMinLuck(session.players));
         summary.setNumStat("averageMaxLuck", getAverageMaxLuck(session.players));
         summary.setNumStat("averagePower", getAveragePower(session.players));
+        summary.setNumStat("averageGrist", getAverageGrist(session.players));
         summary.setNumStat("averageMobility", getAverageMobility(session.players));
         summary.setNumStat("averageFreeWill", getAverageFreeWill(session.players));
         summary.setNumStat("averageHP", getAverageHP(session.players));
@@ -569,11 +574,17 @@ class MultiSessionSummary {
         setStat("sickFires", 0);
         setStat("hasLuckyEvents", 0);
         setStat("hasUnluckyEvents", 0);
+        setStat("hasTier1GnosisEvents", 0);
+        setStat("hasTier2GnosisEvents", 0);
+        setStat("hasTier3GnosisEvents", 0);
+        setStat("hasTier4GnosisEvents", 0);
         setStat("hasFreeWillEvents", 0);
         setStat("scratched", 0);
         setStat("rocksFell", 0);
         setStat("opossumVictory", 0);
         setStat("crashedFromSessionBug", 0);
+        setStat("averageGrist", 0);
+        setStat("averageFrogLevel", 0);
     }
 
     num getNumStat(String statName) {
@@ -767,7 +778,7 @@ class MultiSessionSummary {
         if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murderMode" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
-        if (propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
+        if (propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" ||propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
         return false;
     }
 
@@ -781,7 +792,7 @@ class MultiSessionSummary {
     }
 
     bool isAverageProperty(String propertyName) {
-        return propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
+        return propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
     }
 
     bool isPropertyToIgnore(String propertyName) {
@@ -797,7 +808,7 @@ class MultiSessionSummary {
     }
 
     bool isFilterableProperty(String propertyName) {
-        return !(propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
+        return !(propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
     }
 
     String generateHTML() {
@@ -1009,6 +1020,10 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
             if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
             if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
+            if (ss.getBoolStat("hasTier1GnosisEvents")) mss.incNumStat("hasTier1GnosisEvents");
+            if (ss.getBoolStat("hasTier2GnosisEvents")) mss.incNumStat("hasTier2GnosisEvents");
+            if (ss.getBoolStat("hasTier3GnosisEvents")) mss.incNumStat("hasTier3GnosisEvents");
+            if (ss.getBoolStat("hasTier4GnosisEvents")) mss.incNumStat("hasTier4GnosisEvents");
             if (ss.scratched) mss.incNumStat("scratched");
 
             if (ss.getBoolStat("won")) mss.incNumStat("won");
@@ -1017,6 +1032,8 @@ class MultiSessionSummary {
             mss.ghosts.addAll(ss.ghosts);
             mss.addNumStat("sizeOfAfterLife", ss.getNumStat("sizeOfAfterLife"));
             mss.addNumStat("averageMinLuck", ss.getNumStat("averageMinLuck"));
+            mss.addNumStat("averageGrist", ss.getNumStat("averageGrist"));
+            mss.addNumStat("averageFrogLevel", ss.frogLevel);
             mss.addNumStat("averageMaxLuck", ss.getNumStat("averageMaxLuck"));
             mss.addNumStat("averagePower", ss.getNumStat("averagePower"));
             mss.addNumStat("averageMobility", ss.getNumStat("averageMobility"));
@@ -1036,6 +1053,8 @@ class MultiSessionSummary {
         mss.setStat("averageMobility", (mss.getNumStat("averageMobility") / sessionSummaries.length).round());
         mss.setStat("averageFreeWill", (mss.getNumStat("averageFreeWill") / sessionSummaries.length).round());
         mss.setStat("averageHP", (mss.getNumStat("averageHP") / sessionSummaries.length).round());
+        mss.setStat("averageGrist", (mss.getNumStat("averageGrist") / sessionSummaries.length).round());
+        mss.setStat("averageFrogLevel", (mss.getNumStat("averageFrogLevel") / sessionSummaries.length).round());
         mss.setStat("averageSanity", (mss.getNumStat("averageSanity") / sessionSummaries.length).round());
         mss.setStat("averageRelationshipValue", (mss.getNumStat("averageRelationshipValue") / sessionSummaries.length).round());
         mss.setStat("averageNumScenes", (mss.getNumStat("averageNumScenes") / sessionSummaries.length).round());

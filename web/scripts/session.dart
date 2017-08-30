@@ -20,6 +20,9 @@ class Session {
     GameEntity kingsScepter = null;
     bool janusReward = false;
     bool badBreakDeath = false;
+    //if i have less than expected grist, then no frog, bucko
+    int expectedGristContributionPerPlayer = 400;
+    int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
     bool jackGotWeapon = false;
     bool jackRampage = false;
     bool jackScheme = false;
@@ -61,6 +64,10 @@ class Session {
     bool goodLuckEvent = false;
     bool badLuckEvent = false;
     bool hasFreeWillEvents = false;
+    bool hasTier1Events = false;
+    bool hasTier2Events = false;
+    bool hasTier3Events = false;
+    bool hasTier4Events = false;
     bool ectoBiologyStarted = false;
     bool doomedTimeline = false;
     bool makeCombinedSession = false; //happens if sick frog and few living players
@@ -209,18 +216,72 @@ class Session {
         }
     }
 
+    ///frog status is part actual tadpole, part grist
+    bool sickFrogCheck(Player spacePlayer) {
+        //there is  a frog but it's not good enough
+        bool frogSick = spacePlayer.landLevel < goodFrogLevel;
+        bool frog = !noFrogCheck(spacePlayer);
+        bool grist = enoughGristForFull();
+        //frog is sick if it was bred wrong, or if it was nutured wrong
+        return (frog && (frogSick || !grist));
+
+    }
+
+    bool enoughGristForFull() {
+        return getTotalGrist(players) > expectedGristContributionPerPlayer * players.length;
+    }
+
+    bool enoughGristForAny() {
+        return getTotalGrist(players) > minimumGristPerPlayer * players.length;
+    }
+
+    int gristPercent() {
+        return (100*(getTotalGrist(players)/minimumGristPerPlayer * players.length)).round();
+    }
+
+
+    bool fullFrogCheck(Player spacePlayer) {
+        //there is  a frog but it's not good enough
+        bool frogSick = spacePlayer.landLevel < goodFrogLevel;
+        bool frog = !noFrogCheck(spacePlayer);
+        bool grist = enoughGristForFull();
+        //frog is full if it was bred AND nurtured right.
+        return (frog && (!frogSick &&  grist));
+    }
+
+    //don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
+    bool purpleFrogCheck(Player spacePlayer) {
+        bool frog = spacePlayer.landLevel <= (this.minFrogLevel * -1);
+        bool grist = enoughGristForAny();
+        return (frog && grist);
+    }
+
+
+    //don't care about grist, if there's no frog to deploy at all. eventually check for rings
+    bool noFrogCheck(Player spacePlayer) {
+        bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
+        bool grist = !enoughGristForAny();
+        return (frog || grist);
+    }
+
     String frogStatus() {
+        String ret = "";
         Player spacePlayer = this.findBestSpace();
         Player corruptedSpacePlayer = this.findMostCorruptedSpace();
         //var spacePlayer = findAspectPlayer(this.players, "Space");
-        if (corruptedSpacePlayer != null && corruptedSpacePlayer.landLevel <= this.goodFrogLevel * -1) return "Purple Frog"; //is this...a REFRANCE???
-        if (spacePlayer == null || spacePlayer.landLevel < this.minFrogLevel) {
-            return "No Frog";
-        } else if (spacePlayer.landLevel > this.goodFrogLevel) {
-            return "Full Frog";
-        } else {
-            return "Sick Frog";
+        if (purpleFrogCheck(corruptedSpacePlayer)) return "Purple Frog"; //is this...a REFRANCE???
+        if (noFrogCheck(spacePlayer)){
+            ret = "No Frog";
+        } else if (fullFrogCheck(spacePlayer)) {
+            ret = "Full Frog";
+        } else if(sickFrogCheck(spacePlayer)) {
+            ret = "Sick Frog";
+        }else {
+            print("AB: What the HELL kind of frog is this in session ${session_id}");
+            ret = "??? Frog";
         }
+        print("AB: Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+        return ret;
     }
 
     void addEventToUndoAndReset(ImportantEvent e) {
@@ -342,6 +403,8 @@ class Session {
         this.doomedTimelineReasons = <String>[];
         this.ectoBiologyStarted = false;
     }
+
+
 
     void makePlayers() {
         this.players = <Player>[];

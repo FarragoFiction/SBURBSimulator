@@ -689,6 +689,10 @@ abstract class Drawing {
         ctx.fillText(player.landLevel.toString(), right_margin, current + line_height * i);
         i++;
 
+        ctx.fillText("Grist Collected: ", left_margin, current + line_height * i);
+        ctx.fillText(player.grist.toString(), right_margin, current + line_height * i);
+        i++;
+
         ctx.fillText("Former Friends Killed: ", left_margin, current + line_height * i);
         ctx.fillText(player.pvpKillCount.toString(), right_margin, current + line_height * i);
         i++;

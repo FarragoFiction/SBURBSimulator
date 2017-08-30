@@ -448,10 +448,10 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			narration += " No matter what anybody says about time travel frog breeding being an overly elaborate and dangerous undertaking.  Desperate times, Desperate measures. ";
 			if(this.doomedTimeClone.class_name == SBURBClassManager.KNIGHT){
 				narration += " Luckily they were SUPPOSED to be helping breed the frog in the first place, so it's just a matter of making enough stable time loops to make a huge dent in the process. ";
-				spacePlayer.landLevel += 10;
+				spacePlayer.increaseLandLevel(10.0);
 			}else{
 				narration += " Unfortunately they are not a Knight, and thus are banned from helping breed frogs directly.  But with a little creativity and a LOT of stable time loops they manage to indirectly help a huge amount. ";
-				spacePlayer.landLevel += 8;
+				spacePlayer.increaseLandLevel(8.0);
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);

@@ -132,11 +132,11 @@ class PlanToExileJack extends Scene {
 
 		return chatText;
 	}
-	void chatWithFriend(div, player1, player2){
+	void chatWithFriend(Element div, Player player1, Player player2){
 		num repeatTime = 1000;
 		var divID = (div.id) + "_" + player1.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		div.append(canvasHTML);
+		appendHtml(div,canvasHTML);
 		//different format for canvas code
 		var canvasDiv = querySelector("#canvas"+ divID);
 
@@ -154,14 +154,14 @@ class PlanToExileJack extends Scene {
 
 		Drawing.drawChat(canvasDiv,player1, player2, chatText,"discuss_jack.png");
 	}
-	bool smart(player){
+	bool smart(Player player){
 		return ((player.aspect == Aspects.LIGHT || player.class_name == SBURBClassManager.SEER) ||(player.aspect == Aspects.DOOM || player.aspect == Aspects.MIND));
 	}
 
 	@override
 	void renderContent(Element div){
 		this.session.plannedToExileJack = true;
-		if(!this.planner){
+		if(this.planner == null){
 			return;
 		}
 		this.planner.increasePower();
@@ -169,8 +169,8 @@ class PlanToExileJack extends Scene {
 		this.session.available_scenes.insert(0, new prepareToExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
-		var player1 = this.planner;
-		var player2 = getLeader(findLivingPlayers(	this.session.players));
+		Player player1 = this.planner;
+		Player player2 = getLeader(findLivingPlayers(	this.session.players));
 		if(player2 != null && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2);

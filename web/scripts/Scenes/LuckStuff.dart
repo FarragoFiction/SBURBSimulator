@@ -6,8 +6,8 @@ class LuckStuff extends Scene{
 	@override
 	List<Player> playerList = <Player>[];  //what players are already in the medium when i trigger?
 	List<Roll> rolls = [];	//luck can be good or it can be bad.
-	num minLowValue = -100;
-	num minHighValue = 200;
+	num minLowValue = -25;
+	num minHighValue = 25;
 	num landLevelNeeded = 12;
 	num numberTriggers = 0; //can't just spam this.
 
@@ -62,7 +62,7 @@ class LuckStuff extends Scene{
 			return this.roll65(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
-		roll.player.landLevel ++;
+		roll.player.increaseLandLevel();
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
@@ -84,7 +84,7 @@ class LuckStuff extends Scene{
 		}
 		//print("roll40 in " + this.session.session_id);
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge bee hive. The angry bees immediately ravage the country side, pestering local consorts.";
-		roll.player.landLevel += -1;
+		roll.player.increaseLandLevel(-1.0);
 		this.session.badLuckEvent = true;
 		return ret;
 	}
@@ -137,8 +137,7 @@ class LuckStuff extends Scene{
 			return this.roll85(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
-		roll.player.landLevel ++;
-		roll.player.landLevel ++;
+		roll.player.increaseLandLevel(2.0);
 		this.session.goodLuckEvent = true;
 		return ret;
 	}
@@ -162,7 +161,7 @@ class LuckStuff extends Scene{
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
-		roll.player.landLevel += -2;
+		roll.player.increaseLandLevel(-2.0);
 		this.session.badLuckEvent = true;
 		return ret;
 	}
@@ -186,9 +185,7 @@ class LuckStuff extends Scene{
 		if(roll.player.aspect == Aspects.SPACE){
 			ret += "Wait. What the HELL!? Is that last Frog!? Just sitting there? Right in front of the " + roll.player.htmlTitle() + "!? No time shenanigans or prophecies or god damned Choices!? It's just...there. Well. Damn. That'll make the frog breeding WAY easier.";
 		}
-		roll.player.landLevel ++;
-		roll.player.landLevel ++;
-		roll.player.landLevel ++;
+		roll.player.increaseLandLevel(3.0);
 		this.session.goodLuckEvent = true;
 
 		return ret;
@@ -199,7 +196,7 @@ class LuckStuff extends Scene{
 			return "The " + roll.player.htmlTitle() + " gets a bad feeling, like maybe their land back in their home session just got damaged. But...it's not like they can ever go back, right? Who cares."; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immegrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
-		roll.player.landLevel += -4;
+		roll.player.increaseLandLevel(-4.0);
 		this.session.badLuckEvent = true;
 		return ret;
 	}
