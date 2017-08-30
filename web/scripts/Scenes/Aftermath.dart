@@ -261,7 +261,7 @@ class Aftermath extends Scene {
 
 				}else{
 					end += this.democracyBonus();
-					end += " <Br><br> The door to the new universe is revealed.";
+					end += " <Br><br> The door to the new universe is revealed. <br><Br>";
 					end += whoEnters();
 					end += "<Br><Br>";
 					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
