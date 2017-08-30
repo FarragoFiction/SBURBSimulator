@@ -696,6 +696,8 @@ num getAverageGrist(List<GameEntity> players) {
 
 
 String getPVPQuip(Player deadPlayer, Player victor, String deadRole, String victorRole) {
+    if(deadPlayer.class_name == victor.class_name) return "Anything goes when you fight your own class, I guess.";
+
     if (victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)) {
         return "Which is pretty much how you expected things to go down between a ${deadPlayer.class_name} and a ${victor.class_name} in that exact situation. ";
     } else {
