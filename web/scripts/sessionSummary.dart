@@ -286,7 +286,7 @@ class SessionSummary {
         summary.setBoolStat("sacrificialSlab", session.sacrificialSlab);
         summary.setNumStat("num_scenes", session.numScenes);
         summary.players = session.players;
-        summary.mvp = findStrongestPlayer(session.players);
+        summary.mvp = findMVP(session.players);
         summary.parentSession = session.parentSession;
         summary.setBoolStat("scratchAvailable", session.scratchAvailable);
         summary.setBoolStat("yellowYard", session.yellowYard);

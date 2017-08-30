@@ -276,9 +276,9 @@ void  summarizeSession(Session session) {
         abRight(false);
       }
     }
-    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
+    if(sessionSummary.mvp.grist > team.mvp_score){
       team.mvp_name = sessionSummary.mvp.htmlTitle();
-      team.mvp_score = sessionSummary.mvp.getStat("power");
+      team.mvp_score = sessionSummary.mvp.grist;
     }
 
     if(team.mvp_score > mvpScore){
@@ -292,7 +292,7 @@ void  summarizeSession(Session session) {
   }
 
   void renderGlobalMVP(){
-    querySelector("#globalMVP").setInnerHtml("Overall MVP:  " + mvpName + " with a power of: $mvpScore<br>");
+    querySelector("#globalMVP").setInnerHtml("Overall MVP:  " + mvpName + " with a grist level of: $mvpScore<br>");
   }
 
 
@@ -329,7 +329,7 @@ void  summarizeSession(Session session) {
     }
     if(sessionSummary.mvp.getStat("power") > team.mvp_score){
       team.mvp_name = sessionSummary.mvp.htmlTitle();
-      team.mvp_score = sessionSummary.mvp.getStat("power");
+      team.mvp_score = sessionSummary.mvp.grist;
     }
 
     if(team.mvp_score > mvpScore){
@@ -400,13 +400,13 @@ void  summarizeSession(Session session) {
     String num = "# of Sessions: ${team.numberSessions}";
     String win = "<br># of Total Party Wipes: ${ team.numTotalPartyWipe}";
     String score = "<br><h1>Score:  ${team.score()}</h1><hr>";
-    String mvp = "<br>MVP:  ${team.mvp_name} with a power of: ${ team.mvp_score}";
+    String mvp = "<br>MVP:  ${team.mvp_name} with a grist level of: ${ team.mvp_score}";
     if(team.lostRound){
       div.style.textDecoration = "overline";
     }
     div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win  + mvp + "</div>");
     querySelector("#score_${team.name}$tierNumber").setInnerHtml("<B>Score</b>: ${team.score()}");
-    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
+    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a grist level of: ${team.mvp_score}");
   }
 
 
@@ -425,7 +425,7 @@ void  summarizeSession(Session session) {
     }
     div.setInnerHtml("<div class = 'scoreBoard'>" + score + num + win + crash + mvp + "</div>");
     querySelector("#score_${team.name}$tierNumber").setInnerHtml("<B>Score</b>: ${team.score()}");
-    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a power of: ${team.mvp_score}");
+    if(querySelector("#mvp_${team.name}$tierNumber") != null) querySelector("#mvp_${team.name}$tierNumber").setInnerHtml("<b>MVP:</b>  " + team.mvp_name + " with a grist level of: ${team.mvp_score}");
   }
 
 
@@ -551,7 +551,7 @@ void  summarizeSession(Session session) {
         }
 
         html += teamInRound.name + ": ${teamInRound.score()}";
-        html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a power of: ${(teamInRound.mvp_score).round()}</div>";
+        html += "<div class = 'mvp'><b>MVP:</b>  " + teamInRound.mvp_name + " with a grist level of: ${(teamInRound.mvp_score).round()}</div>";
         html += " </td>";
       }else{ //was disqualified
         html += "<td></td>";

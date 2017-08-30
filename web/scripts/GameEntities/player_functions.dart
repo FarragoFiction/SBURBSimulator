@@ -311,6 +311,20 @@ Player findClassPlayer(List<GameEntity> playerList, SBURBClass class_name) {
     return null;
 }
 
+Player findMVP(List<Player> playerList) {
+    if (playerList.isEmpty) return null;
+    Player strongest = playerList[0];
+
+    for (int i = 0; i < playerList.length; i++) {
+        GameEntity p = playerList[i];
+        if (p.grist > strongest.grist) {
+            strongest = p;
+        }
+
+    }
+    return strongest;
+}
+
 
 Player findStrongestPlayer(List<Player> playerList) {
     if (playerList.isEmpty) return null;
