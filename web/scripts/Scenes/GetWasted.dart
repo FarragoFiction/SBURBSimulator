@@ -342,14 +342,17 @@ class GetWasted extends Scene {
         }else {
             ret +=  "They find something called a 'Shipping Dunegon' and arrange everyone into various 'canon' and 'crackship' speed dates to take advantage of the game's interaction effect bonus. ";
         }
+        ret += "<br>";
         //quest has shitty rewards. you get only interaction effects until i come back later and decide to balance shit
         for(Player p1 in session.players) {
                 for(Player p2 in session.players) {
                     if(p1 != p2) {
-                        String subret = "";
+                        String subret = "<Br>";
+                        //happens multiple times but only prints one, cuz it's not gonna be different
                         subret += p1.interactionEffect(p2);
-                        subret += p1.interactionEffect(p2);
-                        subret += p1.interactionEffect(p2);
+                        p1.interactionEffect(p2);
+                        p1.interactionEffect(p2);
+                        p1.increasePower();
                         ret += subret;
                     }
                 }
