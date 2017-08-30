@@ -594,7 +594,7 @@ function quip(state){
                   ret = "Sounds legit."
     } else if(state == 136){
         ret = "Huh, so that's what happened to all of AB's chassis. I am gonna hafta have a word with ABJ."
-    } else if(state == 143 || state == 144){
+    } else if(state == 142 || state == 143){
              ret = "!!! It's <a href = 'https://charahub.com/character/1140409/Kilius-Koplan'>Kilius!</a> The best troll!!!"
      }else{
 		ret = "???"
