@@ -275,7 +275,7 @@ class GetWasted extends Scene {
         List<Player> timePlayers = findAllAspectPlayers(session.players, Aspects.TIME);
 
         List<Player> doomedTimeClones = new List<Player>();
-        ret += " As expected, a small army of doomed time clones arrives to stop their terrible ideas. Now the various boss fights should be a lot easier. ";
+        ret += " As expected, a small army of doomed time clones arrives to stop their many, many terrible ideas and fallback ideas. Now the various boss fights should be a lot easier. ";
         for(int i = 0; i<12; i++) {
             Player chosen;
             //if multiple time players, any can be here
@@ -336,7 +336,23 @@ class GetWasted extends Scene {
 
     //gather everyone on a planet with fast, repatable quests, have everybody do speed questing to get max interaction effects for effort given
     String exploitFriendship(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
+        if(player.aspect == Aspects.BLOOD) {
+            ret +=  "They find a fast, repeatable quest and organize everyone into ever-changing adventuring pairs to take advantage of the game's interaction effect bonus. ";
+        }else {
+            ret +=  "They find something called a 'Shipping Dunegon' and arrange everyone into various 'canon' and 'crackship' speed dates to take advantage of the game's interaction effect bonus. ";
+        }
+        //quest has shitty rewards. you get only interaction effects until i come back later and decide to balance shit
+        for(Player p1 in session.players) {
+                for(Player p2 in session.players) {
+                    if(p1 != p2) {
+                        ret += p1.interactionEffect(p2);
+                        ret += p1.interactionEffect(p2);
+                        ret += p1.interactionEffect(p2);
+                    }
+                }
+        }
+        return ret;
 
     }
 
