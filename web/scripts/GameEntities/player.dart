@@ -1740,6 +1740,43 @@ class Player extends GameEntity {
         this.sprite.doomed = true;
     }
 
+    ///not static because who can help me varies based on who i am (space is knight, for example)
+    ///no longer inside a scene because multiple scenes need a consistent result from this
+     Player findHelper(List<Player> players) {
+        Player helper;
+         //space player can ONLY be helped by knight, and knight prioritizes this
+         if(aspect == Aspects.SPACE){//this shit is so illegal
+             helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
+             if(helper != player){ //a knight of space can't help themselves.
+                 print("Debugging helpers: Found $helper in session ${session.session_id}");
+                 return helper;
+             }else{
+
+             }
+         }
+        //time players often partner up with themselves
+        if(aspect == Aspects.TIME && rand.nextDouble() > .2){
+            print("Debugging helpers: Found $helper in session ${session.session_id}");
+            return this;
+        }
+
+        //players are naturally sorted by mobility
+        List<Player> sortedChoices = new List<Player>.from(players)..sort();
+        for(Player p in sortedChoices) {
+            if(rand.nextDouble() > 0.75 && p != this) {
+                //space players are stuck on their land till they get their frog together.
+                if(p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel) {
+                    helper = p;
+                }
+            }else if(p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+                helper = p;
+            }
+        }
+        //could be null, not 100% chance of helper
+        print("Debugging helpers: Found $helper in session ${session.session_id}");
+        return helper;
+    }
+
     static List<String> playerStats = <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
     @override
     Iterable<String> allStats() {
