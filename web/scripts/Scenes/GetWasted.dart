@@ -63,10 +63,12 @@ class GetWasted extends Scene {
     bool loreReachedTippingPoint(Player p) {
         if(p.gnosis >=4) return false; //you are done yo
         //linear works well for these
-        if(p.gnosis == 1 || p.gnosis == 4) {
+        if(p.gnosis == 1) {
             return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
+        }else if(p.gnosis == 3) {
+            return (p.getStat("sburbLore") >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
         }else {
-            return (p.getStat("sburbLore") >= tippingPointBase/2 * (p.gnosis + 1));
+            return (p.getStat("sburbLore") >= 2 * tippingPointBase * (p.gnosis + 1));
         }
     }
 
