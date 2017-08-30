@@ -1747,8 +1747,8 @@ class Player extends GameEntity {
          //space player can ONLY be helped by knight, and knight prioritizes this
          if(aspect == Aspects.SPACE){//this shit is so illegal
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper != player){ //a knight of space can't help themselves.
-                 print("Debugging helpers: Found $helper in session ${session.session_id}");
+             if(helper != this){ //a knight of space can't help themselves.
+                 //print("Debugging helpers: Found $helper in session ${session.session_id}");
                  return helper;
              }else{
 
@@ -1756,7 +1756,7 @@ class Player extends GameEntity {
          }
         //time players often partner up with themselves
         if(aspect == Aspects.TIME && rand.nextDouble() > .2){
-            print("Debugging helpers: Found $helper in session ${session.session_id}");
+            //print("Debugging helpers: Found $helper in session ${session.session_id}");
             return this;
         }
 
@@ -1768,12 +1768,12 @@ class Player extends GameEntity {
                 if(p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel) {
                     helper = p;
                 }
-            }else if(p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p != this) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
             }
         }
         //could be null, not 100% chance of helper
-        print("Debugging helpers: Found $helper in session ${session.session_id}");
+        //print("Debugging helpers: Found helper $helper for player $this in session ${session.session_id}");
         return helper;
     }
 
