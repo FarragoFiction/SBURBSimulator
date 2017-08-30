@@ -26,8 +26,7 @@ class ConfrontJack extends Scene {
   void renderContent(Element div) {
     appendHtml(div, "<br> <img src = 'images/sceneIcons/jack_icon.png'> ");
     //appendHtml(div);
-    String ret = "Hey, " + this.player.htmlTitle() +
-        " is trying to fight Jack. It's a shame CACTUS IS INCOMPETENT, or else this would, i dunno, work.";
+    String ret = "The " + this.player.htmlTitle() + " does not trust Jack, and would prefer him dead. They confront Jack, ready for Strife.";
     appendHtml(div, ret);
     Team pTeam = new Team.withName(
         this.player.htmlTitle(), this.session, [this.player]);
@@ -35,6 +34,7 @@ class ConfrontJack extends Scene {
     Strife strife = new Strife(this.session, [pTeam, dTeam]);
     strife.startTurn(div);
     if (this.session.jack.getStat("currentHP") <= 0){
+      this.session.jack.setStat("currentHP",0); //effectively dead.
       this.session.jack.exiled = true;
       String winText = "The strife with Jack was successful. His corpse has been exiled, never to be seen again.";
       appendHtml(div, winText);
