@@ -231,6 +231,7 @@ Player randomTimePlayer(Session session) {
 }
 
 
+///takes list of players adn aspect i am looking for
 Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite

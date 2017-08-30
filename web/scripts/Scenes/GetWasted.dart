@@ -266,7 +266,33 @@ class GetWasted extends Scene {
 
     //make doomed timeclone army
     String exploitTime(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They begin seriously planning to utterly fuck over the timeline. ";
+        if(this.player.aspect == Aspects.TIME) {
+            ret += " They use their innate sense of time to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. ";
+        }else if (this.player.aspect == Aspects.MIND){
+            ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
+        }
+        Player timePlayer = findAspectPlayer(session.players, Aspects.TIME);
+
+        List<Player> doomedTimeClones = new List<Player>();
+        ret += " As expected, a small army of doomed time clones arrives to stop their terrible ideas. Now the various boss fights should be a lot easier. ";
+        for(int i = 0; i<12; i++) {
+            Player chosen;
+            if(timePlayer.isActive() || (!timePlayer.isActive() && rand.nextBool())){
+                chosen = timePlayer;
+            }else{
+                chosen = rand.pickFrom(session.players);
+            }
+            Player doomedTimeClone = Player.makeDoomedSnapshot(chosen);
+            chosen.addDoomedTimeClone(doomedTimeClone);
+            doomedTimeClones.add(doomedTimeClone);
+        }
+        String divID = "gnosis3${div.id}player${player.id}";
+        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+        drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
+
+        return ret;
 
     }
 
@@ -350,6 +376,10 @@ class GetWasted extends Scene {
             }
         }
         return ret;
+    }
+
+    void drawPoseAsTeam(String canvasID, List<Player> players) {
+        Drawing.poseAsATeam(querySelector("#${canvasID}"), players);
     }
 
     ///first player is corpse, second is smoocher
