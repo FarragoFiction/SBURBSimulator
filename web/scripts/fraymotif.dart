@@ -286,7 +286,7 @@ class Fraymotif {
         List<Player> living = findLivingPlayers(allies);
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
-            enemies[0].buffs.add(new Buff("currentHP", -9999)); //they REALLY believed in this attack.
+            enemies[0].buffs.add(new BuffOld("currentHP", -9999)); //they REALLY believed in this attack.
             var jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
             print("Hope Rides Alone in session: ${owner.session.session_id}");
             var scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
@@ -666,7 +666,7 @@ class FraymotifEffect {
         for (num i = 0; i < targetArr.length; i++) {
             var t = targetArr[i];
             t.makeAlive();
-            t.buffs.add(new Buff("currentHP", e)); //don't mod directly anymore
+            t.buffs.add(new BuffOld("currentHP", e)); //don't mod directly anymore
         }
     }
 
@@ -676,11 +676,11 @@ class FraymotifEffect {
             var t = targetArr[i];
             if (this.statName != "RELATIONSHIPS") {
                 //t[this.statName] += e;
-                t.buffs.add(new Buff(this.statName, e)); //don't mod directly anymore
+                t.buffs.add(new BuffOld(this.statName, e)); //don't mod directly anymore
             } else {
                 for (num j = 0; j < t.relationships.length; j++) {
                     //t.relationships[j].value += e;
-                    t.buffs.add(new Buff(this.statName, e));
+                    t.buffs.add(new BuffOld(this.statName, e));
                 }
             }
         }

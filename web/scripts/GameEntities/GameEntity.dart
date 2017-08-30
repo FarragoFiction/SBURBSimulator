@@ -39,7 +39,7 @@ class GameEntity implements Comparable<GameEntity> {
     bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
     List<Fraymotif> fraymotifs = <Fraymotif>[];
     bool usedFraymotifThisTurn = false;
-    List<Buff> buffs = <Buff>[]; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
+    List<BuffOld> buffs = <BuffOld>[]; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
     Map<String, num> stats = <String, num>{};
     List<Relationship> relationships = <Relationship>[]; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
     Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly is confusing since it's also 'level')
@@ -425,7 +425,7 @@ class GameEntity implements Comparable<GameEntity> {
     double getTotalBuffForStat(String statName) {
         double ret = 0.0;
         for (int i = 0; i < this.buffs.length; i++) {
-            Buff b = this.buffs[i];
+            BuffOld b = this.buffs[i];
             if (b.name == statName) ret += b.value;
         }
         return ret;
@@ -477,7 +477,7 @@ class GameEntity implements Comparable<GameEntity> {
         num ret = this.stats[statName];
         if (ret == null) throw "What Kind of Stat is: $statName???";
         for (int i = 0; i < this.buffs.length; i++) {
-            Buff b = this.buffs[i];
+            BuffOld b = this.buffs[i];
             if (b.name == statName) ret += b.value;
         }
 
@@ -668,8 +668,8 @@ class AssociatedStatInterests extends AssociatedStat {
 }
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
-class Buff {
-    Buff(String this.name, num this.value) {}
+class BuffOld {
+    BuffOld(String this.name, num this.value) {}
 
     String name;
     num value;

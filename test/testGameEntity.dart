@@ -86,11 +86,11 @@ void testBuffs() {
   jRAssert("currentHP", testGE.getStat("currentHP"), 0);
   jRAssert("number of buffs", testGE.buffs.length, 0);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 0);
-  Buff hpBuff1 = new Buff("currentHP", 10);
+  BuffOld hpBuff1 = new BuffOld("currentHP", 10);
   testGE.buffs.add(hpBuff1); //TODO maybe eventaully should be a funciton instead of exposed array.
   jRAssert("number of buffs", testGE.buffs.length, 1);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 10);
-  Buff hpBuff2 = new Buff("currentHP", 5);
+  BuffOld hpBuff2 = new BuffOld("currentHP", 5);
   testGE.buffs.add(hpBuff2);
   jRAssert("number of buffs", testGE.buffs.length, 2);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 15);
@@ -99,17 +99,17 @@ void testBuffs() {
   jRAssert("glitch stat", testGE.stats["bogus413"], null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
   print(testGE.describeBuffs());
   testGE.buffs
-    ..add(new Buff("minLuck", 5))
-    ..add(new Buff("MANGRIT", 5))
-    ..add(new Buff("mobility", 5))
-    ..add(new Buff("alchemy", 5));
+    ..add(new BuffOld("minLuck", 5))
+    ..add(new BuffOld("MANGRIT", 5))
+    ..add(new BuffOld("mobility", 5))
+    ..add(new BuffOld("alchemy", 5));
   print(testGE.describeBuffs()); //not gonna try to do unit testing for a narrative thing but at least call it and make sure it doesn't crash.
-  testGE.buffs = <Buff>[];
+  testGE.buffs = <BuffOld>[];
   testGE.buffs
-    ..add(new Buff("minLuck", -5))
-    ..add(new Buff("MANGRIT", -5))
-    ..add(new Buff("mobility", -5))
-    ..add(new Buff("alchemy", -5));
+    ..add(new BuffOld("minLuck", -5))
+    ..add(new BuffOld("MANGRIT", -5))
+    ..add(new BuffOld("mobility", -5))
+    ..add(new BuffOld("alchemy", -5));
   print(testGE.describeBuffs());
 
   print("Buffs passed");
