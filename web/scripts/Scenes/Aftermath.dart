@@ -107,7 +107,7 @@ class Aftermath extends Scene {
 
 	String gnosisEnding() {
 		session.gnosisEnding = true;
-		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. It is a glorious shade of pink. The Players remain inside the Medium supporting Reality from within. ";
+		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. It is a glorious shade of pink. The Players remain inside the Medium supporting Reality from within. You have escaped the cycle of flawed creators ruling over flawed creations, SBURB will never trouble your cosmic progeny.";
 	}
 
 	dynamic democracyBonus(){
