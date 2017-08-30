@@ -68,7 +68,7 @@ class GetWasted extends Scene {
         }else if(p.gnosis == 3) {
             return (p.getStat("sburbLore") >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
         }else {
-            return (p.getStat("sburbLore") >= 1.5 * tippingPointBase * (p.gnosis + 1));
+            return (p.getStat("sburbLore") >= 0.5 * tippingPointBase * (p.gnosis + 1));
         }
     }
 
