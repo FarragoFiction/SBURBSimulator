@@ -393,6 +393,7 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        //TODO each tier4 event should do damage to session health.  grim dark crash should account for high gnosis levels, too
         session.hasTier4Events = true;
         //todo waste tier, will be dope as fuk
         //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.

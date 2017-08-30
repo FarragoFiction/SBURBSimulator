@@ -21,8 +21,8 @@ class Session {
     bool janusReward = false;
     bool badBreakDeath = false;
     //if i have less than expected grist, then no frog, bucko
-    int expectedGristContributionPerPlayer = 700;
-    int minimumGristPerPlayer = 400; //less than this, and no frog is possible.
+    int expectedGristContributionPerPlayer = 400;
+    int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
     bool jackGotWeapon = false;
     bool jackRampage = false;
     bool jackScheme = false;
