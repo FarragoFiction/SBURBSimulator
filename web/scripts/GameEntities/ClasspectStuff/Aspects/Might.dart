@@ -73,5 +73,5 @@ class Might extends Aspect {
     new AssociatedStat("sanity", 1, true),
   ]);
 
-  Might(int id) :super(id, "Might", isCanon: false);
+  Might(int id) :super(id, "Might", isCanon: true);
 }
