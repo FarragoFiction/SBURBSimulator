@@ -497,8 +497,8 @@ class CharacterCreatorHelper {
             //will be null for char viewer.
             loadButton.onClick.listen((Event e) {
                 TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
-                String bs = "${window.location}?" +
-                    dataBox.value; //need "?" so i can parse as url
+                String bs = "${window.location}?" + dataBox.value; //need "?" so i can parse as url
+                if(bs.contains("?")) bs = "${window.location}&" + dataBox.value;
                 print("bs is: " + bs);
                 String b = (getParameterByName("b",
                     bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
