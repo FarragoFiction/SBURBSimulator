@@ -259,9 +259,30 @@ class GetWasted extends Scene {
 
     }
 
-    //auto english tier someone who it will work for
+    //auto english tier someone be lucky enough or hopeful enough that it works for EVERYONE
     String exploitFate(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.  They know what it takes to reach god tier, and whoever they can't convince, they ambush. ";
+        if(this.player.aspect == Aspects.HOPE) {
+            ret += " They believe with all their heart that this plan will work.  It helps that they don't even have a clue that whole 'god tier destiny' bullshit exists.  ";
+        }else if (this.player.aspect == Aspects.LIGHT){
+            ret += " Regardless of what destiny says, they are lucky enough bastards that the plan goes off without a hitch. ";
+        }
+
+        List<Player> fledglingGods = new List<Player>();
+        for(Player p in session.players) {
+            if(!p.godTier) {
+                //you don't even have to be alive for this to work, they'll just drag your body to the slab and hope/luck it into working.
+                if(!p.dead) p.makeDead("exploiting SBURB to becoome a god.");
+                p.makeGodTier();
+                fledglingGods.add(p);
+            }
+        }
+
+        String divID = "gnosis3${div.id}player${player.id}";
+        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+        drawingMethods.add(new DrawMethodWithParameter(drawGodTiers,divID, fledglingGods));
+        return ret;
     }
 
     //make doomed timeclone army
@@ -294,7 +315,6 @@ class GetWasted extends Scene {
         ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
 
         drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
-        print("gonna draw after i render");
         return ret;
 
     }
@@ -400,6 +420,11 @@ class GetWasted extends Scene {
             }
         }
         return ret;
+    }
+
+
+    void drawGodTiers(String canvasID, List<Player> players) {
+        Drawing.drawGetTiger(querySelector("#${canvasID}"), players);
     }
 
     void drawPoseAsTeam(String canvasID, List<Player> players) {
