@@ -8,7 +8,7 @@ class Newspost
 
   static List<Newspost> makeAuthorNewsposts() {
     List<Newspost> ret = [
-      new Newspost("8/29/17","How 'bout that Hiveswap release date announcment? It's so weird to me that I started up SBURBSim as a way to pass the time 'before Hiveswap' way back in January, and now here we are. Good times. <br><Br> today I implented a basic 'grist' system that is required to breed a successful frog.  Otherwise one asshole with a FAQ was enough to basically guarantee victory.  NOW everybody has to pull their weight.<br><Br>We also have the breath/space mobility exploit, and a shit ton of bug/balance fixes ")
+      new Newspost("8/29/17","How 'bout that Hiveswap release date announcment? It's so weird to me that I started up SBURBSim as a way to pass the time 'before Hiveswap' way back in January, and now here we are. Good times. <br><Br> Today I implented a basic 'grist' system that is required to breed a successful frog.  Otherwise one asshole with a FAQ was enough to basically guarantee victory.  NOW everybody has to pull their weight.<br><Br>We also have the breath/space mobility exploit, and a shit ton of bug/balance fixes ")
       ,new Newspost("8/28/17","A little flavor text is added for interaction effects, and there's a new mini-prophecy system for Doom to exploit for tier 3 gnosis.<br><Br>A few bug fixes, too.")
      , new Newspost("8/27/17", "Relationships are a little less shitty in the sim now, and I added a bunch of extremely short and vague alternate endings.")
      , new Newspost("8/26/17", "Been importing various FAQs from you, the fans.  <br><br>Oh, and a few minor bug fixes.")
