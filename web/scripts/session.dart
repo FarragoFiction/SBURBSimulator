@@ -55,8 +55,8 @@ class Session {
     bool monoTheismEnding = false;
     bool waywardVagabondEnding = false;
     num hardStrength = 1000;
-    num minFrogLevel = 18;
-    num goodFrogLevel = 28;
+    num minFrogLevel = 13;
+    num goodFrogLevel = 20;
     bool reckoningStarted = false;
     List<Player> aliensClonedOnArrival = <Player>[]; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
     bool murdersHappened = false;
