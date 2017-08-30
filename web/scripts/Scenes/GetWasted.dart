@@ -272,12 +272,14 @@ class GetWasted extends Scene {
         }else if (this.player.aspect == Aspects.MIND){
             ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
         }
-        Player timePlayer = findAspectPlayer(session.players, Aspects.TIME);
+        List<Player> timePlayers = findAllAspectPlayers(session.players, Aspects.TIME);
 
         List<Player> doomedTimeClones = new List<Player>();
         ret += " As expected, a small army of doomed time clones arrives to stop their terrible ideas. Now the various boss fights should be a lot easier. ";
         for(int i = 0; i<12; i++) {
             Player chosen;
+            //if multiple time players, any can be here
+            Player timePlayer = rand.pickFrom(timePlayers);
             if(timePlayer.isActive() || (!timePlayer.isActive() && rand.nextBool())){
                 chosen = timePlayer;
             }else{
