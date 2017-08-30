@@ -24,8 +24,8 @@ class DoLandQuest extends Scene{
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
 			if(ph != null){
 				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] != null && ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH )availablePlayers.remove(ph[1]);
+				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) session.availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
+				if(ph[1] != null && ph[1].aspect != Aspects.TIME && ph[1].aspect != Aspects.BREATH ) session.availablePlayers.remove(ph[1]);
 			}
 		}
 		return this.playersPlusHelpers.length > 0;
