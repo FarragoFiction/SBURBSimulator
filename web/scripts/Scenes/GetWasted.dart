@@ -286,12 +286,13 @@ class GetWasted extends Scene {
             Player doomedTimeClone = Player.makeDoomedSnapshot(chosen);
             chosen.addDoomedTimeClone(doomedTimeClone);
             doomedTimeClones.add(doomedTimeClone);
+
         }
         String divID = "gnosis3${div.id}player${player.id}";
         ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
 
         drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
-
+        print("gonna draw after i render");
         return ret;
 
     }
