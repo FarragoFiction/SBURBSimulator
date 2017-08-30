@@ -39,30 +39,29 @@ class Might extends Aspect {
   String denizenSongDesc = "A low note is hummed. It is the one Perseverance plays to keep itself going. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
-  //todo: add denizens. some thoughts are: Grendel
   @override
-  List<String> denizenNames = new List<String>.unmodifiable(<String>['Light', 'Helios', 'Ra', 'Cetus', 'Iris', 'Heimdall', 'Apollo', 'Coeus', 'Hyperion', "Belobog", 'Phoebe', 'Metis', 'Eos', 'Dagr', 'Asura', 'Amaterasu', 'Sol', 'Tyche', 'Odin ', 'Erutuf']);
+  List<String> denizenNames = new List<String>.unmodifiable(<String>['Might', 'Grendel', 'Heracles', 'Odysseus', 'Lancelot', 'Arthur', 'Beowulf', 'Achilles', 'Samson', 'Goliath']);
 
 //todo: don't use the quests from light for Might!!
   @override
   List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
-    "winning at increasingly unfair gambling challenges",
-    "researching way too much lore and minutia to win at trivia contests",
-    "explaining how to play a mini game to particularly stupid consorts until they finally get it"
+    "surfing a tsunami wave that appeared just for the occasion",
+    "punching out a horde of underlings, one by one",
+    "following through with a plan after the circumstances have foiled it and succeeding anyway"
   ]);
   @override
   List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-    "distracting underlings by with over the top displays of their game powers",
-    "teaching the local consorts how to count cards without eating them.",
-    "educating themselves on the consequences of betting against the house. As it happens, there are no consequences.",
-    "collecting the complete history and mythos of their land into an easy to navigate 1,000 volume encyclopedia."
+    "standing their ground in the face of a difficult foe",
+    "performing an unbelievably complex bike stunt",
+    "teaching consorts proper weightlifting technique",
+    "finally defeating the last of their planet's underlings"
   ]);
 
   @override
   List<String> denizenQuests = new List<String>.unmodifiable(<String>[
-    "realizing the the entire point of SBURB has been a lie",
-    "learning the true purpose of SBURB",
-    "realizing just how important frogs and grist and the Ultimate Alchemy truly are"
+    "training for training's sake",
+    "rennovating a consort village to protect it from natural disasters",
+    "defeating powerful underlings by refusing to give in to the pain"
   ]);
 
   @override
