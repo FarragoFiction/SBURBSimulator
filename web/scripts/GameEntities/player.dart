@@ -521,6 +521,31 @@ class Player extends GameEntity {
         return ret;
     }
 
+    //what gets displayed when you hover over any htmlTitle (even HP)
+    String getToolTip() {
+        String ret = "<span class = 'tooltip'><span class='tooltiptext'>";
+        ret += "<div class = 'toolTipSection'>$chatHandle<hr>";
+        ret += "Land: $land<Br>";
+        ret += "LandLevel: $landLevel<Br>";
+        ret += "Sprite: ${sprite.name}";
+        if(sprite.dead) ret += " (dead)";
+        ret += "<br><Br>Prophecy Status: ${prophecy}";
+
+        ret += "</div>";
+        List<String> as = new List<String>.from(allStats());
+        ret += "<div class = 'toolTipSection'>Stats<hr>";
+        for (int i = 0; i < as.length; i++) {
+            ret += "${as[i]}: ${getStat(as[i])}<br>";
+        }
+
+        ret += "</div><div class = 'toolTipSection'>Fraymotifs<hr>";
+        for(Fraymotif f in fraymotifs) {
+            ret += "${f.name}<br>";
+        }
+        ret += "</div></span>";
+        return ret;
+    }
+
 
     String getNextLevel() {
         this.level_index ++;
