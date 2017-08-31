@@ -510,7 +510,7 @@ class Player extends GameEntity {
 
     @override
     String htmlTitleBasic() {
-        return "${this.aspect.fontTag()}${this.titleBasic()}</font>";
+        return "${getToolTip()}${this.aspect.fontTag()}${this.titleBasic()}</font><span></span>";
     }
 
     //@override
@@ -1002,12 +1002,12 @@ class Player extends GameEntity {
 
     @override
     String htmlTitle() {
-        return "${this.aspect.fontTag()}${this.title()}</font>";
+        return "${getToolTip()}${this.aspect.fontTag()}${this.title()}</font></span>";
     }
 
     @override
     String htmlTitleHP() {
-        return "${this.aspect.fontTag()}${this.title()} (${(this.getStat("currentHP")).round()}hp, ${(this.getStat("power")).round()} power)</font>";
+        return "${getToolTip()}${this.aspect.fontTag()}${this.title()} (${(this.getStat("currentHP")).round()}hp, ${(this.getStat("power")).round()} power)</font></span>";
     }
 
     void generateBlandRelationships(List<Player> friends) {
