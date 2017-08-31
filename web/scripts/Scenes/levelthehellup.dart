@@ -84,7 +84,7 @@ class LevelTheHellUp extends Scene {
         String narration = "";
         for (num i = 0; i < this.playerList.length; i++) {
             Player p = this.playerList[i];
-            print("Level index is: ${p.level_index} while my levels length is ${p.mylevels.length}");
+            //print("Level index is: ${p.level_index} while my levels length is ${p.mylevels.length}");
             //it's a var so i debug this nightmare without end
             bool canLevel = p.leveledTheHellUp && ((p.level_index + 1) < p.mylevels.length);
             if (canLevel) { //can't level up if max level
