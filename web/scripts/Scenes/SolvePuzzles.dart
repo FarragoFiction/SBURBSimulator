@@ -16,38 +16,20 @@ class SolvePuzzles extends Scene {
 
 
 	void checkPlayer(Player player){
-		this.player1 = player;
-		this.player2 = null;
-		if(player.aspect == Aspects.BLOOD || player.class_name == SBURBClassManager.PAGE){
-			if(this.session.availablePlayers.length > 1){
-				this.player2 = rand.pickFrom(this.session.availablePlayers);
-				if(this.player2 == this.player1 && this.player2.aspect != Aspects.TIME){
-					this.player1 = null;
-					this.player2 = null;
-					return;
-				}
-
-			}else{
-				this.player1 = null;
-				return;
-			}
+		if(rand.nextBool()) {
+			this.player1 = player;
+			this.player2 = player.findHelper(session.availablePlayers);
 		}
 
-		//if i'm not blood or page, random roll for a friend.
-		if(this.session.availablePlayers.length > 1 && rand.nextDouble() > .5){
-			this.player2 = findHighestMobilityPlayer(this.session.availablePlayers);
-			if(this.player2 == this.player1 && this.player1.aspect != Aspects.TIME){  //only time player can help themselves out.
-				this.player2 == null;
-			}
-		}
 
 	}
 	@override
 	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			this.checkPlayer(this.session.availablePlayers[i]);
+		List shuffledPlayers = shuffle(rand, new List<Player>.from(session.availablePlayers));
+		for(Player p in shuffledPlayers){
+			this.checkPlayer(p);
 			if(this.player1 != null && this.player1.land != null){
 				return true;
 			}
@@ -59,15 +41,7 @@ class SolvePuzzles extends Scene {
 
 
 	}
-	void checkBloodBoost(){ //TODO seriously rip this out
-		if(this.player1.aspect == Aspects.BLOOD && this.player2 != null){
-			this.player2.boostAllRelationships();
-		}
 
-		if(this.player2!=null && this.player2.aspect == Aspects.BLOOD){
-			this.player1.boostAllRelationships();
-		}
-	}
 	String getBullshitQuest(){
 		//if i stored this in random tables like my old stuff (this is may 2017, btw), then i couldn't avoid repeats as easily as i am here.
 		//remember kids: design and architecture really do fucking matter.
@@ -138,8 +112,6 @@ class SolvePuzzles extends Scene {
 			ret += this.player1.interactionEffect(this.player2);
 			ret += this.player2.interactionEffect(this.player1);
 		}
-
-		this.checkBloodBoost();
 
 		ret += "The " + this.player1.htmlTitle();
 		if(this.player2 != null && (this.player2.aspect != this.player1.aspect ||this.player2.aspect == Aspects.TIME)){ //seriously, stop having clones of non time players!!!!

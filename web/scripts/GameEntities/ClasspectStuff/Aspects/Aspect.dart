@@ -237,11 +237,14 @@ class Aspect {
     /// Use initAssociatedStats for adding stats to a Player!
     List<AssociatedStat> stats = <AssociatedStat>[];
 
+    /// Perma-buffs for modifying stat growth and distribution - page growth curve etc.
+    List<Buff> statModifiers = <Buff>[];
+
     // ##################################################################################################
     // Constructor
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
-        faqFile = new FAQFile("Aspects/${name}.xml");
+        faqFile = new FAQFile("Aspects/$name.xml");
         Aspects.register(this);
     }
 

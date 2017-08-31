@@ -14,6 +14,16 @@ void bardQuestMode(){
 
 }
 
+///takes in a strin gparam from url
+/////example of use ?canonState=everythingFuckingGoes
+///warning, fanonOnly will basically crash if there isn't at least #OfPlayers amount of fanon classes and aspects. i don't recomend using it yet.
+void changeCanonState(String state) {
+	//CanonLevel
+	if(state == "canonOnly") curSessionGlobalVar.canonLevel = CanonLevel.CANON_ONLY;
+	if(state == "fanonOnly") curSessionGlobalVar.canonLevel = CanonLevel.FANON_ONLY;
+	if(state == "everythingFuckingGoes") curSessionGlobalVar.canonLevel = CanonLevel.EVERYTHING_FUCKING_GOES;
+
+}
 
 
 void faceOffMode(){

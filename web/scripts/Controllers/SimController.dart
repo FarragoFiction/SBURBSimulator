@@ -118,7 +118,7 @@ abstract class SimController {
         if (tmpcurSessionGlobalVar != null) {
             curSessionGlobalVar = tmpcurSessionGlobalVar;
             //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-            appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=$curSessionGlobalVar.session_id'>$curSessionGlobalVar.session_id</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+            appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
             checkSGRUB();
             load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
         } else {
@@ -222,9 +222,11 @@ abstract class SimController {
     void startSession() {
         globalInit(); // initialise classes and aspects if necessary
 
-       // print("Debugging AB: Starting session $initial_seed");
+
+            // print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
-      //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        changeCanonState(getParameterByName("canonState",null));
+        //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         reinit();
         //print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         Scene.createScenesForSession(curSessionGlobalVar);
@@ -247,6 +249,8 @@ abstract class SimController {
         if (getParameterByName("pen15", null) == "ouija") {
             pen15Ouija();
         }
+
+
 
         if (getParameterByName("faces", null) == "off") {
             faceOffMode();

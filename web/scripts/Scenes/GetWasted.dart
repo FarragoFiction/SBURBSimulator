@@ -63,10 +63,12 @@ class GetWasted extends Scene {
     bool loreReachedTippingPoint(Player p) {
         if(p.gnosis >=4) return false; //you are done yo
         //linear works well for these
-        if(p.gnosis == 1 || p.gnosis == 4) {
+        if(p.gnosis == 1) {
             return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
+        }else if(p.gnosis == 3) {
+            return (p.getStat("sburbLore") >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
         }else {
-            return (p.getStat("sburbLore") >= tippingPointBase/2 * (p.gnosis + 1));
+            return (p.getStat("sburbLore") >= 0.5 * tippingPointBase * (p.gnosis + 1));
         }
     }
 
@@ -259,26 +261,125 @@ class GetWasted extends Scene {
 
     }
 
-    //auto english tier someone who it will work for
+    //auto english tier someone be lucky enough or hopeful enough that it works for EVERYONE
     String exploitFate(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.  They know what it takes to reach god tier, and whoever they can't convince, they ambush. ";
+        if(this.player.aspect == Aspects.HOPE) {
+            ret += " They believe with all their heart that this plan will work.  It helps that they don't even have a clue that whole 'god tier destiny' bullshit exists.  ";
+        }else if (this.player.aspect == Aspects.LIGHT){
+            ret += " Regardless of what destiny says, they are lucky enough bastards that the plan goes off without a hitch. ";
+        }
+
+        List<Player> fledglingGods = new List<Player>();
+        for(Player p in session.players) {
+            if(!p.godTier) {
+                //you don't even have to be alive for this to work, they'll just drag your body to the slab and hope/luck it into working.
+                if(!p.dead) p.makeDead("exploiting SBURB to becoome a god.");
+                p.makeGodTier();
+                fledglingGods.add(p);
+            }
+        }
+
+        String divID = "gnosis3${div.id}player${player.id}";
+        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+        drawingMethods.add(new DrawMethodWithParameter(drawGodTiers,divID, fledglingGods));
+        return ret;
     }
 
     //make doomed timeclone army
     String exploitTime(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They begin seriously planning to utterly fuck over the timeline. ";
+        if(this.player.aspect == Aspects.TIME) {
+            ret += " They use their innate sense of time to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. ";
+        }else if (this.player.aspect == Aspects.MIND){
+            ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
+        }
+        List<Player> timePlayers = findAllAspectPlayers(session.players, Aspects.TIME);
+
+        List<Player> doomedTimeClones = new List<Player>();
+        ret += " As expected, a small army of doomed time clones arrives to stop their many, many terrible ideas and fallback ideas. Now the various boss fights should be a lot easier. ";
+        for(int i = 0; i<12; i++) {
+            Player chosen;
+            //if multiple time players, any can be here
+            Player timePlayer = rand.pickFrom(timePlayers);
+            if(timePlayer.isActive() || (!timePlayer.isActive() && rand.nextBool())){
+                chosen = timePlayer;
+            }else{
+                chosen = rand.pickFrom(session.players);
+            }
+            Player doomedTimeClone = Player.makeDoomedSnapshot(chosen);
+            chosen.addDoomedTimeClone(doomedTimeClone);
+            doomedTimeClones.add(doomedTimeClone);
+
+        }
+        String divID = "gnosis3${div.id}player${player.id}";
+        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+        drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
+        return ret;
 
     }
 
     //skaian magicent kinda deal
     String exploitGlitches(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
+        if(player.aspect == Aspects.VOID) {
+            ret += " Uh.  Where did they go? <div class = 'void'> ";
+        }
+        ret += " They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
 
+        for(Player p in session.players) {
+            //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
+            String title = "Skaian Magicant Hidden Track: ${p.aspect.name} Edition";
+            if(!p.dead) ret += "<br> The ${p.htmlTitle()} collects the fraymotif $title, as well as a sizeable hoarde of grist.";
+            Fraymotif f = new Fraymotif(title, 2);
+            Iterable<AssociatedStat> plus = p.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
+            //just like real denizen songs, but way stronger
+            for (AssociatedStat pl in plus) {
+                f.effects.add(new FraymotifEffect(pl.name, 0, true));
+                f.effects.add(new FraymotifEffect(pl.name, 0, false));
+            }
+            Iterable<AssociatedStat> minus = p.associatedStatsFromAspect; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
+            for (AssociatedStat m in minus) {
+                f.effects.add(new FraymotifEffect(m.name, 2, true));
+                f.effects.add(new FraymotifEffect(m.name, 2, false));
+            }
+            f.desc = "An unfinished secret track begins to play.  You don't think anybody meant for this to be unlockable. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter.  ";
+            p.fraymotifs.add(f);
+            p.grist += 1000;
+
+        }
+        if(player.aspect == Aspects.VOID) {
+            ret += "</div>";
+        }
+        return ret;
     }
 
     //gather everyone on a planet with fast, repatable quests, have everybody do speed questing to get max interaction effects for effort given
     String exploitFriendship(Element div) {
-        return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
+        if(player.aspect == Aspects.BLOOD) {
+            ret +=  "They find a fast, repeatable quest and organize everyone into ever-changing adventuring pairs to take advantage of the game's interaction effect bonus. ";
+        }else {
+            ret +=  "They find something called a 'Shipping Dunegon' and arrange everyone into various 'canon' and 'crackship' speed dates to take advantage of the game's interaction effect bonus. ";
+        }
+        ret += "<br>";
+        //quest has shitty rewards. you get only interaction effects until i come back later and decide to balance shit
+        for(Player p1 in session.players) {
+                for(Player p2 in session.players) {
+                    if(p1 != p2) {
+                        String subret = "<Br>";
+                        //happens multiple times but only prints one, cuz it's not gonna be different
+                        subret += p1.interactionEffect(p2);
+                        p1.interactionEffect(p2);
+                        p1.interactionEffect(p2);
+                        p1.increasePower();
+                        ret += subret;
+                    }
+                }
+        }
+        return ret;
 
     }
 
@@ -321,6 +422,15 @@ class GetWasted extends Scene {
             }
         }
         return ret;
+    }
+
+
+    void drawGodTiers(String canvasID, List<Player> players) {
+        Drawing.drawGetTiger(querySelector("#${canvasID}"), players);
+    }
+
+    void drawPoseAsTeam(String canvasID, List<Player> players) {
+        Drawing.poseAsATeam(querySelector("#${canvasID}"), players);
     }
 
     ///first player is corpse, second is smoocher
@@ -393,6 +503,8 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        //TODO have hope LITERALLY replace the black queen with three salamanders in a robe. like in the queen text with the enquiring carapacian.
+        //like, change her name to "3 salamanders in a Robe", replace her fraymotifs with "Glub glub glub" and shit.  Hope players believe everything they read after all, right?
         //TODO each tier4 event should do damage to session health.  grim dark crash should account for high gnosis levels, too
         session.hasTier4Events = true;
         //todo waste tier, will be dope as fuk

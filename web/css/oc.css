@@ -33,6 +33,37 @@
     z-index: 999;
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #ffffff;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #0B1030;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.toolTipSection{
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 .ascii{
  font-size: 10px;
 }
