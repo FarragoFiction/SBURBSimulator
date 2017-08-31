@@ -298,9 +298,9 @@ class FreeWillStuff extends Scene{
 		List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 		List<dynamic> patsyArr = this.findBestPatsy(player, enemies);
 
-		Player patsy = patsyArr[0];
+		Player patsy = null;
 		num patsyVal = 0;
-		if(patsyArr = null) {
+		if(patsyArr == null) {
 			patsy = null;
 		}else {
 			patsy = patsyArr[0];
