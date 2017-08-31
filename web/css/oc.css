@@ -54,6 +54,11 @@
     z-index: 1;
 }
 
+.toolTipSection{
+    display: inline-block;
+    padding: 5px;
+}
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }

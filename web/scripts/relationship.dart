@@ -90,7 +90,7 @@ class Relationship {
     }
 
     String toString() {
-        return "${target.title()}, ${asciiDescription()}";
+        return " ${asciiDescription()}($value) ${target.title()}";
     }
 
     String changeType() {

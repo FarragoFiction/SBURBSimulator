@@ -542,6 +542,11 @@ class Player extends GameEntity {
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
+
+        ret += "</div><div class = 'toolTipSection'>Relationships<hr>";
+        for(Relationship r in relationships) {
+            ret += "$r<br>";
+        }
         ret += "</div></span>";
         return ret;
     }
