@@ -13,7 +13,7 @@ import "Life.dart";
 import "Light.dart";
 import "Might.dart";
 import "Mind.dart";
-//import "Mist.dart";
+import "Mist.dart";
 import "Rage.dart";
 //import "Rain.dart";
 //import "Rhyme.dart";
@@ -40,14 +40,14 @@ abstract class Aspects {
     static Aspect LIFE;
 
     static Aspect MIGHT;
+    static Aspect MIST;
     /*
     static Aspect SAND;
-    static Aspect DREAMS;
     static Aspect RHYME;
     static Aspect FLOW;
     static Aspect FATE;
     static Aspect LAW;
-    static Aspect MIST;
+    static Aspect DREAMS;
     static Aspect RAIN;
     static Aspect SKY;
     static Aspect SNOW;
@@ -71,6 +71,7 @@ abstract class Aspects {
         LIFE = new Life(11);
 
         MIGHT = new Might(12);
+        MIST = new Mist(13);
 
         NULL = new Aspect(255, "Null");
     }
@@ -194,7 +195,10 @@ class Aspect {
         "???", //if nulls show up accidentally, the session is probably created worse than expected
         "Pumpkin", //my sister, who is not actually real (hence her status as a pumpkin).
         "Shoes", //Nobody Knows Shoes.
+        "Denizen", //fits theme of null being super generic. their denizen can be Denizen.
         //"Hiveswap", //will never come out.
+        //oops.
+        "Whomst" //memes.
     ]);
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>[
         "Blank",
@@ -218,7 +222,7 @@ class Aspect {
     List<String> handles = new List<String>.unmodifiable(
         <String>["Null", "Nothing", "Mystery"]);
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-        "cleaning up after their Denizen in a class approrpiate fashion",
+        "cleaning up after their Denizen in a class appropriate fashion",
         "absolutly not goofing off instead of cleaing up after their Denizen",
         "vaguely sweeping up rubble"
     ]);

@@ -29,7 +29,7 @@ class Might extends Aspect {
 
 
   @override
-  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Crash", "MIGHT", "Endure", "Grip", "Endure", "Wave", "Crash", "Fist"]);
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Crash", "MIGHT", "Endure", "Grip", "Punch", "Wave", "Fist"]);
 
 
   @override
@@ -40,9 +40,9 @@ class Might extends Aspect {
 
 
   @override
-  List<String> denizenNames = new List<String>.unmodifiable(<String>['Might', 'Grendel', 'Heracles', 'Odysseus', 'Lancelot', 'Arthur', 'Beowulf', 'Achilles', 'Samson', 'Goliath']);
+  List<String> denizenNames = new List<String>.unmodifiable(<String>['Might', 'Grendel', 'Heracles', 'Odysseus', 'Lancelot', 'Arthur', 'Beowulf', 'Achilles', 'Samson', 'Goliath']);//most of these are not gods, but rather strong individuals from legends.
 
-//todo: don't use the quests from light for Might!!
+  //todo: make these a bit less repetitive. too many deal with fighting against the odds.
   @override
   List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
     "surfing a tsunami wave that appeared just for the occasion",
@@ -72,5 +72,5 @@ class Might extends Aspect {
     new AssociatedStat("sanity", 1, true),
   ]);
 
-  Might(int id) :super(id, "Might", isCanon: true);
+  Might(int id) :super(id, "Might", isCanon: false);
 }
