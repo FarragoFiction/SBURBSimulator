@@ -539,7 +539,13 @@ class GameEntity implements Comparable<GameEntity> {
             pname = this.session.rand.pickFrom(misNames);
         }
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-        return "$ret$pname"; //TODO denizens are aspect colored.
+        return "${getToolTip()}$ret$pname</span>"; //TODO denizens are aspect colored.  also, that extra span there is to close out the tooltip
+    }
+
+    //what gets displayed when you hover over any htmlTitle (even HP)
+    String getToolTip() {
+        String ret = "<span class = 'tooltip'><span class='tooltiptext'>Tooltip text</span>";
+        return ret;
     }
 
     String htmlTitleHP() {
@@ -547,7 +553,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-        return "$ret$pname (${(this.getStat("currentHP")).round()} hp, ${(this.getStat("power")).round()} power)</font>"; //TODO denizens are aspect colored.
+        return "${getToolTip()}$ret$pname (${(this.getStat("currentHP")).round()} hp, ${(this.getStat("power")).round()} power)</font></span>"; //TODO denizens are aspect colored. also, that extra span there is to close out the tooltip
     }
 
     void flipOut(String reason) {}
