@@ -105,11 +105,27 @@ class DoLandQuest extends Scene{
 
 		//space player can ONLY be helped by knight, and knight prioritizes this
 		if(player.aspect == Aspects.SPACE){//this shit is so illegal
-			helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
-			if(helper != player){ //a knight of space can't help themselves.
-				return helper;
-			}else{
+			if(rand.nextDouble() > 0.3) { //Checks Knights First. this is slightly more likely than checking for Mist first.
+				helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
+				if (helper != player && helper != null) { //a knight of space can't help themselves.
+					return helper;
+				} else{ //mist needs a knight to exist for them to copy
+					if(findClassPlayer(playerList, SBURBClassManager.KNIGHT) != null) {
+						helper = findAspectPlayer(availablePlayers, Aspects.MIST);
+					}
+					return helper;
 
+				}
+			}else{
+				if(findClassPlayer(playerList, SBURBClassManager.KNIGHT) != null) {//mist needs a knight to exist for them to copy
+					helper = findAspectPlayer(availablePlayers, Aspects.MIST);
+					if(helper != null)
+					return helper;
+				}else {
+					helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
+					if (helper != player) { //a knight of space can't help themselves.
+						return helper;
+				}
 			}
 		}
 
