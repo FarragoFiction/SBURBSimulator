@@ -36,7 +36,7 @@
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted #0B1030;
+    border-bottom: 1px dotted #ffffff;
 }
 
 .tooltip .tooltiptext {
