@@ -544,19 +544,26 @@ class GameEntity implements Comparable<GameEntity> {
 
     //what gets displayed when you hover over any htmlTitle (even HP)
     String getToolTip() {
-        String ret = "<span class = 'tooltip'><span class='tooltiptext'>";
+        String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
+        ret += "<tr><td class = 'toolTipSection'>$name<hr>";
+
+        ret += "<br><Br>Prophecy Status: ${prophecy}";
+
+        ret += "</td>";
         List<String> as = new List<String>.from(allStats());
-        ret += "<br><Br>Stats<hr>";
+        ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (int i = 0; i < as.length; i++) {
             ret += "${as[i]}: ${getStat(as[i])}<br>";
         }
 
-        ret += "<br><Br>Fraymotifs<hr>";
+        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
-        ret += "<br><Br>Prophecy Status: ${prophecy}";
-        ret += "</span>";
+
+        ret += "</td>";
+
+        ret += "</tr></table></span>";
         return ret;
     }
 

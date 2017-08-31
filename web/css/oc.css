@@ -41,7 +41,7 @@
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px;
+    width: 500px;
     background-color: #ffffff;
     color: #000000;
     border: 1px solid #0B1030;
@@ -57,6 +57,7 @@
 .toolTipSection{
     display: inline-block;
     padding: 5px;
+    width: 200px;
 }
 
 .tooltip:hover .tooltiptext {

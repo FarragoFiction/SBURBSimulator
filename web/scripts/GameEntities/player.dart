@@ -523,31 +523,34 @@ class Player extends GameEntity {
 
     //what gets displayed when you hover over any htmlTitle (even HP)
     String getToolTip() {
-        String ret = "<span class = 'tooltip'><span class='tooltiptext'>";
-        ret += "<div class = 'toolTipSection'>$chatHandle<hr>";
+        String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
+        ret += "<tr><td class = 'toolTipSection'>$chatHandle<hr>";
+        ret += "Class: ${class_name.name}<Br>";
+        ret += "Aspect: ${aspect.name}<Br>";
         ret += "Land: $land<Br>";
+
         ret += "LandLevel: $landLevel<Br>";
         ret += "Sprite: ${sprite.name}";
         if(sprite.dead) ret += " (dead)";
         ret += "<br><Br>Prophecy Status: ${prophecy}";
 
-        ret += "</div>";
+        ret += "</td>";
         List<String> as = new List<String>.from(allStats());
-        ret += "<div class = 'toolTipSection'>Stats<hr>";
+        ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (int i = 0; i < as.length; i++) {
             ret += "${as[i]}: ${getStat(as[i])}<br>";
         }
 
-        ret += "</div><div class = 'toolTipSection'>Fraymotifs<hr>";
+        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
 
-        ret += "</div><div class = 'toolTipSection'>Relationships<hr>";
+        ret += "</td><td class = 'toolTipSection'>Relationships<hr>";
         for(Relationship r in relationships) {
             ret += "$r<br>";
         }
-        ret += "</div></span>";
+        ret += "</td></tr></table></span>";
         return ret;
     }
 
