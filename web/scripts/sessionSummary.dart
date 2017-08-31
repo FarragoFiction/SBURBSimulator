@@ -1001,7 +1001,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasClubs")) mss.incNumStat("hasClubs");
             if (ss.getBoolStat("hasBreakups")) mss.incNumStat("hasBreakups");
             if (ss.getBoolStat("hasHearts")) mss.incNumStat("hasHearts");
-            if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
+            if (ss.parentSession != null) mss.incNumStat("comboSessions");
             if (ss.getBoolStat("threeTimesSessionCombo")) mss.incNumStat("threeTimesSessionCombo");
             if (ss.getBoolStat("fourTimesSessionCombo")) mss.incNumStat("fourTimesSessionCombo");
             if (ss.getBoolStat("fiveTimesSessionCombo")) mss.incNumStat("fiveTimesSessionCombo");

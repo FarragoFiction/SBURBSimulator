@@ -3101,13 +3101,26 @@ What is that doing?
 
 It's fetching the Category object. It's taking interest1DropDom and ....oh. set InnerHtml. that's what I want.
 
- OptionElement icDropDown = (querySelector("#interestCategory1${player.id}") as SelectElement).selectedOptions[0];
-        InterestCategory ic1 = InterestManager.getCategoryFromString(icDropDown.value);
-        querySelector("#interestDrop1${player.id}").setInnerHtml(drawInterestDropDown(ic1, 1, player));
+Aright, that's working.   Now I just need to see what it looks like for custom interests.  Yup, works for free.
 
-        OptionElement icDropDown2 = (querySelector("#interestCategory2${player.id}") as SelectElement).selectedOptions[0];
-        InterestCategory ic2 = InterestManager.getCategoryFromString(icDropDown2.value);
-        querySelector("#interestDrop2${player.id}").setInnerHtml(drawInterestDropDown(ic2, 2, player));
+Okay, time to look in pile to see if there are any other major bugs, and then I can justify adding a bunch via gnosis tier 4.
 
-        (querySelector("#interestDrop1${player.id}") as SelectElement).value = (player.interest1.name);
-        (querySelector("#interestDrop2${player.id}") as SelectElement).value = (player.interest2.name);
+Oh yeah.
+
+AB is lying about combo sessions. That's major, I can't ignore that.
+
+
+~~~~~~~~~~~~~~~~
+
+Time to debug AB lying.  I think WooMod said that while the MSS section listed no combos, if you ctrl-fed for it you'd see
+a bunch.  So is MSS just adding up the wrong value?
+
+First step: replicate the bug.  I"ll have AB start looking up sessions while I look in her code.
+
+Alright, yes, in the MSS section it says 0, but just a few seconds of searching shows over 4 in this set of 50.
+
+Relevant line:
+
+            if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
+Oh my fuck. It's not a bool stat. It's literally a session.  Why....Why is it EVER triggering. When the fuck would a session have a bool stat with that name???
+
