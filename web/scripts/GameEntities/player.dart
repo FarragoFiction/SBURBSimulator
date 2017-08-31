@@ -530,8 +530,8 @@ class Player extends GameEntity {
         ret += "Land: $land<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
-        ret += "Sprite: ${sprite.name}";
-        if(sprite.dead) ret += " (dead)";
+        if(sprite != null) ret += "Sprite: ${sprite.name}";
+        if(sprite != null && sprite.dead) ret += " (dead)";
         ret += "<br><Br>Prophecy Status: ${prophecy}";
 
         ret += "</td>";
