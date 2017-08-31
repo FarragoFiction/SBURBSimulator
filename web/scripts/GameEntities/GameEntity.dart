@@ -75,7 +75,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     @override
     String toString() {
-        return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
+        return this.title().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
     }
 
     void addPrototyping(GameEntity object) {

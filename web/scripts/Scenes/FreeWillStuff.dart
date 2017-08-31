@@ -297,8 +297,16 @@ class FreeWillStuff extends Scene{
 	dynamic forceSomeOneElseMurderMode(Player player){
 		List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
 		List<dynamic> patsyArr = this.findBestPatsy(player, enemies);
+
 		Player patsy = patsyArr[0];
-		num patsyVal = patsyArr[1];
+		num patsyVal = 0;
+		if(patsyArr = null) {
+			patsy = null;
+		}else {
+			patsy = patsyArr[0];
+			patsyVal = patsyArr[1];
+		}
+
 		if(this.isValidTargets(enemies,player) && patsy != null){
 				if(patsyVal > enemies.length/2 && patsy.getStat("sanity") < 1){
 						print("manipulating someone to go into murdermode " +this.session.session_id.toString() + " patsyVal = $patsyVal");
@@ -321,6 +329,7 @@ class FreeWillStuff extends Scene{
 
 				}else{
 					patsy = rand.pickFrom(enemies);//no longer care about "best"
+					if(patsy == null) return null;
 					if(this.canInfluenceEnemies(player) && patsy.getStat("freeWill")  < player.getStat("freeWill") && patsy.influencePlayer != player){
 						print(player.title() +" controling into murdermode and altering their enemies with game powers. ${this.session.session_id}");
 						patsy.makeMurderMode();
