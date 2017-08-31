@@ -622,7 +622,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     static String getEntitiesNames(List<GameEntity> ges) {
-        return ges.map((i) => i.htmlTitle()).join(','); //TODO put an and at the end.
+        return ges.map((i) => i.title()).join(','); //TODO put an and at the end.
     }
 
     static int generateID() {
