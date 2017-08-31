@@ -36,18 +36,18 @@
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted #3da35a;
+    border-bottom: 1px dotted #0B1030;
 }
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: #3da35a;
-    color: #06ffc9;
-    color: #06ffc9;
-    text-align: center;
+    width: 200px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #0B1030;
+    text-align: left;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 15px;
 
     /* Position the tooltip */
     position: absolute;
