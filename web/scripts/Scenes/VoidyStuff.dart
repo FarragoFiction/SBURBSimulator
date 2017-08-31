@@ -78,8 +78,7 @@ class VoidyStuff extends Scene {
 		normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
 		Element newDiv = querySelector("#"+div.id+ "voidyStuffSpecial");
 		//don't godtier as soon as you get in, too unfair to the other players.
-		bool canGod = checkCanGod();
-		if(canGod){
+		if(this.player.godDestiny && this.player.getStat("power") > 10 && !this.player.godTier && rand.nextDouble()>0.8 && this.player.land != null){
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -106,17 +105,6 @@ class VoidyStuff extends Scene {
 
 		this.endingPhrase(classDiv, newDiv);
 	}
-
-	bool checkCanGod() {
-		if(!this.player.godDestiny || this.player.godTier || this.player.land == null ) return false;
-		bool ret = false;
-		//more likely to happen the longer they've been playing the game.
-		if(!player.denizenMinionDefeated) return rand.nextDouble()>0.9;
-		if(!player.denizenDefeated) return rand.nextDouble()>0.8;
-		if(player.denizenDefeated) return rand.nextDouble()>0.6;
-		return false;
-	}
-
 	void endingPhrase(String classDiv, Element newDiv){
 		if(classDiv == "rage"){
 			this.rageEndingPhrase(newDiv);
@@ -231,7 +219,6 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
-	    print("AB: godtiering through shenanigans in session ${session.session_id}");
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
 			ret += this.player.makeDead("hidden in void on their way to godhood");

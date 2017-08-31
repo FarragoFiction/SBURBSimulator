@@ -1,11 +1,6 @@
 import "dart:html";
 
 import "SBURBSim.dart";
-enum CanonLevel {
-    CANON_ONLY,
-    FANON_ONLY,
-    EVERYTHING_FUCKING_GOES
-}
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
@@ -28,7 +23,6 @@ class Session {
     //if i have less than expected grist, then no frog, bucko
     int expectedGristContributionPerPlayer = 400;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
-    CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     bool jackGotWeapon = false;
     bool jackRampage = false;
     bool jackScheme = false;
@@ -61,8 +55,8 @@ class Session {
     bool monoTheismEnding = false;
     bool waywardVagabondEnding = false;
     num hardStrength = 1000;
-    num minFrogLevel = 13;
-    num goodFrogLevel = 20;
+    num minFrogLevel = 18;
+    num goodFrogLevel = 28;
     bool reckoningStarted = false;
     List<Player> aliensClonedOnArrival = <Player>[]; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
     bool murdersHappened = false;
@@ -114,19 +108,9 @@ class Session {
     }
 
     void resetAvailableClasspects() {
-        if(canonLevel == CanonLevel.CANON_ONLY) {
-            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
-            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
-            this.available_aspects = new List<Aspect>.from(Aspects.canon);
-        }else if(canonLevel == CanonLevel.FANON_ONLY) {
-            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.fanon);
-            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.fanon);
-            this.available_aspects = new List<Aspect>.from(Aspects.fanon);
-        }else {
-            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.all);
-            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.all);
-            this.available_aspects = new List<Aspect>.from(Aspects.all);
-        }
+      this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
+      this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
+      this.available_aspects = new List<Aspect>.from(Aspects.canon);
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
@@ -522,7 +506,7 @@ class Session {
         this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", this);
         Fraymotif f = new Fraymotif("Red Miles", 3);
         f.effects.add(new FraymotifEffect("power", 2, true));
-        f.desc = " You cannot escape them. ";
+        f.desc = " You cannot escape them ";
         this.queensRing.fraymotifs.add(f);
 
         this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", this);

@@ -38,61 +38,6 @@ class Relationship {
         return "friend";
     }
 
-    String asciiDescription([Player shipper = null]){
-        Relationship r = this;
-        if(r.saved_type ==  r.heart){
-            return "<font color = 'red'>&#x2665</font>";
-        }
-
-        if(r.saved_type ==  r.spades){
-            return "<font color = 'black'>&#x2660</font>";
-        }
-
-        if(r.saved_type ==  r.clubs){
-            return "<font color = 'grey'>&#x2663</font>";
-        }
-
-        if(r.saved_type ==  r.diamond){
-            return "<font color = 'pink'>&#x2666</font>";
-        }
-
-        if(r.saved_type ==  r.neutral){
-            return "<font color = 'black'>0_0</font>";
-        }
-
-        //since these are speculative, player will assume it's gonna end up their favorite quadrant half
-        if(r.saved_type ==  r.goodBig){
-            if(shipper != null && shipper.aspect == Aspects.HEART){
-                return "<font color = 'red'>&#x2661</font>";
-            }else{
-                return "<font color = 'red'>&#x2662</font>" ;//i assume you are gonna end up as diamonds;
-            }
-
-        }
-
-        if(r.saved_type ==  r.badBig){
-            if(shipper != null && shipper.aspect == Aspects.HEART){
-                return "<font color = 'black'>&#x2664</font>";
-            }else{
-                return "<font color = 'black'>&#x2667</font>" ;//i assume you are gonna end up as clubs;
-            }
-
-        }
-
-        if(r.saved_type ==  r.goodMild){
-            return "<font color = 'black'>&#x263A</font>";
-        }
-
-        if(r.saved_type ==  r.badMild){
-            return "<font color = 'black'>&#x2639</font>";
-        }
-        return r.saved_type;
-    }
-
-    String toString() {
-        return " ${asciiDescription()}(${value.round()}) ${target.title()}";
-    }
-
     String changeType() {
         if (this.value > 20) { //used to be -10 to 10, but too many crushes.
             return this.goodBig;

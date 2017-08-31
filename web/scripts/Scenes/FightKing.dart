@@ -49,7 +49,7 @@ class FightKing extends Scene {
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
 		pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.king]);
-         dTeam.canAbscond = false;
+    dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.timeTillRocks = 10;
 		strife.startTurn(div);

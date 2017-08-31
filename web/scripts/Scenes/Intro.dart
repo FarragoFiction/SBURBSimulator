@@ -122,7 +122,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player2Start, player2,"Fine. Tell me about your Land.");
 			chatText += Scene.chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
 			chatText += Scene.chatLine(player2Start, player2,"And your kernel?");
-			chatText += Scene.chatLine(player1Start, player1,"A " + player1.object_to_prototype.title() +".\n");
+			chatText += Scene.chatLine(player1Start, player1,"A " + player1.object_to_prototype.htmlTitle() +".\n");
 			chatText += Scene.chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
 			return chatText;
 	}
@@ -143,7 +143,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
 		chatText += Scene.chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.titleBasic() + "'. ");
 		chatText +=Scene.chatLine(player2Start, player2,"Whatever THAT means. ");
-		chatText += Scene.chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
@@ -191,7 +191,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"Oh, man, it's the " + player1.land +".");
 		chatText += Scene.chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
 		chatText +=Scene.chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
-		chatText += Scene.chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
@@ -209,14 +209,14 @@ class Intro  extends IntroScene{
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-				chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.title() + " but I can't wait to find out what else it did!");
+				chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 				chatText += Scene.chatLine(player2Start, player2,"I don't know, it probably did  nothing.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-			chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.title() + " but I can't wait to find out what else it did!");
+			chatText += Scene.chatLine(player1Start, player1, "So far, it made the enemies look like a  "+player1.object_to_prototype.htmlTitle() + " but I can't wait to find out what else it did!");
 		}
 		return chatText;
 	}
@@ -234,7 +234,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
 		chatText +=Scene.chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
 		chatText += Scene.chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
-		chatText += Scene.chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
@@ -252,14 +252,14 @@ class Intro  extends IntroScene{
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.title() + " like a customization kind of thing? ");
+				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle() + " like a customization kind of thing? ");
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.title()+ " like a customization kind of thing? ");
+			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle()+ " like a customization kind of thing? ");
 		}
 		return chatText;
 	}
@@ -299,7 +299,7 @@ class Intro  extends IntroScene{
 				chatText += Scene.chatLine(player1Start, player1,"!  This game is way more confusing than I thought!");
 			}
 		}
-		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel thingy with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... They figured out a way to not die when they time travel! ");
@@ -318,14 +318,14 @@ class Intro  extends IntroScene{
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-				chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.title());
+				chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-			chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.title());
+			chatText += Scene.chatLine(player1Start, player1, "It made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -346,7 +346,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
-		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.isTroll == true && player1.object_to_prototype.lusus){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that your Lusus!?");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
@@ -361,14 +361,14 @@ class Intro  extends IntroScene{
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.title());
+				chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.title());
+			chatText += Scene.chatLine(player1Start, player1, "I think it just made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -389,7 +389,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += Scene.chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
-		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... That's a story all on it's own. ");
@@ -407,14 +407,14 @@ class Intro  extends IntroScene{
 		}else if(player1.object_to_prototype.illegal){
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-				chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.title());
+				chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 				chatText += Scene.chatLine(player2Start, player2,"Yeah, that doesn't sound critical for success at all.");
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Huh. That sounds cool.");
 			}
 		}else{
 			chatText += Scene.chatLine(player2Start, player2,"What did that do?");
-			chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.title());
+			chatText += Scene.chatLine(player1Start, player1, "I think it  made the enemies look like a "+player1.object_to_prototype.htmlTitle());
 		}
 		return chatText;
 	}
@@ -436,7 +436,7 @@ class Intro  extends IntroScene{
 			born = "hatched";
 		}
 		chatText += Scene.chatLine(player1Start, player1,"Seriously, I was " + born + " for this.");
-		chatText += Scene.chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"I even prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,"Yes! I already have my first minion! ");
@@ -489,7 +489,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
 		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
-		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.title() +".\n");
+		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.htmlTitle() +".\n");
 		if(player1.object_to_prototype.player){
 			chatText +=Scene.chatLine(player2Start, player2,"Wait! Isn't that...");
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");

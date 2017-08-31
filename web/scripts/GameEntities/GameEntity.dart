@@ -75,7 +75,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     @override
     String toString() {
-        return this.title().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
+        return this.htmlTitle().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
     }
 
     void addPrototyping(GameEntity object) {
@@ -539,38 +539,7 @@ class GameEntity implements Comparable<GameEntity> {
             pname = this.session.rand.pickFrom(misNames);
         }
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-        return "${getToolTip()}$ret$pname</span>"; //TODO denizens are aspect colored.  also, that extra span there is to close out the tooltip
-    }
-
-    //what gets displayed when you hover over any htmlTitle (even HP)
-    String getToolTip() {
-        String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
-        ret += "<tr><td class = 'toolTipSection'>$name<hr>";
-
-        ret += "<br><Br>Prophecy Status: ${prophecy}";
-
-        ret += "</td>";
-        List<String> as = new List<String>.from(allStats());
-        ret += "<td class = 'toolTipSection'>Stats<hr>";
-        for (int i = 0; i < as.length; i++) {
-            ret += "${as[i]}: ${getStat(as[i])}<br>";
-        }
-
-        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
-        for(Fraymotif f in fraymotifs) {
-            ret += "${f.name}<br>";
-        }
-
-        if(crowned != null) {
-            for (Fraymotif f in crowned.fraymotifs) {
-                ret += "${f.name}<br>";
-            }
-        }
-
-        ret += "</td>";
-
-        ret += "</tr></table></span>";
-        return ret;
+        return "$ret$pname"; //TODO denizens are aspect colored.
     }
 
     String htmlTitleHP() {
@@ -578,7 +547,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-        return "${getToolTip()}$ret$pname (${(this.getStat("currentHP")).round()} hp, ${(this.getStat("power")).round()} power)</font></span>"; //TODO denizens are aspect colored. also, that extra span there is to close out the tooltip
+        return "$ret$pname (${(this.getStat("currentHP")).round()} hp, ${(this.getStat("power")).round()} power)</font>"; //TODO denizens are aspect colored.
     }
 
     void flipOut(String reason) {}
@@ -635,7 +604,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     static String getEntitiesNames(List<GameEntity> ges) {
-        return ges.map((i) => i.title()).join(','); //TODO put an and at the end.
+        return ges.join(','); //TODO put an and at the end.
     }
 
     static int generateID() {

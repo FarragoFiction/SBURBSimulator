@@ -24,15 +24,15 @@ class DoLandQuest extends Scene{
 			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
 			if(ph != null){
 				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) session.availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] != null && ph[1].aspect != Aspects.TIME && ph[1].aspect != Aspects.BREATH ) session.availablePlayers.remove(ph[1]);
+				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
+				if(ph[1] != null && ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH )availablePlayers.remove(ph[1]);
 			}
 		}
 		return this.playersPlusHelpers.length > 0;
 	}
-	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){
+	List<Player> getPlayerPlusHelper(p, availablePlayers){
 		if(p.land == null || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
-		Player helper = p.findHelper(availablePlayers);
+		var helper = this.lookForHelper(p,availablePlayers);
 		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
 
@@ -100,7 +100,47 @@ class DoLandQuest extends Scene{
 			Player current_mvp = findStrongestPlayer(this.session.players);
 			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat("power"),null,null) );
 	}
+	dynamic lookForHelper(Player player, List<Player> availablePlayers){
+		Player helper = null;
 
+		//space player can ONLY be helped by knight, and knight prioritizes this
+		if(player.aspect == Aspects.SPACE){//this shit is so illegal
+			helper = findClassPlayer(availablePlayers, SBURBClassManager.KNIGHT);
+			if(helper != player){ //a knight of space can't help themselves.
+				return helper;
+			}else{
+
+			}
+		}
+
+		if(player.aspect == Aspects.TIME && rand.nextDouble() > .2){ //time players often partner up with themselves
+			return player;
+		}
+
+		if(player.aspect == Aspects.BLOOD || player.class_name == SBURBClassManager.PAGE){ //they NEED help.
+			if(this.session.availablePlayers.length > 1){
+				helper = findHighestMobilityPlayer(availablePlayers); //mobility might be useful in a fight, but it curses you to not get your shit done on your own planet.
+			}else{
+				player = null;
+				return null;
+			}
+		}
+
+
+		//if i'm not blood or page, or space, or maybe time random roll for a friend.
+		if(availablePlayers.length > 1 && rand.nextDouble() > .5){
+			helper = findHighestMobilityPlayer(availablePlayers);
+			if(player == helper || (helper != null && helper.aspect == Aspects.SPACE) ){ //space players are stuck on their planet
+				return null;
+			}
+		}
+		if(helper != player || player.aspect == Aspects.TIME){
+			return helper;
+		}
+
+		return null;
+
+	}
 	dynamic calculateClasspectBoost(Player player, Player helper){
 
 

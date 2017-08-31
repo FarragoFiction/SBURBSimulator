@@ -639,9 +639,57 @@ class Ship {
 	}
 
 
+	String relationshipTypeToText(Relationship r){
+		if(r.saved_type ==  r.heart){
+			return "<font color = 'red'>&#x2665</font>";
+		}
 
+		if(r.saved_type ==  r.spades){
+			return "<font color = 'black'>&#x2660</font>";
+		}
+
+		if(r.saved_type ==  r.clubs){
+			return "<font color = 'grey'>&#x2663</font>";
+		}
+
+		if(r.saved_type ==  r.diamond){
+			return "<font color = 'pink'>&#x2666</font>";
+		}
+
+		if(r.saved_type ==  r.neutral){
+			return "<font color = 'black'>0_0</font>";
+		}
+
+		//since these are speculative, player will assume it's gonna end up their favorite quadrant half
+		if(r.saved_type ==  r.goodBig){
+			if(this.player.aspect == Aspects.HEART){
+				return "<font color = 'red'>&#x2661</font>";
+			}else{
+				return "<font color = 'red'>&#x2662</font>" ;//i assume you are gonna end up as diamonds;
+			}
+
+		}
+
+		if(r.saved_type ==  r.badBig){
+			if(this.player.aspect == Aspects.HEART){
+				return "<font color = 'black'>&#x2664</font>";
+			}else{
+				return "<font color = 'black'>&#x2667</font>" ;//i assume you are gonna end up as clubs;
+			}
+
+		}
+
+		if(r.saved_type ==  r.goodMild){
+			return "<font color = 'black'>&#x263A</font>";
+		}
+
+		if(r.saved_type ==  r.badMild){
+			return "<font color = 'black'>&#x2639</font>";
+		}
+		return r.saved_type;
+	}
 	String toString(){
-			return r2.target.htmlTitleBasic() + " " + (r1.asciiDescription(player)) + "---" + (r2.asciiDescription(player)) + " " + r1.target.htmlTitleBasic();
+			return r2.target.htmlTitleBasic() + " " + this.relationshipTypeToText(r1) + "---" + this.relationshipTypeToText(r2) + " " + r1.target.htmlTitleBasic();
 		}
 	bool isEqualToShip(ship){
 			////print("comparing: " + this.toString() + " to "  + ship.toString())

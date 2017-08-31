@@ -225,7 +225,7 @@ class SessionSummary {
             html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
-        html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Grist Level of: ${this.mvp.grist}";
+        html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Power of: ${this.mvp.getStat("power")}";
         html = "$html<Br><b>Frog Level</b>: ${this.frogLevel} (${this.frogStatus})";
         html = "$html${generateNumHTML()}";
         html = "$html${generateBoolHTML()}";
@@ -260,7 +260,7 @@ class SessionSummary {
         summary.setBoolStat("heroicDeath", session.heroicDeath);
         summary.setBoolStat("justDeath", session.justDeath);
         summary.setBoolStat("crashedFromSessionBug", session.crashedFromSessionBug);
-        summary.setBoolStat("crashedFromPlayerActions", session.crashedFromPlayerActions);
+        summary.setBoolStat("xcrashedFromPlayerActions", session.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.hasFreeWillEvents);
         summary.setBoolStat("hasTier1GnosisEvents", session.hasTier1Events);
         summary.setBoolStat("hasTier2GnosisEvents", session.hasTier2Events);
@@ -286,7 +286,7 @@ class SessionSummary {
         summary.setBoolStat("sacrificialSlab", session.sacrificialSlab);
         summary.setNumStat("num_scenes", session.numScenes);
         summary.players = session.players;
-        summary.mvp = findMVP(session.players);
+        summary.mvp = findStrongestPlayer(session.players);
         summary.parentSession = session.parentSession;
         summary.setBoolStat("scratchAvailable", session.scratchAvailable);
         summary.setBoolStat("yellowYard", session.yellowYard);
@@ -1001,7 +1001,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasClubs")) mss.incNumStat("hasClubs");
             if (ss.getBoolStat("hasBreakups")) mss.incNumStat("hasBreakups");
             if (ss.getBoolStat("hasHearts")) mss.incNumStat("hasHearts");
-            if (ss.parentSession != null) mss.incNumStat("comboSessions");
+            if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
             if (ss.getBoolStat("threeTimesSessionCombo")) mss.incNumStat("threeTimesSessionCombo");
             if (ss.getBoolStat("fourTimesSessionCombo")) mss.incNumStat("fourTimesSessionCombo");
             if (ss.getBoolStat("fiveTimesSessionCombo")) mss.incNumStat("fiveTimesSessionCombo");
