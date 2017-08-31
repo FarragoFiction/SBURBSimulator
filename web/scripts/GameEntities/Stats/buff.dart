@@ -13,7 +13,7 @@ abstract class Buff {
     int age = 0;
     int maxAge = 0;
 
-    Buff(Stat this.stat, BuffLife this.life);
+    Buff._(Stat this.stat, BuffLife this.life);
 
     double ageMultiplier(int age) => 1.0;
 
@@ -21,4 +21,26 @@ abstract class Buff {
     double additional(double val) => val;
     double more(double val) => val;
     double flatAdditive(double val) => val;
+
+    Buff copy();
+
+    void tick() {
+        if (this.life == BuffLife.TIMED) {
+            this.age++;
+        }
+    }
+    void combatTick() {
+        if (this.life == BuffLife.COMBAT_TIMED) {
+            this.age++;
+        }
+    }
+
+    bool shouldRemove() {
+         if(this.life == BuffLife.TIMED || this.life == BuffLife.COMBAT_TIMED) {
+             if (this.age >= this.maxAge) {
+                 return true;
+             }
+         }
+         return false;
+    }
 }
