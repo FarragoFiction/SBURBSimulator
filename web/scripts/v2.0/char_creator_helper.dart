@@ -498,10 +498,9 @@ class CharacterCreatorHelper {
             loadButton.onClick.listen((Event e) {
                 TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
                 String bs = "${window.location}?" + dataBox.value; //need "?" so i can parse as url
-                if(bs.contains("?")) bs = "${window.location}&" + dataBox.value;
+                if(window.location.toString().contains("?")) bs = "${window.location}&" + dataBox.value;
                 print("bs is: " + bs);
-                String b = (getParameterByName("b",
-                    bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+                String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
                 String s = getParameterByName("s", bs);
                 String x = (getParameterByName("x", bs));
                 //TODO oh god why ar eall these null???
