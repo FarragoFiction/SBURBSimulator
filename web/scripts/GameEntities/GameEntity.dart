@@ -561,6 +561,12 @@ class GameEntity implements Comparable<GameEntity> {
             ret += "${f.name}<br>";
         }
 
+        if(crowned != null) {
+            for (Fraymotif f in crowned.fraymotifs) {
+                ret += "${f.name}<br>";
+            }
+        }
+
         ret += "</td>";
 
         ret += "</tr></table></span>";
