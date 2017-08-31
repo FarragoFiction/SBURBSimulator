@@ -260,7 +260,7 @@ class SessionSummary {
         summary.setBoolStat("heroicDeath", session.heroicDeath);
         summary.setBoolStat("justDeath", session.justDeath);
         summary.setBoolStat("crashedFromSessionBug", session.crashedFromSessionBug);
-        summary.setBoolStat("xcrashedFromPlayerActions", session.crashedFromPlayerActions);
+        summary.setBoolStat("crashedFromPlayerActions", session.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.hasFreeWillEvents);
         summary.setBoolStat("hasTier1GnosisEvents", session.hasTier1Events);
         summary.setBoolStat("hasTier2GnosisEvents", session.hasTier2Events);
