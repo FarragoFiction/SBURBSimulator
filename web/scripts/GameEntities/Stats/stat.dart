@@ -2,14 +2,43 @@ import "../../SBURBSim.dart";
 
 abstract class Stats {
 
+    //<String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
+
     static Stat EXPERIENCE;
 
+    static Stat POWER;
+    static Stat HEALTH;
+    static Stat MOBILITY;
+
+    static Stat RELATIONSHIPS;
+    static Stat SANITY;
+    static Stat FREE_WILL;
+
+    static Stat MAX_LUCK;
+    static Stat MIN_LUCK;
+
+    static Stat ALCHEMY;
+    static Stat SBURB_LORE;
 
     static void init() {
         if (_initialised) {return;}
         _initialised = true;
 
         EXPERIENCE = new Stat("Experience", pickable:false);
+
+        POWER = new XPScaledStat("Power", 0.05, coefficient: 10.0);
+        HEALTH = new XPScaledStat("Health", 0.05, coefficient: 10.0);
+        MOBILITY = new Stat("Mobility");
+
+        RELATIONSHIPS = new Stat("Relationships"); // should be a special one to deal with players
+        SANITY = new Stat("Sanity");
+        FREE_WILL = new Stat("Free Will");
+
+        MAX_LUCK = new Stat("Maximum Luck");
+        MIN_LUCK = new Stat("Minimum Luck");
+
+        ALCHEMY = new Stat("Alchemy");
+        SBURB_LORE = new Stat("SBURB Lore");
     }
     static bool _initialised;
 
@@ -24,12 +53,25 @@ class Stat {
     final String name;
     final bool pickable;
     final bool summarise;
+    final double coefficient;
 
-    Stat(String this.name, {bool this.pickable = true, bool this.summarise = true}) {
+    Stat(String this.name, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true}) {
         Stats._list.add(this);
     }
     
-    double derived(StatHolder stats, double base) { return base; }
+    double derived(StatHolder stats, double base) { return base * coefficient; }
+}
+
+class XPScaledStat extends Stat {
+    final double expCoefficient;
+
+    XPScaledStat(String name, double this.expCoefficient, {double coefficient, bool pickable, bool summarise}):super(name, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+
+    @override
+    double derived(StatHolder stats, double base) {
+        double xp = stats[Stats.EXPERIENCE];
+        return super.derived(stats, base) * (1.0 + expCoefficient * xp);
+    }
 }
 
 /*

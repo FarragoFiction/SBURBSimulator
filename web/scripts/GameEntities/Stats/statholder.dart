@@ -22,34 +22,59 @@ class StatHolder {
     void setBase(Stat key, double val) => _base[key] = val;
     void addBase(Stat key, double val) => _base[key] = getBase(key) + val;
 
-    double derive(Stat key) {
+    Iterable<Buff> getBuffsForStat(Stat stat) {
+        return this.buffs.where((Buff b) => b.stats.contains(stat));
+    }
+
+    double applyBaseAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        for (Buff b in relevantBuffs) {
+            val = b.baseAdditive(stat, val);
+        }
+        return val;
+    }
+
+    double applyAdditional(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        double additive = 0.0;
+        for (Buff b in relevantBuffs) {
+            additive += b.additional(stat, val) - val;
+        }
+        return val + additive;
+    }
+
+    double applyMore(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        for (Buff b in relevantBuffs) {
+            val = b.more(stat, val);
+        }
+        return val;
+    }
+
+    double applyFinalAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        for (Buff b in relevantBuffs) {
+            val = b.flatAdditive(stat, val);
+        }
+        return val;
+    }
+
+    double derive(Stat stat) {
         // get the actual base value
-        double val = this.getBase(key);
+        double val = this.getBase(stat);
+
+        Iterable<Buff> relevantBuffs = this.getBuffsForStat(stat);
 
         // add any base value from buffs
-        for (Buff b in buffs) {
-            val = b.baseAdditive(val);
-        }
+        val = this.applyBaseAdditive(stat, val, relevantBuffs);
 
         // let the stat do its own baseline modifications
-        val = key.derived(this, val);
+        val = stat.derived(this, val);
 
         // additional - additve modifiers
-        double additive = 0.0;
-        for (Buff b in buffs) {
-            additive += b.additional(val) - val;
-        }
-        val += additive;
+        val = this.applyAdditional(stat, val, relevantBuffs);
 
         // more - multiplicative modifiers
-        for (Buff b in buffs) {
-            val = b.more(val);
-        }
+        val = this.applyMore(stat, val, relevantBuffs);
 
         // final flat additives
-        for (Buff b in buffs) {
-            val = b.flatAdditive(val);
-        }
+        val = this.applyFinalAdditive(stat, val, relevantBuffs);
 
         return val;
     }
@@ -100,4 +125,19 @@ abstract class StatOwner {
 
     void buffTick() => stats.buffTick();
     void buffCombatTick() => stats.buffCombatTick();
+}
+
+class PlayerStatHolder extends StatHolder {
+    Player player;
+
+    PlayerStatHolder(Player this.player);
+
+    @override
+    Iterable<Buff> getBuffsForStat(Stat stat) {
+        List<Buff> b = <Buff>[];
+        b.addAll(player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
+        b.addAll(player.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
+        b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
+        return b;
+    }
 }

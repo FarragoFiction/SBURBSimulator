@@ -112,7 +112,6 @@ class SBURBClass {
     int id = 256; //for classNameToInt
     bool isCanon = false; //you gotta earn canon, baby.
 
-
     SBURBClass(this.name, this.id, this.isCanon) {
         faqFile = new FAQFile("Classes/$name.xml");
         print("Making a sburb class ${this.name}");
@@ -126,6 +125,9 @@ class SBURBClass {
 
     ///none by default.  and in fact only sburblore should be here.
     List<AssociatedStat> stats = <AssociatedStat>[];
+
+    /// Perma-buffs for modifying stat growth and distribution - page growth curve etc.
+    List<Buff> statModifiers = <Buff>[];
 
     bool isActive() {
         return false;

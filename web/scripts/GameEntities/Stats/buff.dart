@@ -9,18 +9,24 @@ enum BuffLife {
 
 abstract class Buff {
     final BuffLife life;
-    final Stat stat;
+    final Set<Stat> stats = new Set<Stat>();
     int age = 0;
     int maxAge = 0;
 
-    Buff._(Stat this.stat, BuffLife this.life);
+    Buff._single(Stat stat, BuffLife this.life) {
+        this.stats.add(stat);
+    }
+
+    Buff._mutliple(Iterable<Stat> stas, BuffLife this.life) {
+        this.stats.addAll(stats);
+    }
 
     double ageMultiplier(int age) => 1.0;
 
-    double baseAdditive(double val) => val;
-    double additional(double val) => val;
-    double more(double val) => val;
-    double flatAdditive(double val) => val;
+    double baseAdditive(Stat stat, double val) => val;
+    double additional(Stat stat, double val) => val;
+    double more(Stat stat, double val) => val;
+    double flatAdditive(Stat stat, double val) => val;
 
     Buff copy();
 
