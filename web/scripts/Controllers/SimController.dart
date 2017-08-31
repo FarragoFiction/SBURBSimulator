@@ -222,9 +222,11 @@ abstract class SimController {
     void startSession() {
         globalInit(); // initialise classes and aspects if necessary
 
-       // print("Debugging AB: Starting session $initial_seed");
+
+            // print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
-      //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        changeCanonState(getParameterByName("canonState",null));
+        //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         reinit();
         //print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         Scene.createScenesForSession(curSessionGlobalVar);
@@ -247,6 +249,8 @@ abstract class SimController {
         if (getParameterByName("pen15", null) == "ouija") {
             pen15Ouija();
         }
+
+
 
         if (getParameterByName("faces", null) == "off") {
             faceOffMode();

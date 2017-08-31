@@ -1,6 +1,11 @@
 import "dart:html";
 
 import "SBURBSim.dart";
+enum CanonLevel {
+    CANON_ONLY,
+    FANON_ONLY,
+    EVERYTHING_FUCKING_GOES
+}
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
@@ -23,6 +28,7 @@ class Session {
     //if i have less than expected grist, then no frog, bucko
     int expectedGristContributionPerPlayer = 400;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
+    CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     bool jackGotWeapon = false;
     bool jackRampage = false;
     bool jackScheme = false;
@@ -108,9 +114,19 @@ class Session {
     }
 
     void resetAvailableClasspects() {
-      this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
-      this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
-      this.available_aspects = new List<Aspect>.from(Aspects.canon);
+        if(canonLevel == CanonLevel.CANON_ONLY) {
+            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
+            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
+            this.available_aspects = new List<Aspect>.from(Aspects.canon);
+        }else if(canonLevel == CanonLevel.FANON_ONLY) {
+            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.fanon);
+            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.fanon);
+            this.available_aspects = new List<Aspect>.from(Aspects.fanon);
+        }else {
+            this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.all);
+            this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.all);
+            this.available_aspects = new List<Aspect>.from(Aspects.all);
+        }
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
