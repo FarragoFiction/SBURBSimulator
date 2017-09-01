@@ -298,13 +298,14 @@ class SessionMutator {
         //yes, this means any players who share your enemies class or aspect get renamed too.
         //but wastes are ALL about the unintended consequences, right?
         s.logger.info("AB: They are renaming ${r.target.aspect.name} and ${r.target.class_name.name}");
-        r.target.aspect.name == s.rand.pickFrom(insults);
-        r.target.class_name.name == s.rand.pickFrom(insults);
+        r.target.aspect.name = s.rand.pickFrom(insults);
+        r.target.class_name.name = s.rand.pickFrom(insults);
         s.logger.info("AB: Now they are ${r.target.aspect.name} and ${r.target.class_name.name}");
 
         modEnemies = true;
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
+        r.value = 3333; //testing something
         r2.value = 9001;  //you love me back. not creepy at all
         r2.type();  //they reevaluate what they think about the hope player.
         modCrushes = true;

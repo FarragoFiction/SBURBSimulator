@@ -102,7 +102,7 @@ class Aspect {
     FAQFile faqFile;
 
     /// Used for string representations of the aspect.
-    final String name;
+    String name;
 
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
