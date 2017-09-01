@@ -270,9 +270,9 @@ class DoLandQuest extends Scene{
 	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
-		if((player.aspect != Aspects.TIME) || (helper.aspect != Aspects.MIST)) removeFromArray(player, this.session.availablePlayers);
+		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
-		if(helper.aspect != Aspects.MIST) player.increasePower();//Mist helpers just straight up do it FOR them. the original player doesn't get a power boost.
+		player.increasePower();
 		player.increaseLandLevel();
 		if(helper != null){
 			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.

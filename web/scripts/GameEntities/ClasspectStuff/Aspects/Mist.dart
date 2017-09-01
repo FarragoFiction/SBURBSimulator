@@ -33,7 +33,7 @@ class Mist extends Aspect{
   String denizenSongTitle = "Ensemble"; //a musical piece involving several instruments
 
   @override
-  String denizenSongDesc = "A harmonized chord sounds. It is the one Everyone knows, and Noone forgets. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+  String denizenSongDesc = "A harmonized chord sounds. It is the one Everybody knows. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
   //todo: actually add denizens for mist players
 
