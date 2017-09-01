@@ -237,7 +237,7 @@ List<String> getRandomLandFromPlayer(Player player) {
 
 //handle can either be about interests, or your claspect. each word can be separately origined
 String getRandomChatHandle(Random rand, SBURBClass class_name, Aspect aspect, Interest interest1, Interest interest2) {
-    //print("Class: " + class_name + "aspect: " + aspect);
+    ////print("Class: " + class_name + "aspect: " + aspect);
     String first = "";
     double r = rand.nextDouble();
     if (r > 0.3) {
@@ -392,13 +392,13 @@ dynamic hexColorToInt(color) {
 
 
 String intToHexColor(int num) {
-    //print("int is " + num);
+    ////print("int is " + num);
     var tmp = num.toRadixString(16);
     var padding = 6 - tmp.length;
     for (int i = 0; i < padding; i++) {
         tmp = "0" + tmp;
     }
-    //print("which i think is: " + tmp + " in hex");
+    ////print("which i think is: " + tmp + " in hex");
     return "#" + tmp;
 }
 
@@ -567,7 +567,7 @@ String getRandomGreyColor() {
 	$.ajax({
 	  url: "hello_world.txt",
 	  success:((data){
-		  print(data);
+		  //print(data);
 	  }),
 	  dataType: "text"
 	});

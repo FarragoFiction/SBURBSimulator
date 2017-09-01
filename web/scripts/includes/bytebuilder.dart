@@ -96,7 +96,7 @@ class ByteBuilder {
 		int length = _position > 0 ? _data.length+1 : _data.length;
 		int offset = 0;
 
-		//print(this._data.toString());
+		////print(this._data.toString());
 
 		if (toExtend != null) {
 			length += toExtend.lengthInBytes;
@@ -139,7 +139,7 @@ class ByteBuilder {
 
 		sb.write("]");
 
-		print(sb.toString());
+		//print(sb.toString());
 	}
 }
 

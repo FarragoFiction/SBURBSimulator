@@ -28,7 +28,7 @@ class SceneRenderingEngine {
 		return this.spriteRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvas, tmp_canvas, x, y);
 	}
 	dynamic loadAllImagesForPlayers(players){
-		print(players);
+		//print(players);
 		List<dynamic> ret = [];
 		if(!players) return ret;
 		for(num i = 0; i<players.length; i++){
@@ -252,7 +252,7 @@ class SceneRenderingEngine {
     }
     var oldc = hexToRgbA(color1);
     var newc= hexToRgbA(color2);
-    // print("replacing: " + oldc  + " with " + newc);
+    // //print("replacing: " + oldc  + " with " + newc);
     var ctx = canvas.getContext('2d');
     var img_data =ctx.getImageData(0, 0, canvas.width, canvas.height);
     //4 byte color array

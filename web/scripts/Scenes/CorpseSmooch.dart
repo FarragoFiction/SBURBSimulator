@@ -15,7 +15,7 @@ class CorpseSmooch extends Scene {
 
 	@override
 	bool trigger(List<Player> playerList){
-		//print('checking corpse smooch');
+		//session.logger.info('checking corpse smooch');
 		this.playerList = playerList;
 		this.dreamersToRevive = [];
 		//all dead players who aren't god tier and are destined to be god tier god tier now.
@@ -29,14 +29,14 @@ class CorpseSmooch extends Scene {
 		}
 		//corspses can't smooch themselves.
 		var living = findLivingPlayers(this.session.players);
-		//print(this.dreamersToRevive.length + " vs "  + playerList.length);
+		//session.logger.info(this.dreamersToRevive.length + " vs "  + playerList.length);
 		return this.dreamersToRevive.length > 0 && living.length>0;
 
 	}
 	@override
 	void renderContent(Element div){
 		this.dreamersToRevive;
-		////print(this.dreamersToRevive);
+		////session.logger.info(this.dreamersToRevive);
 		this.combo = 0;
 		div.appendHtml("<br>"+this.contentForRender(div),treeSanitizer: NodeTreeSanitizer.trusted);
 
@@ -56,7 +56,7 @@ class CorpseSmooch extends Scene {
 	}
 
 	void makeDead(Player d){
-		//print("make dead " + d.title())
+		//session.logger.info("make dead " + d.title())
 		d.dreamSelf = false;
 		d.dead = true;
 	}
@@ -109,7 +109,7 @@ class CorpseSmooch extends Scene {
 		}
 		royalty = this.ignoreEnemies(d, royalty);
 		if(royalty == null && d.godDestiny){
-			//print("I couldn't find royalty and also could god tier. " + this.session.session_id);
+			//session.logger.info("I couldn't find royalty and also could god tier. " + this.session.session_id);
 		}
 		return royalty;
 	}
@@ -150,9 +150,9 @@ class CorpseSmooch extends Scene {
 					//this.makeAlive(d);
 					this.combo ++;
 				}else{
-					//print("Adding important event god tier for: " + d.title())
+					//session.logger.info("Adding important event god tier for: " + d.title())
 					var alt = this.addImportantEvent(d);
-					//print("alt is: " +alt);
+					//session.logger.info("alt is: " +alt);
 					if(alt != null&& alt.alternateScene(div)){
 						//do nothing here.
 					}else{
@@ -176,7 +176,7 @@ class CorpseSmooch extends Scene {
 		return ret;
 	}
 	ImportantEvent addImportantEvent(Player player){
-		//print("adding important event from corpse smooch");
+		//session.logger.info("adding important event from corpse smooch");
 		Player current_mvp = findStrongestPlayer(this.session.players);
 		//only one alternate event can happen at a time. if one gets replaced, return
 

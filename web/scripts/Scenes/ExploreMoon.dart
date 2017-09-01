@@ -98,7 +98,7 @@ class ExploreMoon extends Scene {
 		//remove player1 and player2 from available player list.
 		removeFromArray(this.player1, this.session.availablePlayers);
 		removeFromArray(this.player2, this.session.availablePlayers);
-		//print(this.player1.title() + " is doing moon stuff with their land level at: " + this.player1.landLevel)
+		//session.logger.info(this.player1.title() + " is doing moon stuff with their land level at: " + this.player1.landLevel)
 		//var r1 = null;
 		//var r2 = null;
 		this.player1.increasePower();
@@ -149,7 +149,7 @@ class ExploreMoon extends Scene {
 
 		if(this.player2 != null && this.player1.grimDark>0){
 			this.player2.corruptionLevelOther += 25;
-			print("spreading corruption in: "  + this.session.session_id.toString());
+			session.logger.info("spreading corruption in: "  + this.session.session_id.toString());
 			ret += " The corruption is spreading. ";
 		}
 		return ret;

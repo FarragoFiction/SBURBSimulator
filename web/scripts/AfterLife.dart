@@ -2,6 +2,7 @@ import "SBURBSim.dart";
 
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 class AfterLife {
+    Logger logger = new Logger("Afterlife");
 	List<Player> ghosts = []; //TODO maybe eventually have "ghost" object
 	List<Player> ghostsBannedFromInteracting = []; //for time reasons, if ghosts didn't interact with session the first time, they can't until the timeline divurges.
 	var timeLineSplitsWhen = null; //what is the event i'm waitin for to allow ghosts back in?
@@ -18,14 +19,14 @@ class AfterLife {
 		this.ghosts.add(ghost);
 	}
 	void allowTransTimeLineInteraction(){
-		print("timelines divurged, allowing transTimeline interaction");
+		logger.info("timelines divurged, allowing transTimeline interaction");
 		//this.ghosts = this.ghosts.concat(this.ghostsBannedFromInteracting);
 		this.ghosts.addAll(this.ghostsBannedFromInteracting);
 		this.ghostsBannedFromInteracting = [];
 		this.timeLineSplitsWhen = null;
 	}
 	void complyWithLifeTimeShenanigans(importantEvent){
-		print("ghosts cant interact with a yellow yyard until timelines divurge");
+        logger.debug("ghosts cant interact with a yellow yyard until timelines divurge");
 		this.ghostsBannedFromInteracting.addAll(this.ghosts);
 		this.ghosts = [];
 		this.timeLineSplitsWhen = importantEvent; //e can be null if undoing an undo

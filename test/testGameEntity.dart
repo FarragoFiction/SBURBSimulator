@@ -10,7 +10,7 @@ import "JRTestSuite.dart";
 
 var testGE = null;
 main() {
-  print("Hello World");
+  //print("Hello World");
   testName();
   testID();
   testStats(); //when i do this for players, make sure relationships are being added right.
@@ -24,24 +24,24 @@ setup() {
 
 testName() {
   setup();
-  print(testGE.name);
+  //print(testGE.name);
   assert(testGE.name == "Firsty Testy");
   jRAssert("toString", testGE.toString(),
       "FirstyTesty"); //to string gets rid of spaces, which is apparently important because sometimes use it for div.
-  print("Name passed");
+  //print("Name passed");
 }
 
 testID() {
   setup();
-  print(testGE.id);
+  //print(testGE.id);
   assert(
       testGE.id > 0 ? true : throw "ID should be greater than zero, but is: ${testGE.id}");
-  print("Id passed");
+  //print("Id passed");
 }
 
 testStats() {
   setup();
-  print(testGE.stats);
+  //print(testGE.stats);
   assert(testGE.getStat("hp") == 0
       ? true
       : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
@@ -58,7 +58,7 @@ testStats() {
       0); //confirm did not change.
   jRAssert("freeWill", testGE.getStat("freeWill"), 0); //confirm did not change.
   jRAssert("mobility", testGE.getStat("mobility"), 0); //confirm did not change.
-  print(testGE.stats);
+  //print(testGE.stats);
   testGE.setStat("hp", 50);
   jRAssert("hp", testGE.getStat("hp"), 50);
   testGE.addStat("hp", 5000);
@@ -66,19 +66,19 @@ testStats() {
   try {
     testGE.setStat("bogus413", 345); //test that it throws an error
   }catch(exception, stackTrace) {
-    print("Exception: $exception caught as expected for setting a stat.");
+    //print("Exception: $exception caught as expected for setting a stat.");
   }
 
   try {
     testGE.addStat("bogus413", 345); //test that it throws an error
   }catch(exception) {
-    print("Exception: $exception caught as expected for adding a stat.");
+    //print("Exception: $exception caught as expected for adding a stat.");
   }
 
   testGE.setStat("power", 0);
   testGE.permaBuffs["MANGRIT"] = 10;
   jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10); //TODO implement MANGRIT
-  print("Stats passed");
+  //print("Stats passed");
 }
 
 void testBuffs() {
@@ -97,22 +97,22 @@ void testBuffs() {
   jRAssert("functional hp", testGE.getStat("currentHP"), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
   jRAssert("real hp", testGE.stats["currentHP"], 0); //real hp is unmodified.
   jRAssert("glitch stat", testGE.stats["bogus413"], null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
-  print(testGE.describeBuffs());
+  //print(testGE.describeBuffs());
   testGE.buffs
     ..add(new BuffOld("minLuck", 5))
     ..add(new BuffOld("MANGRIT", 5))
     ..add(new BuffOld("mobility", 5))
     ..add(new BuffOld("alchemy", 5));
-  print(testGE.describeBuffs()); //not gonna try to do unit testing for a narrative thing but at least call it and make sure it doesn't crash.
+  //print(testGE.describeBuffs()); //not gonna try to do unit testing for a narrative thing but at least call it and make sure it doesn't crash.
   testGE.buffs = <BuffOld>[];
   testGE.buffs
     ..add(new BuffOld("minLuck", -5))
     ..add(new BuffOld("MANGRIT", -5))
     ..add(new BuffOld("mobility", -5))
     ..add(new BuffOld("alchemy", -5));
-  print(testGE.describeBuffs());
+  //print(testGE.describeBuffs());
 
-  print("Buffs passed");
+  //print("Buffs passed");
 }
 
 //do you feel lucky, punk?

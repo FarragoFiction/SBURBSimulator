@@ -120,7 +120,7 @@ class LifeStuff extends Scene {
                 chosenSuplicants.add(possibleGuide);
             } else if (possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
                 if (!chosenGuides.contains(possibleGuide)) { //can't be both guide and non guide.
-                    ////print("supplicant is: " + possibleGuide.title());
+                    ////session.logger.info("supplicant is: " + possibleGuide.title());
                     chosenSuplicants.add(possibleGuide);
                 }
             }
@@ -130,7 +130,7 @@ class LifeStuff extends Scene {
 
     @override
     void renderContent(Element div) {
-        //print("rendering content for life stuff (won't necessarily be on screen): ${this.enablingPlayerPairs.length} " + this.session.session_id)
+        //session.logger.info("rendering content for life stuff (won't necessarily be on screen): ${this.enablingPlayerPairs.length} " + this.session.session_id)
         //appendHtml(div, "<br>"+this.content());
         for (num i = 0; i < this.enablingPlayerPairs.length; i++) {
             Player player = this.enablingPlayerPairs[i].player1;
@@ -166,7 +166,7 @@ class LifeStuff extends Scene {
         Player ghost = this.session.afterLife.findGuardianSpirit(player);
         String ghostName = "";
         if (ghost != null && !player.ghostPacts.contains(ghost) && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
-            //print("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
             //talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
             ghostName = "teen ghost version of their ancestor";
         }
@@ -183,20 +183,20 @@ class LifeStuff extends Scene {
 
         if (ghost != null && ghost.causeOfDeath.contains(player.titleBasic())) {
             ghostName = "murder victim";
-            print("The ${player.title()} did cause: ${ghost.causeOfDeath} ${this.session.session_id}");
+            session.logger.info("The ${player.title()} did cause: ${ghost.causeOfDeath} ${this.session.session_id}");
         }
 
         if (ghost != null && !player.ghostPacts.contains(ghost) && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
-            //print("dream bubble onion" +this.session.session_id);
+            //session.logger.info("dream bubble onion" +this.session.session_id);
             String str = "The ${player.htmlTitle()} wanders a shifting and confusing landscape. They think they see a $ghostName? They must be dreaming.";
             String trait = Interest.getSharedCategoryWordForPlayers(player, ghost,true);
             if (ghostName == "murder victim") { //
-                print("dead murder victims freakouts ${this.session.session_id}");
+                session.logger.info("dead murder victims freakouts ${this.session.session_id}");
                 str = "$str It's kind of freaking the ${player.htmlTitleBasic()} out a little. ";
                 player.addStat("sanity", -10);
                 player.flipOutReason = "being haunted by the ghost of the Player they killed";
             } else if (ghostName == "less fortunate alternate self") {
-                print("dead alt selves freakouts ${this.session.session_id}");
+                session.logger.info("dead alt selves freakouts ${this.session.session_id}");
                 str = "$str It's kind of freaking the ${player.htmlTitleBasic()} out a little. ";
                 player.addStat("sanity", -10);
                 player.flipOutReason = "being haunted by their own ghost";
@@ -212,7 +212,7 @@ class LifeStuff extends Scene {
             removeFromArray(player, this.session.availablePlayers);
             return canvas;
         } else {
-            //print("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
             appendHtml(div, "<br><br>The ${player.htmlTitle()} wanders a shifting and confusing landscape. They must be dreaming. They never meet anyone before they wake up, though. ");
             //CanvasElement canvas =
             drawDreamBubbleH(div, player, null);
@@ -226,25 +226,25 @@ class LifeStuff extends Scene {
         Player ghost = this.session.afterLife.findGuardianSpirit(player);
         String ghostName = "";
         if (ghost != null && player.getPactWithGhost(ghost) == null && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
-            //print("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of guardian: "+ player.titleBasic() + this.session.session_id);
             //talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
             ghostName = "teen ghost version of their ancestor";
         }
         if (ghost == null || player.getPactWithGhost(ghost) == null || player.ghostWisdom.contains(ghost) || ghost.causeOfDrain != null) {
             ghost = this.session.afterLife.findLovedOneSpirit(player);
-            //print("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of loved one: "+ player.titleBasic() + this.session.session_id);
             ghostName = "ghost of a loved one";
         }
 
         if (ghost == null || player.getPactWithGhost(ghost) == null || player.ghostWisdom.contains(ghost) || ghost.causeOfDrain != null) {
             ghost = this.session.afterLife.findAnyAlternateSelf(player);
-            //print("ghost of self: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of self: "+ player.titleBasic() + this.session.session_id);
             ghostName = "less fortunate alternate self";
         }
 
         if (ghost == null || player.getPactWithGhost(ghost) == null || player.ghostWisdom.contains(ghost) || ghost.causeOfDrain != null) {
             ghost = this.session.afterLife.findFriendlySpirit(player);
-            //print("ghost of friend: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of friend: "+ player.titleBasic() + this.session.session_id);
             ghostName = "dead friend";
         }
 
@@ -254,13 +254,13 @@ class LifeStuff extends Scene {
         }
 
         if (ghost != null && player.getPactWithGhost(ghost) == null && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
-            //print("commune potato" +this.session.session_id);
+            //session.logger.info("commune potato" +this.session.session_id);
             appendHtml(div, "<br><br>${this.ghostPsionics(player)}$str${this.communeDeadResult(playerClass, player, ghost, ghostName, enablingAspect)}");
             CanvasElement canvas = this.drawCommuneDead(div, player, ghost);
             removeFromArray(player, this.session.availablePlayers);
             return canvas;
         } else {
-            //print("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
             return null;
         }
     }
@@ -268,7 +268,7 @@ class LifeStuff extends Scene {
     String ghostPsionics(Player player) {
         String psychicPowers = player.canGhostCommune();
         if (psychicPowers != null) {
-            print("use psychic powers to commune with ghosts in session: ${this.session.session_id}");
+            session.logger.info("use psychic powers to commune with ghosts in session: ${this.session.session_id}");
             return " The ${player.htmlTitleBasic()} uses their $psychicPowers. ";
         } else {
             return "";
@@ -314,7 +314,7 @@ class LifeStuff extends Scene {
     }
 
     CanvasElement drawDrainDead(Element div, Player player, Player ghost, bool long) {
-        print("drain dead in: ${this.session.session_id}");
+        session.logger.info("drain dead in: ${this.session.session_id}");
         String canvasId = "${div.id}commune_${player.chatHandle}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
@@ -343,13 +343,13 @@ class LifeStuff extends Scene {
     String communeDeadResult(SBURBClass playerClass, Player player, Player ghost, String ghostName, Aspect enablingAspect) {
         if (playerClass == SBURBClassManager.KNIGHT || playerClass == SBURBClassManager.PAGE) {
             player.ghostPacts.add(new GhostPact(ghost, enablingAspect.name)); //help with a later fight.
-            //print("Knight or Page promise of ghost attack: " + this.session.session_id);
+            //session.logger.info("Knight or Page promise of ghost attack: " + this.session.session_id);
             return " The ${player.htmlTitleBasic()} gains a promise of aid from the $ghostName. ";
         } else if (playerClass == SBURBClassManager.SEER || playerClass == SBURBClassManager.MAGE) {
             player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
             String effect = "";
             if (player.aspect == ghost.aspect && !ghost.fraymotifs.isEmpty && player.id != ghost.id) { //don't just relearn your own fraymotifs.
-                print("player learning fraymotifs from a ghost ${this.session.session_id}");
+                session.logger.info("player learning fraymotifs from a ghost ${this.session.session_id}");
                 player.fraymotifs.addAll(ghost.fraymotifs); //copy not reference
                 effect = "They learn ${turnArrayIntoHumanSentence(ghost.fraymotifs)} from the $ghostName. ";
             } else {
@@ -378,7 +378,7 @@ class LifeStuff extends Scene {
         CanvasElement canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
-            //print("Help communing with the dead: " + this.session.session_id);
+            //session.logger.info("Help communing with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
@@ -393,19 +393,19 @@ class LifeStuff extends Scene {
         Player ghost = this.session.afterLife.findHatedOneSpirit(player);
         String ghostName = "";
         if (ghost != null) {
-            //print("ghost of enemy: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of enemy: "+ player.titleBasic() + this.session.session_id);
             //talk about getting wisdom/ forging a pact with your dead guardian. different if i am mage or knight (because i am alone)
             ghostName = "ghost of a hated enemy";
         }
         if (ghost == null || ghost.causeOfDrain == null) {
             ghost = this.session.afterLife.findAssholeSpirit(player);
-            //print("ghost of an asshole: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of an asshole: "+ player.titleBasic() + this.session.session_id);
             ghostName = "ghost of an asshole";
         }
 
         if (ghost == null || ghost.causeOfDrain == null) {
             ghost = this.session.afterLife.findAnyAlternateSelf(player);
-            //print("ghost of self: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("ghost of self: "+ player.titleBasic() + this.session.session_id);
             ghostName = "less fortunate alternate self";
         }
 
@@ -415,7 +415,7 @@ class LifeStuff extends Scene {
         }
 
         if (ghost != null && ghost.causeOfDrain == null) {
-            //print("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
+            //session.logger.info("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
             str = "$str${this.ghostPsionics(player)} The ${player.htmlTitleBasic()} destroys the essence of the $ghostName for greater destructive power, it will be a while before the ghost recovers.";
             ghost.causeOfDrain = player.title();
             player.increasePower(ghost.getStat("power"));
@@ -426,13 +426,13 @@ class LifeStuff extends Scene {
             removeFromArray(player, this.session.availablePlayers);
             return canvas;
         } else {
-            //print("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
             return null;
         }
     }
 
     void helpPlayerDrainDeadForPower(Element div, Player player1, Player player2) {
-        //print("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
+        //session.logger.info("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
         String divID = "${div.id}_communeDeadWithGuide${player1.chatHandle}";
         appendHtml(div, "<div id =$divID></div>");
         Element childDiv = querySelector("#$divID");
@@ -441,7 +441,7 @@ class LifeStuff extends Scene {
         CanvasElement canvas = this.drainDeadForPower(childDiv, text, player2, true);
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
-            //print("Help draining power with the dead: " + this.session.session_id);
+            //session.logger.info("Help draining power with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
 
@@ -461,7 +461,7 @@ class LifeStuff extends Scene {
         //you can not use your own fresh ghost as fuel to revive. doens't work like that. even if it's kinda thematically appropriate for some clapsects.
         //if i let them do that, can INFINITELY respawn, because will ALWAYS have a non drained ghost to use.
         if (ghost != null && ghost.causeOfDrain != "" && myGhost != ghost) {
-            print("ghost drain dead for revive: ${player.titleBasic()} ${this.session.session_id}");
+            session.logger.info("ghost drain dead for revive: ${player.titleBasic()} ${this.session.session_id}");
             if (className == SBURBClassManager.THIEF || className == SBURBClassManager.ROGUE) {
                 str = "$str${this.ghostPsionics(player)} The ${player.htmlTitleBasic()} steals the essence of the $ghostName in order to revive. It will be a while before the ghost recovers.";
             } else if (className == SBURBClassManager.HEIR || className == SBURBClassManager.MAID) {
@@ -486,7 +486,7 @@ class LifeStuff extends Scene {
             removeFromArray(player, this.session.availablePlayers);
             return canvas;
         } else {
-            //print("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
             return null;
         }
     }
@@ -500,7 +500,7 @@ class LifeStuff extends Scene {
         CanvasElement canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);
         if (canvas != null) {
             removeFromArray(player1, this.session.availablePlayers);
-            //print("Help revive with the dead: " + this.session.session_id);
+            //session.logger.info("Help revive with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
@@ -512,7 +512,7 @@ class LifeStuff extends Scene {
     }
 
     void enableDreamBubbles(Element div, Player player) {
-        //print("Turning on dream bubble afterlife: " + this.session.session_id);
+        //session.logger.info("Turning on dream bubble afterlife: " + this.session.session_id);
         this.session.dreamBubbleAfterlife = true;
         String canvasId = "${div.id}horror_terrors_${player.chatHandle}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
@@ -530,7 +530,7 @@ class LifeStuff extends Scene {
     }
 
     void makeDead(Player d) {
-        ////print("make dead " + d.title())
+        ////session.logger.info("make dead " + d.title())
         d.dead = true;
     }
 

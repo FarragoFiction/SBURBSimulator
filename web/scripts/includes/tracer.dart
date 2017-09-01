@@ -133,7 +133,7 @@ class Tracer {
         if (current == null) { return null; }
 
         String path = current.src;
-        //print("path: $path");
+        ////print("path: $path");
 
         if (!path.endsWith(".js")) { return null; }
 
@@ -143,10 +143,10 @@ class Tracer {
             HttpRequest.getString(mapFile)..then((String content) {
                 SourceMaps.Mapping mapping = SourceMaps.parse(content);
                 if (mapping == null) {
-                    //print("null mapping");
+                    ////print("null mapping");
                     _mappings[path] = _MISSING;
                 } else {
-                    //print("ok mapping");
+                    ////print("ok mapping");
                     _mappings[path] = mapping;
                 }
 
@@ -158,7 +158,7 @@ class Tracer {
 
                 callback(out);
             })..catchError(() {
-                //print("error");
+                ////print("error");
                 _mappings[path] = _MISSING;
 
                 callback(null);

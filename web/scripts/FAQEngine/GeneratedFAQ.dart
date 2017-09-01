@@ -38,10 +38,9 @@ class GeneratedFAQ {
     //TODO better be courier new, bro
     String makeHtml(String id) {
         int amount = 10;
-       // print("I'm making html for a generated faq with ${sections.length} sections");
+       // //print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
-        if(asciiHeader == Aspects.TIME.faqFile.ascii) print("Displaying time ascii art in session ${author.session.session_id}");
 
         String ret =  "<button class='red_x'id = 'close$id'>X</button><div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {

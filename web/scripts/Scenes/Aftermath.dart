@@ -145,7 +145,7 @@ class Aftermath extends Scene {
 			timePlayer = findAspectPlayer(this.session.players, Aspects.TIME);
 		}
 		if(dead.length >= living.length && timePlayer != null || this.session.janusReward){
-			//print("Time Player: " + timePlayer);
+			//session.logger.info("Time Player: " + timePlayer);
 			timePlayer = findAspectPlayer(this.session.players, Aspects.TIME) ;//NEED to have a time player here.;
 			var s = new YellowYard(this.session);
 			s.timePlayer = timePlayer;
@@ -276,7 +276,7 @@ class Aftermath extends Scene {
 					if(session.noFrogCheck(spacePlayer) && session.enoughGristForAny()) {
 						end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
 						end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()}% of the way through. ";
-						print("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
+						session.logger.info("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
 						if (spacePlayer.landLevel < 0) {
 							end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
 						}
@@ -366,10 +366,10 @@ class Aftermath extends Scene {
 		tmpStatHolder["power"] =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
 		tmpStatHolder["grist"] = 100000000;
 		tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
-		//print(purpleFrog);
+		//session.logger.info(purpleFrog);
 		GameEntity purpleFrog = new GameEntity(" <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", this.session);
 		purpleFrog.setStatsHash(tmpStatHolder);
-		print(purpleFrog);
+		session.logger.info(purpleFrog);
 		//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 
 		Fraymotif f = new Fraymotif( Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
@@ -409,7 +409,7 @@ class Aftermath extends Scene {
 		//maybe load kid rock first and have callback for when he's done.
 		//maybe kid rock only shows up for half purple frogs??? need plausible deniability? "Troll Kid Rock??? Never heard of him. Sounds like a cool dude, though."
 		Player trollKidRock = this.trollKidRock();
-		print(trollKidRock);
+		session.logger.info(trollKidRock);
 		GameEntity purpleFrog = this.purpleFrog();
 		precedingText += "<img src = 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>";
 		appendHtml(div, precedingText);

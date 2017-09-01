@@ -190,7 +190,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
-        // print("replacing: " + oldc  + " with " + newc);
+        // //print("replacing: " + oldc  + " with " + newc);
         CanvasRenderingContext2D ctx = canvas.context2D;
         ImageData img_data = ctx.getImageData(0, 0, canvas.width, canvas.height);
         //4 byte color array
@@ -289,7 +289,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
-        // print("replacing: " + oldc  + " with " + newc);
+        // //print("replacing: " + oldc  + " with " + newc);
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         ImageData img_data = ctx.getImageData(0, 0, canvas.width, canvas.height);
         //4 byte color array
@@ -413,13 +413,13 @@ abstract class Drawing {
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);
-        //print("Random number is: " + randNum);
+        ////print("Random number is: " + randNum);
     }
 
     //parse horns sprite sheet. render a random right horn.
     //right horn should be at: 120,40
     static void rightHorn(CanvasElement canvas, Player player) {
-        // print("doing right horn");
+        // //print("doing right horn");
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
 
         String imageString = "Horns/right${player.rightHorn}.png";
@@ -430,7 +430,7 @@ abstract class Drawing {
     }
 
     static void addImageTag(String url) {
-        //print(url);
+        ////print(url);
         //only do it if image hasn't already been added.
         if (imageSelector(url) == null) {
             String tag = '<img id="${escapeId(url)}" src = "images/$url" class="loadedimg">';
@@ -446,7 +446,7 @@ abstract class Drawing {
     {
         ImageElement img = new Image();
         img.onload = () {
-            //print(this);
+            ////print(this);
 
             x = canvas.width/2 - this.width/2;
             y = canvas.height/2 - this.height/2;
@@ -775,7 +775,7 @@ abstract class Drawing {
             return;
         }
         if (player.godTier) {
-            //print("god tier");
+            ////print("god tier");
             drawLevelUpGodTier(canvas, player);
             return;
         }
@@ -892,7 +892,7 @@ abstract class Drawing {
 
     static void drawWhateverWithPalleteSwapCallback(CanvasElement canvas, String str, Player player, PaletteSwapCallback palleteSwapCallBack) {
         drawWhatever(canvas, str);
-        //print("drawing whatever with pallete swap of $palleteSwapCallBack");
+        ////print("drawing whatever with pallete swap of $palleteSwapCallBack");
         palleteSwapCallBack(canvas, player); //regular, trickster, robo, whatever.
     }
 
@@ -905,8 +905,8 @@ abstract class Drawing {
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         if (img == null) {
-            print("img was null!");
-            print("was looking for ${escapeId(imageString)}");
+            //print("img was null!");
+            //print("was looking for ${escapeId(imageString)}");
         }
         ctx.drawImage(img, 0, 0);
     }
@@ -1042,7 +1042,7 @@ abstract class Drawing {
         //return true; // debugging, is loading the problem, or is this method?
         if (doNotRender == true) {
             //looking for rare sessions, or getting moon prophecies.
-            //  print("no canvas, are we simulatating the simulation?");
+            //  //print("no canvas, are we simulatating the simulation?");
             return true;
         }
         return false;
@@ -1060,8 +1060,8 @@ abstract class Drawing {
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         if (img == null) {
-            print("img was null!");
-            print("was looking for ${escapeId(imageString)}");
+            //print("img was null!");
+            //print("was looking for ${escapeId(imageString)}");
         }
         ctx.drawImage(img, 0, 0);
 
@@ -1113,8 +1113,8 @@ abstract class Drawing {
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         if (img == null) {
-            print("img was null!");
-            print("was looking for ${escapeId(imageString)}");
+            //print("img was null!");
+            //print("was looking for ${escapeId(imageString)}");
         }
         ctx.drawImage(img, 0, 0);
 
@@ -1422,7 +1422,7 @@ abstract class Drawing {
         }
         Player player = Player.makeRenderingSnapshot(inputplayer);
         if (player.ghost || player.doomed) { //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
-            //print("drawing ghost or doomed player from scratch: " + player);
+            ////print("drawing ghost or doomed player from scratch: " + player);
             drawSpriteFromScratch(canvas, player, ctx, false);
         } else {
             CanvasElement canvasDiv = querySelector("#${player.spriteCanvasID}");
@@ -1444,7 +1444,7 @@ abstract class Drawing {
 
 
     static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
-        //print("Drawing sprite from scratch " + player.isDreamSelf);
+        ////print("Drawing sprite from scratch " + player.isDreamSelf);
         if (checkSimMode() == true) {
             return;
         }
@@ -1679,7 +1679,7 @@ abstract class Drawing {
     static void hairBack(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "Hair/hair_back${player.hair}.png";
-        //print(imageString);
+        ////print(imageString);
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);

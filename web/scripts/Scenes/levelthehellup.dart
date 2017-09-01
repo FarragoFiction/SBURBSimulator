@@ -44,7 +44,7 @@ class LevelTheHellUp extends Scene {
     void renderForPlayer(Element div, Player player) {
         String levelName = player.getNextLevel(); //could be undefined
         if (levelName == null) {
-            print("Scratched is:  Player has AAAAAAAALL the levels. All of them. " + this.session.session_id.toString());
+            session.logger.info("Scratched is:  Player has AAAAAAAALL the levels. All of them. " + this.session.session_id.toString());
             return; //don't make a blank div
         }
         var boonies = this.getBoonies(player);
@@ -84,11 +84,11 @@ class LevelTheHellUp extends Scene {
         String narration = "";
         for (num i = 0; i < this.playerList.length; i++) {
             Player p = this.playerList[i];
-            //print("Level index is: ${p.level_index} while my levels length is ${p.mylevels.length}");
+            //session.logger.info("Level index is: ${p.level_index} while my levels length is ${p.mylevels.length}");
             //it's a var so i debug this nightmare without end
             bool canLevel = p.leveledTheHellUp && ((p.level_index + 1) < p.mylevels.length);
             if (canLevel) { //can't level up if max level
-                //print("going to level up");
+                //session.logger.info("going to level up");
                 this.renderForPlayer(div, p);
                 p.leveledTheHellUp = false;
             }

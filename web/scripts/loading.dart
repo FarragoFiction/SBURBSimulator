@@ -89,16 +89,16 @@ void urlToID(url){
 
 
 void addImageTagLoading(url){
-  //print(url);
+  ////print(url);
 	//only do it if image hasn't already been added.
 	if(querySelector("#${escapeId(url)}") == null) {
-		//print("I couldn't find a document with id of: " + url);
+		////print("I couldn't find a document with id of: " + url);
 		String tag = '<img id="' + escapeId(url) + '" src = "images/' + url + '" class="loadedimg">';
 		//var urlID = urlToID(url);
 		//String tag = '<img id ="' + urlID + '" src = "' + url + '" style="display:none">';
 		querySelector("#loading_image_staging").appendHtml(tag,treeSanitizer: NodeTreeSanitizer.trusted);
 	}else{
-		//print("I thought i found a document with id of: " + url);
+		////print("I thought i found a document with id of: " + url);
 
 	}
 
@@ -116,7 +116,7 @@ dynamic checkDone(String skipInit){
     if(skipInit != null && !skipInit.isEmpty){
 		if(callBack != null) return callBack();
       if(skipInit == "oc"){
-        print("images loaded: $imagesLoaded");
+        //print("images loaded: $imagesLoaded");
 				throw("not supported yet.");
         //reroll();
         return null;
@@ -138,7 +138,7 @@ dynamic checkDone(String skipInit){
 void loadImage(String img, String skipInit) {
 
 	if(doNotRender == true) return checkDone(skipInit);
-	//print(img);
+	////print(img);
 	imagesWaiting ++;
 	ImageElement imageObj = new ImageElement();
   imageObj.onLoad.listen((Event e) {
@@ -150,7 +150,7 @@ void loadImage(String img, String skipInit) {
 
   imageObj.onError.listen((Event e){
     debug("Error loading image: " + imageObj.src);
-		print("Error loading image: " + imageObj.src);
+		//print("Error loading image: " + imageObj.src);
     //alert(this.src);
   });
   imageObj.src = "images/"+img;

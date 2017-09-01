@@ -40,7 +40,7 @@ class CharacterCreatorHelper {
     }
 
     void drawSinglePlayerSummary(Player player) {
-        //print("drawing: " + player.title());
+        ////print("drawing: " + player.title());
         String str =
             "<div class='standAloneSummary' id='createdCharacter${player.id}'>";
         String divId = player.id.toString();
@@ -58,7 +58,7 @@ class CharacterCreatorHelper {
 
     //TODO why the fuck did this have the same name as a handle_sprites function?
     void drawSinglePlayerForHelper(Player player) {
-        print("drawing: " + player.title());
+        //print("drawing: " + player.title());
         String str = "";
         String divId = player.id.toString();
         if (curSessionGlobalVar.session_id != 612 &&
@@ -510,17 +510,17 @@ class CharacterCreatorHelper {
                 TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
                 String bs = "${window.location}?" + dataBox.value; //need "?" so i can parse as url
                 if(window.location.toString().contains("?")) bs = "${window.location}&" + dataBox.value;
-                print("bs is: " + bs);
+                //print("bs is: " + bs);
                 String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
                 String s = getParameterByName("s", bs);
                 String x = (getParameterByName("x", bs));
                 //TODO oh god why ar eall these null???
-                print("b: $b");
-                print("s: $s");
-                print("x: $x");
+                //print("b: $b");
+                //print("s: $s");
+                //print("x: $x");
 
                 List<Player> players = dataBytesAndStringsToPlayers(b, s, x); //technically an array of one players.;
-                print("Player class name: " + players[0].class_name.name);
+                //print("Player class name: " + players[0].class_name.name);
                 player.copyFromPlayer(players[0]);
                 that.redrawSinglePlayer(player);
                 //should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
@@ -929,7 +929,7 @@ class CharacterCreatorHelper {
     String drawInterestDropDown(InterestCategory category, int num, Player player) {
         String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
         List<String> interestsInCategory = category.copyOfInterestStrings;
-        //print("Interests in category $category are $interestsInCategory");
+        ////print("Interests in category $category are $interestsInCategory");
         String interestToCheck = player.interest1.name;
         if (num == 2) interestToCheck = player.interest2.name;
         for (int i = 0; i < interestsInCategory.length; i++) {

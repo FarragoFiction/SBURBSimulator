@@ -17,13 +17,13 @@ List<Player> getReplayers() {
     String b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b", null)));
     String s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s", null));
     String x = (getRawParameterByName("x", null));
-    print(" i think x is $x");
+    //print(" i think x is $x");
     if (b == null || s == null) return <Player>[];
     if (b == "null" || s == "null") return <Player>[]; //why was this necesassry????????????????
-    //print("b is");
-    //print(b);
-    //print("s is ");
-    //print(s);
+    ////print("b is");
+    ////print(b);
+    ////print("s is ");
+    ////print(s);
     return dataBytesAndStringsToPlayers(b, s, x);
 }
 
@@ -37,12 +37,12 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
         return;
     } else if (replayPlayers.length > curSessionGlobalVar.players.length) {
         int numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
-        //print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
+        ////print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
         for (int i = 0; i < numNeeded; i++) {
-            // print("making new player: " + i);
+            // //print("making new player: " + i);
             curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, SBURBClassManager.PAGE, Aspects.VOID));
         }
-        //print("Number of players is now: " + curSessionGlobalVar.players.length);
+        ////print("Number of players is now: " + curSessionGlobalVar.players.length);
         return;
     }
 }
@@ -51,7 +51,7 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
 //this code is needed to make sure replay players have guardians.
 void redoRelationships(List<Player> players) {
     List<Player> guardians = <Player>[];
-    print("redoing relationships");
+    //print("redoing relationships");
     for (num j = 0; j < players.length; j++) {
         Player p = players[j];
         guardians.add(p.guardian);
@@ -164,8 +164,8 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
 
 
 Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
-    //print("random player");
-   // print("class: $c, aspect: $a, session: $session");
+    ////print("random player");
+   // //print("class: $c, aspect: $a, session: $session");
     GameEntity k = session.rand.pickFrom(prototyping_objects);
 
     bool gd = false;
@@ -238,7 +238,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.aspect == aspect) {
-                //print("Found " + aspect + " player");
+                ////print("Found " + aspect + " player");
                 return p;
             }
         }
@@ -254,7 +254,7 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.aspect == aspect) {
-                //print("Found " + aspect + " player");
+                ////print("Found " + aspect + " player");
                 ret.add(p);
             }
         }
@@ -289,7 +289,7 @@ Player findClaspectPlayer(List<GameEntity> playerList, SBURBClass class_name, As
         if (g is Player) {
             Player p = playerList[i];
             if (p.class_name == class_name && p.aspect == aspect) {
-                //print("Found " + class_name + " player");
+                ////print("Found " + class_name + " player");
                 return p;
             }
         }
@@ -304,7 +304,7 @@ Player findClassPlayer(List<GameEntity> playerList, SBURBClass class_name) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.class_name == class_name) {
-                //print("Found " + class_name + " player");
+                ////print("Found " + class_name + " player");
                 return p;
             }
         }
@@ -390,7 +390,7 @@ num getPartyPower(List<GameEntity> party) {
 //it says "players" but it won't let me refactor rename it
 //any game entity can be passed here, player is a legacy thing
 String getPlayersTitlesHP(List<GameEntity> playerList) {
-    //print(playerList);
+    ////print(playerList);
     if (playerList.isEmpty) {
         return "";
     }
@@ -404,7 +404,7 @@ String getPlayersTitlesHP(List<GameEntity> playerList) {
 //it says "players" but it won't let me refactor rename it
 //any game entity can be passed here, player is a legacy thing
 String getPlayersTitlesNoHTML(List<GameEntity> playerList) {
-    //print(playerList);
+    ////print(playerList);
     if (playerList.isEmpty) {
         return "";
     }
@@ -419,7 +419,7 @@ String getPlayersTitlesNoHTML(List<GameEntity> playerList) {
 //it says "players" but it won't let me refactor rename it
 //any game entity can be passed here, player is a legacy thing
 String getPlayersTitles(List<GameEntity> playerList) {
-    //print(playerList);
+    ////print(playerList);
     if (playerList.isEmpty) {
         return "";
     }
@@ -512,7 +512,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
         clone.guardian = g;
         g.guardian = clone;
     }
-    print("returning clone $clone");
+    //print("returning clone $clone");
     return clone;
 }
 
@@ -577,7 +577,7 @@ Player findLowestMobilityPlayer(List<Player> playerList) {
 String findGoodPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
         if (playerList[i].object_to_prototype.illegal == true) {
-            //print("found good");
+            ////print("found good");
             return (playerList[i].object_to_prototype.htmlTitle());
         }
     }

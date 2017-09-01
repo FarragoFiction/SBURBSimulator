@@ -34,7 +34,7 @@ main() {
 void rap(playerNum, Player player){
 	//Math.seed =  getRandomSeed();
 
-	//print("Rapping about: " + interest);
+	////print("Rapping about: " + interest);
 
 	var chosenRapTemplate = player.session.rand.pickFrom(rapTemplates);
 

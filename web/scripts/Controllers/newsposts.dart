@@ -281,7 +281,7 @@ void reckoning(){
 	if(!curSessionGlobalVar.doomedTimeline){
 		reckoningTick();
 	}else{
-		//print("doomed timeline prevents reckoning");
+		////print("doomed timeline prevents reckoning");
 		summarizeSession(curSessionGlobalVar);
 	}
 }
@@ -320,7 +320,7 @@ void reckoningTick(){
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
-			//print("reckoning over, not combo");
+			////print("reckoning over, not combo");
 			summarizeSession(curSessionGlobalVar);
 		}
 
@@ -332,7 +332,7 @@ void reckoningTick(){
 
 
 void foundRareSession(div, debugMessage){
-	print(debugMessage);
+	//print(debugMessage);
 	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 

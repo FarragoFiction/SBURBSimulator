@@ -189,7 +189,7 @@ class Relationship {
             return " The two flirt a bit. ";
         }
         if (r1.type() == r1.diamond) {
-            //print("impromptu feelings jam: " + this.session.session_id);
+            ////print("impromptu feelings jam: " + this.session.session_id);
             me.addStat("sanity", 1);
             you.addStat("sanity", 1);
             return " The two have an impromptu feelings jam. ";
@@ -225,7 +225,7 @@ class Relationship {
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
     static List<Relationship> cloneRelationshipsStopgap(List<Relationship> relationships) {
-        //print("clone relationships stopgap");
+        ////print("clone relationships stopgap");
         List<Relationship> ret = <Relationship>[];
         for (num i = 0; i < relationships.length; i++) {
             Relationship r = relationships[i];
@@ -239,7 +239,7 @@ class Relationship {
 //not the original players.
 //also, I <3 this method name. i <3 this sim.
     static void transferFeelingsToClones(Player player, List<Player> clones) {
-        //print("transfer feelings to clones");
+        ////print("transfer feelings to clones");
         for (int i = 0; i < player.relationships.length; i++) {
             Relationship r = player.relationships[i];
             Player clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
@@ -338,7 +338,7 @@ class Relationship {
                 num roll = player.rollForLuck();
                 if (roll > rollNeeded) {
                     if (r.type() == r.goodBig) {
-                        print("initial diamond/heart");
+                        player.session.logger.info("AB:initial diamond/heart");
                         num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
                         if (difference > 2 || roll < rollNeeded ) { //pale
                             makeDiamonds(player, r.target);
@@ -346,7 +346,7 @@ class Relationship {
                             makeHeart(player, r.target);
                         }
                     } else if (r.type() == r.badBig) {
-                        print("initial club/spades");
+                        player.session.logger.info("AB: initial club/spades");
                         if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded) { //likely to murder each other
                             Player ausp = rand.pickFrom(players);
                             if (ausp != null && ausp != player && ausp != r.target) {

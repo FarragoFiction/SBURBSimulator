@@ -34,7 +34,7 @@ class Strife {
       if (winner != null) {
         describeEnding(div, winner); //will call processEnding.
       } else {
-        print("Strife ended with no clear winner");
+        //print("Strife ended with no clear winner");
       }
     } else {
       turnsPassed ++;
@@ -59,7 +59,7 @@ class Strife {
     List<GameEntity> members = findMembersOfDenizenFight();
     if(members == null || members.length < 2) return; //not a denizen fight
     Player player = members[1];
-    //print("Player $player is dead: ${player.dead}");
+    ////print("Player $player is dead: ${player.dead}");
     if(!player.dead) return; //you can't spare a player who won.
     if(player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
     if(player.godDestiny && !player.godTier && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
@@ -184,7 +184,7 @@ class Strife {
   }
 
   void denizenIsSoNotPuttingUpWithYourShitAnyLonger(Element div) {
-    //print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
+    ////print("!!!!!!!!!!!!!!!!!denizen not putting up with your shit: " + this.session.session_id);
     List<GameEntity> members = findMembersOfDenizenFight();
     Denizen denizen = members[0];
     Player player = members[1];
@@ -376,9 +376,9 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
   }
 
   void killEveryone(String reason) {
-    print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
+    //print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
     for(GameEntity ge in getLivingMinusAbsconded()) {
-      print("making $ge dead");
+      //print("making $ge dead");
       ge.makeDead(reason);  ///bluh, no way to talk about prophecies here.
     }
   }

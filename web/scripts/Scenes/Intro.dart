@@ -17,7 +17,7 @@ class Intro  extends IntroScene{
 	String corruptedLand(){
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land2) != -1 ){
 			this.player.corruptionLevelOther = 100;
-			print("corrupted land" + this.session.session_id.toString());
+			session.logger.info("corrupted land" + this.session.session_id.toString());
 			return "There is ...something very, very wrong about the " + this.player.land +". ";
 		}
 		return "";
@@ -79,13 +79,13 @@ class Intro  extends IntroScene{
       this.player.object_to_prototype.player = true;
 			//shout out to DinceJof for the great sprite phrase
 			this.player.object_to_prototype.helpPhrase = " used to be a Player like you, until they took a splinter to the timeline, so they know how all this shit works. Super helpful.";
-			print("time player sprite in session: " + this.session.session_id.toString());
+			session.logger.info("time player sprite in session: " + this.session.session_id.toString());
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && rand.nextDouble() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
 			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
 			this.player.object_to_prototype =this.player.clone() ;//no, don't say 'corpsesprite';
       this.player.object_to_prototype.name = this.player.chatHandle;
-			print("player sprite in session: " + this.session.session_id.toString());
+			session.logger.info("player sprite in session: " + this.session.session_id.toString());
 			this.player.object_to_prototype.helpfulness = 1;
       this.player.object_to_prototype.player = true;
 			this.player.object_to_prototype.helpPhrase = " is interested in trying to figure out how to play the game, since but for shenanigans they would be playing it themselves.";
@@ -96,7 +96,7 @@ class Intro  extends IntroScene{
 	}
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		//print("Entering session, mvp is: " + current_mvp.getStat("power"));
+		//session.logger.info("Entering session, mvp is: " + current_mvp.getStat("power"));
 		if(this.player.aspect == Aspects.TIME && !this.player.object_to_prototype.illegal){
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
 		}else{
@@ -520,7 +520,7 @@ class Intro  extends IntroScene{
 		return chatText;
 	}
   String alienChat(player1, Element div){
-		//print("inside alien chat");
+		//session.logger.info("inside alien chat");
 		var player2 = player1.getBestFriend(); //even if they are dead. even if they are from another session.
 		var player1Start = player1.chatHandleShort()+ ": ";
 		var player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -530,7 +530,7 @@ class Intro  extends IntroScene{
   	String chatText = "";
 
 		if(player2.ectoBiologicalSource == this.session.session_id || player2.ectoBiologicalSource == null){
-			//print(player2.ectoBiologicalSource);
+			//session.logger.info(player2.ectoBiologicalSource);
 			if(r1.type() == r1.goodBig){
 				chatText += Scene.chatLine(player1Start, player1, "Uh, Hey, I wanted to tell you, I'm finally in your session.");
 				chatText += Scene.chatLine(player2Start, player2,"Oh wow! What are you going to do? It's not like you have a land or anything...");
@@ -550,8 +550,8 @@ class Intro  extends IntroScene{
 
 		}else{
 				if(player2.dead){
-					//print("player 2 is: " + player2.title())
-					//print(player2);
+					//session.logger.info("player 2 is: " + player2.title())
+					//session.logger.info(player2);
 					chatText += Scene.chatLine(player1Start, player1, "So. Uh. Hey, I'm finally in the new session I was telling you about.");
 					chatText += Scene.chatLine(player1Start, player1, "You would have loved it.");
 					chatText += Scene.chatLine(player1Start, player1, "Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance.");
@@ -657,12 +657,12 @@ class Intro  extends IntroScene{
 		String narration = "";
 
 		if(this.player.land == null){
-			//print("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
+			//session.logger.info("This session is:  " + this.session.session_id + " and the " + this.player.title() + " is from session: " + this.player.ectoBiologicalSource + " and their land is: " + this.player.land);
 		}
 		if(!this.player.fromThisSession(this.session) || this.player.land == null){
 			narration += "<br>The " + this.player.htmlTitle() + " has been in contact with the native players of this session for most of their lives. It's weird how time flows differently between universes. Now, after inumerable shenanigans, they will finally be able to meet up face to face.";
 			if(this.player.dead==true){
-				print(session.session_id.toString() + " dead player enters, " +this.player.title());
+				session.logger.info(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess time flowing differently between universes is still a thing that is true, and they were able to contact them even before they died.  Shit, this is extra tragic.  <br>";
 				appendHtml(div, narration);
 				this.session.availablePlayers.add(this.player);
@@ -685,29 +685,29 @@ class Intro  extends IntroScene{
 			}
 
 			if(this.player.getStat("minLuck") + this.player.getStat("maxLuck") >25){
-				//print("initially lucky player: " +this.session.session_id);
+				//session.logger.info("initially lucky player: " +this.session.session_id);
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
 			if(this.player.getStat("maxLuck") < -25){
-				//print("initially unlucky player: " +this.session.session_id);
+				//session.logger.info("initially unlucky player: " +this.session.session_id);
 				narration += " They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}
 			
 			if(this.player.fraymotifs.length > 0){
-				//print("initially unlucky player: " +this.session.session_id);
+				//session.logger.info("initially unlucky player: " +this.session.session_id);
 				narration += " They have special powers, including " + turnArrayIntoHumanSentence(this.player.fraymotifs) + ". ";
 			}
 
 			if(this.player.dead==true){
-				print(session.session_id.toString() + " dead player enters, " +this.player.title());
+				session.logger.info(session.session_id.toString() + " dead player enters, " +this.player.title());
 				narration+= "Wait. What?  They are DEAD!? How did that happen? Shenenigans, probably. I...I guess their GHOST or something is making sure their house and corpse makes it into the medium? And their client player, as appropriate. Their kernel somehow gets prototyped with a "+this.player.object_to_prototype.htmlTitle() + ". ";
 				this.player.timesDied ++;
 				this.session.availablePlayers.add(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 				if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				if(this.player.object_to_prototype.armless){
-					print("armless prototyping in session: " + this.session.session_id.toString());
+					session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 				}
@@ -726,7 +726,7 @@ class Intro  extends IntroScene{
 
 			for(num j = 0; j<this.player.relationships.length; j++){
 				var r = this.player.relationships[j];
-				//print("Initial relationship value is: " + r.value + " and grim dark is: " + this.player.grimDark);
+				//session.logger.info("Initial relationship value is: " + r.value + " and grim dark is: " + this.player.grimDark);
 				if(r.type() != "Friends" && r.type() != "Rivals"){
 					narration += "They are " + r.description() + ". ";
 				}
@@ -737,7 +737,7 @@ class Intro  extends IntroScene{
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
 			if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 			if(this.player.object_to_prototype.armless && rand.nextDouble() > 0.93){
-					print("armless prototyping in session: " + this.session.session_id.toString());
+					session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 			}

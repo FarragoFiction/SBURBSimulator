@@ -32,7 +32,7 @@ void newPlayer() {
 }
 
 void renderURLToSendPlayersIntoSBURB() {
-  print("clicked render button");
+  //print("clicked render button");
   self.renderURLToSendPlayersIntoSBURB();
 }
 
@@ -73,11 +73,11 @@ class CharCreatorController extends SimController {
   }
 
   void renderURLToSendPlayersIntoSBURB(){
-    print("getting ready to grab players");
+    //print("getting ready to grab players");
     grabAllPlayerInterests();
     grabCustomChatHandles();
     numURLS ++;
-    print("getting ready to generate urls");
+    //print("getting ready to generate urls");
     String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>";
     appendHtml(querySelector("#character_creator"),html);
   }

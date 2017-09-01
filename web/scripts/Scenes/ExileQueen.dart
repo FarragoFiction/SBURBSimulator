@@ -13,7 +13,7 @@ class ExileQueen extends Scene {
 		return (this.session.queen.getStat("power")<10 && !this.session.queen.exiled );
 	}
 	dynamic content(){
-		print("trying to exile queen: " + this.session.session_id.toString());
+		session.logger.info("trying to exile queen: " + this.session.session_id.toString());
 		String ret = "";
 		if(this.session.queen.getStat("currentHP") > 0 && this.session.queen.crowned != null){
 			ret = " The plan has been performed flawlessly.  The Black Queen has been exiled to the post-Apocalyptic version of Earth, never to be heard from again. ";

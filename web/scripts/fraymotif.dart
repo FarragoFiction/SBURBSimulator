@@ -288,12 +288,12 @@ class Fraymotif {
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
             enemies[0].buffs.add(new BuffOld("currentHP", -9999)); //they REALLY believed in this attack.
             var jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
-            print("Hope Rides Alone in session: ${owner.session.session_id}");
+            //print("Hope Rides Alone in session: ${owner.session.session_id}");
             var scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
             return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() + " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
         }
         List<GameEntity> dead = findDeadPlayers(allies);
-        //print(casters);
+        ////print(casters);
         //ALL effects that target a single enemy target the SAME enemy.
         for (num i = 0; i < this.effects.length; i++) {
             //effect knows how to apply itself. pass it baseValue.
@@ -352,7 +352,7 @@ class FraymotifCreator {
         for (num i = 0; i < fraymotifs.length; i++) {
             if (fraymotifs[i].canCast(owner, allies, enemies)) ret.add(fraymotifs[i]);
         }
-        //print("Found: " + ret.length + " usable fraymotifs for " + owner);
+        ////print("Found: " + ret.length + " usable fraymotifs for " + owner);
         return ret;
     }
 
@@ -464,7 +464,7 @@ class FraymotifCreator {
     dynamic getFraymotifName(Random rand, List<Player> players, int tier) {
         String name = this.tryToGetPreMadeName(rand, players);
         if (name != null) {
-            //print("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id);
+            ////print("Using a premade procedural fraymotif name: " + name + " " + players[0].session.session_id);
             return name; //premade is good enough here. let the called function handle randomness.
         } else {
             name = "";
@@ -484,7 +484,7 @@ class FraymotifCreator {
                 name += this.getRandomNameForAspect(rand, players[i].aspect) + musicWord + " ";
             }
         }
-        //print("player length: "+ players.length + " tier: " + tier + " Name: " + name);
+        ////print("player length: "+ players.length + " tier: " + tier + " Name: " + name);
         return name;
     }
 
@@ -501,7 +501,7 @@ class FraymotifCreator {
                 players_involved.add(p); //MATH% chance of adding each additional player
             }
         }
-        //print("Made: " + players_involved .length + " player fraymotif in session: " + player.session);
+        ////print("Made: " + players_involved .length + " player fraymotif in session: " + player.session);
         return this.makeFraymotif(player.rand, players_involved, tier);
     }
 
@@ -641,18 +641,18 @@ class FraymotifEffect {
         //now, i need to USE this effect value.  is it doing "damage" or "buffing"?
         if (this.target == this.e || this.target == this.e2) effectValue = effectValue * -1; //do negative things to the enemy.
         var targetArr = this.chooseTargetArr(owner, allies, casters, enemy, enemies);
-        //print(["target chosen: ", targetArr]);
+        ////print(["target chosen: ", targetArr]);
         if (this.damageInsteadOfBuff) {
-            //print("applying damage: " + targetArr.length);
+            ////print("applying damage: " + targetArr.length);
             this.applyDamage(targetArr, effectValue);
         } else {
-            //print("applying buff");
+            ////print("applying buff");
             this.applyBuff(targetArr, effectValue);
         }
     }
 
     dynamic chooseTargetArr(owner, allies, casters, enemy, enemies) {
-        //print(["potential targets: ",owner, allies, casters, enemies]);
+        ////print(["potential targets: ",owner, allies, casters, enemies]);
         if (this.target == this.s) return [owner];
         if (this.target == this.a) return allies;
         if (this.target == this.e) return [enemy]; //all effects target same enemy.
@@ -662,7 +662,7 @@ class FraymotifEffect {
 
     void applyDamage(targetArr, effectValue) {
         var e = effectValue / targetArr.length; //more potent when a single target.
-        //print(["applying damage", effectValue, targetArr.length, e]);
+        ////print(["applying damage", effectValue, targetArr.length, e]);
         for (num i = 0; i < targetArr.length; i++) {
             var t = targetArr[i];
             t.makeAlive();

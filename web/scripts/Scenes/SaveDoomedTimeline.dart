@@ -32,17 +32,17 @@ class SaveDoomedTimeLine extends Scene {
 		}
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
-			//print("time player is dead, not triggering");
-			//print(this.timePlayer);
+			//session.logger.info("time player is dead, not triggering");
+			//session.logger.info(this.timePlayer);
 			return false;
 		}*/
-		//print("time player is not dead,  do i trigger?");
+		//session.logger.info("time player is not dead,  do i trigger?");
 		return (this.timePlayer != null && (this.ectoDoom() || this.playerDoom() || this.randomDoom(times.length)));
 	}
 
 	@override
 	void renderContent(Element div){
-		//print("time clone " + this.timePlayer + " " + this.session.session_id.toString());
+		//session.logger.info("time clone " + this.timePlayer + " " + this.session.session_id.toString());
 		appendHtml(div,"<br><img src = 'images/sceneIcons/time_icon.png'>"+this.content());
 		var divID = (div.id);
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
@@ -54,7 +54,7 @@ class SaveDoomedTimeLine extends Scene {
 	}
 	bool leaderIsFucked(){
 		if(this.leaderPlayer.dead && !this.leaderPlayer.dreamSelf && !this.leaderPlayer.godTier && !this.leaderPlayer.godDestiny){
-			//print('leader is fucked');
+			//session.logger.info('leader is fucked');
 			return true;
 		}
 		return false;
@@ -62,7 +62,7 @@ class SaveDoomedTimeLine extends Scene {
 	bool ectoDoom(){
 		if(this.leaderIsFucked() && !this.session.ectoBiologyStarted){
 			this.reason = "Leader killed before ectobiology.";
-			//print(this.reason);
+			//session.logger.info(this.reason);
 			return true; //paradox, the babies never get made.
 		}
 		return false;
@@ -71,7 +71,7 @@ class SaveDoomedTimeLine extends Scene {
 		//greater time pressure for getting all players in, can't wait for a revive.
 		if(this.leaderPlayer.dead && this.playerList.length < this.session.players.length && this.playerList.length != 1){ //if i die before entering, well, that's yellowYard bullshit
 			this.reason = "Leader killed before all players in medium.";  //goddamn it past jr, there was a TYPO here, no WONDER it never happened.
-			print("!!!!!!!!!!!!!!!oh hell YES " + this.session.session_id.toString());
+			session.logger.info("!!!!!!!!!!!!!!!oh hell YES " + this.session.session_id.toString());
 			return true; //not everybody is in, leader can't be server for final player
 		}
 		return false;
@@ -87,7 +87,7 @@ class SaveDoomedTimeLine extends Scene {
 		String ret = "Minutes ago, but not many, in a slightly different timeline, a " + this.timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 		ret += " They come with a dire warning of a doomed timeline. ";
 		if(this.enablingPlayer != this.timePlayer){
-			print("nonTime player doomed time clone: " + this.session.session_id.toString());
+			session.logger.info("nonTime player doomed time clone: " + this.session.session_id.toString());
 			ret += " The " + this.enablingPlayer.htmlTitleBasic() + " helped them come back in time to change things. ";
 
 		} 
@@ -103,16 +103,16 @@ class SaveDoomedTimeLine extends Scene {
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r != null && r.value != 0){
 					if(r.value > 0){
-						//print(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
+						//session.logger.info(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
 						this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
 					}else{
-						//print(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
+						//session.logger.info(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
             this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
 					}
 			}else{
-				//print(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
+				//session.logger.info(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
         this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}
@@ -126,23 +126,23 @@ class SaveDoomedTimeLine extends Scene {
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r != null && r.value != 0){
 					if(r.value > 0){
-						print(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
+						session.logger.info(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
             this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
 					}else{
-						print(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id.toString());
+						session.logger.info(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
             this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
 					}
 			}else{
-				print(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
+				session.logger.info(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
         this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
 			}
 			this.session.doomedTimelineReasons.add(this.reason);
 		}else{
 			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
-					print("time player doing time ectobiology: " + this.session.session_id.toString());
+					session.logger.info("time player doing time ectobiology: " + this.session.session_id.toString());
 					this.timePlayer.performEctobiology(this.session);
 					this.reason = "Time player didn't do ectobiology.";
 					session.doomedTimelineReasons.add(this.reason);
@@ -163,7 +163,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
 			ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
 		}else{
-			print("death's hand maid in: " + this.session.session_id.toString());
+			session.logger.info("death's hand maid in: " + this.session.session_id.toString());
 			ret += " Time really is the shittiest aspect. They make sure everybody is dead in this timeline, as per inevitability's requirements, then they sullenly vanish in a cloud of clocks and gears. ";
 		}
 		this.doomedTimeClone = Player.makeDoomedSnapshot(this.timePlayer);

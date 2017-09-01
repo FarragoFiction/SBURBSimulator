@@ -53,7 +53,7 @@ class Reckoning extends Scene {
 			this.session.doomedTimeline = true;
 			intro += "<br><br>";
 			querySelector("#story").appendHtml(intro,treeSanitizer: NodeTreeSanitizer.trusted);
-			print("reckoning scratch button");
+			session.logger.info("reckoning scratch button");
 			this.session.scratchAvailable = true;
 			SimController.instance.renderScratchButton(this.session);
 			this.session.scratchAvailable = true;
