@@ -123,18 +123,18 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       }
     }
 
-    List<String> classes = [];
-    List<String> aspects = [];
+    List<SBURBClass> classes = [];
+    List<Aspect> aspects = [];
 
 
     List<Element> filterAspects = querySelectorAll("input[name='filterAspect']:checked");
     for(CheckboxInputElement c in filterAspects) {
-      aspects.add(c.value);
+      aspects.add(Aspects.getByName(c.value));
     }
 
     List<Element> filterClasses = querySelectorAll("input[name='filterClass']:checked");
     for(CheckboxInputElement c in filterClasses) {
-      classes.add(c.value);
+      classes.add(SBURBClassManager.stringToSBURBClass(c.value));
     }
 
     tmp = removeNonMatchingClasspects(tmp,classes,aspects);
@@ -162,10 +162,10 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
 
 
-  List<SessionSummary> removeNonMatchingClasspects(List<SessionSummary> tmp, List<String> classes, List<String> aspects) {
-    List<SessionSummary> toRemove = [];
+  List<SessionSummary> removeNonMatchingClasspects(List<SessionSummary> tmp, List<SBURBClass> classes, List<Aspect> aspects) {
+    List<SessionSummary> toRemove = <SessionSummary>[];
     for(num i = 0; i<tmp.length; i++){
-      var ss = tmp[i];
+      SessionSummary ss = tmp[i];
       if(!ss.matchesClasspect(classes, aspects)){ //if no classes or aspects, thenexpect to return true
         toRemove.add(ss);
       }
@@ -322,7 +322,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     if(querySelector("#averageButton") != null) querySelector("#averageButton").onClick.listen((e) => toggleAverage());
   }
 
-  void printStats(List<String> filters, List<String> classes, List<String> aspects) {
+  void printStats(List<String> filters, List<SBURBClass> classes, List<Aspect> aspects) {
     MultiSessionSummary mms;
     if(sessionSummariesDisplayed.isEmpty) {
       mms = new MultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
@@ -357,7 +357,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> allFilters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in allFilters) {
         e.disabled = false;
-        if(filters.indexOf(e.value) != -1){
+        if(filters.contains(e.value)){
           e.checked = true;
         }else{
           e.checked = false;
@@ -369,7 +369,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> filterClass = querySelectorAll("input[name='filterClass']");
       for(CheckboxInputElement e in filterClass) {
         e.disabled = false;
-        if(classes.indexOf(e.value) != -1){
+        if(classes.contains(SBURBClassManager.stringToSBURBClass(e.value))){
           e.checked = true;
         }else{
           e.checked = false;
@@ -380,7 +380,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> filterAspect = querySelectorAll("input[name='filterAspect']");
       for(CheckboxInputElement e in filterAspect) {
         e.disabled = false;
-        if(aspects.indexOf(e.value) != -1){
+        if(aspects.contains(Aspects.getByName(e.value))){
           e.checked = true;
         }else{
           e.checked = false;
