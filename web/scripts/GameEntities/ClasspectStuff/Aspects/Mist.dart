@@ -43,16 +43,8 @@ class Mist extends Aspect{
 
   @override
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-    new AssociatedStat("MANGRIT", 0.25, true),
-    new AssociatedStat("hp", 0.25, true),
-    new AssociatedStat("RELATIONSHIPS", 0.25, true),
-    new AssociatedStat("mobility", 0.25, true),
-    new AssociatedStat("sanity", 0.25, true),
-    new AssociatedStat("freeWill", 0.25, true),
-    new AssociatedStat("maxLuck", 0.25, true),
-    new AssociatedStat("minLuck", 0.25, true),
-    new AssociatedStat("alchemy", 0.25, true),
-    new AssociatedStatRandom(_randomStats, -1.25, true)
+    new AssociatedStat("mobility", 2.0, true),
+    new AssociatedStat("MANGRIT", -1.0, true),
   ]);
 
 
