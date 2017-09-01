@@ -229,6 +229,11 @@ class Aspect {
         return rand.pickFrom(denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
     }
 
+    //each aspect has a unique Cataclysm.  Just call appropriate mutator method
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.abjectFailure(s, p);
+    }
+
     String getDenizenQuest(Player player) {
         if (player.denizen_index > this.denizenQuests.length) {
             throw("${player.title()} denizen index too high: ${player.session.session_id}");

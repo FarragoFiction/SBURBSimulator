@@ -82,11 +82,7 @@ class Doom extends Aspect {
     Doom(int id) :super(id, "Doom", isCanon: true);
 
     @override
-    void onDeath(Player player) {
-        //was in make alive, but realized that this makes doom ghosts way stronger if it's here. powered by DEATH, but being revived.
-        ////print("doom is powered by their own death: " + this.session.session_id) //omg, they are sayians.
-        player.addStat("power", 50);
-        player.addStat("hp", Math.max(100, player.getStat("hp"))); //prophecy fulfilled. but hp and luck will probably drain again.
-        player.setStat("minLuck", 30); //prophecy fulfilled. you are no longer doomed.
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.doom(s, p);
     }
 }

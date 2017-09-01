@@ -69,4 +69,9 @@ class Blood extends Aspect {
     ]);
 
     Blood(int id) :super(id, "Blood", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.blood(s, p);
+    }
 }

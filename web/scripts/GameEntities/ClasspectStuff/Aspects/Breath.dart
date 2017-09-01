@@ -74,4 +74,9 @@ class Breath extends Aspect {
     ]);
 
     Breath(int id) :super(id, "Breath", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.breath(s, p);
+    }
 }

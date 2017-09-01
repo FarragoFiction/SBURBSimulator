@@ -109,7 +109,8 @@ class SessionMutator {
   //the aspect clsses handle calling these.  these are called when waste tier
   //is reached for a specific aspect
 
-  void blood(Session s) {
+  String blood(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
       /*
           TODO:
@@ -126,7 +127,8 @@ class SessionMutator {
 
   }
 
-  void mind(Session s) {
+  String mind(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*
       TODO:
@@ -147,7 +149,8 @@ class SessionMutator {
 
   }
 
-  void rage(Session s) {
+  String rage(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*
         TODO:
@@ -177,7 +180,8 @@ class SessionMutator {
   }
 
   //lol, can't just call it void cuz protected word
-  void voidStuff(Session s) {
+  String voidStuff(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*
         TODO:
@@ -191,7 +195,8 @@ class SessionMutator {
 
   }
 
-  void time(Session s) {
+  String time(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
       /*
           TODO:
@@ -205,7 +210,8 @@ class SessionMutator {
 
   }
 
-  void heart (Session s) {
+  String heart (Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
       /*
         TODO
@@ -217,7 +223,8 @@ class SessionMutator {
 
   }
 
-  void breath(Session s) {
+  String breath(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
       /*
         TOOD:
@@ -229,7 +236,8 @@ class SessionMutator {
 
   }
 
-  void light(Session s) {
+  String light(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*TODO
         *EVERything is displayed, not just void.
@@ -243,7 +251,8 @@ class SessionMutator {
 
   }
 
-  void space(Session s) {
+  String space(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*
           TODO:
@@ -256,17 +265,35 @@ class SessionMutator {
 
   }
 
-  void hope(Session s, Player hopePlayer) {
+  String hope(Session s, Player hopePlayer) {
     effectsInPlay ++;
     hopeField = true;
+    List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
+    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>${s.rand.pickFrom(jakeisms)}</div>";
+    ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
+
     hopePlayer.setStat("power",9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
+    s.sessionHealth = 9001;
+    s.minimumGristPerPlayer = 1;
+    s.expectedGristContributionPerPlayer = 10;
+    s.minFrogLevel =1;
+    s.goodFrogLevel = 2;
+    ret += "They are dramatically strengthened, and the session is stable and easily winnable. ";
     s.hardStrength = 0; //this means the players 'need help' from the Mayor automatically.
     spawnQueen(s);
     spawnKing(s);
     spawnJack(s);
+    hopePlayer.denizen.name = "A small toy snake";
+    hopePlayer.denizen.setStat("power",1);
+    hopePlayer.denizen.setStat("currentHP",1);
+    ret += "Their enemies are made into ridiculous non-threats. ";
     spawnDemocraticArmy(s);
+    ret += "The democratic army rallies around this beacon of hope. ";
+    ret += "The other players have definitely always been cooperative and sane.  And alive. Very alive. It would be ridiculous to imagine anyone dying. ";
     List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop"];
+    bool modEnemies = false;
+    bool modCrushes = false;
     for(Player p in s.players) {
       p.dead = false; //NOT .makeAlive  this is denying a fact, not resurrecting.
       p.murderMode = false;
@@ -279,19 +306,24 @@ class SessionMutator {
         //but wastes are ALL about the unintended consequences, right?
         r.target.aspect.name == s.rand.pickFrom(insults);
         r.target.class_name.name == s.rand.pickFrom(insults);
+        modEnemies = true;
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
         r2.value = 9001;  //you love me back. not creepy at all
         r2.type();  //they reevaluate what they think about the hope player.
+        modCrushes = true;
       }
-      s.sessionHealth = 9001;
     }
+    if(modCrushes) ret += "The players they like like them back. The Observer doesn't find this creepy at all.";
+    if(modEnemies) ret += "The players they hate are made ridiculous objects of mockery. The Observer doesn't find this hilarious at all.";
     checkForCrash(s);
-
+    return ret;
 
   }
 
-  void life(Session s) {
+  String life(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
+
     effectsInPlay ++;
     /*
         TODO:
@@ -304,7 +336,8 @@ class SessionMutator {
 
   }
 
-  void doom(Session s) {
+  String doom(Session s, Player activatingPlayer) {
+    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
     /*
       TODO:
@@ -316,6 +349,13 @@ class SessionMutator {
      */
     checkForCrash(s);
 
+  }
+
+  //if it's not done yet.
+  String abjectFailure(Session s, Player activatingPlayer) {
+    effectsInPlay ++;
+    checkForCrash(s);
+    return "The ${activatingPlayer.htmlTitle()} appears to be doing something fantastic. The very fabric of SBURB is being undone according to their whims. They are screaming. Dramatic lightning and wind is whipping around everywhere. Oh.  Uh.  Huh.  Was something supposed to happen?  ... Maybe they just suck at this?  Or maybe JR is a lazy piece of shit who didn't code anything for this. I know MY headcanon.";
   }
 
 

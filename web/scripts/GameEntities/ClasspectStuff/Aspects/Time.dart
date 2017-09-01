@@ -70,4 +70,9 @@ class Time extends Aspect {
     ]);
 
     Time(int id) :super(id, "Time", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.time(s, p);
+    }
 }

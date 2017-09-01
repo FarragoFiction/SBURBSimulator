@@ -79,4 +79,9 @@ class Rage extends Aspect {
     ]);
 
     Rage(int id) :super(id, "Rage", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.rage(s, p);
+    }
 }

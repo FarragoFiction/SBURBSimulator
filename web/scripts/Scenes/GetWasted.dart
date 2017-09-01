@@ -233,7 +233,7 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.BREATH) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
         }else if(player.aspect == Aspects.SPACE) {
-            ret = " They set up a frankly scandalous series of transportalizers";
+            ret = " They set up a frankly scandalous series of shortcuts using the glitchiest parts of SBURB"; //skaian magicant refrance
         }else {
             ret = "";
         }
@@ -503,19 +503,12 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        session.stats.hasTier4Events = true;
+        appendHtml(div, player.aspect.activateCataclysm(session, player));
+        //TODO do I want any generic graphic here?
+    
         //hell yes, tier 4, bitches.
         //TODO for void have ALL stats set to true, even if contradictory. can't use AB to get a read on the session. Number stats become obvious lies.
-        //TODO have hope LITERALLY replace the black queen with three salamanders in a robe. like in the queen text with the enquiring carapacian.
-        //like, change her name to "3 salamanders in a Robe", replace her fraymotifs with "Glub glub glub" and shit.  Hope players believe everything they read after all, right?
-        //TODO each tier4 event should do damage to session health.  grim dark crash should account for high gnosis levels, too
-        session.stats.hasTier4Events = true;
-        //todo waste tier, will be dope as fuk
-        //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
-        /*	//if i have less than expected grist, then no frog, bucko
-	int expectedGristContributionPerPlayer = 8000;
-	int minimumGristPerPlayer = 5000; //less than this, and no frog is possible. can also be moded by hope player
-	*/
-        appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.
