@@ -211,7 +211,7 @@ class Aspect {
         faqFile = new FAQFile("Aspects/$name.xml");
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
         this.symbolImgLocation = "$name.png";
-        this.symbolImgLocation = "${name}Big.png";
+        this.bigSymbolImgLocation = "${name}Big.png";
         Aspects.register(this);
     }
 
