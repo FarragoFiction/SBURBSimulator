@@ -179,11 +179,11 @@ class Player extends GameEntity {
         if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            session.logger.info("AB: strength demands a weak denizen ");
+            ////session.logger.info("AB: strength demands a weak denizen ");
         } else if (denizenIndex >= possibilities.length) {
             denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
             denizenStrength = 5;
-            session.logger.info("AB: Strength demands strong denizen. ");
+            ////session.logger.info("AB: Strength demands strong denizen. ");
         } else {
             denizenName = possibilities[denizenIndex];
         }

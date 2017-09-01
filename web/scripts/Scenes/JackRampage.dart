@@ -15,7 +15,7 @@ class JackRampage extends Scene{
 
 	@override
 	bool trigger(List<Player> playerList){
-		//session.logger.info("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
+		////session.logger.info("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
 		return this.session.npcHandler.jack.crowned != null && this.session.npcHandler.jack.getStat("currentHP") > 0 && !this.session.npcHandler.jack.dead; //Jack does not stop showing us his stabs.
 	}
 	List<GameEntity> getStabList(){
@@ -28,7 +28,7 @@ class JackRampage extends Scene{
 			}
 		}
 		int numStabbings = rand.nextIntRange(1,Math.min(4,potentialPlayers.length));
-		//session.logger.info("Number stabbings is: " + numStabbings);
+		////session.logger.info("Number stabbings is: " + numStabbings);
 		List<GameEntity> ret = [];
 		if(potentialPlayers.length == 0){
 			return ret;
@@ -36,10 +36,10 @@ class JackRampage extends Scene{
 		ret.add(rand.pickFrom(potentialPlayers)); //used to get slowest player, but too many perma deaths happened.
 		List<Player> friends = ret[0].getFriendsFromList(potentialPlayers);
 		if(friends.length == 0) return ret;
-		//session.logger.info("friends: " + friends.length);
+		////session.logger.info("friends: " + friends.length);
 		for(int i = 0; i<=numStabbings; i++){
 			Player f = rand.pickFrom(friends);
-			//session.logger.info(f);
+			////session.logger.info(f);
 			if(this.canCatch(f)) ret.add(f);
 
 		}
@@ -51,7 +51,7 @@ class JackRampage extends Scene{
 		for(Player g in unique){
 			ret.add(g);
 			ret.add(g.sprite);
-			if(g.sprite.name == "sprite") session.logger.info("trying to stab somebody not in the medium yet in session: " + this.session.session_id.toString());
+			//if(g.sprite.name == "sprite") //session.logger.info("trying to stab somebody not in the medium yet in session: " + this.session.session_id.toString());
 		}
 		return ret;
 	}
@@ -59,10 +59,10 @@ class JackRampage extends Scene{
 			if(this.session.npcHandler.jack.getStat("mobility") < victim.getStat("mobility")) return false;
 			if(victim.aspect == Aspects.VOID && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
 			if(victim.aspect == Aspects.SPACE && victim.getStat("power") > 50){
-				//session.logger.info("high level space player avoiding jack" + this.session.session_id.toString());
+				////session.logger.info("high level space player avoiding jack" + this.session.session_id.toString());
 				return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 			}
-			//session.logger.info("jack found a stab victim" + this.session.session_id.toString());
+			////session.logger.info("jack found a stab victim" + this.session.session_id.toString());
 		return true;
 	}
 	void renderPrestabs(Element div, List<GameEntity> stabbings){
@@ -84,7 +84,7 @@ class JackRampage extends Scene{
 
 		//jack finds 0 or more players.
 		List<GameEntity> stabbings = this.getStabList();
-	//	if(stabbings.length > 1) session.logger.info("Jack fighting more than one player: " + this.session.session_id);
+	//	if(stabbings.length > 1) //session.logger.info("Jack fighting more than one player: " + this.session.session_id);
 		String ret = "";
 		if(stabbings.length == 0){
 			if(rand.nextDouble() > .5){
@@ -98,7 +98,7 @@ class JackRampage extends Scene{
 			this.session.timeTillReckoning = 0;
 			this.session.npcHandler.king.setStat("currentHP",-99999999);
 			this.session.npcHandler.king.dead = true;
-			session.logger.info("jack starts reckoning " + this.session.session_id.toString());
+			//session.logger.info("jack starts reckoning " + this.session.session_id.toString());
         appendHtml(div,""+ret);
 		}else{
 
@@ -107,7 +107,7 @@ class JackRampage extends Scene{
 			if(stabbee != null && stabbee.dreamSelf && !stabbee.isDreamSelf && rand.nextDouble() >.5){
 				//jack kills the dream self instead of the active self. no strife. just death.
 				//want to test out a dream self dying without active.
-				//session.logger.info("jack kills nonactive dream self: " + this.session.session_id);
+				////session.logger.info("jack kills nonactive dream self: " + this.session.session_id);
 				ret = "Jack has found the dream self of the " + stabbee.htmlTitleBasic() + ". He shows the sleeping body his stabs. The dream self is no longer available for revival shenanigans. ";
         appendHtml(div,""+ret);
 				stabbee.dreamSelf = false;

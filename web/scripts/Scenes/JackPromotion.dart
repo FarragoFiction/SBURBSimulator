@@ -13,7 +13,7 @@ class JackPromotion extends Scene{
 		if(this.session.npcHandler.jack.getStat("currentHP") <= 0 || this.session.npcHandler.jack.exiled) return false;  //jack can't be dead or exiled.
 		if(this.session.npcHandler.queensRing == null) return false; //all is moot if no ring
 		if(this.session.npcHandler.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
-		//session.logger.info("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id);
+		////session.logger.info("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id);
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
 		if(this.session.npcHandler.jack.getStat("power") > this.session.npcHandler.queen.getStat("power") || this.session.npcHandler.queen.getStat("currentHP") <= 0 || this.session.npcHandler.queen.dead){
 			return true;
@@ -31,12 +31,12 @@ class JackPromotion extends Scene{
 		if(this.session.npcHandler.queen.crowned != null && !this.session.npcHandler.queen.exiled){
 			if(this.session.npcHandler.queen.getStat("currentHP") > 0){
 				if(rand.nextDouble() > .5){
-					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
+					//session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.npcHandler.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
-					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
+					//session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
 					this.session.npcHandler.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
 					this.session.npcHandler.queen.dead = true;
@@ -50,12 +50,12 @@ class JackPromotion extends Scene{
 			ret += "FOLD. ";
 			if(this.session.npcHandler.queen.getStat("currentHP") > 0 && !this.session.npcHandler.queen.exiled){
 				if(rand.nextDouble() > .5){
-					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
+					//session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.npcHandler.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
-					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
+					//session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily defeats the weakened queen while he's at it. ";
 					this.session.npcHandler.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
 				}
@@ -75,7 +75,7 @@ class JackPromotion extends Scene{
 	@override
 	void renderContent(Element div){
 		ImportantEvent alt = this.addImportantEvent();
-		//session.logger.info("Alt for jack promotion is: " + alt);
+		////session.logger.info("Alt for jack promotion is: " + alt);
 		if(alt != null && alt.alternateScene(div)){
 			return;
 		}

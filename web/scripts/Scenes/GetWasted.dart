@@ -110,12 +110,12 @@ class GetWasted extends Scene {
         if(gfaq.author.grimDark > 3)   possibilities.add(grimDarkFAQ);
 
         f = gfaq.rand.pickFrom(possibilities);
-        if(f == murderModeFAQ)  session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
-        if(f == tricksterFAQ)  session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
-        if(f == robotFAQ)  session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
+        if(f == murderModeFAQ)  //session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
+        if(f == tricksterFAQ)  //session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
+        if(f == robotFAQ)  //session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
         if(f == grimDarkFAQ) {
             gfaq.grimDark = true;
-             session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
+             //session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
         }
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
@@ -123,7 +123,7 @@ class GetWasted extends Scene {
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
     void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
-        //session.logger.info("callback chose section $s");
+        ////session.logger.info("callback chose section $s");
         if(s != null) gfaq.sections.add(s);
         if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
             //session.logger.info ("callback gonna keep looking for sections" );
@@ -132,7 +132,7 @@ class GetWasted extends Scene {
             //session.logger.info ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div,gfaq);
         }else{
-            session.logger.info("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
+            //session.logger.info("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
         }
     }
 
@@ -144,7 +144,7 @@ class GetWasted extends Scene {
 
         Player p = new Player(session, c, a, null, null, null);
         //TODO let the player be one of us, if so, VERY high chance of meta FAQ
-       // session.logger.info("making an faq from player $p");
+       // //session.logger.info("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
         if (p.isTroll) {
@@ -193,7 +193,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-       // session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
+       // //session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(faq.reader == faq.author) {
             text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
@@ -240,7 +240,7 @@ class GetWasted extends Scene {
         ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
-         session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
+         //session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
             for(Player p in session.players) {
                 if(p.land != null && p.grimDark <2) {

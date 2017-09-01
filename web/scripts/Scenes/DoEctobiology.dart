@@ -42,7 +42,7 @@ class DoEctobiology extends Scene {
 		this.drawLeaderPlusBabies(div);
 	}
 	dynamic content(){
-		//session.logger.info("doing ectobiology for session " + this.session.session_id);
+		////session.logger.info("doing ectobiology for session " + this.session.session_id);
 		this.session.stats.ectoBiologyStarted = true;
 		this.playersMade = findPlayersWithoutEctobiologicalSource(this.session.players);
 		setEctobiologicalSource(this.playersMade, session.session_id);

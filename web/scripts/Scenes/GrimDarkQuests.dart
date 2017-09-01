@@ -48,7 +48,7 @@ class GrimDarkQuests extends Scene{
 				tasks.add("just straight up murdering frogs out of frustration");
 				tasks.add("try to tamper with the Forge");
 				player.landLevel += -10; //they FOCUS on killing frogs and ruining the game.
-				session.logger.info("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id.toString());
+				//session.logger.info("A grim dark space player is actively trying to breed a corrupt frog in session: " + this.session.session_id.toString());
 			}
 			String quip = "";
 			num amount =0;
@@ -77,8 +77,8 @@ class GrimDarkQuests extends Scene{
 	}
 	@override
 	void renderContent(Element div){
-		//session.logger.info("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
-		//session.logger.info("trying to crash session like an idiot: " + this.session.session_id);
+		////session.logger.info("A grim dark player is actively working to crash session " + this.session.session_id + " and this much health remains: " + this.session.sessionHealth );
+		////session.logger.info("trying to crash session like an idiot: " + this.session.session_id);
     appendHtml(div,"<br><img src = 'images/sceneIcons/grimdark_black_icon.png'> "+this.content());
 		if(this.session.sessionHealth <= 0){
       appendHtml(div,"<br><br>YOU MANIACS! YOU BLEW IT UP! AH, DAMN YOU! GOD DAMN YOU ALL TO HELL! <br><br>Just joking. Well, I mean. Not about them blowing it up. Sessions fucked. But. I mean, come on. What did you THINK would happen? Stupid, lousy goddamned GrimDark players crashing my fucking sessions.");
@@ -93,7 +93,7 @@ class GrimDarkQuests extends Scene{
 				Player player = this.players[i];
 				String snop = this.checkSnapOutOfIt(player);
 				if(snop != null){
-					//session.logger.info("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id);
+					////session.logger.info("Grim dark player snapped out of it through the power of friendship in session " + this.session.session_id);
 					ret += snop;
 				}else{
 					ret += this.workToCrashSession(player);

@@ -105,8 +105,8 @@ class DoLandQuest extends Scene{
 
 
 		if(helper.aspect == Aspects.HEART && helper.class_name == SBURBClassManager.SYLPH){
-			session.logger.info("Will i heal corruption? grim dark is: ${player.grimDark}");
-			session.logger.info("sylph of heart corruption helping ${this.session.session_id}");
+			//session.logger.info("Will i heal corruption? grim dark is: ${player.grimDark}");
+			//session.logger.info("sylph of heart corruption helping ${this.session.session_id}");
 			if(player.grimDark > 1){
 				return " The " + helper.htmlTitle() + " heals the " + player.htmlTitle() + "'s broken identity', restoring any holds the broodfester tongues of GrimDarkness had on them and increasing their resistance to future infestations. ";
 			}
@@ -118,7 +118,7 @@ class DoLandQuest extends Scene{
 
 
 		String ret = "";
-		//session.logger.info("Debugging: Getting a helper in session ${session.session_id}");
+		////session.logger.info("Debugging: Getting a helper in session ${session.session_id}");
 		ret += player.interactionEffect(helper);
 		ret += helper.interactionEffect(player);
 
@@ -129,7 +129,7 @@ class DoLandQuest extends Scene{
 		}
 
 		if(player.grimDark>0 && helper.aspect == Aspects.VOID){
-			session.logger.info("void corruption helping ${this.session.session_id}");
+			//session.logger.info("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
 		}
 
@@ -143,10 +143,10 @@ class DoLandQuest extends Scene{
 			player.increaseLandLevel();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " tells the " + player.htmlTitle() + " that they are going to run on ahead and do some quests on " + player.shortLand() + " on their own. The " + player.htmlTitle() + " is freed up to do other shit, now. " ;
-				//session.logger.info("breath player doing quests for a friend: " + this.session.session_id);
+				////session.logger.info("breath player doing quests for a friend: " + this.session.session_id);
 			}else{
 				ret += " The " + helper.htmlTitle() + " gets annoyed with how slow the " + player.htmlTitle() + " is being and runs ahead to get aaaaaaaall the levels and experience. At least the " + player.htmlTitle() + " has less stuff to do for the their main quests, now. " ;
-			//	session.logger.info("breath player ignoring enemy to get exp: " + this.session.session_id);
+			//	//session.logger.info("breath player ignoring enemy to get exp: " + this.session.session_id);
 			}
 		}
 
@@ -226,14 +226,14 @@ class DoLandQuest extends Scene{
 		}
 
 		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
-		//	session.logger.info("corrupt sprite: " + this.session.session_id);
+		//	//session.logger.info("corrupt sprite: " + this.session.session_id);
 			player1.corruptionLevelOther += 5;
 			ret = true;
 			if(player2 != null) player2.corruptionLevelOther += 5;
 		}
 
 		if(ret){
-			//session.logger.info("Spreading corruptin in: " + this.session.session_id);
+			////session.logger.info("Spreading corruptin in: " + this.session.session_id);
 			return "The corruption is spreading.";
 		}
 		return "";
@@ -245,14 +245,14 @@ class DoLandQuest extends Scene{
 		if(player.sprite.corrupted){
 			player.increaseLandLevel(-0.75);
 		}else if(player.sprite.helpfulness > 0){
-			//session.logger.info("good sprite: " + this.session.session_id);
+			////session.logger.info("good sprite: " + this.session.session_id);
 			player.increaseLandLevel();
 		}else if(player.sprite.helpfulness < 0){
-			//session.logger.info("bad sprite: " + this.session.session_id);
+			////session.logger.info("bad sprite: " + this.session.session_id);
 			player.increaseLandLevel(-0.5);
 			player.addStat("sanity", -0.1);
 		}else{
-			//session.logger.info("normal sprite: " + this.session.session_id);
+			////session.logger.info("normal sprite: " + this.session.session_id);
 			player.increaseLandLevel(0.5);
 		}
 		ret +=  " " + player.sprite.helpPhrase + " "; //best idea.
@@ -301,16 +301,16 @@ class DoLandQuest extends Scene{
 			var living = findLivingPlayers(this.session.players);
 			var dead = findDeadPlayers(this.session.players);
 			if(living.length == 1 && dead.length > 2){
-				session.logger.info("AB: SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
+				//session.logger.info("AB: SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
 				String realSelf = "";
 				if(!player.isDreamSelf && !player.godTier){
-					session.logger.info("AB:Real self stunting in: ${this.session.session_id}");
+					//session.logger.info("AB:Real self stunting in: ${this.session.session_id}");
 					realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 				}
 				return "The " + player.htmlTitle()  + " is " + rand.pickFrom(bike_quests) + ". " + realSelf;
 			}
 
-			//session.logger.info("doing land quests at: " + player.land);
+			////session.logger.info("doing land quests at: " + player.land);
 			var helper = this.playersPlusHelpers[i][1]; //might be null
 			if(player.aspect == Aspects.SPACE && helper == null){
 

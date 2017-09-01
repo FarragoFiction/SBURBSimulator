@@ -62,13 +62,13 @@ class GodTierRevival extends Scene {
 			var roll = p.rollForLuck();
 			if(p.justDeath()){
 				if(roll > breakNeeded){
-					//session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a JUST death. ";
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.makeAlive();
 				}else{
-					//session.logger.info(roll + " just death for god tier in: " + this.session.session_id );
+					////session.logger.info(roll + " just death for god tier in: " + this.session.session_id );
 					ret += " JUST.  They do not revive. ";
 					this.session.stats.justDeath = true;
 					p.canGodTierRevive = false;
@@ -83,14 +83,14 @@ class GodTierRevival extends Scene {
 
 			}else if (p.heroicDeath()){
 				if(roll > breakNeeded){
-					//session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
+					////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
 					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.makeAlive();
 				}else{
 					this.session.stats.heroicDeath = true;
-					//session.logger.info(roll + " heroic death for god tier in: " + this.session.session_id );
+					////session.logger.info(roll + " heroic death for god tier in: " + this.session.session_id );
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " (it was HEROIC judgement)";
@@ -98,23 +98,23 @@ class GodTierRevival extends Scene {
 				}
 			}else{
 				if(roll < -1 * breakNeeded){
-					//session.logger.info("unlucky break for god tier revival in: " + this.session.session_id);
+					////session.logger.info("unlucky break for god tier revival in: " + this.session.session_id);
 					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 					p.canGodTierRevive = false;
 					p.causeOfDeath += " (it was an unlucky judgement) ";
 					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
 				}else{
-					//session.logger.info("god tier revival in: " + this.session.session_id);
+					////session.logger.info("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 					p.canGodTierRevive = true;
 					p.increasePower();
 					p.makeAlive();
 					if(p.aspect == Aspects.DOOM){ //powered by their own doom.
-						session.logger.info("doom is powered by their own death: " + this.session.session_id.toString()); //omg, they are sayians.
+						//session.logger.info("doom is powered by their own death: " + this.session.session_id.toString()); //omg, they are sayians.
 						p.addStat("MANGRIT",500);
 						p.setStat("minLuck", 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
 						ret += " They prophesied this death. Now that their Doom is over, they can finally get on with their life. ";
-						session.logger.info("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id.toString());
+						//session.logger.info("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id.toString());
 					}
 				}
 			}

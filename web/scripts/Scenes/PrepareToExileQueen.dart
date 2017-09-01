@@ -33,19 +33,19 @@ class PrepareToExileQueen extends Scene {
 		return (this.player != null) && (this.session.npcHandler.queen.getStat("currentHP") > 0 && !this.session.npcHandler.queen.exiled);
 	}
 	dynamic moderateDamage(){
-	//	session.logger.info(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id);
+	//	//session.logger.info(this.session.scratched +  this.player + " moderate damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.npcHandler.queen.addStat("power", -10);
 		return ret + rand.pickFrom(moderateQueenQuests);
 	}
 	dynamic heavyDamage(){
-		//session.logger.info(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id);
+		////session.logger.info(this.session.scratched +  this.player +   " heavy damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.npcHandler.queen..addStat("power", -15);
 		return ret + rand.pickFrom(heavyQueenQuests);
 	}
 	dynamic lightDamage(){
-		//session.logger.info(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id);
+		////session.logger.info(this.session.scratched +  this.player +  " light damage to queen's power in: " + this.session.session_id);
 		String ret = "The " + this.player.htmlTitle() + " ";
 		this.session.npcHandler.queen.addStat("power", -5); //ATTENTION FUTURE JR:  you will look at this and wonder why we didn't make it proportional to the queens power. after all,  a five decrease is HUGE to an uncrowned queen and nothing to a First Guardian Queen.   Consider Xeno's paradox, however. If we do it that way, the closer we get to exiling the queen, the less power we'll take from her. She'll never reach zero. DO NOT FUCKING DO THIS.
 		//also, maybe it SHOULD be fucking nothing to a first guardian queen. why the fuck does she care about whatever bullshit you doing. she's a GOD.
@@ -63,7 +63,7 @@ class PrepareToExileQueen extends Scene {
 		}else if(this.player.getStat("power") > this.session.npcHandler.queen.getStat("power")){
 			return this.heavyDamage();
 		}else {
-			 session.logger.info("AB:  a nonsensical amount of damage is being done to the queen in session ${session.session_id}");
+			 //session.logger.info("AB:  a nonsensical amount of damage is being done to the queen in session ${session.session_id}");
 			return this.lightDamage();
 		}
 

@@ -146,7 +146,7 @@ class UpdateShippingGrid extends Scene{
 		s.ships = this.createShips(this.session.players, s);
 		s.savedShipText = ""; //make sure it's blank
 		this.shippers.add(s);
-		//session.logger.info("making new shipper for: " + player);
+		////session.logger.info("making new shipper for: " + player);
 		return s;
 	}
 
@@ -230,7 +230,7 @@ class UpdateShippingGrid extends Scene{
 				for(num j = 0; j<player.relationships.length; j++){
 					Relationship r1 = player.relationships[j];
 					Relationship r2 = r1.target.getRelationshipWith(player);
-					////session.logger.info("made new ship");
+					//////session.logger.info("made new ship");
 					ret.add(new Ship(r1, r2, shipperPlayer));
 				}
 			}
@@ -242,12 +242,12 @@ class UpdateShippingGrid extends Scene{
 					for(var j= (i+1); j<ret.length; j++){
 						Ship secondShip = ret[j];
 							if(firstShip.isEqualToShip(secondShip)){
-								////session.logger.info("pushing to remove");
+								//////session.logger.info("pushing to remove");
 								toRemove.add(secondShip);
 							}
 					}
 				}
-				////session.logger.info("this many to remove: " + toRemove.length);
+				//////session.logger.info("this many to remove: " + toRemove.length);
 				for(num i = 0; i<toRemove.length; i++){
 						removeFromArray(toRemove[i], ret);
 				}
@@ -283,18 +283,18 @@ class UpdateShippingGrid extends Scene{
 		String p2Start = p2.chatHandleShort()+ ": ";
 		if(this.chosenShipper.player.aspect == Aspects.BLOOD){
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 //session.logger.info("trying to make a pale ship happen: " + this.session.session_id);
+				 ////session.logger.info("trying to make a pale ship happen: " + this.session.session_id);
 				 this.tryToConvincePale(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 //session.logger.info("trying to make an ashen ship happen: " + this.session.session_id);
+				 ////session.logger.info("trying to make an ashen ship happen: " + this.session.session_id);
 				 this.tryToConvinceAshen(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}else{
 			if(otp.r1.saved_type == otp.r1.goodBig){
-				 //session.logger.info("trying to make a flushed ship happen: " + this.session.session_id);
+				 ////session.logger.info("trying to make a flushed ship happen: " + this.session.session_id);
 			 	this.tryToConvinceFlushed(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}else{
-				 //session.logger.info("trying to make a black ship happen: " + this.session.session_id);
+				 ////session.logger.info("trying to make a black ship happen: " + this.session.session_id);
 				 this.tryToConvinceBlack(shipper, shipperStart, p1, p1Start, p2, p2Start);
 			}
 		}
@@ -352,12 +352,12 @@ class UpdateShippingGrid extends Scene{
 					c= new PlusMinusConversationalPair(["Fuck","But... fuck. ","I… really?", "But I thought-", "Fuck my life.", "Ugh, I'm such an idiot! I shouldn't have- I'm sorry for bothering you.", "Please?", "Are you sure?"],["JR: this won't happen because i know they got rejected.", "MI: How sad."], ["I'm sorry. I really am.","Its not your fault, okay?", "I'm sorry. I can't change how I feel.", "Its not you its me.", "I just can't commit like that, not now.","You can find someone else, It'll be all right.","I have to go."]);
 					chat += c.getOpeningLine(p1, p1Start);
 					chat += c.getP2ResponseBasedOnBool(p2, p2Start, willTheyAgree);
-					//session.logger.info("Ship failed when it was almost done : " + this.session.session_id);
+					////session.logger.info("Ship failed when it was almost done : " + this.session.session_id);
 					ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is disappointed that it didn't work out. Oh well, if at first you don't succeed...";
 				}
 				this.romanceChat = chat;
 			}else{
-				//session.logger.info("Ship failed before it started : " + this.session.session_id);
+				////session.logger.info("Ship failed before it started : " + this.session.session_id);
 				ret += "The " + this.chosenShipper.player.htmlTitleBasic() + " is frustrated that the " + p1.htmlTitleBasic() + " won't listen to reason. ";
 			}
 			this.shippingAfterMath = ret;
@@ -600,8 +600,8 @@ class UpdateShippingGrid extends Scene{
 			return reasonsFor > reasonsAgainst;
 	}
 	String content(){
-		////session.logger.info("Updating shipping grid in: " + this.session.session_id);
-		//session.logger.info("Chosen Shipper: ${this.chosenShipper.player}");
+		//////session.logger.info("Updating shipping grid in: " + this.session.session_id);
+		////session.logger.info("Chosen Shipper: ${this.chosenShipper.player}");
 		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
 		this.chosenShipper.player.increasePower();
 		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
@@ -609,7 +609,7 @@ class UpdateShippingGrid extends Scene{
 		String fuckPile = "";
 		if(this.chosenShipper.savedShipText.length > 4000){
 			fuckPile += " How did this session turn into such a scandalous fuckpile? ";
-		//	//session.logger.info( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id);
+		//	////session.logger.info( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id);
 		}
 		String ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		if(this.chosenShipper.otp != null){
@@ -644,21 +644,21 @@ class Ship {
 			return r2.target.htmlTitleBasic() + " " + (r1.asciiDescription(player)) + "---" + (r2.asciiDescription(player)) + " " + r1.target.htmlTitleBasic();
 		}
 	bool isEqualToShip(ship){
-			////session.logger.info("comparing: " + this.toString() + " to "  + ship.toString())
+			//////session.logger.info("comparing: " + this.toString() + " to "  + ship.toString())
 			if(ship.r1 == this.r1 && ship.r2 == this.r2){
-				////session.logger.info("they are the same1");
+				//////session.logger.info("they are the same1");
 				return true;
 			}else if(ship.r2 == this.r1 && ship.r1 == this.r2){
-				////session.logger.info("they are the same2");
+				//////session.logger.info("they are the same2");
 				return true;
 			}
-		//	//session.logger.info("they are not the same");
+		//	////session.logger.info("they are not the same");
 			return false;
 		}
 	bool isGoodShip(){
 			Relationship r2 = this.r2;
 			Relationship r1 = this.r1;
-		//	session.logger.info("Comparing ships ${r2.saved_type} : ${r2.value} with ${r1.saved_type} : ${r2.value}");
+		//	//session.logger.info("Comparing ships ${r2.saved_type} : ${r2.value} with ${r1.saved_type} : ${r2.value}");
 			//might not work, not clear anymore on when old_type gets cleared out. will this work EVERY TIME after they get together (wrong), NO TIME (wrong) or just once (what i want)
 			//well, i guess if it works every time that's good too, shipper gets ongoing "smugness" bonus as long as the ship remains real.
 			if(r2.saved_type == "" || r1.saved_type == "" ){

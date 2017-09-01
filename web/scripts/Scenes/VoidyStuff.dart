@@ -94,7 +94,7 @@ class VoidyStuff extends Scene {
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else if(this.player.getStat("sanity") < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
-			session.logger.info("AB: flipping shit through voidy stuff");
+			//session.logger.info("AB: flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -139,7 +139,7 @@ class VoidyStuff extends Scene {
 		appendHtml(newDiv,  ret + " " + rand.pickFrom(phrases));
 	}
 	void findFraymotif(Element div, Element specialDiv){
-		session.logger.info("AB: Void/Rage fraymotif acquired: ");
+		//session.logger.info("AB: Void/Rage fraymotif acquired: ");
 		appendHtml(div, " What's that music playing? ");
 		Fraymotif f = this.player.getNewFraymotif(this.enablingPlayer);
 		appendHtml(specialDiv, "A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
@@ -217,7 +217,7 @@ class VoidyStuff extends Scene {
 		}
 	}
 	void ectoBiologyStarted(Element div, Element specialDiv){
-		session.logger.info("AB: Void/Rage ecto babies:" );
+		//session.logger.info("AB: Void/Rage ecto babies:" );
 		List<Player> playersMade = this.player.performEctobiology(this.session);
 		appendHtml(div, " Wait. Are those BABIES!? What is even going on here?");
 		String divID = (specialDiv.id) + "_babies";
@@ -233,7 +233,7 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
-	     session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
+	     //session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
 			ret += this.player.makeDead("hidden in void on their way to godhood");

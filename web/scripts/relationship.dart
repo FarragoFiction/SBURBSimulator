@@ -338,7 +338,7 @@ class Relationship {
                 num roll = player.rollForLuck();
                 if (roll > rollNeeded) {
                     if (r.type() == r.goodBig) {
-                        player.session.logger.info("AB:initial diamond/heart");
+                        //player.session.logger.info("AB:initial diamond/heart");
                         num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
                         if (difference > 2 || roll < rollNeeded ) { //pale
                             makeDiamonds(player, r.target);
@@ -346,7 +346,7 @@ class Relationship {
                             makeHeart(player, r.target);
                         }
                     } else if (r.type() == r.badBig) {
-                        player.session.logger.info("AB: initial club/spades");
+                        //player.session.logger.info("AB: initial club/spades");
                         if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded) { //likely to murder each other
                             Player ausp = rand.pickFrom(players);
                             if (ausp != null && ausp != player && ausp != r.target) {

@@ -102,7 +102,7 @@ int canvasWidth = 1000;
 int canvasHeight = 400;
 bool doNotRender = false; //can happen even outside of AB
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
-DateTime startTime = new DateTime.now(); //gets page load.
+DateTime startTime = new DateTime.now(); //gets page load.  but doesn't work. put it  in main later
 DateTime stopTime;
 
 List<Player> raggedPlayers = null; //just for scratch'
@@ -447,6 +447,7 @@ void renderAfterlifeURL() {
         html = "$html<br><br><a href = 'index2.html'>Random New Session?</a>";
         html = '$html<br><br><a href = "index2.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Shareable URL </a> ';
         html = "$html<Br><Br>Simulation took: ${msToTime(stopTime.difference(startTime))} to render. ";
+        print("Start time is $startTime and stop time is $stopTime");
         ////print("gonna append: " + html);
         querySelector("#story").appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
     } else {

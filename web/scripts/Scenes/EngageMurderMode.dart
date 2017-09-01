@@ -32,8 +32,8 @@ class EngageMurderMode extends Scene{
 		if(diamond != null) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
 		bool ret = (rand.nextDouble() * this.player.getStat("sanity") < triggerMinimum);
-		if(ret && diamond != null) session.logger.info("flipping shit even with moirail ${this.session.session_id}");
-		//if(ret) session.logger.info("flipping shit naturally ${this.session.session_id}");
+		if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
+		//if(ret) //session.logger.info("flipping shit naturally ${this.session.session_id}");
 		return ret;
 	}
 	String grimChat2(Element div, Player player1, Player player2){
@@ -234,7 +234,7 @@ class EngageMurderMode extends Scene{
 		return chatText;
 	}
 	void rapBattle(Element div, Player player1, Player player2){
-		 session.logger.info("AB:  murder rap battles :${this.session.session_id}");
+		 //session.logger.info("AB:  murder rap battles :${this.session.session_id}");
 		this.session.stats.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		appendHtml(div, narration);
@@ -258,7 +258,7 @@ class EngageMurderMode extends Scene{
 		//window.alert("about to draw raps");
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
-			//session.logger.info("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
+			////session.logger.info("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			div.appendHtml("<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.",treeSanitizer: NodeTreeSanitizer.trusted);
 			if(player1.murderMode) player1.unmakeMurderMode();
 			if(player2.murderMode) player2.unmakeMurderMode(); //raps calm EVERYBODY down.
@@ -287,7 +287,7 @@ class EngageMurderMode extends Scene{
 		if(player2 != null && !player2.dead){
 			Relationship r2 = player2.getRelationshipWith(player1);
 			if((r2.value < -2 && r2.value > -12 ) || InterestManager.MUSIC.playerLikes(player1)){ //only if i generically dislike you. o rlike raps
-				//session.logger.info("rap battle. session: " + this.session.session_id);
+				////session.logger.info("rap battle. session: " + this.session.session_id);
 				this.rapBattle(div,player1, player2);
 				return; //reap battle will handle it from here.
 			}
@@ -325,7 +325,7 @@ class EngageMurderMode extends Scene{
 		this.chat(div);
 	}
 	String content(){
-		//session.logger.info("murder mode");
+		////session.logger.info("murder mode");
 		this.player.increasePower();
 		removeFromArray(this.player, this.session.availablePlayers);
 		String ret = "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  ";

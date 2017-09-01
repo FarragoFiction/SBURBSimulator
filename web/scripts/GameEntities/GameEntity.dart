@@ -215,14 +215,14 @@ class GameEntity implements Comparable<GameEntity> {
         num mine = getStat("sanity");
         num theirs = getAverageSanity(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-           // session.logger.info("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
+           // ////session.logger.info("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but they are too crazy to focus. ");
             return false;
         }
         mine = getStat("freeWill");
         theirs = getAverageFreeWill(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
-            //session.logger.info("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
+            //////session.logger.info("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but Fate dictates otherwise. ");
             return false;
         }
@@ -295,22 +295,22 @@ class GameEntity implements Comparable<GameEntity> {
 
         //luck dodge
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
-        //session.logger.info("gonna roll for luck.");
+        //////session.logger.info("gonna roll for luck.");
         if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
-            //session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
             offense.addStat("currentHP", -1 * offense.getStat("power") / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return;
         } else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
-           // session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
+           // ////session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
         }
         //mobility dodge
         int r = this.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
         if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 && r > 25) {
-            //session.logger.info("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //////session.logger.info("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
             if (defense.getStat("currentHP") > 0) {
                 ret = "$ret. They miss so hard the ${defense.htmlTitleHP()} has plenty of time to get a counterattack in.";
@@ -323,7 +323,7 @@ class GameEntity implements Comparable<GameEntity> {
 
             return;
         } else if (defense.getStat("mobility") > offense.getStat("mobility") * 5 + 100 && r > 25) {
-            //session.logger.info("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            //////session.logger.info("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, " The ${defense.htmlTitleHP()} dodges the attack completely. ");
             return;
         }
@@ -333,16 +333,16 @@ class GameEntity implements Comparable<GameEntity> {
         num defenseRoll = defense.rollForLuck("");
         //critical/glancing hit odds.
         if (defenseRoll > offenseRoll * 2) { //glancing blow.
-            //session.logger.info("Glancing Hit: " + this.session.session_id);
+            //////session.logger.info("Glancing Hit: " + this.session.session_id);
             hit = hit / 2;
             appendHtml(div, " The attack manages to not hit anything too vital. ");
         } else if (offenseRoll > defenseRoll * 2) {
-            //session.logger.info("Critical hit.");
-            ////session.logger.info("Critical Hit: " + this.session.session_id);
+            //////session.logger.info("Critical hit.");
+            ////////session.logger.info("Critical Hit: " + this.session.session_id);
             hit = hit * 2;
             appendHtml(div, " Ouch. That's gonna leave a mark. ");
         } else {
-            //session.logger.info("a hit.");
+            //////session.logger.info("a hit.");
             appendHtml(div, " A hit! ");
         }
 
@@ -356,7 +356,7 @@ class GameEntity implements Comparable<GameEntity> {
     void reviveViaGhostPact(Element div) {
         List<dynamic> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
         if (!undrainedPacts.isEmpty) {
-            session.logger.info("using a pact to autorevive in session ${this.session.session_id}");
+            ////session.logger.info("using a pact to autorevive in session ${this.session.session_id}");
             Player source = undrainedPacts[0][0];
             source.causeOfDrain = name;
             String ret = " In the afterlife, the ${htmlTitleBasic()} reminds the ${source.htmlTitleBasic()} of their promise of aid. The ghost agrees to donate their life force to return the ${htmlTitleBasic()} to life ";
@@ -397,7 +397,7 @@ class GameEntity implements Comparable<GameEntity> {
                 if (p.aspect == Aspects.VOID) r += -1; //hard to see
                 if (p.aspect == Aspects.LIGHT) r += 1; //easy to see
             }
-            //session.logger.info("Added rating of $r to $t");
+            //////session.logger.info("Added rating of $r to $t");
             ratings.add(r);
         }
         GameEntity ret;
@@ -406,7 +406,7 @@ class GameEntity implements Comparable<GameEntity> {
             GameEntity checked = targets[i];
             num checked_rating = ratings[i];
             if (checked_rating >= chosen_rating) {
-                //session.logger.info("found a better target");
+                //////session.logger.info("found a better target");
                 chosen_rating = checked_rating;
                 ret = checked; //equal, because want LAST thing in list to be preffered if all things equal since slowest.
             }
@@ -443,7 +443,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (statName == "maxLuck") return "lucky";
         if (statName == "minLuck") return "lucky";
         if (statName == "alchemy") return "creative";
-        session.logger.info("what the hell kind of stat name is: $statName");
+        ////session.logger.info("what the hell kind of stat name is: $statName");
         return "glitchy";
     }
 
@@ -462,7 +462,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         //modValue * stat.multiplier.
-        //session.logger.info("Modify associated stat $stat on $this by $modValue");
+        //////session.logger.info("Modify associated stat $stat on $this by $modValue");
         if (stat.name == "RELATIONSHIPS") {
             for (num i = 0; i < this.relationships.length; i++) {
                 this.relationships[i].value += modValue * stat.multiplier;
@@ -482,19 +482,19 @@ class GameEntity implements Comparable<GameEntity> {
         }
 
         if (statName == "power") {
-            //session.logger.info("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
+            //////session.logger.info("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
             ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
             ret = Math.max(GameEntity.minPower, ret); //no negative power, dunkass.
-           if(ret < 0 ) session.logger.info("$this after mangrit, power is $ret in session ${session.session_id}");
+           //if(ret < 0 ) ////session.logger.info("$this after mangrit, power is $ret in session ${session.session_id}");
         }
 
         //simple doom prophecy mechanic.  more likely to die, but buff if you get around it somehow (i.e. die but then revive)
         if(prophecy == ProphecyState.ACTIVE) {
-            //session.logger.info("Debugging: ${htmlTitle()} Lost half of $statName to prophecy in session ${session.session_id}");
+            //////session.logger.info("Debugging: ${htmlTitle()} Lost half of $statName to prophecy in session ${session.session_id}");
             ret += -1* (ret/2).abs();  //lose half your stats
         }else if(prophecy == ProphecyState.FULLFILLED) {
             ret += (ret/2).abs();  //gain half your stats
-            //session.logger.info("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
+            //////session.logger.info("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
         }
 
         return (ret).round();
@@ -515,10 +515,10 @@ class GameEntity implements Comparable<GameEntity> {
           this.permaBuffs[statName] += value;
           return;
         }
-        //if(statName == "power") session.logger.info("$this boost power from ${this.stats[statName]} with $value");
+        //if(statName == "power") ////session.logger.info("$this boost power from ${this.stats[statName]} with $value");
         if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
         this.stats[statName] += value;
-       // if(statName == "power") session.logger.info("$this boost power to ${this.stats[statName]}");
+       // if(statName == "power") ////session.logger.info("$this boost power to ${this.stats[statName]}");
     }
 
 
@@ -535,7 +535,7 @@ class GameEntity implements Comparable<GameEntity> {
         String pname = this.name;
         if (pname == "Yaldabaoth") {
             List<String> misNames = <String>[ 'Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner', 'Yodelboth'];
-            session.logger.info("Yaldobooger!!! ${this.session.session_id}");
+            ////session.logger.info("Yaldobooger!!! ${this.session.session_id}");
             pname = this.session.rand.pickFrom(misNames);
         }
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
