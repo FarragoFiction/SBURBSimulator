@@ -257,7 +257,8 @@ class SessionMutator {
     effectsInPlay ++;
     hopeField = true;
     List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
-    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>${s.rand.pickFrom(jakeisms)}</div>";
+    String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
+    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>$scream}</div>";
     ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
 
     hopePlayer.setStat("power",9001); //i know i can save everyone.
@@ -288,6 +289,7 @@ class SessionMutator {
       p.leftMurderMode = false; //never even happened.
       p.setStat("currentHP", 9001);
       p.setStat("sanity", 9001);
+      p.renderSelf();
       Relationship r = hopePlayer.getRelationshipWith(p);
       if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
         //yes, this means any players who share your enemies class or aspect get renamed too.

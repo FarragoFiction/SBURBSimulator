@@ -869,7 +869,7 @@ abstract class Drawing {
 
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
         drawSprite(pSpriteBuffer, player);
-
+        rainbowSwap(symbolBuffer);
         copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer, leftMargin + 165, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, leftMargin + 100, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 0);
