@@ -20,19 +20,13 @@ class Session {
     num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
     List<Player> replayers = <Player>[]; //used for fan oc easter eggs.
     AfterLife afterLife = new AfterLife();
-    GameEntity queensRing = null; //eventually have white and black ones.
-    GameEntity kingsScepter = null;
+
     bool janusReward = false;
     //if i have less than expected grist, then no frog, bucko
     int expectedGristContributionPerPlayer = 400;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
-     //TODO eventually NPC engine will be responsible for these
-    GameEntity king = null;
-    GameEntity queen = null;
-    GameEntity jack = null;
     num numScenes = 0;
-    GameEntity democraticArmy = null;
     bool sbahj = false;
     num hardStrength = 1000;
     num minFrogLevel = 13;
@@ -53,6 +47,7 @@ class Session {
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
     SessionStats stats = new SessionStats();
+    NPCHandler npcHandler = null;
     // extra fields
     Random rand;
     List<SBURBClass> available_classes_players;
@@ -63,6 +58,7 @@ class Session {
 
     Session(int this.session_id) {
         ////print("Made a new session with an id of $session_id");
+        npcHandler = new NPCHandler(this);
         logger = Logger.get("Session: $session_id", false);
         mutator = SessionMutator.getInstance();
         mutator.syncToSession(this);
@@ -150,9 +146,7 @@ class Session {
 
 
     void destroyBlackRing() {
-        this.queensRing = null;
-        this.jack.crowned = null;
-        this.queen.crowned = null;
+        npcHandler.destroyBlackRing();
     }
 
     Player findBestSpace() {
@@ -476,41 +470,11 @@ class Session {
     }
 
     void setUpBosses() {
-        this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", this);
-        Fraymotif f = new Fraymotif("Red Miles", 3);
-        f.effects.add(new FraymotifEffect("power", 2, true));
-        f.desc = " You cannot escape them. ";
-        this.queensRing.fraymotifs.add(f);
-
-        this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", this);
-        f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
-        f.effects.add(new FraymotifEffect("power", 2, true));
-        f.desc = " The very meteors from the Reckoning rain down. ";
-        this.kingsScepter.fraymotifs.add(f);
-
-        this.king = new Carapace("The Black King", this);
-        this.king.crowned = this.kingsScepter;
-
-        king.grist = 1000;
-        king.setStatsHash(<String, num>{"hp": 1000, "freeWill": -100, "power": 100});
-        this.queen = new Carapace("The Black Queen", this);
-        this.queen.crowned = this.queensRing;
-        queen.setStatsHash(<String, num>{"hp": 500, "freeWill": -100, "power": 50});
-
-
-        this.jack = new Carapace("Jack", this);
-        //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-        jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 10, "sanity": -100, "hp": 20, "freeWill": -100, "power": 30});
-        f = new Fraymotif("Stab To Meet You", 1);
-        f.effects.add(new FraymotifEffect("power", 3, true));
-        f.desc = " It's pretty much how he says 'Hello'. ";
-        this.jack.fraymotifs.add(f);
-
-        this.democraticArmy = new Carapace("Democratic Army", this); //doesn't actually exist till WV does his thing.
-        f = new Fraymotif("Democracy Charge", 2);
-        f.effects.add(new FraymotifEffect("power", 3, true));
-        f.desc = " The people have chosen to Rise Up against their oppressors. ";
-        this.democraticArmy.fraymotifs.add(f);
+        //queen and king handle their jewlery
+        npcHandler.spawnQueen();
+        npcHandler.spawnKing();
+        npcHandler.spawnJack();
+        npcHandler.spawnDemocraticArmy();
     }
 
     @override

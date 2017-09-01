@@ -7,6 +7,7 @@ import "includes/tracer.dart";
 export 'includes/logger.dart';
 
 export "SessionEngine/SessionMutator.dart";
+export "NPCEngine/NPCHandler.dart";
 export "SessionEngine/SessionStats.dart";
 export "Controllers/SimController.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";

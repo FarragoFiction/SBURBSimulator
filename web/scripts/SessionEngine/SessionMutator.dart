@@ -4,6 +4,7 @@ import "../SBURBSim.dart";
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
 
+  bool hopeField = false;
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num reckoningEndsAt = -15;
@@ -37,8 +38,60 @@ class SessionMutator {
     s.timeTillReckoning = this.timeTillReckoning;
   }
 
-  GameEntity spawnBlackQueen() {
+  ///will both be called when the hope field is activated, and in any new sessions
+  bool spawnQueen(Session s) {
+      if(!hopeField) return false;
+      s.npcHandler.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", s);
+      //The joke is that the hope player read the Enquiring Carapacian after some other player published the false story
+      //you know, the one about the queen secretly being 3 salamanders in a robe.
+      s.npcHandler.queen = new Carapace("Three Salamanders In a Robe", s);
+      Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
+      f.effects.add(new FraymotifEffect("power", 2, true));
+      f.desc = " You wonder what the hell is going on. ";
+      f.baseValue = -10; //will this make it heal you?
+      s.npcHandler.queensRing.fraymotifs.add(f);
+      s.npcHandler.queen.setStatsHash(<String, num>{"hp": 3, "freeWill": -100, "power": 3});
+      return true;
+  }
 
+  bool spawnKing(Session session) {
+    if(!hopeField) return false;
+    session.npcHandler.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+    //if the queen is 3, the king is more.
+    session.npcHandler.king = new Carapace("13 Salamanders In a Robe", session);
+    Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
+    f.effects.add(new FraymotifEffect("power", 2, true));
+    f.desc = " You wonder what the hell is going on. ";
+    f.baseValue = -10; //will this make it heal you?
+    session.npcHandler.queensRing.fraymotifs.add(f);
+    session.npcHandler.king.grist = 1000;
+    session.npcHandler.king.setStatsHash(<String, num>{"hp": 13, "freeWill": -100, "power": 13});
+    return true;
+  }
+
+  bool spawnJack(Session session) {
+    if(!hopeField) return false;
+    session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session);
+    //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
+    session.npcHandler.jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": -500, "sanity": -10000, "hp": 5, "freeWill": -100, "power": 5});
+    Fraymotif f = new Fraymotif("Stupid Dance", 1);
+    f.effects.add(new FraymotifEffect("power", 3, true));
+    f.baseValue = -10; //will this make it heal you?
+    f.desc = " Jack has never hated you more than he does now.";
+    session.npcHandler.jack.fraymotifs.add(f);
+    return true;
+  }
+
+  bool spawnDemocraticArmy(Session session) {
+    if(!hopeField) return false;
+    session.npcHandler.democraticArmy = new Carapace("Democratic Army", session); //doesn't actually exist till WV does his thing.
+    Fraymotif f = new Fraymotif("Democracy Charge MAXIMUM HOPE", 2);
+    f.effects.add(new FraymotifEffect("power", 3, true));
+    f.desc = " The people have chosen to Rise Up against their oppressors, with the players as their symbol of HOPE. ";
+    f.baseValue = 9001;
+    session.npcHandler.democraticArmy.fraymotifs.add(f);
+    session.npcHandler.democraticArmy.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 9001, "sanity": 9001, "hp": 5, "freeWill": 9001, "power": 9001});
+    if(!hopeField) return false;
   }
 
   //TODO have variables that session can query to see if it needs to have alt behavior
@@ -168,18 +221,26 @@ class SessionMutator {
      */
   }
 
-  void hope(Session s) {
-    /* TODO
-        * Facts about session is denised.
-        * Ppl hope player likes are alive,
-        * ppl they dislike are erased entirely (not even in player list)
-        * session health is 111111
-        * rings are owned by hope player
-        * royalty only prototyped weak shit
-        * nobody is murder mode, etc
-        * black queen's name gets replaced with "3 salamanders in a trench coat". she is nerfed.
-        *
-     */
+  void hope(Session s, Player hopePlayer) {
+    hopeField = true;
+    spawnQueen(s);
+    spawnKing(s);
+    spawnJack(s);
+    spawnDemocraticArmy(s);
+    for(Player p in s.players) {
+      p.dead = false; //NOT .makeAlive  this is denying a fact, not resurrecting.
+      p.murderMode = false;
+      p.leftMurderMode = false; //never even happened.
+      p.setStat("currentHP", 9001);
+      Relationship r = hopePlayer.getRelationshipWith(p);
+      if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades)) {
+        //yes, this means any players who share your enemies class or aspect get renamed too.
+        //but wastes are ALL about the unintended consequences, right?
+        r.target.aspect.name == "Dicks";
+        r.target.class_name == "Jerk";
+      }
+      s.sessionHealth = 9001;
+    }
   }
 
   void life(Session s) {
