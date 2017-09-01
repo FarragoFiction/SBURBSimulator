@@ -17,7 +17,7 @@ window.onload = () {
 }
 
 void renderSingleGhost(ghost, i){
-	print("rendering ghost");
+	//print("rendering ghost");
 	var div = querySelector("#afterlifeViewer");
 	String html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
 	if(ghost.causeOfDrain){
@@ -77,7 +77,7 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
             'Column: ' + columnNo,
             'Error object: ' + JSON.stringify(error);
         ].join(' - ');
-	print(message);
+	//print(message);
 	String str = "<BR>ERROR: AFTERLIFE CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. LAST ERROR: " + message + " ABORTING.";
 	querySelector("#afterlifeViewer").append(str);
 
@@ -92,7 +92,7 @@ bool printCorruptionMessage(msg, url, lineNo, columnNo, error){
 		var words = rand.pickFrom(rand);
 		words = Zalgo.generate(words);
 		var plea = start + "style = 'color: " +getColorFromAspect(player.aspect) +"; " + end +str + words+ "</b>"
-		//print(getColorFromAspect(rand.pickFrom(curSessionGlobalVar.players).aspect+";") )
+		////print(getColorFromAspect(rand.pickFrom(curSessionGlobalVar.players).aspect+";") )
 		querySelector("#afterlifeViewer").append(plea);
 	}
 

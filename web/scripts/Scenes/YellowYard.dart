@@ -53,8 +53,8 @@ class YellowYard extends Scene {
 				}
 			}
 
-			//print(session.yellowYardController.eventsToUndo.length);
-			//print("add events to undo to the radio button. on the right side.");
+			//session.logger.info(session.yellowYardController.eventsToUndo.length);
+			//session.logger.info("add events to undo to the radio button. on the right side.");
 
 
 			html +=
@@ -78,9 +78,9 @@ class YellowYard extends Scene {
 			List<Element> radioButtons = querySelectorAll('input[name="decision"]');
 			for (RadioButtonInputElement radioButton in radioButtons) {
 				radioButton.onClick.listen((Event e) {
-					print("a radio button was clicked");
+					session.logger.info("a radio button was clicked");
 					if (radioButton.checked) {
-						print("the radio button should be selected");
+						session.logger.info("the radio button should be selected");
 						radioButton.parent.classes.add("selected");
 					}
 					for (RadioButtonInputElement r in radioButtons) {
@@ -145,7 +145,7 @@ class YellowYard extends Scene {
 	void renderContent(Element div){
 		this.session.yellowYard = true;
 		//div.append("<br>"+this.content());
-		//print("Yellow yard is happening. " + this.session.session_id);
+		//session.logger.info("Yellow yard is happening. " + this.session.session_id);
 		String canvasHTML = "<br><canvas id='canvasJRAB1${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);
 

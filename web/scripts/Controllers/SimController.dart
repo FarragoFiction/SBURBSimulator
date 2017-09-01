@@ -106,7 +106,7 @@ abstract class SimController {
     }
 
     void createInitialSprites() {
-        print("players: ${curSessionGlobalVar.players}");
+        //print("players: ${curSessionGlobalVar.players}");
         for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
             Player player = curSessionGlobalVar.players[i];
             player.renderSelf();
@@ -130,7 +130,7 @@ abstract class SimController {
     }
 
     void reckoning() {
-        //print('reckoning');
+        ////print('reckoning');
         Scene s = new Reckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
         s.renderContent(curSessionGlobalVar.newScene());
@@ -142,7 +142,7 @@ abstract class SimController {
     }
 
     void reckoningTick([num time]) {
-        //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
+        ////print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
         if (curSessionGlobalVar.timeTillReckoning > -10) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
@@ -162,7 +162,7 @@ abstract class SimController {
 
     void recoverFromCorruption() {
         if(curSessionGlobalVar != null) curSessionGlobalVar.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
-        print("Other controllers will do something after corruption, but the sim just ends.");
+        //print("Other controllers will do something after corruption, but the sim just ends.");
     }
 
     void reinit() {
@@ -172,12 +172,12 @@ abstract class SimController {
     void renderScratchButton(Session session) {
         Player timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
         if (timePlayer == null) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS";
-        print("scratch possible, button");
+        //print("scratch possible, button");
         //alert("scratch [possible]");
         //can't scratch if it was a a total party wipe. just a regular doomed timeline.
         List<Player> living = findLivingPlayers(session.players);
         if (!living.isEmpty && (session.makeCombinedSession == false && session.hadCombinedSession == false)) {
-            print("gonna render scratch");
+            //print("gonna render scratch");
             //var timePlayer = findAspectPlayer(session.players, "Time");
             if (!session.scratched) {
                 //this is apparently spoilery.
@@ -189,12 +189,12 @@ abstract class SimController {
                     renderAfterlifeURL();
                 }
             } else {
-                print("no more scratches");
+                //print("no more scratches");
                 appendHtml(querySelector("#story"), "<br>This session is already scratched. No further scratches available.");
                 renderAfterlifeURL();
             }
         } else {
-            print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: ${living.length} is had combo? ${session.hadCombinedSession}");
+            //print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: ${living.length} is had combo? ${session.hadCombinedSession}");
         }
     }
 
@@ -223,16 +223,16 @@ abstract class SimController {
         globalInit(); // initialise classes and aspects if necessary
 
 
-            // print("Debugging AB: Starting session $initial_seed");
+            // //print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
-        //  print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         reinit();
-        //print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         Scene.createScenesForSession(curSessionGlobalVar);
-        //print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         curSessionGlobalVar.makePlayers();
-        //print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         curSessionGlobalVar.randomizeEntryOrder();
         //authorMessage();
         curSessionGlobalVar.makeGuardians(); //after entry order established
@@ -280,16 +280,16 @@ abstract class SimController {
     }
 
     void tick([num time]) {
-        //print("Debugging AB: tick");
-        //print("Tick: " + curSessionGlobalVar.timeTillReckoning);
+        ////print("Debugging AB: tick");
+        ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
             window.requestAnimationFrame(tick);
-            //print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
+            ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {
-            //print("Debugging AB: reckoning time.");
+            ////print("Debugging AB: reckoning time.");
             reckoning();
         }
     }

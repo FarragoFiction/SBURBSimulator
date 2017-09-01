@@ -80,7 +80,7 @@ class renderAllImagesInFolder {
 
 
 
-	print("tring to get folder: " + folder);
+	//print("tring to get folder: " + folder);
 	var fileExt = {};
     fileExt[0]=".png";
     fileExt[1]=".jpg";
@@ -94,7 +94,7 @@ class renderAllImagesInFolder {
 			   querySelector(data).find("a:contains(" + fileExt[0] + "),a:contains(" + fileExt[1] + "),a:contains(" + fileExt[2] + ")").each(() {
 				  var split = this.href.split("/");
 					var filename = split[split.length-1];
-					print("found: " + filename);
+					//print("found: " + filename);
 					//var filename = this.href;
 				   renderRegularSprite(new SpritePart(folder+filename, filename));
 			   });

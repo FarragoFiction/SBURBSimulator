@@ -22,7 +22,7 @@ part "../web/scripts/v2.0/YellowYardResultController.dart";*/
 Strife testStrife = null;
 
 main() {
-  print("Hello World");
+  //print("Hello World");
   jRAssert("initialTest", "this should always pass", "this should always pass");
   testCreation();
   testKillEveryone();
@@ -47,17 +47,17 @@ void testKillEveryone() {
 
 void testMobilitySort() {
     setup();
-    print("Before Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
+    //print("Before Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
     Team expectedSlowest = testStrife.teams[0];
     Team expectedFasted = testStrife.teams[1];
     testStrife.teams.sort();
     jRAssert("fastest team", testStrife.teams[0], expectedFasted);
-    print("After Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
+    //print("After Sort, Teams are: ${Team.getTeamsNames(testStrife.teams)}");
     GameEntity slug = expectedSlowest.members[0];
     jRAssert("slug name", slug.name, "Slug");
     expectedSlowest.members.sort();
     jRAssert("slowest member of slowest team", expectedSlowest.members[1], slug);
-    print("mobility psases");
+    //print("mobility psases");
 }
 
 void testChooseTarget()
@@ -67,13 +67,13 @@ void testChooseTarget()
   jRAssert("attacker name", attacker.name, "Turtle");
   GameEntity target = attacker.pickATarget(testStrife.teams[1].members);
   jRAssert("target name", target.name, "Dragonfly"); //can one shot it, even though it is faster than Hare.
-  print("choose target passed");
+  //print("choose target passed");
 }
 
 void testCreation() {
   setup();
-  print(testStrife);
-  print("Teams are: ${Team.getTeamsNames(testStrife.teams)}");
+  //print(testStrife);
+  //print("Teams are: ${Team.getTeamsNames(testStrife.teams)}");
 }
 
 void setup() {

@@ -2,6 +2,7 @@ import "dart:html";
 
 import "../SBURBSim.dart";
 //import "../includes/Logger.dart";
+
 import "../navbar.dart";
 
 /*
@@ -23,7 +24,6 @@ import "../navbar.dart";
 typedef DrawingMethod(String canvasID, List<Player> players);
 
 class GetWasted extends Scene {
-    //static Logger logger = Logger.get("GetWasted", false);
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 13; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
@@ -74,7 +74,7 @@ class GetWasted extends Scene {
 
     @override
     void renderContent(Element div) {
-       // logger.verbose("Getting Wasted in session ${session.session_id}");
+        session.logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
         processTier(div);
@@ -96,7 +96,7 @@ class GetWasted extends Scene {
     ///gotta take in a random or i'll lose determinism
     void getRandomFAQSections(Element div, GeneratedFAQ gfaq) {
         gfaq.sectionsRequested ++;
-       // print ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
+       // session.logger.info ("trying to find random faq in session: ${session.session_id}, this is ${gfaq.sectionsRequested} time" );
         FAQFile f;
         WeightedList<FAQFile> possibilities = new WeightedList<FAQFile>();
         //class and aspect are less likely than generic, since they will have less entries
@@ -110,12 +110,12 @@ class GetWasted extends Scene {
         if(gfaq.author.grimDark > 3)   possibilities.add(grimDarkFAQ);
 
         f = gfaq.rand.pickFrom(possibilities);
-        if(f == murderModeFAQ) print("AB: MurderModeFAQ in session ${session.session_id} ");
-        if(f == tricksterFAQ) print("AB: TricksterFAQ in session ${session.session_id} ");
-        if(f == robotFAQ) print("AB: RobotFAQ in session ${session.session_id} ");
+        if(f == murderModeFAQ)  session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
+        if(f == tricksterFAQ)  session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
+        if(f == robotFAQ)  session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
         if(f == grimDarkFAQ) {
             gfaq.grimDark = true;
-            print("AB: GrimDarkFAQ in session ${session.session_id} ");
+             session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
         }
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
@@ -123,16 +123,16 @@ class GetWasted extends Scene {
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
     void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
-        //print("callback chose section $s");
+        //session.logger.info("callback chose section $s");
         if(s != null) gfaq.sections.add(s);
         if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
-            //print ("callback gonna keep looking for sections" );
+            //session.logger.info ("callback gonna keep looking for sections" );
             getRandomFAQSections(div,gfaq); //get more
         }else if (gfaq.sections.length == gfaq.sectionsRequested) {
-            //print ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
+            //session.logger.info ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div,gfaq);
         }else{
-            print("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
+            session.logger.info("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
         }
     }
 
@@ -144,7 +144,7 @@ class GetWasted extends Scene {
 
         Player p = new Player(session, c, a, null, null, null);
         //TODO let the player be one of us, if so, VERY high chance of meta FAQ
-       // print("making an faq from player $p");
+       // session.logger.info("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
         if (p.isTroll) {
@@ -193,7 +193,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-       // print("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
+       // session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(faq.reader == faq.author) {
             text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
@@ -201,7 +201,7 @@ class GetWasted extends Scene {
             text = "The ${faq.reader.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
         }
         String id = "faq${div.id}${faq.author.id}";
-        //alright, i've got the intro, and i've got the quirk. what now? well, need to print out the phrase and then a link to pop up the faq
+        //alright, i've got the intro, and i've got the quirk. what now? well, need to session.logger.info out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
         appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${faq.makeHtml(id)}</div>");
@@ -240,11 +240,11 @@ class GetWasted extends Scene {
         ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
-        print("AB: Exploiting mobility in session ${session.session_id}.");
+         session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
             for(Player p in session.players) {
                 if(p.land != null && p.grimDark <2) {
-                    //print out random quest
+                    //session.logger.info out random quest
                     if(!p.dead) {
                         ret += "<Br>The ${p.htmlTitle()} does quests at ${p.shortLand()}, ${p.getRandomQuest()}. ";
                     }
@@ -370,7 +370,7 @@ class GetWasted extends Scene {
                 for(Player p2 in session.players) {
                     if(p1 != p2) {
                         String subret = "<Br>";
-                        //happens multiple times but only prints one, cuz it's not gonna be different
+                        //happens multiple times but only session.logger.infos one, cuz it's not gonna be different
                         subret += p1.interactionEffect(p2);
                         p1.interactionEffect(p2);
                         p1.interactionEffect(p2);

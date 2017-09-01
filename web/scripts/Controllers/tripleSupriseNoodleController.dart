@@ -93,7 +93,7 @@ class MysteryController extends AuthorBot {
 
 
   void checkPassword(){
-    //print("click");
+    ////print("click");
     numSimulationsDone = 0; //but don't reset stats
     sessionSummariesDisplayed = [];
 

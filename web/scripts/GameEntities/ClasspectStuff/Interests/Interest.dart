@@ -36,7 +36,7 @@ class InterestManager {
     static InterestCategory WRITING;
 
     static void init() {
-        print("initializing interests");
+        //print("initializing interests");
         MUSIC = new Music();
         ACADEMIC = new Academic();
         ATHLETIC = new Athletic();
@@ -123,9 +123,9 @@ class InterestCategory {
 
     //interests are auto sanitized.
     void addInterest(String i) {
-        //print("maybe adding interest $i");
+        ////print("maybe adding interest $i");
         if (interestStrings.contains(i)) return;
-        //print("def adding interest $i");
+        ////print("def adding interest $i");
         interestStrings.add(
             i.replaceAll(new RegExp(r"""<(?:.|\n)*?>""", multiLine: true), ''));
     }

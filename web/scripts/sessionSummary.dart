@@ -26,7 +26,7 @@ class SessionSummary {
     SessionSummary(int this.session_id);
 
     void setBoolStat(String statName, bool statValue) {
-       // print("setting stat: $statName to $statValue");
+       // //print("setting stat: $statName to $statValue");
         this.bool_stats[statName] = statValue;
     }
 
@@ -99,44 +99,44 @@ class SessionSummary {
         } else if (!aspects.isEmpty && !classes.isEmpty) {
             return this.matchesBothClassAndAspect(classes, aspects);
         } else {
-            //print('debugging ab: no classes or aspects passed');
+            ////print('debugging ab: no classes or aspects passed');
             return true; //no filters, all are accepted.
         }
     }
 
     bool satifies_filter_array(List<String> filter_array) {
-        //print(filter_array);
+        ////print(filter_array);
         for (int i = 0; i < filter_array.length; i++) {
             String filter = filter_array[i];
 
             if (filter == "numberNoFrog") {
                 if (this.frogStatus != "No Frog") {
-                    //	print("not no frog");
+                    //	//print("not no frog");
                     return false;
                 }
             } else if (filter == "numberSickFrog") {
                 if (this.frogStatus != "Sick Frog") {
-                    //print("not sick frog");
+                    ////print("not sick frog");
                     return false;
                 }
             } else if (filter == "numberFullFrog") {
                 if (this.frogStatus != "Full Frog") {
-                    //print("not full frog");
+                    ////print("not full frog");
                     return false;
                 }
             } else if (filter == "numberPurpleFrog") {
                 if (this.frogStatus != "Purple Frog") {
-                    //print("not full frog");
+                    ////print("not full frog");
                     return false;
                 }
             } else if (filter == "timesAllDied") {
                 if (this.getNumStat("numLiving") != 0) {
-                    //print("not all dead");
+                    ////print("not all dead");
                     return false;
                 }
             } else if (filter == "timesAllLived") {
                 if (this.getNumStat("numDead") != 0) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
-                    //print("not all alive");
+                    ////print("not all alive");
                     return false;
                 }
             } else if (filter == "scratched") {
@@ -145,14 +145,14 @@ class SessionSummary {
               }
             } else if (filter == "comboSessions") {
                 if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
-                    //print("not combo session");
+                    ////print("not combo session");
                     return false;
                 }
             } else if (!this.getBoolStat(filter)) { //assume it exists
                 return false;
             }
         }
-        //print("i pass all filters");
+        ////print("i pass all filters");
         return true;
     }
 
@@ -302,7 +302,7 @@ class SessionSummary {
         summary.setBoolStat("jackScheme", session.jackScheme);
         summary.setBoolStat("kingTooPowerful", session.king.getStat("power") > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.queenRejectRing);
-        //print("Debugging: King strength is ${session.king.getStat("power")} and hardStrength is ${session.hardStrength}");
+        ////print("Debugging: King strength is ${session.king.getStat("power")} and hardStrength is ${session.hardStrength}");
         summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > GameEntity.minPower);
         summary.setBoolStat("murderMode", session.murdersHappened);
         summary.setBoolStat("grimDark", session.grimDarkPlayers);
@@ -906,7 +906,7 @@ class MultiSessionSummary {
             html = "$html${this.generateHTMLForProperty(propertyName)}";
         }
         html = "$html</div></div>";
-        //print(html);
+        ////print(html);
         return html;
     }
 

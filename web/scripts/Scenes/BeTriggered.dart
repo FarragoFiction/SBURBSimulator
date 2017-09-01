@@ -2,6 +2,7 @@ import "dart:html";
 import "../SBURBSim.dart";
 
 
+
 class BeTriggered extends Scene{
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	List<Player> triggeredPlayers = [];
@@ -17,7 +18,7 @@ class BeTriggered extends Scene{
 		for(num i = 0; i<this.session.availablePlayers.length; i++){
 			Player p = this.session.availablePlayers[i];
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
-				//print("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
+				//session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
 			}
 		}
@@ -29,21 +30,21 @@ class BeTriggered extends Scene{
 	}
 	bool IsPlayerTriggered(Player player){
 		if(player.flipOutReason != null && !player.flipOutReason.isEmpty){
-			//print("I have a flip out reason: " + player.flipOutReason);
+			//session.logger.info("I have a flip out reason: " + player.flipOutReason);
 			if(player.flippingOutOverDeadPlayer != null && player.flippingOutOverDeadPlayer.dead){
-				//print("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
+				//session.logger.info("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
 				return true;
 			}else if(player.flippingOutOverDeadPlayer != null){ //they got better.
-			//	print(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
+			//	session.logger.info(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
 				player.flipOutReason = null;;
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
-			if(player.flipOutReason == "being haunted by their own ghost") print("flipping otu over own ghost" + this.session.session_id.toString());
+			if(player.flipOutReason == "being haunted by their own ghost") session.logger.info("flipping otu over own ghost" + this.session.session_id.toString());
 			//"being haunted by the ghost of the Player they killed"
-				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") print("flipping otu over victim ghost" + this.session.session_id.toString());
+				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") session.logger.info("flipping otu over victim ghost" + this.session.session_id.toString());
 			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
-			//print("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
+			//session.logger.info("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
@@ -60,7 +61,7 @@ class BeTriggered extends Scene{
 			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.HOPE);
 			if(hope!=null && hope.getStat("power") > 100){
 
-				//print("Hope Survives: " + this.session.session_id);
+				//session.logger.info("Hope Survives: " + this.session.session_id);
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
 				hope.increasePower();

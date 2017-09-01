@@ -23,7 +23,7 @@ List<SessionSummary> testSessionSummaries;
 List<SessionSummaryJunior> testSessionSummaryJuniors;
 
 main() {
-  print("Hello World");
+  //print("Hello World");
   jRAssert("initialTest", "this should always pass", "this should always pass");
   testCreateSummary();
   testCollateSummaries();
@@ -47,13 +47,13 @@ void setup() {
 void testCreateSummary() {
   setup();
   //can't call regular html cuz gets widnow param like an asshole.
-  print(testSessionSummaries[0].generateNumHTML());
-  print(testSessionSummaries[0].generateBoolHTML());
+  //print(testSessionSummaries[0].generateNumHTML());
+  //print(testSessionSummaries[0].generateBoolHTML());
 
 }
 
 void testCollateSummaries() {
   setup();
   MultiSessionSummaryJunior mssj = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(testSessionSummaryJuniors);
-  print(mssj.generateHTML());
+  //print(mssj.generateHTML());
 }

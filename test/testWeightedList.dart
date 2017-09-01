@@ -9,7 +9,7 @@ void main() {
 }
 
 void testBasicWeights() {
-    print("Basic Weights:");
+    //print("Basic Weights:");
 
     WeightedList<String> list = new WeightedList<String>();
 
@@ -27,7 +27,7 @@ void testBasicWeights() {
 }
 
 void testGenerativeWeights() {
-    print("Generative Weights:");
+    //print("Generative Weights:");
 
     WeightedList<int> list = new WeightedList<int>();
 
@@ -58,11 +58,11 @@ void testList<T>(WeightedList<T> list) {
         counts[picked] = counts[picked] + 1;
     }
 
-    print("Total weight $totalWeight after $testcount samples, matching to $matchplaces decimal places:");
+    //print("Total weight $totalWeight after $testcount samples, matching to $matchplaces decimal places:");
     for (WeightPair<T> pair in list.pairs) {
         double testresult = counts[pair.item]/testcount;
         double expected = pair.weight/totalWeight;
-        print("${pair.item}, weight ${pair.weight}: $testresult expected $expected, close enough: ${matchToPlaces(testresult, expected, matchplaces)}");
+        //print("${pair.item}, weight ${pair.weight}: $testresult expected $expected, close enough: ${matchToPlaces(testresult, expected, matchplaces)}");
     }
 }
 

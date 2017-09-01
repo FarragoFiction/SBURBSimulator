@@ -9,7 +9,7 @@ import "../web/scripts/FAQEngine/FAQFile.dart";
 String pretendFileContents = "<faq><section><header>Question: Does this parser work?</header><body>Apparently.</body></section><section><header>Question: How bullshit is everything.</header><body>Extremely.</body></section></faq>";
 
 main() {
-    print("Hello World");
+    //print("Hello World");
     basicTests();
 }
 

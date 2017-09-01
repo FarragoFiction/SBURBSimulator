@@ -37,11 +37,11 @@ class CharacterEasterEggEngine {
 
   //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
   dynamic loadArrayFromFile(arr, String file, p, callBack, that){
-   // print("loading" + file);
+   // //print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
-      //print("got HTTP response with $data");
+      ////print("got HTTP response with $data");
       parseFileContentsToArray(arr, data.trim());
       if(p != null && callBack != null) return processForSim(callBack);
       if(p == null && callBack != null) {
@@ -60,12 +60,12 @@ class CharacterEasterEggEngine {
 
   void parseFileContentsToArray(arr, fileContents){
     this.ocs[arr] = fileContents.split("\n");
-    //print(arr);
-    //print(this[arr]);
+    ////print(arr);
+    ////print(this[arr]);
   }
   void processForSim(callBack){
   	Random rand = curSessionGlobalVar.rand;
-  	print("processing eggs for sim");
+  	//print("processing eggs for sim");
     var pool = this.getPoolBasedOnEggs(rand);
     var potentials = this.playerDataStringArrayToURLFormat(pool);
     List<dynamic> ret = [];
@@ -75,7 +75,7 @@ class CharacterEasterEggEngine {
     if(space == null){
       space = randomSpacePlayer(curSessionGlobalVar);
       space.chatHandle = "randomSpace";
-      //print("Random space player!");
+      ////print("Random space player!");
       space.quirk = new Quirk(rand);
       space.quirk.favoriteNumber = 0;
       space.deriveChatHandle = false;
@@ -90,8 +90,8 @@ class CharacterEasterEggEngine {
       time.quirk.favoriteNumber = 0;
       time.deriveChatHandle = false;
     }
-    //print("space chatHandle " + space.chatHandle);
-    //print(space);
+    ////print("space chatHandle " + space.chatHandle);
+    ////print(space);
     ret.add(space);
     ret.add(time);
     var numPlayers = rand.nextIntRange(2,12);
@@ -100,10 +100,10 @@ class CharacterEasterEggEngine {
       if(p != null) ret.add(p);
       if(p != null) removeFromArray(p,potentials);  //no repeats. <-- modify all the removes l8r if i want to have a mode that enables them.
     }
-    //print(ret);
+    ////print(ret);
     for(num i = 0; i<ret.length; i++){
       var p = ret[i];
-      //print(p);
+      ////print(p);
       if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(rand, p.class_name,p.aspect,p.interest1, p.interest2);
     }
     curSessionGlobalVar.replayers = ret;
@@ -124,7 +124,7 @@ class CharacterEasterEggEngine {
     this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that); //last one in list has callback so I know to do next thing.
   }
   dynamic getPoolBasedOnEggs(Random rand){
-    print("checking egg pools");
+    //print("checking egg pools");
     List<dynamic> pool = [];
     //first, parse url params. for each param you find that's right, append the relevant characters into the array.
     if(getParameterByName("reddit",null)  == "true"){
@@ -164,7 +164,7 @@ class CharacterEasterEggEngine {
     }
 
     if(getParameterByName("canon",null)  == "true"){
-      print("Adding canon to pool");
+      //print("Adding canon to pool");
       pool.addAll(this.ocs["canon"]);
     }
 
@@ -178,7 +178,7 @@ class CharacterEasterEggEngine {
     }
 
     if(pool.length == 0){
-      //	print("i think i should be returning all characters.");
+      //	//print("i think i should be returning all characters.");
       pool.addAll(this.ocs["redditCharacters"]);
       pool.addAll(this.ocs["tumblrCharacters"]);
       pool.addAll(this.ocs["discordCharcters"]);
@@ -205,7 +205,7 @@ class CharacterEasterEggEngine {
     //first, take each element in the array and seperate it out into s and b  (getRawParameterByName(name, url))
     for(num i = 0; i<playerDataStringArray.length; i++){
       String bs = "${base}?" +playerDataStringArray[i];
-      print("bs is $bs");
+      //print("bs is $bs");
       String b = (getParameterByName("b", bs));
       List<String> s = Uri.encodeFull(getParameterByName("s", bs)).split(","); //these are NOT encoded in files, so make sure to encode them
       String x = (getParameterByName("x", bs));
@@ -232,7 +232,7 @@ class CharacterEasterEggEngine {
 dynamic playersToDataBytes(players){
   String ret = "";
   for(num i = 0; i<players.length; i++){
-    //print("player " + i + " to data byte");
+    ////print("player " + i + " to data byte");
     ret += players[i].toDataBytes();
   }
   return LZString.compressToEncodedURIComponent(ret);
@@ -273,10 +273,10 @@ dynamic playersToDataStrings(players, includeChatHandle){
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
 String generateURLParamsForPlayers(players, includeChatHandle){
   //var json = JSON.stringify(players);  //inside of players handles looking for keys
-  //print(json);
+  ////print(json);
   //if want localStorage , then compressToUTF16  http://pieroxy.net/blog/pages/lz-string/guide.html
   //var compressed = LZString.compressToEncodedURIComponent(json);
-  //print(compressed);
+  ////print(compressed);
   var data = playersToDataBytes(players);
   var strings = playersToDataStrings(players,true);
   var extensions = playersToExtensionBytes(players);
@@ -287,23 +287,23 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 
 
 List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes){
-  print("dataBytesAndStringsToPlayers: xbytes is: $xbytes");
+  //print("dataBytesAndStringsToPlayers: xbytes is: $xbytes");
   //bytes are 11 chars per player
   //strings are 5 csv per player.
-  //print(bytes);
-  //print(bytes.length);
+  ////print(bytes);
+  ////print(bytes.length);
   List<String> strings = s.split(",");
   List<Player> players = [];
-  //print(bytes);
+  ////print(bytes);
   for(num i = 0; i<bytes.length/11; i+=1){;
-    //print("player i: " + i + " being parsed from url");
+    ////print("player i: " + i + " being parsed from url");
     var bi = i*11; //i is which player we are on, which is 11 bytes long
     var si = i*5; //or 5 strings long
     var b = bytes.substring(bi, bi+11);
     //List<dynamic> s = [];
     var s = strings.sublist(si, si +5);  //TODO used to be "slice" in js, is it still?
-    //print("passing b to player parser");
-    //print(b);
+    ////print("passing b to player parser");
+    ////print(b);
     var p = (dataBytesAndStringsToPlayer(b,s));
     p.id = i; //will be overwritten by sim, but viewer needs it
     players.add(p);
@@ -337,8 +337,8 @@ Uint8List stringToByteArray(str){
 dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   var player = new Player();
   player.quirk = new Quirk(null);
-  print("strings is: $str_arr");
-  //print("chars is: " + charString);
+  //print("strings is: $str_arr");
+  ////print("chars is: " + charString);
   player.causeOfDrain = sanitizeString(Uri.decodeFull(str_arr[0]).trim());
   player.causeOfDeath = sanitizeString(Uri.decodeFull(str_arr[1]).trim());
   String i1= sanitizeString(Uri.decodeFull(str_arr[2]).trim());
@@ -346,11 +346,11 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.chatHandle = sanitizeString(Uri.decodeFull(str_arr[4]).trim());
   //for bytes, how to convert uri encoded string into char string into unit8 buffer?
   //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
-  //print("charString is: " + charString);
+  ////print("charString is: " + charString);
   player.hairColor = intToHexColor((charString.codeUnitAt(0) << 16) + (charString.codeUnitAt(1) << 8) + (charString.codeUnitAt(2)) );
   player.class_name = intToClassName(charString.codeUnitAt(3) >> 4);
   player.aspect = Aspects.get(charString.codeUnitAt(3) & 15) ;//get 4 bits on end;
-  print("I believe the int value of the aspect is: ${charString.codeUnitAt(3) & 15} which is: ${player.aspect}");
+  //print("I believe the int value of the aspect is: ${charString.codeUnitAt(3) & 15} which is: ${player.aspect}");
 
   player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
   player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
@@ -369,14 +369,14 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.leftMurderMode = 0 != ((1) & charString.codeUnitAt(6));
   player.robot = 0 != ((1<<7) & charString.codeUnitAt(7));
   var moon = 0 != ((1<<6) & charString.codeUnitAt(7));
-  //print("moon binary is: " + moon);
+  ////print("moon binary is: " + moon);
   player.moon = moon ? "Prospit" : "Derse";
-  //print("moon string is: "  + player.moon);
+  ////print("moon string is: "  + player.moon);
   player.dead = 0 != ((1<<5) & charString.codeUnitAt(7));
-  //print("Binary string is: " + charString[7]);
+  ////print("Binary string is: " + charString[7]);
   player.godDestiny = 0 != ((1<<4) & charString.codeUnitAt(7));
   player.quirk.favoriteNumber = charString.codeUnitAt(7) & 15;
- // print("Player favorite number is: ${player.quirk.favoriteNumber}");
+ // //print("Player favorite number is: ${player.quirk.favoriteNumber}");
   player.leftHorn = charString.codeUnitAt(8);
   player.rightHorn = charString.codeUnitAt(9);
   player.hair = charString.codeUnitAt(10);

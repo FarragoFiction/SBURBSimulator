@@ -25,7 +25,7 @@ class QuadrantDialogue extends Scene {
 		if(rand.nextDouble() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
-		if(this.player2 != null && this.player2.dead) print("corpse chat in:  " + this.session.session_id.toString());
+		if(this.player2 != null && this.player2.dead) session.logger.info("corpse chat in:  " + this.session.session_id.toString());
 		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
 	}
 	void findSemiRandomQuadrantedAvailablePlayer(){
@@ -93,7 +93,7 @@ class QuadrantDialogue extends Scene {
 			relationship = relationship2;
 			relationship2 = tmp;
 		}
-		//print("chatting about shared interests");
+		//session.logger.info("chatting about shared interests");
 		if(trait == "smart") return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "musical") return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(trait == "cultured") return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -277,23 +277,23 @@ class QuadrantDialogue extends Scene {
 		return chat;
 	}
 	String getp2ResponseBasedOnInterests(InterestConversationalPair chosen, String interest, Player player, String playerStart, Relationship relationship){
-		//print("interest is: " + interest);
+		//session.logger.info("interest is: " + interest);
 		String chat = "";
 		if(relationship != null && relationship.value > 0){
 			if(player.interestedInCategory(InterestManager.getCategoryFromString(interest))){
-				//print("interested in " + interest);
+				//session.logger.info("interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.responseLinesSharedInterestPositive));
 			}else{
-				//print("not interested in " + interest);
+				//session.logger.info("not interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.genericResponses));
 			}
 		}else{
 			if(player.interestedInCategory(InterestManager.getCategoryFromString(interest))){
-				//print("interested in " + interest);
+				//session.logger.info("interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.responseLinesSharedInterestNegative));
-				//print("adding negative shared interest response: " + chat);
+				//session.logger.info("adding negative shared interest response: " + chat);
 			}else{
-				//print("not interested in " + interest);
+				//session.logger.info("not interested in " + interest);
 				chat += Scene.chatLine(playerStart, player, rand.pickFrom(chosen.genericResponses));
 			}
 		}
@@ -317,7 +317,7 @@ class QuadrantDialogue extends Scene {
 		if(rand.nextDouble() > 0.5){ //change who is initiating
 			interest = p1.interest2;
 		}
-		//print("chatting about lack of interests.");
+		//session.logger.info("chatting about lack of interests.");
 		if(interest.category == InterestManager.ACADEMIC ) return this.chatAboutAcademic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(interest.category == InterestManager.MUSIC) return this.chatAboutMusic(p1, p2, p1Start, p2Start, relationship, relationship2);
 		if(interest.category == InterestManager.CULTURE ) return this.chatAboutCulture(p1, p2, p1Start, p2Start, relationship, relationship2);
@@ -350,7 +350,7 @@ class QuadrantDialogue extends Scene {
 		return null;
 	}
 	dynamic clubsChat(relationship1, relationship2){
-		//print("Clubs Chat in: " + this.session.session_id);
+		//session.logger.info("Clubs Chat in: " + this.session.session_id);
 		List<dynamic> chats = [];
 		chats.add( new ConversationalPair("I saw a mudcrab the other day.",["Terrible Creatures."])); //make this added only randomly if it's too common. can't believe i almost forgot.
 
@@ -378,7 +378,7 @@ class QuadrantDialogue extends Scene {
 		return chat;
 	}
 	dynamic spadesChat(relationship1, relationship2){
-		//print("Spades Chat  in: " + this.session.session_id);
+		//session.logger.info("Spades Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
 		chats.add( new ConversationalPair("God, how can anyone be so bad at this game? You suck.",["Fuck you, I killed that imp like a boss.","Like you're any better!","Fuck off!", "Go jump of a bridge."]));
 		chats.add( new ConversationalPair("Jegus, stop hogging the grist!",["Make me!","Fuck you, I earned it!","Well, YOU stop hogging the echeladder rungs!", "Eat shit, asshole."]));
@@ -400,7 +400,7 @@ class QuadrantDialogue extends Scene {
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 	dynamic heartChat(relationship1, relationship2){
-		//print("Heart Chat  in: " + this.session.session_id);
+		//session.logger.info("Heart Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
 		chats.add( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you :)"]));
 		chats.add( new ConversationalPair("Do you need any extra grist?",["Oh, thanks!","No, I'm good, but it's so sweet of you to offer.","Heh, I was going to ask YOU that.", "What would I do without you? Yes, yes of course I do."]));
@@ -421,7 +421,7 @@ class QuadrantDialogue extends Scene {
 		//chats.add( new ConversationalPair("",["","",""]));
 	}
 	dynamic diamondsChat(relationship1, relationship2){
-		//print("Diamonds Chat  in: " + this.session.session_id);
+		//session.logger.info("Diamonds Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
 		this.player1.addStat("sanity", 1);
 		this.player2.addStat("sanity", 1);
@@ -435,7 +435,7 @@ class QuadrantDialogue extends Scene {
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
 	dynamic feelingsJam(relationship, relationship2){
-		//print("Feelings Jam in: " + this.session.session_id);
+		//session.logger.info("Feelings Jam in: " + this.session.session_id);
 		this.player1.addStat("sanity", 2);
 		this.player2.addStat("sanity", 2);
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"

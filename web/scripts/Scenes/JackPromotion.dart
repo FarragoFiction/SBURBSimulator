@@ -13,7 +13,7 @@ class JackPromotion extends Scene{
 		if(this.session.jack.getStat("currentHP") <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
 		if(this.session.queensRing == null) return false; //all is moot if no ring
 		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
-		//print("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id);
+		//session.logger.info("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id);
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
 		if(this.session.jack.getStat("power") > this.session.queen.getStat("power") || this.session.queen.getStat("currentHP") <= 0 || this.session.queen.dead){
 			return true;
@@ -31,12 +31,12 @@ class JackPromotion extends Scene{
 		if(this.session.queen.crowned != null && !this.session.queen.exiled){
 			if(this.session.queen.getStat("currentHP") > 0){
 				if(rand.nextDouble() > .5){
-					print("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
+					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
-					print("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
+					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
 					this.session.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
 					this.session.queen.dead = true;
@@ -50,12 +50,12 @@ class JackPromotion extends Scene{
 			ret += "FOLD. ";
 			if(this.session.queen.getStat("currentHP") > 0 && !this.session.queen.exiled){
 				if(rand.nextDouble() > .5){
-					print("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
+					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
 					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
-					print("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
+					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily defeats the weakened queen while he's at it. ";
 					this.session.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
 				}
@@ -75,7 +75,7 @@ class JackPromotion extends Scene{
 	@override
 	void renderContent(Element div){
 		ImportantEvent alt = this.addImportantEvent();
-		//print("Alt for jack promotion is: " + alt);
+		//session.logger.info("Alt for jack promotion is: " + alt);
 		if(alt != null && alt.alternateScene(div)){
 			return;
 		}

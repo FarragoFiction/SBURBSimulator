@@ -63,15 +63,15 @@ abstract class AuthorBot extends SimController {
 
   @override
   void processCombinedSession() {
-    //print("Debugging AB: Checking process combo session");
+    ////print("Debugging AB: Checking process combo session");
     Session newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
     if(newcurSessionGlobalVar != null){
-     // print("debugging AB: doing a combo session");
+     // //print("debugging AB: doing a combo session");
       curSessionGlobalVar = newcurSessionGlobalVar;
       appendHtml(querySelector("#story"),"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
       intro();
     }else{
-      //print("Debugging AB: can't combo, can't scratch. just do next session.");
+      ////print("Debugging AB: can't combo, can't scratch. just do next session.");
       needToScratch = false; //can't scratch if skaiai is a frog
       curSessionGlobalVar.makeCombinedSession = false;
       summarizeSession(curSessionGlobalVar);
@@ -85,33 +85,33 @@ abstract class AuthorBot extends SimController {
     s.trigger(curSessionGlobalVar.players);
     s.renderContent(curSessionGlobalVar.newScene());
     if(!curSessionGlobalVar.doomedTimeline){
-      //print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
+      ////print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
       return null;
     }else{
-      //print("debugging AB: no reckoning, doomed timeline for ${curSessionGlobalVar.session_id}");
+      ////print("debugging AB: no reckoning, doomed timeline for ${curSessionGlobalVar.session_id}");
       if(needToScratch){
-       // print("debugging AB: scratch ${curSessionGlobalVar.session_id}");
+       // //print("debugging AB: scratch ${curSessionGlobalVar.session_id}");
         scratchAB(curSessionGlobalVar);
         return null;
       }
-     // print("debugging AB: no scratch ${curSessionGlobalVar.session_id}");
-      ////print("doomed timeline prevents reckoning");
+     // //print("debugging AB: no scratch ${curSessionGlobalVar.session_id}");
+      //////print("doomed timeline prevents reckoning");
       List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
       if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
-        //print("doomed scratched timeline");
+        ////print("doomed scratched timeline");
         summarizeSession(curSessionGlobalVar);
         return null;
       }
 
     }
-    print("debugging AB: should never get here from reckoning, should either tick or ${curSessionGlobalVar.session_id}");
+    //print("debugging AB: should never get here from reckoning, should either tick or ${curSessionGlobalVar.session_id}");
   }
 
   @override
   void reckoningTick([num time]) {
-   // print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
-    //print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
+   // //print("Debugging AB: reckoning tick in session:  ${curSessionGlobalVar.session_id}");
+    ////print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
     if(curSessionGlobalVar.timeTillReckoning > -10){
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
@@ -119,40 +119,40 @@ abstract class AuthorBot extends SimController {
       //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
       return null;
     }else{
-     // print("Debugging AB: Aftermath in session:  ${curSessionGlobalVar.session_id}");
+     // //print("Debugging AB: Aftermath in session:  ${curSessionGlobalVar.session_id}");
       Scene s = new Aftermath(curSessionGlobalVar);
-     // print("Debugging AB:made aftermath session:  ${curSessionGlobalVar.session_id}");
+     // //print("Debugging AB:made aftermath session:  ${curSessionGlobalVar.session_id}");
 
       s.trigger(curSessionGlobalVar.players);
-      //print("Debugging AB: triggered Aftermath in session:  ${curSessionGlobalVar.session_id}");
+      ////print("Debugging AB: triggered Aftermath in session:  ${curSessionGlobalVar.session_id}");
 
       s.renderContent(curSessionGlobalVar.newScene());
-      //print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
+      ////print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
       if(curSessionGlobalVar.makeCombinedSession == true){
-       // print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id}");
+       // //print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id}");
         processCombinedSession();  //make sure everything is done rendering first
         return null;
       }else{
-       // print("Debugging AB: not a combo in session:  ${curSessionGlobalVar.session_id}");
+       // //print("Debugging AB: not a combo in session:  ${curSessionGlobalVar.session_id}");
         if(needToScratch){
-        //  print("Debugging AB: going to scratch in session: curSessionGlobalVar.session_id");
+        //  //print("Debugging AB: going to scratch in session: curSessionGlobalVar.session_id");
           scratchAB(curSessionGlobalVar);
           return null;
         }
         List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
-       // print("debugging AB: about to see if i should summarize session ${curSessionGlobalVar.session_id}");
+       // //print("debugging AB: about to see if i should summarize session ${curSessionGlobalVar.session_id}");
         if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
-          //print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
+          ////print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
           summarizeSession(curSessionGlobalVar);
           return null;
         }else {
-         // print("debugging AB: I think i should not summarize session ${curSessionGlobalVar.session_id}, won is ${curSessionGlobalVar.won} living is ${living.length} and scratched is ${curSessionGlobalVar.scratched}");
+         // //print("debugging AB: I think i should not summarize session ${curSessionGlobalVar.session_id}, won is ${curSessionGlobalVar.won} living is ${living.length} and scratched is ${curSessionGlobalVar.scratched}");
           return null;
         }
       }
     }
 
-    print("Debugging AB: should neever get here, should be combo or scratch or victory or SOMEThing.");
+    //print("Debugging AB: should neever get here, should be combo or scratch or victory or SOMEThing.");
   }
 
 
@@ -161,13 +161,13 @@ abstract class AuthorBot extends SimController {
     //treat myself as a different session that scratched one?
     List<Player> living = findLivingPlayers(session.players);
     if(!session.scratched && living.length > 0){
-      //print("scartch");
+      ////print("scartch");
       //alert("AB sure loves scratching!");
       session.scratchAvailable = true;
       summarizeSessionNoFollowup(session);
       scratch(); //not user input, just straight up do it.
     }else{
-      //print("no scratch");
+      ////print("no scratch");
       session.scratchAvailable = false;
       summarizeSession(session);
     }
@@ -242,7 +242,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void recoverFromCorruption() {
-    print("AB thinks she should check a new session after finding a shitty crashed session");
+    //print("AB thinks she should check a new session after finding a shitty crashed session");
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 

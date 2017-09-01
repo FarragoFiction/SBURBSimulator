@@ -7,7 +7,7 @@ import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
 void main() {
-  print("If you are in dartium, make sure to select this file to access it's global vars");
+  //print("If you are in dartium, make sure to select this file to access it's global vars");
   new DateTime.now();
   new Timer(new Duration(milliseconds: 1000), () =>window.scrollTo(0, 0));
 

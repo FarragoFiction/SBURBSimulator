@@ -53,17 +53,17 @@ class GetTiger extends Scene{
 
 	}
 	String content(){
-		//print("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
+		//session.logger.info("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
 		String ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
-		if(withd != null && partyRollForLuck(withd) > 50){  //MOST players in canon go god tier via sacrificial slab.
+		if(withd != null && partyRollForLuck(withd) > 25){  //MOST players in canon go god tier via sacrificial slab.
 			for(num i = 0; i< withd.length; i++){
 				var p = withd[i];
 				p.setStat("currentHP", p.getStat("hp"));
-				////print("Quest bed: " + this.session.session_id);
+				////session.logger.info("Quest bed: " + this.session.session_id);
 				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 				ret +="On " + p.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
 				Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
@@ -72,7 +72,7 @@ class GetTiger extends Scene{
 				this.session.questBed = true;
 			}
 		}else if(withd != null && withd.length > 0){
-			//print("We COULD have been on my quest bed, but random chance said no. " + getPlayersTitles(withd))
+			session.logger.debug("We COULD have been on my quest bed, but random chance said no. " );
 			return "";
 		}
 
@@ -82,7 +82,7 @@ class GetTiger extends Scene{
 				if(p.isDreamSelf){
 					p.setStat("currentHP", p.getStat("hp"));
 					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
-					////print("sacrificial slab: " + this.session.session_id);
+					////session.logger.info("sacrificial slab: " + this.session.session_id);
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
 					this.session.sacrificialSlab = true;
 					Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
@@ -91,7 +91,7 @@ class GetTiger extends Scene{
 				}
 
 			}
-			//print("no dream self so slab");
+			//session.logger.info("no dream self so slab");
 		}
 		this.session.godTier = true;
 		ret += " They are now extremely powerful. ";

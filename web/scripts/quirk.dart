@@ -168,7 +168,7 @@ class Quirk {
         String ret = input;
         for(num i = 0; i<this.lettersToReplaceIgnoreCase.length; i++){
             //querySelector("#debug").append("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] );
-            //print("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] );
+            ////print("Replacing: " +this.lettersToReplaceIgnoreCase[i][0] );
             //g makes it replace all, i makes it ignore case
             String replace = this.lettersToReplaceIgnoreCase[i][1] ;
             if(replace == "私"){
@@ -208,7 +208,7 @@ class Quirk {
 		}
 	}
 	void makeTrollQuirk(Player player){
-      //print("generting troll quirk with favorite number: " + this.favoriteNumber);
+      ////print("generting troll quirk with favorite number: " + this.favoriteNumber);
       this.capitalization = this.rand.nextIntRange(0,5);
       this.punctuation = this.rand.nextIntRange(0,5);
       this.lettersToReplace = [];

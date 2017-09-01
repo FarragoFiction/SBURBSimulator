@@ -61,7 +61,7 @@ void robotMode(){
 
 
 void checkPassword(){
-	//print("click");
+	////print("click");
 	numSimulationsDone = 0; //but don't reset stats
 	sessionSummariesDisplayed = [];
 
@@ -165,7 +165,7 @@ void filterSessionSummaries(){
 	tmp = removeNonMatchingClasspects(tmp,classes,aspects);
 
 
-	////print(tmp);
+	//////print(tmp);
 	sessionSummariesDisplayed = tmp;
 	printSummaries();
 	printStats(filters,classes, aspects);
@@ -174,7 +174,7 @@ void filterSessionSummaries(){
 
 //filter is proprety name, some are special, most just pass through
 void filterSessionSummariesBy(filter){
-	//print("Filtering session summaries by: " + filter);
+	////print("Filtering session summaries by: " + filter);
 	sessionSummariesDisplayed = [];
 	if(!filter){
 		for(num i = 0; i<allSessionsSummaries.length; i++){
@@ -200,7 +200,7 @@ void filterSessionSummariesBy(filter){
 		}else if(filter == "timesAllLived" && ss.numDead == 0){
 			tmp.add(ss);
 		}else if(ss[filter]){
-			//print("adding filter");
+			////print("adding filter");
 			tmp.add(ss);
 		}
 	}
@@ -330,7 +330,7 @@ void easterEggCallBackAB(){
 //callback is optional, only tournament will call
 void startSession(callBack){
 	nonRareSessionCallback = callBack;
-	//print("start session");
+	////print("start session");
 	querySelector("#story").html("");
 	curSessionGlobalVar = new Session(initial_seed);
 	reinit();
@@ -365,7 +365,7 @@ void startSession(callBack){
 
 
 void restartSession(){
-	//print("restart session");
+	////print("restart session");
 	querySelector("#story").html("");
 	//window.scrollTo(0, 0);  jarring for AB to go up and down over and over
 	intro();
@@ -386,7 +386,7 @@ void shareableURL(){
 
 
 void renderScratchButton(session){
-	//print("rendering scratch button, i.e. setting need to scratch to true.");
+	////print("rendering scratch button, i.e. setting need to scratch to true.");
 	needToScratch = true;
 
 }
@@ -394,19 +394,19 @@ void renderScratchButton(session){
 
 
 void scratchAB(session){
-	//print("rendering scratch button, i.e. setting need to scratch to false.");
+	////print("rendering scratch button, i.e. setting need to scratch to false.");
 	needToScratch = false;
 	//treat myself as a different session that scratched one?
 	var living = findLivingPlayers(session.players);
 	if(!session.scratched && living.length > 0 && !tournamentMode){
-		//print("scartch");
+		////print("scartch");
 		//alert("AB sure loves scratching!");
 		session.scratchAvailable = true;
 		session.pleaseIgnoreThisSessionAB = true;
 		summarizeSessionNoTimeout(session);
 		scratch(); //not user input, just straight up do it.
 	}else{
-		//print("no scratch");
+		////print("no scratch");
 		session.scratchAvailable = false;
 		summarizeSession(session);
 	}
@@ -424,7 +424,7 @@ void scratchConfirm(){
 
 
 void reinit(){
-	//print("reinit");
+	////print("reinit");
 	available_classes = classes.slice(0);
 	available_aspects = nonrequired_aspects.slice(0); //required_aspects
 	available_aspects.addAll(required_aspects.slice(0));
@@ -435,7 +435,7 @@ void reinit(){
 
 
 void tick(){
-	//print("tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline);
+	////print("tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline);
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout((){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -462,10 +462,10 @@ dynamic reckoning(){
 			scratchAB(curSessionGlobalVar);
 			return null;
 		}
-		////print("doomed timeline prevents reckoning");
+		//////print("doomed timeline prevents reckoning");
 		var living = findLivingPlayers(curSessionGlobalVar.players);
 		if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
-			//print("doomed scratched timeline");
+			////print("doomed scratched timeline");
 			summarizeSession(curSessionGlobalVar);
 		}
 	}
@@ -474,7 +474,7 @@ dynamic reckoning(){
 
 
 dynamic reckoningTick(){
-	//print("reckoning tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline);
+	////print("reckoning tick " + curSessionGlobalVar.timeTillReckoning + curSessionGlobalVar.doomedTimeline);
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout((){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -483,16 +483,16 @@ dynamic reckoningTick(){
 		},repeatTime);
 	}else{
 		var s = new Aftermath(curSessionGlobalVar);
-		//print("about to trigger aftermath");
+		////print("about to trigger aftermath");
 		s.trigger(curSessionGlobalVar.players);
 		s.renderContent(curSessionGlobalVar.newScene());
-		//print("aftermath rendered");
+		////print("aftermath rendered");
 		//after math can call a scratch.
 
 
 		//summarizeSession(curSessionGlobalVar);
 		//for some reason whether or not a combo session is available isn't working? or combo isn't working right in this mode?
-		//print("checking if i should do summaries");
+		////print("checking if i should do summaries");
 		if(curSessionGlobalVar.makeCombinedSession == true){
 			processCombinedSession();  //make sure everything is done rendering first
 		}else{
@@ -502,7 +502,7 @@ dynamic reckoningTick(){
 			}
 			var living = findLivingPlayers(curSessionGlobalVar.players);
 			if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
-				//print("victory or utter defeat");
+				////print("victory or utter defeat");
 				summarizeSession(curSessionGlobalVar);
 			}
 		}
@@ -622,18 +622,18 @@ dynamic processCombinedSession(){
 	initial_seed = Math.seed;
 	var newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
 	if(newcurSessionGlobalVar){
-		print("doing a combo session");
+		//print("doing a combo session");
 		curSessionGlobalVar = newcurSessionGlobalVar;
 		querySelector("#story").append("<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id + ". ");
 		intro();
 	}else{
-		print("can't combo, can't scratch. just do next session.");
+		//print("can't combo, can't scratch. just do next session.");
 		needToScratch = false; //can't scratch if skaiai is a frog
 		curSessionGlobalVar.makeCombinedSession == false
 		summarizeSession(curSessionGlobalVar);
 		/*var living = findLivingPlayers(curSessionGlobalVar.players);
 		if(curSessionGlobalVar.scratched || living.length == 0){
-			//print("not a combo session");
+			////print("not a combo session");
 			curSessionGlobalVar.makeCombinedSession == false
 			summarizeSession(curSessionGlobalVar);
 		}else{
@@ -654,10 +654,10 @@ dynamic processCombinedSession(){
 
 
 dynamic summarizeSession(session){
-	//print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
+	////print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+		//////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
 
 		//return;
 	}
@@ -691,7 +691,7 @@ dynamic summarizeSession(session){
 		return;
 	}else{
 		setTimeout((){
-			//print("setting timeout for new seed");
+			////print("setting timeout for new seed");
 			//var tmp = getRandomSeed();
 			//Math.seed = tmp;
 			//doomedTimelineReasons = [];
@@ -705,10 +705,10 @@ dynamic summarizeSession(session){
 
 
 dynamic summarizeSessionNoTimeout(session){
-	//print("no timeout summarizing: " + curSessionGlobalVar.session_id);
+	////print("no timeout summarizing: " + curSessionGlobalVar.session_id);
 	//don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
 	if(sessionsSimulated.indexOf(session.session_id) != -1){
-		////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
+		//////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
 
 		//return;
 	}
@@ -809,7 +809,7 @@ dynamic getQuipAboutSession(sessionSummary){
 
 
 void foundRareSession(div, debugMessage){
-	//print(debugMessage);
+	////print(debugMessage);
 	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 
@@ -931,7 +931,7 @@ void printSummaries(){
 
 
 void checkDoomedTimelines(){
-	////print("check");
+	//////print("check");
 	for(var i= 0; i<curSessionGlobalVar.doomedTimelineReasons.length; i ++){
 		if(curSessionGlobalVar.doomedTimelineReasons[i] != "Shenanigans"){
 			//alert("found an interesting doomed timeline" + doomedTimelineReasons[i]);
@@ -965,7 +965,7 @@ void callNextIntroWithDelay(player_index){
 
 
 void intro(){
-	//print("intro");
+	////print("intro");
 	curSessionGlobalVar.pleaseIgnoreThisSessionAB = false;
 	callNextIntroWithDelay(0);
 }

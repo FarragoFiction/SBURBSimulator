@@ -55,7 +55,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
         var e2 = events[j];
         //don't be literally teh same object, but do you match?
         if(e1 != e2 && doEventsMatch(e1,e2)){ // TODO was this kept in YellowYardController?
-          // print(e1.humanLabel() + " matches " + e2.humanLabel())
+          // //print(e1.humanLabel() + " matches " + e2.humanLabel())
           eventsToRemove.add(e2);
         }
       }
@@ -91,7 +91,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 //why was this a class???
   static bool undoTimeUndoScene(Element div, Session session, ImportantEvent event, Player timeClone1, Player timeClone2)  {
 
-//	print("times called : " + this.timesCalled);
+//	//print("times called : " + this.timesCalled);
   String narration = "<br>A doomed " + timeClone1.htmlTitleBasic() + " suddenly warps in from the future. ";
   narration +=  " But before they can do anything, a second doomed " +timeClone2.htmlTitleBasic()  + " warps in and grabs them.  Both vanish in a cloud of gears and clocks to join the final battle.";
 
@@ -149,7 +149,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
-			//print("times called : " + this.timesCalled);
+			////print("times called : " + this.timesCalled);
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 			narration +=  " They come with a dire warning of a doomed timeline. ";
 			narration += " Something seems...off...about them. But they are adamant that the " + this.player.htmlTitleBasic() + " needs to go God Tier now. ";
@@ -470,7 +470,7 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
-			//print("done helping frog a scene, seed is at: " + Math.seed);
+			////print("done helping frog a scene, seed is at: " + Math.seed);
 			return true;
 	}
 

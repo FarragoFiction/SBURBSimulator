@@ -13,7 +13,7 @@ class QueenRejectRing extends Scene {
 		this.playerList = playerList;
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList, this.session.session_id);
 		var goodPrototyping = findGoodPrototyping(playerList);
-		//print("holy fucking shit, don't reject the ring if an alien player comes in.");
+		//session.logger.info("holy fucking shit, don't reject the ring if an alien player comes in.");
 		return goodPrototyping != null && this.session.queen.crowned != null;
 	}
 

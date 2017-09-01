@@ -224,12 +224,12 @@ void getSessionType(){
 void renderScratchButton(session){
 	var timePlayer = findAspectPlayer(curSessionGlobalVar.players, "Time");
 	if(!timePlayer) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS"
-	print("scratch possible, button");
+	//print("scratch possible, button");
 	//alert("scratch [possible]");
 	//can't scratch if it was a a total party wipe. just a regular doomed timeline.
 	var living = findLivingPlayers(session.players);
 	if(living.length > 0 && (session.makeCombinedSession == false && session.hadCombinedSession == false)){
-		print("gonna render scratch");
+		//print("gonna render scratch");
 		var timePlayer = findAspectPlayer(session.players, "Time");
 		if(!session.scratched){
 			//this is apparently spoilery.
@@ -240,12 +240,12 @@ void renderScratchButton(session){
 				renderAfterlifeURL();
 			}
 		}else{
-			print("no more scratches");
+			//print("no more scratches");
 			querySelector("#story").append("<br>This session is already scratched. No further scratches available.");
 			renderAfterlifeURL();
 		}
 	}else{
-		print("what went wrong? is makecomo?" +session.makeCombinedSession + "is all dead: " + living.length + " is had combo? " +session.hadCombinedSession );
+		//print("what went wrong? is makecomo?" +session.makeCombinedSession + "is all dead: " + living.length + " is had combo? " +session.hadCombinedSession );
 	}
 
 }
@@ -274,7 +274,7 @@ void restartSession(){
 
 
 void tick(){
-	//print("Tick: " + curSessionGlobalVar.timeTillReckoning);
+	////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
 	if(curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline){
 		setTimeout((){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -290,7 +290,7 @@ void tick(){
 
 
 void reckoning(){
-	//print('reckoning');
+	////print('reckoning');
 	var s = new Reckoning(curSessionGlobalVar);
 	s.trigger(curSessionGlobalVar.players);
 	s.renderContent(curSessionGlobalVar.newScene());
@@ -304,7 +304,7 @@ void reckoning(){
 
 
 void reckoningTick(){
-	//print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
+	////print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
 	if(curSessionGlobalVar.timeTillReckoning > -10){
 		setTimeout((){
 			curSessionGlobalVar.timeTillReckoning += -1;
@@ -369,7 +369,7 @@ void advertisePatreon(Element div){
 
 
 void foundRareSession(div, debugMessage){
-	print(debugMessage);
+	//print(debugMessage);
 	String canvasHTML = "<br><canvas id='canvasJRAB" + (div.id) +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	div.append(canvasHTML);
 

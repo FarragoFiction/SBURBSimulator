@@ -170,20 +170,20 @@ class Player extends GameEntity {
         num strength = this.getOverallStrength();
         num expectedMaxStrength = 150; //if i change how stats work, i need to update this value
         num strengthPerTier = (expectedMaxStrength) / possibilities.length;
-        //print("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
+        ////print("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
         int denizenIndex = (strength / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
 
         String denizenName = "";
         num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
-        //print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
+        ////print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
         if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            print("strength demands a weak denizen ${this.session.session_id}");
+            session.logger.info("AB: strength demands a weak denizen ");
         } else if (denizenIndex >= possibilities.length) {
             denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
             denizenStrength = 5;
-            print("Strength demands strong denizen. ${this.session.session_id}");
+            session.logger.info("AB: Strength demands strong denizen. ");
         } else {
             denizenName = possibilities[denizenIndex];
         }
@@ -193,7 +193,7 @@ class Player extends GameEntity {
     }
 
     void makeDenizenWithStrength(String name, num strength) {
-        //print("Strength for denizen " + name + " is: " + strength);
+        ////print("Strength for denizen " + name + " is: " + strength);
         //based off existing denizen code.  care about which aspect i am.
         //also make minion here.
         GameEntity denizen = new Denizen("Denizen $name", this.session);
@@ -236,7 +236,7 @@ class Player extends GameEntity {
     }
 
     String strongDenizenNames() {
-        //print("What if you don't want stranth? ${this.session.session_id}");
+        ////print("What if you don't want stranth? ${this.session.session_id}");
         List<String> ret = <String>['Yaldabaoth', "y'all'd'vebaoth", 'HairSeven', 'Javascript', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr', 'Apollyon', 'Siseneg', 'Borunam', '<span class = "void">Jadeacher the,</span>Researcher', 'Karmiution', '<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', '<span class = "void">Aspiratcher, The</span> Librarian', '<span class = "void">Recurscker, The</span>Hollow One', 'Insurorracle', '<span class = "void">Maniomnia, the </span>Dreamwaker', 'Kazerad', 'Shiva', 'Goliath'];
         return this.session.rand.pickFrom(ret);
     }
@@ -248,7 +248,7 @@ class Player extends GameEntity {
 
     @override
     void flipOut(String reason) {
-        //print("flip out method called for: " + reason);
+        ////print("flip out method called for: " + reason);
         this.flippingOutOverDeadPlayer = null;
         this.flipOutReason = reason;
     }
@@ -260,7 +260,7 @@ class Player extends GameEntity {
         bool render = false;
 
         if (this.grimDark <= 3 && tmp > 3) { //newly GrimDark
-            print("grim dark 3 or more in session: ${this.session.session_id}");
+            //print("grim dark 3 or more in session: ${this.session.session_id}");
             render = true;
         } else if (this.grimDark > 3 && tmp <= 3) { //newly recovered.
             render = true;
@@ -358,7 +358,7 @@ class Player extends GameEntity {
                     r.target.flippingOutOverDeadPlayer = this;
                 }
             }
-            //print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
+            ////print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
         }
     }
 
@@ -452,7 +452,7 @@ class Player extends GameEntity {
         this.dead = false;
         this.murderMode = false;
         this.setStat("currentHP", Math.max(this.getStat("hp"), 1)); //if for some reason your hp is negative, don't do that.
-        //print("HP after being brought back from the dead: " + this.currentHP);
+        ////print("HP after being brought back from the dead: " + this.currentHP);
         this.grimDark = 0;
         this.addStat("sanity", -101); //dying is pretty triggering.
         this.flipOutReason = "they just freaking died";
@@ -563,7 +563,7 @@ class Player extends GameEntity {
 
     String getRandomQuest() {
         if (this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false) { //three quests before denizen
-            //print("denizen quest");
+            ////print("denizen quest");
             return this.aspect.getDenizenQuest(this); //denizen quests are aspect only, no class.
         } else if ((this.landLevel < 9 || this.denizen_index >= 3) && this.denizenDefeated == false) { //can do more land quests if denizen kicked your ass. need to grind.
             if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
@@ -572,7 +572,7 @@ class Player extends GameEntity {
                 return this.class_name.getQuest(rand, false);
             }
         } else if (this.denizenDefeated) {
-            //print("post denizen quests " +this.session.session_id);
+            ////print("post denizen quests " +this.session.session_id);
             //return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
             if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
                 return this.aspect.getRandomQuest(rand, denizenDefeated);
@@ -656,13 +656,13 @@ class Player extends GameEntity {
     }
 
     void applyPossiblePsionics() {
-        // print("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
+        // //print("Checking to see how many fraymotifs I have: " + this.fraymotifs.length + " and if I am a troll: " + this.isTroll);
         if (!this.fraymotifs.isEmpty || !this.isTroll) return; //if i already have fraymotifs, then they were probably predefined.
         //highest land dwellers can have chucklevoodoos. Other than that, lower on hemospectrum = greater odds of having psionics.;
         //make sure psionic list is kept in global var, so that char creator eventually can access? Wait, no, just wrtap it in a function here. don't polute global name space.
         //trolls can clearly have more than one set of psionics. so. odds of psionics is inverse with hemospectrum position. didn't i do this math before? where?
         //oh! low blood vocabulary!!! that'd be in quirks, i think.
-        //print("My blood color is: " + this.bloodColor);
+        ////print("My blood color is: " + this.bloodColor);
         num odds = 10 - bloodColors.indexOf(this.bloodColor); //want gamzee and above to have NO powers (will give highbloods chucklevoodoos separate)
         List<Fraymotif> powers = this.psionicList();
         for (num i = 0; i < powers.length; i++) {
@@ -735,7 +735,7 @@ class Player extends GameEntity {
         if (this.didDenizenKillYou() && !(this.grimDark <= 2)) {
             return false;
         } else if (this.grimDark > 2) {
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: ${this.session.session_id.toString()}");
+            //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: ${this.session.session_id.toString()}");
             return true; //always just if the denizen puts down a corrupt player.
         }
 
@@ -754,9 +754,9 @@ class Player extends GameEntity {
 
             if ((this.murderMode || this.grimDark > 2)) {
                 double r = rand.nextDouble();
-                //print("rand is: " + rand);
+                ////print("rand is: " + rand);
                 if (r > .2) {
-                    //print(" just death for: " + this.title() + "rand is: " + rand)
+                    ////print(" just death for: " + this.title() + "rand is: " + rand)
                     ret = true;
                 }
             }
@@ -766,7 +766,7 @@ class Player extends GameEntity {
                 ret = true;
             }
         }
-        //print(ret);
+        ////print(ret);
         //return true; //for testing
         return ret;
     }
@@ -803,7 +803,7 @@ class Player extends GameEntity {
         }
 
         if (ret) {
-            //print("heroic death");
+            ////print("heroic death");
         }
         return ret;
     }
@@ -932,11 +932,11 @@ class Player extends GameEntity {
 
 
     void makeGuardian() {
-        //print("guardian for " + player.titleBasic());
+        ////print("guardian for " + player.titleBasic());
         Player player = this;
         List<SBURBClass> possibilities = session.available_classes_guardians;
         if (possibilities.isEmpty) possibilities = new List<SBURBClass>.from(SBURBClassManager.canon);
-        //print("class names available for guardians is: " + possibilities);
+        ////print("class names available for guardians is: " + possibilities);
         Player guardian = randomPlayerWithClaspect(this.session, this.session.rand.pickFrom(possibilities), this.aspect);
         removeFromArray(guardian.class_name, session.available_classes_guardians);
         guardian.isTroll = player.isTroll;
@@ -954,7 +954,7 @@ class Player extends GameEntity {
         }
         guardian.hairColor = player.hairColor;
 
-        //print("Guardian className: " + guardian.class_name + " Player was: " + this.class_name);
+        ////print("Guardian className: " + guardian.class_name + " Player was: " + this.class_name);
         guardian.leftHorn = player.leftHorn;
         guardian.rightHorn = player.rightHorn;
         guardian.level_index = 5; //scratched kids start more leveled up
@@ -998,7 +998,7 @@ class Player extends GameEntity {
     @override
     void increasePower([num magnitude = 1, num cap = 5.1]) {
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
-        //print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
+        ////print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
@@ -1024,7 +1024,7 @@ class Player extends GameEntity {
         //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
         // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
 
-        // print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
+        // //print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
     }
 
     String shortLand() {
@@ -1060,7 +1060,7 @@ class Player extends GameEntity {
     }
 
     void generateRelationships(List<Player> friends) {
-        //	print(this.title() + " generating a relationship with: " + friends.length);
+        //	//print(this.title() + " generating a relationship with: " + friends.length);
         for (num i = 0; i < friends.length; i++) {
             if (friends[i] != this) { //No, Karkat, you can't be your own Kismesis.
                 //one time in a random sim two heirresses decided to kill each other and this was so amazing and canon compliant
@@ -1073,7 +1073,7 @@ class Player extends GameEntity {
                 }
                 this.relationships.add(r);
             } else {
-                //print(this.title() + "Not generating a relationship with: " + friends[i].title());
+                ////print(this.title() + "Not generating a relationship with: " + friends[i].title());
             }
         }
     }
@@ -1387,10 +1387,10 @@ class Player extends GameEntity {
             if (p != this) {
                 Relationship r = this.getRelationshipWith(p);
                 if (r == null) {
-                    //print("Couldn't find relationships between " + this.chatHandle + " and " + p.chatHandle);
-                    //print(debugMessage);
-                    //print(potentialFriends);
-                    //print(this);
+                    ////print("Couldn't find relationships between " + this.chatHandle + " and " + p.chatHandle);
+                    ////print(debugMessage);
+                    ////print(potentialFriends);
+                    ////print(this);
                 }
                 if (r.value > bestRelationshipSoFar.value) {
                     bestRelationshipSoFar = r;
@@ -1512,11 +1512,11 @@ class Player extends GameEntity {
     }
 
     void initSpriteCanvas() {
-        //print("Initializing derived stuff.");
+        ////print("Initializing derived stuff.");
         this.spriteCanvasID = "spriteCanvas${this.id}";
         String canvasHTML = "<br/><canvas style='display:none' id='${this.spriteCanvasID}' width='400' height='300'></canvas>";
         appendHtml(querySelector("#playerSprites"), canvasHTML);
-        //print("append? -> $canvasHTML");
+        ////print("append? -> $canvasHTML");
     }
 
     void renderSelf() {
@@ -1642,21 +1642,21 @@ class Player extends GameEntity {
     }
 
     void readInExtensionsString(ByteReader reader) {
-        print("reading in extension string");
+        //print("reading in extension string");
         //just inverse of encoding process.
         int numFeatures = reader.readExpGolomb(); //assume features are in set order. and that if a given feature is variable it is ALWAYS variable.
-        print("num features is: $numFeatures");
+        //print("num features is: $numFeatures");
         if (numFeatures > 0) {
             int cid = reader.readByte();
-            print("Class Name ID : $cid");
+            //print("Class Name ID : $cid");
             this.class_name = intToClassName(cid);
         }
         if (numFeatures > 1) {
             int i = reader.readByte();
-            print("extension byte for aspect is  $i");
+            //print("extension byte for aspect is  $i");
 
             this.aspect = Aspects.get(i);
-            print("after extension byte, aspect is  $aspect");
+            //print("after extension byte, aspect is  $aspect");
         }
 
 
@@ -1679,7 +1679,7 @@ class Player extends GameEntity {
         uint8View[8] = json["leftHorn"];
         uint8View[9] = json["rightHorn"];
         uint8View[10] = json["hair"];
-        //print(uint8View);
+        ////print(uint8View);
         for (num i = 0; i < uint8View.length; i++) {
             ret.writeCharCode(uint8View[i]); // += String.fromCharCode(uint8View[i]);
         }
@@ -1701,9 +1701,9 @@ class Player extends GameEntity {
     }
 
     void copyFromPlayer(Player replayPlayer) {
-        //print("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber);
-        //print("Overriding player from a replay Player. ");
-        //print(replayPlayer);
+        ////print("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber);
+        ////print("Overriding player from a replay Player. ");
+        ////print(replayPlayer);
         this.aspect = replayPlayer.aspect;
         this.class_name = replayPlayer.class_name;
         this.hair = replayPlayer.hair;
@@ -1733,7 +1733,7 @@ class Player extends GameEntity {
         this.robot = replayPlayer.robot;
         this.fraymotifs.clear(); //whoever you were before, you don't have those psionics anymore
         this.applyPossiblePsionics(); //now you have new psionics
-        //print("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
+        ////print("after applying psionics I have this many fraymotifs: " + this.fraymotifs.length);
         this.quirk.favoriteNumber = replayPlayer.quirk.favoriteNumber; //will get overridden, has to be after initialization, too, but if i don't do it here, char creartor will look wrong.
         this.makeGuardian();
         this.guardian.applyPossiblePsionics(); //now you have new psionics
@@ -1779,7 +1779,7 @@ class Player extends GameEntity {
          if(aspect == Aspects.SPACE){//this shit is so illegal
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
              if(helper != this){ //a knight of space can't help themselves.
-                 //print("Debugging helpers: Found $helper in session ${session.session_id}");
+                 ////print("Debugging helpers: Found $helper in session ${session.session_id}");
                  return helper;
              }else{
 
@@ -1787,7 +1787,7 @@ class Player extends GameEntity {
          }
         //time players often partner up with themselves
         if(aspect == Aspects.TIME && rand.nextDouble() > .2){
-            //print("Debugging helpers: Found $helper in session ${session.session_id}");
+            ////print("Debugging helpers: Found $helper in session ${session.session_id}");
             return this;
         }
 
@@ -1804,7 +1804,7 @@ class Player extends GameEntity {
             }
         }
         //could be null, not 100% chance of helper
-        //print("Debugging helpers: Found helper $helper for player $this in session ${session.session_id}");
+        ////print("Debugging helpers: Found helper $helper for player $this in session ${session.session_id}");
         return helper;
     }
 
@@ -1931,10 +1931,10 @@ class Player extends GameEntity {
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
             this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
-            //print("disastor");
+            ////print("disastor");
         } else if (luck > 25) {
             this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
-            //print("fortune");
+            ////print("fortune");
         }
         if (luck > 5) {
             this.godDestiny = true;

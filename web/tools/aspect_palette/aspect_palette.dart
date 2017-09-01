@@ -16,14 +16,14 @@ void main() {
     for (int i=0; i<100; i++) {
         Colour test = new Colour.double(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
 
-        print(test);
+        //print(test);
 
-        print("${test.lab_lightness}, ${test.lab_a}, ${test.lab_b}");
+        //print("${test.lab_lightness}, ${test.lab_a}, ${test.lab_b}");
 
         Colour test2 = new Colour.lab(test.lab_lightness, test.lab_a, test.lab_b);
 
-        print(test2);
-        print("-----");
+        //print(test2);
+        //print("-----");
     }*/
 
     /*for (int i=0; i<100; i++) {
@@ -32,14 +32,14 @@ void main() {
 
     //checkLABRanges();
 
-    print("event stuff:");
-    print(querySelector("#testpicker"));
+    //print("event stuff:");
+    //print(querySelector("#testpicker"));
     new Timer(new Duration(seconds: 1),()
     {
-        print("event stuff:");
-        print(querySelector("#testpicker")); //.onChange);
+        //print("event stuff:");
+        //print(querySelector("#testpicker")); //.onChange);
 
-        ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => print((e.target as InputElement).value)));
+        ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });
 
 
@@ -72,7 +72,7 @@ void checkLABRanges() {
         }
     }
 
-    print("L: $min_l,$max_l, a: $min_a,$max_a, b: $min_b,$max_b");
+    //print("L: $min_l,$max_l, a: $min_a,$max_a, b: $min_b,$max_b");
 }
 
 CanvasElement makeGradientSwatch() {

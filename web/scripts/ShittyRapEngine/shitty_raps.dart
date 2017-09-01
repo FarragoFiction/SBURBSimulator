@@ -151,19 +151,19 @@ class RapTemplate {
 				firstWord = this.findWordBasedOnPart1AndInterest(player.session.rand, interest);
 			  firstWord = tryToUseRhyme(firstWord, player);
 			}
-			//print("first word final is: " + firstWord);
+			////print("first word final is: " + firstWord);
 			if(firstWord != null){
 			  secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(player.session.rand, interest, firstWord);
-				//print("second word is: " + secondWord);
+				////print("second word is: " + secondWord);
 			  secondWord = tryToUseRhyme(secondWord, player);
 				if(secondWord == null){
 					//second shot for first word
 					secondWord = this.findWordBasedOnPart2AndInterestAndPart1Word(player.session.rand, interest, firstWord);
-					//print("second word2 is: " + secondWord);
+					////print("second word2 is: " + secondWord);
 				  secondWord = tryToUseRhyme(secondWord, player);
 				}
 		}
-			//print("second word final is: " + secondWord);
+			////print("second word final is: " + secondWord);
 			String str = "";
 			str += rapInterjection(player.session.rand) + ", " + this.part1;
 			if(firstWord != null){
@@ -296,7 +296,7 @@ class RapTemplate {
 			return null;
 		}
 		removeFromArray(word, results); //don't even try to rhyme with yourself.
-		//print("trying to rhyme: " + word + " found: " + results);
+		////print("trying to rhyme: " + word + " found: " + results);
 		if(results != null && results.length > 0){
 			return rand.pickFrom(results);
 		}

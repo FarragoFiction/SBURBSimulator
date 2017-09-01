@@ -30,7 +30,7 @@ abstract class Stats {
         HEALTH = new XPScaledStat("Health", 0.05, coefficient: 10.0);
         MOBILITY = new Stat("Mobility");
 
-        RELATIONSHIPS = new Stat("Relationships"); // should be a special one to deal with players
+        RELATIONSHIPS = new RelationshipStat("Relationships"); // should be a special one to deal with players
         SANITY = new Stat("Sanity");
         FREE_WILL = new Stat("Free Will");
 
@@ -71,6 +71,19 @@ class XPScaledStat extends Stat {
     double derived(StatHolder stats, double base) {
         double xp = stats[Stats.EXPERIENCE];
         return super.derived(stats, base) * (1.0 + expCoefficient * xp);
+    }
+}
+
+class RelationshipStat extends Stat {
+
+    RelationshipStat(String name, {double coefficient, bool pickable, bool summarise}):super(name, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+
+    @override
+    double derived(StatHolder stats, double base) {
+        if (stats is PlayerStatHolder) {
+            return stats.player.relationships.map((Relationship r) => r.value).reduce((num r1, num r2) => r1+r2) * coefficient;
+        }
+        return super.derived(stats, base);
     }
 }
 

@@ -12,7 +12,7 @@ class PlanToExileJack extends Scene {
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
-		//print("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat("currentHP") + " jack crowned: " + this.session.jack.crowned );
+		//session.logger.info("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat("currentHP") + " jack crowned: " + this.session.jack.crowned );
 		return this.planner != null && 	this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead  && 	this.session.jack.crowned == null && !this.session.jack.exiled;
 	}
 	void findSympatheticPlayer(){

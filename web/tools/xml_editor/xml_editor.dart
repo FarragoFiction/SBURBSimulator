@@ -150,7 +150,7 @@ class XmlProject {
     }
 
     void destroy(){
-        print("boom");
+        //print("boom");
         if (this._element != null) {
             this._element.remove();
         }

@@ -39,7 +39,7 @@ class GraphRenderer {
 		}
 	void render(){
 			if(this.minY == this.maxY){
-				print("calculateing min and max y for: " + this.label);
+				//print("calculateing min and max y for: " + this.label);
 				this.calculateMinY();
 				this.calculateMaxY();
 			}
@@ -57,7 +57,7 @@ class GraphRenderer {
 			}
 		}
 	void drawXAxis(){
-			//print("drawing x axis for: " + this.label + " this.minY is: " + this.minY);
+			////print("drawing x axis for: " + this.label + " this.minY is: " + this.minY);
 			num min = -1;
 			var max =1;
 			String headerthingy = 'http:;//www.w3.org/2000/svg';
@@ -66,7 +66,7 @@ class GraphRenderer {
 			var x2 = bobsMagic(0,this.graphs[0].points.length, this.graphs[0].points.length, 0, this.width);
 			var y1 = bobsMagic(this.minY,this.maxY, 0,this.height, 0)  ;//y is inverted. bluh.;
 			var y2 = bobsMagic(this.minY,this.maxY, 0,this.height, 0);
-			//print("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1);
+			////print("X1 is made of: num points: " + this.graphs[0].points.length + " and width: " + this.width + ", it's: " + x1);
 			aLine.setAttribute('x1',x1);
 			aLine.setAttribute('y1',  y1);
 			aLine.setAttribute('x2', x2);
@@ -166,7 +166,7 @@ class Graph {
 		var first_point = this.points[0];
 		for(num i = 1; i<this.points.length; i++ ){
 			var second_point = this.points[i];
-			//print("first point: " + first_point + " second point: " + second_point);
+			////print("first point: " + first_point + " second point: " + second_point);
 			var x1 = bobsMagic(0,this.points.length, i-1, 0,this.width);
 			var x2 = bobsMagic(0,this.points.length, i, 0,this.width);
 			var y1 = bobsMagic(this.minY,this.maxY, first_point, this.height, 0);
@@ -244,11 +244,11 @@ dynamic getAllGraphsForPlayersNamed(players, label){
 //I am just unbelivably shitty at coordinates. thanks, bob!
 dynamic bobsMagic(fromMin, fromMax, input, toMin, toMax){
 	/*
-	print("From Min: " + fromMin);
-	print("From Max: " + fromMax);
-	print("input: " + input);
-	print("toMin: " + toMin);
-	print("To Max: " + toMax);
+	//print("From Min: " + fromMin);
+	//print("From Max: " + fromMax);
+	//print("input: " + input);
+	//print("toMin: " + toMin);
+	//print("To Max: " + toMax);
 	*/
 	var tmp = (input - fromMin)/(fromMax - fromMin);
 	return (toMax - toMin) * tmp + toMin;

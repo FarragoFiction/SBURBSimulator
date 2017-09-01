@@ -23,7 +23,7 @@ class MurderPlayers extends Scene {
 		return this.murderers.length > 0;
 	}
 	ImportantEvent addImportantEvent(Player player){
-		//print( "A player is dead. Dream Self: " + player.isDreamSelf + " God Destiny: " + player.godDestiny + " GodTier: " + player.godTier);
+		//session.logger.info( "A player is dead. Dream Self: " + player.isDreamSelf + " God Destiny: " + player.godDestiny + " GodTier: " + player.godTier);
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp = findStrongestPlayer(this.session.players);
@@ -147,7 +147,7 @@ class MurderPlayers extends Scene {
 			Player m = this.murderers[i];
 			Player worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
 			if(worstEnemy != null) ret += m.interactionEffect(worstEnemy);
-			if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") print("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
+			if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") session.logger.info("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
 			removeFromArray(worstEnemy, living);
 			var ausp = rand.pickFrom(living);
@@ -247,11 +247,11 @@ class MurderPlayers extends Scene {
 					m.unmakeMurderMode();
 				}else{
 					if(!m.dead && worstEnemy != null && !this.canCatch(m,worstEnemy)){
-						//print("murder thwarted by mobility: " + this.session.session_id);
+						//session.logger.info("murder thwarted by mobility: " + this.session.session_id);
 						if(worstEnemy.sprite.name == "sprite"){
 							ret += " The " + m.htmlTitle() + " is too enraged to think things through.  The " + worstEnemy.htmlTitle() + " that they want to kill isn't even in the Medium, yet, dunkass!";
 						}else if(worstEnemy.aspect == Aspects.VOID){
-							//print("void avoiding murderer: " + this.session.session_id.toString());
+							//session.logger.info("void avoiding murderer: " + this.session.session_id.toString());
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! It's like they're fucking INVISIBLE or something. It's hard to stay enraged while wandering around, lost.";
 						}else if (worstEnemy.aspect == Aspects.SPACE){
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! They probably aren't even running away, but somehow the " + m.htmlTitle() + " keeps getting turned around. It's hard to stay enraged while wandering around, lost.";
@@ -274,7 +274,7 @@ class MurderPlayers extends Scene {
 		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
 		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
 		if(worstEnemy.aspect == Aspects.SPACE && worstEnemy.getStat("power") > 50){
-			print("high level space player avoiding a murderer" + this.session.session_id.toString());
+			session.logger.info("high level space player avoiding a murderer" + this.session.session_id.toString());
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 		}
 		return true;

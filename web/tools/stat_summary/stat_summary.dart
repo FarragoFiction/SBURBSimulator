@@ -3,7 +3,7 @@ import 'dart:html';
 import '../../scripts/SBURBSim.dart';
 
 void main() {
-    print("test");
+    //print("test");
 
     Aspects.init();
     SBURBClassManager.init();

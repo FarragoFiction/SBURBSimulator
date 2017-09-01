@@ -12,7 +12,7 @@ class GiveJackBullshitWeapon extends Scene {
 		this.playerList = playerList;
 		var partyRoll = partyRollForLuck(this.session.players);
 		var jackRoll = this.session.jack.rollForLuck();
-		//if(partyRoll< jackRoll) print("We rolled: " + partyRoll + " jack rolled: " + jackRoll);
+		//if(partyRoll< jackRoll) session.logger.info("We rolled: " + partyRoll + " jack rolled: " + jackRoll);
 		return (!this.session.queen.exiled && !this.session.jack.exiled && this.session.jack.crowned == null) && (this.session.jack.getStat("currentHP") > 0 && partyRoll < jackRoll );
 	}
 	dynamic content(){

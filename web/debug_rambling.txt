@@ -2395,7 +2395,7 @@ She prints:
  The one that SHOULD be most common, that I think I am not seeing is reckoningTick
 
   if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
-           //print("victory or utter defeat");
+           ////print("victory or utter defeat");
            summarizeSession(curSessionGlobalVar);
 
 
@@ -2708,8 +2708,8 @@ Huh, okay, maybe not so hard, logs say that things are actually being read from 
     //this[arr] = fileContents.split("\n");
 	  //TODO: parse machine broken -PL
 
-    //print(arr);
-    //print(this[arr]);
+    ////print(arr);
+    ////print(this[arr]);
   }
 
 
@@ -2927,7 +2927,7 @@ One argument against taht is i went out of my way to use callbacks so it WOULDN'
 Hrrrm....but.....actually....
 
 if(sections.isEmpty && !loadedOnce) {
-            print("can't find any sections for $fileName, gonna load");
+            //print("can't find any sections for $fileName, gonna load");
             loadWithCallBack(_getRandomSectionInternal);
             loadedOnce = true;
 
@@ -2937,7 +2937,7 @@ but doens't matter if control is returned to calling method immediatly.
 Let's look at what is calling this.
 
  FAQSection s = f.getRandomSection(rand);
-        print("chose section $s");
+        //print("chose section $s");
         if(s != null) sections.add(s);
         if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
 
@@ -2945,7 +2945,7 @@ Yup, look at this dumb shit. I'm doing shit after a potentially async call.  Gon
 
   FAQSection s = f.getRandomSectionAsync(rand);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
-        //print("chose section $s");
+        ////print("chose section $s");
         //if(s != null) sections.add(s);
         //if(sections.length < numSegmentsPerFAQ && numTries < 10) findRandomFAQSection();
 

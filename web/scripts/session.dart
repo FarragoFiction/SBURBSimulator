@@ -9,6 +9,7 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+    Logger logger = null;
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
@@ -108,7 +109,9 @@ class Session {
     List<Aspect> required_aspects;
 
     Session(int this.session_id) {
-        //print("Made a new session with an id of $session_id");
+        ////print("Made a new session with an id of $session_id");
+        logger = Logger.get("Session: $session_id", false);
+
         this.rand = new Random(session_id);
        resetAvailableClasspects();
     }
@@ -144,7 +147,7 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
-        //print("processing scene");
+        ////print("processing scene");
         //querySelector("#story").append("processing scene");
         setAvailablePlayers(playersInSession);
         for (num i = 0; i < this.available_scenes.length; i++) {
@@ -220,13 +223,13 @@ class Session {
 
     ImportantEvent addImportantEvent(ImportantEvent important_event) {
         ImportantEvent alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
-        //	print("alternate i got from yellowYardController is: " + alternate);
+        //	//print("alternate i got from yellowYardController is: " + alternate);
         if (alternate != null) {
-            //	print("returning alternate");
+            //	//print("returning alternate");
             if (doEventsMatch(important_event, this.afterLife.timeLineSplitsWhen, false)) this.afterLife.allowTransTimeLineInteraction();
             return alternate; //scene will use the alternate to go a different way. important event no longer happens.
         } else {
-            //print(" pushing important event and returning null");
+            ////print(" pushing important event and returning null");
             this.importantEvents.add(important_event);
             return null;
         }
@@ -293,17 +296,17 @@ class Session {
         } else if(sickFrogCheck(spacePlayer)) {
             ret = "Sick Frog";
         }else {
-            print("AB: What the HELL kind of frog is this in session ${session_id}");
+             logger.info("AB:  What the HELL kind of frog is this in session ${session_id}");
             ret = "??? Frog";
         }
-        print("AB: Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+         logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
         return ret;
     }
 
     void addEventToUndoAndReset(ImportantEvent e) {
         //when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
         this.afterLife.complyWithLifeTimeShenanigans(e);
-        //print("undoing an event.");
+        ////print("undoing an event.");
         if (this.scratched) {
             this.addEventToUndoAndResetScratch(e); //works different
             return;
@@ -329,8 +332,8 @@ class Session {
         //after alll, i could be from a combo session.
         //but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
         curSessionGlobalVar.aliensClonedOnArrival = that.aliensClonedOnArrival;
-        //print("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length);
-        //print(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
+        ////print("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length);
+        ////print(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
         List<Player> aliens = <Player>[]; //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
         for (num i = 0; i < that.aliensClonedOnArrival.length; i++) {
             aliens.add(that.aliensClonedOnArrival[i]);
@@ -342,7 +345,7 @@ class Session {
     }
 
     void addEventToUndoAndResetScratch(ImportantEvent e) {
-        print('yellow yard from scratched session');
+        //print('yellow yard from scratched session');
         if (e != null) { //will be null if undoing an undo
             this.yellowYardController.eventsToUndo.add(e);
         }
@@ -374,17 +377,17 @@ class Session {
             ..randomizeEntryOrder()
             ..makeGuardians();
         if (living.length + newSession.players.length > 12) {
-            //print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
+            ////print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
             return null; //their child session is not able to support them
         }
-        //	print("about to add: " + living.length + " aliens to new session.");
-        //print(getPlayersTitles(living));
+        //	//print("about to add: " + living.length + " aliens to new session.");
+        ////print(getPlayersTitles(living));
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
         this.hadCombinedSession = true;
         newSession.parentSession = this;
         Scene.createScenesForSession(newSession);
-        //print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
+        ////print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
         return newSession;
     }
 
@@ -396,7 +399,7 @@ class Session {
                 return p; //yeah, technically there COULD be two players with the same claspect in a combo session, but i have ceased caring.
             }
         }
-        print("Error finding session's: ${player.title()}");
+        //print("Error finding session's: ${player.title()}");
         return null;
     }
 
@@ -404,7 +407,7 @@ class Session {
         resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
-        //print("reinit with seed: "  + Math.seed);
+        ////print("reinit with seed: "  + Math.seed);
         this.timeTillReckoning = this.rand.nextIntRange(10, 30); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         this.available_scenes = <Scene>[]; //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
@@ -478,7 +481,7 @@ class Session {
     }
 
     void makeGuardians() {
-        //print("Making guardians");
+        ////print("Making guardians");
         resetAvailableClasspects();
         List<Player> guardians = <Player>[];
         for (num i = 0; i < this.players.length; i++) {
@@ -504,7 +507,7 @@ class Session {
         //curSessionGlobalVar.players = curSessionGlobalVar.guardians;
         //curSessionGlobalVar.guardians = tmp;
         List<Player> nativePlayers = findPlayersFromSessionWithId(this.players, this.session_id);
-        //print(nativePlayers);
+        ////print(nativePlayers);
         List<Player> guardians = getGuardiansForPlayers(nativePlayers);
         this.players = guardians;
     }
@@ -594,7 +597,7 @@ class Session {
     }
 
     List<Session> getLineage() {
-        print("Getting lineage for session: $session_id");
+        //print("Getting lineage for session: $session_id");
         if (this.parentSession != null) {
             List<Session> tmp = this.parentSession.getLineage();
             tmp.add(this);
@@ -611,7 +614,7 @@ class Session {
 
 //save a copy of the alien (in case of yellow yard)
 void addAliensToSession(Session newSession, List<Player> aliens) {
-    //print("in method, adding aliens to session");
+    ////print("in method, adding aliens to session");
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
         survivor.land = null;
@@ -630,12 +633,12 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
         Player clone = newSession.aliensClonedOnArrival[i];
         Relationship.transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
     }
-    //print("generated relationships between clones");
+    ////print("generated relationships between clones");
     //generate relationships AFTER saving a backup of hte player.
     //want clones to only know about other clones. not players.
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
-        //print(survivor.title() + " generating relationship with new players ")
+        ////print(survivor.title() + " generating relationship with new players ")
         survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
     }
 
