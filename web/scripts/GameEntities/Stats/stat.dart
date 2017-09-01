@@ -24,13 +24,13 @@ abstract class Stats {
         if (_initialised) {return;}
         _initialised = true;
 
-        EXPERIENCE = new Stat("Experience", pickable:false);
+        EXPERIENCE = new Stat("Experience", pickable: false);
 
         POWER = new XPScaledStat("Power", 0.05, coefficient: 10.0);
         HEALTH = new XPScaledStat("Health", 0.05, coefficient: 10.0);
         MOBILITY = new Stat("Mobility");
 
-        RELATIONSHIPS = new RelationshipStat("Relationships"); // should be a special one to deal with players
+        RELATIONSHIPS = new RelationshipStat("Relationships", pickable: false); // should be a special one to deal with players
         SANITY = new Stat("Sanity");
         FREE_WILL = new Stat("Free Will");
 
@@ -38,7 +38,7 @@ abstract class Stats {
         MIN_LUCK = new Stat("Minimum Luck");
 
         ALCHEMY = new Stat("Alchemy");
-        SBURB_LORE = new Stat("SBURB Lore");
+        SBURB_LORE = new Stat("SBURB Lore", pickable: false);
     }
     static bool _initialised;
 
