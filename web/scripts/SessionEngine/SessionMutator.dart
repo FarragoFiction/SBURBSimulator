@@ -283,7 +283,7 @@ class SessionMutator {
     spawnDemocraticArmy(s);
     ret += "The democratic army rallies around this beacon of hope. ";
     ret += "The other players have definitely always been cooperative and sane.  And alive. Very alive. It would be ridiculous to imagine anyone dying. ";
-    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop"];
+    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop", "Chump", "Cad","Scam"];
     bool modEnemies = false;
     bool modCrushes = false;
     for(Player p in s.players) {
@@ -297,14 +297,18 @@ class SessionMutator {
       if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
         //yes, this means any players who share your enemies class or aspect get renamed too.
         //but wastes are ALL about the unintended consequences, right?
+        s.logger.info("AB: They are renaming ${r.target.aspect.name} and ${r.target.class_name.name}");
         r.target.aspect.name == s.rand.pickFrom(insults);
         r.target.class_name.name == s.rand.pickFrom(insults);
+        s.logger.info("AB: Now they are ${r.target.aspect.name} and ${r.target.class_name.name}");
+
         modEnemies = true;
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
         r2.value = 9001;  //you love me back. not creepy at all
         r2.type();  //they reevaluate what they think about the hope player.
         modCrushes = true;
+        s.logger.info("AB: They are making their crush love them ${r.target}");
       }
     }
     if(modCrushes) ret += "The players they like like them back. The Observer doesn't find this creepy at all.";
