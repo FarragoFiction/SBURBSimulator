@@ -258,7 +258,7 @@ class SessionMutator {
     hopeField = true;
     List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
     String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
-    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>$scream</div>";
+    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. Lines of SBURBs code light up around them. <div class = 'jake'>$scream</div>";
     ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
 
     hopePlayer.setStat("power",9001); //i know i can save everyone.
