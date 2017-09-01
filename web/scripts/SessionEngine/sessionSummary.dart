@@ -260,6 +260,7 @@ class SessionSummary {
         summary.setBoolStat("heroicDeath", session.stats.heroicDeath);
         summary.setBoolStat("justDeath", session.stats.justDeath);
         summary.setBoolStat("crashedFromSessionBug", session.stats.crashedFromSessionBug);
+        summary.setBoolStat("cataclysmCrash", session.stats.cataclysmCrash);
         summary.setBoolStat("crashedFromPlayerActions", session.stats.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.stats.hasFreeWillEvents);
         summary.setBoolStat("hasTier1GnosisEvents", session.stats.hasTier1Events);
@@ -520,6 +521,7 @@ class MultiSessionSummary {
         setStat("totalDeadPlayers", 0);
         setStat("won", 0);
         setStat("crashedFromPlayerActions", 0);
+        setStat("cataclysmCrash", 0);
         setStat("timesAllDied", 0);
         setStat("yellowYard", 0);
         setStat("scratchAvailable", 0);
@@ -784,7 +786,7 @@ class MultiSessionSummary {
 
     bool isEndingProperty(String propertyName) {
         if (propertyName == "yellowYard" || propertyName == "timesAllLived" || propertyName == "timesAllDied" || propertyName == "scratchAvailable" || propertyName == "won") return true;
-        if (propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
+        if (propertyName == "cataclysmCrash" ||propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
         if (propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
         if (propertyName == "numberPurpleFrog" || propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
         if (propertyName == "blackKingDead"|| propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
@@ -833,6 +835,8 @@ class MultiSessionSummary {
             } else if (propertyName == "totalDeadPlayers") {
                 html.write("<Br><b>totalDeadPlayers: </b> ${this.num_stats['totalDeadPlayers']} (${this.num_stats['survivalRate']}% survival rate)"); //don't want to EVER ignore this.
             } else if (propertyName == "crashedFromSessionBug") {
+                html.write(this.generateHTMLForProperty(propertyName)); //don't ignore bugs, either.;
+            }else if (propertyName == "cataclysmCrash") {
                 html.write(this.generateHTMLForProperty(propertyName)); //don't ignore bugs, either.;
             } else if (this.isRomanceProperty(propertyName)) {
                 romanceProperties.add(propertyName);
@@ -976,6 +980,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("luckyGodTier")) mss.incNumStat("luckyGodTier");
             if (ss.getBoolStat("blackKingDead")) mss.incNumStat("blackKingDead");
             if (ss.getBoolStat("crashedFromSessionBug")) mss.incNumStat("crashedFromSessionBug");
+            if (ss.getBoolStat("cataclysmCrash")) mss.incNumStat("cataclysmCrash");
             if (ss.getBoolStat("opossumVictory")) mss.incNumStat("opossumVictory");
             if (ss.getBoolStat("rocksFell")) mss.incNumStat("rocksFell");
             if (ss.getBoolStat("crashedFromPlayerActions")) mss.incNumStat("crashedFromPlayerActions");

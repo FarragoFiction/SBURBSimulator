@@ -43,7 +43,7 @@ class SessionMutator {
     //think this through. want effect of 1 to have some of failure, and effect of 12 to be basically guaranteed
     if(s.rand.nextInt(13) > effectsInPlay) return null;
     s.stats.cataclysmCrash = true;
-    throw("Cataclysm Activated");
+    throw("Cataclysm Activated: Target: Session.");
   }
 
   ///will both be called when the hope field is activated, and in any new sessions
