@@ -239,6 +239,7 @@ class SessionMutator {
     spawnKing(s);
     spawnJack(s);
     spawnDemocraticArmy(s);
+    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck"];
     for(Player p in s.players) {
       p.dead = false; //NOT .makeAlive  this is denying a fact, not resurrecting.
       p.murderMode = false;
@@ -249,8 +250,8 @@ class SessionMutator {
       if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
         //yes, this means any players who share your enemies class or aspect get renamed too.
         //but wastes are ALL about the unintended consequences, right?
-        r.target.aspect.name == "Dicks";
-        r.target.class_name == "Jerk";
+        r.target.aspect.name == s.rand.pickFrom(insults);
+        r.target.class_name == s.rand.pickFrom(insults);
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
         r2.value = 9001;  //you love me back. not creepy at all
