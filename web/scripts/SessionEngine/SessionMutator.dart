@@ -228,6 +228,7 @@ class SessionMutator {
 
   String light(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
     /*TODO
         *EVERything is displayed, not just void.
@@ -283,7 +284,7 @@ class SessionMutator {
     spawnDemocraticArmy(s);
     ret += "The democratic army rallies around this beacon of hope. ";
     ret += "The other players have definitely always been cooperative and sane.  And alive. Very alive. It would be ridiculous to imagine anyone dying. ";
-    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop", "Chump", "Cad","Scam"];
+    List<String> insults = <String>["Boy", "Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop", "Chump", "Cad","Scam"];
     bool modEnemies = false;
     bool modCrushes = false;
     for(Player p in s.players) {
@@ -305,7 +306,7 @@ class SessionMutator {
         modEnemies = true;
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
-        r.value = 3333; //testing something
+        //r.value = 3333; //testing something
         r2.value = 9001;  //you love me back. not creepy at all
         r2.type();  //they reevaluate what they think about the hope player.
         modCrushes = true;

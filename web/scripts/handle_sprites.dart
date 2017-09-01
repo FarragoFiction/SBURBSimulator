@@ -884,7 +884,7 @@ abstract class Drawing {
 
     static void drawGodSymbolBG(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "${player.aspect}Big.png";
+        String imageString = player.aspect.bigSymbolImgLocation;
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);
@@ -1917,7 +1917,7 @@ abstract class Drawing {
 
     static void aspectSymbol(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "${player.aspect}.png";
+        String imageString = player.aspect.symbolImgLocation;
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);

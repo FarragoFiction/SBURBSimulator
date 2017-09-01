@@ -100,6 +100,8 @@ class Aspect {
     /// Used for OCData save/load.
     final int id;
     FAQFile faqFile;
+    String symbolImgLocation = "";
+    String bigSymbolImgLocation = "";
 
     /// Used for string representations of the aspect.
     String name;
@@ -207,6 +209,9 @@ class Aspect {
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
+        //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
+        this.symbolImgLocation = "$name.png";
+        this.symbolImgLocation = "${name}Big.png";
         Aspects.register(this);
     }
 
