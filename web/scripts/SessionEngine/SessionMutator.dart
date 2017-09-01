@@ -99,7 +99,7 @@ class SessionMutator {
     f.baseValue = 9001;
     session.npcHandler.democraticArmy.fraymotifs.add(f);
     session.npcHandler.democraticArmy.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 9001, "sanity": 9001, "hp": 5, "freeWill": 9001, "power": 9001});
-    if(!hopeField) return false;
+    return true;
   }
 
   //TODO have variables that session can query to see if it needs to have alt behavior
@@ -264,10 +264,12 @@ class SessionMutator {
     hopePlayer.setStat("power",9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
     s.sessionHealth = 9001;
+    s.stats.ectoBiologyStarted = true; //of COURSE we're not paradox doomed. You'd be crazy to say otherwise.
     s.minimumGristPerPlayer = 1;
     s.expectedGristContributionPerPlayer = 10;
     s.minFrogLevel =1;
     s.goodFrogLevel = 2;
+    s.reckoningEndsAt = -100; //plenty of time to handle the reckoning
     ret += "They are dramatically strengthened, and the session is stable and easily winnable. ";
     s.hardStrength = 0; //this means the players 'need help' from the Mayor automatically.
     spawnQueen(s);
