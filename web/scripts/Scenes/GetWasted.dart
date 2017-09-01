@@ -503,6 +503,7 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        //hell yes, tier 4, bitches.
         //TODO have hope LITERALLY replace the black queen with three salamanders in a robe. like in the queen text with the enquiring carapacian.
         //like, change her name to "3 salamanders in a Robe", replace her fraymotifs with "Glub glub glub" and shit.  Hope players believe everything they read after all, right?
         //TODO each tier4 event should do damage to session health.  grim dark crash should account for high gnosis levels, too

@@ -1,9 +1,23 @@
-
-import "session.dart";
+import "SBURBSim.dart";
 //this should handle the most severe of the Gnosis Tiers: The Waste Tier
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
+
+  static SessionMutator _instance;
+
+  static getInstance() {
+    if(_instance == null) _instance = new SessionMutator();
+    return _instance;
+  }
+
+  SessionMutator() {
+    _instance = this;
+  }
+
+  GameEntity spawnBlackQueen() {
+
+  }
 
   //TODO have variables that session can query to see if it needs to have alt behavior
 
@@ -141,6 +155,7 @@ class SessionMutator {
         * rings are owned by hope player
         * royalty only prototyped weak shit
         * nobody is murder mode, etc
+        * black queen's name gets replaced with "3 salamanders in a trench coat". she is nerfed.
         *
      */
   }
