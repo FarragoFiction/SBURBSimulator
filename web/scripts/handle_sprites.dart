@@ -857,23 +857,28 @@ abstract class Drawing {
             return;
         }
         int leftMargin = 150;
-        CanvasElement levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
-        drawBGRadialWithWidth(canvas, leftMargin, 650, 650, ReferenceColours.BLACK, player.aspect.palette.shirt_light); //650 is iold
+        CanvasElement codeBufer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        drawWhatever(codeBufer, "cataclysm.png");
+        swapColors(codeBufer, ReferenceColours.BLACK, player.aspect.palette.shirt_light);
 
 
-        CanvasElement symbolBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawGodSymbolBG(symbolBuffer, player);
+        CanvasElement colorBufferBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        //intent is code shows up behind them, in their shirt + aspect colors.
+        drawSolidBG(colorBufferBuffer,  player.aspect.palette.aspect_light); //650 is iold
+        //cataclysm
 
-        CanvasElement godBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
-        CanvasRenderingContext2D ctx = godBuffer.getContext('2d');
-
+        CanvasElement rainbowSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+        drawSprite(rainbowSpriteBuffer, player);
+        rainbowSwap(rainbowSpriteBuffer);
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
-        drawSprite(pSpriteBuffer, player);
-        rainbowSwap(symbolBuffer);
-        copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer, leftMargin + 165, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, leftMargin + 100, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 0);
-        copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer, leftMargin + -200, 290); //265 is perfectly lined on rainbow //300 is a little too far down.
+        drawSprite(pSpriteBuffer,player);
+
+        copyTmpCanvasToRealCanvasAtPos(canvas, colorBufferBuffer, 0, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, codeBufer,  0, 0); //265 is perfectly lined on rainbow //300 is a little too far down.
+        copyTmpCanvasToRealCanvasAtPos(canvas, rainbowSpriteBuffer, leftMargin + 90, -10);
+        copyTmpCanvasToRealCanvasAtPos(canvas, rainbowSpriteBuffer, leftMargin + 110, 10);
+        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 10);
+
     }
 
 

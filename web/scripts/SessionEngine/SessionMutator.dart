@@ -41,7 +41,7 @@ class SessionMutator {
   //more waste tier effects in play, the more likely there will be a Cataclysm that makes everything unwinnable
   void checkForCrash(Session s) {
     //think this through. want effect of 1 to have some of failure, and effect of 12 to be basically guaranteed
-    if(s.rand.nextInt(13) > effectsInPlay) return null;
+    if(s.rand.nextInt(24) > effectsInPlay) return null;
     s.stats.cataclysmCrash = true;
     throw("Cataclysm Activated: Target: Session.");
   }
@@ -258,7 +258,7 @@ class SessionMutator {
     hopeField = true;
     List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
     String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
-    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>$scream}</div>";
+    String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. <div class = 'jake'>$scream</div>";
     ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
 
     hopePlayer.setStat("power",9001); //i know i can save everyone.

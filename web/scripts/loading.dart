@@ -222,6 +222,7 @@ dynamic loadOther(String skipInit){
 	loadImage("fin2.png",skipInit);  //re load
 	loadImage("echeladder.png",skipInit);
 	loadImage("godtierlevelup.png",skipInit);
+	loadImage("cataclysm.png",skipInit);
 	loadImage("pesterchum.png",skipInit);
 	loadImage("blood_puddle.png",skipInit);  //re load
 	loadImage("scratch_face.png",skipInit); //re load
