@@ -171,7 +171,7 @@ class DoLandQuest extends Scene{
 		if(player.grimDark>0 && helper.aspect == Aspects.VOID){
 			print("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
-		}//todo: tell jr that I dont think this has ever happened, ever.
+		}
 
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		Relationship r1 = player.getRelationshipWith(helper);
@@ -198,15 +198,6 @@ class DoLandQuest extends Scene{
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
 			}else{
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time lecturing the " + player.htmlTitle() + " about the various ways a player can be triggered into going shithive maggots. " ;
-			}
-		}
-
-		if (helper.aspect == Aspects.MIST){
-			helper.increasePower();
-			if(r2.value > 0){
-				ret += " Somehow, the " + player.htmlTitle() + " was actually the " + helper.htmlTitle() + " in disguise. Looks like the REAL " + player.htmlTitle() + " can do quests elsewhere.";
-			}else{
-				ret += " Somehow, the " + player.htmlTitle() + " was actually the " + helper.htmlTitle() + " in disguise. They give the REAL " + player.htmlTitle() + " a condescending smirk afterwards.";
 			}
 		}
 
@@ -310,9 +301,9 @@ class DoLandQuest extends Scene{
 	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
-		if((player.aspect != Aspects.TIME) || (helper.aspect != Aspects.MIST)) removeFromArray(player, this.session.availablePlayers);
+		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
-		if(helper.aspect != Aspects.MIST) player.increasePower();//Mist helpers just straight up do it FOR them. the original player doesn't get a power boost.
+		player.increasePower();
 		player.increaseLandLevel();
 		if(helper != null){
 			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
