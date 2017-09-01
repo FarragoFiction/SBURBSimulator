@@ -852,6 +852,30 @@ abstract class Drawing {
         copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer, leftMargin + -200, 290); //265 is perfectly lined on rainbow //300 is a little too far down.
     }
 
+    static void drawEpicGodShit(CanvasElement canvas, Player player) {
+        if (checkSimMode() == true) {
+            return;
+        }
+        int leftMargin = 150;
+        CanvasElement levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        drawBGRadialWithWidth(canvas, leftMargin, 650, 650, ReferenceColours.BLACK, player.aspect.palette.shirt_light); //650 is iold
+
+
+        CanvasElement symbolBuffer = getBufferCanvas(querySelector("#sprite_template"));
+        drawGodSymbolBG(symbolBuffer, player);
+
+        CanvasElement godBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        CanvasRenderingContext2D ctx = godBuffer.getContext('2d');
+
+        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+        drawSprite(pSpriteBuffer, player);
+
+        copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer, leftMargin + 165, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, leftMargin + 100, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer, leftMargin + -200, 290); //265 is perfectly lined on rainbow //300 is a little too far down.
+    }
+
 
     static void drawGodSymbolBG(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');

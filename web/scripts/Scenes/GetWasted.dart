@@ -452,6 +452,10 @@ class GetWasted extends Scene {
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
     }
 
+    void drawTier4(String canvasID, List<Player> players) {
+        Drawing.drawEpicGodShit(querySelector("#${canvasID}"), players[0]);
+    }
+
 
 
 
@@ -504,9 +508,14 @@ class GetWasted extends Scene {
 
     void tier4(Element div) {
         session.stats.hasTier4Events = true;
-        appendHtml(div, player.aspect.activateCataclysm(session, player));
+        String divID = "tier4${div.id}${player.id}";
+        appendHtml(div, "<Br><Br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        session.mutator.checkForCrash(session);
+        drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
+        drawAll();
+
         //TODO do I want any generic graphic here?
-    
+
         //hell yes, tier 4, bitches.
         //TODO for void have ALL stats set to true, even if contradictory. can't use AB to get a read on the session. Number stats become obvious lies.
     }

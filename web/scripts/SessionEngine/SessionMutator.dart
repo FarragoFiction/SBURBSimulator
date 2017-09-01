@@ -123,8 +123,6 @@ class SessionMutator {
           *  new players are allowed to enter session
 
        */
-    checkForCrash(s);
-
   }
 
   String mind(Session s, Player activatingPlayer) {
@@ -145,8 +143,6 @@ class SessionMutator {
              *  shoosh pap all murderers pre-entry
              *  etc
      */
-    checkForCrash(s);
-
   }
 
   String rage(Session s, Player activatingPlayer) {
@@ -175,7 +171,6 @@ class SessionMutator {
 
         kill PL lands get rerolled/fucked up eventually
      */
-    checkForCrash(s);
 
   }
 
@@ -191,7 +186,6 @@ class SessionMutator {
           *
 
        */
-    checkForCrash(s);
 
   }
 
@@ -206,8 +200,6 @@ class SessionMutator {
           *   "go" button similar to scratch before resetting.
 
        */
-    checkForCrash(s);
-
   }
 
   String heart (Session s, Player activatingPlayer) {
@@ -219,7 +211,6 @@ class SessionMutator {
          * everyones living dream selves are separate players with old claspects
          * more quadrant chat even if no quadrant?
        */
-    checkForCrash(s);
 
   }
 
@@ -232,7 +223,6 @@ class SessionMutator {
         * all quest chains are active (npc shit)
         * *uses true random instead of seed, for freedom from story
        */
-    checkForCrash(s);
 
   }
 
@@ -247,7 +237,6 @@ class SessionMutator {
         * maybe gives everyone almost waste level gnosis...what else?
         * literal spotlight when rendered, all players set to unavailable except light player, light player is always available
      */
-    checkForCrash(s);
 
   }
 
@@ -261,7 +250,6 @@ class SessionMutator {
              *   if no frog and can scratch, combo into scratch
              *   gets WEIRD if you enter a purple frog (extra squiddle boss fight with savior?)
      */
-    checkForCrash(s);
 
   }
 
@@ -316,7 +304,6 @@ class SessionMutator {
     }
     if(modCrushes) ret += "The players they like like them back. The Observer doesn't find this creepy at all.";
     if(modEnemies) ret += "The players they hate are made ridiculous objects of mockery. The Observer doesn't find this hilarious at all.";
-    checkForCrash(s);
     return ret;
 
   }
@@ -332,7 +319,6 @@ class SessionMutator {
           * anybody dead (including enemies) is brought back
           *
      */
-    checkForCrash(s);
 
   }
 
@@ -347,14 +333,12 @@ class SessionMutator {
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
           * doomed time clones aren't doomed
      */
-    checkForCrash(s);
 
   }
 
   //if it's not done yet.
   String abjectFailure(Session s, Player activatingPlayer) {
     effectsInPlay ++;
-    checkForCrash(s);
     return "The ${activatingPlayer.htmlTitle()} appears to be doing something fantastic. The very fabric of SBURB is being undone according to their whims. They are screaming. Dramatic lightning and wind is whipping around everywhere. Oh.  Uh.  Huh.  Was something supposed to happen?  ... Maybe they just suck at this?  Or maybe JR is a lazy piece of shit who didn't code anything for this. I know MY headcanon.";
   }
 
