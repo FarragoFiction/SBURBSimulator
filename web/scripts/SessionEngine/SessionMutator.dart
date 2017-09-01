@@ -41,7 +41,7 @@ class SessionMutator {
   //more waste tier effects in play, the more likely there will be a Cataclysm that makes everything unwinnable
   void checkForCrash(Session s) {
     //think this through. want effect of 1 to have some of failure, and effect of 12 to be basically guaranteed
-    if(s.rand.nextInt(24) > effectsInPlay) return null;
+    if(s.rand.nextInt(32) > effectsInPlay) return null;
     s.stats.cataclysmCrash = true;
     throw("Cataclysm Activated: Target: Session.");
   }
@@ -254,6 +254,7 @@ class SessionMutator {
   }
 
   String hope(Session s, Player hopePlayer) {
+    s.logger.info("AB: Huh. Looks like a Waste of Hope is going at it.");
     effectsInPlay ++;
     hopeField = true;
     List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
