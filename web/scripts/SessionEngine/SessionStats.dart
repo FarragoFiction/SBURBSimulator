@@ -50,4 +50,5 @@ class SessionStats {
     bool hadCombinedSession = false;
     bool yellowYard = false;
     bool crashedFromCustomShit = false;
+    bool cataclysmCrash = false;
 }

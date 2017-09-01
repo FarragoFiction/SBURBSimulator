@@ -38,6 +38,14 @@ class SessionMutator {
     s.timeTillReckoning = this.timeTillReckoning;
   }
 
+  //more waste tier effects in play, the more likely there will be a Cataclysm that makes everything unwinnable
+  void checkForCrash(Session s) {
+    //think this through. want effect of 1 to have some of failure, and effect of 12 to be basically guaranteed
+    if(s.rand.nextInt(13) > effectsInPlay) return null;
+    s.stats.cataclysmCrash = true;
+    throw("Cataclysm Activated");
+  }
+
   ///will both be called when the hope field is activated, and in any new sessions
   bool spawnQueen(Session s) {
       if(!hopeField) return false;
@@ -114,6 +122,8 @@ class SessionMutator {
           *  new players are allowed to enter session
 
        */
+    checkForCrash(s);
+
   }
 
   void mind(Session s) {
@@ -133,6 +143,8 @@ class SessionMutator {
              *  shoosh pap all murderers pre-entry
              *  etc
      */
+    checkForCrash(s);
+
   }
 
   void rage(Session s) {
@@ -142,7 +154,7 @@ class SessionMutator {
         All players are murder mode, all players are god tier, all players hate each other.
         One or more creators or wranglers are spawned in game, and they hate US most of all.
 
-        Session paused for Observer to make a character.  Observer is also hated most.
+        Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
 
         if observer dies.  Players leave session and it just ends.
 
@@ -160,6 +172,8 @@ class SessionMutator {
 
         kill PL lands get rerolled/fucked up eventually
      */
+    checkForCrash(s);
+
   }
 
   //lol, can't just call it void cuz protected word
@@ -173,6 +187,8 @@ class SessionMutator {
           *
 
        */
+    checkForCrash(s);
+
   }
 
   void time(Session s) {
@@ -185,6 +201,8 @@ class SessionMutator {
           *   "go" button similar to scratch before resetting.
 
        */
+    checkForCrash(s);
+
   }
 
   void heart (Session s) {
@@ -195,6 +213,8 @@ class SessionMutator {
          * everyones living dream selves are separate players with old claspects
          * more quadrant chat even if no quadrant?
        */
+    checkForCrash(s);
+
   }
 
   void breath(Session s) {
@@ -205,6 +225,8 @@ class SessionMutator {
         * all quest chains are active (npc shit)
         * *uses true random instead of seed, for freedom from story
        */
+    checkForCrash(s);
+
   }
 
   void light(Session s) {
@@ -217,6 +239,8 @@ class SessionMutator {
         * maybe gives everyone almost waste level gnosis...what else?
         * literal spotlight when rendered, all players set to unavailable except light player, light player is always available
      */
+    checkForCrash(s);
+
   }
 
   void space(Session s) {
@@ -228,18 +252,21 @@ class SessionMutator {
              *   if no frog and can scratch, combo into scratch
              *   gets WEIRD if you enter a purple frog (extra squiddle boss fight with savior?)
      */
+    checkForCrash(s);
+
   }
 
   void hope(Session s, Player hopePlayer) {
     effectsInPlay ++;
     hopeField = true;
+    hopePlayer.setStat("power",9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
     s.hardStrength = 0; //this means the players 'need help' from the Mayor automatically.
     spawnQueen(s);
     spawnKing(s);
     spawnJack(s);
     spawnDemocraticArmy(s);
-    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck"];
+    List<String> insults = <String>["Jerk","Ass","Dick","Douche", "Piss","Fuck", "Butt", "Poop"];
     for(Player p in s.players) {
       p.dead = false; //NOT .makeAlive  this is denying a fact, not resurrecting.
       p.murderMode = false;
@@ -251,7 +278,7 @@ class SessionMutator {
         //yes, this means any players who share your enemies class or aspect get renamed too.
         //but wastes are ALL about the unintended consequences, right?
         r.target.aspect.name == s.rand.pickFrom(insults);
-        r.target.class_name == s.rand.pickFrom(insults);
+        r.target.class_name.name == s.rand.pickFrom(insults);
       }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
         Relationship r2 = p.getRelationshipWith(hopePlayer);
         r2.value = 9001;  //you love me back. not creepy at all
@@ -259,6 +286,9 @@ class SessionMutator {
       }
       s.sessionHealth = 9001;
     }
+    checkForCrash(s);
+
+
   }
 
   void life(Session s) {
@@ -270,6 +300,8 @@ class SessionMutator {
           * anybody dead (including enemies) is brought back
           *
      */
+    checkForCrash(s);
+
   }
 
   void doom(Session s) {
@@ -282,6 +314,8 @@ class SessionMutator {
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
           * doomed time clones aren't doomed
      */
+    checkForCrash(s);
+
   }
 
 

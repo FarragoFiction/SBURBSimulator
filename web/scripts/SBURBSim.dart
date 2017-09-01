@@ -158,7 +158,10 @@ bool printCorruptionMessage(ErrorEvent e) {
     if (curSessionGlobalVar.stats.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
         recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
-    } else if (curSessionGlobalVar.players.isEmpty) {
+    }else if(curSessionGlobalVar.stats.cataclysmCrash) {
+        appendHtml(story, "<BR>ERROR: WASTE TIER CATACLYSM ACTIVATED. SESSION HAS CRASHED.");
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ";
+    }else if (curSessionGlobalVar.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
         recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
     } else if (curSessionGlobalVar.players.length < 2) {
