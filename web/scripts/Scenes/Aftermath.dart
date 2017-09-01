@@ -3,6 +3,7 @@ import "dart:html";
 import "dart:math" as Math;
 import "../SBURBSim.dart";
 
+
 class Aftermath extends Scene {
 
 	Aftermath(Session session): super(session, false);
@@ -239,7 +240,7 @@ class Aftermath extends Scene {
 				if(session.enoughGristForFull()) {
 					end += "The entire party showers the battlefield with hard earned grist. ";
 				}else {
-					print("AB: Not enough grist for full frog in session ${session.session_id}");
+					 session.logger.info("AB:  Not enough grist for full frog in session ${session.session_id}");
 					end += "Huh. There doesn't seem to be much grist to deploy to the battlefied.  ";
 				}
 				if(session.sickFrogCheck(spacePlayer)){
@@ -282,12 +283,12 @@ class Aftermath extends Scene {
 						end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
 						end += " No universe frog, no new universe to live in. Thems the breaks. ";
 					}else if(!session.enoughGristForAny()){
-					    print("AB: Not enough grist for any frog in session ${session.session_id}");
+					     session.logger.info("AB:  Not enough grist for any frog in session ${session.session_id}");
 
 						end += "<br>Unfortunately, the players did not collect enough grist to even BEGIN to nurture the battlefield. They only got ${session.gristPercent()}% of the needed amount. ";
 						end += "Apparently it wasn't enough to focus on beating the game, you had to actually PLAY it, too.";
 					}else {
-						print("AB: Frog glitched out, should exist but doesn't in session ${session.session_id}");
+						 session.logger.info("AB:  Frog glitched out, should exist but doesn't in session ${session.session_id}");
 						end += "<br> Whoa.  Tell JR that this shouldn't happen. There's apparently no Universe Frog, but there IS a frog and also enough grist.";
 					}
 				}

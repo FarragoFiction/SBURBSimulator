@@ -4,6 +4,7 @@ import 'dart:html';
 
 import 'SBURBSim.dart';
 import "includes/tracer.dart";
+export 'includes/logger.dart';
 
 export "Controllers/SimController.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";

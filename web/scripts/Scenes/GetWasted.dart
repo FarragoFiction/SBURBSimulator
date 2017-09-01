@@ -2,6 +2,7 @@ import "dart:html";
 
 import "../SBURBSim.dart";
 //import "../includes/Logger.dart";
+
 import "../navbar.dart";
 
 /*
@@ -23,7 +24,6 @@ import "../navbar.dart";
 typedef DrawingMethod(String canvasID, List<Player> players);
 
 class GetWasted extends Scene {
-    //static Logger logger = Logger.get("GetWasted", false);
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 13; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
@@ -74,7 +74,7 @@ class GetWasted extends Scene {
 
     @override
     void renderContent(Element div) {
-       // logger.verbose("Getting Wasted in session ${session.session_id}");
+        session.logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
         processTier(div);
@@ -110,12 +110,12 @@ class GetWasted extends Scene {
         if(gfaq.author.grimDark > 3)   possibilities.add(grimDarkFAQ);
 
         f = gfaq.rand.pickFrom(possibilities);
-        if(f == murderModeFAQ) print("AB: MurderModeFAQ in session ${session.session_id} ");
-        if(f == tricksterFAQ) print("AB: TricksterFAQ in session ${session.session_id} ");
-        if(f == robotFAQ) print("AB: RobotFAQ in session ${session.session_id} ");
+        if(f == murderModeFAQ)  session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
+        if(f == tricksterFAQ)  session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
+        if(f == robotFAQ)  session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
         if(f == grimDarkFAQ) {
             gfaq.grimDark = true;
-            print("AB: GrimDarkFAQ in session ${session.session_id} ");
+             session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
         }
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
@@ -240,7 +240,7 @@ class GetWasted extends Scene {
         ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
-        print("AB: Exploiting mobility in session ${session.session_id}.");
+         session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
             for(Player p in session.players) {
                 if(p.land != null && p.grimDark <2) {

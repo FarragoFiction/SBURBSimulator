@@ -1,5 +1,7 @@
 import "dart:html";
 import "../SBURBSim.dart";
+import '../../scripts/includes/logger.dart';
+
 
 typedef ShenaniganCallback(Element normalDiv, Element newDiv);
 
@@ -231,7 +233,7 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
-	    print("AB: godtiering through shenanigans in session ${session.session_id}");
+	     session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
 			ret += this.player.makeDead("hidden in void on their way to godhood");

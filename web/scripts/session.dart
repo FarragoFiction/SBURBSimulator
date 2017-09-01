@@ -9,6 +9,7 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+    Logger logger = null;
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
@@ -109,6 +110,8 @@ class Session {
 
     Session(int this.session_id) {
         //print("Made a new session with an id of $session_id");
+        logger = Logger.get("Session: $session_id", false);
+
         this.rand = new Random(session_id);
        resetAvailableClasspects();
     }
@@ -293,10 +296,10 @@ class Session {
         } else if(sickFrogCheck(spacePlayer)) {
             ret = "Sick Frog";
         }else {
-            print("AB: What the HELL kind of frog is this in session ${session_id}");
+             logger.info("AB:  What the HELL kind of frog is this in session ${session_id}");
             ret = "??? Frog";
         }
-        print("AB: Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+         logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
         return ret;
     }
 

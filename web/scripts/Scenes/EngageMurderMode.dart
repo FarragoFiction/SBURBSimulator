@@ -234,7 +234,7 @@ class EngageMurderMode extends Scene{
 		return chatText;
 	}
 	void rapBattle(Element div, Player player1, Player player2){
-		print("AB: murder rap battles :${this.session.session_id}");
+		 session.logger.info("AB:  murder rap battles :${this.session.session_id}");
 		this.session.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		appendHtml(div, narration);

@@ -63,7 +63,7 @@ class PrepareToExileQueen extends Scene {
 		}else if(this.player.getStat("power") > this.session.queen.getStat("power")){
 			return this.heavyDamage();
 		}else {
-			print("AB: a nonsensical amount of damage is being done to the queen in session ${session.session_id}");
+			 session.logger.info("AB:  a nonsensical amount of damage is being done to the queen in session ${session.session_id}");
 			return this.lightDamage();
 		}
 

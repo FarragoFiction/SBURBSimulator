@@ -378,7 +378,7 @@ class FreeWillStuff extends Scene{
 	}
 	String considerForceGodTier(Player player){
 		if(player.getStat("freeWill") < 0) return null; //requires great will power to commit suicide or murder for the greater good.
-		if(player.gnosis < 3) return null; //regular players will never do this
+		if(player.gnosis < 2) return null; //regular players will never do this
 		print("Debugging Gnosis: I have enough gnosis to consider god tiering in session ${session.session_id}");
 		if(player.isActive() && (player.getStat("sanity") > 0 || player.murderMode)){
 			return this.becomeGod(player);
@@ -386,11 +386,15 @@ class FreeWillStuff extends Scene{
 			return this.forceSomeOneElseBecomeGod(player);
 		}
 		return null;
+		return null;
 	}
 	String forceSomeOneElseBecomeGod(Player player){
+	    print("Debugging gnosis: trying to force someone else to be a god. in session: ${this.session.session_id}");
 		var sacrifice = this.findNonGodTierBesidesMe(player);
 		if(sacrifice != null && !sacrifice.dead && !sacrifice.godTier){
-			String bed = "bed";
+            print("Debugging gnosis: sacrifice might work ${this.session.session_id}");
+
+            String bed = "bed";
 			String loop = "";
 
 			String timeIntro = "";

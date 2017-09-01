@@ -2,6 +2,7 @@ import "dart:html";
 import "../SBURBSim.dart";
 
 
+
 class BeTriggered extends Scene{
 	List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	List<Player> triggeredPlayers = [];

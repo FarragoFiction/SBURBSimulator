@@ -33,7 +33,7 @@ class RelationshipDrama extends Scene {
 		print("TODO");
 	}
 	void celebratoryRapBattle(Element div, Player player1, Player player2){
-		print("AB: celebratoryRapBattle :${this.session.session_id}");
+		 session.logger.info("AB:  celebratoryRapBattle :${this.session.session_id}");
 		this.session.rapBattle = true;
 		String divId = (div.id) + player1.chatHandle + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";

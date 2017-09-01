@@ -1,5 +1,7 @@
 import "dart:html";
 import "../SBURBSim.dart";
+import '../../scripts/includes/logger.dart';
+
 class FightKing extends Scene {
 
 

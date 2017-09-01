@@ -301,10 +301,10 @@ class DoLandQuest extends Scene{
 			var living = findLivingPlayers(this.session.players);
 			var dead = findDeadPlayers(this.session.players);
 			if(living.length == 1 && dead.length > 2){
-				print("SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
+				session.logger.info("AB: SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
 				String realSelf = "";
 				if(!player.isDreamSelf && !player.godTier){
-					print("Real self stunting in: ${this.session.session_id}");
+					session.logger.info("AB:Real self stunting in: ${this.session.session_id}");
 					realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 				}
 				return "The " + player.htmlTitle()  + " is " + rand.pickFrom(bike_quests) + ". " + realSelf;
