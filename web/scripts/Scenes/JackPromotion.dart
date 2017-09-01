@@ -10,12 +10,12 @@ class JackPromotion extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		if(this.session.jack.getStat("currentHP") <= 0 || this.session.jack.exiled) return false;  //jack can't be dead or exiled.
-		if(this.session.queensRing == null) return false; //all is moot if no ring
-		if(this.session.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
+		if(this.session.npcHandler.jack.getStat("currentHP") <= 0 || this.session.npcHandler.jack.exiled) return false;  //jack can't be dead or exiled.
+		if(this.session.npcHandler.queensRing == null) return false; //all is moot if no ring
+		if(this.session.npcHandler.jack.crowned != null) return false; //don't steal the ring from yourself, dunkass
 		//session.logger.info("jack is alive, there is a queens ring and jack doesn't have it: " + this.session.session_id);
 		//jack is alive, and stronger than queen. (even if queen is dead, this means her lackeys are undisciplined)
-		if(this.session.jack.getStat("power") > this.session.queen.getStat("power") || this.session.queen.getStat("currentHP") <= 0 || this.session.queen.dead){
+		if(this.session.npcHandler.jack.getStat("power") > this.session.npcHandler.queen.getStat("power") || this.session.npcHandler.queen.getStat("currentHP") <= 0 || this.session.npcHandler.queen.dead){
 			return true;
 		}
 
@@ -28,18 +28,18 @@ class JackPromotion extends Scene{
 	String content(){
 		String ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. ";
-		if(this.session.queen.crowned != null && !this.session.queen.exiled){
-			if(this.session.queen.getStat("currentHP") > 0){
+		if(this.session.npcHandler.queen.crowned != null && !this.session.npcHandler.queen.exiled){
+			if(this.session.npcHandler.queen.getStat("currentHP") > 0){
 				if(rand.nextDouble() > .5){
 					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
-					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
+					this.session.npcHandler.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
 					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily murders the weakened queen and uses her ring to obtain her power. ";
-					this.session.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
-					this.session.queen.dead = true;
+					this.session.npcHandler.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
+					this.session.npcHandler.queen.dead = true;
 				}
 
 			}else{
@@ -48,24 +48,24 @@ class JackPromotion extends Scene{
 		}else{
 			ret += "It's not hard at all to get his Crew to pull off a heist to get the RING OF ORBS "+ this.session.convertPlayerNumberToWords();
 			ret += "FOLD. ";
-			if(this.session.queen.getStat("currentHP") > 0 && !this.session.queen.exiled){
+			if(this.session.npcHandler.queen.getStat("currentHP") > 0 && !this.session.npcHandler.queen.exiled){
 				if(rand.nextDouble() > .5){
 					session.logger.info("Jack making out like a bandit in session: " + this.session.session_id.toString()); //get it? 'cause cause he is making otu with BQ but also stealing from her???'
 					//and now the players still have to fight her.  ringless sure, but....
-					this.session.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
+					this.session.npcHandler.queen.setStat("power",50); //she gets a morale boost, any weakening she had is reduced.
 					ret += " At this point you would EXPECT him to kill the weakened Queen, but somehow they end up making out??? Dersites, am I right?  He still ends up with the RING, though.";
 				}else{
 					session.logger.info("jack murdering queen instead of kissing her in sessin: " + this.session.session_id.toString());
 					ret += "He easily defeats the weakened queen while he's at it. ";
-					this.session.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
+					this.session.npcHandler.queen.setStat("currentHP",-9999); //actually kill her you dunkass. not KISS her.
 				}
 			}
 		}
 		ret += " You'd think this would be no worse than having the Black Queen around, but Jack is kind of a big deal. ";
 		ret += " He immediately decides to show everybody his stabs. ";
 		var badPrototyping = findBadPrototyping(this.playerList);
-		this.session.jack.crowned = this.session.queensRing;
-		this.session.queen.crowned = null;
+		this.session.npcHandler.jack.crowned = this.session.npcHandler.queensRing;
+		this.session.npcHandler.queen.crowned = null;
 
 		if( badPrototyping == "First Guardian"){
 			ret += " He is now in charge of random teleporation murders. ";

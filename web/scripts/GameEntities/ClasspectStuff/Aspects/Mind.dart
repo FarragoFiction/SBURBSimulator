@@ -73,4 +73,9 @@ class Mind extends Aspect {
     ]);
 
     Mind(int id) :super(id, "Mind", isCanon: true);
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.mind(s, p);
+    }
+
 }

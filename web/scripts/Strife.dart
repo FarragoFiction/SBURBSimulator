@@ -172,7 +172,7 @@ class Strife {
     session.logger.info("AB: Rocks fall, everybody dies in session: ${session.session_id.toString()}");
     appendHtml(div,"<Br><Br> In case you forgot, freaking METEORS have been falling onto the battlefield this whole time. This battle has been going on for so long that, literally, rocks fall, everybody dies.  ");
     var spacePlayer = findAspectPlayer(session.players, Aspects.SPACE);
-    session.rocksFell = true;
+    session.stats.rocksFell = true;
     spacePlayer.landLevel = 0.0; //can't deploy a frog if skaia was just destroyed. my test session helpfully reminded me of this 'cause one of the players god tier revived adn then used the sick frog to combo session. ...that...shouldn't happen.
     killEveryone("from terminal meteors to the face");
   }

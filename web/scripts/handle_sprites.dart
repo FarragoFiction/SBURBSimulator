@@ -852,10 +852,39 @@ abstract class Drawing {
         copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer, leftMargin + -200, 290); //265 is perfectly lined on rainbow //300 is a little too far down.
     }
 
+    static void drawEpicGodShit(CanvasElement canvas, Player player) {
+        if (checkSimMode() == true) {
+            return;
+        }
+        int leftMargin = 150;
+        CanvasElement codeBufer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        drawWhatever(codeBufer, "cataclysm.png");
+        swapColors(codeBufer, ReferenceColours.BLACK, player.aspect.palette.shirt_light);
+
+
+        CanvasElement colorBufferBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
+        //intent is code shows up behind them, in their shirt + aspect colors.
+        drawSolidBG(colorBufferBuffer,  player.aspect.palette.aspect_light); //650 is iold
+        //cataclysm
+
+        CanvasElement rainbowSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+        drawSprite(rainbowSpriteBuffer, player);
+        rainbowSwap(rainbowSpriteBuffer);
+        CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
+        drawSprite(pSpriteBuffer,player);
+
+        copyTmpCanvasToRealCanvasAtPos(canvas, colorBufferBuffer, 0, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, codeBufer,  0, 0); //265 is perfectly lined on rainbow //300 is a little too far down.
+        copyTmpCanvasToRealCanvasAtPos(canvas, rainbowSpriteBuffer, leftMargin + 90, -10);
+        copyTmpCanvasToRealCanvasAtPos(canvas, rainbowSpriteBuffer, leftMargin + 110, 10);
+        copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 10);
+
+    }
+
 
     static void drawGodSymbolBG(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "${player.aspect}Big.png";
+        String imageString = player.aspect.bigSymbolImgLocation;
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);
@@ -1888,7 +1917,7 @@ abstract class Drawing {
 
     static void aspectSymbol(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "${player.aspect}.png";
+        String imageString = player.aspect.symbolImgLocation;
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
         ctx.drawImage(img, 0, 0);

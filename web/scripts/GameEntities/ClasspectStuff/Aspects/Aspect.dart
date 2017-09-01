@@ -132,9 +132,11 @@ class Aspect {
     /// Used for OCData save/load.
     final int id;
     FAQFile faqFile;
+    String symbolImgLocation = "";
+    String bigSymbolImgLocation = "";
 
     /// Used for string representations of the aspect.
-    final String name;
+    String name;
 
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
@@ -247,6 +249,9 @@ class Aspect {
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
+        //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
+        this.symbolImgLocation = "$name.png";
+        this.bigSymbolImgLocation = "${name}Big.png";
         Aspects.register(this);
     }
 
@@ -267,6 +272,11 @@ class Aspect {
 
     String getRandomQuest(Random rand, bool denizenDefeated) {
         return rand.pickFrom(denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
+    }
+
+    //each aspect has a unique Cataclysm.  Just call appropriate mutator method
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.abjectFailure(s, p);
     }
 
     String getDenizenQuest(Player player) {

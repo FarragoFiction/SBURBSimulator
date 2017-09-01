@@ -14,7 +14,7 @@ class QueenRejectRing extends Scene {
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList, this.session.session_id);
 		var goodPrototyping = findGoodPrototyping(playerList);
 		//session.logger.info("holy fucking shit, don't reject the ring if an alien player comes in.");
-		return goodPrototyping != null && this.session.queen.crowned != null;
+		return goodPrototyping != null && this.session.npcHandler.queen.crowned != null;
 	}
 
 	@override
@@ -22,8 +22,8 @@ class QueenRejectRing extends Scene {
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
 	}
 	dynamic content(){
-		this.session.queenRejectRing = true;
-		this.session.queen.crowned = null; //queen no longer has ring, but session still does.
+		this.session.stats.queenRejectRing = true;
+		this.session.npcHandler.queen.crowned = null; //queen no longer has ring, but session still does.
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		String ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD would take on the attributes of each prototyping. ";

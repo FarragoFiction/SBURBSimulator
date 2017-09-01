@@ -73,4 +73,9 @@ class Heart extends Aspect {
     ]);
 
     Heart(int id) :super(id, "Heart", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.heart(s, p);
+    }
 }

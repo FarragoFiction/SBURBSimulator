@@ -56,7 +56,7 @@ class Aftermath extends Scene {
 	}
 
 	String loveEnding() {
-		session.loveEnding = true;
+		session.stats.loveEnding = true;
 		List<Player> living  = findLivingPlayers(session.players);
 		//who has highest relationship?
 		Player friendLeader = findHighestStatPlayer("RELATIONSHIPS",living);
@@ -75,7 +75,7 @@ class Aftermath extends Scene {
 	}
 
 	String hateEnding() {
-		session.hateEnding = true;
+		session.stats.hateEnding = true;
 		List<Player> living  = findLivingPlayers(session.players);
 		Player shoutLeader = findLowestStatPlayer("RELATIONSHIPS",living);
 		Player peaceMaker = findHighestStatPlayer("RELATIONSHIPS", living);
@@ -93,7 +93,7 @@ class Aftermath extends Scene {
 	}
 
 	String monoTheismEnding() {
-		session.monoTheismEnding = true;
+		session.stats.monoTheismEnding = true;
 		Player god = entered.first;
 		String ret =  "The ${god.htmlTitle()} rules the new Universe absolutely, with no fellow players to challenge them. ";
 		if(god.getStat("RELATIONSHIPS") > 100) {
@@ -107,28 +107,28 @@ class Aftermath extends Scene {
 	}
 
 	String gnosisEnding() {
-		session.gnosisEnding = true;
+		session.stats.gnosisEnding = true;
 		return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. It is a glorious shade of pink. The Players remain inside the Medium supporting Reality from within. You have escaped the cycle of flawed creators ruling over flawed creations, SBURB will never trouble your cosmic progeny.";
 	}
 
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.democraticArmy.getStat("power") == GameEntity.minPower){
+		if(this.session.npcHandler.democraticArmy.getStat("power") == GameEntity.minPower){
 			return "";
 		}
-		if(this.session.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
-			this.session.mayorEnding = true;
+		if(this.session.npcHandler.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
+			this.session.stats.mayorEnding = true;
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
 			ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
 		}else{
 			if(findLivingPlayers(this.session.players).length > 0){
-				this.session.waywardVagabondEnding = true;
+				this.session.stats.waywardVagabondEnding = true;
 				ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
 				ret += " There can be no democracy in a nation with only one citizen left alive. He is the only remaining living Carapacian in the Democratic Army. ";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
 			}else{
-				this.session.waywardVagabondEnding = true;
+				this.session.stats.waywardVagabondEnding = true;
 				ret += " The Warweary Villein feels the sting of defeat. He failed to help the Players.";
 				ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players' old world. ";
 			}
@@ -214,10 +214,10 @@ class Aftermath extends Scene {
 		Player corruptedSpacePlayer = this.session.findMostCorruptedSpace();
 		//var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
-		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
+		if(living.length > 0  && (!this.session.npcHandler.king.dead || !this.session.npcHandler.queen.dead && this.session.npcHandler.queen.exiled == false)){
 
 			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the frog isn't deployed now, it never will be. There is no time for mourning. ";
-			this.session.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
+			this.session.stats.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
 			appendHtml(div, end);
 			end = "<br><br>";
 		}else if(living.length>0){
@@ -252,12 +252,12 @@ class Aftermath extends Scene {
 					end += " Apparently the new universe's sickness manifested as its version of SBURB interfering with yours. ";
 					end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
 					end += " Or is it?";
-					if(this.session.ectoBiologyStarted == true){
+					if(this.session.stats.ectoBiologyStarted == true){
 						//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
-						this.session.makeCombinedSession = true; //triggers opportunity for mixed session
+						this.session.stats.makeCombinedSession = true; //triggers opportunity for mixed session
 					}
 					//if skaia is a frog, it can't take in the scratch command.
-					this.session.scratchAvailable = false;
+					this.session.stats.scratchAvailable = false;
 					//renderScratchButton(this.session);
 
 				}else{
@@ -266,11 +266,11 @@ class Aftermath extends Scene {
 					end += whoEnters();
 					end += "<Br><Br>";
 					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
-					this.session.won = true;
+					this.session.stats.won = true;
 					end += "You get a brief glance of the future of the new Universe. ${miniEpliogueFull()}<br><br>";
 				}
 			}else{
-				if(this.session.rocksFell){
+				if(this.session.stats.rocksFell){
 					end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
 				}else{
 					if(session.noFrogCheck(spacePlayer) && session.enoughGristForAny()) {
@@ -295,7 +295,7 @@ class Aftermath extends Scene {
 
 				end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
 				end += " Or is it? ";
-				this.session.scratchAvailable = true;
+				this.session.stats.scratchAvailable = true;
 				SimController.instance.renderScratchButton(this.session);
 				yellowYard = true;
 
@@ -440,7 +440,7 @@ class Aftermath extends Scene {
 		strife.startTurn(div);
 		String ret = "";
 		if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
-			this.session.won = true;
+			this.session.stats.won = true;
 			ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>";
 		}else{
 			ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. ";

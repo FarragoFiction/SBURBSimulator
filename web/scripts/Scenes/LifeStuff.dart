@@ -56,7 +56,7 @@ class LifeStuff extends Scene {
                 if (player.class_name != SBURBClassManager.WITCH && player.class_name != SBURBClassManager.SYLPH) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null));
                     removeNonGuides.add(player);
-                } else if (!this.session.dreamBubbleAfterlife) {
+                } else if (!this.session.stats.dreamBubbleAfterlife) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null)); //witches and sylphs turn on the dream bubble afterlife if it's not already on.
                     removeNonGuides.add(player);
                 }
@@ -86,7 +86,7 @@ class LifeStuff extends Scene {
         }
         //if you don't have an official role, join the pool of dreamers.
         nonGuides.addAll(guides);
-        if (this.session.dreamBubbleAfterlife) {
+        if (this.session.stats.dreamBubbleAfterlife) {
             for (num i = 0; i < nonGuides.length; i++) {
                 double r = rand.nextDouble(); //only spend half your time dreaming right.;
                 Player player = nonGuides[i];
@@ -152,10 +152,10 @@ class LifeStuff extends Scene {
                     this.helpPlayerDrainDeadForPower(div, player, other_player);
                 } else if ((player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID) && other_player != null && other_player.dead) {
                     this.helpDrainDeadForReviveSelf(div, player, other_player);
-                } else if ((player.class_name == SBURBClassManager.WITCH || player.class_name == SBURBClassManager.SYLPH) && !this.session.dreamBubbleAfterlife) {
+                } else if ((player.class_name == SBURBClassManager.WITCH || player.class_name == SBURBClassManager.SYLPH) && !this.session.stats.dreamBubbleAfterlife) {
                     this.enableDreamBubbles(div, player);
                 }
-            } else if (this.session.dreamBubbleAfterlife) {
+            } else if (this.session.stats.dreamBubbleAfterlife) {
                 this.dreamBubbleAfterlifeAction(div, player);
             }
         }
@@ -513,7 +513,7 @@ class LifeStuff extends Scene {
 
     void enableDreamBubbles(Element div, Player player) {
         //session.logger.info("Turning on dream bubble afterlife: " + this.session.session_id);
-        this.session.dreamBubbleAfterlife = true;
+        this.session.stats.dreamBubbleAfterlife = true;
         String canvasId = "${div.id}horror_terrors_${player.chatHandle}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);

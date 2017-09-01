@@ -72,4 +72,9 @@ class Life extends Aspect {
     ]);
 
     Life(int id) :super(id, "Life", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.life(s, p);
+    }
 }

@@ -211,7 +211,7 @@ class MurderPlayers extends Scene {
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
 						ret += worstEnemy.makeDead("fighting against the crazy " + m.title());
 						m.pvpKillCount ++;
-						this.session.murdersHappened = true;
+						this.session.stats.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						m.victimBlood = worstEnemy.bloodColor;
@@ -231,7 +231,7 @@ class MurderPlayers extends Scene {
 						}
 						ret += m.makeDead("being put down like a rabid dog by the " + worstEnemy.title());
 						worstEnemy.pvpKillCount ++;
-						this.session.murdersHappened = true;
+						this.session.stats.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
 						r.value = -10; //you are not happy with murderer
 						worstEnemy.victimBlood = m.bloodColor;

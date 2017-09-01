@@ -435,7 +435,7 @@ class Player extends GameEntity {
         this.addStat("power", 500); //they are GODS.
         this.increasePower();
         this.godTier = true;
-        this.session.godTier = true;
+        this.session.stats.godTier = true;
         this.dreamSelf = false;
         this.canGodTierRevive = true;
         this.leftMurderMode = false; //no scars, unlike other revival methods
@@ -789,7 +789,7 @@ class Player extends GameEntity {
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if ((this.session.king.getStat("currentHP") <= 0 || this.session.king.dead == true) && this.session.rand.nextDouble() > .2) {
+            if ((this.session.npcHandler.king.getStat("currentHP") <= 0 || this.session.npcHandler.king.dead == true) && this.session.rand.nextDouble() > .2) {
                 ret = true;
             }
         } else { //unlikely hero
@@ -797,7 +797,7 @@ class Player extends GameEntity {
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if (this.session.king.getStat("currentHP") <= 0 || this.session.king.dead == true && rand.nextDouble() > .4) {
+            if (this.session.npcHandler.king.getStat("currentHP") <= 0 || this.session.npcHandler.king.dead == true && rand.nextDouble() > .4) {
                 ret = true;
             }
         }
@@ -850,7 +850,7 @@ class Player extends GameEntity {
 
 
     List<Player> performEctobiology(Session session) {
-        session.ectoBiologyStarted = true;
+        session.stats.ectoBiologyStarted = true;
         List<Player> playersMade = findPlayersWithoutEctobiologicalSource(session.players);
         setEctobiologicalSource(playersMade, session.session_id);
         return playersMade;

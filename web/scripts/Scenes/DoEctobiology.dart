@@ -17,7 +17,7 @@ class DoEctobiology extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
-		if(this.leader != null && this.leader.dead == false && this.session.ectoBiologyStarted == false){
+		if(this.leader != null && this.leader.dead == false && this.session.stats.ectoBiologyStarted == false){
 			return this.leader.getStat("power") > (rand.nextDouble()*200); //can't do it right out of the bat. might never do it
 		}
 		return false;
@@ -43,13 +43,13 @@ class DoEctobiology extends Scene {
 	}
 	dynamic content(){
 		//session.logger.info("doing ectobiology for session " + this.session.session_id);
-		this.session.ectoBiologyStarted = true;
+		this.session.stats.ectoBiologyStarted = true;
 		this.playersMade = findPlayersWithoutEctobiologicalSource(this.session.players);
 		setEctobiologicalSource(this.playersMade, session.session_id);
 		String ret = " Through a series of wacky, yet inevitable in hindsight, coincidences, the " + this.leader.htmlTitle();
 		ret += " finds themselves in the veil of meteors surrounding the Medium. ";
 		ret +=  " A button is pushed, and suddenly there are little tiny baby version of " + getPlayersTitlesBasic(this.playersMade);
-		if(session.scratched){
+		if(session.stats.scratched){
 			ret += " Plus baby versions of all the players from the pre-scratch session?";
 			ret += " No wonder that session went so poorly: It was always destined to be scratched or nobody would be born in the first place.";
 		}else{

@@ -73,7 +73,7 @@ abstract class AuthorBot extends SimController {
     }else{
       ////print("Debugging AB: can't combo, can't scratch. just do next session.");
       needToScratch = false; //can't scratch if skaiai is a frog
-      curSessionGlobalVar.makeCombinedSession = false;
+      curSessionGlobalVar.stats.makeCombinedSession = false;
       summarizeSession(curSessionGlobalVar);
     }
   }
@@ -84,7 +84,8 @@ abstract class AuthorBot extends SimController {
     Scene s = new Reckoning(curSessionGlobalVar);
     s.trigger(curSessionGlobalVar.players);
     s.renderContent(curSessionGlobalVar.newScene());
-    if(!curSessionGlobalVar.doomedTimeline){
+
+    if(!curSessionGlobalVar.stats.doomedTimeline){
       ////print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
       return null;
@@ -98,7 +99,7 @@ abstract class AuthorBot extends SimController {
      // //print("debugging AB: no scratch ${curSessionGlobalVar.session_id}");
       //////print("doomed timeline prevents reckoning");
       List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
-      if(curSessionGlobalVar.scratched || living.length == 0){ //can't scrach so only way to keep going.
+      if(curSessionGlobalVar.stats.scratched || living.length == 0){ //can't scrach so only way to keep going.
         ////print("doomed scratched timeline");
         summarizeSession(curSessionGlobalVar);
         return null;
@@ -128,7 +129,7 @@ abstract class AuthorBot extends SimController {
 
       s.renderContent(curSessionGlobalVar.newScene());
       ////print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
-      if(curSessionGlobalVar.makeCombinedSession == true){
+      if(curSessionGlobalVar.stats.makeCombinedSession == true){
        // //print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id}");
         processCombinedSession();  //make sure everything is done rendering first
         return null;
@@ -141,7 +142,7 @@ abstract class AuthorBot extends SimController {
         }
         List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
        // //print("debugging AB: about to see if i should summarize session ${curSessionGlobalVar.session_id}");
-        if(curSessionGlobalVar.won || living.length == 0 || curSessionGlobalVar.scratched){
+        if(curSessionGlobalVar.stats.won || living.length == 0 || curSessionGlobalVar.stats.scratched){
           ////print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
           summarizeSession(curSessionGlobalVar);
           return null;
@@ -160,15 +161,15 @@ abstract class AuthorBot extends SimController {
     needToScratch = false;
     //treat myself as a different session that scratched one?
     List<Player> living = findLivingPlayers(session.players);
-    if(!session.scratched && living.length > 0){
+    if(!session.stats.scratched && living.length > 0){
       ////print("scartch");
       //alert("AB sure loves scratching!");
-      session.scratchAvailable = true;
+      session.stats.scratchAvailable = true;
       summarizeSessionNoFollowup(session);
       scratch(); //not user input, just straight up do it.
     }else{
       ////print("no scratch");
-      session.scratchAvailable = false;
+      session.stats.scratchAvailable = false;
       summarizeSession(session);
     }
 

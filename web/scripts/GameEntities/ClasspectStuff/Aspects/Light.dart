@@ -73,4 +73,9 @@ class Light extends Aspect {
     ]);
 
     Light(int id) :super(id, "Light", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.light(s, p);
+    }
 }

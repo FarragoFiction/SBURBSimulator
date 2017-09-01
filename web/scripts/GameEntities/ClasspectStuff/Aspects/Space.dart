@@ -81,4 +81,9 @@ class Space extends Aspect {
     ]);
 
     Space(int id) :super(id, "Space", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.space(s, p);
+    }
 }

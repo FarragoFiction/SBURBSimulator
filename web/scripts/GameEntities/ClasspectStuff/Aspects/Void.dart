@@ -75,4 +75,9 @@ class Void extends Aspect {
     ]);
 
     Void(int id) :super(id, "Void", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.voidStuff(s, p);
+    }
 }

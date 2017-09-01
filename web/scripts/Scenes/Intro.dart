@@ -705,14 +705,14 @@ class Intro  extends IntroScene{
 				this.player.timesDied ++;
 				this.session.availablePlayers.add(this.player);
 				this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
-				if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+				if(this.session.npcHandler.kingsScepter != null) this.session.npcHandler.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				if(this.player.object_to_prototype.armless){
 					session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 				}
-				if(this.session.queensRing != null){
-					this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+				if(this.session.npcHandler.queensRing != null){
+					this.session.npcHandler.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 					narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 				}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
@@ -735,14 +735,14 @@ class Intro  extends IntroScene{
 				narration += "They immediately heal their land in an explosion of bullshit candy giggle-magic. ";
 			}
 			this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
-			if(this.session.kingsScepter != null) this.session.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+			if(this.session.npcHandler.kingsScepter != null) this.session.npcHandler.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 			if(this.player.object_to_prototype.armless && rand.nextDouble() > 0.93){
 					session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
 					narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
 					this.session.destroyBlackRing();
 			}
-			if(this.session.queensRing != null){
-				this.session.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
+			if(this.session.npcHandler.queensRing != null){
+				this.session.npcHandler.queensRing.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
 				narration += "The Black Queen's RING OF ORBS "+ this.session.convertPlayerNumberToWords() + "FOLD grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";
 			}
 			narration += "The Black King's SCEPTER grows stronger from prototyping the " +  this.player.object_to_prototype.name +". ";

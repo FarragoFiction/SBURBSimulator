@@ -14,7 +14,7 @@ class FightKing extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		//session.logger.info('fight kin trigger?');
-		return (this.session.king.getStat("currentHP") > 0) && !this.session.king.dead && (this.session.queen.getStat("currentHP") <= 0 || this.session.queen.dead) && (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.npcHandler.king.getStat("currentHP") > 0) && !this.session.npcHandler.king.dead && (this.session.npcHandler.queen.getStat("currentHP") <= 0 || this.session.npcHandler.queen.dead) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 	var living = findLivingPlayers(this.session.players);
@@ -47,10 +47,10 @@ class FightKing extends Scene {
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
-		if(this.session.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.democraticArmy);
+		if(this.session.npcHandler.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.npcHandler.democraticArmy);
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
 		pTeam.canAbscond = false;
-		Team dTeam = new Team(this.session, [this.session.king]);
+		Team dTeam = new Team(this.session, [this.session.npcHandler.king]);
          dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.timeTillRocks = 10;

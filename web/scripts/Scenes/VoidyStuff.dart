@@ -85,7 +85,7 @@ class VoidyStuff extends Scene {
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.leader && !this.session.ectoBiologyStarted && rand.nextDouble() > .8){
+		}else if(this.player.leader && !this.session.stats.ectoBiologyStarted && rand.nextDouble() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
@@ -175,9 +175,9 @@ class VoidyStuff extends Scene {
 
 	}
 	void weakenDesites(Element div, Element specialDiv){
-		this.session.queen.addStat("power",-5);
-		this.session.jack.addStat("power",-5);
-		this.session.king.addStat("power",-5);
+		this.session.npcHandler.queen.addStat("power",-5);
+		this.session.npcHandler.jack.addStat("power",-5);
+		this.session.npcHandler.king.addStat("power",-5);
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
 	}
@@ -241,7 +241,7 @@ class VoidyStuff extends Scene {
 			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans");
 		}
 		this.player.makeGodTier();
-		this.session.godTier = true;
+		this.session.stats.godTier = true;
 
 		appendHtml(div, ret +" What was that light on " + this.player.shortLand() + "? ");
 		Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif

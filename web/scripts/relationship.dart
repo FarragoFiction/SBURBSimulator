@@ -253,7 +253,7 @@ class Relationship {
 
 
     static void makeHeart(Player player1, Player player2) {
-        player1.session.hasHearts = true;
+        player1.session.stats.hasHearts = true;
         Relationship r1 = player1.getRelationshipWith(player2);
         r1.setOfficialRomance(r1.heart);
         Relationship r2 = player2.getRelationshipWith(player1);
@@ -262,7 +262,7 @@ class Relationship {
 
 
     static void makeSpades(Player player1, Player player2) {
-        player1.session.hasSpades = true;
+        player1.session.stats.hasSpades = true;
         Relationship r1 = player1.getRelationshipWith(player2);
         r1.setOfficialRomance(r1.spades);
         Relationship r2 = player2.getRelationshipWith(player1);
@@ -271,7 +271,7 @@ class Relationship {
 
 
     static void makeDiamonds(Player player1, Player player2) {
-        player1.session.hasDiamonds = true;
+        player1.session.stats.hasDiamonds = true;
         Relationship r1 = player1.getRelationshipWith(player2);
         if (r1.value < 0) {
             r1.value = 1; //like you at least a little
@@ -287,7 +287,7 @@ class Relationship {
 
 //clubs, why you so cray cray?
     static void makeClubs(Player middleLeaf, Player asshole1, Player asshole2) {
-        asshole1.session.hasClubs = true;
+        asshole1.session.stats.hasClubs = true;
         Relationship rmid1 = middleLeaf.getRelationshipWith(asshole1);
         Relationship rmid2 = middleLeaf.getRelationshipWith(asshole2);
 

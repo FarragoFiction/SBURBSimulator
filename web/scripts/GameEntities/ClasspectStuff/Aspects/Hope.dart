@@ -76,4 +76,10 @@ class Hope extends Aspect {
     ]);
 
     Hope(int id) :super(id, "Hope", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+        return s.mutator.hope(s, p);
+    }
+
 }

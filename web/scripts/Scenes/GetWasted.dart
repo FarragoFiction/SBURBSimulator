@@ -233,7 +233,7 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.BREATH) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
         }else if(player.aspect == Aspects.SPACE) {
-            ret = " They set up a frankly scandalous series of transportalizers";
+            ret = " They set up a frankly scandalous series of shortcuts using the glitchiest parts of SBURB"; //skaian magicant refrance
         }else {
             ret = "";
         }
@@ -452,12 +452,16 @@ class GetWasted extends Scene {
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
     }
 
+    void drawTier4(String canvasID, List<Player> players) {
+        Drawing.drawEpicGodShit(querySelector("#${canvasID}"), players[0]);
+    }
+
 
 
 
     //simple, foreshadowing things
     void tier1(Element div) {
-        session.hasTier1Events = true;
+        session.stats.hasTier1Events = true;
         //from manic i have hope, breath, doom and time, murder mode and rage upcoming
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
@@ -465,7 +469,7 @@ class GetWasted extends Scene {
     }
 
     void tier2(Element div) {
-        session.hasTier2Events = true;
+        session.stats.hasTier2Events = true;
         //this tier will unlock frog breeding and various free will shits besides english tier.
         //can also write a faq
         writeFAQ(div);
@@ -487,7 +491,7 @@ class GetWasted extends Scene {
     }
 
     void tier3(Element div) {
-        session.hasTier3Events = true;
+        session.stats.hasTier3Events = true;
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
         if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.' ");
@@ -503,17 +507,17 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
-        //TODO have hope LITERALLY replace the black queen with three salamanders in a robe. like in the queen text with the enquiring carapacian.
-        //like, change her name to "3 salamanders in a Robe", replace her fraymotifs with "Glub glub glub" and shit.  Hope players believe everything they read after all, right?
-        //TODO each tier4 event should do damage to session health.  grim dark crash should account for high gnosis levels, too
-        session.hasTier4Events = true;
-        //todo waste tier, will be dope as fuk
-        //FUTUREJR: DO NOT FORGET THIS JOKE:  WASTES OF HOPE SHOULD SET GameEntity.minPower TO 9001.
-        /*	//if i have less than expected grist, then no frog, bucko
-	int expectedGristContributionPerPlayer = 8000;
-	int minimumGristPerPlayer = 5000; //less than this, and no frog is possible. can also be moded by hope player
-	*/
-        appendHtml(div, "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT. ${player.htmlTitle()} has:  ${player.gnosis} gnosis.");
+        session.stats.hasTier4Events = true;
+        String divID = "tier4${div.id}${player.id}";
+        appendHtml(div, "<Br><Br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        session.mutator.checkForCrash(session);
+        drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
+        drawAll();
+
+        //TODO do I want any generic graphic here?
+
+        //hell yes, tier 4, bitches.
+        //TODO for void have ALL stats set to true, even if contradictory. can't use AB to get a read on the session. Number stats become obvious lies.
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.

@@ -18,7 +18,7 @@ class ConfrontJack extends Scene {
     if (this.player == null) {
       return false;
     } else {
-      return (this.player != null && !this.session.jack.exiled) && (this.session.jack.getStat("currentHP") > 0);
+      return (this.player != null && !this.session.npcHandler.jack.exiled) && (this.session.npcHandler.jack.getStat("currentHP") > 0);
     }
   }
 
@@ -30,12 +30,12 @@ class ConfrontJack extends Scene {
     appendHtml(div, ret);
     Team pTeam = new Team.withName(
         this.player.htmlTitle(), this.session, [this.player]);
-    Team dTeam = new Team(this.session, [this.session.jack]);
+    Team dTeam = new Team(this.session, [this.session.npcHandler.jack]);
     Strife strife = new Strife(this.session, [pTeam, dTeam]);
     strife.startTurn(div);
-    if (this.session.jack.getStat("currentHP") <= 0){
-      this.session.jack.setStat("currentHP",0); //effectively dead.
-      this.session.jack.exiled = true;
+    if (this.session.npcHandler.jack.getStat("currentHP") <= 0){
+      this.session.npcHandler.jack.setStat("currentHP",0); //effectively dead.
+      this.session.npcHandler.jack.exiled = true;
       String winText = "The strife with Jack was successful. His corpse has been exiled, never to be seen again.";
       appendHtml(div, winText);
     };

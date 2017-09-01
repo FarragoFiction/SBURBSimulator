@@ -55,7 +55,7 @@ class GoGrimDark extends Scene {
 			if(this.player.grimDark == 1){
 				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!";
 			}else if(this.player.grimDark == 2){
-				this.session.grimDarkPlayers = true;
+				this.session.stats.grimDarkPlayers = true;
 				this.player.nullAllRelationships();
 				ret += " The " + this.player.htmlTitleBasic() + " isn't responding to chat messages much anymore. ";
 			}else if(this.player.grimDark == 3){

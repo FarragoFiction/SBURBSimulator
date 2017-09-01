@@ -660,7 +660,7 @@ List<GameEntity> prototyping_objects = <GameEntity>[
             ..desc =
                 " No, not yet! The OWNER refuses to use Sepulchritude. They just heal the party instead. "),
 
-    new PotentialSprite("Nick Cage", null)
+    new PotentialSprite("Nic Cage", null)
         ..setStatsHash(<String,num>{"power": 20})
         ..helpfulness = 1
         ..helpPhrase =

@@ -37,11 +37,11 @@ class JackBeginScheming extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		if(this.session.jack.getStat("currentHP") <= 0 && !this.session.jack.dead|| this.session.queen.getStat("currentHP") <= 0 && !this.session.queen.dead){  //the dead can't scheme or be schemed against
+		if(this.session.npcHandler.jack.getStat("currentHP") <= 0 && !this.session.npcHandler.jack.dead|| this.session.npcHandler.queen.getStat("currentHP") <= 0 && !this.session.npcHandler.queen.dead){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
-		return (this.session.jack.getStat("power") >= this.session.queen.getStat("power")) && (this.friend != null);
+		return (this.session.npcHandler.jack.getStat("power") >= this.session.npcHandler.queen.getStat("power")) && (this.friend != null);
 	}
 	bool smart(player){
 		return ((player.aspect == Aspects.LIGHT || player.class_name == SBURBClassManager.SEER) ||(player.aspect == Aspects.DOOM || player.aspect == Aspects.MIND));
@@ -213,7 +213,7 @@ class JackBeginScheming extends Scene {
 		if(this.friend == null){
 			return;
 		}
-		this.session.jackScheme = true;
+		this.session.stats.jackScheme = true;
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
 		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push

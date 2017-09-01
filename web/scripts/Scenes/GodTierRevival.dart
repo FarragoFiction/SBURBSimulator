@@ -70,7 +70,7 @@ class GodTierRevival extends Scene {
 				}else{
 					//session.logger.info(roll + " just death for god tier in: " + this.session.session_id );
 					ret += " JUST.  They do not revive. ";
-					this.session.justDeath = true;
+					this.session.stats.justDeath = true;
 					p.canGodTierRevive = false;
 					if(p.didDenizenKillYou()){
 						p.causeOfDeath += " (it was a JUST judgement because they were corrupt)";
@@ -89,7 +89,7 @@ class GodTierRevival extends Scene {
 					p.increasePower();
 					p.makeAlive();
 				}else{
-					this.session.heroicDeath = true;
+					this.session.stats.heroicDeath = true;
 					//session.logger.info(roll + " heroic death for god tier in: " + this.session.session_id );
 					ret += " HEROIC. They do not revive. ";
 					p.canGodTierRevive = false;
