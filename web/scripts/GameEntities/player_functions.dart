@@ -231,6 +231,7 @@ Player randomTimePlayer(Session session) {
 }
 
 
+///takes list of players adn aspect i am looking for
 Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
@@ -309,6 +310,20 @@ Player findClassPlayer(List<GameEntity> playerList, SBURBClass class_name) {
         }
     }
     return null;
+}
+
+Player findMVP(List<Player> playerList) {
+    if (playerList.isEmpty) return null;
+    Player strongest = playerList[0];
+
+    for (int i = 0; i < playerList.length; i++) {
+        GameEntity p = playerList[i];
+        if (p.grist > strongest.grist) {
+            strongest = p;
+        }
+
+    }
+    return strongest;
 }
 
 
@@ -681,6 +696,8 @@ num getAverageGrist(List<GameEntity> players) {
 
 
 String getPVPQuip(Player deadPlayer, Player victor, String deadRole, String victorRole) {
+    if(deadPlayer.class_name == victor.class_name) return "Anything goes when you fight your own class, I guess.";
+
     if (victor.getPVPModifier(victorRole) > deadPlayer.getPVPModifier(deadRole)) {
         return "Which is pretty much how you expected things to go down between a ${deadPlayer.class_name} and a ${victor.class_name} in that exact situation. ";
     } else {

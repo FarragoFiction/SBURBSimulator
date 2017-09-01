@@ -1,6 +1,6 @@
 import "../../GameEntity.dart";
 import "SBURBClass.dart";
-
+//TODO when i do land update, wastes should have endless bug killing quests
 class Waste extends SBURBClass {
     @override
     List<String> levels = <String>["4TH WALL AFICIONADO", "CATACLYSM COMMANDER", "AUTHOR"];

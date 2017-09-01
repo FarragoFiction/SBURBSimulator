@@ -3037,3 +3037,90 @@ Observations:
 *NonDeterminism
     * mvp changes, sometimes it crashes, sometimes a faq popups without me clicking (before that meant there was two divs with same id)
 * Popups without clicking (two divs same ID?)
+
+~~~~~~~~~~~~~~
+
+Alright, I wanna get one more bug out before I move on to gnosis 4.
+
+ This bug has been around awhile, and I've gotten multiple bug reports from it even though I consider it extremly minor.
+ It will save EVERYBODY some time if I can just fix it.
+
+ Specifically, when you load a char it somehow syncs EVERY field except for Interest1 and 2 Drop down.
+
+ This is, quite obviously, because the interest loaded might not BE a regular interest.  Though I seem to recall that when I load a new char
+ I add the interest if appropriate, and I completely redid the interest mechanic at the tale end of The Great Refactoring...so....
+
+ Let's see what we got.
+
+ First up, what steps happen when I click: "Load".
+
+    * parse out b, s and x
+    * convert to a player.
+    * redraw single player.
+
+Okay, what steps happen in 'redraw single player'?  (god i love that i can just jump to definition instead of ctrl fing around like a tool. Dart > JS)
+
+this.syncPlayerToFields(player);  seems to be the relevant method.
+
+ (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1.name);
+ (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2.name);
+
+ Alright, working hypothesis has not changed.   Becasue the interest in question is not ALREADY in the drop downs, setting the value does not change the drop down.
+ Wait. interest1....isn't that the text box and not the drop down? I might not even have the drop downs here. that would be fucking lame.
+
+ Yes.
+
+ SelectElement interest1DropDom = querySelector("#interestDrop1${player.id}");
+ SelectElement interest2DropDom = querySelector("#interestDrop2${player.id}");
+
+ That's what I need. And it's not there currently.
+
+ If I set it to a value that doesn't exist within it, I wonder what will happen? will it add a new option?  Will I have to do that manually/?
+
+Alright, problem numero uno: It's the wrong fucking select box entirely.
+Going from category "Comedy" to category "Fantasy", the option isn't there even if it ISN'T a custom one.
+
+So, it's not enough to set the value. FIRST I need to recreate that box.
+
+If I switch categories it must already be happening. (I guess "on Change" isn't being triggered by manually setting it). Let's go see what I do onchange.
+
+Alright, I need to stare at this:
+
+
+OptionElement icDropDown = interestCategory1Dom.selectedOptions[0];
+            InterestCategory ic1 =
+            InterestManager.getCategoryFromString(icDropDown.value);
+            interest1DropDom.setInnerHtml(that.drawInterestDropDown(ic1, 1, player));
+            helpText
+                .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));
+            player.interest1.category.removeInterest(player.interest1.name);
+            player.interest1.category = ic1;
+            player.interest1.category.addInterest(player.interest1.name);
+
+What is that doing?
+
+It's fetching the Category object. It's taking interest1DropDom and ....oh. set InnerHtml. that's what I want.
+
+Aright, that's working.   Now I just need to see what it looks like for custom interests.  Yup, works for free.
+
+Okay, time to look in pile to see if there are any other major bugs, and then I can justify adding a bunch via gnosis tier 4.
+
+Oh yeah.
+
+AB is lying about combo sessions. That's major, I can't ignore that.
+
+
+~~~~~~~~~~~~~~~~
+
+Time to debug AB lying.  I think WooMod said that while the MSS section listed no combos, if you ctrl-fed for it you'd see
+a bunch.  So is MSS just adding up the wrong value?
+
+First step: replicate the bug.  I"ll have AB start looking up sessions while I look in her code.
+
+Alright, yes, in the MSS section it says 0, but just a few seconds of searching shows over 4 in this set of 50.
+
+Relevant line:
+
+            if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
+Oh my fuck. It's not a bool stat. It's literally a session.  Why....Why is it EVER triggering. When the fuck would a session have a bool stat with that name???
+

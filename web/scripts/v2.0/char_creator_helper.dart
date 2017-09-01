@@ -179,6 +179,17 @@ class CharacterCreatorHelper {
         (querySelector("#interest1${player.id}") as InputElement).value = (player.interest1.name);
         (querySelector("#interest2${player.id}") as InputElement).value = (player.interest2.name);
         (querySelector("#chatHandle${player.id}") as InputElement).value = (player.chatHandle);
+
+        OptionElement icDropDown = (querySelector("#interestCategory1${player.id}") as SelectElement).selectedOptions[0];
+        InterestCategory ic1 = InterestManager.getCategoryFromString(icDropDown.value);
+        querySelector("#interestDrop1${player.id}").setInnerHtml(drawInterestDropDown(ic1, 1, player));
+
+        OptionElement icDropDown2 = (querySelector("#interestCategory2${player.id}") as SelectElement).selectedOptions[0];
+        InterestCategory ic2 = InterestManager.getCategoryFromString(icDropDown2.value);
+        querySelector("#interestDrop2${player.id}").setInnerHtml(drawInterestDropDown(ic2, 2, player));
+
+        (querySelector("#interestDrop1${player.id}") as SelectElement).value = (player.interest1.name);
+        (querySelector("#interestDrop2${player.id}") as SelectElement).value = (player.interest2.name);
     }
 
     dynamic drawDropDowns(Player player) {
@@ -497,11 +508,10 @@ class CharacterCreatorHelper {
             //will be null for char viewer.
             loadButton.onClick.listen((Event e) {
                 TextAreaElement dataBox = querySelector("#dataBoxDiv${player.id}");
-                String bs = "${window.location}?" +
-                    dataBox.value; //need "?" so i can parse as url
+                String bs = "${window.location}?" + dataBox.value; //need "?" so i can parse as url
+                if(window.location.toString().contains("?")) bs = "${window.location}&" + dataBox.value;
                 print("bs is: " + bs);
-                String b = (getParameterByName("b",
-                    bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+                String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
                 String s = getParameterByName("s", bs);
                 String x = (getParameterByName("x", bs));
                 //TODO oh god why ar eall these null???
@@ -826,8 +836,7 @@ class CharacterCreatorHelper {
 
         interestCategory1Dom.onChange.listen((Event e) {
             OptionElement icDropDown = interestCategory1Dom.selectedOptions[0];
-            InterestCategory ic1 =
-            InterestManager.getCategoryFromString(icDropDown.value);
+            InterestCategory ic1 = InterestManager.getCategoryFromString(icDropDown.value);
             interest1DropDom.setInnerHtml(that.drawInterestDropDown(ic1, 1, player));
             helpText
                 .setInnerHtml(that.generateHelpText("Interests", player.class_name.name));

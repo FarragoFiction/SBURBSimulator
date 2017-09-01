@@ -261,7 +261,7 @@ class Aftermath extends Scene {
 
 				}else{
 					end += this.democracyBonus();
-					end += " <Br><br> The door to the new universe is revealed.";
+					end += " <Br><br> The door to the new universe is revealed. <br><Br>";
 					end += whoEnters();
 					end += "<Br><Br>";
 					//spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
@@ -306,8 +306,9 @@ class Aftermath extends Scene {
 		end += this.democracyBonus();
 		end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
 	}
-	Player strongest = findStrongestPlayer(this.session.players);
-	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a power of: ${strongest.getStat("power")}";
+	//used to be power based, anywhere else doing mvp (like yellow yard shit) still is. need to update tournament, too
+	Player strongest = findMVP(this.session.players);
+	end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a grist level  of: ${strongest.grist}";
 	end += "<br>Thanks for Playing!<br>";
 	appendHtml(div, end);
 	//String divID = (div.id) + "_aftermath" ;
