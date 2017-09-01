@@ -72,7 +72,7 @@ class GrimDarkQuests extends Scene{
 
 	}
 	void crashSession(){
-		this.session.crashedFromPlayerActions = true;
+		this.session.stats.crashedFromPlayerActions = true;
 		throw new PlayersCrashedSession(getPlayersTitlesNoHTML(this.players) + " has foolishly crashed session: ${this.session.session_id}");
 	}
 	@override

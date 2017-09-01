@@ -6,7 +6,8 @@ import 'SBURBSim.dart';
 import "includes/tracer.dart";
 export 'includes/logger.dart';
 
-export "SessionMutator.dart";
+export "SessionEngine/SessionMutator.dart";
+export "SessionEngine/SessionStats.dart";
 export "Controllers/SimController.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
 export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
@@ -15,8 +16,8 @@ export "GameEntities/Stats/buff.dart";
 export "GameEntities/Stats/stat.dart";
 export "GameEntities/Stats/statholder.dart";
 export "fraymotif.dart";
-export "session.dart";
-export "sessionSummary.dart";
+export "SessionEngine/session.dart";
+export "SessionEngine/sessionSummary.dart";
 export "FAQEngine/FAQFile.dart";
 export "FAQEngine/GeneratedFAQ.dart";
 export "FAQEngine/FAQSection.dart";
@@ -153,7 +154,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     String recomendedAction = "";
     Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
     Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
-    if (curSessionGlobalVar.crashedFromPlayerActions) {
+    if (curSessionGlobalVar.stats.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
         recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
     } else if (curSessionGlobalVar.players.isEmpty) {
@@ -164,14 +165,14 @@ bool printCorruptionMessage(ErrorEvent e) {
         recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
     } else if (space == null) {
         appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
-        curSessionGlobalVar.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromCustomShit = true;
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
     } else if (time == null) {
-        curSessionGlobalVar.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromCustomShit = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
     } else {
-        curSessionGlobalVar.crashedFromSessionBug = true;
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
         recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(curSessionGlobalVar.getLineage())}";
     }
@@ -241,14 +242,14 @@ String scratchedLineageText(List<Session> lineage) {
     String ret = "";
     String yellowYard = getYellowYardEvents(lineage[0]);
     if (yellowYard != ". ") yellowYard = "Which had YellowYardEvents:  $yellowYard";
-    if (lineage[0].scratched) scratched = "(scratched)";
+    if (lineage[0].stats.scratched) scratched = "(scratched)";
     ret = "$ret${lineage[0].session_id}$scratched$yellowYard";
     for (int i = 1; i < lineage.length; i++) {
         String scratched = "";
         yellowYard = getYellowYardEvents(lineage[i]);
         if (yellowYard != ". ") yellowYard = " which had YellowYardEvents:  $yellowYard";
 
-        if (lineage[i].scratched) scratched = "(scratched)";
+        if (lineage[i].stats.scratched) scratched = "(scratched)";
         ret = "$ret which combined with: ${lineage[i].session_id}$scratched$yellowYard ";
     }
     return ret;
@@ -291,12 +292,12 @@ void crashEasterEgg(String url) {
 void scratch() {
     //print("scratch has been confirmed");
     numPlayersPreScratch = curSessionGlobalVar.players.length;
-    var ectoSave = curSessionGlobalVar.ectoBiologyStarted;
+    var ectoSave = curSessionGlobalVar.stats.ectoBiologyStarted;
 
     SimController.instance.reinit();
-    curSessionGlobalVar.scratched = true;
-    curSessionGlobalVar.scratchAvailable = false;
-    curSessionGlobalVar.doomedTimeline = false;
+    curSessionGlobalVar.stats.scratched = true;
+    curSessionGlobalVar.stats.scratchAvailable = false;
+    curSessionGlobalVar.stats.doomedTimeline = false;
     raggedPlayers = findPlayersFromSessionWithId(curSessionGlobalVar.players, curSessionGlobalVar.session_id); //but only native
     //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
     //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
@@ -308,7 +309,7 @@ void scratch() {
     curSessionGlobalVar.makePlayers();
     curSessionGlobalVar.randomizeEntryOrder();
     curSessionGlobalVar.makeGuardians(); //after entry order established
-    curSessionGlobalVar.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
+    curSessionGlobalVar.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 
     checkEasterEgg(scratchEasterEggCallBack, null);
 }
@@ -318,7 +319,7 @@ void scratchEasterEggCallBack() {
     initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 
 
-    if (curSessionGlobalVar.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
+    if (curSessionGlobalVar.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
         setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
     }
     curSessionGlobalVar.switchPlayersForScratch();

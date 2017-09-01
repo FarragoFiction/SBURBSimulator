@@ -103,7 +103,7 @@ class FreeWillStuff extends Scene {
             var spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
             var ectobiologistEnemy = getLeader(enemies);
             //not everybody knows about ectobiology.
-            if (!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)) {
+            if (!this.session.stats.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)) {
                 //session.logger.info("Free will stop from killing ectobiologist: " + this.session.session_id);
                 ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. If this keeps up, they are going to end up killing the " + ectobiologistEnemy.htmlTitle();
                 ret += " and then they will NEVER do ectobiology.  No matter HOW much of an asshole they are, it's not worth dooming the timeline. ";
@@ -141,7 +141,7 @@ class FreeWillStuff extends Scene {
         if (spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel && (player.gnosis >= 2 && player.grimDark < 2)) { //grim dark players don't care if it dooms things.
             return false;
         }
-        if (!this.session.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)) {
+        if (!this.session.stats.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)) {
             return false;
         }
 
@@ -512,15 +512,15 @@ class FreeWillStuff extends Scene {
         String ret = "";
         if (!player.isDreamSelf) {
             ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. " + "On " + player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
-            this.session.questBed = true;
+            this.session.stats.questBed = true;
             ret += player.makeDead("on their quest bed");
         } else {
             ret += "The " + player.htmlTitleBasic() + " glows and ascends to the God Tiers with a sweet new outfit.";
-            this.session.sacrificialSlab = true;
+            this.session.stats.sacrificialSlab = true;
             //player.makeDead("on their sacrificialSlab") //no corpse with slab, instead corpse BECOMES god tier.
         }
         player.makeGodTier();
-        this.session.choseGodTier = true;
+        this.session.stats.choseGodTier = true;
         this.playerGodTiered = player;
         return ret;
     }
@@ -581,7 +581,7 @@ class FreeWillStuff extends Scene {
                 this.renderPlayer2 = murderer;
                 String ret = murderer.makeDead("being put down like a rabid dog by the " + player.titleBasic());
                 player.pvpKillCount ++;
-                this.session.murdersHappened = true;
+                this.session.stats.murdersHappened = true;
                 return ret + "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + murderer.htmlTitleBasic() + ". " + getPVPQuip(murderer, player, "Defender", "Attacker") + " Everyone is a little bit safer.";
             } else {
                 //session.logger.info(player.title() + " choosing to kill murderer but instead killed. " + this.session.session_id)
@@ -590,7 +590,7 @@ class FreeWillStuff extends Scene {
                 removeFromArray(player, this.session.availablePlayers);
                 String ret = player.makeDead("fighting against the crazy " + murderer.titleBasic());
                 murderer.pvpKillCount ++;
-                this.session.murdersHappened = true;
+                this.session.stats.murdersHappened = true;
                 this.renderPlayer1 = player;
                 this.renderPlayer2 = murderer;
                 return ret + "The " + player.htmlTitleBasic() + " cannot let this continue any further. The " + murderer.htmlTitleBasic() + " is a threat to everyone. They corner them, and have a brief, bloody duel that ends in the death of the " + player.htmlTitleBasic() + ".  " + getPVPQuip(player, murderer, "Attacker", "Defender") + " Everyone is a little bit less safe.";
@@ -628,7 +628,7 @@ class FreeWillStuff extends Scene {
     }
 
     String considerMakingEctobiologistDoJob(Player player) {
-        if (!this.session.ectoBiologyStarted && player.gnosis > 0 && player.grimDark < 2) {
+        if (!this.session.stats.ectoBiologyStarted && player.gnosis > 0 && player.grimDark < 2) {
             String timeIntro = "";
             if (player.aspect == Aspects.TIME && rand.nextDouble() > .25) {
                 timeIntro = " from the future";
@@ -750,7 +750,7 @@ class FreeWillStuff extends Scene {
     }
 
     String content() {
-        this.session.hasFreeWillEvents = true;
+        this.session.stats.hasFreeWillEvents = true;
         //String ret = "<img src = 'images/free_will_event.png'/><Br>"; //get rid of prefix soon.
         String ret = "";
         removeFromArray(this.player, this.session.availablePlayers);

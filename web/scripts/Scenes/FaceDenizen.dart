@@ -92,7 +92,7 @@ class FaceDenizen extends Scene{
 				p.leveledTheHellUp = true;
 				p.grist += denizen.grist;
 				appendHtml(div,"<br>"+ret);
-				this.session.denizenBeat = true;
+				this.session.stats.denizenBeat = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
 				//session.logger.info("denizen beat through choice in session: " + this.session.session_id);
 			}else{
@@ -113,7 +113,7 @@ class FaceDenizen extends Scene{
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
 				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
-				this.session.denizenBeat = true;
+				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
 				//session.logger.info("denizen kill " + this.session.session_id);
 			}
@@ -137,7 +137,7 @@ class FaceDenizen extends Scene{
 					p.level_index +=3;
 					p.leveledTheHellUp = true;
 					p.denizenDefeated = true;
-					this.session.denizenBeat = true;
+					this.session.stats.denizenBeat = true;
 				//	session.logger.info("denizen beat through violence in session: " + this.session.session_id);
 				}else{
 					p.denizenFaced = true;

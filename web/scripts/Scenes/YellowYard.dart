@@ -18,7 +18,7 @@ class YellowYard extends Scene {
 	}
 
 	void yellowYardTime(Element div) {
-		this.session.yellowYard = true;
+		this.session.stats.yellowYard = true;
 		Element div2 = null;
 		String tmp = "<div id = 'yyholder'></div><bR>";
 		appendHtml(div, tmp);
@@ -143,7 +143,7 @@ class YellowYard extends Scene {
 */
    @override
 	void renderContent(Element div){
-		this.session.yellowYard = true;
+		this.session.stats.yellowYard = true;
 		//div.append("<br>"+this.content());
 		//session.logger.info("Yellow yard is happening. " + this.session.session_id);
 		String canvasHTML = "<br><canvas id='canvasJRAB1${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";

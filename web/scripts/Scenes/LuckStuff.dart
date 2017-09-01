@@ -63,7 +63,7 @@ class LuckStuff extends Scene{
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
 		roll.player.increaseLandLevel();
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll65(Roll roll){
@@ -75,7 +75,7 @@ class LuckStuff extends Scene{
 		Fraymotif f = roll.player.getNewFraymotif(null);
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotiff, "+f.name + ", they have had their eye on! ";
 		//roll.player.increasePower();
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll40(Roll roll){
@@ -85,7 +85,7 @@ class LuckStuff extends Scene{
 		//session.logger.info("roll40 in " + this.session.session_id);
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge bee hive. The angry bees immediately ravage the country side, pestering local consorts.";
 		roll.player.increaseLandLevel(-1.0);
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll35(Roll roll){
@@ -93,7 +93,7 @@ class LuckStuff extends Scene{
 		List<String> items = ["sopor slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		String ret = "The " + roll.player.htmlTitle() + " has lost their " + rand.pickFrom(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
 		roll.player.addStat("sanity", -1000);
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll70(Roll roll){
@@ -106,7 +106,7 @@ class LuckStuff extends Scene{
 		friend.getRelationshipWith(roll.player).increase();
 		friend.getRelationshipWith(roll.player).increase();
 		friend.getRelationshipWith(roll.player).increase();
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll30(Roll roll){
@@ -119,7 +119,7 @@ class LuckStuff extends Scene{
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
 		friend.getRelationshipWith(roll.player).decrease();
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll25(Roll roll){
@@ -128,7 +128,7 @@ class LuckStuff extends Scene{
 		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + rand.pickFrom(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
 		roll.player.addStat("power", 50);  //it IS a weapon, points out aspiringWatcher
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll80(Roll roll){
@@ -138,7 +138,7 @@ class LuckStuff extends Scene{
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
 		roll.player.increaseLandLevel(2.0);
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll85(Roll roll){
@@ -152,7 +152,7 @@ class LuckStuff extends Scene{
 		roll.player.increasePower();
 		roll.player.leveledTheHellUp = true;
 		roll.player.level_index +=2;
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll20(Roll roll){
@@ -162,7 +162,7 @@ class LuckStuff extends Scene{
 		}
 		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
 		roll.player.increaseLandLevel(-2.0);
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll90(Roll roll){
@@ -173,7 +173,7 @@ class LuckStuff extends Scene{
 		roll.player.increasePower();
 		roll.player.leveledTheHellUp = true;
 		roll.player.level_index +=3;
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
 	String roll95(Roll roll){
@@ -186,7 +186,7 @@ class LuckStuff extends Scene{
 			ret += "Wait. What the HELL!? Is that last Frog!? Just sitting there? Right in front of the " + roll.player.htmlTitle() + "!? No time shenanigans or prophecies or god damned Choices!? It's just...there. Well. Damn. That'll make the frog breeding WAY easier.";
 		}
 		roll.player.increaseLandLevel(3.0);
-		this.session.goodLuckEvent = true;
+		this.session.stats.goodLuckEvent = true;
 
 		return ret;
 	}
@@ -197,23 +197,23 @@ class LuckStuff extends Scene{
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immegrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
 		roll.player.increaseLandLevel(-4.0);
-		this.session.badLuckEvent = true;
+		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
 	String roll100(Roll roll, Element div){
 		//session.logger.info("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
-		this.session.goodLuckEvent = true; // moved to top because at the bottom it's dead code -PL
+		this.session.stats.goodLuckEvent = true; // moved to top because at the bottom it's dead code -PL
 
 		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
 			String ret = " What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
 			if(!roll.player.isDreamSelf){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On " + roll.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
-				this.session.questBed = true;
+				this.session.stats.questBed = true;
 				ret += roll.player.makeDead("luckily on their Quest Bed");
 			}else{
 				ret += "SACRIFICIAL SLAB!? They glow and ascend to the God Tiers with a sweet new outfit.";
-				this.session.sacrificialSlab = true;
+				this.session.stats.sacrificialSlab = true;
 				//roll.player.makeDead("luckily on their Sacrificial Slab") doesn't make a ghost 'cause the corpse itself revives'
 			}
 			Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [roll.player], 3);//first god tier fraymotif
@@ -221,8 +221,8 @@ class LuckStuff extends Scene{
 			ret += " They learn " + f.name + ". " ;
 			roll.player.makeGodTier();
 
-			this.session.luckyGodTier = true;
-			this.session.godTier = true;
+			this.session.stats.luckyGodTier = true;
+			this.session.stats.godTier = true;
 			String divID = (div.id) + "_luckGodBS" + roll.player.chatHandle;
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, ret);
@@ -262,8 +262,8 @@ class LuckStuff extends Scene{
 		Drawing.drawSprite(pSpriteBuffer,roll.player);
 
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		this.session.badLuckEvent = true;
-		this.session.badBreakDeath = true;
+		this.session.stats.badLuckEvent = true;
+		this.session.stats.badBreakDeath = true;
 		return "";
 
 	}

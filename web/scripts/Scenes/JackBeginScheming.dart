@@ -213,7 +213,7 @@ class JackBeginScheming extends Scene {
 		if(this.friend == null){
 			return;
 		}
-		this.session.jackScheme = true;
+		this.session.stats.jackScheme = true;
 		this.friend.increasePower();
 		removeFromArray(this.friend, this.session.availablePlayers);
 		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push

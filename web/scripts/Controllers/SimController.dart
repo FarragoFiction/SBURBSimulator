@@ -123,7 +123,7 @@ abstract class SimController {
             load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
         } else {
             //scratch fuckers.
-            curSessionGlobalVar.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
+            curSessionGlobalVar.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
             renderAfterlifeURL();
             //renderScratchButton(curSessionGlobalVar);
         }
@@ -134,7 +134,7 @@ abstract class SimController {
         Scene s = new Reckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
         s.renderContent(curSessionGlobalVar.newScene());
-        if (!curSessionGlobalVar.doomedTimeline) {
+        if (!curSessionGlobalVar.stats.doomedTimeline) {
             reckoningTick();
         } else {
             renderAfterlifeURL();
@@ -152,7 +152,7 @@ abstract class SimController {
             Scene s = new Aftermath(curSessionGlobalVar);
             s.trigger(curSessionGlobalVar.players);
             s.renderContent(curSessionGlobalVar.newScene());
-            if (curSessionGlobalVar.makeCombinedSession == true) {
+            if (curSessionGlobalVar.stats.makeCombinedSession == true) {
                 processCombinedSession(); //make sure everything is done rendering first
             } else {
                 renderAfterlifeURL();
@@ -161,7 +161,7 @@ abstract class SimController {
     }
 
     void recoverFromCorruption() {
-        if(curSessionGlobalVar != null) curSessionGlobalVar.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
+        if(curSessionGlobalVar != null) curSessionGlobalVar.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
         //print("Other controllers will do something after corruption, but the sim just ends.");
     }
 
@@ -176,13 +176,13 @@ abstract class SimController {
         //alert("scratch [possible]");
         //can't scratch if it was a a total party wipe. just a regular doomed timeline.
         List<Player> living = findLivingPlayers(session.players);
-        if (!living.isEmpty && (session.makeCombinedSession == false && session.hadCombinedSession == false)) {
+        if (!living.isEmpty && (session.stats.makeCombinedSession == false && session.stats.hadCombinedSession == false)) {
             //print("gonna render scratch");
             //var timePlayer = findAspectPlayer(session.players, "Time");
-            if (!session.scratched) {
+            if (!session.stats.scratched) {
                 //this is apparently spoilery.
                 //alert(living.length  + " living players and the " + timePlayer.land + " makes a scratch available!");
-                if (session.scratchAvailable) {
+                if (session.stats.scratchAvailable) {
                     String html = '<img src="images/Scratch.png" id="scratchButton"><br>Click To Scratch Session?';
                     appendHtml(querySelector("#story"), html);
                     querySelector("#scratchButton").onClick.listen((Event e) => scratchConfirm());
@@ -282,7 +282,7 @@ abstract class SimController {
     void tick([num time]) {
         ////print("Debugging AB: tick");
         ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
-        if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.doomedTimeline) {
+        if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.stats.doomedTimeline) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
             window.requestAnimationFrame(tick);

@@ -1,6 +1,6 @@
 import "dart:html";
 
-import "SBURBSim.dart";
+import "../SBURBSim.dart";
 enum CanonLevel {
     CANON_ONLY,
     FANON_ONLY,
@@ -16,77 +16,31 @@ class Session {
     List<Player> players = <Player>[];
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
     //TODO all these "session summary stats" things should just be a SessionSummary object I own.
-    bool hasClubs = false;
+
     num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
-    bool hasDiamonds = false;
-    bool opossumVictory = false;
-    bool hasBreakups = false; //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
     List<Player> replayers = <Player>[]; //used for fan oc easter eggs.
     AfterLife afterLife = new AfterLife();
     GameEntity queensRing = null; //eventually have white and black ones.
     GameEntity kingsScepter = null;
     bool janusReward = false;
-    bool badBreakDeath = false;
     //if i have less than expected grist, then no frog, bucko
     int expectedGristContributionPerPlayer = 400;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
-    bool jackGotWeapon = false;
-    bool jackRampage = false;
-    bool jackScheme = false;
-    bool luckyGodTier = false;
-    bool choseGodTier = false;
-    bool plannedToExileJack = false;
-    bool hasHearts = false;
-    bool hasSpades = false;
-    bool rocksFell = false;
-    bool denizenBeat = false; //session no longer keeps track of guardians.
-    //TODO eventually NPC engine will be responsible for these
+     //TODO eventually NPC engine will be responsible for these
     GameEntity king = null;
     GameEntity queen = null;
     GameEntity jack = null;
     num numScenes = 0;
-    bool rapBattle = false;
-    bool crashedFromSessionBug = false; //gets corrupted if an unrecoverable error gets caught.
-    bool crashedFromPlayerActions = false;
-    bool sickFires = false;
-    bool dreamBubbleAfterlife = false;
     GameEntity democraticArmy = null;
     bool sbahj = false;
-    bool heroicDeath = false;
-    bool won = false;
-    bool justDeath = false;
-    bool mayorEnding = false;
-    bool gnosisEnding = false;
-    bool loveEnding = false;
-    bool hateEnding = false;
-    bool monoTheismEnding = false;
-    bool waywardVagabondEnding = false;
     num hardStrength = 1000;
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
     bool reckoningStarted = false;
     List<Player> aliensClonedOnArrival = <Player>[]; //if i'm gonna do time shenanigans, i need to know what the aliens were like when they got here.
-    bool murdersHappened = false;
-    bool queenRejectRing = false;
-    bool goodLuckEvent = false;
-    bool badLuckEvent = false;
-    bool hasFreeWillEvents = false;
-    bool hasTier1Events = false;
-    bool hasTier2Events = false;
-    bool hasTier3Events = false;
-    bool hasTier4Events = false;
-    bool ectoBiologyStarted = false;
-    bool doomedTimeline = false;
-    bool makeCombinedSession = false; //happens if sick frog and few living players
-    bool scratched = false;
-    bool scratchAvailable = false;
     num timeTillReckoning = 0;
     num reckoningEndsAt = -15;
-    bool godTier = false;
-    bool grimDarkPlayers = false;
-    bool questBed = false;
-    bool sacrificialSlab = false;
     num sessionType = -999;
     List<String> doomedTimelineReasons = <String>[]; //am I even still using this?
     num currentSceneNum = 0;
@@ -94,25 +48,24 @@ class Session {
     List<Scene> reckoningScenes = <Scene>[];
     List<Scene> deathScenes = <Scene>[];
     List<Scene> available_scenes = <Scene>[];
-    bool hadCombinedSession = false;
     Session parentSession = null;
     List<Player> availablePlayers = <Player>[]; //which players are available for scenes or whatever.
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
-    bool yellowYard = false;
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
-
+    SessionStats stats = new SessionStats();
     // extra fields
-    bool crashedFromCustomShit = false;
     Random rand;
     List<SBURBClass> available_classes_players;
     List<SBURBClass> available_classes_guardians;
     List<Aspect> available_aspects;
     List<Aspect> required_aspects;
+    SessionMutator mutator;
 
     Session(int this.session_id) {
         ////print("Made a new session with an id of $session_id");
         logger = Logger.get("Session: $session_id", false);
-
+        mutator = SessionMutator.getInstance();
+        mutator.syncToSession(this);
         this.rand = new Random(session_id);
        resetAvailableClasspects();
     }
@@ -308,7 +261,7 @@ class Session {
         //when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
         this.afterLife.complyWithLifeTimeShenanigans(e);
         ////print("undoing an event.");
-        if (this.scratched) {
+        if (this.stats.scratched) {
             this.addEventToUndoAndResetScratch(e); //works different
             return;
         }
@@ -350,14 +303,14 @@ class Session {
         if (e != null) { //will be null if undoing an undo
             this.yellowYardController.eventsToUndo.add(e);
         }
-        bool ectoSave = this.ectoBiologyStarted;
+        bool ectoSave = this.stats.ectoBiologyStarted;
         reinit();
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         curSessionGlobalVar.makePlayers();
         curSessionGlobalVar.randomizeEntryOrder();
         curSessionGlobalVar.makeGuardians(); //after entry order established
-        this.ectoBiologyStarted = ectoSave;
-        this.scratched = true;
+        this.stats.ectoBiologyStarted = ectoSave;
+        this.stats.scratched = true;
         this.switchPlayersForScratch();
 
 
@@ -372,7 +325,7 @@ class Session {
         newSession
             ..currentSceneNum = this.currentSceneNum
             ..afterLife = this.afterLife //afterlife carries over.
-            ..dreamBubbleAfterlife = this.dreamBubbleAfterlife //this, too
+            ..stats.dreamBubbleAfterlife = this.stats.dreamBubbleAfterlife //this, too
             ..reinit()
             ..makePlayers()
             ..randomizeEntryOrder()
@@ -385,7 +338,7 @@ class Session {
         ////print(getPlayersTitles(living));
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
-        this.hadCombinedSession = true;
+        this.stats.hadCombinedSession = true;
         newSession.parentSession = this;
         Scene.createScenesForSession(newSession);
         ////print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
@@ -415,13 +368,13 @@ class Session {
         Scene.createScenesForSession(this);
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
-        this.doomedTimeline = false;
+        this.stats.doomedTimeline = false;
         this.setUpBosses();
         this.reckoningStarted = false;
         this.importantEvents = <ImportantEvent>[];
-        this.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
+        this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
         this.doomedTimelineReasons = <String>[];
-        this.ectoBiologyStarted = false;
+        this.stats.ectoBiologyStarted = false;
     }
 
 

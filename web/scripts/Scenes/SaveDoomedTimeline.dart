@@ -60,7 +60,7 @@ class SaveDoomedTimeLine extends Scene {
 		return false;
 	}
 	bool ectoDoom(){
-		if(this.leaderIsFucked() && !this.session.ectoBiologyStarted){
+		if(this.leaderIsFucked() && !this.session.stats.ectoBiologyStarted){
 			this.reason = "Leader killed before ectobiology.";
 			//session.logger.info(this.reason);
 			return true; //paradox, the babies never get made.
@@ -141,7 +141,7 @@ class SaveDoomedTimeLine extends Scene {
 			}
 			this.session.doomedTimelineReasons.add(this.reason);
 		}else{
-			if(this.timePlayer.leader && !this.session.ectoBiologyStarted ){
+			if(this.timePlayer.leader && !this.session.stats.ectoBiologyStarted ){
 					session.logger.info("time player doing time ectobiology: " + this.session.session_id.toString());
 					this.timePlayer.performEctobiology(this.session);
 					this.reason = "Time player didn't do ectobiology.";

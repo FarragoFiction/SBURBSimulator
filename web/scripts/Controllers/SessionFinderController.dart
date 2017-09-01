@@ -227,7 +227,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     ////print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if (sessionsSimulated.indexOf(session.session_id) != -1 &&
-        !session.scratched) { //scratches are allowed to be repeats
+        !session.stats.scratched) { //scratches are allowed to be repeats
       ////print("Debugging AB: should be skipping a repeat session: " +session.session_id.toString());
       return null;
     }

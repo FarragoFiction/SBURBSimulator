@@ -85,7 +85,7 @@ class VoidyStuff extends Scene {
 			this.godTier(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.leader && !this.session.ectoBiologyStarted && rand.nextDouble() > .8){
+		}else if(this.player.leader && !this.session.stats.ectoBiologyStarted && rand.nextDouble() > .8){
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
@@ -241,7 +241,7 @@ class VoidyStuff extends Scene {
 			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans");
 		}
 		this.player.makeGodTier();
-		this.session.godTier = true;
+		this.session.stats.godTier = true;
 
 		appendHtml(div, ret +" What was that light on " + this.player.shortLand() + "? ");
 		Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif

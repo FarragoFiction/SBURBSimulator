@@ -1,10 +1,19 @@
-import "SBURBSim.dart";
+import "../SBURBSim.dart";
 //this should handle the most severe of the Gnosis Tiers: The Waste Tier
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
 
   static SessionMutator _instance;
+  num timeTillReckoning = 0;
+  num reckoningEndsAt = -15;
+  bool ectoBiologyStarted = false;
+  num hardStrength = 1000;
+  num minFrogLevel = 13;
+  num goodFrogLevel = 20;
+  int expectedGristContributionPerPlayer = 400;
+  int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
+  num sessionHealth = 500;
 
   static getInstance() {
     if(_instance == null) _instance = new SessionMutator();
@@ -13,6 +22,19 @@ class SessionMutator {
 
   SessionMutator() {
     _instance = this;
+  }
+
+  //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
+  void syncToSession(Session s) {
+    s.sessionHealth = this.sessionHealth;
+    s.minimumGristPerPlayer = this.minimumGristPerPlayer;
+    s.expectedGristContributionPerPlayer = this.expectedGristContributionPerPlayer;
+    s.goodFrogLevel = this.goodFrogLevel;
+    s.minFrogLevel = this.minFrogLevel;
+    s.hardStrength = this.hardStrength;
+    s.stats.ectoBiologyStarted = this.ectoBiologyStarted;
+    s.reckoningEndsAt = this.reckoningEndsAt;
+    s.timeTillReckoning = this.timeTillReckoning;
   }
 
   GameEntity spawnBlackQueen() {

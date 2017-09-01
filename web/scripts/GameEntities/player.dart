@@ -435,7 +435,7 @@ class Player extends GameEntity {
         this.addStat("power", 500); //they are GODS.
         this.increasePower();
         this.godTier = true;
-        this.session.godTier = true;
+        this.session.stats.godTier = true;
         this.dreamSelf = false;
         this.canGodTierRevive = true;
         this.leftMurderMode = false; //no scars, unlike other revival methods
@@ -850,7 +850,7 @@ class Player extends GameEntity {
 
 
     List<Player> performEctobiology(Session session) {
-        session.ectoBiologyStarted = true;
+        session.stats.ectoBiologyStarted = true;
         List<Player> playersMade = findPlayersWithoutEctobiologicalSource(session.players);
         setEctobiologicalSource(playersMade, session.session_id);
         return playersMade;

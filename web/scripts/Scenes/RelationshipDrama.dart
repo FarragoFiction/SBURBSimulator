@@ -34,7 +34,7 @@ class RelationshipDrama extends Scene {
 	}
 	void celebratoryRapBattle(Element div, Player player1, Player player2){
 		 session.logger.info("AB:  celebratoryRapBattle :${this.session.session_id}");
-		this.session.rapBattle = true;
+		this.session.stats.rapBattle = true;
 		String divId = (div.id) + player1.chatHandle + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -62,7 +62,7 @@ class RelationshipDrama extends Scene {
 			//rap battles are truly the best way to power level.
 			player1.increasePower();
 			player2.increasePower();
-			this.session.sickFires = true;
+			this.session.stats.sickFires = true;
 		}
 
 	}
@@ -102,7 +102,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player1Start, player1,"Holy shit! Even though I've been hitting on everybody?");
 			chatText += Scene.chatLine(player2Start, player2,"Honestly, I was kind of insulted you hit on everybody BUT ME.");
 			chatText += Scene.chatLine(player1Start, player1,"Holy shit.");
-			this.session.hasHearts = true;
+			this.session.stats.hasHearts = true;
 			Relationship.makeHeart(player1, player2);
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += Scene.chatLine(player2Start, player2, "lol");
@@ -211,7 +211,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player2Start, player2,"Wow... I ... I feel the same way!");
 			chatText += Scene.chatLine(player1Start, player1,"Holy shit!");
 			Relationship.makeHeart(player1, player2);
-			this.session.hasHearts = true;
+			this.session.stats.hasHearts = true;
 		}else if(r2.saved_type ==r2.badBig){
 			chatText += Scene.chatLine(player2Start, player2, "lol");
 			chatText += Scene.chatLine(player2Start, player2, "Well, I think YOU are " + this.generateNewOpinion(r2) + "!");
@@ -586,7 +586,7 @@ class RelationshipDrama extends Scene {
 			chatText += Scene.chatLine(player1Start, player1,"God, why are you so " + trait + "?");
 			chatText += Scene.chatLine(player2Start, player2,"Fuck you, at least I'm not " + trait2 + "!");
 			Relationship.makeSpades(player1, player2);
-			this.session.hasSpades = true;
+			this.session.stats.hasSpades = true;
 			if(rand.nextDouble() > .5){
 				this.celebratoryRapBattle(div, player1, player2);
 			}

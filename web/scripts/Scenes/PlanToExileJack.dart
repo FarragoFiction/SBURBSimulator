@@ -160,7 +160,7 @@ class PlanToExileJack extends Scene {
 
 	@override
 	void renderContent(Element div){
-		this.session.plannedToExileJack = true;
+		this.session.stats.plannedToExileJack = true;
 		if(this.planner == null){
 			return;
 		}

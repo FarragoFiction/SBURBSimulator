@@ -78,7 +78,7 @@ class JackRampage extends Scene{
 		}
 	@override
 	void renderContent(Element div){
-		this.session.jackRampage = true;
+		this.session.stats.jackRampage = true;
 		//div.append("<br>"+this.content());
 		appendHtml(div,"<br><img src = 'images/sceneIcons/jack_icon.png'> ");
 

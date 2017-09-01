@@ -22,7 +22,7 @@ class QueenRejectRing extends Scene {
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> "+this.content());
 	}
 	dynamic content(){
-		this.session.queenRejectRing = true;
+		this.session.stats.queenRejectRing = true;
 		this.session.queen.crowned = null; //queen no longer has ring, but session still does.
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		String ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();

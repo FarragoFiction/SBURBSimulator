@@ -235,7 +235,7 @@ class EngageMurderMode extends Scene{
 	}
 	void rapBattle(Element div, Player player1, Player player2){
 		 session.logger.info("AB:  murder rap battles :${this.session.session_id}");
-		this.session.rapBattle = true;
+		this.session.stats.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		appendHtml(div, narration);
 		String player1Start = player1.chatHandleShort()+ ": ";
@@ -265,7 +265,7 @@ class EngageMurderMode extends Scene{
 			//rap battles are truly the best way to power level.
 			player1.increasePower();
 			player2.increasePower();
-			this.session.sickFires = true;
+			this.session.stats.sickFires = true;
 		}else{
 			String canvasHTML2 = "<br><canvas id='canvas2" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 			appendHtml(div, canvasHTML2);

@@ -69,7 +69,7 @@ class GetTiger extends Scene{
 				Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 				p.fraymotifs.add(f);
 				ret += " They learn " + f.name + "." ;
-				this.session.questBed = true;
+				this.session.stats.questBed = true;
 			}
 		}else if(withd != null && withd.length > 0){
 			session.logger.debug("We COULD have been on my quest bed, but random chance said no. " );
@@ -84,7 +84,7 @@ class GetTiger extends Scene{
 					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
 					////session.logger.info("sacrificial slab: " + this.session.session_id);
 					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on " + p.moon + ", the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
-					this.session.sacrificialSlab = true;
+					this.session.stats.sacrificialSlab = true;
 					Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 					p.fraymotifs.add(f);
 					ret += " They learn " + f.name + "." ;
@@ -93,7 +93,7 @@ class GetTiger extends Scene{
 			}
 			//session.logger.info("no dream self so slab");
 		}
-		this.session.godTier = true;
+		this.session.stats.godTier = true;
 		ret += " They are now extremely powerful. ";
 		
 		

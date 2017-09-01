@@ -327,7 +327,7 @@ class Breakup extends Scene {
 		var oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
 		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
-		this.session.hasBreakups = true;  //lets AB report on the hot gos
+		this.session.stats.hasBreakups = true;  //lets AB report on the hot gos
 		//String ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
 		if(this.relationshipToBreakUp.target.dead){
 			return "The " + this.player.htmlTitleBasic() + " has finally decided it is time to move on. The " + this.relationshipToBreakUp.target.htmlTitleBasic() + " is dead. They have mourned them long enough. ";

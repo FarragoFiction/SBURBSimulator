@@ -16,7 +16,7 @@ class GiveJackBullshitWeapon extends Scene {
 		return (!this.session.queen.exiled && !this.session.jack.exiled && this.session.jack.crowned == null) && (this.session.jack.getStat("currentHP") > 0 && partyRoll < jackRoll );
 	}
 	dynamic content(){
-		this.session.jackGotWeapon = true;
+		this.session.stats.jackGotWeapon = true;
 
 
 		String ret = " Jack Noir is tired of putting up with the STUPID LOUSY WISE AND JUST LEADER, what a royal pain in the ass. ";
