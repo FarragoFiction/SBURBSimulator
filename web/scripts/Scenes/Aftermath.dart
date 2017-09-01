@@ -113,10 +113,10 @@ class Aftermath extends Scene {
 
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.democraticArmy.getStat("power") == GameEntity.minPower){
+		if(this.session.npcHandler.democraticArmy.getStat("power") == GameEntity.minPower){
 			return "";
 		}
-		if(this.session.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
+		if(this.session.npcHandler.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
 			this.session.stats.mayorEnding = true;
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
@@ -214,7 +214,7 @@ class Aftermath extends Scene {
 		Player corruptedSpacePlayer = this.session.findMostCorruptedSpace();
 		//var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 		//...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
-		if(living.length > 0  && (!this.session.king.dead || !this.session.queen.dead && this.session.queen.exiled == false)){
+		if(living.length > 0  && (!this.session.npcHandler.king.dead || !this.session.npcHandler.queen.dead && this.session.npcHandler.queen.exiled == false)){
 
 			end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the frog isn't deployed now, it never will be. There is no time for mourning. ";
 			this.session.stats.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.

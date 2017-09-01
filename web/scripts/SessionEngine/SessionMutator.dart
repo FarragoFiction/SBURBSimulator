@@ -3,7 +3,7 @@ import "../SBURBSim.dart";
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
-
+  int effectsInPlay = 0; //more there are, more likely session will crash.
   bool hopeField = false;
   static SessionMutator _instance;
   num timeTillReckoning = 0;
@@ -102,6 +102,7 @@ class SessionMutator {
   //is reached for a specific aspect
 
   void blood(Session s) {
+    effectsInPlay ++;
       /*
           TODO:
           * all players have trickster levels of sanity
@@ -116,6 +117,7 @@ class SessionMutator {
   }
 
   void mind(Session s) {
+    effectsInPlay ++;
     /*
       TODO:
         * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
@@ -134,6 +136,7 @@ class SessionMutator {
   }
 
   void rage(Session s) {
+    effectsInPlay ++;
     /*
         TODO:
         All players are murder mode, all players are god tier, all players hate each other.
@@ -161,6 +164,7 @@ class SessionMutator {
 
   //lol, can't just call it void cuz protected word
   void voidStuff(Session s) {
+    effectsInPlay ++;
     /*
         TODO:
           * reroll seed.  rerun session, but NEVER print anything, not even in the void.
@@ -172,6 +176,7 @@ class SessionMutator {
   }
 
   void time(Session s) {
+    effectsInPlay ++;
       /*
           TODO:
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
@@ -183,6 +188,7 @@ class SessionMutator {
   }
 
   void heart (Session s) {
+    effectsInPlay ++;
       /*
         TODO
          * everyones classpects are randomized mid sim
@@ -192,6 +198,7 @@ class SessionMutator {
   }
 
   void breath(Session s) {
+    effectsInPlay ++;
       /*
         TOOD:
         * available players is always all players.
@@ -201,6 +208,7 @@ class SessionMutator {
   }
 
   void light(Session s) {
+    effectsInPlay ++;
     /*TODO
         *EVERything is displayed, not just void.
           *   how to do this with code not being js anymore?
@@ -212,6 +220,7 @@ class SessionMutator {
   }
 
   void space(Session s) {
+    effectsInPlay ++;
     /*
           TODO:
           * Cccccccombo sessions.   (with "go" button to keep it from being infinite)
@@ -222,7 +231,10 @@ class SessionMutator {
   }
 
   void hope(Session s, Player hopePlayer) {
+    effectsInPlay ++;
     hopeField = true;
+    GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
+    s.hardStrength = 0; //this means the players 'need help' from the Mayor automatically.
     spawnQueen(s);
     spawnKing(s);
     spawnJack(s);
@@ -232,18 +244,24 @@ class SessionMutator {
       p.murderMode = false;
       p.leftMurderMode = false; //never even happened.
       p.setStat("currentHP", 9001);
+      p.setStat("sanity", 9001);
       Relationship r = hopePlayer.getRelationshipWith(p);
-      if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades)) {
+      if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
         //yes, this means any players who share your enemies class or aspect get renamed too.
         //but wastes are ALL about the unintended consequences, right?
         r.target.aspect.name == "Dicks";
         r.target.class_name == "Jerk";
+      }else if(r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
+        Relationship r2 = p.getRelationshipWith(hopePlayer);
+        r2.value = 9001;  //you love me back. not creepy at all
+        r2.type();  //they reevaluate what they think about the hope player.
       }
       s.sessionHealth = 9001;
     }
   }
 
   void life(Session s) {
+    effectsInPlay ++;
     /*
         TODO:
           * Everyone is trickster
@@ -254,6 +272,7 @@ class SessionMutator {
   }
 
   void doom(Session s) {
+    effectsInPlay ++;
     /*
       TODO:
         * all stats flip

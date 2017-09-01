@@ -16,7 +16,7 @@ class JackRampage extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		//session.logger.info("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
-		return this.session.jack.crowned != null && this.session.jack.getStat("currentHP") > 0 && !this.session.jack.dead; //Jack does not stop showing us his stabs.
+		return this.session.npcHandler.jack.crowned != null && this.session.npcHandler.jack.getStat("currentHP") > 0 && !this.session.npcHandler.jack.dead; //Jack does not stop showing us his stabs.
 	}
 	List<GameEntity> getStabList(){
 		List<Player> potentialPlayers = [];
@@ -56,7 +56,7 @@ class JackRampage extends Scene{
 		return ret;
 	}
 	bool canCatch(Player victim){
-			if(this.session.jack.getStat("mobility") < victim.getStat("mobility")) return false;
+			if(this.session.npcHandler.jack.getStat("mobility") < victim.getStat("mobility")) return false;
 			if(victim.aspect == Aspects.VOID && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
 			if(victim.aspect == Aspects.SPACE && victim.getStat("power") > 50){
 				//session.logger.info("high level space player avoiding jack" + this.session.session_id.toString());
@@ -96,8 +96,8 @@ class JackRampage extends Scene{
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 			this.session.timeTillReckoning = 0;
-			this.session.king.setStat("currentHP",-99999999);
-			this.session.king.dead = true;
+			this.session.npcHandler.king.setStat("currentHP",-99999999);
+			this.session.npcHandler.king.dead = true;
 			session.logger.info("jack starts reckoning " + this.session.session_id.toString());
         appendHtml(div,""+ret);
 		}else{
@@ -121,7 +121,7 @@ class JackRampage extends Scene{
         appendHtml(div,""+ret);
 				this.renderPrestabs(div, stabbings); //pose as a team BEFORE getting your ass handed to you.
 				Team pTeam = new Team.withName("The Players",this.session, stabbings);
-				Team dTeam = new Team(this.session, [this.session.jack]);
+				Team dTeam = new Team(this.session, [this.session.npcHandler.jack]);
 				Strife strife = new Strife(this.session, [pTeam, dTeam]);
 				strife.startTurn(div);
 		}

@@ -240,7 +240,7 @@ class SessionSummary {
     static SessionSummary makeSummaryForSession(Session session) {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
-        summary.setBoolStat("blackKingDead", session.king.dead || session.king.getStat("currentHP") <= 0);
+        summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat("currentHP") <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
         summary.setBoolStat("loveEnding", session.stats.loveEnding);
@@ -295,15 +295,15 @@ class SessionSummary {
         summary.setBoolStat("ectoBiologyStarted", session.stats.ectoBiologyStarted);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
         summary.setBoolStat("plannedToExileJack", session.stats.plannedToExileJack);
-        summary.setBoolStat("exiledJack", session.jack.exiled);
-        summary.setBoolStat("exiledQueen", session.queen.exiled);
+        summary.setBoolStat("exiledJack", session.npcHandler.jack.exiled);
+        summary.setBoolStat("exiledQueen", session.npcHandler.queen.exiled);
         summary.setBoolStat("jackGotWeapon", session.stats.jackGotWeapon);
         summary.setBoolStat("jackRampage", session.stats.jackRampage);
         summary.setBoolStat("jackScheme", session.stats.jackScheme);
-        summary.setBoolStat("kingTooPowerful", session.king.getStat("power") > session.hardStrength);
+        summary.setBoolStat("kingTooPowerful", session.npcHandler.king.getStat("power") > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////print("Debugging: King strength is ${session.king.getStat("power")} and hardStrength is ${session.hardStrength}");
-        summary.setBoolStat("democracyStarted", session.democraticArmy.getStat("power") > GameEntity.minPower);
+        summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.getStat("power") > GameEntity.minPower);
         summary.setBoolStat("murderMode", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 
