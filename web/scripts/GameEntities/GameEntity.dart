@@ -544,6 +544,9 @@ class GameEntity implements Comparable<GameEntity> {
 
     //what gets displayed when you hover over any htmlTitle (even HP)
     String getToolTip() {
+        if (Drawing.checkSimMode() == true) {
+            return "<span>";
+        }
         String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
         ret += "<tr><td class = 'toolTipSection'>$name<hr>";
 

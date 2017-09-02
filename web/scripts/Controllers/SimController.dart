@@ -1,4 +1,5 @@
 import "dart:html";
+import '../GameEntities/Stats/statsampler.dart';
 import "../SBURBSim.dart";
 import "../navbar.dart";
 /*
@@ -17,8 +18,16 @@ abstract class SimController {
     static SimController instance;
     num initial_seed = 0;
 
+    bool gatherStatData = false;
+    StatSampler statData;
+
     SimController() {
         SimController.instance = this;
+
+        if (getParameterByName("gatherStatData") == "true") {
+            gatherStatData = true;
+            statData = new StatSampler();
+        }
     }
 
     void callNextIntro(int player_index) {
@@ -35,6 +44,7 @@ abstract class SimController {
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
+        this.gatherStats();
         window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
@@ -100,6 +110,7 @@ abstract class SimController {
     }
 
     void intro() {
+        initGatherStats();
         createInitialSprites();
         //advertisePatreon(querySelector("#story"));
         callNextIntro(0);
@@ -146,6 +157,7 @@ abstract class SimController {
         if (curSessionGlobalVar.timeTillReckoning > -10) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
+            this.gatherStats();
             window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
@@ -157,6 +169,7 @@ abstract class SimController {
             } else {
                 renderAfterlifeURL();
             }
+            this.gatherStats();
         }
     }
 
@@ -285,12 +298,25 @@ abstract class SimController {
         if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.stats.doomedTimeline) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
+            this.gatherStats();
             window.requestAnimationFrame(tick);
             ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {
             ////print("Debugging AB: reckoning time.");
             reckoning();
+        }
+    }
+
+    void gatherStats() {
+        if (gatherStatData) {
+            statData.sample(curSessionGlobalVar);
+        }
+    }
+
+    void initGatherStats() {
+        if (gatherStatData) {
+            statData.resetTurns();
         }
     }
 }
