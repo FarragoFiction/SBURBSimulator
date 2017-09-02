@@ -15,7 +15,7 @@ Random rand;
 int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
-  startTime =new DateTime.now();
+
   doNotRender = true;
   doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();
@@ -39,6 +39,7 @@ void main() {
 }
 
 void checkSessions() {
+    startTime =new DateTime.now();
   self.checkSessions();
 }
 
