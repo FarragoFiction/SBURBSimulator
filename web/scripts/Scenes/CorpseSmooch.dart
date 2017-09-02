@@ -46,6 +46,9 @@ class CorpseSmooch extends Scene {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvasCombo"+ divID);
 			this.drawCombo(canvasDiv, this.combo);*/
+			if (Drawing.checkSimMode() == true) {
+				return;
+			}
 			if (curSessionGlobalVar.sbahj) {
 				div.append(SBAHJ.sbahjText("${this.combo}x COPRSSMOOCH COMBOB${"!!" * this.combo}", 50, SBAHJGradients.horizon));
 			} else {
