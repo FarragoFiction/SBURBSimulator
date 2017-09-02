@@ -83,6 +83,7 @@ export "Scenes/QuadrantDialogue.dart";
 export "Scenes/QueenRejectRing.dart";
 export "Scenes/Reckoning.dart";
 export "Scenes/RelationshipDrama.dart";
+export "Scenes/RainClone.dart";
 export "Scenes/SaveDoomedTimeline.dart";
 export "Scenes/SolvePuzzles.dart"; //probably get rid of this after planet update
 export "Scenes/StartDemocracy.dart";

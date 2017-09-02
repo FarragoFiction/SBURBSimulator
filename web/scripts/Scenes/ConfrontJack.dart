@@ -2,8 +2,7 @@ import "dart:html";
 import "../SBURBSim.dart";
 
 class ConfrontJack extends Scene {
-  List<Player> playerList = [
-  ]; //what players are already in the medium when i trigger?
+  List<Player> playerList = []; //what players are already in the medium when i trigger?
   bool canRepeat = false;
   Player player = null;
 
@@ -25,7 +24,6 @@ class ConfrontJack extends Scene {
   @override
   void renderContent(Element div) {
     appendHtml(div, "<br> <img src = 'images/sceneIcons/jack_icon.png'> ");
-    //appendHtml(div);
     String ret = "The " + this.player.htmlTitle() + " does not trust Jack, and would prefer him dead. They confront Jack, ready for Strife.";
     appendHtml(div, ret);
     Team pTeam = new Team.withName(
@@ -43,12 +41,4 @@ class ConfrontJack extends Scene {
     return;
   }
 }
-  /*dynamic content(Element div){
 
-
-
-
-    return div;
-  }*/
-
-  //}
