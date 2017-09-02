@@ -38,7 +38,7 @@ class FAQFile {
        // //print("getting random section");
         if(sections.isEmpty) {
             callbacks.add(callBack);
-            if(!loadedOnce ) {
+            if(!loadedOnce && !doNotFetchXml) {
                // //print("jrdebugfest: can't find any sections for $fileName, gonna load");
                 loadedOnce = true;
                 load(); ///nothing can happen after async
