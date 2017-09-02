@@ -25,8 +25,8 @@ class QuadrantDialogue extends Scene {
 		if(rand.nextDouble() > 0.5){
 			this.findSemiRandomQuadrantedAvailablePlayer();
 		}
-		if(this.player2 != null && this.player2.dead) //session.logger.info("corpse chat in:  " + this.session.session_id.toString());
-		return this.player1 != null && this.player2 != null; //technically if one is set both should be but whatever.
+		//if(this.player2 != null && this.player2.dead) //session.logger.info("corpse chat in:  " + this.session.session_id.toString());
+		return (this.player1 != null && this.player2 != null); //technically if one is set both should be but whatever.
 	}
 	void findSemiRandomQuadrantedAvailablePlayer(){
 		//set this.player1 to be a random quadranted player.

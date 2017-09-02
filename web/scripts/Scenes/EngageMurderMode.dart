@@ -32,7 +32,7 @@ class EngageMurderMode extends Scene{
 		if(diamond != null) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
 		bool ret = (rand.nextDouble() * this.player.getStat("sanity") < triggerMinimum);
-		if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
+		//if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
 		//if(ret) //session.logger.info("flipping shit naturally ${this.session.session_id}");
 		return ret;
 	}
