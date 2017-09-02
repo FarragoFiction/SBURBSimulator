@@ -17,6 +17,7 @@ SessionFinderController self; //want to access myself as more than just a sim co
 void main() {
   startTime =new DateTime.now();
   doNotRender = true;
+  doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
@@ -250,10 +251,11 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       round ++;
       (querySelector("#button")as ButtonElement).disabled =false;
      // //print("Debugging AB: I think I am done now");
-      window.alert("Notice: should be ready to check more sessions.");
       stopTime = new DateTime.now();
       appendHtml(querySelector("#roundTime"), "Round: $round took ${stopTime.difference(startTime)}<br>");
-      List<Element> filters = querySelectorAll("input[name='filter']");
+
+      window.alert("Notice: should be ready to check more sessions.");
+           List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
         e.disabled = false;
       }

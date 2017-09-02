@@ -101,6 +101,7 @@ Session curSessionGlobalVar;
 int canvasWidth = 1000;
 int canvasHeight = 400;
 bool doNotRender = false; //can happen even outside of AB
+bool doNotFetchXml = false; //slows AB down like WHOA.
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
 DateTime startTime = new DateTime.now(); //gets page load.  but doesn't work. put it  in main later
 DateTime stopTime;

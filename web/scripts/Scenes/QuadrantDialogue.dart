@@ -496,7 +496,7 @@ class QuadrantDialogue extends Scene {
 			chat +=  Scene.chatLine(p2start, shoosher, "What... was it like?");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Dying sucks. I do not recommend you try it out.");
 		}else{
-			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore.");
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Fuck. I can't take this anymore. I feel like the angst is voreing me.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Shit, what's up, talk to me...");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "God, I don't even know what to say. Everything is just so shitty.");
 			chat +=  Scene.chatLine(p2start, shoosher, "It really is. But we aren't going to give up, okay?");
