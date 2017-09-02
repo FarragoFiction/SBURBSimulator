@@ -39,7 +39,7 @@ class FAQFile {
         if(sections.isEmpty) {
             callbacks.add(callBack);
             if(!loadedOnce && !doNotFetchXml) {
-               // //print("jrdebugfest: can't find any sections for $fileName, gonna load");
+               //print("jrdebugfest: can't find any sections for $fileName, gonna load");
                 loadedOnce = true;
                 load(); ///nothing can happen after async
                 return;
