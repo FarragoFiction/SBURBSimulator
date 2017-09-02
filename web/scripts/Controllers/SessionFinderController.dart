@@ -12,8 +12,10 @@ import 'AuthorBot.dart';
   AB rewriting the page title.
  */
 Random rand;
+int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
+  startTime =new DateTime.now();
   doNotRender = true;
   loadNavbar();
   window.onError.listen((Event event){
@@ -245,9 +247,12 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     initial_seed = session.rand.nextInt(); //child session
     ////print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
     if(numSimulationsDone >= numSimulationsToDo){
+      round ++;
       (querySelector("#button")as ButtonElement).disabled =false;
      // //print("Debugging AB: I think I am done now");
       window.alert("Notice: should be ready to check more sessions.");
+      stopTime = new DateTime.now();
+      appendHtml(querySelector("#roundTime"), "Round: $round took ${stopTime.difference(startTime)}<br>");
       List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
         e.disabled = false;
