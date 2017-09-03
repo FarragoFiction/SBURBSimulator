@@ -77,8 +77,8 @@ class Session {
 
     //near as i can figure logger.debug just straight up never works.
     void removeAvailablePlayer(Player p) {
-        if (p == null) {
-            //logger.info("i think player is null");
+        if (p == null || !(p is Player)) {
+            //logger.info("i think player is null or not a player");
             return;
         }
         //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
