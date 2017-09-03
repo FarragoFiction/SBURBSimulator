@@ -235,14 +235,13 @@ class SessionMutator {
 
         if(p.dreamSelf && !p.isDreamSelf) {
           Player independantDreamSelf = p.clone();
-          p.class_name = c;
-          p.aspect = a;
+          independantDreamSelf.class_name = c;
+          independantDreamSelf.aspect = a;
           independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
           independantDreamSelf.isDreamSelf = true;
           independantDreamSelf.session = s;
           independantDreamSelf.id = independantDreamSelf.id + 3333;
           independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it
-          //independantDreamSelf.renderSelf();
           newPlayers.add(independantDreamSelf);
           ret += "<br>The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
         }
@@ -253,6 +252,7 @@ class SessionMutator {
     //now includes clones.
     for(Player p in s.players) {
       p.generateRelationships(s.players);
+      p.renderSelf();// either rendering for first time, or rerendering as new classpect
     }
     return ret;
   }
