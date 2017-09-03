@@ -1,5 +1,5 @@
 import "dart:html";
-import '../GameEntities/Stats/statsampler.dart';
+import '../GameEntities/Stats/sampler/statsampler.dart';
 import "../SBURBSim.dart";
 import "../navbar.dart";
 /*
@@ -27,6 +27,7 @@ abstract class SimController {
         if (getParameterByName("gatherStatData") == "true") {
             gatherStatData = true;
             statData = new StatSampler();
+            statData.createSaveButton();
         }
     }
 
