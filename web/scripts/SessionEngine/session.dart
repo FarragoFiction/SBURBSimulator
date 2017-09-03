@@ -75,10 +75,19 @@ class Session {
         _availablePlayers.add(p);
     }
 
+    //near as i can figure logger.debug just straight up never works.
     void removeAvailablePlayer(Player p) {
+        if (p == null) {
+            //logger.info("i think player is null");
+            return;
+        }
         //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
-        if(!p.dead && (p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) return;
-        removeFromArray(p, _availablePlayers);
+        if(p.dead || !(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) {
+            //logger.info("removing player $p");
+            removeFromArray(p, _availablePlayers);
+        }else {
+            //logger.info("not removing player $p, i think they are a breath or time player or the breath field is active ");
+        }
 
     }
 

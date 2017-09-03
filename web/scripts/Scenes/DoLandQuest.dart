@@ -19,15 +19,21 @@ class DoLandQuest extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
 		List<Player> playersAvailableAtStart = session.getReadOnlyAvailablePlayers();
+		//don't remove available players from the array you'er looping on, asshole. but ALSO don't allow them to go anyways
+		List<Player> alreadyChosenPlayers = new List<Player>();
 		//even though using available players in multiple places do NOT use stored  var for second use, because needs to be up to date. removing shit.
     for(Player p in playersAvailableAtStart){
-			List<Player> ph = this.getPlayerPlusHelper(p, session.getReadOnlyAvailablePlayers());
-			if(ph != null){
-				this.playersPlusHelpers.add(ph);
-				session.removeAvailablePlayer(ph[0]);//this method handles breath/time shit
-				session.removeAvailablePlayer(ph[1]);
-			}
-		}
+    	if(!alreadyChosenPlayers.contains(p)){
+		    List<Player> ph = this.getPlayerPlusHelper(p, session.getReadOnlyAvailablePlayers());
+		    if(ph != null){
+		    	alreadyChosenPlayers.add(p);
+		    	alreadyChosenPlayers.add(ph[1]); //i don't care if it's null, won't effect the contains
+			    this.playersPlusHelpers.add(ph);
+			    session.removeAvailablePlayer(ph[0]); //this method handles breath/time shit
+			    session.removeAvailablePlayer(ph[1]);
+		    }
+	    }
+    }
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){
