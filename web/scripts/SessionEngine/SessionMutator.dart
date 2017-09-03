@@ -4,8 +4,9 @@ import "../SBURBSim.dart";
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
   int effectsInPlay = 0; //more there are, more likely session will crash.
-  bool hopeField = false;
+  bool hopeField = false;  //facts about session change
   bool breathField = false; //sets availability to true, will interact with npc quests eventually
+  bool heartField = true; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -213,15 +214,31 @@ class SessionMutator {
   }
 
   String heart (Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
-      /*
-        TODO
-         * everyones classpects are randomized mid sim
-         * everyones living dream selves are separate players with old claspects
-         * more quadrant chat even if no quadrant?
-       */
+    heartField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} begins glowing and a haze of pink code hangs around them. They declare that all ships are canon, and can never sink. They begin altering the very identity of everyone toward this end. <br><Br>";
+    //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
+    for(Player p in s.players) {
+        ret += "The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1}.";
+        p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
+        ret += "Instead, they now prefer the clearly superior ${p.interest1}, just like the ${activatingPlayer}.";
+        p.aspect = s.rand.pickFrom(Aspects.all);
+        p.class_name = s.rand.pickFrom(SBURBClassManager.all);
+        ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}.";
 
+        if(p.dreamSelf && !p.isDreamSelf) {
+          Player independantDreamSelf = p.clone();
+          independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
+          independantDreamSelf.isDreamSelf = true;
+          s.players.add(independantDreamSelf);
+          ret += "The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
+        }
+    }
+    //now includes clones.
+    for(Player p in s.players) {
+      p.generateRelationships(s.players);
+    }
+    return ret;
   }
 
   String breath(Session s, Player activatingPlayer) {

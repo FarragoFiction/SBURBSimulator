@@ -544,6 +544,7 @@ class UpdateShippingGrid extends Scene{
 	}
 	bool evaluateFlushedProposal(Player player, Player target){
 			int reasonsFor = 1; //come on, you know you like them.
+			if(session.mutator.heartField) reasonsFor = 333;
 			int reasonsAgainst = 0;
 			reasonsAgainst += player.getHearts().length; //I am already in a relationship
 			reasonsAgainst += target.getHearts().length; //they are already in a relationship

@@ -17,6 +17,7 @@ class Breakup extends Scene {
 
 	@override
 	bool trigger(List<Player> playerList){
+		if(session.mutator.heartField) return false; //THE SHIPS CANNOT SINK!!!
 		this.player = null;
 		this.relationshipToBreakUp = null;
 		for(num i = 0; i<this.session.getReadOnlyAvailablePlayers().length; i++){

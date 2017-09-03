@@ -320,6 +320,7 @@ class Relationship {
 
 
     static dynamic randomRelationship(Player source, Player targetPlayer) {
+        if(source.session.mutator.heartField) return new Relationship(source, 333, targetPlayer); //all ships canon!!!
         return new Relationship(source, source.session.rand.nextIntRange(-21, 22), targetPlayer);
        // return  new Relationship(source, 10000000, targetPlayer);;
     }
