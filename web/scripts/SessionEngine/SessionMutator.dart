@@ -221,9 +221,9 @@ class SessionMutator {
     List<Player> newPlayers = new List<Player>();
     //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
     for(Player p in s.players) {
-        ret += "The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1}.";
+        ret += "The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
         p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
-        ret += "Instead, they now prefer the clearly superior ${p.interest1}, just like the ${activatingPlayer}.";
+        ret += " Instead, they now prefer the clearly superior ${p.interest1.name}, just like the ${activatingPlayer.htmlTitle()}.";
         p.aspect = s.rand.pickFrom(Aspects.all);
         p.class_name = s.rand.pickFrom(SBURBClassManager.all);
         p.associatedStats = []; //lose everything from your old classpect
