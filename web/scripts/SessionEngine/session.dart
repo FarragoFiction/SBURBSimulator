@@ -233,6 +233,7 @@ class Session {
 
 
     bool fullFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         //there is  a frog but it's not good enough
         bool frogSick = spacePlayer.landLevel < goodFrogLevel;
         bool frog = !noFrogCheck(spacePlayer);
@@ -243,6 +244,7 @@ class Session {
 
     //don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
     bool purpleFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         bool frog = spacePlayer.landLevel <= (this.minFrogLevel * -1);
         bool grist = enoughGristForAny();
         return (frog && grist);
@@ -251,6 +253,7 @@ class Session {
 
     //don't care about grist, if there's no frog to deploy at all. eventually check for rings
     bool noFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
         bool grist = !enoughGristForAny();
         return (frog || grist);

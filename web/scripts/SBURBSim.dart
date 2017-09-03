@@ -171,10 +171,10 @@ bool printCorruptionMessage(ErrorEvent e) {
         recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
     } else if (space == null) {
         appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
-        curSessionGlobalVar.stats.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
     } else if (time == null) {
-        curSessionGlobalVar.stats.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
     } else {

@@ -1526,6 +1526,7 @@ class Player extends GameEntity {
     }
 
     void renderSelf() {
+        if(Drawing.checkSimMode()) return;
         if (this.spriteCanvasID == null) this.initSpriteCanvas();
         CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
 

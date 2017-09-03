@@ -226,18 +226,23 @@ class SessionMutator {
         ret += "Instead, they now prefer the clearly superior ${p.interest1}, just like the ${activatingPlayer}.";
         p.aspect = s.rand.pickFrom(Aspects.all);
         p.class_name = s.rand.pickFrom(SBURBClassManager.all);
+        p.associatedStats = []; //lose everything from your old classpect
+        p.aspect.initAssociatedStats(p);
         ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}.";
 
+        /*
         if(p.dreamSelf && !p.isDreamSelf) {
           Player independantDreamSelf = p.clone();
           independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
           independantDreamSelf.isDreamSelf = true;
+          independantDreamSelf.session = s;
           independantDreamSelf.id = independantDreamSelf.id + 3333;
-          independantDreamSelf.spriteCanvasID += "dreamClone";
+          independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it
           independantDreamSelf.renderSelf();
           newPlayers.add(independantDreamSelf);
           ret += "The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
         }
+        */
     }
 
     s.players.addAll(newPlayers); //don't do in the for loop that it's in asshole
