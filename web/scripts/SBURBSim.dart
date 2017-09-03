@@ -16,6 +16,7 @@ export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "GameEntities/Stats/buff.dart";
 export "GameEntities/Stats/stat.dart";
 export "GameEntities/Stats/statholder.dart";
+export "formats/FileFormat.dart";
 export "fraymotif.dart";
 export "SessionEngine/session.dart";
 export "SessionEngine/sessionSummary.dart";
