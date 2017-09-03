@@ -218,10 +218,10 @@ class GetWasted extends Scene {
     }
 
     String processTier3(Element div) {
-        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.BREATH) return exploitMobility(div);
+        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH) return exploitMobility(div);
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
-        if(player.aspect == Aspects.TIME || player.aspect == Aspects.MIND) return exploitTime(div);
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.VOID) return exploitGlitches(div);
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
+        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
         if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
         if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
@@ -232,12 +232,15 @@ class GetWasted extends Scene {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
         if(player.aspect == Aspects.BREATH) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
-        }else if(player.aspect == Aspects.SPACE) {
-            ret = " They set up a frankly scandalous series of shortcuts using the glitchiest parts of SBURB"; //skaian magicant refrance
+            ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
+
+        }else if(player.aspect == Aspects.TIME) {
+            ret = " They set up a frankly scandalous series of time shenanigans";
+            ret += " , allowing all players to basically spam multiple quests 'at the same time'. ";
+
         }else {
             ret = "";
         }
-        ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
          //session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
@@ -290,8 +293,8 @@ class GetWasted extends Scene {
     //make doomed timeclone army
     String exploitTime(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They begin seriously planning to utterly fuck over the timeline. ";
-        if(this.player.aspect == Aspects.TIME) {
-            ret += " They use their innate sense of time to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. ";
+        if(this.player.aspect == Aspects.RAGE) {
+            ret += " They use their innate sense of ignoring Skaia's wishes to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. Don't like that, don't make me get the god pjs out, I'll do it!";
         }else if (this.player.aspect == Aspects.MIND){
             ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
         }
@@ -327,7 +330,7 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.VOID) {
             ret += " Uh.  Where did they go? <div class = 'void'> ";
         }
-        ret += " They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
+        ret += " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
 
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
