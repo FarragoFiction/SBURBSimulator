@@ -25,7 +25,8 @@ class GoGrimDark extends Scene {
 	}
 
 	bool corruptionReachedTippingPoint(Player p){
-		return p.corruptionLevelOther >= 50-(p.grimDark*11); //at level 4, only need 10 more points. at level 1, need 40;
+		int x = -10; //change this to calibrate things. negative means less chance of grim dark
+		return p.corruptionLevelOther >= 50-(p.grimDark*11)*x; //at level 4, only need 10*x more points. at level 1, need 40*x;
 	}
 
 	dynamic addImportantEvent(){
