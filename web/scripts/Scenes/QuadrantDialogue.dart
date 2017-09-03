@@ -414,6 +414,11 @@ class QuadrantDialogue extends Scene {
 		chats.add( new ConversationalPair("Hows the building up going?",["My fucking server player keeps making stairs.","Like a fly through honey","Grist is low, house is high. Bluuuh."]));
 		chats.add( new ConversationalPair("Jesus fuck have you seen the size of some of these underlings?",["Do they get that big over there? Most of mine are waist-high at most.","I KNOW RIGHT?","Yeah, things those size shouldn't be able to exist."]));
         chats.add( new ConversationalPair("Lemme Smash. Please?",["Oh god...remind me why I'm dating you again?","No Ron. Go find Becky.","You want some blue?", "You want sum fuk?", "No. We are done with this meme. I love you, but I am done."])); //can't believe i forgot to add this.
+		List<String> romanceWords = <String>["roses","poetry","chocolate","angels","flowers","perfume","bracelets","diamonds","mcgriddles","satin","flour","biscuits","blue","gems", "grist", "boonbucks","fruit gushers","death",relationship2.target.aspect.name,"heat"];
+		//reference to the bad fanfic that smutServer made of AB and Hair7 They used: http://fanficmaker.com/  (which is random as fuck)
+		String chosenWord1 = rand.pickFrom(romanceWords);
+		String chosenWord2 = rand.pickFrom(romanceWords);
+		chats.add( new ConversationalPair("Did I ever tell you you are like a sunrise of $chosenWord1? ",["Only every day. I love it!","You eyes are like an ocean of $chosenWord2", "I always thought I was more like a high noon of $chosenWord2", "Every time I see $chosenWord1, I will think of you."])); //can't believe i forgot to add this.
 
 
 

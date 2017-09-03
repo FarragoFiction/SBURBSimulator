@@ -79,11 +79,12 @@ class CorpseSmooch extends Scene {
 		return royalty;
 	}
 	dynamic getRoyalty(Player d){
-		Player royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(this.session.availablePlayers));
+		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
+		Player royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
 		royalty = this.ignoreEnemies(d, royalty);
 		if(royalty == null){
 			//okay, princes are traditional...
-			royalty = findClassPlayer(findLivingPlayers(this.session.availablePlayers), SBURBClassManager.PRINCE);
+			royalty = findClassPlayer(findLivingPlayers(availablePlayers), SBURBClassManager.PRINCE);
 			if(royalty != null && royalty.grimDark  > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -92,7 +93,7 @@ class CorpseSmooch extends Scene {
 		//from here on out, prefer to god tier than to be corpse smooched.
 		if(royalty == null){
 			//okay, anybody free?
-			royalty = rand.pickFrom(findLivingPlayers(this.session.availablePlayers));
+			royalty = rand.pickFrom(findLivingPlayers(availablePlayers));
 			if(royalty != null && royalty.grimDark > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -150,6 +151,7 @@ class CorpseSmooch extends Scene {
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 					if(d.aspect == Aspects.DOOM) ret += "The prophecy is fulfilled. ";
 					this.renderForPlayer(div, this.dreamersToRevive[i]);
+					session.removeAvailablePlayer(royalty);
 					//this.makeAlive(d);
 					this.combo ++;
 				}else{

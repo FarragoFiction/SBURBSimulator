@@ -19,8 +19,8 @@ class Breakup extends Scene {
 	bool trigger(List<Player> playerList){
 		this.player = null;
 		this.relationshipToBreakUp = null;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			this.player = this.session.availablePlayers[i];
+		for(num i = 0; i<this.session.getReadOnlyAvailablePlayers().length; i++){
+			this.player = this.session.getReadOnlyAvailablePlayers()[i];
 			var breakup= this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
 			if(!this.player.dead && breakup==true){
 				//////session.logger.info("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
@@ -312,8 +312,9 @@ class Breakup extends Scene {
 	void renderContent(Element div){
 		div.appendHtml("<br>"+this.content(),treeSanitizer: NodeTreeSanitizer.trusted);
 		//takes up time from both of them
-		removeFromArray(this.player, this.session.availablePlayers);
-		removeFromArray(this.relationshipToBreakUp.target, this.session.availablePlayers);
+		session.removeAvailablePlayer(this.player);
+		session.removeAvailablePlayer(relationshipToBreakUp.target);
+
 		if(this.relationshipToBreakUp.target.dead){
 			//do nothing, just text
 		}else{

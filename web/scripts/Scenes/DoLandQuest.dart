@@ -18,14 +18,14 @@ class DoLandQuest extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
-		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
-    for(num j = 0; j<this.session.availablePlayers.length; j++){
-			Player p = this.session.availablePlayers[j];
-			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
+		List<Player> playersAvailableAtStart = session.getReadOnlyAvailablePlayers();
+		//even though using available players in multiple places do NOT use stored  var for second use, because needs to be up to date. removing shit.
+    for(Player p in playersAvailableAtStart){
+			List<Player> ph = this.getPlayerPlusHelper(p, session.getReadOnlyAvailablePlayers());
 			if(ph != null){
 				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) session.availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] != null && ph[1].aspect != Aspects.TIME && ph[1].aspect != Aspects.BREATH ) session.availablePlayers.remove(ph[1]);
+				session.removeAvailablePlayer(ph[0]);//this method handles breath/time shit
+				session.removeAvailablePlayer(ph[1]);
 			}
 		}
 		return this.playersPlusHelpers.length > 0;
@@ -138,7 +138,7 @@ class DoLandQuest extends Scene{
 		Relationship r2 = helper.getRelationshipWith(player);
 
 		if(helper.aspect == Aspects.BREATH){
-			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
+			this.session.addAvailablePlayer(player); //player isn't even involved, at this point. breath friend frees them up
 			helper.increasePower();
 			player.increaseLandLevel();
 			if(r2.value > 0){
@@ -261,12 +261,10 @@ class DoLandQuest extends Scene{
 	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
-		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
 		player.increasePower();
 		player.increaseLandLevel();
 		if(helper != null){
-			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
 			player.increaseLandLevel();

@@ -72,13 +72,13 @@ class ExploreMoon extends Scene {
 	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			this.checkPlayer(this.session.availablePlayers[i]);
+		for(Player p in session.getReadOnlyAvailablePlayers()){
+			this.checkPlayer(p);
 			if(this.player1 != null){
 				return true;
 			}
 		}
-		if(this.player1 == null || this.session.availablePlayers.length == 0){
+		if(this.player1 == null){
 			return false;
 		}
 		return true;
@@ -96,8 +96,8 @@ class ExploreMoon extends Scene {
 	String content(){
 		String ret = "";
 		//remove player1 and player2 from available player list.
-		removeFromArray(this.player1, this.session.availablePlayers);
-		removeFromArray(this.player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player1);
+		session.removeAvailablePlayer(player2);
 		////session.logger.info(this.player1.title() + " is doing moon stuff with their land level at: " + this.player1.landLevel)
 		//var r1 = null;
 		//var r2 = null;

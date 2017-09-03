@@ -16,7 +16,7 @@ class DoEctobiology extends Scene {
 	@override
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		this.leader = getLeader(this.session.availablePlayers);  //dead men do no ectobiology
+		this.leader = getLeader(this.session.getReadOnlyAvailablePlayers());  //dead men do no ectobiology
 		if(this.leader != null && this.leader.dead == false && this.session.stats.ectoBiologyStarted == false){
 			return this.leader.getStat("power") > (rand.nextDouble()*200); //can't do it right out of the bat. might never do it
 		}
@@ -38,6 +38,7 @@ class DoEctobiology extends Scene {
 	}
 	@override
 	void renderContent(Element div){
+
 		div.appendHtml("<br><img src = 'images/sceneIcons/ectobiology_icon.png'>"+this.content(),treeSanitizer: NodeTreeSanitizer.trusted);
 		this.drawLeaderPlusBabies(div);
 	}
@@ -59,6 +60,7 @@ class DoEctobiology extends Scene {
 		this.leader.increasePower();
 		this.leader.leveledTheHellUp = true;
 		this.leader.level_index +=3;
+		session.removeAvailablePlayer(leader);
 		this.leader.flipOut(" how the Ultimate Goddamned Riddle means that if they didn't play this bullshit game in the first place they never would have been born at all");
 		return ret;
 	}

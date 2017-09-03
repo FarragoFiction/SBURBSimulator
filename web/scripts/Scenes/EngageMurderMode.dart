@@ -14,8 +14,9 @@ class EngageMurderMode extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
-		if (!this.session.availablePlayers.isEmpty) {
-			this.player = rand.pickFrom(this.session.availablePlayers);
+		List<Player> ap = session.getReadOnlyAvailablePlayers();
+		if (!ap.isEmpty) {
+			this.player = rand.pickFrom(ap);
 		}
 		num moon = 0;
 
@@ -327,7 +328,7 @@ class EngageMurderMode extends Scene{
 	String content(){
 		////session.logger.info("murder mode");
 		this.player.increasePower();
-		removeFromArray(this.player, this.session.availablePlayers);
+		session.removeAvailablePlayer(player);
 		String ret = "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  ";
 		ret += " They engage Murder Mode while thinking of their enemies " + getPlayersTitles(this.player.getEnemies()) + ". ";
 		ret += " This is completely terrifying. ";
