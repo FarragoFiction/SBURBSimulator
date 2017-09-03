@@ -24,6 +24,14 @@ class SessionMutator {
 
   SessionMutator() {
     _instance = this;
+    GameEntity.minPower = gameEntityMinPower;
+    for(Aspect a in Aspects.all) {
+      a.name = a.savedName; //AB is having none of your shenanigans.
+    }
+
+    for(SBURBClass c in SBURBClassManager.all) {
+      c.name = c.savedName; //AB is having none of your shenanigans.
+    }
   }
 
   //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
@@ -37,7 +45,6 @@ class SessionMutator {
     s.stats.ectoBiologyStarted = this.ectoBiologyStarted;
     s.reckoningEndsAt = this.reckoningEndsAt;
     s.timeTillReckoning = this.timeTillReckoning;
-    GameEntity.minPower = gameEntityMinPower;
   }
 
   //more waste tier effects in play, the more likely there will be a Cataclysm that makes everything unwinnable
