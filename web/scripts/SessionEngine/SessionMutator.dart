@@ -7,6 +7,7 @@ class SessionMutator {
   bool hopeField = false;
   static SessionMutator _instance;
   num timeTillReckoning = 0;
+  num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
   bool ectoBiologyStarted = false;
   num hardStrength = 1000;
@@ -36,6 +37,7 @@ class SessionMutator {
     s.stats.ectoBiologyStarted = this.ectoBiologyStarted;
     s.reckoningEndsAt = this.reckoningEndsAt;
     s.timeTillReckoning = this.timeTillReckoning;
+    GameEntity.minPower = gameEntityMinPower;
   }
 
   //more waste tier effects in play, the more likely there will be a Cataclysm that makes everything unwinnable
@@ -265,6 +267,7 @@ class SessionMutator {
 
     hopePlayer.setStat("power",9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
+    gameEntityMinPower = 9000;
     s.sessionHealth = 9001;
     s.stats.ectoBiologyStarted = true; //of COURSE we're not paradox doomed. You'd be crazy to say otherwise.
     s.minimumGristPerPlayer = 1;

@@ -13,7 +13,7 @@ enum ProphecyState {
 class GameEntity implements Comparable<GameEntity> {
     static int _nextID = 0;
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
-    static int minPower = 1;  //<-- this is PRIME fucking real estate for a waste to change, so don't make it final even though it's tempting
+    static int minPower = 1;  //session mutator will override this every time.
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
     Session session;
 
