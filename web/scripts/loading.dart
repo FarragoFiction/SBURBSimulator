@@ -4,12 +4,12 @@ import "SBURBSim.dart";
 
 num imagesWaiting = 0;
 num imagesLoaded = 0;
-var callBack = null;
+var globalCallBack = null;
 
 dynamic loadFuckingEverything(String skipInit, cb){
 	if(doNotRender == true) return checkDone(skipInit);
 	loadAllImages(skipInit);
-	callBack = cb;
+	globalCallBack = cb;
 	return null;
 }
 
@@ -50,7 +50,7 @@ dynamic loadAllImages(skipInit){
 
 
 dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
-	callBack = cb;
+	globalCallBack = cb;
 	String skipInit = "yes";
 	if(doNotRender == true) return checkDone(skipInit);
 	loadPlayer(player,skipInit);
@@ -114,7 +114,7 @@ dynamic checkDone(String skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
     if(skipInit != null && !skipInit.isEmpty){
-		if(callBack != null) return callBack();
+		if(globalCallBack != null) return globalCallBack();
       if(skipInit == "oc"){
         //print("images loaded: $imagesLoaded");
 				throw("not supported yet.");

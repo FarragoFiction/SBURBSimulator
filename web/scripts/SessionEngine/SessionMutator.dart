@@ -18,6 +18,7 @@ class SessionMutator {
   int expectedGristContributionPerPlayer = 400;
   int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
   num sessionHealth = 500;
+  Session savedSession; //for heart callback
 
   static getInstance() {
     if(_instance == null) _instance = new SessionMutator();
@@ -221,16 +222,16 @@ class SessionMutator {
     List<Player> newPlayers = new List<Player>();
     //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
     for(Player p in s.players) {
+        SBURBClass c = p.class_name;
+        Aspect a = p.aspect;
         ret += "<br><br>The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
         p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
         ret += " Instead, they now prefer the clearly superior ${p.interest1.name}, just like the ${activatingPlayer.htmlTitle()}.";
         p.aspect = s.rand.pickFrom(Aspects.all);
-        SBURBClass c = p.class_name;
-        Aspect a = p.aspect;
         p.class_name = s.rand.pickFrom(SBURBClassManager.all);
         p.associatedStats = []; //lose everything from your old classpect
         p.aspect.initAssociatedStats(p);
-        ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}.";
+        ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
 
 
         if(p.dreamSelf && !p.isDreamSelf) {
@@ -255,7 +256,19 @@ class SessionMutator {
       p.generateRelationships(s.players);
       p.renderSelf();// either rendering for first time, or rerendering as new classpect
     }
-    return ret;
+    savedSession = s;
+    //need to load the new images.
+    globalCallBack = heartCallBack();
+    load(s.players, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+
+    return ret; //<--still return tho, not waiting on the async loading
+  }
+
+  //yes, this isn't how it should work long term. might make a few blank scenes.
+  String heartCallBack() {
+    for(Player p in savedSession.players) {
+      p.renderSelf();// either rendering for first time, or rerendering as new classpect
+    }
   }
 
   String breath(Session s, Player activatingPlayer) {

@@ -518,7 +518,7 @@ class GetWasted extends Scene {
     void tier4(Element div) {
         session.stats.hasTier4Events = true;
         String divID = "tier4${div.id}${player.id}";
-        appendHtml(div, "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around my code. Don't they know how dangerous that is??? God, if shit crashes it's on them.<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        appendHtml(div, "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
         session.mutator.checkForCrash(session);
         drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
         drawAll();
