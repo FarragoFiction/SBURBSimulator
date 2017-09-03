@@ -221,28 +221,32 @@ class SessionMutator {
     List<Player> newPlayers = new List<Player>();
     //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
     for(Player p in s.players) {
-        ret += "The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
+        ret += "<br><br>The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
         p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
         ret += " Instead, they now prefer the clearly superior ${p.interest1.name}, just like the ${activatingPlayer.htmlTitle()}.";
         p.aspect = s.rand.pickFrom(Aspects.all);
+        SBURBClass c = p.class_name;
+        Aspect a = p.aspect;
         p.class_name = s.rand.pickFrom(SBURBClassManager.all);
         p.associatedStats = []; //lose everything from your old classpect
         p.aspect.initAssociatedStats(p);
         ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}.";
 
-        /*
+
         if(p.dreamSelf && !p.isDreamSelf) {
           Player independantDreamSelf = p.clone();
+          p.class_name = c;
+          p.aspect = a;
           independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
           independantDreamSelf.isDreamSelf = true;
           independantDreamSelf.session = s;
           independantDreamSelf.id = independantDreamSelf.id + 3333;
           independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it
-          independantDreamSelf.renderSelf();
+          //independantDreamSelf.renderSelf();
           newPlayers.add(independantDreamSelf);
-          ret += "The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
+          ret += "<br>The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
         }
-        */
+
     }
 
     s.players.addAll(newPlayers); //don't do in the for loop that it's in asshole
