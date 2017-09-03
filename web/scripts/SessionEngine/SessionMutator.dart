@@ -126,7 +126,7 @@ class SessionMutator {
       /*
           TODO:
           * all players have trickster levels of sanity
-          * If scratched, your guardians stats are added to yours.
+          * If scratched, your guardians stats are added to yours. same with ghosts.
           *  All stats are averaged, then given back to party.
           *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted.
           *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
@@ -214,9 +214,11 @@ class SessionMutator {
   }
 
   String heart (Session s, Player activatingPlayer) {
+    s.logger.info("AB: Huh. Looks like a Waste of Heart is going at it.");
     effectsInPlay ++;
     heartField = true;
     String ret = "The ${activatingPlayer.htmlTitle()} begins glowing and a haze of pink code hangs around them. They declare that all ships are canon, and can never sink. They begin altering the very identity of everyone toward this end. <br><Br>";
+    List<Player> newPlayers = new List<Player>();
     //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
     for(Player p in s.players) {
         ret += "The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1}.";
@@ -230,10 +232,12 @@ class SessionMutator {
           Player independantDreamSelf = p.clone();
           independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
           independantDreamSelf.isDreamSelf = true;
-          s.players.add(independantDreamSelf);
+          newPlayers.add(independantDreamSelf);
           ret += "The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
         }
     }
+
+    s.players.addAll(newPlayers); //don't do in the for loop that it's in asshole
     //now includes clones.
     for(Player p in s.players) {
       p.generateRelationships(s.players);
@@ -242,6 +246,7 @@ class SessionMutator {
   }
 
   String breath(Session s, Player activatingPlayer) {
+    s.logger.info("AB: Huh. Looks like a Waste of Breath is going at it.");
     effectsInPlay ++;
     breathField = true;
     s.rand = new Random(); //breath gets freedom from narrative, true random now, no predictabilitiy.

@@ -371,15 +371,19 @@ class GetWasted extends Scene {
         ret += "<br>";
         //quest has shitty rewards. you get only interaction effects until i come back later and decide to balance shit
         for(Player p1 in session.players) {
-                for(Player p2 in session.players) {
+                bool printedOnce = false;
+                List<Player> shuffledPlayers = new List<Player>.from(session.players);
+                shuffle(session.rand, shuffledPlayers);
+                for(Player p2 in shuffledPlayers) {
                     if(p1 != p2) {
-                        String subret = "<Br>";
                         //happens multiple times but only session.logger.infos one, cuz it's not gonna be different
-                        subret += p1.interactionEffect(p2);
+                        if(! printedOnce && !p2.dead && !p1.dead) { //prefer not to print about the dead
+                            printedOnce = true;
+                            ret += "<br>${p1.interactionEffect(p2)}  Other things with other friends happen as well, too numerous too list.";
+                        }
                         p1.interactionEffect(p2);
                         p1.interactionEffect(p2);
                         p1.increasePower();
-                        ret += subret;
                     }
                 }
         }
