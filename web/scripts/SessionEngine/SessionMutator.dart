@@ -232,6 +232,9 @@ class SessionMutator {
           Player independantDreamSelf = p.clone();
           independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
           independantDreamSelf.isDreamSelf = true;
+          independantDreamSelf.id = independantDreamSelf.id + 3333;
+          independantDreamSelf.spriteCanvasID += "dreamClone";
+          independantDreamSelf.renderSelf();
           newPlayers.add(independantDreamSelf);
           ret += "The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
         }

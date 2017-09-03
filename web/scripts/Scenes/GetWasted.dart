@@ -362,6 +362,7 @@ class GetWasted extends Scene {
 
     //gather everyone on a planet with fast, repatable quests, have everybody do speed questing to get max interaction effects for effort given
     String exploitFriendship(Element div) {
+        session.logger.info("AB: friendship tier3 happening.");
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
         if(player.aspect == Aspects.BLOOD) {
             ret +=  "They find a fast, repeatable quest and organize everyone into ever-changing adventuring pairs to take advantage of the game's interaction effect bonus. ";
