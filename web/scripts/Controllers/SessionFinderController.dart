@@ -263,6 +263,9 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }else{
      // //print("Debugging AB: going to start new session");
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
+      //RESETTING the mutator so that wastes can't leak into other sessions
+      curSessionGlobalVar.logger.info("AB: Using anti-waste magicks to avoid having them leak into other sessions.");
+      new SessionMutator(); //will auto set itself to instance
       window.requestAnimationFrame((num t) => startSession());
     }
     ////print("Debugging AB: done summarizing session ${session.session_id}");
