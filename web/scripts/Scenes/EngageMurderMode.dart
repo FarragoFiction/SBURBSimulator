@@ -1,7 +1,7 @@
 import "dart:html";
 import "../SBURBSim.dart";
 
-
+//TODO add "try very sincerely to kill x" meme
 class EngageMurderMode extends Scene{
 
 	Player player = null;
