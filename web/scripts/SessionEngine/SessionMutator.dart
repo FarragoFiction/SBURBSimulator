@@ -5,6 +5,7 @@ import "../SBURBSim.dart";
 class SessionMutator {
   int effectsInPlay = 0; //more there are, more likely session will crash.
   bool hopeField = false;
+  bool breathField = false; //sets availability to true, will interact with npc quests eventually
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;

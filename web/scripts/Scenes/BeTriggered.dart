@@ -15,8 +15,7 @@ class BeTriggered extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			Player p = this.session.availablePlayers[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//////session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
@@ -70,7 +69,7 @@ class BeTriggered extends Scene{
 				p.flippingOutOverDeadPlayer = null;
 
 			}else{
-				removeFromArray(p, this.session.availablePlayers);
+				session.removeAvailablePlayer(p);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about ";
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
 				p.addStat("sanity", -10);

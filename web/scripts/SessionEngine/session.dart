@@ -43,7 +43,8 @@ class Session {
     List<Scene> deathScenes = <Scene>[];
     List<Scene> available_scenes = <Scene>[];
     Session parentSession = null;
-    List<Player> availablePlayers = <Player>[]; //which players are available for scenes or whatever.
+    //private, should only be accessed by methods so removing a player can be invalid for time/breath
+    List<Player> _availablePlayers = <Player>[]; //which players are available for scenes or whatever.
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
     SessionStats stats = new SessionStats();
@@ -66,6 +67,20 @@ class Session {
        resetAvailableClasspects();
     }
 
+    List<Player> getReadOnlyAvailablePlayers() {
+        return new List<Player>.from(_availablePlayers);
+    }
+
+    void addAvailablePlayer(Player p) {
+        _availablePlayers.add(p);
+    }
+
+    void removeAvailablePlayer(Player p) {
+        if(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField) return;
+        removeFromArray(p, _availablePlayers);
+
+    }
+
     void resetAvailableClasspects() {
         if(canonLevel == CanonLevel.CANON_ONLY) {
             this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
@@ -85,14 +100,14 @@ class Session {
 
     //  //makes copy of player list (no shallow copies!!!!)
     List<Player> setAvailablePlayers(List<Player> playerList) {
-        this.availablePlayers = <Player>[];
+        this._availablePlayers = <Player>[];
         for (num i = 0; i < playerList.length; i++) {
             //dead players are always unavailable.
             if (!playerList[i].dead) {
-                this.availablePlayers.add(playerList[i]);
+                this._availablePlayers.add(playerList[i]);
             }
         }
-        return this.availablePlayers;
+        return this._availablePlayers;
     }
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
