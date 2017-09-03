@@ -16,7 +16,7 @@ class PlanToExileJack extends Scene {
 		return this.planner != null && 	this.session.npcHandler.jack.getStat("currentHP") > 0 && !this.session.npcHandler.jack.dead  && 	this.session.npcHandler.jack.crowned == null && !this.session.npcHandler.jack.exiled;
 	}
 	void findSympatheticPlayer(){
-		var living = findLivingPlayers(this.session.players);
+		var living = findLivingPlayers(this.session.getReadOnlyAvailablePlayers());
 		this.planner =  findAspectPlayer(living, Aspects.MIND);
 		if(this.planner == null){
 			this.planner =  findAspectPlayer(living, Aspects.DOOM);
@@ -165,7 +165,7 @@ class PlanToExileJack extends Scene {
 			return;
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, this.session.availablePlayers);
+		session.removeAvailablePlayer(planner);
 		this.session.available_scenes.insert(0, new prepareToExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
@@ -193,7 +193,7 @@ class PlanToExileJack extends Scene {
 			return "";//this should theoretically never happen
 		}
 		this.planner.increasePower();
-		removeFromArray(this.planner, this.session.availablePlayers);
+		session.removeAvailablePlayer(planner);
 		this.session.available_scenes.insert(0, new prepareToExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileJack(this.session));
 		String ret = " The " + this.planner.htmlTitle() + " is getting a bad feeling about Jack Noir. ";

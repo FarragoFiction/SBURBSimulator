@@ -18,7 +18,7 @@ class SolvePuzzles extends Scene {
 	void checkPlayer(Player player){
 		if(rand.nextBool()) {
 			this.player1 = player;
-			this.player2 = player.findHelper(session.availablePlayers);
+			this.player2 = player.findHelper(session.getReadOnlyAvailablePlayers());
 		}
 
 
@@ -27,14 +27,14 @@ class SolvePuzzles extends Scene {
 	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
-		List shuffledPlayers = shuffle(rand, new List<Player>.from(session.availablePlayers));
+		List shuffledPlayers = shuffle(rand, new List<Player>.from(session.getReadOnlyAvailablePlayers()));
 		for(Player p in shuffledPlayers){
 			this.checkPlayer(p);
 			if(this.player1 != null && this.player1.land != null){
 				return true;
 			}
 		}
-		if(this.player1 == null || this.session.availablePlayers.length == 0 || this.player1.land == null){
+		if(this.player1 == null || this.session.getReadOnlyAvailablePlayers().length == 0 || this.player1.land == null){
 			return false;
 		}
 		return true;
@@ -89,8 +89,8 @@ class SolvePuzzles extends Scene {
 		////session.logger.info("Solving puzzles at: " + this.player1.land);
 		String ret = "";
 		//remove player1 and player2 from available player list.
-		removeFromArray(this.player1, this.session.availablePlayers);
-		removeFromArray(this.player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player1);
+		session.removeAvailablePlayer(player2);
 		//Relationship r1 = null;
 		//Relationship r2 = null;
 		List<Player> living = findLivingPlayers(this.session.players);

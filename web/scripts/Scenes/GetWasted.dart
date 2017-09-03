@@ -51,7 +51,7 @@ class GetWasted extends Scene {
         this.playerList = playerList;
         this.player = null;
         List<Player> possibilities = new List<Player>();
-        for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
+        for (Player p in session.getReadOnlyAvailablePlayers()) { //unlike grim dark, corpses are not allowed to have eureka moments.
             if (this.loreReachedTippingPoint(p)) {
                 possibilities.add(p);
             }
@@ -77,6 +77,7 @@ class GetWasted extends Scene {
         session.logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
+        session.removeAvailablePlayer(this.player);
         processTier(div);
     }
 

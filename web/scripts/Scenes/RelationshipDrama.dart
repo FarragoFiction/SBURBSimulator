@@ -16,9 +16,7 @@ class RelationshipDrama extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.dramaPlayers = [];
-		//CAN change how ou feel about somebody not yet in the medium
-		for(num i = 0; i< playerList.length; i++){
-			var p = playerList[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
 				this.dramaPlayers.add(p);
 			}
@@ -175,7 +173,7 @@ class RelationshipDrama extends Scene {
 		Player player1 = player;
 		Player player2 = crush;
 		//already set player unavailable
-		removeFromArray(crush, this.session.availablePlayers);
+		session.removeAvailablePlayer(crush);
 
 		if(crush.dead == true){
 			String narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
@@ -344,7 +342,7 @@ class RelationshipDrama extends Scene {
 			this.corpseAdvice(div,player1,player2,crush);
 			return;
 		}
-		removeFromArray(player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player2);
 
 		String divID = (div.id) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
@@ -479,7 +477,7 @@ class RelationshipDrama extends Scene {
 			this.corpseVent(div,player1,player2, jerk);
 			return;
 		}
-		removeFromArray(player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player2);
 		String divID = (div.id) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -559,7 +557,7 @@ class RelationshipDrama extends Scene {
 			appendHtml(div, narration);
 			return;
 		}
-		removeFromArray(jerk, this.session.availablePlayers);
+		session.removeAvailablePlayer(jerk);
 		String divID = (div.id) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -676,7 +674,8 @@ class RelationshipDrama extends Scene {
 		for(int i = 0; i<this.dramaPlayers.length; i++){
 				Player p = this.dramaPlayers[i];
 				//take up time for other player once i know who they are.
-				removeFromArray(p, this.session.availablePlayers); //how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
+				session.removeAvailablePlayer(p);//how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
+
 				this.renderForPlayer(div, p);
 			}
 

@@ -14,9 +14,9 @@ class MurderPlayers extends Scene {
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.murderers = [];
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			if(this.session.availablePlayers[i].murderMode){
-				this.murderers.add(this.session.availablePlayers[i]);
+		for(Player p in session.getReadOnlyAvailablePlayers()){
+			if(p.murderMode){
+				this.murderers.add(p);
 			}
 		}
 
@@ -141,11 +141,11 @@ class MurderPlayers extends Scene {
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
 	}
 	dynamic contentForRender(Element div){
-		var livePlayers = this.session.availablePlayers; //just because they are alive doesn't mean they are in the medium
+		var livePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers()); //just because they are alive doesn't mean they are in the medium
 		String ret = "";
 		for(num i = 0; i<this.murderers.length; i++){
 			Player m = this.murderers[i];
-			Player worstEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
+			Player worstEnemy = m.getWorstEnemyFromList(this.session.getReadOnlyAvailablePlayers());
 			if(worstEnemy != null) ret += m.interactionEffect(worstEnemy);
 			//if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") //session.logger.info("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
@@ -155,10 +155,10 @@ class MurderPlayers extends Scene {
 				ausp = null;
 			}
 			//var notEnemy = m.getWorstEnemyFromList(this.session.availablePlayers);
-			removeFromArray(m, this.session.availablePlayers);
+			session.removeAvailablePlayer(m);
 
 			if(worstEnemy !=null && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
-				removeFromArray(worstEnemy, this.session.availablePlayers);
+				session.removeAvailablePlayer(worstEnemy);
 				//if blood player is at all competant, can talk down murder mode player.
 				if(worstEnemy.aspect == Aspects.BLOOD && worstEnemy.getStat("power") > 25){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
@@ -264,7 +264,6 @@ class MurderPlayers extends Scene {
 					}
 				}
 			}
-			removeFromArray(m, this.session.availablePlayers);
 		}
 
 		return ret;

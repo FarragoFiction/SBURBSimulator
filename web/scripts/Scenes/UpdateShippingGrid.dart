@@ -118,9 +118,9 @@ class UpdateShippingGrid extends Scene{
 		this.romanceChat = null;
 		Player tmpPlayer = null;
 		if(rand.nextDouble() > 0.5){
-			tmpPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.HEART);
+			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.HEART);
 		}else{
-			tmpPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.BLOOD);
+			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.BLOOD);
 		}
 
 		if(tmpPlayer == null || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
@@ -602,7 +602,7 @@ class UpdateShippingGrid extends Scene{
 	String content(){
 		//////session.logger.info("Updating shipping grid in: " + this.session.session_id);
 		////session.logger.info("Chosen Shipper: ${this.chosenShipper.player}");
-		removeFromArray(this.chosenShipper.player, this.session.availablePlayers);
+		session.removeAvailablePlayer(chosenShipper.player);
 		this.chosenShipper.player.increasePower();
 		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
 		if(this.chosenShipper.player.aspect == Aspects.HEART) shippingStyle = "They like the concupiscient ships best, and default to those for people not yet in a quadrant.";

@@ -32,8 +32,7 @@ class QuadrantDialogue extends Scene {
 		//set this.player1 to be a random quadranted player.
 		//BUT, if there is a player in a moiralligence who is on the verge of flipping their shit, return them.  so not completely random.;
 		List<Player> quadrants = [];
-		for(num i = 0; i< this.session.availablePlayers.length; i++){
-			var p = this.session.availablePlayers[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(p.isQuadranted() && p.grimDark < 2) quadrants.add(p); //grim dark players don't initiate conversaion.
 		}
 		if (!quadrants.isEmpty) {
@@ -593,38 +592,10 @@ class QuadrantDialogue extends Scene {
 
 	@override
 	void renderContent(Element div){
-		if(this.player1.aspect != Aspects.TIME) removeFromArray(this.player1, this.session.availablePlayers);
-		if(this.player2.aspect != Aspects.TIME) removeFromArray(this.player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player1);
+		session.removeAvailablePlayer(player2);
 		this.player1Start = this.player1.chatHandleShort()+ ": ";
 		this.player2Start = this.player2.chatHandleShortCheckDup(this.player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-
-		/*
-				Since this dialogue has no "purpose", no information that HAS to be conveyed, can treat it as more dynamic.
-				Go for bullshit elder scrolls pairs.
-
-				Greeting (based on quadrant, not generic greetings)
-				Greeting
-
-				chatPair1, chatPair2, chatPair3
-
-				where chatPair is a call and response about one of several topics, each of which have multiple random call/response things it can deploy
-
-				Have you heard about Kvatch?
-				No.
-
-				I have been to the Imperial City recently.
-				I've heard others say the same.
-
-				I have nothing more to say to you.
-				Good day.
-
-				<3<3<3 elder scrolls. They are such ASSHOLES to each other.
-
-				Chat pairs can be generated from: interests in common, quadrants
-				ALSO, flipOutReason is special case. highest priority.
-
-
-		*/
 		this.chat(div);
 
 	}

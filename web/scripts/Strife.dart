@@ -319,7 +319,7 @@ class Team implements Comparable{  //when you want to sort teams, you sort by mo
           if(p.aspect == Aspects.TIME) timePlayers.add(p);
         }
         if(!member.dead && member.session.rand.nextDouble() > .75){
-          session.availablePlayers.remove(member);
+          session.removeAvailablePlayer(member);
           summonBackup(member, div);
           return;
         }

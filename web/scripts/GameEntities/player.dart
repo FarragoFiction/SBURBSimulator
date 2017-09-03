@@ -10,6 +10,9 @@ import "../includes/bytebuilder.dart";
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
+    @override
+    num grist = 0; // players do not spawn with grist
+
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
     GameEntity denizen = null;

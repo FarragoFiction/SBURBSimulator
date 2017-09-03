@@ -24,8 +24,7 @@ class LuckStuff extends Scene{
 			return false;
 		}
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			Player player = this.session.availablePlayers[i];
+		for(Player player in session.getReadOnlyAvailablePlayers()){
 			int rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
 			int rollValueHigh = player.rollForLuck("maxLuck");
 			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
@@ -50,7 +49,7 @@ class LuckStuff extends Scene{
         appendHtml(div,"<br> <img src = 'images/sceneIcons/luck_icon.png'>");
 		for(num i = 0; i<this.rolls.length; i++){
 			Roll roll = this.rolls[i];
-			removeFromArray(roll.player, this.session.availablePlayers);
+			session.removeAvailablePlayer(roll.player);
 			String s = this.processRoll(roll,div) + "<br><Br>";
 			ret += s;
 		}

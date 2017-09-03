@@ -63,7 +63,7 @@ class FightQueen extends Scene {
 	}
 	void setPlayersUnavailable(stabbings){
 		for(num i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], this.session.availablePlayers);
+			session.removeAvailablePlayer(stabbings[i]);
 		}
 	}
 

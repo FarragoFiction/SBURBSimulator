@@ -104,8 +104,7 @@ class LifeStuff extends Scene {
         //List<dynamic> ret = [];
         List<Player> chosenGuides = <Player>[];
         List<Player> chosenSuplicants = <Player>[];
-        for (num i = 0; i < this.session.availablePlayers.length; i++) {
-            Player possibleGuide = this.session.availablePlayers[i];
+        for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
             if (possibleGuide.aspect == Aspects.DOOM || possibleGuide.aspect == Aspects.LIFE || possibleGuide.canGhostCommune() != null) {
                 if (possibleGuide.class_name == SBURBClassManager.SEER || possibleGuide.class_name == SBURBClassManager.SCRIBE || possibleGuide.class_name == SBURBClassManager.PAGE || possibleGuide.class_name == SBURBClassManager.BARD || possibleGuide.class_name == SBURBClassManager.ROGUE || possibleGuide.class_name == SBURBClassManager.MAID) {
                     chosenGuides.add(possibleGuide);
@@ -114,8 +113,7 @@ class LifeStuff extends Scene {
         }
 
         //either an active life/doom player, or any non life/doom player.
-        for (num i = 0; i < this.session.availablePlayers.length; i++) {
-            Player possibleGuide = this.session.availablePlayers[i];
+        for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
             if (possibleGuide.class_name == SBURBClassManager.HEIR || possibleGuide.class_name == SBURBClassManager.THIEF || possibleGuide.class_name == SBURBClassManager.PRINCE || possibleGuide.class_name == SBURBClassManager.WITCH || possibleGuide.class_name == SBURBClassManager.SYLPH || possibleGuide.class_name == SBURBClassManager.KNIGHT || possibleGuide.class_name == SBURBClassManager.MAGE) {
                 chosenSuplicants.add(possibleGuide);
             } else if (possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
@@ -209,7 +207,7 @@ class LifeStuff extends Scene {
             }
             appendHtml(div, "<br><br>$str");
             CanvasElement canvas = drawDreamBubbleH(div, player, ghost);
-            removeFromArray(player, this.session.availablePlayers);
+            session.removeAvailablePlayer(player);
             return canvas;
         } else {
             ////session.logger.info("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
@@ -257,7 +255,7 @@ class LifeStuff extends Scene {
             ////session.logger.info("commune potato" +this.session.session_id);
             appendHtml(div, "<br><br>${this.ghostPsionics(player)}$str${this.communeDeadResult(playerClass, player, ghost, ghostName, enablingAspect)}");
             CanvasElement canvas = this.drawCommuneDead(div, player, ghost);
-            removeFromArray(player, this.session.availablePlayers);
+            session.removeAvailablePlayer(player);
             return canvas;
         } else {
             ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
@@ -377,7 +375,7 @@ class LifeStuff extends Scene {
         }
         CanvasElement canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
         if (canvas != null) {
-            removeFromArray(player1, this.session.availablePlayers);
+            session.removeAvailablePlayer(player1);
             ////session.logger.info("Help communing with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
@@ -423,7 +421,7 @@ class LifeStuff extends Scene {
             player.level_index += 1;
             appendHtml(div, "<br><br>$str");
             CanvasElement canvas = this.drawDrainDead(div, player, ghost, long);
-            removeFromArray(player, this.session.availablePlayers);
+            session.removeAvailablePlayer(player);
             return canvas;
         } else {
             ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
@@ -440,7 +438,7 @@ class LifeStuff extends Scene {
 
         CanvasElement canvas = this.drainDeadForPower(childDiv, text, player2, true);
         if (canvas != null) {
-            removeFromArray(player1, this.session.availablePlayers);
+            session.removeAvailablePlayer(player1);
             ////session.logger.info("Help draining power with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);
@@ -483,7 +481,7 @@ class LifeStuff extends Scene {
 
 
             removeFromArray(myGhost, this.session.afterLife.ghosts);
-            removeFromArray(player, this.session.availablePlayers);
+            session.removeAvailablePlayer(player);
             return canvas;
         } else {
             ////session.logger.info("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
@@ -499,7 +497,7 @@ class LifeStuff extends Scene {
 
         CanvasElement canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);
         if (canvas != null) {
-            removeFromArray(player1, this.session.availablePlayers);
+            session.removeAvailablePlayer(player1);
             ////session.logger.info("Help revive with the dead: " + this.session.session_id);
             CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, player1);

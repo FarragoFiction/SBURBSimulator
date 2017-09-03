@@ -11,12 +11,13 @@ class PrepareToExileQueen extends Scene {
 
 
 	void findSufficientPlayer(){
+		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
 		//old way tended to have only one player do the thing each session. make it a team effort now.
-		var potentials = [findAspectPlayer(this.session.availablePlayers, Aspects.VOID)];
-		potentials.add(findAspectPlayer(this.session.availablePlayers, Aspects.MIND));
-		potentials.add(findAspectPlayer(this.session.availablePlayers, Aspects.HOPE));
-		potentials.add(findClassPlayer(this.session.availablePlayers, SBURBClassManager.THIEF));
-		potentials.add(findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE));
+		var potentials = [findAspectPlayer(availablePlayers, Aspects.VOID)];
+		potentials.add(findAspectPlayer(availablePlayers, Aspects.MIND));
+		potentials.add(findAspectPlayer(availablePlayers, Aspects.HOPE));
+		potentials.add(findClassPlayer(availablePlayers, SBURBClassManager.THIEF));
+		potentials.add(findClassPlayer(availablePlayers, SBURBClassManager.ROGUE));
 		this.player =  rand.pickFrom(potentials);
 	}
 
@@ -52,7 +53,7 @@ class PrepareToExileQueen extends Scene {
 		return ret + rand.pickFrom(lightQueenQuests);
 	}
 	String content(){
-		removeFromArray(this.player, this.session.availablePlayers);
+		session.removeAvailablePlayer(player);
 		//NOT RANDOM ANY MORE. INSTEAD BASED ON PLAYER POWER VS QUEEN POWER
 		//generally will start with light and owrk your way up.
 		this.player.increasePower();

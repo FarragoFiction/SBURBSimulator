@@ -76,7 +76,8 @@ class Session {
     }
 
     void removeAvailablePlayer(Player p) {
-        if(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField) return;
+        //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
+        if(!p.dead && (p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) return;
         removeFromArray(p, _availablePlayers);
 
     }
