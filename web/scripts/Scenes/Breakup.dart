@@ -23,7 +23,7 @@ class Breakup extends Scene {
 		for(num i = 0; i<this.session.getReadOnlyAvailablePlayers().length; i++){
 			this.player = this.session.getReadOnlyAvailablePlayers()[i];
 			var breakup= this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
-			if(!this.player.dead && breakup==true){
+			if(!this.player.dead && breakup==true && this.relationshipToBreakUp != null){
 				//////session.logger.info("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
 				return true;
 			}
@@ -326,9 +326,9 @@ class Breakup extends Scene {
 	String content(){
 		this.relationshipToBreakUp.saved_type = this.relationshipToBreakUp.changeType();
 		this.relationshipToBreakUp.old_type = this.relationshipToBreakUp.saved_type;
-		var oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
-		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
-		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
+		Relationship oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+		if(oppRelationship != null) oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
+		if(oppRelationship != null)oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
 		this.session.stats.hasBreakups = true;  //lets AB report on the hot gos
 		//String ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
 		if(this.relationshipToBreakUp.target.dead){

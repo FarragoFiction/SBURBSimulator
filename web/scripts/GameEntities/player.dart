@@ -1417,7 +1417,7 @@ class Player extends GameEntity {
             GameEntity p = potentialFriends[i];
             if (p != this) {
                 Relationship r = this.getRelationshipWith(potentialFriends[i]);
-                if (r.value < worstRelationshipSoFar.value) {
+                if (r != null && r.value < worstRelationshipSoFar.value) {
                     worstRelationshipSoFar = r;
                 }
             }
