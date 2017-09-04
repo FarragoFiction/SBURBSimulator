@@ -46,12 +46,18 @@ class SessionMutator {
 
   //needed for light field shit
   Player findSpotLightPlayer(Session s) {
+    List<Player> lightPLayers = findSpotLightPlayers(s);
+    return s.rand.pickFrom(lightPLayers);
+  }
+
+
+  //needed for light field shit
+  List<Player> findSpotLightPlayers(Session s) {
     List<Player> potentials = new List<Player>();
-    List<Player> lightPLayers = findAllAspectPlayers(s.players, Aspects.LIGHT);
-    for(Player l in lightPLayers) {
-      if(l.gnosis >3) potentials.add(l);
+    for(Player l in s.players) {
+      if(l.gnosis >3 && l.aspect == Aspects.LIGHT) potentials.add(l);
     }
-    return s.rand.pickFrom(potentials);
+    return (potentials);
   }
 
   //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
