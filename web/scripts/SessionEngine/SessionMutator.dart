@@ -40,6 +40,10 @@ class SessionMutator {
     }
   }
 
+  bool hasSpotLight(Player player) {
+    return player.aspect == Aspects.LIGHT && player.gnosis >3;
+  }
+
   //needed for light field shit
   Player findSpotLightPlayer(Session s) {
     List<Player> potentials = new List<Player>();
