@@ -350,6 +350,8 @@ class SessionMutator {
     lightField = true;
     voidField = false; //overrides the void player.
     activatingPlayer.leader = true;
+    //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
+    activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
     s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
     String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most importnt character in Homestuck. Uh. The Session. I meant the session, obviously. ";
     ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
