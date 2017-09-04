@@ -233,6 +233,7 @@ Player randomTimePlayer(Session session) {
 
 ///takes list of players adn aspect i am looking for
 Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
+    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.findSpotLightPlayer(curSessionGlobalVar);
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
@@ -248,6 +249,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
 
 
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
+    if(curSessionGlobalVar.mutator.lightField) return <Player>[curSessionGlobalVar.mutator.findSpotLightPlayer(curSessionGlobalVar)];
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player
@@ -264,6 +266,7 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
 
 
 Player getLeader(List<Player> playerList) {
+    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.findSpotLightPlayer(curSessionGlobalVar);
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //leader MUST be player
         if (g is Player) {

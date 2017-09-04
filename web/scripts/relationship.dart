@@ -6,7 +6,7 @@ import "SBURBSim.dart";
 class Relationship {
     Player source;
     num value;
-    Player target;
+    Player _target;
     String saved_type = "";
     bool drama = false; //drama is set to true if type of relationship changes.
     String old_type = ""; //wish class variables were a thing.
@@ -21,8 +21,18 @@ class Relationship {
     String spades = "Kismesissitude";
 
 
-    Relationship(Player this.source, [num this.value = 0, Player this.target = null]) {
+    Relationship(Player this.source, [num this.value = 0, Player this._target = null]) {
         type(); //check to see if it's a crush or not
+    }
+
+    //target has to be private if light player can override it. this lets code still do .target, but not .target =
+    Player get target {
+        if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.findSpotLightPlayer(curSessionGlobalVar);
+        return _target;
+    }
+
+    void setTarget(Player target) {
+        _target = target;
     }
 
 
@@ -90,7 +100,7 @@ class Relationship {
     }
 
     String toString() {
-        return " ${asciiDescription()}(${value.round()}) ${target.title()}";
+        return " ${asciiDescription()}(${value.round()}) ${_target.title()}";
     }
 
     String changeType() {
@@ -161,7 +171,7 @@ class Relationship {
     }
 
     String description() {
-        return "${this.saved_type} with the ${this.target.htmlTitle()}";
+        return "${this.saved_type} with the ${this._target.htmlTitle()}";
     }
 
 
@@ -213,7 +223,7 @@ class Relationship {
     static Relationship cloneRelationship(Relationship relationship) {
         Relationship clone = new Relationship(relationship.source);
         clone.value = relationship.value;
-        clone.target = relationship.target;
+        clone.setTarget(relationship.target);
         clone.saved_type = relationship.saved_type;
         clone.drama = relationship.drama; //drama is set to true if type of relationship changes.
         clone.old_type = relationship.old_type; //wish class variables were a thing.
@@ -246,7 +256,7 @@ class Relationship {
             //if i can't find a clone, it's probably a dead player that didn't come to the new session.
             //may as well keep the original relationship
             if (clone != null) {
-                r.target = clone;
+                r.setTarget(clone);
             }
         }
     }
