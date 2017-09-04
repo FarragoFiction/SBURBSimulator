@@ -70,7 +70,7 @@ class Breath extends Aspect {
         new AssociatedStat("sanity", 1, true),
         new AssociatedStat("hp", -1, true),
         new AssociatedStat("RELATIONSHIPS", -1, true),
-         new AssociatedStat("sburbLore", 0.5, false) //yes, technically it's from an aspect, but it's not NORMAL.
+         new AssociatedStat("sburbLore", 0.05, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Breath(int id) :super(id, "Breath", isCanon: true);

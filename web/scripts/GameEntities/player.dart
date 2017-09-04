@@ -1200,6 +1200,8 @@ class Player extends GameEntity {
         for (Relationship r in relationships) {
             if (r.target.id == player.id) {
                 return r;
+            }else {
+                print("${player.title()} is not ${r.target.title()} because ${player.id} is not ${r.target.id}");
             }
         }
         print("Could not find relationship with ${player.title()} in ${relationships}");
@@ -1784,6 +1786,7 @@ class Player extends GameEntity {
     ///no longer inside a scene because multiple scenes need a consistent result from this
      Player findHelper(List<Player> players) {
         Player helper;
+        if(session.mutator.lightField) return session.mutator.inSpotLight;
          //space player can ONLY be helped by knight, and knight prioritizes this
          if(aspect == Aspects.SPACE){//this shit is so illegal
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);

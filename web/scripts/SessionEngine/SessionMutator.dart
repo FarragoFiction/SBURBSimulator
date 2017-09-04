@@ -341,6 +341,7 @@ class SessionMutator {
     inSpotLight = activatingPlayer; //replaces whoever was there before.
     voidField = false; //overrides the void player.
     activatingPlayer.leader = true;
+    activatingPlayer.godDestiny = true; //it's more dramatic if they god tier l8r if they haven't already
     //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
     activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
     s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
