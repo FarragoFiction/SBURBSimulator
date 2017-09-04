@@ -249,7 +249,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
 
 
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
-    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.findSpotLightPlayers(curSessionGlobalVar)];
+    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.findSpotLightPlayers(curSessionGlobalVar);
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player
