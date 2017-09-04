@@ -1,0 +1,13 @@
+
+div.statset {
+    border:1px solid black;
+    margin:3px;
+    padding:5px;
+    display:inline-block;
+    position:relative;
+}
+
+h1 {
+    font-size:28px;
+    margin:3px;
+}
