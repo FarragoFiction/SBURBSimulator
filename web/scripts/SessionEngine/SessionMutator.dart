@@ -141,6 +141,7 @@ class SessionMutator {
           TODO:
           * all players have sanity.abs() * 612
           * guardians are spawned as players to help you.
+          * blood field allows pale quadrant chath whenver (default)
           *  interaction effects * 612
           *  New fraymotif: Power of Friendship (strength is based on number of players)
           *  All stats are averaged, then given back to party.
@@ -349,7 +350,7 @@ class SessionMutator {
     for(Player p in s.players) {
       p.renderSelf(); //to pick up lack of relevancy or whatever
       p.setStat("maxLuck", 88888888);
-      //p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
+      p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
     }
     /*TODO
         *extra things are displayed, not just void.
