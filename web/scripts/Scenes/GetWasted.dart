@@ -51,7 +51,7 @@ class GetWasted extends Scene {
         this.playerList = playerList;
         this.player = null;
         List<Player> possibilities = new List<Player>();
-        for (Player p in session.availablePlayers) { //unlike grim dark, corpses are not allowed to have eureka moments.
+        for (Player p in session.getReadOnlyAvailablePlayers()) { //unlike grim dark, corpses are not allowed to have eureka moments.
             if (this.loreReachedTippingPoint(p)) {
                 possibilities.add(p);
             }
@@ -77,6 +77,7 @@ class GetWasted extends Scene {
         session.logger.verbose("Getting Wasted in session ${session.session_id}");
         this.player.setStat("sburbLore", 0);
         this.player.gnosis ++;
+        session.removeAvailablePlayer(this.player);
         processTier(div);
     }
 
@@ -110,12 +111,12 @@ class GetWasted extends Scene {
         if(gfaq.author.grimDark > 3)   possibilities.add(grimDarkFAQ);
 
         f = gfaq.rand.pickFrom(possibilities);
-        if(f == murderModeFAQ)  session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
-        if(f == tricksterFAQ)  session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
-        if(f == robotFAQ)  session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
+        if(f == murderModeFAQ)  //session.logger.info("AB:  MurderModeFAQ in session ${session.session_id} ");
+        if(f == tricksterFAQ)  //session.logger.info("AB:  TricksterFAQ in session ${session.session_id} ");
+        if(f == robotFAQ)  //session.logger.info("AB:  RobotFAQ in session ${session.session_id} ");
         if(f == grimDarkFAQ) {
             gfaq.grimDark = true;
-             session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
+             //session.logger.info("AB:  GrimDarkFAQ in session ${session.session_id} ");
         }
         f.getRandomSectionAsync(getRandomFAQSectionsCallback, div, gfaq);
         //FUTURE JR: THAT CALL UP THERE IS ASYNC SO YOU CAN'T DO ANYTH1NG ELSE NOW. ONLY CALLBACKS
@@ -123,7 +124,7 @@ class GetWasted extends Scene {
 
     ///since the getting a section might be async, can't rely on returns, only callbacks
     void getRandomFAQSectionsCallback(FAQSection s, Element div, GeneratedFAQ gfaq) {
-        //session.logger.info("callback chose section $s");
+        ////session.logger.info("callback chose section $s");
         if(s != null) gfaq.sections.add(s);
         if(gfaq.sectionsRequested< gfaq.sectionsWanted) {
             //session.logger.info ("callback gonna keep looking for sections" );
@@ -132,7 +133,7 @@ class GetWasted extends Scene {
             //session.logger.info ("getting ready to display ${div.id}, callback found sections: ${gfaq.sections}" );
             displayFAQ(div,gfaq);
         }else{
-            session.logger.info("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
+            //session.logger.info("??????????????????????????????????????? Why the FUCK did I get a callback for a section i didn't request????????????????????????????????????????????");
         }
     }
 
@@ -144,7 +145,7 @@ class GetWasted extends Scene {
 
         Player p = new Player(session, c, a, null, null, null);
         //TODO let the player be one of us, if so, VERY high chance of meta FAQ
-       // session.logger.info("making an faq from player $p");
+       // //session.logger.info("making an faq from player $p");
         p.interest1 = InterestManager.getRandomInterest(r);
         p.interest2 = InterestManager.getRandomInterest(r);
         if (p.isTroll) {
@@ -193,7 +194,7 @@ class GetWasted extends Scene {
     void displayFAQ(Element div, GeneratedFAQ faq) {
         if(faq.rendered) return; //don't render a second time you dunkass
         String text;
-       // session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
+       // //session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(faq.reader == faq.author) {
             text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
@@ -218,10 +219,10 @@ class GetWasted extends Scene {
     }
 
     String processTier3(Element div) {
-        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.BREATH) return exploitMobility(div);
+        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH) return exploitMobility(div);
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
-        if(player.aspect == Aspects.TIME || player.aspect == Aspects.MIND) return exploitTime(div);
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.VOID) return exploitGlitches(div);
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
+        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
         if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
         if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
@@ -232,15 +233,18 @@ class GetWasted extends Scene {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
         if(player.aspect == Aspects.BREATH) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
-        }else if(player.aspect == Aspects.SPACE) {
-            ret = " They set up a frankly scandalous series of shortcuts using the glitchiest parts of SBURB"; //skaian magicant refrance
+            ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
+
+        }else if(player.aspect == Aspects.TIME) {
+            ret = " They set up a frankly scandalous series of time shenanigans";
+            ret += " , allowing all players to basically spam multiple quests 'at the same time'. ";
+
         }else {
             ret = "";
         }
-        ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
-         session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
+         //session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
             for(Player p in session.players) {
                 if(p.land != null && p.grimDark <2) {
@@ -290,8 +294,8 @@ class GetWasted extends Scene {
     //make doomed timeclone army
     String exploitTime(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They begin seriously planning to utterly fuck over the timeline. ";
-        if(this.player.aspect == Aspects.TIME) {
-            ret += " They use their innate sense of time to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. ";
+        if(this.player.aspect == Aspects.RAGE) {
+            ret += " They use their innate sense of ignoring Skaia's wishes to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. Don't like that, don't make me get the god pjs out, I'll do it!";
         }else if (this.player.aspect == Aspects.MIND){
             ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
         }
@@ -327,7 +331,7 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.VOID) {
             ret += " Uh.  Where did they go? <div class = 'void'> ";
         }
-        ret += " They wander into a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
+        ret += " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
 
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
@@ -358,6 +362,7 @@ class GetWasted extends Scene {
 
     //gather everyone on a planet with fast, repatable quests, have everybody do speed questing to get max interaction effects for effort given
     String exploitFriendship(Element div) {
+        session.logger.info("AB: friendship tier3 happening.");
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
         if(player.aspect == Aspects.BLOOD) {
             ret +=  "They find a fast, repeatable quest and organize everyone into ever-changing adventuring pairs to take advantage of the game's interaction effect bonus. ";
@@ -367,15 +372,19 @@ class GetWasted extends Scene {
         ret += "<br>";
         //quest has shitty rewards. you get only interaction effects until i come back later and decide to balance shit
         for(Player p1 in session.players) {
-                for(Player p2 in session.players) {
+                bool printedOnce = false;
+                List<Player> shuffledPlayers = new List<Player>.from(session.players);
+                shuffle(session.rand, shuffledPlayers);
+                for(Player p2 in shuffledPlayers) {
                     if(p1 != p2) {
-                        String subret = "<Br>";
                         //happens multiple times but only session.logger.infos one, cuz it's not gonna be different
-                        subret += p1.interactionEffect(p2);
+                        if(! printedOnce && !p2.dead && !p1.dead) { //prefer not to print about the dead
+                            printedOnce = true;
+                            ret += "<br>${p1.interactionEffect(p2)}  Other things with other friends happen as well, too numerous too list.";
+                        }
                         p1.interactionEffect(p2);
                         p1.interactionEffect(p2);
                         p1.increasePower();
-                        ret += subret;
                     }
                 }
         }
@@ -507,9 +516,17 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        if(player.trickster) {
+            String rant = "Haha. No. Never ever ever again will I let a trickster into my code. Wow. No. Tier4 is locked to this asshole.  Sure I'll let 'em have the stat, but like HELL are they allowed to do anything with it.";
+            appendHtml(div, "$rant");
+            return;
+        }
         session.stats.hasTier4Events = true;
         String divID = "tier4${div.id}${player.id}";
-        appendHtml(div, "<Br><Br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        String rant = "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.";
+        if(player.class_name == SBURBClassManager.GRACE) rant = "Bluh.  I don't trust that Grace in my code one bit. But I guess they ARE supposed to be more subtle than us Wastes....so....Maybe things WON'T crash?";
+        if(player.class_name != SBURBClassManager.GRACE && player.class_name != SBURBClassManager.WASTE) rant = "... Oh. Fuck.  What the hell is a ${player.class_name.name.toUpperCase()} doing in my code. How did this even happen. Don't come crying to me when they fuck things up.";
+        appendHtml(div, "$rant<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
         session.mutator.checkForCrash(session);
         drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
         drawAll();

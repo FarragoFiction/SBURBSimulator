@@ -1,4 +1,5 @@
 import "dart:html";
+import '../GameEntities/Stats/sampler/statsampler.dart';
 import "../SBURBSim.dart";
 import "../navbar.dart";
 /*
@@ -17,8 +18,17 @@ abstract class SimController {
     static SimController instance;
     num initial_seed = 0;
 
+    bool gatherStatData = false;
+    StatSampler statData;
+
     SimController() {
         SimController.instance = this;
+
+        if (getParameterByName("gatherStatData") == "true") {
+            gatherStatData = true;
+            statData = new StatSampler();
+            statData.createSaveButton();
+        }
     }
 
     void callNextIntro(int player_index) {
@@ -35,6 +45,7 @@ abstract class SimController {
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
+        this.gatherStats();
         window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
@@ -100,6 +111,7 @@ abstract class SimController {
     }
 
     void intro() {
+        initGatherStats();
         createInitialSprites();
         //advertisePatreon(querySelector("#story"));
         callNextIntro(0);
@@ -146,17 +158,19 @@ abstract class SimController {
         if (curSessionGlobalVar.timeTillReckoning > -10) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
+            this.gatherStats();
             window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
             s.trigger(curSessionGlobalVar.players);
-            s.renderContent(curSessionGlobalVar.newScene());
+            s.renderContent(curSessionGlobalVar.newScene(true));
             if (curSessionGlobalVar.stats.makeCombinedSession == true) {
                 processCombinedSession(); //make sure everything is done rendering first
             } else {
                 renderAfterlifeURL();
             }
+            this.gatherStats();
         }
     }
 
@@ -285,12 +299,25 @@ abstract class SimController {
         if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.stats.doomedTimeline) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
+            this.gatherStats();
             window.requestAnimationFrame(tick);
             ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {
             ////print("Debugging AB: reckoning time.");
             reckoning();
+        }
+    }
+
+    void gatherStats() {
+        if (gatherStatData) {
+            statData.sample(curSessionGlobalVar);
+        }
+    }
+
+    void initGatherStats() {
+        if (gatherStatData) {
+            statData.resetTurns();
         }
     }
 }

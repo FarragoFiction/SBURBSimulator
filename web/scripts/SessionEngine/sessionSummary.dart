@@ -4,7 +4,14 @@ import "../SBURBSim.dart";
 
 //how AuthorBot summarizes a session
 //eventually moon prophecies will use this.
-//a prophecy can be any of these values that don't match the values in the current session summary.
+//a prophecy can be any of these values this.don't match the values in the current session summary.
+
+class MiniPlayer {
+    final SBURBClass sburbclass;
+    final Aspect aspect;
+
+    MiniPlayer(SBURBClass this.sburbclass, Aspect this.aspect);
+}
 
 class SessionSummary {
     //since stats will be hash, don't need to make junior
@@ -14,19 +21,19 @@ class SessionSummary {
     num frogLevel = 0;
     List<Player> ghosts = <Player>[];
 
-    //the two hashes are for big masses of stats that i just blindly print to screen.
+    //the two hashes are for big masses of stats this.i just blindly print to screen.
     Map<String, bool> bool_stats = <String, bool>{}; //most things
     Map<String, num> num_stats = <String, num>{}; //num_living etc
     String frogStatus; //doesn't need to be in a hash.
-    List<Map<String, String>> miniPlayers = <Map<String, String>>[]; //array of hashes from players
-    List<Player> players = <Player>[]; //TODO do i need this AND that miniPlayers thing???
+    List<MiniPlayer> miniPlayers = <MiniPlayer>[]; //array of hashes from players
+    List<Player> players = <Player>[]; //TODO do i need this AND this.miniPlayers thing???
     Player mvp;
 
 
     SessionSummary(int this.session_id);
 
     void setBoolStat(String statName, bool statValue) {
-       // //print("setting stat: $statName to $statValue");
+        // //print("setting stat: $statName to $statValue");
         this.bool_stats[statName] = statValue;
     }
 
@@ -52,46 +59,46 @@ class SessionSummary {
 
     void setMiniPlayers(List<Player> players) {
         for (num i = 0; i < players.length; i++) {
-            this.miniPlayers.add(<String, String>{"class_name": players[i].class_name.name, "aspect": players[i].aspect.name});
+            this.miniPlayers.add(new MiniPlayer(players[i].class_name, players[i].aspect));
         }
     }
 
-    bool matchesClass(List<String> classes) {
+    bool matchesClass(List<SBURBClass> classes) {
         for (num i = 0; i < classes.length; i++) {
-            String class_name = classes[i];
+            SBURBClass class_name = classes[i];
             for (num j = 0; j < this.miniPlayers.length; j++) {
-                Map<String, String> miniPlayer = this.miniPlayers[j];
-                if (miniPlayer["class_name"] == class_name) return true;
+                MiniPlayer miniPlayer = this.miniPlayers[j];
+                if (miniPlayer.sburbclass == class_name) return true;
             }
         }
         return false;
     }
 
-    bool matchesAspect(List<String> aspects) {
+    bool matchesAspect(List<Aspect> aspects) {
         for (num i = 0; i < aspects.length; i++) {
-            String aspect = aspects[i];
+            Aspect aspect = aspects[i];
             for (num j = 0; j < this.miniPlayers.length; j++) {
-                Map<String, String> miniPlayer = this.miniPlayers[j];
-                if (miniPlayer["aspect"] == aspect) return true;
+                MiniPlayer miniPlayer = this.miniPlayers[j];
+                if (miniPlayer.aspect == aspect) return true;
             }
         }
         return false;
     }
 
-    bool miniPlayerMatchesAnyClasspect(Map<String, String> miniPlayer, List<String> classes, List<String> aspects) {
+    bool miniPlayerMatchesAnyClasspect(MiniPlayer miniPlayer, List<SBURBClass> classes, List<Aspect> aspects) {
         //is my class in the class array AND my aspect in the aspect array.
-        if (classes.contains(miniPlayer["class_name"]) && aspects.contains(miniPlayer["aspect"])) return true;
+        if (classes.contains(miniPlayer.sburbclass) && aspects.contains(miniPlayer.aspect)) return true;
         return false;
     }
 
-    bool matchesBothClassAndAspect(List<String> classes, List<String> aspects) {
+    bool matchesBothClassAndAspect(List<SBURBClass> classes, List<Aspect> aspects) {
         for (num j = 0; j < this.miniPlayers.length; j++) {
             if (this.miniPlayerMatchesAnyClasspect(this.miniPlayers[j], classes, aspects)) return true;
         }
         return false;
     }
 
-    bool matchesClasspect(List<String> classes, List<String> aspects) {
+    bool matchesClasspect(List<SBURBClass> classes, List<Aspect> aspects) {
         if (!aspects.isEmpty && classes.isEmpty) {
             return this.matchesAspect(aspects);
         } else if (!classes.isEmpty && aspects.isEmpty) {
@@ -135,16 +142,16 @@ class SessionSummary {
                     return false;
                 }
             } else if (filter == "timesAllLived") {
-                if (this.getNumStat("numDead") != 0) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+                if (this.getNumStat("numDead") != 0) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
                     ////print("not all alive");
                     return false;
                 }
             } else if (filter == "scratched") {
-              if (!this.scratched) { // a special thing that isn't in hash.
-                return false;
-              }
+                if (!this.scratched) { // a special thing this.isn't in hash.
+                    return false;
+                }
             } else if (filter == "comboSessions") {
-                if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want that.
+                if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
                     ////print("not combo session");
                     return false;
                 }
@@ -156,7 +163,7 @@ class SessionSummary {
         return true;
     }
 
-    dynamic decodeLineageGenerateHTML() {
+    String decodeLineageGenerateHTML() {
         String html = "";
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1); //what am i doing with params here?
         if (params == window.location.href) params = "";
@@ -231,7 +238,6 @@ class SessionSummary {
         html = "$html${generateBoolHTML()}";
 
 
-
         html = "$html</div><br>";
         return html;
     }
@@ -240,6 +246,7 @@ class SessionSummary {
     static SessionSummary makeSummaryForSession(Session session) {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
+        if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat("currentHP") <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
@@ -345,7 +352,7 @@ class SessionSummaryJunior {
     SessionSummaryJunior(this.players, this.session_id) {}
 
 
-    dynamic generateHTML() {
+    String generateHTML() {
         this.getAverages();
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
@@ -362,8 +369,7 @@ class SessionSummaryJunior {
             ..write("<Br><b>Initial Average HP</b>: ${this.averageHP}")
             ..write("<Br><b>Initial Relationship Value</b>: ${this.averageRelationshipValue}")
             ..write("<Br><b>Initial Trigger Level</b>: ${this.averageRelationshipValue}")
-            ..write("<Br><b>Sprites</b>: ${this
-                            .grabAllSprites()}")
+            ..write("<Br><b>Sprites</b>: ${this.grabAllSprites()}")
             ..write("<Br><b>Lands</b>: ${this.grabAllLands()}")
             ..write("<Br><b>Interests</b>: ${this.grabAllInterest()}")
             ..write("<Br><b>Initial Ships</b>:<Br> ${this.initialShips()}")
@@ -481,26 +487,11 @@ class MultiSessionSummaryJunior {
 
     String generateHTML() {
         StringBuffer html = new StringBuffer()
-            ..write("<div class = 'multiSessionSummary' id = 'multiSessionSummary'>")
-            ..write("<h2>Stats for All Displayed Sessions: </h2><br>")
-            ..write("<Br><b>Number of Sessions:</b> $numSessions ")
-            ..write("<Br><b>Average Players Per Session: ${this.numPlayers / this.numSessions}</b> ")
-            ..write("<Br><b>averageMinLuck:</b> $averageMinLuck")
-            ..write("<Br><b>averageMaxLuck:</b> $averageMaxLuck")
-            ..write("<Br><b>averagePower:</b>$averagePower ")
-            ..write("<Br><b>averageMobility:</b>$averageMobility ")
-            ..write("<Br><b>averageFreeWill: $averageFreeWill</b> ")
-            ..write("<Br><b>averageHP:</b> $averageHP")
-            ..write("<Br><b>averageRelationshipValue:</b> $averageRelationshipValue")
-            ..write("<Br><b>averageSanity:</b> $averageSanity")
-            ..write("<Br><b>Average Initial Ships Per Session:</b> ${this.numShips / this
-                            .numSessions} ")
-            ..write("<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12")
-            ..write("<br><input type='text' id='num_players_text' value='2' size='2' disabled>")
-            //on click will be job of code that appends this. cuz can't do inline anymore
+            ..write("<div class = 'multiSessionSummary' id = 'multiSessionSummary'>")..write("<h2>Stats for All Displayed Sessions: </h2><br>")..write("<Br><b>Number of Sessions:</b> $numSessions ")..write("<Br><b>Average Players Per Session: ${this.numPlayers / this.numSessions}</b> ")..write("<Br><b>averageMinLuck:</b> $averageMinLuck")..write("<Br><b>averageMaxLuck:</b> $averageMaxLuck")..write("<Br><b>averagePower:</b>$averagePower ")..write("<Br><b>averageMobility:</b>$averageMobility ")..write("<Br><b>averageFreeWill: $averageFreeWill</b> ")..write("<Br><b>averageHP:</b> $averageHP")..write("<Br><b>averageRelationshipValue:</b> $averageRelationshipValue")..write("<Br><b>averageSanity:</b> $averageSanity")..write("<Br><b>Average Initial Ships Per Session:</b> ${this.numShips / this
+                .numSessions} ")..write("<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12")..write("<br><input type='text' id='num_players_text' value='2' size='2' disabled>")
+        //on click will be job of code this.appends this. cuz can't do inline anymore
 
-            ..write("<br><br><button id = 'buttonFilter'>Filter Sessions</button>")
-            ..write("</div><Br>");
+            ..write("<br><br><button id = 'buttonFilter'>Filter Sessions</button>")..write("</div><Br>");
         return html.toString();
     }
 
@@ -510,13 +501,13 @@ class MultiSessionSummary {
     List<Player> ghosts = <Player>[]; //what is this type? Player? String? (it's Player -PL)
     List<String> checkedCorpseBoxes = <String>[];
     Map<String, num> num_stats = <String, num>{};
-    Map<String, num> classes = <String, num>{};
-    Map<String, num> aspects = <String, num>{};
+    Map<SBURBClass, num> classes = <SBURBClass, num>{};
+    Map<Aspect, num> aspects = <Aspect, num>{};
 
 
     MultiSessionSummary() {
         //can switch order to change order AB displays in
-        //if i don't initialize stats here, then AB won't bothe rlisting stats that are zero.
+        //if i don't initialize stats here, then AB won't bothe rlisting stats this.are zero.
         setStat("total", 0);
         setStat("totalDeadPlayers", 0);
         setStat("won", 0);
@@ -614,49 +605,58 @@ class MultiSessionSummary {
 
 
     void setClasses() {
-        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage"];
+        /*List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage"];
         for (num i = 0; i < labels.length; i++) {
             this.classes[labels[i]] = 0;
+        }*/
+        Iterable<SBURBClass> labels = SBURBClassManager.all;
+        for (SBURBClass clazz in labels) {
+            this.classes[clazz] = 0;
         }
     }
 
-    void integrateClasses(List<Map<String, String>> miniPlayers) {
+    void integrateClasses(List<MiniPlayer> miniPlayers) {
         for (num i = 0; i < miniPlayers.length; i++) {
-            if(this.classes[miniPlayers[i]["class_name"]] != null) this.classes[miniPlayers[i]["class_name"]] ++;
+            if (this.classes[miniPlayers[i].sburbclass] != null) this.classes[miniPlayers[i].sburbclass] ++;
         }
     }
 
-    void integrateAspects(List<Map<String, String>> miniPlayers) {
+    void integrateAspects(List<MiniPlayer> miniPlayers) {
         for (num i = 0; i < miniPlayers.length; i++) {
-            if(this.aspects[miniPlayers[i]["aspect"]]  != null) this.aspects[miniPlayers[i]["aspect"]] ++;
+            if (this.aspects[miniPlayers[i].aspect] != null) this.aspects[miniPlayers[i].aspect] ++;
         }
     }
 
     void setAspects() {
-        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Might"];
+
+        /*List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
         for (num i = 0; i < labels.length; i++) {
             this.aspects[labels[i]] = 0;
+        }*/
+        Iterable<Aspect> labels = Aspects.all;
+        for (Aspect aspect in labels) {
+            this.aspects[aspect] = 0;
         }
     }
 
-    void filterCorpseParty(MultiSessionSummary that) {
+    void filterCorpseParty() {
         List<Player> filteredGhosts = <Player>[];
-        that.checkedCorpseBoxes = <String>[]; //reset
-        bool classFiltered = !querySelectorAll("input:checkbox[name=CorpsefilterClass]:checked").isEmpty;
-        bool aspectFiltered = !querySelectorAll("input:checkbox[name=CorpsefilterAspect]:checked").isEmpty;
-        for (num i = 0; i < that.ghosts.length; i++) {
-            Player ghost = that.ghosts[i];
+        this.checkedCorpseBoxes = <String>[]; //reset
+        bool classFiltered = !querySelectorAll("input[type=checkbox][name=CorpsefilterClass]:checked").isEmpty;
+        bool aspectFiltered = !querySelectorAll("input[type=checkbox][name=CorpsefilterAspect]:checked").isEmpty;
+        for (num i = 0; i < this.ghosts.length; i++) {
+            Player ghost = this.ghosts[i];
             //add self to filtered ghost if my class OR my aspect is checked. How to tell?  .is(":checked");
             if (classFiltered && !aspectFiltered) {
-                if ((querySelector("#${ghost.class_name}") as CheckboxInputElement).checked) {
+                if ((querySelector("#corpseclass_${ghost.class_name}") as CheckboxInputElement).checked) {
                     filteredGhosts.add(ghost);
                 }
             } else if (aspectFiltered && !classFiltered) {
-                if ((querySelector("#${ghost.aspect}") as CheckboxInputElement).checked) {
+                if ((querySelector("#corpseaspect_${ghost.aspect}") as CheckboxInputElement).checked) {
                     filteredGhosts.add(ghost);
                 }
             } else if (aspectFiltered && classFiltered) {
-                if ((querySelector("#${ghost.class_name}") as CheckboxInputElement).checked && (querySelector("#${ghost.aspect}") as CheckboxInputElement).checked) {
+                if ((querySelector("#corpseclass_${ghost.class_name}") as CheckboxInputElement).checked && (querySelector("#corpseaspect_${ghost.aspect}") as CheckboxInputElement).checked) {
                     filteredGhosts.add(ghost);
                 }
             } else {
@@ -665,52 +665,84 @@ class MultiSessionSummary {
             }
         } //end for loop
 
-        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
-        bool noneChecked = true;
-        for (num i = 0; i < labels.length; i++) {
+        //List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+        //bool noneChecked = true;
+        /*for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
             if ((querySelector("#$l") as CheckboxInputElement).checked) {
-                that.checkedCorpseBoxes.add(l);
+                this.checkedCorpseBoxes.add(l);
+                noneChecked = false;
+            }
+        }*/
+
+        Iterable<SBURBClass> clabels = SBURBClassManager.all;
+        Iterable<Aspect> alabels = Aspects.all;
+
+        for (SBURBClass clazz in clabels) {
+            if ((querySelector("#corpseclass_$clazz") as CheckboxInputElement).checked) {
+                this.checkedCorpseBoxes.add("corpseclass_$clazz");
                 noneChecked = false;
             }
         }
 
-        if (noneChecked) filteredGhosts = that.ghosts;
+        for (Aspect aspect in alabels) {
+            if ((querySelector("#corpseaspect_$aspect") as CheckboxInputElement).checked) {
+                this.checkedCorpseBoxes.add("corpseaspect_$aspect");
+                noneChecked = false;
+            }
+        }
+
+        if (noneChecked) filteredGhosts = this.ghosts;
         //none means 'all' basically
-        setHtml(querySelector("#multiSessionSummaryCorpseParty"), that.generateCorpsePartyInnerHTML(filteredGhosts));
-        that.wireUpCorpsePartyCheckBoxes();
+        setHtml(querySelector("#multiSessionSummaryCorpseParty"), this.generateCorpsePartyInnerHTML(filteredGhosts));
+        this.wireUpCorpsePartyCheckBoxes();
     }
 
 
     void wireUpCorpsePartyCheckBoxes() {
         //i know what the labels are, they are just the classes and aspects.
-        MultiSessionSummary that = this;
+        /*MultiSessionSummary this.= this;
         List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
         for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
             querySelector("#$l").onChange.listen((Event e) {
-                that.filterCorpseParty(that);
+                this.filterCorpseParty(this.;
+            });
+        }*/
+        
+        Iterable<SBURBClass> clabels = SBURBClassManager.all;
+        Iterable<Aspect> alabels = Aspects.all;
+
+        for (SBURBClass clazz in clabels) {
+            querySelector("#corpseclass_$clazz").onChange.listen((Event e) {
+                this.filterCorpseParty();
             });
         }
 
+        for (Aspect aspect in alabels) {
+            querySelector("#corpseaspect_$aspect").onChange.listen((Event e) {
+                this.filterCorpseParty();
+            });
+        }
+        
         for (num i = 0; i < this.checkedCorpseBoxes.length; i++) {
             String l = this.checkedCorpseBoxes[i];
             (querySelector("#$l") as CheckboxInputElement).checked = true;
         }
     }
 
-    String generateHTMLForClassPropertyCorpseParty(String label, num value, num total) {
+    String generateHTMLForClassPropertyCorpseParty(SBURBClass label, num value, num total) {
         //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-        String input = "<input type='checkbox' name='CorpsefilterClass' value='$label' id='$label'>";
+        String input = "<input type='checkbox' name='CorpsefilterClass' value='$label' id='corpseclass_$label'>";
         int average = 0;
         if (total != 0) average = (100 * value / total).round();
         String html = "<Br>$input$label: $value($average%)";
         return html;
     }
 
-    String generateHTMLForAspectPropertyCorpseParty(String label, num value, num total) {
+    String generateHTMLForAspectPropertyCorpseParty(Aspect label, num value, num total) {
         //		//<input disabled='true' type='checkbox' name='filter' value='"+propertyName +"' id='" + propertyName + "' onchange='filterSessionSummaries()'>"
-        String input = "<input type='checkbox' name='CorpsefilterAspect' value='$label' id='$label'>";
+        String input = "<input type='checkbox' name='CorpsefilterAspect' value='$label' id='corpseaspect_$label'>";
         num average = 0;
         if (total != 0) average = (100 * value / total).round(); //stop dividing by zero, dunkass.
         String html = "<Br>$input$label: $value($average%)";
@@ -727,12 +759,22 @@ class MultiSessionSummary {
 
     String generateCorpsePartyInnerHTML(List<Player> filteredGhosts) {
         //first task. convert ghost array to map. or hash. or whatever javascript calls it. key is what I want to display on the left.
-        //value is how many times I see something that evaluates to that key.
+        //value is how many times I see something this.evaluates to this.key.
         // about players killing each other.  look for "died being put down like a rabid dog" and ignore the rest.  or  "fighting against the crazy X" to differentiate it from STRIFE.
         //okay, everything else should be fine. this'll probably still be pretty big, but can figure out how i wanna compress it later. might make all minion/denizen fights compress down to "first goddamn boss fight" and "denizen fight" respectively, but not for v1. want to see if certain
         //aspect have  a rougher go of it.
-        Map<String, int> corpsePartyClasses = <String, int>{"Knight": 0, "Seer": 0, "Bard": 0, "Maid": 0, "Heir": 0, "Rogue": 0, "Page": 0, "Thief": 0, "Sylph": 0, "Prince": 0, "Witch": 0, "Mage": 0};
-        Map<String, int> corpsePartyAspects = <String, int>{"Blood": 0, "Mind": 0, "Rage": 0, "Time": 0, "Void": 0, "Heart": 0, "Breath": 0, "Light": 0, "Space": 0, "Hope": 0, "Life": 0, "Doom": 0};
+        Map<SBURBClass, int> corpsePartyClasses = <SBURBClass, int>{};//"Knight": 0, "Seer": 0, "Bard": 0, "Maid": 0, "Heir": 0, "Rogue": 0, "Page": 0, "Thief": 0, "Sylph": 0, "Prince": 0, "Witch": 0, "Mage": 0};
+
+        for (SBURBClass c in SBURBClassManager.all) {
+            corpsePartyClasses[c] = 0;
+        }
+
+        Map<Aspect, int> corpsePartyAspects = <Aspect, int>{};//"Blood": 0, "Mind": 0, "Rage": 0, "Time": 0, "Void": 0, "Heart": 0, "Breath": 0, "Light": 0, "Space": 0, "Hope": 0, "Life": 0, "Doom": 0};
+
+        for (Aspect a in Aspects.all) {
+            corpsePartyAspects[a] = 0;
+        }
+
         Map<String, int> corpseParty = <String, int>{}; //now to refresh my memory on how javascript hashmaps work;
         String html = "<br><b>  Number of Ghosts: </b>: ${filteredGhosts.length}";
         for (int i = 0; i < filteredGhosts.length; i++) {
@@ -751,17 +793,17 @@ class MultiSessionSummary {
                 corpseParty[ghost.causeOfDeath] ++;
             }
 
-            if (corpsePartyClasses[ghost.class_name] == null) corpsePartyClasses[ghost.class_name.name] = 0; //otherwise NaN;
-            if (corpsePartyAspects[ghost.aspect] == null) corpsePartyAspects[ghost.aspect.name] = 0; //otherwise NaN;
-            corpsePartyAspects[ghost.aspect.name] ++;
-            corpsePartyClasses[ghost.class_name.name] ++;
+            if (corpsePartyClasses[ghost.class_name] == null) corpsePartyClasses[ghost.class_name] = 0; //otherwise NaN;
+            if (corpsePartyAspects[ghost.aspect] == null) corpsePartyAspects[ghost.aspect] = 0; //otherwise NaN;
+            corpsePartyAspects[ghost.aspect] ++;
+            corpsePartyClasses[ghost.class_name] ++;
         }
 
-        for (String corpseType in corpsePartyClasses.keys) {
+        for (SBURBClass corpseType in corpsePartyClasses.keys) {
             html = "$html${this.generateHTMLForClassPropertyCorpseParty(corpseType, corpsePartyClasses[corpseType], filteredGhosts.length)}";
         }
 
-        for (String corpseType in corpsePartyAspects.keys) {
+        for (Aspect corpseType in corpsePartyAspects.keys) {
             html = "$html${this.generateHTMLForAspectPropertyCorpseParty(corpseType, corpsePartyAspects[corpseType], filteredGhosts.length)}";
         }
 
@@ -780,16 +822,16 @@ class MultiSessionSummary {
         if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murderMode" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
-        if (propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" ||propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
+        if (propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
         return false;
     }
 
     bool isEndingProperty(String propertyName) {
         if (propertyName == "yellowYard" || propertyName == "timesAllLived" || propertyName == "timesAllDied" || propertyName == "scratchAvailable" || propertyName == "won") return true;
-        if (propertyName == "cataclysmCrash" ||propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
+        if (propertyName == "cataclysmCrash" || propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
         if (propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
         if (propertyName == "numberPurpleFrog" || propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
-        if (propertyName == "blackKingDead"|| propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
+        if (propertyName == "blackKingDead" || propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
         return false;
     }
 
@@ -861,15 +903,15 @@ class MultiSessionSummary {
         //MSS and SS will need list of classes and aspects. just strings. nothing beefier.
         //these will have to be filtered in a special way. just render and display stats for now, though. no filtering.
 
-            
+
             ..write("</div><Br>");
         return html.toString();
     }
 
     String generateClassFilterHTML() {
         String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryClasses'>Classes:";
-        for (String propertyName in this.classes.keys) {
-            String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class$propertyName' >";
+        for (SBURBClass propertyName in this.classes.keys) {
+            String input = "<input type='checkbox' name='filterClass' value='$propertyName' id='class_$propertyName' >";
             html = "$html<Br>$input$propertyName: ${this.classes[propertyName]} ( ${(100 * this.classes[propertyName] / this.num_stats['total']).round()}%)";
         }
         html = "$html</div>";
@@ -878,8 +920,8 @@ class MultiSessionSummary {
 
     String generateAspectFilterHTML() {
         String html = "<div class = 'multiSessionSummary topAligned' id = 'multiSessionSummaryAspects'>Aspects:";
-        for (String propertyName in this.aspects.keys) {
-            String input = "<input type='checkbox' name='filterAspect' value='$propertyName' id='class$propertyName'>";
+        for (Aspect propertyName in this.aspects.keys) {
+            String input = "<input type='checkbox' name='filterAspect' value='$propertyName' id='aspect_$propertyName'>";
             html = "$html<Br>$input$propertyName: ${this.aspects[propertyName]} ( ${(100 * this.aspects[propertyName] / this.num_stats['total']).round()}%)";
         }
         html = "$html</div>";

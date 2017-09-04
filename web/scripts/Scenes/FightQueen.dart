@@ -40,7 +40,7 @@ class FightQueen extends Scene {
 	}
 	@override
 	void renderContent(Element div){
-		if(this.session.npcHandler.queen.getStat("power") < 0) session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
+		if(this.session.npcHandler.queen.getStat("power") < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
     appendHtml(div,this.content());
 
@@ -63,12 +63,12 @@ class FightQueen extends Scene {
 	}
 	void setPlayersUnavailable(stabbings){
 		for(num i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], this.session.availablePlayers);
+			session.removeAvailablePlayer(stabbings[i]);
 		}
 	}
 
 	dynamic content(){
-		//session.logger.info("Queen Strength : " + this.session.queenStrength);
+		////session.logger.info("Queen Strength : " + this.session.queenStrength);
 		String badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";

@@ -139,7 +139,7 @@ class ByteBuilder {
 
 		sb.write("]");
 
-		//print(sb.toString());
+		print(sb.toString());
 	}
 }
 

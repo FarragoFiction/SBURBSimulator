@@ -4,9 +4,14 @@ import "../SBURBSim.dart";
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
   int effectsInPlay = 0; //more there are, more likely session will crash.
-  bool hopeField = false;
+  bool hopeField = false;  //facts about session change
+  bool breathField = false; //sets availability to true, will interact with npc quests eventually
+  bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
+  bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
+  bool lightField = false; //returns light player instead of whoever was asked for in most cases
   static SessionMutator _instance;
   num timeTillReckoning = 0;
+  num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
   bool ectoBiologyStarted = false;
   num hardStrength = 1000;
@@ -15,6 +20,9 @@ class SessionMutator {
   int expectedGristContributionPerPlayer = 400;
   int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
   num sessionHealth = 500;
+  Session savedSession; //for heart callback
+  Player inSpotLight; //there can be only one.
+
 
   static getInstance() {
     if(_instance == null) _instance = new SessionMutator();
@@ -23,7 +31,23 @@ class SessionMutator {
 
   SessionMutator() {
     _instance = this;
+    GameEntity.minPower = gameEntityMinPower;
+    for(Aspect a in Aspects.all) {
+      a.name = a.savedName; //AB is having none of your shenanigans.
+    }
+
+    for(SBURBClass c in SBURBClassManager.all) {
+      c.name = c.savedName; //AB is having none of your shenanigans.
+    }
   }
+
+  bool hasSpotLight(Player player) {
+    if(inSpotLight == null) return false;
+    bool ret = player.id == inSpotLight.id;
+    //print("I was asked if ${player.title()} has the spotlight. I know ${inSpotLight.title()} does. I will return $ret");
+    return ret;
+  }
+
 
   //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
   void syncToSession(Session s) {
@@ -111,27 +135,34 @@ class SessionMutator {
 
   String blood(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Blood is going at it.");
     effectsInPlay ++;
       /*
           TODO:
-          * all players have trickster levels of sanity
-          * If scratched, your guardians stats are added to yours.
+          * all players have sanity.abs() * 612
+          * guardians are spawned as players to help you.
+          * blood field allows pale quadrant chath whenver (default)
+          *  interaction effects * 612
+          *  New fraymotif: Power of Friendship (strength is based on number of players)
           *  All stats are averaged, then given back to party.
-          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted.
+          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted. (maybe???)
           *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
           *  All players have candy red blood.
-          *  new players are allowed to enter session
+          *  new players are allowed to enter session (what the fuck did I mean by this?)
 
        */
   }
 
   String mind(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Mind is going at it.");
     effectsInPlay ++;
     /*
       TODO:
         * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
-        * TODO: what else fits here, don't want it to just literally be a yellow yard, these wastes suck compared to me
+        *  all options are listed instead of just a yards worth (so custom)
+        *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
+        * A few custom options as well, up at the top
              *so instead of restraint, they let ANYTHING happen.  but still Observer choice?
              *  or are some things observer choice and some things the Waste chooses?
              *  peasant rail gun
@@ -147,6 +178,7 @@ class SessionMutator {
 
   String rage(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
     /*
         TODO:
@@ -176,14 +208,39 @@ class SessionMutator {
 
   //lol, can't just call it void cuz protected word
   String voidStuff(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
+    voidField = true;
+    s.logger.info("AB: Huh. Looks like a Waste of Void is going at it.");
+    String ret = "The ${activatingPlayer.htmlTitle()} is doing something. It's kind of hard to see.  Look at those line of code though...";
+    ret += "Huh. You get the strangest feelings that they are looking directly at you.  It's kind of unsettling. ";
+    ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. <span class='void'>The ${activatingPlayer.htmlTitle()} is on to you.</span> The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
+    ret += "Maybe.... Maybe you'll at least get to see the ending? ";
+    //a bunch of shit gets randomized.  oh sure, the void player is doing things for REASONS
+    //but if you can't see what those reasons are, it sure as fuck looks random.
+    s.sessionHealth += s.sessionHealth/-2;
+    for(Player p in s.players) {
+      p.grist += s.rand.nextInt(s.expectedGristContributionPerPlayer);
+      p.landLevel += s.rand.nextInt(s.goodFrogLevel);
+      p.corruptionLevelOther += s.rand.nextIntRange(-100, 100);
+      for(String str in Player.playerStats) {
+          //can lower it but way more likely to raise it
+          if(str != "RELATIONSHIPS") {
+            p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength));
+          }
+      }
+    }
+    return ret;
     /*
         TODO:
-          * reroll seed.  rerun session, but NEVER print anything, not even in the void.
-          * print ending
-          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)
-          *
+          * but NEVER print anything past this, not even in the void.
+
+          *   * acomplish this by creating a new div with id voided you print to. if void field in effect
+          *   random things happen here, people stat's are improved by random amounts, land levels and grist too. drop session health, tho
+          *    newScene only appends there, and clears it out constantly. not just not displayed but GONE.
+          * print Aftermath in $story as normal so you can see it.
+          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)? (maybe? might be hard)
+          *    *  if void field is in effect, LIE LIKE CRAZY TO AB.
+         *     THAT WAY I DON'T HAVE TO RANDOMIZE THINGS AND STEP ON BREATHS TOES, BUT YOU STILL HAVE NO CLUE WHAT HAPPENED.
 
        */
 
@@ -191,6 +248,7 @@ class SessionMutator {
 
   String time(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Time is going at it.");
     effectsInPlay ++;
       /*
           TODO:
@@ -203,47 +261,106 @@ class SessionMutator {
   }
 
   String heart (Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Heart is going at it.");
     effectsInPlay ++;
-      /*
-        TODO
-         * everyones classpects are randomized mid sim
-         * everyones living dream selves are separate players with old claspects
-         * more quadrant chat even if no quadrant?
-       */
+    heartField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} begins glowing and a haze of pink code hangs around them. They declare that all ships are canon, and can never sink. They begin altering the very identity of everyone toward this end. <br><Br>";
+    List<Player> newPlayers = new List<Player>();
+    //since i'm cloning players, give everybody 333 relationship (i.e. make entirely new ones for everyone). will trigger dating.
+    for(Player p in s.players) {
+        SBURBClass c = p.class_name;
+        Aspect a = p.aspect;
+        ret += "<br><br>The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
+        p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
+        ret += " Instead, they now prefer the clearly superior ${p.interest1.name}, just like the ${activatingPlayer.htmlTitle()}.";
+        p.aspect = s.rand.pickFrom(Aspects.all);
+        p.class_name = s.rand.pickFrom(SBURBClassManager.all);
+        p.associatedStats = []; //lose everything from your old classpect
+        p.aspect.initAssociatedStats(p);
+        ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
 
+
+        if(p.dreamSelf && !p.isDreamSelf) {
+          Player independantDreamSelf = p.clone();
+          independantDreamSelf.class_name = c;
+          independantDreamSelf.aspect = a;
+          independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
+          independantDreamSelf.isDreamSelf = true;
+          independantDreamSelf.session = s;
+          independantDreamSelf.id = independantDreamSelf.id + 3333;
+          independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it
+          p.dreamSelf = false; //no more dream self, bro
+          newPlayers.add(independantDreamSelf);
+          ret += "<br>The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
+        }
+
+    }
+
+    s.players.addAll(newPlayers); //don't do in the for loop that it's in asshole
+    //now includes clones.
+    for(Player p in s.players) {
+      p.generateRelationships(s.players);
+      p.renderSelf();// either rendering for first time, or rerendering as new classpect
+    }
+    savedSession = s;
+    //need to load the new images.
+    globalCallBack = heartCallBack();
+    load(s.players, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+
+    return ret; //<--still return tho, not waiting on the async loading
+  }
+
+  //yes, this isn't how it should work long term. might make a few blank scenes.
+  String heartCallBack() {
+    for(Player p in savedSession.players) {
+      p.renderSelf();// either rendering for first time, or rerendering as new classpect
+    }
   }
 
   String breath(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Breath is going at it.");
     effectsInPlay ++;
-      /*
-        TOOD:
-        * available players is always all players.
-        * all quest chains are active (npc shit)
-        * *uses true random instead of seed, for freedom from story
-       */
-
+    breathField = true;
+    s.rand = new Random(); //breath gets freedom from narrative, true random now, no predictabilitiy.
+    //show off that new true randomness:
+    String ret = "The ${activatingPlayer.htmlTitle()} begins to glow. Lines of code appear dramatically behind them. ";
+    ret += s.rand.pickFrom(<String> ["A wave of mobility washes over SBURB.","All players feel strangely mobile."," SBURB suddenly cares a LOT more about getting the plot moving forwards."]);
+    ret += s.rand.pickFrom(<String>[" Somewhere in the distance, you can hear the AuthorBot cursing."," SBURBs narrative control has slipped the reigns entirely. Sessions now have the freedom to do whatever they want."," Huh. Wait. Is this really canon? The Observer visible timeline isn't supposed to go this way, right? "]);
+    //TODO once npcs quests are a thing, need to have all active at once.
+    ret += "All players can now do all activities every turn.  And... you suddenly get the strange feeling that this session has become a LOT less shareable.";
+    for(Player p in s.players) {
+      p.addStat("mobility", 413);  //not a hope level of boost, but enough to probably fight most things
+    }
+    return ret;
   }
 
   String light(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
-    /*TODO
-        *EVERything is displayed, not just void.
-          *   how to do this with code not being js anymore?
-          *   can i co-opt the console printouts to put on screen?
-        * all players are VERY LUCKY
-        * maybe gives everyone almost waste level gnosis...what else?
-        * literal spotlight when rendered, all players set to unavailable except light player, light player is always available
-     */
+    lightField = true;
+    inSpotLight = activatingPlayer; //replaces whoever was there before.
+    voidField = false; //overrides the void player.
+    activatingPlayer.leader = true;
+    activatingPlayer.godDestiny = true; //it's more dramatic if they god tier l8r if they haven't already
+    //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
+    activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
+    s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
+    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most importnt character in Homestuck. Uh. The Session. I meant the session, obviously. ";
+    ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
+    ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
+    for(Player p in s.players) {
+      p.renderSelf(); //to pick up lack of relevancy or whatever
+      p.setStat("maxLuck", 88888888);
+      p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
+    }
+    return ret;
 
   }
 
   String space(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
+    s.logger.info("AB: Huh. Looks like a Waste of Space is going at it.");
     /*
           TODO:
           * Cccccccombo sessions.   (with "go" button to keep it from being infinite)
@@ -265,6 +382,7 @@ class SessionMutator {
 
     hopePlayer.setStat("power",9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
+    gameEntityMinPower = 9000;
     s.sessionHealth = 9001;
     s.stats.ectoBiologyStarted = true; //of COURSE we're not paradox doomed. You'd be crazy to say otherwise.
     s.minimumGristPerPlayer = 1;
@@ -321,7 +439,7 @@ class SessionMutator {
 
   String life(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
-
+    s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
     /*
         TODO:
@@ -335,6 +453,7 @@ class SessionMutator {
 
   String doom(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Doom is going at it.");
     effectsInPlay ++;
     /*
       TODO:
@@ -351,6 +470,48 @@ class SessionMutator {
   String abjectFailure(Session s, Player activatingPlayer) {
     effectsInPlay ++;
     return "The ${activatingPlayer.htmlTitle()} appears to be doing something fantastic. The very fabric of SBURB is being undone according to their whims. They are screaming. Dramatic lightning and wind is whipping around everywhere. Oh.  Uh.  Huh.  Was something supposed to happen?  ... Maybe they just suck at this?  Or maybe JR is a lazy piece of shit who didn't code anything for this. I know MY headcanon.";
+  }
+
+  SessionSummary makeBullshitSummary(Session session, SessionSummary summary) {
+    //make sure everything is false so we don't stand out.
+
+    summary.ghosts = [];
+    summary.setNumStat("sizeOfAfterLife", 8008135); //it's boobies!
+    summary.setBoolStat("hasTier1GnosisEvents", false);
+    summary.setBoolStat("hasTier2GnosisEvents", false);
+    summary.setBoolStat("hasTier3GnosisEvents", false);
+    summary.setBoolStat("hasTier4GnosisEvents", true); //just blatant fucking lies, but not about this or AB won't warn you about wastes.
+    summary.setNumStat("averageMinLuck", 8008135);
+    summary.setNumStat("averageMaxLuck", 8008135);
+    summary.setNumStat("averagePower", 8008135);
+    summary.setNumStat("averageGrist", 8008135);
+    summary.setNumStat("averageMobility", 8008135);
+    summary.setNumStat("averageFreeWill", 8008135);
+    summary.setNumStat("averageHP", 8008135);
+    summary.setNumStat("averageRelationshipValue", 8008135);
+    summary.setNumStat("averageSanity", 8008135);
+    summary.session_id = session.session_id;
+    summary.frogStatus = session.frogStatus();
+    summary.setBoolStat("crashedFromSessionBug", session.stats.crashedFromSessionBug); //don't lie about this one, too important.
+
+    summary.setNumStat("num_scenes", 8008135);
+    summary.players = session.players;
+    summary.mvp = findMVP(session.players);
+    summary.parentSession = session.parentSession;
+    summary.setNumStat("numLiving", 8008135);
+    summary.setNumStat("numDead", 8008135);
+
+    Player spacePlayer = session.findBestSpace();
+    Player corruptedSpacePlayer = session.findMostCorruptedSpace();
+    if (spacePlayer == null) {
+      summary.frogLevel = 0;
+    } else if (summary.frogStatus == "Purple Frog") {
+      summary.frogLevel = corruptedSpacePlayer.landLevel;
+    } else {
+      summary.frogLevel = spacePlayer.landLevel;
+    }
+    return summary;
+
   }
 
 

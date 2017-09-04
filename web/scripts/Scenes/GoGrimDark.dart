@@ -25,7 +25,8 @@ class GoGrimDark extends Scene {
 	}
 
 	bool corruptionReachedTippingPoint(Player p){
-		return p.corruptionLevelOther >= 50-(p.grimDark*11); //at level 4, only need 10 more points. at level 1, need 40;
+		int x = -10; //change this to calibrate things. negative means less chance of grim dark
+		return p.corruptionLevelOther >= 50-(p.grimDark*11)*x; //at level 4, only need 10*x more points. at level 1, need 40*x;
 	}
 
 	dynamic addImportantEvent(){
@@ -62,12 +63,12 @@ class GoGrimDark extends Scene {
 				this.player.increasePower(3);
 				ret += " The " + this.player.htmlTitleBasic() + " will tell anyone who will listen that the game needs to be broken. ";
 			}else if(this.player.grimDark == 4){
-				session.logger.info("full grim dark: " + this.session.session_id.toString());
+				//session.logger.info("full grim dark: " + this.session.session_id.toString());
 				//alert("full grim dark: " + this.session.session_id);
 				this.player.increasePower(6);
 				ret +=  "The " + this.player.htmlTitleBasic() + " slips into the fabled blackdeath trance of the woegothics, quaking all the while in the bloodeldritch throes of the broodfester tongues.";
 				ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The ";
-				ret += this.player.htmlTitle() + " has officially gone grimdark. ";
+				ret += this.player.htmlTitle() + " has officially gone grimdark. <span class = 'void'>They are not from here</span> ";
 				var f = new Fraymotif(Zalgo.generate("The Broodfester Tongues"), 3);
 				f.effects.add(new FraymotifEffect("power",3,true));
 				f.effects.add(new FraymotifEffect("power",0,false));

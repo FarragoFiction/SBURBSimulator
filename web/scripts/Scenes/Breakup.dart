@@ -17,13 +17,14 @@ class Breakup extends Scene {
 
 	@override
 	bool trigger(List<Player> playerList){
+		if(session.mutator.heartField) return false; //THE SHIPS CANNOT SINK!!!
 		this.player = null;
 		this.relationshipToBreakUp = null;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			this.player = this.session.availablePlayers[i];
+		for(num i = 0; i<this.session.getReadOnlyAvailablePlayers().length; i++){
+			this.player = this.session.getReadOnlyAvailablePlayers()[i];
 			var breakup= this.breakUpBecauseIAmCheating() || this.breakUpBecauseTheyCheating() || this.breakUpBecauseNotFeelingIt();
-			if(!this.player.dead && breakup==true){
-				//session.logger.info("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
+			if(!this.player.dead && breakup==true && this.relationshipToBreakUp != null){
+				//////session.logger.info("breakup happening: is it triggering anything??? " + this.reason + " with player: " + this.player.title() + this.session.session_id)
 				return true;
 			}
 		}
@@ -49,7 +50,7 @@ class Breakup extends Scene {
 				oppr.value = 5;
 				this.reason = "me_cheat";
 
-				//session.logger.info("breaking up hearts because i am cheating in session: " +this.session.session_id);
+				//////session.logger.info("breaking up hearts because i am cheating in session: " +this.session.session_id);
 				return true;
 			}
 		}
@@ -64,7 +65,7 @@ class Breakup extends Scene {
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = 5;
 				this.reason = "me_cheat";
-				//session.logger.info("breaking up spades because i am cheating in session: " +this.session.session_id);
+				//////session.logger.info("breaking up spades because i am cheating in session: " +this.session.session_id);
 				return true;
 			}
 		}
@@ -79,7 +80,7 @@ class Breakup extends Scene {
 				var oppr = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
 				oppr.value = -1;
 				this.reason = "me_cheat";
-				//session.logger.info("breaking up diamonds because i am cheating in session: " +this.session.session_id);
+				//////session.logger.info("breaking up diamonds because i am cheating in session: " +this.session.session_id);
 				return true;
 			}
 		}
@@ -106,7 +107,7 @@ class Breakup extends Scene {
 						this.player.flipOut("having to confront their Matesprit, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat";
-						//session.logger.info("breaking up hearts because they are cheating in session: " +this.session.session_id);
+						//////session.logger.info("breaking up hearts because they are cheating in session: " +this.session.session_id);
 						return true;
 					}
 				}
@@ -123,7 +124,7 @@ class Breakup extends Scene {
 						this.player.flipOut("having to confront their Kismesis, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-10;
 						this.reason = "you_cheat";
-						//session.logger.info("breaking up spades because they are cheating in session: " +this.session.session_id);
+						//////session.logger.info("breaking up spades because they are cheating in session: " +this.session.session_id);
 						return true;
 					}
 				}
@@ -140,7 +141,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp.target.flipOut("having to confront their trusted FUCKING Moirail, the  " + this.relationshipToBreakUp.target.htmlTitle() + " about their cheating");
 						r.value =-50;
 						this.reason = "you_cheat";
-						//session.logger.info("breaking up diamonds because they are cheating in session: " +this.session.session_id);
+						//////session.logger.info("breaking up diamonds because they are cheating in session: " +this.session.session_id);
 						return true;
 					}
 				}
@@ -158,7 +159,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp = r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored";
-						//session.logger.info("breaking up heart because they are bored in session: " +this.session.session_id);
+						//////session.logger.info("breaking up heart because they are bored in session: " +this.session.session_id);
 						return true;
 				}
 			}
@@ -168,7 +169,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp =r;
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
 						this.reason = "bored";
-					//	session.logger.info("breaking up spades because they are bored in session: " +this.session.session_id);
+					//	////session.logger.info("breaking up spades because they are bored in session: " +this.session.session_id);
 						return true;
 				}
 			}
@@ -178,7 +179,7 @@ class Breakup extends Scene {
 						this.relationshipToBreakUp = r;
 						this.reason = "bored";
 						this.formerQuadrant = this.relationshipToBreakUp.saved_type;
-					//	session.logger.info("breaking up diamond because they are bored in session: " +this.session.session_id);
+					//	////session.logger.info("breaking up diamond because they are bored in session: " +this.session.session_id);
 						return true;
 				}
 			}
@@ -312,8 +313,9 @@ class Breakup extends Scene {
 	void renderContent(Element div){
 		div.appendHtml("<br>"+this.content(),treeSanitizer: NodeTreeSanitizer.trusted);
 		//takes up time from both of them
-		removeFromArray(this.player, this.session.availablePlayers);
-		removeFromArray(this.relationshipToBreakUp.target, this.session.availablePlayers);
+		session.removeAvailablePlayer(this.player);
+		session.removeAvailablePlayer(relationshipToBreakUp.target);
+
 		if(this.relationshipToBreakUp.target.dead){
 			//do nothing, just text
 		}else{
@@ -324,9 +326,9 @@ class Breakup extends Scene {
 	String content(){
 		this.relationshipToBreakUp.saved_type = this.relationshipToBreakUp.changeType();
 		this.relationshipToBreakUp.old_type = this.relationshipToBreakUp.saved_type;
-		var oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
-		oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
-		oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
+		Relationship oppRelationship = this.relationshipToBreakUp.target.getRelationshipWith(this.player);
+		if(oppRelationship != null) oppRelationship.saved_type = this.relationshipToBreakUp.changeType();
+		if(oppRelationship != null)oppRelationship.old_type = this.relationshipToBreakUp.saved_type;
 		this.session.stats.hasBreakups = true;  //lets AB report on the hot gos
 		//String ret = "TODO: Render BREAKUP between " + this.player.title() + " and " + this.relationshipToBreakUp.target.title() + " because " + this.reason ;
 		if(this.relationshipToBreakUp.target.dead){

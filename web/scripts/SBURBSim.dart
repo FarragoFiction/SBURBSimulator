@@ -16,6 +16,7 @@ export "GameEntities/ClasspectStuff/Interests/Interest.dart";
 export "GameEntities/Stats/buff.dart";
 export "GameEntities/Stats/stat.dart";
 export "GameEntities/Stats/statholder.dart";
+export "formats/FileFormat.dart";
 export "fraymotif.dart";
 export "SessionEngine/session.dart";
 export "SessionEngine/sessionSummary.dart";
@@ -103,8 +104,9 @@ Session curSessionGlobalVar;
 int canvasWidth = 1000;
 int canvasHeight = 400;
 bool doNotRender = false; //can happen even outside of AB
+bool doNotFetchXml = false; //slows AB down like WHOA.
 var nonRareSessionCallback = null; //AB is already storing a callback for easter egg, so broke down and polluted the global namespace once more like an asshole.
-DateTime startTime = new DateTime.now(); //gets page load.
+DateTime startTime = new DateTime.now(); //gets page load.  but doesn't work. put it  in main later
 DateTime stopTime;
 
 List<Player> raggedPlayers = null; //just for scratch'
@@ -171,10 +173,10 @@ bool printCorruptionMessage(ErrorEvent e) {
         recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
     } else if (space == null) {
         appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
-        curSessionGlobalVar.stats.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
     } else if (time == null) {
-        curSessionGlobalVar.stats.crashedFromCustomShit = true;
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
     } else {
@@ -394,17 +396,8 @@ void scratchEasterEggCallBack() {
 
 //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
 String msToTime(Duration dur) {
-    num s = dur.inSeconds;
-    num ms = s % 1000;
-    s = (s - ms) / 1000;
-    num secs = s % 60;
-    s = (s - secs) / 60;
-    num mins = s % 60;
-    //num hrs = (s - mins) / 60;
-    //window.alert("s = $s ms = $ms secs = $secs mins = $mins");
-
-    //return hrs + ':' + mins + ':' + secs + '.' + ms; //oh dear sweet hussie, I HOPE it won't take hours to load.
-    return "$mins minutes and $secs seconds";
+    //i can't figure out a better way to use this.
+    return "$dur";
 }
 
 U joinCollection<T, U>(Iterable<T> list, {U convert(T input), U combine(U previous, U element), U initial = null}) {
@@ -449,6 +442,7 @@ void renderAfterlifeURL() {
         html = "$html<br><br><a href = 'index2.html'>Random New Session?</a>";
         html = '$html<br><br><a href = "index2.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Shareable URL </a> ';
         html = "$html<Br><Br>Simulation took: ${msToTime(stopTime.difference(startTime))} to render. ";
+        print("Start time is $startTime and stop time is $stopTime, seconds for stop time is ${stopTime.second}");
         ////print("gonna append: " + html);
         querySelector("#story").appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
     } else {

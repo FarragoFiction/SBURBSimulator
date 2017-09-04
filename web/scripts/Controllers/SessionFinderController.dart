@@ -12,9 +12,12 @@ import 'AuthorBot.dart';
   AB rewriting the page title.
  */
 Random rand;
+int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
+
   doNotRender = true;
+  doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
@@ -36,6 +39,7 @@ void main() {
 }
 
 void checkSessions() {
+    startTime =new DateTime.now();
   self.checkSessions();
 }
 
@@ -123,18 +127,18 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       }
     }
 
-    List<String> classes = [];
-    List<String> aspects = [];
+    List<SBURBClass> classes = [];
+    List<Aspect> aspects = [];
 
 
     List<Element> filterAspects = querySelectorAll("input[name='filterAspect']:checked");
     for(CheckboxInputElement c in filterAspects) {
-      aspects.add(c.value);
+      aspects.add(Aspects.getByName(c.value));
     }
 
     List<Element> filterClasses = querySelectorAll("input[name='filterClass']:checked");
     for(CheckboxInputElement c in filterClasses) {
-      classes.add(c.value);
+      classes.add(SBURBClassManager.stringToSBURBClass(c.value));
     }
 
     tmp = removeNonMatchingClasspects(tmp,classes,aspects);
@@ -162,10 +166,10 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
 
 
-  List<SessionSummary> removeNonMatchingClasspects(List<SessionSummary> tmp, List<String> classes, List<String> aspects) {
-    List<SessionSummary> toRemove = [];
+  List<SessionSummary> removeNonMatchingClasspects(List<SessionSummary> tmp, List<SBURBClass> classes, List<Aspect> aspects) {
+    List<SessionSummary> toRemove = <SessionSummary>[];
     for(num i = 0; i<tmp.length; i++){
-      var ss = tmp[i];
+      SessionSummary ss = tmp[i];
       if(!ss.matchesClasspect(classes, aspects)){ //if no classes or aspects, thenexpect to return true
         toRemove.add(ss);
       }
@@ -245,16 +249,22 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     initial_seed = session.rand.nextInt(); //child session
     ////print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
     if(numSimulationsDone >= numSimulationsToDo){
+      round ++;
       (querySelector("#button")as ButtonElement).disabled =false;
      // //print("Debugging AB: I think I am done now");
+      stopTime = new DateTime.now();
+      appendHtml(querySelector("#roundTime"), "Round: $round took ${stopTime.difference(startTime)}<br>");
+
       window.alert("Notice: should be ready to check more sessions.");
-      List<Element> filters = querySelectorAll("input[name='filter']");
+           List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
         e.disabled = false;
       }
     }else{
      // //print("Debugging AB: going to start new session");
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
+      //RESETTING the mutator so that wastes can't leak into other sessions
+      new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t) => startSession());
     }
     ////print("Debugging AB: done summarizing session ${session.session_id}");
@@ -322,7 +332,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     if(querySelector("#averageButton") != null) querySelector("#averageButton").onClick.listen((e) => toggleAverage());
   }
 
-  void printStats(List<String> filters, List<String> classes, List<String> aspects) {
+  void printStats(List<String> filters, List<SBURBClass> classes, List<Aspect> aspects) {
     MultiSessionSummary mms;
     if(sessionSummariesDisplayed.isEmpty) {
       mms = new MultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
@@ -357,7 +367,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> allFilters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in allFilters) {
         e.disabled = false;
-        if(filters.indexOf(e.value) != -1){
+        if(filters.contains(e.value)){
           e.checked = true;
         }else{
           e.checked = false;
@@ -369,7 +379,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> filterClass = querySelectorAll("input[name='filterClass']");
       for(CheckboxInputElement e in filterClass) {
         e.disabled = false;
-        if(classes.indexOf(e.value) != -1){
+        if(classes.contains(SBURBClassManager.stringToSBURBClass(e.value))){
           e.checked = true;
         }else{
           e.checked = false;
@@ -380,7 +390,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       List<Element> filterAspect = querySelectorAll("input[name='filterAspect']");
       for(CheckboxInputElement e in filterAspect) {
         e.disabled = false;
-        if(aspects.indexOf(e.value) != -1){
+        if(aspects.contains(Aspects.getByName(e.value))){
           e.checked = true;
         }else{
           e.checked = false;

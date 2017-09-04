@@ -27,7 +27,7 @@ class JackBeginScheming extends Scene {
 		}else if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(living, Aspects.HOPE);
 		}else{
-			this.friend = rand.pickFrom(curSessionGlobalVar.availablePlayers);
+			this.friend = rand.pickFrom(curSessionGlobalVar.getReadOnlyAvailablePlayers());
 		}
 		if(this.friend == null || this.friend.land == null){
 			return null;
@@ -215,7 +215,7 @@ class JackBeginScheming extends Scene {
 		}
 		this.session.stats.jackScheme = true;
 		this.friend.increasePower();
-		removeFromArray(this.friend, this.session.availablePlayers);
+		session.removeAvailablePlayer(friend);
 		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new PlanToExileJack(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
@@ -242,11 +242,11 @@ class JackBeginScheming extends Scene {
 	String content(){
 		if(this.friend != null){
 			this.friend.increasePower();
-			removeFromArray(this.friend, this.session.availablePlayers);
-			this.session.available_scenes.insert(0, new ConfrontJack(this.session));  //make it top priority, so unshift, don't push
+			session.removeAvailablePlayer(friend);
 			this.session.available_scenes.insert(0, new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new ConfrontJack(this.session));  //make it top priority, so unshift, don't push
 
 			String ret = " Archagent Jack Noir has not let the Queen's relative weakness go unnoticed. ";
 			ret += " He meets with the " + this.friend.htmlTitle() + " at " + this.friend.shortLand() + " and begins scheming to exile her. ";

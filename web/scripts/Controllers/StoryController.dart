@@ -7,6 +7,8 @@ import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
 void main() {
+  //maybe if i define it here it won't be the same as end time
+  startTime =new DateTime.now();
   //print("If you are in dartium, make sure to select this file to access it's global vars");
   new DateTime.now();
   new Timer(new Duration(milliseconds: 1000), () =>window.scrollTo(0, 0));

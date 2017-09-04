@@ -16,9 +16,7 @@ class RelationshipDrama extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.dramaPlayers = [];
-		//CAN change how ou feel about somebody not yet in the medium
-		for(num i = 0; i< playerList.length; i++){
-			var p = playerList[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
 				this.dramaPlayers.add(p);
 			}
@@ -26,14 +24,14 @@ class RelationshipDrama extends Scene {
 		return this.dramaPlayers.length > 0;
 	}
 	void dontCheatOnQuadrantMate(Player player, Player potentialMate){
-		session.logger.info("TODO");
+		//session.logger.info("TODO");
 		//var r = player.getRelationshipWith(potentialMate);
 	}
 	void dontAllowCheatingOnQuadrantMate(Player player, Player potentialMate){
-		session.logger.info("TODO");
+		//session.logger.info("TODO");
 	}
 	void celebratoryRapBattle(Element div, Player player1, Player player2){
-		 session.logger.info("AB:  celebratoryRapBattle :${this.session.session_id}");
+		 //session.logger.info("AB:  celebratoryRapBattle :${this.session.session_id}");
 		this.session.stats.rapBattle = true;
 		String divId = (div.id) + player1.chatHandle + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";
@@ -55,7 +53,7 @@ class RelationshipDrama extends Scene {
 		p2score = raps1[1];
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_raps.png");
 		if(p1score + p2score > 6){ //it's not winning that calms them down, but sick fires in general.
-			//session.logger.info("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
+			////session.logger.info("rap sick fires in session: " + this.session.session_id + " score: " + (p1score + p2score))
 			appendHtml(div, "<img class = 'sickFiresCentered' src = 'images/sick_fires.gif'><br> It seems that the " + player1.htmlTitle() + " has been calmed down, for now.");
 			if(player1.murderMode) player1.unmakeMurderMode(); //if they WERE in murder mode, well, now they ain't.
 			if(player2.murderMode) player2.unmakeMurderMode();
@@ -175,7 +173,7 @@ class RelationshipDrama extends Scene {
 		Player player1 = player;
 		Player player2 = crush;
 		//already set player unavailable
-		removeFromArray(crush, this.session.availablePlayers);
+		session.removeAvailablePlayer(crush);
 
 		if(crush.dead == true){
 			String narration = "<br>The " + player.htmlTitle() + " used to think that the " + crush.htmlTitle() + " was ";
@@ -312,7 +310,7 @@ class RelationshipDrama extends Scene {
 		Relationship r1 = relationship;
 		Relationship r2 = player2.getRelationshipWith(player1);
 		 chatText = "";
-		//session.logger.info("player1: " + player1.title() + 'player2: ' + player2.title())
+		////session.logger.info("player1: " + player1.title() + 'player2: ' + player2.title())
 		String trait = Interest.getSharedCategoryWordForPlayers(player1, crush,true);
 		chatText += Scene.chatLine(player1Start, player1,Relationship.getRelationshipFlavorGreeting(r1, r2, player1, player2));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
@@ -344,7 +342,7 @@ class RelationshipDrama extends Scene {
 			this.corpseAdvice(div,player1,player2,crush);
 			return;
 		}
-		removeFromArray(player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player2);
 
 		String divID = (div.id) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
@@ -357,8 +355,8 @@ class RelationshipDrama extends Scene {
 		Relationship r1 = relationship;
 		Relationship r2 = player2.getRelationshipWith(player1);
 		Relationship r2crush = player2.getRelationshipWith(crush);  //sometimes crush is same as best friend...despite all my best efforts.
-     //session.logger.info("Crush: " + crush.title()) //these are occasionally the same despite my best efforts
-		 //session.logger.info("Player2: " + player2.title())
+     ////session.logger.info("Crush: " + crush.title()) //these are occasionally the same despite my best efforts
+		 ////session.logger.info("Player2: " + player2.title())
 
 		//alert("I am: " + player2.title() + " and my relationship with : " + crush.title() + " is being checked")
 		 chatText = "";
@@ -479,7 +477,7 @@ class RelationshipDrama extends Scene {
 			this.corpseVent(div,player1,player2, jerk);
 			return;
 		}
-		removeFromArray(player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player2);
 		String divID = (div.id) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -492,7 +490,7 @@ class RelationshipDrama extends Scene {
 		Relationship r2 = player2.getRelationshipWith(player1);
 		Relationship r2jerk = player2.getRelationshipWith(jerk);
 		if(r2jerk == null){
-			session.logger.info("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ");
+			//session.logger.info("I am : " + player2.title() + " and jerk is: " + jerk.title() + " and apparently I don't know them. ");
 		}
 		 chatText = "";
 		var trait =Interest.getUnsharedCategoryWordForPlayers(player1, jerk, false);
@@ -559,7 +557,7 @@ class RelationshipDrama extends Scene {
 			appendHtml(div, narration);
 			return;
 		}
-		removeFromArray(jerk, this.session.availablePlayers);
+		session.removeAvailablePlayer(jerk);
 		String divID = (div.id) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id.toString();
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -624,7 +622,7 @@ class RelationshipDrama extends Scene {
 		List<Player> dead = findDeadPlayers(this.session.players);
 		List<Player> players = living;//new List.from(living);
 		players.addAll(dead);
-		//session.logger.info("living: " + living.length + "dead: " + dead.length + " both: " + players.length);
+		////session.logger.info("living: " + living.length + "dead: " + dead.length + " both: " + players.length);
 		//alert("removing crush: " + crush.title() + " from array: " + living.length)
 		removeFromArray(crush, players);
 		//alert("removed crush: " + crush.title() + " from array: " + living.length)
@@ -676,7 +674,8 @@ class RelationshipDrama extends Scene {
 		for(int i = 0; i<this.dramaPlayers.length; i++){
 				Player p = this.dramaPlayers[i];
 				//take up time for other player once i know who they are.
-				removeFromArray(p, this.session.availablePlayers); //how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
+				session.removeAvailablePlayer(p);//how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
+
 				this.renderForPlayer(div, p);
 			}
 

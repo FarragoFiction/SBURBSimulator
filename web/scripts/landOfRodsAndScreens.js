@@ -883,6 +883,7 @@ function Screen(canvas,maxState, uX, uY, screenNum, i, k){
 		this.display();
 	}
 
+
 	this.toggleGuides = function(){
 		this.drawGuides = !this.drawGuides;
 		this.display();

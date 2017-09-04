@@ -3124,3 +3124,47 @@ Relevant line:
             if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
 Oh my fuck. It's not a bool stat. It's literally a session.  Why....Why is it EVER triggering. When the fuck would a session have a bool stat with that name???
 
+~~~~~~~~~~~
+
+Light players exist to drive me insane.
+
+Could not find relationship with God Tier Waste of Light (wickedLupin) in [ <font color = 'black'>&#x263A</font>(5) God Tier Waste of Space (worryingSpacer),  <font color = 'black'>&#x263A</font>(16) God Tier Waste of Light (wickedLupin),  <font color = 'black'>&#x2639</font>(-18) God Tier Waste of Light (windowsLaptop)]
+
+What that up there says is that EVEN THOUGH I WENT OUT OF MY WAY TO GIVE LIGHT PLAYERS RELATIONSHIPS WITH THEMSELVES, they
+still can't find that relationship. What the actual fuck.
+
+They are clearly in the list. what gives?
+
+Alright, let's think this through, step by step.
+
+Step 1: Does this happen only for light4, is is it always happening? Doesn't seem to be.
+Step 2: Does this only happen for wastes? doesn't seem like it
+Step 3: does AB say it happens for wastes of light, or is it just this shitty session? 70%. Yup. Fuck.
+
+Alright.
+
+Let's review the problem.  More debug statments
+
+Okay current hypotehtis is that the problem is that r.target is what is being queried, which is always the spotLightPlayer.
+
+
+
+3x God Tier Waste of Light (wickedLupin) is not God Tier Waste of Light (windowsLaptop) because 144 is not 146
+VM570:1 Could not find relationship with God Tier Waste of Light (wickedLupin) in [ <font color = 'black'>&#x263A</font>(5) God Tier Waste of Space (worryingSpacer),  <font color = 'black'>&#x263A</font>(16) God Tier Waste of Light (wickedLupin),  <font color = 'black'>&#x2639</font>(-18) God Tier Waste of Light (windowsLaptop)]
+
+Alright. What am I seeing here.
+
+I am looking for windowsLaptop, but I only ever get back wickedLupin.
+
+Why am I looking for windowsLaptop if they are'nt the spotlight player?
+
+Relationship r1 = player.getRelationshipWith(helper);
+Relationship r2 = helper.getRelationshipWith(player);
+
+Oh, there's an easy fix.  Make helper ALWAYS be spotLightPlayer.  I think
+I just refactored how getting the helper works, too, so it should be easy adn happen only once.
+
+I susepct that even if the light player dies they are gonna be stuck helping everyone.
+
+Careful what you wish for, etc. etc.
+

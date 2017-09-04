@@ -43,7 +43,8 @@ class Session {
     List<Scene> deathScenes = <Scene>[];
     List<Scene> available_scenes = <Scene>[];
     Session parentSession = null;
-    List<Player> availablePlayers = <Player>[]; //which players are available for scenes or whatever.
+    //private, should only be accessed by methods so removing a player can be invalid for time/breath
+    List<Player> _availablePlayers = <Player>[]; //which players are available for scenes or whatever.
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
     SessionStats stats = new SessionStats();
@@ -66,6 +67,30 @@ class Session {
        resetAvailableClasspects();
     }
 
+    List<Player> getReadOnlyAvailablePlayers() {
+        return new List<Player>.from(_availablePlayers);
+    }
+
+    void addAvailablePlayer(Player p) {
+        _availablePlayers.add(p);
+    }
+
+    //near as i can figure logger.debug just straight up never works.
+    void removeAvailablePlayer(Player p) {
+        if (p == null || !(p is Player)) {
+            //logger.info("i think player is null or not a player");
+            return;
+        }
+        //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
+        if(p.dead || !(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) {
+            //logger.info("removing player $p");
+            removeFromArray(p, _availablePlayers);
+        }else {
+            //logger.info("not removing player $p, i think they are a breath or time player or the breath field is active ");
+        }
+
+    }
+
     void resetAvailableClasspects() {
         if(canonLevel == CanonLevel.CANON_ONLY) {
             this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
@@ -85,14 +110,14 @@ class Session {
 
     //  //makes copy of player list (no shallow copies!!!!)
     List<Player> setAvailablePlayers(List<Player> playerList) {
-        this.availablePlayers = <Player>[];
+        this._availablePlayers = <Player>[];
         for (num i = 0; i < playerList.length; i++) {
             //dead players are always unavailable.
             if (!playerList[i].dead) {
-                this.availablePlayers.add(playerList[i]);
+                this._availablePlayers.add(playerList[i]);
             }
         }
-        return this.availablePlayers;
+        return this._availablePlayers;
     }
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
@@ -208,6 +233,7 @@ class Session {
 
 
     bool fullFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         //there is  a frog but it's not good enough
         bool frogSick = spacePlayer.landLevel < goodFrogLevel;
         bool frog = !noFrogCheck(spacePlayer);
@@ -218,6 +244,7 @@ class Session {
 
     //don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
     bool purpleFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         bool frog = spacePlayer.landLevel <= (this.minFrogLevel * -1);
         bool grist = enoughGristForAny();
         return (frog && grist);
@@ -226,6 +253,7 @@ class Session {
 
     //don't care about grist, if there's no frog to deploy at all. eventually check for rings
     bool noFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false;
         bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
         bool grist = !enoughGristForAny();
         return (frog || grist);
@@ -482,9 +510,11 @@ class Session {
         return session_id.toString();
     }
 
-    Element newScene() {
+    Element newScene([overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
+        String lightBS = "";
+        if(mutator.lightField) lightBS = "Scened ID: ${this.currentSceneNum}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";
@@ -501,15 +531,32 @@ class Session {
             }
             div = "$div' >";
             if (ouija == true) div = "$div<img class = 'pen15' src = 'images/pen15_bg1.png'>"; //can't forget the dicks;
-            div = "$div</div>";
+            div = "$div $lightBS</div>";
         } else if (ouija == true) {
             int trueRandom = getRandomIntNoSeed(1, 4);
             div = "<div class = 'scene' id='scene${this.currentSceneNum}'>";
             div = "$div<img class = 'pen15' src = 'images/pen15_bg$trueRandom.png'>";
-            div = "$div</div>";
+            div = "$div $lightBS</div>";
         } else {
-            div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";
+            div = "<div class = 'scene' id='scene${this.currentSceneNum}'>$lightBS</div>";
         }
+
+        //instead of appending you're replacing. Void4 is SERIOUS about you not getting to see.
+        if(mutator.voidField && !overRideVoid) {
+            Element voidDiv = querySelector("#voidStory");
+            if(voidDiv == null) {
+                doNotRender = true;
+                numScenes = 0; //since we're lying to AB anyway, use this to keep track of how many scenes we skipped due to void
+                doNotFetchXml = true;
+                appendHtml(querySelector("#story"), "<div id = 'voidStory'></div>");
+                voidDiv = querySelector("#voidStory");
+            }
+            voidDiv.setInnerHtml("${"<br>"*numScenes}$div");//one br for each skipped scene
+            return querySelector("#scene${this.currentSceneNum}");
+        }else if(overRideVoid) {
+            doNotRender = false;
+        }
+
         appendHtml(querySelector("#story"), div);
         return querySelector("#scene${this.currentSceneNum}");
     }

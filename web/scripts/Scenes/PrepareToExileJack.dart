@@ -12,21 +12,14 @@ class prepareToExileJack extends Scene {
 
 
 	void findSufficientPlayer(){
-		this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.VOID);
-
-		if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.MIND);
-		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.THIEF);
-		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE);
-		}else if(this.player == null){
-			this.player =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.SEER);
-		}else if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.DOOM);
-		}else if(this.player == null){
-			this.player =  findAspectPlayer(this.session.availablePlayers, Aspects.LIGHT);
-		}
+		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
+		//old way tended to have only one player do the thing each session. make it a team effort now.
+		var potentials = [findAspectPlayer(availablePlayers, Aspects.VOID)];
+		potentials.add(findAspectPlayer(availablePlayers, Aspects.MIND));
+		potentials.add(findAspectPlayer(availablePlayers, Aspects.HOPE));
+		potentials.add(findClassPlayer(availablePlayers, SBURBClassManager.THIEF));
+		potentials.add(findClassPlayer(availablePlayers, SBURBClassManager.ROGUE));
+		this.player =  rand.pickFrom(potentials);
 	}
 
 	@override
@@ -68,7 +61,7 @@ class prepareToExileJack extends Scene {
 	}
 	dynamic content(){
 		this.player.increasePower();
-		removeFromArray(this.player, this.session.availablePlayers);
+		session.removeAvailablePlayer(player);
 		var r = rand.nextDouble();
 		if(r > .3){
 			return this.harrassContent();

@@ -13,7 +13,7 @@ class FightKing extends Scene {
 	@override
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		//session.logger.info('fight kin trigger?');
+		////session.logger.info('fight kin trigger?');
 		return (this.session.npcHandler.king.getStat("currentHP") > 0) && !this.session.npcHandler.king.dead && (this.session.npcHandler.queen.getStat("currentHP") <= 0 || this.session.npcHandler.queen.dead) && (findLivingPlayers(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
@@ -41,7 +41,7 @@ class FightKing extends Scene {
 
 	@override
 	void renderContent(Element div){
-		//session.logger.info("rendering fight king);")
+		////session.logger.info("rendering fight king);")
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/bk_icon.png'>");
     appendHtml(div,this.content());
 
@@ -59,7 +59,7 @@ class FightKing extends Scene {
 	}
 	void setPlayersUnavailable(stabbings){
 		for(num i = 0; i<stabbings.length; i++){
-			removeFromArray(stabbings[i], this.session.availablePlayers);
+			session.removeAvailablePlayer(stabbings[i]);
 		}
 	}
 	dynamic content(){

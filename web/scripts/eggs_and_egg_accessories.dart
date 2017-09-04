@@ -8,7 +8,7 @@ void bardQuestMode(){
 	if(window.confirm("Behold the Majesty of the CodTier? Y/N")){
 		bardQuest = true;
 	}else{
-		window.alert("But thou must!f");
+		window.alert("But thou must!");
 		bardQuestMode();
 	}
 

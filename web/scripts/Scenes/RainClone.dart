@@ -12,9 +12,8 @@ class RainClone extends Scene {
   @override
   bool trigger(List<Player> playerList){
     this.playerList = playerList;
-
-    this.player =
-        findAspectPlayer(this.session.availablePlayers, Aspects.RAIN);
+    var living = findLivingPlayers(this.session.players);
+    this.player = findAspectPlayer(living, Aspects.RAIN);
     if (this.player == null) {
       return false;
     } else {

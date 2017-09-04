@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faq>
     <ascii>
-                                   #######
-                            #####################
-                        ####             ###########
-                      ###                  ##########
-                     #                  #############
-                                     ###############
-                                   ##############
-                                   ############
-                                   ############
-                               ###################
-                           ###########################
-                        #################################
-                      #####################################
-                   ###########################################
-                  #############################################
-                #################################################
-               ###################################################
-              #####################################################
-              #####################################################
-             #######################################################
-             #######################################################
-            #########################################################
-            #########################################################
-            #########################################################
-            #########################################################
-            #########################################################             #
-             #######################################################              ##
-    ##       ########################################################             ##
-  #######     ##########################################################          ##
- ##########   ###########################################################        ###
-#########################################################################        ##
-#########################################################################       ###
- ########################################################################      ###
- ######   #################################################### ##########     ####
-  #####     #################################################    ########    ####
-   ####        #####   ####################################      ###############
-    ####                 ################################        #############
-     ####                     ######################             ###########
-       ###                         ############                  #########
-         ##                                                       ######
-           ##
-              ###
-                 ###
+        #######
+        #####################
+        ####             ###########
+        ###                  ##########
+        #                  #############
+        ###############
+        ##############
+        ############
+        ############
+        ###################
+        ###########################
+        #################################
+        #####################################
+        ###########################################
+        #############################################
+        #################################################
+        ###################################################
+        #####################################################
+        #####################################################
+        #######################################################
+        #######################################################
+        #########################################################
+        #########################################################
+        #########################################################
+        #########################################################
+        #########################################################             #
+        #######################################################              ##
+        ##       ########################################################             ##
+        #######     ##########################################################          ##
+        ##########   ###########################################################        ###
+        #########################################################################        ##
+        #########################################################################       ###
+        ########################################################################      ###
+        ######   #################################################### ##########     ####
+        #####     #################################################    ########    ####
+        ####        #####   ####################################      ###############
+        ####                 ################################        #############
+        ####                     ######################             ###########
+        ###                         ############                  #########
+        ##                                                       ######
+        ##
+        ###
+        ###
     </ascii>
     <section>
         <header>
@@ -53,9 +53,70 @@
             Extremely.
         </body>
     </section>
-    <section> <header> Question: Like if a your a Mind player does that mean you're really smart? </header> <body> Well yes and no. More of the whole are you Smart or Wise. Wise is the better comparison. Since Mind usually enables you to understand choices better and how people think wise would be the better comparison. Not saying you aren't smart because you could very well be Einstein for all I know. (If your Einstein can I have your autograph?) </body> </section>
-    <section> <header> Question: So I'm a Mind player and now everyone expects me to know what to do but I don't know how to help! What should I do? </header> <body> Well first step is to realise even Mind players can make mistakes. Even though you can deduce what might be the best possible scenario you might not be able to save everyone. The best thing to do is to follow the instinctual plan you have instead of constantly stressing over the "best" option. </body> </section> <section> <header> Question: Mind doesn't even seem like a cool aspect. Like you get to do the thinky things and stuff? That's a little dull. </header> <body> Well it might seem boring but it is a very useful player to have in a session especially if they are teamed with a Time player. A Mind players job it to understand how choices effect things and can quite easily take charge of making sure everyone follows the best path. </body> </section>
 
+    <section>
+        <header> Question: Like if a you’re a Mind player does that mean you're really smart? </header>
+        <body> Well yes and no. More of the whole are you Smart or Wise. Wise is the better comparison. Since Mind usually enables you to understand choices better and how people think wise would be the better comparison. Not saying you aren't smart because you could very well be Einstein for all I know. (If your Einstein can I have your autograph?) 	</body>
+    </section>
+
+    <section>
+        <header> Question: So I'm a Mind player and now everyone expects me to know what to do but I don't know how to help! What should I do?
+        </header>
+        <body> Well first step is to realise even Mind players can make mistakes. Even though you can deduce what might be the best possible scenario you might not be able to save everyone. The best thing to do is to follow the instinctual plan you have instead of constantly stressing over the "best" option.
+        </body>
+    </section>
+
+    <section>
+        <header> Question: Mind doesn't even seem like a cool aspect. Like you get to do the thinky things and stuff? That's a little dull.
+        </header>
+        <body> Well it might seem boring but it is a very useful player to have in a session especially if they are teamed with a Time player. A Mind players job it to understand how choices effect things and can quite easily take charge of making sure everyone follows the best path.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: Why should I master gigglesnort?
+        </header>
+        <body>
+            You shouldn't you should speak openly and plainly and never ever trick players revealing to them the transitory nature of physical existance.
+            Also it's fun.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: Ahh fuck what are all these different paths/webs/maps/neurons I keep seeing?
+        </header>
+        <body>
+            Those are the manifestations of free will, as interpreted by you. Each of these is a possible option, and the way you interact with them determines how your powers are used. These are your [Protean Pathways].
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: If time travel exists, how can free will?
+        </header>
+        <body>
+            Oh, this is a good one. Free will and choice, also known as ‘mind’s entire thing’ *can* still exist with time travel. Your time and doom players may disagree, but they’re not mind, so they’re wrong. Free will is the power to change the course of reality through your actions. Just because time travel has determined that certain things must happen, doesn’t mean that you lose the power to change the course of reality around those things. Time travel and prophecy creates what I like to call [Skaian Shackles]. If free will is choosing between paths, [Skian Shackles] are destinations you have to reach along the journey. This doesn’t change the fact that you get to choose the path that brings you too that destination.
+        </body>
+    </section>
+
+    <section>
+        <header>
+            Question: Does luck affect free will?
+        </header>
+        <body>
+            Ultimately, self-awareness is the ultimate determinator of reality- just because certain bits of reality seem to fall one way or another doesn’t make that not true.
+        </body>
+    </section>
+    <section>
+        <header>
+            Question: Who is jadedResearcher?
+        </header>
+        <body>
+            The pinnacle of everything a mind player should aspire to. (She does good giggle-snort).
+        </body>
+    </section>
 
 
 </faq>

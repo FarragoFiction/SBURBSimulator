@@ -18,19 +18,20 @@ class VoidyStuff extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.player = null;
+		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
 		if(rand.nextDouble() > .5){
-			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.VOID);
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.RAGE); //if there is no void player
+			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID);
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE); //if there is no void player
 		}else{
-			this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.RAGE);
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(this.session.availablePlayers, Aspects.VOID); //if there is no rage player
+			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE);
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID); //if there is no rage player
 		}
 
 		if(this.enablingPlayer != null){
 			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
 				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
-				this.player = rand.pickFrom(this.session.availablePlayers);  //don't forget that light players will never have void display none
+				this.player = rand.pickFrom(availablePlayers);  //don't forget that light players will never have void display none
 			}
 		}
 		return this.player != null;
@@ -46,7 +47,7 @@ class VoidyStuff extends Scene {
 		this.chooseShenanigans(div);
 	}
 	void chooseShenanigans(Element div){
-		removeFromArray(this.player, this.session.availablePlayers);
+		session.removeAvailablePlayer(player);
 		String ret = "";
 		String classDiv = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
@@ -94,7 +95,7 @@ class VoidyStuff extends Scene {
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else if(this.player.getStat("sanity") < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
-			session.logger.info("AB: flipping shit through voidy stuff");
+			//session.logger.info("AB: flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -139,7 +140,7 @@ class VoidyStuff extends Scene {
 		appendHtml(newDiv,  ret + " " + rand.pickFrom(phrases));
 	}
 	void findFraymotif(Element div, Element specialDiv){
-		session.logger.info("AB: Void/Rage fraymotif acquired: ");
+		//session.logger.info("AB: Void/Rage fraymotif acquired: ");
 		appendHtml(div, " What's that music playing? ");
 		Fraymotif f = this.player.getNewFraymotif(this.enablingPlayer);
 		appendHtml(specialDiv, "A sweeping musical number kicks in, complete with consort back up dancers. The " + this.player.htmlTitle() + " is the star. It is them. When it is over, they seem to have learned " + f.name + ". ");
@@ -217,7 +218,7 @@ class VoidyStuff extends Scene {
 		}
 	}
 	void ectoBiologyStarted(Element div, Element specialDiv){
-		session.logger.info("AB: Void/Rage ecto babies:" );
+		//session.logger.info("AB: Void/Rage ecto babies:" );
 		List<Player> playersMade = this.player.performEctobiology(this.session);
 		appendHtml(div, " Wait. Are those BABIES!? What is even going on here?");
 		String divID = (specialDiv.id) + "_babies";
@@ -233,7 +234,7 @@ class VoidyStuff extends Scene {
 
 	}
 	void godTier(Element div, Element specialDiv){
-	     session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
+	     //session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
 			ret += this.player.makeDead("hidden in void on their way to godhood");

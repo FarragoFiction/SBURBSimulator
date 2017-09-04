@@ -137,6 +137,7 @@ class Aspect {
 
     /// Used for string representations of the aspect.
     String name;
+    String savedName;  //for AB restoring an aspects name after a hope player fucks it up
 
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
@@ -249,6 +250,7 @@ class Aspect {
 
     Aspect(int this.id, String this.name, {this.isCanon = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
+        this.savedName = this.name;
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
         this.symbolImgLocation = "$name.png";
         this.bigSymbolImgLocation = "${name}Big.png";

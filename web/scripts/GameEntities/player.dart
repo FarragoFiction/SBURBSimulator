@@ -10,6 +10,9 @@ import "../includes/bytebuilder.dart";
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
+    @override
+    num grist = 0; // players do not spawn with grist
+
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
     GameEntity denizen = null;
@@ -179,11 +182,11 @@ class Player extends GameEntity {
         if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            session.logger.info("AB: strength demands a weak denizen ");
+            ////session.logger.info("AB: strength demands a weak denizen ");
         } else if (denizenIndex >= possibilities.length) {
             denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
             denizenStrength = 5;
-            session.logger.info("AB: Strength demands strong denizen. ");
+            ////session.logger.info("AB: Strength demands strong denizen. ");
         } else {
             denizenName = possibilities[denizenIndex];
         }
@@ -523,6 +526,9 @@ class Player extends GameEntity {
 
     //what gets displayed when you hover over any htmlTitle (even HP)
     String getToolTip() {
+        if (Drawing.checkSimMode() == true) {
+            return "<span>";
+        }
         String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
         ret += "<tr><td class = 'toolTipSection'>$chatHandle<hr>";
         ret += "Class: ${class_name.name}<Br>";
@@ -530,6 +536,7 @@ class Player extends GameEntity {
         ret += "Land: $land<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
+        ret += "Gnosis: $gnosis<Br>";
         if(sprite != null) ret += "Sprite: ${sprite.name}";
         if(sprite != null && sprite.dead) ret += " (dead)";
         ret += "<br><Br>Prophecy Status: ${prophecy}";
@@ -1190,11 +1197,14 @@ class Player extends GameEntity {
 
     @override
     Relationship getRelationshipWith(GameEntity player) {
-        for (num i = 0; i < this.relationships.length; i++) {
-            if (this.relationships[i].target == player) {
-                return this.relationships[i];
+        for (Relationship r in relationships) {
+            if (r.target.id == player.id) {
+                return r;
+            }else {
+                print("${player.title()} is not ${r.target.title()} because ${player.id} is not ${r.target.id}");
             }
         }
+        print("Could not find relationship with ${player.title()} in ${relationships}");
         return null;
     }
 
@@ -1411,7 +1421,7 @@ class Player extends GameEntity {
             GameEntity p = potentialFriends[i];
             if (p != this) {
                 Relationship r = this.getRelationshipWith(potentialFriends[i]);
-                if (r.value < worstRelationshipSoFar.value) {
+                if (r != null && r.value < worstRelationshipSoFar.value) {
                     worstRelationshipSoFar = r;
                 }
             }
@@ -1520,6 +1530,7 @@ class Player extends GameEntity {
     }
 
     void renderSelf() {
+        if(Drawing.checkSimMode()) return;
         if (this.spriteCanvasID == null) this.initSpriteCanvas();
         CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
 
@@ -1775,6 +1786,7 @@ class Player extends GameEntity {
     ///no longer inside a scene because multiple scenes need a consistent result from this
      Player findHelper(List<Player> players) {
         Player helper;
+        if(session.mutator.lightField) return session.mutator.inSpotLight;
          //space player can ONLY be helped by knight, and knight prioritizes this
          if(aspect == Aspects.SPACE){//this shit is so illegal
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);

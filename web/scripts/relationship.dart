@@ -6,7 +6,7 @@ import "SBURBSim.dart";
 class Relationship {
     Player source;
     num value;
-    Player target;
+    Player _target;
     String saved_type = "";
     bool drama = false; //drama is set to true if type of relationship changes.
     String old_type = ""; //wish class variables were a thing.
@@ -21,8 +21,21 @@ class Relationship {
     String spades = "Kismesissitude";
 
 
-    Relationship(Player this.source, [num this.value = 0, Player this.target = null]) {
+    Relationship(Player this.source, [num this.value = 0, Player this._target = null]) {
         type(); //check to see if it's a crush or not
+    }
+
+    //target has to be private if light player can override it. this lets code still do .target, but not .target =
+    Player get target {
+        if(curSessionGlobalVar.mutator.lightField) {
+            Player megalomaniac =  curSessionGlobalVar.mutator.inSpotLight;
+            if(source != megalomaniac) return megalomaniac; //don't be in a relationship with your self.
+        }
+        return _target;
+    }
+
+    void setTarget(Player target) {
+        _target = target;
     }
 
 
@@ -90,7 +103,7 @@ class Relationship {
     }
 
     String toString() {
-        return " ${asciiDescription()}(${value.round()}) ${target.title()}";
+        return " ${asciiDescription()}(${value.round()}) ${_target.title()}";
     }
 
     String changeType() {
@@ -161,7 +174,7 @@ class Relationship {
     }
 
     String description() {
-        return "${this.saved_type} with the ${this.target.htmlTitle()}";
+        return "${this.saved_type} with the ${this._target.htmlTitle()}";
     }
 
 
@@ -213,7 +226,7 @@ class Relationship {
     static Relationship cloneRelationship(Relationship relationship) {
         Relationship clone = new Relationship(relationship.source);
         clone.value = relationship.value;
-        clone.target = relationship.target;
+        clone.setTarget(relationship.target);
         clone.saved_type = relationship.saved_type;
         clone.drama = relationship.drama; //drama is set to true if type of relationship changes.
         clone.old_type = relationship.old_type; //wish class variables were a thing.
@@ -246,7 +259,7 @@ class Relationship {
             //if i can't find a clone, it's probably a dead player that didn't come to the new session.
             //may as well keep the original relationship
             if (clone != null) {
-                r.target = clone;
+                r.setTarget(clone);
             }
         }
     }
@@ -320,6 +333,10 @@ class Relationship {
 
 
     static dynamic randomRelationship(Player source, Player targetPlayer) {
+        if(source.session.mutator.heartField) {
+            source.session.logger.info("heart field active");
+            return new Relationship(source, 333, targetPlayer); //all ships canon!!!
+        }
         return new Relationship(source, source.session.rand.nextIntRange(-21, 22), targetPlayer);
        // return  new Relationship(source, 10000000, targetPlayer);;
     }
@@ -338,7 +355,7 @@ class Relationship {
                 num roll = player.rollForLuck();
                 if (roll > rollNeeded) {
                     if (r.type() == r.goodBig) {
-                        player.session.logger.info("AB:initial diamond/heart");
+                        //player.session.logger.info("AB:initial diamond/heart");
                         num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
                         if (difference > 2 || roll < rollNeeded ) { //pale
                             makeDiamonds(player, r.target);
@@ -346,7 +363,7 @@ class Relationship {
                             makeHeart(player, r.target);
                         }
                     } else if (r.type() == r.badBig) {
-                        player.session.logger.info("AB: initial club/spades");
+                        //player.session.logger.info("AB: initial club/spades");
                         if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded) { //likely to murder each other
                             Player ausp = rand.pickFrom(players);
                             if (ausp != null && ausp != player && ausp != r.target) {

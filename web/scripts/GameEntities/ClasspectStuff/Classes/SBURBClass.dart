@@ -112,11 +112,13 @@ class SBURBClassManager {
 class SBURBClass {
 
     String name = "Null";
+    String savedName;  //for AB restoring an aspects name after a hope player fucks it up
     FAQFile faqFile;
     int id = 256; //for classNameToInt
     bool isCanon = false; //you gotta earn canon, baby.
 
     SBURBClass(this.name, this.id, this.isCanon) {
+        this.savedName = name;
         faqFile = new FAQFile("Classes/$name.xml");
         //print("Making a sburb class ${this.name}");
         SBURBClassManager.addClass(this);

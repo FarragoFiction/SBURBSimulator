@@ -18,7 +18,7 @@ class SolvePuzzles extends Scene {
 	void checkPlayer(Player player){
 		if(rand.nextBool()) {
 			this.player1 = player;
-			this.player2 = player.findHelper(session.availablePlayers);
+			this.player2 = player.findHelper(session.getReadOnlyAvailablePlayers());
 		}
 
 
@@ -27,14 +27,14 @@ class SolvePuzzles extends Scene {
 	bool trigger(List<Player> playerList){
 		this.player1 = null; //reset
 		this.player2 = null;
-		List shuffledPlayers = shuffle(rand, new List<Player>.from(session.availablePlayers));
+		List shuffledPlayers = shuffle(rand, new List<Player>.from(session.getReadOnlyAvailablePlayers()));
 		for(Player p in shuffledPlayers){
 			this.checkPlayer(p);
 			if(this.player1 != null && this.player1.land != null){
 				return true;
 			}
 		}
-		if(this.player1 == null || this.session.availablePlayers.length == 0 || this.player1.land == null){
+		if(this.player1 == null || this.session.getReadOnlyAvailablePlayers().length == 0 || this.player1.land == null){
 			return false;
 		}
 		return true;
@@ -57,7 +57,7 @@ class SolvePuzzles extends Scene {
 
 	@override
 	void renderContent(Element div){
-		//session.logger.info("Ultimate Riddle for Player with power of: " + this.player1.getStat("power") + " and land level of: " + this.player1.landLevel + " " + this.player1);
+		////session.logger.info("Ultimate Riddle for Player with power of: " + this.player1.getStat("power") + " and land level of: " + this.player1.landLevel + " " + this.player1);
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/sidequest_icon.png'> "+this.content());
 	}
 	String spreadCoruption(Player player1, Player player2){
@@ -79,27 +79,27 @@ class SolvePuzzles extends Scene {
 		}
 
 		if(ret != null){
-		//	session.logger.info("Spreading corruptin in: " + this.session.session_id);
+		//	//session.logger.info("Spreading corruptin in: " + this.session.session_id);
 			return "The corruption is spreading.";
 		}
 		return "";
 
 	}
 	String content(){
-		//session.logger.info("Solving puzzles at: " + this.player1.land);
+		////session.logger.info("Solving puzzles at: " + this.player1.land);
 		String ret = "";
 		//remove player1 and player2 from available player list.
-		removeFromArray(this.player1, this.session.availablePlayers);
-		removeFromArray(this.player2, this.session.availablePlayers);
+		session.removeAvailablePlayer(player1);
+		session.removeAvailablePlayer(player2);
 		//Relationship r1 = null;
 		//Relationship r2 = null;
 		List<Player> living = findLivingPlayers(this.session.players);
 		List<Player> dead = findDeadPlayers(this.session.players);
 		if(living.length == 1 && dead.length > 2){  //less of a reference if it's just one dead dude.
-			session.logger.info("SWEET BIKE STUNTS, BRO: " + this.session.session_id.toString());
+			//session.logger.info("SWEET BIKE STUNTS, BRO: " + this.session.session_id.toString());
 			String realSelf = "";
 			if(!this.player1.isDreamSelf && !this.player1.godTier){
-				session.logger.info("Real self stunting in: " + this.session.session_id.toString());
+				//session.logger.info("Real self stunting in: " + this.session.session_id.toString());
 				realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 			}
 			return "The " +  this.player1.htmlTitle()  + " is "+ rand.pickFrom(bike_quests) + "." + realSelf;

@@ -13,8 +13,7 @@ class FaceDenizen extends Scene{
 	bool trigger(playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			var p = this.session.availablePlayers[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
 				var d = p.denizen;
 				if(p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5){  //you're allowed to do other things between failed boss fights, you know.
@@ -55,7 +54,7 @@ class FaceDenizen extends Scene{
 		appendHtml(div,"<br><br>");
 		for(num i = 0; i<this.denizenFighters.length; i++){
 			var p = this.denizenFighters[i];
-			removeFromArray(p, this.session.availablePlayers);
+			session.removeAvailablePlayer(p);
 			if(!p.denizenMinionDefeated){
 				this.faceDenizenMinion(p,div);
 			}else if(!p.denizenDefeated){
@@ -82,7 +81,7 @@ class FaceDenizen extends Scene{
 		String ret = " ";
 		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
-			//session.logger.info("confront icon: " + this.session.session_id);
+			////session.logger.info("confront icon: " + this.session.session_id);
 			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
 			if(p.getStat("power") > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
@@ -94,7 +93,7 @@ class FaceDenizen extends Scene{
 				appendHtml(div,"<br>"+ret);
 				this.session.stats.denizenBeat = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				//session.logger.info("denizen beat through choice in session: " + this.session.session_id);
+				////session.logger.info("denizen beat through choice in session: " + this.session.session_id);
 			}else{
 				p.denizenDefeated = false;
 				ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + denizen.name + " warns them to prepare for a strife the next time they come back. ";
@@ -115,57 +114,11 @@ class FaceDenizen extends Scene{
 				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
 				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
-				//session.logger.info("denizen kill " + this.session.session_id);
+				////session.logger.info("denizen kill " + this.session.session_id);
 			}
 		}
 			p.denizenFaced = true; //may not have defeated them, but no longer have the option of The Choice
 	}
 
-	dynamic content(){
-		String ret = "";
-		for(num i = 0; i<this.denizenFighters.length; i++){
-			var p = this.denizenFighters[i];
-			removeFromArray(p, this.session.availablePlayers);
-			//ret += "Debug Power: " + p.getStat("power");
-			//fight denizen
-			if(p.getFriends().length < p.getEnemies().length){
-				ret += " The " + p.htmlTitle() + " sneak attacks their denizen, " + p.getDenizen() + ". ";
-				if(p.getStat("power") > 7){
-					ret += " They win handly, and obtain untold levels of power and sweet sweet hoarde grist. They gain all the levels. All of them. ";
-					p.denizenFaced = true;
-					p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
-					p.level_index +=3;
-					p.leveledTheHellUp = true;
-					p.denizenDefeated = true;
-					this.session.stats.denizenBeat = true;
-				//	session.logger.info("denizen beat through violence in session: " + this.session.session_id);
-				}else{
-					p.denizenFaced = true;
-					p.denizenDefeated = false;
-					ret += " Huh.  They were NOT ready for that.  They are easily crushed by their Denizen. DEAD.";
-					p.dead = true;
-					ret += p.makeDead("fighting their Denizen way too early");
-				}
-			}else{//do The Choice
-				ret += " The " + p.htmlTitle() + " cautiously approaches their denizen, " + p.getDenizen() + " and are presented with The Choice. ";
-				if(p.getStat("power") > 10){
-					ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
-					ret += " They gain the power they need to acomplish their objectives. ";
-					p.denizenFaced = true;
-					p.denizenDefeated = true;
-					p.addStat("power",p.getStat("power")*2);   //current and future doubling of power.
-					p.leveledTheHellUp = true;
-					//this.session.denizenBeat = true;
-					//session.logger.info("denizen beat through choice in session: " + this.session.session_id);
-				}else{
-					p.denizenFaced = true;
-					p.denizenDefeated = false;
-					ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + p.getDenizen() + " warns them not to come back. ";
-				}
-			}
-
-		}
-		return ret;
-	}
 
 }

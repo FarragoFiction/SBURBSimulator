@@ -18,16 +18,22 @@ class DoLandQuest extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		this.playersPlusHelpers = [];
-		var availablePlayers = new List<Player>.from(this.session.availablePlayers); //don't modify available players while you iterate on it, dummy
-    for(num j = 0; j<this.session.availablePlayers.length; j++){
-			Player p = this.session.availablePlayers[j];
-			List<Player> ph = this.getPlayerPlusHelper(p, availablePlayers);
-			if(ph != null){
-				this.playersPlusHelpers.add(ph);
-				if(ph[0].aspect != Aspects.TIME && ph[0].aspect != Aspects.BREATH) session.availablePlayers.remove(ph[0]);   //for land qeusts only, breath players can do multiple. time players ALWAYS do multiple of everything.
-				if(ph[1] != null && ph[1].aspect != Aspects.TIME && ph[1].aspect != Aspects.BREATH ) session.availablePlayers.remove(ph[1]);
-			}
-		}
+		List<Player> playersAvailableAtStart = session.getReadOnlyAvailablePlayers();
+		//don't remove available players from the array you'er looping on, asshole. but ALSO don't allow them to go anyways
+		List<Player> alreadyChosenPlayers = new List<Player>();
+		//even though using available players in multiple places do NOT use stored  var for second use, because needs to be up to date. removing shit.
+    for(Player p in playersAvailableAtStart){
+    	if(!alreadyChosenPlayers.contains(p)){
+		    List<Player> ph = this.getPlayerPlusHelper(p, session.getReadOnlyAvailablePlayers());
+		    if(ph != null){
+		    	alreadyChosenPlayers.add(p);
+		    	alreadyChosenPlayers.add(ph[1]); //i don't care if it's null, won't effect the contains
+			    this.playersPlusHelpers.add(ph);
+			    session.removeAvailablePlayer(ph[0]); //this method handles breath/time shit
+			    session.removeAvailablePlayer(ph[1]);
+		    }
+	    }
+    }
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){
@@ -105,8 +111,8 @@ class DoLandQuest extends Scene{
 
 
 		if(helper.aspect == Aspects.HEART && helper.class_name == SBURBClassManager.SYLPH){
-			session.logger.info("Will i heal corruption? grim dark is: ${player.grimDark}");
-			session.logger.info("sylph of heart corruption helping ${this.session.session_id}");
+			//session.logger.info("Will i heal corruption? grim dark is: ${player.grimDark}");
+			//session.logger.info("sylph of heart corruption helping ${this.session.session_id}");
 			if(player.grimDark > 1){
 				return " The " + helper.htmlTitle() + " heals the " + player.htmlTitle() + "'s broken identity', restoring any holds the broodfester tongues of GrimDarkness had on them and increasing their resistance to future infestations. ";
 			}
@@ -118,7 +124,7 @@ class DoLandQuest extends Scene{
 
 
 		String ret = "";
-		//session.logger.info("Debugging: Getting a helper in session ${session.session_id}");
+		////session.logger.info("Debugging: Getting a helper in session ${session.session_id}");
 		ret += player.interactionEffect(helper);
 		ret += helper.interactionEffect(player);
 
@@ -129,7 +135,7 @@ class DoLandQuest extends Scene{
 		}
 
 		if(player.grimDark>0 && helper.aspect == Aspects.VOID){
-			session.logger.info("void corruption helping ${this.session.session_id}");
+			//session.logger.info("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
 		}//todo: tell jr that I dont think this has ever happened, ever.
 
@@ -138,15 +144,15 @@ class DoLandQuest extends Scene{
 		Relationship r2 = helper.getRelationshipWith(player);
 
 		if(helper.aspect == Aspects.BREATH){
-			this.session.availablePlayers.add(player); //player isn't even involved, at this point.
+			this.session.addAvailablePlayer(player); //player isn't even involved, at this point. breath friend frees them up
 			helper.increasePower();
 			player.increaseLandLevel();
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " tells the " + player.htmlTitle() + " that they are going to run on ahead and do some quests on " + player.shortLand() + " on their own. The " + player.htmlTitle() + " is freed up to do other shit, now. " ;
-				//session.logger.info("breath player doing quests for a friend: " + this.session.session_id);
+				////session.logger.info("breath player doing quests for a friend: " + this.session.session_id);
 			}else{
 				ret += " The " + helper.htmlTitle() + " gets annoyed with how slow the " + player.htmlTitle() + " is being and runs ahead to get aaaaaaaall the levels and experience. At least the " + player.htmlTitle() + " has less stuff to do for the their main quests, now. " ;
-			//	session.logger.info("breath player ignoring enemy to get exp: " + this.session.session_id);
+			//	//session.logger.info("breath player ignoring enemy to get exp: " + this.session.session_id);
 			}
 		}
 
@@ -173,7 +179,7 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
 			player.increaseLandLevel();
 			helper.increasePower();
-			if(r2.value > 0){
+			if(r2 == null || r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " is doing a kickass job of helping the " + player.htmlTitle() + ". " ;
 			}else{
 				ret += " The " + helper.htmlTitle() + " delights in rubbing how much better they are at the game in the face of the " + player.htmlTitle() + ". " ;
@@ -235,14 +241,14 @@ class DoLandQuest extends Scene{
 		}
 
 		if(player1.object_to_prototype.corrupted && !player1.sprite.dead){
-		//	session.logger.info("corrupt sprite: " + this.session.session_id);
+		//	//session.logger.info("corrupt sprite: " + this.session.session_id);
 			player1.corruptionLevelOther += 5;
 			ret = true;
 			if(player2 != null) player2.corruptionLevelOther += 5;
 		}
 
 		if(ret){
-			//session.logger.info("Spreading corruptin in: " + this.session.session_id);
+			////session.logger.info("Spreading corruptin in: " + this.session.session_id);
 			return "The corruption is spreading.";
 		}
 		return "";
@@ -254,14 +260,14 @@ class DoLandQuest extends Scene{
 		if(player.sprite.corrupted){
 			player.increaseLandLevel(-0.75);
 		}else if(player.sprite.helpfulness > 0){
-			//session.logger.info("good sprite: " + this.session.session_id);
+			////session.logger.info("good sprite: " + this.session.session_id);
 			player.increaseLandLevel();
 		}else if(player.sprite.helpfulness < 0){
-			//session.logger.info("bad sprite: " + this.session.session_id);
+			////session.logger.info("bad sprite: " + this.session.session_id);
 			player.increaseLandLevel(-0.5);
 			player.addStat("sanity", -0.1);
 		}else{
-			//session.logger.info("normal sprite: " + this.session.session_id);
+			////session.logger.info("normal sprite: " + this.session.session_id);
 			player.increaseLandLevel(0.5);
 		}
 		ret +=  " " + player.sprite.helpPhrase + " "; //best idea.
@@ -270,12 +276,10 @@ class DoLandQuest extends Scene{
 	String contentForPlayer(Player player, Player helper){
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
-		if(player.aspect != Aspects.TIME) removeFromArray(player, this.session.availablePlayers);
 
 		player.increasePower();
 		player.increaseLandLevel();
 		if(helper != null){
-			if(helper.aspect != Aspects.TIME) removeFromArray(helper, this.session.availablePlayers); //don't let my helper do their own quests.
 			ret += " and the " + helper.htmlTitle() + " do " ;
 			helper.increasePower();
 			player.increaseLandLevel();
@@ -310,16 +314,16 @@ class DoLandQuest extends Scene{
 			var living = findLivingPlayers(this.session.players);
 			var dead = findDeadPlayers(this.session.players);
 			if(living.length == 1 && dead.length > 2){
-				session.logger.info("AB: SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
+				//session.logger.info("AB: SWEET BIKE STUNTS, BRO: ${this.session.session_id}");
 				String realSelf = "";
 				if(!player.isDreamSelf && !player.godTier){
-					session.logger.info("AB:Real self stunting in: ${this.session.session_id}");
+					//session.logger.info("AB:Real self stunting in: ${this.session.session_id}");
 					realSelf =  "You are duly impressed that they are not a poser who does dreamself stunting.  Realself stunting 5ever, bro.";
 				}
 				return "The " + player.htmlTitle()  + " is " + rand.pickFrom(bike_quests) + ". " + realSelf;
 			}
 
-			//session.logger.info("doing land quests at: " + player.land);
+			////session.logger.info("doing land quests at: " + player.land);
 			var helper = this.playersPlusHelpers[i][1]; //might be null
 			if(player.aspect == Aspects.SPACE && helper == null){
 

@@ -41,7 +41,7 @@ String todayToSession() {
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 //simulatedParamsGlobalVar is the simulated global vars.
-String getParameterByName(String name, String url) {
+String getParameterByName(String name, [String url]) {
     Uri uri = Uri.base;
     String tmp = null;
     if (url != null) {

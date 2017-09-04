@@ -25,9 +25,9 @@ class StartDemocracy extends Scene {
 
 
 	dynamic findSympatheticPlayer(){
-		this.friend =  findClassPlayer(this.session.availablePlayers, SBURBClassManager.ROGUE);
+		this.friend =  findClassPlayer(this.session.getReadOnlyAvailablePlayers(), SBURBClassManager.ROGUE);
 		if(this.friend == null || this.friend.land == null){
-			this.friend =  findAspectPlayer(this.session.availablePlayers, Aspects.HOPE);
+			this.friend =  findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.HOPE);
 		}
 
 		if(this.friend == null || this.friend.land == null){
@@ -50,7 +50,7 @@ class StartDemocracy extends Scene {
 	}
 	dynamic content(){
 		this.friend.increasePower();
-		removeFromArray(this.friend, this.session.availablePlayers);
+		session.removeAvailablePlayer(friend);
 		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new PowerDemocracy(session));  //make it top priority, so unshift, don't push

@@ -1101,7 +1101,7 @@ abstract class Drawing {
         drawSpriteTurnways(pSpriteBuffer, player);
 
         CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
-        String introText = "-- jadedResearcher [AB] began pestering ";
+        String introText = "-- jadedResearcher [JR] began pestering ";
         introText = "$introText${player.chatHandle} [${player.chatHandleShort()}] --";
         drawChatTextJRPlayer(textSpriteBuffer, introText, chat, player);
 
@@ -1499,6 +1499,9 @@ abstract class Drawing {
             grimDarkHalo(canvas, player);
         }
 
+        //spotlight
+        if(player.session.mutator.hasSpotLight(player)) drawWhatever(canvas, player.aspect.bigSymbolImgLocation);
+
         if (!baby && player.isTroll && player.godTier) { //wings before sprite
             wings(canvas, player);
         }
@@ -1596,6 +1599,8 @@ abstract class Drawing {
 
         if (!baby && player.aspect == Aspects.VOID) {
             voidSwap(canvas, 1 - player.getStat("power") / 2000); //a void player at 2000 power is fully invisible.
+        }else if(player.session.mutator.lightField && !player.session.mutator.hasSpotLight(player)) {
+            voidSwap(canvas, 0.2); //compared to the light player, you are irrelevant.
         }
     }
 

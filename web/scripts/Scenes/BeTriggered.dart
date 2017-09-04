@@ -15,10 +15,9 @@ class BeTriggered extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
-		for(num i = 0; i<this.session.availablePlayers.length; i++){
-			Player p = this.session.availablePlayers[i];
+		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
-				//session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
+				//////session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
 			}
 		}
@@ -30,21 +29,21 @@ class BeTriggered extends Scene{
 	}
 	bool IsPlayerTriggered(Player player){
 		if(player.flipOutReason != null && !player.flipOutReason.isEmpty){
-			//session.logger.info("I have a flip out reason: " + player.flipOutReason);
+			//////session.logger.info("I have a flip out reason: " + player.flipOutReason);
 			if(player.flippingOutOverDeadPlayer != null && player.flippingOutOverDeadPlayer.dead){
-				//session.logger.info("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
+				//////session.logger.info("I know about a dead player. so i'm gonna start flipping my shit. " + this.session.session_id);
 				return true;
 			}else if(player.flippingOutOverDeadPlayer != null){ //they got better.
-			//	session.logger.info(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
+			//	////session.logger.info(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
 				player.flipOutReason = null;;
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
-			if(player.flipOutReason == "being haunted by their own ghost") session.logger.info("flipping otu over own ghost" + this.session.session_id.toString());
+			if(player.flipOutReason == "being haunted by their own ghost") ////session.logger.info("flipping otu over own ghost" + this.session.session_id.toString());
 			//"being haunted by the ghost of the Player they killed"
-				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") session.logger.info("flipping otu over victim ghost" + this.session.session_id.toString());
+				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") ////session.logger.info("flipping otu over victim ghost" + this.session.session_id.toString());
 			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
-			//session.logger.info("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
+			//////session.logger.info("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
@@ -61,7 +60,7 @@ class BeTriggered extends Scene{
 			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.HOPE);
 			if(hope!=null && hope.getStat("power") > 100){
 
-				//session.logger.info("Hope Survives: " + this.session.session_id);
+				//////session.logger.info("Hope Survives: " + this.session.session_id);
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
 				ret += " and being completely useless, but somehow the thought that the " + hope.htmlTitle() + " is still alive fills them with determination, instead.";  //hope survives.
 				hope.increasePower();
@@ -70,7 +69,7 @@ class BeTriggered extends Scene{
 				p.flippingOutOverDeadPlayer = null;
 
 			}else{
-				removeFromArray(p, this.session.availablePlayers);
+				session.removeAvailablePlayer(p);
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about ";
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
 				p.addStat("sanity", -10);
