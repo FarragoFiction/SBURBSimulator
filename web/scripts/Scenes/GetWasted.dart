@@ -516,6 +516,11 @@ class GetWasted extends Scene {
     }
 
     void tier4(Element div) {
+        if(player.trickster) {
+            String rant = "Haha. No. Never ever ever again will I let a trickster into my code. Wow. No. Tier4 is locked to this asshole.  Sure I'll let 'em have the stat, but like HELL are they allowed to do anything with it.";
+            appendHtml(div, "$rant");
+            return;
+        }
         session.stats.hasTier4Events = true;
         String divID = "tier4${div.id}${player.id}";
         String rant = "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.";
