@@ -21,6 +21,7 @@ class SessionMutator {
   int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
   num sessionHealth = 500;
   Session savedSession; //for heart callback
+  Player inSpotLight; //there can be only one.
 
 
   static getInstance() {
@@ -41,24 +42,12 @@ class SessionMutator {
   }
 
   bool hasSpotLight(Player player) {
-    return player.aspect == Aspects.LIGHT && player.gnosis >3;
+    if(inSpotLight == null) return false;
+    bool ret = player.id == inSpotLight.id;
+    //print("I was asked if ${player.title()} has the spotlight. I know ${inSpotLight.title()} does. I will return $ret");
+    return ret;
   }
 
-  //needed for light field shit
-  Player findSpotLightPlayer(Session s) {
-    List<Player> lightPLayers = findSpotLightPlayers(s);
-    return s.rand.pickFrom(lightPLayers);
-  }
-
-
-  //needed for light field shit
-  List<Player> findSpotLightPlayers(Session s) {
-    List<Player> potentials = new List<Player>();
-    for(Player l in s.players) {
-      if(l.gnosis >3 && l.aspect == Aspects.LIGHT) potentials.add(l);
-    }
-    return (potentials);
-  }
 
   //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
   void syncToSession(Session s) {
@@ -348,6 +337,7 @@ class SessionMutator {
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
     lightField = true;
+    inSpotLight = activatingPlayer; //replaces whoever was there before.
     voidField = false; //overrides the void player.
     activatingPlayer.leader = true;
     //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
@@ -359,7 +349,7 @@ class SessionMutator {
     for(Player p in s.players) {
       p.renderSelf(); //to pick up lack of relevancy or whatever
       p.setStat("maxLuck", 88888888);
-      p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
+      //p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
     }
     /*TODO
         *extra things are displayed, not just void.
