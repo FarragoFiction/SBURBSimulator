@@ -241,8 +241,8 @@ class JackBeginScheming extends Scene {
 	}
 	String content(){
 		if(this.friend != null){
-			removeFromArray(this.friend, this.session.availablePlayers);
 			this.friend.increasePower();
+			removeFromArray(this.friend, this.session.availablePlayers);
 			this.session.available_scenes.insert(0, new ConfrontJack(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
