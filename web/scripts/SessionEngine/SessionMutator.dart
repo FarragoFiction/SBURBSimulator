@@ -195,7 +195,8 @@ class SessionMutator {
   String voidStuff(Session s, Player activatingPlayer) {
     effectsInPlay ++;
     voidField = true;
-    String ret = "The ${activatingPlayer.htmlTitle()} is doing someothing. It's kind of hard to see.  Look at those line of code though...";
+
+    String ret = "The ${activatingPlayer.htmlTitle()} is doing something. It's kind of hard to see.  Look at those line of code though...";
     ret += "Huh. You get the strangest feelings that they are looking directly at you.  It's kind of unsettling. ";
     ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
     ret += "Maybe.... Maybe you'll at least get to see the ending? ";
@@ -445,6 +446,48 @@ class SessionMutator {
   String abjectFailure(Session s, Player activatingPlayer) {
     effectsInPlay ++;
     return "The ${activatingPlayer.htmlTitle()} appears to be doing something fantastic. The very fabric of SBURB is being undone according to their whims. They are screaming. Dramatic lightning and wind is whipping around everywhere. Oh.  Uh.  Huh.  Was something supposed to happen?  ... Maybe they just suck at this?  Or maybe JR is a lazy piece of shit who didn't code anything for this. I know MY headcanon.";
+  }
+
+  SessionSummary makeBullshitSummary(Session session, SessionSummary summary) {
+    //make sure everything is false so we don't stand out.
+
+    summary.ghosts = [];
+    summary.setNumStat("sizeOfAfterLife", 8008135); //it's boobies!
+    summary.setBoolStat("hasTier1GnosisEvents", false);
+    summary.setBoolStat("hasTier2GnosisEvents", false);
+    summary.setBoolStat("hasTier3GnosisEvents", false);
+    summary.setBoolStat("hasTier4GnosisEvents", true); //just blatant fucking lies, but not about this or AB won't warn you about wastes.
+    summary.setNumStat("averageMinLuck", 8008135);
+    summary.setNumStat("averageMaxLuck", 8008135);
+    summary.setNumStat("averagePower", 8008135);
+    summary.setNumStat("averageGrist", 8008135);
+    summary.setNumStat("averageMobility", 8008135);
+    summary.setNumStat("averageFreeWill", 8008135);
+    summary.setNumStat("averageHP", 8008135);
+    summary.setNumStat("averageRelationshipValue", 8008135);
+    summary.setNumStat("averageSanity", 8008135);
+    summary.session_id = session.session_id;
+    summary.frogStatus = session.frogStatus();
+    summary.setBoolStat("crashedFromSessionBug", session.stats.crashedFromSessionBug); //don't lie about this one, too important.
+
+    summary.setNumStat("num_scenes", 8008135);
+    summary.players = session.players;
+    summary.mvp = findMVP(session.players);
+    summary.parentSession = session.parentSession;
+    summary.setNumStat("numLiving", 8008135);
+    summary.setNumStat("numDead", 8008135);
+
+    Player spacePlayer = session.findBestSpace();
+    Player corruptedSpacePlayer = session.findMostCorruptedSpace();
+    if (spacePlayer == null) {
+      summary.frogLevel = 0;
+    } else if (summary.frogStatus == "Purple Frog") {
+      summary.frogLevel = corruptedSpacePlayer.landLevel;
+    } else {
+      summary.frogLevel = spacePlayer.landLevel;
+    }
+    return summary;
+
   }
 
 

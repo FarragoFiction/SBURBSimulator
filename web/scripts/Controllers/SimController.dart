@@ -164,7 +164,7 @@ abstract class SimController {
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
             s.trigger(curSessionGlobalVar.players);
-            s.renderContent(curSessionGlobalVar.newScene());
+            s.renderContent(curSessionGlobalVar.newScene(true));
             if (curSessionGlobalVar.stats.makeCombinedSession == true) {
                 processCombinedSession(); //make sure everything is done rendering first
             } else {

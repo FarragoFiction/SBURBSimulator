@@ -510,7 +510,7 @@ class Session {
         return session_id.toString();
     }
 
-    Element newScene() {
+    Element newScene([overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
         if (this.sbahj) {
@@ -538,6 +538,23 @@ class Session {
         } else {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";
         }
+
+        //instead of appending you're replacing. Void4 is SERIOUS about you not getting to see.
+        if(mutator.voidField && !overRideVoid) {
+            Element voidDiv = querySelector("#voidStory");
+            if(voidDiv == null) {
+                doNotRender = true;
+                numScenes = 0; //since we're lying to AB anyway, use this to keep track of how many scenes we skipped due to void
+                doNotFetchXml = true;
+                appendHtml(querySelector("#story"), "<div id = 'voidStory'></div>");
+                voidDiv = querySelector("#voidStory");
+            }
+            voidDiv.setInnerHtml("${"<br>"*numScenes}$div");//one br for each skipped scene
+            return querySelector("#scene${this.currentSceneNum}");
+        }else if(overRideVoid) {
+            doNotRender = false;
+        }
+
         appendHtml(querySelector("#story"), div);
         return querySelector("#scene${this.currentSceneNum}");
     }

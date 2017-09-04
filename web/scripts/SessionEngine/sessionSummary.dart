@@ -246,6 +246,7 @@ class SessionSummary {
     static SessionSummary makeSummaryForSession(Session session) {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
+        if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat("currentHP") <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
