@@ -7,6 +7,7 @@ class SessionMutator {
   bool hopeField = false;  //facts about session change
   bool breathField = false; //sets availability to true, will interact with npc quests eventually
   bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
+  bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -192,13 +193,33 @@ class SessionMutator {
 
   //lol, can't just call it void cuz protected word
   String voidStuff(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
+    voidField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} is doing someothing. It's kind of hard to see.  Look at those line of code though...";
+    ret += "Huh. You get the strangest feelings that they are looking directly at you.  It's kind of unsettling. ";
+    ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
+    ret += "Maybe.... Maybe you'll at least get to see the ending? ";
+    //a bunch of shit gets randomized.  oh sure, the void player is doing things for REASONS
+    //but if you can't see what those reasons are, it sure as fuck looks random.
+    s.sessionHealth += s.sessionHealth/-2;
+    for(Player p in s.players) {
+      p.grist += s.rand.nextInt(s.expectedGristContributionPerPlayer);
+      p.landLevel += s.rand.nextInt(s.goodFrogLevel);
+      p.corruptionLevelOther += s.rand.nextIntRange(-100, 100);
+      for(String str in Player.playerStats) {
+          //can lower it but way more likely to raise it
+          if(str != "RELATIONSHIPS") {
+            p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength));
+          }
+      }
+    }
+    return ret;
     /*
         TODO:
           * but NEVER print anything past this, not even in the void.
 
           *   * acomplish this by creating a new div with id voided you print to. if void field in effect
+          *   random things happen here, people stat's are improved by random amounts, land levels and grist too. drop session health, tho
           *    newScene only appends there, and clears it out constantly. not just not displayed but GONE.
           * print Aftermath in $story as normal so you can see it.
           * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)? (maybe? might be hard)
