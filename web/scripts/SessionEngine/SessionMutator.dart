@@ -126,13 +126,15 @@ class SessionMutator {
     effectsInPlay ++;
       /*
           TODO:
-          * all players have trickster levels of sanity
-          * If scratched, your guardians stats are added to yours. same with ghosts.
+          * all players have sanity.abs() * 612
+          * guardians are spawned as players to help you.
+          *  interaction effects * 612
+          *  New fraymotif: Power of Friendship (strength is based on number of players)
           *  All stats are averaged, then given back to party.
-          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted.
+          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted. (maybe???)
           *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
           *  All players have candy red blood.
-          *  new players are allowed to enter session
+          *  new players are allowed to enter session (what the fuck did I mean by this?)
 
        */
   }
@@ -143,7 +145,9 @@ class SessionMutator {
     /*
       TODO:
         * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
-        * TODO: what else fits here, don't want it to just literally be a yellow yard, these wastes suck compared to me
+        *  all options are listed instead of just a yards worth (so custom)
+        *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
+        * A few custom options as well, up at the top
              *so instead of restraint, they let ANYTHING happen.  but still Observer choice?
              *  or are some things observer choice and some things the Waste chooses?
              *  peasant rail gun
@@ -192,10 +196,14 @@ class SessionMutator {
     effectsInPlay ++;
     /*
         TODO:
-          * reroll seed.  rerun session, but NEVER print anything, not even in the void.
-          * print ending
-          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)
-          *
+          * but NEVER print anything past this, not even in the void.
+
+          *   * acomplish this by creating a new div with id voided you print to. if void field in effect
+          *    newScene only appends there, and clears it out constantly. not just not displayed but GONE.
+          * print Aftermath in $story as normal so you can see it.
+          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)? (maybe? might be hard)
+          *    *  if void field is in effect, LIE LIKE CRAZY TO AB.
+         *     THAT WAY I DON'T HAVE TO RANDOMIZE THINGS AND STEP ON BREATHS TOES, BUT YOU STILL HAVE NO CLUE WHAT HAPPENED.
 
        */
 
@@ -293,12 +301,14 @@ class SessionMutator {
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
     /*TODO
-        *EVERything is displayed, not just void.
-          *   how to do this with code not being js anymore?
-          *   can i co-opt the console printouts to put on screen?
+        *extra things are displayed, not just void.
+          *   for example, scene ids are printed out where the div starts.
         * all players are VERY LUCKY
-        * maybe gives everyone almost waste level gnosis...what else?
-        * literal spotlight when rendered, all players set to unavailable except light player, light player is always available
+        * everyone goes up a tier of gnosis
+        * literal spotlight when rendered (light symbol behind), all players set to unavailable except light player, light player is always available
+        * if you try to find a specific player, you find the light player (even for relationship targets). only they can help frog, only their land level is checked for frog (whoops what do you mean they don't have enough for a frog, oh WELL)
+        * all players except light player are render at 50% void
+        * when i say 'light player' i mean light player with tier4 gnosis and the lightField in effect.
      */
 
   }
