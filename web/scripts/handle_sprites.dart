@@ -1101,7 +1101,7 @@ abstract class Drawing {
         drawSpriteTurnways(pSpriteBuffer, player);
 
         CanvasElement textSpriteBuffer = getBufferCanvas(querySelector("#chat_text_template"));
-        String introText = "-- jadedResearcher [AB] began pestering ";
+        String introText = "-- jadedResearcher [JR] began pestering ";
         introText = "$introText${player.chatHandle} [${player.chatHandleShort()}] --";
         drawChatTextJRPlayer(textSpriteBuffer, introText, chat, player);
 
