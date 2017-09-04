@@ -170,7 +170,7 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
 			player.increaseLandLevel();
 			helper.increasePower();
-			if(r2.value > 0){
+			if(r2 == null || r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " is doing a kickass job of helping the " + player.htmlTitle() + ". " ;
 			}else{
 				ret += " The " + helper.htmlTitle() + " delights in rubbing how much better they are at the game in the face of the " + player.htmlTitle() + ". " ;

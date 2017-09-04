@@ -3124,3 +3124,13 @@ Relevant line:
             if (ss.getBoolStat("parentSession")) mss.incNumStat("comboSessions");
 Oh my fuck. It's not a bool stat. It's literally a session.  Why....Why is it EVER triggering. When the fuck would a session have a bool stat with that name???
 
+~~~~~~~~~~~
+
+Light players exist to drive me insane.
+
+Could not find relationship with God Tier Waste of Light (wickedLupin) in [ <font color = 'black'>&#x263A</font>(5) God Tier Waste of Space (worryingSpacer),  <font color = 'black'>&#x263A</font>(16) God Tier Waste of Light (wickedLupin),  <font color = 'black'>&#x2639</font>(-18) God Tier Waste of Light (windowsLaptop)]
+
+What that up there says is that EVEN THOUGH I WENT OUT OF MY WAY TO GIVE LIGHT PLAYERS RELATIONSHIPS WITH THEMSELVES, they
+still can't find that relationship. What the actual fuck.
+
+They are clearly in the list. what gives?
