@@ -6,7 +6,7 @@ class SessionMutator {
   int effectsInPlay = 0; //more there are, more likely session will crash.
   bool hopeField = false;  //facts about session change
   bool breathField = false; //sets availability to true, will interact with npc quests eventually
-  bool heartField = true; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
+  bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
