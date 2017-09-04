@@ -277,11 +277,11 @@ class SessionMutator {
     breathField = true;
     s.rand = new Random(); //breath gets freedom from narrative, true random now, no predictabilitiy.
     //show off that new true randomness:
-    String ret = "The $activatingPlayer begins to glow. Lines of code appear dramatically behind them. ";
+    String ret = "The ${activatingPlayer.htmlTitle()} begins to glow. Lines of code appear dramatically behind them. ";
     ret += s.rand.pickFrom(<String> ["A wave of mobility washes over SBURB.","All players feel strangely mobile."," SBURB suddenly cares a LOT more about getting the plot moving forwards."]);
     ret += s.rand.pickFrom(<String>[" Somewhere in the distance, you can hear the AuthorBot cursing."," SBURBs narrative control has slipped the reigns entirely. Sessions now have the freedom to do whatever they want."," Huh. Wait. Is this really canon? The Observer visible timeline isn't supposed to go this way, right? "]);
     //TODO once npcs quests are a thing, need to have all active at once.
-    ret += " You suddenly get the strange feeling that this session has become a LOT less shareable.";
+    ret += "All players can now do all activities every turn.  And... you suddenly get the strange feeling that this session has become a LOT less shareable.";
     for(Player p in s.players) {
       p.addStat("mobility", 413);  //not a hope level of boost, but enough to probably fight most things
     }

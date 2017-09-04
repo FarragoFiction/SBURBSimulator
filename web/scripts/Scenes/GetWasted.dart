@@ -518,7 +518,10 @@ class GetWasted extends Scene {
     void tier4(Element div) {
         session.stats.hasTier4Events = true;
         String divID = "tier4${div.id}${player.id}";
-        appendHtml(div, "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        String rant = "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.";
+        if(player.class_name == SBURBClassManager.GRACE) rant = "Bluh.  I don't trust that Grace in my code one bit. But I guess they ARE supposed to be more subtle than us Wastes....so....Maybe things WON'T crash?";
+        if(player.class_name != SBURBClassManager.GRACE && player.class_name != SBURBClassManager.WASTE) rant = "... Oh. Fuck.  What the hell is a ${player.class_name.name.toUpperCase()} doing in my code. How did this even happen. Don't come crying to me when they fuck things up.";
+        appendHtml(div, "$rant<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
         session.mutator.checkForCrash(session);
         drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
         drawAll();
