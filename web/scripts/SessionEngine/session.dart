@@ -513,6 +513,8 @@ class Session {
     Element newScene([overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
+        String lightBS = "";
+        if(mutator.lightField) lightBS = "Scened ID: ${this.currentSceneNum}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";
@@ -529,14 +531,14 @@ class Session {
             }
             div = "$div' >";
             if (ouija == true) div = "$div<img class = 'pen15' src = 'images/pen15_bg1.png'>"; //can't forget the dicks;
-            div = "$div</div>";
+            div = "$div $lightBS</div>";
         } else if (ouija == true) {
             int trueRandom = getRandomIntNoSeed(1, 4);
             div = "<div class = 'scene' id='scene${this.currentSceneNum}'>";
             div = "$div<img class = 'pen15' src = 'images/pen15_bg$trueRandom.png'>";
-            div = "$div</div>";
+            div = "$div $lightBS</div>";
         } else {
-            div = "<div class = 'scene' id='scene${this.currentSceneNum}'></div>";
+            div = "<div class = 'scene' id='scene${this.currentSceneNum}'>$lightBS</div>";
         }
 
         //instead of appending you're replacing. Void4 is SERIOUS about you not getting to see.

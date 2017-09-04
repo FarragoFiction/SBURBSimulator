@@ -8,6 +8,7 @@ class SessionMutator {
   bool breathField = false; //sets availability to true, will interact with npc quests eventually
   bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
   bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
+  bool lightField = false; //returns light player instead of whoever was asked for in most cases
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -20,6 +21,7 @@ class SessionMutator {
   int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
   num sessionHealth = 500;
   Session savedSession; //for heart callback
+
 
   static getInstance() {
     if(_instance == null) _instance = new SessionMutator();
@@ -36,6 +38,16 @@ class SessionMutator {
     for(SBURBClass c in SBURBClassManager.all) {
       c.name = c.savedName; //AB is having none of your shenanigans.
     }
+  }
+
+  //needed for light field shit
+  Player findSpotLightPlayer(Session s) {
+    List<Player> potentials = new List<Player>();
+    List<Player> lightPLayers = findAllAspectPlayers(s.players, Aspects.LIGHT);
+    for(Player l in lightPLayers) {
+      if(l.gnosis >3) potentials.add(l);
+    }
+    return s.rand.pickFrom(potentials);
   }
 
   //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
@@ -124,6 +136,7 @@ class SessionMutator {
 
   String blood(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Blood is going at it.");
     effectsInPlay ++;
       /*
           TODO:
@@ -142,6 +155,7 @@ class SessionMutator {
 
   String mind(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Mind is going at it.");
     effectsInPlay ++;
     /*
       TODO:
@@ -164,6 +178,7 @@ class SessionMutator {
 
   String rage(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
     /*
         TODO:
@@ -195,10 +210,10 @@ class SessionMutator {
   String voidStuff(Session s, Player activatingPlayer) {
     effectsInPlay ++;
     voidField = true;
-
+    s.logger.info("AB: Huh. Looks like a Waste of Void is going at it.");
     String ret = "The ${activatingPlayer.htmlTitle()} is doing something. It's kind of hard to see.  Look at those line of code though...";
     ret += "Huh. You get the strangest feelings that they are looking directly at you.  It's kind of unsettling. ";
-    ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
+    ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. <span class='void'>The ${activatingPlayer.htmlTitle()} is on to you.</span> The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
     ret += "Maybe.... Maybe you'll at least get to see the ending? ";
     //a bunch of shit gets randomized.  oh sure, the void player is doing things for REASONS
     //but if you can't see what those reasons are, it sure as fuck looks random.
@@ -233,6 +248,7 @@ class SessionMutator {
 
   String time(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Time is going at it.");
     effectsInPlay ++;
       /*
           TODO:
@@ -319,9 +335,17 @@ class SessionMutator {
   }
 
   String light(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
+    lightField = true;
+    s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
+    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most importnt character in Homestuck. Uh. The Session. I meant the session, obviously. ";
+    ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
+    ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
+    for(Player p in s.players) {
+      p.setStat("maxLuck", 88888888);
+      p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
+    }
     /*TODO
         *extra things are displayed, not just void.
           *   for example, scene ids are printed out where the div starts.
@@ -332,12 +356,14 @@ class SessionMutator {
         * all players except light player are render at 50% void
         * when i say 'light player' i mean light player with tier4 gnosis and the lightField in effect.
      */
+    return ret;
 
   }
 
   String space(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
     effectsInPlay ++;
+    s.logger.info("AB: Huh. Looks like a Waste of Space is going at it.");
     /*
           TODO:
           * Cccccccombo sessions.   (with "go" button to keep it from being infinite)
@@ -416,7 +442,7 @@ class SessionMutator {
 
   String life(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
-
+    s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
     /*
         TODO:
@@ -430,6 +456,7 @@ class SessionMutator {
 
   String doom(Session s, Player activatingPlayer) {
     return abjectFailure(s, activatingPlayer);
+    s.logger.info("AB: Huh. Looks like a Waste of Doom is going at it.");
     effectsInPlay ++;
     /*
       TODO:
