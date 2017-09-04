@@ -168,6 +168,7 @@ class YellowYard extends Scene {
 		Drawing.drawChatABJR(canvasDiv, chat);
 
 		canvasHTML = "<br><canvas id='canvasJRAB22${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+		if(session.mutator.effectsInPlay > 0) canvasHTML = "... Okay. Observer. I need you to pay attention to me. This is fucking <H1>IMPORTANT</H1>. Okay. Listening?  Some FUCKING other Waste or some shit has been mucking around in my code. Coulda been a Grace, or maybe some regular player wandered in. I don't even fucking care. Point is: I can't guarantee my Yellow Yard is gonna work. P sure MOST aspects won't break it too bad but...  Good luck.  <br><Br> $canvasHTML";
 		appendHtml(div, canvasHTML);
 		canvasDiv = querySelector("#canvasJRAB22${div.id}");
 		chat = "";
@@ -180,6 +181,7 @@ class YellowYard extends Scene {
 		Drawing.drawChatABJR(canvasDiv, chat);
 
 		String canvasHTML2 = "<br><canvas id='canvasJRAB2${div.id}' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+
 		appendHtml(div, canvasHTML2);
 		CanvasElement canvasDiv2 = querySelector("#canvasJRAB2${div.id}");
 		chat = "";
