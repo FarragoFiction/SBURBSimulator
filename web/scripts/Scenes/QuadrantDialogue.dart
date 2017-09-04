@@ -339,14 +339,15 @@ class QuadrantDialogue extends Scene {
 		if(relationship.saved_type == relationship.heart)return this.heartChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.clubs)return this.clubsChat(relationship, relationship2);
 		if(relationship.saved_type == relationship.spades) return this.spadesChat(relationship, relationship2);
-		return null;
+
+		return this.diamondsChat(relationship, relationship2);
 	}
 	String getQuadrantASCII(relationship){
 		if(relationship.saved_type == relationship.diamond)return " <> ";
 		if(relationship.saved_type == relationship.heart)return " <3 ";
 		if(relationship.saved_type == relationship.clubs)return " c3< ";
 		if(relationship.saved_type == relationship.spades) return " <3< ";
-		return null;
+		return "???";
 	}
 	dynamic clubsChat(relationship1, relationship2){
 		////session.logger.info("Clubs Chat in: " + this.session.session_id);
