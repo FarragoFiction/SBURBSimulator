@@ -352,16 +352,6 @@ class SessionMutator {
       p.setStat("maxLuck", 88888888);
       p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
     }
-    /*TODO
-        *extra things are displayed, not just void.
-          *   for example, scene ids are printed out where the div starts.
-        * all players are VERY LUCKY
-        * everyone goes up a tier of gnosis
-        * literal spotlight when rendered (light symbol behind), all players set to unavailable except light player, light player is always available
-        * if you try to find a specific player, you find the light player (even for relationship targets). only they can help frog, only their land level is checked for frog (whoops what do you mean they don't have enough for a frog, oh WELL)
-        * all players except light player are render at 50% void
-        * when i say 'light player' i mean light player with tier4 gnosis and the lightField in effect.
-     */
     return ret;
 
   }

@@ -1197,9 +1197,9 @@ class Player extends GameEntity {
 
     @override
     Relationship getRelationshipWith(GameEntity player) {
-        for (num i = 0; i < this.relationships.length; i++) {
-            if (this.relationships[i].target.id == player.id) {
-                return this.relationships[i];
+        for (Relationship r in relationships) {
+            if (r.target.id == player.id) {
+                return r;
             }
         }
         print("Could not find relationship with ${player.title()} in ${relationships}");
