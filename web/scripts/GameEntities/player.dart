@@ -1200,11 +1200,9 @@ class Player extends GameEntity {
         for (Relationship r in relationships) {
             if (r.target.id == player.id) {
                 return r;
-            }else {
-                print("${player.title()} is not ${r.target.title()} because ${player.id} is not ${r.target.id}");
             }
         }
-        print("Could not find relationship with ${player.title()} in ${relationships}");
+        //print("Could not find relationship with ${player.title()} in ${relationships}");
         return null;
     }
 
@@ -1293,6 +1291,7 @@ class Player extends GameEntity {
     }
 
     List<Player> getEnemiesFromList(List<GameEntity> potentialEnemies) {
+        if(session.mutator.lightField) return [session.mutator.inSpotLight];
         List<Player> ret = <Player>[];
         for (num i = 0; i < potentialEnemies.length; i++) {
             GameEntity p = potentialEnemies[i];
