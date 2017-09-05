@@ -96,7 +96,8 @@ class StatDataReview {
         CanvasElement canvas = querySelector("#canvas");
 
         CanvasRenderingContext2D ctx = canvas.context2D;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle="#FFFFFF";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         if (this.data.isEmpty || this.plots.where((StatDataPlot p) => p.enabled).isEmpty) { return; }
 
@@ -182,9 +183,11 @@ class StatDataReview {
 
                 int x = (xincrement * (turn - 1)).round() + margin;
                 int y = (margin + height - zero) - (val * ygridinc).round();
-
+                
+                double fraction = (points.length / plot.maxsamples) * 0.8 + 0.2;
+                
                 ctx
-                    ..strokeStyle = plot.colour.toStyleString()
+                    ..strokeStyle = "rgba(${plot.colour.red},${plot.colour.green},${plot.colour.blue},${fraction.toStringAsPrecision(2)}"
                     ..strokeRect(x - 0.5, y - 0.5, 2, 2);
 
                 if (turn > 1 && connect) {
@@ -253,6 +256,7 @@ class StatDataPlot {
     Element element;
 
     int maxturn = 0;
+    int maxsamples = 0;
     Map<Stat, double> minima;
     Map<Stat, double> maxima;
     double avemin;
@@ -334,6 +338,8 @@ class StatDataPlot {
         for (int turn=1; turn<=maxturn; turn++) {
             Iterable<DataPoint> thisturn = this.filtered.where((DataPoint p) => p.time == turn);
 
+            this.maxsamples = Math.max(this.maxsamples, thisturn.length);
+            
             double total = 0.0;
             for (Stat stat in parent.stats.values) {
                 double stattotal = 0.0;
@@ -398,7 +404,12 @@ String getIncrementText(int value) {
 
     for (int i=0; i<affix.length; i++) {
         if (value < Math.pow(1000, i+1)) {
-            return "${neg?"-":""}${value ~/ Math.pow(1000, i)}${affix[i]}";
+            double val = value / Math.pow(1000, i);
+            String valstring = val.toStringAsFixed(1);
+            if (valstring.endsWith(".0")) {
+                valstring = val.floor().toString();
+            }
+            return "${neg?"-":""}$valstring${affix[i]}";
         }
     }
     return "!!!";
