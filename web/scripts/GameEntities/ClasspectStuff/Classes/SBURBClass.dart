@@ -103,7 +103,7 @@ class SBURBClassManager {
     }
     
     static List<SBURBClass> playersToClasses(List<Player> players) {
-        return players.map((Player p) => p.class_name);
+        return new List<SBURBClass>.from(players.map((Player p) => p.class_name));
     }
 
 }

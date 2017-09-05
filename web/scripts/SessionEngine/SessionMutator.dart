@@ -156,8 +156,11 @@ class SessionMutator {
         p.grimDark = 1; //i  REALLY don't think they should be like this...
         p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
         p.renderSelf();
+        p.land = null; //SBURB doesn't have a land for you.
     }
-
+    //HEY did you know that SBURB calculates grist requirements based on number of players?
+    //NO? Neither does this blood player.  And these Null players don't have lands....whoops! Hope you like playing SBURB hard mode!
+    //It's worth it to get your friends in though, right?
     s.players.addAll(newPlayers);
     List<String> fraymotifNames = <String>["True Friends","Power of Friendship","I fight for my friends!","Care Bear Stare"];
     int fraymotifValue = 1000*activatingPlayer.getFriends().length;
