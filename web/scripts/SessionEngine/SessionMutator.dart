@@ -474,7 +474,7 @@ class SessionMutator {
     lifeField = true;
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
-    ret += "Shit, and it looks like decided that death shouldn't be allowed at all for the players... hopefully there aren't any unintended consequences of THAT.";
+    ret += "Shit, and it looks like decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
     ret += "I don't think they thought this through...";
     //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
     for(Player p in s.players) {
