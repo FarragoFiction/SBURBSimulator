@@ -1926,6 +1926,10 @@ class Player extends GameEntity {
 
     void initializeStats() {
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
+        if(trickster) {
+            landLevel = 11111111111.0;
+            grist = 11111111111;
+        }
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
         this.aspect.initAssociatedStats(this);
         this.class_name.initAssociatedStats(this);
