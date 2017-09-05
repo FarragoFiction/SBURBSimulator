@@ -14,8 +14,8 @@ abstract class FileFormat<T,U> {
     U write(T data);
     T read(U input);
 
-    Uri dataToDataURI(U data);
-    Uri objectToDataURI(T object) => dataToDataURI(write(object));
+    String dataToDataURI(U data);
+    String objectToDataURI(T object) => dataToDataURI(write(object));
 
     Future<U> readFromFile(File file);
 
@@ -66,8 +66,8 @@ abstract class BinaryFileFormat<T> extends FileFormat<T,ByteBuffer> {
     }
 
     @override
-    Uri dataToDataURI(ByteBuffer buffer) {
-        return new Uri.dataFromBytes(buffer.asUint8List(), mimeType: this.mimeType());
+    String dataToDataURI(ByteBuffer buffer) {
+        return Url.createObjectUrlFromBlob(new Blob(<dynamic>[buffer.asUint8List()], mimeType()));
     }
 
     @override
@@ -87,8 +87,8 @@ abstract class StringFileFormat<T> extends FileFormat<T,String> {
     bool identify(String data) => data.startsWith(header());
 
     @override
-    Uri dataToDataURI(String content) {
-        return new Uri.dataFromString(content, encoding:UTF8, base64:true);
+    String dataToDataURI(String content) {
+        return new Uri.dataFromString(content, encoding:UTF8, base64:true).toString();
     }
 
     @override

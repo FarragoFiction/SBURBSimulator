@@ -23,7 +23,7 @@ class StatSampler {
         this.turn = 0;
     }
 
-    Uri save() {
+    String save() {
         return saveFormat.objectToDataURI(data);
     }
 
@@ -36,7 +36,7 @@ class StatSampler {
             String date = "${now.year.toString().padLeft(4,"0")}${now.month.toString().padLeft(2,"0")}${now.day.toString().padLeft(2,"0")}";
             String time = "${now.hour.toString().padLeft(2,"0")}${now.minute.toString().padLeft(2,"0")}${now.second.toString().padLeft(2,"0")}";
 
-            AnchorElement link = new AnchorElement(href:this.save().toString())..className="loadedimg"
+            AnchorElement link = new AnchorElement(href:this.save())..className="loadedimg"
                 ..download="snapshot${this.data.length}_v${saveFormat.version}_${date}_$time.statdata";
             container.append(link);
             link..click()..remove();
