@@ -517,7 +517,7 @@ class GetWasted extends Scene {
 
     void tier4(Element div) {
         if(player.trickster) {
-            String rant = "Haha. No. Never ever ever again will I let a trickster into my code. Wow. No. Tier4 is locked to this asshole.  Sure I'll let 'em have the stat, but like HELL are they allowed to do anything with it.";
+            String rant = "Haha. No. Never ever ever again will I let a trickster into my code. Wow. No. Tier4 is locked to this asshole.  Sure I'll let the ${player.htmlTitle()} have the stat, but like HELL are they allowed to do anything with it.";
             appendHtml(div, "$rant");
             return;
         }
