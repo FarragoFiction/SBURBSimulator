@@ -42,7 +42,7 @@ class QuadrantDialogue extends Scene {
 		//can choose anyone.
 		if(this.player1 == null && session.mutator.bloodField) {
 			this.player1 = session.rand.pickFrom(session.getReadOnlyAvailablePlayers());
-			this.player2 = session.rand.pickFrom(this.player1.getFriends() as List<Player>);
+			this.player2 = session.rand.pickFrom(this.player1.getFriends());
 		}
 	}
 	void findQuardrantMate(){

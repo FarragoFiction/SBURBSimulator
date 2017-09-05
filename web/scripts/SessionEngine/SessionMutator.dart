@@ -140,11 +140,11 @@ class SessionMutator {
     effectsInPlay ++;
     bloodField = true;
     String ret = "The ${activatingPlayer.htmlTitle()} begins to glow amid a field of code the color of old and fresh blood. ";
-    ret += "Skaia decided the couldn't save everyone. That only SOME of their friends were destined to play the game. ";
+    ret += "Skaia decided they couldn't save everyone. That only SOME of their friends were destined to play the game. ";
     ret += " They reject this rule entirely. They find a place in the code where more players exist, but aren't active yet, ";
     ret += " And change things until they are classified as active.  They collaborate with the time player as needed, but they get the ";
     ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Player have. ";
-    ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are in the code. ";
+    ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are at it. ";
     //the blood player tries to save their friends who WERN'T destined to play this game.
     //TODO rewrite guardian code so classes are a remix of players, not random and repeatable
     List<Player> newPlayers = getGuardiansForPlayers(s.players);
@@ -170,9 +170,12 @@ class SessionMutator {
       Fraymotif f = new Fraymotif(s.rand.pickFrom(fraymotifNames), 99);
       f.baseValue = fraymotifValue;
       p.bloodColor = "#ff0000"; //we are ALL the same caste now.
+      //need to have relationship with new null players
+      p.relationships = <Relationship>[];
+      p.generateRelationships(s.players);
 
       for(String str in Player.playerStats) {
-        if(str != "sanity") p.setStat(str, getStatAverage(str, s.players)); //we all work together.
+        if(str != "sanity" && str != "RELATIONSHIPS") p.setStat(str, getStatAverage(str, s.players)); //we all work together.
       }
 
     }

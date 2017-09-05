@@ -101,6 +101,10 @@ class SBURBClassManager {
         }
         return NULL;
     }
+    
+    static List<SBURBClass> playersToClasses(List<Player> players) {
+        return players.map((Player p) => p.class_name);
+    }
 
 }
 

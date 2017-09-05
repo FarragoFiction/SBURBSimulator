@@ -1466,8 +1466,8 @@ class Player extends GameEntity {
         }
     }
 
-    List<GameEntity> getFriends() {
-        List<GameEntity> ret = <GameEntity>[];
+    List<Player> getFriends() {
+        List<Player> ret = <Player>[];
         for (num i = 0; i < this.relationships.length; i++) {
             if (this.relationships[i].value > 0) {
                 ret.add(this.relationships[i].target);

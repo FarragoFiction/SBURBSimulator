@@ -460,6 +460,9 @@ class Session {
     void makeGuardians() {
         ////print("Making guardians");
         resetAvailableClasspects();
+        //guardians have to pick from existing classes.
+        available_classes_guardians = SBURBClassManager.playersToClasses(players);
+
         List<Player> guardians = <Player>[];
         for (num i = 0; i < this.players.length; i++) {
             Player player = this.players[i];
