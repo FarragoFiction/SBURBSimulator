@@ -43,8 +43,8 @@ class MurderPlayers extends Scene {
 		for(num i = 0; i<livePlayers.length; i++){
 			var p = livePlayers[i];
 			if(p != murderer && p != victim){
-				var rm = p.getRelationshipWith(murderer);
-				var rv = p.getRelationshipWith(victim);
+				Relationship rm = p.getRelationshipWith(murderer);
+				Relationship rv = p.getRelationshipWith(victim);
 				//more they liked the victim, the more they hate you.
 				if(rv.saved_type == rv.diamond){
 					rm.value = -100;

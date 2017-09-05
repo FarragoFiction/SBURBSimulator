@@ -27,7 +27,7 @@ class Relationship {
 
     //target has to be private if light player can override it. this lets code still do .target, but not .target =
     Player get target {
-        if(curSessionGlobalVar.mutator.lightField) {
+        if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) {
             Player megalomaniac =  curSessionGlobalVar.mutator.inSpotLight;
             if(source != megalomaniac) return megalomaniac; //don't be in a relationship with your self.
         }

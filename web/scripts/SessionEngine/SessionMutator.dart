@@ -140,7 +140,6 @@ class SessionMutator {
       /*
           TODO:
           * all players have sanity.abs() * 612
-          * guardians are spawned as players to help you.
           * blood field allows pale quadrant chath whenver (default)
           *  interaction effects * 612
           *  New fraymotif: Power of Friendship (strength is based on number of players)
@@ -148,7 +147,8 @@ class SessionMutator {
           *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted. (maybe???)
           *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
           *  All players have candy red blood.
-          *  new players are allowed to enter session (what the fuck did I mean by this?)
+          *  able to bring friends from their home planet into the session as a Null of Null. They aren't heros, but at least maybe they can be saved.
+          *     they override the guardian slot and so have the stats and shit of the guardian, but  aspect is Null. class matches guardian
 
        */
   }
@@ -338,6 +338,9 @@ class SessionMutator {
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
     lightField = true;
+    Player previousHolder = inSpotLight;
+    inSpotLight = null;
+    if(previousHolder != null) previousHolder.getRelationshipWith(activatingPlayer).value = -88888888; //you BITCH you stole my spotlight. won't make them insane, tho.
     inSpotLight = activatingPlayer; //replaces whoever was there before.
     voidField = false; //overrides the void player.
     activatingPlayer.leader = true;

@@ -739,7 +739,7 @@ class Player extends GameEntity {
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
-        if (this.didDenizenKillYou() && !(this.grimDark <= 2)) {
+        if (this.didDenizenKillYou() && (this.grimDark <= 2)) {
             return false;
         } else if (this.grimDark > 2) {
             //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: ${this.session.session_id.toString()}");
@@ -1197,6 +1197,7 @@ class Player extends GameEntity {
 
     @override
     Relationship getRelationshipWith(GameEntity player) {
+        if(session.mutator.lightField && session.mutator.inSpotLight != null) player = session.mutator.inSpotLight; //check for null so i can make previous holder hate new one
         for (Relationship r in relationships) {
             if (r.target.id == player.id) {
                 return r;
