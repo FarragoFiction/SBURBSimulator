@@ -471,14 +471,16 @@ class SessionMutator {
   String life(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
-   // lifeField = true;
-    return "why is everythg breaking?";
+    lifeField = true;
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
-    ret += "Shit, and it looks like decided that death shouldn't be allowed at all....how are they supposed to beat the Black King now?";
+    ret += "Shit, and it looks like decided that death shouldn't be allowed at all for the players... hopefully there aren't any unintended consequences of THAT.";
     ret += "I don't think they thought this through...";
+    //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
     for(Player p in s.players) {
       p.trickster = true;
+      p.hairColor = s.rand.pickFrom(tricksterColors).toStyleString();
+      p.bloodColor = s.rand.pickFrom(tricksterColors).toStyleString();
       p.initializeStats();
       p.dead = false;
       p.denizenMinion.makeAlive();

@@ -602,7 +602,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void makeDead(String causeOfDeath) {
-        if(session.mutator.lifeField) return; //does fucking nothing.
+        //if(session.mutator.lifeField) return; //does fucking nothing. only for players i have decided.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
     }

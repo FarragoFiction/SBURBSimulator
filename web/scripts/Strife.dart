@@ -11,10 +11,10 @@ import "SBURBSim.dart";
  */
 class Strife {
   //TODO subclass strife for pvp but everybody lives strifes
-  List<
-      Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
+  List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
   num turnsPassed = 0; //keep track for interuptions and etc.
   Session session;
+  bool strifeIsOver = false; //just in case death doesn't stick because of bullshit, need a way to know it's over
 
   Strife(this.session, this.teams);
 
@@ -29,7 +29,7 @@ class Strife {
     }
     checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
     bool over = strifeEnded();
-    if (over) {
+    if (over || strifeIsOver) {
       Team winner = findWinningTeam();
       if (winner != null) {
         describeEnding(div, winner); //will call processEnding.
@@ -178,6 +178,7 @@ class Strife {
   }
 
   void killEveryone(String causeOfDeath) {
+    strifeIsOver = true;
     for (Team team in teams) {
       team.killEveryone(causeOfDeath);
     }
@@ -197,6 +198,7 @@ class Strife {
       player.increasePower(3);
       appendHtml(div, " They actually seem to be taking " + denizen.name + "'s advice. ");
     }
+    strifeIsOver = true;
   }
 
   void summonAuthor(Element div) {
