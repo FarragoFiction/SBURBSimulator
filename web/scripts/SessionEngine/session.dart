@@ -76,7 +76,7 @@ class Session {
     }
 
     //near as i can figure logger.debug just straight up never works.
-    void removeAvailablePlayer(Player p) {
+    void removeAvailablePlayer(GameEntity p) {
         if (p == null || !(p is Player)) {
             //logger.info("i think player is null or not a player");
             return;

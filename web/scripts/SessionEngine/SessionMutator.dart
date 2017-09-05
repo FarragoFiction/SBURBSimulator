@@ -202,6 +202,8 @@ class SessionMutator {
         kill brope, all but one player dies
 
         kill PL lands get rerolled/fucked up eventually
+
+        //look at how troll kid rock works for async loading
      */
 
   }
