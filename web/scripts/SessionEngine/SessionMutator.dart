@@ -10,6 +10,7 @@ class SessionMutator {
   bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
   bool lightField = false; //returns light player instead of whoever was asked for in most cases
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
+  bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -196,7 +197,8 @@ class SessionMutator {
     effectsInPlay ++;
     /*
       TODO:
-        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
+        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me. PAUSE when this happens.
+        *     * yes, it means you don't know how it ends before you change things. but neither does the mind player.
         *  all options are listed instead of just a yards worth (so custom)
         *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
         * A few custom options as well, up at the top
@@ -269,19 +271,6 @@ class SessionMutator {
       }
     }
     return ret;
-    /*
-        TODO:
-          * but NEVER print anything past this, not even in the void.
-
-          *   * acomplish this by creating a new div with id voided you print to. if void field in effect
-          *   random things happen here, people stat's are improved by random amounts, land levels and grist too. drop session health, tho
-          *    newScene only appends there, and clears it out constantly. not just not displayed but GONE.
-          * print Aftermath in $story as normal so you can see it.
-          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)? (maybe? might be hard)
-          *    *  if void field is in effect, LIE LIKE CRAZY TO AB.
-         *     THAT WAY I DON'T HAVE TO RANDOMIZE THINGS AND STEP ON BREATHS TOES, BUT YOU STILL HAVE NO CLUE WHAT HAPPENED.
-
-       */
 
   }
 
@@ -294,7 +283,7 @@ class SessionMutator {
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
           *   Create players, then change seed. shuffle player order, etc.
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
-          *   "go" button similar to scratch before resetting.
+          *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
 
        */
   }
@@ -480,17 +469,28 @@ class SessionMutator {
   }
 
   String life(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
-    /*
-        TODO:
-          * Everyone is trickster
-          * makeDead does nothing anymore
-          * anybody dead (including enemies) is brought back
-          *
-     */
+    lifeField = true;
+    String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
+    ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
+    ret += "Shit, and it looks like decided that death shouldn't be allowed at all....how are they supposed to beat the Black King now?";
+    ret += "I don't think they thought this through...";
+    for(Player p in s.players) {
+      p.trickster = true;
+      p.initializeStats();
+      p.dead = false;
+      p.denizenMinion.makeAlive();
+      p.dreamSelf = true; //your dream self is revived, too.
+      p.denizen.makeAlive();
+      p.renderSelf();
+    }
 
+    List<GameEntity> npcs = s.npcHandler.allNPCS;
+    for(GameEntity g in npcs) {
+      g.makeAlive();
+    }
+    return ret;
   }
 
   String doom(Session s, Player activatingPlayer) {

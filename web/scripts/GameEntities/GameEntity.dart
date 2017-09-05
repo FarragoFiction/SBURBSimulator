@@ -592,6 +592,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     void makeAlive() {
         this.dead = false;
+        this.setStat("currentHP", this.getStat("hp"));
     }
 
 
@@ -601,6 +602,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void makeDead(String causeOfDeath) {
+        if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
     }
