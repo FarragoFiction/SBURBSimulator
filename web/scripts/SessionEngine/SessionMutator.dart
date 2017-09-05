@@ -471,7 +471,8 @@ class SessionMutator {
   String life(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
-    lifeField = true;
+   // lifeField = true;
+    return "why is everythg breaking?";
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
     ret += "Shit, and it looks like decided that death shouldn't be allowed at all....how are they supposed to beat the Black King now?";
