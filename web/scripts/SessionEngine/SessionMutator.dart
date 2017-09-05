@@ -332,7 +332,7 @@ class SessionMutator {
     }
     savedSession = s;
     //need to load the new images.
-    globalCallBack = heartCallBack();
+    globalCallBack = heartCallBack;
     load(s.players, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
 
     return ret; //<--still return tho, not waiting on the async loading
