@@ -137,6 +137,9 @@ class InterestCategory {
     bool playerLikes(Player p) {
         return p.interest1.category == this || p.interest2.category == this;
     }
+
+    @override
+    String toString() => this.name;
 }
 
 /*

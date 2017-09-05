@@ -53,7 +53,6 @@ abstract class StatDataFormat extends BinaryFileFormat<Iterable<DataPoint>> {
         List<DataPoint> data = <DataPoint>[];
 
         for (int i=0; i<count; i++) {
-            print(i);
             data.add(readDataPoint(reader));
         }
 

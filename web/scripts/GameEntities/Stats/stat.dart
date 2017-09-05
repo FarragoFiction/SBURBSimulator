@@ -60,6 +60,9 @@ class Stat {
     }
     
     double derived(StatHolder stats, double base) { return base * coefficient; }
+
+    @override
+    String toString() => this.name;
 }
 
 class XPScaledStat extends Stat {

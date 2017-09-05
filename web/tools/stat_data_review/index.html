@@ -4,10 +4,49 @@
         <meta charset="UTF-8">
         <title>Stat Data Review</title>
         <link rel="stylesheet" href="../../css/stat_review.css">
+        <link rel="stylesheet" href="../../css/colour_picker.css">
         <script type="application/dart" src="stat_data_review.dart"></script>
         <script src="packages/browser/dart.js"></script>
     </head>
     <body>
-        <div id="container"></div>
+        <div id="container">
+            <div id="load"></div>
+            <canvas id="canvas" width="800" height="400"></canvas>
+            <div>
+                <div id="stats_list" class="statset">
+                    <h2>Stat</h2>
+                    <div class="selection_block">
+                        <input type="radio" name="stat" value="*" id="stat_average" checked="checked"/>
+                        <label for="stat_average">All stat average</label>
+                    </div>
+                    <div id="stats_container">
+
+                    </div>
+                </div>
+                <div id="lines_list" class="statset">
+                    <h2>Lines</h2>
+                    <select id="select_class">
+                        <option value="*">Any</option>
+                    </select>
+                    of
+                    <select id="select_aspect">
+                        <option value="*">Any</option>
+                    </select>
+
+                    Interests:
+                    <select id="select_interest1">
+                        <option value="*">Any</option>
+                    </select>
+                    +
+                    <select id="select_interest2">
+                        <option value="*">Any</option>
+                    </select>
+                    <button id="add_line">Add Plot</button>
+                    <div id="line_container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
