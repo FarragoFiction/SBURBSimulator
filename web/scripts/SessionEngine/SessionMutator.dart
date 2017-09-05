@@ -9,6 +9,7 @@ class SessionMutator {
   bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
   bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
   bool lightField = false; //returns light player instead of whoever was asked for in most cases
+  bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -22,6 +23,7 @@ class SessionMutator {
   num sessionHealth = 500;
   Session savedSession; //for heart callback
   Player inSpotLight; //there can be only one.
+  double bloodBoost = 6.12; //how much to increase interaction effects by.
 
 
   static getInstance() {
@@ -134,23 +136,52 @@ class SessionMutator {
   //is reached for a specific aspect
 
   String blood(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Blood is going at it.");
     effectsInPlay ++;
-      /*
-          TODO:
-          * all players have sanity.abs() * 612
-          * blood field allows pale quadrant chath whenver (default)
-          *  interaction effects * 612
-          *  New fraymotif: Power of Friendship (strength is based on number of players)
-          *  All stats are averaged, then given back to party.
-          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted. (maybe???)
-          *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
-          *  All players have candy red blood.
-          *  able to bring friends from their home planet into the session as a Null of Null. They aren't heros, but at least maybe they can be saved.
-          *     they override the guardian slot and so have the stats and shit of the guardian, but  aspect is Null. class matches guardian
+    bloodField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} begins to glow amid a field of code the color of old and fresh blood. ";
+    ret += "Skaia decided the couldn't save everyone. That only SOME of their friends were destined to play the game. ";
+    ret += " They reject this rule entirely. They find a place in the code where more players exist, but aren't active yet, ";
+    ret += " And change things until they are classified as active.  They collaborate with the time player as needed, but they get the ";
+    ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Player have. ";
+    ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are in the code. ";
+    //the blood player tries to save their friends who WERN'T destined to play this game.
+    //TODO rewrite guardian code so classes are a remix of players, not random and repeatable
+    List<Player> newPlayers = getGuardiansForPlayers(s.players);
+    //I wonder if Skaia approves of you bringing random people into the game? oh well, at least they aren't dead!
+    for(Player p in newPlayers) {
+        p.aspect = Aspects.NULL; //they were never supposed to be a hero.
+        p.chatHandle = Zalgo.generate(p.chatHandle); //i don't think this should be like this....
+        p.godDestiny = false;
+        p.grimDark = 1; //i  REALLY don't think they should be like this...
+        p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
+        p.renderSelf();
+    }
 
+    s.players.addAll(newPlayers);
+    List<String> fraymotifNames = <String>["True Friends","Power of Friendship","I fight for my friends!","Care Bear Stare"];
+    int fraymotifValue = 1000*activatingPlayer.getFriends().length;
+    for(Player p in s.players) {
+      if(p.aspect != Aspects.NULL) {
+        p.setStat("sanity", p.getStat("sanity").abs() * 612);
+      }else {
+        p.setStat("sanity", p.getStat("sanity").abs() * 612* -1); //they aren't supposed to be here. they don't get the sanity protections skaia normally distributes.
+      }
+      Fraymotif f = new Fraymotif(s.rand.pickFrom(fraymotifNames), 99);
+      f.baseValue = fraymotifValue;
+      p.bloodColor = "#ff0000"; //we are ALL the same caste now.
+
+      for(String str in Player.playerStats) {
+        if(str != "sanity") p.setStat(str, getStatAverage(str, s.players)); //we all work together.
+      }
+
+    }
+
+    /*
+          TODO:
+          *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
        */
+    return ret;
   }
 
   String mind(Session s, Player activatingPlayer) {

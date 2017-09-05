@@ -39,6 +39,11 @@ class QuadrantDialogue extends Scene {
 			this.player1 = rand.pickFrom(quadrants);
 		}
 		if(this.player1 != null) this.findQuardrantMate();
+		//can choose anyone.
+		if(this.player1 == null && session.mutator.bloodField) {
+			this.player1 = session.rand.pickFrom(session.getReadOnlyAvailablePlayers());
+			this.player2 = session.rand.pickFrom(this.player1.getFriends() as List<Player>);
+		}
 	}
 	void findQuardrantMate(){
 		//set this.player2 to be one of player1's quadrant mates. first diamond, then randomly from heart, then spade, then clubs.

@@ -120,6 +120,7 @@ class SBURBClass {
         SBURBClassManager.addClass(this);
     }
 
+
     List<String> levels = <String>["SNOWMAN SAVIOR", "NOBODY NOWHERE", "NULLZILLA"];
     List<String> quests = <String>["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];
     List<String> postDenizenQuests = <String>["cleaning up after their Denizen in a class approrpiate fashion", "absolutly not goofing off instead of cleaing up after their Denizen", "vaguely sweeping up rubble"];

@@ -542,6 +542,15 @@ String findBadPrototyping(List<Player> playerList) {
     return null;
 }
 
+num getStatAverage(String statName, List<GameEntity> players) {
+    num ret = 0;
+    if(players.isEmpty) return ret;
+    for(GameEntity ge in players) {
+        ret += ge.getStat(statName);
+    }
+    return ret/players.length;
+}
+
 
 Player findHighestStatPlayer(String statName, List<Player> playerList) {
     if (playerList.isEmpty) return null; //it's empty you dunkass
