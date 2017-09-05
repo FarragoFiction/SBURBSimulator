@@ -41,7 +41,7 @@ class Random implements Math.Random {
 		this._impl = new Math.Random(seed);
 	}
 
-	int nextIntRange(int min, int max) => this.nextInt(max-min) + min;
+	int nextIntRange(int min, int max) => this.nextInt(1+max-min) + min;
 
 	T pickFrom<T>(Iterable<T> list, [bool useWeights = true]) {
 		if (list.isEmpty) { return null; }
