@@ -3,7 +3,8 @@
   HEY FUTURE JR: HAVE QUEST CHAINS HAVE REQUIREMENTS TO DO, LIKE "NEED TO DO IT WITH A QUADRANT MATE" OR "NEED TO DO IT WITH A TIME PLAYER".  IF YOU CAN'T MEET THE REQUIREMENT, DO DIFFERENT CHAIN OR SOME SHIT.
   WARNING: BEING ABANDONED FOR NOW CAUSE IT TURNS OUT MY JS WOULDN'T BE ABLE TO CALL THIS EASILY.
 
-
+have list of sense words. taste, smell, look, feel, check tumblr:
+https://jadedresearcher.tumblr.com/post/163288497664/do-you-have-any-suggestions-on-how-to-make-dungeon
   
   A planet should be tailored for a specific player.
   It's land words should have one aspect related word, (only frog for space)
