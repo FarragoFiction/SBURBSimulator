@@ -99,6 +99,8 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		session420();
 	}else if(curSessionGlobalVar.session_id == 0){
 		session0();
+	}else if(curSessionGlobalVar.session_id == 13){ //wait, why is THIRTEEN an arc number ???
+		session13();
 	}
 
 	if(getParameterByName("images",null)  == "pumpkin"){
@@ -909,8 +911,16 @@ void session420(){
 
 }
 
-
-
+//what even is this???
+void session13() {
+	curSessionGlobalVar.players = curSessionGlobalVar.mutator.metaHandler.metaPlayers; //just blow them away.
+    for(Player p in curSessionGlobalVar.players) {
+        p.initialize();
+        p.makeGuardian();
+        p.guardian.initialize();
+        p.guardian.guardian = p;
+    }
+}
 
 void session0(){
 	for(int i = 0; i<12; i++){

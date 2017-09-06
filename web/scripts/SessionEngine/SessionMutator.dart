@@ -647,7 +647,8 @@ class MetaPlayerHandler {
 
 
     List<Player> get metaPlayers {
-        return <Player>[aspiringWatcher, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, jadedResearcher, authorBot, authorBotJunior ];
+        //i'm totally the leader, everything else is alphabetical besides ab and abj who cheat
+        return <Player>[jadedResearcher, aspiringWatcher, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior ];
     }
 
     void initalizePlayers(Session s) {
@@ -780,7 +781,7 @@ class MetaPlayerHandler {
     }
 
     Player makePL(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SEER, Aspects.VOID);
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WITCH, Aspects.VOID);
         player.hair = 47;
         player.hairColor = "#453012";
         player.bloodColor = "#ff0000";
@@ -812,6 +813,7 @@ class MetaPlayerHandler {
     Player makeAB(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.GUIDE, Aspects.MIND);
         player.hair = 13;
+        player.robot = true;
         player.hairColor = "#2B2A2D";
         player.bloodColor = "#0021cb";
         player.isTroll = false;
@@ -827,6 +829,7 @@ class MetaPlayerHandler {
     Player makeABJ(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCOUT, Aspects.MIND);
         player.hair = 13;
+        player.robot = true;
         player.hairColor = "#2B2A2D";
         player.bloodColor = "#0021cb";
         player.isTroll = false;
