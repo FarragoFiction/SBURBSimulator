@@ -4,7 +4,7 @@ import "../SBURBSim.dart";
 
 class RainClone extends Scene {
   List<Player> playerList = []; //what players are already in the medium when i trigger?
-  bool canRepeat = false; //todo: change such that this can repeat 2-3 times in
+  bool canRepeat = true; //todo: change such that this can repeat 2-3 times in
   Player original = null;
   Player other = null;
 
@@ -18,7 +18,7 @@ class RainClone extends Scene {
     if (this.original == null) {
       return false;
     } else {
-      return (this.original != null);
+      return (this.original != null && this.session.rand.nextIntRange(0, 100) >= 80);//yes, this is random. kill me.
     }
   }
   @override

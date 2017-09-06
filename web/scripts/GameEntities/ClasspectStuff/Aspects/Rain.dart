@@ -18,7 +18,12 @@ class Rain extends Aspect {
     ..pants_dark = '#008000';
 
   @override
-  //List<String>
+    @override
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+        new AssociatedStat("RELATIONSHIPS", -2, true),
+        new AssociatedStat("sanity", -1, true),
+        new AssociatedStat("maxLuck", 3, true)
+    ]);
 
   Rain(int id) :super(id, "Rain", isCanon: false);
 }
