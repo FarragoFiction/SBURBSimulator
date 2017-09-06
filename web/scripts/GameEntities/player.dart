@@ -77,6 +77,7 @@ class Player extends GameEntity {
     bool denizenDefeated = false;
     bool denizenMinionDefeated = false;
 
+
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
         this.name = "player_$id"; //this.htmlTitleBasic();
     }
@@ -610,14 +611,14 @@ class Player extends GameEntity {
         List<Fraymotif> psionics = <Fraymotif>[];
         //telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
             {
-            Fraymotif f = new Fraymotif("Telekinisis", 1);
+            Fraymotif f = new Fraymotif("Telekinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.desc = " Large objects begin pelting the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif("Pyrokinisis", 1);
+            Fraymotif f = new Fraymotif("Pyrokinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.desc = " Who knew shaving cream was so flammable? ";
             psionics.add(f);
@@ -629,6 +630,34 @@ class Player extends GameEntity {
             f.desc = " A deluge begins damaging the ENEMY. ";
             psionics.add(f);
         }
+
+        {
+            Fraymotif f = new Fraymotif("Electrokinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " An electric pulse begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
+        {
+            Fraymotif f = new Fraymotif("Terakinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " The very ground begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
+        {
+            Fraymotif f = new Fraymotif("Vitaekinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " The ENEMY's own body is turned against them as they begin punching their own face. ";
+            psionics.add(f);
+        }
+        {
+            Fraymotif f = new Fraymotif("Fungikinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " A confusing array of mushrooms begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
 
         {
             Fraymotif f = new Fraymotif("Mind Control", 1);

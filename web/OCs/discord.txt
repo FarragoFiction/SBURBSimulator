@@ -87,5 +87,5 @@ b=%00%00%00%C2%92%C3%BE%18%00E..%0B&s=,,Vaporwave,Gardening,cyrenaicCalenture
 b=%40%00%C2%80%C2%B6%C3%B9%C3%95%14%1C..F&s=,,Knowledge,Status,villianousLinguistic
 b=%00%00%00%C3%A6%C3%B6%C2%A3%10Y%3E%3E%2F&s=,,A.I.,Dungeon Mastering,paradoxicallyTranquil
 b=%3B0%24%1A%C3%BE%C2%9B%00Q%0D%0D%01&s=,,Video Games,Dogs,phlegmaticCanine
-b=N%1B%1Bx%C3%BE%C2%AD%00%18..%04&s=,,Computers,Science,SniperZee&x=AQ==
+b=N%1B%1Bx%C3%BE%C2%AD%00%18..%04&s=,,Computers,Science,SniperZee
 b=%C3%BF%C2%87%C2%B7%C2%A5%C3%BE%2C%00%08%04%0A%3F&s=,,Red-bean Buns,Boys,azukiMochi

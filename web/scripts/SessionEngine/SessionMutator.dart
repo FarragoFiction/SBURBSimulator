@@ -12,6 +12,7 @@ class SessionMutator {
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   bool doomField = false; //causes dead players to be treated as live ones.
+  bool rageField = true; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -26,6 +27,8 @@ class SessionMutator {
   Session savedSession; //for heart callback
   Player inSpotLight; //there can be only one.
   double bloodBoost = 6.12; //how much to increase interaction effects by.
+  MetaPlayerHandler metaHandler = new MetaPlayerHandler();
+
 
 
   static getInstance() {
@@ -222,12 +225,22 @@ class SessionMutator {
     return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
+    rageField = true;
+    metaHandler.initalizePlayers(s);
     /*
         TODO:
         All players are murder mode, all players are god tier, all players hate each other.
         One or more creators or wranglers are spawned in game, and they hate US most of all.
 
+        rage field means fraymotif effects don't get cleared at end of fight.
+
+        IMPORTANT: need to load the meta players here and have a callback that adds them to the session.  Will be async. How to handle? Or should I care. It's rage, lol.
+
+        IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
+
+field effect: everybody is catchable
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
+        mutator has a get list of all meta players. and lists of who is specific meta players.
 
         if observer dies.  Players leave session and it just ends.
 
@@ -244,6 +257,8 @@ class SessionMutator {
         kill brope, all but one player dies
 
         kill PL lands get rerolled/fucked up eventually
+
+        have this file know how to spawn us and 13 easter egg does curSession.mutator
 
         //look at how troll kid rock works for async loading
      */
@@ -610,4 +625,82 @@ class SessionMutator {
   }
 
 
+}
+
+class MetaPlayerHandler {
+    //want them to be specifically named so we can use them for other things l8r. session 13 most notably.
+    Player aspiringWatcher;
+    Player dilletantMathematician;
+    Player insufferableOracle;
+    Player manicInsomniac;
+    Player nobody;
+    Player wooMod;
+    Player recusiveSlacker;
+    Player paradoxLands;
+    Player karmicRetribution;
+    Player jadedResearcher;
+    Player authorBot;
+    Player authorBotJunior;
+
+
+
+    List<Player> get metaPlayers {
+        return <Player>[aspiringWatcher, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, jadedResearcher, authorBot, authorBotJunior ];
+    }
+
+    void initalizePlayers(Session s) {
+        aspiringWatcher = makeAW(s);
+    }
+
+    Player makeAW(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
+
+        return player;
+    }
+
+    Player makeDM(Session s) {
+
+    }
+
+    Player makeIO(Session s) {
+
+    }
+
+
+
+    Player makeMI(Session s) {
+
+    }
+
+    Player makeNB(Session s) {
+
+    }
+
+    Player makeWM(Session s) {
+
+    }
+
+    Player makeRS(Session s) {
+
+    }
+
+    Player makeKR(Session s) {
+
+    }
+
+    Player makePL(Session s) {
+
+    }
+
+    Player makeJR(Session s) {
+
+    }
+
+    Player makeAB(Session s) {
+
+    }
+
+    Player makeABJ(Session s) {
+
+    }
 }
