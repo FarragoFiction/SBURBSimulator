@@ -105,6 +105,10 @@ class SBURBClassManager {
         }
         return NULL;
     }
+    
+    static List<SBURBClass> playersToClasses(List<Player> players) {
+        return new List<SBURBClass>.from(players.map((Player p) => p.class_name));
+    }
 
 }
 
@@ -123,6 +127,7 @@ class SBURBClass {
         //print("Making a sburb class ${this.name}");
         SBURBClassManager.addClass(this);
     }
+
 
     List<String> levels = <String>["SNOWMAN SAVIOR", "NOBODY NOWHERE", "NULLZILLA"];
     List<String> quests = <String>["definitely doing class related quests", "solving consorts problems in a class themed manner", "absolutely not goofing off"];

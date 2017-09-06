@@ -34,6 +34,7 @@ class DoLandQuest extends Scene{
 		    }
 	    }
     }
+
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){

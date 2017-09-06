@@ -23,7 +23,7 @@ class StatSampler {
         this.turn = 0;
     }
 
-    Uri save() {
+    String save() {
         return saveFormat.objectToDataURI(data);
     }
 
@@ -36,7 +36,7 @@ class StatSampler {
             String date = "${now.year.toString().padLeft(4,"0")}${now.month.toString().padLeft(2,"0")}${now.day.toString().padLeft(2,"0")}";
             String time = "${now.hour.toString().padLeft(2,"0")}${now.minute.toString().padLeft(2,"0")}${now.second.toString().padLeft(2,"0")}";
 
-            AnchorElement link = new AnchorElement(href:this.save().toString())..className="loadedimg"
+            AnchorElement link = new AnchorElement(href:this.save())..className="loadedimg"
                 ..download="snapshot${this.data.length}_v${saveFormat.version}_${date}_$time.statdata";
             container.append(link);
             link..click()..remove();
@@ -66,7 +66,7 @@ class DataPoint {
         this.interest2 = player.interest2.category;
 
         for (String stat in player.stats.keys) {
-            statsold[stat] = player.stats[stat].toDouble();
+            statsold[stat] = player.getStat(stat).toDouble();
         }
 
         StatSampler.logger.debug("Data point for $player at time $time");
@@ -79,6 +79,18 @@ class DataPoint {
         if (statsold != null) {
             this.statsold = statsold;
         }
+    }
+
+    double getStat(Stat stat) {
+        if (stat != null) {
+            return stats[stat];
+        }
+
+        double total = 0.0;
+        for (double val in this.stats.values) {
+            total += val;
+        }
+        return this.stats.isEmpty ? 0.0 : total / this.stats.length;
     }
 }
 

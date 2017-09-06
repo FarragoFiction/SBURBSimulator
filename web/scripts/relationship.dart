@@ -27,7 +27,7 @@ class Relationship {
 
     //target has to be private if light player can override it. this lets code still do .target, but not .target =
     Player get target {
-        if(curSessionGlobalVar.mutator.lightField) {
+        if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) {
             Player megalomaniac =  curSessionGlobalVar.mutator.inSpotLight;
             if(source != megalomaniac) return megalomaniac; //don't be in a relationship with your self.
         }
@@ -267,6 +267,10 @@ class Relationship {
 
     static void makeHeart(Player player1, Player player2) {
         player1.session.stats.hasHearts = true;
+        if(player1.session.mutator.lightField) {
+            player1 = player1.session.mutator.inSpotLight;
+            player2 = player1.session.mutator.inSpotLight;
+        }
         Relationship r1 = player1.getRelationshipWith(player2);
         r1.setOfficialRomance(r1.heart);
         Relationship r2 = player2.getRelationshipWith(player1);
@@ -276,6 +280,10 @@ class Relationship {
 
     static void makeSpades(Player player1, Player player2) {
         player1.session.stats.hasSpades = true;
+        if(player1.session.mutator.lightField) {
+            player1 = player1.session.mutator.inSpotLight;
+            player2 = player1.session.mutator.inSpotLight;
+        }
         Relationship r1 = player1.getRelationshipWith(player2);
         r1.setOfficialRomance(r1.spades);
         Relationship r2 = player2.getRelationshipWith(player1);
@@ -285,6 +293,10 @@ class Relationship {
 
     static void makeDiamonds(Player player1, Player player2) {
         player1.session.stats.hasDiamonds = true;
+        if(player1.session.mutator.lightField) {
+            player1 = player1.session.mutator.inSpotLight;
+            player2 = player1.session.mutator.inSpotLight;
+        }
         Relationship r1 = player1.getRelationshipWith(player2);
         if (r1.value < 0) {
             r1.value = 1; //like you at least a little
@@ -301,6 +313,11 @@ class Relationship {
 //clubs, why you so cray cray?
     static void makeClubs(Player middleLeaf, Player asshole1, Player asshole2) {
         asshole1.session.stats.hasClubs = true;
+        if(middleLeaf.session.mutator.lightField) {
+            middleLeaf = middleLeaf.session.mutator.inSpotLight;
+            asshole1 = middleLeaf.session.mutator.inSpotLight;
+            asshole2 = middleLeaf.session.mutator.inSpotLight;
+        }
         Relationship rmid1 = middleLeaf.getRelationshipWith(asshole1);
         Relationship rmid2 = middleLeaf.getRelationshipWith(asshole2);
 
@@ -336,6 +353,8 @@ class Relationship {
         if(source.session.mutator.heartField) {
             source.session.logger.info("heart field active");
             return new Relationship(source, 333, targetPlayer); //all ships canon!!!
+        }else if(source.session.mutator.bloodField) {
+            return new Relationship(source, 10, targetPlayer); //everyone gets along, but not necessarily romantic
         }
         return new Relationship(source, source.session.rand.nextIntRange(-21, 22), targetPlayer);
        // return  new Relationship(source, 10000000, targetPlayer);;

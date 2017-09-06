@@ -496,7 +496,7 @@ class GameEntity implements Comparable<GameEntity> {
             ret += (ret/2).abs();  //gain half your stats
             //////session.logger.info("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
         }
-
+        if(session.mutator.doomField) return -1* ret.round(); //bad is good good is bad.
         return (ret).round();
     }
 
@@ -592,6 +592,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     void makeAlive() {
         this.dead = false;
+        this.setStat("currentHP", this.getStat("hp"));
     }
 
 
@@ -601,6 +602,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void makeDead(String causeOfDeath) {
+        if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
     }

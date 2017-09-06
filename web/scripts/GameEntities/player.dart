@@ -295,6 +295,8 @@ class Player extends GameEntity {
 
     @override
     String makeDead(String causeOfDeath) {
+        print("making dead $causeOfDeath");
+        if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
         String ret = "";
         this.dead = true;
         this.timesDied ++;
@@ -739,7 +741,7 @@ class Player extends GameEntity {
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
-        if (this.didDenizenKillYou() && !(this.grimDark <= 2)) {
+        if (this.didDenizenKillYou() && (this.grimDark <= 2)) {
             return false;
         } else if (this.grimDark > 2) {
             //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!just death for a corrupt player from their denizen or denizen minion in session: ${this.session.session_id.toString()}");
@@ -1197,14 +1199,13 @@ class Player extends GameEntity {
 
     @override
     Relationship getRelationshipWith(GameEntity player) {
+        if(session.mutator.lightField && session.mutator.inSpotLight != null) player = session.mutator.inSpotLight; //check for null so i can make previous holder hate new one
         for (Relationship r in relationships) {
             if (r.target.id == player.id) {
                 return r;
-            }else {
-                print("${player.title()} is not ${r.target.title()} because ${player.id} is not ${r.target.id}");
             }
         }
-        print("Could not find relationship with ${player.title()} in ${relationships}");
+        //print("Could not find relationship with ${player.title()} in ${relationships}");
         return null;
     }
 
@@ -1293,6 +1294,7 @@ class Player extends GameEntity {
     }
 
     List<Player> getEnemiesFromList(List<GameEntity> potentialEnemies) {
+        if(session.mutator.lightField) return [session.mutator.inSpotLight];
         List<Player> ret = <Player>[];
         for (num i = 0; i < potentialEnemies.length; i++) {
             GameEntity p = potentialEnemies[i];
@@ -1446,6 +1448,7 @@ class Player extends GameEntity {
             this.decideHemoCaste();
             this.decideLusus();
             this.object_to_prototype = this.myLusus;
+            this.object_to_prototype.session = session;
         } else {
             this.hairColor = session.rand.pickFrom(human_hair_colors);
         }
@@ -1466,8 +1469,8 @@ class Player extends GameEntity {
         }
     }
 
-    List<GameEntity> getFriends() {
-        List<GameEntity> ret = <GameEntity>[];
+    List<Player> getFriends() {
+        List<Player> ret = <Player>[];
         for (num i = 0; i < this.relationships.length; i++) {
             if (this.relationships[i].value > 0) {
                 ret.add(this.relationships[i].target);
@@ -1925,6 +1928,10 @@ class Player extends GameEntity {
 
     void initializeStats() {
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
+        if(trickster) {
+            landLevel = 11111111111.0;
+            grist = 11111111111;
+        }
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
         this.aspect.initAssociatedStats(this);
         this.class_name.initAssociatedStats(this);
@@ -1943,9 +1950,11 @@ class Player extends GameEntity {
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
             this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
             this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            this.object_to_prototype.session = session;
             ////print("fortune");
         }
         if (luck > 5) {
@@ -2032,7 +2041,7 @@ class Player extends GameEntity {
         ret.quirk = player.quirk;
         ret.baby = player.baby;
         ret.causeOfDeath = player.causeOfDeath;
-
+        ret.session = player.session; //session is non negotiable.
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.setStatsHash(player.stats);
@@ -2044,6 +2053,7 @@ class Player extends GameEntity {
     static Player makeDoomedSnapshot(Player doomedPlayer) {
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
         timeClone.dead = false;
+        timeClone.prophecy = ProphecyState.ACTIVE;
         timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
         timeClone.doomed = true;
         //from a different timeline, things went differently.

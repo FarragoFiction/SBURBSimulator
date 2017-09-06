@@ -69,6 +69,7 @@ class Sylph extends SBURBClass {
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
         num powerBoost = 2 * p.getStat("power") / 20;
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
+        if(p.session.mutator.bloodField) powerBoost = powerBoost * p.session.mutator.bloodBoost;
         //modify other.
         target.modifyAssociatedStat(powerBoost, stat);
     }

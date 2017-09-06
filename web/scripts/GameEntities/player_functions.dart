@@ -136,6 +136,7 @@ Player blankPlayerNoDerived(Session session) {
 
 Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
     GameEntity k = session.rand.pickFrom(prototyping_objects);
+    k.session = session;
 
 
     bool gd = false;
@@ -167,6 +168,7 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
     ////print("random player");
    // //print("class: $c, aspect: $a, session: $session");
     GameEntity k = session.rand.pickFrom(prototyping_objects);
+    k.session = session;
 
     bool gd = false;
 
@@ -249,7 +251,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
 
 
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
-    if(curSessionGlobalVar.mutator.lightField) return [curSessionGlobalVar.mutator.inSpotLight];
+    if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) return [curSessionGlobalVar.mutator.inSpotLight];
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player
@@ -349,7 +351,7 @@ List<T> findDeadPlayers<T extends GameEntity>(List<T> playerList) {
     List<T> ret = <T>[];
     for (int i = 0; i < playerList.length; i++) {
         T p = playerList[i];
-        if (p.dead) {
+        if (p.dead || (playerList[i].session.mutator.doomField && !p.dead)) {
             ret.add(p);
         }
     }
@@ -374,7 +376,7 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
 List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
     List<T> ret = new List<T>();
     for (int i = 0; i < playerList.length; i++) {
-        if (!playerList[i].dead) {
+        if (!playerList[i].dead || (playerList[i].session.mutator.doomField && playerList[i].dead )) { //the dead are alive.
             ret.add(playerList[i]);
         }
     }
@@ -542,6 +544,15 @@ String findBadPrototyping(List<Player> playerList) {
     return null;
 }
 
+num getStatAverage(String statName, List<GameEntity> players) {
+    num ret = 0;
+    if(players.isEmpty) return ret;
+    for(GameEntity ge in players) {
+        ret += ge.getStat(statName);
+    }
+    return ret/players.length;
+}
+
 
 Player findHighestStatPlayer(String statName, List<Player> playerList) {
     if (playerList.isEmpty) return null; //it's empty you dunkass
@@ -579,9 +590,8 @@ Player findLowestMobilityPlayer(List<Player> playerList) {
 
 String findGoodPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
-        if (playerList[i].object_to_prototype.illegal == true) {
-            ////print("found good");
-            return (playerList[i].object_to_prototype.htmlTitle());
+        if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.illegal == true) {
+           return (playerList[i].object_to_prototype.htmlTitle());
         }
     }
     return null;

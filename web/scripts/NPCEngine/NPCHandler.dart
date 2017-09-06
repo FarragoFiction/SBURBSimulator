@@ -13,6 +13,11 @@ class NPCHandler
 
     NPCHandler(this.session);
 
+    List<GameEntity> get allNPCS {
+        return <GameEntity>[jack, king, queen, democraticArmy];
+    }
+
+
     void spawnQueen() {
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;

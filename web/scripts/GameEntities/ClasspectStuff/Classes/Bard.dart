@@ -40,6 +40,7 @@ class Bard extends SBURBClass {
         num powerBoost = p.getStat("power") / 20;
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
         //modify others
+        if(p.session.mutator.bloodField) powerBoost = powerBoost * p.session.mutator.bloodBoost;
         target.modifyAssociatedStat(powerBoost, stat);
     }
 

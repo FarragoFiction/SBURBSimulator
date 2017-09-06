@@ -76,11 +76,12 @@ class Session {
     }
 
     //near as i can figure logger.debug just straight up never works.
-    void removeAvailablePlayer(Player p) {
-        if (p == null || !(p is Player)) {
+    void removeAvailablePlayer(GameEntity p1) {
+        if (p1 == null || !(p1 is Player)) {
             //logger.info("i think player is null or not a player");
             return;
         }
+        Player p = p1;
         //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
         if(p.dead || !(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) {
             //logger.info("removing player $p");
@@ -459,6 +460,9 @@ class Session {
     void makeGuardians() {
         ////print("Making guardians");
         resetAvailableClasspects();
+        //guardians have to pick from existing classes.
+        available_classes_guardians = SBURBClassManager.playersToClasses(players);
+
         List<Player> guardians = <Player>[];
         for (num i = 0; i < this.players.length; i++) {
             Player player = this.players[i];

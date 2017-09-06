@@ -2,6 +2,7 @@ import "SBURBClass.dart";
 
 class Scout extends SBURBClass {
     Scout() : super("Scout", 13, false);
+    //i am thinking guides will give other players their own aspects (and not the guides) while scouts will gain whoever they are with's aspect.
     @override
     List<String> levels = ["BOSTON SCREAMPIE", "COOKIE OFFERER", "FIRE FRIEND"];
     @override

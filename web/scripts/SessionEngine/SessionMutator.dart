@@ -9,6 +9,9 @@ class SessionMutator {
   bool heartField = false; //disallows breakups, 'random' relationships are 333, and reasons to date someone is 333 for shipping
   bool voidField = false; //has newScenes be added to a custom div instead of $story. newScene will clear that div constantly
   bool lightField = false; //returns light player instead of whoever was asked for in most cases
+  bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
+  bool lifeField = false; //makeDead does nothing, all dead things are brought back.
+  bool doomField = false; //causes dead players to be treated as live ones.
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -22,6 +25,7 @@ class SessionMutator {
   num sessionHealth = 500;
   Session savedSession; //for heart callback
   Player inSpotLight; //there can be only one.
+  double bloodBoost = 6.12; //how much to increase interaction effects by.
 
 
   static getInstance() {
@@ -134,23 +138,58 @@ class SessionMutator {
   //is reached for a specific aspect
 
   String blood(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Blood is going at it.");
     effectsInPlay ++;
-      /*
-          TODO:
-          * all players have sanity.abs() * 612
-          * guardians are spawned as players to help you.
-          * blood field allows pale quadrant chath whenver (default)
-          *  interaction effects * 612
-          *  New fraymotif: Power of Friendship (strength is based on number of players)
-          *  All stats are averaged, then given back to party.
-          *  Session Mutator: pale  quadrant chats happen constantly, even if not quadranted. (maybe???)
-          *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
-          *  All players have candy red blood.
-          *  new players are allowed to enter session (what the fuck did I mean by this?)
+    bloodField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} begins to glow amid a field of code the color of old and fresh blood. ";
+    ret += "Skaia decided they couldn't save everyone. That only SOME of their friends were destined to play the game. ";
+    ret += " They reject this rule entirely. They find a place in the code where more players exist, but aren't active yet, ";
+    ret += " And change things until they are classified as active.  They collaborate with the time player as needed, but they get the ";
+    ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Player have. ";
+    ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are at it. ";
+    //the blood player tries to save their friends who WERN'T destined to play this game.
+    //TODO rewrite guardian code so classes are a remix of players, not random and repeatable
+    List<Player> newPlayers = getGuardiansForPlayers(s.players);
+    //I wonder if Skaia approves of you bringing random people into the game? oh well, at least they aren't dead!
+    for(Player p in newPlayers) {
+        p.aspect = Aspects.NULL; //they were never supposed to be a hero.
+        p.chatHandle = Zalgo.generate(p.chatHandle); //i don't think this should be like this....
+        p.godDestiny = false;
+        p.grimDark = 1; //i  REALLY don't think they should be like this...
+        p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
+        p.renderSelf();
+        p.land = null; //SBURB doesn't have a land for you.
+    }
+    //HEY did you know that SBURB calculates grist requirements based on number of players?
+    //NO? Neither does this blood player.  And these Null players don't have lands....whoops! Hope you like playing SBURB hard mode!
+    //It's worth it to get your friends in though, right?
+    s.players.addAll(newPlayers);
+    List<String> fraymotifNames = <String>["True Friends","Power of Friendship","I fight for my friends!","Care Bear Stare"];
+    int fraymotifValue = 1000*activatingPlayer.getFriends().length;
+    for(Player p in s.players) {
+      if(p.aspect != Aspects.NULL) {
+        p.setStat("sanity", p.getStat("sanity").abs() * 612);
+      }else {
+        p.setStat("sanity", p.getStat("sanity").abs() * 612* -1); //they aren't supposed to be here. they don't get the sanity protections skaia normally distributes.
+      }
+      Fraymotif f = new Fraymotif(s.rand.pickFrom(fraymotifNames), 99);
+      f.baseValue = fraymotifValue;
+      p.bloodColor = "#ff0000"; //we are ALL the same caste now.
+      //need to have relationship with new null players
+      p.relationships = <Relationship>[];
+      p.generateRelationships(s.players);
 
+      for(String str in Player.playerStats) {
+        if(str != "sanity" && str != "RELATIONSHIPS") p.setStat(str, getStatAverage(str, s.players)); //we all work together.
+      }
+
+    }
+
+    /*
+          TODO:
+          *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
        */
+    return ret;
   }
 
   String mind(Session s, Player activatingPlayer) {
@@ -159,7 +198,8 @@ class SessionMutator {
     effectsInPlay ++;
     /*
       TODO:
-        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
+        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me. PAUSE when this happens.
+        *     * yes, it means you don't know how it ends before you change things. but neither does the mind player.
         *  all options are listed instead of just a yards worth (so custom)
         *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
         * A few custom options as well, up at the top
@@ -202,6 +242,8 @@ class SessionMutator {
         kill brope, all but one player dies
 
         kill PL lands get rerolled/fucked up eventually
+
+        //look at how troll kid rock works for async loading
      */
 
   }
@@ -230,19 +272,6 @@ class SessionMutator {
       }
     }
     return ret;
-    /*
-        TODO:
-          * but NEVER print anything past this, not even in the void.
-
-          *   * acomplish this by creating a new div with id voided you print to. if void field in effect
-          *   random things happen here, people stat's are improved by random amounts, land levels and grist too. drop session health, tho
-          *    newScene only appends there, and clears it out constantly. not just not displayed but GONE.
-          * print Aftermath in $story as normal so you can see it.
-          * if Yellow Yard happens, even the choices are blanked (but you can still pick them.)? (maybe? might be hard)
-          *    *  if void field is in effect, LIE LIKE CRAZY TO AB.
-         *     THAT WAY I DON'T HAVE TO RANDOMIZE THINGS AND STEP ON BREATHS TOES, BUT YOU STILL HAVE NO CLUE WHAT HAPPENED.
-
-       */
 
   }
 
@@ -255,7 +284,7 @@ class SessionMutator {
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
           *   Create players, then change seed. shuffle player order, etc.
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
-          *   "go" button similar to scratch before resetting.
+          *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
 
        */
   }
@@ -304,7 +333,7 @@ class SessionMutator {
     }
     savedSession = s;
     //need to load the new images.
-    globalCallBack = heartCallBack();
+    globalCallBack = heartCallBack;
     load(s.players, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
 
     return ret; //<--still return tho, not waiting on the async loading
@@ -338,6 +367,9 @@ class SessionMutator {
     //"The Name has been spouting too much hippie gnostic crap, you think they got wasted on the koolaid."
     effectsInPlay ++;
     lightField = true;
+    Player previousHolder = inSpotLight;
+    inSpotLight = null;
+    if(previousHolder != null) previousHolder.getRelationshipWith(activatingPlayer).value = -88888888; //you BITCH you stole my spotlight. won't make them insane, tho.
     inSpotLight = activatingPlayer; //replaces whoever was there before.
     voidField = false; //overrides the void player.
     activatingPlayer.leader = true;
@@ -438,32 +470,64 @@ class SessionMutator {
   }
 
   String life(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Life is going at it.");
     effectsInPlay ++;
-    /*
-        TODO:
-          * Everyone is trickster
-          * makeDead does nothing anymore
-          * anybody dead (including enemies) is brought back
-          *
-     */
+    lifeField = true;
+    String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
+    ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
+    ret += "Shit, and it looks like decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
+    ret += "I don't think they thought this through...";
+    //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
+    for(Player p in s.players) {
+      p.trickster = true;
+      p.hairColor = s.rand.pickFrom(tricksterColors).toStyleString();
+      p.bloodColor = s.rand.pickFrom(tricksterColors).toStyleString();
+      p.initializeStats();
+      p.dead = false;
+      p.denizenMinion.makeAlive();
+      p.dreamSelf = true; //your dream self is revived, too.
+      p.denizen.makeAlive();
+      p.renderSelf();
+    }
 
+    List<GameEntity> npcs = s.npcHandler.allNPCS;
+    for(GameEntity g in npcs) {
+      g.makeAlive();
+    }
+    return ret;
   }
 
   String doom(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Doom is going at it.");
     effectsInPlay ++;
+    doomField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} is floating in a field of glowing code, rewriting the very rules of SBURB, just as prophecy foretold. ";
+    List<Player> unDoomedClones = new List<Player>();
+    for(Player p in s.players) {
+        if(unDoomedClones.length < 12) {
+            for(Player doomed in p.doomedTimeClones) {
+                if(unDoomedClones.length < 12) unDoomedClones.add(doomed);
+            }
+            p.doomedTimeClones.clear(); //they aren't doomed anymore, even if they weren't added.
+        }
+    }
+    s.players.addAll(unDoomedClones);
+    if(unDoomedClones.length > 0) {
+        ret += "Some of the survivors of doomed timelines are added to the session as full players. This will not end well.";
+    }
+    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player stats are inverted, including their living attribute. ";
+    for(Player p in s.players) {
+        p.generateBlandRelationships(s.players); //hard to be excited with that much doom running around. also gives the doomed players relationships.
+    }
     /*
       TODO:
         * all stats flip
           * healing hurts, hurting heals
           * all stats are multiplied by -1 so high is bad and low is good.
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
-          * doomed time clones aren't doomed
+          * //this is one that confuses me. not sure how it'll work.
      */
-
+    return ret;
   }
 
   //if it's not done yet.
