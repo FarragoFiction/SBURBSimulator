@@ -21,6 +21,7 @@ class Player extends GameEntity {
     num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
+    bool deriveLand = true;
     String flipOutReason = null; //if it's null, i'm not flipping my shit.
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
     num denizen_index = 0; //denizen quests are in order.
@@ -911,6 +912,7 @@ class Player extends GameEntity {
         if (denizen != null) clone.denizenMinion = denizenMinion.clone();
         if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
+        clone.deriveLand = deriveLand;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
         clone.denizen_index = denizen_index; //denizen quests are in order.
@@ -1793,7 +1795,7 @@ class Player extends GameEntity {
         List<String> tmp = getRandomLandFromPlayer(this);
         this.land1 = tmp[0];
         this.land2 = tmp[1];
-        this.land = "Land of ${tmp[0]} and ${tmp[1]}";
+        if(this.deriveLand) this.land = "Land of ${tmp[0]} and ${tmp[1]}";
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
         this.mylevels = getLevelArray(this); //make them ahead of time for echeladder graphic
 

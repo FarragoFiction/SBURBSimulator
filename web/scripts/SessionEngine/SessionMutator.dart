@@ -236,6 +236,8 @@ class SessionMutator {
 
         rage field: ALL deaths are just.
 
+        IMPORTANT: make sure easter egg chars (even canon) have their lands not get overriden. same as deriveChat i guess.
+
         IMPORTANT: need to load the meta players here and have a callback that adds them to the session.  Will be async. How to handle? Or should I care. It's rage, lol.
 
         IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
@@ -648,12 +650,13 @@ class MetaPlayerHandler {
 
     List<Player> get metaPlayers {
         //i'm totally the leader, everything else is alphabetical besides ab and abj who cheat
-        return <Player>[jadedResearcher, aspiringWatcher, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior ];
+        return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior ];
     }
 
     void initalizePlayers(Session s) {
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
+        dilletantMathematician = makeDM(s);
         insufferableOracle = makeIO(s);
         manicInsomniac = makeMI(s);
         nobody = makeNB(s);
@@ -668,6 +671,7 @@ class MetaPlayerHandler {
     Player makeAW(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
         player.hair = 56;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#000000";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -678,6 +682,7 @@ class MetaPlayerHandler {
         player.land = "Land of Placeholders and Waiting";
         player.deriveChatHandle = false;
         player.godTier = true;
+        player.deriveLand = false;
         return player;
     }
 
@@ -685,6 +690,7 @@ class MetaPlayerHandler {
     Player makeDM(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PRINCE, Aspects.TIME);
         player.hair = 29;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -695,15 +701,17 @@ class MetaPlayerHandler {
         player.land = "Land of Cardboard and Grass";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeIO(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.MAGE, Aspects.SPACE);
         player.hair = 68;
         player.hairColor = "#000000";
         player.bloodColor = "#0021cb";
         player.isTroll = true;
+        player.ectoBiologicalSource = 13;
         player.leftHorn = 71;
         player.rightHorn = 71;
         player.godTier = true;
@@ -713,6 +721,7 @@ class MetaPlayerHandler {
         player.moon = "Prospit";
         player.land = "Land of Placeholders and Waiting";
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
@@ -721,6 +730,7 @@ class MetaPlayerHandler {
     Player makeMI(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.BARD, Aspects.DOOM);
         player.hair = 1;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -731,12 +741,14 @@ class MetaPlayerHandler {
         player.land = "Land of Sound and Fury";
         player.deriveChatHandle = false;
         player.godTier = true;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeNB(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.BLOOD);
         player.hair = 67;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -747,6 +759,7 @@ class MetaPlayerHandler {
         player.land = "Land of Charles and Dutton";
         player.deriveChatHandle = false;
         player.godTier = true;
+        player.deriveLand = false;
         return player;
     }
 
@@ -754,6 +767,7 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SYLPH, Aspects.BREATH);
         player.hair = 17;
         player.hairColor = "#800000";
+        player.ectoBiologicalSource = 13;
         player.bloodColor = "#ff0000";
         player.isTroll = false;
         player.chatHandle = "wooMod";
@@ -763,12 +777,14 @@ class MetaPlayerHandler {
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeRS(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SEER, Aspects.VOID);
         player.hair = 60;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -779,12 +795,14 @@ class MetaPlayerHandler {
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeKR(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.ROGUE, Aspects.HEART);
         player.hair = 46;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#E8D099";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -795,12 +813,14 @@ class MetaPlayerHandler {
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makePL(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WITCH, Aspects.VOID);
         player.hair = 47;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#453012";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -810,12 +830,15 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Cults and Chandeliers";
         player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeJR(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WASTE, Aspects.MIND);
         player.hair = 13;
+        player.ectoBiologicalSource = 13;
         player.hairColor = "#3C1E07";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
@@ -826,12 +849,14 @@ class MetaPlayerHandler {
         player.land = "Land of Rods and Screens";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeAB(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.GUIDE, Aspects.MIND);
         player.hair = 13;
+        player.ectoBiologicalSource = 13;
         player.robot = true;
         player.hairColor = "#2B2A2D";
         player.bloodColor = "#0021cb";
@@ -843,22 +868,25 @@ class MetaPlayerHandler {
         player.land = "Land of Bugs and Javascript";
         player.godTier = true;
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 
     Player makeABJ(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCOUT, Aspects.MIND);
         player.hair = 13;
+        player.ectoBiologicalSource = 13;
         player.robot = true;
         player.hairColor = "#2B2A2D";
         player.bloodColor = "#0021cb";
         player.isTroll = false;
-        player.chatHandle = "authorBot";
+        player.chatHandle = "authorBotJunior";
         player.interest1 = new Interest("Arson", InterestManager.TERRIBLE);
         player.interest2 = new Interest("Shipping", InterestManager.ROMANTIC);
         player.moon = "Derse";
         player.land = "Land of Hrmmm... and Interesting!!!";
         player.deriveChatHandle = false;
+        player.deriveLand = false;
         return player;
     }
 }

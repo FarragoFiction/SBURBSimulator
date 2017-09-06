@@ -414,6 +414,7 @@ void session111111(){
 void session413IndexToHuman(Player player, int index){
 	player.isTroll = false;
 	player.deriveChatHandle = false;
+    player.deriveLand = false;
 	if(index == 0){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.HEIR;
@@ -918,6 +919,7 @@ void session13() {
     print("players is: ${curSessionGlobalVar.players}");
     curSessionGlobalVar.players[0].leader = true;
     for(Player p in curSessionGlobalVar.players) {
+        p.ectoBiologicalSource = null; //can do ectobiology.
         p.initialize();
         p.makeGuardian();
         p.guardian.initialize();
@@ -1063,6 +1065,7 @@ void session612IndexToTroll(Player player, int index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
+	player.deriveLand = false;
 	if(index == 0){
 		player.aspect = Aspects.BLOOD;
 		player.moon = "Prospit";
@@ -1351,6 +1354,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
+    player.deriveLand = false;
 	if(index == 0){
 		player.moon = "Prospit";
 		player.aspect = Aspects.BLOOD;
