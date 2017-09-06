@@ -159,6 +159,8 @@ class SessionMutator {
         p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
         p.renderSelf();
         p.land = null; //SBURB doesn't have a land for you.
+        p.denizen = null;
+        p.guardian = null;
     }
     //HEY did you know that SBURB calculates grist requirements based on number of players?
     //NO? Neither does this blood player.  And these Null players don't have lands....whoops! Hope you like playing SBURB hard mode!

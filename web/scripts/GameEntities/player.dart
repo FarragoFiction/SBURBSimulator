@@ -880,7 +880,7 @@ class Player extends GameEntity {
         clone.timesDied = timesDied;
         if (denizen != null) clone.denizen = denizen.clone();
         if (denizen != null) clone.denizenMinion = denizenMinion.clone();
-        clone.sprite = sprite.clone(); //gets set to a blank sprite when character is created.
+        if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -2054,6 +2054,7 @@ class Player extends GameEntity {
     static Player makeDoomedSnapshot(Player doomedPlayer) {
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
         timeClone.dead = false;
+        timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
         timeClone.prophecy = ProphecyState.ACTIVE;
         timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
         timeClone.doomed = true;

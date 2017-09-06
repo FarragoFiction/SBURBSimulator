@@ -489,7 +489,7 @@ void setEctobiologicalSource(List<Player> playerList, num source) {
         Player g = p.guardian; //not doing this caused a bug in session 149309 and probably many, many others.
         if (p.ectoBiologicalSource == null) {
             p.ectoBiologicalSource = source;
-            g.ectoBiologicalSource = source;
+            if(g != null) g.ectoBiologicalSource = source;
         }
     }
 }
@@ -511,8 +511,9 @@ List<Player> findPlayersWithoutEctobiologicalSource(List<Player> playerList) {
 //deeper than a snapshot, for yellowyard aliens
 //have to treat properties that are objects differently. luckily i think those are only player and relationships.
 Player clonePlayer(Player player, Session session, bool isGuardian) {
+    if(player == null) return null;
     Player clone = player.clone();
-    if (!isGuardian) {
+    if (!isGuardian && clone.guardian != null) {  //tier4 gnosis can make some weird shit happen
         Player g = clonePlayer(player.guardian, session, true);
         clone.guardian = g;
         g.guardian = clone;
