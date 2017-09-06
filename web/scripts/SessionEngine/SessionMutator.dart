@@ -676,6 +676,7 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
         player.land = "Land of Placeholders and Waiting";
+        player.deriveChatHandle = false;
         player.godTier = true;
         return player;
     }
@@ -693,6 +694,7 @@ class MetaPlayerHandler {
         player.moon = "Prospit";
         player.land = "Land of Cardboard and Grass";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -710,6 +712,7 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
         player.moon = "Prospit";
         player.land = "Land of Placeholders and Waiting";
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -726,6 +729,7 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Song Writing", InterestManager.MUSIC);
         player.moon = "Prospit";
         player.land = "Land of Sound and Fury";
+        player.deriveChatHandle = false;
         player.godTier = true;
         return player;
     }
@@ -741,6 +745,7 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
         player.moon = "Derse";
         player.land = "Land of Charles and Dutton";
+        player.deriveChatHandle = false;
         player.godTier = true;
         return player;
     }
@@ -757,6 +762,7 @@ class MetaPlayerHandler {
         player.moon = "Prospit";
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -772,6 +778,7 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -787,6 +794,7 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Placeholders and Waiting";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -817,6 +825,7 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Rods and Screens";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -833,6 +842,7 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Bugs and Javascript";
         player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 
@@ -848,7 +858,7 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Shipping", InterestManager.ROMANTIC);
         player.moon = "Derse";
         player.land = "Land of Hrmmm... and Interesting!!!";
-        player.godTier = true;
+        player.deriveChatHandle = false;
         return player;
     }
 }

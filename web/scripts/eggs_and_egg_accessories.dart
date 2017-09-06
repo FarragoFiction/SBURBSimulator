@@ -916,11 +916,24 @@ void session13() {
     curSessionGlobalVar.mutator.metaHandler.initalizePlayers(curSessionGlobalVar);
 	curSessionGlobalVar.players = curSessionGlobalVar.mutator.metaHandler.metaPlayers; //just blow them away.
     print("players is: ${curSessionGlobalVar.players}");
+    curSessionGlobalVar.players[0].leader = true;
     for(Player p in curSessionGlobalVar.players) {
         p.initialize();
         p.makeGuardian();
         p.guardian.initialize();
         p.guardian.guardian = p;
+    }
+
+    for(num i = 0; i<curSessionGlobalVar.players.length;i++){
+        Player player = curSessionGlobalVar.players[i];
+        Player  guardian = player.guardian;
+        player.relationships = [];
+        guardian.relationships = [];
+        List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+        guardian.generateRelationships(guardians);
+        player.generateRelationships(curSessionGlobalVar.players);
+        player.mylevels = getLevelArray(player);
+        guardian.mylevels = getLevelArray(guardian);
     }
 }
 
