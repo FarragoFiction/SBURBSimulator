@@ -652,17 +652,17 @@ class MetaPlayerHandler {
     }
 
     void initalizePlayers(Session s) {
-        aspiringWatcher = makeJR(s);
+        jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
-        aspiringWatcher = makeIO(s);
-        aspiringWatcher = makeMI(s);
-        aspiringWatcher = makeNB(s);
-        aspiringWatcher = makeWM(s);
-        aspiringWatcher = makeRS(s);
-        aspiringWatcher = makePL(s);
-        aspiringWatcher = makeKR(s);
-        aspiringWatcher = makeAB(s);
-        aspiringWatcher = makeABJ(s);
+        insufferableOracle = makeIO(s);
+        manicInsomniac = makeMI(s);
+        nobody = makeNB(s);
+        wooMod = makeWM(s);
+        recusiveSlacker = makeRS(s);
+        paradoxLands = makePL(s);
+        karmicRetribution = makeKR(s);
+        authorBot = makeAB(s);
+        authorBotJunior = makeABJ(s);
     }
 
     Player makeAW(Session s) {
