@@ -1,4 +1,5 @@
 import "dart:html";
+import "../navbar.dart";
 
 import "../SBURBSim.dart";
 
@@ -165,8 +166,7 @@ class SessionSummary {
 
     String decodeLineageGenerateHTML() {
         String html = "";
-        String params = window.location.href.substring(window.location.href.indexOf("?") + 1); //what am i doing with params here?
-        if (params == window.location.href) params = "";
+        String params = getParamStringMinusParam("seed");
         List<Session> lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
         String scratched = "";
         if (lineage[0].stats.scratched) scratched = "(scratched)";
@@ -219,8 +219,7 @@ class SessionSummary {
     }
 
     String generateHTML() {
-        String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
-        if (params == window.location.href) params = "";
+        String params = getParamStringMinusParam("seed");
         String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
 
         if (this.parentSession != null) {
@@ -354,8 +353,7 @@ class SessionSummaryJunior {
 
     String generateHTML() {
         this.getAverages();
-        String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
-        if (params == window.location.href) params = "";
+        String params = getParamStringMinusParam("seed");
         StringBuffer html = new StringBuffer()
             ..write("<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>")
             ..write("<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}</a>")
