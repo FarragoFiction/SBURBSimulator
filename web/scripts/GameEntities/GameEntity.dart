@@ -165,7 +165,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void resetFraymotifs() {
-        this.buffs.clear();
+        if(!session.mutator.rageField) this.buffs.clear(); //rage just keeps going.
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
         }

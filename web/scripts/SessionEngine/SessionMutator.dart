@@ -222,23 +222,28 @@ class SessionMutator {
   }
 
   String rage(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
     rageField = true;
     metaHandler.initalizePlayers(s);
+    String ret = "";
+    globalCallBack = rageCallBack;
+    load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+    for(Player p in s.players) {
+        p.murderMode = true; //you're all murder mode, but can you get teh meta players in time?
+        p.godTier = true;
+    }
+    //not waiting on this so can do shit after it fires off async style. it will handle relationships.
+    //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
+
     /*
         TODO:
-        All players are murder mode, all players are god tier, all players hate each other.
         One or more creators or wranglers are spawned in game, and they hate US most of all.
 
         rage field means fraymotif effects don't get cleared at end of fight.
 
         rage field: ALL deaths are just.
 
-        IMPORTANT: make sure easter egg chars (even canon) have their lands not get overriden. same as deriveChat i guess.
-
-        IMPORTANT: need to load the meta players here and have a callback that adds them to the session.  Will be async. How to handle? Or should I care. It's rage, lol.
 
         IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
 
@@ -266,8 +271,10 @@ field effect: everybody is catchable
 
         //look at how troll kid rock works for async loading
      */
-
+        return ret;
   }
+
+
 
   //lol, can't just call it void cuz protected word
   String voidStuff(Session s, Player activatingPlayer) {
@@ -368,6 +375,30 @@ field effect: everybody is catchable
     for(Player p in savedSession.players) {
       p.renderSelf();// either rendering for first time, or rerendering as new classpect
     }
+  }
+
+  String rageCallBack() {
+      List<Player> mp = metaHandler.metaPlayers;
+      Session s = mp[0].session;
+
+      //only need to learn about this new asshole.
+      for(Player p in s.players) {
+        p.generateRelationships(mp);
+      }
+
+      for(Player p in mp) {
+          p.renderSelf();// either rendering for first time, or rerendering as new classpect
+          s.players.add(p); //don't add till rendered.
+      }
+
+      //need to know about everyone
+      for(Player p in mp) {
+        p.generateBlandRelationships(s.players);  //don't hate em back
+      }
+
+
+
+
   }
 
   String breath(Session s, Player activatingPlayer) {
@@ -778,6 +809,7 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.gnosis = 4; //woomod doesn't care that this means they don't do any gnosis tier.
         return player;
     }
 
