@@ -1,4 +1,9 @@
 
+
+canvas {
+    border:1px solid black;
+}
+
 div.statset {
     border:1px solid black;
     margin:3px;
@@ -10,4 +15,18 @@ div.statset {
 h1 {
     font-size:28px;
     margin:3px;
+}
+
+div.stats_list {
+
+}
+
+div.lines_list {
+
+}
+
+div.selection_block {
+    padding:2px;
+    margin:2px;
+    border:1px solid black;
 }
