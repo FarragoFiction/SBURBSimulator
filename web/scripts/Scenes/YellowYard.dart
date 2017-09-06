@@ -41,7 +41,7 @@ class YellowYard extends Scene {
 			yyrEventsGlobalVar = ImportantEvent.removeRepeatEvents(yyrEventsGlobalVar);
 			yyrEventsGlobalVar = ImportantEvent.removeFrogSpam(yyrEventsGlobalVar);
 			html +=
-			"<div id = 'decisions' style='position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
+			"<div id = 'decisions' style='overflow:hidden; position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
 			for (int i = 0; i < count; i++) {
 				if (i < yyrEventsGlobalVar.length) {
 					yyrEventsGlobalVar[i].doomedTimeClone = time;
@@ -60,7 +60,7 @@ class YellowYard extends Scene {
 			html +=
 			"</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;'>Decide</button>";
 			html +=
-			"<div id = 'undo_decisions' style='position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
+			"<div id = 'undo_decisions' style='overflow: hidden; position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
 			for (num i = 0; i <
 				session.yellowYardController.eventsToUndo.length; i++) {
 				var decision = session.yellowYardController.eventsToUndo[i];
