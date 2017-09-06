@@ -5,6 +5,8 @@
 
 have list of sense words. taste, smell, look, feel, check tumblr:
 https://jadedresearcher.tumblr.com/post/163288497664/do-you-have-any-suggestions-on-how-to-make-dungeon
+
+also, once derse and prospit are actual objects, let space player do the quests before entry.
   
   A planet should be tailored for a specific player.
   It's land words should have one aspect related word, (only frog for space)

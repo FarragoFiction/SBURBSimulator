@@ -78,6 +78,16 @@ class ExploreMoon extends Scene {
 				return true;
 			}
 		}
+		//space player gets to go but only if nobody else does anything.
+		List<Player> spacePlayers = findAllAspectPlayers(session.players, Aspects.SPACE);
+		for(Player p in spacePlayers) {
+			if(p.sprite.name == "sprite" && session.rand.nextBool()) {
+				this.player1 = p;
+			}
+		}
+
+
+
 		if(this.player1 == null){
 			return false;
 		}

@@ -2041,7 +2041,7 @@ class Player extends GameEntity {
         ret.quirk = player.quirk;
         ret.baby = player.baby;
         ret.causeOfDeath = player.causeOfDeath;
-
+        ret.session = player.session; //session is non negotiable.
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.setStatsHash(player.stats);

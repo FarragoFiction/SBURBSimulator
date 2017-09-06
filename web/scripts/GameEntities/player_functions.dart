@@ -136,6 +136,7 @@ Player blankPlayerNoDerived(Session session) {
 
 Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
     GameEntity k = session.rand.pickFrom(prototyping_objects);
+    k.session = session;
 
 
     bool gd = false;
@@ -167,6 +168,7 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
     ////print("random player");
    // //print("class: $c, aspect: $a, session: $session");
     GameEntity k = session.rand.pickFrom(prototyping_objects);
+    k.session = session;
 
     bool gd = false;
 
