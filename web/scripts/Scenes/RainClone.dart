@@ -18,7 +18,7 @@ class RainClone extends Scene {
     if (this.original == null) {
       return false;
     } else {
-      return (this.original != null && this.session.rand.nextIntRange(0, 100) >= 80);//yes, this is random. kill me.
+      return (this.original != null && this.session.rand.nextIntRange(0, 100) >= 90);//yes, this is random. kill me.
     }
   }
   @override
