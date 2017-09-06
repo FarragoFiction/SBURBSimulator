@@ -5,7 +5,11 @@
 
 have list of sense words. taste, smell, look, feel, check tumblr:
 https://jadedresearcher.tumblr.com/post/163288497664/do-you-have-any-suggestions-on-how-to-make-dungeon
-  
+
+also, once derse and prospit are actual objects, let space player do the quests before entry.
+  when i do the land update i can stop that being 3 separate scenes and just have it be "which quest line do you want to do" and one of the quest lines is "go to sleep"
+
+
   A planet should be tailored for a specific player.
   It's land words should have one aspect related word, (only frog for space)
   and one "random" word.

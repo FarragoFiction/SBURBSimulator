@@ -97,7 +97,7 @@ class Intro  extends IntroScene{
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
 		////session.logger.info("Entering session, mvp is: " + current_mvp.getStat("power"));
-		if(this.player.aspect == Aspects.TIME && !this.player.object_to_prototype.illegal){
+		if(this.player.aspect == Aspects.TIME && this.player.object_to_prototype != null && !this.player.object_to_prototype.illegal){ //tier4 gnosis is weird
 			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
 		}else{
 			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat("power"),this.player,null) );

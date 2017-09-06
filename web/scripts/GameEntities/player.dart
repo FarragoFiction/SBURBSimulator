@@ -731,7 +731,7 @@ class Player extends GameEntity {
     }
 
     bool didDenizenKillYou() {
-        if (this.causeOfDeath.contains(this.denizen.name)) {
+        if (denizen != null && this.causeOfDeath.contains(this.denizen.name)) {
             return true; //also return true for minions. this is intentional.;
         }
         return false;
@@ -880,7 +880,7 @@ class Player extends GameEntity {
         clone.timesDied = timesDied;
         if (denizen != null) clone.denizen = denizen.clone();
         if (denizen != null) clone.denizenMinion = denizenMinion.clone();
-        clone.sprite = sprite.clone(); //gets set to a blank sprite when character is created.
+        if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -935,6 +935,7 @@ class Player extends GameEntity {
         clone.denizenFaced = denizenFaced;
         clone.denizenDefeated = denizenDefeated;
         clone.denizenMinionDefeated = denizenMinionDefeated;
+        clone.session = session;
         //do not clone guardian, thing that calls you will do that
         return clone;
     }
@@ -1448,6 +1449,7 @@ class Player extends GameEntity {
             this.decideHemoCaste();
             this.decideLusus();
             this.object_to_prototype = this.myLusus;
+            this.object_to_prototype.session = session;
         } else {
             this.hairColor = session.rand.pickFrom(human_hair_colors);
         }
@@ -1949,9 +1951,11 @@ class Player extends GameEntity {
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
             this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
             this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            this.object_to_prototype.session = session;
             ////print("fortune");
         }
         if (luck > 5) {
@@ -2038,7 +2042,7 @@ class Player extends GameEntity {
         ret.quirk = player.quirk;
         ret.baby = player.baby;
         ret.causeOfDeath = player.causeOfDeath;
-
+        ret.session = player.session; //session is non negotiable.
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.setStatsHash(player.stats);
@@ -2050,6 +2054,8 @@ class Player extends GameEntity {
     static Player makeDoomedSnapshot(Player doomedPlayer) {
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
         timeClone.dead = false;
+        timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
+        timeClone.prophecy = ProphecyState.ACTIVE;
         timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
         timeClone.doomed = true;
         //from a different timeline, things went differently.

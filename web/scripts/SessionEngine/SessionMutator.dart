@@ -11,6 +11,7 @@ class SessionMutator {
   bool lightField = false; //returns light player instead of whoever was asked for in most cases
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
+  bool doomField = false; //causes dead players to be treated as live ones.
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -158,6 +159,8 @@ class SessionMutator {
         p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
         p.renderSelf();
         p.land = null; //SBURB doesn't have a land for you.
+        p.denizen = null;
+        p.guardian = null;
     }
     //HEY did you know that SBURB calculates grist requirements based on number of players?
     //NO? Neither does this blood player.  And these Null players don't have lands....whoops! Hope you like playing SBURB hard mode!
@@ -282,8 +285,11 @@ class SessionMutator {
           TODO:
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
           *   Create players, then change seed. shuffle player order, etc.
+          *   time player warps in and kills pas self, replaces them (keeps stats)
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
           *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
+          *     * considered this happening right at tier4, without waiting for session results (using presimulation) but realize that might prevent any other
+          *        gnosis 4 from going since time usually gets it first.
 
        */
   }
@@ -332,7 +338,7 @@ class SessionMutator {
     }
     savedSession = s;
     //need to load the new images.
-    globalCallBack = heartCallBack();
+    globalCallBack = heartCallBack;
     load(s.players, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
 
     return ret; //<--still return tho, not waiting on the async loading
@@ -474,8 +480,8 @@ class SessionMutator {
     lifeField = true;
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
-    ret += "Shit, and it looks like decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
-    ret += "I don't think they thought this through...";
+    ret += "Shit, and it looks like they decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
+    ret += " I don't think they thought this through...";
     //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
     for(Player p in s.players) {
       p.trickster = true;
@@ -497,18 +503,61 @@ class SessionMutator {
   }
 
   String doom(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Doom is going at it.");
     effectsInPlay ++;
+    doomField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} is floating in a field of glowing code, rewriting the very rules of SBURB, just as prophecy foretold. ";
+    List<Player> unDoomedClones = new List<Player>();
+    for(Player p in s.players) {
+        if(unDoomedClones.length < 12) {
+            for(Player doomed in p.doomedTimeClones) {
+                if(unDoomedClones.length < 12) unDoomedClones.add(doomed);
+            }
+            p.doomedTimeClones.clear(); //they aren't doomed anymore, even if they weren't added.
+        }
+    }
+    s.players.addAll(unDoomedClones);
+    if(unDoomedClones.length > 0) {
+        ret += "Some of the survivors of doomed timelines are added to the session as full players. This will not end well.";
+    }
+    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player attributes are inverted, including their living attribute. ";
+    ret += "You... Kind of get the feeling that the doom player just found every rule the could and inverted it without restraint. ";
+    for(Player p in s.players) {
+        p.generateBlandRelationships(s.players); //hard to be excited with that much doom running around. also gives the doomed players relationships.
+        p.dreamSelf = !p.dreamSelf;
+        p.isDreamSelf = !p.isDreamSelf;
+        p.godDestiny = !p.godDestiny;
+        p.godTier = !p.godTier;
+        p.dead = !p.dead;
+        p.murderMode = !p.murderMode;
+        p.leftMurderMode = !p.murderMode;
+        p.causeOfDeath = "...I...don't even know anymore. Are you following any of this shit? Fucking Doom Players.";
+        p.flipOutReason = "They very fabric of the rules of reality have come undone.";
+        if(s.rand.nextDouble() > .7) p.robot = !p.robot;
+        if(s.rand.nextDouble() > .7) p.sbahj = !p.sbahj;
+        if(s.rand.nextDouble() > .7) p.ghost = !p.ghost;
+        //other stats are taken care of with doom field, but nto relationships.
+        for(Relationship r in p.relationships) {
+            r.value = -1 * r.value;
+        }
+    }
+    List<GameEntity> npcs = s.npcHandler.allNPCS;
+    for(GameEntity g in npcs) {
+        g.dead = !g.dead;
+    }
+
+    ret += " It's actually really hard to follow the plot now that the rules are all twisted around. Huh. ";
     /*
       TODO:
         * all stats flip
+        * maybe revive a few ghosts?
           * healing hurts, hurting heals
           * all stats are multiplied by -1 so high is bad and low is good.
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
-          * doomed time clones aren't doomed
+          * //this is one that confuses me. not sure how it'll work.
+          * maybe change a few other rules. Big ones. Maybe you no longer need grist? black king and queen are already dead and reckoning goes anyways?
      */
-
+    return ret;
   }
 
   //if it's not done yet.
