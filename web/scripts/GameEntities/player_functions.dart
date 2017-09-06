@@ -349,7 +349,7 @@ List<T> findDeadPlayers<T extends GameEntity>(List<T> playerList) {
     List<T> ret = <T>[];
     for (int i = 0; i < playerList.length; i++) {
         T p = playerList[i];
-        if (p.dead) {
+        if (p.dead || (playerList[i].session.mutator.doomField && !p.dead)) {
             ret.add(p);
         }
     }
@@ -374,7 +374,7 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
 List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
     List<T> ret = new List<T>();
     for (int i = 0; i < playerList.length; i++) {
-        if (!playerList[i].dead) {
+        if (!playerList[i].dead || (playerList[i].session.mutator.doomField && playerList[i].dead )) { //the dead are alive.
             ret.add(playerList[i]);
         }
     }
@@ -588,9 +588,8 @@ Player findLowestMobilityPlayer(List<Player> playerList) {
 
 String findGoodPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
-        if (playerList[i].object_to_prototype.illegal == true) {
-            ////print("found good");
-            return (playerList[i].object_to_prototype.htmlTitle());
+        if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.illegal == true) {
+           return (playerList[i].object_to_prototype.htmlTitle());
         }
     }
     return null;

@@ -1448,6 +1448,7 @@ class Player extends GameEntity {
             this.decideHemoCaste();
             this.decideLusus();
             this.object_to_prototype = this.myLusus;
+            this.object_to_prototype.session = session;
         } else {
             this.hairColor = session.rand.pickFrom(human_hair_colors);
         }
@@ -1949,9 +1950,11 @@ class Player extends GameEntity {
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
             this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
             this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            this.object_to_prototype.session = session;
             ////print("fortune");
         }
         if (luck > 5) {
@@ -2050,6 +2053,7 @@ class Player extends GameEntity {
     static Player makeDoomedSnapshot(Player doomedPlayer) {
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
         timeClone.dead = false;
+        timeClone.prophecy = ProphecyState.ACTIVE;
         timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
         timeClone.doomed = true;
         //from a different timeline, things went differently.

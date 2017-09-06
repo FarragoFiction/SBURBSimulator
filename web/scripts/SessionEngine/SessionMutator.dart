@@ -11,6 +11,7 @@ class SessionMutator {
   bool lightField = false; //returns light player instead of whoever was asked for in most cases
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
+  bool doomField = false; //causes dead players to be treated as live ones.
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -497,18 +498,36 @@ class SessionMutator {
   }
 
   String doom(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Doom is going at it.");
     effectsInPlay ++;
+    doomField = true;
+    String ret = "The ${activatingPlayer.htmlTitle()} is floating in a field of glowing code, rewriting the very rules of SBURB, just as prophecy foretold. ";
+    List<Player> unDoomedClones = new List<Player>();
+    for(Player p in s.players) {
+        if(unDoomedClones.length < 12) {
+            for(Player doomed in p.doomedTimeClones) {
+                if(unDoomedClones.length < 12) unDoomedClones.add(doomed);
+            }
+            p.doomedTimeClones.clear(); //they aren't doomed anymore, even if they weren't added.
+        }
+    }
+    s.players.addAll(unDoomedClones);
+    if(unDoomedClones.length > 0) {
+        ret += "Some of the survivors of doomed timelines are added to the session as full players. This will not end well.";
+    }
+    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player stats are inverted, including their living attribute. ";
+    for(Player p in s.players) {
+        p.generateBlandRelationships(s.players); //hard to be excited with that much doom running around. also gives the doomed players relationships.
+    }
     /*
       TODO:
         * all stats flip
           * healing hurts, hurting heals
           * all stats are multiplied by -1 so high is bad and low is good.
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
-          * doomed time clones aren't doomed
+          * //this is one that confuses me. not sure how it'll work.
      */
-
+    return ret;
   }
 
   //if it's not done yet.
