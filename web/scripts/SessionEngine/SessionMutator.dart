@@ -536,6 +536,7 @@ class SessionMutator {
         if(s.rand.nextDouble() > .7) p.robot = !p.robot;
         if(s.rand.nextDouble() > .7) p.sbahj = !p.sbahj;
         if(s.rand.nextDouble() > .7) p.ghost = !p.ghost;
+        if(s.rand.nextDouble() > .7) p.causeOfDrain = "What is even happening?";
         //other stats are taken care of with doom field, but nto relationships.
         for(Relationship r in p.relationships) {
             r.value = -1 * r.value;
