@@ -538,7 +538,7 @@ List<Player> findPlayersFromSessionWithId(List<Player> playerList, num source) {
 
 String findBadPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
-        if (playerList[i].object_to_prototype.getStat("power") >= 200) {
+        if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.getStat("power") >= 200) {
             return (playerList[i].object_to_prototype.htmlTitle());
         }
     }
