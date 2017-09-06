@@ -234,6 +234,8 @@ class SessionMutator {
 
         rage field means fraymotif effects don't get cleared at end of fight.
 
+        rage field: ALL deaths are just.
+
         IMPORTANT: need to load the meta players here and have a callback that adds them to the session.  Will be async. How to handle? Or should I care. It's rage, lol.
 
         IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
@@ -654,53 +656,186 @@ class MetaPlayerHandler {
 
     Player makeAW(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
-
+        player.hair = 56;
+        player.hairColor = "#000000";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "aspiringWatcher";
+        player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
         return player;
     }
 
+    //DM agreed to be our time player
     Player makeDM(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PRINCE, Aspects.TIME);
+        player.hair = 29;
+        player.hairColor = "#503A21";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "dilletantMathematician";
+        player.interest1 = new Interest("Math", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Cartoons", InterestManager.POPCULTURE);
+        player.moon = "Prospit";
+        player.land = "Land of Cardboard and Grass";
+        player.godTier = true;
+        return player;
     }
 
     Player makeIO(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
+        player.hair = 68;
+        player.hairColor = "#000000";
+        player.bloodColor = "#0021cb";
+        player.isTroll = true;
+        player.leftHorn = 71;
+        player.rightHorn = 71;
+        player.godTier = true;
+        player.chatHandle = "InsufferableOracle";
+        player.interest1 = new Interest("Drawing", InterestManager.CULTURE);
+        player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        return player;
     }
 
 
 
     Player makeMI(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.BARD, Aspects.DOOM);
+        player.hair = 1;
+        player.hairColor = "#503A21";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "manicInsomniac";
+        player.interest1 = new Interest("Data Entry", InterestManager.WRITING);
+        player.interest2 = new Interest("Song Writing", InterestManager.MUSIC);
+        player.moon = "Prospit";
+        player.land = "Land of Sound and Fury";
+        player.godTier = true;
+        return player;
     }
 
     Player makeNB(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.BLOOD);
+        player.hair = 67;
+        player.hairColor = "#382207";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "noBody";
+        player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
+        player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Derse";
+        player.land = "Land of Charles and Dutton";
+        player.godTier = true;
+        return player;
     }
 
     Player makeWM(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SYLPH, Aspects.BREATH);
+        player.hair = 17;
+        player.hairColor = "#800000";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "wooMod";
+        player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
+        player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        return player;
     }
 
     Player makeRS(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SEER, Aspects.VOID);
+        player.hair = 60;
+        player.hairColor = "#382207";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "recursiveSlacker";
+        player.interest1 = new Interest("Theorycrafting", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Storytelling", InterestManager.WRITING);
+        player.moon = "Derse";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        return player;
     }
 
     Player makeKR(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.ROGUE, Aspects.HEART);
+        player.hair = 46;
+        player.hairColor = "#E8D099";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "karmicRetribution";
+        player.interest1 = new Interest("100 Art Projects At Once", InterestManager.CULTURE);
+        player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
+        player.moon = "Derse";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        return player;
     }
 
     Player makePL(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SEER, Aspects.VOID);
+        player.hair = 47;
+        player.hairColor = "#453012";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "paradoxLands";
+        player.interest1 = new Interest("Drawing distant Lands", InterestManager.CULTURE);
+        player.interest2 = new Interest("Procedural Generation", InterestManager.TECHNOLOGY);
+        player.moon = "Derse";
+        player.land = "Land of Cults and Chandeliers";
+        player.godTier = true;
+        return player;
     }
 
     Player makeJR(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WASTE, Aspects.MIND);
+        player.hair = 13;
+        player.hairColor = "#3C1E07";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "jadedResearcher";
+        player.interest1 = new Interest("The AuthorBot", InterestManager.TECHNOLOGY);
+        player.interest2 = new Interest("GiggleSnort", InterestManager.POPCULTURE);
+        player.moon = "Derse";
+        player.land = "Land of Rods and Screens";
+        player.godTier = true;
+        return player;
     }
 
     Player makeAB(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.GUIDE, Aspects.MIND);
+        player.hair = 13;
+        player.hairColor = "#2B2A2D";
+        player.bloodColor = "#0021cb";
+        player.isTroll = false;
+        player.chatHandle = "authorBot";
+        player.interest1 = new Interest("Authoring", InterestManager.TECHNOLOGY);
+        player.interest2 = new Interest("Robots", InterestManager.TECHNOLOGY);
+        player.moon = "Derse";
+        player.land = "Land of Bugs and Javascript";
+        player.godTier = true;
+        return player;
     }
 
     Player makeABJ(Session s) {
-
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCOUT, Aspects.MIND);
+        player.hair = 13;
+        player.hairColor = "#2B2A2D";
+        player.bloodColor = "#0021cb";
+        player.isTroll = false;
+        player.chatHandle = "authorBot";
+        player.interest1 = new Interest("Arson", InterestManager.TERRIBLE);
+        player.interest2 = new Interest("Shipping", InterestManager.ROMANTIC);
+        player.moon = "Derse";
+        player.land = "Land of Hrmmm... and Interesting!!!";
+        player.godTier = true;
+        return player;
     }
 }
