@@ -285,6 +285,7 @@ class SessionMutator {
           TODO:
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
           *   Create players, then change seed. shuffle player order, etc.
+          *   time player warps in and kills pas self, replaces them (keeps stats)
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
           *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
           *     * considered this happening right at tier4, without waiting for session results (using presimulation) but realize that might prevent any other
@@ -519,10 +520,33 @@ class SessionMutator {
     if(unDoomedClones.length > 0) {
         ret += "Some of the survivors of doomed timelines are added to the session as full players. This will not end well.";
     }
-    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player stats are inverted, including their living attribute. ";
+    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player attributes are inverted, including their living attribute. ";
+    ret += "You... Kind of get the feeling that the doom player just found every rule the could and inverted it without restraint. ";
     for(Player p in s.players) {
         p.generateBlandRelationships(s.players); //hard to be excited with that much doom running around. also gives the doomed players relationships.
+        p.dreamSelf = !p.dreamSelf;
+        p.isDreamSelf = !p.isDreamSelf;
+        p.godDestiny = !p.godDestiny;
+        p.godTier = !p.godTier;
+        p.dead = !p.dead;
+        p.murderMode = !p.murderMode;
+        p.leftMurderMode = !p.murderMode;
+        p.causeOfDeath = "...I...don't even know anymore. Are you following any of this shit? Fucking Doom Players.";
+        p.flipOutReason = "They very fabric of the rules of reality have come undone.";
+        if(s.rand.nextDouble() > .7) p.robot = !p.robot;
+        if(s.rand.nextDouble() > .7) p.sbahj = !p.sbahj;
+        if(s.rand.nextDouble() > .7) p.ghost = !p.ghost;
+        //other stats are taken care of with doom field, but nto relationships.
+        for(Relationship r in p.relationships) {
+            r.value = -1 * r.value;
+        }
     }
+    List<GameEntity> npcs = s.npcHandler.allNPCS;
+    for(GameEntity g in npcs) {
+        g.dead = !g.dead;
+    }
+
+    ret += " It's actually really hard to follow the plot now that the rules are all twisted around. Huh. ";
     /*
       TODO:
         * all stats flip
