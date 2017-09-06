@@ -652,7 +652,17 @@ class MetaPlayerHandler {
     }
 
     void initalizePlayers(Session s) {
+        aspiringWatcher = makeJR(s);
         aspiringWatcher = makeAW(s);
+        aspiringWatcher = makeIO(s);
+        aspiringWatcher = makeMI(s);
+        aspiringWatcher = makeNB(s);
+        aspiringWatcher = makeWM(s);
+        aspiringWatcher = makeRS(s);
+        aspiringWatcher = makePL(s);
+        aspiringWatcher = makeKR(s);
+        aspiringWatcher = makeAB(s);
+        aspiringWatcher = makeABJ(s);
     }
 
     Player makeAW(Session s) {

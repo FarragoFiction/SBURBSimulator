@@ -913,7 +913,9 @@ void session420(){
 
 //what even is this???
 void session13() {
+    curSessionGlobalVar.mutator.metaHandler.initalizePlayers(curSessionGlobalVar);
 	curSessionGlobalVar.players = curSessionGlobalVar.mutator.metaHandler.metaPlayers; //just blow them away.
+    print("players is: ${curSessionGlobalVar.players}");
     for(Player p in curSessionGlobalVar.players) {
         p.initialize();
         p.makeGuardian();
