@@ -75,6 +75,7 @@ class ExploreMoon extends Scene {
 		for(Player p in session.getReadOnlyAvailablePlayers()){
 			this.checkPlayer(p);
 			if(this.player1 != null){
+                //session.logger.info("AB: a moon quest is happening.");
 				return true;
 			}
 		}
@@ -82,6 +83,7 @@ class ExploreMoon extends Scene {
 		List<Player> spacePlayers = findAllAspectPlayers(session.players, Aspects.SPACE);
 		for(Player p in spacePlayers) {
 			if(p.sprite.name == "sprite" && session.rand.nextBool()) {
+			    //session.logger.info("AB: a space player is doing a moon quest");
 				this.player1 = p;
 			}
 		}
@@ -133,6 +135,8 @@ class ExploreMoon extends Scene {
 			this.player1.corruptionLevelOther += 3;
 			if(this.player2 != null) this.player2.corruptionLevelOther += 3;
 		}
+
+		if(this.player1.sprite.name == "sprite") ret += " It's weird how they are awake even before entering the game. ";
 
 		if(this.player2 != null){
 			Relationship r1 = this.player1.getRelationshipWith(this.player2);
