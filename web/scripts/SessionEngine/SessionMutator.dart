@@ -285,6 +285,8 @@ class SessionMutator {
           *   Create players, then change seed. shuffle player order, etc.
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
           *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
+          *     * considered this happening right at tier4, without waiting for session results (using presimulation) but realize that might prevent any other
+          *        gnosis 4 from going since time usually gets it first.
 
        */
   }
@@ -475,8 +477,8 @@ class SessionMutator {
     lifeField = true;
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
-    ret += "Shit, and it looks like decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
-    ret += "I don't think they thought this through...";
+    ret += "Shit, and it looks like they decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
+    ret += " I don't think they thought this through...";
     //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
     for(Player p in s.players) {
       p.trickster = true;
@@ -522,10 +524,12 @@ class SessionMutator {
     /*
       TODO:
         * all stats flip
+        * maybe revive a few ghosts?
           * healing hurts, hurting heals
           * all stats are multiplied by -1 so high is bad and low is good.
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
           * //this is one that confuses me. not sure how it'll work.
+          * maybe change a few other rules. Big ones. Maybe you no longer need grist? black king and queen are already dead and reckoning goes anyways?
      */
     return ret;
   }

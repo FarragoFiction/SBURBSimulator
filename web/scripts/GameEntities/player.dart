@@ -731,7 +731,7 @@ class Player extends GameEntity {
     }
 
     bool didDenizenKillYou() {
-        if (this.causeOfDeath.contains(this.denizen.name)) {
+        if (denizen != null && this.causeOfDeath.contains(this.denizen.name)) {
             return true; //also return true for minions. this is intentional.;
         }
         return false;
@@ -935,6 +935,7 @@ class Player extends GameEntity {
         clone.denizenFaced = denizenFaced;
         clone.denizenDefeated = denizenDefeated;
         clone.denizenMinionDefeated = denizenMinionDefeated;
+        clone.session = session;
         //do not clone guardian, thing that calls you will do that
         return clone;
     }
