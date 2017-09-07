@@ -360,6 +360,7 @@ class Relationship {
             Relationship r =  new Relationship(source, -1313, targetPlayer); //holy shit i hate that guy.
             r.saved_type = r.badBig; //stop trying to kiss us and KILL us you asshole.
             r.old_type = r.saved_type; //srsly
+            r.drama = false;
             return r;
         }
         return new Relationship(source, source.session.rand.nextIntRange(-21, 22), targetPlayer);

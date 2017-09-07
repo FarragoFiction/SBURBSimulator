@@ -236,7 +236,7 @@ class SessionMutator {
     //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
     for(Player p in s.players) {
-        p.murderMode = true; //you're all murder mode, but can you get teh meta players in time?
+        p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
         p.setStat("sanity", -1313); //STAY in murder mode, damn it
         p.godTier = true;
     }
