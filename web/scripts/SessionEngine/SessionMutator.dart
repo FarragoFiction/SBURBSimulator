@@ -957,7 +957,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
-        player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
+        player.makeDenizenWithStrength('<span class = "void">Authorot, the</span> Robot',13); //hope we span strong enough to fight them.
 
         return player;
     }
