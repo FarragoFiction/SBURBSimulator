@@ -719,6 +719,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Aspiratcher, The</span> Librarian',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -742,6 +743,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength("<span class = 'void'>Algebron, The </span>Dilletant",13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -766,6 +768,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('Insurorracle',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -790,6 +793,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Maniomnia, the </span>Dreamwaker',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -812,6 +816,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Nobrop, the </span>Null',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -835,6 +840,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Doomod, The </span>Wanderer',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -857,6 +863,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -879,6 +886,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('Karmiution',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -901,6 +909,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Paraxalan, The </span>Ever-Searching',13); //hope we span strong enough to fight them.
         return player;
     }
 
@@ -923,6 +932,8 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Jadeacher the,</span>Researcher',13); //hope we span strong enough to fight them.
+
         return player;
     }
 
@@ -946,6 +957,8 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
+
         return player;
     }
 
@@ -968,6 +981,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
         return player;
     }
 
