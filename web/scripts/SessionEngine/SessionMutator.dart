@@ -912,6 +912,8 @@ class MetaPlayerHandler {
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("Coin", s);
+        player.object_to_prototype.helpPhrase = "was a clever choice for a sprite. He showers enemies in currency. Damn balance-breaking void players.";
+        
         player.sprite.addPrototyping(player.object_to_prototype);
 
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
