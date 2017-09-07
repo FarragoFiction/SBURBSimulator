@@ -17,8 +17,6 @@ import "../navbar.dart";
 abstract class SimController {
     static SimController instance;
     num initial_seed = 0;
-    int indexOfPlayerWhoEnteredLast = 0;
-    bool stopped = false; //need a way to stop the sim when needed.
 
     bool gatherStatData = false;
     StatSampler statData;
@@ -33,35 +31,22 @@ abstract class SimController {
         }
     }
 
-    void callNextIntro([num time]) { //not sure why it needs num time but requestAnimtionFrame wants it and that's how pl did other methods
-        if (indexOfPlayerWhoEnteredLast >= curSessionGlobalVar.players.length) {
+    void callNextIntro(int player_index) {
+        if (player_index >= curSessionGlobalVar.players.length) {
             tick(); //NOW start ticking
             return;
         }
         Intro s = new Intro(curSessionGlobalVar);
-        Player p = curSessionGlobalVar.players[indexOfPlayerWhoEnteredLast];
-        curSessionGlobalVar.logger.info("Player $p entering the session");
+        Player p = curSessionGlobalVar.players[player_index];
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
-        List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, indexOfPlayerWhoEnteredLast + 1);
+        List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
         s.trigger(playersInMedium, p);
-        s.renderContent(curSessionGlobalVar.newScene(), indexOfPlayerWhoEnteredLast); //new scenes take care of displaying on their own.
+        s.renderContent(curSessionGlobalVar.newScene(), player_index); //new scenes take care of displaying on their own.
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
         this.gatherStats();
-        indexOfPlayerWhoEnteredLast ++;
-        if(!stopped) window.requestAnimationFrame(callNextIntro);
-    }
-
-    void resumeTickingAfterStopping() {
-        curSessionGlobalVar.logger.info("Resuming sim after stopping");
-        if(indexOfPlayerWhoEnteredLast >= curSessionGlobalVar.players.length) {
-            curSessionGlobalVar.logger.info("Resuming ticking after stopping");
-            tick();
-        }else {
-            curSessionGlobalVar.logger.info("resuming calling an intro");
-            callNextIntro();
-        }
+        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
     void checkSGRUB() {
@@ -129,8 +114,7 @@ abstract class SimController {
         initGatherStats();
         createInitialSprites();
         //advertisePatreon(querySelector("#story"));
-        indexOfPlayerWhoEnteredLast = 0; //nobody has entered yet.
-        callNextIntro();
+        callNextIntro(0);
     }
 
     void createInitialSprites() {
@@ -175,7 +159,7 @@ abstract class SimController {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
             this.gatherStats();
-            if(!stopped) window.requestAnimationFrame(reckoningTick);
+            window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
@@ -253,7 +237,7 @@ abstract class SimController {
         globalInit(); // initialise classes and aspects if necessary
 
 
-            // //print("Debugging AB: Starting session $initial_seed");
+        // //print("Debugging AB: Starting session $initial_seed");
         curSessionGlobalVar = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
         //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
@@ -316,7 +300,7 @@ abstract class SimController {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
             this.gatherStats();
-            if(!stopped) window.requestAnimationFrame(tick);
+            window.requestAnimationFrame(tick);
             ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {

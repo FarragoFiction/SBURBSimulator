@@ -16,7 +16,7 @@ class SessionMutator {
   bool doomField = false; //causes dead players to be treated as live ones.
   bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
-  bool rapsAndLuckDisabled;
+  bool rapsAndLuckDisabled = false;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
@@ -230,7 +230,7 @@ class SessionMutator {
     effectsInPlay ++;
     rageField = true;
 
-    SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
+    //such a bad idea. stop hurtin AB. SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
 
     metaHandler.initalizePlayers(s);
 
@@ -241,7 +241,6 @@ class SessionMutator {
     globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
     //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
-    return "Nope. debugging.";
 
     for(Player p in s.players) {
         p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
@@ -261,20 +260,6 @@ class SessionMutator {
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
 
         if observer dies.  Players leave session and it just ends.
-
-        if KR is killed images = pumpkin
-
-        if kr is killed, everyone is robots
-
-        if JR is killed, session crash
-
-        if abj is killed, all players die
-
-        kill brope, all but one player dies
-
-        kill PL lands get rerolled/fucked up eventually
-
-
      */
         return ret;
   }
@@ -405,8 +390,7 @@ class SessionMutator {
       for(Player p in chosen) {
         p.generateBlandRelationships(s.players);  //don't hate em back
       }
-      SimController.instance.stopped = false; //so there is time to load
-      SimController.instance.resumeTickingAfterStopping();
+     //bad idea....just. fucking stop this. SimController.instance.resumeTickingAfterStopping();
   }
 
   String breath(Session s, Player activatingPlayer) {
@@ -547,9 +531,9 @@ class SessionMutator {
       p.bloodColor = s.rand.pickFrom(tricksterColors).toStyleString();
       p.initializeStats();
       p.dead = false;
-      p.denizenMinion.makeAlive();
+      if(p.denizenMinion != null) p.denizenMinion.makeAlive();
       p.dreamSelf = true; //your dream self is revived, too.
-      p.denizen.makeAlive();
+      if(p.denizen != null) p.denizen.makeAlive();
       p.renderSelf();
     }
 
@@ -962,6 +946,14 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('Karmiution',13); //hope we span strong enough to fight them.
+
+        Fraymotif f = new Fraymotif("Ban Hammer", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 2, false));
+        f.effects.add(new FraymotifEffect("RELATIONSHIPS", 2, false));
+
+        f.desc = "ENEMY is banned. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -1079,7 +1071,6 @@ class MetaPlayerHandler {
     //ONLY for rageField tho.
     //doesn't happen ANY time we die, but only if pvp death.
     String checkDeath(Player p) {
-      return null;
       if(p == authorBotJunior) {
           for(Player pl in p.session.players) {
             if(pl != p) pl.makeAlive();
@@ -1098,7 +1089,7 @@ class MetaPlayerHandler {
 
       if(p == karmicRetribution) {
         doNotRender = true;
-        return "You monster. You killed the Artist.  Let's see how you like a sim without any art. ";
+        return "With the death of the Artist, color drains from the world. You do not become blind, but it seems that there is nothing left to see.";
       }
 
       if(p == jadedResearcher) {
@@ -1119,7 +1110,7 @@ class MetaPlayerHandler {
         for(Player pl in p.session.players) {
           pl.land = null;
         }
-        return "Huh. Guess you don't appreciate all that hard work ParadoxLands has done/will do on lands. All planets in the medium are destroyed. ";
+        return "Huh. Guess you don't appreciate all that hard work the Architect has done/will do on lands. All planets in the medium are destroyed. ";
       }
 
       if(p == insufferableOracle) {
