@@ -16,6 +16,7 @@ class SessionMutator {
   bool doomField = false; //causes dead players to be treated as live ones.
   bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
+  bool rapsAndLuckDisabled;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
@@ -227,6 +228,7 @@ class SessionMutator {
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
     rageField = true;
+    SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
     metaHandler.initalizePlayers(s);
     s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
     String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
@@ -244,6 +246,7 @@ class SessionMutator {
 
     /*
         TODO:
+        PAUSE THE SESSION TILL WE LOAD
 
         * allow murder mode strifes to be a pvp strife for kismesis or for rageField
         *  pvp strifes USUALLY leave the defeated player alive (except for rageField)
@@ -374,7 +377,6 @@ class SessionMutator {
   }
 
   String rageCallBack() {
-
       List<Player> mp = metaHandler.metaPlayers;
       Session s = mp[0].session;
       s.logger.info("The Rage Call Back Has Hit.");
@@ -396,10 +398,8 @@ class SessionMutator {
       for(Player p in chosen) {
         p.generateBlandRelationships(s.players);  //don't hate em back
       }
-
-
-
-
+      SimController.instance.stopped = false; //so there is time to load
+      SimController.instance.tick(); //start back up.
   }
 
   String breath(Session s, Player activatingPlayer) {
@@ -988,21 +988,99 @@ class MetaPlayerHandler {
     //do something funny for specific deaths, like turning on images=pumpkin if it's KR. if they kill JR, rage ending crash.
     //ONLY for rageField tho.
     //doesn't happen ANY time we die, but only if pvp death.
-    bool checkDeath(Element div, Player p) {
-        return false;
+    String checkDeath(Player p) {
+      if(p == authorBotJunior) {
+          for(Player pl in p.session.players) {
+            if(pl != p) pl.makeAlive();
+            pl.setStat("currentHP",1313);
+          }
+          return "With a final 'Interesting!!!', AuthorBotJunior is defeated. It feels like a great curse has been lifted. The Players are revived and healed. ";
+      }
+
+      if(p == nobody) {
+        for(Player pl in p.session.players) {
+          if(pl != p) pl.makeDead("killing nobody");
+        }
+        p.session.rand.pickFrom(p.session.players).makeAlive();
+        return "Huh. You've killed Nobody. The Curse of Dutton descends upon you, making you wish that Dead Sessions could be a thing.  They aren't. They totally aren't, yet. Everybody but one player dies anyways. ";
+      }
+
+      if(p == karmicRetribution) {
+        doNotRender = true;
+        return "You monster. You killed the Artist.  Let's see how you like a sim without any art. ";
+      }
+
+      if(p == jadedResearcher) {
+        p.session.stats.cataclysmCrash = true;
+        throw new PlayersCrashedSession("...I... What? What did you THINK would happen here? Now nobody is maintining this simulation, dunkass. Nice job breaking it, hero. "); //best glados reference
+
+        return "I. What? What did you THINK would happen here? Now nobody is maintining this simulation, dunkass. You probably won't even see this. ";
+      }
+
+      if(p == wooMod) {
+        for(Player pl in p.session.players) {
+          pl.gnosis = -4;
+        }
+        return "Now that WooMod has been defeated, the curse of knowledge is removed from the party. That's probably worth not being able to hack the code anymore, right? ";
+      }
+
+      if(p == paradoxLands) {
+        for(Player pl in p.session.players) {
+          pl.land = null;
+        }
+        return "Huh. Guess you don't appreciate all that hard work ParadoxLands has done/will do on lands. All planets in the medium are destroyed. ";
+      }
+
+      if(p == insufferableOracle) {
+        for(Player pl in p.session.players) {
+          pl.isTroll = true;
+          pl.bloodColor = p.session.rand.pickFrom(bloodColors);
+          pl.renderSelf();
+          if(pl.hair > 61) pl.hair = p.session.rand.nextIntRange(0, 61);
+          if(pl.leftHorn > 44) pl.leftHorn = p.session.rand.nextIntRange(0, 44);
+          if(pl.rightHorn > 44) pl.rightHorn = p.session.rand.nextIntRange(0, 44);
+        }
+        return " You killed InsufferableOracle. You're now all trolls, but don't have any access to the newer hair styles or horns. ";
+      }
+
+      if(p == manicInsomniac) {
+        for(Player pl in p.session.players) {
+          pl.fraymotifs.clear();
+        }
+        return " Welp, look who's being ungrateful for all that fraymotif shit.  Guess you don't need THOSE. ";
+      }
+
+      if(p == aspiringWatcher) {
+        p.session.timeTillReckoning = 0;
+        return " Huh. You know, aspiringWatcher was always the one telling me that the reckoning should take longer so more Players are prepared.  Guess you don't care about that then. ";
+      }
+
+      if(p == authorBot) {
+        p.session.rand = new Random();
+        p.session.sessionHealth = 13;
+        return " You know, you're right.  What did dear, sweet, precious, sweet sweet AuthorBot ever do for you. Besides make things nice and stable and testable. You ungrateful asshole. Good luck sharing this session now. ";
+      }
+
+      if(p == recusiveSlacker) {
+        p.session.mutator.rapsAndLuckDisabled = true;
+        p.session.sessionHealth = 130; //not as bad as AB but still.
+        return " You know, recursiveSlacker championed luck being a thing.  I guess you agree with Terezi that LUCK DO3SN'T R3411Y MATT3R.  But to lose rap battles at the same time. For shame.  ";
+      }
+
+      if(p == dilletantMathematician) {
+        for(Player pl in p.session.players) {
+          pl.initializeStats();
+          pl.level_index = 0; 
+        }
+        return " Hope you enjoy starting your echeladder over from scratch. Asshole.  ";
+      }
+
+
+      return null;
     //TODO
       /*
-          ABJ's death heals everyone and revives them (even us)
-          KR's death causes what pumpkin mode
-          JR's death is just a crash
-          NB's kills all players but one ('dead session')
-          WM sets all players to 0 gnosis.
           RS kills raps and luck (somehow??? gotta figure this out. )
-          PL sets land to null, later will be more complex fucking up the rendering
           DM sets all stats to zero?
-          MI sets all fraymotifs to be empty
-          IO makes all trolls become human or something equally weird
-
        */
     }
 }

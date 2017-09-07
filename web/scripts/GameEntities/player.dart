@@ -298,7 +298,7 @@ class Player extends GameEntity {
 
     @override
     String makeDead(String causeOfDeath) {
-        print("making dead $causeOfDeath");
+       // print("making dead $causeOfDeath");
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
         String ret = "";
         this.dead = true;

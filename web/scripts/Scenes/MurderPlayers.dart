@@ -95,7 +95,7 @@ class MurderPlayers extends Scene {
         Team dTeam = new Team.withName("${enemy.title()}", this.session, [enemy]);
         dTeam.canAbscond = false;
         Strife strife = new Strife(this.session, [pTeam, dTeam]);
-        appendHtml(div, "The ${murderer.htmlTitle()} challenges the ${enemy} to an honorable duel. <Br>");
+        appendHtml(div, "<Br>The ${murderer.htmlTitle()} challenges the ${enemy.htmlTitle()} to an honorable duel. <Br>");
         strife.startTurn(div);
         if(!session.mutator.rageField && session.rand.nextDouble() >0.3 ) {  //MOST strifes arne't fatal.
             murderer.makeAlive();
@@ -109,8 +109,9 @@ class MurderPlayers extends Scene {
             }else {
                 killer = enemy;
             }
-            if(session.mutator.rageField && session.mutator.metaHandler.checkDeath(div, dead)) {
-                ret += "You did it. You finally killed one of the Manipulative Bastards. Keep going.";
+            String specialDeath = session.mutator.metaHandler.checkDeath(dead);
+            if(session.mutator.rageField && specialDeath != null) {
+                ret += "$specialDeath You did it. You finally killed one of the Manipulative Bastards. Keep going.";
                 session.logger.info("AB: JR, that weird clone of ${dead.title()} was killed. ");
             }else {
                 ret += " Oh. Oh god no. Please be grub sauce. Please be grub sauce! You didn't mean to! It was just a game... Why did ${dead.htmlTitle()} have to die? ";
