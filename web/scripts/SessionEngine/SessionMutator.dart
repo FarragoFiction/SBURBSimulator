@@ -913,7 +913,7 @@ class MetaPlayerHandler {
         player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("Coin", s);
         player.object_to_prototype.helpPhrase = "was a clever choice for a sprite. He showers enemies in currency. Damn balance-breaking void players.";
-        
+
         player.sprite.addPrototyping(player.object_to_prototype);
 
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
@@ -989,7 +989,7 @@ class MetaPlayerHandler {
         player.object_to_prototype.disaster = true;
         player.object_to_prototype.setStatsHash(<String,num>{"hp": 500, "currentHP": 500, "sanity": -250, "power": 100});
 
-        Fraymotif f = new Fraymotif("[this space left intentially blank]", 13);
+        Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect("mobility", 1, true));
         f.effects.add(new FraymotifEffect("mobility", 1, false));
