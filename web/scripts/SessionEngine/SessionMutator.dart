@@ -686,6 +686,7 @@ class MetaPlayerHandler {
     }
 
     void initalizePlayers(Session s) {
+        if(jadedResearcher != null) return; //don't reintiialize, dunkass.
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
         dilletantMathematician = makeDM(s);
@@ -1070,7 +1071,7 @@ class MetaPlayerHandler {
       if(p == dilletantMathematician) {
         for(Player pl in p.session.players) {
           pl.initializeStats();
-          pl.level_index = 0; 
+          pl.level_index = 0;
         }
         return " Hope you enjoy starting your echeladder over from scratch. Asshole.  ";
       }

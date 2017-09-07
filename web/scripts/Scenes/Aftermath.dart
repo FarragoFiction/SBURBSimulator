@@ -173,7 +173,7 @@ class Aftermath extends Scene {
 			var friend = p.getWhoLikesMeBestFromList(living);
 			var enemy = p.getWhoLikesMeLeastFromList(living);
 			if(friend != null){
-				ret += " They are mourned by the" + friend.htmlTitle() + ". ";
+				ret += " They are mourned by the " + friend.htmlTitle() + ". ";
 				appendHtml(div, ret);
 				ret = "";
 				this.drawMourning(div, p,friend);
@@ -188,6 +188,7 @@ class Aftermath extends Scene {
 		return null;
 	}
 	void drawMourning(div, dead_player, friend){
+		if(doNotRender) return;
 		var divID = (div.id) + "_" + dead_player.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);
