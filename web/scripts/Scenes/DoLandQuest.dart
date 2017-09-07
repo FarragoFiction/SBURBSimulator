@@ -108,7 +108,7 @@ class DoLandQuest extends Scene{
 			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat("power"),null,null) );
 	}
 
-	dynamic calculateClasspectBoost(Player player, Player helper){
+	dynamic calculateClasspectBoost(Player player, Player helper, Player targetPlayer){
 
 
 		if(helper.aspect == Aspects.HEART && helper.class_name == SBURBClassManager.SYLPH){
@@ -168,13 +168,12 @@ class DoLandQuest extends Scene{
 			}
 		}
 
-		if (helper.aspect == Aspects.MIST){
-			helper.increasePower();
-			if(r2.value > 0){
-				ret += " Somehow, the " + player.htmlTitle() + " was actually the " + helper.htmlTitle() + " in disguise. Looks like the REAL " + player.htmlTitle() + " can do quests elsewhere.";
-			}else{
-				ret += " Somehow, the " + player.htmlTitle() + " was actually the " + helper.htmlTitle() + " in disguise. They give the REAL " + player.htmlTitle() + " a condescending smirk afterwards.";
+		if (player.aspect == Aspects.MIST && targetPlayer != null){ //Mist players do their quests on every land.
+			targetPlayer.increaseLandLevel();
+			if(player != targetPlayer) { //no, sorry, you can't be better on your own land then you are everywhere else.
+				player.increaseLandLevel();
 			}
+
 		}
 
 		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
@@ -275,6 +274,7 @@ class DoLandQuest extends Scene{
 		return ret;
 	}
 	String contentForPlayer(Player player, Player helper){
+		var targetPlayer = rand.pickFrom(session.getReadOnlyAvailablePlayers());
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
 
@@ -287,16 +287,26 @@ class DoLandQuest extends Scene{
 		}else{
 			ret += " does";
 		}
+		if(player.aspect == Aspects.MIST && targetPlayer != null) {
+			if (rand.nextDouble() > 0.8) {
+				ret += " quests at " + targetPlayer.shortLand();
+			} else {
+				ret += " quests in the " + targetPlayer.land;
+			}
+			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes good use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
+			if (helper != null) {
+				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
+			}
+			print("Mist player Quests elsewhere");
+		}else {
+			if (rand.nextDouble() > 0.8) {
+				ret += " quests at " + player.shortLand();
+			} else {
+				ret += " quests in the " + player.land;
+			}
 
-		if(rand.nextDouble() >0.8){
-			ret += " quests at " + player.shortLand();
-		}else{
-			ret += " quests in the " + player.land;
 		}
-		ret += ", " + player.getRandomQuest() + ". ";
-		if(helper != null){
-			ret += this.calculateClasspectBoost(player, helper);
-		}
+
 		if(helper != null && player  != helper ){
 			Relationship r1 = player.getRelationshipWith(helper);
 			Relationship r2 = helper.getRelationshipWith(player);
