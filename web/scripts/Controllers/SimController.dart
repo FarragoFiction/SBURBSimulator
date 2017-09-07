@@ -17,6 +17,7 @@ import "../navbar.dart";
 abstract class SimController {
     static SimController instance;
     num initial_seed = 0;
+    int indexOfPlayerWhoEnteredLast = 0;
     bool stopped = false; //need a way to stop the sim when needed.
 
     bool gatherStatData = false;
@@ -32,22 +33,35 @@ abstract class SimController {
         }
     }
 
-    void callNextIntro(int player_index) {
-        if (player_index >= curSessionGlobalVar.players.length) {
+    void callNextIntro([num time]) { //not sure why it needs num time but requestAnimtionFrame wants it and that's how pl did other methods
+        if (indexOfPlayerWhoEnteredLast >= curSessionGlobalVar.players.length) {
             tick(); //NOW start ticking
             return;
         }
         Intro s = new Intro(curSessionGlobalVar);
-        Player p = curSessionGlobalVar.players[player_index];
+        Player p = curSessionGlobalVar.players[indexOfPlayerWhoEnteredLast];
+        curSessionGlobalVar.logger.info("Player $p entering the session");
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
-        List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
+        List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, indexOfPlayerWhoEnteredLast + 1);
         s.trigger(playersInMedium, p);
-        s.renderContent(curSessionGlobalVar.newScene(), player_index); //new scenes take care of displaying on their own.
+        s.renderContent(curSessionGlobalVar.newScene(), indexOfPlayerWhoEnteredLast); //new scenes take care of displaying on their own.
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
         this.gatherStats();
-        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
+        indexOfPlayerWhoEnteredLast ++;
+        if(!stopped) window.requestAnimationFrame(callNextIntro);
+    }
+
+    void resumeTickingAfterStopping() {
+        curSessionGlobalVar.logger.info("Resuming sim after stopping");
+        if(indexOfPlayerWhoEnteredLast >= curSessionGlobalVar.players.length) {
+            curSessionGlobalVar.logger.info("Resuming ticking after stopping");
+            tick();
+        }else {
+            curSessionGlobalVar.logger.info("resuming calling an intro");
+            callNextIntro();
+        }
     }
 
     void checkSGRUB() {
@@ -115,7 +129,8 @@ abstract class SimController {
         initGatherStats();
         createInitialSprites();
         //advertisePatreon(querySelector("#story"));
-        callNextIntro(0);
+        indexOfPlayerWhoEnteredLast = 0; //nobody has entered yet.
+        callNextIntro();
     }
 
     void createInitialSprites() {

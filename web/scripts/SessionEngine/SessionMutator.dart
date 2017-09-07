@@ -226,10 +226,14 @@ class SessionMutator {
 
   String rage(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
+
     effectsInPlay ++;
     rageField = true;
+
     SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
+
     metaHandler.initalizePlayers(s);
+
     s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
     String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
     ret += " It all makes SO MUCH FUCKING SENSE now. Everything that has happened to them is just shittily planned, shittly programmed code, riddled with tpyos. "; //see what i did there???
@@ -237,6 +241,8 @@ class SessionMutator {
     globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
     //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+    return "Nope. debugging.";
+
     for(Player p in s.players) {
         p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
         p.setStat("sanity", -1313); //STAY in murder mode, damn it
@@ -400,7 +406,7 @@ class SessionMutator {
         p.generateBlandRelationships(s.players);  //don't hate em back
       }
       SimController.instance.stopped = false; //so there is time to load
-      SimController.instance.tick(); //start back up.
+      SimController.instance.resumeTickingAfterStopping();
   }
 
   String breath(Session s, Player activatingPlayer) {
@@ -947,7 +953,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("100 Art Projects At Once", InterestManager.CULTURE);
         player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
         player.moon = "Derse";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Memories and Misdirection";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1073,6 +1079,7 @@ class MetaPlayerHandler {
     //ONLY for rageField tho.
     //doesn't happen ANY time we die, but only if pvp death.
     String checkDeath(Player p) {
+      return null;
       if(p == authorBotJunior) {
           for(Player pl in p.session.players) {
             if(pl != p) pl.makeAlive();

@@ -3168,3 +3168,47 @@ I susepct that even if the light player dies they are gonna be stuck helping eve
 
 Careful what you wish for, etc. etc.
 
+~~~~~~~~~~
+
+Okay. Fuck the Entire World.  I can't figure this out.  Spend five minutes defining the problem without looking for solutions.
+
+I KNOW that sometimes players have null denizens and denizen minions. These players are existing players (such as a Waste of Time).
+
+These playes are only in a session with Wastes of Rage.
+
+I know that when a player is created, their denizen and  minion are created at the same time.
+
+I know that when a tier4 blood player brings a friend in, that friend has no denizen (but never bother to null the minion.
+
+Okay. Let's see EXACTLY when a denizen is created in the player creation process.
+
+It's called exactly once, in Intro.  So blood plyaers would have both be null anyways.
+
+
+
+
+Avenues of Investigation:
+    * is INTRO being interupted for any players in the rage update.....
+
+    Oh.
+
+
+    Oh fuck.
+
+    Of course it is.
+
+    Because I have that SimController.stopped flag....and I only restart tick. Not intro. (do I even stop Intro?)
+
+    I am like, 90% confident that this is the problem, and I'm about to hit the five minute mark anyways.  Time to code.
+
+Steps towards a solution:
+
+    * have intro ALSO be stopped by flag.
+    * figure out whether you should be calling intro or tick when restarting.  prefereablly make a method in SimController for restart.
+
+
+    Alright, the problem with intro is that it's assuming no informatio is stored between method calls besides recursive things
+    unlike tick, which takes no input.
+
+    So. What to do. Obvious answer is to make the passy innny thingy be a field on SimController. How much will this fuck me over?
+

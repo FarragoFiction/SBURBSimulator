@@ -97,7 +97,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   @override
-  void callNextIntro(int player_index) {
+  void callNextIntro([num time]) {
     throw "ABJ does not actually simulate shit.";
   }
 
