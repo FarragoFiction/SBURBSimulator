@@ -270,6 +270,7 @@ class MurderPlayers extends Scene {
 	}
 	bool canCatch(Player m, Player worstEnemy){
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
+		if(session.mutator.rageField) return true; //can't run from the clown, yo.
 		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
 		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
 		if(worstEnemy.aspect == Aspects.SPACE && worstEnemy.getStat("power") > 50){

@@ -28,7 +28,8 @@ class VoidyStuff extends Scene {
 		}
 
 		if(this.enablingPlayer != null){
-			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
+			//rage field makes it always act as if passive
+			if(!session.mutator.rageField && (this.enablingPlayer.isActive() || rand.nextDouble() > .5)){
 				this.player = this.enablingPlayer;
 			}else{  //somebody else can be voided.
 				this.player = rand.pickFrom(availablePlayers);  //don't forget that light players will never have void display none

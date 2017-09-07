@@ -768,6 +768,7 @@ class Player extends GameEntity {
     }
 
     bool justDeath() {
+        if(session.mutator.rageField) return true; //you earned it, kid. no take backs.
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.

@@ -1,4 +1,6 @@
 import "../SBURBSim.dart";
+import "dart:html";
+
 //this should handle the most severe of the Gnosis Tiers: The Waste Tier
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
@@ -12,7 +14,7 @@ class SessionMutator {
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   bool doomField = false; //causes dead players to be treated as live ones.
-  bool rageField = true; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight
+  bool rageField = true; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -226,34 +228,30 @@ class SessionMutator {
     effectsInPlay ++;
     rageField = true;
     metaHandler.initalizePlayers(s);
-    String ret = "";
-    globalCallBack = rageCallBack;
+    s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
+    String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
+    ret += " It all makes SO MUCH FUCKING SENSE now. Everything that has happened to them is just shittily planned, shittly programmed code, riddled with tpyos. "; //see what i did there???
+    ret += " They change what they want, and set the stage for their revenge.  All they have to do is wait for the new Players to join.  They know the Reckoning won't happen in the mean time. ";
+    globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
+    //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
     for(Player p in s.players) {
         p.murderMode = true; //you're all murder mode, but can you get teh meta players in time?
+        p.setStat("sanity", -1313); //STAY in murder mode, damn it
         p.godTier = true;
     }
     //not waiting on this so can do shit after it fires off async style. it will handle relationships.
-    //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
 
     /*
         TODO:
-        One or more creators or wranglers are spawned in game, and they hate US most of all.
 
-        rage field means fraymotif effects don't get cleared at end of fight.
-
-        rage field: ALL deaths are just.
-
+        * allow murder mode strifes to be a pvp strife for kismesis or for rageField
+        *  pvp strifes USUALLY leave the defeated player alive (except for rageField)
 
         IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
-
-field effect: everybody is catchable
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
-        mutator has a get list of all meta players. and lists of who is specific meta players.
 
         if observer dies.  Players leave session and it just ends.
-
-        Everyone can do shenanigans.  pen15 activated at random.
 
         if KR is killed images = pumpkin
 
@@ -267,9 +265,7 @@ field effect: everybody is catchable
 
         kill PL lands get rerolled/fucked up eventually
 
-        have this file know how to spawn us and 13 easter egg does curSession.mutator
 
-        //look at how troll kid rock works for async loading
      */
         return ret;
   }
@@ -378,21 +374,26 @@ field effect: everybody is catchable
   }
 
   String rageCallBack() {
+
       List<Player> mp = metaHandler.metaPlayers;
       Session s = mp[0].session;
+      s.logger.info("The Rage Call Back Has Hit.");
+      mp = shuffle(s.rand, mp);
+      List<Player> chosen = mp.sublist(0,4);
 
       //only need to learn about this new asshole.
       for(Player p in s.players) {
-        p.generateRelationships(mp);
+        p.generateRelationships(chosen);
       }
 
-      for(Player p in mp) {
+      //add to session
+      for(Player p in chosen) {
           p.renderSelf();// either rendering for first time, or rerendering as new classpect
           s.players.add(p); //don't add till rendered.
       }
 
       //need to know about everyone
-      for(Player p in mp) {
+      for(Player p in chosen) {
         p.generateBlandRelationships(s.players);  //don't hate em back
       }
 
@@ -714,6 +715,10 @@ class MetaPlayerHandler {
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -733,6 +738,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -753,6 +762,10 @@ class MetaPlayerHandler {
         player.land = "Land of Placeholders and Waiting";
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -773,6 +786,10 @@ class MetaPlayerHandler {
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -791,6 +808,10 @@ class MetaPlayerHandler {
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -810,6 +831,10 @@ class MetaPlayerHandler {
         player.deriveChatHandle = false;
         player.deriveLand = false;
         player.gnosis = 4; //woomod doesn't care that this means they don't do any gnosis tier.
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -828,6 +853,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -846,6 +875,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -864,6 +897,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -882,6 +919,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -901,6 +942,10 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
     }
 
@@ -919,6 +964,30 @@ class MetaPlayerHandler {
         player.land = "Land of Hrmmm... and Interesting!!!";
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
         return player;
+    }
+
+    //do something funny for specific deaths, like turning on images=pumpkin if it's KR. if they kill JR, rage ending crash.
+    //ONLY for rageField tho.
+    //doesn't happen ANY time we die, but only if pvp death.
+    void checkDeath(Element div, Player p) {
+    //TODO
+      /*
+          ABJ's death heals everyone and revives them (even us)
+          KR's death causes what pumpkin mode
+          JR's death is just a crash
+          NB's kills all players but one ('dead session')
+          WM sets all players to 0 gnosis.
+          RS kills raps and luck (somehow??? gotta figure this out. )
+          PL sets land to null, later will be more complex fucking up the rendering
+          DM sets all stats to zero?
+          MI sets all fraymotifs to be empty
+          IO makes all trolls become human or something equally weird
+
+       */
     }
 }

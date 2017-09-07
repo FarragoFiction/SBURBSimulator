@@ -920,10 +920,6 @@ void session13() {
     curSessionGlobalVar.players[0].leader = true;
     for(Player p in curSessionGlobalVar.players) {
         p.ectoBiologicalSource = null; //can do ectobiology.
-        p.initialize();
-        p.makeGuardian();
-        p.guardian.initialize();
-        p.guardian.guardian = p;
     }
 
     for(num i = 0; i<curSessionGlobalVar.players.length;i++){
