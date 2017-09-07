@@ -99,6 +99,8 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		session420();
 	}else if(curSessionGlobalVar.session_id == 0){
 		session0();
+	}else if(curSessionGlobalVar.session_id == 13){ //wait, why is THIRTEEN an arc number ???
+		session13();
 	}
 
 	if(getParameterByName("images",null)  == "pumpkin"){
@@ -412,6 +414,7 @@ void session111111(){
 void session413IndexToHuman(Player player, int index){
 	player.isTroll = false;
 	player.deriveChatHandle = false;
+    player.deriveLand = false;
 	if(index == 0){
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.HEIR;
@@ -909,8 +912,28 @@ void session420(){
 
 }
 
+//what even is this???
+void session13() {
+    curSessionGlobalVar.mutator.metaHandler.initalizePlayers(curSessionGlobalVar);
+	curSessionGlobalVar.players = curSessionGlobalVar.mutator.metaHandler.metaPlayers; //just blow them away.
+    print("players is: ${curSessionGlobalVar.players}");
+    curSessionGlobalVar.players[0].leader = true;
+    for(Player p in curSessionGlobalVar.players) {
+        p.ectoBiologicalSource = null; //can do ectobiology.
+    }
 
-
+    for(num i = 0; i<curSessionGlobalVar.players.length;i++){
+        Player player = curSessionGlobalVar.players[i];
+        Player  guardian = player.guardian;
+        player.relationships = [];
+        guardian.relationships = [];
+        List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+        guardian.generateRelationships(guardians);
+        player.generateRelationships(curSessionGlobalVar.players);
+        player.mylevels = getLevelArray(player);
+        guardian.mylevels = getLevelArray(guardian);
+    }
+}
 
 void session0(){
 	for(int i = 0; i<12; i++){
@@ -1038,6 +1061,7 @@ void session612IndexToTroll(Player player, int index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
+	player.deriveLand = false;
 	if(index == 0){
 		player.aspect = Aspects.BLOOD;
 		player.moon = "Prospit";
@@ -1326,6 +1350,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	player.hairColor = "#000000";
 	player.isTroll = true;
 	player.deriveChatHandle = false;
+    player.deriveLand = false;
 	if(index == 0){
 		player.moon = "Prospit";
 		player.aspect = Aspects.BLOOD;

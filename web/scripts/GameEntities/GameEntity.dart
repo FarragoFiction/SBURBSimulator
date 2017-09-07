@@ -15,7 +15,9 @@ class GameEntity implements Comparable<GameEntity> {
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     static int minPower = 1;  //hope player fucks with this, ab resets it
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
-    Session session;
+
+    /// can NEVER be null, but I expect this to be replaced.
+    Session session = new Session(-13);
 
     //TODO replace 'minLuck' with 'destiny'
     String name = "";
@@ -163,7 +165,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void resetFraymotifs() {
-        this.buffs.clear();
+        if(!session.mutator.rageField) this.buffs.clear(); //rage just keeps going.
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
         }

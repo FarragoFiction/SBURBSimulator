@@ -18,6 +18,7 @@ class LuckStuff extends Scene{
 
 	@override
 	bool trigger(List<Player> playerList){
+		if(session.mutator.rapsAndLuckDisabled) return false;
 		this.rolls = [];//reset
 		if(this.numberTriggers > 10){
 		//	//session.logger.info("too much luck events in " + this.session.session_id);

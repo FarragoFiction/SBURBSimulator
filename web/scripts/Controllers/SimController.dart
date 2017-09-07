@@ -17,6 +17,7 @@ import "../navbar.dart";
 abstract class SimController {
     static SimController instance;
     num initial_seed = 0;
+    bool stopped = false; //need a way to stop the sim when needed.
 
     bool gatherStatData = false;
     StatSampler statData;
@@ -159,7 +160,7 @@ abstract class SimController {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
             this.gatherStats();
-            window.requestAnimationFrame(reckoningTick);
+            if(!stopped) window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
@@ -300,7 +301,7 @@ abstract class SimController {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
             this.gatherStats();
-            window.requestAnimationFrame(tick);
+            if(!stopped) window.requestAnimationFrame(tick);
             ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
             //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
         } else {

@@ -336,6 +336,7 @@ Uint8List stringToByteArray(str){
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
 dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   var player = new Player();
+  player.session = new Session(-13); //so shit doesn't crash lookin gfor a mututator
   player.quirk = new Quirk(null);
   //print("strings is: $str_arr");
   ////print("chars is: " + charString);

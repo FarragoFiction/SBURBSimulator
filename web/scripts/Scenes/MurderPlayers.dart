@@ -78,6 +78,55 @@ class MurderPlayers extends Scene {
 		return ret;
 
 	}
+
+	bool shouldItBeAStrife(Player murderer, Player enemy) {
+	    if(murderer == null || enemy == null) return false; //just. no.
+		if(session.mutator.rageField) return true;
+		Relationship r1 = murderer.getRelationshipWith(enemy);
+		if(r1 != null && (r1.saved_type == r1.spades || r1.saved_type == r1.clubs)) return true; //at least TRY not to kill your kismesis or ashen mate. you're used to hatin them. If somehow you want to kill pale or flushed well...crime of passion.
+		return false;
+	}
+
+	String doAStrife(Element div, Player murderer, Player enemy) {
+	    session.logger.info("AB: A pvp strife is happening!");
+	    String ret = "";
+        Team pTeam = new Team.withName("${murderer.title()}", this.session, [murderer]);
+        pTeam.canAbscond = false;
+        Team dTeam = new Team.withName("${enemy.title()}", this.session, [enemy]);
+        dTeam.canAbscond = false;
+        Strife strife = new Strife(this.session, [pTeam, dTeam]);
+        appendHtml(div, "<Br>The ${murderer.htmlTitle()} challenges the ${enemy.htmlTitle()} to an honorable duel. <Br>");
+        strife.startTurn(div);
+        if(!session.mutator.rageField && session.rand.nextDouble() >0.3 ) {  //MOST strifes arne't fatal.
+            murderer.makeAlive();
+            enemy.makeAlive();
+            ret += "Luckily the combatants were only knocked out and recover shortly.";
+        }else {
+            Player killer = murderer;
+            Player dead = murderer;
+            if(enemy.dead) {
+                dead = enemy;
+            }else {
+                killer = enemy;
+            }
+            String specialDeath = session.mutator.metaHandler.checkDeath(dead);
+            if(session.mutator.rageField && specialDeath != null) {
+                ret += "$specialDeath You did it. You finally killed one of the Manipulative Bastards. Keep going.";
+                session.logger.info("AB: JR, that weird clone of ${dead.title()} was killed. ");
+            }else {
+                ret += " Oh. Oh god no. Please be grub sauce. Please be grub sauce! You didn't mean to! It was just a game... Why did ${dead.htmlTitle()} have to die? ";
+            }
+            killer.pvpKillCount ++;
+            this.session.stats.murdersHappened = true;
+            killer.victimBlood = dead.bloodColor;
+            renderMurder(div, killer, dead);
+        }
+        session.removeAvailablePlayer(murderer);
+        session.removeAvailablePlayer(enemy);
+        return ret;
+	}
+
+
 	void renderMurder(Element div, Player murderer, Player victim){
 		var divID = (div.id) + "_" + victim.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
@@ -147,6 +196,11 @@ class MurderPlayers extends Scene {
 			Player m = this.murderers[i];
 			Player worstEnemy = m.getWorstEnemyFromList(this.session.getReadOnlyAvailablePlayers());
 			if(worstEnemy != null) ret += m.interactionEffect(worstEnemy);
+
+			//override regular shit to do a strife. really need to refactor this bullshit way to long method. later. gotta focus.
+			if(shouldItBeAStrife(m, worstEnemy)){
+                return doAStrife(div, m, worstEnemy);
+            }
 			//if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") //session.logger.info("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
 			var living = findLivingPlayers(this.session.players);
 			removeFromArray(worstEnemy, living);
@@ -269,6 +323,7 @@ class MurderPlayers extends Scene {
 		return ret;
 	}
 	bool canCatch(Player m, Player worstEnemy){
+		if(session.mutator.rageField) return true; //can't run from the clown, yo.
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
 		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
 		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;

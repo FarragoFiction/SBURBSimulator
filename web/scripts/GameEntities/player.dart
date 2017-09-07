@@ -21,6 +21,7 @@ class Player extends GameEntity {
     num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
+    bool deriveLand = true;
     String flipOutReason = null; //if it's null, i'm not flipping my shit.
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
     num denizen_index = 0; //denizen quests are in order.
@@ -76,6 +77,7 @@ class Player extends GameEntity {
     bool denizenFaced = false;
     bool denizenDefeated = false;
     bool denizenMinionDefeated = false;
+
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
         this.name = "player_$id"; //this.htmlTitleBasic();
@@ -281,6 +283,7 @@ class Player extends GameEntity {
     }
 
     void unmakeMurderMode() {
+        if(session.mutator.rageField) return; //you don't LEAVE murdermode until you are mothering fuck DONE you heretic
         this.murderMode = false;
         this.leftMurderMode = true;
         this.renderSelf();
@@ -295,7 +298,7 @@ class Player extends GameEntity {
 
     @override
     String makeDead(String causeOfDeath) {
-        print("making dead $causeOfDeath");
+       // print("making dead $causeOfDeath");
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
         String ret = "";
         this.dead = true;
@@ -610,14 +613,14 @@ class Player extends GameEntity {
         List<Fraymotif> psionics = <Fraymotif>[];
         //telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
             {
-            Fraymotif f = new Fraymotif("Telekinisis", 1);
+            Fraymotif f = new Fraymotif("Telekinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.desc = " Large objects begin pelting the ENEMY. ";
             psionics.add(f);
         }
 
         {
-            Fraymotif f = new Fraymotif("Pyrokinisis", 1);
+            Fraymotif f = new Fraymotif("Pyrokinesis", 1);
             f.effects.add(new FraymotifEffect("power", 2, true));
             f.desc = " Who knew shaving cream was so flammable? ";
             psionics.add(f);
@@ -629,6 +632,34 @@ class Player extends GameEntity {
             f.desc = " A deluge begins damaging the ENEMY. ";
             psionics.add(f);
         }
+
+        {
+            Fraymotif f = new Fraymotif("Electrokinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " An electric pulse begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
+        {
+            Fraymotif f = new Fraymotif("Terakinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " The very ground begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
+        {
+            Fraymotif f = new Fraymotif("Vitaekinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " The ENEMY's own body is turned against them as they begin punching their own face. ";
+            psionics.add(f);
+        }
+        {
+            Fraymotif f = new Fraymotif("Fungikinesis", 1);
+            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.desc = " A confusing array of mushrooms begins damaging the ENEMY. ";
+            psionics.add(f);
+        }
+
 
         {
             Fraymotif f = new Fraymotif("Mind Control", 1);
@@ -731,13 +762,14 @@ class Player extends GameEntity {
     }
 
     bool didDenizenKillYou() {
-        if (this.causeOfDeath.contains(this.denizen.name)) {
+        if (denizen != null && this.causeOfDeath.contains(this.denizen.name)) {
             return true; //also return true for minions. this is intentional.;
         }
         return false;
     }
 
     bool justDeath() {
+        if(session.mutator.rageField) return true; //you earned it, kid. no take backs.
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
@@ -880,8 +912,9 @@ class Player extends GameEntity {
         clone.timesDied = timesDied;
         if (denizen != null) clone.denizen = denizen.clone();
         if (denizen != null) clone.denizenMinion = denizenMinion.clone();
-        clone.sprite = sprite.clone(); //gets set to a blank sprite when character is created.
+        if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
+        clone.deriveLand = deriveLand;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
         clone.denizen_index = denizen_index; //denizen quests are in order.
@@ -935,6 +968,7 @@ class Player extends GameEntity {
         clone.denizenFaced = denizenFaced;
         clone.denizenDefeated = denizenDefeated;
         clone.denizenMinionDefeated = denizenMinionDefeated;
+        clone.session = session;
         //do not clone guardian, thing that calls you will do that
         return clone;
     }
@@ -1763,7 +1797,7 @@ class Player extends GameEntity {
         List<String> tmp = getRandomLandFromPlayer(this);
         this.land1 = tmp[0];
         this.land2 = tmp[1];
-        this.land = "Land of ${tmp[0]} and ${tmp[1]}";
+        if(this.deriveLand) this.land = "Land of ${tmp[0]} and ${tmp[1]}";
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
         this.mylevels = getLevelArray(this); //make them ahead of time for echeladder graphic
 
@@ -2053,6 +2087,7 @@ class Player extends GameEntity {
     static Player makeDoomedSnapshot(Player doomedPlayer) {
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
         timeClone.dead = false;
+        timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
         timeClone.prophecy = ProphecyState.ACTIVE;
         timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
         timeClone.doomed = true;

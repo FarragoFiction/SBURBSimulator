@@ -39,6 +39,19 @@ String todayToSession() {
     return "$y$m$d";
 }
 
+String getParamStringMinusParam(String name) {
+    String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
+    if (params == window.location.href) params = "";
+    String value = getParameterByName(name);
+    String replaceString = "${name}=${value}";
+    //print("inside navbar params are $params, name is $name and value is $value, replaceString is $replaceString");
+    if(value != null) {
+        params = params.replaceAll(replaceString, "");
+    }
+    //print("params are returning $params");
+    return params;
+}
+
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 //simulatedParamsGlobalVar is the simulated global vars.
 String getParameterByName(String name, [String url]) {

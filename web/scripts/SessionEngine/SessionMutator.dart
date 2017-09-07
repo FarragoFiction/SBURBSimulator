@@ -1,4 +1,6 @@
 import "../SBURBSim.dart";
+import "dart:html";
+
 //this should handle the most severe of the Gnosis Tiers: The Waste Tier
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
@@ -12,7 +14,9 @@ class SessionMutator {
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   bool doomField = false; //causes dead players to be treated as live ones.
+  bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
+  bool rapsAndLuckDisabled;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
@@ -26,6 +30,8 @@ class SessionMutator {
   Session savedSession; //for heart callback
   Player inSpotLight; //there can be only one.
   double bloodBoost = 6.12; //how much to increase interaction effects by.
+  MetaPlayerHandler metaHandler = new MetaPlayerHandler();
+
 
 
   static getInstance() {
@@ -159,6 +165,8 @@ class SessionMutator {
         p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
         p.renderSelf();
         p.land = null; //SBURB doesn't have a land for you.
+        p.denizen = null;
+        p.guardian = null;
     }
     //HEY did you know that SBURB calculates grist requirements based on number of players?
     //NO? Neither does this blood player.  And these Null players don't have lands....whoops! Hope you like playing SBURB hard mode!
@@ -217,19 +225,36 @@ class SessionMutator {
   }
 
   String rage(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
     effectsInPlay ++;
+    rageField = true;
+    SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
+    metaHandler.initalizePlayers(s);
+    s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
+    String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
+    ret += " It all makes SO MUCH FUCKING SENSE now. Everything that has happened to them is just shittily planned, shittly programmed code, riddled with tpyos. "; //see what i did there???
+    ret += " They change what they want, and set the stage for their revenge.  All they have to do is wait for the new Players to join. You suspect that things might get a little hard to share depending on how long they have to wait. They know the Reckoning won't happen in the mean time. ";
+    globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
+    //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
+    load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+    for(Player p in s.players) {
+        p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
+        p.setStat("sanity", -1313); //STAY in murder mode, damn it
+        p.godTier = true;
+    }
+    //not waiting on this so can do shit after it fires off async style. it will handle relationships.
+
     /*
         TODO:
-        All players are murder mode, all players are god tier, all players hate each other.
-        One or more creators or wranglers are spawned in game, and they hate US most of all.
+        PAUSE THE SESSION TILL WE LOAD
 
+        * allow murder mode strifes to be a pvp strife for kismesis or for rageField
+        *  pvp strifes USUALLY leave the defeated player alive (except for rageField)
+
+        IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
 
         if observer dies.  Players leave session and it just ends.
-
-        Everyone can do shenanigans.  pen15 activated at random.
 
         if KR is killed images = pumpkin
 
@@ -243,10 +268,12 @@ class SessionMutator {
 
         kill PL lands get rerolled/fucked up eventually
 
-        //look at how troll kid rock works for async loading
-     */
 
+     */
+        return ret;
   }
+
+
 
   //lol, can't just call it void cuz protected word
   String voidStuff(Session s, Player activatingPlayer) {
@@ -283,8 +310,11 @@ class SessionMutator {
           TODO:
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
           *   Create players, then change seed. shuffle player order, etc.
+          *   time player warps in and kills pas self, replaces them (keeps stats)
           *   line about them killing their past self and replacing them. so time player might start god tier and shit.
           *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
+          *     * considered this happening right at tier4, without waiting for session results (using presimulation) but realize that might prevent any other
+          *        gnosis 4 from going since time usually gets it first.
 
        */
   }
@@ -346,6 +376,32 @@ class SessionMutator {
     }
   }
 
+  String rageCallBack() {
+      List<Player> mp = metaHandler.metaPlayers;
+      Session s = mp[0].session;
+      s.logger.info("The Rage Call Back Has Hit.");
+      mp = shuffle(s.rand, mp);
+      List<Player> chosen = mp.sublist(0,4);
+
+      //only need to learn about this new asshole.
+      for(Player p in s.players) {
+        p.generateRelationships(chosen);
+      }
+
+      //add to session
+      for(Player p in chosen) {
+          p.renderSelf();// either rendering for first time, or rerendering as new classpect
+          s.players.add(p); //don't add till rendered.
+      }
+
+      //need to know about everyone
+      for(Player p in chosen) {
+        p.generateBlandRelationships(s.players);  //don't hate em back
+      }
+      SimController.instance.stopped = false; //so there is time to load
+      SimController.instance.tick(); //start back up.
+  }
+
   String breath(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Breath is going at it.");
     effectsInPlay ++;
@@ -377,7 +433,7 @@ class SessionMutator {
     //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
     activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
     s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
-    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most importnt character in Homestuck. Uh. The Session. I meant the session, obviously. ";
+    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most important character in Homestuck. Uh. The Session. I meant the session, obviously. ";
     ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
     ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
     for(Player p in s.players) {
@@ -475,8 +531,8 @@ class SessionMutator {
     lifeField = true;
     String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
     ret += " They seem to be SO FULL OF LIFE.  Did they even KNOW what asking for ultimate power would do to everyone? ";
-    ret += "Shit, and it looks like decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
-    ret += "I don't think they thought this through...";
+    ret += "Shit, and it looks like they decided that death shouldn't be allowed at all.  Hopefully there aren't any unintended consequences of THAT.";
+    ret += " I don't think they thought this through...";
     //TODO during npc update, have non-combat ways for strifes to end. until then, lifeField only effects players or infinite strifes are a thing.
     for(Player p in s.players) {
       p.trickster = true;
@@ -515,17 +571,43 @@ class SessionMutator {
     if(unDoomedClones.length > 0) {
         ret += "Some of the survivors of doomed timelines are added to the session as full players. This will not end well.";
     }
-    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player stats are inverted, including their living attribute. ";
+    ret += "A feeling of doom washes over the session. It seems that the rules have been subverted. All player attributes are inverted, including their living attribute. ";
+    ret += "You... Kind of get the feeling that the doom player just found every rule the could and inverted it without restraint. ";
     for(Player p in s.players) {
         p.generateBlandRelationships(s.players); //hard to be excited with that much doom running around. also gives the doomed players relationships.
+        p.dreamSelf = !p.dreamSelf;
+        p.isDreamSelf = !p.isDreamSelf;
+        p.godDestiny = !p.godDestiny;
+        p.godTier = !p.godTier;
+        p.dead = !p.dead;
+        p.murderMode = !p.murderMode;
+        p.leftMurderMode = !p.murderMode;
+        p.causeOfDeath = "...I...don't even know anymore. Are you following any of this shit? Fucking Doom Players.";
+        p.flipOutReason = "They very fabric of the rules of reality have come undone.";
+        if(s.rand.nextDouble() > .7) p.robot = !p.robot;
+        if(s.rand.nextDouble() > .7) p.sbahj = !p.sbahj;
+        if(s.rand.nextDouble() > .7) p.ghost = !p.ghost;
+        if(s.rand.nextDouble() > .7) p.causeOfDrain = "What is even happening?";
+        //other stats are taken care of with doom field, but nto relationships.
+        for(Relationship r in p.relationships) {
+            r.value = -1 * r.value;
+        }
     }
+    List<GameEntity> npcs = s.npcHandler.allNPCS;
+    for(GameEntity g in npcs) {
+        g.dead = !g.dead;
+    }
+
+    ret += " It's actually really hard to follow the plot now that the rules are all twisted around. Huh. ";
     /*
       TODO:
         * all stats flip
+        * maybe revive a few ghosts?
           * healing hurts, hurting heals
           * all stats are multiplied by -1 so high is bad and low is good.
           * all living players are catatonic.  only the dead are avaiable and returned by getLivingPlayers
           * //this is one that confuses me. not sure how it'll work.
+          * maybe change a few other rules. Big ones. Maybe you no longer need grist? black king and queen are already dead and reckoning goes anyways?
      */
     return ret;
   }
@@ -579,4 +661,427 @@ class SessionMutator {
   }
 
 
+}
+
+class MetaPlayerHandler {
+    //want them to be specifically named so we can use them for other things l8r. session 13 most notably.
+    Player aspiringWatcher;
+    Player dilletantMathematician;
+    Player insufferableOracle;
+    Player manicInsomniac;
+    Player nobody;
+    Player wooMod;
+    Player recusiveSlacker;
+    Player paradoxLands;
+    Player karmicRetribution;
+    Player jadedResearcher;
+    Player authorBot;
+    Player authorBotJunior;
+
+
+
+    List<Player> get metaPlayers {
+        //i'm totally the leader, everything else is alphabetical besides ab and abj who cheat
+        return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior ];
+    }
+
+    void initalizePlayers(Session s) {
+        if(jadedResearcher != null) return; //don't reintiialize, dunkass.
+        jadedResearcher = makeJR(s);
+        aspiringWatcher = makeAW(s);
+        dilletantMathematician = makeDM(s);
+        insufferableOracle = makeIO(s);
+        manicInsomniac = makeMI(s);
+        nobody = makeNB(s);
+        wooMod = makeWM(s);
+        recusiveSlacker = makeRS(s);
+        paradoxLands = makePL(s);
+        karmicRetribution = makeKR(s);
+        authorBot = makeAB(s);
+        authorBotJunior = makeABJ(s);
+    }
+
+    Player makeAW(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCRIBE, Aspects.LIFE);
+        player.hair = 56;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#000000";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "aspiringWatcher";
+        player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        player.deriveChatHandle = false;
+        player.godTier = true;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Aspiratcher, The</span> Librarian',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    //DM agreed to be our time player
+    Player makeDM(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PRINCE, Aspects.TIME);
+        player.hair = 29;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#503A21";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "dilletantMathematician";
+        player.interest1 = new Interest("Math", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Cartoons", InterestManager.POPCULTURE);
+        player.moon = "Prospit";
+        player.land = "Land of Cardboard and Grass";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength("<span class = 'void'>Algebron, The </span>Dilletant",13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeIO(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.MAGE, Aspects.SPACE);
+        player.hair = 68;
+        player.hairColor = "#000000";
+        player.bloodColor = "#0021cb";
+        player.isTroll = true;
+        player.ectoBiologicalSource = 13;
+        player.leftHorn = 71;
+        player.rightHorn = 71;
+        player.godTier = true;
+        player.chatHandle = "InsufferableOracle";
+        player.interest1 = new Interest("Drawing", InterestManager.CULTURE);
+        player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('Insurorracle',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+
+
+    Player makeMI(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.BARD, Aspects.DOOM);
+        player.hair = 1;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#503A21";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "manicInsomniac";
+        player.interest1 = new Interest("Data Entry", InterestManager.WRITING);
+        player.interest2 = new Interest("Song Writing", InterestManager.MUSIC);
+        player.moon = "Prospit";
+        player.land = "Land of Sound and Fury";
+        player.deriveChatHandle = false;
+        player.godTier = true;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Maniomnia, the </span>Dreamwaker',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeNB(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.BLOOD);
+        player.hair = 67;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#382207";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "noBody";
+        player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
+        player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Derse";
+        player.land = "Land of Charles and Dutton";
+        player.deriveChatHandle = false;
+        player.godTier = true;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Nobrop, the </span>Null',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeWM(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SYLPH, Aspects.BREATH);
+        player.hair = 17;
+        player.hairColor = "#800000";
+        player.ectoBiologicalSource = 13;
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "wooMod";
+        player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
+        player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
+        player.moon = "Prospit";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.gnosis = 4; //woomod doesn't care that this means they don't do any gnosis tier.
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Doomod, The </span>Wanderer',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeRS(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SEER, Aspects.VOID);
+        player.hair = 60;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#382207";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "recursiveSlacker";
+        player.interest1 = new Interest("Theorycrafting", InterestManager.ACADEMIC);
+        player.interest2 = new Interest("Storytelling", InterestManager.WRITING);
+        player.moon = "Derse";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeKR(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.ROGUE, Aspects.HEART);
+        player.hair = 46;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#E8D099";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "karmicRetribution";
+        player.interest1 = new Interest("100 Art Projects At Once", InterestManager.CULTURE);
+        player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
+        player.moon = "Derse";
+        player.land = "Land of Placeholders and Waiting";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('Karmiution',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makePL(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WITCH, Aspects.VOID);
+        player.hair = 47;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#453012";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "paradoxLands";
+        player.interest1 = new Interest("Drawing distant Lands", InterestManager.CULTURE);
+        player.interest2 = new Interest("Procedural Generation", InterestManager.TECHNOLOGY);
+        player.moon = "Derse";
+        player.land = "Land of Cults and Chandeliers";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Paraxalan, The </span>Ever-Searching',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    Player makeJR(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.WASTE, Aspects.MIND);
+        player.hair = 13;
+        player.ectoBiologicalSource = 13;
+        player.hairColor = "#3C1E07";
+        player.bloodColor = "#ff0000";
+        player.isTroll = false;
+        player.chatHandle = "jadedResearcher";
+        player.interest1 = new Interest("The AuthorBot", InterestManager.TECHNOLOGY);
+        player.interest2 = new Interest("GiggleSnort", InterestManager.POPCULTURE);
+        player.moon = "Derse";
+        player.land = "Land of Rods and Screens";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Jadeacher the,</span>Researcher',13); //hope we span strong enough to fight them.
+
+        return player;
+    }
+
+    Player makeAB(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.GUIDE, Aspects.MIND);
+        player.hair = 13;
+        player.ectoBiologicalSource = 13;
+        player.robot = true;
+        player.hairColor = "#2B2A2D";
+        player.bloodColor = "#0021cb";
+        player.isTroll = false;
+        player.chatHandle = "authorBot";
+        player.interest1 = new Interest("Authoring", InterestManager.TECHNOLOGY);
+        player.interest2 = new Interest("Robots", InterestManager.TECHNOLOGY);
+        player.moon = "Derse";
+        player.land = "Land of Bugs and Javascript";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Authorot, the</span> Robot',13); //hope we span strong enough to fight them.
+
+        return player;
+    }
+
+    Player makeABJ(Session s) {
+        Player player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.SCOUT, Aspects.MIND);
+        player.hair = 13;
+        player.ectoBiologicalSource = 13;
+        player.robot = true;
+        player.hairColor = "#2B2A2D";
+        player.bloodColor = "#0021cb";
+        player.isTroll = false;
+        player.chatHandle = "authorBotJunior";
+        player.interest1 = new Interest("Arson", InterestManager.TERRIBLE);
+        player.interest2 = new Interest("Shipping", InterestManager.ROMANTIC);
+        player.moon = "Derse";
+        player.land = "Land of Hrmmm... and Interesting!!!";
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
+        return player;
+    }
+
+    //do something funny for specific deaths, like turning on images=pumpkin if it's KR. if they kill JR, rage ending crash.
+    //ONLY for rageField tho.
+    //doesn't happen ANY time we die, but only if pvp death.
+    String checkDeath(Player p) {
+      if(p == authorBotJunior) {
+          for(Player pl in p.session.players) {
+            if(pl != p) pl.makeAlive();
+            pl.setStat("currentHP",1313);
+          }
+          return "With a final 'Interesting!!!', AuthorBotJunior is defeated. It feels like a great curse has been lifted. The Players are revived and healed. ";
+      }
+
+      if(p == nobody) {
+        for(Player pl in p.session.players) {
+          if(pl != p) pl.makeDead("killing nobody");
+        }
+        p.session.rand.pickFrom(p.session.players).makeAlive();
+        return "Huh. You've killed Nobody. The Curse of Dutton descends upon you, making you wish that Dead Sessions could be a thing.  They aren't. They totally aren't, yet. Everybody but one player dies anyways. ";
+      }
+
+      if(p == karmicRetribution) {
+        doNotRender = true;
+        return "You monster. You killed the Artist.  Let's see how you like a sim without any art. ";
+      }
+
+      if(p == jadedResearcher) {
+        p.session.stats.cataclysmCrash = true;
+        throw new PlayersCrashedSession("...I... What? What did you THINK would happen here? Now nobody is maintining this simulation, dunkass. Nice job breaking it, hero. "); //best glados reference
+
+        return "I. What? What did you THINK would happen here? Now nobody is maintining this simulation, dunkass. You probably won't even see this. ";
+      }
+
+      if(p == wooMod) {
+        for(Player pl in p.session.players) {
+          pl.gnosis = -4;
+        }
+        return "Now that WooMod has been defeated, the curse of knowledge is removed from the party. That's probably worth not being able to hack the code anymore, right? ";
+      }
+
+      if(p == paradoxLands) {
+        for(Player pl in p.session.players) {
+          pl.land = null;
+        }
+        return "Huh. Guess you don't appreciate all that hard work ParadoxLands has done/will do on lands. All planets in the medium are destroyed. ";
+      }
+
+      if(p == insufferableOracle) {
+        for(Player pl in p.session.players) {
+          pl.isTroll = true;
+          pl.bloodColor = p.session.rand.pickFrom(bloodColors);
+          pl.renderSelf();
+          if(pl.hair > 61) pl.hair = p.session.rand.nextIntRange(0, 61);
+          if(pl.leftHorn > 44) pl.leftHorn = p.session.rand.nextIntRange(0, 44);
+          if(pl.rightHorn > 44) pl.rightHorn = p.session.rand.nextIntRange(0, 44);
+        }
+        return " You killed InsufferableOracle. You're now all trolls, but don't have any access to the newer hair styles or horns. ";
+      }
+
+      if(p == manicInsomniac) {
+        for(Player pl in p.session.players) {
+          pl.fraymotifs.clear();
+        }
+        return " Welp, look who's being ungrateful for all that fraymotif shit.  Guess you don't need THOSE. ";
+      }
+
+      if(p == aspiringWatcher) {
+        p.session.timeTillReckoning = 0;
+        return " Huh. You know, aspiringWatcher was always the one telling me that the reckoning should take longer so more Players are prepared.  Guess you don't care about that then. ";
+      }
+
+      if(p == authorBot) {
+        p.session.rand = new Random();
+        p.session.sessionHealth = 13;
+        return " You know, you're right.  What did dear, sweet, precious, sweet sweet AuthorBot ever do for you. Besides make things nice and stable and testable. You ungrateful asshole. Good luck sharing this session now. ";
+      }
+
+      if(p == recusiveSlacker) {
+        p.session.mutator.rapsAndLuckDisabled = true;
+        p.session.sessionHealth = 130; //not as bad as AB but still.
+        return " You know, recursiveSlacker championed luck being a thing.  I guess you agree with Terezi that LUCK DO3SN'T R3411Y MATT3R.  But to lose rap battles at the same time. For shame.  ";
+      }
+
+      if(p == dilletantMathematician) {
+        for(Player pl in p.session.players) {
+          pl.initializeStats();
+          pl.level_index = 0;
+        }
+        return " Hope you enjoy starting your echeladder over from scratch. Asshole.  ";
+      }
+
+
+      return null;
+    //TODO
+      /*
+          RS kills raps and luck (somehow??? gotta figure this out. )
+          DM sets all stats to zero?
+       */
+    }
 }

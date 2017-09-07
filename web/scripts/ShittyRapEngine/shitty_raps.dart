@@ -357,7 +357,7 @@ dynamic rapInterjection(Random rand){
 
 
 List<dynamic> getRapForPlayer(Player player, String returnString, num score) {
-
+	if(player.session.mutator.rapsAndLuckDisabled) return ["Guess you don't appreciate raps. Asshole. ",-13];
 	var chosenRapTemplate = player.session.rand.pickFrom(rapTemplates);
 	var raps = chosenRapTemplate.getRapLineForPlayer(player);
 	var str = raps[0];
