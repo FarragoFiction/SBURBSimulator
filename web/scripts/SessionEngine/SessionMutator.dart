@@ -987,8 +987,7 @@ class MetaPlayerHandler {
         player.object_to_prototype.disaster = true;
         player.object_to_prototype.setStatsHash(<String,num>{"hp": 500, "currentHP": 500, "sanity": -250, "power": 100});
 
-        //this space intentionally left blank, PL? That would be hilarious.
-        Fraymotif f = new Fraymotif("", 13);
+        Fraymotif f = new Fraymotif("[this space left intentially blank]", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect("mobility", 1, true));
         f.effects.add(new FraymotifEffect("mobility", 1, false));
