@@ -947,6 +947,9 @@ class MetaPlayerHandler {
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('Karmiution',13); //hope we span strong enough to fight them.
 
+        player.object_to_prototype = new PotentialSprite("Paint.net", s);
+        player.object_to_prototype.helpPhrase = "tries its best, but a freeware program can only do so much. ";
+
         Fraymotif f = new Fraymotif("Ban Hammer", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect("mobility", 2, false));
@@ -977,6 +980,12 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Paraxalan, The </span>Ever-Searching',13); //hope we span strong enough to fight them.
+
+        player.object_to_prototype = new PotentialSprite("Cultist", s);
+        player.object_to_prototype.illegal = true;
+        player.object_to_prototype.helpPhrase = "potters around being adorable, yet shockingly deadly";
+        player.object_to_prototype.disaster = true;
+        player.object_to_prototype.setStatsHash(<String,num>{"hp": 500, "currentHP": 500, "sanity": -250, "power": 100});
 
         //this space intentionally left blank, PL? That would be hilarious.
         Fraymotif f = new Fraymotif("", 13);
