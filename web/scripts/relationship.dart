@@ -357,7 +357,10 @@ class Relationship {
         }else if(source.session.mutator.bloodField) {
             return new Relationship(source, 10, targetPlayer); //everyone gets along, but not necessarily romantic
         }else if(source.session.mutator.rageField) {
-            return new Relationship(source, -1313, targetPlayer); //holy shit i hate that guy.
+            Relationship r =  new Relationship(source, -1313, targetPlayer); //holy shit i hate that guy.
+            r.saved_type = r.badBig; //stop trying to kiss us and KILL us you asshole.
+            r.old_type = r.saved_type; //srsly
+            return r;
         }
         return new Relationship(source, source.session.rand.nextIntRange(-21, 22), targetPlayer);
        // return  new Relationship(source, 10000000, targetPlayer);;

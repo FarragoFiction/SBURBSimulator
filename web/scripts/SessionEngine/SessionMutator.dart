@@ -231,7 +231,7 @@ class SessionMutator {
     s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
     String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
     ret += " It all makes SO MUCH FUCKING SENSE now. Everything that has happened to them is just shittily planned, shittly programmed code, riddled with tpyos. "; //see what i did there???
-    ret += " They change what they want, and set the stage for their revenge.  All they have to do is wait for the new Players to join.  They know the Reckoning won't happen in the mean time. ";
+    ret += " They change what they want, and set the stage for their revenge.  All they have to do is wait for the new Players to join. You suspect that things might get a little hard to share depending on how long they have to wait. They know the Reckoning won't happen in the mean time. ";
     globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
     //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");

@@ -283,6 +283,7 @@ class Player extends GameEntity {
     }
 
     void unmakeMurderMode() {
+        if(session.mutator.rageField) return; //you don't LEAVE murdermode until you are mothering fuck DONE you heretic
         this.murderMode = false;
         this.leftMurderMode = true;
         this.renderSelf();
