@@ -208,6 +208,7 @@ class Aftermath extends Scene {
 
     bool checkRocksFell(Element div, String end, bool yellowYard) {
         if (this.session.stats.rocksFell) {
+            this.session.stats.makeCombinedSession = false;
             end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
             end += " If it's any consolation, it really does suck to fight so hard only to fail at the last minute. <Br><Br>Game Over.";
             end += " Or is it? ";
@@ -239,13 +240,13 @@ class Aftermath extends Scene {
                 end += " Your way into the new universe is barred, and you remain trapped in the medium.  <Br><br>Game Over.";
                 end += " Or is it?";
                 if (this.session.stats.ectoBiologyStarted == true) {
+                    session.logger.info("AB: this session might be able to combo. MVP is ${findStrongestPlayer(session.players).grist} amount of grist");
                     //spacePlayer.landLevel = -1025; //can't use the frog for anything else, it's officially a universe. wait don't do this, breaks abs frog reporting
                     this.session.stats.makeCombinedSession = true; //triggers opportunity for mixed session
                 }
                 //if skaia is a frog, it can't take in the scratch command.
                 this.session.stats.scratchAvailable = false;
                 //renderScratchButton(this.session);
-
             } else {
                 end += this.democracyBonus();
                 end += " <Br><br> The door to the new universe is revealed. <br><Br>";
@@ -327,6 +328,7 @@ class Aftermath extends Scene {
 
     @override
     void renderContent(Element div) {
+        session.logger.info("AB: Aftermath. MVP is ${findStrongestPlayer(session.players).grist} amount of grist");
         bool yellowYard = false;
         String end = "<Br>";
         List<Player> living = findLivingPlayers(this.session.players);
