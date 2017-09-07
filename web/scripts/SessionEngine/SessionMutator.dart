@@ -390,6 +390,7 @@ class SessionMutator {
 
       //add to session
       for(Player p in chosen) {
+          p.increasePower(130, 130); //ignore normal caps. don't want us to be unbeatable, not also not level 1
           p.renderSelf();// either rendering for first time, or rerendering as new classpect
           s.players.add(p); //don't add till rendered.
       }
