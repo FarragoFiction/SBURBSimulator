@@ -32,12 +32,12 @@ class prepareToExileJack extends Scene {
 		this.player = null;
 		this.playerList = playerList;
 		this.findSufficientPlayer();
-		return (this.player != null) && (	!this.session.npcHandler.jack.exiled && this.session.npcHandler.jack.getStat("currentHP") > 0 && 	this.session.npcHandler.jack.getStat("power") < 300); //if he's too strong, he'll just show you his stabs. give up
+		return (this.player != null) && (	!this.session.npcHandler.jack.exiled && this.session.npcHandler.jack.getStat(Stats.CURRENT_HEALTH) > 0 && 	this.session.npcHandler.jack.getStat(Stats.POWER) < 300); //if he's too strong, he'll just show you his stabs. give up
 	}
 	dynamic spyContent(){
 		String ret = "The " + this.player.htmlTitle() + " performs a daring spy mission,";
-		if(this.player.getStat("power") > 	this.session.npcHandler.king.getStat("power")/100){
-			this.session.npcHandler.jack.addStat("power", -15);
+		if(this.player.getStat(Stats.POWER) > 	this.session.npcHandler.king.getStat(Stats.POWER)/100){
+			this.session.npcHandler.jack.addStat(Stats.POWER, -15);
 			ret += " gaining valuable intel to use against Jack Noir. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -46,8 +46,8 @@ class prepareToExileJack extends Scene {
 	}
 	dynamic assasinationContent(){
 		String ret = "The " + this.player.htmlTitle() + " performs a daring assasination mission against one of Jack Noir's minions,";
-		if(this.player.getStat("power") > 	this.session.npcHandler.king.getStat("power")/100){
-			this.session.npcHandler.jack.addStat("power", -30);
+		if(this.player.getStat(Stats.POWER) > 	this.session.npcHandler.king.getStat(Stats.POWER)/100){
+			this.session.npcHandler.jack.addStat(Stats.POWER, -30);
 			ret += " losing him a valuable ally. ";
 		}else{
 			ret += " but hilariously bungles it. ";
@@ -56,7 +56,7 @@ class prepareToExileJack extends Scene {
 	}
 	dynamic harrassContent(){
 		String ret = "The " + this.player.htmlTitle() + " makes a general nuisance of themselves to Jack Noir, but in a deniable way. ";
-		this.session.npcHandler.jack.addStat("power", -10);
+		this.session.npcHandler.jack.addStat(Stats.POWER, -10);
 		return ret;
 	}
 	dynamic content(){

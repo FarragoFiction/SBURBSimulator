@@ -188,9 +188,9 @@ Element prettyStat(AssociatedStat stat) {
     if (stat is AssociatedStatInterests) {
         name.text = "Stats from Interests";
     } else if (stat is AssociatedStatRandom) {
-        name..text="[Random Stat]"..title="${stat.names}";
+        name..text="[Random Stat]"..title="${stat.stats}";
     } else {
-        name.text = "${stat.name}";
+        name.text = "${stat.stat}";
     }
 
     p.append(name);

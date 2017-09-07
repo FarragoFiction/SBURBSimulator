@@ -25,7 +25,7 @@ setup() {
 testName() {
   setup();
   //print(testGE.name);
-  assert(testGE.name == "Firsty Testy");
+  assert(testGE.stat == "Firsty Testy");
   jRAssert("toString", testGE.toString(),
       "FirstyTesty"); //to string gets rid of spaces, which is apparently important because sometimes use it for div.
   //print("Name passed");
@@ -42,27 +42,27 @@ testID() {
 testStats() {
   setup();
   //print(testGE.stats);
-  assert(testGE.getStat("hp") == 0
+  assert(testGE.getStat(Stats.HEALTH) == 0
       ? true
       : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
   testGE.setStatsHash(<String,num>{"hp": 100, "currentHP": 10, "power": 3, "maxLuck": 100});
-  jRAssert("hp", testGE.getStat("hp"), 100);
-  jRAssert("currentHP", testGE.getStat("currentHP"),
+  jRAssert("hp", testGE.getStat(Stats.HEALTH), 100);
+  jRAssert("currentHP", testGE.getStat(Stats.CURRENT_HEALTH),
       100); //even though i set it to 10, setSTatsHash should not let it e less than HP
-  jRAssert("power", testGE.getStat("power"), 3);
-  jRAssert("maxLuck", testGE.getStat("maxLuck"), 100);
-  jRAssert("minLuck", testGE.getStat("minLuck"), 0); //confirm did not change.
-  jRAssert("sanity", testGE.getStat("sanity"), 0); //confirm did not change.
-  jRAssert("alchemy", testGE.getStat("alchemy"), 0); //confirm did not change.
-  jRAssert("RELATIONSHIPS", testGE.getStat("RELATIONSHIPS"),
+  jRAssert("power", testGE.getStat(Stats.POWER), 3);
+  jRAssert("maxLuck", testGE.getStat(Stats.MAX_LUCK), 100);
+  jRAssert("minLuck", testGE.getStat(Stats.MIN_LUCK), 0); //confirm did not change.
+  jRAssert("sanity", testGE.getStat(Stats.SANITY), 0); //confirm did not change.
+  jRAssert("alchemy", testGE.getStat(Stats.ALCHEMY), 0); //confirm did not change.
+  jRAssert("RELATIONSHIPS", testGE.getStat(Stats.RELATIONSHIPS),
       0); //confirm did not change.
-  jRAssert("freeWill", testGE.getStat("freeWill"), 0); //confirm did not change.
-  jRAssert("mobility", testGE.getStat("mobility"), 0); //confirm did not change.
+  jRAssert("freeWill", testGE.getStat(Stats.FREE_WILL), 0); //confirm did not change.
+  jRAssert("mobility", testGE.getStat(Stats.POWER), 0); //confirm did not change.
   //print(testGE.stats);
-  testGE.setStat("hp", 50);
-  jRAssert("hp", testGE.getStat("hp"), 50);
-  testGE.addStat("hp", 5000);
-  jRAssert("hp", testGE.getStat("hp"), 5050);
+  testGE.setStat(Stats.HEALTH, 50);
+  jRAssert("hp", testGE.getStat(Stats.HEALTH), 50);
+  testGE.addStat(Stats.HEALTH, 5000);
+  jRAssert("hp", testGE.getStat(Stats.HEALTH), 5050);
   try {
     testGE.setStat("bogus413", 345); //test that it throws an error
   }catch(exception, stackTrace) {
@@ -75,15 +75,15 @@ testStats() {
     //print("Exception: $exception caught as expected for adding a stat.");
   }
 
-  testGE.setStat("power", 0);
+  testGE.setStat(Stats.POWER, 0);
   testGE.permaBuffs["MANGRIT"] = 10;
-  jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10); //TODO implement MANGRIT
+  jRAssert("power (taking into account MANGRIT)", testGE.getStat(Stats.POWER), 10); //TODO implement MANGRIT
   //print("Stats passed");
 }
 
 void testBuffs() {
   setup();
-  jRAssert("currentHP", testGE.getStat("currentHP"), 0);
+  jRAssert("currentHP", testGE.getStat(Stats.CURRENT_HEALTH), 0);
   jRAssert("number of buffs", testGE.buffs.length, 0);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 0);
   BuffOld hpBuff1 = new BuffOld("currentHP", 10);
@@ -94,7 +94,7 @@ void testBuffs() {
   testGE.buffs.add(hpBuff2);
   jRAssert("number of buffs", testGE.buffs.length, 2);
   jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 15);
-  jRAssert("functional hp", testGE.getStat("currentHP"), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
+  jRAssert("functional hp", testGE.getStat(Stats.CURRENT_HEALTH), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
   jRAssert("real hp", testGE.stats["currentHP"], 0); //real hp is unmodified.
   jRAssert("glitch stat", testGE.stats["bogus413"], null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
   //print(testGE.describeBuffs());

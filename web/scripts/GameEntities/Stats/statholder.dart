@@ -125,6 +125,12 @@ abstract class StatOwner {
 
     void buffTick() => stats.buffTick();
     void buffCombatTick() => stats.buffCombatTick();
+
+    List<Buff> get buffs => _stats.buffs;
+
+    double getStat(Stat stat) => this.stats[stat];
+    void addStat(Stat stat, num val) => this.stats.addBase(stat, val.toDouble());
+    void setStat(Stat stat, num val) => this.stats.setBase(stat, val.toDouble());
 }
 
 class PlayerStatHolder extends StatHolder {

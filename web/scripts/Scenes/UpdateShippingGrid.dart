@@ -128,7 +128,7 @@ class UpdateShippingGrid extends Scene{
 		this.chosenShipper.otp = null;
 
 		String newShips = this.printShips(this.getGoodShips(this.chosenShipper));
-		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat("power") > this.chosenShipper.powerNeeded){
+		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat(Stats.POWER) > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
 			return true;
@@ -562,7 +562,7 @@ class UpdateShippingGrid extends Scene{
 			reasonsAgainst += player.getDiamonds().length; //I am already in a relationship
 			reasonsAgainst += target.getDiamonds().length; //they are already in a relationship
 			if(player.getDiamonds().length == 0) reasonsFor ++; //I am single
-			if(player.getStat("sanity") < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
+			if(player.getStat(Stats.SANITY) < 0) reasonsFor ++;  //i need SOMEBODY to stabilize me.
 			if(!player.isQuadranted()) reasonsFor += 4; //I am lonely
 			if(player.getBestFriend() == target) reasonsFor += 5; //I REALLY like them.
 			Relationship r = player.getRelationshipWith(this.chosenShipper.player);

@@ -16,7 +16,7 @@ class JackRampage extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		////session.logger.info("Jack is: " + this.session.jackStrength  + " and King is: " + this.session.kingStrength);
-		return this.session.npcHandler.jack.crowned != null && this.session.npcHandler.jack.getStat("currentHP") > 0 && !this.session.npcHandler.jack.dead; //Jack does not stop showing us his stabs.
+		return this.session.npcHandler.jack.crowned != null && this.session.npcHandler.jack.getStat(Stats.CURRENT_HEALTH) > 0 && !this.session.npcHandler.jack.dead; //Jack does not stop showing us his stabs.
 	}
 	List<GameEntity> getStabList(){
 		List<Player> potentialPlayers = [];
@@ -55,9 +55,9 @@ class JackRampage extends Scene{
 		return ret;
 	}
 	bool canCatch(Player victim){
-			if(this.session.npcHandler.jack.getStat("mobility") < victim.getStat("mobility")) return false;
-			if(victim.aspect == Aspects.VOID && victim.isVoidAvailable() && victim.getStat("power") >50) return false;
-			if(victim.aspect == Aspects.SPACE && victim.getStat("power") > 50){
+			if(this.session.npcHandler.jack.getStat(Stats.POWER) < victim.getStat(Stats.POWER)) return false;
+			if(victim.aspect == Aspects.VOID && victim.isVoidAvailable() && victim.getStat(Stats.POWER) >50) return false;
+			if(victim.aspect == Aspects.SPACE && victim.getStat(Stats.POWER) > 50){
 				////session.logger.info("high level space player avoiding jack" + this.session.session_id.toString());
 				return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 			}
@@ -95,7 +95,7 @@ class JackRampage extends Scene{
 			}
 			ret += " Bored of this, he decides to show his stabs to BOTH the Black and White Kings.  The battle is over. The Reckoning will soon start.";
 			this.session.timeTillReckoning = 0;
-			this.session.npcHandler.king.setStat("currentHP",-99999999);
+			this.session.npcHandler.king.setStat(Stats.CURRENT_HEALTH,-99999999);
 			this.session.npcHandler.king.dead = true;
 			//session.logger.info("jack starts reckoning " + this.session.session_id.toString());
         appendHtml(div,""+ret);
@@ -139,7 +139,7 @@ class JackRampage extends Scene{
 		for(num i = 0; i<players.length; i++){
 			var player = players[i];
 			if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
-				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
+				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat(Stats.POWER),player) );
 			}
 		}
 		*/

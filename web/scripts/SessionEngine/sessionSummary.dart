@@ -246,7 +246,7 @@ class SessionSummary {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
-        summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat("currentHP") <= 0);
+        summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
         summary.setBoolStat("loveEnding", session.stats.loveEnding);
@@ -307,10 +307,10 @@ class SessionSummary {
         summary.setBoolStat("jackGotWeapon", session.stats.jackGotWeapon);
         summary.setBoolStat("jackRampage", session.stats.jackRampage);
         summary.setBoolStat("jackScheme", session.stats.jackScheme);
-        summary.setBoolStat("kingTooPowerful", session.npcHandler.king.getStat("power") > session.hardStrength);
+        summary.setBoolStat("kingTooPowerful", session.npcHandler.king.getStat(Stats.POWER) > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
-        ////print("Debugging: King strength is ${session.king.getStat("power")} and hardStrength is ${session.hardStrength}");
-        summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.getStat("power") > GameEntity.minPower);
+        ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");
+        summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.getStat(Stats.POWER) > GameEntity.minPower);
         summary.setBoolStat("murderMode", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 

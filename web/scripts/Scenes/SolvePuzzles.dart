@@ -57,7 +57,7 @@ class SolvePuzzles extends Scene {
 
 	@override
 	void renderContent(Element div){
-		////session.logger.info("Ultimate Riddle for Player with power of: " + this.player1.getStat("power") + " and land level of: " + this.player1.landLevel + " " + this.player1);
+		////session.logger.info("Ultimate Riddle for Player with power of: " + this.player1.getStat(Stats.POWER) + " and land level of: " + this.player1.landLevel + " " + this.player1);
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/sidequest_icon.png'> "+this.content());
 	}
 	String spreadCoruption(Player player1, Player player2){

@@ -31,7 +31,7 @@ class GoGrimDark extends Scene {
 
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.getStat("power"),this.player,null) );
+		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
 	}
 
 	@override

@@ -303,7 +303,7 @@ class Fraymotif {
         if (dead.length > findDeadPlayers(allies).length) {
             revives = " Also, the " + getPlayersTitlesBasic(dead) + " being dead is no longer a thing. ";
         }
-        enemy.addStat("currentHP", -1 * owner.getStat("power")); //also, do at LEAST as much as a regular attack, dunkass.
+        enemy.addStat(Stats.CURRENT_HEALTH, -1 * owner.getStat(Stats.POWER)); //also, do at LEAST as much as a regular attack, dunkass.
         return this.processFlavorText(owner, casters, allies, enemy, enemies, revives);
     }
 
@@ -327,13 +327,13 @@ class FraymotifCreator {
         //statName, target, damageInsteadOfBuff, flavorText
         Iterable<AssociatedStat> plus = player.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
         for (AssociatedStat p in plus) {
-            f.effects.add(new FraymotifEffect(p.name, 0, true));
-            f.effects.add(new FraymotifEffect(p.name, 0, false));
+            f.effects.add(new FraymotifEffect(p.stat, 0, true));
+            f.effects.add(new FraymotifEffect(p.stat, 0, false));
         }
         Iterable<AssociatedStat> minus = player.associatedStatsFromAspect; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
         for (AssociatedStat m in minus) {
-            f.effects.add(new FraymotifEffect(m.name, 2, true));
-            f.effects.add(new FraymotifEffect(m.name, 2, false));
+            f.effects.add(new FraymotifEffect(m.stat, 2, true));
+            f.effects.add(new FraymotifEffect(m.stat, 2, false));
         }
         player.denizen.fraymotifs.add(f);
     }
@@ -507,7 +507,7 @@ class FraymotifCreator {
 
     dynamic findFraymotifNamed(fraymotifs, name) {
         for (num i = 0; i < fraymotifs.length; i++) {
-            if (fraymotifs[i].name == name) return fraymotifs[i];
+            if (fraymotifs[i].stat == name) return fraymotifs[i];
         }
         return null;
     }
@@ -576,7 +576,7 @@ class FraymotifEffect {
         this.target = effect.target;
         this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
         if (!player.associatedStatsFromAspect.isEmpty) { //null plyaers have no associated stats
-            this.statName = rand.pickFrom(player.associatedStatsFromAspect).name;
+            this.statName = rand.pickFrom(player.associatedStatsFromAspect).stat;
         } else {
             this.statName = "MANGRIT";
         }

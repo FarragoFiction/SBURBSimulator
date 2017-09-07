@@ -8,6 +8,7 @@ abstract class Stats {
 
     static Stat POWER;
     static Stat HEALTH;
+    static Stat CURRENT_HEALTH;
     static Stat MOBILITY;
 
     static Stat RELATIONSHIPS;
@@ -28,6 +29,7 @@ abstract class Stats {
 
         POWER = new XPScaledStat("Power", 0.05, coefficient: 10.0);
         HEALTH = new XPScaledStat("Health", 0.05, coefficient: 10.0);
+        CURRENT_HEALTH = new Stat("Current Health", pickable: false);
         MOBILITY = new Stat("Mobility");
 
         RELATIONSHIPS = new RelationshipStat("Relationships", pickable: false); // should be a special one to deal with players

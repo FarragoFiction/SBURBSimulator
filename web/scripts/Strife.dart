@@ -76,9 +76,9 @@ class Strife {
     //okay, now i know it IS a denizen fight.
     if (turnsPassed > 5) return true; //you should have beaten me by now.
     if (p.godDestiny) return false; //eh, you'll be okay even if I kill you.
-    if (p.getStat("currentHP") < d.getStat("power"))
+    if (p.getStat(Stats.CURRENT_HEALTH) < d.getStat(Stats.POWER))
       return true; //i can kill you in one hit.
-    if (p.getStat("currentHP") < 2 * d.getStat("power") && p.session.rand.nextDouble() > 0.5)
+    if (p.getStat(Stats.CURRENT_HEALTH) < 2 * d.getStat(Stats.POWER) && p.session.rand.nextDouble() > 0.5)
       return true; //i can kill you in two hits and am worried about a critical hit.
 
 	  return false; // need to cover all the bases! -PL

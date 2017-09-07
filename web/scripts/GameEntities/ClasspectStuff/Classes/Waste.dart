@@ -30,7 +30,7 @@ class Waste extends SBURBClass {
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-        if (stat.isFromAspect || stat.name != "sburbLore") {
+        if (stat.isFromAspect || stat.stat != "sburbLore") {
             powerBoost = powerBoost * 0; //wasted aspect
         } else {
             powerBoost = powerBoost * 1;

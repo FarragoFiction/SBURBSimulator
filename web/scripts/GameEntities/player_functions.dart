@@ -338,7 +338,7 @@ Player findStrongestPlayer(List<Player> playerList) {
 
     for (int i = 0; i < playerList.length; i++) {
         GameEntity p = playerList[i];
-        if (p.getStat("power") > strongest.getStat("power")) {
+        if (p.getStat(Stats.POWER) > strongest.getStat(Stats.POWER)) {
             strongest = p;
         }
 
@@ -387,7 +387,7 @@ List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
 num getPartyPower(List<GameEntity> party) {
     num ret = 0;
     for (int i = 0; i < party.length; i++) {
-        ret += party[i].getStat("power");
+        ret += party[i].getStat(Stats.POWER);
     }
     return ret;
 }
@@ -538,7 +538,7 @@ List<Player> findPlayersFromSessionWithId(List<Player> playerList, num source) {
 
 String findBadPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
-        if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.getStat("power") >= 200) {
+        if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.getStat(Stats.POWER) >= 200) {
             return (playerList[i].object_to_prototype.htmlTitle());
         }
     }
@@ -613,20 +613,20 @@ List<Player> getGuardiansForPlayers(List<Player> playerList) {
 List<Player> sortPlayersByFreeWill(List<Player> players) {
     return new List<Player>.from(players)
         ..sort((Player a, Player b) {
-            return a.getStat("freeWill") - b.getStat("freeWill");
+            return a.getStat(Stats.FREE_WILL) - b.getStat(Stats.FREE_WILL);
         });
 }
 
 
 num compareFreeWill(Player a, Player b) {
-    return b.getStat("freeWill") - a.getStat("freeWill");
+    return b.getStat(Stats.FREE_WILL) - a.getStat(Stats.FREE_WILL);
 }
 
 num getAverageMinLuck(List<Player> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (num i = 0; i < players.length; i++) {
-        ret += players[i].getStat("minLuck");
+        ret += players[i].getStat(Stats.MIN_LUCK);
     }
     return (ret / players.length).round();
 }
@@ -636,7 +636,7 @@ num getAverageMaxLuck(List<Player> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("maxLuck");
+        ret += players[i].getStat(Stats.MAX_LUCK);
     }
     return (ret / players.length).round();
 }
@@ -646,7 +646,7 @@ num getAverageSanity(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("sanity");
+        ret += players[i].getStat(Stats.SANITY);
     }
     return (ret / players.length).round();
 }
@@ -656,7 +656,7 @@ num getAverageHP(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("hp");
+        ret += players[i].getStat(Stats.HEALTH);
     }
     return (ret / players.length).round();
 }
@@ -666,7 +666,7 @@ dynamic getAverageMobility(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("mobility");
+        ret += players[i].getStat(Stats.POWER);
     }
     return (ret / players.length).round();
 }
@@ -676,7 +676,7 @@ dynamic getAverageRelationshipValue(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("RELATIONSHIPS");
+        ret += players[i].getStat(Stats.RELATIONSHIPS);
     }
     return (ret / players.length).round();
 }
@@ -694,7 +694,7 @@ num getAveragePower(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("power");
+        ret += players[i].getStat(Stats.POWER);
     }
     return (ret / players.length).round();
 }
@@ -724,7 +724,7 @@ num getAverageFreeWill(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
     for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat("freeWill");
+        ret += players[i].getStat(Stats.FREE_WILL);
     }
     return (ret / players.length).round();
 }

@@ -176,9 +176,9 @@ class SessionMutator {
     int fraymotifValue = 1000*activatingPlayer.getFriends().length;
     for(Player p in s.players) {
       if(p.aspect != Aspects.NULL) {
-        p.setStat("sanity", p.getStat("sanity").abs() * 612);
+        p.setStat(Stats.SANITY, p.getStat(Stats.SANITY).abs() * 612);
       }else {
-        p.setStat("sanity", p.getStat("sanity").abs() * 612* -1); //they aren't supposed to be here. they don't get the sanity protections skaia normally distributes.
+        p.setStat(Stats.SANITY, p.getStat(Stats.SANITY).abs() * 612* -1); //they aren't supposed to be here. they don't get the sanity protections skaia normally distributes.
       }
       Fraymotif f = new Fraymotif(s.rand.pickFrom(fraymotifNames), 99);
       f.baseValue = fraymotifValue;
@@ -244,7 +244,7 @@ class SessionMutator {
 
     for(Player p in s.players) {
         p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
-        p.setStat("sanity", -1313); //STAY in murder mode, damn it
+        p.setStat(Stats.SANITY, -1313); //STAY in murder mode, damn it
         p.godTier = true;
     }
     //not waiting on this so can do shit after it fires off async style. it will handle relationships.
@@ -405,7 +405,7 @@ class SessionMutator {
     //TODO once npcs quests are a thing, need to have all active at once.
     ret += "All players can now do all activities every turn.  And... you suddenly get the strange feeling that this session has become a LOT less shareable.";
     for(Player p in s.players) {
-      p.addStat("mobility", 413);  //not a hope level of boost, but enough to probably fight most things
+      p.addStat(Stats.MOBILITY, 413);  //not a hope level of boost, but enough to probably fight most things
     }
     return ret;
   }
@@ -429,7 +429,7 @@ class SessionMutator {
     ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
     for(Player p in s.players) {
       p.renderSelf(); //to pick up lack of relevancy or whatever
-      p.setStat("maxLuck", 88888888);
+      p.setStat(Stats.MAX_LUCK, 88888888);
       p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
     }
     return ret;
@@ -459,7 +459,7 @@ class SessionMutator {
     String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. Lines of SBURBs code light up around them. <div class = 'jake'>$scream</div>";
     ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
 
-    hopePlayer.setStat("power",9001); //i know i can save everyone.
+    hopePlayer.setStat(Stats.POWER,9001); //i know i can save everyone.
     GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
     gameEntityMinPower = 9000;
     s.sessionHealth = 9001;
@@ -475,8 +475,8 @@ class SessionMutator {
     spawnKing(s);
     spawnJack(s);
     hopePlayer.denizen.name = "A small toy snake";
-    hopePlayer.denizen.setStat("power",1);
-    hopePlayer.denizen.setStat("currentHP",1);
+    hopePlayer.denizen.setStat(Stats.POWER,1);
+    hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH,1);
     ret += "Their enemies are made into ridiculous non-threats. ";
     spawnDemocraticArmy(s);
     ret += "The democratic army rallies around this beacon of hope. ";
@@ -488,8 +488,8 @@ class SessionMutator {
       p.dead = false; //NOT .makeAlive  this is denying a fact, not resurrecting.
       p.murderMode = false;
       p.leftMurderMode = false; //never even happened.
-      p.setStat("currentHP", 9001);
-      p.setStat("sanity", 9001);
+      p.setStat(Stats.CURRENT_HEALTH, 9001);
+      p.setStat(Stats.SANITY, 9001);
       p.renderSelf();
       Relationship r = hopePlayer.getRelationshipWith(p);
       if(r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
@@ -1084,7 +1084,7 @@ class MetaPlayerHandler {
       if(p == authorBotJunior) {
           for(Player pl in p.session.players) {
             if(pl != p) pl.makeAlive();
-            pl.setStat("currentHP",1313);
+            pl.setStat(Stats.CURRENT_HEALTH,1313);
           }
           return "With a final 'Interesting!!!', AuthorBotJunior is defeated. It feels like a great curse has been lifted. The Players are revived and healed. ";
       }

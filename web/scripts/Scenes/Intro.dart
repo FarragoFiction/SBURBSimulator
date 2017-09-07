@@ -58,7 +58,7 @@ class Intro  extends IntroScene{
 	}
 	String changePrototyping(Element div){
 	  String ret = "";
-		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
+		if(this.player.object_to_prototype.getStat(Stats.POWER) > 200 && rand.nextDouble() > .8){
 			String divID = (div.id);
 			String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, canvasHTML);
@@ -96,11 +96,11 @@ class Intro  extends IntroScene{
 	}
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		////session.logger.info("Entering session, mvp is: " + current_mvp.getStat("power"));
+		////session.logger.info("Entering session, mvp is: " + current_mvp.getStat(Stats.POWER));
 		if(this.player.aspect == Aspects.TIME && this.player.object_to_prototype != null && !this.player.object_to_prototype.illegal){ //tier4 gnosis is weird
-			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat("power"),this.player,null) );
+			return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
 		}else{
-			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat("power"),this.player,null) );
+			return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
 		}
 
 	}
@@ -152,7 +152,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "I suspect it will prove to have been a very bad idea.");
@@ -200,7 +200,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -243,7 +243,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -309,7 +309,7 @@ class Intro  extends IntroScene{
 			chatText +=Scene.chatLine(player2Start, player2,"Oh, man....");
 			return chatText; // too depressing to keep going.
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -352,7 +352,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -398,7 +398,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... That probably wouldn't have happened in a story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -445,7 +445,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,"Yes! Who better to assist me on my epic quest? ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 				chatText += Scene.chatLine(player1Start, player1, "Fuck you. It will obviously give me a huge edge in this game.");
@@ -498,7 +498,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player1Start, player1,":/  Yeah... Long story. ");
 
 		}
-		if(player1.object_to_prototype.getStat("power")>200) {
+		if(player1.object_to_prototype.getStat(Stats.POWER)>200) {
 			if(player2.aspect != Aspects.LIGHT && player2.class_name != SBURBClassManager.SEER){
 				chatText += Scene.chatLine(player2Start, player2,"That will probably have zero serious, long term consequences.");
 			}else{
@@ -684,12 +684,12 @@ class Intro  extends IntroScene{
 				narration += " They appear to be destined for greatness. ";
 			}
 
-			if(this.player.getStat("minLuck") + this.player.getStat("maxLuck") >25){
+			if(this.player.getStat(Stats.MIN_LUCK) + this.player.getStat(Stats.MAX_LUCK) >25){
 				////session.logger.info("initially lucky player: " +this.session.session_id);
 				narration += " They have aaaaaaaall the luck. All of it.";
 			}
 
-			if(this.player.getStat("maxLuck") < -25){
+			if(this.player.getStat(Stats.MAX_LUCK) < -25){
 				////session.logger.info("initially unlucky player: " +this.session.session_id);
 				narration += " They have an insurmountable stockpile of TERRIBLE LUCK.";
 			}

@@ -419,7 +419,7 @@ class QuadrantDialogue extends Scene {
 		chats.add( new ConversationalPair("Hows the building up going?",["My fucking server player keeps making stairs.","Like a fly through honey","Grist is low, house is high. Bluuuh."]));
 		chats.add( new ConversationalPair("Jesus fuck have you seen the size of some of these underlings?",["Do they get that big over there? Most of mine are waist-high at most.","I KNOW RIGHT?","Yeah, things those size shouldn't be able to exist."]));
         chats.add( new ConversationalPair("Lemme Smash. Please?",["Oh god...remind me why I'm dating you again?","No Ron. Go find Becky.","You want some blue?", "You want sum fuk?", "No. We are done with this meme. I love you, but I am done."])); //can't believe i forgot to add this.
-		List<String> romanceWords = <String>["roses","poetry","chocolate","angels","flowers","perfume","bracelets","diamonds","mcgriddles","satin","flour","biscuits","blue","gems", "grist", "boonbucks","fruit gushers","death",relationship2.target.aspect.name,"heat"];
+		List<String> romanceWords = <String>["roses","poetry","chocolate","angels","flowers","perfume","bracelets","diamonds","mcgriddles","satin","flour","biscuits","blue","gems", "grist", "boonbucks","fruit gushers","death",relationship2.target.aspect.stat,"heat"];
 		//reference to the bad fanfic that smutServer made of AB and Hair7 They used: http://fanficmaker.com/  (which is random as fuck)
 		String chosenWord1 = rand.pickFrom(romanceWords);
 		String chosenWord2 = rand.pickFrom(romanceWords);
@@ -433,8 +433,8 @@ class QuadrantDialogue extends Scene {
 	dynamic diamondsChat(relationship1, relationship2){
 		////session.logger.info("Diamonds Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
-		this.player1.addStat("sanity", 1);
-		this.player2.addStat("sanity", 1);
+		this.player1.addStat(Stats.SANITY, 1);
+		this.player2.addStat(Stats.SANITY, 1);
 		chats.add( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be.", "Functioning."]));
 		chats.add( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
 		chats.add( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent", "I'm glad I got you to help me through it."]));
@@ -446,8 +446,8 @@ class QuadrantDialogue extends Scene {
 	}
 	dynamic feelingsJam(relationship, relationship2){
 		////session.logger.info("Feelings Jam in: " + this.session.session_id);
-		this.player1.addStat("sanity", 2);
-		this.player2.addStat("sanity", 2);
+		this.player1.addStat(Stats.SANITY, 2);
+		this.player2.addStat(Stats.SANITY, 2);
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		String chat = "";
 		var freakOutWeasel = this.player1;

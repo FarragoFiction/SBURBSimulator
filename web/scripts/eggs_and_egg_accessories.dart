@@ -264,7 +264,7 @@ void roboMode(){
 		p.hairColor = getRandomGreyColor();
 		p.bloodColor = getRandomGreyColor();
 		p.robot  = true;
-		p.addStat("power",20); //Robots are superior.
+		p.addStat(Stats.POWER,20); //Robots are superior.
 		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps.
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
 		p.quirk.lettersToReplaceIgnoreCase.add(["\\bhuh\\b","BEEP"]);
@@ -310,7 +310,7 @@ void tricksterMode(){
 			}
 		}
 		if(p.aspect != Aspects.DOOM){
-			p.setStat("power",  111111);
+			p.setStat(Stats.POWER,  111111);
 			p.landLevel = 111111.0;
 			p.grist = 11111111111;
 			p.level_index = 111111;
@@ -328,7 +328,7 @@ void debugRoyalRumble(){
 		var p = curSessionGlobalVar.players[j];
 		p.isTroll = true; //only .evel 2 players up
 		p.bloodColor = "#99004d";
-		p.addStat("sanity",-10);
+		p.addStat(Stats.SANITY,-10);
 		p.decideLusus();
 		p.object_to_prototype = p.myLusus;
 		p.relationships = [];

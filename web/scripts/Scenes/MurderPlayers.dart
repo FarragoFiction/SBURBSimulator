@@ -27,7 +27,7 @@ class MurderPlayers extends Scene {
 
 		if(player.isDreamSelf == true && player.godDestiny == false && player.godTier == false){
 			var current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player,null) );
+			return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat(Stats.POWER),player,null) );
 		}
 		return null;
 	}
@@ -48,15 +48,15 @@ class MurderPlayers extends Scene {
 				//more they liked the victim, the more they hate you.
 				if(rv.saved_type == rv.diamond){
 					rm.value = -100;
-					p.addStat("sanity",-100);
+					p.addStat(Stats.SANITY,-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Moirail was killed. ";
 				}else if(rv.saved_type == rv.heart){
 					rm.value = -100;
-          p.addStat("sanity",-100);
+          p.addStat(Stats.SANITY,-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Matesprit was killed. ";
 				}else if(rv.saved_type == rv.spades){
 					rm.value = -100;
-          p.addStat("sanity",-100);
+          p.addStat(Stats.SANITY,-100);
 					ret += " The " + p.htmlTitle() + " is enraged that their Kismesis was killed. ";
 				}else if (rv.type() == rv.goodBig){
 					rm.value = -20;
@@ -214,7 +214,7 @@ class MurderPlayers extends Scene {
 			if(worstEnemy !=null && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
 				session.removeAvailablePlayer(worstEnemy);
 				//if blood player is at all competant, can talk down murder mode player.
-				if(worstEnemy.aspect == Aspects.BLOOD && worstEnemy.getStat("power") > 25){
+				if(worstEnemy.aspect == Aspects.BLOOD && worstEnemy.getStat(Stats.POWER) > 25){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitleBasic() + " is calmed down, and hug bumps are shared. ";
 					if(m.dead) ret += " It is especially tragic that the burgeoning palemance is cut short with the " + m.htmlTitleBasic() + "'s untimely death. ";
@@ -234,7 +234,7 @@ class MurderPlayers extends Scene {
 						ret += " The task is made especially easy (yet tragic) by the " + m.htmlTitle() + " being in the middle of dying. ";
 					}
 					m.unmakeMurderMode();
-					m.setStat("sanity",1);
+					m.setStat(Stats.SANITY,1);
 					Relationship.makeDiamonds(m, worstEnemy);
 					this.renderDiamonds(div, m, worstEnemy);
 
@@ -246,17 +246,17 @@ class MurderPlayers extends Scene {
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. ";
 					}
 					m.unmakeMurderMode();
-					m.setStat("sanity",1);
+					m.setStat(Stats.SANITY,1);
 					this.renderClubs(div, m, worstEnemy,ausp);
 					Relationship.makeClubs(ausp, m, worstEnemy);
 
-				}else if(worstEnemy.getStat("power") * worstEnemy.getPVPModifier("Defender") < m.getStat("power")*m.getPVPModifier("Murderer")){
+				}else if(worstEnemy.getStat(Stats.POWER) * worstEnemy.getPVPModifier("Defender") < m.getStat(Stats.POWER)*m.getPVPModifier("Murderer")){
 					var alt = this.addImportantEvent(worstEnemy);
 					if(alt != null && alt.alternateScene(div)){
 						//do nothing, alt scene will handle this.
 					}else{
 						m.increasePower();
-						m.addStat("sanity",100); //killing someone really takes the edge off.
+						m.addStat(Stats.SANITY,100); //killing someone really takes the edge off.
 
 						ret += " The " + m.htmlTitle() + " brutally murders that asshole, the " + worstEnemy.htmlTitle() +". " + getPVPQuip(worstEnemy,m, "Defender", "Murderer");
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
@@ -294,8 +294,8 @@ class MurderPlayers extends Scene {
 				}
 			}else{
 
-				m.addStat("sanity", 30);
-				if(m.getStat("sanity")>0){
+				m.addStat(Stats.SANITY, 30);
+				if(m.getStat(Stats.SANITY)>0){
 					//alert("shit settled");
 					ret += " The " + m.htmlTitle() + " has officially settled their shit. ";
 					m.unmakeMurderMode();
@@ -312,7 +312,7 @@ class MurderPlayers extends Scene {
 						}else{
 							ret += " The " + m.htmlTitle() + " can't even find the " + worstEnemy.htmlTitle() + " in order to kill them! Do they just never stay in one spot for more than five seconds? Flighty bastard. It's hard to stay enraged while wandering around lost.";
 						}
-						m.addStat("sanity",30);
+						m.addStat(Stats.SANITY,30);
 					}else if(!m.dead){
 						ret += " The " + m.htmlTitle() + " can't find anybody they hate enough to murder. They calm down a little. ";
 					}
@@ -325,9 +325,9 @@ class MurderPlayers extends Scene {
 	bool canCatch(Player m, Player worstEnemy){
 		if(session.mutator.rageField) return true; //can't run from the clown, yo.
 		if(worstEnemy.sprite.name == "sprite") return false; //not in medium, dunkass.
-		if(worstEnemy.getStat("mobility") > m.getStat("mobility")) return false;
-		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat("power") >50) return false;
-		if(worstEnemy.aspect == Aspects.SPACE && worstEnemy.getStat("power") > 50){
+		if(worstEnemy.getStat(Stats.POWER) > m.getStat(Stats.POWER)) return false;
+		if(worstEnemy.aspect == Aspects.VOID && worstEnemy.isVoidAvailable() && worstEnemy.getStat(Stats.POWER) >50) return false;
+		if(worstEnemy.aspect == Aspects.SPACE && worstEnemy.getStat(Stats.POWER) > 50){
 			//session.logger.info("high level space player avoiding a murderer" + this.session.session_id.toString());
 			return false;  //god tier calliope managed to hide from a Lord of Time. space players might not move around a lot, but that doesn't mean they are easy to catch.
 		}

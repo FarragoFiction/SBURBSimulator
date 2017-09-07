@@ -41,12 +41,12 @@ class StartDemocracy extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		if(this.session.npcHandler.king.getStat("currentHP") <= 0 ||this.session.npcHandler.queen.getStat("currentHP") <= 0){  //the dead can't scheme or be schemed against
+		if(this.session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0 ||this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) <= 0){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
 
-		return (this.session.npcHandler.democraticArmy.getStat("power") == GameEntity.minPower ) && this.session.npcHandler.king.getStat("power") >  this.session.hardStrength && (this.friend != null);
+		return (this.session.npcHandler.democraticArmy.getStat(Stats.POWER) == GameEntity.minPower ) && this.session.npcHandler.king.getStat(Stats.POWER) >  this.session.hardStrength && (this.friend != null);
 	}
 	dynamic content(){
 		this.friend.increasePower();
@@ -61,7 +61,7 @@ class StartDemocracy extends Scene {
 		ret += " The Warweary Villein just hates the Monarchy.  They are petty, bossy tyrants and are really full of themselves and are basically awful in every way. ";
 		ret += " The " + this.friend.htmlTitle() + " can't help but be persuaded by the adorable rant. Look at the little guy's clenched fists! ";
 		ret += " A plan is hatched to exile the Queen, and the Dersite promises an army to help fight the King. ";
-		this.session.npcHandler.democraticArmy.setStat("power",50);
+		this.session.npcHandler.democraticArmy.setStat(Stats.POWER,50);
 		return ret;
 	}
 

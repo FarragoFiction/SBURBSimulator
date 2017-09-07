@@ -112,7 +112,7 @@ class GodTierRevival extends Scene {
 					if(p.aspect == Aspects.DOOM){ //powered by their own doom.
 						//session.logger.info("doom is powered by their own death: " + this.session.session_id.toString()); //omg, they are sayians.
 						p.addStat("MANGRIT",500);
-						p.setStat("minLuck", 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
+						p.setStat(Stats.MIN_LUCK, 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
 						ret += " They prophesied this death. Now that their Doom is over, they can finally get on with their life. ";
 						//session.logger.info("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id.toString());
 					}

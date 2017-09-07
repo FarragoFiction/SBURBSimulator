@@ -63,9 +63,9 @@ class Aftermath extends Scene {
 		//does anybody have an abnormally low relationships?
 		Player troubleMaker = findLowestStatPlayer("RELATIONSHIPS", living);
 		String ret = "The ${friendLeader.htmlTitle()} organizes everyone and makes sure everybody gets along and treats the people of the new Universe right. ";
-		if(troubleMaker.getStat("RELATIONSHIPS") < -10) {
+		if(troubleMaker.getStat(Stats.RELATIONSHIPS) < -10) {
 			ret += "The ${troubleMaker.htmlTitle()} stirs up trouble ";
-			if(friendLeader.getStat("power") + friendLeader.getStat("RELATIONSHIPS") > troubleMaker.getStat("power")) {
+			if(friendLeader.getStat(Stats.POWER) + friendLeader.getStat(Stats.RELATIONSHIPS) > troubleMaker.getStat(Stats.POWER)) {
 				ret += "but it's nothing the ${friendLeader.htmlTitle()} can't handle with their friends by their side.";
 			}else {
 				ret += " and it becomes a constant thorn in everyone's side.";
@@ -80,10 +80,10 @@ class Aftermath extends Scene {
 		Player shoutLeader = findLowestStatPlayer("RELATIONSHIPS",living);
 		Player peaceMaker = findHighestStatPlayer("RELATIONSHIPS", living);
 		String ret = "The ${shoutLeader.htmlTitle()}  rules with an iron fist and insists that they live as gods. ";
-		if(peaceMaker.getStat("RELATIONSHIPS") > 10) {
+		if(peaceMaker.getStat(Stats.RELATIONSHIPS) > 10) {
 			ret += "The ${peaceMaker.htmlTitle()} begins to rebel ";
 			//not changing this from lvoe ending.  i want it to be a good ending, evil is easy to defeat (because they likely have negative relationship stats weighting them down)
-			if(shoutLeader.getStat("power") + shoutLeader.getStat("RELATIONSHIPS") > peaceMaker.getStat("power")) {
+			if(shoutLeader.getStat(Stats.POWER) + shoutLeader.getStat(Stats.RELATIONSHIPS) > peaceMaker.getStat(Stats.POWER)) {
 				ret += "but is brutally put down.";
 			}else {
 				ret += ", thus ends tyrants. ";
@@ -96,9 +96,9 @@ class Aftermath extends Scene {
 		session.stats.monoTheismEnding = true;
 		Player god = entered.first;
 		String ret =  "The ${god.htmlTitle()} rules the new Universe absolutely, with no fellow players to challenge them. ";
-		if(god.getStat("RELATIONSHIPS") > 100) {
+		if(god.getStat(Stats.RELATIONSHIPS) > 100) {
 			ret += "The people flourish under their loving guidance. ";
-		}else if (god.getStat("RELATIONSHIPS") < -100) {
+		}else if (god.getStat(Stats.RELATIONSHIPS) < -100) {
 			ret += "The people wither under their iron fist. ";
 		}else{
 			ret += " They do their best, but ultimately allow the people to make their own decisions.";
@@ -113,10 +113,10 @@ class Aftermath extends Scene {
 
 	dynamic democracyBonus(){
 		String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-		if(this.session.npcHandler.democraticArmy.getStat("power") == GameEntity.minPower){
+		if(this.session.npcHandler.democraticArmy.getStat(Stats.POWER) == GameEntity.minPower){
 			return "";
 		}
-		if(this.session.npcHandler.democraticArmy.getStat("currentHP") > 10 && findLivingPlayers(this.session.players).length > 0 ){
+		if(this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 10 && findLivingPlayers(this.session.players).length > 0 ){
 			this.session.stats.mayorEnding = true;
 			ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
 			ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
@@ -352,7 +352,7 @@ class Aftermath extends Scene {
 		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 		initializePlayers([trollKidRock], null); //TODO: confirm -PL
-		trollKidRock.setStat("currentHP", 1000);
+		trollKidRock.setStat(Stats.CURRENT_HEALTH, 1000);
 		return trollKidRock;
 }
 	GameEntity purpleFrog(){
@@ -360,11 +360,11 @@ class Aftermath extends Scene {
 		Map<String,dynamic> tmpStatHolder = {};
 		tmpStatHolder["minLuck"] = -100;
 		tmpStatHolder["maxLuck"] = 100;
-		tmpStatHolder["hp"] = 30000+mvp.getStat("power") * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+		tmpStatHolder["hp"] = 30000+mvp.getStat(Stats.POWER) * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
 		tmpStatHolder["mobility"] = -100;
 		tmpStatHolder["sanity"] = 0;
 		tmpStatHolder["freeWill"] = 200;
-		tmpStatHolder["power"] =20000+mvp.getStat("power") * this.session.players.length; //this will be a challenge.
+		tmpStatHolder["power"] =20000+mvp.getStat(Stats.POWER) * this.session.players.length; //this will be a challenge.
 		tmpStatHolder["grist"] = 100000000;
 		tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
 		//////session.logger.info(purpleFrog);
@@ -440,7 +440,7 @@ class Aftermath extends Scene {
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 		String ret = "";
-		if(purpleFrog.getStat("currentHP") <= 0 || purpleFrog.dead) {
+		if(purpleFrog.getStat(Stats.CURRENT_HEALTH) <= 0 || purpleFrog.dead) {
 			this.session.stats.won = true;
 			ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " slumps over. While it appears dead, it is merely unconscious. Entire universes swirl within it now that it has settled down, including the Players original Universe. You guess it would make sense that your Multiverse would be such an aggressive, glitchy asshole, if it generated such a shitty, antagonistic game as SBURB.  You still don't know what happened with Troll Kid Rock. You...guess that while regular Universes start with a 'bang', Skaia has decreed that Multiverses have to start with a 'BANG DA DANG DIGGY DIGGY'.  <Br><br> The door to the new multiverse is revealed. Everyone files in. <Br><Br> Thanks for Playing. <span class = 'void'>Though, of course, the Horror Terrors slither in right after the Players. It's probably nothing. Don't worry about it.  THE END</span>";
 		}else{

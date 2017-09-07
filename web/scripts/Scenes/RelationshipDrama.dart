@@ -114,7 +114,7 @@ class RelationshipDrama extends Scene {
 			if(player2.grimDark > 3){
 				chatText += Scene.chatLine(player2Start, player2,"Your feelings are irrelevant. Your promiscuity is irrelevant.");
 				chatText += Scene.chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck. I've made a huge mistake.");
-				player1.addStat("sanity", -10);
+				player1.addStat(Stats.SANITY, -10);
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(InterestManager.ROMANTIC.playerLikes(player1) || player1.aspect == Aspects.MIND){
@@ -122,21 +122,21 @@ class RelationshipDrama extends Scene {
 					if(InterestManager.ROMANTIC.playerLikes(player2)|| player2.aspect == Aspects.MIND || player2.aspect == Aspects.RAGE){
 						chatText += Scene.chatLine(player2Start, player2,"Better than keeping it bottled up. ");
 					}
-					player1.addStat("sanity", -10);
+					player1.addStat(Stats.SANITY, -10);
 				}else if(player2.class_name == SBURBClassManager.BARD || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. Why don't I ever learn that people suck?");
 					if(player2.class_name == SBURBClassManager.SEER || player2.aspect == Aspects.BLOOD || InterestManager.ROMANTIC.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"Holy fucking shit. And you wonder why nobody likes you? ");
 						makeHate = true;  //easier to hate after so many rejections. poor eridan.
 					}
-					player1.addStat("sanity", -10);
+					player1.addStat(Stats.SANITY, -10);
 				}else if(player2.class_name == SBURBClassManager.PAGE || player2.aspect == Aspects.BLOOD || InterestManager.ACADEMIC.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
 					if(player2.class_name == SBURBClassManager.KNIGHT || player2.aspect == Aspects.RAGE || InterestManager.ACADEMIC.playerLikes(player2)){
 						chatText += Scene.chatLine(player2Start, player2,"Fuck. But you've been 'brave' enough to hit on EVERYBODY! ");
 						chatText += Scene.chatLine(player1Start, player1,"What else am I supposed to do? Ignoring how I feel is cowardice, right?");
 						chatText += Scene.chatLine(player2Start, player2,"Man, it's like your emotions are calibrated wrong. I can't just tell you 'fall in love less easily'. Fuck.");
-						player1.addStat("sanity", -10);
+						player1.addStat(Stats.SANITY, -10);
 					}else{
 						chatText += Scene.chatLine(player2Start, player2,"I don't know what to tell you. ");
 						chatText += Scene.chatLine(player1Start, player1,"Fuck");
@@ -144,7 +144,7 @@ class RelationshipDrama extends Scene {
 
 				}else{
 					chatText += Scene.chatLine(player1Start, player1,"Oh. Yes. That's what I expected.");
-					player1.addStat("sanity", -10);
+					player1.addStat(Stats.SANITY, -10);
 				}
 			}
 
@@ -157,7 +157,7 @@ class RelationshipDrama extends Scene {
 		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
 
 		if(makeHate == true){
-			player1.addStat("sanity", -10);
+			player1.addStat(Stats.SANITY, -10);
 			r1.value = -20;
 		}
 
@@ -221,12 +221,12 @@ class RelationshipDrama extends Scene {
 			if(player2.grimDark  > 3){
 				chatText += Scene.chatLine(player2Start, player2,"Your feelings are irrelevant. ");
 				chatText += Scene.chatLine(player1Start, player1,"Fuck. You're grimdark, aren't you. Fuck.");
-				player1.addStat("sanity", -10);
+				player1.addStat(Stats.SANITY, -10);
 			}else{
 				chatText += Scene.chatLine(player2Start, player2,"Fuck. I'm sorry. I just don't feel that way about you. ");
 				if(InterestManager.ROMANTIC.playerLikes(player1) || player1.aspect == Aspects.MIND){
 					chatText += Scene.chatLine(player1Start, player1,"Fuck. Thanks for being honest. ");
-					player1.addStat("sanity", -0.5); //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
+					player1.addStat(Stats.SANITY, -0.5); //not triggered MUCH, but keeps them from continuing to confess to other people. I mean. Hypothetically.
 				}else if(player2.class_name == SBURBClassManager.BARD || player2.aspect == Aspects.RAGE || InterestManager.TERRIBLE.playerLikes(player2)){
 					chatText += Scene.chatLine(player1Start, player1,"But... but...WHY!? I tried so hard to be nice to you!");
 					if(player2.class_name == SBURBClassManager.SEER || player2.aspect == Aspects.BLOOD || InterestManager.ROMANTIC.playerLikes(player2)){
@@ -235,7 +235,7 @@ class RelationshipDrama extends Scene {
 						chatText += Scene.chatLine(player2Start, player2,"Fuck. I just don't. I'm sorry. ");
 					}
 					chatText += Scene.chatLine(player1Start, player1,"Fuck.");
-					player1.addStat("sanity", -0.5);
+					player1.addStat(Stats.SANITY, -0.5);
 				}else if(player1.class_name == SBURBClassManager.PAGE || player1.aspect == Aspects.BLOOD || InterestManager.ACADEMIC.playerLikes(player1)){
 					chatText += Scene.chatLine(player1Start, player1,"But... I was even brave and told you and everything...");
 					if(player2.class_name == SBURBClassManager.KNIGHT || player2.aspect == Aspects.RAGE || InterestManager.CULTURE.playerLikes(player2)){
@@ -251,7 +251,7 @@ class RelationshipDrama extends Scene {
 
 				}else{
 					chatText += Scene.chatLine(player1Start, player1,"Oh.");
-					player1.addStat("sanity", -0.5);
+					player1.addStat(Stats.SANITY, -0.5);
 				}
 			}
 			if(player2.number_times_confessed_to > 3){
@@ -266,7 +266,7 @@ class RelationshipDrama extends Scene {
 		relationship.old_type = relationship.saved_type;
 		Drawing.drawRelationshipChat(canvasDiv, player1, player2, chatText);
 		if(makeHate == true){
-			player1.addStat("sanity", -10);
+			player1.addStat(Stats.SANITY, -10);
 			r1.value = -20;
 		}
 	}
@@ -280,7 +280,7 @@ class RelationshipDrama extends Scene {
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
-		player1.addStat("sanity", 1);;  //talking about it helps.
+		player1.addStat(Stats.SANITY, 1);;  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		//String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
@@ -304,7 +304,7 @@ class RelationshipDrama extends Scene {
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
-		player1.addStat("sanity", 1);  //talking about it helps.
+		player1.addStat(Stats.SANITY, 1);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		//String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
@@ -349,7 +349,7 @@ class RelationshipDrama extends Scene {
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas$divID");
-		player.addStat("sanity", 3);  //talking about it helps.
+		player.addStat(Stats.SANITY, 3);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
@@ -365,7 +365,7 @@ class RelationshipDrama extends Scene {
 		chatText += Scene.chatLine(player2Start, player2,Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1));
 		chatText += Scene.chatLine(player1Start, player1,"So... " + crush.chatHandle + ", they are " + this.generateNewOpinion(r1) + ", you know?");
 		if(crush.dead == true){
-			player.addStat("sanity", -20);  //still hurts that they are dead.
+			player.addStat(Stats.SANITY, -20);  //still hurts that they are dead.
 			chatText += Scene.chatLine(player2Start, player2,"Oh my god, you know they are dead, right?");
 			chatText += Scene.chatLine(player1Start, player1,"Yeah. Fuck. Why didn't I notice them sooner?");
 			chatText += Scene.chatLine(player2Start, player2,"Fuck. That sucks. I'm here for you.");
@@ -483,7 +483,7 @@ class RelationshipDrama extends Scene {
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
-		player.addStat("sanity", 3);  //talking about it helps.
+		player.addStat(Stats.SANITY, 3);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		Relationship r1 = relationship;
@@ -649,13 +649,13 @@ class RelationshipDrama extends Scene {
 		for(int j = 0; j<relationships.length; j++){
 			Relationship r = relationships[j];
 			if(r.type() == r.goodBig){
-				if(player.getStat("sanity") > 1){
+				if(player.getStat(Stats.SANITY) > 1){
 					this.confessFeelings(div, player, r.target);
 				}else{
 					this.relationshipAdvice(div, player, r.target);
 				}
 			}else if(r.type() == r.badBig){
-				if(player.getStat("sanity") > 1){
+				if(player.getStat(Stats.SANITY) > 1){
 					this.ventAboutJerk(div, player, r.target);
 				}else{
 					this.antagonizeJerk(div, player, r.target); //not thinking clearly, gonna start shit.
@@ -710,7 +710,7 @@ class RelationshipDrama extends Scene {
 		ret += this.generateOldOpinion(relationship) + ", but now they can't help but think they are " + this.generateNewOpinion(relationship) + ".";
 
 		if(relationship.saved_type == relationship.goodBig && relationship.target.dead){
-			player.addStat("sanity", -10);
+			player.addStat(Stats.SANITY, -10);
 			ret += " They are especially devestated to realize this only after the " + relationship.target.htmlTitle() + " died. ";
 		}
 		relationship.drama = false; //it is consumed.
