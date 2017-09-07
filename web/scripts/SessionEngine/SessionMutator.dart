@@ -14,7 +14,7 @@ class SessionMutator {
   bool bloodField = false; //lets pale conversations happen no matter the quadrant. let's non-heroes join, too. and interaction effects.
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   bool doomField = false; //causes dead players to be treated as live ones.
-  bool rageField = true; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
+  bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
@@ -433,7 +433,7 @@ class SessionMutator {
     //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
     activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
     s.logger.info("AB: Huh. Looks like a Waste of Light is going at it.");
-    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most importnt character in Homestuck. Uh. The Session. I meant the session, obviously. ";
+    String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most important character in Homestuck. Uh. The Session. I meant the session, obviously. ";
     ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
     ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
     for(Player p in s.players) {
@@ -988,7 +988,8 @@ class MetaPlayerHandler {
     //do something funny for specific deaths, like turning on images=pumpkin if it's KR. if they kill JR, rage ending crash.
     //ONLY for rageField tho.
     //doesn't happen ANY time we die, but only if pvp death.
-    void checkDeath(Element div, Player p) {
+    bool checkDeath(Element div, Player p) {
+        return false;
     //TODO
       /*
           ABJ's death heals everyone and revives them (even us)
