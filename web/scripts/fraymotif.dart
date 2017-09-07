@@ -554,6 +554,7 @@ class FraymotifEffect {
     String flavorText = ""; // ? is this even used
 
 
+    /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
     FraymotifEffect(this.statName, this.target, this.damageInsteadOfBuff, [this.flavorText = ""]) {}
 
 

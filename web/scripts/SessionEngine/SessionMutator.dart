@@ -712,7 +712,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Spires and Nature";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -721,6 +721,19 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Aspiratcher, The</span> Librarian',13); //hope we span strong enough to fight them.
+
+        player.object_to_prototype = new PotentialSprite("Eye", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Staff of Life", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("power", 1, true));
+        f.effects.add(new FraymotifEffect("freeWill", 1, true));
+        f.effects.add(new FraymotifEffect("power", 1, false));
+        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.desc = "Death has no hold in the realm of Growth. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -745,6 +758,15 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength("<span class = 'void'>Algebron, The </span>Dilletant",13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("DVR", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif(" Brute Force Reimann Apotheosis", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 3, true));
+        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -795,6 +817,17 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Maniomnia, the </span>Dreamwaker',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Caliban", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Fraymixing", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("freeWill", 3, true));
+        f.effects.add(new FraymotifEffect("sanity", 3, true));
+        f.effects.add(new FraymotifEffect("freeWill", 0, false));
+        f.effects.add(new FraymotifEffect("sanity", 0, false));
+        f.desc = "Whats that music? The ENEMY's fraymotifs are absorbed into its maddening and ever-shiffting harmonies. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -809,7 +842,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
         player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
         player.moon = "Derse";
-        player.land = "Land of Charles and Dutton";
+        player.land = "Land of Storms and Idols";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -818,6 +851,16 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Nobrop, the </span>Null',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Mom", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("A concentric circle", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("sanity", 0, true));
+        f.effects.add(new FraymotifEffect("sanity", 3, true));
+
+        f.desc = "A circle within itself. Because fuck reality. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -832,7 +875,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Lakes and Lotuses";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -842,6 +885,18 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Doomod, The </span>Wanderer',13); //hope we span strong enough to fight them.
+
+        Fraymotif f = new Fraymotif("Song of Skaia", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("hp", 3, true));
+        f.effects.add(new FraymotifEffect("hp", 1, false));
+        //let's find out together if this crashes.
+        f.effects.add(new FraymotifEffect("sburbLore", 3, true));
+        f.effects.add(new FraymotifEffect("sburbLore", 1, false));
+
+        f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -856,7 +911,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Theorycrafting", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Storytelling", InterestManager.WRITING);
         player.moon = "Derse";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Obsidian and Shadows";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -865,6 +920,18 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Coin", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Song of Skaia", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("freeWill", 3, true));
+        f.effects.add(new FraymotifEffect("power", 3, true));
+        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.effects.add(new FraymotifEffect("power", 1, false));
+
+        f.desc = "A ring of emptiness tears through reality around recursiveSlacker, empowering and freeing him, and damaging all of his ENEMIES. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -911,6 +978,17 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Paraxalan, The </span>Ever-Searching',13); //hope we span strong enough to fight them.
+
+        //this space intentionally left blank, PL? That would be hilarious.
+        Fraymotif f = new Fraymotif("", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 1, true));
+        f.effects.add(new FraymotifEffect("mobility", 1, false));
+        f.effects.add(new FraymotifEffect("mobility", 3, false));
+
+        f.desc = "OWNER and their allies vanish into the void. ENEMY is confused. Where did they go? This is such bullshit. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -934,7 +1012,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Jadeacher the,</span>Researcher',13); //hope we span strong enough to fight them.
-
+        player.object_to_prototype = new PotentialSprite("JR", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
@@ -959,7 +1038,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Authorot, the</span> Robot',13); //hope we span strong enough to fight them.
-
+        player.object_to_prototype = new PotentialSprite("Compass", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
@@ -983,6 +1063,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Fire", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
