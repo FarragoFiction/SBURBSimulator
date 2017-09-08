@@ -819,6 +819,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
+
         int leftMargin = 150;
         CanvasElement levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
         drawBGRadialWithWidth(canvas, leftMargin, 650, 650, ReferenceColours.BLACK, player.aspect.palette.shirt_light); //650 is iold

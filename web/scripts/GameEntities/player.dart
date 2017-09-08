@@ -521,6 +521,10 @@ class Player extends GameEntity {
         return "${getToolTip()}${this.aspect.fontTag()}${this.titleBasic()}</font></span>";
     }
 
+    String htmlTitleBasicNoTip() {
+        return "${this.aspect.fontTag()}${this.titleBasic()}</font>";
+    }
+
     //@override
     String titleBasic() {
         String ret = "";

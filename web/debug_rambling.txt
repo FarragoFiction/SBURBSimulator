@@ -3212,3 +3212,122 @@ Steps towards a solution:
 
     So. What to do. Obvious answer is to make the passy innny thingy be a field on SimController. How much will this fuck me over?
 
+~~~~~~~
+
+Yay for another absolutely bug shit bug.
+
+AB says that 3323477308 is a combo session with a tier 4 gnosis event in it (presumably in the second session).
+But clicking the link and VIEWING that session shows that Skaia gets destroyed by meteors. So it's IMPOSSIBLE for it to be a combo session.
+
+Querying AB says she believes the makeCombo var is true, that var is set to be true in only one place. I guess next step is put a print out in that place and see if it goes.
+
+Wait.  AB thinks that rocks did NOT fall in that session. What?
+
+I need to check mvp power levels between the two.
+
+They are different.   And putting it in images=pumpkin mode makes it the same as AB.
+
+I've poked and prodded but I'm not making any progress.   First thins I tried were disablin the few rendering things I"d changed in rage.
+
+(cuz i noticed that images=pumpkin (which KR sets when killed) didn't prevent mourning and char sheets from being rendered).
+
+I see that char sheets just don't even work in images=pumpkin. tries to render them (when it shouldn't) and then crsashes
+
+And looking into THAT error shows that even in images=pumpkin in that one moment it thinks it's supposed to render. doNotRender = false. WHY.
+
+~~~~~~~~~~~~~~~~~~~
+
+Okay. I need to stop and think, just focus and think.
+
+I have two windows open showing the same session. One is in images pumpkin, one is not.
+
+Somewhere in the middle, this happens:
+
+God Tier Maid of Rage (mightyRunner) skyrockets up the ECHELADDER to a new rung: MUSCLES HOARDER and earns 37 BOONBUCKS.
+
+And then they divruge.   Image mode does shipping, pumpkin mode does void.
+
+Last time this happened with AB, it turned out a rendering thing used a seed in a non obvious way (calling a method that itself called a seed).  This was like, 7 months ago.
+
+I need to examine what happens when a god tier levels up from start to finish.
+
+One problem with this is that iti's not the first god tier level up in the session, just the first with a living player.
+
+So is there something that wouldn't ALWAYS eat a seed?
+
+Hrrm...... what about FAQs?  They shouldn't eat seeds because they clone the random, but let's find out.
+
+If I refresh the pages, do they divurge in the same spot?   If yes for several sessions, probably not ACTUAL randomness like network times.
+
+Okay. It seems stable enough. Don't go down the rabbit hole of faqs yet.
+
+Let's just...examine every step in the level up process.
+
+    @override
+    void renderContent(Element div) {
+        String narration = "";
+        for (num i = 0; i < this.playerList.length; i++) {
+            Player p = this.playerList[i];
+            ////session.logger.info("Level index is: ${p.level_index} while my levels length is ${p.mylevels.length}");
+            //it's a var so i debug this nightmare without end
+            bool canLevel = p.leveledTheHellUp && ((p.level_index + 1) < p.mylevels.length);
+            if (canLevel) { //can't level up if max level
+                ////session.logger.info("going to level up");
+                this.renderForPlayer(div, p);
+                p.leveledTheHellUp = false;
+            }
+        }
+    }
+
+    nothin gjumping out at me there....
+
+
+ if (levelName != null && !player.godTier) {
+            String canvasHTML = "<br><canvas id='canvas" + divID + "' width='" + canvasWidth.toString() + "' height=" + canvasHeight.toString() + "'>  </canvas>";
+            appendHtml(div, canvasHTML);
+            var canvasDiv = querySelector("#canvas" + divID);
+            Drawing.drawLevelUp(canvasDiv, player);
+        } else if (levelName != null && player.godTier) {
+            //god tier has to be taller.
+            String canvasHTML = "<br><canvas id='canvas" + divID + "' width='" + 1000.toString() + "' height=" + 572.toString() + "'>  </canvas>";
+            appendHtml(div, canvasHTML);
+            var canvasDiv = querySelector("#canvas" + divID);
+            Drawing.drawLevelUpGodTier(canvasDiv, player);
+        }
+
+So I call different methods based on if god tier, becasue i need to allocate a differently sized canvas. So far so good.
+
+COMMENTING OUT OUT ALL OF GOD TIER. let's see what happens.  nope, not that.
+
+okay, let's try shipping next. Wait. I am p sure shipping and void both don't do rendering.
+
+Okay. Well. what about renderSelf()? Does that get called in any of them? that isn' t"on screen" but is still a thing.
+Nope, never called ever in images = pumpkin (or at least never gets past doNotRender)
+
+Also, i can have it so god tier levling always renders no matter what and see if that has an effect.
+
+even if i always render. no change. okay.
+
+let's check faqs then.
+
+wait. except images=pumpkin doesn't effect faqs like ab does.
+
+i know i found a few other sessions like this. compare another one see if anything in common.
+
+
+~~~
+
+post sleep.
+
+The seed is the same begining and ending for RelationshipDrama. And yet, the next scene begins with a different seed.
+
+This seems confusing, but I realize that triggers can eat seeeds without causing a scene.
+
+I need to see what triggers are considered.
+
+All the triggers are the same with the same rand.  it's just that UpdateShippingGrid triggers with images and does not without.
+
+What does it mean. Both find the same player, with the same power.  The only thing left is what they think the saved ships are.
+
+This is so dumb.
+
