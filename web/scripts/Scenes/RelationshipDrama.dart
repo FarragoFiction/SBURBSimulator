@@ -648,7 +648,10 @@ class RelationshipDrama extends Scene {
 		return null;
 	}
 
+
+	//trying to debug this so made it but what is going on?
 	bool validDrama(Player player) {
+	    return true;
 		List<Relationship> relationships = player.getRelationshipDrama();
 
 		for(int j = 0; j<relationships.length; j++){
@@ -671,6 +674,7 @@ class RelationshipDrama extends Scene {
 
 		for(int j = 0; j<relationships.length; j++){
 			Relationship r = relationships[j];
+			div.appendHtml("checking relationships for $player");
 			if(r.type() == r.goodBig){
 				if(player.getStat("sanity") > 1){
 					this.confessFeelings(div, player, r.target);
@@ -686,9 +690,11 @@ class RelationshipDrama extends Scene {
 			}else{
 				//narration. but is it really worth it for something so small?
 				//debug("tiny drama")
+                div.appendHtml("no drama found for  $player");
 			}
 
 		}
+        div.appendHtml("rand at end is  ${rand.spawn().nextInt()}");
 	}
 
 	@override
@@ -702,7 +708,7 @@ class RelationshipDrama extends Scene {
 
 				this.renderForPlayer(div, p);
 			}
-
+        div.appendHtml("rand at end of render content is  ${rand.spawn().nextInt()}");
 	}
 	String matchTypeToOpinion(String type, Relationship relationship){
 		if(type == relationship.badBig){

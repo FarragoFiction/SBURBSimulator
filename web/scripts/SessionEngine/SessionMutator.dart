@@ -775,7 +775,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Drawing", InterestManager.CULTURE);
         player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
         player.moon = "Prospit";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Doors and Frogs";
         player.deriveChatHandle = false;
         player.deriveLand = false;
         player.initialize();

@@ -371,7 +371,7 @@ void scratchEasterEggCallBack() {
     Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
-    Element playerDiv = curSessionGlobalVar.newScene(s.runtimeType.toString);
+    Element playerDiv = curSessionGlobalVar.newScene("???");
     String playerID = "${playerDiv.id}_players";
     ch = canvasHeight;
     if (curSessionGlobalVar.players.length > 6) {

@@ -3314,3 +3314,20 @@ wait. except images=pumpkin doesn't effect faqs like ab does.
 
 i know i found a few other sessions like this. compare another one see if anything in common.
 
+
+~~~
+
+post sleep.
+
+The seed is the same begining and ending for RelationshipDrama. And yet, the next scene begins with a different seed.
+
+This seems confusing, but I realize that triggers can eat seeeds without causing a scene.
+
+I need to see what triggers are considered.
+
+All the triggers are the same with the same rand.  it's just that UpdateShippingGrid triggers with images and does not without.
+
+What does it mean. Both find the same player, with the same power.  The only thing left is what they think the saved ships are.
+
+This is so dumb.
+
