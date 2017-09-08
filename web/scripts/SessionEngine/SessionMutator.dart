@@ -211,6 +211,7 @@ class SessionMutator {
     ret += " Have fun COMPLETELY over using my gimicky thing, asshole. See how much you like nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. ";
     ret += " I'm just gonna be over here, laughing when shit gets real, which it always does. And no. You do NOT get to borrow my YellowYard to do this. ";
     ret += " Should have thought of that before you hacked the code. Good luck controlling it without the YellowYard. ";
+    if(activatingPlayer.chatHandle == "jadedResearcher") ret += " And no, I do NOT care that this asshole Waste is probably just past me.  PastJR is like, the LEAST competant JR when it comes to pulling shit like this off.";
     effectsInPlay ++;
     mindField = true;
     //need a div here or can't wire up buttons. just means it will print out after this event but also 'before' it in time. whatever.
