@@ -122,25 +122,20 @@ class UpdateShippingGrid extends Scene{
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.BLOOD);
 		}
-		querySelector("#story").appendHtml("<Br><Br>update shipping grid player  is $tmpPlayer Seed was ${rand.spawn().nextInt()}");
 
 
 		if(tmpPlayer == null || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
-		querySelector("#story").appendHtml("$tmpPlayer is not dead or null. Seed was ${rand.spawn().nextInt()}");
 
 		this.chosenShipper = this.getShipper(tmpPlayer);
 		this.chosenShipper.otp = null;
 
 		String newShips = this.printShips(this.getGoodShips(this.chosenShipper));
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat("power") > this.chosenShipper.powerNeeded){
-			querySelector("#story").appendHtml("GOING to update shipping grid $tmpPlayer has new ships  power needed was ${newShips != this.chosenShipper.savedShipText}  Seed was ${rand.spawn().nextInt()}");
-
 			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
 
 			return true;
 		}
-		querySelector("#story").appendHtml("not going to update shipping grid $tmpPlayer had no new ships or wasn't strong enough. power needed was ${newShips != this.chosenShipper.savedShipText} Seed was ${rand.spawn().nextInt()}");
 
 
 

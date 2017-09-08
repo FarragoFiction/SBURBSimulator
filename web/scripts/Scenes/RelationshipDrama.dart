@@ -164,7 +164,6 @@ class RelationshipDrama extends Scene {
 	}
 	void confessFeelings(Element div, Player player, Player crush){
 		//debug("confession!!!");
-        div.appendHtml("Confessing feelings. ");
 		Relationship relationship = player.getRelationshipWith(crush);
 		bool makeHate = false;
 
@@ -323,7 +322,6 @@ class RelationshipDrama extends Scene {
 	}
 	void relationshipAdvice(Element div, Player player, Player crush){
 		Relationship relationship = player.getRelationshipWith(crush);
-        div.appendHtml("advice feelings. ");
 
 
 		String chatText = "";
@@ -456,7 +454,6 @@ class RelationshipDrama extends Scene {
 	}
 	void ventAboutJerk(Element div, Player player, Player jerk){
 		Relationship relationship = player.getRelationshipWith(jerk);
-        div.appendHtml("vent feelings. ");
 
         relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
@@ -548,7 +545,6 @@ class RelationshipDrama extends Scene {
 	}
 	void antagonizeJerk(Element div, Player player, Player jerk){
 		//debug("antagonizing a jerk.") //is this ever even happening???
-        div.appendHtml("antagonizing feelings. ");
 
         Relationship relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
@@ -674,7 +670,6 @@ class RelationshipDrama extends Scene {
 
 		for(int j = 0; j<relationships.length; j++){
 			Relationship r = relationships[j];
-			div.appendHtml("checking relationships for $player");
 			if(r.type() == r.goodBig){
 				if(player.getStat("sanity") > 1){
 					this.confessFeelings(div, player, r.target);
@@ -690,11 +685,9 @@ class RelationshipDrama extends Scene {
 			}else{
 				//narration. but is it really worth it for something so small?
 				//debug("tiny drama")
-                div.appendHtml("no drama found for  $player");
 			}
 
 		}
-        div.appendHtml("rand at end is  ${rand.spawn().nextInt()}");
 	}
 
 	@override
@@ -708,7 +701,6 @@ class RelationshipDrama extends Scene {
 
 				this.renderForPlayer(div, p);
 			}
-        div.appendHtml("rand at end of render content is  ${rand.spawn().nextInt()}");
 	}
 	String matchTypeToOpinion(String type, Relationship relationship){
 		if(type == relationship.badBig){
