@@ -40,7 +40,7 @@ class YellowYard extends Scene {
 			//helloWorld();
 			String html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
-			num count = 14;
+			num count = 14;  //<-- why couldn't this have been 13. missed opportunity.
 			//yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
 			//yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
 			yyrEventsGlobalVar = ImportantEvent.removeRepeatEvents(yyrEventsGlobalVar);

@@ -19,7 +19,7 @@ import "../SBURBSim.dart";
 	hrmm...if time playered triggered, maybe can add evil actions, like Damara was doing.
 	dirupt ectobiology. kill players, etc. could trigger some godtiers
 */
-List<dynamic> yyrEventsGlobalVar = [];
+List<ImportantEvent> yyrEventsGlobalVar = [];
 
 class YellowYardResultController {
  List<ImportantEvent> eventsToUndo = [];

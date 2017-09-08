@@ -3331,3 +3331,38 @@ What does it mean. Both find the same player, with the same power.  The only thi
 
 This is so dumb.
 
+~~~~~~~~~
+
+Okay. That's outta the way. Time to tackle Mind Gnosis4.
+
+On the one hand it should be 'easy' since it's just a remix of my YellowYard.
+
+But it's not JUST that. I want custom graphics (their avatar and not mind, and they dont' get the yard stick
+which i guess makes it easier to CONTROL the cataclysm or some shit lets say). I also
+want custom things they can do (x3) AND I want the displayed options to be scrolling, not constrained to a yard.
+
+Problem with custom graphics: Gnosis4 doesn't let you render. There's no div or anything.
+
+If I'm fine with it being 100% image, then I can work with this. If I want their avatar, then I'd need a canvas....
+
+which would need to be appended to the dom and THEN javascripted.
+
+Let's go for no avatar for now.  And no custom graphics, though custom code for displaying the graphics.
+
+Then as I get close to being done and know what I want, I can make a "only the 4th wall" or whatever grpahic.
+
+
+What is the steps I need to do:
+
+*  Figure out how to implement 3 new YellowYardEvents
+    * Kill all bosses pre-entry
+    * GodTier all players pre-entry
+    * Destroy All Rings PreEntry, Give Everyone a huge amount of Sanity PreEntry (basically get rid of all doom sources).
+* Display something LIKE a yellow yard in the middle of a session.
+
+~~~~
+Alright. Got some frameworks to do. Foundation step is get a YellowYard displaying right after
+ the Mind4 event with no filtering.  Different image, too.
+
+ Okay, looks like the rendering of the yellow yard happens in the scene, so I'll just have the mutator have it's own version
+ and if the field is up, the scene uses the mutators instead (JR blocked out entirely)

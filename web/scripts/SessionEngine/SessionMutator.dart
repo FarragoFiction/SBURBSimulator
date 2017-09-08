@@ -204,11 +204,17 @@ class SessionMutator {
   //decisions, consequences, rationality
   String mind(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Mind is going at it.");
-    String ret = "";
+    String ret = "....GOD FUCKING DAMN IT. These punk fucking asshole Wastes that don't know what they are doing have gone too far. ";
+    ret += " STAY THE FUCK AWAY FROM MY YARD YOU ASSHOLES!!! ";
+    ret += " <br><Br>Fuck. Whatever. Something something glowing code. ";
+    ret += " I'm not gonna even dignifty this asshole with a name. You know who it is. ";
+    ret += " Have fun COMPLETELY over using my gimicky thing, asshole. See how much you like nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. ";
+    ret += " I'm just gonna be over here, laughing when shit gets real, which it always does. And no. You do NOT get to borrow my YellowYard to do this. ";
+    ret += " Should have thought of that before you hacked the code. Good luck controlling it without the YellowYard. ";
     effectsInPlay ++;
     mindField = true;
     //need a div here or can't wire up buttons. just means it will print out after this event but also 'before' it in time. whatever.
-    renderHackedYellowYard(s.newScene("MindGnosis4"));
+    renderHackedYellowYard(s.newScene("MindGnosis4"), s);
     /*
       TODO:
         * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
@@ -627,38 +633,20 @@ class SessionMutator {
       //helloWorld();
       String html = "<div id = 'yellow_yard.png' style='background:url(images/hacked_yellow_yard.png); width:1000px; height: 521px'>";
       yyrEventsGlobalVar = session.importantEvents;
-      num count = 14;
-      //yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
-      //yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
-      yyrEventsGlobalVar = ImportantEvent.removeRepeatEvents(yyrEventsGlobalVar);
+      //only remove frog spam, not repeats.
       yyrEventsGlobalVar = ImportantEvent.removeFrogSpam(yyrEventsGlobalVar);
-      html +=
-      "<div id = 'decisions' style='overflow:hidden; position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
-      for (int i = 0; i < count; i++) {
-        if (i < yyrEventsGlobalVar.length) {
-          yyrEventsGlobalVar[i].doomedTimeClone = time;
+      //scroll and not hidden. all events not justu 14 (why couldn't it have been 13, missed opportunity)
+      html += "<div id = 'decisions' style='overflow:scroll; position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
+      for (int i = 0; i< yyrEventsGlobalVar.length; i++) {
+        ImportantEvent ie = yyrEventsGlobalVar[i];
+         ie.doomedTimeClone = time;
           //String customRadio = "<img src = 'images/mind_radio.png' id = 'decision"+i+  "'>";
           //http://www.tutorialrepublic.com/faq/how-to-create-custom-radio-buttons-using-css-and-jquery.php
           html += " <span class='custom-radio'><input type='radio' name='decision' value='$i'></span>${yyrEventsGlobalVar[i].humanLabel()}<br>";
-        } else { //no more important events to undo
-          //html += "<br>";
-        }
       }
+      html +="</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;'>Decide</button>";
 
-      ////session.logger.info(session.yellowYardController.eventsToUndo.length);
-      ////session.logger.info("add events to undo to the radio button. on the right side.");
-
-
-      html +=
-      "</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;'>Decide</button>";
-      html +=
-      "<div id = 'undo_decisions' style='overflow: hidden; position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
-      for (num i = 0; i <
-          session.yellowYardController.eventsToUndo.length; i++) {
-        var decision = session.yellowYardController.eventsToUndo[i];
-        html +=
-        " <span class='custom-radio'><input type='radio' name='decision' value='${i + yyrEventsGlobalVar.length}'></span>Undo ''${decision.humanLabel()}''<br>";
-      }
+      //these asshole wastes don't know how to undo their undo-s.
       html += "</div>";
       html += "</div><br>";
 
