@@ -3212,3 +3212,26 @@ Steps towards a solution:
 
     So. What to do. Obvious answer is to make the passy innny thingy be a field on SimController. How much will this fuck me over?
 
+~~~~~~~
+
+Yay for another absolutely bug shit bug.
+
+AB says that 3323477308 is a combo session with a tier 4 gnosis event in it (presumably in the second session).
+But clicking the link and VIEWING that session shows that Skaia gets destroyed by meteors. So it's IMPOSSIBLE for it to be a combo session.
+
+Querying AB says she believes the makeCombo var is true, that var is set to be true in only one place. I guess next step is put a print out in that place and see if it goes.
+
+Wait.  AB thinks that rocks did NOT fall in that session. What?
+
+I need to check mvp power levels between the two.
+
+They are different.   And putting it in images=pumpkin mode makes it the same as AB.
+
+I've poked and prodded but I'm not making any progress.   First thins I tried were disablin the few rendering things I"d changed in rage.
+
+(cuz i noticed that images=pumpkin (which KR sets when killed) didn't prevent mourning and char sheets from being rendered).
+
+I see that char sheets just don't even work in images=pumpkin. tries to render them (when it shouldn't) and then crsashes
+
+And looking into THAT error shows that even in images=pumpkin in that one moment it thinks it's supposed to render. doNotRender = false. WHY.
+

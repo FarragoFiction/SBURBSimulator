@@ -652,6 +652,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
+        print("rendering a char sheet, doNotRender is ${doNotRender} and checkSimMode is ${checkSimMode()}");
         drawSinglePlayer(canvas, player);
         drawWhatever(canvas, "charSheet.png");
         //int space_between_lines = 25;
