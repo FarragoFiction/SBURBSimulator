@@ -1169,10 +1169,6 @@ class MetaPlayerHandler {
 
 
       return null;
-    //TODO
-      /*
-          RS kills raps and luck (somehow??? gotta figure this out. )
-          DM sets all stats to zero?
-       */
+
     }
 }
