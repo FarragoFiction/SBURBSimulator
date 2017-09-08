@@ -652,7 +652,6 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
-        print("rendering a char sheet, doNotRender is ${doNotRender} and checkSimMode is ${checkSimMode()}");
         drawSinglePlayer(canvas, player);
         drawWhatever(canvas, "charSheet.png");
         //int space_between_lines = 25;
@@ -820,6 +819,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
+
         int leftMargin = 150;
         CanvasElement levelBuffer = getBufferCanvas(querySelector("#godtierlevelup_template"));
         drawBGRadialWithWidth(canvas, leftMargin, 650, 650, ReferenceColours.BLACK, player.aspect.palette.shirt_light); //650 is iold

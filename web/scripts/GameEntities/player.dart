@@ -211,6 +211,7 @@ class Player extends GameEntity {
         tmpStatHolder["sanity"] = 10;
         tmpStatHolder["alchemy"] = 10;
         tmpStatHolder["freeWill"] = 10;
+        tmpStatHolder["freeWill"] = 10;
         tmpStatHolder["power"] = 5 * strength;
         tmpStatHolder["grist"] = 100;
         tmpStatHolder["sburbLore"] = 0; //needed so associated stats don't crash
