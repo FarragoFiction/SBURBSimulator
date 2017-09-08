@@ -29,7 +29,7 @@ class NPCHandler
 
         this.queen = new Carapace("Black Queen", session);
         this.queen.crowned = this.queensRing;
-        queen.setStatsHash(<String, num>{"hp": 500, "freeWill": -100, "power": 50});
+        queen.setStatsHash(<String, num>{Stats.HEALTH: 500, "freeWill": -100, "power": 50});
     }
 
     void spawnKing() {
@@ -44,14 +44,14 @@ class NPCHandler
         this.king.crowned = this.kingsScepter;
 
         king.grist = 1000;
-        king.setStatsHash(<String, num>{"hp": 1000, "freeWill": -100, "power": 100});
+        king.setStatsHash(<String, num>{Stats.HEALTH: 1000, "freeWill": -100, "power": 100});
     }
 
     void spawnJack() {
         if(session.mutator.spawnJack(session)) return null;
         this.jack = new Carapace("Jack", session);
         //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-        jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 10, "sanity": -100, "hp": 20, "freeWill": -100, "power": 30});
+        jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 10, "sanity": -100, Stats.HEALTH: 20, "freeWill": -100, "power": 30});
         Fraymotif f = new Fraymotif("Stab To Meet You", 1);
         f.effects.add(new FraymotifEffect("power", 3, true));
         f.desc = " It's pretty much how he says 'Hello'. ";

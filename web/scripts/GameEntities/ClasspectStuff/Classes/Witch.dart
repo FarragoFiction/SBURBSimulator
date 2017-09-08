@@ -14,7 +14,7 @@ class Witch extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 0.1, false)
+        new AssociatedStat(Stats.SBURB_LORE, 0.1, false)
     ]);
 
     Witch() : super("Witch", 11, true);

@@ -63,9 +63,9 @@ class Blood extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("RELATIONSHIPS", 2, true),
-        new AssociatedStat("sanity", 1, true),
-        new AssociatedStat("maxLuck", -2, true)
+        new AssociatedStat(Stats.RELATIONSHIPS, 2, true),
+        new AssociatedStat(Stats.SANITY, 1, true),
+        new AssociatedStat(Stats.MAX_LUCK, -2, true)
     ]);
 
     Blood(int id) :super(id, "Blood", isCanon: true);

@@ -92,7 +92,7 @@ class SessionMutator {
       f.desc = " You wonder what the hell is going on. ";
       f.baseValue = -10; //will this make it heal you?
       s.npcHandler.queensRing.fraymotifs.add(f);
-      s.npcHandler.queen.setStatsHash(<String, num>{"hp": 3, "freeWill": -100, "power": 3});
+      s.npcHandler.queen.setStatsHash(<String, num>{Stats.HEALTH: 3, "freeWill": -100, "power": 3});
       return true;
   }
 
@@ -107,7 +107,7 @@ class SessionMutator {
     f.baseValue = -10; //will this make it heal you?
     session.npcHandler.queensRing.fraymotifs.add(f);
     session.npcHandler.king.grist = 1000;
-    session.npcHandler.king.setStatsHash(<String, num>{"hp": 13, "freeWill": -100, "power": 13});
+    session.npcHandler.king.setStatsHash(<String, num>{Stats.HEALTH: 13, "freeWill": -100, "power": 13});
     return true;
   }
 
@@ -115,7 +115,7 @@ class SessionMutator {
     if(!hopeField) return false;
     session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session);
     //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-    session.npcHandler.jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": -500, "sanity": -10000, "hp": 5, "freeWill": -100, "power": 5});
+    session.npcHandler.jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": -500, "sanity": -10000, Stats.HEALTH: 5, "freeWill": -100, "power": 5});
     Fraymotif f = new Fraymotif("Stupid Dance", 1);
     f.effects.add(new FraymotifEffect("power", 3, true));
     f.baseValue = -10; //will this make it heal you?
@@ -132,7 +132,7 @@ class SessionMutator {
     f.desc = " The people have chosen to Rise Up against their oppressors, with the players as their symbol of HOPE. ";
     f.baseValue = 9001;
     session.npcHandler.democraticArmy.fraymotifs.add(f);
-    session.npcHandler.democraticArmy.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 9001, "sanity": 9001, "hp": 5, "freeWill": 9001, "power": 9001});
+    session.npcHandler.democraticArmy.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 9001, "sanity": 9001, Stats.HEALTH: 5, "freeWill": 9001, "power": 9001});
     return true;
   }
 
@@ -987,7 +987,7 @@ class MetaPlayerHandler {
         player.object_to_prototype.illegal = true;
         player.object_to_prototype.helpPhrase = "potters around being adorable, yet shockingly deadly";
         player.object_to_prototype.disaster = true;
-        player.object_to_prototype.setStatsHash(<String,num>{"hp": 500, "currentHP": 500, "sanity": -250, "power": 100});
+        player.object_to_prototype.setStatsHash(<String,num>{Stats.HEALTH: 500, "currentHP": 500, "sanity": -250, "power": 100});
 
         Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
         f.baseValue = 1300;

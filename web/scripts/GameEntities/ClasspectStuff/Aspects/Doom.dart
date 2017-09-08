@@ -72,11 +72,11 @@ class Doom extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("alchemy", 2, true),
-        new AssociatedStat("freeWill", 1, true),
-        new AssociatedStat("minLuck", -1, true),
-        new AssociatedStat("hp", -1, true),
-        new AssociatedStat("sburbLore", 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
+        new AssociatedStat(Stats.ALCHEMY, 2, true),
+        new AssociatedStat(Stats.FREE_WILL, 1, true),
+        new AssociatedStat(Stats.MIN_LUCK, -1, true),
+        new AssociatedStat(Stats.HEALTH, -1, true),
+        new AssociatedStat(Stats.SBURB_LORE, 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Doom(int id) :super(id, "Doom", isCanon: true);

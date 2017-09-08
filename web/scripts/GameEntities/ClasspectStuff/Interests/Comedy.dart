@@ -1,11 +1,11 @@
 import "Interest.dart";
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 
 class Comedy extends InterestCategory {
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("minLuck", -1, true),
-        new AssociatedStat("maxLuck", 1, true)
+        new AssociatedStat(Stats.MIN_LUCK, -1, true),
+        new AssociatedStat(Stats.MAX_LUCK, 1, true)
     ]);
 
     @override

@@ -543,7 +543,7 @@ class FraymotifCreator {
 //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
 //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
 class FraymotifEffect {
-    String statName; //hp heals current hp AND revives the player.
+    Stat statName; //hp heals current hp AND revives the player.
     num target; //self, allies or enemy or enemies, 0, 1, 2, 3
     bool damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
     num s = 0; //convineience methods cause i don't think js has enums but am too lazy to confirm.
@@ -555,12 +555,12 @@ class FraymotifEffect {
 
 
     /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
-    FraymotifEffect(this.statName, this.target, this.damageInsteadOfBuff, [this.flavorText = ""]) {}
+    FraymotifEffect(Stat this.statName, num this.target, bool this.damageInsteadOfBuff, [String this.flavorText = ""]) {}
 
 
     void setEffectForPlayer(Player player) {
         Random rand = player.rand;
-        var effect = new FraymotifEffect("", this.e, true); //default to just damaging the enemy.
+        var effect = new FraymotifEffect(null, this.e, true); //default to just damaging the enemy.
         if (player.class_name == SBURBClassManager.KNIGHT) effect = rand.pickFrom(this.knightEffects());
         if (player.class_name == SBURBClassManager.SEER) effect = rand.pickFrom(this.seerEffects());
         if (player.class_name == SBURBClassManager.BARD) effect = rand.pickFrom(this.bardEffects());
@@ -578,58 +578,58 @@ class FraymotifEffect {
         if (!player.associatedStatsFromAspect.isEmpty) { //null plyaers have no associated stats
             this.statName = rand.pickFrom(player.associatedStatsFromAspect).stat;
         } else {
-            this.statName = "MANGRIT";
+            this.statName = Stats.POWER;
         }
     }
 
     dynamic knightEffects() {
-        return [new FraymotifEffect("", this.s, true), new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.e2, true), new FraymotifEffect("", this.s, false), new FraymotifEffect("", this.e, false)];
+        return [new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false)];
     }
 
     dynamic seerEffects() {
-        return [new FraymotifEffect("", this.a, true), new FraymotifEffect("", this.s, false), new FraymotifEffect("", this.e, false), new FraymotifEffect("", this.e2, false), new FraymotifEffect("", this.a, false)];
+        return [new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.a, false)];
     }
 
     dynamic bardEffects() {
-        List<FraymotifEffect> ret = [new FraymotifEffect("", this.s, false), new FraymotifEffect("", this.e, false), new FraymotifEffect("", this.e2, false), new FraymotifEffect("", this.a, false)];
-        ret.addAll([new FraymotifEffect("", this.s, true), new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.e2, true), new FraymotifEffect("", this.a, true)]);
+        List<FraymotifEffect> ret = [new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.a, false)];
+        ret.addAll([new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.a, true)]);
         return ret;
     }
 
     dynamic heirEffects() {
-        return [new FraymotifEffect("", this.s, true), new FraymotifEffect("", this.e2, true), new FraymotifEffect("", this.s, false)];
+        return [new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.s, false)];
     }
 
     dynamic maidEffects() {
-        return [new FraymotifEffect("", this.e2, true), new FraymotifEffect("", this.e, false), new FraymotifEffect("", this.a, false)];
+        return [new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.a, false)];
     }
 
     dynamic rogueEffects() {
-        return [new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.a, false), new FraymotifEffect("", this.e, false)];
+        return [new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.a, false), new FraymotifEffect(null, this.e, false)];
     }
 
     dynamic pageEffects() {
-        return [new FraymotifEffect("", this.a, true), new FraymotifEffect("", this.a, false)];
+        return [new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.a, false)];
     }
 
     dynamic thiefEffects() {
-        return [new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.s, false), new FraymotifEffect("", this.e, false)];
+        return [new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false)];
     }
 
     dynamic sylphEffects() {
-        return [new FraymotifEffect("", this.a, true), new FraymotifEffect("", this.s, false), new FraymotifEffect("", this.a, false)];
+        return [new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.a, false)];
     }
 
     dynamic princeEffects() {
-        return [new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.e2, true), new FraymotifEffect("", this.e2, false)];
+        return [new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.e2, false)];
     }
 
     dynamic witchEffects() {
-        return [new FraymotifEffect("", this.e, true), new FraymotifEffect("", this.s, true), new FraymotifEffect("", this.e2, false)];
+        return [new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, false)];
     }
 
     dynamic mageEffects() {
-        return [new FraymotifEffect("", this.a, true), new FraymotifEffect("", this.s, true), new FraymotifEffect("", this.e2, false), new FraymotifEffect("", this.e, false)];
+        return [new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.e, false)];
     }
 
     void applyEffect(owner, allies, casters, enemy, enemies, baseValue) {

@@ -1788,7 +1788,7 @@ class Player extends GameEntity {
     void initializeSprite() {
         this.sprite = new Sprite("sprite", session); //unprototyped.
         //minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-        this.sprite.setStatsHash(<String, num>{"hp": 10, "currentHP": 10}); //same as denizen minion, but empty power
+        this.sprite.setStatsHash(<String, num>{Stats.HEALTH: 10, "currentHP": 10}); //same as denizen minion, but empty power
         this.sprite.doomed = true;
     }
 

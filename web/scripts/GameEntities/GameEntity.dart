@@ -78,8 +78,8 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         this.fraymotifs.addAll(object.fraymotifs);
         if (object.fraymotifs.isEmpty) {
             Fraymotif f = new Fraymotif("${object.name}Sprite Beam!", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true)); //do damage
-            f.effects.add(new FraymotifEffect("hp", 1, true)); //heal
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true)); //do damage
+            f.effects.add(new FraymotifEffect(Stats.HEALTH, 1, true)); //heal
             f.desc = " An appropriately themed beam of light damages enemies and heals allies. ";
             this.fraymotifs.add(f);
         }
@@ -94,7 +94,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
             s.illegal = ps.illegal;
             s.player = ps.player;
         }
-        for (String key in object.stats.keys) {
+        for (Stat key in object.stats) {
             addStat(key, object.stats[key]); //add your stats to my stas.
         }
     }
@@ -289,13 +289,13 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         //luck dodge
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
         //////session.logger.info("gonna roll for luck.");
-        if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
+        if (defense.rollForLuck(Stats.MIN_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
             //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
             offense.addStat(Stats.CURRENT_HEALTH, -1 * offense.getStat(Stats.POWER) / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return;
-        } else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
+        } else if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MAX_LUCK) * 5 + 100) {
            // ////session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
@@ -322,8 +322,8 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         }
         //base damage
         num hit = Math.max(1,offense.getStat(Stats.POWER));
-        num offenseRoll = offense.rollForLuck("");
-        num defenseRoll = defense.rollForLuck("");
+        num offenseRoll = offense.rollForLuck();
+        num defenseRoll = defense.rollForLuck();
         //critical/glancing hit odds.
         if (defenseRoll > offenseRoll * 2) { //glancing blow.
             //////session.logger.info("Glancing Hit: " + this.session.session_id);
@@ -542,8 +542,8 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     }
 
     //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
-    num rollForLuck([String stat]) {
-        if (stat == null || stat == "") {
+    num rollForLuck([Stat stat]) {
+        if (stat == null) {
             return this.session.rand.nextIntRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
         } else {
             //don't care if it's min or max, just compare it to zero.

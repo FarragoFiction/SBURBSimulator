@@ -45,7 +45,7 @@ testStats() {
   assert(testGE.getStat(Stats.HEALTH) == 0
       ? true
       : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
-  testGE.setStatsHash(<String,num>{"hp": 100, "currentHP": 10, "power": 3, "maxLuck": 100});
+  testGE.stats.setMap(<String,num>{Stats.HEALTH: 100, "currentHP": 10, "power": 3, "maxLuck": 100});
   jRAssert("hp", testGE.getStat(Stats.HEALTH), 100);
   jRAssert("currentHP", testGE.getStat(Stats.CURRENT_HEALTH),
       100); //even though i set it to 10, setSTatsHash should not let it e less than HP

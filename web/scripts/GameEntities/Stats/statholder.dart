@@ -1,6 +1,7 @@
+import "dart:collection";
 import "../../SBURBSim.dart";
 
-class StatHolder {
+class StatHolder extends Object with IterableMixin<Stat> {
     final Map<Stat, double> _base = <Stat, double>{};
 
     List<Buff> buffs = <Buff>[];
@@ -19,8 +20,14 @@ class StatHolder {
     double operator [](Stat key) => derive(key);
 
     double getBase(Stat key) => _base.containsKey(key) ? _base[key] : 0.0;
-    void setBase(Stat key, double val) => _base[key] = val;
-    void addBase(Stat key, double val) => _base[key] = getBase(key) + val;
+    void setBase(Stat key, num val) => _base[key] = val.toDouble();
+    void addBase(Stat key, num val) => _base[key] = getBase(key) + val.toDouble();
+
+    void setMap(Map<Stat,num> map) {
+        for (Stat stat in map.keys) {
+            this.setBase(stat, map[stat]);
+        }
+    }
 
     Iterable<Buff> getBuffsForStat(Stat stat) {
         return this.buffs.where((Buff b) => b.stats.contains(stat));
@@ -101,6 +108,11 @@ class StatHolder {
             }
         }
     }
+
+    @override
+    Iterator<Stat> get iterator => this._base.keys.iterator;
+    @override
+    int get length => this._base.length;
 }
 
 abstract class StatOwner {
