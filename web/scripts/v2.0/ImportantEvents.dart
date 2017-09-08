@@ -204,6 +204,7 @@ class PlayerDiedForever  extends ImportantEvent {
   @override
 	String humanLabel(){
 		String ret = "Make the " + this.player.htmlTitle() + " not permanently dead.";
+		if(session.mutator.mindField) ret = "Make the " + this.player.htmlTitle() + " NEVER permanently dead, lol.";
 		return ret;
 	}
   @override
@@ -266,6 +267,8 @@ class PlayerWentGrimDark  extends ImportantEvent {
   @override
 	String humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going Grimdark.";
+		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitle() + " from EVER going Grimdark.";
+
 		return ret;
 	}
   @override
@@ -322,6 +325,7 @@ class PlayerWentMurderMode  extends ImportantEvent{
   @override
 	String humanLabel(){
 		String ret = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
+		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitle() + " from EVER going into MurderMode.";
 		return ret;
 	}
   @override
@@ -379,6 +383,7 @@ class JackPromoted  extends ImportantEvent{
   @override
 	String humanLabel(){
 		String ret = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
+		if(session.mutator.mindField) ret = "Prevent Jack from obtaining the Black Queen's RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD.";
 		return ret;
 	}
   @override
@@ -487,6 +492,7 @@ class PlayerEnteredSession  extends ImportantEvent {
   @override
 	String humanLabel(){
 		String ret = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
+		ret = "Kill the " + this.player.htmlTitle() + " as much as you can. Fuck that guy!";
 		return ret;
 	}
   @override
