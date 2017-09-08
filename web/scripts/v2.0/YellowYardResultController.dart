@@ -62,9 +62,13 @@ bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool sp
   //  //print("constructor did not match.");
     return false;
   }
-  if(newEvent.mvp_value != storedEvent.mvp_value && !curSessionGlobalVar.mutator.mindField){ //mind field means mvp doesn't matter.
+  if(newEvent.mvp_value != storedEvent.mvp_value ){ //mind field means mvp doesn't matter.
+      if(curSessionGlobalVar.mutator.mindField) {
+            if((newEvent.mvp_value -storedEvent.mvp_value).abs() > 10 ) return false; //don't be TOO different.
+      }else {
+          return false;
+      }
     //  //print("mvp did not match");
-      return false;
   }
   if(newEvent.player != null && storedEvent.player != null){
 	  //should work even if player is supposed to be null
