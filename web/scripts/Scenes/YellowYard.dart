@@ -18,7 +18,13 @@ class YellowYard extends Scene {
 	}
 
 	void yellowYardTime(Element div) {
+		if(this.session.mutator.mindField) {
+			//old man JR shakes their fist at those damn punk kids who won't stay away from their Yard.
+			div.appendHtml("... What. Where the fuck is my Yard? God DAMN those n00b Wastes of Mind. What the fuck is WRONG WITH THEM? Don't they know they need to stay the fuck away from my Yard? Go use their fucking Cataclysm. See if I care.  Today is the day you fuck shit up forever.");
+			return;
+		}
 		this.session.stats.yellowYard = true;
+
 		Element div2 = null;
 		String tmp = "<div id = 'yyholder'></div><bR>";
 		appendHtml(div, tmp);
@@ -29,7 +35,6 @@ class YellowYard extends Scene {
 		time.influenceSymbol = "mind_forehead.png";
 		//String html = "<img src = 'images/yellow_yard.png'>";
 		String html = "<div id = 'fthwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
-		Session session = this.session;
 		appendHtml(div2, html);
 		querySelector("#fthwall").onClick.listen((Event e) {
 			//helloWorld();
@@ -329,7 +334,7 @@ class YellowYard extends Scene {
 			return chat;
 	}
 	Player getDoomedTimeClone(){
-		var timeClone = Player.makeRenderingSnapshot(this.timePlayer);
+		Player timeClone = Player.makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
 		timeClone.doomed = true;
 		timeClone.setStat("currentHP", timeClone.getStat("hp"));

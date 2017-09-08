@@ -15,6 +15,7 @@ class SessionMutator {
   bool lifeField = false; //makeDead does nothing, all dead things are brought back.
   bool doomField = false; //causes dead players to be treated as live ones.
   bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
+  bool mindField = false; //controls how yellow yards work, mostly only in conjunction with the yellow yard created here. also messes with freeWillScenes.
   static SessionMutator _instance;
   bool rapsAndLuckDisabled = false;
   num timeTillReckoning = 0;
@@ -200,28 +201,32 @@ class SessionMutator {
     return ret;
   }
 
+  //decisions, consequences, rationality
   String mind(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Mind is going at it.");
+    String ret = "";
     effectsInPlay ++;
+    mindField = true;
+    //need a div here or can't wire up buttons. just means it will print out after this event but also 'before' it in time. whatever.
+    renderHackedYellowYard(s.newScene("MindGnosis4"));
     /*
       TODO:
-        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me. PAUSE when this happens.
-        *     * yes, it means you don't know how it ends before you change things. but neither does the mind player.
+        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
         *  all options are listed instead of just a yards worth (so custom)
         *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
-        * A few custom options as well, up at the top
-             *so instead of restraint, they let ANYTHING happen.  but still Observer choice?
-             *  or are some things observer choice and some things the Waste chooses?
-             *  peasant rail gun
-             *  kill all denizens pre-entry
-             *  kill all npcs pre-entry
-             *  kill entire party pre-entry
-             *  god tier entire party pre-entry
-             *  prototype all players pre-entry
-             *  shoosh pap all murderers pre-entry
-             *  etc
+        * 3 custom events: (how would they work? all of them are on start, or else mind field will fuck with them)
+        *   *  Remove ALL DOOM FACTORS (destroy rings, give everybody sanity and -corruption)
+        *   * Kill ALL bosses (including denizens/minions). Give grist to appropriate players.
+        *   * God tier WHOLE party. (if they are destined. otherwise does nothing)
+        *Display ALL events, none get filtered besides maybe frog spam. have scroll bar.
+        *
+        *
+        *
+        * Step 1: get existing yellow yard type events (unfiltered besides frog) displaying.
+        *
+        * so a mind field just changes how a YellowYard works, right?
      */
+    return ret;
   }
 
   String rage(Session s, Player activatingPlayer) {
@@ -601,6 +606,83 @@ class SessionMutator {
           * maybe change a few other rules. Big ones. Maybe you no longer need grist? black king and queen are already dead and reckoning goes anyways?
      */
     return ret;
+  }
+
+  //you NEED a div or this won't fucking work. Just accept this.
+  void renderHackedYellowYard(Element div, Session session) {
+    Element div2 = null;
+    String tmp = "<div id = 'yyholder'></div><bR>";
+    appendHtml(div, tmp);
+    div2 = querySelector("#yyholder");
+    Player time = Player.makeRenderingSnapshot(findAspectPlayer(session.players,Aspects.TIME));
+    time.dead = false;
+    time.doomed = true;
+    time.setStat("currentHP", time.getStat("hp"));
+
+    time.influenceSymbol = "mind_forehead.png";
+    //String html = "<img src = 'images/yellow_yard.png'>";
+    String html = "<div id = 'fthwall' style='background:url(images/hacked4thwall.png); width:1000px; height:521px;'>";
+    appendHtml(div2, html);
+    querySelector("#fthwall").onClick.listen((Event e) {
+      //helloWorld();
+      String html = "<div id = 'yellow_yard.png' style='background:url(images/hacked_yellow_yard.png); width:1000px; height: 521px'>";
+      yyrEventsGlobalVar = session.importantEvents;
+      num count = 14;
+      //yyrEventsGlobalVar = padEventsToNumWithKilling(yyrEventsGlobalVar, this.session, time,num);
+      //yyrEventsGlobalVar = sortEventsByImportance(yyrEventsGlobalVar);  this edges out diversity. end up with all "make so and so god tier" and nothing else
+      yyrEventsGlobalVar = ImportantEvent.removeRepeatEvents(yyrEventsGlobalVar);
+      yyrEventsGlobalVar = ImportantEvent.removeFrogSpam(yyrEventsGlobalVar);
+      html +=
+      "<div id = 'decisions' style='overflow:hidden; position: relative; top: 133px; left: 280px; font-size: 12px; width:480px;height:280px;'> ";
+      for (int i = 0; i < count; i++) {
+        if (i < yyrEventsGlobalVar.length) {
+          yyrEventsGlobalVar[i].doomedTimeClone = time;
+          //String customRadio = "<img src = 'images/mind_radio.png' id = 'decision"+i+  "'>";
+          //http://www.tutorialrepublic.com/faq/how-to-create-custom-radio-buttons-using-css-and-jquery.php
+          html += " <span class='custom-radio'><input type='radio' name='decision' value='$i'></span>${yyrEventsGlobalVar[i].humanLabel()}<br>";
+        } else { //no more important events to undo
+          //html += "<br>";
+        }
+      }
+
+      ////session.logger.info(session.yellowYardController.eventsToUndo.length);
+      ////session.logger.info("add events to undo to the radio button. on the right side.");
+
+
+      html +=
+      "</div><button id = 'yellowButton' style = 'position: relative; top: 133px; left: 280px;'>Decide</button>";
+      html +=
+      "<div id = 'undo_decisions' style='overflow: hidden; position: relative; top: -150px; left: 0px; font-size: 12px; width:190px; height:300px; float:right;'> ";
+      for (num i = 0; i <
+          session.yellowYardController.eventsToUndo.length; i++) {
+        var decision = session.yellowYardController.eventsToUndo[i];
+        html +=
+        " <span class='custom-radio'><input type='radio' name='decision' value='${i + yyrEventsGlobalVar.length}'></span>Undo ''${decision.humanLabel()}''<br>";
+      }
+      html += "</div>";
+      html += "</div><br>";
+
+      setHtml(div2, html);
+      (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision());
+
+
+      //wire up custom radio buttons after they are rendered
+      List<Element> radioButtons = querySelectorAll('input[name="decision"]');
+      for (RadioButtonInputElement radioButton in radioButtons) {
+        radioButton.onClick.listen((Event e) {
+          //session.logger.info("a radio button was clicked");
+          if (radioButton.checked) {
+            //session.logger.info("the radio button should be selected");
+            radioButton.parent.classes.add("selected");
+          }
+          for (RadioButtonInputElement r in radioButtons) {
+            if (r != radioButton) {
+              r.classes.remove("selected");
+            }
+          }
+        });
+      }
+    });
   }
 
   //if it's not done yet.
