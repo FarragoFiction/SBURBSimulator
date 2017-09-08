@@ -6,10 +6,14 @@ import "weighted_lists.dart";
 /// Can be fed to anything which wants a Math.Random without issues
 class Random implements Math.Random {
 	Math.Random _impl;
+	/// used for spawning a new random from this one without new stuff
+	int _echo;
 
 	Random([int seed = null]) {
 		this.setSeed(seed);
 	}
+
+	Random spawn() => new Random(this._echo +1);
 
 	@override
 	int nextInt([int max = 0xFFFFFFFF]) {
@@ -23,14 +27,22 @@ class Random implements Math.Random {
 	int _nextInt(int max) {
 		//if (max > 2<<31) { //JR: turns out this path makes random do things differently compiled vs dart. let's keep this off for now.
 		if (max > 0xFFFFFFFF) { //PL: THIS works fine though. I blame js and its bitshifting
-			return (this._impl.nextDouble() * max).floor();
+			double val = this._impl.nextDouble();
+			_echo = (val * 0xFFFFFFFF).round();
+
+			return (val * max).floor();
 		} else {
-			return this._impl.nextInt(max);
+			int val = this._impl.nextInt(max);
+			_echo = val;
+			return val;
 		}
 	}
 
 	@override
-	bool nextBool() => this._impl.nextBool();
+	bool nextBool() {
+		_echo = _echo + 1;
+		return this._impl.nextBool();
+	}
 
 	@override
 	double nextDouble([double max = 1.0]) => this._impl.nextDouble() * max;
@@ -39,6 +51,7 @@ class Random implements Math.Random {
 
 	void setSeed(int seed) {
 		this._impl = new Math.Random(seed);
+		_echo = seed + 1;
 	}
 
 	int nextIntRange(int min, int max) => this.nextInt(1+max-min) + min;
