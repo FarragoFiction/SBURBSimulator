@@ -134,7 +134,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
   @override
 	String humanLabel(){
 		String ret = "";
-		ret += "Have the " + this.player.htmlTitle() + " go God Tier instead of dying forever. ";
+		ret += "Have the " + this.player.htmlTitleBasicNoTip() + " go God Tier instead of dying forever. ";
 		return ret;
 	}
   @override
@@ -203,8 +203,8 @@ class PlayerDiedForever  extends ImportantEvent {
 
   @override
 	String humanLabel(){
-		String ret = "Make the " + this.player.htmlTitle() + " not permanently dead.";
-		if(session.mutator.mindField) ret = "Make the " + this.player.htmlTitle() + " NEVER permanently dead, lol.";
+		String ret = "Make the " + this.player.htmlTitleBasicNoTip() + " not permanently dead.";
+		if(session.mutator.mindField) ret = "Make the " + this.player.htmlTitleBasicNoTip() + " NEVER permanently dead, lol.";
 		return ret;
 	}
   @override
@@ -266,8 +266,8 @@ class PlayerWentGrimDark  extends ImportantEvent {
 
   @override
 	String humanLabel(){
-		String ret = "Prevent the " + this.player.htmlTitle() + " from going Grimdark.";
-		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitle() + " from EVER going Grimdark.";
+		String ret = "Prevent the " + this.player.htmlTitleBasicNoTip() + " from going Grimdark.";
+		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitleBasicNoTip() + " from EVER going Grimdark.";
 
 		return ret;
 	}
@@ -324,8 +324,8 @@ class PlayerWentMurderMode  extends ImportantEvent{
 
   @override
 	String humanLabel(){
-		String ret = "Prevent the " + this.player.htmlTitle() + " from going into Murder Mode.";
-		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitle() + " from EVER going into MurderMode.";
+		String ret = "Prevent the " + this.player.htmlTitleBasicNoTip() + " from going into Murder Mode.";
+		if(session.mutator.mindField) ret = "Prevent the " + this.player.htmlTitleBasicNoTip() + " from EVER going into MurderMode.";
 		return ret;
 	}
   @override
@@ -432,7 +432,7 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
   @override
 	String humanLabel(){
 		var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
-		String ret = "Help the " + spacePlayer.htmlTitleBasic() + " complete frog breeding duties.";
+		String ret = "Help the " + spacePlayer.htmlTitleBasicNoTip() + " complete frog breeding duties.";
 		return ret;
 	}
   @override
@@ -491,8 +491,8 @@ class PlayerEnteredSession  extends ImportantEvent {
 
   @override
 	String humanLabel(){
-		String ret = "Kill the " + this.player.htmlTitle() + " before they enter the session.";
-		ret = "Kill the " + this.player.htmlTitle() + " as much as you can. Fuck that guy!";
+		String ret = "Kill the " + this.player.htmlTitleBasicNoTip() + " before they enter the session.";
+		ret = "Kill the " + this.player.htmlTitleBasicNoTip() + " as much as you can. Fuck that guy!";
 		return ret;
 	}
   @override
@@ -551,7 +551,7 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 
   @override
 	String humanLabel(){
-		String ret = "Make the " + this.player.htmlTitle() + " prototype a frog before entering the session. ";
+		String ret = "Make the " + this.player.htmlTitleBasicNoTip() + " prototype a frog before entering the session. ";
 		return ret;
 	}
   @override

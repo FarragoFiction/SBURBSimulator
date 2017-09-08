@@ -62,7 +62,7 @@ bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool sp
   //  //print("constructor did not match.");
     return false;
   }
-  if(newEvent.mvp_value != storedEvent.mvp_value){
+  if(newEvent.mvp_value != storedEvent.mvp_value && !curSessionGlobalVar.mutator.mindField){ //mind field means mvp doesn't matter.
     //  //print("mvp did not match");
       return false;
   }
