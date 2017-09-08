@@ -293,7 +293,7 @@ class DoLandQuest extends Scene{
 			} else {
 				ret += " quests in the " + targetPlayer.land;
 			}
-			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes good use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
+			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes goodz use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
 			if (helper != null) {
 				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
 			}
@@ -304,7 +304,9 @@ class DoLandQuest extends Scene{
 			} else {
 				ret += " quests in the " + player.land;
 			}
-
+			if (helper != null) {
+				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
+			}
 		}
 
 		if(helper != null && player  != helper ){
