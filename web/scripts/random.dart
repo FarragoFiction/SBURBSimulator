@@ -51,7 +51,7 @@ class Random implements Math.Random {
 
 	void setSeed(int seed) {
 		this._impl = new Math.Random(seed);
-		_echo = seed + 1;
+		if(seed != null)_echo = seed + 1;
 	}
 
 	int nextIntRange(int min, int max) => this.nextInt(1+max-min) + min;
