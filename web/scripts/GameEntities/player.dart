@@ -1377,20 +1377,6 @@ class Player extends GameEntity {
     }
 
 
-    @override //players have ACTUAL relationships, not a placeholder stat, so do different shit
-    num getStat(String statName) {
-        num ret = 0;
-        if (statName == "RELATIONSHIPS") { //relationships, why you so cray cray???
-            for (num i = 0; i < this.relationships.length; i++) {
-                ret += this.relationships[i].value;
-            }
-            return ret.round();
-        } else {
-            return super.getStat(statName);
-        }
-    }
-
-
     num getHighestRelationshipValue() {
         Relationship bestRelationshipSoFar = this.relationships[0];
         for (num i = 1; i < this.relationships.length; i++) {
