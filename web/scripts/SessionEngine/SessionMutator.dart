@@ -208,9 +208,9 @@ class SessionMutator {
     ret += " STAY THE FUCK AWAY FROM MY YARD YOU ASSHOLES!!! ";
     ret += " <br><Br>Fuck. Whatever. Something something glowing code. ";
     ret += " I'm not gonna even dignifty this asshole with a name. You know who it is. ";
-    ret += " Have fun COMPLETELY over using my gimicky thing, asshole. See how much you like nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. ";
+    ret += " Have fun COMPLETELY over using my gimick, asshole. See how much you like nullifying the basic ability of intelligent beings in all real and hypothetical planes of existance to give a shit. ";
     ret += " I'm just gonna be over here, laughing when shit gets real, which it always does. And no. You do NOT get to borrow my YellowYard to do this. ";
-    ret += " Should have thought of that before you hacked the code. Good luck controlling it without the YellowYard. ";
+    ret += " Should have thought of that before you hacked the code. Good luck controlling it without the YellowYard. Also. I shouldn't even HAVE to say this.... But you DO know that gnosis fucks with transtimeline shit, right? Good luck even gettin your shit to work. ";
     if(activatingPlayer.chatHandle == "jadedResearcher") ret += " And no, I do NOT care that this asshole Waste is probably just past me.  PastJR is like, the LEAST competant JR when it comes to pulling shit like this off.";
     effectsInPlay ++;
     mindField = true;
@@ -221,15 +221,14 @@ class SessionMutator {
         * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
         *  all options are listed instead of just a yards worth (so custom)
         *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
-        * 3 custom events: (how would they work? all of them are on start, or else mind field will fuck with them)
-        *   *  Remove ALL DOOM FACTORS (destroy rings, give everybody sanity and -corruption)
-        *   * Kill ALL bosses (including denizens/minions). Give grist to appropriate players.
-        *   * God tier WHOLE party. (if they are destined. otherwise does nothing)
-        *Display ALL events, none get filtered besides maybe frog spam. have scroll bar.
+        * NO custom events. Instead all important events no longer care about mvp and their text changes to say things like "never let x die" or whatever.
         *
         *
         *
         * Step 1: get existing yellow yard type events (unfiltered besides frog) displaying.
+        * Step 2: change how event replacement works with mindField.
+        * Step 3: ???
+        * Step 4: gigglesnort
         *
         * so a mind field just changes how a YellowYard works, right?
      */
