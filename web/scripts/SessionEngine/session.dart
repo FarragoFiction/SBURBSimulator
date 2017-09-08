@@ -132,7 +132,8 @@ class Session {
             if (s.trigger(playersInSession)) {
                 //session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+
+                s.renderContent(this.newScene(s.runtimeType.toString()));
                 if (!s.canRepeat) {
                     //removeFromArray(s,session.available_scenes);
                     this.available_scenes.remove(s);
@@ -145,7 +146,7 @@ class Session {
             if (s.trigger(playersInSession)) {
                 //	session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
     }
@@ -156,7 +157,7 @@ class Session {
             if (s.trigger(playerList)) {
                 //session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
 
@@ -165,7 +166,7 @@ class Session {
             if (s.trigger(playerList)) {
                 //	session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
     }
@@ -515,11 +516,11 @@ class Session {
         return session_id.toString();
     }
 
-    Element newScene([overRideVoid = false]) {
+    Element newScene(String callingScene, [overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
-        if(mutator.lightField || true) lightBS = "Scened ID: ${this.currentSceneNum}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if(mutator.lightField || true) lightBS = "Scened ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";

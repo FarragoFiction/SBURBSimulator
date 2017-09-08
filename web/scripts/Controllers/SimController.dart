@@ -41,7 +41,7 @@ abstract class SimController {
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
         s.trigger(playersInMedium, p);
-        s.renderContent(curSessionGlobalVar.newScene(), player_index); //new scenes take care of displaying on their own.
+        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()), player_index); //new scenes take care of displaying on their own.
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
@@ -145,7 +145,7 @@ abstract class SimController {
         ////print('reckoning');
         Scene s = new Reckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
-        s.renderContent(curSessionGlobalVar.newScene());
+        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
         if (!curSessionGlobalVar.stats.doomedTimeline) {
             reckoningTick();
         } else {
@@ -164,7 +164,7 @@ abstract class SimController {
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
             s.trigger(curSessionGlobalVar.players);
-            s.renderContent(curSessionGlobalVar.newScene(true));
+            s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(), true));
             if (curSessionGlobalVar.stats.makeCombinedSession == true) {
                 processCombinedSession(); //make sure everything is done rendering first
             } else {

@@ -358,7 +358,7 @@ void scratchEasterEggCallBack() {
 
     List<Player> guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
 
-    Element guardianDiv = curSessionGlobalVar.newScene();
+    Element guardianDiv = curSessionGlobalVar.newScene("???");
     String guardianID = "${guardianDiv.id}_guardians";
     num ch = canvasHeight;
     if (guardians.length > 6) {
@@ -371,7 +371,7 @@ void scratchEasterEggCallBack() {
     Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
-    Element playerDiv = curSessionGlobalVar.newScene();
+    Element playerDiv = curSessionGlobalVar.newScene(s.runtimeType.toString);
     String playerID = "${playerDiv.id}_players";
     ch = canvasHeight;
     if (curSessionGlobalVar.players.length > 6) {

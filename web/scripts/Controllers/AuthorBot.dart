@@ -83,7 +83,7 @@ abstract class AuthorBot extends SimController {
   void reckoning() {
     Scene s = new Reckoning(curSessionGlobalVar);
     s.trigger(curSessionGlobalVar.players);
-    s.renderContent(curSessionGlobalVar.newScene());
+    s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString));
     if(!curSessionGlobalVar.stats.doomedTimeline){
       ////print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
@@ -126,7 +126,7 @@ abstract class AuthorBot extends SimController {
       s.trigger(curSessionGlobalVar.players);
       ////print("Debugging AB: triggered Aftermath in session:  ${curSessionGlobalVar.session_id}");
 
-      s.renderContent(curSessionGlobalVar.newScene());
+      s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString));
       ////print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
       if(curSessionGlobalVar.stats.makeCombinedSession == true){
         print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id} because makeCombined is ${curSessionGlobalVar.stats.makeCombinedSession} ");

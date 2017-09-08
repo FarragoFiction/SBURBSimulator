@@ -17,7 +17,7 @@ class RelationshipDrama extends Scene {
 		this.playerList = playerList;
 		this.dramaPlayers = [];
 		for(Player p in session.getReadOnlyAvailablePlayers()){
-			if(p.hasRelationshipDrama() && p.dead == false){ //stop corpse confessions!
+			if(p.hasRelationshipDrama() && p.dead == false && validDrama(p)){ //stop corpse confessions!
 				this.dramaPlayers.add(p);
 			}
 		}
@@ -164,6 +164,7 @@ class RelationshipDrama extends Scene {
 	}
 	void confessFeelings(Element div, Player player, Player crush){
 		//debug("confession!!!");
+        div.appendHtml("Confessing feelings. ");
 		Relationship relationship = player.getRelationshipWith(crush);
 		bool makeHate = false;
 
@@ -322,6 +323,7 @@ class RelationshipDrama extends Scene {
 	}
 	void relationshipAdvice(Element div, Player player, Player crush){
 		Relationship relationship = player.getRelationshipWith(crush);
+        div.appendHtml("advice feelings. ");
 
 
 		String chatText = "";
@@ -454,7 +456,9 @@ class RelationshipDrama extends Scene {
 	}
 	void ventAboutJerk(Element div, Player player, Player jerk){
 		Relationship relationship = player.getRelationshipWith(jerk);
-		relationship.drama = false; //it is consumed.
+        div.appendHtml("vent feelings. ");
+
+        relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 
 
@@ -544,7 +548,9 @@ class RelationshipDrama extends Scene {
 	}
 	void antagonizeJerk(Element div, Player player, Player jerk){
 		//debug("antagonizing a jerk.") //is this ever even happening???
-		Relationship relationship = player.getRelationshipWith(jerk);
+        div.appendHtml("antagonizing feelings. ");
+
+        Relationship relationship = player.getRelationshipWith(jerk);
 		relationship.drama = false; //it is consumed.
 		relationship.old_type = relationship.saved_type;
 
@@ -642,6 +648,23 @@ class RelationshipDrama extends Scene {
 		return null;
 	}
 
+	bool validDrama(Player player) {
+		List<Relationship> relationships = player.getRelationshipDrama();
+
+		for(int j = 0; j<relationships.length; j++){
+			Relationship r = relationships[j];
+			if(r.type() == r.goodBig){
+				return true;
+			}else if(r.type() == r.badBig){
+				return true;
+			}else{
+                r.drama = false; //i guess it was a break up?
+            }
+
+		}
+		return false;
+	}
+
 	void renderForPlayer(Element div, Player player){
 		//Player player1 = player;
 		List<Relationship> relationships = player.getRelationshipDrama();
@@ -672,6 +695,7 @@ class RelationshipDrama extends Scene {
 	void renderContent(Element div){
 		//appendHtml(div, this.content());
 		for(int i = 0; i<this.dramaPlayers.length; i++){
+
 				Player p = this.dramaPlayers[i];
 				//take up time for other player once i know who they are.
 				session.removeAvailablePlayer(p);//how did i forget to make this take a turn? that's the whole point, romance distracts you from shit. won't make it distract your partner, tho.
