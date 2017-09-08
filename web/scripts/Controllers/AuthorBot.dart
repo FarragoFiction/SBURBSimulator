@@ -63,7 +63,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void processCombinedSession() {
-    ////print("Debugging AB: Checking process combo session");
+    //print("Debugging AB: Checking process combo session");
     Session newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
     if(newcurSessionGlobalVar != null){
      // //print("debugging AB: doing a combo session");
@@ -116,7 +116,7 @@ abstract class AuthorBot extends SimController {
     if(curSessionGlobalVar.timeTillReckoning > -10){
       curSessionGlobalVar.timeTillReckoning += -1;
       curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-      if(!stopped) window.requestAnimationFrame(reckoningTick);
+      window.requestAnimationFrame(reckoningTick);
       //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
       return null;
     }else{
@@ -130,7 +130,7 @@ abstract class AuthorBot extends SimController {
       s.renderContent(curSessionGlobalVar.newScene());
       ////print("Debugging AB: done with Aftermath in session:  ${curSessionGlobalVar.session_id}");
       if(curSessionGlobalVar.stats.makeCombinedSession == true){
-       // //print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id}");
+        print("Debugging AB: going to check for combo in session: ${curSessionGlobalVar.session_id} because makeCombined is ${curSessionGlobalVar.stats.makeCombinedSession} ");
         processCombinedSession();  //make sure everything is done rendering first
         return null;
       }else{

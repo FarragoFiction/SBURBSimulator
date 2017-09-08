@@ -14,14 +14,15 @@ class FaceDenizen extends Scene{
 		this.denizenFighters = [];
 		this.playerList = playerList;
 		for(Player p in session.getReadOnlyAvailablePlayers()){
-			if(p.denizen_index >= 3 && !p.denizenDefeated && p.land != null){
+			if(p.denizen == null && p.aspect != Aspects.NULL) session.logger.warn("A player has no denizen, but is not a Null player. Player is $p");
+			if (p.denizen_index >= 3 && !p.denizenDefeated && p.land != null && p.denizen != null) {
 				var d = p.denizen;
-				if(p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5){  //you're allowed to do other things between failed boss fights, you know.
+				if (p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
-			}else if(p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null){
+			} else if (p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null && p.denizen != null) {
 				var d = p.denizenMinion;
-				if(p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5){//you're allowed to do other things between failed boss fights, you know.
+				if (p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}

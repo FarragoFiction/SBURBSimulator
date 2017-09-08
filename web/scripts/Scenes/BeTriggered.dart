@@ -70,6 +70,7 @@ class BeTriggered extends Scene{
 
 			}else{
 				session.removeAvailablePlayer(p);
+				if(p.flipOutReason == null) p.flipOutReason = " how glitchy SBURB is "; //<-- why is this necessary???
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about ";
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
 				p.addStat("sanity", -10);

@@ -341,6 +341,7 @@ class Session {
     }
 
     Session initializeCombinedSession() {
+        if(this.stats.rocksFell) return null; //can't combo is skaia doesn't exist.
         this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
         List<Player> living = findLivingPlayers(this.players);
         //nobody is the leader anymore.
@@ -558,7 +559,8 @@ class Session {
             voidDiv.setInnerHtml("${"<br>"*numScenes}$div");//one br for each skipped scene
             return querySelector("#scene${this.currentSceneNum}");
         }else if(overRideVoid) {
-            doNotRender = false;
+            logger.info("am i setting do not render to false?");
+            //doNotRender = false; //this fucks AB up. don't do it. but at least they'll see the text.
         }
 
         appendHtml(querySelector("#story"), div);

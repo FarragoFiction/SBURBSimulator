@@ -539,6 +539,7 @@ class Player extends GameEntity {
         ret += "Class: ${class_name.name}<Br>";
         ret += "Aspect: ${aspect.name}<Br>";
         ret += "Land: $land<Br>";
+        ret += "Denizen: $denizen<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
         ret += "Gnosis: $gnosis<Br>";

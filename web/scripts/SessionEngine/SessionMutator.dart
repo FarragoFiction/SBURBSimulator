@@ -16,7 +16,7 @@ class SessionMutator {
   bool doomField = false; //causes dead players to be treated as live ones.
   bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   static SessionMutator _instance;
-  bool rapsAndLuckDisabled;
+  bool rapsAndLuckDisabled = false;
   num timeTillReckoning = 0;
   num gameEntityMinPower = 1;
   num reckoningEndsAt = -15;
@@ -226,10 +226,14 @@ class SessionMutator {
 
   String rage(Session s, Player activatingPlayer) {
     s.logger.info("AB: Huh. Looks like a Waste of Rage is going at it.");
+
     effectsInPlay ++;
     rageField = true;
-    SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
+
+    //such a bad idea. stop hurtin AB. SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
+
     metaHandler.initalizePlayers(s);
+
     s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
     String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
     ret += " It all makes SO MUCH FUCKING SENSE now. Everything that has happened to them is just shittily planned, shittly programmed code, riddled with tpyos. "; //see what i did there???
@@ -237,6 +241,7 @@ class SessionMutator {
     globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
     //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
     load(metaHandler.metaPlayers, [],"thisReallyShouldn'tExistAnymoreButIAmLazy");
+
     for(Player p in s.players) {
         p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
         p.setStat("sanity", -1313); //STAY in murder mode, damn it
@@ -255,20 +260,6 @@ class SessionMutator {
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
 
         if observer dies.  Players leave session and it just ends.
-
-        if KR is killed images = pumpkin
-
-        if kr is killed, everyone is robots
-
-        if JR is killed, session crash
-
-        if abj is killed, all players die
-
-        kill brope, all but one player dies
-
-        kill PL lands get rerolled/fucked up eventually
-
-
      */
         return ret;
   }
@@ -390,6 +381,7 @@ class SessionMutator {
 
       //add to session
       for(Player p in chosen) {
+          p.increasePower(130, 130); //ignore normal caps. don't want us to be unbeatable, not also not level 1
           p.renderSelf();// either rendering for first time, or rerendering as new classpect
           s.players.add(p); //don't add till rendered.
       }
@@ -398,8 +390,7 @@ class SessionMutator {
       for(Player p in chosen) {
         p.generateBlandRelationships(s.players);  //don't hate em back
       }
-      SimController.instance.stopped = false; //so there is time to load
-      SimController.instance.tick(); //start back up.
+     //bad idea....just. fucking stop this. SimController.instance.resumeTickingAfterStopping();
   }
 
   String breath(Session s, Player activatingPlayer) {
@@ -540,9 +531,9 @@ class SessionMutator {
       p.bloodColor = s.rand.pickFrom(tricksterColors).toStyleString();
       p.initializeStats();
       p.dead = false;
-      p.denizenMinion.makeAlive();
+      if(p.denizenMinion != null) p.denizenMinion.makeAlive();
       p.dreamSelf = true; //your dream self is revived, too.
-      p.denizen.makeAlive();
+      if(p.denizen != null) p.denizen.makeAlive();
       p.renderSelf();
     }
 
@@ -712,7 +703,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Spires and Nature";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -721,6 +712,19 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Aspiratcher, The</span> Librarian',13); //hope we span strong enough to fight them.
+
+        player.object_to_prototype = new PotentialSprite("Eye", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Staff of Life", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("power", 1, true));
+        f.effects.add(new FraymotifEffect("freeWill", 1, true));
+        f.effects.add(new FraymotifEffect("power", 1, false));
+        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.desc = "Death has no hold in the realm of Growth. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -745,6 +749,15 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength("<span class = 'void'>Algebron, The </span>Dilletant",13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("DVR", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif(" Brute Force Reimann Apotheosis", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 3, true));
+        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -795,6 +808,17 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Maniomnia, the </span>Dreamwaker',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Caliban", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Fraymixing", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("freeWill", 3, true));
+        f.effects.add(new FraymotifEffect("sanity", 3, true));
+        f.effects.add(new FraymotifEffect("freeWill", 0, false));
+        f.effects.add(new FraymotifEffect("sanity", 0, false));
+        f.desc = "Whats that music? The ENEMY's fraymotifs are absorbed into its maddening and ever-shiffting harmonies. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -809,7 +833,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
         player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
         player.moon = "Derse";
-        player.land = "Land of Charles and Dutton";
+        player.land = "Land of Storms and Idols";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -818,6 +842,16 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Nobrop, the </span>Null',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Mom", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("A concentric circle", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("sanity", 0, true));
+        f.effects.add(new FraymotifEffect("sanity", 3, true));
+
+        f.desc = "A circle within itself. Because fuck reality. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -832,7 +866,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Lakes and Lotuses";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -842,6 +876,18 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Doomod, The </span>Wanderer',13); //hope we span strong enough to fight them.
+
+        Fraymotif f = new Fraymotif("Song of Skaia", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("hp", 3, true));
+        f.effects.add(new FraymotifEffect("hp", 1, false));
+        //let's find out together if this crashes.
+        f.effects.add(new FraymotifEffect("sburbLore", 3, true));
+        f.effects.add(new FraymotifEffect("sburbLore", 1, false));
+
+        f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -856,7 +902,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Theorycrafting", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Storytelling", InterestManager.WRITING);
         player.moon = "Derse";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Obsidian and Shadows";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -865,6 +911,20 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Recurscker, The</span>Hollow One',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Coin", s);
+        player.object_to_prototype.helpPhrase = "was a clever choice for a sprite. He showers enemies in currency. Damn balance-breaking void players.";
+
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif("Song of Skaia", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("freeWill", 3, true));
+        f.effects.add(new FraymotifEffect("power", 3, true));
+        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.effects.add(new FraymotifEffect("power", 1, false));
+
+        f.desc = "A ring of emptiness tears through reality around recursiveSlacker, empowering and freeing him, and damaging all of his ENEMIES. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -879,7 +939,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("100 Art Projects At Once", InterestManager.CULTURE);
         player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
         player.moon = "Derse";
-        player.land = "Land of Placeholders and Waiting";
+        player.land = "Land of Memories and Misdirection";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -888,6 +948,17 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('Karmiution',13); //hope we span strong enough to fight them.
+
+        player.object_to_prototype = new PotentialSprite("Paint.net", s);
+        player.object_to_prototype.helpPhrase = "tries its best, but a freeware program can only do so much. ";
+
+        Fraymotif f = new Fraymotif("Ban Hammer", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 2, false));
+        f.effects.add(new FraymotifEffect("RELATIONSHIPS", 2, false));
+
+        f.desc = "ENEMY is banned. ";
+        player.fraymotifs.add(f);
         return player;
     }
 
@@ -911,6 +982,22 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Paraxalan, The </span>Ever-Searching',13); //hope we span strong enough to fight them.
+
+        player.object_to_prototype = new PotentialSprite("Cultist", s);
+        player.object_to_prototype.illegal = true;
+        player.object_to_prototype.helpPhrase = "potters around being adorable, yet shockingly deadly";
+        player.object_to_prototype.disaster = true;
+        player.object_to_prototype.setStatsHash(<String,num>{"hp": 500, "currentHP": 500, "sanity": -250, "power": 100});
+
+        Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect("mobility", 1, true));
+        f.effects.add(new FraymotifEffect("mobility", 1, false));
+        f.effects.add(new FraymotifEffect("mobility", 3, false));
+
+        f.desc = "OWNER and their allies vanish into the void. ENEMY is confused. Where did they go? This is such bullshit. ";
+        player.fraymotifs.add(f);
+
         return player;
     }
 
@@ -934,7 +1021,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Jadeacher the,</span>Researcher',13); //hope we span strong enough to fight them.
-
+        player.object_to_prototype = new PotentialSprite("JR", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
@@ -959,7 +1047,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Authorot, the</span> Robot',13); //hope we span strong enough to fight them.
-
+        player.object_to_prototype = new PotentialSprite("Compass", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
@@ -983,6 +1072,8 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout',13); //hope we span strong enough to fight them.
+        player.object_to_prototype = new PotentialSprite("Fire", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
         return player;
     }
 
@@ -1008,7 +1099,7 @@ class MetaPlayerHandler {
 
       if(p == karmicRetribution) {
         doNotRender = true;
-        return "You monster. You killed the Artist.  Let's see how you like a sim without any art. ";
+        return "With the death of the Artist, color drains from the world. You do not become blind, but it seems that there is nothing left to see.";
       }
 
       if(p == jadedResearcher) {
@@ -1029,7 +1120,7 @@ class MetaPlayerHandler {
         for(Player pl in p.session.players) {
           pl.land = null;
         }
-        return "Huh. Guess you don't appreciate all that hard work ParadoxLands has done/will do on lands. All planets in the medium are destroyed. ";
+        return "Huh. Guess you don't appreciate all that hard work the Architect has done/will do on lands. All planets in the medium are destroyed. ";
       }
 
       if(p == insufferableOracle) {
