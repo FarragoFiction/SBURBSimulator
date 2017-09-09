@@ -94,6 +94,7 @@ class PotentialSprite extends NPC {
     static List<GameEntity> prototyping_objects;
 
     static initializeAShitTonOfPotentialSprites() {
+        if(PotentialSprite.prototyping_objects == null) return; //dont' reinit.
         initializeAShitTonOfGenericSprites();
         initializeAShitTonOfFortuneSprites();
         initializeAShitTonOfDisastorSprites();
