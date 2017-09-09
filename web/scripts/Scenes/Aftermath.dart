@@ -361,6 +361,7 @@ class Aftermath extends Scene {
             this.mournDead(div);
             end += this.democracyBonus();
             end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
+            doAtEndOfAfterMath(div, end, yellowYard);
         }
      }
 
