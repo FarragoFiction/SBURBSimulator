@@ -16,6 +16,8 @@ class SessionMutator {
   bool doomField = false; //causes dead players to be treated as live ones.
   bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
   bool mindField = false; //controls how yellow yards work, mostly only in conjunction with the yellow yard created here. also messes with freeWillScenes.
+  bool timeField = false; //means time player will be replacing their past self. basically 100% of time's effect.
+
   static SessionMutator _instance;
   bool rapsAndLuckDisabled = false;
   num timeTillReckoning = 0;
@@ -30,6 +32,7 @@ class SessionMutator {
   num sessionHealth = 500;
   Session savedSession; //for heart callback
   Player inSpotLight; //there can be only one.
+  List<Player> timePlayersReplacing = new List<Player>(); //probably WON'T be more than one. but could be.
   double bloodBoost = 6.12; //how much to increase interaction effects by.
   MetaPlayerHandler metaHandler = new MetaPlayerHandler();
 
@@ -305,9 +308,11 @@ class SessionMutator {
   }
 
   String time(Session s, Player activatingPlayer) {
-    return abjectFailure(s, activatingPlayer);
     s.logger.info("AB: Huh. Looks like a Waste of Time is going at it.");
     effectsInPlay ++;
+    timeField = true;
+    timePlayersReplacing.add(activatingPlayer);
+    //this one is very simple here. most of it's the field.
       /*
           TODO:
           * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
@@ -671,6 +676,49 @@ class SessionMutator {
         });
       }
     });
+  }
+
+  String replacePlayerIfCan(Player target) {
+      for(Player timePlayer in timePlayersReplacing) {
+        if(timePlayer.id == target.id) {
+          timePlayer.makeDead("Being assasinated by their own future self. ");
+          timePlayer.makeAlive();
+          timePlayer.copyStatsTo(target);
+          target.godTier = target.godTier;
+          target.pvpKillCount = timePlayer.pvpKillCount; //for stats.
+          target.timesDied = timePlayer.timesDied;
+          target.flipOutReason = " Killing their own past self. ";
+          target.trickster = timePlayer.trickster;
+          target.sbahj = timePlayer.sbahj;
+          target.robot = timePlayer.robot;
+          target.influenceSymbol = timePlayer.influenceSymbol; //multiple aspects can influence/mind control.
+          target.influencePlayer = timePlayer.influencePlayer; //TODO  probably don't have to clone this. who is controlling me? (so i can break free if i have more free will or they die)
+          target.stateBackup = timePlayer.stateBackup; //if you get influenced by something, here's where your true self is stored until you break free.
+          target.leveledTheHellUp = timePlayer.leveledTheHellUp; //triggers level up scene.
+          target.mylevels = timePlayer.mylevels;
+          target.level_index = timePlayer.level_index; //will be ++ before i query
+          target.godTier = timePlayer.godTier;
+          target.victimBlood = timePlayer.victimBlood; //used for murdermode players.
+          target.dreamSelf = timePlayer.dreamSelf;
+          target.isDreamSelf = timePlayer.isDreamSelf; //players can be triggered for various things. higher their triggerLevle, greater chance of going murdermode or GrimDark.
+          target.murderMode = timePlayer.murderMode; //kill all players you don't like. odds of a just death skyrockets.
+          target.leftMurderMode = timePlayer.leftMurderMode; //have scars, unless left via death.
+          target.corruptionLevelOther = timePlayer.corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
+          target.gnosis = timePlayer.gnosis;
+          target.grimDark = timePlayer.grimDark;
+
+          //don't make any new ones, but override intial values.
+          for(int i = 0; i<target.relationships.length; i++) {
+            Relationship r = target.relationships[i];
+            Relationship rNew = timePlayer.relationships[i];
+            r.value = rNew.value;
+            //i wonder what happens if you think you're moirails but the other person doesnt?
+            r.saved_type = rNew.saved_type;
+            r.old_type = rNew.old_type;
+          }
+        }
+      }
+      return "";
   }
 
   //if it's not done yet.
