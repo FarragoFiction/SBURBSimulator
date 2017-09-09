@@ -828,6 +828,7 @@ class MetaPlayerHandler {
         player.hairColor = "#000000";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
+        player.deriveSprite = false;
         player.chatHandle = "aspiringWatcher";
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
@@ -864,6 +865,7 @@ class MetaPlayerHandler {
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
         player.bloodColor = "#ff0000";
+        player.deriveSprite = false;
         player.isTroll = false;
         player.chatHandle = "dilletantMathematician";
         player.interest1 = new Interest("Math", InterestManager.ACADEMIC);
@@ -898,6 +900,7 @@ class MetaPlayerHandler {
         player.isTroll = true;
         player.ectoBiologicalSource = 13;
         player.leftHorn = 71;
+        player.deriveSprite = false;
         player.rightHorn = 71;
         player.godTier = true;
         player.chatHandle = "InsufferableOracle";
@@ -933,6 +936,7 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveLand = false;
         player.initialize();
+        player.deriveSprite = false;
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
@@ -965,6 +969,7 @@ class MetaPlayerHandler {
         player.land = "Land of Storms and Idols";
         player.deriveChatHandle = false;
         player.godTier = true;
+        player.deriveSprite = false;
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
@@ -995,6 +1000,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = "Prospit";
+        player.deriveSprite = false;
         player.land = "Land of Lakes and Lotuses";
         player.godTier = true;
         player.deriveChatHandle = false;
@@ -1033,6 +1039,7 @@ class MetaPlayerHandler {
         player.moon = "Derse";
         player.land = "Land of Obsidian and Shadows";
         player.godTier = true;
+        player.deriveSprite = false;
         player.deriveChatHandle = false;
         player.deriveLand = false;
         player.initialize();
@@ -1068,6 +1075,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("100 Art Projects At Once", InterestManager.CULTURE);
         player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
         player.moon = "Derse";
+        player.deriveSprite = false;
         player.land = "Land of Memories and Misdirection";
         player.godTier = true;
         player.deriveChatHandle = false;
@@ -1102,6 +1110,7 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Drawing distant Lands", InterestManager.CULTURE);
         player.interest2 = new Interest("Procedural Generation", InterestManager.TECHNOLOGY);
         player.moon = "Derse";
+        player.deriveSprite = false;
         player.land = "Land of Cults and Chandeliers";
         player.godTier = true;
         player.deriveChatHandle = false;
@@ -1137,6 +1146,7 @@ class MetaPlayerHandler {
         player.hairColor = "#3C1E07";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
+        player.deriveSprite = false;
         player.chatHandle = "jadedResearcher";
         player.interest1 = new Interest("The AuthorBot", InterestManager.TECHNOLOGY);
         player.interest2 = new Interest("GiggleSnort", InterestManager.POPCULTURE);
@@ -1171,6 +1181,7 @@ class MetaPlayerHandler {
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.deriveSprite = false;
         player.initialize();
         player.makeGuardian();
         player.guardian.initialize();
@@ -1196,6 +1207,7 @@ class MetaPlayerHandler {
         player.land = "Land of Hrmmm... and Interesting!!!";
         player.deriveChatHandle = false;
         player.deriveLand = false;
+        player.deriveSprite = false;
         player.initialize();
         player.makeGuardian();
         player.guardian.initialize();
