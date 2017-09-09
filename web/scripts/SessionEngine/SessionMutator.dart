@@ -689,10 +689,14 @@ class SessionMutator {
       querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
   }
 
-  String replacePlayerIfCan(Player target) {
+  void replacePlayerIfCan(Element div, Player target) {
+      String ret = "The ${target.htmlTitle()} lies dead on the ground. ";
+      bool replaced = false;
+      Player deadPlayer;
       for(Player timePlayer in timePlayersReplacing) {
         if(timePlayer.id == target.id) {
           timePlayer.makeDead("Being assasinated by their own future self. ");
+          deadPlayer = timePlayer.clone();
           timePlayer.makeAlive();
           timePlayer.copyStatsTo(target);
           target.godTier = target.godTier;
@@ -717,6 +721,7 @@ class SessionMutator {
           target.corruptionLevelOther = timePlayer.corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
           target.gnosis = timePlayer.gnosis;
           target.grimDark = timePlayer.grimDark;
+          replaced = true;
 
           //don't make any new ones, but override intial values.
           for(int i = 0; i<target.relationships.length; i++) {
@@ -729,7 +734,29 @@ class SessionMutator {
           }
         }
       }
-      return "";
+
+      if(replaced) {
+          ret += " They are replaced with the ${target.htmlTitle()} from the future. And now, you suppose, a doomed timeline.  Their hacked code allows them to be alpha now, at the expense of their dead self. What will happen? ";
+          target.victimBlood = deadPlayer.bloodColor;
+
+
+          var divID = (div.id) + "_alt_" + target.chatHandle;
+          String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+          appendHtml(div, "$ret $canvasHTML");
+          var canvasDiv = querySelector("#canvas"+ divID);
+
+          var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+          Drawing.drawSprite(pSpriteBuffer,target);
+
+          var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+          Drawing.drawSprite(dSpriteBuffer,deadPlayer);
+
+          Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+          Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+          Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
+
+      }
+
   }
 
   //if it's not done yet.
