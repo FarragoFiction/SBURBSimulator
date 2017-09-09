@@ -21,6 +21,8 @@ class Player extends GameEntity {
     num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
+    bool deriveSprite = true;
+
     bool deriveLand = true;
     String flipOutReason = null; //if it's null, i'm not flipping my shit.
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -1988,11 +1990,11 @@ class Player extends GameEntity {
         //reroll goddestiny and sprite as well. luck might have changed.
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
-            this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
             this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
-            this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
             this.object_to_prototype.session = session;
             ////print("fortune");
         }

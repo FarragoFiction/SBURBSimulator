@@ -3366,3 +3366,27 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
 
  Okay, looks like the rendering of the yellow yard happens in the scene, so I'll just have the mutator have it's own version
  and if the field is up, the scene uses the mutators instead (JR blocked out entirely)
+
+ ~~~~~~~
+ Alright, we're reaching the home stretch.
+
+ I can either do Space next, or Time.
+
+ Space has the advatage of using built in systems (besides having to PAUSE before a combo session unlike reality)
+
+ Time has the advantage of seeming to be easy AND not need that "pause".
+
+ I guess I'll do time first. That lets me leave the 'canon' effect for last.
+
+ Easy is important 'cause I don't have much time today.
+
+ So, let's describe the time effect.   In the aftermath, where it prints out mvp or the afterlife url or whatever,
+ add a NEW button that allows you to click it.  Doing so resets the session.
+
+ Custom code on entry "kills" the time player (i.e. makes a ghost) and then replaces them with the time player
+ saved by the mutator.  It also resets the seed to represent the time player changing shit randomly around.
+
+ Step 1: if timeField, display a button.
+ Step 2: clicking button resets session
+ Step 3: if timeField on entry, if player.id == timePlayer.id, replace.
+ Step 4: if timeField on entry, randomize seed.

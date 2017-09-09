@@ -291,6 +291,7 @@ class Aftermath extends Scene {
         this.session.stats.scratchAvailable = true;
         SimController.instance.renderScratchButton(this.session);
         yellowYard = true;
+        doAtEndOfAfterMath(div, end, yellowYard);
     }
 
     void doAtEndOfAfterMath(Element div, String end, bool yellowYard) {
@@ -307,6 +308,8 @@ class Aftermath extends Scene {
         if (yellowYard == true || this.session.janusReward) {
             this.yellowLawnRing(div); //can still scratch, even if yellow lawn ring is available
         }
+
+        if(session.mutator.timeField) session.mutator.renderTimeButton(div);
         return null;
     }
 
@@ -358,6 +361,7 @@ class Aftermath extends Scene {
             this.mournDead(div);
             end += this.democracyBonus();
             end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
+            doAtEndOfAfterMath(div, end, yellowYard);
         }
      }
 
