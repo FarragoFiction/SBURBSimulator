@@ -684,7 +684,7 @@ class SessionMutator {
 
   void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
-      String html = '<img src="images/reset.png" id="resetButton"><br>Shit man, we can do better.';
+      String html = '<img src="images/reset.png" id="resetButton"><br>Shit man, we can do better. The ${turnArrayIntoHumanSentence(timePlayersReplacing)} know we can.';
       appendHtml(querySelector("#story"), html);
       querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
   }
