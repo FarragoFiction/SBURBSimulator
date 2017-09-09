@@ -57,8 +57,8 @@ class GameEntity implements Comparable<GameEntity> {
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     GameEntity(this.name, this.session) {
-
         id = GameEntity.generateID();
+        print("making a game entity named $name with id $id");
         stats['sanity'] = 0;
         stats['alchemy'] = 0;
         stats['currentHP'] = 0;
