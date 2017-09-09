@@ -291,6 +291,7 @@ class Aftermath extends Scene {
         this.session.stats.scratchAvailable = true;
         SimController.instance.renderScratchButton(this.session);
         yellowYard = true;
+        doAtEndOfAfterMath(div, end, yellowYard);
     }
 
     void doAtEndOfAfterMath(Element div, String end, bool yellowYard) {

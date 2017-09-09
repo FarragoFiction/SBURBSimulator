@@ -312,6 +312,7 @@ class SessionMutator {
     effectsInPlay ++;
     timeField = true;
     timePlayersReplacing.add(activatingPlayer);
+    String ret = "The ${activatingPlayer.htmlTitle()} begins flickering in and out of time amid a field of code. What is even happening here? You feel like maybe the answer is 'nothing', at least at this moment. Maybe later something will happen?  Time players man, why can't they just do things linearly? ";
     //this one is very simple here. most of it's the field.
       /*
           TODO:
@@ -324,6 +325,7 @@ class SessionMutator {
           *        gnosis 4 from going since time usually gets it first.
 
        */
+      return ret;
   }
 
   String heart (Session s, Player activatingPlayer) {
