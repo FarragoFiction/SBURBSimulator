@@ -31,7 +31,7 @@ class YellowYardResultController {
 	ImportantEvent doesEventNeedToBeUndone(ImportantEvent e){
     //  //print("Does: " + e.humanLabel() + " need to be undone?")
         for(num i = 0; i<this.eventsToUndo.length; i++){
-          var e2 = this.eventsToUndo[i];
+            ImportantEvent e2 = this.eventsToUndo[i];
 		 // //print("checking if needs to be undone");
           if(doEventsMatch(e,e2,true)){
           //  //print("retunning event that will provide alternate scene, " + e2.humanLabel())
@@ -63,11 +63,7 @@ bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool sp
     return false;
   }
   if(newEvent.mvp_value != storedEvent.mvp_value ){ //mind field means mvp doesn't matter.
-      if(curSessionGlobalVar.mutator.mindField) {
-            if((newEvent.mvp_value -storedEvent.mvp_value).abs() > 10 ) return false; //don't be TOO different.
-      }else {
-          return false;
-      }
+      return false;
     //  //print("mvp did not match");
   }
   if(newEvent.player != null && storedEvent.player != null){
