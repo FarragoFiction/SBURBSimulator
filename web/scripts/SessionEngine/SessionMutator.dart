@@ -680,6 +680,15 @@ class SessionMutator {
     });
   }
 
+
+
+  void renderTimeButton(Element div) {
+        //renders a button. If that button is clicked, resets session.
+      String html = '<img src="images/reset.png" id="resetButton"><br>Shit man, we can do better.';
+      appendHtml(querySelector("#story"), html);
+      querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
+  }
+
   String replacePlayerIfCan(Player target) {
       for(Player timePlayer in timePlayersReplacing) {
         if(timePlayer.id == target.id) {

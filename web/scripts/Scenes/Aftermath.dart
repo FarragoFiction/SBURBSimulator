@@ -308,6 +308,8 @@ class Aftermath extends Scene {
         if (yellowYard == true || this.session.janusReward) {
             this.yellowLawnRing(div); //can still scratch, even if yellow lawn ring is available
         }
+
+        if(session.mutator.timeField) session.mutator.renderTimeButton(div);
         return null;
     }
 
