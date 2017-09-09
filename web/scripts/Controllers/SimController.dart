@@ -175,6 +175,7 @@ abstract class SimController {
     }
 
     void recoverFromCorruption() {
+        if(curSessionGlobalVar.mutator.timeField) curSessionGlobalVar.mutator.renderTimeButton(querySelector("#story"));
         if(curSessionGlobalVar != null) curSessionGlobalVar.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
         //print("Other controllers will do something after corruption, but the sim just ends.");
     }
