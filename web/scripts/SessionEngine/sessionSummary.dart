@@ -273,15 +273,15 @@ class SessionSummary {
         summary.setBoolStat("hasTier2GnosisEvents", session.stats.hasTier2Events);
         summary.setBoolStat("hasTier3GnosisEvents", session.stats.hasTier3Events);
         summary.setBoolStat("hasTier4GnosisEvents", session.stats.hasTier4Events);
-        summary.setNumStat("averageMinLuck", getAverageMinLuck(session.players));
-        summary.setNumStat("averageMaxLuck", getAverageMaxLuck(session.players));
-        summary.setNumStat("averagePower", getAveragePower(session.players));
+        summary.setNumStat("averageMinLuck", Stats.MIN_LUCK.average(session.players));
+        summary.setNumStat("averageMaxLuck", Stats.MAX_LUCK.average(session.players));
+        summary.setNumStat("averagePower", Stats.POWER.average(session.players));
         summary.setNumStat("averageGrist", getAverageGrist(session.players));
-        summary.setNumStat("averageMobility", getAverageMobility(session.players));
-        summary.setNumStat("averageFreeWill", getAverageFreeWill(session.players));
-        summary.setNumStat("averageHP", getAverageHP(session.players));
-        summary.setNumStat("averageRelationshipValue", getAverageRelationshipValue(session.players));
-        summary.setNumStat("averageSanity", getAverageSanity(session.players));
+        summary.setNumStat("averageMobility", Stats.MOBILITY.average(session.players));
+        summary.setNumStat("averageFreeWill", Stats.FREE_WILL.average(session.players));
+        summary.setNumStat("averageHP", Stats.HEALTH.average(session.players));
+        summary.setNumStat("averageRelationshipValue", Stats.RELATIONSHIPS.average(session.players));
+        summary.setNumStat("averageSanity", Stats.SANITY.average(session.players));
         summary.session_id = session.session_id;
         summary.setBoolStat("hasLuckyEvents", session.stats.goodLuckEvent);
         summary.setBoolStat("hasUnluckyEvents", session.stats.badLuckEvent);
@@ -376,14 +376,14 @@ class SessionSummaryJunior {
     }
 
     void getAverages() {
-        this.averageMinLuck = getAverageMinLuck(this.players);
-        this.averageMaxLuck = getAverageMaxLuck(this.players);
-        this.averagePower = getAveragePower(this.players);
-        this.averageMobility = getAverageMobility(this.players);
-        this.averageFreeWill = getAverageFreeWill(this.players);
-        this.averageHP = getAverageHP(this.players);
-        this.averageRelationshipValue = getAverageRelationshipValue(this.players);
-        this.averageSanity = getAverageSanity(this.players);
+        this.averageMinLuck = Stats.MIN_LUCK.average(this.players);
+        this.averageMaxLuck = Stats.MAX_LUCK.average(this.players);
+        this.averagePower = Stats.POWER.average(this.players);
+        this.averageMobility = Stats.MOBILITY.average(this.players);
+        this.averageFreeWill = Stats.FREE_WILL.average(this.players);
+        this.averageHP = Stats.HEALTH.average(this.players);
+        this.averageRelationshipValue = Stats.RELATIONSHIPS.average(this.players);
+        this.averageSanity = Stats.SANITY.average(this.players);
     }
 
     List<Player> grabPotentialGodTiers() {

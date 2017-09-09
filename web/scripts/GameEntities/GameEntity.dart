@@ -206,14 +206,14 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         }
         if (usableFraymotifs.isEmpty) return false;
         num mine = getStat(Stats.SANITY);
-        num theirs = getAverageSanity(living_enemies);
+        num theirs = Stats.SANITY.average(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
            // ////session.logger.info("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but they are too crazy to focus. ");
             return false;
         }
         mine = getStat(Stats.FREE_WILL);
-        theirs = getAverageFreeWill(living_enemies);
+        theirs = Stats.FREE_WILL.average(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
             //////session.logger.info("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but Fate dictates otherwise. ");
@@ -250,12 +250,12 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         for (Relationship diamond in diamonds) {
             if (whoINeedToProtect.contains(diamond.target)) reasonsToStay += 1;
         }
-        reasonsToStay += getStat(Stats.POWER) / Team.getTeamsStatTotal(enemies, "currentHP"); //i can take you.
-        reasonsToLeave += Team.getTeamsStatTotal(enemies, "power") /getStat(Stats.CURRENT_HEALTH); //you can take me.
+        reasonsToStay += getStat(Stats.POWER) / Team.getTeamsStatTotal(enemies, Stats.CURRENT_HEALTH); //i can take you.
+        reasonsToLeave += Team.getTeamsStatTotal(enemies, Stats.POWER) /getStat(Stats.CURRENT_HEALTH); //you can take me.
         if (reasonsToLeave > reasonsToStay * 2) {
             addStat(Stats.SANITY, -10);
             flipOut("how terrifying ${Team.getTeamsNames(enemies)} were");
-            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, "mobility")) {
+            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, Stats.MOBILITY)) {
                 //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat(Stats.POWER) + this.session.session_id)
                 appendHtml(div, "<br><img src = 'images/sceneIcons/abscond_icon.png'> The ${htmlTitleHP()} absconds right the fuck out of this fight.");
                 mySide.absconded.add(this);
@@ -266,7 +266,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
                 return false;
             }
         } else if (reasonsToLeave > reasonsToStay) {
-            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, "mobility")) {
+            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, Stats.MOBILITY)) {
                 //console.log(" player actually absconds: " + this.session.session_id)
                 appendHtml(div, "<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The ${htmlTitleHP()} doesn't know what to do. They don't want to die... They abscond. ");
                 mySide.absconded.add(this);
@@ -417,16 +417,16 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 
     String humanWordForBuffNamed(String statName) {
         if (statName == "MANGRIT") return "powerful";
-        if (statName == "hp") return "sturdy";
-        if (statName == "currentHP") return "sturdy";
-        if (statName == "RELATIONSHIPS") return "friendly";
-        if (statName == "mobility") return "fast";
-        if (statName == "sanity") return "calm";
-        if (statName == "freeWill") return "willful";
-        if (statName == "power") return "powerful"; //should never buff this directly, just use MANGRIT
-        if (statName == "maxLuck") return "lucky";
-        if (statName == "minLuck") return "lucky";
-        if (statName == "alchemy") return "creative";
+        if (statName == Stats.HEALTH) return "sturdy";
+        if (statName == Stats.CURRENT_HEALTH) return "sturdy";
+        if (statName == Stats.RELATIONSHIPS) return "friendly";
+        if (statName == Stats.MOBILITY) return "fast";
+        if (statName == Stats.SANITY) return "calm";
+        if (statName == Stats.FREE_WILL) return "willful";
+        if (statName == Stats.POWER) return "powerful"; //should never buff this directly, just use MANGRIT
+        if (statName == Stats.MAX_LUCK) return "lucky";
+        if (statName == Stats.MIN_LUCK) return "lucky";
+        if (statName == Stats.ALCHEMY) return "creative";
         ////session.logger.info("what the hell kind of stat name is: $statName");
         return "glitchy";
     }
@@ -446,7 +446,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         //modValue * stat.multiplier.
         //////session.logger.info("Modify associated stat $stat on $this by $modValue");
-        if (stat.stat == "RELATIONSHIPS") {
+        if (stat.stat == Stats.RELATIONSHIPS) {
             for (num i = 0; i < this.relationships.length; i++) {
                 this.relationships[i].value += modValue * stat.multiplier;
             }
@@ -631,9 +631,9 @@ class AssociatedStatInterests extends AssociatedStat {
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
 class BuffOld {
-    BuffOld(String this.name, num this.value) {}
+    BuffOld(Stat this.name, num this.value) {}
 
-    String name;
+    Stat name;
     num value;
 }
 

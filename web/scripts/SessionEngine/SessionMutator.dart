@@ -88,11 +88,11 @@ class SessionMutator {
       //you know, the one about the queen secretly being 3 salamanders in a robe.
       s.npcHandler.queen = new Carapace("Three Salamanders In a Robe", s);
       Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
-      f.effects.add(new FraymotifEffect("power", 2, true));
+      f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
       f.desc = " You wonder what the hell is going on. ";
       f.baseValue = -10; //will this make it heal you?
       s.npcHandler.queensRing.fraymotifs.add(f);
-      s.npcHandler.queen.setStatsHash(<String, num>{Stats.HEALTH: 3, "freeWill": -100, "power": 3});
+      s.npcHandler.queen.stats.setMap(<Stat, num>{Stats.HEALTH: 3, Stats.FREE_WILL: -100, Stats.POWER: 3});
       return true;
   }
 
@@ -102,12 +102,12 @@ class SessionMutator {
     //if the queen is 3, the king is more.
     session.npcHandler.king = new Carapace("13 Salamanders In a Robe", session);
     Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
-    f.effects.add(new FraymotifEffect("power", 2, true));
+    f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
     f.desc = " You wonder what the hell is going on. ";
     f.baseValue = -10; //will this make it heal you?
     session.npcHandler.queensRing.fraymotifs.add(f);
     session.npcHandler.king.grist = 1000;
-    session.npcHandler.king.setStatsHash(<String, num>{Stats.HEALTH: 13, "freeWill": -100, "power": 13});
+    session.npcHandler.king.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
     return true;
   }
 
@@ -115,9 +115,9 @@ class SessionMutator {
     if(!hopeField) return false;
     session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session);
     //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-    session.npcHandler.jack.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": -500, "sanity": -10000, Stats.HEALTH: 5, "freeWill": -100, "power": 5});
+    session.npcHandler.jack.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: -500, Stats.SANITY: -10000, Stats.HEALTH: 5, Stats.FREE_WILL: -100, Stats.POWER: 5});
     Fraymotif f = new Fraymotif("Stupid Dance", 1);
-    f.effects.add(new FraymotifEffect("power", 3, true));
+    f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
     f.baseValue = -10; //will this make it heal you?
     f.desc = " Jack has never hated you more than he does now.";
     session.npcHandler.jack.fraymotifs.add(f);
@@ -128,11 +128,11 @@ class SessionMutator {
     if(!hopeField) return false;
     session.npcHandler.democraticArmy = new Carapace("Democratic Army", session); //doesn't actually exist till WV does his thing.
     Fraymotif f = new Fraymotif("Democracy Charge MAXIMUM HOPE", 2);
-    f.effects.add(new FraymotifEffect("power", 3, true));
+    f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
     f.desc = " The people have chosen to Rise Up against their oppressors, with the players as their symbol of HOPE. ";
     f.baseValue = 9001;
     session.npcHandler.democraticArmy.fraymotifs.add(f);
-    session.npcHandler.democraticArmy.setStatsHash(<String, num>{"minLuck": -500, "maxLuck": 9001, "sanity": 9001, Stats.HEALTH: 5, "freeWill": 9001, "power": 9001});
+    session.npcHandler.democraticArmy.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 9001, Stats.SANITY: 9001, Stats.HEALTH: 5, Stats.FREE_WILL: 9001, Stats.POWER: 9001});
     return true;
   }
 
@@ -188,7 +188,7 @@ class SessionMutator {
       p.generateRelationships(s.players);
 
       for(String str in Player.playerStats) {
-        if(str != "sanity" && str != "RELATIONSHIPS") p.setStat(str, getStatAverage(str, s.players)); //we all work together.
+        if(str != Stats.SANITY && str != Stats.RELATIONSHIPS) p.setStat(str, getStatAverage(str, s.players)); //we all work together.
       }
 
     }
@@ -284,7 +284,7 @@ class SessionMutator {
       p.corruptionLevelOther += s.rand.nextIntRange(-100, 100);
       for(String str in Player.playerStats) {
           //can lower it but way more likely to raise it
-          if(str != "RELATIONSHIPS") {
+          if(str != Stats.RELATIONSHIPS) {
             p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength));
           }
       }
@@ -718,10 +718,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Staff of Life", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("power", 1, true));
-        f.effects.add(new FraymotifEffect("freeWill", 1, true));
-        f.effects.add(new FraymotifEffect("power", 1, false));
-        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, false));
         f.desc = "Death has no hold in the realm of Growth. ";
         player.fraymotifs.add(f);
 
@@ -754,8 +754,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif(" Brute Force Reimann Apotheosis", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 3, true));
-        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
         f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
         player.fraymotifs.add(f);
         return player;
@@ -813,10 +813,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Fraymixing", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("freeWill", 3, true));
-        f.effects.add(new FraymotifEffect("sanity", 3, true));
-        f.effects.add(new FraymotifEffect("freeWill", 0, false));
-        f.effects.add(new FraymotifEffect("sanity", 0, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 0, false));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 0, false));
         f.desc = "Whats that music? The ENEMY's fraymotifs are absorbed into its maddening and ever-shiffting harmonies. ";
         player.fraymotifs.add(f);
         return player;
@@ -847,8 +847,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("A concentric circle", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("sanity", 0, true));
-        f.effects.add(new FraymotifEffect("sanity", 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 0, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);
@@ -879,8 +879,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("hp", 3, true));
-        f.effects.add(new FraymotifEffect("hp", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.HEALTH, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.HEALTH, 1, false));
         //let's find out together if this crashes.
         f.effects.add(new FraymotifEffect("sburbLore", 3, true));
         f.effects.add(new FraymotifEffect("sburbLore", 1, false));
@@ -918,10 +918,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("freeWill", 3, true));
-        f.effects.add(new FraymotifEffect("power", 3, true));
-        f.effects.add(new FraymotifEffect("freeWill", 1, false));
-        f.effects.add(new FraymotifEffect("power", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, false));
 
         f.desc = "A ring of emptiness tears through reality around recursiveSlacker, empowering and freeing him, and damaging all of his ENEMIES. ";
         player.fraymotifs.add(f);
@@ -954,8 +954,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Ban Hammer", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 2, false));
-        f.effects.add(new FraymotifEffect("RELATIONSHIPS", 2, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 2, false));
+        f.effects.add(new FraymotifEffect(Stats.RELATIONSHIPS, 2, false));
 
         f.desc = "ENEMY is banned. ";
         player.fraymotifs.add(f);
@@ -987,13 +987,13 @@ class MetaPlayerHandler {
         player.object_to_prototype.illegal = true;
         player.object_to_prototype.helpPhrase = "potters around being adorable, yet shockingly deadly";
         player.object_to_prototype.disaster = true;
-        player.object_to_prototype.setStatsHash(<String,num>{Stats.HEALTH: 500, "currentHP": 500, "sanity": -250, "power": 100});
+        player.object_to_prototype.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.CURRENT_HEALTH: 500, Stats.SANITY: -250, Stats.POWER: 100});
 
         Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 1, true));
-        f.effects.add(new FraymotifEffect("mobility", 1, false));
-        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
 
         f.desc = "OWNER and their allies vanish into the void. ENEMY is confused. Where did they go? This is such bullshit. ";
         player.fraymotifs.add(f);

@@ -50,8 +50,9 @@ class Aftermath extends Scene {
 		//window.alert("${entered.length} players entered the new universe, they are $entered");
 		if(entered.isEmpty &&  findLivingPlayers(session.players).length != 0) return gnosisEnding();
 		if(entered.length == 1) return monoTheismEnding();
-		if(getAverageRelationshipValue(entered) > 20) return loveEnding();
-		if(getAverageRelationshipValue(entered) < -20) return hateEnding();
+		double averageRelations = Stats.RELATIONSHIPS.average(entered);
+		if(averageRelations > 20) return loveEnding();
+		if(averageRelations < -20) return hateEnding();
 		return "Everything seems normal.";
 	}
 
@@ -59,9 +60,9 @@ class Aftermath extends Scene {
 		session.stats.loveEnding = true;
 		List<Player> living  = findLivingPlayers(session.players);
 		//who has highest relationship?
-		Player friendLeader = findHighestStatPlayer("RELATIONSHIPS",living);
+		Player friendLeader = Stats.RELATIONSHIPS.max(living);
 		//does anybody have an abnormally low relationships?
-		Player troubleMaker = findLowestStatPlayer("RELATIONSHIPS", living);
+		Player troubleMaker = Stats.RELATIONSHIPS.min(living);
 		String ret = "The ${friendLeader.htmlTitle()} organizes everyone and makes sure everybody gets along and treats the people of the new Universe right. ";
 		if(troubleMaker.getStat(Stats.RELATIONSHIPS) < -10) {
 			ret += "The ${troubleMaker.htmlTitle()} stirs up trouble ";
@@ -77,8 +78,8 @@ class Aftermath extends Scene {
 	String hateEnding() {
 		session.stats.hateEnding = true;
 		List<Player> living  = findLivingPlayers(session.players);
-		Player shoutLeader = findLowestStatPlayer("RELATIONSHIPS",living);
-		Player peaceMaker = findHighestStatPlayer("RELATIONSHIPS", living);
+		Player shoutLeader = findLowestStatPlayer(Stats.RELATIONSHIPS,living);
+		Player peaceMaker = findHighestStatPlayer(Stats.RELATIONSHIPS, living);
 		String ret = "The ${shoutLeader.htmlTitle()}  rules with an iron fist and insists that they live as gods. ";
 		if(peaceMaker.getStat(Stats.RELATIONSHIPS) > 10) {
 			ret += "The ${peaceMaker.htmlTitle()} begins to rebel ";
@@ -329,26 +330,26 @@ class Aftermath extends Scene {
 		Player trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
 		trollKidRock.session = this.session;
 		Fraymotif f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-		f.effects.add(new FraymotifEffect("power",1,false));
+		f.effects.add(new FraymotifEffect(Stats.POWER,3,true));  //buffs party and hurts enemies
+		f.effects.add(new FraymotifEffect(Stats.POWER,1,false));
 		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
 		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-		f.effects.add(new FraymotifEffect("power",1,false));
+		f.effects.add(new FraymotifEffect(Stats.POWER,3,true));  //buffs party and hurts enemies
+		f.effects.add(new FraymotifEffect(Stats.POWER,1,false));
 		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
 		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-		f.effects.add(new FraymotifEffect("power",1,false));
+		f.effects.add(new FraymotifEffect(Stats.POWER,3,true));  //buffs party and hurts enemies
+		f.effects.add(new FraymotifEffect(Stats.POWER,1,false));
 		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 
 		f = new Fraymotif( "BANG DA DANG DIGGY DIGGY", 3) ;//most repetitive song, ACTIVATE!!!;
-		f.effects.add(new FraymotifEffect("power",3,true));  //buffs party and hurts enemies
-		f.effects.add(new FraymotifEffect("power",1,false));
+		f.effects.add(new FraymotifEffect(Stats.POWER,3,true));  //buffs party and hurts enemies
+		f.effects.add(new FraymotifEffect(Stats.POWER,1,false));
 		f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
 		trollKidRock.fraymotifs.add(f);
 		initializePlayers([trollKidRock], null); //TODO: confirm -PL
@@ -357,40 +358,40 @@ class Aftermath extends Scene {
 }
 	GameEntity purpleFrog(){
 		Player mvp = findStrongestPlayer(this.session.players);
-		Map<String,dynamic> tmpStatHolder = {};
-		tmpStatHolder["minLuck"] = -100;
-		tmpStatHolder["maxLuck"] = 100;
-		tmpStatHolder["hp"] = 30000+mvp.getStat(Stats.POWER) * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
-		tmpStatHolder["mobility"] = -100;
-		tmpStatHolder["sanity"] = 0;
-		tmpStatHolder["freeWill"] = 200;
-		tmpStatHolder["power"] =20000+mvp.getStat(Stats.POWER) * this.session.players.length; //this will be a challenge.
-		tmpStatHolder["grist"] = 100000000;
-		tmpStatHolder["RELATIONSHIPS"] = -100;  //not REAL relationships, but real enough for our purposes.
+		Map<Stat,num> tmpStatHolder = <Stat,num>{};
+		tmpStatHolder[Stats.MIN_LUCK] = -100;
+		tmpStatHolder[Stats.MAX_LUCK] = 100;
+		tmpStatHolder[Stats.HEALTH] = 30000+mvp.getStat(Stats.POWER) * this.session.players.length;  //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+		tmpStatHolder[Stats.MOBILITY] = -100;
+		tmpStatHolder[Stats.SANITY] = 0;
+		tmpStatHolder[Stats.FREE_WILL] = 200;
+		tmpStatHolder[Stats.POWER] =20000+mvp.getStat(Stats.POWER) * this.session.players.length; //this will be a challenge.
+		tmpStatHolder[Stats.GRIST] = 100000000;
+		tmpStatHolder[Stats.RELATIONSHIPS] = -100;  //not REAL relationships, but real enough for our purposes.
 		//////session.logger.info(purpleFrog);
 		GameEntity purpleFrog = new GameEntity(" <font color='purple'>" +Zalgo.generate("Purple Frog") + "</font>", this.session);
-		purpleFrog.setStatsHash(tmpStatHolder);
+		purpleFrog.stats.setMap(tmpStatHolder);
 		////session.logger.info(purpleFrog);
 		//what kind of attacks does a grim dark purple frog have???  Croak Blast is from rp, but what else?
 
 		Fraymotif f = new Fraymotif( Zalgo.generate("CROAK BLAST"), 3) ;//freeMiliu_2K01 [F☆] came up with this one in the RP :)  :) :);
-		f.effects.add(new FraymotifEffect("mobility",3,true));
+		f.effects.add(new FraymotifEffect(Stats.MOBILITY,3,true));
 		f.desc = " OWNER uses a weaponized croak. You would be in awe if it weren't so painful. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif(Zalgo.generate("HYPERBOLIC GEOMETRY"), 3);//DM, the owner of the purple frog website came up with this one.;
-		f.effects.add(new FraymotifEffect("mobility",3,false));
+		f.effects.add(new FraymotifEffect(Stats.MOBILITY,3,false));
 		f.desc = " OWNER somehow corrupts the very fabric of space. Everyone begins to have trouble navigating the corrupted and broken rules of three dimensional space. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif(Zalgo.generate("ANURA JARATE"), 3);//DM, the owner of the purple frog website came up with this one. team fortress + texts from super heroes ftw.;
-		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
 		f.desc = " Did you know that some species of frogs weaponize their own urine? Now you do. You can never unknow this. The entire party is disgusted. ";
 		purpleFrog.fraymotifs.add(f);
 
 		f = new Fraymotif(Zalgo.generate("LITERAL TONGUE LASHING"), 3);//DM, the owner of the purple frog website came up with this one.;
-		f.effects.add(new FraymotifEffect("mobility",2,false));
-		f.effects.add(new FraymotifEffect("mobility",2,true));
+		f.effects.add(new FraymotifEffect(Stats.MOBILITY,2,false));
+		f.effects.add(new FraymotifEffect(Stats.MOBILITY,2,true));
 		f.desc = " OWNER uses an incredibly long, sticky tongue to attack the ENEMY, hurting and immobilizing them. ";
 		purpleFrog.fraymotifs.add(f);
 

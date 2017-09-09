@@ -358,7 +358,6 @@ List<T> findDeadPlayers<T extends GameEntity>(List<T> playerList) {
     return ret;
 }
 
-
 List<Player> findDoomedPlayers(List<Player> playerList) {
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
@@ -369,7 +368,6 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
     }
     return ret;
 }
-
 
 //TODO shove this somewhere mroe useful, rename so not just players
 //take in a generic type as long as it extends generic and return a generic type, you get mix of sprites and players, returns that way.i hope
@@ -382,7 +380,6 @@ List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
     }
     return ret;
 }
-
 
 num getPartyPower(List<GameEntity> party) {
     num ret = 0;
@@ -545,50 +542,6 @@ String findBadPrototyping(List<Player> playerList) {
     return null;
 }
 
-num getStatAverage(String statName, List<GameEntity> players) {
-    num ret = 0;
-    if(players.isEmpty) return ret;
-    for(GameEntity ge in players) {
-        ret += ge.getStat(statName);
-    }
-    return ret/players.length;
-}
-
-
-Player findHighestStatPlayer(String statName, List<Player> playerList) {
-    if (playerList.isEmpty) return null; //it's empty you dunkass
-    Player ret = playerList[0];
-    for (int i = 0; i < playerList.length; i++) {
-        Player p = playerList[i];
-        if (p.getStat(statName) > ret.getStat(statName)) {
-            ret = p;
-        }
-    }
-    return ret;
-}
-
-Player findLowestStatPlayer(String statName, List<Player> playerList) {
-    if (playerList.isEmpty) return null; //it's empty you dunkass
-    Player ret = playerList[0];
-    for (int i = 0; i < playerList.length; i++) {
-        Player p = playerList[i];
-        if (p.getStat(statName) < ret.getStat(statName)) {
-            ret = p;
-        }
-    }
-    return ret;
-}
-
-Player findHighestMobilityPlayer(List<Player> playerList) {
-    findHighestStatPlayer("mobility", playerList);
-}
-
-
-Player findLowestMobilityPlayer(List<Player> playerList) {
-    findLowestStatPlayer("mobility", playerList);
-}
-
-
 String findGoodPrototyping(List<Player> playerList) {
     for (int i = 0; i < playerList.length; i++) {
         if ((playerList[i].object_to_prototype != null) && playerList[i].object_to_prototype.illegal == true) {
@@ -608,79 +561,6 @@ List<Player> getGuardiansForPlayers(List<Player> playerList) {
     return tmp;
 }
 
-
-//mobility is "natural" way to sort players but this works, too.
-List<Player> sortPlayersByFreeWill(List<Player> players) {
-    return new List<Player>.from(players)
-        ..sort((Player a, Player b) {
-            return a.getStat(Stats.FREE_WILL) - b.getStat(Stats.FREE_WILL);
-        });
-}
-
-
-num compareFreeWill(Player a, Player b) {
-    return b.getStat(Stats.FREE_WILL) - a.getStat(Stats.FREE_WILL);
-}
-
-num getAverageMinLuck(List<Player> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (num i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.MIN_LUCK);
-    }
-    return (ret / players.length).round();
-}
-
-
-num getAverageMaxLuck(List<Player> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.MAX_LUCK);
-    }
-    return (ret / players.length).round();
-}
-
-
-num getAverageSanity(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.SANITY);
-    }
-    return (ret / players.length).round();
-}
-
-
-num getAverageHP(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.HEALTH);
-    }
-    return (ret / players.length).round();
-}
-
-
-dynamic getAverageMobility(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.POWER);
-    }
-    return (ret / players.length).round();
-}
-
-
-dynamic getAverageRelationshipValue(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.RELATIONSHIPS);
-    }
-    return (ret / players.length).round();
-}
-
 num getTotalGrist(List<GameEntity> players) {
     if (players.isEmpty) return 0;
     num ret = 0;
@@ -688,15 +568,6 @@ num getTotalGrist(List<GameEntity> players) {
         ret += players[i].grist;
     }
     return ret;
-}
-
-num getAveragePower(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.POWER);
-    }
-    return (ret / players.length).round();
 }
 
 num getAverageGrist(List<GameEntity> players) {
@@ -708,7 +579,6 @@ num getAverageGrist(List<GameEntity> players) {
     return (ret / players.length).round();
 }
 
-
 String getPVPQuip(Player deadPlayer, Player victor, String deadRole, String victorRole) {
     if(deadPlayer.class_name == victor.class_name) return "Anything goes when you fight your own class, I guess.";
 
@@ -718,17 +588,6 @@ String getPVPQuip(Player deadPlayer, Player victor, String deadRole, String vict
         return "Which is weird because you would expect the ${deadPlayer.class_name} to have a clear advantage. Guess echeladder rank really does matter?";
     }
 }
-
-
-num getAverageFreeWill(List<GameEntity> players) {
-    if (players.isEmpty) return 0;
-    num ret = 0;
-    for (int i = 0; i < players.length; i++) {
-        ret += players[i].getStat(Stats.FREE_WILL);
-    }
-    return (ret / players.length).round();
-}
-
 
 //used to recover form mind control, with a few extra things for planned shit.
 class MiniSnapShot {

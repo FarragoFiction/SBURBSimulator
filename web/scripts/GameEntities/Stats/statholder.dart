@@ -1,12 +1,21 @@
 import "dart:collection";
 import "../../SBURBSim.dart";
 
-class StatHolder extends Object with IterableMixin<Stat> {
+/// Interface for objects with stats when you don't care about anything else.
+/// Mostly for when you want to support [StatHolder] AND [StatOwner] in a method.
+abstract class StatObject {
+    StatHolder getStatHolder();
+}
+
+class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     final Map<Stat, double> _base = <Stat, double>{};
 
     List<Buff> buffs = <Buff>[];
 
     StatHolder();
+
+    @override
+    StatHolder getStatHolder() => this;
 
     void copyFrom(StatHolder other) {
         for (Stat s in other._base.keys) {
@@ -115,8 +124,11 @@ class StatHolder extends Object with IterableMixin<Stat> {
     int get length => this._base.length;
 }
 
-abstract class StatOwner {
+abstract class StatOwner implements StatObject {
     StatHolder _stats;
+
+    @override
+    StatHolder getStatHolder() => this.stats;
 
     void initStatHolder() {
         this._stats = this.createHolder();

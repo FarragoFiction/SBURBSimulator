@@ -128,7 +128,7 @@ class Fraymotif {
         return this.replaceKeyWordsForFlavorTextBase(rand, almostDone);
     }
 
-    String getStatWord(Random rand, String stat, num target) {
+    String getStatWord(Random rand, Stat stat, num target) {
         bool bad = true;
         if (target == 0 || target == 1) bad = false;
         if (!bad) {
@@ -138,32 +138,32 @@ class Fraymotif {
         }
     }
 
-    List<String> goodStatWords(statName) {
-        if (statName == "MANGRIT") return ["mangrit", "strength", "power", "might", "fire", "pure energy", "STRENGTH"];
-        if (statName == "hp") return ["plants", "health", "vines", "gardens", "stones", "earth", "life", "moss", "fruit", "growth"];
-        if (statName == "RELATIONSHIPS") return ["chains", "friendship bracelets", "shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares", "mirrors"];
-        if (statName == "mobility") return ["wind", "speed", "hedgehogs", "whirlwinds", "gales", "hurricanes", "thunder", "storms", "momentum", "feathers"];
-        if (statName == "sanity") return ["calmness", "sanity", "ripples", "glass", "fuzz", "water", "stillness", "totally real magic"];
+    List<String> goodStatWords(Stat statName) {
+        if (statName == Stats.POWER) return ["mangrit", "strength", "power", "might", "fire", "pure energy", "STRENGTH"];
+        if (statName == Stats.HEALTH) return ["plants", "health", "vines", "gardens", "stones", "earth", "life", "moss", "fruit", "growth"];
+        if (statName == Stats.RELATIONSHIPS) return ["chains", "friendship bracelets", "shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares", "mirrors"];
+        if (statName == Stats.MOBILITY) return ["wind", "speed", "hedgehogs", "whirlwinds", "gales", "hurricanes", "thunder", "storms", "momentum", "feathers"];
+        if (statName == Stats.SANITY) return ["calmness", "sanity", "ripples", "glass", "fuzz", "water", "stillness", "totally real magic"];
 //,"velvet pillows"
-        if (statName == "freeWill") return ["electricity", "will", "open doors", "possibility", "quantum physics", "lightning", "sparks", "chaos", "broken gears"];
-        if (statName == "maxLuck") return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits", "hope"];
-        if (statName == "minLuck") return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits"];
-        if (statName == "alchemy") return ["inspiration", "creativeness", "grist", "perfectly generic objects", "hammers", "swords", "weapons", "creativity", "mist", "engines", "metals"];
+        if (statName == Stats.FREE_WILL) return ["electricity", "will", "open doors", "possibility", "quantum physics", "lightning", "sparks", "chaos", "broken gears"];
+        if (statName == Stats.MAX_LUCK) return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits", "hope"];
+        if (statName == Stats.MIN_LUCK) return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits"];
+        if (statName == Stats.ALCHEMY) return ["inspiration", "creativeness", "grist", "perfectly generic objects", "hammers", "swords", "weapons", "creativity", "mist", "engines", "metals"];
 
         return null;
     }
 
-    List<String> badStatWords(statName) {
-        if (statName == "MANGRIT") return ["weakness", "powerlessness", "despair", "wretchedness", "misery"];
-        if (statName == "hp") return ["fragility", "rotting plants", "disease", "bones", "skulls", "tombstones", "ash", "toxin", "mold", "viruses"];
-        if (statName == "RELATIONSHIPS") return ["aggression", "broken chains", "empty friends lists", "sand", "loneliness"];
-        if (statName == "mobility") return ["laziness", "locks", "weights", "manacles", "quicksand", "gravitons", "gravity", "ice"];
+    List<String> badStatWords(Stat statName) {
+        if (statName == Stats.POWER) return ["weakness", "powerlessness", "despair", "wretchedness", "misery"];
+        if (statName == Stats.HEALTH) return ["fragility", "rotting plants", "disease", "bones", "skulls", "tombstones", "ash", "toxin", "mold", "viruses"];
+        if (statName == Stats.RELATIONSHIPS) return ["aggression", "broken chains", "empty friends lists", "sand", "loneliness"];
+        if (statName == Stats.MOBILITY) return ["laziness", "locks", "weights", "manacles", "quicksand", "gravitons", "gravity", "ice"];
 //"pillows", "sloths",
-        if (statName == "sanity") return ["harshwimsies", "clowns", "fractals", "madness", "tentacles", "rain", "screams", "terror", "nightmares", "mIrAcLeS", "rage", "impossible angles", "teeth"];
-        if (statName == "freeWill") return ["acceptance", "gullibility", "closed doors", "gears", "clocks", "prophecy", "static", "skian clouds"];
-        if (statName == "maxLuck") return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
-        if (statName == "minLuck") return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
-        if (statName == "alchemy") return ["failure", "writer's blocks", "monotony", "broken objects", "object shards", "nails", "splinters"];
+        if (statName == Stats.SANITY) return ["harshwimsies", "clowns", "fractals", "madness", "tentacles", "rain", "screams", "terror", "nightmares", "mIrAcLeS", "rage", "impossible angles", "teeth"];
+        if (statName == Stats.FREE_WILL) return ["acceptance", "gullibility", "closed doors", "gears", "clocks", "prophecy", "static", "skian clouds"];
+        if (statName == Stats.MAX_LUCK) return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
+        if (statName == Stats.MIN_LUCK) return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
+        if (statName == Stats.ALCHEMY) return ["failure", "writer's blocks", "monotony", "broken objects", "object shards", "nails", "splinters"];
 
         return null;
     }
@@ -286,7 +286,7 @@ class Fraymotif {
         List<Player> living = findLivingPlayers(allies);
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
-            enemies[0].buffs.add(new BuffOld("currentHP", -9999)); //they REALLY believed in this attack.
+            enemies[0].buffs.add(new BuffOld(Stats.CURRENT_HEALTH, -9999)); //they REALLY believed in this attack.
             var jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
             //print("Hope Rides Alone in session: ${owner.session.session_id}");
             var scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
@@ -667,7 +667,7 @@ class FraymotifEffect {
         for (num i = 0; i < targetArr.length; i++) {
             var t = targetArr[i];
             t.makeAlive();
-            t.buffs.add(new BuffOld("currentHP", e)); //don't mod directly anymore
+            t.buffs.add(new BuffOld(Stats.CURRENT_HEALTH, e)); //don't mod directly anymore
         }
     }
 
@@ -675,7 +675,7 @@ class FraymotifEffect {
         var e = effectValue / targetArr.length; //more potent when a single target.
         for (num i = 0; i < targetArr.length; i++) {
             var t = targetArr[i];
-            if (this.statName != "RELATIONSHIPS") {
+            if (this.statName != Stats.RELATIONSHIPS) {
                 //t[this.statName] += e;
                 t.buffs.add(new BuffOld(this.statName, e)); //don't mod directly anymore
             } else {

@@ -108,7 +108,7 @@ void getStatsForPlayer(player){
 	for(num i = 0; i<allStats.length; i++){
 		var stat = allStats[i];
 		ret += "<div class='statHolder'><div class='statName'>"+stat+ ":</div><div class = 'statValue'>"
-		if(stat != "RELATIONSHIPS"){
+		if(stat != Stats.RELATIONSHIPS){
 			ret += Math.round(player[stat]);
 			if(player[stat] != player.getStat(stat)) ret += "(" + player.getStat(stat) + " with buffs/debuffs)";
 		}else{

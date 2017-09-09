@@ -674,16 +674,13 @@ abstract class Drawing {
         left_margin = 10;
         current = current + 42 + 42;
         ctx.fillStyle = "#000000";
-        List<String> allStats = player.allStats();
-        for (int i = 0; i < allStats.length; i++) {
-            ctx.fillText("${allStats[i]}: ", left_margin, current + line_height * i);
-            ctx.fillText(player.getStat(allStats[i]).toString(), right_margin, current + line_height * i);
+        Iterable<Stat> allStats = Stats.summarise;
+        int i=0;
+        for (Stat stat in allStats) {
+            ctx.fillText("$stat: ", left_margin, current + line_height * i);
+            ctx.fillText(player.getStat(stat).toString(), right_margin, current + line_height * i);
+            i++;
         }
-        int i = allStats.length;
-
-        ctx.fillText("MANGRIT: ", left_margin, current + line_height * i);
-        ctx.fillText((player.permaBuffs["MANGRIT"]).round().toString(), right_margin, current + line_height * i);
-        i++;
 
         ctx.fillText("Quests Completed: ", left_margin, current + line_height * i);
         ctx.fillText(player.landLevel.toString(), right_margin, current + line_height * i);

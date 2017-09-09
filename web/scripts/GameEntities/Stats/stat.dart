@@ -2,9 +2,10 @@ import "../../SBURBSim.dart";
 
 abstract class Stats {
 
-    //<String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
+    //<String>[Stats.POWER, Stats.HEALTH, Stats.RELATIONSHIPS, Stats.MOBILITY, Stats.SANITY, Stats.FREE_WILL, Stats.MAX_LUCK, Stats.MIN_LUCK, Stats.ALCHEMY];
 
     static Stat EXPERIENCE;
+    static Stat GRIST;
 
     static Stat POWER;
     static Stat HEALTH;
@@ -25,22 +26,23 @@ abstract class Stats {
         if (_initialised) {return;}
         _initialised = true;
 
-        EXPERIENCE = new Stat("Experience", pickable: false);
+        EXPERIENCE = new Stat("Experience", "learned", "naïve", pickable: false);
+        GRIST = new Stat("Grist Level", "rich", "poor", pickable: false);
 
-        POWER = new XPScaledStat("Power", 0.05, coefficient: 10.0);
-        HEALTH = new XPScaledStat("Health", 0.05, coefficient: 10.0);
-        CURRENT_HEALTH = new Stat("Current Health", pickable: false);
-        MOBILITY = new Stat("Mobility");
+        POWER = new XPScaledStat("Power", "strong", "weak", 0.05, coefficient: 10.0);
+        HEALTH = new XPScaledStat("Health", "sturdy", "fragile", 0.05, coefficient: 10.0);
+        CURRENT_HEALTH = new Stat("Current Health", "healthy", "infirm", pickable: false);
+        MOBILITY = new Stat("Mobility", "fast", "slow");
 
-        RELATIONSHIPS = new RelationshipStat("Relationships", pickable: false); // should be a special one to deal with players
-        SANITY = new Stat("Sanity");
-        FREE_WILL = new Stat("Free Will");
+        RELATIONSHIPS = new RelationshipStat("Relationships", "friendly", "aggressive", pickable: false); // should be a special one to deal with players
+        SANITY = new Stat("Sanity", "calm", "crazy");
+        FREE_WILL = new Stat("Free Will", "willful", "gullible");
 
-        MAX_LUCK = new Stat("Maximum Luck");
-        MIN_LUCK = new Stat("Minimum Luck");
+        MAX_LUCK = new Stat("Maximum Luck", "lucky", "unlucky");
+        MIN_LUCK = new Stat("Minimum Luck", "lucky", "unlucky");
 
-        ALCHEMY = new Stat("Alchemy");
-        SBURB_LORE = new Stat("SBURB Lore", pickable: false);
+        ALCHEMY = new Stat("Alchemy", "creative", "boring");
+        SBURB_LORE = new Stat("SBURB Lore", "woke", "clueless", pickable: false);
     }
     static bool _initialised;
 
@@ -53,11 +55,13 @@ abstract class Stats {
 
 class Stat {
     final String name;
+    final String emphaticPositive;
+    final String emphaticNegative;
     final bool pickable;
     final bool summarise;
     final double coefficient;
 
-    Stat(String this.name, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true}) {
+    Stat(String this.name, String this.emphaticPositive, String this.emphaticNegative, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true}) {
         Stats._list.add(this);
     }
     
@@ -65,12 +69,58 @@ class Stat {
 
     @override
     String toString() => this.name;
+
+    StatObject max(Iterable<StatObject> from) {
+        double n = double.NEGATIVE_INFINITY;
+        StatObject most = null;
+        double s;
+        for (StatObject h in from) {
+            s = h.getStatHolder()[this];
+            if (s > n) {
+                most = h;
+                n = s;
+            }
+        }
+        return most;
+    }
+
+    StatObject min(Iterable<StatObject> from) {
+        double n = double.INFINITY;
+        StatObject least = null;
+        double s;
+        for (StatObject h in from) {
+            s = h.getStatHolder()[this];
+            if (s < n) {
+                least = h;
+                n = s;
+            }
+        }
+        return least;
+    }
+
+    double average(Iterable<StatObject> from) {
+        this.total(from) / from.length;
+    }
+
+    double total(Iterable<StatObject> from) {
+        return from.map((StatObject o) => o.getStatHolder()[this]).reduce((double a, double b) => a+b);
+    }
+
+    int sorter(StatObject a, StatObject b) => a.getStatHolder()[this].compareTo(b.getStatHolder()[this]);
+
+    List<T> sortedList<T extends StatObject>(Iterable<T> iterable, [bool reverse = false]) {
+        List<T> unsorted = iterable.toList();
+        if (reverse) {
+            unsorted = unsorted.reversed.toList();
+        }
+        return unsorted..sort(this.sorter);
+    }
 }
 
 class XPScaledStat extends Stat {
     final double expCoefficient;
 
-    XPScaledStat(String name, double this.expCoefficient, {double coefficient, bool pickable, bool summarise}):super(name, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    XPScaledStat(String name, String emphaticPositive, String emphaticNegative, double this.expCoefficient, {double coefficient, bool pickable, bool summarise}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
 
     @override
     double derived(StatHolder stats, double base) {
@@ -81,7 +131,7 @@ class XPScaledStat extends Stat {
 
 class RelationshipStat extends Stat {
 
-    RelationshipStat(String name, {double coefficient, bool pickable, bool summarise}):super(name, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    RelationshipStat(String name, String emphaticPositive, String emphaticNegative, {double coefficient, bool pickable, bool summarise}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
 
     @override
     double derived(StatHolder stats, double base) {

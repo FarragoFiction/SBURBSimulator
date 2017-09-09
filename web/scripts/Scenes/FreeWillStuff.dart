@@ -26,7 +26,7 @@ class FreeWillStuff extends Scene {
         this.playerGodTiered = null;
         //sort players by free will. highest goes first. as soon as someone makes a decision, return. decision happens during trigger, not content. (might be a mistake)
         //way i was doing it before means that MULTIPLE decisions happen, but only one of them render.
-        List<Player> players = sortPlayersByFreeWill(availablePlayers);
+        List<Player> players = Stats.FREE_WILL.sortedList(availablePlayers);
         for (num i = 0; i < players.length; i++) {
             Player player = players[i];
             String breakFree = this.considerBreakFreeControl(player);
