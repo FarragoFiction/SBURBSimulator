@@ -58,6 +58,8 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
+        stats.initialGameEntityId = GameEntity.getIDCopy();
+        print("initial game entity Id is ${ stats.initialGameEntityId}");
         ////print("Made a new session with an id of $session_id");
         npcHandler = new NPCHandler(this);
         logger = Logger.get("Session: $session_id", false);
@@ -383,6 +385,7 @@ class Session {
     }
 
     void reinit() {
+        GameEntity.resetNextIdTo(stats.initialGameEntityId);
         resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);

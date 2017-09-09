@@ -72,6 +72,11 @@ class GameEntity implements Comparable<GameEntity> {
         stats["sburbLore"] = 0;
     }
 
+    //otherwise ids won't be stable across yards/resets etc.
+    static resetNextIdTo(int val) {
+        _nextID = val;
+    }
+
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
 
@@ -647,6 +652,10 @@ class GameEntity implements Comparable<GameEntity> {
 
     static int generateID() {
         GameEntity._nextID += 1;
+        return GameEntity._nextID;
+    }
+
+    static int getIDCopy() {
         return GameEntity._nextID;
     }
 

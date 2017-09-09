@@ -1,5 +1,6 @@
 ///get rid of session having way too many fields. Everything a session is keeping track of for summaries.
 class SessionStats {
+    int initialGameEntityId = 0;
     bool hasClubs = false;
     bool hasDiamonds = false;
     bool opossumVictory = false;
