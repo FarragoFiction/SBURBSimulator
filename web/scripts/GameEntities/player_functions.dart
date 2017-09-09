@@ -113,7 +113,7 @@ void initializePlayersNoDerived(List<Player> players, Session session) {
 
 
 Player blankPlayerNoDerived(Session session) {
-    GameEntity k = prototyping_objects[0];
+    GameEntity k = PotentialSprite.prototyping_objects[0];
     bool gd = true;
     String m = "Prospit";
     //	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
@@ -135,7 +135,7 @@ Player blankPlayerNoDerived(Session session) {
 
 
 Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
-    GameEntity k = session.rand.pickFrom(prototyping_objects);
+    GameEntity k = session.rand.pickFrom(PotentialSprite.prototyping_objects);
     k.session = session;
 
 
@@ -167,7 +167,7 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
 Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
     ////print("random player");
    // //print("class: $c, aspect: $a, session: $session");
-    GameEntity k = session.rand.pickFrom(prototyping_objects);
+    GameEntity k = session.rand.pickFrom(PotentialSprite.prototyping_objects);
     k.session = session;
 
     bool gd = false;

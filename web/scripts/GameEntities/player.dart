@@ -1504,9 +1504,9 @@ class Player extends GameEntity {
 
     void decideLusus() {
         if (this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4") {
-            this.myLusus = session.rand.pickFrom(sea_lusus_objects);
+            this.myLusus = session.rand.pickFrom(PotentialSprite.sea_lusus_objects);
         } else {
-            this.myLusus = session.rand.pickFrom(lusus_objects);
+            this.myLusus = session.rand.pickFrom(PotentialSprite.lusus_objects);
         }
     }
 
@@ -1990,11 +1990,11 @@ class Player extends GameEntity {
         //reroll goddestiny and sprite as well. luck might have changed.
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
-            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(PotentialSprite.disastor_objects);
             this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
-            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(PotentialSprite.fortune_objects);
             this.object_to_prototype.session = session;
             ////print("fortune");
         }
