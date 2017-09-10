@@ -3390,3 +3390,7 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
  Step 2: clicking button resets session
  Step 3: if timeField on entry, if player.id == timePlayer.id, replace.
  Step 4: if timeField on entry, randomize seed.
+
+ ~~~~
+
+ Current problem. "replaced"  time player has no relationships. even though i'm not really replacing them. I'm overriding them.

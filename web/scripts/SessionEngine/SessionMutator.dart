@@ -686,18 +686,20 @@ class SessionMutator {
     }
 
     void replacePlayerIfCan(Element div, Player target) {
-        print("trying to replace player,target is ${target.title()} and  time players are ${getPlayersTitlesNoHTML(timePlayersReplacing)} ");
+        print("trying to replace player,target is ${target.title()} and  time players are ${getPlayersTitlesNoHTML(timePlayersReplacing)}  and target relationships are ${target.relationships.length}");
         String ret = "The ${target.htmlTitle()} lies dead on the ground. ";
         bool replaced = false;
         Player deadPlayer;
+        List<Relationship> relationshipsCopy = new List<Relationship>.from(target.relationships);
         for (Player timePlayer in timePlayersReplacing) {
             print("timePlayer id is ${timePlayer.id} vs target id is ${target.id}");
             if (timePlayer.id == target.id) {
-                print("found a player to replace");
+
                 timePlayer.makeDead("Being assasinated by their own future self. ");
                 deadPlayer = timePlayer.clone();
                 timePlayer.makeAlive();
                 timePlayer.copyStatsTo(target);
+                print("found a player to replace, relationships are ${target.relationships.length} ");
                 target.godTier = target.godTier;
                 target.pvpKillCount = timePlayer.pvpKillCount; //for stats.
                 target.timesDied = timePlayer.timesDied;
@@ -722,10 +724,12 @@ class SessionMutator {
                 target.grimDark = timePlayer.grimDark;
                 replaced = true;
 
-                //don't make any new ones, but override intial values.
-                for (int i = 0; i < target.relationships.length; i++) {
-                    Relationship r = target.relationships[i];
-                    Relationship rNew = timePlayer.relationships[i];
+                //player copied from timePLayer will have zero relationships. fix.
+                for (int i = 0; i < relationshipsCopy.length; i++) {
+                  print("setting new value");
+                    Relationship rc = relationshipsCopy[i];
+                    Relationship rNew = timePlayer.getRelationshipWith(rc.target);
+                    Relationship r = new Relationship(target, rNew.value, rc.target);
                     r.value = rNew.value;
                     //i wonder what happens if you think you're moirails but the other person doesnt?
                     r.saved_type = rNew.saved_type;
