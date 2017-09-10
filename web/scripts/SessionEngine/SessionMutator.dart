@@ -658,8 +658,9 @@ class SessionMutator {
     }
 
     //does everything a regular combo does, but a scratch will call this if there's a space field.
-    void scratchedCombo() {
-        //TODO
+    void scratchedCombo(Session s, List<Player> guardians) {
+        appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. How did the players get into their OWN SCRATCH? This doesn't...fuck. What? So wait, do they count as foreign players??? ");
+        addAliensToSession(s, guardians);
     }
 
     void renderEndButtons(Element div) {

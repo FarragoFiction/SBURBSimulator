@@ -387,7 +387,7 @@ void scratchEasterEggCallBack() {
         curSessionGlobalVar.players[i].renderSelf();
     }
     Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
-
+    if(curSessionGlobalVar.mutator.spaceField) curSessionGlobalVar.mutator.scratchedCombo(curSessionGlobalVar, raggedPlayers);
     SimController.instance.intro();
 }
 
