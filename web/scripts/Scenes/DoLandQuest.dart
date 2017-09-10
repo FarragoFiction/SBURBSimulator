@@ -10,7 +10,7 @@ import "../SBURBSim.dart";
 class DoLandQuest extends Scene{
 		List<Player> playerList = [];  //what players are already in the medium when i trigger?
 	List<List<Player>> playersPlusHelpers = []; //who is doing a land quest this turn?
-	num landLevelNeeded = 12;	
+	num landLevelNeeded = 12;
 
 
 	DoLandQuest(Session session): super(session);
@@ -108,7 +108,7 @@ class DoLandQuest extends Scene{
 			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat("power"),null,null) );
 	}
 
-	dynamic calculateClasspectBoost(Player player, Player helper){
+	dynamic calculateClasspectBoost(Player player, Player helper, Player targetPlayer){
 
 
 		if(helper.aspect == Aspects.HEART && helper.class_name == SBURBClassManager.SYLPH){
@@ -138,7 +138,7 @@ class DoLandQuest extends Scene{
 		if(player.grimDark>0 && helper.aspect == Aspects.VOID){
 			//session.logger.info("void corruption helping ${this.session.session_id}");
 			return " The " + helper.htmlTitle() + " seems to commune with the ambiant corruption in the " + player.htmlTitle() + ", preventing it from piling up enough for them to reach the next tier of GrimDarkness.";
-		}
+		}//todo: tell jr that I dont think this has ever happened, ever.
 
 		//okay, now that i know it's not a time clone, look at my relationship with my helper.
 		Relationship r1 = player.getRelationshipWith(helper);
@@ -166,6 +166,14 @@ class DoLandQuest extends Scene{
 			}else{
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time lecturing the " + player.htmlTitle() + " about the various ways a player can be triggered into going shithive maggots. " ;
 			}
+		}
+
+		if (player.aspect == Aspects.MIST && targetPlayer != null){ //Mist players do their quests on every land.
+			targetPlayer.increaseLandLevel();
+			if(player != targetPlayer) { //no, sorry, you can't be better on your own land then you are everywhere else.
+				player.increaseLandLevel();
+			}
+
 		}
 
 		if(helper.aspect == Aspects.TIME || helper.aspect == Aspects.LIGHT || helper.aspect == Aspects.HOPE || helper.aspect == Aspects.MIND || helper.class_name == SBURBClassManager.PAGE || helper.class_name == SBURBClassManager.SEER){
@@ -266,6 +274,7 @@ class DoLandQuest extends Scene{
 		return ret;
 	}
 	String contentForPlayer(Player player, Player helper){
+		var targetPlayer = rand.pickFrom(session.getReadOnlyAvailablePlayers());
 		String ret = "<Br><Br> ";
 		ret += "The " + player.htmlTitle()  ;
 
@@ -278,16 +287,28 @@ class DoLandQuest extends Scene{
 		}else{
 			ret += " does";
 		}
+		if(player.aspect == Aspects.MIST && targetPlayer != null) {
+			if (rand.nextDouble() > 0.8) {
+				ret += " quests at " + targetPlayer.shortLand();
+			} else {
+				ret += " quests in the " + targetPlayer.land;
+			}
+			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes goodz use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
+			if (helper != null) {
+				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
+			}
+			print("Mist player Quests elsewhere");
+		}else {
+			if (rand.nextDouble() > 0.8) {
+				ret += " quests at " + player.shortLand();
+			} else {
+				ret += " quests in the " + player.land;
+			}
+			if (helper != null) {
+				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
+			}
+		}
 
-		if(rand.nextDouble() >0.8){
-			ret += " quests at " + player.shortLand();
-		}else{
-			ret += " quests in the " + player.land;
-		}
-		ret += ", " + player.getRandomQuest() + ". ";
-		if(helper != null){
-			ret += this.calculateClasspectBoost(player, helper);
-		}
 		if(helper != null && player  != helper ){
 			Relationship r1 = player.getRelationshipWith(helper);
 			Relationship r2 = helper.getRelationshipWith(player);

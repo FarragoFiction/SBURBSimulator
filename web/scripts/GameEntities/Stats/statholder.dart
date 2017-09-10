@@ -128,16 +128,18 @@ abstract class StatOwner {
 }
 
 class PlayerStatHolder extends StatHolder {
-    Player player;
+  Player player;
 
-    PlayerStatHolder(Player this.player);
+  PlayerStatHolder(Player this.player);
 
-    @override
-    Iterable<Buff> getBuffsForStat(Stat stat) {
-        List<Buff> b = <Buff>[];
-        b.addAll(player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(player.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
-        return b;
-    }
+  @override
+  Iterable<Buff> getBuffsForStat(Stat stat) {
+    List<Buff> b = <Buff>[];
+    b.addAll(
+        player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
+    b.addAll(player.class_name.statModifiers.where((Buff b) =>
+        b.stats.contains(stat)));
+    b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
+    return b;
+  }
 }

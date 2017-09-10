@@ -25,6 +25,7 @@ class VoidyStuff extends Scene {
 		}else{
 			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE);
 			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID); //if there is no rage player
+			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.CHAOS);
 		}
 
 		if(this.enablingPlayer != null){
@@ -57,9 +58,13 @@ class VoidyStuff extends Scene {
 			if(!this.player.isVoidAvailable()){
 					classDiv = "light";  //void players can't be hidden in the light.
 			}
-		}else if(this.enablingPlayer.aspect == Aspects.RAGE){
+		}else if(this.enablingPlayer.aspect == Aspects.RAGE) {
 			classDiv = "rage";
+
+		}else if(this.enablingPlayer.aspect == Aspects.CHAOS){
+			classDiv = "chaos";
 		}
+
 
 		if(classDiv == "void"){
 			ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to see.";
@@ -67,6 +72,8 @@ class VoidyStuff extends Scene {
 			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
 		}else if(classDiv == "light"){
 				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The " + this.player.htmlTitleBasic() + " is trying to be sneaky and off screen!";
+		}else if(classDiv == "chaos"){
+				ret += "The " + this.player.htmlTitle() + " is being a chaotic little shitfest. They don't know what they're doing, and they don't care.";
 		}
 		if(classDiv != 'light' && this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
 		appendHtml(div, ret);
@@ -239,8 +246,10 @@ class VoidyStuff extends Scene {
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
 			ret += this.player.makeDead("hidden in void on their way to godhood");
-		} else{
+		} else if(this.enablingPlayer.aspect == Aspects.RAGE){
 			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans");
+		} else if(this.enablingPlayer.aspect == Aspects.CHAOS){
+			ret += this.player.makeDead("vanishing out of existence, returning as a god");
 		}
 		this.player.makeGodTier();
 		this.session.stats.godTier = true;

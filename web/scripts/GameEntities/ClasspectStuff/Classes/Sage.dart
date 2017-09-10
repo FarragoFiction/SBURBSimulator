@@ -2,7 +2,7 @@ import "../../GameEntity.dart";
 import "SBURBClass.dart";
 
 class Sage extends SBURBClass {
-    Sage() : super("Sage", 14, false);
+    Sage() : super("Sage", 14, true);
     @override
     List<String> levels = ["HERBAL ESSENCE", "CHICKEN SEASONER", "TOMEMASTER"];
     @override

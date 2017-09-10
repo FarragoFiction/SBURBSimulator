@@ -604,6 +604,9 @@ class MultiSessionSummary {
 
     void setClasses() {
         /*List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage"];
+=======
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage","Writ","Reve"];
+>>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7:web/scripts/sessionSummary.dart
         for (num i = 0; i < labels.length; i++) {
             this.classes[labels[i]] = 0;
         }*/
@@ -626,7 +629,11 @@ class MultiSessionSummary {
     }
 
     void setAspects() {
+
         /*List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+=======
+        List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Spark"];
+>>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7:web/scripts/sessionSummary.dart
         for (num i = 0; i < labels.length; i++) {
             this.aspects[labels[i]] = 0;
         }*/
@@ -663,8 +670,13 @@ class MultiSessionSummary {
         } //end for loop
 
         //List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
-        bool noneChecked = true;
+        //bool noneChecked = true;
         /*for (num i = 0; i < labels.length; i++) {
+=======
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Writ", "Reve", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom" "Spark"];
+        bool noneChecked = true;
+        for (num i = 0; i < labels.length; i++) {
+>>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7:web/scripts/sessionSummary.dart
             String l = labels[i];
             if ((querySelector("#$l") as CheckboxInputElement).checked) {
                 this.checkedCorpseBoxes.add(l);
@@ -678,18 +690,15 @@ class MultiSessionSummary {
         for (SBURBClass clazz in clabels) {
             if ((querySelector("#corpseclass_$clazz") as CheckboxInputElement).checked) {
                 this.checkedCorpseBoxes.add("corpseclass_$clazz");
-                noneChecked = false;
             }
         }
 
         for (Aspect aspect in alabels) {
             if ((querySelector("#corpseaspect_$aspect") as CheckboxInputElement).checked) {
                 this.checkedCorpseBoxes.add("corpseaspect_$aspect");
-                noneChecked = false;
             }
         }
 
-        if (noneChecked) filteredGhosts = this.ghosts;
         //none means 'all' basically
         setHtml(querySelector("#multiSessionSummaryCorpseParty"), this.generateCorpsePartyInnerHTML(filteredGhosts));
         this.wireUpCorpsePartyCheckBoxes();
@@ -700,6 +709,10 @@ class MultiSessionSummary {
         //i know what the labels are, they are just the classes and aspects.
         /*MultiSessionSummary this.= this;
         List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
+=======
+        MultiSessionSummary that = this;
+        List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Writ", "Reve", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom", "Spark"];
+>>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7:web/scripts/sessionSummary.dart
         for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
             querySelector("#$l").onChange.listen((Event e) {
@@ -771,6 +784,7 @@ class MultiSessionSummary {
         for (Aspect a in Aspects.all) {
             corpsePartyAspects[a] = 0;
         }
+
 
         Map<String, int> corpseParty = <String, int>{}; //now to refresh my memory on how javascript hashmaps work;
         String html = "<br><b>  Number of Ghosts: </b>: ${filteredGhosts.length}";

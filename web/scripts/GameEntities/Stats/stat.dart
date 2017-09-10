@@ -90,6 +90,7 @@ class RelationshipStat extends Stat {
     }
 }
 
+// ignore: unterminated_multi_line_comment
 /*
 NOTES
 
@@ -108,4 +109,4 @@ prototyping as buffs, prototype buff referencing another StatHolder or StatOwner
 COMBAT and COMBAT_TIMED buffs are removed at the end of combat
 TIMED buffs tick up in age once per round of main scenes
 COMBAT_TIMED tick up once per combat round
- */
+*/

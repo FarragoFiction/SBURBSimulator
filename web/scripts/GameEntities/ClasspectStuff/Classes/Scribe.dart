@@ -2,7 +2,7 @@ import "../../GameEntity.dart";
 import "SBURBClass.dart";
 
 class Scribe extends SBURBClass {
-    Scribe() : super("Scribe", 15, false);
+    Scribe() : super("Scribe", 15, true);
     @override
     List<String> levels = ["MIDNIGHT BURNER", "WRITER WATCHER", "DIARY DEAREST"];
     @override

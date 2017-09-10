@@ -427,7 +427,7 @@ class CharacterCreatorHelper {
             ". Heiress blooded trolls will hate other Heiress bloods, as well as losing making them more likely to flip out. Biological imperatives for murder suck, yo.";
         return str;
     }
-
+//todo: add my own stuff to here (AC)
     String generateAspectHelp(String topic, String specific) {
         if (specific == "Space")
             return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests, good alchemy ability, and good health. ";

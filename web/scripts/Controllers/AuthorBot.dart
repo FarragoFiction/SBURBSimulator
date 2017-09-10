@@ -246,7 +246,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void recoverFromCorruption() {
-    print("AB thinks she should check a new session after finding a shitty crashed session");
+    //print("AB thinks she should check a new session after finding a shitty crashed session");
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
