@@ -657,6 +657,11 @@ class SessionMutator {
         });
     }
 
+    //does everything a regular combo does, but a scratch will call this if there's a space field.
+    void scratchedCombo() {
+        //TODO
+    }
+
     void renderEndButtons(Element div) {
         if(timeField) renderTimeButton(div);
         if(spaceField) renderSpaceButton(div);  //TODO make sure scratches ALSO act as combo sessions.
