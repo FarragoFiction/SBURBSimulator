@@ -17,7 +17,7 @@ class GameEntity implements Comparable<GameEntity> {
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
 
     /// can NEVER be null, but I expect this to be replaced.
-    Session session = new Session(-13);
+    Session session = PotentialSprite.defaultSession; //don't make a new one just use default, don't care what it is gonna override it if it's important.
 
     //TODO replace 'minLuck' with 'destiny'
     String name = "";
@@ -57,8 +57,8 @@ class GameEntity implements Comparable<GameEntity> {
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     GameEntity(this.name, this.session) {
-
         id = GameEntity.generateID();
+        print("making a game entity named $name with id $id");
         stats['sanity'] = 0;
         stats['alchemy'] = 0;
         stats['currentHP'] = 0;
@@ -70,6 +70,11 @@ class GameEntity implements Comparable<GameEntity> {
         stats['mobility'] = 0;
         stats['power'] = 0; //power is generic sign of level.
         stats["sburbLore"] = 0;
+    }
+
+    //otherwise ids won't be stable across yards/resets etc.
+    static resetNextIdTo(int val) {
+        _nextID = val;
     }
 
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
@@ -647,6 +652,10 @@ class GameEntity implements Comparable<GameEntity> {
 
     static int generateID() {
         GameEntity._nextID += 1;
+        return GameEntity._nextID;
+    }
+
+    static int getIDCopy() {
         return GameEntity._nextID;
     }
 

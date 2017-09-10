@@ -58,10 +58,16 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
-        ////print("Made a new session with an id of $session_id");
+        PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
-        logger = Logger.get("Session: $session_id", false);
         mutator = SessionMutator.getInstance();
+        this.setUpBosses();
+        stats.initialGameEntityId = GameEntity.getIDCopy();
+        print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
+        ////print("Made a new session with an id of $session_id");
+
+        logger = Logger.get("Session: $session_id", false);
+
         mutator.syncToSession(this);
         this.rand = new Random(session_id);
        resetAvailableClasspects();
@@ -383,6 +389,7 @@ class Session {
     }
 
     void reinit() {
+        GameEntity.resetNextIdTo(stats.initialGameEntityId);
         resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
