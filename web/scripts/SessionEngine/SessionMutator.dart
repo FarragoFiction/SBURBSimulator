@@ -697,13 +697,13 @@ class SessionMutator {
             print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
             if (timePlayer.id == target.id) {
 
-                deadPlayer = timePlayer.clone();
-                timePlayer.makeAlive();
-                timePlayer.copyStatsTo(target);
+                deadPlayer = target.clone();
                 deadPlayer.spriteCanvasID = null;  //don't share a canvas with your past self plz.
                 deadPlayer.id = GameEntity.generateID();
                 deadPlayer.makeDead("Being assasinated by their own future self. ");
-                print("found a player to replace, relationships are ${target.relationships.length} ");
+                timePlayer.makeAlive();
+                timePlayer.copyStatsTo(target);
+
                 target.godTier = target.godTier;
                 target.pvpKillCount = timePlayer.pvpKillCount; //for stats.
                 target.timesDied = timePlayer.timesDied;
