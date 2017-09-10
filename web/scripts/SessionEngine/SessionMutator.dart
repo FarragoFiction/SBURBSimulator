@@ -659,7 +659,7 @@ class SessionMutator {
 
     void renderEndButtons(Element div) {
         if(timeField) renderTimeButton(div);
-        if(spaceField) renderSpaceButton(div);
+        if(spaceField) renderSpaceButton(div);  //TODO make sure scratches ALSO act as combo sessions.
     }
 
 
@@ -672,7 +672,7 @@ class SessionMutator {
 
     void renderSpaceButton(Element div) {
         //renders a button. If that button is clicked, resets session.
-        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. ${spacePlayer.titleBasic()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
+        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
         appendHtml(querySelector("#story"), html);
         querySelector("#husieButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
     }
