@@ -65,7 +65,7 @@ class Chaos extends Aspect {
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
     new AssociatedStat("MANGRIT", 2, true),
     new AssociatedStat("freeWill", -2, true),
-    new AssociatedStat("minLuck", 1, true),
+    new AssociatedStat("minLuck", -1, true),
     new AssociatedStat("maxLuck", 1, true),
     new AssociatedStat("sburbLore", 0.2, false)
   ]);
