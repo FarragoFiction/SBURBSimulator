@@ -309,7 +309,9 @@ class SessionMutator {
         s.logger.info("AB: Huh. Looks like a Waste of Time is going at it.");
         effectsInPlay ++;
         timeField = true;
-        timePlayersReplacing.add(Player.makeDoomedSnapshot(activatingPlayer));
+        Player doomedPlayer = Player.makeRenderingSnapshot(activatingPlayer);  //don't make new doomed snapshot, because that's a random thing? or....why am i getting robots?
+        doomedPlayer.relationships = activatingPlayer.relationships;
+        timePlayersReplacing.add(doomedPlayer);
         String ret = "The ${activatingPlayer.htmlTitle()} begins flickering in and out of time amid a field of code. What is even happening here? You feel like maybe the answer is 'nothing', at least at this moment. Maybe later something will happen?  Time players man, why can't they just do things linearly? ";
         //this one is very simple here. most of it's the field.
         /*
@@ -680,7 +682,7 @@ class SessionMutator {
 
     void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
-        String html = '<img src="images/reset.png" id="resetButton"><br>Shit man, we can do better. The ${getPlayersTitlesNoHTML(timePlayersReplacing)} know we can.';
+        String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} know we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
         appendHtml(querySelector("#story"), html);
         querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
     }
@@ -692,17 +694,21 @@ class SessionMutator {
         Player deadPlayer;
         List<Relationship> relationshipsCopy = new List<Relationship>.from(target.relationships);
         for (Player timePlayer in timePlayersReplacing) {
-            print("timePlayer id is ${timePlayer.id} vs target id is ${target.id}");
+            print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
             if (timePlayer.id == target.id) {
 
-                timePlayer.makeDead("Being assasinated by their own future self. ");
-                deadPlayer = timePlayer.clone();
+                deadPlayer = target.clone();
+                deadPlayer.spriteCanvasID = null;  //don't share a canvas with your past self plz.
+                deadPlayer.id = GameEntity.generateID();
+                deadPlayer.makeDead("Being assasinated by their own future self. ");
                 timePlayer.makeAlive();
                 timePlayer.copyStatsTo(target);
-                print("found a player to replace, relationships are ${target.relationships.length} ");
+
                 target.godTier = target.godTier;
                 target.pvpKillCount = timePlayer.pvpKillCount; //for stats.
                 target.timesDied = timePlayer.timesDied;
+                target.mylevels = timePlayer.mylevels;
+                target.level_index = timePlayer.level_index;
                 target.flipOutReason = " Killing their own past self. ";
                 target.trickster = timePlayer.trickster;
                 target.sbahj = timePlayer.sbahj;
@@ -722,18 +728,11 @@ class SessionMutator {
                 target.corruptionLevelOther = timePlayer.corruptionLevelOther; //every 100 points, sends you to next grimDarkLevel.
                 target.gnosis = timePlayer.gnosis;
                 target.grimDark = timePlayer.grimDark;
+                target.addStat("sanity", -10); //this is not what sane ppl do, at least not many times in a row.
                 replaced = true;
 
-                //player copied from timePLayer will have zero relationships. fix.
-                for (int i = 0; i < relationshipsCopy.length; i++) {
-                  print("setting new value");
-                    Relationship rc = relationshipsCopy[i];
-                    Relationship rNew = timePlayer.getRelationshipWith(rc.target);
-                    Relationship r = new Relationship(target, rNew.value, rc.target);
-                    r.value = rNew.value;
-                    //i wonder what happens if you think you're moirails but the other person doesnt?
-                    r.saved_type = rNew.saved_type;
-                    r.old_type = rNew.old_type;
+                for(Relationship r in target.relationships) {
+                    r.value = timePlayer.getRelationshipWith(r.target).value;
                 }
             }
         }

@@ -3394,3 +3394,20 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
  ~~~~
 
  Current problem. "replaced"  time player has no relationships. even though i'm not really replacing them. I'm overriding them.
+
+ Okay, that's fixed, but like, now the saved time player has no relationships. Which is....what?
+
+ Where are they going? do they have relationships when they are first saved? when i query in the method?
+
+ ~~~~~~~
+
+ Alright: we're at the home stretch. I want to get Space4 done today. I THINK it will be very very easy.
+
+ All I need to do is have spaceField mean that combos don't happen automatically, but instead get locked by a button press
+ just like scratches/resets. And then have it so a spaceField means as long as their is a frog, you combo.
+ And post scratch you ALSO combo. (unless a life player kills you all, I guess. rip).
+
+ So, other than the fact that there can end up being WAY too many players in a session.... It shouldn't
+ have anything new.
+
+ What image should I use for Waste4's button? I wanna go with maybe infinite layered 4th walls?
