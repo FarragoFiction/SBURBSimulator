@@ -37,5 +37,5 @@ class Sweets extends Aspect {
     new AssociatedStat("sburbLore", -0.5, false)
   ]);
 
-  Sweets(int id) :super(id, "Sweets", isCanon: false);
+  Sweets(int id) :super(id, "Sweets", isCanon: true);
 }

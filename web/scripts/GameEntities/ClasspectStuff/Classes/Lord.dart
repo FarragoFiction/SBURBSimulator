@@ -24,6 +24,15 @@ class Lord extends SBURBClass {
   Lord() : super("Lord", 18, true);
 
   @override
+  List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+    new AssociatedStat("sburbLore", 2.0, false)
+  ]);
+
+  @override
+  bool isActive() {
+    return true;
+  }
+  @override
   bool highHinit() {
     return true;
   }

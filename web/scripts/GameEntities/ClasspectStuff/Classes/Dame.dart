@@ -38,7 +38,7 @@ class Dame extends SBURBClass {
 
   @override
   bool isActive() {
-    return true;
+    return false;
   }
 
   @override

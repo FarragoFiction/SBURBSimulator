@@ -20,12 +20,8 @@ import "Sylph.dart";
 import "Thief.dart";
 import "Waste.dart";
 import "Witch.dart";
-<<<<<<< HEAD
 import "Lord.dart";
-
-=======
 import "Writ.dart";
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
 
 class SBURBClassManager {
     static SBURBClass KNIGHT;
@@ -47,14 +43,11 @@ class SBURBClassManager {
     static SBURBClass GUIDE;
     static SBURBClass GRACE;
     static SBURBClass NULL;
-<<<<<<< HEAD
     static SBURBClass LORD;
     static SBURBClass MUSE;
     static SBURBClass DAME;
-=======
     static SBURBClass REVE;
     static SBURBClass WRIT;
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
 
     //did you know that static attributes are lazy loaded, and so you can't access them until
     //you interact with the class? Yes, this IS bullshit, thanks for asking!

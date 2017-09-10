@@ -4,7 +4,7 @@ import "SBURBClass.dart";
 class Reve extends SBURBClass {
 
 
-  Reve() : super("Reve", 18, true);
+  Reve() : super("Reve", 21, true);
   @override
   List<String> levels = ["GRIM REVER", "BULLSHIT MAGICIAN", "SBURBAN REVERSAL"];
   @override

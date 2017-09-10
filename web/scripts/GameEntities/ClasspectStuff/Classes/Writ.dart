@@ -11,7 +11,7 @@ class Writ extends SBURBClass {
   @override
   List<String> handles = ["wondering","whimsical","woeful"];
 
-  Writ() : super("Writ", 19, true);
+  Writ() : super("Writ", 22, true);
 
    @override
   bool highHinit() {

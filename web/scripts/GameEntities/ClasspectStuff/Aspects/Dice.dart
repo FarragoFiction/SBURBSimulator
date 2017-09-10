@@ -37,5 +37,5 @@ class Dice extends Aspect {
     new AssociatedStatRandom(_randomStats, 1, true)
   ]);
 
-  Dice(int id) :super(id, "Dice", isCanon: false);
+  Dice(int id) :super(id, "Dice", isCanon: true);
 }

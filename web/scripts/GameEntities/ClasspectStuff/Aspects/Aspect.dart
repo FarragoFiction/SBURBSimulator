@@ -2,11 +2,8 @@ import "../../../SBURBSim.dart";
 
 import "Blood.dart";
 import "Breath.dart";
-<<<<<<< HEAD
 //import "Dreams.dart";
-=======
 import "Dice.dart";
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
 import "Doom.dart";
 //import "Fate.dart";
 //import "Flow.dart";
@@ -25,12 +22,9 @@ import "Sand.dart";
 //import "Sky.dart";
 //import "Snow.dart";
 import "Space.dart";
-<<<<<<< HEAD
 //import "Stars.dart";
-=======
 import "Spark.dart";
 import "Sweets.dart";
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
 import "Time.dart";
 import "Void.dart";
 import "Chaos.dart";
@@ -49,7 +43,6 @@ abstract class Aspects {
     static Aspect RAGE;
     static Aspect HOPE;
     static Aspect LIFE;
-<<<<<<< HEAD
     static Aspect CHAOS;
 
     static Aspect MIGHT;
@@ -67,11 +60,9 @@ abstract class Aspects {
     static Aspect SNOW;
     static Aspect STARS;
      */
-=======
     static Aspect SPARK;
     static Aspect DICE;
     static Aspect SWEETS;
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
 
     static Aspect NULL;
 
@@ -88,18 +79,14 @@ abstract class Aspects {
         RAGE = new Rage(9);
         HOPE = new Hope(10);
         LIFE = new Life(11);
-<<<<<<< HEAD
         CHAOS = new Chaos(12);
         MIGHT = new Might(13);
         MIST = new Mist(14);
         RAIN = new Rain(15);
         SAND = new Sand(16);
-=======
-        SPARK = new Spark(12);
-
-        DICE = new Dice(14);
-        SWEETS = new Sweets(15);
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
+        SPARK = new Spark(17);
+        DICE = new Dice(18);
+        SWEETS = new Sweets(19);
 
         NULL = new Aspect(255, "Null");
     }

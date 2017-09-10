@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "../../SBURBSim.dart";
 
 class StatHolder {
@@ -129,28 +128,18 @@ abstract class StatOwner {
 }
 
 class PlayerStatHolder extends StatHolder {
-    Player player;
+  Player player;
 
-    PlayerStatHolder(Player this.player);
+  PlayerStatHolder(Player this.player);
 
-    @override
-    Iterable<Buff> getBuffsForStat(Stat stat) {
-        List<Buff> b = <Buff>[];
-        b.addAll(player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(player.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
-        return b;
-    }
-=======
-import "../../SBURBSim.dart";
-
-class StatHolder {
-    Map<Stat, double> _map = <Stat, double>{};
-
-    double operator [](Stat key) => _map.containsKey(key) ? _map[key] : 0.0;
-}
-
-abstract class StatOwner extends StatHolder {
-    StatHolder stats;
->>>>>>> f2436884a65c68bfa2e622f5b4cf52b334aff4d7
+  @override
+  Iterable<Buff> getBuffsForStat(Stat stat) {
+    List<Buff> b = <Buff>[];
+    b.addAll(
+        player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
+    b.addAll(player.class_name.statModifiers.where((Buff b) =>
+        b.stats.contains(stat)));
+    b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
+    return b;
+  }
 }
