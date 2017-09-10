@@ -2053,6 +2053,7 @@ class Player extends GameEntity {
         Player ret = new Player();
         ret.robot = player.robot;
         ret.godDestiny = player.godDestiny;
+        ret.gnosis = player.gnosis;
         ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
         ret.ghost = player.ghost;

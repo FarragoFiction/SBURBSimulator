@@ -682,7 +682,7 @@ class SessionMutator {
 
     void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
-        String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitlesNoHTML(timePlayersReplacing)} know we can. It's the the 'current' version of them though. ";
+        String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} know we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
         appendHtml(querySelector("#story"), html);
         querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
     }
@@ -697,10 +697,12 @@ class SessionMutator {
             print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
             if (timePlayer.id == target.id) {
 
-                timePlayer.makeDead("Being assasinated by their own future self. ");
                 deadPlayer = timePlayer.clone();
                 timePlayer.makeAlive();
                 timePlayer.copyStatsTo(target);
+                deadPlayer.spriteCanvasID = null;  //don't share a canvas with your past self plz.
+                deadPlayer.id = GameEntity.generateID();
+                deadPlayer.makeDead("Being assasinated by their own future self. ");
                 print("found a player to replace, relationships are ${target.relationships.length} ");
                 target.godTier = target.godTier;
                 target.pvpKillCount = timePlayer.pvpKillCount; //for stats.
