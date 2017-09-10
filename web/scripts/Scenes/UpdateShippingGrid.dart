@@ -189,12 +189,18 @@ class UpdateShippingGrid extends Scene{
 			}else{
 				image = "discuss_hatemance.png";
 			}
-		}else{
+		}else if(player1.aspect == Aspects.BLOOD){
 			if(otp.r1.saved_type == otp.r1.diamond || otp.r1.saved_type == otp.r1.goodBig){
 				image = "discuss_palemance.png";
 			}else{
 				image = "discuss_ashenmance.png";
 			}
+		} else if(player1.aspect == Aspects.CHAOS){
+			if(otp.r1.saved_type == otp.r1.diamond || otp.r1.saved_type == otp.r1.goodBig) {
+				image = "discuss_palemance.png";
+			}else{
+				image = "discuss_hatemance.png";
+		}
 		}
 		Drawing.drawChat(canvasDiv, player1, player2, this.shippingChat,image);
 
