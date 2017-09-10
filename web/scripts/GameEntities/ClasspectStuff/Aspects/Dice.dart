@@ -38,4 +38,9 @@ class Dice extends Aspect {
   ]);
 
   Dice(int id) :super(id, "Dice", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.heart(s, p);
+  }
 }

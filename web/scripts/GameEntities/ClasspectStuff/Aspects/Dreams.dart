@@ -18,4 +18,9 @@ class Dreams extends Aspect {
     ..pants_dark = 'ab9a55';
 
   Dreams(int id) :super(id, "Dreams", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.light(s, p);
+  }
 }

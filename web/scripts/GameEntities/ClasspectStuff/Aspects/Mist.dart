@@ -49,4 +49,9 @@ class Mist extends Aspect{
 
 
   Mist(int id) :super(id, "Mist", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.voidStuff(s, p);
+  }
 }

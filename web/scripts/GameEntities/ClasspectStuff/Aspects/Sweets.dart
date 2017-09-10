@@ -38,4 +38,9 @@ class Sweets extends Aspect {
   ]);
 
   Sweets(int id) :super(id, "Sweets", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.life(s, p);
+  }
 }

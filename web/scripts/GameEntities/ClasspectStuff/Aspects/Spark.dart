@@ -30,4 +30,9 @@ class Spark extends Aspect {
     ]);
 
     Spark(int id) :super(id, "Spark", isCanon: true);
+
+    @override
+    String activateCataclysm(Session s, Player p) {
+      return s.mutator.space(s, p);
+    }
 }

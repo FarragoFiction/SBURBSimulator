@@ -219,12 +219,12 @@ class GetWasted extends Scene {
     }
 
     String processTier3(Element div) {
-        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH) return exploitMobility(div);
-        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
-        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID || player.aspect == Aspects.CHAOS) return exploitGlitches(div);
-        if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
-        if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
+        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH || player.aspect == Aspects.MIST) return exploitMobility(div);
+        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT || player.aspect == Aspects.DICE || player.aspect == Aspects.SWEETS) return exploitFate(div);
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND || player.aspect == Aspects.RAIN) return exploitTime(div);
+        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID || player.aspect == Aspects.CHAOS || player.aspect == Aspects.SPARK) return exploitGlitches(div);
+        if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD || player.aspect == Aspects.SAND) return exploitFriendship(div);
+        if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM || player.aspect == Aspects.MIGHT) return exploitDoom(div);
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
     }
 
@@ -234,15 +234,14 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.BREATH) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
             ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
-
         }else if(player.aspect == Aspects.TIME) {
             ret = " They set up a frankly scandalous series of time shenanigans";
             ret += " , allowing all players to basically spam multiple quests 'at the same time'. ";
-
-        }else {
-            ret = "";
+        }else{
+            ret = "They set up a series of overpowered mist-based teleportation systems";
+            ret += " , allowing all players to basically spam multiple quests one after another";
         }
-
+            ret = "";
         //i can't just call DoLandQuest cuz it will try to render itself, while this is a built string. so no helpers. oh well.
          //session.logger.info("AB:  Exploiting mobility in session ${session.session_id}.");
         for(int i = 0; i<5; i++) {
@@ -272,6 +271,10 @@ class GetWasted extends Scene {
             ret += " They believe with all their heart that this plan will work.  It helps that they don't even have a clue that whole 'god tier destiny' bullshit exists.  ";
         }else if (this.player.aspect == Aspects.LIGHT){
             ret += " Regardless of what destiny says, they are lucky enough bastards that the plan goes off without a hitch. ";
+        }else if (this.player.aspect == Aspects.DICE) {
+            ret += " They alchemize a game breaking pair of dice. The dice cast a completely random effect. Upon rolling, all player randomly godtier! Scooore! ";
+        }else if (this.player.aspect == Aspects.SWEETS) {
+            ret += "They're so hyper! CANDY! LOVE! JOY! FUN! THEY RUN AROUND, KILLING EVERYBODY IN AN ATTEMPT TO MAKE THEM JUST LIKE THEM! All they managed to do was godtier them though. ";
         }
 
         List<Player> fledglingGods = new List<Player>();
@@ -298,8 +301,11 @@ class GetWasted extends Scene {
             ret += " They use their innate sense of ignoring Skaia's wishes to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. Don't like that, don't make me get the god pjs out, I'll do it!";
         }else if (this.player.aspect == Aspects.MIND){
             ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
+        }else if (this.player.aspect == Aspects.RAIN) {
+          ret += " Completely unintentionally, they create a shit ton of clones. Apparently their alternate timeline self meant to or something? Ugh, mist.";
         }
-        List<Player> timePlayers = findAllAspectPlayers(session.players, Aspects.TIME);
+          List<Player> timePlayers = findAllAspectPlayers(
+              session.players, Aspects.TIME);
 
         List<Player> doomedTimeClones = new List<Player>();
         ret += " As expected, a small army of doomed time clones arrives to stop their many, many terrible ideas and fallback ideas. Now the various boss fights should be a lot easier. ";
@@ -322,7 +328,6 @@ class GetWasted extends Scene {
 
         drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
         return ret;
-
     }
 
     //skaian magicent kinda deal
@@ -335,6 +340,8 @@ class GetWasted extends Scene {
             " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
         }else if(player.aspect == Aspects.CHAOS) {
             " They temporarily blink out of existence. When they return, everybody seems to have learned a new fraymotif??? And what's the giant pile of grist doing there?";
+        }else if(player.aspect == Aspects.SPARK) {
+            " They focus all their energy into breaking the game, and BOOM! They find themselves in a glitchy area full of framotifs and grist! Hell yeah!";
         }
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
@@ -408,6 +415,7 @@ class GetWasted extends Scene {
                 ///only added if somebody has this apply.
                 String subRet = "They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
                 if(player.aspect == Aspects.LIFE) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
+                if(player.aspect == Aspects.MIGHT) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB. They kill all players, reviving them more powerful then ever with their OP might abilities.";
 
                 String divID = "gnosis3${div.id}player${p.id}";
                 subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
@@ -505,12 +513,12 @@ class GetWasted extends Scene {
     void tier3(Element div) {
         session.stats.hasTier3Events = true;
         List<String> flavorText = <String>["In a moment of revelawesome The ${this.player.htmlTitle()} realizes a fundamental truth:"] ;
-        if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
-        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE)     flavorText.add("'Anything one imagines, one can make real.' ");
-        if(player.aspect == Aspects.DOOM || player.aspect == Aspects.TIME)     flavorText.add("'Fate is just the choices we have yet to make.' ");
-        if(player.aspect == Aspects.BREATH || player.aspect == Aspects.MIND)     flavorText.add("'Reality is written in the ink of people's lives.' ");
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.LIFE)     flavorText.add("'Knowledge and Desire are meaningless without the strengh to see them through.' ");
-        if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART)     flavorText.add("'When we combine the light that shines within, there is nothing we can't do.' ");
+        if(player.aspect == Aspects.LIGHT || player.aspect == Aspects.VOID || player.aspect == Aspects.DICE)     flavorText.add("'A Hero is just a person who stands up and makes a diffrence.' ");
+        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.SPACE || player.aspect == Aspects.MIGHT)     flavorText.add("'Anything one imagines, one can make real.' ");
+        if(player.aspect == Aspects.DOOM || player.aspect == Aspects.TIME || player.aspect == Aspects.MIST)     flavorText.add("'Fate is just the choices we have yet to make.' ");
+        if(player.aspect == Aspects.BREATH || player.aspect == Aspects.MIND || player.aspect == Aspects.RAIN)     flavorText.add("'Reality is written in the ink of people's lives.' ");
+        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.LIFE || player.aspect == Aspects.SAND)     flavorText.add("'Knowledge and Desire are meaningless without the strengh to see them through.' ");
+        if(player.aspect == Aspects.BLOOD || player.aspect == Aspects.HEART || player.aspect == Aspects.SPARK || player.aspect == Aspects.SWEETS)     flavorText.add("'When we combine the light that shines within, there is nothing we can't do.' ");
         if(flavorText.length == 1) flavorText.add("Nothing is true, everything is permitted."); //i.e. aspect not found
         flavorText.add("<BR><BR>");
         flavorText.add(processTier3(div));

@@ -73,4 +73,9 @@ class Might extends Aspect {
   ]);
 
   Might(int id) :super(id, "Might", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.hope(s, p);
+  }
 }

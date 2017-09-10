@@ -26,4 +26,9 @@ class Rain extends Aspect {
     ]);
 
   Rain(int id) :super(id, "Rain", isCanon: true);
+
+  @override
+  String activateCataclysm(Session s, Player p) {
+    return s.mutator.blood(s, p);
+  }
 }
