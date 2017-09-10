@@ -64,7 +64,7 @@ class RainClone extends Scene {
       }
     }
 
-    ret = "<br> ...Oh. It seems that this has not been programmed yet. The new copy of the " + rainyClone.htmlTitleBasic() + " looks dissapointed, and wanders off to some obscure corner of the medium.";
+    ret = "<br> The new copy of the " + rainyClone.htmlTitleBasic() + " joins the session.";
     appendHtml(div, ret);
     session.logger.info("tried to clone Rain player.");
 
