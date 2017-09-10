@@ -5,7 +5,7 @@ import "SBURBSim.dart";
 //turn into romance in a quadrant.
 class Relationship {
     Player source;
-    num value;
+    num value = 0;
     Player _target;
     String saved_type = "";
     bool drama = false; //drama is set to true if type of relationship changes.

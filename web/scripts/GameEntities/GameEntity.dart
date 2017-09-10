@@ -96,7 +96,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
             s.player = ps.player;
         }
         for (Stat key in object.stats) {
-            addStat(key, object.stats[key]); //add your stats to my stas.
+            addStat(key, object.stats.getBase(key)); //add your stats to my stas.
         }
     }
 
@@ -157,7 +157,9 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     }
 
     void resetFraymotifs() {
-        if(!session.mutator.rageField) this.buffs.clear(); //rage just keeps going.
+        if(!session.mutator.rageField) {
+            this.stats.onCombatEnd(); //rage just keeps going.
+        }
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
         }
@@ -472,7 +474,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         ret += "</td>";
         ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (Stat stat in Stats.summarise) {
-            ret += "$stat: ${getStat(stat)}<br>";
+            ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
         ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
@@ -528,7 +530,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     }
 
     //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
-    num rollForLuck([Stat stat]) {
+    double rollForLuck([Stat stat]) {
         if (stat == null) {
             return this.session.rand.nextDoubleRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
         } else {

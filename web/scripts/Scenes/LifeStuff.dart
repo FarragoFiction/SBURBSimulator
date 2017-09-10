@@ -200,10 +200,12 @@ class LifeStuff extends Scene {
                 player.flipOutReason = "being haunted by their own ghost";
             } else if (trait != 'nice' && ghost.id != player.id) {
                 str = "$str They bond over how $trait they both are. The ${player.htmlTitle()} feels their determination to beat the game grow. ";
-                player.increasePower(ghost.getStat(Stats.POWER) / 2);
+                //player.increasePower(ghost.getStat(Stats.POWER) / 2);
+                player.addStat(Stats.EXPERIENCE, (ghost.getStat(Stats.EXPERIENCE) + 5) / 2);
             } else {
                 str = "$str It's a little awkward. ";
-                player.increasePower(ghost.getStat(Stats.POWER) / 10);
+                //player.increasePower(ghost.getStat(Stats.POWER) / 10);
+                player.addStat(Stats.EXPERIENCE, (ghost.getStat(Stats.EXPERIENCE) + 5) / 10);
             }
             appendHtml(div, "<br><br>$str");
             CanvasElement canvas = drawDreamBubbleH(div, player, ghost);
@@ -351,7 +353,8 @@ class LifeStuff extends Scene {
                 player.fraymotifs.addAll(ghost.fraymotifs); //copy not reference
                 effect = "They learn ${turnArrayIntoHumanSentence(ghost.fraymotifs)} from the $ghostName. ";
             } else {
-                player.increasePower(ghost.getStat(Stats.POWER) / 2); //want to increase aspect stats, too.
+                //player.increasePower(ghost.getStat(Stats.POWER) / 2); //want to increase aspect stats, too.
+                player.addStat(Stats.EXPERIENCE, (ghost.getStat(Stats.EXPERIENCE) + 5) / 2);
                 effect = " The ${player.htmlTitleBasic()} gains valuable wisdom from the $ghostName. Their power grows much more quickly than merely doing quests. ";
             }
 
@@ -416,7 +419,8 @@ class LifeStuff extends Scene {
             ////session.logger.info("ghost drain dead for power: "+ player.titleBasic()  + this.session.session_id);
             str = "$str${this.ghostPsionics(player)} The ${player.htmlTitleBasic()} destroys the essence of the $ghostName for greater destructive power, it will be a while before the ghost recovers.";
             ghost.causeOfDrain = player.title();
-            player.increasePower(ghost.getStat(Stats.POWER));
+            //player.increasePower(ghost.getStat(Stats.POWER));
+            player.addStat(Stats.EXPERIENCE, (ghost.getStat(Stats.EXPERIENCE) + 5));
             player.leveledTheHellUp = true;
             player.level_index += 1;
             appendHtml(div, "<br><br>$str");
@@ -472,7 +476,7 @@ class LifeStuff extends Scene {
             CanvasElement canvas = Drawing.drawReviveDead(div, player, ghost, enablingAspect.name);
             player.makeAlive();
             if (enablingAspect == Aspects.LIFE) {
-                player.addStat(Stats.CURRENT_HEALTH, 100); //i won't let you die again.
+                player.addStat(Stats.CURRENT_HEALTH, 100 * Stats.HEALTH.coefficient); //i won't let you die again.
                 player.addStat(Stats.HEALTH, 100); //i won't let you die again.
             } else if (enablingAspect == Aspects.DOOM || player.prophecy == ProphecyState.FULLFILLED ) {
                 player.addStat(Stats.MIN_LUCK, 100); //you've fulfilled the prophecy. you are no longer doomed.

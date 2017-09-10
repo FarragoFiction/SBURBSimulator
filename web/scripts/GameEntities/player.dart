@@ -83,6 +83,8 @@ class Player extends GameEntity {
         this.name = "player_$id"; //this.htmlTitleBasic();
     }
 
+    @override
+    StatHolder createHolder() => new PlayerStatHolder(this);
 
     bool fromThisSession(Session session) {
         return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id);
@@ -159,7 +161,7 @@ class Player extends GameEntity {
     void generateDenizen() {
         List<String> possibilities = this.aspect.denizenNames;
         num strength = this.getOverallStrength();
-        num expectedMaxStrength = 150; //if i change how stats work, i need to update this value
+        num expectedMaxStrength = 150 * Stats.POWER.coefficient; //if i change how stats work, i need to update this value
         num strengthPerTier = (expectedMaxStrength) / possibilities.length;
         ////print("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
         int denizenIndex = (strength / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
@@ -184,7 +186,7 @@ class Player extends GameEntity {
     }
 
     void makeDenizenWithStrength(String name, num strength) {
-        ////print("Strength for denizen " + name + " is: " + strength);
+        //print("Strength for denizen $name is: $strength");
         //based off existing denizen code.  care about which aspect i am.
         //also make minion here.
         GameEntity denizen = new Denizen("Denizen $name", this.session);
@@ -200,6 +202,7 @@ class Player extends GameEntity {
         tmpStatHolder[Stats.POWER] = 5 * strength;
         tmpStatHolder[Stats.GRIST] = 100;
         tmpStatHolder[Stats.RELATIONSHIPS] = 10; //not REAL relationships, but real enough for our purposes.
+        tmpStatHolder[Stats.SBURB_LORE] = 0;
         for (num i = 0; i < this.associatedStats.length; i++) {
             //alert("I have associated stats: " + i);
             AssociatedStat stat = this.associatedStats[i];
@@ -209,6 +212,7 @@ class Player extends GameEntity {
         //denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000);
 
         denizenMinion.stats.setMap(tmpStatHolder);
+        denizenMinion.heal();
         tmpStatHolder[Stats.POWER] *= 2;
         for (Stat key in tmpStatHolder.keys) {
             tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger.
@@ -217,6 +221,7 @@ class Player extends GameEntity {
         denizen.stats.setMap(tmpStatHolder);
         denizen.grist = 1000; //denizen matters MOST for if you can frog or not
         this.denizen = denizen;
+        denizen.heal();
         this.denizenMinion = denizenMinion;
         this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);
     }
@@ -284,7 +289,7 @@ class Player extends GameEntity {
         String ret = "";
         this.dead = true;
         this.timesDied ++;
-        this.buffs.clear();
+        this.stats.onDeath();
         this.causeOfDeath = sanitizeString(causeOfDeath);
         if (this.getStat(Stats.CURRENT_HEALTH) > 0) this.setStat(Stats.CURRENT_HEALTH, -1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
         if (!this.godTier) { //god tiers only make ghosts in GodTierRevivial
@@ -419,9 +424,10 @@ class Player extends GameEntity {
     }
 
     void makeGodTier() {
-        this.addStat(Stats.HEALTH, 500); //they are GODS.
-        this.addStat(Stats.CURRENT_HEALTH, 500); //they are GODS.
-        this.addStat(Stats.POWER, 500); //they are GODS.
+        //this.addStat(Stats.HEALTH, 500); //they are GODS.
+        //this.addStat(Stats.CURRENT_HEALTH, 500); //they are GODS.
+        //this.addStat(Stats.POWER, 500); //they are GODS.
+        this.buffs.add(new BuffGodTier()); // +100 base power and health, 2.5 stat multiplier
         this.increasePower();
         this.godTier = true;
         this.session.stats.godTier = true;
@@ -532,7 +538,7 @@ class Player extends GameEntity {
         Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (Stat stat in as) {
-            ret += "$stat: ${getStat(stat)}<br>";
+            ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
         ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
@@ -1007,6 +1013,8 @@ class Player extends GameEntity {
         return this.class_name.modPowerBoostByClass(powerBoost, stat);
     }
 
+    double getPowerForEffects() => this.stats[Stats.POWER] / Stats.POWER.coefficient;
+
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
         if (this.isActive()) { //modify me
@@ -1022,6 +1030,7 @@ class Player extends GameEntity {
 
     @override
     void increasePower([num magnitude = 1, num cap = 5.1]) {
+
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
         ////print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
@@ -1029,22 +1038,25 @@ class Player extends GameEntity {
         }
         num powerBoost = magnitude * this.class_name.powerBoostMultiplier * this.aspect.powerBoostMultiplier; // this applies the page 5x mult
 
-        if (this.godTier) {
+        //replaced by buffs TODO: THOSE DAMN BUFFS
+        /*if (this.godTier) {
             powerBoost = powerBoost * 10; //god tiers are ridiculously strong.
         }
 
         if (this.denizenDefeated) {
             powerBoost = powerBoost * 2; //permanent doubling of stats forever.
-        }
+        }*/
 
-        this.addStat(Stats.POWER, Math.max(1, powerBoost)); //no negatives
+        //this.addStat(Stats.POWER, Math.max(1, powerBoost)); //no negatives
+        this.addStat(Stats.EXPERIENCE, Math.max(1, powerBoost));
 
         this.associatedStatsIncreasePower(powerBoost);
         //gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
-        if (this.godTier || this.session.rand.nextDouble() > .85) {
+        /*if (this.godTier || this.session.rand.nextDouble() > .85) {
             this.addStat(Stats.HEALTH, 5);
             this.addStat(Stats.CURRENT_HEALTH, 5);
-        }
+        }*/
+        this.addStat(Stats.EXPERIENCE, this.rand.nextDoubleRange(0.1, 1.0));
         //TODO figure out what the actual fuck this line was supposed to be doing. set power to ITSELF???
         //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
         // if (this.getStat(Stats.POWER) > 0) this.setStat(Stats.POWER, this.getStat(Stats.POWER).round());
@@ -1600,7 +1612,7 @@ class Player extends GameEntity {
     }
 
     void initializePower() {
-        this.setStat(Stats.POWER, 0);
+        this.setStat(Stats.POWER, 10);
         if (this.trickster && !this.aspect.ultimateDeadpan) {
             this.setStat(Stats.POWER, 11111111111);
         }

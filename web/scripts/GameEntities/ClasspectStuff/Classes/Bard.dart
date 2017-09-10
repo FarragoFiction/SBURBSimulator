@@ -37,7 +37,7 @@ class Bard extends SBURBClass {
 
     @override
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
-        num powerBoost = p.getStat(Stats.POWER) / 20;
+        num powerBoost = p.getPowerForEffects() / 20;
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
         //modify others
         if(p.session.mutator.bloodField) powerBoost = powerBoost * p.session.mutator.bloodBoost;

@@ -10,7 +10,7 @@ class FaceDenizen extends Scene{
 	FaceDenizen(Session session): super(session);
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
 		for(Player p in session.getReadOnlyAvailablePlayers()){
@@ -29,7 +29,7 @@ class FaceDenizen extends Scene{
 		}
 		return this.denizenFighters.length > 0;
 	}
-	dynamic addImportantEvent(player){  //TODO reimplment this for boss fights
+	dynamic addImportantEvent(Player player){  //TODO reimplment this for boss fights
 		/*
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//need to grab this cause if they are dream self corpse smooch won't trigger an important event
@@ -78,17 +78,17 @@ class FaceDenizen extends Scene{
 			p.denizenMinionDefeated = true;
 		}
 	}
-	void faceDenizen(p, Element div){
+	void faceDenizen(Player p, Element div){
 		String ret = " ";
 		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			////session.logger.info("confront icon: " + this.session.session_id);
-			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.stat + " and are presented with The Choice. ";
+			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
 			if(p.getStat(Stats.POWER) > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
 				p.denizenDefeated = true;
-				p.addStat(Stats.POWER,p.getStat(Stats.POWER)*2);  //current and future doubling of power.
+				p.buffs.add(new BuffDenizenBeaten());  //current and future doubling of power.
 				p.leveledTheHellUp = true;
 				p.grist += denizen.grist;
 				appendHtml(div,"<br>"+ret);
@@ -97,11 +97,11 @@ class FaceDenizen extends Scene{
 				////session.logger.info("denizen beat through choice in session: " + this.session.session_id);
 			}else{
 				p.denizenDefeated = false;
-				ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + denizen.stat + " warns them to prepare for a strife the next time they come back. ";
+				ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + denizen.name + " warns them to prepare for a strife the next time they come back. ";
         appendHtml(div,"<br>"+ret);
 			}
 		}else{
-			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.stat + ". ";
+			ret += "<br>The " + p.htmlTitle() + " initiates a strife with their " + denizen.name + ". ";
       appendHtml(div,ret);
       Team pTeam = new Team(this.session, [p]);
       pTeam.name = "The ${p.htmlTitle()}";
@@ -112,7 +112,7 @@ class FaceDenizen extends Scene{
 			if(denizen.getStat(Stats.CURRENT_HEALTH) <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.addStat(Stats.POWER,p.getStat(Stats.POWER)*2);  //current and future doubling of power.
+				p.buffs.add(new BuffDenizenBeaten());  //current and future doubling of power.
 				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
 				////session.logger.info("denizen kill " + this.session.session_id);

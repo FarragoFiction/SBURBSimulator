@@ -11,13 +11,8 @@ class NPC extends GameEntity {
 class Carapace extends NPC {
     Carapace(String name, Session session) : super(name, session);
 
-    //TODO: CROWNING BUFF
-    /*@override
-    num getStat(String statName) {
-        num ret = super.getStat(statName);
-        if (crowned != null) ret += crowned.getStat(statName);
-        return ret;
-    }*/
+    @override
+    StatHolder createHolder() => new CarapaceStatHolder(this);
 }
 
 //srites are definitely going to behave differntly soon

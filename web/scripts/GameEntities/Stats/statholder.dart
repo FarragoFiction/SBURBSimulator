@@ -73,7 +73,7 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
 
     double derive(Stat stat, [bool buffs = true]) {
         // get the actual base value
-        double val = this.getBase(stat);
+        double val = this.getBase(stat).clamp(stat.minBase, stat.maxBase);
 
         Iterable<Buff> relevantBuffs;
         if (buffs) {
@@ -97,7 +97,7 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
             val = this.applyFinalAdditive(stat, val, relevantBuffs);
         }
 
-        return val;
+        return val.clamp(stat.minDerived, stat.maxDerived);
     }
 
     void buffTick() {
@@ -121,6 +121,14 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
                 this.buffs.removeAt(i);
             }
         }
+    }
+
+    void onDeath() {
+        this.buffs.retainWhere((Buff buff) => buff.persistsThroughDeath);
+    }
+
+    void onCombatEnd() {
+        this.buffs.retainWhere((Buff buff) => buff.combat == false);
     }
 
     @override
@@ -175,5 +183,20 @@ class PlayerStatHolder extends StatHolder {
         b.addAll(player.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
         b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
         return b;
+    }
+}
+
+class CarapaceStatHolder extends StatHolder {
+    Carapace owner;
+
+    CarapaceStatHolder(Carapace this.owner);
+
+    @override
+    double applyFinalAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        val = super.applyBaseAdditive(stat, val, relevantBuffs);
+        if (owner.crowned != null) {
+            val += owner.crowned.getStat(stat);
+        }
+        return val;
     }
 }

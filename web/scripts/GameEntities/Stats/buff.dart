@@ -3,6 +3,7 @@ import "../../SBURBSim.dart";
 abstract class Buff {
     final bool combat;
     final bool timed;
+    bool persistsThroughDeath = false;
     final Set<Stat> stats = new Set<Stat>();
     int age = 0;
     int maxAge = 0;
@@ -56,7 +57,8 @@ class BuffAdditional extends Buff {
     @override
     BuffAdditional copy() {
         return new BuffAdditional.multiple(this.stats, this.multiplier, combat:this.combat, timed:this.timed, maxAge:this.maxAge)
-            ..age = this.maxAge;
+            ..age = this.maxAge
+            ..persistsThroughDeath = this.persistsThroughDeath;
     }
 }
 
@@ -71,7 +73,8 @@ class BuffMore extends Buff {
     @override
     BuffMore copy() {
         return new BuffMore.multiple(this.stats, this.multiplier, combat:this.combat, timed:this.timed, maxAge:this.maxAge)
-            ..age = this.maxAge;
+            ..age = this.maxAge
+            ..persistsThroughDeath = this.persistsThroughDeath;
     }
 }
 
@@ -86,7 +89,8 @@ class BuffFlat extends Buff {
     @override
     BuffFlat copy() {
         return new BuffFlat.multiple(this.stats, this.value, combat:this.combat, timed:this.timed, maxAge:this.maxAge)
-            ..age = this.maxAge;
+            ..age = this.maxAge
+            ..persistsThroughDeath = this.persistsThroughDeath;
     }
 }
 
@@ -101,6 +105,37 @@ class BuffBase extends Buff {
     @override
     BuffBase copy() {
         return new BuffBase.multiple(this.stats, this.value, combat:this.combat, timed:this.timed, maxAge:this.maxAge)
-            ..age = this.maxAge;
+            ..age = this.maxAge
+            ..persistsThroughDeath = this.persistsThroughDeath;
+    }
+}
+
+class BuffGodTier extends Buff {
+    BuffGodTier():super.multiple(Stats.pickable, false, false){
+        this.persistsThroughDeath = true;
+    }
+
+    @override
+    BuffGodTier copy() {
+        return new BuffGodTier();
+    }
+
+    @override
+    double baseAdditive(Stat stat, double val) {
+        if (stat == Stats.HEALTH || stat == Stats.POWER) {
+            return val + 100;
+        }
+        return val;
+    }
+
+    @override
+    double additional(Stat stat, double val) {
+        return val * 2.5;
+    }
+}
+
+class BuffDenizenBeaten extends BuffAdditional {
+    BuffDenizenBeaten():super(Stats.POWER, 2.0) {
+        this.persistsThroughDeath = true;
     }
 }

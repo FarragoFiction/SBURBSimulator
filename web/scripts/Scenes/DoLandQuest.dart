@@ -38,7 +38,7 @@ class DoLandQuest extends Scene{
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){
-		if(p.land == null || p.getStat(Stats.POWER) < 2 || p.grimDark > 3) return null;  //can't do quests at all.
+		if(p.land == null || p.getStat(Stats.POWER) < 20 * Stats.POWER.coefficient || p.grimDark > 3) return null;  //can't do quests at all.
 		Player helper = p.findHelper(availablePlayers);
 		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
@@ -74,26 +74,26 @@ class DoLandQuest extends Scene{
 		return this.fraymotifFlavorTextForPlayer(player, f);
 
 	}
-	String fraymotifFlavorTextForPlayer(player, fraymotif){
+	String fraymotifFlavorTextForPlayer(Player player, Fraymotif fraymotif){
 		//fraymotif store names came from me looking up what places carry faygo near me and finding out
 		//that i live in the laziest piece of fiction of all time.
 		//"Super Low Grocery Outlet" and "Food Depot #27" sound fake as fuck, but also are the only places to carry faygo practically
-		List<String> normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.stat + "from Super Low Fraymotif Outlet like a sensible person. "];
-		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.stat + "from Fraymotif Depot #27, the ONLY store with1n 413 miles. ");
+		List<String> normalWays = ["The " + player.htmlTitle() + " purchases " + fraymotif.name + "from Super Low Fraymotif Outlet like a sensible person. "];
+		normalWays.add("The " + player.htmlTitle() + " has finally saved up enough boondollars to buy " + fraymotif.name + "from Fraymotif Depot #27, the ONLY store with1n 413 miles. ");
 		if(rand.nextDouble() > 0.5) return rand.pickFrom(normalWays);
 		//otherwise do special shit.
-		if(player.class_name == SBURBClassManager.THIEF) return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.stat + ".  I sure hope it's worth the risk of being put in the slammer. ";
-		if(player.class_name == SBURBClassManager.ROGUE) return "The " + player.htmlTitle() + " daringly heists fraymotif store, scoring " + fraymotif.stat + ".  Nobody will notice it's missing for days. ";
-		if(player.class_name == SBURBClassManager.KNIGHT) return "The " + player.htmlTitle() + " vallantly defends the fraymotif store from underlings, scoring " + fraymotif.stat + " as a reward. ";
-		if(player.class_name == SBURBClassManager.SEER) return "The " + player.htmlTitle() + " is made aware that " + fraymotif.stat + " is hidden in a secret location, and claims it. ";
-		if(player.class_name == SBURBClassManager.BARD) return "The " + player.htmlTitle() + " just suddenly knows " + fraymotif.stat + ".  I sure hope you aren't expecting to find out HOW they learned it. ";
-		if(player.class_name == SBURBClassManager.PAGE) return "The " + player.htmlTitle() + " has worked hard and put in the hours and now knows " + fraymotif.stat + ".  Sometimes hard work pays off!. ";
-		if(player.class_name == SBURBClassManager.SYLPH) return "The " + player.htmlTitle() + " has built up a rapport with the consort running the fraymotif shop. They receive " + fraymotif.stat + " on the house. ";
-		if(player.class_name == SBURBClassManager.HEIR) return "The " + player.htmlTitle() + " finds out that " + fraymotif.stat + " was bequeathed to them by a wealthy consort. Their death will not be in vain!  ";
-		if(player.class_name == SBURBClassManager.MAID) return "The " + player.htmlTitle() + " helps the consort that runs the fraymotif shop organize everything.  They are rewarded with " + fraymotif.stat + ". ";
-		if(player.class_name == SBURBClassManager.PRINCE) return "The " + player.htmlTitle() + " scores " + fraymotif.stat + " for a stupidly discounted 'going out of business' price. ";
-		if(player.class_name == SBURBClassManager.WITCH) return "The " + player.htmlTitle() + " joins a coven of Secret Wizards to learn " + fraymotif.stat + ".   ";
-		if(player.class_name == SBURBClassManager.MAGE) return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.stat + ". ";
+		if(player.class_name == SBURBClassManager.THIEF) return "The " + player.htmlTitle() + " blatantly robs the fraymotif store, scoring " + fraymotif.name + ".  I sure hope it's worth the risk of being put in the slammer. ";
+		if(player.class_name == SBURBClassManager.ROGUE) return "The " + player.htmlTitle() + " daringly heists fraymotif store, scoring " + fraymotif.name + ".  Nobody will notice it's missing for days. ";
+		if(player.class_name == SBURBClassManager.KNIGHT) return "The " + player.htmlTitle() + " vallantly defends the fraymotif store from underlings, scoring " + fraymotif.name + " as a reward. ";
+		if(player.class_name == SBURBClassManager.SEER) return "The " + player.htmlTitle() + " is made aware that " + fraymotif.name + " is hidden in a secret location, and claims it. ";
+		if(player.class_name == SBURBClassManager.BARD) return "The " + player.htmlTitle() + " just suddenly knows " + fraymotif.name + ".  I sure hope you aren't expecting to find out HOW they learned it. ";
+		if(player.class_name == SBURBClassManager.PAGE) return "The " + player.htmlTitle() + " has worked hard and put in the hours and now knows " + fraymotif.name + ".  Sometimes hard work pays off!. ";
+		if(player.class_name == SBURBClassManager.SYLPH) return "The " + player.htmlTitle() + " has built up a rapport with the consort running the fraymotif shop. They receive " + fraymotif.name + " on the house. ";
+		if(player.class_name == SBURBClassManager.HEIR) return "The " + player.htmlTitle() + " finds out that " + fraymotif.name + " was bequeathed to them by a wealthy consort. Their death will not be in vain!  ";
+		if(player.class_name == SBURBClassManager.MAID) return "The " + player.htmlTitle() + " helps the consort that runs the fraymotif shop organize everything.  They are rewarded with " + fraymotif.name + ". ";
+		if(player.class_name == SBURBClassManager.PRINCE) return "The " + player.htmlTitle() + " scores " + fraymotif.name + " for a stupidly discounted 'going out of business' price. ";
+		if(player.class_name == SBURBClassManager.WITCH) return "The " + player.htmlTitle() + " joins a coven of Secret Wizards to learn " + fraymotif.name + ".   ";
+		if(player.class_name == SBURBClassManager.MAGE) return "The " + player.htmlTitle() + " is pretty sure they have figured out the fraymotif system, at least enough to learn " + fraymotif.name + ". ";
 		return rand.pickFrom(normalWays);
 	}
 	@override

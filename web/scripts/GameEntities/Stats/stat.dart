@@ -27,11 +27,11 @@ abstract class Stats {
         _initialised = true;
 
         EXPERIENCE = new Stat("Experience", "learned", "naïve", pickable: false);
-        GRIST = new Stat("Grist Level", "rich", "poor", pickable: false);
+        GRIST = new Stat("Grist Level", "rich", "poor", pickable: false, summarise:false);
 
-        POWER = new XPScaledStat("Power", "strong", "weak", 0.05, coefficient: 10.0);
-        HEALTH = new XPScaledStat("Health", "sturdy", "fragile", 0.05, coefficient: 10.0);
-        CURRENT_HEALTH = new Stat("Current Health", "healthy", "infirm", pickable: false);
+        POWER = new XPScaledStat("Power", "strong", "weak", 0.01, coefficient: 10.0)..minBase=5.0..minDerived=1.0;
+        HEALTH = new XPScaledStat("Health", "sturdy", "fragile", 0.02, coefficient: 10.0)..minBase=5.0;
+        CURRENT_HEALTH = new Stat("Current Health", "healthy", "infirm", pickable: false, summarise:false);
         MOBILITY = new Stat("Mobility", "fast", "slow");
 
         RELATIONSHIPS = new RelationshipStat("Relationships", "friendly", "aggressive", pickable: false); // should be a special one to deal with players
@@ -60,6 +60,11 @@ class Stat {
     final bool pickable;
     final bool summarise;
     final double coefficient;
+
+    double minBase = double.NEGATIVE_INFINITY;
+    double maxBase = double.INFINITY;
+    double minDerived = double.NEGATIVE_INFINITY;
+    double maxDerived = double.INFINITY;
 
     Stat(String this.name, String this.emphaticPositive, String this.emphaticNegative, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true}) {
         Stats._list.add(this);
@@ -130,7 +135,7 @@ class Stat {
 class XPScaledStat extends Stat {
     final double expCoefficient;
 
-    XPScaledStat(String name, String emphaticPositive, String emphaticNegative, double this.expCoefficient, {double coefficient, bool pickable, bool summarise}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    XPScaledStat(String name, String emphaticPositive, String emphaticNegative, double this.expCoefficient, {double coefficient = 1.0, bool pickable = true, bool summarise = true}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
 
     @override
     double derived(StatHolder stats, double base) {
@@ -141,11 +146,14 @@ class XPScaledStat extends Stat {
 
 class RelationshipStat extends Stat {
 
-    RelationshipStat(String name, String emphaticPositive, String emphaticNegative, {double coefficient, bool pickable, bool summarise}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    RelationshipStat(String name, String emphaticPositive, String emphaticNegative, {double coefficient = 1.0, bool pickable = true, bool summarise = true}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
 
     @override
     double derived(StatHolder stats, double base) {
         if (stats is PlayerStatHolder) {
+            if (stats.player.relationships.isEmpty) {
+                return 0.0;
+            }
             return stats.player.relationships.map((Relationship r) => r.value).reduce((num r1, num r2) => r1+r2) * coefficient;
         }
         return super.derived(stats, base);

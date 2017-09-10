@@ -25,9 +25,9 @@ class Fraymotif {
         if (this.aspects == null) {
             this.aspects = <Aspect>[];
         }
-        this.baseValue = 50 * this.tier;
+        this.baseValue = 50.0 * this.tier;
         if (this.tier >= 3)
-            this.baseValue = 1000 * this.tier - 2; //so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
+            this.baseValue = 1000.0 * this.tier - 2; //so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
     }
 
     @override
@@ -634,10 +634,11 @@ class FraymotifEffect {
 
     void applyEffect(GameEntity owner, List<GameEntity> allies, List<GameEntity> casters, GameEntity enemy, List<GameEntity> enemies, double baseValue) {
         double strifeValue = this.processEffectValue(casters, enemies);
-        double effectValue = baseValue;
-        if (strifeValue < baseValue) effectValue = baseValue;
-        if (strifeValue > baseValue && strifeValue < (2 * baseValue)) effectValue = 2 * baseValue;
-        if (strifeValue > (2 * baseValue)) effectValue = 3 * baseValue;
+        double baseDouble = baseValue.toDouble();
+        double effectValue = baseDouble;
+        if (strifeValue < baseDouble) effectValue = baseDouble;
+        if (strifeValue > baseDouble && strifeValue < (2 * baseDouble)) effectValue = 2 * baseDouble;
+        if (strifeValue > (2 * baseDouble)) effectValue = 3 * baseDouble;
 
         //now, i need to USE this effect value.  is it doing "damage" or "buffing"?
         if (this.target == this.e || this.target == this.e2) effectValue = effectValue * -1; //do negative things to the enemy.
@@ -667,7 +668,7 @@ class FraymotifEffect {
         for (num i = 0; i < targetArr.length; i++) {
             GameEntity t = targetArr[i];
             t.makeAlive();
-            t.buffs.add(new BuffFlat(Stats.CURRENT_HEALTH, e)); //don't mod directly anymore
+            t.buffs.add(new BuffFlat(Stats.CURRENT_HEALTH, e, combat:true)); //don't mod directly anymore
         }
     }
 
@@ -677,11 +678,11 @@ class FraymotifEffect {
             GameEntity t = targetArr[i];
             if (this.statName != Stats.RELATIONSHIPS) {
                 //t[this.statName] += e;
-                t.buffs.add(new BuffFlat(this.statName, e)); //don't mod directly anymore
+                t.buffs.add(new BuffFlat(this.statName, e, combat:true)); //don't mod directly anymore
             } else {
                 for (num j = 0; j < t.relationships.length; j++) {
                     //t.relationships[j].value += e;
-                    t.buffs.add(new BuffFlat(this.statName, e));
+                    t.buffs.add(new BuffFlat(this.statName, e, combat:true));
                 }
             }
         }

@@ -467,7 +467,7 @@ abstract class Drawing {
     */
 
     static CanvasElement drawReviveDead(Element div, Player player, Player ghost, String enablingAspect) {
-        String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}${player.getStat(Stats.POWER)}${ghost.getStat(Stats.POWER)}";
+        String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}";
         String canvasHTML = "<br><canvas id='$canvasId' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
@@ -678,7 +678,7 @@ abstract class Drawing {
         int i=0;
         for (Stat stat in allStats) {
             ctx.fillText("$stat: ", left_margin, current + line_height * i);
-            ctx.fillText(player.getStat(stat).toString(), right_margin, current + line_height * i);
+            ctx.fillText(player.getStat(stat).round().toString(), right_margin, current + line_height * i);
             i++;
         }
 
@@ -1595,7 +1595,7 @@ abstract class Drawing {
         }
 
         if (!baby && player.aspect == Aspects.VOID) {
-            voidSwap(canvas, 1 - player.getStat(Stats.POWER) / 2000); //a void player at 2000 power is fully invisible.
+            voidSwap(canvas, 1 - player.getStat(Stats.POWER) / (2000 * Stats.POWER.coefficient)); //a void player at 2000 power is fully invisible.
         }else if(player.session.mutator.lightField && !player.session.mutator.hasSpotLight(player)) {
             voidSwap(canvas, 0.2); //compared to the light player, you are irrelevant.
         }
