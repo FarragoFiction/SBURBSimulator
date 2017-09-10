@@ -60,7 +60,7 @@ class Life extends Aspect {
     @override
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[
         "defeating an endless array of locust underlings",
-        "realizing that Hemera is somehow spawning the endless hoard of locust underlings ",
+        "realizing that the Denizen is somehow spawning the endless hoard of locust underlings ",
         "preventing the next generation of locust underlings, thus ending the consort famine"
     ]);
 

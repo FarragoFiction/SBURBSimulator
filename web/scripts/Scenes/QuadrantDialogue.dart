@@ -465,17 +465,20 @@ class QuadrantDialogue extends Scene {
 		}
 		if(freakOutWeasel.flipOutReason == null) return "ERROR: NO ONE IS FLIPPING OUT.";
 		if(freakOutWeasel.flippingOutOverDeadPlayer != null && freakOutWeasel.flippingOutOverDeadPlayer.dead){
-			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
+			Relationship deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
+			String relationshipName = "Mystery Relation"; //nobody knows who they are
+			if(deadRelationship != null) relationshipName =deadRelationship.nounDescription();
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Oh god. Oh god they are dead. Fuck.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Wait, who is dead?");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel,freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ". Fuck. They died " + freakOutWeasel.flippingOutOverDeadPlayer.causeOfDeath );
-			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Weren't they your " + deadRelationship.nounDescription() + "? Fuck.");
+			chat +=  Scene.chatLine(p2start, shoosher, "Shit. Weren't they your " + relationshipName + "? Fuck.");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Yeah. Fuck.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Listen. It's okay. Maybe this game has a bullshit way to bring them back?");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "I hope so.");
 		}else if(freakOutWeasel.flippingOutOverDeadPlayer != null && !freakOutWeasel.flippingOutOverDeadPlayer.dead){
 			var deadRelationship = freakOutWeasel.getRelationshipWith(freakOutWeasel.flippingOutOverDeadPlayer);
-			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + deadRelationship.nounDescription() + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
+			String relationshipName = "Mystery Relation"; //nobody knows who they are
+			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Jesus fuck, apparently my " + relationshipName + ", " + freakOutWeasel.flippingOutOverDeadPlayer.chatHandle + ",  died.");
 			chat +=  Scene.chatLine(p2start, shoosher, "Oh god. I'm so sorry.");
 			chat +=  Scene.chatLine(p1start, freakOutWeasel, "Apparently they got better? I don't even know how to feel about this.");
 			chat +=  Scene.chatLine(p2start, shoosher, "SBURB fucking sucks.");

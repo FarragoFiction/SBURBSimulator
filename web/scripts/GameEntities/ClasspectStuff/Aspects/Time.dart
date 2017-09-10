@@ -50,7 +50,7 @@ class Time extends Aspect {
     @override
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
         "securing the alpha timeline and keeping the corpse pile from getting any taller",
-        "high fiving themself an hour from now for the amazing job they're going to have done/do with the Hephaestus situation. Time is the best aspect",
+        "high fiving themself an hour from now for the amazing job they're going to have done/do with the Denizen situation. Time is the best aspect",
         "restoring the consort’s destroyed villages through time shenanigans. The consorts boggle at their newly restored houses",
         "building awesome things way in the past for themselves to find later"
     ]);
@@ -59,7 +59,7 @@ class Time extends Aspect {
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[
         "searching through time for an unbroken legendary piece of shit weapon",
         "realizing that the legendary piece of shit weapon was broken WAY before they got here",
-        "alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to Hephaestus"
+        "alchemizing an unbroken version of the legendary piece of shit weapon to pawn off as the real thing to the Denizen"
     ]);
 
     @override
