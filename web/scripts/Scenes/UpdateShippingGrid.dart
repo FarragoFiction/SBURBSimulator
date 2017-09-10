@@ -121,6 +121,7 @@ class UpdateShippingGrid extends Scene{
 			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.HEART);
 		}else{
 			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.BLOOD);
+			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.CHAOS);
 		}
 
 
