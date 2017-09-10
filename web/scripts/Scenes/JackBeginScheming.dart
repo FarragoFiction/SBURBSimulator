@@ -219,6 +219,7 @@ class JackBeginScheming extends Scene {
 		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new PlanToExileJack(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
+		this.session.available_scenes.insert(0, new ConfrontJack(session));//make it top priority, so unshift, don't push
 		var player1 = this.friend;
 		var player2 = getLeader(findLivingPlayers(this.session.players));
 		if(player2 != null && player2 != player1){
@@ -245,6 +246,8 @@ class JackBeginScheming extends Scene {
 			this.session.available_scenes.insert(0, new PrepareToExileQueen(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new PlanToExileJack(this.session));  //make it top priority, so unshift, don't push
 			this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new ConfrontJack(this.session));  //make it top priority, so unshift, don't push
+
 			String ret = " Archagent Jack Noir has not let the Queen's relative weakness go unnoticed. ";
 			ret += " He meets with the " + this.friend.htmlTitle() + " at " + this.friend.shortLand() + " and begins scheming to exile her. ";
 			ret += " You can tell he likes the " + this.friend.htmlTitle() + " because he only stabbed them, like, three times, tops. ";

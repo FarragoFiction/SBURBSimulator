@@ -626,6 +626,7 @@ class MultiSessionSummary {
     }
 
     void setAspects() {
+
         /*List<String> labels = <String>["Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
         for (num i = 0; i < labels.length; i++) {
             this.aspects[labels[i]] = 0;
@@ -663,7 +664,7 @@ class MultiSessionSummary {
         } //end for loop
 
         //List<String> labels = <String>["Knight", "Seer", "Bard", "Maid", "Heir", "Rogue", "Page", "Thief", "Sylph", "Prince", "Witch", "Mage", "Blood", "Mind", "Rage", "Time", "Void", "Heart", "Breath", "Light", "Space", "Hope", "Life", "Doom"];
-        bool noneChecked = true;
+        //bool noneChecked = true;
         /*for (num i = 0; i < labels.length; i++) {
             String l = labels[i];
             if ((querySelector("#$l") as CheckboxInputElement).checked) {
