@@ -17,5 +17,5 @@ class Dreams extends Aspect {
     ..pants_light = 'bdb96a'
     ..pants_dark = 'ab9a55';
 
-  Dreams(int id) :super(id, "Dreams", isCanon: false);
+  Dreams(int id) :super(id, "Dreams", isCanon: true);
 }

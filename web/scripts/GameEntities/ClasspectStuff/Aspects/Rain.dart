@@ -25,5 +25,5 @@ class Rain extends Aspect {
         new AssociatedStat("maxLuck", 3, true)
     ]);
 
-  Rain(int id) :super(id, "Rain", isCanon: false);
+  Rain(int id) :super(id, "Rain", isCanon: true);
 }

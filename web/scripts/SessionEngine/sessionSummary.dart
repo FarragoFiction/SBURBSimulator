@@ -679,18 +679,15 @@ class MultiSessionSummary {
         for (SBURBClass clazz in clabels) {
             if ((querySelector("#corpseclass_$clazz") as CheckboxInputElement).checked) {
                 this.checkedCorpseBoxes.add("corpseclass_$clazz");
-                noneChecked = false;
             }
         }
 
         for (Aspect aspect in alabels) {
             if ((querySelector("#corpseaspect_$aspect") as CheckboxInputElement).checked) {
                 this.checkedCorpseBoxes.add("corpseaspect_$aspect");
-                noneChecked = false;
             }
         }
 
-        if (noneChecked) filteredGhosts = this.ghosts;
         //none means 'all' basically
         setHtml(querySelector("#multiSessionSummaryCorpseParty"), this.generateCorpsePartyInnerHTML(filteredGhosts));
         this.wireUpCorpsePartyCheckBoxes();

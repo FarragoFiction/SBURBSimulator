@@ -76,6 +76,6 @@ class Sand extends Aspect {
     new AssociatedStat("sburbLore", 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
   ]);
 
-  Sand(int id) :super(id, "Sand", isCanon: false);
+  Sand(int id) :super(id, "Sand", isCanon: true);
 
 }

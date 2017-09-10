@@ -48,5 +48,5 @@ class Mist extends Aspect{
   ]);
 
 
-  Mist(int id) :super(id, "Mist", isCanon: false);
+  Mist(int id) :super(id, "Mist", isCanon: true);
 }

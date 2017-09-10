@@ -73,11 +73,10 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
         CHAOS = new Chaos(12);
-
-        MIGHT = new Might(12);
-        MIST = new Mist(13);
-        RAIN = new Rain(14);
-        SAND = new Sand(15);
+        MIGHT = new Might(13);
+        MIST = new Mist(14);
+        RAIN = new Rain(15);
+        SAND = new Sand(16);
 
         NULL = new Aspect(255, "Null");
     }

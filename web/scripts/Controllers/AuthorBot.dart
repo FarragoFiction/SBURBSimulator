@@ -83,12 +83,7 @@ abstract class AuthorBot extends SimController {
   void reckoning() {
     Scene s = new Reckoning(curSessionGlobalVar);
     s.trigger(curSessionGlobalVar.players);
-<<<<<<< HEAD
     s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()));
-=======
-    s.renderContent(curSessionGlobalVar.newScene());
-
->>>>>>> 0234921b05ac46b32a860a7aeb5bb80fa7f318d5
     if(!curSessionGlobalVar.stats.doomedTimeline){
       ////print("debugging AB: reckoning tick for ${curSessionGlobalVar.session_id}");
       reckoningTick();
