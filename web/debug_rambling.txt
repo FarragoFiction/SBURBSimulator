@@ -3411,3 +3411,35 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
  have anything new.
 
  What image should I use for Waste4's button? I wanna go with maybe infinite layered 4th walls?
+
+ Alright. Time for the code.
+
+ Problem: there is currently no "make a combo session" method. Instead it's ina  few places. Like:
+
+ Session tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+         if (tmpcurSessionGlobalVar != null) {
+             curSessionGlobalVar = tmpcurSessionGlobalVar;
+             //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+             appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+             checkSGRUB();
+             load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+         }
+
+
+
+ Think through the steps.
+
+ The aftermath hits. (it will ALWAYS hit, no more ectodoom for space, they will just make themselves in new session).
+
+ processCombinedSession is called. It renders the button because there is a space field. clicking the button should:
+
+ *   curSessionGlobalVar.initializeCombinedSession()  (this NEVER returns null)
+ * curSessionGlobalVar = tmpcurSessionGlobalVar;
+                //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+                appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+                checkSGRUB();
+                load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+
+Okay, so put the if tmpSession != nul shit into it's own method. simple.
+
+I shouldn't ONLY call it from processCombo though. Button should be rendered for ANY aftermath. So don't render combo from process Combo. Instead, render where time button would be renedered.

@@ -41,7 +41,7 @@ class Reckoning extends Scene {
 			intro += " They were totally supposed to take care of the ectobiology. It's cool though, they'll just go back in time and take care of it now. ";
 			intro += " They warp back to the present in a cloud of clocks and gears before you even realize they were gone. See, nothing to worry about. ";
 		}
-		else{
+		else if (!session.mutator.spaceField){
 			intro += " So. I don't know if YOU know that this was supposed to be a thing, but the " + leader.htmlTitleBasic();
 			intro += " was totally supposed to have taken care of the ectobiology. ";
 			intro += " They didn't. They totally didn't.  And now, it turns out that none of the players could have possibly been born in the first place. ";
@@ -58,6 +58,11 @@ class Reckoning extends Scene {
 			SimController.instance.renderScratchButton(this.session);
 			this.session.stats.scratchAvailable = true;
 			return intro;
+		}else {
+			session.logger.info("AB: Space4 Gnosis is making ectobiology able to happen in child sessions. ");
+			intro += "You find out that the ${session.mutator.spacePlayer.htmlTitle()} took care of things. ";
+			intro += " Apparently now you're destined to have always have had been born in some other session? You get a little dizzy trying to think about it. ";
+			intro += " At least you're able to follow that you SHOULD be doomed right now because ectobiology totally didn't happen. But you aren't. And you should thank the ${session.mutator.spacePlayer.htmlTitle()} ";
 		}
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){

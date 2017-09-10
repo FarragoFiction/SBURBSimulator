@@ -460,7 +460,7 @@ class CharacterCreatorHelper {
         if (specific == "Maid")
             return "A Maid distributes their associated aspect to the entire party and starts with a lot of it. They give a boost to their Aspect, embracing even the bad parts.";
         if (specific == "Mage")
-            return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+            return "A Mage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They suffer from the negative parts of their Aspect more than other classes.";
         if (specific == "Knight")
             return "A Knight increases their own associated aspect and starts with a lot of it. They give a  boost to the positive parts of their Aspect, while protecting themselves from the negative parts.  Knights are charged with protecting the Space player while they breed frogs.";
         if (specific == "Rogue")

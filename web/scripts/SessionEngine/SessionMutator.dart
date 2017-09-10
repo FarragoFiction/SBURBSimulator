@@ -17,6 +17,7 @@ class SessionMutator {
     bool rageField = false; //rage can always find victim, and murderMode is always full strife. fraymotif effects aren't cleared at end of fight, shenannigans for everyone
     bool mindField = false; //controls how yellow yards work, mostly only in conjunction with the yellow yard created here. also messes with freeWillScenes.
     bool timeField = false; //means time player will be replacing their past self. basically 100% of time's effect.
+    bool spaceField = false; //exclusively controls combo endings .
 
     static SessionMutator _instance;
     bool rapsAndLuckDisabled = false;
@@ -32,6 +33,7 @@ class SessionMutator {
     num sessionHealth = 500;
     Session savedSession; //for heart callback
     Player inSpotLight; //there can be only one.
+    Player spacePlayer; //there only needs to be one.
     List<Player> timePlayersReplacing = new List<Player>(); //probably WON'T be more than one. but could be.
     double bloodBoost = 6.12; //how much to increase interaction effects by.
     MetaPlayerHandler metaHandler = new MetaPlayerHandler();
@@ -219,22 +221,7 @@ class SessionMutator {
         mindField = true;
         //need a div here or can't wire up buttons. just means it will print out after this event but also 'before' it in time. whatever.
         renderHackedYellowYard(s.newScene("MindGnosis4"), s);
-        /*
-      TODO:
-        * Yellow Yard like thing prints out immediatly upon reaching this tier. Player shown, not me.
-        *  all options are listed instead of just a yards worth (so custom)
-        *  warning that yellow yards tend to be highly susceptible to other wastes fucking shit up (resetting the timeline does NOT reset what wastes did to it and I don't want it to)
-        * NO custom events. Instead all important events no longer care about mvp and their text changes to say things like "never let x die" or whatever.
-        *
-        *
-        *
-        * Step 1: get existing yellow yard type events (unfiltered besides frog) displaying.
-        * Step 2: change how event replacement works with mindField.
-        * Step 3: ???
-        * Step 4: gigglesnort
-        *
-        * so a mind field just changes how a YellowYard works, right?
-     */
+
         return ret;
     }
 
@@ -265,10 +252,7 @@ class SessionMutator {
 
         /*
         TODO:
-        PAUSE THE SESSION TILL WE LOAD
-
-        * allow murder mode strifes to be a pvp strife for kismesis or for rageField
-        *  pvp strifes USUALLY leave the defeated player alive (except for rageField)
+           *  pvp strifes USUALLY leave the defeated player alive (except for rageField)
 
         IMPORTANT: have strifes be collapseable from now on. Show only begining and ending and "victory/defeat" icons.
         Session paused for Observer to make a character.  Observer is also hated most. Observer will be hardest to implement tho, so not v1?
@@ -314,17 +298,6 @@ class SessionMutator {
         timePlayersReplacing.add(doomedPlayer);
         String ret = "The ${activatingPlayer.htmlTitle()} begins flickering in and out of time amid a field of code. What is even happening here? You feel like maybe the answer is 'nothing', at least at this moment. Maybe later something will happen?  Time players man, why can't they just do things linearly? ";
         //this one is very simple here. most of it's the field.
-        /*
-          TODO:
-          * Timeline replay.  Redo session until you get it RIGHT. Everyone lives, full frog.
-          *   Create players, then change seed. shuffle player order, etc.
-          *   time player warps in and kills pas self, replaces them (keeps stats)
-          *   line about them killing their past self and replacing them. so time player might start god tier and shit.
-          *   "go" button similar to scratch before resetting.  unlike mind DOES wait until session results are in.
-          *     * considered this happening right at tier4, without waiting for session results (using presimulation) but realize that might prevent any other
-          *        gnosis 4 from going since time usually gets it first.
-
-       */
         return ret;
     }
 
@@ -455,9 +428,13 @@ class SessionMutator {
     }
 
     String space(Session s, Player activatingPlayer) {
-        return abjectFailure(s, activatingPlayer);
         effectsInPlay ++;
         s.logger.info("AB: Huh. Looks like a Waste of Space is going at it.");
+        spaceField = true;
+        spacePlayer = activatingPlayer;
+        String ret = "The ${activatingPlayer.htmlTitle()} hangs motionless in a field of code.  The very fabric of space seems to be twisting, unraveling itself and reforming into new shapes that please them. ";
+        ret += " You suddenly have the feeling that it is going to be a LONG day. ";
+        //nearly everything here is field
         /*
           TODO:
           * Cccccccombo sessions.   (with "go" button to keep it from being infinite)
@@ -465,6 +442,7 @@ class SessionMutator {
              *   if no frog and can scratch, combo into scratch
              *   gets WEIRD if you enter a purple frog (extra squiddle boss fight with savior?)
      */
+        return ret;
 
     }
 
@@ -679,12 +657,24 @@ class SessionMutator {
         });
     }
 
+    void renderEndButtons(Element div) {
+        if(timeField) renderTimeButton(div);
+        if(spaceField) renderSpaceButton(div);
+    }
+
 
     void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} know we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
         appendHtml(querySelector("#story"), html);
         querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
+    }
+
+    void renderSpaceButton(Element div) {
+        //renders a button. If that button is clicked, resets session.
+        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. ${spacePlayer.titleBasic()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
+        appendHtml(querySelector("#story"), html);
+        querySelector("#resetButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
     }
 
     void replacePlayerIfCan(Element div, Player target) {
