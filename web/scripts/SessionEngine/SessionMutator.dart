@@ -674,17 +674,17 @@ class SessionMutator {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. ${spacePlayer.titleBasic()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
         appendHtml(querySelector("#story"), html);
-        querySelector("#resetButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
+        querySelector("#husieButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
     }
 
     void replacePlayerIfCan(Element div, Player target) {
-        print("trying to replace player,target is ${target.title()} and  time players are ${getPlayersTitlesNoHTML(timePlayersReplacing)}  and target relationships are ${target.relationships.length}");
+        //print("trying to replace player,target is ${target.title()} and  time players are ${getPlayersTitlesNoHTML(timePlayersReplacing)}  and target relationships are ${target.relationships.length}");
         String ret = "The ${target.htmlTitle()} lies dead on the ground. ";
         bool replaced = false;
         Player deadPlayer;
         List<Relationship> relationshipsCopy = new List<Relationship>.from(target.relationships);
         for (Player timePlayer in timePlayersReplacing) {
-            print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
+            //print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
             if (timePlayer.id == target.id) {
 
                 deadPlayer = target.clone();

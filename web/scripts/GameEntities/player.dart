@@ -1662,7 +1662,7 @@ class Player extends GameEntity {
         if (this.isTroll && this.bloodColor != "#ff0000") {
             this.addStat("power", bloodColorToBoost(this.bloodColor));
         }
-        print("power initialized to ${this.getStat("power")}");
+        //print("power initialized to ${this.getStat("power")}");
     }
 
     String toDataStrings(bool includeChatHandle) {
