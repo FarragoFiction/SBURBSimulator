@@ -2,14 +2,26 @@ import "../../../SBURBSim.dart";
 
 import "Blood.dart";
 import "Breath.dart";
+//import "Dreams.dart";
 import "Doom.dart";
+//import "Fate.dart";
+//import "Flow.dart";
 import "Heart.dart";
 import "Hope.dart";
+//import "Law.dart";
 import "Life.dart";
 import "Light.dart";
+import "Might.dart";
 import "Mind.dart";
+import "Mist.dart";
 import "Rage.dart";
+import "Rain.dart";
+//import "Rhyme.dart";
+import "Sand.dart";
+//import "Sky.dart";
+//import "Snow.dart";
 import "Space.dart";
+//import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
 import "Chaos.dart";
@@ -29,6 +41,22 @@ abstract class Aspects {
     static Aspect LIFE;
     static Aspect CHAOS;
 
+    static Aspect MIGHT;
+    static Aspect MIST;
+    static Aspect RAIN;
+    static Aspect SAND;
+
+    /*static Aspect RHYME;
+    static Aspect FLOW;
+    static Aspect FATE;
+    static Aspect LAW;
+    static Aspect DREAMS;
+
+    static Aspect SKY;
+    static Aspect SNOW;
+    static Aspect STARS;
+     */
+
     static Aspect NULL;
 
     static void init() {
@@ -45,6 +73,11 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
         CHAOS = new Chaos(12);
+
+        MIGHT = new Might(12);
+        MIST = new Mist(13);
+        RAIN = new Rain(14);
+        SAND = new Sand(15);
 
         NULL = new Aspect(255, "Null");
     }
@@ -166,7 +199,15 @@ class Aspect {
         "NULLZILLA"
     ]);
     List<String> denizenNames = new List<String>.unmodifiable(<String>[
-        "ERROR 404: DENIZEN NOT FOUND"
+        "ERROR 404: DENIZEN NOT FOUND",
+        "MissingNo", //infamous glitch pokemon
+        "???", //if nulls show up accidentally, the session is probably created worse than expected
+        "Pumpkin", //my sister, who is not actually real (hence her status as a pumpkin).
+        "Shoes", //Nobody Knows Shoes.
+        "Denizen", //fits theme of null being super generic. their denizen can be Denizen.
+        //"Hiveswap", //will never come out.
+        //oops.
+        "Whomst" //memes.
     ]);
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>[
         "Blank",
@@ -190,7 +231,7 @@ class Aspect {
     List<String> handles = new List<String>.unmodifiable(
         <String>["Null", "Nothing", "Mystery"]);
     List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-        "cleaning up after their Denizen in a class approrpiate fashion",
+        "cleaning up after their Denizen in a class appropriate fashion",
         "absolutly not goofing off instead of cleaing up after their Denizen",
         "vaguely sweeping up rubble"
     ]);
