@@ -78,8 +78,8 @@ class Aftermath extends Scene {
 	String hateEnding() {
 		session.stats.hateEnding = true;
 		List<Player> living  = findLivingPlayers(session.players);
-		Player shoutLeader = findLowestStatPlayer(Stats.RELATIONSHIPS,living);
-		Player peaceMaker = findHighestStatPlayer(Stats.RELATIONSHIPS, living);
+		Player shoutLeader = Stats.RELATIONSHIPS.min(living);
+		Player peaceMaker = Stats.RELATIONSHIPS.max(living);
 		String ret = "The ${shoutLeader.htmlTitle()}  rules with an iron fist and insists that they live as gods. ";
 		if(peaceMaker.getStat(Stats.RELATIONSHIPS) > 10) {
 			ret += "The ${peaceMaker.htmlTitle()} begins to rebel ";

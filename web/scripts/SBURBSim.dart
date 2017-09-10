@@ -114,6 +114,7 @@ void globalInit() {
     if (doneGlobalInit) { return; }
     doneGlobalInit = true;
 
+    Stats.init();
     SBURBClassManager.init();
     Aspects.init();
     InterestManager.init();

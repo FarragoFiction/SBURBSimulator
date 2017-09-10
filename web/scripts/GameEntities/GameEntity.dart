@@ -52,12 +52,13 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
     GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
 
-    Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     GameEntity(this.name, this.session) {
-
+        this.initStatHolder();
         id = GameEntity.generateID();
     }
+
+    Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
@@ -415,29 +416,14 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         //stub for sprites, and maybe later consorts or carapcians
     }
 
-    String humanWordForBuffNamed(String statName) {
-        if (statName == "MANGRIT") return "powerful";
-        if (statName == Stats.HEALTH) return "sturdy";
-        if (statName == Stats.CURRENT_HEALTH) return "sturdy";
-        if (statName == Stats.RELATIONSHIPS) return "friendly";
-        if (statName == Stats.MOBILITY) return "fast";
-        if (statName == Stats.SANITY) return "calm";
-        if (statName == Stats.FREE_WILL) return "willful";
-        if (statName == Stats.POWER) return "powerful"; //should never buff this directly, just use MANGRIT
-        if (statName == Stats.MAX_LUCK) return "lucky";
-        if (statName == Stats.MIN_LUCK) return "lucky";
-        if (statName == Stats.ALCHEMY) return "creative";
-        ////session.logger.info("what the hell kind of stat name is: $statName");
-        return "glitchy";
-    }
-
     String describeBuffs() {
         List<String> ret = <String>[];
-        for (Stat stat in Stats.all) {
-            double b = this.buffs.where((Buff b) => b.).map((Buff b) => b.)
+        Iterable<Stat> allStats = Stats.all;
+        for (Stat stat in allStats) {
+            double b = this.stats[stat] - this.stats.derive(stat, false);
             //only say nothing if equal to zero
-            if (b > 0) ret.add("more ${this.humanWordForBuffNamed(stat)}");
-            if (b < 0) ret.add("less ${this.humanWordForBuffNamed(stat)}");
+            if (b > 0) ret.add("more ${stat.emphaticPositive}");
+            if (b < 0) ret.add("less ${stat.emphaticPositive}");
         }
         if (ret.isEmpty) return "";
         return "${this.htmlTitleHP()} is feeling ${turnArrayIntoHumanSentence(ret)} than normal. ";
@@ -544,10 +530,10 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
     num rollForLuck([Stat stat]) {
         if (stat == null) {
-            return this.session.rand.nextIntRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
+            return this.session.rand.nextDoubleRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
         } else {
             //don't care if it's min or max, just compare it to zero.
-            return this.session.rand.nextIntRange(0, this.getStat(stat));
+            return this.session.rand.nextDouble(this.getStat(stat));
         }
     }
 

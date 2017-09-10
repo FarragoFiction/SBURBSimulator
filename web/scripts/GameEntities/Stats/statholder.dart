@@ -71,26 +71,31 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
         return val;
     }
 
-    double derive(Stat stat) {
+    double derive(Stat stat, [bool buffs = true]) {
         // get the actual base value
         double val = this.getBase(stat);
 
-        Iterable<Buff> relevantBuffs = this.getBuffsForStat(stat);
+        Iterable<Buff> relevantBuffs;
+        if (buffs) {
+            relevantBuffs = this.getBuffsForStat(stat);
 
-        // add any base value from buffs
-        val = this.applyBaseAdditive(stat, val, relevantBuffs);
+            // add any base value from buffs
+            val = this.applyBaseAdditive(stat, val, relevantBuffs);
+        }
 
         // let the stat do its own baseline modifications
         val = stat.derived(this, val);
 
-        // additional - additve modifiers
-        val = this.applyAdditional(stat, val, relevantBuffs);
+        if (buffs) {
+            // additional - additve modifiers
+            val = this.applyAdditional(stat, val, relevantBuffs);
 
-        // more - multiplicative modifiers
-        val = this.applyMore(stat, val, relevantBuffs);
+            // more - multiplicative modifiers
+            val = this.applyMore(stat, val, relevantBuffs);
 
-        // final flat additives
-        val = this.applyFinalAdditive(stat, val, relevantBuffs);
+            // final flat additives
+            val = this.applyFinalAdditive(stat, val, relevantBuffs);
+        }
 
         return val;
     }
@@ -141,6 +146,7 @@ abstract class StatOwner implements StatObject {
             return;
         } else if (other is StatHolder) {
             this._stats = createHolder()..copyFrom(other);
+            return;
         }
         throw "Invalid type for StatOwner.stats in $this: $other (${other.runtimeType})";
     }

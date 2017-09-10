@@ -73,7 +73,7 @@ class FreeWillStuff extends Scene {
         String canvasHTML = "<br><canvas id='canvas" + divID + "' width='" + canvasWidth.toString() + "' height=" + canvasHeight.toString() + "'>  </canvas>";
         var f = this.session.fraymotifCreator.makeFraymotif(rand, [this.playerGodTiered], 3); //first god tier fraymotif
         this.playerGodTiered.fraymotifs.add(f);
-        appendHtml(div, " They learn " + f.stat + ". ");
+        appendHtml(div, " They learn " + f.name + ". ");
         appendHtml(div, canvasHTML);
         var canvas = querySelector("#canvas" + divID);
 

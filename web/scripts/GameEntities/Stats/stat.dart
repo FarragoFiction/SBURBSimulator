@@ -44,7 +44,7 @@ abstract class Stats {
         ALCHEMY = new Stat("Alchemy", "creative", "boring");
         SBURB_LORE = new Stat("SBURB Lore", "woke", "clueless", pickable: false);
     }
-    static bool _initialised;
+    static bool _initialised = false;
 
     static List<Stat> _list = <Stat>[];
 
@@ -98,11 +98,14 @@ class Stat {
         return least;
     }
 
-    double average(Iterable<StatObject> from) {
-        this.total(from) / from.length;
+    double average(Iterable<StatObject> from, [bool baseStats = false]) {
+        return this.total(from, baseStats) / from.length;
     }
 
-    double total(Iterable<StatObject> from) {
+    double total(Iterable<StatObject> from, [bool baseStats = false]) {
+        if (baseStats) {
+            return from.map((StatObject o) => o.getStatHolder().getBase(this)).reduce((double a, double b) => a+b);
+        }
         return from.map((StatObject o) => o.getStatHolder()[this]).reduce((double a, double b) => a+b);
     }
 
@@ -114,6 +117,13 @@ class Stat {
             unsorted = unsorted.reversed.toList();
         }
         return unsorted..sort(this.sorter);
+    }
+
+    String emphaticDescriptor(StatObject o) {
+        if (o.getStatHolder()[this] > 0) {
+            return this.emphaticPositive;
+        }
+        return this.emphaticNegative;
     }
 }
 

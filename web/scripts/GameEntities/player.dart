@@ -272,7 +272,7 @@ class Player extends GameEntity {
 
     void addDoomedTimeClone(Player timeClone) {
         doomedTimeClones.add(timeClone);
-       .addStat(Stats.SANITY, -10);
+        addStat(Stats.SANITY, -10);
         flipOut("their own doomed time clones");
     }
 
@@ -529,10 +529,10 @@ class Player extends GameEntity {
         ret += "<br><Br>Prophecy Status: ${prophecy}";
 
         ret += "</td>";
-        List<String> as = new List<String>.from(allStats());
+        Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
-        for (int i = 0; i < as.length; i++) {
-            ret += "${as[i]}: ${getStat(as[i])}<br>";
+        for (Stat stat in as) {
+            ret += "$stat: ${getStat(stat)}<br>";
         }
 
         ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
@@ -1158,16 +1158,6 @@ class Player extends GameEntity {
         }
     }
 
-    @override
-    num rollForLuck([Stat stat]) {
-        if (stat == null || stat == "") {
-            return this.session.rand.nextIntRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
-        } else {
-            //don't care if it's min or max, just compare it to zero.
-            return this.session.rand.nextIntRange(0, this.getStat(stat));
-        }
-    }
-
     void damageAllRelationshipsWithMe() {
         for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
             Relationship r = this.getRelationshipWith(curSessionGlobalVar.players[i]);
@@ -1360,12 +1350,12 @@ class Player extends GameEntity {
     @override
     String describeBuffs() {
         List<String> ret = <String>[];
-        Iterable<String> allStats = this.allStats();
-        for (String stat in allStats) {
-            double b = this.getTotalBuffForStat(stat);
+        Iterable<Stat> allStats = Stats.all;
+        for (Stat stat in allStats) {
+            double b = this.stats[stat] - this.stats.derive(stat, false);
             //only say nothing if equal to zero
-            if (b > 0) ret.add("more ${this.humanWordForBuffNamed(stat)}");
-            if (b < 0) ret.add("less ${this.humanWordForBuffNamed(stat)}");
+            if (b > 0) ret.add("more ${stat.emphaticPositive}");
+            if (b < 0) ret.add("less ${stat.emphaticPositive}");
         }
         if (ret.isEmpty) return "";
         return "<br/><br/>${this.htmlTitleHP()} is feeling ${turnArrayIntoHumanSentence(ret)} than normal. ";
@@ -1852,7 +1842,7 @@ class Player extends GameEntity {
     String voidDescription() {
         for (num i = 0; i < this.associatedStats.length; i++) {
             AssociatedStat stat = this.associatedStats[i];
-            if (stat.multiplier >= 3) return "SO ${this.getEmphaticDescriptionForStatNamed(stat.stat)}";
+            if (stat.multiplier >= 3) return "SO ${stat.stat.emphaticDescriptor(this)}";
         }
         return "SO BLAND";
     }
@@ -1928,7 +1918,7 @@ class Player extends GameEntity {
         if (luck > 5) {
             this.godDestiny = true;
         }
-        this.setStat(Stats.CURRENT_HEALTH,.getStat(Stats.HEALTH)); //could have been altered by associated stats
+        this.setStat(Stats.CURRENT_HEALTH, getStat(Stats.HEALTH)); //could have been altered by associated stats
 
         if (this.class_name == SBURBClassManager.WASTE) {
             Fraymotif f = new Fraymotif("Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
@@ -2012,7 +2002,7 @@ class Player extends GameEntity {
         ret.session = player.session; //session is non negotiable.
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
-        ret.stats.setMap(player.stats);
+        ret.stats = player;
         return ret;
     }
 

@@ -64,18 +64,18 @@ class GetWasted extends Scene {
         if(p.gnosis >=4 || p.gnosis <0) return false; //you are done yo, or you are doing something weird (WM probably caused it)
         //linear works well for these
         if(p.gnosis == 1) {
-            return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
+            return (p.getStat(Stats.SBURB_LORE) >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
         }else if(p.gnosis == 3) {
-            return (p.getStat("sburbLore") >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
+            return (p.getStat(Stats.SBURB_LORE) >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
         }else {
-            return (p.getStat("sburbLore") >= 0.5 * tippingPointBase * (p.gnosis + 1));
+            return (p.getStat(Stats.SBURB_LORE) >= 0.5 * tippingPointBase * (p.gnosis + 1));
         }
     }
 
     @override
     void renderContent(Element div) {
         session.logger.verbose("Getting Wasted in session ${session.session_id}");
-        this.player.setStat("sburbLore", 0);
+        this.player.setStat(Stats.SBURB_LORE, 0);
         this.player.gnosis ++;
         session.removeAvailablePlayer(this.player);
         processTier(div);

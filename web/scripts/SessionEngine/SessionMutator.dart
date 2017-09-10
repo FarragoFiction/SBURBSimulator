@@ -187,8 +187,8 @@ class SessionMutator {
       p.relationships = <Relationship>[];
       p.generateRelationships(s.players);
 
-      for(String str in Player.playerStats) {
-        if(str != Stats.SANITY && str != Stats.RELATIONSHIPS) p.setStat(str, getStatAverage(str, s.players)); //we all work together.
+      for(Stat str in Stats.pickable) {
+        if(str != Stats.SANITY && str != Stats.RELATIONSHIPS) p.setStat(str, str.average(s.players, true)); //we all work together.
       }
 
     }
@@ -282,7 +282,7 @@ class SessionMutator {
       p.grist += s.rand.nextInt(s.expectedGristContributionPerPlayer);
       p.landLevel += s.rand.nextInt(s.goodFrogLevel);
       p.corruptionLevelOther += s.rand.nextIntRange(-100, 100);
-      for(String str in Player.playerStats) {
+      for(Stat str in Stats.pickable) {
           //can lower it but way more likely to raise it
           if(str != Stats.RELATIONSHIPS) {
             p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength));
@@ -882,8 +882,8 @@ class MetaPlayerHandler {
         f.effects.add(new FraymotifEffect(Stats.HEALTH, 3, true));
         f.effects.add(new FraymotifEffect(Stats.HEALTH, 1, false));
         //let's find out together if this crashes.
-        f.effects.add(new FraymotifEffect("sburbLore", 3, true));
-        f.effects.add(new FraymotifEffect("sburbLore", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 1, false));
 
         f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
         player.fraymotifs.add(f);
