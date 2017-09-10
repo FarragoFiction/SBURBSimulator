@@ -92,13 +92,18 @@ class PotentialSprite extends NPC {
     static List<GameEntity> lusus_objects;
     static List<GameEntity> sea_lusus_objects;
     static List<GameEntity> prototyping_objects;
+    static Session defaultSession; //needed so we don't do infinite loop since a session tries to initialize sprites which try to maek a blank session.
 
-    static initializeAShitTonOfPotentialSprites() {
-        if(PotentialSprite.prototyping_objects == null) return; //dont' reinit.
+    static initializeAShitTonOfPotentialSprites(Session s) {
+        if(PotentialSprite.prototyping_objects != null) return; //dont' reinit.
+        defaultSession = s;
+
+        print("initializing potential sprites");
         initializeAShitTonOfGenericSprites();
         initializeAShitTonOfFortuneSprites();
         initializeAShitTonOfDisastorSprites();
         initializeAShotTonOfLususSprites();
+        print("prototyping objects is ${PotentialSprite.prototyping_objects}");
         prototyping_objects.addAll(PotentialSprite.disastor_objects);
         prototyping_objects.addAll(PotentialSprite.fortune_objects);
         prototyping_objects.addAll(PotentialSprite.lusus_objects);
@@ -464,9 +469,8 @@ class PotentialSprite extends NPC {
     }
 
     static initializeAShitTonOfFortuneSprites() {
-
 //fortune
-        List<GameEntity> fortune_objects = <GameEntity>[
+        PotentialSprite.fortune_objects = <GameEntity>[
             new PotentialSprite("Frog", null)
                 ..illegal = true
                 ..setStatsHash(<String,num>{"mobility": 100, "power": 10})

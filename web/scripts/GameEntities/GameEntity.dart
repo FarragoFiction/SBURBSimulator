@@ -17,7 +17,7 @@ class GameEntity implements Comparable<GameEntity> {
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
 
     /// can NEVER be null, but I expect this to be replaced.
-    Session session = new Session(-13);
+    Session session = PotentialSprite.defaultSession; //don't make a new one just use default, don't care what it is gonna override it if it's important.
 
     //TODO replace 'minLuck' with 'destiny'
     String name = "";

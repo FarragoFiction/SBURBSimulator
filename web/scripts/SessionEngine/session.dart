@@ -58,13 +58,16 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
-        PotentialSprite.initializeAShitTonOfPotentialSprites();
+        PotentialSprite.initializeAShitTonOfPotentialSprites(this);
+        npcHandler = new NPCHandler(this);
+        mutator = SessionMutator.getInstance();
+        this.setUpBosses();
         stats.initialGameEntityId = GameEntity.getIDCopy();
         print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
         ////print("Made a new session with an id of $session_id");
-        npcHandler = new NPCHandler(this);
+
         logger = Logger.get("Session: $session_id", false);
-        mutator = SessionMutator.getInstance();
+
         mutator.syncToSession(this);
         this.rand = new Random(session_id);
        resetAvailableClasspects();
