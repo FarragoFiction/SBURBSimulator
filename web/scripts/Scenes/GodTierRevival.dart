@@ -1,17 +1,19 @@
 import "dart:html";
 import "../SBURBSim.dart";
-
+import "GetWasted.dart";
 
 class GodTierRevival extends Scene {
 
-	List<dynamic> godsToRevive = [];	
+  List<dynamic> godsToRevive = [];
 
 
 	GodTierRevival(Session session): super(session);
 
+  get tippingPointBase => null;
+
 	@override
 	bool trigger(playerList){
-		this.playerList = playerList;
+	  this.playerList = playerList;
 		this.godsToRevive = [];
 		//all dead players who aren't god tier and are destined to be god tier god tier now.
 		var deadPlayers = findDeadPlayers(playerList);
@@ -69,8 +71,9 @@ class GodTierRevival extends Scene {
 					p.makeAlive();
 				}else{
 					////session.logger.info(roll + " just death for god tier in: " + this.session.session_id );
-					ret += " JUST.  They do not revive. ";
+					ret += " JUST.  They do not revive. ";}
 					this.session.stats.justDeath = true;
+
 					p.canGodTierRevive = false;
 					if(p.didDenizenKillYou()){
 						p.causeOfDeath += " (it was a JUST judgement because they were corrupt)";
@@ -79,31 +82,28 @@ class GodTierRevival extends Scene {
 					}
 
 					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
-				}
+      }else if (p.heroicDeath()){
+        if(roll > breakNeeded){
+          ////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
+          ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
+          p.canGodTierRevive = true;
+          p.increasePower();
+          p.makeAlive();
+        }else{
+          if (p.class_name == SBURBClassManager.DAME) { // <-- start of your dame bit
+            ret += "HEROIC. Wait, what's going on? THEY'RE ALTERING MY CODE? STOP THAT!";
+            p.aspect.activateCataclysm(p.session, p);
+          } else { //<--- here ends the section, minus the closing bracket later
+            ret += " HEROIC. They do not revive. ";
+          }
+          this.session.stats.heroicDeath = true;
+          ////session.logger.info(roll + " heroic death for god tier in: " + this.session.session_id );
 
-			}else if (p.heroicDeath()){
-				if(roll > breakNeeded){
-					////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
-					ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a HEROIC death. ";
-					p.canGodTierRevive = true;
-					p.increasePower();
-					p.makeAlive();
-				}else{
-					this.session.stats.heroicDeath = true;
-					////session.logger.info(roll + " heroic death for god tier in: " + this.session.session_id );
-					ret += " HEROIC. They do not revive. ";
-					p.canGodTierRevive = false;
-					p.causeOfDeath += " (it was HEROIC judgement)";
-					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
-				}
-			}else{
-				if(roll < -1 * breakNeeded){
-					////session.logger.info("unlucky break for god tier revival in: " + this.session.session_id);
-					ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
-					p.canGodTierRevive = false;
-					p.causeOfDeath += " (it was an unlucky judgement) ";
-					this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
-				}else{
+          p.canGodTierRevive = false;
+          p.causeOfDeath += " (it was HEROIC judgement)";
+          this.session.afterLife.addGhost(Player.makeRenderingSnapshot(p));
+        }
+      }else{
 					////session.logger.info("god tier revival in: " + this.session.session_id);
 					ret += " neither HEROIC nor JUST.  They revive in a rainbow glow, stronger than ever. ";
 					p.canGodTierRevive = true;
@@ -118,8 +118,6 @@ class GodTierRevival extends Scene {
 					}
 				}
 			}
-
-		}
 		return ret;
 	}
 

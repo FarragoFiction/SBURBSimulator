@@ -7,7 +7,7 @@ class Grace extends SBURBClass {
     @override
     List<String> handles = <String>["graceful", "gracious", "great", "gratuitous", "greeting", "gloved", "gone"];
 
-    Grace() : super("Grace", 17, false);
+    Grace() : super("Grace", 17, true);
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

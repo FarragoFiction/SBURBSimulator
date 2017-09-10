@@ -11,7 +11,7 @@ class Waste extends SBURBClass {
     @override
     List<String> handles = <String>["wasteful", "worrying", "wacky", "withering", "worldly", "weighty"];
 
-    Waste() : super("Waste", 12, false);
+    Waste() : super("Waste", 12, true);
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

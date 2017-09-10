@@ -222,7 +222,7 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH) return exploitMobility(div);
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
         if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
-        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
+        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID || player.aspect == Aspects.CHAOS) return exploitGlitches(div);
         if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
         if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
@@ -330,9 +330,12 @@ class GetWasted extends Scene {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
         if(player.aspect == Aspects.VOID) {
             ret += " Uh.  Where did they go? <div class = 'void'> ";
+        }else if(player.aspect == Aspects.SPACE) {
+            ret +=
+            " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
+        }else if(player.aspect == Aspects.CHAOS) {
+            " They temporarily blink out of existence. When they return, everybody seems to have learned a new fraymotif??? And what's the giant pile of grist doing there?";
         }
-        ret += " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
-
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
             String title = "Skaian Magicant Hidden Track: ${p.aspect.name} Edition";
