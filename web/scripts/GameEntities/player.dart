@@ -451,6 +451,7 @@ class Player extends GameEntity {
         this.leftMurderMode = false; //no scars, unlike other revival methods
         this.isDreamSelf = false;
         this.makeAlive();
+        renderSelf();
     }
 
     @override
@@ -2058,6 +2059,8 @@ class Player extends GameEntity {
         ret.causeOfDrain = player.causeOfDrain;
         ret.session = player.session;
         ret.id = player.id;
+        ret.mylevels = player.mylevels;
+        ret.level_index = player.level_index;
         ret.trickster = player.trickster;
         ret.baby_stuck = player.baby_stuck;
         ret.sbahj = player.sbahj;

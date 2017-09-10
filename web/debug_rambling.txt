@@ -3394,3 +3394,7 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
  ~~~~
 
  Current problem. "replaced"  time player has no relationships. even though i'm not really replacing them. I'm overriding them.
+
+ Okay, that's fixed, but like, now the saved time player has no relationships. Which is....what?
+
+ Where are they going? do they have relationships when they are first saved? when i query in the method?
