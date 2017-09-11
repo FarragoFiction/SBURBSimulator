@@ -155,6 +155,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     //String error = e.toString();
 
     String recomendedAction = "";
+    print(curSessionGlobalVar.stats); //why does it think it's not a grim or cataclym when it clear is sometimes?
     Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
     Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
     if (curSessionGlobalVar.stats.crashedFromPlayerActions) {

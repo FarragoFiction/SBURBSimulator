@@ -1427,7 +1427,7 @@ class Player extends GameEntity {
         Relationship bestRelationshipSoFar = this.relationships[0];
         for (num i = 1; i < this.relationships.length; i++) {
             Relationship r = this.relationships[i];
-            if (r.value > bestRelationshipSoFar.value) {
+            if (r != null && r.value > bestRelationshipSoFar.value) {
                 bestRelationshipSoFar = r;
             }
         }
@@ -1446,7 +1446,7 @@ class Player extends GameEntity {
                     ////print(potentialFriends);
                     ////print(this);
                 }
-                if (r.value > bestRelationshipSoFar.value) {
+                if (r != null && r.value > bestRelationshipSoFar.value) {
                     bestRelationshipSoFar = r;
                 }
             }
