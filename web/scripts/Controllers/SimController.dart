@@ -144,8 +144,18 @@ abstract class SimController {
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         curSessionGlobalVar = tmpcurSessionGlobalVar;
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-        appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+        List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
+        if(living.isEmpty) {
+            appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
+        }else {
+            appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+        }
         checkSGRUB();
+        if(curSessionGlobalVar.mutator.spaceField) {
+            window.scrollTo(0, 0);
+            querySelector("#charSheets").setInnerHtml("");
+            querySelector("#story").setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
+        }
         load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
     }
 

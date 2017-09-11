@@ -157,6 +157,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     //String error = e.toString();
 
     String recomendedAction = "";
+    print(curSessionGlobalVar.stats); //why does it think it's not a grim or cataclym when it clear is sometimes?
     Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
     Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
     if (curSessionGlobalVar.stats.crashedFromPlayerActions) {
@@ -179,10 +180,16 @@ bool printCorruptionMessage(ErrorEvent e) {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
-    } else {
+    } else if(curSessionGlobalVar.mutator.effectsInPlay > 0){
+        curSessionGlobalVar.stats.cataclysmCrash = true;
+        appendHtml(story, "<BR>ERROR: NOW YOU FUCKED UP! YOUR SHITTY HACKED CODE CRASHED.");
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ";
+
+    }else {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
         recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(curSessionGlobalVar.getLineage())}";
+
     }
     //var message = ['Message: ' + msg, 'URL: ' + url, 'Line: ' + lineNo, 'Column: ' + columnNo, 'Error object: ' + JSON.encode(error)].join(' - ');
     ////print(message);
@@ -389,7 +396,7 @@ void scratchEasterEggCallBack() {
         curSessionGlobalVar.players[i].renderSelf();
     }
     Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
-
+    if(curSessionGlobalVar.mutator.spaceField) curSessionGlobalVar.mutator.scratchedCombo(curSessionGlobalVar, raggedPlayers);
     SimController.instance.intro();
 }
 
