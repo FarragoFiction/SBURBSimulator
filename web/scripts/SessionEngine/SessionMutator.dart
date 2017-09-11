@@ -149,7 +149,7 @@ class SessionMutator {
     //is reached for a specific aspect
 
     String blood(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         bloodField = true;
         String ret = "The ${activatingPlayer.htmlTitle()} begins to glow amid a field of code the color of old and fresh blood. ";
@@ -208,7 +208,7 @@ class SessionMutator {
 
     //decisions, consequences, rationality
     String mind(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         String ret = "....GOD FUCKING DAMN IT. These punk fucking asshole Wastes that don't know what they are doing have gone too far. ";
         ret += " STAY THE FUCK AWAY FROM MY YARD YOU ASSHOLES!!! ";
         ret += " <br><Br>Fuck. Whatever. Something something glowing code. ";
@@ -226,7 +226,7 @@ class SessionMutator {
     }
 
     String rage(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
 
         effectsInPlay ++;
         rageField = true;
@@ -267,7 +267,7 @@ class SessionMutator {
     String voidStuff(Session s, Player activatingPlayer) {
         effectsInPlay ++;
         voidField = true;
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         String ret = "The ${activatingPlayer.htmlTitle()} is doing something. It's kind of hard to see.  Look at those line of code though...";
         ret += "Huh. You get the strangest feelings that they are looking directly at you.  It's kind of unsettling. ";
         ret += " Suddenly, everything vanishes. Even if  you knew how to see into the Void, you see nothing now. <span class='void'>The ${activatingPlayer.htmlTitle()} is on to you.</span> The ${activatingPlayer.htmlTitle()} is no longer going to suffer for your amusement. ";
@@ -290,7 +290,7 @@ class SessionMutator {
     }
 
     String time(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         timeField = true;
         Player doomedPlayer = Player.makeRenderingSnapshot(activatingPlayer);  //don't make new doomed snapshot, because that's a random thing? or....why am i getting robots?
@@ -302,7 +302,7 @@ class SessionMutator {
     }
 
     String heart(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         heartField = true;
         String ret = "The ${activatingPlayer.htmlTitle()} begins glowing and a haze of pink code hangs around them. They declare that all ships are canon, and can never sink. They begin altering the very identity of everyone toward this end. <br><Br>";
@@ -384,7 +384,7 @@ class SessionMutator {
     }
 
     String breath(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         breathField = true;
         s.rand = new Random(); //breath gets freedom from narrative, true random now, no predictabilitiy.
@@ -415,7 +415,7 @@ class SessionMutator {
         activatingPlayer.godDestiny = true; //it's more dramatic if they god tier l8r if they haven't already
         //since they will be replacing everybody in relationships, may as well have one for themself so they don't crash
         activatingPlayer.relationships.add(new Relationship(activatingPlayer, 88888888, activatingPlayer));
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         String ret = "The ${activatingPlayer.htmlTitle()} has been spouting too much hippie gnostic crap, you think they got wasted on the Kool-aid.  They seem to ACTUALLY believe they are the most important character in Homestuck. Uh. The Session. I meant the session, obviously. ";
         ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
         ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
@@ -429,7 +429,7 @@ class SessionMutator {
 
     String space(Session s, Player activatingPlayer) {
         effectsInPlay ++;
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         spaceField = true;
         spacePlayer = activatingPlayer;
         String ret = "The ${activatingPlayer.htmlTitle()} hangs motionless in a field of code.  The very fabric of space seems to be twisting, unraveling itself and reforming into new shapes that please them. ";
@@ -447,7 +447,7 @@ class SessionMutator {
     }
 
     String hope(Session s, Player hopePlayer) {
-        s.logger.info("AB: Huh. Looks like a ${hopePlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${hopePlayer.title()} is going at it.");
         effectsInPlay ++;
         hopeField = true;
         List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
@@ -512,7 +512,7 @@ class SessionMutator {
     }
 
     String life(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         lifeField = true;
         String ret = "Huh. The ${activatingPlayer.htmlTitle()} is lauging wildly in front of a shimmering sea of code. ";
@@ -540,7 +540,7 @@ class SessionMutator {
     }
 
     String doom(Session s, Player activatingPlayer) {
-        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.htmlTitle()} is going at it.");
+        s.logger.info("AB: Huh. Looks like a ${activatingPlayer.title()} is going at it.");
         effectsInPlay ++;
         doomField = true;
         String ret = "The ${activatingPlayer.htmlTitle()} is floating in a field of glowing code, rewriting the very rules of SBURB, just as prophecy foretold. ";
