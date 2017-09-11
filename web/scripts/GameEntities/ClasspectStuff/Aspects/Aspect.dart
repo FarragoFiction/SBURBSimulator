@@ -49,7 +49,6 @@ abstract class Aspects {
     static Aspect FATE;
     static Aspect LAW;
     static Aspect DREAMS;
-
     static Aspect SKY;
     static Aspect SNOW;
     static Aspect STARS;
