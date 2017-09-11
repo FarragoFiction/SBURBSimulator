@@ -123,7 +123,9 @@ class UpdateShippingGrid extends Scene{
 			tmpPlayer = findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.BLOOD);
 		}
 
+
 		if(tmpPlayer == null || tmpPlayer.dead) return false; //even the mighty power of shipping cannot transcend death.
+
 		this.chosenShipper = this.getShipper(tmpPlayer);
 		this.chosenShipper.otp = null;
 
@@ -131,8 +133,12 @@ class UpdateShippingGrid extends Scene{
 		if(newShips != this.chosenShipper.savedShipText && this.chosenShipper.player.getStat("power") > this.chosenShipper.powerNeeded){
 			this.chosenShipper.powerNeeded += 5;
 			this.chosenShipper.savedShipText = newShips;
+
 			return true;
 		}
+
+
+
 		return false;
 	}
 	Shipper getShipper(Player player){
@@ -642,7 +648,7 @@ class Ship {
 
 
 	String toString(){
-			return r2.target.htmlTitleBasic() + " " + (r1.asciiDescription(player)) + "---" + (r2.asciiDescription(player)) + " " + r1.target.htmlTitleBasic();
+			return r2.target.htmlTitleBasicNoTip() + " " + (r1.asciiDescription(player)) + "---" + (r2.asciiDescription(player)) + " " + r1.target.htmlTitleBasicNoTip();
 		}
 	bool isEqualToShip(ship){
 			//////session.logger.info("comparing: " + this.toString() + " to "  + ship.toString())

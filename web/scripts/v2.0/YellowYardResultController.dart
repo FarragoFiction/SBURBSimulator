@@ -19,7 +19,7 @@ import "../SBURBSim.dart";
 	hrmm...if time playered triggered, maybe can add evil actions, like Damara was doing.
 	dirupt ectobiology. kill players, etc. could trigger some godtiers
 */
-List<dynamic> yyrEventsGlobalVar = [];
+List<ImportantEvent> yyrEventsGlobalVar = [];
 
 class YellowYardResultController {
  List<ImportantEvent> eventsToUndo = [];
@@ -31,7 +31,7 @@ class YellowYardResultController {
 	ImportantEvent doesEventNeedToBeUndone(ImportantEvent e){
     //  //print("Does: " + e.humanLabel() + " need to be undone?")
         for(num i = 0; i<this.eventsToUndo.length; i++){
-          var e2 = this.eventsToUndo[i];
+            ImportantEvent e2 = this.eventsToUndo[i];
 		 // //print("checking if needs to be undone");
           if(doEventsMatch(e,e2,true)){
           //  //print("retunning event that will provide alternate scene, " + e2.humanLabel())
@@ -62,9 +62,9 @@ bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool sp
   //  //print("constructor did not match.");
     return false;
   }
-  if(newEvent.mvp_value != storedEvent.mvp_value){
-    //  //print("mvp did not match");
+  if(newEvent.mvp_value != storedEvent.mvp_value ){ //mind field means mvp doesn't matter.
       return false;
+    //  //print("mvp did not match");
   }
   if(newEvent.player != null && storedEvent.player != null){
 	  //should work even if player is supposed to be null

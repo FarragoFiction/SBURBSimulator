@@ -58,10 +58,16 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
-        ////print("Made a new session with an id of $session_id");
+        PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
-        logger = Logger.get("Session: $session_id", false);
         mutator = SessionMutator.getInstance();
+        this.setUpBosses();
+        stats.initialGameEntityId = GameEntity.getIDCopy();
+        print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
+        ////print("Made a new session with an id of $session_id");
+
+        logger = Logger.get("Session: $session_id", false);
+
         mutator.syncToSession(this);
         this.rand = new Random(session_id);
        resetAvailableClasspects();
@@ -132,7 +138,8 @@ class Session {
             if (s.trigger(playersInSession)) {
                 //session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+
+                s.renderContent(this.newScene(s.runtimeType.toString()));
                 if (!s.canRepeat) {
                     //removeFromArray(s,session.available_scenes);
                     this.available_scenes.remove(s);
@@ -145,7 +152,7 @@ class Session {
             if (s.trigger(playersInSession)) {
                 //	session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
     }
@@ -156,7 +163,7 @@ class Session {
             if (s.trigger(playerList)) {
                 //session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
 
@@ -165,7 +172,7 @@ class Session {
             if (s.trigger(playerList)) {
                 //	session.scenesTriggered.add(s);
                 this.numScenes ++;
-                s.renderContent(this.newScene());
+                s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
     }
@@ -356,7 +363,7 @@ class Session {
             ..makeGuardians();
         if (living.length + newSession.players.length > 12) {
             ////print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
-            return null; //their child session is not able to support them
+           if(! mutator.spaceField) return null; //their child session is not able to support them  (space says 'fuck this noise we doing it')
         }
         //	//print("about to add: " + living.length + " aliens to new session.");
         ////print(getPlayersTitles(living));
@@ -382,6 +389,7 @@ class Session {
     }
 
     void reinit() {
+        GameEntity.resetNextIdTo(stats.initialGameEntityId);
         resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
@@ -515,11 +523,11 @@ class Session {
         return session_id.toString();
     }
 
-    Element newScene([overRideVoid = false]) {
+    Element newScene(String callingScene, [overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
-        if(mutator.lightField) lightBS = "Scened ID: ${this.currentSceneNum}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning}";
+        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";

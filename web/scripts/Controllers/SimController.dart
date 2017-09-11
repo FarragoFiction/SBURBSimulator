@@ -41,7 +41,7 @@ abstract class SimController {
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
         s.trigger(playersInMedium, p);
-        s.renderContent(curSessionGlobalVar.newScene(), player_index); //new scenes take care of displaying on their own.
+        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()), player_index); //new scenes take care of displaying on their own.
         curSessionGlobalVar.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
@@ -126,13 +126,12 @@ abstract class SimController {
     }
 
     void processCombinedSession() {
+        if(curSessionGlobalVar.mutator.spaceField) {
+            return; //you will do combo a different route.
+        }
         Session tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
         if (tmpcurSessionGlobalVar != null) {
-            curSessionGlobalVar = tmpcurSessionGlobalVar;
-            //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-            appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
-            checkSGRUB();
-            load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+            doComboSession(tmpcurSessionGlobalVar);
         } else {
             //scratch fuckers.
             curSessionGlobalVar.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
@@ -141,11 +140,30 @@ abstract class SimController {
         }
     }
 
+    void doComboSession(Session tmpcurSessionGlobalVar) {
+        if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
+        curSessionGlobalVar = tmpcurSessionGlobalVar;
+        //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+        List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
+        if(living.isEmpty) {
+            appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
+        }else {
+            appendHtml(querySelector("#story"), "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+        }
+        checkSGRUB();
+        if(curSessionGlobalVar.mutator.spaceField) {
+            window.scrollTo(0, 0);
+            querySelector("#charSheets").setInnerHtml("");
+            querySelector("#story").setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
+        }
+        load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+    }
+
     void reckoning() {
         ////print('reckoning');
         Scene s = new Reckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
-        s.renderContent(curSessionGlobalVar.newScene());
+        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
         if (!curSessionGlobalVar.stats.doomedTimeline) {
             reckoningTick();
         } else {
@@ -164,7 +182,7 @@ abstract class SimController {
         } else {
             Scene s = new Aftermath(curSessionGlobalVar);
             s.trigger(curSessionGlobalVar.players);
-            s.renderContent(curSessionGlobalVar.newScene(true));
+            s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(), true));
             if (curSessionGlobalVar.stats.makeCombinedSession == true) {
                 processCombinedSession(); //make sure everything is done rendering first
             } else {
@@ -175,6 +193,7 @@ abstract class SimController {
     }
 
     void recoverFromCorruption() {
+        if(curSessionGlobalVar != null) curSessionGlobalVar.mutator.renderEndButtons(querySelector("#story"));
         if(curSessionGlobalVar != null) curSessionGlobalVar.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
         //print("Other controllers will do something after corruption, but the sim just ends.");
     }

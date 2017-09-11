@@ -94,7 +94,7 @@ class Intro  extends IntroScene{
 		appendHtml(div, ret);
 		return "";
 	}
-	dynamic addImportantEvent(){
+	ImportantEvent addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
 		////session.logger.info("Entering session, mvp is: " + current_mvp.getStat("power"));
 		if(this.player.aspect == Aspects.TIME && this.player.object_to_prototype != null && !this.player.object_to_prototype.illegal){ //tier4 gnosis is weird
@@ -644,13 +644,14 @@ class Intro  extends IntroScene{
 
 		//throw "testing testing";
 		if(i == 0) this.player.leader = true; //fuck you, you're the leader.
-		//foundRareSession(div, "This is just a test. " + this.session.session_id);
+        session.mutator.replacePlayerIfCan(div, this.player);
+        //foundRareSession(div, "This is just a test. " + this.session.session_id);
 		String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
 		Drawing.drawCharSheet(canvasDiv,this.player);
 		this.player.generateDenizen();
-		var alt = this.addImportantEvent();
+		ImportantEvent alt = this.addImportantEvent();
 		if(alt != null && alt.alternateScene(div)){
 			return;
 		}

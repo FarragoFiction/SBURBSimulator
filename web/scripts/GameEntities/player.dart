@@ -21,6 +21,8 @@ class Player extends GameEntity {
     num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
+    bool deriveSprite = true;
+
     bool deriveLand = true;
     String flipOutReason = null; //if it's null, i'm not flipping my shit.
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -449,6 +451,7 @@ class Player extends GameEntity {
         this.leftMurderMode = false; //no scars, unlike other revival methods
         this.isDreamSelf = false;
         this.makeAlive();
+        renderSelf();
     }
 
     @override
@@ -519,6 +522,10 @@ class Player extends GameEntity {
     @override
     String htmlTitleBasic() {
         return "${getToolTip()}${this.aspect.fontTag()}${this.titleBasic()}</font></span>";
+    }
+
+    String htmlTitleBasicNoTip() {
+        return "${this.aspect.fontTag()}${this.titleBasic()}</font>";
     }
 
     //@override
@@ -1420,7 +1427,7 @@ class Player extends GameEntity {
         Relationship bestRelationshipSoFar = this.relationships[0];
         for (num i = 1; i < this.relationships.length; i++) {
             Relationship r = this.relationships[i];
-            if (r.value > bestRelationshipSoFar.value) {
+            if (r != null && r.value > bestRelationshipSoFar.value) {
                 bestRelationshipSoFar = r;
             }
         }
@@ -1439,7 +1446,7 @@ class Player extends GameEntity {
                     ////print(potentialFriends);
                     ////print(this);
                 }
-                if (r.value > bestRelationshipSoFar.value) {
+                if (r != null && r.value > bestRelationshipSoFar.value) {
                     bestRelationshipSoFar = r;
                 }
             }
@@ -1498,9 +1505,9 @@ class Player extends GameEntity {
 
     void decideLusus() {
         if (this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4") {
-            this.myLusus = session.rand.pickFrom(sea_lusus_objects);
+            this.myLusus = session.rand.pickFrom(PotentialSprite.sea_lusus_objects);
         } else {
-            this.myLusus = session.rand.pickFrom(lusus_objects);
+            this.myLusus = session.rand.pickFrom(PotentialSprite.lusus_objects);
         }
     }
 
@@ -1655,6 +1662,7 @@ class Player extends GameEntity {
         if (this.isTroll && this.bloodColor != "#ff0000") {
             this.addStat("power", bloodColorToBoost(this.bloodColor));
         }
+        //print("power initialized to ${this.getStat("power")}");
     }
 
     String toDataStrings(bool includeChatHandle) {
@@ -1984,11 +1992,11 @@ class Player extends GameEntity {
         //reroll goddestiny and sprite as well. luck might have changed.
         num luck = this.rollForLuck();
         if (this.class_name == SBURBClassManager.WITCH || luck < -9) {
-            this.object_to_prototype = this.session.rand.pickFrom(disastor_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(PotentialSprite.disastor_objects);
             this.object_to_prototype.session = session;
             ////print("disastor");
         } else if (luck > 25) {
-            this.object_to_prototype = this.session.rand.pickFrom(fortune_objects);
+            if(deriveSprite) this.object_to_prototype = this.session.rand.pickFrom(PotentialSprite.fortune_objects);
             this.object_to_prototype.session = session;
             ////print("fortune");
         }
@@ -2046,12 +2054,15 @@ class Player extends GameEntity {
         Player ret = new Player();
         ret.robot = player.robot;
         ret.godDestiny = player.godDestiny;
+        ret.gnosis = player.gnosis;
         ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
         ret.ghost = player.ghost;
         ret.causeOfDrain = player.causeOfDrain;
         ret.session = player.session;
         ret.id = player.id;
+        ret.mylevels = player.mylevels;
+        ret.level_index = player.level_index;
         ret.trickster = player.trickster;
         ret.baby_stuck = player.baby_stuck;
         ret.sbahj = player.sbahj;

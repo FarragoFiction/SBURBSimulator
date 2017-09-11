@@ -35,7 +35,7 @@ class FreeWillStuff extends Scene {
                 this.decision = breakFree;
                 return true;
             }
-            if (player.getStat("freeWill") > 30 || player.canMindControl() != null) { //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+            if (player.getStat("freeWill") > 30 || player.canMindControl() != null || session.mutator.mindField) { //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
                 String decision = this.getPlayerDecision(player);
                 if (decision != null) {
                     this.player = player;
