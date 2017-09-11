@@ -15,7 +15,7 @@ void loadGuide() {
 }
 
 void loadGuide1() {
-    quiz = new Quiz(querySelector("#guide"),"Gnosis and YOU: An interactive Guide.", ":) :) :) I am so glad you asked hypothetical Observer! Let's do this shit, let's make it hapen! And what better way to make shit happen than in a shitty interactive quiz! Truly, it is the most eglitarian of all mediums.<br><br>Together, we shall go on a magical journey of exploration, learning about what Gnosis means in SBURBSim and MAYBE, even a little bit about ourselves.");
+    quiz = new Quiz(querySelector("#guide"),"Gnosis and YOU: An interactive Guide.", ":) :) :)  Let's do this shit, let's make it hapen! And what better way to make shit happen than in a shitty interactive quiz! Truly, it is the most eglitarian of all mediums.<br><br>Together, we shall go on a magical journey of exploration, learning about what Gnosis means in SBURBSim and MAYBE, even a little bit about ourselves.");
 
     QuizQuestion question1 = new QuizQuestion(1,"How Bullshit is Gnosis?","I wonder what is the refrance???")
         ..addAnswer(new QuizAnswer(1, 1, false, "Extremely", null))
@@ -50,7 +50,7 @@ void loadGuide2() {
 
     QuizQuestion question2 = new QuizQuestion(2,"Okay, so let me set the stage for you...",null)
         ..addAnswer(new QuizAnswer(1, 2, false, "The Time was just after The Great Refactoring, the biggest, most BORING challenge in the history of the Sim.", null))
-        ..addAnswer(new QuizAnswer(2, 2, false, "I was burnt out as fuck, and wanted to do some big dumb update that ALSO very obviously channged the sessions. ", null))
+        ..addAnswer(new QuizAnswer(2, 2, false, "I was burnt out as fuck, and wanted to do some big dumb update that ALSO very obviously changed the sessions. ", null))
         ..addAnswer(new QuizAnswer(3, 2, false, "And I'd only recently gotten the Wastes into the Sim at all. I KNEW I'd have fun doing their meta bullshit, and that it'd be game breaking enough to satisfy my craving.", null))
         ..addAnswer(new QuizAnswer(4, 2, false, "So I implemented this huge fucking mechanic of SBURBLore and Gnosis and shit to represent 4th wall breaking meta shenanigans.", "Oh so THAT'S why this guide is confusing as fuck."));
 
@@ -76,7 +76,7 @@ void loadGuide3() {
         ..addAnswer(new QuizAnswer(4, 1, false, "Tier 4: Change the Rules", "What even is this?"));
 
     QuizQuestion question2 = new QuizQuestion(2,"Tier4 is the meat of everything. And it's the rarest in 'canon'. Unless you start mucking around with fanon classpects, you probably aren't going to see this more than a time or two in a hundred sessions.  Wastes, like me, are especially associated with it.<br><br> While the minor effects are too numerous to list, here's some of the major ones:"," Oh. So all this shit is part of your elaborate narcissism role play. Okay.")
-        ..addAnswer(new QuizAnswer(1, 2, false, "Blood: Has the great idea to make copies of SBURB to try to save other friends. ", "...Is that why they were Null players?"))
+        ..addAnswer(new QuizAnswer(1, 2, false, "Blood: Has the great idea to make cracked copies of SBURB to try to give to other friends. ", "...Is that why they were Null players?"))
         ..addAnswer(new QuizAnswer(2, 2, false, "Mind: Steals my goddamned gimmick and lets you use my YellowYard, except WITHOUT the Yard to keep it stable. ", "Wait. What's a YellowYard???"))
         ..addAnswer(new QuizAnswer(3, 2, false, "Rage: Realizes they are in a shitty game. Manifests the creators of said game for vengence. ", "Wackiness ensues if they manage to kill any of us. "))
         ..addAnswer(new QuizAnswer(3, 2, false, "Void: Realizes that you're watching them. Does everything they can to prevent this, even going so far as to lie to AB about session results. ", "Wow. Rude."))
@@ -93,11 +93,11 @@ void loadGuide3() {
         ..addAnswer(new QuizAnswer(1, 3, false, "Well, the conceit is that at Tier4 the Player hacks the code.", null))
         ..addAnswer(new QuizAnswer(2, 3, false, "And if you know anything about hacking somebody else's code...", null))
         ..addAnswer(new QuizAnswer(3, 3, false, "You'd know it's hard to do right.", null))
-        ..addAnswer(new QuizAnswer(4, 3, false, "And even harder to do without unintended consequences.", "Not the other ones tho. What did you think this was actually a QUIZ?"));
+        ..addAnswer(new QuizAnswer(4, 3, false, "And even harder to do without unintended consequences.", null));
 
     QuizQuestion question4 = new QuizQuestion(4,"Okay. Well. I think I'm about out of gigglesnort-free answers. Feel free to check my Tumblr, tho.",null)
-        ..addAnswer(new QuizAnswer(1, 4, false, "<a href = 'https://jadedresearcher.tumblr.com/tagged/gnosis'>All gnosis posts</a>", null))
-        ..addAnswer(new QuizAnswer(2, 4, false, "<a href = 'https://jadedresearcher.tumblr.com/post/164794031394/gnosis-tier3-is-complete'>In depth on Tier3</a>", null));
+        ..addAnswer(new QuizAnswer(1, 4, false, "<a target='_blank' href = 'https://jadedresearcher.tumblr.com/tagged/gnosis'>All gnosis posts</a>", null))
+        ..addAnswer(new QuizAnswer(2, 4, false, "<a target='_blank' href = 'https://jadedresearcher.tumblr.com/post/164794031394/gnosis-tier3-is-complete'>In depth on Tier3</a>", null));
 
 
     quiz.addQuestion(question1);
