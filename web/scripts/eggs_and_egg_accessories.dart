@@ -337,7 +337,6 @@ void debugRoyalRumble(){
 		p.generateRelationships(curSessionGlobalVar.players);  //heiresses hate each other
 		p.quirk = randomTrollSim(curSessionGlobalVar.rand, p);
 	}
-
 }
 
 
