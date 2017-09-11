@@ -8,6 +8,7 @@ void main() {
 }
 
 void loadGuide() {
+    window.scrollTo(0, 0);
     if(quiz != null) quiz.clearSelf();
     if(guideNum == 1) loadGuide1();
     if(guideNum == 2) loadGuide2();
