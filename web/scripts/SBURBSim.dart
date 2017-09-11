@@ -178,7 +178,7 @@ bool printCorruptionMessage(ErrorEvent e) {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
-    } else if(curSessionGlobalVar.stats.hasTier4Events){
+    } else if(curSessionGlobalVar.mutator.effectsInPlay > 0){
         curSessionGlobalVar.stats.cataclysmCrash = true;
         appendHtml(story, "<BR>ERROR: NOW YOU FUCKED UP! YOUR SHITTY HACKED CODE CRASHED.");
         recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ";
