@@ -1506,8 +1506,10 @@ class Player extends GameEntity {
     void decideLusus() {
         if (this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4") {
             this.myLusus = session.rand.pickFrom(PotentialSprite.sea_lusus_objects);
+            this.myLusus.session = session;
         } else {
             this.myLusus = session.rand.pickFrom(PotentialSprite.lusus_objects);
+            this.myLusus.session = session;
         }
     }
 

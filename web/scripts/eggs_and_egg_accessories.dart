@@ -330,6 +330,7 @@ void debugRoyalRumble(){
 		p.bloodColor = "#99004d";
 		p.addStat("sanity",-10);
 		p.decideLusus();
+		p.hairColor = "#000000";
 		p.object_to_prototype = p.myLusus;
 		p.relationships = [];
 		p.quirk = null;
