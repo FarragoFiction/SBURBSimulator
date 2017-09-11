@@ -314,7 +314,7 @@ class SessionMutator {
             ret += "<br><br>The ${p.htmlTitle()} begins to change.  They no longer enjoy ${p.interest1.name}.";
             p.interest1 = activatingPlayer.interest1; //you now are required to have one thing in common with the heart player.
             ret += " Instead, they now prefer the clearly superior ${p.interest1.name}, just like the ${activatingPlayer.htmlTitle()}.";
-            p.aspect = s.rand.pickFrom(Aspects.all);
+            if(p.aspect != Aspects.SPACE && p.aspect != Aspects.TIME) p.aspect = s.rand.pickFrom(Aspects.all);
             p.class_name = s.rand.pickFrom(SBURBClassManager.all);
             p.associatedStats = []; //lose everything from your old classpect
             p.aspect.initAssociatedStats(p);
