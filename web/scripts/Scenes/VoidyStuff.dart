@@ -19,12 +19,25 @@ class VoidyStuff extends Scene {
 		this.playerList = playerList;
 		this.player = null;
 		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
-		if(rand.nextDouble() > .5){
+		double randomCheck = rand.nextDouble();
+		if(randomCheck > .66){
 			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID);
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE); //if there is no void player
-		}else{
+			if(this.enablingPlayer == null){//if there is no void player
+				this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE);
+				if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.SAND);//if there is no rage player
+			}
+		}else if (randomCheck < .33){
 			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE);
-			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID); //if there is no rage player
+			if(this.enablingPlayer == null){//if there is no rage player
+				this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.SAND);
+				if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID);//if there is no sand player
+			}
+		}else{
+			this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.SAND);
+			if(this.enablingPlayer == null){//if there is no sand player
+				this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID);
+				if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.RAGE);//if there is no void player
+			}
 		}
 
 		if(this.enablingPlayer != null){
@@ -59,6 +72,8 @@ class VoidyStuff extends Scene {
 			}
 		}else if(this.enablingPlayer.aspect == Aspects.RAGE){
 			classDiv = "rage";
+		}else if(this.enablingPlayer.aspect == Aspects.SAND){
+			classDiv = "sand";
 		}
 
 		if(classDiv == "void"){
@@ -67,6 +82,8 @@ class VoidyStuff extends Scene {
 			ret += "The " + this.player.htmlTitle() + " is doing something... motherfucking miraculous. It's kind of hard to look away.";
 		}else if(classDiv == "light"){
 				ret += "The " + this.player.htmlTitle() + " is doing...something. It's kind of hard to-wait. What? Fucking Light players. Keep it down! The " + this.player.htmlTitleBasic() + " is trying to be sneaky and off screen!";
+		}else if(classDiv == "sand"){
+			ret += "The " + this.player.htmlTitle() + " claims to be doing nothing. They look pretty suspicious.";
 		}
 		if(classDiv != 'light' && this.player != this.enablingPlayer) ret+= " You are definitely blaming the " + this.enablingPlayer.htmlTitle() + ", somehow. ";
 		appendHtml(div, ret);

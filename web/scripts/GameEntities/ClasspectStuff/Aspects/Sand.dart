@@ -63,17 +63,12 @@ class Sand extends Aspect {
     "[redacted]",
     "[void players, am I right?]"
   ]);
-*/ //todo: mcFucking do these things.
-  static List<String> _randomStats = Player.playerStats.toList()
-    ..remove("power")
-    ..add("MANGRIT");
-
+*/
   @override
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-    new AssociatedStatRandom(_randomStats, 3, true), //really good at one thing
-    new AssociatedStatRandom(_randomStats, -1, true), //hit to another thing.
-    new AssociatedStat("minLuck", -1, true), //hit to another thing.
-    new AssociatedStat("sburbLore", 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
+    new AssociatedStat("RELATIONSHIPS", 3, true), //Never truthful. but nobody knows that, do they?
+    new AssociatedStat("sanity", -2, true) //no, you are not sane for cheating your way out of everything.
+
   ]);
 
   Sand(int id) :super(id, "Sand", isCanon: false);
