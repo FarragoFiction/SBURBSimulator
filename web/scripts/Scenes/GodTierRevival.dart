@@ -1,6 +1,5 @@
 import "dart:html";
 import "../SBURBSim.dart";
-import "GetWasted.dart";
 
 class GodTierRevival extends Scene {
 
