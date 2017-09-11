@@ -67,7 +67,7 @@ class Time extends Aspect {
         new AssociatedStat("minLuck", 2, true),
         new AssociatedStat("mobility", 1, true),
         new AssociatedStat("freeWill", -2, true),
-        new AssociatedStat("sburbLore", -0.05, false) //time players hit tier4 so much it's meaningless. they are getting nerfed.
+        new AssociatedStat("sburbLore", -2.0, false) //time players hit tier4 so much it's meaningless. they are getting nerfed.
     ]);
 
     Time(int id) :super(id, "Time", isCanon: true);
