@@ -43,7 +43,7 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
 
-        NULL = new Aspect(255, "Null");
+        NULL = new Aspect(255, "Null", isInternal:true);
     }
 
     // ##################################################################################################
@@ -75,7 +75,9 @@ abstract class Aspects {
         return NULL;
     }
 
-    static Iterable<Aspect> get all => _aspects.values;
+    static Iterable<Aspect> get all => _aspects.values.where((Aspect a) => !a.isInternal);
+
+
 
     static Iterable<Aspect> get canon => _aspects.values.where((Aspect a) => a.isCanon);
 
@@ -102,6 +104,7 @@ class Aspect {
     FAQFile faqFile;
     String symbolImgLocation = "";
     String bigSymbolImgLocation = "";
+    bool internal = false; //if you're an internal aspect or class you shouldn't show up in lists.
 
     /// Used for string representations of the aspect.
     String name;
@@ -109,6 +112,7 @@ class Aspect {
 
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
+    final bool isInternal; //don't let null show up in lists.
 
     // ##################################################################################################
     // Tags
@@ -208,7 +212,7 @@ class Aspect {
     // ##################################################################################################
     // Constructor
 
-    Aspect(int this.id, String this.name, {this.isCanon = false}) {
+    Aspect(int this.id, String this.name, {this.isCanon = false, this.isInternal = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
         this.savedName = this.name;
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
