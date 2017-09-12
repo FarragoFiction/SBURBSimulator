@@ -66,7 +66,9 @@ class Spirit extends Aspect {
 
   @override
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-    new AssociatedStat("freewill", 1, true)
+    new AssociatedStat("RELATIONSHIPS", 1, true),
+    new AssociatedStat("freewill", 1, true),
+    new AssociatedStat("sanity", -1, true)
   ]);
 
   Spirit(int id) :super(id, "Spirit", isCanon: true);

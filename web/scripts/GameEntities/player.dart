@@ -221,7 +221,7 @@ class Player extends GameEntity {
             //alert("I have associated stats: " + i);
             AssociatedStat stat = this.associatedStats[i];
             if (stat.name == "MANGRIT") {
-                tmpStatHolder["power" ] = tmpStatHolder["power"] * stat.multiplier * strength;
+                tmpStatHolder["power" ] += tmpStatHolder["power"] * stat.multiplier * strength;
             } else {
                 tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
             }

@@ -70,16 +70,12 @@ class SBURBClassManager {
         SAGE = new Sage();
         GUIDE = new Guide();
         GRACE = new Grace();
-<<<<<<< HEAD
         REVE = new Reve();
         WRIT = new Writ();
-        NULL = new SBURBClass("Null", 255, false);
         LORD = new Lord();
         MUSE = new Muse();
         DAME = new Dame();
-=======
         NULL = new SBURBClass("Null", 255, false, isInternal:true);
->>>>>>> 70c5af53fa721a34fc1bcb6c45a34ae4da223275
     }
 
 
