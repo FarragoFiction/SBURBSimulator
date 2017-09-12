@@ -26,7 +26,7 @@ typedef DrawingMethod(String canvasID, List<Player> players);
 class GetWasted extends Scene {
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 13; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
+    int tippingPointBase = 20; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
     //for everything that's not a class or aspect but can be in any faq
     WeightedList<FAQFile> miscFAQS = new WeightedList<FAQFile>();
     //special ones based on current circumstances
