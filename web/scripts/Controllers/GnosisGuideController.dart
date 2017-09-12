@@ -5,9 +5,14 @@ Quiz quiz;
 int guideNum = 1;
 void main() {
     loadGuide1();
+    querySelector("#avatar").onClick.listen((e) {
+        guideNum = 3;
+        loadGuide();
+    });
 }
 
 void loadGuide() {
+    window.scrollTo(0, 400);
     if(quiz != null) quiz.clearSelf();
     if(guideNum == 1) loadGuide1();
     if(guideNum == 2) loadGuide2();
