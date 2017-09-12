@@ -1839,7 +1839,7 @@ class Player extends GameEntity {
          if(aspect == Aspects.SPACE){//this shit is so illegal
             // print("I'm a space player, I can only be helped by knight");
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper.id != this.id){ //a knight of space can't help themselves.
+             if(helper != null && helper.id != this.id){ //a knight of space can't help themselves.
                  ////print("Debugging helpers: Found $helper in session ${session.session_id}");
                  //print("found a knight");
                  return helper;
