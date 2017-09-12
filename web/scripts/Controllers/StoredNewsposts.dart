@@ -7,6 +7,8 @@ class Newspost
   Newspost(this.date, this.post);
 
   static List<Newspost> makeAuthorNewsposts() {
+
+    //link to JS for tomorrows update http://farragofiction.com/SBURBSimJS/
     List<Newspost> ret = [
       new Newspost("9/12/17","Guess whose server died dramtically last night in the wake of Hurricane Irma? It was my server. It's always me. Even after the power got restored, my server was still inaccessible, tho. I finally got it back up this morning though.  Fuckin firewalls man, how do they work?<br><Br>Today will be more stability fixes.")
       ,new Newspost("9/11/17","Enough people have been asking me about the Gnosis update that I have made this handy <a href='gnosis.html'>Gnosis FAQ</a> for all your gigglesnort meta-talk needs. <br><Br>I've also been seriously working on balance and stabliity for gnosis, as well as killing all the pesky little bugs I haven't gotten around to yet. <br><br>My goal is to get this onto main the 13th, basically.")
