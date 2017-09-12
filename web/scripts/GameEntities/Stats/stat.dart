@@ -31,7 +31,7 @@ abstract class Stats {
 
         POWER = new XPScaledStat("Power", "strong", "weak", 0.01, coefficient: 10.0)..minBase=5.0..minDerived=1.0;
         HEALTH = new XPScaledStat("Health", "sturdy", "fragile", 0.02, coefficient: 10.0)..minBase=5.0;
-        CURRENT_HEALTH = new Stat("Current Health", "healthy", "infirm", pickable: false, summarise:false);
+        CURRENT_HEALTH = new Stat("Current Health", "healthy", "infirm", pickable: false, transient:true);
         MOBILITY = new Stat("Mobility", "fast", "slow");
 
         RELATIONSHIPS = new RelationshipStat("Relationships", "friendly", "aggressive", pickable: false); // should be a special one to deal with players
@@ -57,8 +57,11 @@ class Stat {
     final String name;
     final String emphaticPositive;
     final String emphaticNegative;
+
     final bool pickable;
     final bool summarise;
+    final bool transient;
+
     final double coefficient;
 
     double minBase = double.NEGATIVE_INFINITY;
@@ -66,7 +69,7 @@ class Stat {
     double minDerived = double.NEGATIVE_INFINITY;
     double maxDerived = double.INFINITY;
 
-    Stat(String this.name, String this.emphaticPositive, String this.emphaticNegative, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true}) {
+    Stat(String this.name, String this.emphaticPositive, String this.emphaticNegative, {double this.coefficient = 1.0, bool this.pickable = true, bool this.summarise = true, bool this.transient = false}) {
         Stats._list.add(this);
     }
     
@@ -135,7 +138,7 @@ class Stat {
 class XPScaledStat extends Stat {
     final double expCoefficient;
 
-    XPScaledStat(String name, String emphaticPositive, String emphaticNegative, double this.expCoefficient, {double coefficient = 1.0, bool pickable = true, bool summarise = true}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    XPScaledStat(String name, String emphaticPositive, String emphaticNegative, double this.expCoefficient, {double coefficient = 1.0, bool pickable = true, bool summarise = true, bool transient = false}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise, transient:transient);
 
     @override
     double derived(StatHolder stats, double base) {
@@ -146,7 +149,7 @@ class XPScaledStat extends Stat {
 
 class RelationshipStat extends Stat {
 
-    RelationshipStat(String name, String emphaticPositive, String emphaticNegative, {double coefficient = 1.0, bool pickable = true, bool summarise = true}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise);
+    RelationshipStat(String name, String emphaticPositive, String emphaticNegative, {double coefficient = 1.0, bool pickable = true, bool summarise = true, bool transient = false}):super(name, emphaticPositive, emphaticNegative, coefficient:coefficient,  pickable:pickable, summarise:summarise, transient:transient);
 
     @override
     double derived(StatHolder stats, double base) {

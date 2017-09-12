@@ -23,6 +23,8 @@ class Reckoning extends Scene {
 			intro += "<br><br> The reckoning has begun, initiating a meteor storm to destroy Skaia. ";
 		}else{
 			intro += "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
+			this.session.npcHandler.king.heal();
+			this.session.npcHandler.queen.heal();
 		}
 
 		var leader = getLeader(this.session.players);

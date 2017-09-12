@@ -284,6 +284,7 @@ class Fraymotif {
         List<GameEntity> casters = this.getCasters(owner, allies);
         this.makeCastersUnavailable(casters);
         List<Player> living = findLivingPlayers(allies);
+        print("$owner fraymotif: $this");
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
             enemies[0].addBuff(new BuffFlat(Stats.CURRENT_HEALTH, -9999.0, combat:true)); //they REALLY believed in this attack.
@@ -297,7 +298,7 @@ class Fraymotif {
         //ALL effects that target a single enemy target the SAME enemy.
         for (num i = 0; i < this.effects.length; i++) {
             //effect knows how to apply itself. pass it baseValue.
-            this.effects[i].applyEffect(owner, allies, casters, enemy, enemies, this.baseValue);
+            this.effects[i].applyEffect(owner, allies, casters, enemy, enemies, this.baseValue.toDouble());
         }
         String revives = "";
         if (dead.length > findDeadPlayers(allies).length) {
@@ -646,9 +647,11 @@ class FraymotifEffect {
         ////print(["target chosen: ", targetArr]);
         if (this.damageInsteadOfBuff) {
             ////print("applying damage: " + targetArr.length);
+            print("$owner fraymotif damage: $effectValue at $targetArr");
             this.applyDamage(targetArr, effectValue);
         } else {
             ////print("applying buff");
+            print("$owner fraymotif buff: $effectValue at $targetArr");
             this.applyBuff(targetArr, effectValue);
         }
     }
@@ -668,7 +671,10 @@ class FraymotifEffect {
         for (num i = 0; i < targetArr.length; i++) {
             GameEntity t = targetArr[i];
             t.makeAlive();
+            print("$t: ${t.stats[Stats.CURRENT_HEALTH]}");
             t.addBuff(new BuffFlat(Stats.CURRENT_HEALTH, e, combat:true)); //don't mod directly anymore
+            print("$t, ${t.buffs}");
+            print("$t: ${t.stats[Stats.CURRENT_HEALTH]}");
         }
     }
 
@@ -685,6 +691,7 @@ class FraymotifEffect {
                     t.addBuff(new BuffFlat(this.statName, e, combat:true));
                 }
             }
+            print("$t, ${t.buffs}");
         }
     }
 

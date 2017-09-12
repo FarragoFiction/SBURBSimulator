@@ -163,6 +163,7 @@ class Strife {
             team.interact();
             team.heal();
             team.level();
+            team.resetFraymotifsForMembers();
         }
     }
 

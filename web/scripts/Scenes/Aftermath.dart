@@ -155,6 +155,7 @@ class Aftermath extends Scene {
 		}
 	}
 	String mournDead(Element div){
+		print("MOURN");
 		var dead = findDeadPlayers(this.session.players);
 		var living = findLivingPlayers(this.session.players);
 		if(dead.length == 0){

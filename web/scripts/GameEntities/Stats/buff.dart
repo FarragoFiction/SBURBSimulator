@@ -52,6 +52,9 @@ abstract class Buff {
          }
          return false;
     }
+
+    @override
+    String toString() => "$runtimeType: ${combat?"(combat) ":""}$stats";
 }
 
 class BuffAdditional extends Buff {
@@ -68,6 +71,9 @@ class BuffAdditional extends Buff {
             ..age = this.maxAge
             ..persistsThroughDeath = this.persistsThroughDeath;
     }
+
+    @override
+    String toString() => "${super.toString()}, mult: $multiplier";
 }
 
 class BuffMore extends Buff {
@@ -84,6 +90,9 @@ class BuffMore extends Buff {
             ..age = this.maxAge
             ..persistsThroughDeath = this.persistsThroughDeath;
     }
+
+    @override
+    String toString() => "${super.toString()}, mult: $multiplier";
 }
 
 class BuffFlat extends Buff {
@@ -100,6 +109,9 @@ class BuffFlat extends Buff {
             ..age = this.maxAge
             ..persistsThroughDeath = this.persistsThroughDeath;
     }
+
+    @override
+    String toString() => "${super.toString()}, val: $value";
 }
 
 class BuffBase extends Buff {
@@ -116,6 +128,9 @@ class BuffBase extends Buff {
             ..age = this.maxAge
             ..persistsThroughDeath = this.persistsThroughDeath;
     }
+
+    @override
+    String toString() => "${super.toString()}, val: $value";
 }
 
 class BuffGodTier extends Buff {

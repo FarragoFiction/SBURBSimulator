@@ -541,7 +541,13 @@ class Player extends GameEntity {
             ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
-        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
+
+        for (Buff b in buffs) {
+            ret += "$b<br>";
+        }
+
+        ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
@@ -845,9 +851,11 @@ class Player extends GameEntity {
     //SO TAKE IN A GAMEENTITY HERE.
     void associatedStatsInteractionEffect(GameEntity target) {
         if (this.hasInteractionEffect()) { //don't even bother if you don't have an interaction effect.
+            this.session.logger.info("$this: interact start");
             for (num i = 0; i < this.associatedStats.length; i++) {
                 this.processStatInteractionEffect(target, this.associatedStats[i]);
             }
+            this.session.logger.info("$this: interact end");
         }
     }
 
@@ -1030,7 +1038,7 @@ class Player extends GameEntity {
 
     @override
     void increasePower([num magnitude = 1, num cap = 5.1]) {
-
+        this.session.logger.info("$this: increase start");
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
         ////print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
@@ -1062,6 +1070,8 @@ class Player extends GameEntity {
         // if (this.getStat(Stats.POWER) > 0) this.setStat(Stats.POWER, this.getStat(Stats.POWER).round());
 
         // //print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
+        this.heal();
+        this.session.logger.info("$this: increase end");
     }
 
     String shortLand() {
@@ -1861,7 +1871,7 @@ class Player extends GameEntity {
                 this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier; //stop having relationship values on the scale of 100000
             }
         } else {
-            this.stats.addBase(stat.stat, modValue * stat.multiplier);
+            this.addStat(stat.stat, modValue * stat.multiplier);
         }
     }
 

@@ -30,6 +30,7 @@ class NPCHandler
         this.queen = new Carapace("Black Queen", session);
         this.queen.crowned = this.queensRing;
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
+        queen.heal();
     }
 
     void spawnKing() {
@@ -45,6 +46,7 @@ class NPCHandler
 
         king.grist = 1000;
         king.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+        king.heal();
     }
 
     void spawnJack() {
@@ -55,6 +57,7 @@ class NPCHandler
         Fraymotif f = new Fraymotif("Stab To Meet You", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
         f.desc = " It's pretty much how he says 'Hello'. ";
+        jack.heal();
         this.jack.fraymotifs.add(f);
     }
 

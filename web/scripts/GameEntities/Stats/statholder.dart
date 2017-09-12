@@ -99,7 +99,8 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
             val = this.applyFinalAdditive(stat, val, relevantBuffs);
         }
 
-        return val.clamp(stat.minDerived, stat.maxDerived);
+        val = val.clamp(stat.minDerived, stat.maxDerived);
+        return val;
     }
 
     void buffTick() {
@@ -218,7 +219,7 @@ class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
 
     @override
     double applyMore(Stat stat, double val, Iterable<Buff> relevantBuffs) {
-        val = super.applyFinalAdditive(stat, val, relevantBuffs);
+        val = super.applyMore(stat, val, relevantBuffs);
 
         if (stat.pickable) {
             if (owner.prophecy == ProphecyState.ACTIVE) {
@@ -229,6 +230,21 @@ class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
         }
         return val;
     }
+
+    @override
+    void setBase(Stat key, num val) {
+        if (owner.session != null) {
+            owner.session.logger.error("SET $owner: $key = $val");
+        }
+        super.setBase(key, val);
+    }
+    @override
+    void addBase(Stat key, num val) {
+        if (owner.session != null) {
+            owner.session.logger.error("ADD $owner: $key += $val");
+        }
+        super.addBase(key, val);
+    }
 }
 
 class PlayerStatHolder extends ProphecyStatHolder<Player> {
@@ -237,10 +253,9 @@ class PlayerStatHolder extends ProphecyStatHolder<Player> {
 
     @override
     Iterable<Buff> getBuffsForStat(Stat stat) {
-        List<Buff> b = <Buff>[];
+        List<Buff> b = super.getBuffsForStat(stat).toList();
         b.addAll(owner.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
         b.addAll(owner.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(this._buffs.where((Buff b) => b.stats.contains(stat)));
         return b;
     }
 }
@@ -251,9 +266,11 @@ class CarapaceStatHolder extends ProphecyStatHolder<Carapace> {
 
     @override
     double applyFinalAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
-        val = super.applyBaseAdditive(stat, val, relevantBuffs);
+        val = super.applyFinalAdditive(stat, val, relevantBuffs);
         if (owner.crowned != null) {
-            val += owner.crowned.getStat(stat);
+            if (!stat.transient) {
+                val += owner.crowned.getStat(stat);
+            }
         }
         return val;
     }
