@@ -88,7 +88,7 @@ class FaceDenizen extends Scene{
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
 				p.denizenDefeated = true;
-				p.buffs.add(new BuffDenizenBeaten());  //current and future doubling of power.
+				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
 				p.leveledTheHellUp = true;
 				p.grist += denizen.grist;
 				appendHtml(div,"<br>"+ret);
@@ -112,7 +112,7 @@ class FaceDenizen extends Scene{
 			if(denizen.getStat(Stats.CURRENT_HEALTH) <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.buffs.add(new BuffDenizenBeaten());  //current and future doubling of power.
+				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
 				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
 				////session.logger.info("denizen kill " + this.session.session_id);

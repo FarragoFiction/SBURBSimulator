@@ -10,9 +10,11 @@ abstract class StatObject {
 class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     final Map<Stat, double> _base = <Stat, double>{};
 
-    List<Buff> buffs = <Buff>[];
+    List<Buff> _buffs = <Buff>[];
 
     StatHolder();
+
+    Iterable<Buff> get buffs => this._buffs;
 
     @override
     StatHolder getStatHolder() => this;
@@ -21,8 +23,8 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
         for (Stat s in other._base.keys) {
             this._base[s] = other._base[s];
         }
-        for (Buff b in other.buffs) {
-            this.buffs.add(b.copy());
+        for (Buff b in other._buffs) {
+            this._buffs.add(b.copy());
         }
     }
 
@@ -39,12 +41,12 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     }
 
     Iterable<Buff> getBuffsForStat(Stat stat) {
-        return this.buffs.where((Buff b) => b.stats.contains(stat));
+        return this._buffs.where((Buff b) => b.stats.contains(stat));
     }
 
     double applyBaseAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
         for (Buff b in relevantBuffs) {
-            val = b.baseAdditive(stat, val);
+            val = b.baseAdditive(this, stat, val);
         }
         return val;
     }
@@ -52,21 +54,21 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     double applyAdditional(Stat stat, double val, Iterable<Buff> relevantBuffs) {
         double additive = 0.0;
         for (Buff b in relevantBuffs) {
-            additive += b.additional(stat, val) - val;
+            additive += b.additional(this, stat, val) - val;
         }
         return val + additive;
     }
 
     double applyMore(Stat stat, double val, Iterable<Buff> relevantBuffs) {
         for (Buff b in relevantBuffs) {
-            val = b.more(stat, val);
+            val = b.more(this, stat, val);
         }
         return val;
     }
 
     double applyFinalAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {
         for (Buff b in relevantBuffs) {
-            val = b.flatAdditive(stat, val);
+            val = b.flatAdditive(this, stat, val);
         }
         return val;
     }
@@ -101,40 +103,70 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     }
 
     void buffTick() {
-        for (Buff b in buffs) {
+        for (Buff b in _buffs) {
             b.tick();
         }
         this.checkBuffRemovals();
     }
 
     void buffCombatTick() {
-        for (Buff b in buffs) {
+        for (Buff b in _buffs) {
             b.combatTick();
         }
         this.checkBuffRemovals();
     }
 
     void checkBuffRemovals() {
-        for (int i=this.buffs.length-1; i>=0; i--) {
-            Buff b = this.buffs[i];
+        for (int i=this._buffs.length-1; i>=0; i--) {
+            Buff b = this._buffs[i];
             if (b.shouldRemove()) {
-                this.buffs.removeAt(i);
+                this._buffs.removeAt(i);
             }
         }
     }
 
     void onDeath() {
-        this.buffs.retainWhere((Buff buff) => buff.persistsThroughDeath);
+        this._buffs.retainWhere((Buff buff) => buff.persistsThroughDeath);
     }
 
     void onCombatEnd() {
-        this.buffs.retainWhere((Buff buff) => buff.combat == false);
+        this._buffs.retainWhere((Buff buff) => buff.combat == false);
     }
 
     @override
     Iterator<Stat> get iterator => this._base.keys.iterator;
     @override
     int get length => this._base.length;
+
+    void addBuff(Buff buff, {String name, Object source}) {
+        buff..nametag=name..source=source;
+
+        if(buff.allowStacking) {
+            if (buff.timed && buff.stackDuration) {
+                Iterable<Buff> matching = this.findBuffs(name, source);
+                if (matching.isEmpty) {
+                    this._buffs.add(buff);
+                } else {
+                    matching.first.maxAge += buff.maxAge - buff.age;
+                }
+            } else {
+                this._buffs.add(buff);
+            }
+        } else {
+            this.removeBuff(name, source);
+            this._buffs.add(buff);
+        }
+    }
+
+    void removeSpecificBuff(Buff buff) {
+        this._buffs.remove(buff);
+    }
+
+    void removeBuff(String name, Object source) {
+        this._buffs.removeWhere((Buff b) => b.nametag == name && b.source == source);
+    }
+
+    Iterable<Buff> findBuffs(String name, Object source) => _buffs.where((Buff b) => b.nametag == name && b.source == source);
 }
 
 abstract class StatOwner implements StatObject {
@@ -164,32 +196,58 @@ abstract class StatOwner implements StatObject {
     void buffTick() => stats.buffTick();
     void buffCombatTick() => stats.buffCombatTick();
 
-    List<Buff> get buffs => _stats.buffs;
+    Iterable<Buff> get buffs => _stats.buffs;
+
+    void addBuff(Buff buff, {String name, Object source}) => _stats.addBuff(buff, name:name, source:source);
+    void removeBuff(String name, Object source) => _stats.removeBuff(name, source);
 
     double getStat(Stat stat) => this.stats[stat];
     void addStat(Stat stat, num val) => this.stats.addBase(stat, val.toDouble());
     void setStat(Stat stat, num val) => this.stats.setBase(stat, val.toDouble());
 }
 
-class PlayerStatHolder extends StatHolder {
-    Player player;
+abstract class OwnedStatHolder<T extends StatOwner> extends StatHolder {
+    T owner;
 
-    PlayerStatHolder(Player this.player);
+    OwnedStatHolder(T this.owner);
+}
+
+class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
+
+    ProphecyStatHolder(T owner):super(owner);
+
+    @override
+    double applyMore(Stat stat, double val, Iterable<Buff> relevantBuffs) {
+        val = super.applyFinalAdditive(stat, val, relevantBuffs);
+
+        if (stat.pickable) {
+            if (owner.prophecy == ProphecyState.ACTIVE) {
+                return val * 0.5;
+            } else if (owner.prophecy == ProphecyState.FULLFILLED) {
+                return val * 2;
+            }
+        }
+        return val;
+    }
+}
+
+class PlayerStatHolder extends ProphecyStatHolder<Player> {
+
+    PlayerStatHolder(Player owner):super(owner);
 
     @override
     Iterable<Buff> getBuffsForStat(Stat stat) {
         List<Buff> b = <Buff>[];
-        b.addAll(player.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(player.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
-        b.addAll(this.buffs.where((Buff b) => b.stats.contains(stat)));
+        b.addAll(owner.aspect.statModifiers.where((Buff b) => b.stats.contains(stat)));
+        b.addAll(owner.class_name.statModifiers.where((Buff b) => b.stats.contains(stat)));
+        b.addAll(this._buffs.where((Buff b) => b.stats.contains(stat)));
         return b;
     }
 }
 
-class CarapaceStatHolder extends StatHolder {
-    Carapace owner;
+class CarapaceStatHolder extends ProphecyStatHolder<Carapace> {
 
-    CarapaceStatHolder(Carapace this.owner);
+    CarapaceStatHolder(Carapace owner):super(owner);
 
     @override
     double applyFinalAdditive(Stat stat, double val, Iterable<Buff> relevantBuffs) {

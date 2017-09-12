@@ -427,7 +427,7 @@ class Player extends GameEntity {
         //this.addStat(Stats.HEALTH, 500); //they are GODS.
         //this.addStat(Stats.CURRENT_HEALTH, 500); //they are GODS.
         //this.addStat(Stats.POWER, 500); //they are GODS.
-        this.buffs.add(new BuffGodTier()); // +100 base power and health, 2.5 stat multiplier
+        this.addBuff(new BuffGodTier()); // +100 base power and health, 2.5 stat multiplier
         this.increasePower();
         this.godTier = true;
         this.session.stats.godTier = true;
@@ -1500,27 +1500,16 @@ class Player extends GameEntity {
     void initializeLuck() {
         this.setStat(Stats.MIN_LUCK, this.session.rand.nextIntRange(-10, 0)); //middle of the road.
         this.setStat(Stats.MAX_LUCK, this.session.rand.nextIntRange(1, 10)); //max needs to be more than min.
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat(Stats.MIN_LUCK, 11111111111);
-            this.setStat(Stats.MAX_LUCK, 11111111111);
-        }
     }
 
 
     void initializeFreeWill() {
         this.setStat(Stats.FREE_WILL, this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat(Stats.FREE_WILL, 11111111111);
-        }
     }
 
     void initializeHP() {
         this.setStat(Stats.HEALTH, this.session.rand.nextIntRange(40, 60));
         this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat(Stats.CURRENT_HEALTH, 11111111111);
-            this.setStat(Stats.HEALTH, 11111111111);
-        }
 
         if (this.isTroll && this.bloodColor != "#ff0000") {
             this.addStat(Stats.CURRENT_HEALTH, bloodColorToBoost(this.bloodColor));
@@ -1559,9 +1548,6 @@ class Player extends GameEntity {
 
     void initializeMobility() {
         this.setStat(Stats.MOBILITY, this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat(Stats.MOBILITY, 11111111111);
-        }
     }
 
     void initializeSanity() {
@@ -1613,9 +1599,6 @@ class Player extends GameEntity {
 
     void initializePower() {
         this.setStat(Stats.POWER, 10);
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat(Stats.POWER, 11111111111);
-        }
 
         if (this.robot) {
             this.addStat(Stats.POWER, 100); //robots are superior
@@ -1854,7 +1837,7 @@ class Player extends GameEntity {
     String voidDescription() {
         for (num i = 0; i < this.associatedStats.length; i++) {
             AssociatedStat stat = this.associatedStats[i];
-            if (stat.multiplier >= 3) return "SO ${stat.stat.emphaticDescriptor(this)}";
+            if (stat.multiplier >= 3) return "SO ${stat.stat.emphaticDescriptor(this).toUpperCase()}";
         }
         return "SO BLAND";
     }
@@ -1899,6 +1882,7 @@ class Player extends GameEntity {
     void initializeStats() {
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
         if(trickster) {
+            this.addBuff(new BuffTricksterMode(), name:"trickster", source:this);
             landLevel = 11111111111.0;
             grist = 11111111111;
         }

@@ -286,7 +286,7 @@ class Fraymotif {
         List<Player> living = findLivingPlayers(allies);
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
-            enemies[0].buffs.add(new BuffFlat(Stats.CURRENT_HEALTH, -9999.0, combat:true)); //they REALLY believed in this attack.
+            enemies[0].addBuff(new BuffFlat(Stats.CURRENT_HEALTH, -9999.0, combat:true)); //they REALLY believed in this attack.
             List<String> jakeisms = <String>["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
             //print("Hope Rides Alone in session: ${owner.session.session_id}");
             String scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
@@ -668,7 +668,7 @@ class FraymotifEffect {
         for (num i = 0; i < targetArr.length; i++) {
             GameEntity t = targetArr[i];
             t.makeAlive();
-            t.buffs.add(new BuffFlat(Stats.CURRENT_HEALTH, e, combat:true)); //don't mod directly anymore
+            t.addBuff(new BuffFlat(Stats.CURRENT_HEALTH, e, combat:true)); //don't mod directly anymore
         }
     }
 
@@ -678,11 +678,11 @@ class FraymotifEffect {
             GameEntity t = targetArr[i];
             if (this.statName != Stats.RELATIONSHIPS) {
                 //t[this.statName] += e;
-                t.buffs.add(new BuffFlat(this.statName, e, combat:true)); //don't mod directly anymore
+                t.addBuff(new BuffFlat(this.statName, e, combat:true)); //don't mod directly anymore
             } else {
                 for (num j = 0; j < t.relationships.length; j++) {
                     //t.relationships[j].value += e;
-                    t.buffs.add(new BuffFlat(this.statName, e, combat:true));
+                    t.addBuff(new BuffFlat(this.statName, e, combat:true));
                 }
             }
         }

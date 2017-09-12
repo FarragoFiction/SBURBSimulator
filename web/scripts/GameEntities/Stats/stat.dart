@@ -151,10 +151,10 @@ class RelationshipStat extends Stat {
     @override
     double derived(StatHolder stats, double base) {
         if (stats is PlayerStatHolder) {
-            if (stats.player.relationships.isEmpty) {
+            if (stats.owner.relationships.isEmpty) {
                 return 0.0;
             }
-            return stats.player.relationships.map((Relationship r) => r.value).reduce((num r1, num r2) => r1+r2) * coefficient;
+            return stats.owner.relationships.map((Relationship r) => r.value).reduce((num r1, num r2) => r1+r2) * coefficient;
         }
         return super.derived(stats, base);
     }

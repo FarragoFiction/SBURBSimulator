@@ -71,7 +71,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 
     @override
     StatHolder createHolder() {
-        return new StatHolder();
+        return new ProphecyStatHolder<GameEntity>(this);
     }
 
     void addPrototyping(GameEntity object) {
