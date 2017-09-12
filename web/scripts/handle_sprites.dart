@@ -674,7 +674,7 @@ abstract class Drawing {
         left_margin = 10;
         current = current + 42 + 42;
         ctx.fillStyle = "#000000";
-        Iterable<Stat> allStats = Stats.summarise;
+        Iterable<Stat> allStats = Stats.all.where((Stat stat) => stat.summarise && !stat.transient);
         int i=0;
         for (Stat stat in allStats) {
             ctx.fillText("$stat: ", left_margin, current + line_height * i);

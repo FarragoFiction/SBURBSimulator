@@ -45,8 +45,8 @@ class StartDemocracy extends Scene {
 			return false;
 		}
 		this.findSympatheticPlayer();
-
-		return (this.session.npcHandler.democraticArmy.getStat(Stats.POWER) == GameEntity.minPower ) && this.session.npcHandler.king.getStat(Stats.POWER) >  this.session.hardStrength && (this.friend != null);
+		//print("Democracy check: ${this.session.npcHandler.king.getStat(Stats.POWER)} >  ${this.session.hardStrength}?");
+		return (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) == 0 ) && this.session.npcHandler.king.getStat(Stats.POWER) >  this.session.hardStrength && (this.friend != null);
 	}
 	dynamic content(){
 		this.friend.increasePower();

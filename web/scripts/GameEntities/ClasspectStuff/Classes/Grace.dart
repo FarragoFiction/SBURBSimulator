@@ -17,7 +17,7 @@ class Grace extends SBURBClass {
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-        if (stat.isFromAspect || stat.stat != "sburbLore") {
+        if (stat.isFromAspect || stat.stat != Stats.SBURB_LORE) {
             powerBoost = powerBoost * 0; //wasted aspect
         } else {
             powerBoost = powerBoost * 1;

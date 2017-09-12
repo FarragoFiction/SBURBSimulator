@@ -18,7 +18,7 @@ class SessionMutator {
   static SessionMutator _instance;
   bool rapsAndLuckDisabled = false;
   num timeTillReckoning = 0;
-  num gameEntityMinPower = 1;
+  double gameEntityMinPower = 1.0;
   num reckoningEndsAt = -15;
   bool ectoBiologyStarted = false;
   num hardStrength = 1000;
@@ -41,7 +41,7 @@ class SessionMutator {
 
   SessionMutator() {
     _instance = this;
-    GameEntity.minPower = gameEntityMinPower;
+    Stats.POWER.minDerived = gameEntityMinPower;
     for(Aspect a in Aspects.all) {
       a.name = a.savedName; //AB is having none of your shenanigans.
     }
@@ -460,8 +460,8 @@ class SessionMutator {
     ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
 
     hopePlayer.setStat(Stats.POWER,9001); //i know i can save everyone.
-    GameEntity.minPower = 9000; //you have to be be OVER 9000!!!
-    gameEntityMinPower = 9000;
+    Stats.POWER.minDerived = 9000.0; //you have to be be OVER 9000!!!
+    gameEntityMinPower = 9000.0;
     s.sessionHealth = 9001;
     s.stats.ectoBiologyStarted = true; //of COURSE we're not paradox doomed. You'd be crazy to say otherwise.
     s.minimumGristPerPlayer = 1;

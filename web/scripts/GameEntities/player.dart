@@ -146,37 +146,39 @@ class Player extends GameEntity {
         return ret;
     }
 
-    num getOverallStrength() {
+    num getStrengthForDenizen() {
         num ret = 0;
-        ret += this.getStat(Stats.POWER);
-        ret += this.getStat(Stats.ALCHEMY);
-        ret += this.getStat(Stats.FREE_WILL).abs();
-        ret += this.getStat(Stats.POWER).abs();
-        ret += this.getStat(Stats.HEALTH).abs();
-        ret += (this.getStat(Stats.MAX_LUCK) + this.getStat(Stats.MIN_LUCK)).abs();
-        ret += this.getStat(Stats.SANITY).abs();
+        ret += this.stats.getBase(Stats.POWER) - 10.0; // adjust for base 10.0 value
+        ret += this.stats.getBase(Stats.ALCHEMY);
+        ret += this.stats.getBase(Stats.FREE_WILL).abs();
+        ret += this.stats.getBase(Stats.POWER).abs();
+        ret += this.stats.getBase(Stats.HEALTH).abs();
+        ret += (this.stats.getBase(Stats.MAX_LUCK) + this.stats.getBase(Stats.MIN_LUCK)).abs();
+        ret += this.stats.getBase(Stats.SANITY).abs();
         return ret;
     }
 
     void generateDenizen() {
         List<String> possibilities = this.aspect.denizenNames;
-        num strength = this.getOverallStrength();
-        num expectedMaxStrength = 150 * Stats.POWER.coefficient; //if i change how stats work, i need to update this value
-        num strengthPerTier = (expectedMaxStrength) / possibilities.length;
-        ////print("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
-        int denizenIndex = (strength / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
+        double strength = this.getStrengthForDenizen();
+        double expectedBaseStrength = 40 + Math.max(0.0, Stats.POWER.rangeMinimum / Stats.POWER.coefficient) + Math.max(0.0, Stats.HEALTH.rangeMinimum / Stats.HEALTH.coefficient);
+        //print("expected base: $expectedBaseStrength");
+        double expectedMaxStrength = 200.0; //if i change how stats work, i need to update this value
+        num strengthPerTier = (expectedMaxStrength - expectedBaseStrength) / possibilities.length;
+        //print("Strength at start is, $strength");//but what if you don't want STRANGTH!???
+        int denizenIndex = ((strength - expectedBaseStrength) / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
 
         String denizenName = "";
         num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
-        ////print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
+        //print("Strength for denizen calculated from index of: $denizenIndex out of ${possibilities.length}");
         if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            ////session.logger.info("AB: strength demands a weak denizen ");
+            //session.logger.info("AB: strength demands a weak denizen ");
         } else if (denizenIndex >= possibilities.length) {
             denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
             denizenStrength = 5;
-            ////session.logger.info("AB: Strength demands strong denizen. ");
+            //session.logger.info("AB: Strength demands strong denizen. ");
         } else {
             denizenName = possibilities[denizenIndex];
         }
@@ -851,11 +853,11 @@ class Player extends GameEntity {
     //SO TAKE IN A GAMEENTITY HERE.
     void associatedStatsInteractionEffect(GameEntity target) {
         if (this.hasInteractionEffect()) { //don't even bother if you don't have an interaction effect.
-            this.session.logger.info("$this: interact start");
+            //this.session.logger.info("$this: interact start");
             for (num i = 0; i < this.associatedStats.length; i++) {
                 this.processStatInteractionEffect(target, this.associatedStats[i]);
             }
-            this.session.logger.info("$this: interact end");
+            //this.session.logger.info("$this: interact end");
         }
     }
 
@@ -1021,7 +1023,11 @@ class Player extends GameEntity {
         return this.class_name.modPowerBoostByClass(powerBoost, stat);
     }
 
-    double getPowerForEffects() => this.stats[Stats.POWER] / Stats.POWER.coefficient;
+    double getPowerForEffects() {
+        double p = this.stats[Stats.POWER] / Stats.POWER.coefficient;
+        p = smoothCap(p, 200.0, 75.0, 0.5);
+        return p;
+    }
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
@@ -1038,22 +1044,12 @@ class Player extends GameEntity {
 
     @override
     void increasePower([num magnitude = 1, num cap = 5.1]) {
-        this.session.logger.info("$this: increase start");
         magnitude = Math.min(magnitude, cap); //unless otherwise specified, don't let thieves and rogues go TOO crazy.
         ////print("$this incpower pre boost magnitude is $magnitude on a power of ${getStat('power')}");
         if (this.session.rand.nextDouble() > .9) {
             this.leveledTheHellUp = true; //that multiple of ten thing is bullshit.
         }
         num powerBoost = magnitude * this.class_name.powerBoostMultiplier * this.aspect.powerBoostMultiplier; // this applies the page 5x mult
-
-        //replaced by buffs TODO: THOSE DAMN BUFFS
-        /*if (this.godTier) {
-            powerBoost = powerBoost * 10; //god tiers are ridiculously strong.
-        }
-
-        if (this.denizenDefeated) {
-            powerBoost = powerBoost * 2; //permanent doubling of stats forever.
-        }*/
 
         //this.addStat(Stats.POWER, Math.max(1, powerBoost)); //no negatives
         this.addStat(Stats.EXPERIENCE, Math.max(1, powerBoost));
@@ -1071,7 +1067,6 @@ class Player extends GameEntity {
 
         // //print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
         this.heal();
-        this.session.logger.info("$this: increase end");
     }
 
     String shortLand() {
@@ -1868,10 +1863,10 @@ class Player extends GameEntity {
         //modValue * stat.multiplier.
         if (stat.stat == Stats.RELATIONSHIPS) {
             for (num i = 0; i < this.relationships.length; i++) {
-                this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier; //stop having relationship values on the scale of 100000
+                this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier * stat.stat.associatedGrowth; //stop having relationship values on the scale of 100000
             }
         } else {
-            this.addStat(stat.stat, modValue * stat.multiplier);
+            this.addStat(stat.stat, modValue * stat.multiplier * stat.stat.associatedGrowth);
         }
     }
 

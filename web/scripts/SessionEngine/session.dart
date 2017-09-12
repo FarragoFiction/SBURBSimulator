@@ -28,7 +28,7 @@ class Session {
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     num numScenes = 0;
     bool sbahj = false;
-    num hardStrength = 1000 * Stats.POWER.coefficient;
+    num hardStrength = 2000 * Stats.POWER.coefficient;
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
     bool reckoningStarted = false;
@@ -420,7 +420,11 @@ class Session {
 
         Relationship.decideInitialQuadrants(rand, this.players);
 
-        this.hardStrength = 500 + 20 * this.players.length;
+        //this.hardStrength = 500 + 20 * this.players.length;
+
+        Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
+        double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
+        this.hardStrength = (100 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
     }
 
     String convertPlayerNumberToWords() {

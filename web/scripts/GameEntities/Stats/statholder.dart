@@ -202,7 +202,7 @@ abstract class StatOwner implements StatObject {
     void addBuff(Buff buff, {String name, Object source}) => _stats.addBuff(buff, name:name, source:source);
     void removeBuff(String name, Object source) => _stats.removeBuff(name, source);
 
-    double getStat(Stat stat) => this.stats[stat];
+    double getStat(Stat stat, [bool raw = false]) => raw ? this.stats[stat] / stat.coefficient : this.stats[stat];
     void addStat(Stat stat, num val) => this.stats.addBase(stat, val.toDouble());
     void setStat(Stat stat, num val) => this.stats.setBase(stat, val.toDouble());
 }
@@ -223,9 +223,9 @@ class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
 
         if (stat.pickable) {
             if (owner.prophecy == ProphecyState.ACTIVE) {
-                return val * 0.5;
+                return val * 0.667;
             } else if (owner.prophecy == ProphecyState.FULLFILLED) {
-                return val * 2;
+                return val * 1.5;
             }
         }
         return val;
@@ -233,16 +233,16 @@ class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
 
     @override
     void setBase(Stat key, num val) {
-        if (owner.session != null) {
+        /*if (owner.session != null) {
             owner.session.logger.error("SET $owner: $key = $val");
-        }
+        }*/
         super.setBase(key, val);
     }
     @override
     void addBase(Stat key, num val) {
-        if (owner.session != null) {
+        /*if (owner.session != null) {
             owner.session.logger.error("ADD $owner: $key += $val");
-        }
+        }*/
         super.addBase(key, val);
     }
 }

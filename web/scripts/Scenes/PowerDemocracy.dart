@@ -12,7 +12,7 @@ class PowerDemocracy extends Scene{
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.npcHandler.democraticArmy.getStat(Stats.POWER) != GameEntity.minPower);
+		return (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0);
 	}
 
 	@override
