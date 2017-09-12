@@ -920,10 +920,14 @@ abstract class Drawing {
         drawWhatever(canvas, imageString);
     }
 
+
     static void drawWhateverWithPalleteSwapCallback(CanvasElement canvas, String str, Player player, PaletteSwapCallback palleteSwapCallBack) {
-        drawWhatever(canvas, str);
+        CanvasElement temp = getBufferCanvas(canvas);
+
+        drawWhatever(temp, str);
         ////print("drawing whatever with pallete swap of $palleteSwapCallBack");
-        palleteSwapCallBack(canvas, player); //regular, trickster, robo, whatever.
+        palleteSwapCallBack(temp, player); //regular, trickster, robo, whatever.
+        canvas.context2D.drawImage(temp, 0,0);
     }
 
     //have i really been too lazy to make this until now
