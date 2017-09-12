@@ -1,0 +1,87 @@
+#story{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+.intro{
+	width:885px;
+}
+
+#header{
+display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+#description{
+background-color: white;
+	padding: 10px;
+	width:900px;
+	border: 3px solid black;
+	text-align: top;
+	vertical-align: top;
+}
+
+.question{
+    background-color: white;
+	padding: 10px;
+	width:900px;
+	margin-top: 10px;
+	border: 3px solid black;
+	text-align: top;
+	vertical-align: top;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.answer{
+background-color: white;
+	padding: 10px;
+	margin-top: 10px;
+	text-align: top;
+	vertical-align: top;
+	font-weight: normal;
+    font-size: 14px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #ffffff;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #0B1030;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.toolTipSection{
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

@@ -202,7 +202,7 @@ class Strife {
   }
 
   void summonAuthor(Element div) {
-     //session.logger.info("AB:  ${Zalgo.generate("HELP!!!")} ${this.session.session_id}");
+     session.logger.info("AB:  ${Zalgo.generate("HELP!!!")} Make Meteors!");
     String divID = "${div.id}authorRocks";
     String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height='$canvasHeight'></canvas>";
     appendHtml(div, canvasHTML);
