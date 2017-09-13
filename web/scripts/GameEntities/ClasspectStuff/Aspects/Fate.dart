@@ -5,18 +5,18 @@ class Fate extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
-    ..accent = "#ff9933"
-    ..aspect_light = '#ffffff'
-    ..aspect_dark = '#999999'
+    ..accent = "#f0b000"//
+    ..aspect_light = '#ffd966'//
+    ..aspect_dark = '#f0ca59'//
     ..shoe_light = '#ffff00'
     ..shoe_dark = '#8f8f00'
-    ..cloak_light = '#d1e0e3'
-    ..cloak_mid = '#c5d1d4'
-    ..cloak_dark = '#b7c2c4'
-    ..shirt_light = '#00ffff'
-    ..shirt_dark = '#009999'
-    ..pants_light = '#b5b5b5'
-    ..pants_dark = '#858585';
+    ..cloak_light = '#92c27c'//
+    ..cloak_mid = '#83b36d'//
+    ..cloak_dark = '#74a35f'//
+    ..shirt_light = '#39751d'//
+    ..shirt_dark = '#2a630e'//
+    ..pants_light = '#bd8e00'//
+    ..pants_dark = '#ad7c00';//
 
 //todo make these fellas do stuff.
   Fate(int id) :super(id, "Fate", isCanon: false);

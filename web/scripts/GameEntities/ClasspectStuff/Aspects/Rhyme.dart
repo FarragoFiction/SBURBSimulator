@@ -5,18 +5,18 @@ class Rhyme extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
-    ..accent = "#ff9933"
-    ..aspect_light = '#ffffff'
-    ..aspect_dark = '#999999'
-    ..shoe_light = '#ffff00'
-    ..shoe_dark = '#8f8f00'
-    ..cloak_light = '#d1e0e3'
-    ..cloak_mid = '#c5d1d4'
-    ..cloak_dark = '#b7c2c4'
-    ..shirt_light = '#00ffff'
-    ..shirt_dark = '#009999'
-    ..pants_light = '#b5b5b5'
-    ..pants_dark = '#858585';
+    ..accent = "#10dede"//
+    ..aspect_light = '#00ffff'//
+    ..aspect_dark = '#00d1d1'//
+    ..shoe_light = '#ff0000'//
+    ..shoe_dark = '#d10000'//
+    ..cloak_light = '#4985e6'//
+    ..cloak_mid = '#3a76d6'//
+    ..cloak_dark = '#2d6ac4'//
+    ..shirt_light = '#331c73'//
+    ..shirt_dark = '#050045'//
+    ..pants_light = '#8d7cc2'//
+    ..pants_dark = '#7c6db3';//
 
 
   Rhyme(int id) :super(id, "Rhyme", isCanon: false);

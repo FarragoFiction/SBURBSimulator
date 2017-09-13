@@ -5,18 +5,18 @@ class Flow extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
-    ..accent = "#ff9933"
-    ..aspect_light = '#ffffff'
-    ..aspect_dark = '#999999'
-    ..shoe_light = '#ffff00'
-    ..shoe_dark = '#8f8f00'
-    ..cloak_light = '#d1e0e3'
-    ..cloak_mid = '#c5d1d4'
-    ..cloak_dark = '#b7c2c4'
-    ..shirt_light = '#00ffff'
-    ..shirt_dark = '#009999'
-    ..pants_light = '#b5b5b5'
-    ..pants_dark = '#858585';
+    ..accent = "#ee0000"//
+    ..aspect_light = '#ff0000'//
+    ..aspect_dark = '#d10000'//
+    ..shoe_light = '#00ffff'//
+    ..shoe_dark = '#00d1d1'//
+    ..cloak_light = '#e68f39'//
+    ..cloak_mid = '#d67e2b'//
+    ..cloak_dark = '#c46b1d'//
+    ..shirt_light = '#e65c00'//
+    ..shirt_dark = '#b82e00'//
+    ..pants_light = '#ffd966'//
+    ..pants_dark = '#d1ab3b';//
 
 //todo make these fellas do stuff.
   Flow(int id) :super(id, "Flow", isCanon: false);

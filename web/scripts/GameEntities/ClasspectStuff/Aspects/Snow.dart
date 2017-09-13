@@ -9,18 +9,18 @@ class Snow extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
-    ..accent = "#ff9933"
-    ..aspect_light = '#ffffff'
-    ..aspect_dark = '#999999'
-    ..shoe_light = '#ffff00'
-    ..shoe_dark = '#8f8f00'
-    ..cloak_light = '#d1e0e3'
-    ..cloak_mid = '#c5d1d4'
-    ..cloak_dark = '#b7c2c4'
-    ..shirt_light = '#00ffff'
-    ..shirt_dark = '#009999'
-    ..pants_light = '#b5b5b5'
-    ..pants_dark = '#858585';
+    ..accent = "#b2e3eb"//
+    ..aspect_light = '#ffffff'//
+    ..aspect_dark = '#dfdfdf'//
+    ..shoe_light = '#00ffff'//
+    ..shoe_dark = '#009090'//
+    ..cloak_light = '#999999'//
+    ..cloak_mid = '#8a8a8a'//
+    ..cloak_dark = '#7a7a7a'//
+    ..shirt_light = '#d0e2f2'//
+    ..shirt_dark = '#c3d4e3'//
+    ..pants_light = '#b2e3eb'//
+    ..pants_dark = '#a4d4db';//
 
 //todo make these fellas do stuff.
   Snow(int id) :super(id, "Snow", isCanon: false);

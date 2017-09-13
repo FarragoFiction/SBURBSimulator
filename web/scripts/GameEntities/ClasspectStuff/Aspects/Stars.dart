@@ -5,18 +5,18 @@ class Stars extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
-    ..accent = "#ff9933"
-    ..aspect_light = '#ffffff'
-    ..aspect_dark = '#999999'
-    ..shoe_light = '#ffff00'
-    ..shoe_dark = '#8f8f00'
-    ..cloak_light = '#d1e0e3'
-    ..cloak_mid = '#c5d1d4'
-    ..cloak_dark = '#b7c2c4'
-    ..shirt_light = '#00ffff'
-    ..shirt_dark = '#009999'
-    ..pants_light = '#b5b5b5'
-    ..pants_dark = '#858585';
+    ..accent = "#ffff33"//
+    ..aspect_light = '#ffff00'//
+    ..aspect_dark = '#d1d100'//
+    ..shoe_light = '#00ffff'//
+    ..shoe_dark = '#009999'//
+    ..cloak_light = '#0c5494'//
+    ..cloak_mid = '#004785'//
+    ..cloak_dark = '#003b75'//
+    ..shirt_light = '#20124d'//
+    ..shirt_dark = '#11033d'//
+    ..pants_light = '#0c323b'//
+    ..pants_dark = '#00232b';//
 
 //todo make these fellas do stuff.
   Stars(int id) :super(id, "Stars", isCanon: false);
