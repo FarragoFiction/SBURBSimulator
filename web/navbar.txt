@@ -1,32 +1,5 @@
 <div class = "banner">
-    <div class = 'refactoringStatus'>
-        <h2>The Great Refactoring:</h2>
-        Done
-        <ul>
-           <li class = 'done'>ABJ </li>
-           <li class = 'done'>Main Newsposts</li>
-           <li class = 'done'>Credits/FAQs</li>
-            <li class = 'done'>LORAS</li>
-            <li class = 'done'>AB </li>
-            <li class = 'done'>OC Creator/Viewer </li>
-            <li class = 'done'>Easter Eggs </li>
-             <li class = 'done'>Artist Newsposts</li>
-
-        </ul>
-        Done (but with Bugs)
-        <ul>
-                    <li class = 'shitdone'>Simulator </li>
-
-
-        </ul>
-         Not Done
-         <ul>
-            <li class = 'notdone'>Tournament Arc </li>
-         </ul>
-    </div>
-    <a href = "index.html">
-         <img class = "refactoringGif" src = "images/the_great_refactor_2.gif"/>
-    </a>
+      <a href = "index.html"><img src = "images/sburb_sim_page_header.png"/></a>
 </div>
 <ul class = "menuPureCSS">
   <span class = 'centeredMenu'>
