@@ -16,7 +16,7 @@ import "Mind.dart";
 import "Mist.dart";
 import "Rage.dart";
 import "Rain.dart";
-//import "Rhyme.dart";
+import "Rhyme.dart";
 import "Sand.dart";
 import "Sky.dart";
 //import "Snow.dart";
@@ -46,8 +46,8 @@ abstract class Aspects {
     static Aspect RAIN;
     static Aspect SAND;
     static Aspect SKY;
-    /*static Aspect RHYME;
-    static Aspect FLOW;
+    static Aspect RHYME;
+    /*static Aspect FLOW;
     static Aspect FATE;
     static Aspect LAW;
     static Aspect DREAMS;
@@ -79,6 +79,7 @@ abstract class Aspects {
         RAIN = new Rain(15);
         SAND = new Sand(16);
         SKY = new Sky(17);
+        RHYME = new Rhyme(18);
 
 
     }

@@ -1,7 +1,7 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
 
-class Sky extends Aspect{
+class Rhyme extends Aspect{
 
   @override
   AspectPalette palette = new AspectPalette()
@@ -18,6 +18,6 @@ class Sky extends Aspect{
     ..pants_light = '#b5b5b5'
     ..pants_dark = '#858585';
 
-//todo make these fellas do stuff.
-  Sky(int id) :super(id, "Sky", isCanon: false);
+
+  Rhyme(int id) :super(id, "Rhyme", isCanon: false);
 }
