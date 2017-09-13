@@ -19,7 +19,7 @@ class Dream extends Aspect {
         ..pants_dark = '#ab9b55';
 
     @override
-    List<String> landNames = new List<String>.unmodifiable(<String>["Clouds", "Clay", "Putty", "Art", "Design", "Dreams", "Repetition", "Creativity", "Imagination", "Plagerism"]);
+    List<String> landNames = new List<String>.unmodifiable(<String>["Dreams", "Nightmares", "Clouds", "Obsession", "Glass", "Memes", "Chess", "Creation", "Singularity", "Perfection", "Sleep", "Pillows","Clouds", "Clay", "Putty", "Art", "Design", "Dreams", "Repetition", "Creativity", "Imagination", "Plagerism"]);
 
     @override
     List<String> levels = new List<String>.unmodifiable(<String>["ADHDLED YOUTH", "LUCID DREAMER", "LUCID DREAMER"]);
