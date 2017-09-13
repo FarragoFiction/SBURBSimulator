@@ -401,7 +401,7 @@ class GetWasted extends Scene {
                 Player ghost = session.afterLife.findAnyUndrainedGhost(rand);
                 ///only added if somebody has this apply.
                 String subRet = "They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
-                if(player.aspect == Aspects.LIFE) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
+                if(player.aspect == Aspects.LIFE) subRet = "They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
 
                 String divID = "gnosis3${div.id}player${p.id}";
                 subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";

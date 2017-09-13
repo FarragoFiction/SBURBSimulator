@@ -331,7 +331,7 @@ class Aftermath extends Scene {
 
     @override
     void renderContent(Element div) {
-        session.logger.info("AB: Aftermath. MVP is ${findStrongestPlayer(session.players).grist} amount of grist");
+        //session.logger.info("AB: Aftermath. MVP is ${findStrongestPlayer(session.players).grist} amount of grist");
         bool yellowYard = false;
         String end = "<Br>";
         List<Player> living = findLivingPlayers(this.session.players);
