@@ -8,7 +8,7 @@ class SolvePuzzles extends Scene {
 	Player player1 = null;
 	Player player2 = null; //optional
 
-
+//todo make this more likely to happen for rhyme players, and less likely for fate players.
 	
 
 

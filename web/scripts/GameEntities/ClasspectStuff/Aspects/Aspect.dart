@@ -2,13 +2,12 @@ import "../../../SBURBSim.dart";
 
 import "Blood.dart";
 import "Breath.dart";
-//import "Dreams.dart";
 import "Doom.dart";
-//import "Fate.dart";
-//import "Flow.dart";
+import "Fate.dart";
+import "Flow.dart";
 import "Heart.dart";
 import "Hope.dart";
-//import "Law.dart";
+import "Law.dart";
 import "Life.dart";
 import "Light.dart";
 import "Might.dart";
@@ -19,9 +18,9 @@ import "Rain.dart";
 import "Rhyme.dart";
 import "Sand.dart";
 import "Sky.dart";
-//import "Snow.dart";
+import "Snow.dart";
 import "Space.dart";
-//import "Stars.dart";
+import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
 import "Dream.dart";
@@ -47,13 +46,12 @@ abstract class Aspects {
     static Aspect SAND;
     static Aspect SKY;
     static Aspect RHYME;
-    /*static Aspect FLOW;
-    static Aspect FATE;
     static Aspect LAW;
-    static Aspect DREAMS;
-    static Aspect STARS;
+    static Aspect FATE;
     static Aspect SNOW;
-     */
+    static Aspect FLOW;
+    static Aspect STARS;
+
 
     static Aspect NULL;
 
@@ -80,6 +78,11 @@ abstract class Aspects {
         SAND = new Sand(16);
         SKY = new Sky(17);
         RHYME = new Rhyme(18);
+        LAW = new Law(19);
+        FATE = new Fate(20);
+        SNOW = new Snow(21);
+        FLOW = new Flow(22);
+        STARS = new Stars(23);
 
 
     }
