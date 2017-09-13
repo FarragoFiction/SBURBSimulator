@@ -102,7 +102,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     if(displayCorpse){
       (querySelector("#avatar") as ImageElement).src = "images/corpse_party_robot_author.png";
     }else{
-      (querySelector("#avatar") as ImageElement).src ="images/robot_author.png";
+      (querySelector("#avatar") as ImageElement).src ="images/guide_bot.png";
     }
   }
 

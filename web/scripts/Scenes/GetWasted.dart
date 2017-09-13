@@ -26,7 +26,7 @@ typedef DrawingMethod(String canvasID, List<Player> players);
 class GetWasted extends Scene {
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
-    int tippingPointBase = 13; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
+    int tippingPointBase = 20; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
     //for everything that's not a class or aspect but can be in any faq
     WeightedList<FAQFile> miscFAQS = new WeightedList<FAQFile>();
     //special ones based on current circumstances
@@ -61,15 +61,12 @@ class GetWasted extends Scene {
     }
 
     bool loreReachedTippingPoint(Player p) {
+        int tippingPoint = tippingPointBase;
+        if(p.aspect == Aspects.TIME) tippingPoint = tippingPoint * 4; //time has way too easy a chance to get here.
+        if(p.gnosis ==3) tippingPoint = tippingPoint *2; //very last tier should be extra hard.
         if(p.gnosis >=4 || p.gnosis <0) return false; //you are done yo, or you are doing something weird (WM probably caused it)
         //linear works well for these
-        if(p.gnosis == 1) {
-            return (p.getStat("sburbLore") >= tippingPointBase * (p.gnosis + 1)); //linear growth, but the base is high.
-        }else if(p.gnosis == 3) {
-            return (p.getStat("sburbLore") >= 3 * tippingPointBase * (p.gnosis + 1)); //harder to get to 4
-        }else {
-            return (p.getStat("sburbLore") >= 0.5 * tippingPointBase * (p.gnosis + 1));
-        }
+        return (p.getStat("sburbLore") >= tippingPoint * (p.gnosis + 1));
     }
 
     @override
@@ -404,7 +401,7 @@ class GetWasted extends Scene {
                 Player ghost = session.afterLife.findAnyUndrainedGhost(rand);
                 ///only added if somebody has this apply.
                 String subRet = "They curse the ${p.htmlTitle()} with a prophecy of doom, only to kill them instantly and then revive them. The bonus the ${p.htmlTitle()} gets from subverting their fate is verging on cheating.";
-                if(player.aspect == Aspects.LIFE) subRet = "The ${player.htmlTitle()} exploits the rules of SBURB.  They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
+                if(player.aspect == Aspects.LIFE) subRet = "They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
 
                 String divID = "gnosis3${div.id}player${p.id}";
                 subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";

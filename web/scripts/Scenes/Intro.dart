@@ -59,6 +59,7 @@ class Intro  extends IntroScene{
 	String changePrototyping(Element div){
 	  String ret = "";
 		if(this.player.object_to_prototype.getStat("power") > 200 && rand.nextDouble() > .8){
+			//session.logger.info("Time player prototyping");
 			String divID = (div.id);
 			String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, canvasHTML);
@@ -67,7 +68,7 @@ class Intro  extends IntroScene{
 			Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
 			Drawing.drawTimeGears(canvas);
 			Drawing.drawSinglePlayer(canvas, timePlayer);
-			String ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
+			ret = "A " + timePlayer.htmlTitleBasic() + " suddenly warps in from the future. ";
 			if(timePlayer.dead){
 				ret += "It's a little alarming how much they are bleeding. ";
 			}
@@ -82,7 +83,7 @@ class Intro  extends IntroScene{
 			//session.logger.info("time player sprite in session: " + this.session.session_id.toString());
 
 		}else if((this.player.dead == true || this.player.isDreamSelf == true || this.player.dreamSelf == false) && rand.nextDouble() > .1){ //if tier 2 is ever a thing, make this 50% instead and have spries very attracted to extra corpes later on as well if they aren't already players or...what would even HAPPEN if you prototyped yourself twice....???
-			String ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
+			ret = "Through outrageous shenanigans, one of the " + this.player.htmlTitle() + "'s superfluous corpses ends up prototyped into their kernel sprite. <br>";
 			this.player.object_to_prototype =this.player.clone() ;//no, don't say 'corpsesprite';
       this.player.object_to_prototype.name = this.player.chatHandle;
 			//session.logger.info("player sprite in session: " + this.session.session_id.toString());
@@ -94,6 +95,7 @@ class Intro  extends IntroScene{
 		appendHtml(div, ret);
 		return "";
 	}
+
 	ImportantEvent addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
 		////session.logger.info("Entering session, mvp is: " + current_mvp.getStat("power"));

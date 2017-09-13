@@ -103,7 +103,7 @@ class PotentialSprite extends NPC {
         initializeAShitTonOfFortuneSprites();
         initializeAShitTonOfDisastorSprites();
         initializeAShotTonOfLususSprites();
-        print("prototyping objects is ${PotentialSprite.prototyping_objects}");
+       // print("prototyping objects is ${PotentialSprite.prototyping_objects}");
         prototyping_objects.addAll(PotentialSprite.disastor_objects);
         prototyping_objects.addAll(PotentialSprite.fortune_objects);
         prototyping_objects.addAll(PotentialSprite.lusus_objects);

@@ -63,8 +63,10 @@ class SBURBClassManager {
         SAGE = new Sage();
         GUIDE = new Guide();
         GRACE = new Grace();
+
+        NULL = new SBURBClass("Null", 255, false, isInternal:true);
+
         BRO = new Bro();
-        NULL = new SBURBClass("Null", 255, false);
     }
 
 
@@ -88,7 +90,7 @@ class SBURBClassManager {
         _classes[c.id] = c;
     }
 
-    static Iterable<SBURBClass> get all => _classes.values;
+    static Iterable<SBURBClass> get all => _classes.values.where((SBURBClass c) => !c.isInternal);
 
     static SBURBClass findClassWithID(num id) {
         if (_classes.isEmpty) init();
@@ -120,8 +122,10 @@ class SBURBClass {
     FAQFile faqFile;
     int id = 256; //for classNameToInt
     bool isCanon = false; //you gotta earn canon, baby.
+    bool isInternal = false; //if you're an internal aspect or class you shouldn't show up in lists.
 
-    SBURBClass(this.name, this.id, this.isCanon) {
+
+    SBURBClass(this.name, this.id, this.isCanon,{ this.isInternal = false}) {
         this.savedName = name;
         faqFile = new FAQFile("Classes/$name.xml");
         //print("Making a sburb class ${this.name}");

@@ -1506,8 +1506,10 @@ class Player extends GameEntity {
     void decideLusus() {
         if (this.bloodColor == "#610061" || this.bloodColor == "#99004d" || this.bloodColor == "#631db4") {
             this.myLusus = session.rand.pickFrom(PotentialSprite.sea_lusus_objects);
+            this.myLusus.session = session;
         } else {
             this.myLusus = session.rand.pickFrom(PotentialSprite.lusus_objects);
+            this.myLusus.session = session;
         }
     }
 
@@ -1835,32 +1837,40 @@ class Player extends GameEntity {
         if(session.mutator.lightField) return session.mutator.inSpotLight;
          //space player can ONLY be helped by knight, and knight prioritizes this
          if(aspect == Aspects.SPACE){//this shit is so illegal
+            // print("I'm a space player, I can only be helped by knight");
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper != this){ //a knight of space can't help themselves.
+             if(helper != null && helper.id != this.id){ //a knight of space can't help themselves.
                  ////print("Debugging helpers: Found $helper in session ${session.session_id}");
+                 //print("found a knight");
                  return helper;
              }else{
-
+                helper = null; //clear the helper out or knights of space are gonna be op as fuck. they were storing that if there were no sorted choices.
              }
          }
         //time players often partner up with themselves
         if(aspect == Aspects.TIME && rand.nextDouble() > .2){
             ////print("Debugging helpers: Found $helper in session ${session.session_id}");
+            //print("i'm a time player i can copy");
+
             return this;
         }
-
+        //print("found a helper $helper before the sort list.");
         //players are naturally sorted by mobility
         List<Player> sortedChoices = new List<Player>.from(players)..sort();
         for(Player p in sortedChoices) {
-            if(rand.nextDouble() > 0.75 && p != this) {
+            if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.
                 if(p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel) {
                     helper = p;
+                    //print("randomly picking helper with an id of $helper");
                 }
-            }else if((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p != this) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
+               // print("i believe i'm a blood player or a page and picked helper $helper");
             }
         }
+        //print("found a helper $helper through the sort list.");
+
         //could be null, not 100% chance of helper
         ////print("Debugging helpers: Found helper $helper for player $this in session ${session.session_id}");
         return helper;

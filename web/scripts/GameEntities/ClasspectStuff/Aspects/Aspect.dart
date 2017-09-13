@@ -24,6 +24,7 @@ import "Space.dart";
 //import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
+import "Dream.dart";
 
 abstract class Aspects {
     static Aspect SPACE;
@@ -38,6 +39,7 @@ abstract class Aspects {
     static Aspect RAGE;
     static Aspect HOPE;
     static Aspect LIFE;
+    static Aspect DREAM;
 
     static Aspect MIGHT;
     static Aspect MIST;
@@ -68,6 +70,9 @@ abstract class Aspects {
         RAGE = new Rage(9);
         HOPE = new Hope(10);
         LIFE = new Life(11);
+        DREAM = new Dream(12);
+
+        NULL = new Aspect(255, "Null", isInternal:true);
 
         MIGHT = new Might(13);
         MIST = new Mist(14);
@@ -75,7 +80,7 @@ abstract class Aspects {
         SAND = new Sand(16);
         SKY = new Sky(17);
 
-        NULL = new Aspect(255, "Null");
+
     }
 
     // ##################################################################################################
@@ -107,7 +112,9 @@ abstract class Aspects {
         return NULL;
     }
 
-    static Iterable<Aspect> get all => _aspects.values;
+    static Iterable<Aspect> get all => _aspects.values.where((Aspect a) => !a.isInternal);
+
+
 
     static Iterable<Aspect> get canon => _aspects.values.where((Aspect a) => a.isCanon);
 
@@ -134,6 +141,7 @@ class Aspect {
     FAQFile faqFile;
     String symbolImgLocation = "";
     String bigSymbolImgLocation = "";
+    bool internal = false; //if you're an internal aspect or class you shouldn't show up in lists.
 
     /// Used for string representations of the aspect.
     String name;
@@ -141,6 +149,7 @@ class Aspect {
 
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
+    final bool isInternal; //don't let null show up in lists.
 
     // ##################################################################################################
     // Tags
@@ -248,7 +257,7 @@ class Aspect {
     // ##################################################################################################
     // Constructor
 
-    Aspect(int this.id, String this.name, {this.isCanon = false}) {
+    Aspect(int this.id, String this.name, {this.isCanon = false, this.isInternal = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
         this.savedName = this.name;
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.

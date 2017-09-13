@@ -303,6 +303,7 @@ dynamic loadAllPossiblePlayers(skipInit){
       loadImage("Void.png",skipInit);
       loadImage("Heart.png",skipInit);
       loadImage("Breath.png",skipInit);
+	  loadImage("Dream.png",skipInit);
       loadImage("Light.png",skipInit);
       loadImage("Space.png",skipInit);
       loadImage("Hope.png",skipInit);

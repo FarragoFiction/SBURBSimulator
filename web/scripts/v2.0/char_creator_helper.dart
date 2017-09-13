@@ -89,7 +89,9 @@ class CharacterCreatorHelper {
         str += "</div>";
         appendHtml(div, str);
 
-        ColourPicker p = ColourPicker.create(querySelector("#hairColorID${player.id}"), width:94, height:18, colourInt:0xCC87E8 );
+        //usin ColourPicker picker might slow shit down. comment out for now.
+        //ColourPicker p = ColourPicker.create(querySelector("#hairColorID${player.id}"), width:94, height:18, colourInt:0xCC87E8 );
+        ColourPicker p;
         if (p != null) { p..anchor.style.top = "5px"; }
 
         player.initSpriteCanvas();
