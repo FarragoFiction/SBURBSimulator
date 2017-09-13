@@ -189,7 +189,7 @@ class Aftermath extends Scene {
 		return null;
 	}
 	void drawMourning(div, dead_player, friend){
-		if(Drawing.checkSimMode() == true) return;
+		if(doNotRender || (Drawing.checkSimMode() == true)) return;
 		var divID = (div.id) + "_" + dead_player.chatHandle;
 		String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);
@@ -451,7 +451,7 @@ class Aftermath extends Scene {
 		this.lastRender(div);
 	}
 	void lastRender(Element div){
-		if(Drawing.checkSimMode() == true) { return; }
+		if(doNotRender || (Drawing.checkSimMode() == true)) { return; }
 	    div = querySelector("#charSheets");
 	    //div.setInnerHtml(""); //clear yellow yards and scratches and combos and all TODO figure out why this breaks everything
 	    if(div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
