@@ -17,6 +17,26 @@ class Rain extends Aspect {
     ..pants_light = '#00FF00'
     ..pants_dark = '#008000';
 
+
+  @override
+  List<String> landNames = new List<String>.unmodifiable(<String>["Neon", "Headaches", "Puddles", "Drip", "Mess", "Ice cream", "Sweets", "Boredom"]);
+
+  @override
+  List<String> levels = new List<String>.unmodifiable(<String>["PUDDLE PUMMELLER", "FLOOD FINISHER", "RAINBRO"]);
+
+  @override
+  List<String> handles = new List<String>.unmodifiable(<String>["Rainer", "Retriever", "Rower", "Redux", "Rapport"]);
+
+  @override
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Chaos", "disorder", "puddle", "Rain", "error", "color", "Swirl", "LOL",]);
+
+  /*@override
+  String denizenSongTitle = ;
+*/
+  @override
+  String denizenSongDesc = "BLUH BLUH, Ask Cactus to write this. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
   @override
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

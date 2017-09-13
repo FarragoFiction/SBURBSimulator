@@ -19,28 +19,28 @@ class Sand extends Aspect {
     ..pants_dark = '#6e4f00';
 
 
-  /*
-  @override
-  List<String> landNames = new List<String>.unmodifiable(<String>["Silence", "Nothing", "Void", "Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"]);
 
   @override
-  List<String> levels = new List<String>.unmodifiable(<String>["KNOW-NOTHING ANKLEBITER", "INKY BLACK SORROWMASTER", "FISTICUFFSAFICTIONADO"]);
+  List<String> landNames = new List<String>.unmodifiable(<String>["Lies", "Beach", "Shore", "Secrets", "Pirates", "Suspicion", "Corruption", "[REDACTED]", "Cake"]);
 
   @override
-  List<String> handles = new List<String>.unmodifiable(<String>["Vagrant", "Vegetarian", "Veterinarian", "Vigilante", "Virtuoso"]);
+  List<String> levels = new List<String>.unmodifiable(<String>["MR SANDMAN", "CASTLE COORDINATOR", "POKER FACADE"]);
 
   @override
-  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Undefined", "untitled.mp4", "Void", "Disappearification", "Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"]);
-
-
-  @override
-  String denizenSongTitle = "Silence";
+  List<String> handles = new List<String>.unmodifiable(<String>["Strategist", "Slider", "Sculpter", "Scamp", "Sleazebag"]);
 
   @override
-  String denizenSongDesc = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["FALSE", "Wrong", "Sand", "Distraction", "Ruse", "Crumble", "abscond", "beach", "grain", "[Data Expunged]"]);
 
+
+  //@override
+  //String denizenSongTitle = "Silence";
 
   @override
+  String denizenSongDesc = " BLUH BLUH, ask Cactus to write this. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+  /*@override
   List<String> denizenNames = new List<String>.unmodifiable(<String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hœnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova']);
 
   @override

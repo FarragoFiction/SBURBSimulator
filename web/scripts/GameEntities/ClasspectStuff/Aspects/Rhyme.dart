@@ -19,5 +19,24 @@ class Rhyme extends Aspect{
     ..pants_dark = '#7c6db3';//
 
 
+  @override
+  List<String> landNames = new List<String>.unmodifiable(<String>["Gel", "Ice", "Tape", "Poetry", "Caucophony"]);
+
+  @override
+  List<String> levels = new List<String>.unmodifiable(<String>["LIL LYRICIST", "ICE CREAMER", "COOLER THAN BEING COOL"]);
+
+  @override
+  List<String> handles = new List<String>.unmodifiable(<String>["Rhymer", "Rapper", "Rental", "Redux", "Rave", "Reason"]);
+
+  @override
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Vaporwave", "Chill", "Ice", "Rhyme", "Slow"]);
+
+  @override
+  String denizenSongTitle = "Rap";
+
+  @override
+  String denizenSongDesc = "BLUH BLUH, Ask Cactus to write this. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
   Rhyme(int id) :super(id, "Rhyme", isCanon: false);
 }

@@ -18,6 +18,32 @@ class Flow extends Aspect{
     ..pants_light = '#ffd966'//
     ..pants_dark = '#d1ab3b';//
 
+  @override
+  List<String> landNames = new List<String>.unmodifiable(<String>["Fire", "Track", "Mercury", "Heat", "Burns", "Mixtapes", "Spaghetti"]);
+
+  @override
+  List<String> levels = new List<String>.unmodifiable(<String>["BURN WARDEN", "FIRESTARTER", "RAP GOD"]);
+
+  @override
+  List<String> handles = new List<String>.unmodifiable(<String>["Flamer", "Florist", "Friar", "Foodie"]);
+
+  @override
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Nightcore", "Flow", "Sick", "Fire", "Fast", "Sonic", "burning", "speed",]);
+
+  @override
+  String denizenSongTitle = "Mixtape "; //a compilation of sick beats.
+
+  @override
+  String denizenSongDesc = " An ill beat is laid down. It's the one that is dropped when the Pimp is in the crib. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
 //todo make these fellas do stuff.
+
+  @override
+  List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
+    new AssociatedStat("mobility", 2, true),
+    new AssociatedStat("MANGRIT", 1, true),
+    new AssociatedStat("RELATIONSHIPS", -2, true)
+  ]);
+
   Flow(int id) :super(id, "Flow", isCanon: false);
 }
