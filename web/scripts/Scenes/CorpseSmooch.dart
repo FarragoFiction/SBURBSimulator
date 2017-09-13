@@ -117,9 +117,9 @@ class CorpseSmooch extends Scene {
 		}
 		return royalty;
 	}
-	void renderForPlayer(Element div, Player deadPlayer){
+	void renderForPlayer(Element div, Player deadPlayer, Player royalty){
 		String ret = "";
-		Player royalty = this.getRoyalty(deadPlayer);
+		//Player royalty = this.getRoyalty(deadPlayer); //don't reget royalty not garanteed to be samebecause interaction effects
 		if(royalty != null){
 
 			String divID = (div.id) + "_" + deadPlayer.chatHandle;
@@ -150,7 +150,7 @@ class CorpseSmooch extends Scene {
 					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 					if(d.aspect == Aspects.DOOM) ret += "The prophecy is fulfilled. ";
-					this.renderForPlayer(div, this.dreamersToRevive[i]);
+					this.renderForPlayer(div, this.dreamersToRevive[i], royalty);
 					session.removeAvailablePlayer(royalty);
 					//this.makeAlive(d);
 					this.combo ++;
