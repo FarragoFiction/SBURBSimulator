@@ -22,7 +22,7 @@ class Dream extends Aspect {
     List<String> landNames = new List<String>.unmodifiable(<String>["Clouds", "Clay", "Putty", "Art", "Design", "Dreams", "Repetition", "Creativity", "Imagination", "Plagerism"]);
 
     @override
-    List<String> levels = new List<String>.unmodifiable(<String>["SLEEPY SUPPLIER", "DREAM SWEETY", "MANIC SOMNIAC"]);
+    List<String> levels = new List<String>.unmodifiable(<String>["ADHDLED YOUTH", "LUCID DREAMER", "LUCID DREAMER"]);
 
     @override
     List<String> handles = new List<String>.unmodifiable(<String>["Dreamer", "Dogma", "Designer", "Destined", "Dancer", "Doormat", "Decorator", "Denizen"]);
@@ -43,7 +43,7 @@ class Dream extends Aspect {
     bool deadpan = false;
 
     @override  //muse names
-    List<String> denizenNames = new List<String>.unmodifiable(<String>['Dream', 'Calliope', 'Clio', 'Euterpe', 'Thalia', 'Melpomene', 'Terpsichore', 'Erato', 'Polyhmnia', 'Urania', 'Melete', 'Mneme', 'Aoide']);
+    List<String> denizenNames = new List<String>.unmodifiable(<String>['Dream', 'Dreamer','Calliope', 'Clio', 'Euterpe', 'Thalia', 'Melpomene', 'Terpsichore', 'Erato', 'Polyhmnia', 'Urania', 'Melete', 'Mneme', 'Aoide','Hypnos', 'Morpheus','Oneiros','Phobetor','Icelus', 'Somnus','Metztli','Yohualticetl','Khonsu','Chandra', 'Mėnuo','Nyx']);
 
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
