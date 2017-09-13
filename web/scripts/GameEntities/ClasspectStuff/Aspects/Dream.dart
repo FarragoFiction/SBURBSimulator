@@ -25,7 +25,7 @@ class Dream extends Aspect {
     List<String> levels = new List<String>.unmodifiable(<String>["ADHDLED YOUTH", "LUCID DREAMER", "LUCID DREAMER"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Dreamer", "Dogma", "Designer", "Destined", "Dancer", "Doormat", "Decorator", "Denizen", "Disaster"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Dreamer", "Dilettante", "Designer", "Delusion", "Dancer", "Doormat", "Decorator", "Delirium", "Disaster", "Disorder"]);
 
 
     @override
