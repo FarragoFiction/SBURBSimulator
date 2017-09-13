@@ -598,6 +598,10 @@ class SessionMutator {
         return ret;
     }
 
+    String dream(Session s, Player activatingPlayer) {
+       return abjectFailure(s, activatingPlayer);
+    }
+
     //you NEED a div or this won't fucking work. Just accept this.
     void renderHackedYellowYard(Element div, Session session) {
         Element div2 = null;
