@@ -847,7 +847,7 @@ abstract class Drawing {
         writeLevelGod(levelBuffer, player);
 
 
-        copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer, leftMargin + 165, 0);
+        copyTmpCanvasToRealCanvasAtPos(canvas, symbolBuffer, leftMargin + 45, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, leftMargin + 100, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, leftMargin + 100, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, levelBuffer, leftMargin + -200, 290); //265 is perfectly lined on rainbow //300 is a little too far down.

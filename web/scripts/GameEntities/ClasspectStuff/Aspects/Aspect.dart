@@ -28,9 +28,13 @@ import 'Spirit.dart';
 import "Sweets.dart";
 import "Time.dart";
 import "Void.dart";
+<<<<<<< HEAD
 import "Chaos.dart";
 import "Spirit.dart";
 
+=======
+import "Dream.dart";
+>>>>>>> 04507a50d376ee5361b763a99594469b172b48c2
 
 abstract class Aspects {
     static Aspect SPACE;
@@ -45,6 +49,7 @@ abstract class Aspects {
     static Aspect RAGE;
     static Aspect HOPE;
     static Aspect LIFE;
+<<<<<<< HEAD
     static Aspect CHAOS;
 
     static Aspect MIGHT;
@@ -66,6 +71,9 @@ abstract class Aspects {
     static Aspect DICE;
     static Aspect SWEETS;
     static Aspect SPIRIT;
+=======
+    static Aspect DREAM;
+>>>>>>> 04507a50d376ee5361b763a99594469b172b48c2
 
     static Aspect NULL;
 
@@ -82,6 +90,7 @@ abstract class Aspects {
         RAGE = new Rage(9);
         HOPE = new Hope(10);
         LIFE = new Life(11);
+<<<<<<< HEAD
         CHAOS = new Chaos(12);
         MIGHT = new Might(13);
         MIST = new Mist(14);
@@ -91,6 +100,9 @@ abstract class Aspects {
         DICE = new Dice(18);
         SWEETS = new Sweets(19);
         SPIRIT = new Spirit(20);
+=======
+        DREAM = new Dream(12);
+>>>>>>> 04507a50d376ee5361b763a99594469b172b48c2
 
         NULL = new Aspect(255, "Null", isInternal:true);
     }
