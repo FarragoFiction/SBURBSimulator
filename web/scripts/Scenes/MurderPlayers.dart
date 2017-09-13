@@ -214,7 +214,7 @@ class MurderPlayers extends Scene {
 			if(worstEnemy !=null && worstEnemy.dead == false && this.canCatch(m,worstEnemy)){
 				session.removeAvailablePlayer(worstEnemy);
 				//if blood player is at all competant, can talk down murder mode player.
-				if(worstEnemy.aspect == Aspects.BLOOD && worstEnemy.getStat("power") > 25){
+				if((worstEnemy.aspect == Aspects.BLOOD || worstEnemy.aspect == Aspects.RHYME) && worstEnemy.getStat("power") > 25){
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
 					ret += ", but instead the Bloody Thing happens and the " + m.htmlTitleBasic() + " is calmed down, and hug bumps are shared. ";
 					if(m.dead) ret += " It is especially tragic that the burgeoning palemance is cut short with the " + m.htmlTitleBasic() + "'s untimely death. ";

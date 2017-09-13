@@ -219,6 +219,7 @@ class DoLandQuest extends Scene{
 		}
 
 
+
 		return ret;
 
 	}
@@ -293,7 +294,7 @@ class DoLandQuest extends Scene{
 			} else {
 				ret += " quests in the " + targetPlayer.land;
 			}
-			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes goodz use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
+			ret += ", " + targetPlayer.getRandomQuest() + ". The " + player.htmlTitleBasic() + " makes good use of their ability to imitate the" + targetPlayer.htmlTitleBasic() + ". ";
 			if (helper != null) {
 				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
 			}
@@ -308,7 +309,10 @@ class DoLandQuest extends Scene{
 				ret += this.calculateClasspectBoost(player, helper, targetPlayer);
 			}
 		}
-
+		if(player.aspect == Aspects.FLOW){
+			player.increaseLandLevel();
+			ret += " The " + player.htmlTitle() + " gets impatient, and tries to get a head start on their next quest.";
+		}
 		if(helper != null && player  != helper ){
 			Relationship r1 = player.getRelationshipWith(helper);
 			Relationship r2 = helper.getRelationshipWith(player);

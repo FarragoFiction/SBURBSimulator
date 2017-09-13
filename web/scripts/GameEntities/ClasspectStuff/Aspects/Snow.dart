@@ -4,6 +4,10 @@ import 'Aspect.dart';
 class Snow extends Aspect{
 
   @override
+  double powerBoostMultiplier = 2.0;
+
+
+  @override
   AspectPalette palette = new AspectPalette()
     ..accent = "#ff9933"
     ..aspect_light = '#ffffff'
