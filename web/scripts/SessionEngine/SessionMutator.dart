@@ -832,8 +832,9 @@ class MetaPlayerHandler {
 
 
     List<Player> get metaPlayers {
-        //i'm totally the leader, everything else is alphabetical besides ab and abj who cheat
-        return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
+        //everything else is 'canon' entry order
+        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician, authorBot, authorBotJunior];
+       // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
     }
 
     void initalizePlayers(Session s) {
@@ -1095,7 +1096,7 @@ class MetaPlayerHandler {
     }
 
     Player makeKR(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.ROGUE, Aspects.HEART);
+        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.ROGUE, Aspects.DREAM);
         player.hair = 46;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#E8D099";

@@ -25,7 +25,7 @@ class Dream extends Aspect {
     List<String> levels = new List<String>.unmodifiable(<String>["ADHDLED YOUTH", "LUCID DREAMER", "LUCID DREAMER"]);
 
     @override
-    List<String> handles = new List<String>.unmodifiable(<String>["Dreamer", "Dogma", "Designer", "Destined", "Dancer", "Doormat", "Decorator", "Denizen"]);
+    List<String> handles = new List<String>.unmodifiable(<String>["Dreamer", "Dogma", "Designer", "Destined", "Dancer", "Doormat", "Decorator", "Denizen", "Disaster"]);
 
 
     @override
@@ -36,7 +36,7 @@ class Dream extends Aspect {
     String denizenSongTitle = "Fantasia"; //a musical theme representing a particular character;
 
     @override
-    String denizenSongDesc = " An orchestra begins to tune up. It is the one Animation will play to celebrate. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+    String denizenSongDesc = " An orchestra begins to tune up. It is the one Obsession will play to celebrate. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
     @override
@@ -69,7 +69,7 @@ class Dream extends Aspect {
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat("alchemy", 2, true),
-        new AssociatedStat("mobilty", 1, true),
+        new AssociatedStat("mobility", 1, true),
         new AssociatedStat("sanity", -2, true)
     ]);
 
