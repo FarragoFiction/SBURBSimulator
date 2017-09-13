@@ -183,7 +183,7 @@ class CorpseSmooch extends Scene {
           ////session.logger.info("alt is: " +alt);
           if (alt != null && alt.alternateScene(div)) {
             //do nothing here.
-            } else {
+          }else {
               ret += "<Br><Br><img src = 'images/sceneIcons/death_icon.png'>" +
                   d.htmlTitle() +
                   "'s waits patiently for the kiss of life. But nobody came. ";

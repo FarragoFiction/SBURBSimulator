@@ -105,7 +105,7 @@ class LifeStuff extends Scene {
         List<Player> chosenGuides = <Player>[];
         List<Player> chosenSuplicants = <Player>[];
         for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
-            if (possibleGuide.aspect == Aspects.SPIRIT || possibleGuide.aspect == Aspects.DOOM || possibleGuide.aspect == Aspects.CHAOS || possibleGuide.aspect == Aspects.LIFE || possibleGuide.canGhostCommune() != null) {
+            if (possibleGuide.aspect == Aspects.DOOM || possibleGuide.aspect == Aspects.CHAOS || possibleGuide.aspect == Aspects.LIFE || possibleGuide.canGhostCommune() != null) {
                 if (possibleGuide.class_name == SBURBClassManager.SEER || possibleGuide.class_name == SBURBClassManager.SCRIBE || possibleGuide.class_name == SBURBClassManager.PAGE || possibleGuide.class_name == SBURBClassManager.BARD || possibleGuide.class_name == SBURBClassManager.ROGUE || possibleGuide.class_name == SBURBClassManager.MAID) {
                     chosenGuides.add(possibleGuide);
                 }
@@ -116,7 +116,7 @@ class LifeStuff extends Scene {
         for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
             if (possibleGuide.class_name == SBURBClassManager.HEIR || possibleGuide.class_name == SBURBClassManager.THIEF || possibleGuide.class_name == SBURBClassManager.PRINCE || possibleGuide.class_name == SBURBClassManager.WITCH || possibleGuide.class_name == SBURBClassManager.SYLPH || possibleGuide.class_name == SBURBClassManager.KNIGHT || possibleGuide.class_name == SBURBClassManager.MAGE) {
                 chosenSuplicants.add(possibleGuide);
-            } else if (possibleGuide.aspect != Aspects.SPIRIT && possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.CHAOS && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
+            } else if (possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.CHAOS && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
                 if (!chosenGuides.contains(possibleGuide)) { //can't be both guide and non guide.
                     //////session.logger.info("supplicant is: " + possibleGuide.title());
                     chosenSuplicants.add(possibleGuide);

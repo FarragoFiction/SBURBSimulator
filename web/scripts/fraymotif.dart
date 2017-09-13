@@ -17,17 +17,20 @@ class Fraymotif {
     //make sure ENEMY is the same for all effects, dunkass.
     String desc; //will generate it procedurally if not set, otherwise things like sprites will have it hand made.
     bool used = false; //when start fight, set to false. set to true when used. once per fight
-    List<FraymotifEffect> effects = <FraymotifEffect>[]; //each effect is a target, a revive, a statName
+    List<FraymotifEffect> effects = <FraymotifEffect>[
+    ]; //each effect is a target, a revive, a statName
     num baseValue;
 
 
-    Fraymotif(String this.name, int this.tier, {List<Aspect> this.aspects = null, String this.desc = ""}) {
+    Fraymotif(String this.name, int this.tier,
+        {List<Aspect> this.aspects = null, String this.desc = ""}) {
         if (this.aspects == null) {
             this.aspects = <Aspect>[];
         }
         this.baseValue = 50 * this.tier;
         if (this.tier >= 3)
-            this.baseValue = 1000 * this.tier - 2; //so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
+            this.baseValue = 1000 * this.tier -
+                2; //so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
     }
 
     @override
@@ -43,10 +46,13 @@ class Fraymotif {
 
     List<Player> getCastersNoOwner(Random rand, List<Player> players) {
         List<Player> casters = [];
-        for (num i = 0; i < this.aspects.length; i++) { //skip the first aspect, because that's owner.
+        for (num i = 0; i < this.aspects.length;
+        i++) { //skip the first aspect, because that's owner.
             Aspect a = this.aspects[i];
-            Player p = rand.pickFrom(findAllAspectPlayers(players, a)); //ANY player that matches my aspect can do this.;
-            if (p != null) casters.add(p); //don't add 'undefined' to this array like a dunkass.
+            Player p = rand.pickFrom(findAllAspectPlayers(
+                players, a)); //ANY player that matches my aspect can do this.;
+            if (p != null) casters.add(
+                p); //don't add 'undefined' to this array like a dunkass.
         }
         return casters; //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
 
@@ -56,23 +62,31 @@ class Fraymotif {
         //first check to see if all aspects are included in the allies array.
         List<GameEntity> casters = [owner];
         //List<dynamic> aspects = [];
-        List<GameEntity> living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
-        for (num i = 1; i < this.aspects.length; i++) { //skip the first aspect, because that's owner.
+        List<GameEntity> living = findLivingPlayers(
+            allies); //dead men use no fraymotifs. (for now)
+        for (num i = 1; i < this.aspects.length;
+        i++) { //skip the first aspect, because that's owner.
             var a = this.aspects[i];
-            var p = owner.rand.pickFrom(findAllAspectPlayers(living, a)); //ANY player that matches my aspect can do this.;
-            if (p != null) casters.add(p); //don't add 'undefined' to this array like a dunkass.
+            var p = owner.rand.pickFrom(findAllAspectPlayers(
+                living, a)); //ANY player that matches my aspect can do this.;
+            if (p != null) casters.add(
+                p); //don't add 'undefined' to this array like a dunkass.
         }
         return casters; //eventually do smarter things, like only allow to cast buff hp if heals are needed or anybody is dead.
     }
 
-    dynamic processFlavorText(GameEntity owner, List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies, revives) {
+    dynamic processFlavorText(GameEntity owner, List<GameEntity> casters,
+        List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies,
+        revives) {
         if (this.desc == null || this.desc.length == 0) {
             this.desc = this.proceduralFlavorText(owner.rand);
         }
         String phrase = "The CASTERS use FRAYMOTIF. "; //shitty example.
-        if (casters.length == 1) phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. ";
+        if (casters.length == 1)
+            phrase = "The CASTERS uses FRAYMOTIF. It damages the ENEMY. ";
         phrase += this.desc + revives;
-        return this.replaceKeyWords(phrase, owner, casters, allies, enemy, enemies);
+        return this.replaceKeyWords(
+            phrase, owner, casters, allies, enemy, enemies);
     }
 
     dynamic proceduralFlavorText(Random rand) {
@@ -81,7 +95,8 @@ class Fraymotif {
     }
 
     dynamic superCondenseEffectsText(Random rand) {
-        var effectTypes = {}; //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
+        var effectTypes = {
+        }; //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
         for (int i = 0; i < 4; i++) {
             effectTypes["damage$i"] = [];
             effectTypes["buff$i"] = [];
@@ -89,13 +104,21 @@ class Fraymotif {
         for (num i = 0; i < this.effects.length; i++) {
             FraymotifEffect e = this.effects[i];
             if (e.damageInsteadOfBuff) {
-                if (effectTypes["damage" + e.target.toString()].length == 0) effectTypes["damage" + e.target.toString()].add(e.toStringSimple());
+                if (effectTypes["damage" + e.target.toString()].length ==
+                    0) effectTypes["damage" + e.target.toString()].add(
+                    e.toStringSimple());
                 //no repeats
-                if (effectTypes["damage" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["damage" + e.target.toString()].add(e.statName);
+                if (effectTypes["damage" + e.target.toString()].indexOf(
+                    e.statName) == -1) effectTypes["damage" +
+                    e.target.toString()].add(e.statName);
             } else {
-                if (effectTypes["buff" + e.target.toString()].length == 0) effectTypes["buff" + e.target.toString()].add(e.toStringSimple());
+                if (effectTypes["buff" + e.target.toString()].length ==
+                    0) effectTypes["buff" + e.target.toString()].add(
+                    e.toStringSimple());
                 //no repeats
-                if (effectTypes["buff" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["buff" + e.target.toString()].add(e.statName);
+                if (effectTypes["buff" + e.target.toString()].indexOf(
+                    e.statName) == -1) effectTypes["buff" + e.target.toString()]
+                    .add(e.statName);
             }
         }
 
@@ -109,22 +132,27 @@ class Fraymotif {
                 var template = stats[0];
                 stats.remove(template);
                 for (num j = 0; j < stats.length; j++) {
-                    stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
+                    stats[j] = this.getStatWord(rand, stats[j],
+                        i); //i is who the target is, j is the stat.
                 }
-                retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
+                retArray.add(template.replaceAll(
+                    "STAT", turnArrayIntoHumanSentence(stats)));
             }
             if (effectTypes["buff$i"].length > 0) {
                 stats = effectTypes["buff$i"];
                 String template = stats[0];
                 stats.remove(template);
                 for (num j = 0; j < stats.length; j++) {
-                    stats[j] = this.getStatWord(rand, stats[j], i); //i is who the target is, j is the stat.
+                    stats[j] = this.getStatWord(rand, stats[j],
+                        i); //i is who the target is, j is the stat.
                 }
-                retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
+                retArray.add(template.replaceAll(
+                    "STAT", turnArrayIntoHumanSentence(stats)));
             }
         }
         String almostDone = turnArrayIntoHumanSentence(retArray);
-        almostDone = almostDone[0].toUpperCase() + almostDone.substring(1) + "."; //sentence it.
+        almostDone = almostDone[0].toUpperCase() + almostDone.substring(1) +
+            "."; //sentence it.
         return this.replaceKeyWordsForFlavorTextBase(rand, almostDone);
     }
 
@@ -139,31 +167,196 @@ class Fraymotif {
     }
 
     List<String> goodStatWords(statName) {
-        if (statName == "MANGRIT") return ["mangrit", "strength", "power", "might", "fire", "pure energy", "STRENGTH"];
-        if (statName == "hp") return ["plants", "health", "vines", "gardens", "stones", "earth", "life", "moss", "fruit", "growth"];
-        if (statName == "RELATIONSHIPS") return ["chains", "friendship bracelets", "shipping grids", "connections", "hearts", "pulse", "bindings", "rainbows", "care bare stares", "mirrors"];
-        if (statName == "mobility") return ["wind", "speed", "hedgehogs", "whirlwinds", "gales", "hurricanes", "thunder", "storms", "momentum", "feathers"];
-        if (statName == "sanity") return ["calmness", "sanity", "ripples", "glass", "fuzz", "water", "stillness", "totally real magic"];
+        if (statName == "MANGRIT") return [
+            "mangrit",
+            "strength",
+            "power",
+            "might",
+            "fire",
+            "pure energy",
+            "STRENGTH"
+        ];
+        if (statName == "hp") return [
+            "plants",
+            "health",
+            "vines",
+            "gardens",
+            "stones",
+            "earth",
+            "life",
+            "moss",
+            "fruit",
+            "growth"
+        ];
+        if (statName == "RELATIONSHIPS") return [
+            "chains",
+            "friendship bracelets",
+            "shipping grids",
+            "connections",
+            "hearts",
+            "pulse",
+            "bindings",
+            "rainbows",
+            "care bare stares",
+            "mirrors"
+        ];
+        if (statName == "mobility") return [
+            "wind",
+            "speed",
+            "hedgehogs",
+            "whirlwinds",
+            "gales",
+            "hurricanes",
+            "thunder",
+            "storms",
+            "momentum",
+            "feathers"
+        ];
+        if (statName == "sanity") return [
+            "calmness",
+            "sanity",
+            "ripples",
+            "glass",
+            "fuzz",
+            "water",
+            "stillness",
+            "totally real magic"
+        ];
 //,"velvet pillows"
-        if (statName == "freeWill") return ["electricity", "will", "open doors", "possibility", "quantum physics", "lightning", "sparks", "chaos", "broken gears"];
-        if (statName == "maxLuck") return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits", "hope"];
-        if (statName == "minLuck") return ["dice", "luck", "light", "playing cards", "suns", "absolute bullshit", "card suits"];
-        if (statName == "alchemy") return ["inspiration", "creativeness", "grist", "perfectly generic objects", "hammers", "swords", "weapons", "creativity", "mist", "engines", "metals"];
+        if (statName == "freeWill") return [
+            "electricity",
+            "will",
+            "open doors",
+            "possibility",
+            "quantum physics",
+            "lightning",
+            "sparks",
+            "chaos",
+            "broken gears"
+        ];
+        if (statName == "maxLuck") return [
+            "dice",
+            "luck",
+            "light",
+            "playing cards",
+            "suns",
+            "absolute bullshit",
+            "card suits",
+            "hope"
+        ];
+        if (statName == "minLuck") return [
+            "dice",
+            "luck",
+            "light",
+            "playing cards",
+            "suns",
+            "absolute bullshit",
+            "card suits"
+        ];
+        if (statName == "alchemy") return [
+            "inspiration",
+            "creativeness",
+            "grist",
+            "perfectly generic objects",
+            "hammers",
+            "swords",
+            "weapons",
+            "creativity",
+            "mist",
+            "engines",
+            "metals"
+        ];
 
         return null;
     }
 
     List<String> badStatWords(statName) {
-        if (statName == "MANGRIT") return ["weakness", "powerlessness", "despair", "wretchedness", "misery"];
-        if (statName == "hp") return ["fragility", "rotting plants", "disease", "bones", "skulls", "tombstones", "ash", "toxin", "mold", "viruses"];
-        if (statName == "RELATIONSHIPS") return ["aggression", "broken chains", "empty friends lists", "sand", "loneliness"];
-        if (statName == "mobility") return ["laziness", "locks", "weights", "manacles", "quicksand", "gravitons", "gravity", "ice"];
+        if (statName == "MANGRIT") return [
+            "weakness", "powerlessness", "despair", "wretchedness", "misery"];
+        if (statName == "hp") return [
+            "fragility",
+            "rotting plants",
+            "disease",
+            "bones",
+            "skulls",
+            "tombstones",
+            "ash",
+            "toxin",
+            "mold",
+            "viruses"
+        ];
+        if (statName == "RELATIONSHIPS") return [
+            "aggression",
+            "broken chains",
+            "empty friends lists",
+            "sand",
+            "loneliness"
+        ];
+        if (statName == "mobility") return [
+            "laziness",
+            "locks",
+            "weights",
+            "manacles",
+            "quicksand",
+            "gravitons",
+            "gravity",
+            "ice"
+        ];
 //"pillows", "sloths",
-        if (statName == "sanity") return ["harshwimsies", "clowns", "fractals", "madness", "tentacles", "rain", "screams", "terror", "nightmares", "mIrAcLeS", "rage", "impossible angles", "teeth"];
-        if (statName == "freeWill") return ["acceptance", "gullibility", "closed doors", "gears", "clocks", "prophecy", "static", "skian clouds"];
-        if (statName == "maxLuck") return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
-        if (statName == "minLuck") return ["misfortune", "blank books", "broken mirrors", "hexes", "doom", "8ad 8reaks", "disaster", "black cats"];
-        if (statName == "alchemy") return ["failure", "writer's blocks", "monotony", "broken objects", "object shards", "nails", "splinters"];
+        if (statName == "sanity") return [
+            "harshwimsies",
+            "clowns",
+            "fractals",
+            "madness",
+            "tentacles",
+            "rain",
+            "screams",
+            "terror",
+            "nightmares",
+            "mIrAcLeS",
+            "rage",
+            "impossible angles",
+            "teeth"
+        ];
+        if (statName == "freeWill") return [
+            "acceptance",
+            "gullibility",
+            "closed doors",
+            "gears",
+            "clocks",
+            "prophecy",
+            "static",
+            "skian clouds"
+        ];
+        if (statName == "maxLuck") return [
+            "misfortune",
+            "blank books",
+            "broken mirrors",
+            "hexes",
+            "doom",
+            "8ad 8reaks",
+            "disaster",
+            "black cats"
+        ];
+        if (statName == "minLuck") return [
+            "misfortune",
+            "blank books",
+            "broken mirrors",
+            "hexes",
+            "doom",
+            "8ad 8reaks",
+            "disaster",
+            "black cats"
+        ];
+        if (statName == "alchemy") return [
+            "failure",
+            "writer's blocks",
+            "monotony",
+            "broken objects",
+            "object shards",
+            "nails",
+            "splinters"
+        ];
 
         return null;
     }
@@ -174,7 +367,8 @@ class Fraymotif {
           “Damages an Enemy based on how WILLFUL, STRONG, CALM, and FAST, the casters are compared to their enemy.”
         */
         //8 main types of effects, damage/buff and 0-4
-        var effectTypes = {}; //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
+        var effectTypes = {
+        }; //hash coded by effectType damage0 vs damage1 vs buff0. first element is template
         for (int i = 0; i < 4; i++) {
             effectTypes["damage$i"] = [];
             effectTypes["buff$i"] = [];
@@ -182,12 +376,16 @@ class Fraymotif {
         for (num i = 0; i < this.effects.length; i++) {
             var e = this.effects[i];
             if (e.damageInsteadOfBuff) {
-                if (effectTypes["damage${e.target}"].length == 0) effectTypes["damage${e.target}"].add(e.toString());
+                if (effectTypes["damage${e.target}"].length ==
+                    0) effectTypes["damage${e.target}"].add(e.toString());
                 //no repeats
-                if (effectTypes["damage${e.target}"].indexOf(e.statName) == -1) effectTypes["damage${e.target}"].add(e.statName);
+                if (effectTypes["damage${e.target}"].indexOf(e.statName) ==
+                    -1) effectTypes["damage${e.target}"].add(e.statName);
             } else {
-                if (effectTypes["buff${e.target}"].length == 0) effectTypes["buff${e.target}"].add(e.toString());
-                if (effectTypes["buff${e.target}"].indexOf(e.statName) == -1) effectTypes["buff${e.target}"].add(e.statName);
+                if (effectTypes["buff${e.target}"].length ==
+                    0) effectTypes["buff${e.target}"].add(e.toString());
+                if (effectTypes["buff${e.target}"].indexOf(e.statName) ==
+                    -1) effectTypes["buff${e.target}"].add(e.statName);
             }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
@@ -198,31 +396,41 @@ class Fraymotif {
                 stats = effectTypes["damage$i"];
                 var template = stats[0];
                 stats.remove(template);
-                retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
+                retArray.add(template.replaceAll(
+                    "STAT", turnArrayIntoHumanSentence(stats)));
             }
             if (effectTypes["buff$i"].length > 0) {
                 stats = effectTypes["buff$i"];
                 var template = stats[0];
                 stats.remove(template);
-                retArray.add(template.replaceAll("STAT", turnArrayIntoHumanSentence(stats)));
+                retArray.add(template.replaceAll(
+                    "STAT", turnArrayIntoHumanSentence(stats)));
             }
         }
         return turnArrayIntoHumanSentence(retArray);
     }
 
     dynamic replaceKeyWordsForFlavorTextBase(Random rand, String phrase) {
-        phrase = phrase.replaceAll("damages", rand.pickFrom(this.getDamageWords()));
-        phrase = phrase.replaceAll("debuffs", rand.pickFrom(this.getDebuffWords()));
-        phrase = phrase.replaceAll("heals", rand.pickFrom(this.getHealingWords()));
+        phrase =
+            phrase.replaceAll("damages", rand.pickFrom(this.getDamageWords()));
+        phrase =
+            phrase.replaceAll("debuffs", rand.pickFrom(this.getDebuffWords()));
+        phrase =
+            phrase.replaceAll("heals", rand.pickFrom(this.getHealingWords()));
         phrase = phrase.replaceAll("buffs", rand.pickFrom(this.getBuffWords()));
         phrase = phrase.replaceAll("SELF", rand.pickFrom(this.getSelfWords()));
-        phrase = phrase.replaceAll("EBLUH", rand.pickFrom(this.getEnemyWords()));
-        phrase = phrase.replaceAll("FRIENDSBLUH", rand.pickFrom(this.getAlliesWords()));
-        phrase = phrase.replaceAll("ESBLUHS", rand.pickFrom(this.getEnemiesWords()));
+        phrase =
+            phrase.replaceAll("EBLUH", rand.pickFrom(this.getEnemyWords()));
+        phrase = phrase.replaceAll(
+            "FRIENDSBLUH", rand.pickFrom(this.getAlliesWords()));
+        phrase =
+            phrase.replaceAll("ESBLUHS", rand.pickFrom(this.getEnemiesWords()));
         return phrase;
     }
 
-    String replaceKeyWords(String phrase, GameEntity owner, List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies) {
+    String replaceKeyWords(String phrase, GameEntity owner,
+        List<GameEntity> casters, List<GameEntity> allies, GameEntity enemy,
+        List<GameEntity> enemies) {
         //ret= ret.replace(new RegExp(this.lettersToReplace[i][0], "g"),replace);
         phrase = phrase.replaceAll("OWNER", owner.htmlTitleHP());
         phrase = phrase.replaceAll("CASTERS", getPlayersTitlesBasic(casters));
@@ -235,7 +443,9 @@ class Fraymotif {
     }
 
     List<String> getSelfWords() {
-        return ["aura", "cloak", "shield", "armor", "robe", "orbit", "suit", "aegis"];
+        return [
+            "aura", "cloak", "shield", "armor", "robe", "orbit", "suit", "aegis"
+        ];
     }
 
     List<String> getAlliesWords() {
@@ -243,32 +453,82 @@ class Fraymotif {
     }
 
     List<String> getEnemyWords() {
-        return ["lance", "spike", "laser", "hammer", "shard", "ball", "meteor", "fist", "beautiful pony", "cube", "bolt"];
+        return [
+            "lance",
+            "spike",
+            "laser",
+            "hammer",
+            "shard",
+            "ball",
+            "meteor",
+            "fist",
+            "beautiful pony",
+            "cube",
+            "bolt"
+        ];
     }
 
     List<String> getEnemiesWords() {
-        return ["explosion", "blast", "miasma", "matrix", "deluge", "cascade", "wave", "fleet", "illusion"];
+        return [
+            "explosion",
+            "blast",
+            "miasma",
+            "matrix",
+            "deluge",
+            "cascade",
+            "wave",
+            "fleet",
+            "illusion"
+        ];
     }
 
     List<String> getDamageWords() {
-        return ["painful", "acidic", "sharp", "harmful", "violent", "murderous", "destructive", "explosive"];
+        return [
+            "painful",
+            "acidic",
+            "sharp",
+            "harmful",
+            "violent",
+            "murderous",
+            "destructive",
+            "explosive"
+        ];
     }
 
     List<String> getDebuffWords() {
-        return ["draining", "malicious", "distracting", "degrading", "debuffing", "cursed", "vampiric"];
+        return [
+            "draining",
+            "malicious",
+            "distracting",
+            "degrading",
+            "debuffing",
+            "cursed",
+            "vampiric"
+        ];
     }
 
     List<String> getHealingWords() {
-        return ["healing", "restorative", "restful", "rejuvenating", "reinforcing"];
+        return [
+            "healing", "restorative", "restful", "rejuvenating", "reinforcing"];
     }
 
     List<String> getBuffWords() {
-        return ["soothing", "supportive", "friendly", "fortifying", "protective", "warding", "defensive", "blessed"];
+        return [
+            "soothing",
+            "supportive",
+            "friendly",
+            "fortifying",
+            "protective",
+            "warding",
+            "defensive",
+            "blessed"
+        ];
     }
 
     bool canCast(owner, allies, enemies) {
         if (!this.usable) return false; //once per fight.
-        if (this.aspects.length == 0) return true; //no associated aspect means anyone can cast
+        if (this.aspects.length == 0)
+            return true; //no associated aspect means anyone can cast
         var casters = this.getCasters(owner, allies);
         return (casters.length == this.aspects.length);
     }
@@ -279,19 +539,36 @@ class Fraymotif {
         }
     }
 
-    String useFraymotif(GameEntity owner, List<GameEntity> allies, GameEntity enemy, List<GameEntity> enemies) {
-        if (!this.canCast(owner, allies, enemies)) return "";
-        var casters = this.getCasters(owner, allies);
-        this.makeCastersUnavailable(casters);
-        List<Player> living = findLivingPlayers(allies);
-        //Hope Rides Alone
-        if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
-            enemies[0].buffs.add(new BuffOld("currentHP", -9999)); //they REALLY believed in this attack.
-            var jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
-            //print("Hope Rides Alone in session: ${owner.session.session_id}");
-            var scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
-            return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() + " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
-        }
+    String useFraymotif(GameEntity owner, List<GameEntity> allies,
+        GameEntity enemy, List<GameEntity> enemies) {
+      if (!this.canCast(owner, allies, enemies)) return "";
+      var casters = this.getCasters(owner, allies);
+      this.makeCastersUnavailable(casters);
+      List<Player> living = findLivingPlayers(allies);
+      //Hope Rides Alone
+      if (owner is Player && owner.aspect == Aspects.HOPE &&
+          living.length == 1 && owner.rand.nextDouble() > 0.85) {
+        enemies[0].buffs.add(new BuffOld(
+            "currentHP", -9999)); //they REALLY believed in this attack.
+        var jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
+        //print("Hope Rides Alone in session: ${owner.session.session_id}");
+        var scream = owner.aspect.fontTag() +
+            owner.rand.pickFrom(jakeisms) + "</font>";
+        return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() +
+            " starts screaming. <br><br><span class = 'jake'> " + scream +
+            " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
+      } else if (owner is Player && owner.aspect == Aspects.BREATH &&
+          living.length == 1 && owner.rand.nextDouble() > 0.85) {
+        var johnisms = ["PSCHOOOOOOOO!"];
+        //print("Windy Thing in session: ${owner.session.session_id}");
+        var scream = owner.aspect.fontTag() +
+            owner.rand.pickFrom(johnisms) + "</font>";
+        enemies[0].buffs.add(new BuffOld("currentHP", -1000)); //the wind REALLY hurts
+        return " [WINDY THING] is activated. " + owner.htmlTitle() +
+            " is engulfed in a catastrophic level of wind, destroying all in its path. That's a lot of damage." + scream + " </span> <Br><Br> Holy shit, that is a LOT OF DAMAGE! OP Maybe?";
+      }
+
+
         List<GameEntity> dead = findDeadPlayers(allies);
         ////print(casters);
         //ALL effects that target a single enemy target the SAME enemy.
