@@ -103,6 +103,7 @@ class InterestCategory {
     List<String> handles2 = <String>["Nobody"];
     List<String> levels = <String>["Nobody"];
     int id;
+    List<Theme> themes;
 
     //this is what char creator should modify. making it private meant that children apparently couldn't override it. i guess i want protected, but does dart even have that?
     List<String> interestStrings = ["NONE"];
@@ -112,10 +113,12 @@ class InterestCategory {
     String name;
 
     //p much no vars to set.
-    InterestCategory(this.id, this.name, this.positive_descriptor,
-        this.negative_descriptor) {
+    InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor) {
+        initializeThemes();
         InterestManager.register(this);
     }
+
+
 
     //clunky name to remind me that modding this does nothing
     List<String> get copyOfInterestStrings =>
@@ -136,6 +139,31 @@ class InterestCategory {
 
     bool playerLikes(Player p) {
         return p.interest1.category == this || p.interest2.category == this;
+    }
+
+    void initializeThemes() {
+        themes = new List<Theme>()
+            ..add(new Theme(<String>["Decay","Rot","Death"])
+                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            )
+            ..add(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW))
+
+            ..add(new Theme(<String>["Peace","Tranquility","Rest"])
+                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            ); // end theme
+
+
     }
 
     @override

@@ -112,6 +112,7 @@ class SBURBClassManager {
 class SBURBClass {
 
     String name = "Null";
+    List<Theme> themes;
     String savedName;  //for AB restoring an aspects name after a hope player fucks it up
     FAQFile faqFile;
     int id = 256; //for classNameToInt
@@ -123,6 +124,7 @@ class SBURBClass {
         this.savedName = name;
         faqFile = new FAQFile("Classes/$name.xml");
         //print("Making a sburb class ${this.name}");
+        initializeThemes();
         SBURBClassManager.addClass(this);
     }
 
@@ -198,6 +200,32 @@ class SBURBClass {
     String getQuest(Random rand, bool postDenizen) {
         if (!postDenizen) return rand.pickFrom(quests);
         return rand.pickFrom(postDenizenQuests);
+    }
+
+
+    void initializeThemes() {
+        themes = new List<Theme>()
+            ..add(new Theme(<String>["Decay","Rot","Death"])
+                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            )
+            ..add(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW))
+
+            ..add(new Theme(<String>["Peace","Tranquility","Rest"])
+                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            ); // end theme
+
+
     }
 
     @override
