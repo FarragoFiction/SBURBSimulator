@@ -19,5 +19,5 @@ class Stars extends Aspect{
     ..pants_dark = '#00232b';//
 
 //todo make these fellas do stuff.
-  Stars(int id) :super(id, "Stars", isCanon: false);
+  Stars(int id) :super(id, "Stars", isCanon: true);
 }

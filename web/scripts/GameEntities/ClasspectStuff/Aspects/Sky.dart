@@ -19,5 +19,5 @@ class Sky extends Aspect{
     ..pants_dark = '#858585';
 
 //todo make these fellas do stuff.
-  Sky(int id) :super(id, "Sky", isCanon: false);
+  Sky(int id) :super(id, "Sky", isCanon: true);
 }

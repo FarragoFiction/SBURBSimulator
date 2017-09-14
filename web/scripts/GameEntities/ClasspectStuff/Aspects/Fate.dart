@@ -19,5 +19,5 @@ class Fate extends Aspect{
     ..pants_dark = '#ad7c00';//
 
 //todo make these fellas do stuff.
-  Fate(int id) :super(id, "Fate", isCanon: false);
+  Fate(int id) :super(id, "Fate", isCanon: true);
 }

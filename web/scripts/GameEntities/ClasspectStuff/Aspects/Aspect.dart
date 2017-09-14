@@ -30,8 +30,6 @@ import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
 import "Chaos.dart";
-import "Spirit.dart";
-
 import "Dream.dart";
 
 abstract class Aspects {
@@ -95,21 +93,15 @@ abstract class Aspects {
         DREAM = new Dream(21);
 
         NULL = new Aspect(255, "Null", isInternal:true);
-        DREAM = new Dream(12);
 
-        NULL = new Aspect(255, "Null", isInternal:true);
 
-        MIGHT = new Might(13);
-        MIST = new Mist(14);
-        RAIN = new Rain(15);
-        SAND = new Sand(16);
-        SKY = new Sky(17);
-        RHYME = new Rhyme(18);
-        LAW = new Law(19);
-        FATE = new Fate(20);
-        SNOW = new Snow(21);
-        FLOW = new Flow(22);
-        STARS = new Stars(23);
+        SKY = new Sky(22);
+        RHYME = new Rhyme(23);
+        LAW = new Law(24);
+        FATE = new Fate(25);
+        SNOW = new Snow(26);
+        FLOW = new Flow(27);
+        STARS = new Stars(28);
 
 
     }

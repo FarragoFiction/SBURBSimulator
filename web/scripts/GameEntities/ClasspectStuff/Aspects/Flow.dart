@@ -45,5 +45,5 @@ class Flow extends Aspect{
     new AssociatedStat("RELATIONSHIPS", -2, true)
   ]);
 
-  Flow(int id) :super(id, "Flow", isCanon: false);
+  Flow(int id) :super(id, "Flow", isCanon: true);
 }

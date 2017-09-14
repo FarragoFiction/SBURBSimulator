@@ -38,5 +38,5 @@ class Rhyme extends Aspect{
   String denizenSongDesc = "BLUH BLUH, Ask Cactus to write this. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
 
-  Rhyme(int id) :super(id, "Rhyme", isCanon: false);
+  Rhyme(int id) :super(id, "Rhyme", isCanon: true);
 }

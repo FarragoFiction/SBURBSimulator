@@ -23,5 +23,5 @@ class Snow extends Aspect{
     ..pants_dark = '#a4d4db';//
 
 //todo make these fellas do stuff.
-  Snow(int id) :super(id, "Snow", isCanon: false);
+  Snow(int id) :super(id, "Snow", isCanon: true);
 }

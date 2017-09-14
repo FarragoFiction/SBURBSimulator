@@ -77,8 +77,6 @@ class SBURBClassManager {
         DAME = new Dame();
         NULL = new SBURBClass("Null", 255, false, isInternal:true);
 
-        NULL = new SBURBClass("Null", 255, false, isInternal:true);
-
     }
 
 
