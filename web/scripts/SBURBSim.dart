@@ -20,6 +20,7 @@ export "formats/FileFormat.dart";
 export "fraymotif.dart";
 export "Lands/Theme.dart";
 export "Lands/Feature.dart";
+export "Lands/Land.dart";
 export "Lands/FeatureFactory.dart";
 export "SessionEngine/session.dart";
 export "SessionEngine/sessionSummary.dart";

@@ -39,6 +39,10 @@ class Underling extends NPC {
 
 //naknaknaknaknaknak my comments are talking to me!
 class Consort extends NPC {
+    /// what are these consorts called?
+    String name;
+    ///what sound do these consorts make?
+    String sound;
     Consort(String name, Session session) : super(name, session);
 }
 

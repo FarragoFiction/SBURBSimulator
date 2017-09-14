@@ -1083,7 +1083,7 @@ class MetaPlayerHandler {
 
         player.sprite.addPrototyping(player.object_to_prototype);
 
-        Fraymotif f = new Fraymotif("Song of Skaia", 13);
+        Fraymotif f = new Fraymotif("Maw of the Void", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect("freeWill", 3, true));
         f.effects.add(new FraymotifEffect("power", 3, true));

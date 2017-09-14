@@ -268,6 +268,8 @@ class Aspect {
     String fontTag() {
         return "<font color='${this.palette.text.toStyleString()}'> ";
     }
+
+    //TODO remember to give space only Frogs and give it a stupid high weighting.
     void initializeThemes() {
         addTheme(new Theme(<String>["Decay","Rot","Death"])
             ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
