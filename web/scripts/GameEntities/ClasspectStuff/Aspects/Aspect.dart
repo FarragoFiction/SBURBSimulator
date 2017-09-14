@@ -5,11 +5,11 @@ import "Breath.dart";
 //import "Dreams.dart";
 import "Dice.dart";
 import "Doom.dart";
-//import "Fate.dart";
-//import "Flow.dart";
+import "Fate.dart";
+import "Flow.dart";
 import "Heart.dart";
 import "Hope.dart";
-//import "Law.dart";
+import "Law.dart";
 import "Life.dart";
 import "Light.dart";
 import "Might.dart";
@@ -17,15 +17,16 @@ import "Mind.dart";
 import "Mist.dart";
 import "Rage.dart";
 import "Rain.dart";
-//import "Rhyme.dart";
+import "Rhyme.dart";
 import "Sand.dart";
-//import "Sky.dart";
-//import "Snow.dart";
+import "Sky.dart";
+import "Snow.dart";
 import "Space.dart";
 //import "Stars.dart";
 import "Spark.dart";
 import 'Spirit.dart';
 import "Sweets.dart";
+import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
 import "Chaos.dart";
@@ -52,22 +53,20 @@ abstract class Aspects {
     static Aspect MIST;
     static Aspect RAIN;
     static Aspect SAND;
-
-    /*static Aspect RHYME;
-    static Aspect FLOW;
-    static Aspect FATE;
-    static Aspect LAW;
-    static Aspect DREAMS;
-
     static Aspect SKY;
+    static Aspect RHYME;
+    static Aspect LAW;
+    static Aspect FATE;
     static Aspect SNOW;
+    static Aspect FLOW;
     static Aspect STARS;
-     */
+
     static Aspect SPARK;
     static Aspect DICE;
     static Aspect SWEETS;
     static Aspect SPIRIT;
     static Aspect DREAM;
+
 
     static Aspect NULL;
 
@@ -96,9 +95,25 @@ abstract class Aspects {
         DREAM = new Dream(21);
 
         NULL = new Aspect(255, "Null", isInternal:true);
+        DREAM = new Dream(12);
+
+        NULL = new Aspect(255, "Null", isInternal:true);
+
+        MIGHT = new Might(13);
+        MIST = new Mist(14);
+        RAIN = new Rain(15);
+        SAND = new Sand(16);
+        SKY = new Sky(17);
+        RHYME = new Rhyme(18);
+        LAW = new Law(19);
+        FATE = new Fate(20);
+        SNOW = new Snow(21);
+        FLOW = new Flow(22);
+        STARS = new Stars(23);
+
+
     }
 
-    // ##################################################################################################
 
     static Map<int, Aspect> _aspects = <int, Aspect>{};
 

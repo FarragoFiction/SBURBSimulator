@@ -84,7 +84,7 @@ class FaceDenizen extends Scene{
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			////session.logger.info("confront icon: " + this.session.session_id);
 			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
-			if(p.getStat("power") > 27){ //calibrate this l8r
+			if(p.getStat("power") > 27 || (p.getStat("power") > 14 && p.aspect == Aspects.LAW)){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
 				p.denizenDefeated = true;

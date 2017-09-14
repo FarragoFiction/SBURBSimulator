@@ -60,7 +60,7 @@ class Might extends Aspect {
   @override
   List<String> denizenQuests = new List<String>.unmodifiable(<String>[
     "training for training's sake",
-    "rennovating a consort village to protect it from natural disasters",
+    "renovating a consort village to protect it from natural disasters",
     "defeating powerful underlings by refusing to give in to the pain"
   ]);
 

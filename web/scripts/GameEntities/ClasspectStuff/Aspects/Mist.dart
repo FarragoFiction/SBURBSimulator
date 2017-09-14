@@ -35,7 +35,7 @@ class Mist extends Aspect{
   @override
   String denizenSongDesc = "A harmonized chord sounds. It is the one Everybody knows. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
-  //todo: actually add denizens for mist players
+  //todo: actually add denizens and land quests for mist players
 
   static List<String> _randomStats = Player.playerStats.toList()
     ..remove("power")

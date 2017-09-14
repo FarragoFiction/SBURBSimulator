@@ -21,8 +21,9 @@ class EngageMurderMode extends Scene{
 		num moon = 0;
 
 		if(this.player != null){
-			return !this.player.murderMode && this.player.getEnemies().length > 0 && this.flipsShit(); //dude, don't engage murder mode if you're already in it
-
+			return !this.player.murderMode && this.player.getEnemies().length > 0 && this.flipsShit() && this.player.aspect != Aspects.RHYME; //dude, don't engage murder mode if you're already in it
+			//todo note to self: change this so that the event triggers for rhyme players, but they don't feel it's effects.
+			//todo because simply preventing them from going insane won't cut it.
 		}
 		return false;
 	}

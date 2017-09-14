@@ -19,28 +19,28 @@ class Sand extends Aspect {
     ..pants_dark = '#6e4f00';
 
 
-  /*
-  @override
-  List<String> landNames = new List<String>.unmodifiable(<String>["Silence", "Nothing", "Void", "Emptiness", "Tears", "Dust", "Night", "[REDACTED]", "???", "Blindness"]);
 
   @override
-  List<String> levels = new List<String>.unmodifiable(<String>["KNOW-NOTHING ANKLEBITER", "INKY BLACK SORROWMASTER", "FISTICUFFSAFICTIONADO"]);
+  List<String> landNames = new List<String>.unmodifiable(<String>["Lies", "Beach", "Shore", "Secrets", "Pirates", "Suspicion", "Corruption", "[REDACTED]", "Cake"]);
 
   @override
-  List<String> handles = new List<String>.unmodifiable(<String>["Vagrant", "Vegetarian", "Veterinarian", "Vigilante", "Virtuoso"]);
+  List<String> levels = new List<String>.unmodifiable(<String>["MR SANDMAN", "CASTLE COORDINATOR", "POKER FACADE"]);
 
   @override
-  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Undefined", "untitled.mp4", "Void", "Disappearification", "Pumpkin", "Nothing", "Emptiness", "Invisible", "Dark", "Hole", "Solo", "Silent", "Alone", "Night", "Null", "[Censored]", "[???]", "Vacuous", "Abyss", "Noir", "Blank", "Tenebrous", "Antithesis", "404"]);
-
-
-  @override
-  String denizenSongTitle = "Silence";
+  List<String> handles = new List<String>.unmodifiable(<String>["Strategist", "Slider", "Sculpter", "Scamp", "Sleazebag"]);
 
   @override
-  String denizenSongDesc = " A yawning silence rings out. It is the NULL Reality sings to keep the worlds on their dance. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+  List<String> fraymotifNames = new List<String>.unmodifiable(<String>["FALSE", "Wrong", "Sand", "Distraction", "Ruse", "Crumble", "abscond", "beach", "grain", "[Data Expunged]"]);
 
+
+  //@override
+  //String denizenSongTitle = "Silence";
 
   @override
+  String denizenSongDesc = " BLUH BLUH, ask Cactus to write this. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
+
+
+  /*@override
   List<String> denizenNames = new List<String>.unmodifiable(<String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hœnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova']);
 
   @override
@@ -63,17 +63,12 @@ class Sand extends Aspect {
     "[redacted]",
     "[void players, am I right?]"
   ]);
-*/ //todo: mcFucking do these things.
-  static List<String> _randomStats = Player.playerStats.toList()
-    ..remove("power")
-    ..add("MANGRIT");
-
+*/
   @override
   List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-    new AssociatedStatRandom(_randomStats, 3, true), //really good at one thing
-    new AssociatedStatRandom(_randomStats, -1, true), //hit to another thing.
-    new AssociatedStat("minLuck", -1, true), //hit to another thing.
-    new AssociatedStat("sburbLore", 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
+    new AssociatedStat("RELATIONSHIPS", 3, true), //Never truthful. but nobody knows that, do they?
+    new AssociatedStat("sanity", -2, true) //no, you are not sane for cheating your way out of everything.
+
   ]);
 
   Sand(int id) :super(id, "Sand", isCanon: true);

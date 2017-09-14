@@ -310,6 +310,19 @@ dynamic loadAllPossiblePlayers(skipInit){
       loadImage("Life.png",skipInit);
       loadImage("Doom.png",skipInit);
 
+      loadImage("Might.png",skipInit);
+      loadImage("Mist.png",skipInit);
+      loadImage("Sand.png",skipInit);
+      loadImage("Fate.png",skipInit);
+      loadImage("Law.png",skipInit);
+      loadImage("Rhyme.png",skipInit);
+      loadImage("Flow.png",skipInit);
+      loadImage("Rain.png",skipInit);
+      loadImage("Snow.png",skipInit);
+      loadImage("Stars.png",skipInit);
+      loadImage("Sky.png",skipInit);
+
+
 
 
 

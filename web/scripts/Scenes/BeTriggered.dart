@@ -58,6 +58,7 @@ class BeTriggered extends Scene{
 		for(num i = 0; i<this.triggeredPlayers.length; i++){
 			Player p = this.triggeredPlayers[i];
 			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.HOPE);
+			Player rhyme = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.RHYME);
 			if(hope!=null && hope.getStat("power") > 100){
 
 				//////session.logger.info("Hope Survives: " + this.session.session_id);
@@ -68,6 +69,19 @@ class BeTriggered extends Scene{
 				p.flipOutReason = null;
 				p.flippingOutOverDeadPlayer = null;
 
+			}else if(rhyme!=null && rhyme.getStat("power") > 150) { //ability to chill is not as strong as hope.
+				//////session.logger.info("Hope Survives: " + this.session.session_id);
+				ret += " The " + p.htmlTitle() +
+						" should probably be flipping the fuck out about  " +
+						p.flipOutReason;
+				ret +=
+						" and being completely useless, but somehow the " +
+								rhyme.htmlTitle() +
+								" convinces them to take a chill pill, instead."; //rhyme survives.
+				rhyme.increasePower();
+				p.increasePower();
+				p.flipOutReason = null;
+				p.flippingOutOverDeadPlayer = null;
 			}else{
 				session.removeAvailablePlayer(p);
 				if(p.flipOutReason == null) p.flipOutReason = " how glitchy SBURB is "; //<-- why is this necessary???
