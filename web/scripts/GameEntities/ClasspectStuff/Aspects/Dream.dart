@@ -5,7 +5,7 @@ class Dream extends Aspect {
 
     @override
     AspectPalette palette = new AspectPalette()
-        ..accent = "#ff3399"
+        ..accent = "#9630BF"
         ..aspect_light = '#cc87e8'
         ..aspect_dark = '#9545b7'
         ..shoe_light = '#ae769b'
@@ -48,7 +48,7 @@ class Dream extends Aspect {
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "brainstorming five different ways to solve the same problem",
-        "navigating a dungeon where enemies constantly give you incorrect advice on how to procede",
+        "navigating a dungeon where enemies constantly give you incorrect advice on how to proceed",
         "navigating the exact same dungeon three different times, but you are teleported to the begining if you go the same way twice"
     ]);
     @override
