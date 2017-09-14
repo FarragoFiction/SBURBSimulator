@@ -74,7 +74,6 @@ class VoidyStuff extends Scene {
 			}
 		}else if(this.enablingPlayer.aspect == Aspects.RAGE) {
 			classDiv = "rage";
-
 		}else if(this.enablingPlayer.aspect == Aspects.CHAOS){
 			classDiv = "chaos";
 		}else if(this.enablingPlayer.aspect == Aspects.SAND){

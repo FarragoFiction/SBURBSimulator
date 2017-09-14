@@ -2,7 +2,6 @@ import "../../../SBURBSim.dart";
 
 import "Blood.dart";
 import "Breath.dart";
-//import "Dreams.dart";
 import "Dice.dart";
 import "Doom.dart";
 import "Fate.dart";
@@ -22,89 +21,88 @@ import "Sand.dart";
 import "Sky.dart";
 import "Snow.dart";
 import "Space.dart";
-//import "Stars.dart";
+import "Stars.dart";
 import "Spark.dart";
 import 'Spirit.dart';
 import "Sweets.dart";
-import "Stars.dart";
 import "Time.dart";
 import "Void.dart";
 import "Chaos.dart";
 import "Dream.dart";
 
 abstract class Aspects {
-    static Aspect SPACE;
-    static Aspect TIME;
-    static Aspect BREATH;
-    static Aspect DOOM;
-    static Aspect BLOOD;
-    static Aspect HEART;
-    static Aspect MIND;
-    static Aspect LIGHT;
-    static Aspect VOID;
-    static Aspect RAGE;
-    static Aspect HOPE;
-    static Aspect LIFE;
-    static Aspect CHAOS;
+  static Aspect SPACE;
+  static Aspect TIME;
+  static Aspect BREATH;
+  static Aspect DOOM;
+  static Aspect BLOOD;
+  static Aspect HEART;
+  static Aspect MIND;
+  static Aspect LIGHT;
+  static Aspect VOID;
+  static Aspect RAGE;
+  static Aspect HOPE;
+  static Aspect LIFE;
+  static Aspect CHAOS;
 
-    static Aspect MIGHT;
-    static Aspect MIST;
-    static Aspect RAIN;
-    static Aspect SAND;
-    static Aspect SKY;
-    static Aspect RHYME;
-    static Aspect LAW;
-    static Aspect FATE;
-    static Aspect SNOW;
-    static Aspect FLOW;
-    static Aspect STARS;
+  static Aspect MIGHT;
+  static Aspect MIST;
+  static Aspect RAIN;
+  static Aspect SAND;
+  static Aspect SKY;
+  static Aspect RHYME;
+  static Aspect LAW;
+  static Aspect FATE;
+  static Aspect SNOW;
+  static Aspect FLOW;
+  static Aspect STARS;
 
-    static Aspect SPARK;
-    static Aspect DICE;
-    static Aspect SWEETS;
-    static Aspect SPIRIT;
-    static Aspect DREAM;
-
-
-    static Aspect NULL;
-
-    static void init() {
-        SPACE = new Space(0);
-        TIME = new Time(1);
-        BREATH = new Breath(2);
-        DOOM = new Doom(3);
-        BLOOD = new Blood(4);
-        HEART = new Heart(5);
-        MIND = new Mind(6);
-        LIGHT = new Light(7);
-        VOID = new Void(8);
-        RAGE = new Rage(9);
-        HOPE = new Hope(10);
-        LIFE = new Life(11);
-        CHAOS = new Chaos(12);
-        MIGHT = new Might(13);
-        MIST = new Mist(14);
-        RAIN = new Rain(15);
-        SAND = new Sand(16);
-        SPARK = new Spark(17);
-        DICE = new Dice(18);
-        SWEETS = new Sweets(19);
-        SPIRIT = new Spirit(20);
-        DREAM = new Dream(21);
-
-        NULL = new Aspect(255, "Null", isInternal:true);
+  static Aspect SPARK;
+  static Aspect DICE;
+  static Aspect SWEETS;
+  static Aspect SPIRIT;
+  static Aspect DREAM;
 
 
-        SKY = new Sky(22);
-        RHYME = new Rhyme(23);
-        LAW = new Law(24);
-        FATE = new Fate(25);
-        SNOW = new Snow(26);
-        FLOW = new Flow(27);
-        STARS = new Stars(28);
+  static Aspect NULL;
+
+  static void init() {
+    SPACE = new Space(0);
+    TIME = new Time(1);
+    BREATH = new Breath(2);
+    DOOM = new Doom(3);
+    BLOOD = new Blood(4);
+    HEART = new Heart(5);
+    MIND = new Mind(6);
+    LIGHT = new Light(7);
+    VOID = new Void(8);
+    RAGE = new Rage(9);
+    HOPE = new Hope(10);
+    LIFE = new Life(11);
+    CHAOS = new Chaos(12);
+    MIGHT = new Might(13);
+    MIST = new Mist(14);
+    RAIN = new Rain(15);
+    SAND = new Sand(16);
+    SPARK = new Spark(17);
+    DICE = new Dice(18);
+    SWEETS = new Sweets(19);
+    SPIRIT = new Spirit(20);
+    DREAM = new Dream(21);
+
+    NULL = new Aspect(255, "Null", isInternal:true);
 
 
-    }
+    SKY = new Sky(22);
+    RHYME = new Rhyme(23);
+    LAW = new Law(24);
+    FATE = new Fate(25);
+    SNOW = new Snow(26);
+    FLOW = new Flow(27);
+    STARS = new Stars(28);
+
+
+  }
 
 
     static Map<int, Aspect> _aspects = <int, Aspect>{};

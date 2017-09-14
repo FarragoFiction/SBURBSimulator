@@ -18,7 +18,7 @@ class Law extends Aspect{
     ..pants_light = '#a64e78'//
     ..pants_dark = '#963f66';//
 
-  /*@override
+  @override
   List<String> landNames = new List<String>.unmodifiable(<String>[]);
 
   @override
@@ -35,7 +35,7 @@ class Law extends Aspect{
 
   @override
   String denizenSongDesc = " An ill beat is laid down. It's the one that is dropped when the Pimp is in the crib. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
-*/
+
 //todo make these fellas do stuff.
   Law(int id) :super(id, "Law", isCanon: true);
 }
