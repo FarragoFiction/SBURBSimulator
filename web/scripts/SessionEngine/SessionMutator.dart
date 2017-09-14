@@ -816,7 +816,6 @@ class SessionMutator {
 }
 
 class MetaPlayerHandler {
-<<<<<<< HEAD
   //want them to be specifically named so we can use them for other things l8r. session 13 most notably.
   Player aspiringWatcher;
   Player dilletantMathematician;
@@ -1220,7 +1219,6 @@ class MetaPlayerHandler {
           "sanity": -250,
           "power": 100
         });
-=======
     //want them to be specifically named so we can use them for other things l8r. session 13 most notably.
     Player aspiringWatcher;
     Player dilletantMathematician;
@@ -1234,13 +1232,7 @@ class MetaPlayerHandler {
     Player jadedResearcher;
     Player authorBot;
     Player authorBotJunior;
-
-
-    List<Player> get metaPlayers {
-        //everything else is 'canon' entry order
-        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician, authorBot, authorBotJunior];
-       // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
-    }
+    Player panther212;
 
     void initalizePlayers(Session s) {
         if (jadedResearcher != null) return; //don't reintiialize, dunkass.
@@ -1256,8 +1248,8 @@ class MetaPlayerHandler {
         karmicRetribution = makeKR(s);
         authorBot = makeAB(s);
         authorBotJunior = makeABJ(s);
+        panther212 = makeP2(s);
     }
->>>>>>> 04507a50d376ee5361b763a99594469b172b48c2
 
     Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
     f.baseValue = 1300;
@@ -1449,13 +1441,13 @@ class MetaPlayerHandler {
       return " You killed InsufferableOracle. You're now all trolls, but don't have any access to the newer hair styles or horns. ";
     }
 
-<<<<<<< HEAD
     if (p == manicInsomniac) {
       for (Player pl in p.session.players) {
         pl.fraymotifs.clear();
       }
       return " Welp, look who's being ungrateful for all that fraymotif shit.  Guess you don't need THOSE. ";
-=======
+    }
+
     Player makeKR(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.ROGUE, Aspects.DREAM);
         player.hair = 46;
@@ -1489,7 +1481,6 @@ class MetaPlayerHandler {
         f.desc = "ENEMY is banned. ";
         player.fraymotifs.add(f);
         return player;
->>>>>>> 04507a50d376ee5361b763a99594469b172b48c2
     }
 
     if (p == aspiringWatcher) {

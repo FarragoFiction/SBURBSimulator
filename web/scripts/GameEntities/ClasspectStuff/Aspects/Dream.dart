@@ -73,7 +73,7 @@ class Dream extends Aspect {
         new AssociatedStat("sanity", -2, true)
     ]);
 
-    Dream(int id) :super(id, "Dream", isCanon: false);
+    Dream(int id) :super(id, "Dream", isCanon: true);
 
     @override
     String activateCataclysm(Session s, Player p) {
