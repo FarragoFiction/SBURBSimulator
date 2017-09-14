@@ -104,8 +104,8 @@ abstract class Aspects {
 class Aspect {
     /// Used for OCData save/load.
     final int id;
-    ///each aspect has it's own associated themes it can donate towards land creation.
-    List<Theme> themes;
+    ///each aspect has it's own associated themes it can donate towards land creation based on strength.
+    Map<Theme, double> themes = new Map<Theme, double>();
     FAQFile faqFile;
     String symbolImgLocation = "";
     String bigSymbolImgLocation = "";
@@ -131,6 +131,10 @@ class Aspect {
     /// Should set deadpan true when setting this true or they'll still start macking on everyone!
     bool ultimateDeadpan = false;
 
+
+    void addTheme(Theme t, double weight) {
+        themes[t] = weight;
+    }
     /// Do god-tier trolls of this aspect have wings?
     bool trollWings = true;
 
@@ -264,30 +268,27 @@ class Aspect {
     String fontTag() {
         return "<font color='${this.palette.text.toStyleString()}'> ";
     }
-
     void initializeThemes() {
-        themes = new List<Theme>()
-            ..add(new Theme(<String>["Decay","Rot","Death"])
-                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
-            )
-            ..add(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
-                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
-                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
-                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW))
+        addTheme(new Theme(<String>["Decay","Rot","Death"])
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            ,  Theme.HIGH);
+        addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+            ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+            ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
+            , Theme.HIGH);
 
-            ..add(new Theme(<String>["Peace","Tranquility","Rest"])
-                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
-            ); // end theme
-                
-
+        addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            , Theme.HIGH); // end theme
     }
 
     // ##################################################################################################

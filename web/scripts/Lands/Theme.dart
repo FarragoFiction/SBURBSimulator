@@ -2,6 +2,9 @@ import 'Feature.dart';
 /// a set of themes is meant to be used to generate a land.
 /// possible have a sub class of DeadTheme intended to be for dead sessions, with higher weighting and sports/game motifs.
 class Theme {
+    static double HIGH = 3.0;
+    static double MEDIUM = 2.0;
+    static double LOW = 1.0;
     ///extremely related name, like 'vaults/banks/safes/hoardes'.  or 'wind/gales/gusts/breeze'
     List<String> possibleNames = new List<String>();
     ///expect there to be different types of features in here. the double is the weight of the feature

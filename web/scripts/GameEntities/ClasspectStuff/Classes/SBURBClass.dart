@@ -112,7 +112,8 @@ class SBURBClassManager {
 class SBURBClass {
 
     String name = "Null";
-    List<Theme> themes;
+    //based on strength of association.
+    Map<Theme, double> themes = new Map<Theme, double>();
     String savedName;  //for AB restoring an aspects name after a hope player fucks it up
     FAQFile faqFile;
     int id = 256; //for classNameToInt
@@ -136,6 +137,11 @@ class SBURBClass {
 
     ///none by default.  and in fact only sburblore should be here.
     List<AssociatedStat> stats = <AssociatedStat>[];
+
+
+    void addTheme(Theme t, double weight) {
+        themes[t] = weight;
+    }
 
     /// Perma-buffs for modifying stat growth and distribution - page growth curve etc.
     List<Buff> statModifiers = <Buff>[];
@@ -204,28 +210,26 @@ class SBURBClass {
 
 
     void initializeThemes() {
-        themes = new List<Theme>()
-            ..add(new Theme(<String>["Decay","Rot","Death"])
-                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
-            )
-            ..add(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
-                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
-                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
-                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW))
+        addTheme(new Theme(<String>["Decay","Rot","Death"])
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
+            , Theme.HIGH);
+        addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+            ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+            ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW),
+            Theme.MEDIUM);
 
-            ..add(new Theme(<String>["Peace","Tranquility","Rest"])
-                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
-            ); // end theme
-
-
+        addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM),
+            Theme.MEDIUM); // end theme
     }
 
     @override
