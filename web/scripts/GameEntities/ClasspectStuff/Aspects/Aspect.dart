@@ -104,6 +104,8 @@ abstract class Aspects {
 class Aspect {
     /// Used for OCData save/load.
     final int id;
+    ///each aspect has it's own associated themes it can donate towards land creation.
+    List<Theme> themes;
     FAQFile faqFile;
     String symbolImgLocation = "";
     String bigSymbolImgLocation = "";
@@ -221,6 +223,7 @@ class Aspect {
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
         this.symbolImgLocation = "$name.png";
         this.bigSymbolImgLocation = "${name}Big.png";
+        this.initializeThemes();
         Aspects.register(this);
     }
 
@@ -260,6 +263,17 @@ class Aspect {
     /// Returns an opening font tag with the class text colour.
     String fontTag() {
         return "<font color='${this.palette.text.toStyleString()}'> ";
+    }
+
+    void initializeThemes() {
+        themes = new List<Theme>()
+            ..add(new Theme(<String>["Decay","Rot","Death"])
+                ..addFeature(FeatureFactory.ROT, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLING, Feature.LOW)
+                ..addFeature(FeatureFactory.SKELETON, Feature.HIGH)
+                ..addFeature(FeatureFactory.CREEPY, Feature.MEDIUM)
+            ); // end theme
+
     }
 
     // ##################################################################################################

@@ -12,6 +12,7 @@ class FeatureFactory {
     static ConsortFeature CROCODILE;
     static ConsortFeature IGUANA;
     static ConsortFeature TURTLE;
+    static ConsortFeature SKELETON;
 
 
     /////////////////////SMELLS////////////////////////
@@ -34,7 +35,7 @@ class FeatureFactory {
     static SoundFeature RUSTLING;
     static SoundFeature SCREAMS;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
-    static initializeFeatures() {
+    static init() {
         initializeConsorts();
         iniatlizeSmells();
         initializeFeelings();
@@ -46,6 +47,7 @@ class FeatureFactory {
         CROCODILE = new ConsortFeature("Crocodile", "NAK");
         IGUANA = new ConsortFeature("Iguana", "thip");
         TURTLE = new ConsortFeature("Turtle", "...");
+        SKELETON = new ConsortFeature("Skeleton", "rattle");
     }
 
     static iniatlizeSmells() {

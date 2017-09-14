@@ -9,6 +9,12 @@ class Theme {
     ///lower weighted features will only make it in if there are other themes that support it.
     Map<Feature, double> features = new Map<Feature, double>();
 
+    Theme(this.possibleNames);
+
+    void addFeature(Feature f, double weight) {
+        features[f] = weight;
+    }
+
     /*TODO have a thingy meant to help with picking this theme in a quiz
         Like, you pick your class, aspect, and interests.
         and then within each of those 4 things, you answer quiz questions to pick a single theme out of it
