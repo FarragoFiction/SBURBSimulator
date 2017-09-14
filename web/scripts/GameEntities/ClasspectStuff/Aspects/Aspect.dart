@@ -268,11 +268,25 @@ class Aspect {
     void initializeThemes() {
         themes = new List<Theme>()
             ..add(new Theme(<String>["Decay","Rot","Death"])
-                ..addFeature(FeatureFactory.ROT, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLING, Feature.LOW)
-                ..addFeature(FeatureFactory.SKELETON, Feature.HIGH)
-                ..addFeature(FeatureFactory.CREEPY, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            )
+            ..add(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW))
+
+            ..add(new Theme(<String>["Peace","Tranquility","Rest"])
+                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
             ); // end theme
+                
 
     }
 

@@ -8,32 +8,33 @@ class FeatureFactory {
 
     //////////////////////CONSORTS////////////////////////
     //TODO also have skeletal versions of some consorts. not a flag, say Salamander, cuz is different and doesn't preclude living salamanders
-    static ConsortFeature SALAMANDER;
-    static ConsortFeature CROCODILE;
-    static ConsortFeature IGUANA;
-    static ConsortFeature TURTLE;
-    static ConsortFeature SKELETON;
+    static ConsortFeature SALAMANDERCONSORT;
+    static ConsortFeature CROCODILECONSORT;
+    static ConsortFeature IGUANACONSORT;
+    static ConsortFeature TURTLECONSORT;
+    static ConsortFeature SKELETONCONSORT;
+    static ConsortFeature ROBOTCONSORT;
 
 
     /////////////////////SMELLS////////////////////////
-    static SmellFeature SPICY;
-    static SmellFeature BAKEDBREAD;
-    static SmellFeature ROT;
-    static SmellFeature OIL;
-
+    static SmellFeature SPICYSMELL;
+    static SmellFeature BAKEDBREADSMELL;
+    static SmellFeature ROTSMELL;
+    static SmellFeature OILSMELL;
+    static SmellFeature NATURESMELL;
 
     ////////////////////FEELINGS//////////////////////
-    static AmbianceFeature CREEPY;
-    static AmbianceFeature  CALM;
-    static AmbianceFeature FRANTIC;
-    static AmbianceFeature ENERGIZING;
+    static AmbianceFeature CREEPYFEELING;
+    static AmbianceFeature  CALMFEELING;
+    static AmbianceFeature FRANTICFEELING;
+    static AmbianceFeature ENERGIZINGFEELING;
 
 
     ///////////////////SOUNDS////////////////////////
-    static SoundFeature CLANKING;
-    static SoundFeature CHILDRENLAUGHING;
-    static SoundFeature RUSTLING;
-    static SoundFeature SCREAMS;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
+    static SoundFeature CLANKINGSOUND;
+    static SoundFeature CHILDRENLAUGHINGSOUND;
+    static SoundFeature RUSTLINGSOUND;
+    static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static init() {
         initializeConsorts();
@@ -43,34 +44,36 @@ class FeatureFactory {
     }
 
     static initializeConsorts() {
-        SALAMANDER = new ConsortFeature("Salamander", "GLUB");
-        CROCODILE = new ConsortFeature("Crocodile", "NAK");
-        IGUANA = new ConsortFeature("Iguana", "thip");
-        TURTLE = new ConsortFeature("Turtle", "...");
-        SKELETON = new ConsortFeature("Skeleton", "rattle");
+        SALAMANDERCONSORT = new ConsortFeature("Salamander", "GLUB");
+        CROCODILECONSORT = new ConsortFeature("Crocodile", "NAK");
+        IGUANACONSORT = new ConsortFeature("Iguana", "thip");
+        TURTLECONSORT = new ConsortFeature("Turtle", "...");
+        SKELETONCONSORT = new ConsortFeature("Skeleton", "rattle");
+        ROBOTCONSORT = new ConsortFeature("Robot", "BEEP");
     }
 
     static iniatlizeSmells() {
-        SPICY = new SmellFeature("spices");
-        BAKEDBREAD = new SmellFeature("fresh baked bread");
-        ROT = new SmellFeature("rot", false);
-        OIL = new SmellFeature("oil", false);
+        SPICYSMELL = new SmellFeature("spices");
+        BAKEDBREADSMELL = new SmellFeature("fresh baked bread");
+        NATURESMELL = new SmellFeature("nature");
+        ROTSMELL = new SmellFeature("rot", false);
+        OILSMELL = new SmellFeature("oil", false);
 
     }
 
     //feelings effect sanity. rip eridan
     static initializeFeelings() {
-        CREEPY = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],false);
-        CALM = new AmbianceFeature(<String>["peaceful", "calm", "restful"]);
-        FRANTIC = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"],false);
-        ENERGIZING = new AmbianceFeature(<String>["energizing", "interesting", "amazing"]);
+        CREEPYFEELING = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],false);
+        CALMFEELING = new AmbianceFeature(<String>["peaceful", "calm", "restful"]);
+        FRANTICFEELING = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"],false);
+        ENERGIZINGFEELING = new AmbianceFeature(<String>["energizing", "interesting", "amazing"]);
     }
 
     //most sounds are bad sounds
     static initializeSounds() {
-        CLANKING = new SoundFeature("clanking");
-        CHILDRENLAUGHING = new SoundFeature("children lauging");
-        RUSTLING = new SoundFeature("rustling", true);
-        SCREAMS = new SoundFeature("screams");
+        CLANKINGSOUND = new SoundFeature("clanking");
+        CHILDRENLAUGHINGSOUND = new SoundFeature("children lauging");
+        RUSTLINGSOUND = new SoundFeature("rustling", true);
+        SCREAMSSOUND = new SoundFeature("screams");
     }
 }
