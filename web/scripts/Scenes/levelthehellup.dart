@@ -50,7 +50,7 @@ class LevelTheHellUp extends Scene {
         var boonies = this.getBoonies(player);
         String narration = "";
         num repeatTime = 1000;
-        var divID = (div.id) + "_" + player.chatHandle + player.ectoBiologicalSource.toString() + player.id.toString();
+        var divID = (div.id) + "_" + player.id.toString();
         String narrationHTML = "<br><div id = 'narration" + divID.toString() + "'></div>";
 
         appendHtml(div, narrationHTML);
