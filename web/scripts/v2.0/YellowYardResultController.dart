@@ -99,7 +99,7 @@ void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
     storedEvent.session = newEvent.session; //cant get space players otherwise
     //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
     var alphaTimePlayer = findAspectPlayer(newEvent.session.players, Aspects.TIME);
-    alphaTimePlayer.addStat("sanity", -10); //how many re-dos does this give me before they snap?
+    alphaTimePlayer.addStat(Stats.SANITY, -10); //how many re-dos does this give me before they snap?
     alphaTimePlayer.doomedTimeClones.add(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something");
     if(storedEvent.secondTimeClone != null){
@@ -126,7 +126,7 @@ void decision(){
     var doom = Player.makeRenderingSnapshot(timePlayer);
 		doom.dead = false;
 		doom.doomed = true;
-		doom.setStat("currentHP", doom.getStat("hp"));
+		doom.setStat(Stats.CURRENT_HEALTH, doom.getStat(Stats.HEALTH));
     doom.influenceSymbol = "mind_forehead.png";
     eventToUndo2x.secondTimeClone = doom;
     curSessionGlobalVar.addEventToUndoAndReset(null);

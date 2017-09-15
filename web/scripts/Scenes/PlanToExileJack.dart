@@ -12,8 +12,8 @@ class PlanToExileJack extends Scene {
 	bool trigger(playerList){
 		this.playerList = playerList;
 		this.findSympatheticPlayer();
-		////session.logger.info("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat("currentHP") + " jack crowned: " + this.session.jack.crowned );
-		return this.planner != null && 	this.session.npcHandler.jack.getStat("currentHP") > 0 && !this.session.npcHandler.jack.dead  && 	this.session.npcHandler.jack.crowned == null && !this.session.npcHandler.jack.exiled;
+		////session.logger.info("Planner: " + this.planner + " jack hp: " + this.session.jack.getStat(Stats.CURRENT_HEALTH) + " jack crowned: " + this.session.jack.crowned );
+		return this.planner != null && 	this.session.npcHandler.jack.getStat(Stats.CURRENT_HEALTH) > 0 && !this.session.npcHandler.jack.dead  && 	this.session.npcHandler.jack.crowned == null && !this.session.npcHandler.jack.exiled;
 	}
 	void findSympatheticPlayer(){
 		var living = findLivingPlayers(this.session.getReadOnlyAvailablePlayers());

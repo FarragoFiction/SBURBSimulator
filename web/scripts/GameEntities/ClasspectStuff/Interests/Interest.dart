@@ -98,8 +98,7 @@ class InterestManager {
 
 class InterestCategory {
     List<String> handles1 = <String>["nobody"];
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(
-        <AssociatedStat>[]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[]);
     List<String> handles2 = <String>["Nobody"];
     List<String> levels = <String>["Nobody"];
     int id;

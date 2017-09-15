@@ -141,12 +141,12 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 	bool alternateScene(div){
 			timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			////print("times called : " + this.timesCalled);
@@ -211,9 +211,9 @@ class PlayerDiedForever  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 			if(secondTimeClone != null) this.secondTimeClone.dead = false;
-			if(secondTimeClone != null) this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+			if(secondTimeClone != null) this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 			if(secondTimeClone != null){
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
@@ -228,7 +228,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			appendHtml(div, narration);
 
 			player.makeAlive();
-			player.addStat("sanity", -0.5);
+			player.addStat(Stats.SANITY, -0.5);
 
 			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard");
 
@@ -275,11 +275,11 @@ class PlayerWentGrimDark  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -293,7 +293,7 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);
-			player.addStat("sanity", -10);
+			player.addStat(Stats.SANITY, -10);
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
@@ -332,11 +332,11 @@ class PlayerWentMurderMode  extends ImportantEvent{
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -350,7 +350,7 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);
-			player.addStat("sanity", -10);
+			player.addStat(Stats.SANITY, -10);
 
 
 			var divID = (div.id) + "_alt_" + player.chatHandle;
@@ -390,11 +390,11 @@ class JackPromoted  extends ImportantEvent{
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -440,11 +440,11 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
@@ -499,11 +499,11 @@ class PlayerEnteredSession  extends ImportantEvent {
 	bool alternateScene(div){
 		this.timesCalled ++;
 		this.doomedTimeClone.dead = false;
-		this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+		this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -558,11 +558,11 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 	bool alternateScene(div){
 			this.timesCalled ++;
 			this.doomedTimeClone.dead = false;
-			this.doomedTimeClone.setStat("currentHP", this.doomedTimeClone.getStat("hp"));
+			this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
 
 			if(secondTimeClone != null){
 				this.secondTimeClone.dead = false;
-				this.secondTimeClone.setStat("currentHP", this.secondTimeClone.getStat("hp"));
+				this.secondTimeClone.setStat(Stats.CURRENT_HEALTH, this.secondTimeClone.getStat(Stats.HEALTH));
 				return ImportantEvent.undoTimeUndoScene(div, this.session, this, this.doomedTimeClone, this.secondTimeClone);
 			}
 			var player = this.session.getVersionOfPlayerFromThisSession(this.player);
@@ -574,9 +574,9 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			appendHtml(div, narration);
 
 			player.object_to_prototype = new GameEntity("Frog", doomedTimeClone.session); //new GameEntity("Frog",0,null);
-			player.object_to_prototype.setStat("power",20);
+			player.object_to_prototype.setStat(Stats.POWER,20);
 			player.object_to_prototype.illegal = true;
-			player.object_to_prototype.setStat("mobility", 100);
+			player.object_to_prototype.setStat(Stats.MOBILITY, 100);
 			var divID = (div.id) + "_alt_jack_promotion";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 			appendHtml(div, canvasHTML);

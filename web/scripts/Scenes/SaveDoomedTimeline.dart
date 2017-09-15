@@ -105,15 +105,15 @@ class SaveDoomedTimeLine extends Scene {
 					if(r.value > 0){
 						////session.logger.info(" fully restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
-						this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
+						this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH));
 					}else{
 						////session.logger.info(" barely restoring leader health from time shenanigans: " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
-            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
+            this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/10);
 					}
 			}else{
 				////session.logger.info(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
-        this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
+        this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/2);
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}
 
@@ -128,16 +128,16 @@ class SaveDoomedTimeLine extends Scene {
 					if(r.value > 0){
 						//session.logger.info(" fully restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 						ret += " They make it so that never happened. Forget about it. ";
-            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp"));
+            this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH));
 					}else{
 						//session.logger.info(" barely restoring leader health from time shenanigans before all players in session : " + this.session.session_id.toString());
 						ret += " They take a twisted pleasure out of waiting until the last possible moment to pull the " + this.leaderPlayer.htmlTitleBasic() + "'s ass out of the danger zone. ";
-            this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/10);
+            this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/10);
 					}
 			}else{
 				//session.logger.info(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
 				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
-        this.leaderPlayer.setStat("currentHP",this.leaderPlayer.getStat("hp")/2);
+        this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/2);
 			}
 			this.session.doomedTimelineReasons.add(this.reason);
 		}else{

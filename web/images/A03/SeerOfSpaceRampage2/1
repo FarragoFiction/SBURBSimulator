@@ -304,7 +304,7 @@
     "youtube": null
    },
    "id": "6476827",
-   "relationships": {
+   Stats.RELATIONSHIPS: {
     "campaign": {
      "data": {
       "id": "982892",
@@ -353,7 +353,7 @@
      "thanks_video_url": null
     },
     "id": "982892",
-    "relationships": {
+    Stats.RELATIONSHIPS: {
      "creator": {
       "data": {
        "id": "6476827",
@@ -445,7 +445,7 @@
    "thanks_video_url": null
   },
   "id": "982892",
-  "relationships": {
+  Stats.RELATIONSHIPS: {
    "creator": {
     "data": {
      "id": "6476827",
@@ -578,7 +578,7 @@
     "youtube": null
    },
    "id": "6476827",
-   "relationships": {
+   Stats.RELATIONSHIPS: {
     "campaign": {
      "data": {
       "id": "982892",
@@ -662,7 +662,7 @@
     "user_limit": null
    },
    "id": "1756074",
-   "relationships": {
+   Stats.RELATIONSHIPS: {
     "items": {
      "data": []
     }
@@ -691,7 +691,7 @@
     "user_limit": null
    },
    "id": "1758848",
-   "relationships": {
+   Stats.RELATIONSHIPS: {
     "items": {
      "data": []
     }
@@ -720,7 +720,7 @@
     "user_limit": null
    },
    "id": "1758849",
-   "relationships": {
+   Stats.RELATIONSHIPS: {
     "items": {
      "data": []
     }

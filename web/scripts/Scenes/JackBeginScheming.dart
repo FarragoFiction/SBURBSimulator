@@ -37,11 +37,11 @@ class JackBeginScheming extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		if(this.session.npcHandler.jack.getStat("currentHP") <= 0 && !this.session.npcHandler.jack.dead|| this.session.npcHandler.queen.getStat("currentHP") <= 0 && !this.session.npcHandler.queen.dead){  //the dead can't scheme or be schemed against
+		if(this.session.npcHandler.jack.getStat(Stats.CURRENT_HEALTH) <= 0 && !this.session.npcHandler.jack.dead|| this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) <= 0 && !this.session.npcHandler.queen.dead){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
-		return (this.session.npcHandler.jack.getStat("power") >= this.session.npcHandler.queen.getStat("power")) && (this.friend != null);
+		return (this.session.npcHandler.jack.getStat(Stats.POWER) >= this.session.npcHandler.queen.getStat(Stats.POWER)) && (this.friend != null);
 	}
 	bool smart(player){
 		return ((player.aspect == Aspects.LIGHT || player.class_name == SBURBClassManager.SEER) ||(player.aspect == Aspects.DOOM || player.aspect == Aspects.MIND));

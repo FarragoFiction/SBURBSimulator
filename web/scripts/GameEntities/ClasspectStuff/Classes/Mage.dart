@@ -1,4 +1,4 @@
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
 
 class Mage extends SBURBClass {
@@ -15,7 +15,7 @@ class Mage extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 0.4, false)
+        new AssociatedStat(Stats.SBURB_LORE, 0.4, false)
     ]);
 
     @override

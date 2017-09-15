@@ -65,8 +65,8 @@ class DataPoint {
         this.interest1 = player.interest1.category;
         this.interest2 = player.interest2.category;
 
-        for (String stat in player.stats.keys) {
-            statsold[stat] = player.getStat(stat).toDouble();
+        for (Stat stat in player.stats) {
+            stats[stat] = player.getStat(stat).toDouble();
         }
 
         StatSampler.logger.debug("Data point for $player at time $time");

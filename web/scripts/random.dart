@@ -63,4 +63,6 @@ class Random implements Math.Random {
 		}
 		return list.elementAt(this.nextInt(list.length));
 	}
+
+	double nextDoubleRange(double min, double max) => this.nextDouble(max-min) + min;
 }

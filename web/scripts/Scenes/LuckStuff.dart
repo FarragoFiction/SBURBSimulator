@@ -26,8 +26,8 @@ class LuckStuff extends Scene{
 		}
 		//what the hell roue of doom's corpse. corpses aren't part of the player list!
 		for(Player player in session.getReadOnlyAvailablePlayers()){
-			int rollValueLow = player.rollForLuck("minLuck");  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
-			int rollValueHigh = player.rollForLuck("maxLuck");
+			double rollValueLow = player.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
+			double rollValueHigh = player.rollForLuck(Stats.MAX_LUCK);
 			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
 			if(rollValueHigh > this.minHighValue){
 				//alert("High  roll of: " + rollValueHigh);
@@ -92,7 +92,7 @@ class LuckStuff extends Scene{
 		//session.logger.info("unlucky trigger event: " + this.session.session_id.toString());
 		List<String> items = ["sopor slime", "candy", "apple juice", "alcohol", "cat nip","chocolate", "orange soda", "blanket","hat","lucky coin", "magic 8 ball"];
 		String ret = "The " + roll.player.htmlTitle() + " has lost their " + rand.pickFrom(items) + ". Sure, it seems stupid to you or me but... it was one of the few things left holding their sanity together. They are enraged.";
-		roll.player.addStat("sanity", -1000);
+		roll.player.addStat(Stats.SANITY, -1000);
 		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
@@ -127,7 +127,7 @@ class LuckStuff extends Scene{
 		List<String> items = ["magic cue ball", "grimoire", "original VHS tape of Mac and Me", "fluthlu doll", "dream catcher","squiddles plush", "Dr Seuss Book", "commemorative Plaque from a World Event That Never Happened","SCP-093"];
 		String ret = "The " + roll.player.htmlTitle() + " has had a momentary lapse of judgement and alchemized a weapon with the " + rand.pickFrom(items) + " they just found. Any sane adventurer would cast these instruments of the occult into the FURTHEST RING and forget they ever existed. Instead, the " + roll.player.htmlTitleBasic() + " equips them. This is a phenomenally bad idea. ";
 		roll.player.corruptionLevelOther += 666; //will only increase corruption by one level, but in style
-		roll.player.addStat("power", 50);  //it IS a weapon, points out aspiringWatcher
+		roll.player.addStat(Stats.POWER, 50);  //it IS a weapon, points out aspiringWatcher
 		this.session.stats.badLuckEvent = true;
 		return ret;
 	}

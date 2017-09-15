@@ -68,7 +68,7 @@ class Heart extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("RELATIONSHIPS", 1, true),
+        new AssociatedStat(Stats.RELATIONSHIPS, 1, true),
         new AssociatedStatInterests(true)
     ]);
 

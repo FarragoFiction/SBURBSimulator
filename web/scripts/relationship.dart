@@ -5,7 +5,7 @@ import "SBURBSim.dart";
 //turn into romance in a quadrant.
 class Relationship {
     Player source;
-    num value;
+    num value = 0;
     Player _target;
     String saved_type = "";
     bool drama = false; //drama is set to true if type of relationship changes.
@@ -203,8 +203,8 @@ class Relationship {
         }
         if (r1.type() == r1.diamond) {
             ////print("impromptu feelings jam: " + this.session.session_id);
-            me.addStat("sanity", 1);
-            you.addStat("sanity", 1);
+            me.addStat(Stats.SANITY, 1);
+            you.addStat(Stats.SANITY, 1);
             return " The two have an impromptu feelings jam. ";
         } else if (r2.type() == r2.goodBig) {
             return " The ${you.htmlTitle()} is flustered around the ${me.htmlTitle()}. ";
@@ -382,7 +382,7 @@ class Relationship {
                 if (roll > rollNeeded) {
                     if (r.type() == r.goodBig) {
                         //player.session.logger.info("AB:initial diamond/heart");
-                        num difference = (player.getStat("sanity") - r.target.getStat("sanity")).abs();
+                        num difference = (player.getStat(Stats.SANITY) - r.target.getStat(Stats.SANITY)).abs();
                         if (difference > 2 || roll < rollNeeded ) { //pale
                             makeDiamonds(player, r.target);
                         } else {
@@ -390,7 +390,7 @@ class Relationship {
                         }
                     } else if (r.type() == r.badBig) {
                         //player.session.logger.info("AB: initial club/spades");
-                        if (player.getStat("sanity") > 0 || r.target.getStat("sanity") > 0 || roll < rollNeeded) { //likely to murder each other
+                        if (player.getStat(Stats.SANITY) > 0 || r.target.getStat(Stats.SANITY) > 0 || roll < rollNeeded) { //likely to murder each other
                             Player ausp = rand.pickFrom(players);
                             if (ausp != null && ausp != player && ausp != r.target) {
                                 makeClubs(ausp, player, r.target);

@@ -12,11 +12,7 @@ class Carapace extends NPC {
     Carapace(String name, Session session) : super(name, session);
 
     @override
-    num getStat(String statName) {
-        num ret = super.getStat(statName);
-        if (crowned != null) ret += crowned.getStat(statName);
-        return ret;
-    }
+    StatHolder createHolder() => new CarapaceStatHolder(this);
 }
 
 //srites are definitely going to behave differntly soon

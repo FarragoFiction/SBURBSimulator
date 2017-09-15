@@ -880,10 +880,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Staff of Life", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("power", 1, true));
-        f.effects.add(new FraymotifEffect("freeWill", 1, true));
-        f.effects.add(new FraymotifEffect("power", 1, false));
-        f.effects.add(new FraymotifEffect("freeWill", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, false));
         f.desc = "Death has no hold in the realm of Growth. ";
         player.fraymotifs.add(f);
 
@@ -917,8 +917,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif(" Brute Force Reimann Apotheosis", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 3, true));
-        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
         f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
         player.fraymotifs.add(f);
         return player;
@@ -977,10 +977,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Fraymixing", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("freeWill", 3, true));
-        f.effects.add(new FraymotifEffect("sanity", 3, true));
-        f.effects.add(new FraymotifEffect("freeWill", 0, false));
-        f.effects.add(new FraymotifEffect("sanity", 0, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 0, false));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 0, false));
         f.desc = "Whats that music? The ENEMY's fraymotifs are absorbed into its maddening and ever-shiffting harmonies. ";
         player.fraymotifs.add(f);
         return player;
@@ -1012,8 +1012,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("A concentric circle", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("sanity", 0, true));
-        f.effects.add(new FraymotifEffect("sanity", 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 0, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);
@@ -1050,11 +1050,11 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("hp", 3, true));
-        f.effects.add(new FraymotifEffect("hp", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.HEALTH, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.HEALTH, 1, false));
         //let's find out together if this crashes.
-        f.effects.add(new FraymotifEffect("sburbLore", 3, true));
-        f.effects.add(new FraymotifEffect("sburbLore", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 1, false));
 
         f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
         player.fraymotifs.add(f);
@@ -1089,10 +1089,10 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Maw of the Void", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("freeWill", 3, true));
-        f.effects.add(new FraymotifEffect("power", 3, true));
-        f.effects.add(new FraymotifEffect("freeWill", 1, false));
-        f.effects.add(new FraymotifEffect("power", 1, false));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.POWER, 1, false));
 
         f.desc = "A ring of emptiness tears through reality around recursiveSlacker, empowering and freeing him, and damaging all of his ENEMIES. ";
         player.fraymotifs.add(f);
@@ -1126,8 +1126,8 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("Ban Hammer", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 2, false));
-        f.effects.add(new FraymotifEffect("RELATIONSHIPS", 2, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 2, false));
+        f.effects.add(new FraymotifEffect(Stats.RELATIONSHIPS, 2, false));
 
         f.desc = "ENEMY is banned. ";
         player.fraymotifs.add(f);
@@ -1164,9 +1164,9 @@ class MetaPlayerHandler {
 
         Fraymotif f = new Fraymotif("[this space left intentionally blank]", 13);
         f.baseValue = 1300;
-        f.effects.add(new FraymotifEffect("mobility", 1, true));
-        f.effects.add(new FraymotifEffect("mobility", 1, false));
-        f.effects.add(new FraymotifEffect("mobility", 3, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 1, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 1, false));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
 
         f.desc = "OWNER and their allies vanish into the void. ENEMY is confused. Where did they go? This is such bullshit. ";
         player.fraymotifs.add(f);

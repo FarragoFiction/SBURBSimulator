@@ -64,15 +64,11 @@ class Hope extends Aspect {
         "defeating the underling that was causing the local consorts to not believe in themselves"
     ]);
 
-    static List<String> _randomStats = Player.playerStats.toList()
-        ..remove("power")
-        ..add("MANGRIT");
-
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sanity", 2, true),
-        new AssociatedStat("maxLuck", 1, true),
-        new AssociatedStatRandom(_randomStats, -2, true)
+        new AssociatedStat(Stats.SANITY, 2, true),
+        new AssociatedStat(Stats.MAX_LUCK, 1, true),
+        new AssociatedStatRandom(Stats.pickable, -2, true)
     ]);
 
     Hope(int id) :super(id, "Hope", isCanon: true);

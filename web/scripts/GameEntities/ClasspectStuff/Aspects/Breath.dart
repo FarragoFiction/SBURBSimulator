@@ -66,11 +66,11 @@ class Breath extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("mobility", 2, true),
-        new AssociatedStat("sanity", 1, true),
-        new AssociatedStat("hp", -1, true),
-        new AssociatedStat("RELATIONSHIPS", -1, true),
-         new AssociatedStat("sburbLore", 0.05, false) //yes, technically it's from an aspect, but it's not NORMAL.
+        new AssociatedStat(Stats.MOBILITY, 2, true),
+        new AssociatedStat(Stats.SANITY, 1, true),
+        new AssociatedStat(Stats.HEALTH, -1, true),
+        new AssociatedStat(Stats.RELATIONSHIPS, -1, true),
+        new AssociatedStat(Stats.SBURB_LORE, 0.05, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Breath(int id) :super(id, "Breath", isCanon: true);

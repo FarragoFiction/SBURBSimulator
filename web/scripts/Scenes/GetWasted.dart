@@ -72,7 +72,7 @@ class GetWasted extends Scene {
     @override
     void renderContent(Element div) {
         session.logger.verbose("Getting Wasted in session ${session.session_id}");
-        this.player.setStat("sburbLore", 0);
+        this.player.setStat(Stats.SBURB_LORE, 0);
         this.player.gnosis ++;
         session.removeAvailablePlayer(this.player);
         processTier(div);
@@ -338,13 +338,13 @@ class GetWasted extends Scene {
             Iterable<AssociatedStat> plus = p.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
             //just like real denizen songs, but way stronger
             for (AssociatedStat pl in plus) {
-                f.effects.add(new FraymotifEffect(pl.name, 0, true));
-                f.effects.add(new FraymotifEffect(pl.name, 0, false));
+                f.effects.add(new FraymotifEffect(pl.stat, 0, true));
+                f.effects.add(new FraymotifEffect(pl.stat, 0, false));
             }
             Iterable<AssociatedStat> minus = p.associatedStatsFromAspect; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
             for (AssociatedStat m in minus) {
-                f.effects.add(new FraymotifEffect(m.name, 2, true));
-                f.effects.add(new FraymotifEffect(m.name, 2, false));
+                f.effects.add(new FraymotifEffect(m.stat, 2, true));
+                f.effects.add(new FraymotifEffect(m.stat, 2, false));
             }
             f.desc = "An unfinished secret track begins to play.  You don't think anybody meant for this to be unlockable. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter.  ";
             p.fraymotifs.add(f);

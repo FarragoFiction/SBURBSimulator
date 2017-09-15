@@ -95,7 +95,7 @@ class VoidyStuff extends Scene {
 			this.fightDenizen(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
-		}else if(this.player.getStat("sanity") < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
+		}else if(this.player.getStat(Stats.SANITY) < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
 			//session.logger.info("AB: flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
@@ -157,7 +157,7 @@ class VoidyStuff extends Scene {
 		//brainstorm what they are doing here, rand array.
 	}
 	void goMurderMode(Element div, Element specialDiv){
-		this.player.addStat("sanity", -30);
+		this.player.addStat(Stats.SANITY, -30);
 		this.player.makeMurderMode();
 		appendHtml(div, " You get a bad feeling about this. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");
@@ -177,9 +177,9 @@ class VoidyStuff extends Scene {
 
 	}
 	void weakenDesites(Element div, Element specialDiv){
-		this.session.npcHandler.queen.addStat("power",-5);
-		this.session.npcHandler.jack.addStat("power",-5);
-		this.session.npcHandler.king.addStat("power",-5);
+		this.session.npcHandler.queen.addStat(Stats.POWER,-5);
+		this.session.npcHandler.jack.addStat(Stats.POWER,-5);
+		this.session.npcHandler.king.addStat(Stats.POWER,-5);
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
 	}
@@ -190,7 +190,7 @@ class VoidyStuff extends Scene {
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(rand.nextDouble() >.5){
-			this.player.addStat("power",this.player.getStat("power")*2);  //current and future doubling of power.
+			this.player.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
 			this.player.denizenDefeated = true;
 			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);
