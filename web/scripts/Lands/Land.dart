@@ -14,6 +14,10 @@ class Land {
     int soundsGood;//has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
     String feelsLike;
     int feelsGood; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
+    //two strongest themes in this land.
+    Theme mainTheme;
+    Theme secondaryTheme;
+    String name;
 
     NPC consort;
 
@@ -29,8 +33,9 @@ class Land {
 
                If I find a feature that does NOT fit a sub map, then it's probably some random rendering thing and I should just save it or something? ignore for now though.
          */
-        Theme strongestTheme;  //for picking name
-        Theme secondStrongestTheme;  //for picking name
+        List<Theme> themeList = new List.from(themes.keys);
+        Theme strongestTheme = themeList[0];  //for picking name
+        Theme secondStrongestTheme = themeList[0];  //for picking name
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
         //random modifiers are so interests arne't just flat out ignored 100% of the time.
         Map<Feature, double> corruptionFeatures;
@@ -41,6 +46,10 @@ class Land {
 
         for(Theme t in themes.keys) {
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
+            if(weight > themes[strongestTheme]) {
+                secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
+                strongestTheme = t; //you are the winnar.
+            }
             for(Feature f in t.features.keys) {
                 double w = weight * t.features[f];
                 if(f is SmellFeature) {
@@ -77,11 +86,39 @@ class Land {
             }
         }//done for loop omg.
 
-        //TODO: go through the new maps and pick the heaviest weighted feature. if multiple have same weight, then use all of them.
-        //do bools let you add them natively or will i have to write a thing.
+        mainTheme = strongestTheme;
+        secondaryTheme = secondStrongestTheme;
+        name = "Land of ${session.rand.pickFrom(mainTheme.possibleNames)} and ${session.rand.pickFrom(secondaryTheme.possibleNames)}";
+        processSmells(smellsFeatures);
+        processSounds(soundsFeatures);
+        processConsorts(consortFeatures);
+        processCorruption(corruptionFeatures);
+        processFeels(feelsFeatures);
+
 
 
     }
 
+    //find strongest weighted feature. if multiple are identical, do multiple with string "and separated" and smellsGood additive.
+    //negative smellsGood bool is a -1, postive is +1.
+    void processSmells( Map<Feature, double> features) {
+
+    }
+
+    void processSounds( Map<Feature, double> features) {
+
+    }
+
+    void processCorruption( Map<Feature, double> features) {
+
+    }
+
+    void processConsorts( Map<Feature, double> features) {
+
+    }
+
+    void processFeels( Map<Feature, double> features) {
+
+    }
 
 }
