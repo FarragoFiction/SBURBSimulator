@@ -66,7 +66,7 @@ class GetWasted extends Scene {
         if(p.gnosis ==3) tippingPoint = tippingPoint *2; //very last tier should be extra hard.
         if(p.gnosis >=4 || p.gnosis <0) return false; //you are done yo, or you are doing something weird (WM probably caused it)
         //linear works well for these
-        return (p.getStat("sburbLore") >= tippingPoint * (p.gnosis + 1));
+        return (p.getStat(Stats.SBURB_LORE) >= tippingPoint * (p.gnosis + 1));
     }
 
     @override

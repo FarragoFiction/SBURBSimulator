@@ -59,6 +59,11 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
+    //otherwise ids won't be stable across yards/resets etc.
+    static void resetNextIdTo(int val) {
+        _nextID = val;
+    }
+    
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
 
