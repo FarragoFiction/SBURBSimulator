@@ -31,7 +31,7 @@ class GoGrimDark extends Scene {
 
 	dynamic addImportantEvent(){
 		var current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.getStat("power"),this.player,null) );
+		return this.session.addImportantEvent(new PlayerWentGrimDark(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
 	}
 
 	@override
@@ -70,8 +70,8 @@ class GoGrimDark extends Scene {
 				ret += " It is now painfully obvious to anyone with a brain, they have basically gone completely off the deep end in every way. The ";
 				ret += this.player.htmlTitle() + " has officially gone grimdark. <span class = 'void'>They are not from here</span> ";
 				var f = new Fraymotif(Zalgo.generate("The Broodfester Tongues"), 3);
-				f.effects.add(new FraymotifEffect("power",3,true));
-				f.effects.add(new FraymotifEffect("power",0,false));
+				f.effects.add(new FraymotifEffect(Stats.POWER,3,true));
+				f.effects.add(new FraymotifEffect(Stats.POWER,0,false));
 				f.desc = " They are stubborn throes. ";
 				this.player.fraymotifs.add(f);
 				ret +=" They learn " + f.name + ". " ;

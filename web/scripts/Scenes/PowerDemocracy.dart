@@ -12,7 +12,7 @@ class PowerDemocracy extends Scene{
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.npcHandler.democraticArmy.getStat("power") != GameEntity.minPower);
+		return (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0);
 	}
 
 	@override
@@ -24,19 +24,19 @@ class PowerDemocracy extends Scene{
 		double r = rand.nextDouble();
 		if(r < .25){
 			ret += rand.pickFrom(democracyTasks);
-			this.session.npcHandler.democraticArmy.addStat("power", 10);
-			this.session.npcHandler.democraticArmy.addStat("mobility", 10);
-			this.session.npcHandler.democraticArmy.addStat("currentHP", 10);
+			this.session.npcHandler.democraticArmy.addStat(Stats.POWER, 10);
+			this.session.npcHandler.democraticArmy.addStat(Stats.MOBILITY, 10);
+			this.session.npcHandler.democraticArmy.addStat(Stats.CURRENT_HEALTH, 10);
 		}else if(r < .5){
 			ret += rand.pickFrom(democracyTasks);
-      this.session.npcHandler.democraticArmy.addStat("power", 20);
-      this.session.npcHandler.democraticArmy.addStat("mobility", 20);
-      this.session.npcHandler.democraticArmy.addStat("currentHP", 20);
+      this.session.npcHandler.democraticArmy.addStat(Stats.POWER, 20);
+      this.session.npcHandler.democraticArmy.addStat(Stats.MOBILITY, 20);
+      this.session.npcHandler.democraticArmy.addStat(Stats.CURRENT_HEALTH, 20);
 		}else if(r < .75){
 			ret += rand.pickFrom(democracySuperTasks);
-      this.session.npcHandler.democraticArmy.addStat("power", 50);
-      this.session.npcHandler.democraticArmy.addStat("mobility", 50);
-      this.session.npcHandler.democraticArmy.addStat("currentHP", 50);
+      this.session.npcHandler.democraticArmy.addStat(Stats.POWER, 50);
+      this.session.npcHandler.democraticArmy.addStat(Stats.MOBILITY, 50);
+      this.session.npcHandler.democraticArmy.addStat(Stats.CURRENT_HEALTH, 50);
 		}else{
 			//do nothing.
 			ret += rand.pickFrom(mayorDistractionTasks);

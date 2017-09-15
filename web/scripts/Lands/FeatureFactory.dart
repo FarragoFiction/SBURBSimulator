@@ -2,6 +2,7 @@ import "FeatureTypes/ConsortFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
+import "FeatureTypes/CorruptionFeature.dart";
 /// just has a bunch of static references for features, created in a static initalizer
 class FeatureFactory {
     //TODO obviously will have more of all this shit, this is just for testing
@@ -35,6 +36,8 @@ class FeatureFactory {
     static SoundFeature CHILDRENLAUGHINGSOUND;
     static SoundFeature RUSTLINGSOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
+
+    static CorruptionFeature Corruption;
 
     static init() {
         initializeConsorts();

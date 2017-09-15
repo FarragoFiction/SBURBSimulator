@@ -33,7 +33,7 @@ class EngageMurderMode extends Scene{
 
 		if(diamond != null) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
-		bool ret = (rand.nextDouble() * this.player.getStat("sanity") < triggerMinimum);
+		bool ret = (rand.nextDouble() * this.player.getStat(Stats.SANITY) < triggerMinimum);
 		//if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
 		//if(ret) //session.logger.info("flipping shit naturally ${this.session.session_id}");
 		return ret;
@@ -222,11 +222,11 @@ class EngageMurderMode extends Scene{
 		chatText += Scene.chatLine(player2Start, player2,"But you can be better than that.");
 		if(rand.nextDouble() > .7){
 			r1.increase();
-			player1.addStat("sanity", 1);
+			player1.addStat(Stats.SANITY, 1);
 			chatText += Scene.chatLine(player2Start, player2,"Why don't we meet up in person. We can vent about whatever's bothering you. Nobody has to do anything that can't be undone.");
 			chatText += Scene.chatLine(player1Start, player1,"Fuck. Maybe. I... I need to go think about this.");
 		}else{
-			player1.addStat("sanity", -10);
+			player1.addStat(Stats.SANITY, -10);
 			r1.decrease();
 			chatText += Scene.chatLine(player2Start, player2,"I mean, probably. Everybody has at least some goodness in them, right? Even you?");
 			chatText += Scene.chatLine(player1Start, player1,"You asshole. Always pretending to be above it all. To be better than me.");
@@ -313,7 +313,7 @@ class EngageMurderMode extends Scene{
 	}
 	dynamic addImportantEvent(){
 		Player current_mvp = findStrongestPlayer(this.session.players);
-		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.getStat("power"),this.player, null) );
+		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.getStat(Stats.POWER),this.player, null) );
 	}
 	@override
 	void renderContent(Element div){

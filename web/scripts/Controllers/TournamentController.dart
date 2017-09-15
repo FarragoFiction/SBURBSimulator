@@ -112,7 +112,7 @@ class TournamentController extends AuthorBot {
 
   String displayTeamInList(team){
     String html = "";
-    String divStart = "<div id = '${team.name}$tierNumber' class = 'teamDescription'>";
+    String divStart = "<div id = '${team.stat}$tierNumber' class = 'teamDescription'>";
     String divEnd = "</div>";
     String mid = getTeamDescription(team);
     //print("debugging ab: team description is: $mid");
@@ -327,7 +327,7 @@ void  summarizeSession(Session session) {
         abRight(false);
       }
     }
-    if(sessionSummary.mvp.getStat("power") > team.mvp_score){
+    if(sessionSummary.mvp.getStat(Stats.POWER) > team.mvp_score){
       team.mvp_name = sessionSummary.mvp.htmlTitle();
       team.mvp_score = sessionSummary.mvp.grist;
     }

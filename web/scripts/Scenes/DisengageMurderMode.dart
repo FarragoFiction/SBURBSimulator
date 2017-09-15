@@ -16,7 +16,7 @@ class DisengageMurderMode extends Scene {
 		//select a random player. if they've been triggered, random chance of going murderMode if enemies (based on how triggered.)
 		this.player = rand.pickFrom(this.session.getReadOnlyAvailablePlayers());
 		if(this.player != null){
-			if(this.player.getStat("sanity") > 1 &&  this.player.murderMode){
+			if(this.player.getStat(Stats.SANITY) > 1 &&  this.player.murderMode){
 				return true;
 			}
 		}

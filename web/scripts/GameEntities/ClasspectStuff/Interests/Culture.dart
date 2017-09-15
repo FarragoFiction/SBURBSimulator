@@ -1,11 +1,11 @@
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 import "Interest.dart";
 
 
 class Culture extends InterestCategory {
 
     @override
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat("sanity", -1, true), new AssociatedStat("hp", -1, true)]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.SANITY, -1, true), new AssociatedStat(Stats.HEALTH, -1, true)]);
     @override
     List<String> handles1 = <String>["monochrome", "poetic", "majestic", "keen", "realistic", "serious", "theatrical", "haute", "beautiful", "priceless", "watercolor", "sensational", "highbrow", "refined", "precise", "melodramatic"];
 

@@ -13,7 +13,7 @@ class FightQueen extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.npcHandler.queen.getStat("currentHP") > 0) &&  !this.session.npcHandler.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.npcHandler.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 		var living = findLivingPlayers(this.session.players);
@@ -40,13 +40,13 @@ class FightQueen extends Scene {
 	}
 	@override
 	void renderContent(Element div){
-		if(this.session.npcHandler.queen.getStat("power") < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
+		if(this.session.npcHandler.queen.getStat(Stats.POWER) < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
     appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
-		if(this.session.npcHandler.democraticArmy.getStat("currentHP") > 0) fighting.add(this.session.npcHandler.democraticArmy);
+		if(this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 0) fighting.add(this.session.npcHandler.democraticArmy);
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
     pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.npcHandler.queen]);

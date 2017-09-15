@@ -10,7 +10,8 @@ class KingPowerful extends Scene {
   @override
 	bool trigger(List<Player> playerList){
 	  this.playerList = playerList;
-		return this.session.npcHandler.king.getStat("power") > this.session.hardStrength;
+	  //print("king: ${this.session.npcHandler.king.getStat(Stats.POWER)} vs ${this.session.hardStrength}");
+		return this.session.npcHandler.king.getStat(Stats.POWER) > this.session.hardStrength;
 	}
 
 

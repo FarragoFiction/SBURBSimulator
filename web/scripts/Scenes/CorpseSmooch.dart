@@ -223,6 +223,7 @@ class CorpseSmooch extends Scene {
 	void drawCombo(canvas, comboNum){
 		Drawing.drawComboText(canvas, comboNum);
 	}
+<<<<<<< HEAD
 	dynamic ignoreEnemies(player, royalty) {
     if (royalty == null) {
       return null;
@@ -233,3 +234,133 @@ class CorpseSmooch extends Scene {
     }
     return royalty;
   }
+=======
+	dynamic ignoreEnemies(player, royalty){
+		if(royalty == null){
+			return null;
+		}
+		var r = royalty.getRelationshipWith(player);
+		if(r == null || (r !=null && r.value < 0)){
+			return null;
+		}
+		return royalty;
+	}
+	dynamic getRoyalty(Player d){
+		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
+		Player royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
+		royalty = this.ignoreEnemies(d, royalty);
+		if(royalty == null){
+			//okay, princes are traditional...
+			royalty = findClassPlayer(findLivingPlayers(availablePlayers), SBURBClassManager.PRINCE);
+			if(royalty != null && royalty.grimDark  > 0){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
+		}
+		royalty = this.ignoreEnemies(d, royalty);
+		//from here on out, prefer to god tier than to be corpse smooched.
+		if(royalty == null){
+			//okay, anybody free?
+			royalty = rand.pickFrom(findLivingPlayers(availablePlayers));
+			if(royalty != null && royalty.grimDark > 0){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
+		}
+		royalty = this.ignoreEnemies(d, royalty);
+		//shit, maybe your best friend can drop what they are doing to save your ass?
+		if(royalty == null){
+			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(this.playerList));
+		}
+		royalty = this.ignoreEnemies(d, royalty);
+		//is ANYBODY even alive out there????
+		if(royalty == null){
+			royalty = rand.pickFrom(findLivingPlayers(this.playerList));
+			if(royalty != null && royalty.grimDark > 0){
+				royalty = null; //grim dark won't corpse smooch unless they actual want to.
+			}
+		}
+		royalty = this.ignoreEnemies(d, royalty);
+		if(royalty == null && d.godDestiny){
+			////session.logger.info("I couldn't find royalty and also could god tier. " + this.session.session_id);
+		}
+		return royalty;
+	}
+	void renderForPlayer(Element div, Player deadPlayer, Player royalty){
+		String ret = "";
+		//Player royalty = this.getRoyalty(deadPlayer); //don't reget royalty not garanteed to be samebecause interaction effects
+		if(royalty != null){
+
+			String divID = (div.id) + "_" + deadPlayer.chatHandle;
+			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+			ret += deadPlayer.interactionEffect(royalty);
+			ret += royalty.interactionEffect(deadPlayer);
+			appendHtml(div, ret + canvasHTML);
+			Element canvasDiv = querySelector("#canvas"+ divID);
+			Drawing.drawCorpseSmooch(canvasDiv, deadPlayer, royalty);
+		}else{
+			//session.logger.info("AB: dream self dies from no corpse smooch: " + this.session.session_id.toString());
+			deadPlayer.isDreamSelf = true;
+			deadPlayer.causeOfDeath = "sympathetic wounds after real self died unsmooched";
+			this.makeDead(deadPlayer); //dream self dies, too
+		}
+
+	}
+	dynamic contentForRender(Element div){
+		String ret = "";
+		this.combo = 0;
+		for(num i = 0; i<this.dreamersToRevive.length; i++){
+			Player d = this.dreamersToRevive[i];
+			//have best friend mac on you.
+			if(d.dreamSelf == true){
+				Player royalty = this.getRoyalty(d);
+				if(royalty != null){
+					royalty.addStat(Stats.SANITY, -10);
+					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
+					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
+					if(d.aspect == Aspects.DOOM) ret += "The prophecy is fulfilled. ";
+					this.renderForPlayer(div, this.dreamersToRevive[i], royalty);
+					session.removeAvailablePlayer(royalty);
+					//this.makeAlive(d);
+					this.combo ++;
+				}else{
+					////session.logger.info("Adding important event god tier for: " + d.title())
+					var alt = this.addImportantEvent(d);
+					////session.logger.info("alt is: " +alt);
+					if(alt != null&& alt.alternateScene(div)){
+						//do nothing here.
+					}else{
+						ret += "<Br><Br><img src = 'images/sceneIcons/death_icon.png'>" + d.htmlTitle() + "'s waits patiently for the kiss of life. But nobody came. ";
+						ret += " Their dream self dies as well. ";
+						this.makeDead(d);
+					}
+				}
+			}else if(d.isDreamSelf == true && d.godDestiny == false && d.godTier == false && d.dead == true){
+				var alt = this.addImportantEvent(d);
+					if(alt != null && alt.alternateScene(div)){
+					}else{
+						//don't even mention corpse smooching for dream selves. but them perma-dying is an event.
+					}
+			}
+		}
+		if(this.combo > 1){
+			ret += "${this.combo}X CORPSEMOOCH COMBO!!!";
+		}
+		//x times corpse smooch combo
+		return ret;
+	}
+	ImportantEvent addImportantEvent(Player player){
+		////session.logger.info("adding important event from corpse smooch");
+		Player current_mvp = findStrongestPlayer(this.session.players);
+		//only one alternate event can happen at a time. if one gets replaced, return
+
+		if(player.godDestiny == false && player.godTier == false){//could god tier, but fate wn't let them
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
+		}else if(this.session.reckoningStarted == true && player.godTier == false) { //if the reckoning started, they couldn't god tier.
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
+		}
+		return null;
+	}
+
+
+
+}
+>>>>>>> 8078046dfe487699e566655da7b014e18776211b

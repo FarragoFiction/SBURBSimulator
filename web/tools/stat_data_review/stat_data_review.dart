@@ -70,7 +70,7 @@ class StatDataReview {
 
             for (String oldstat in point.statsold.keys) {
                 if (!this.stats.containsKey(oldstat)) {
-                    this.stats[oldstat] = new Stat(oldstat);
+                    this.stats[oldstat] = new Stat(oldstat, "","");
                     this.addStatSelector(oldstat);
                 }
 

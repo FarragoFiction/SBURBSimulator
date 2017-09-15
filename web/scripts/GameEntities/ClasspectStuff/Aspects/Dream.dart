@@ -68,9 +68,9 @@ class Dream extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("alchemy", 2, true),
-        new AssociatedStat("mobility", 1, true),
-        new AssociatedStat("sanity", -2, true)
+        new AssociatedStat(Stats.ALCHEMY, 2, true),
+        new AssociatedStat(Stats.MOBILITY, 1, true),
+        new AssociatedStat(Stats.SANITY, -2, true)
     ]);
 
     Dream(int id) :super(id, "Dream", isCanon: true);

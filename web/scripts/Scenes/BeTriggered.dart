@@ -47,7 +47,7 @@ class BeTriggered extends Scene{
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(-1 * player.getStat("sanity") > rand.nextDouble() * 100 ){
+		if(-1 * player.getStat(Stats.SANITY) > rand.nextDouble() * 100 ){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason";
 			return true;
 		}
@@ -58,8 +58,12 @@ class BeTriggered extends Scene{
 		for(num i = 0; i<this.triggeredPlayers.length; i++){
 			Player p = this.triggeredPlayers[i];
 			Player hope = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.HOPE);
+<<<<<<< HEAD
 			Player rhyme = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.RHYME);
 			if(hope!=null && hope.getStat("power") > 100){
+=======
+			if(hope!=null && hope.getStat(Stats.POWER) > 100){
+>>>>>>> 8078046dfe487699e566655da7b014e18776211b
 
 				//////session.logger.info("Hope Survives: " + this.session.session_id);
 				ret += " The " +p.htmlTitle() + " should probably be flipping the fuck out about  " + p.flipOutReason;
@@ -87,10 +91,10 @@ class BeTriggered extends Scene{
 				if(p.flipOutReason == null) p.flipOutReason = " how glitchy SBURB is "; //<-- why is this necessary???
 				ret += " The " +p.htmlTitle() + " is currently too busy flipping the fuck out about ";
 				ret += p.flipOutReason + " to be anything but a useless piece of gargbage. ";
-				p.addStat("sanity", -10);
+				p.addStat(Stats.SANITY, -10);
 				p.flipOutReason = null;
 				p.flippingOutOverDeadPlayer = null;
-				if(p.getStat("sanity") < -5){
+				if(p.getStat(Stats.SANITY) < -5){
 					ret += " Their freakout level is getting dangerously high. ";
 				}
 			}

@@ -5,12 +5,19 @@ class Theme {
     static double HIGH = 3.0;
     static double MEDIUM = 2.0;
     static double LOW = 1.0;
+    static String CLASSSOURCE = "Class";
+    static String ASPECTSOURCE = "Aspect";
+    static String INTERESTSOURCE = "Interest";
+    static String DEADSOURCE = "Dead"; //like games. pool, baseball, etc.
+
     ///extremely related name, like 'vaults/banks/safes/hoardes'.  or 'wind/gales/gusts/breeze'
     List<String> possibleNames = new List<String>();
     ///expect there to be different types of features in here. the double is the weight of the feature
     ///highly weighted features are more likely to make it into the final land
     ///lower weighted features will only make it in if there are other themes that support it.
     Map<Feature, double> features = new Map<Feature, double>();
+
+    String source; //will be set if i'm used. don't worry about setting it for all sources.
 
     Theme(this.possibleNames);
 

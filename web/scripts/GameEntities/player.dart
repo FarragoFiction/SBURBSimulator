@@ -45,6 +45,7 @@ class Player extends GameEntity {
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
     Aspect aspect; //TODO eventually a full object
     String land = null;
+    Land landFuture; // will replace string land entirely eventually.
     Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
     Interest interest2 = null;
     String chatHandle = null;
@@ -85,6 +86,8 @@ class Player extends GameEntity {
         this.name = "player_$id"; //this.htmlTitleBasic();
     }
 
+    @override
+    StatHolder createHolder() => new PlayerStatHolder(this);
 
     bool fromThisSession(Session session) {
         return (this.ectoBiologicalSource == null || this.ectoBiologicalSource == session.session_id);
@@ -93,20 +96,6 @@ class Player extends GameEntity {
     bool interestedInCategory(InterestCategory c) {
         return (interest1.category == c || interest2.category == c);
     }
-
-    @override
-    void setStat(String statName, num value) {
-        if (statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
-        super.setStat(statName, value);
-    }
-
-    @override //literally ad value to existing value
-    void addStat(String statName, num value) {
-        if (statName == "RELATIONSHIPS") throw "Players modify the actual relationships, not the calculated value.";
-
-        super.addStat(statName, value);
-    }
-
 
     bool isQuadranted() {
         if (!this
@@ -160,37 +149,39 @@ class Player extends GameEntity {
         return ret;
     }
 
-    num getOverallStrength() {
+    num getStrengthForDenizen() {
         num ret = 0;
-        ret += this.getStat("power");
-        ret += this.getStat("alchemy");
-        ret += this.getStat("freeWill").abs();
-        ret += this.getStat("mobility").abs();
-        ret += this.getStat("hp").abs();
-        ret += (this.getStat("maxLuck") + this.getStat("minLuck")).abs();
-        ret += this.getStat("sanity").abs();
+        ret += this.stats.getBase(Stats.POWER) - 10.0; // adjust for base 10.0 value
+        ret += this.stats.getBase(Stats.ALCHEMY);
+        ret += this.stats.getBase(Stats.FREE_WILL).abs();
+        ret += this.stats.getBase(Stats.POWER).abs();
+        ret += this.stats.getBase(Stats.HEALTH).abs();
+        ret += (this.stats.getBase(Stats.MAX_LUCK) + this.stats.getBase(Stats.MIN_LUCK)).abs();
+        ret += this.stats.getBase(Stats.SANITY).abs();
         return ret;
     }
 
     void generateDenizen() {
         List<String> possibilities = this.aspect.denizenNames;
-        num strength = this.getOverallStrength();
-        num expectedMaxStrength = 150; //if i change how stats work, i need to update this value
-        num strengthPerTier = (expectedMaxStrength) / possibilities.length;
-        ////print("Strength at start is, " + strength);//but what if you don't want STRANGTH!???
-        int denizenIndex = (strength / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
+        double strength = this.getStrengthForDenizen();
+        double expectedBaseStrength = 40 + Math.max(0.0, Stats.POWER.rangeMinimum / Stats.POWER.coefficient) + Math.max(0.0, Stats.HEALTH.rangeMinimum / Stats.HEALTH.coefficient);
+        //print("expected base: $expectedBaseStrength");
+        double expectedMaxStrength = 200.0; //if i change how stats work, i need to update this value
+        num strengthPerTier = (expectedMaxStrength - expectedBaseStrength) / possibilities.length;
+        //print("Strength at start is, $strength");//but what if you don't want STRANGTH!???
+        int denizenIndex = ((strength - expectedBaseStrength) / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
 
         String denizenName = "";
         num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
-        ////print("Strength for denizen calculated from index of: " + denizenIndex + " out of " + possibilities.length);
+        //print("Strength for denizen calculated from index of: $denizenIndex out of ${possibilities.length}");
         if (denizenIndex <=0) {
             denizenName = this.weakDenizenNames();
             denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            ////session.logger.info("AB: strength demands a weak denizen ");
+            //session.logger.info("AB: strength demands a weak denizen ");
         } else if (denizenIndex >= possibilities.length) {
             denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
             denizenStrength = 5;
-            ////session.logger.info("AB: Strength demands strong denizen. ");
+            //session.logger.info("AB: Strength demands strong denizen. ");
         } else {
             denizenName = possibilities[denizenIndex];
         }
@@ -200,44 +191,50 @@ class Player extends GameEntity {
     }
 
     void makeDenizenWithStrength(String name, num strength) {
-        ////print("Strength for denizen " + name + " is: " + strength);
+        //print("Strength for denizen $name is: $strength");
         //based off existing denizen code.  care about which aspect i am.
         //also make minion here.
         GameEntity denizen = new Denizen("Denizen $name", this.session);
         GameEntity denizenMinion = new DenizenMinion("$name Minion", this.session);
-        Map<String, num> tmpStatHolder = <String, num>{};
-        tmpStatHolder["minLuck"] = -10;
-        tmpStatHolder["maxLuck"] = 10;
-        tmpStatHolder["hp"] = 10 * strength;
-        tmpStatHolder["mobility"] = 10;
-        tmpStatHolder["sanity"] = 10;
-        tmpStatHolder["alchemy"] = 10;
-        tmpStatHolder["freeWill"] = 10;
-        tmpStatHolder["power"] = 5 * strength;
-        tmpStatHolder["grist"] = 100;
-        tmpStatHolder["sburbLore"] = 0; //needed so associated stats don't crash
-        tmpStatHolder["RELATIONSHIPS"] = 10; //not REAL relationships, but real enough for our purposes.
+        Map<Stat, num> tmpStatHolder = <Stat, num>{};
+        tmpStatHolder[Stats.MIN_LUCK] = -10;
+        tmpStatHolder[Stats.MAX_LUCK] = 10;
+        tmpStatHolder[Stats.HEALTH] = 10 * strength;
+        tmpStatHolder[Stats.MOBILITY] = 10;
+        tmpStatHolder[Stats.SANITY] = 10;
+        tmpStatHolder[Stats.ALCHEMY] = 10;
+        tmpStatHolder[Stats.FREE_WILL] = 10;
+        tmpStatHolder[Stats.POWER] = 5 * strength;
+        tmpStatHolder[Stats.GRIST] = 100;
+        tmpStatHolder[Stats.RELATIONSHIPS] = 10; //not REAL relationships, but real enough for our purposes.
+        tmpStatHolder[Stats.SBURB_LORE] = 0;
         for (num i = 0; i < this.associatedStats.length; i++) {
             //alert("I have associated stats: " + i);
             AssociatedStat stat = this.associatedStats[i];
+<<<<<<< HEAD
             if (stat.name == "MANGRIT") {
                 tmpStatHolder["power" ] += tmpStatHolder["power"] * stat.multiplier * strength;
             } else {
                 tmpStatHolder[stat.name] += tmpStatHolder[stat.name] * stat.multiplier * strength;
             }
+=======
+            tmpStatHolder[stat.stat] += tmpStatHolder[stat.stat] * stat.multiplier * strength;
+>>>>>>> 8078046dfe487699e566655da7b014e18776211b
         }
 
-        //denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHoldergetStat("sanity"),tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000);
+        //denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000);
 
-        denizenMinion.setStatsHash(tmpStatHolder);
-        tmpStatHolder["power"] = 10 * strength;
-        for (String key in tmpStatHolder.keys) {
+        denizenMinion.stats.setMap(tmpStatHolder);
+        denizenMinion.heal();
+        tmpStatHolder[Stats.POWER] *= 2;
+        for (Stat key in tmpStatHolder.keys) {
             tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger.
         }
-        //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHoldergetStat("sanity"),tmpStatHolder.freeWill,tmpStatHolder.getStat("power"),true, false, [],1000000);
-        denizen.setStatsHash(tmpStatHolder);
+        //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000000);
+        denizen.stats.setMap(tmpStatHolder);
         denizen.grist = 1000; //denizen matters MOST for if you can frog or not
         this.denizen = denizen;
+        denizen.heal();
         this.denizenMinion = denizenMinion;
         this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);
     }
@@ -293,7 +290,7 @@ class Player extends GameEntity {
 
     void addDoomedTimeClone(Player timeClone) {
         doomedTimeClones.add(timeClone);
-        addStat("sanity", -10);
+        addStat(Stats.SANITY, -10);
         flipOut("their own doomed time clones");
     }
 
@@ -305,9 +302,9 @@ class Player extends GameEntity {
         String ret = "";
         this.dead = true;
         this.timesDied ++;
-        this.buffs.clear();
+        this.stats.onDeath();
         this.causeOfDeath = sanitizeString(causeOfDeath);
-        if (this.getStat("currentHP") > 0) this.setStat("currentHP", -1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
+        if (this.getStat(Stats.CURRENT_HEALTH) > 0) this.setStat(Stats.CURRENT_HEALTH, -1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
         if (!this.godTier) { //god tiers only make ghosts in GodTierRevivial
             Player g = Player.makeRenderingSnapshot(this);
             g.fraymotifs = new List<Fraymotif>.from(this.fraymotifs); //copy not reference
@@ -332,27 +329,27 @@ class Player extends GameEntity {
             Relationship r = this.relationships[i];
 
             if (r.saved_type == r.goodBig) {
-                r.target.addStat("sanity", -10);
+                r.target.addStat(Stats.SANITY, -10);
                 if (r.target.flipOutReason == null) {
                     r.target.flipOutReason = " their dead crush, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead crush.
                     r.target.flippingOutOverDeadPlayer = this;
                 }
             } else if (r.value > 0) {
-                r.target.addStat("sanity", -10);
+                r.target.addStat(Stats.SANITY, -10);
                 if (r.target.flipOutReason == null) {
                     r.target.flippingOutOverDeadPlayer = this;
                     r.target.flipOutReason = " their dead friend, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead friend.
                 }
             } else if (r.saved_type == r.spades) {
-                r.target.addStat("sanity", -100);
+                r.target.addStat(Stats.SANITY, -100);
                 r.target.flipOutReason = " their dead Kismesis, the ${this.htmlTitleBasic()}";
                 r.target.flippingOutOverDeadPlayer = this;
             } else if (r.saved_type == r.heart) {
-                r.target.addStat("sanity", -100);
+                r.target.addStat(Stats.SANITY, -100);
                 r.target.flipOutReason = " their dead Matesprit, the ${this.htmlTitleBasic()}";
                 r.target.flippingOutOverDeadPlayer = this;
             } else if (r.saved_type == r.diamond) {
-                r.target.addStat("sanity", -1000);
+                r.target.addStat(Stats.SANITY, -1000);
                 r.target.damageAllRelationships();
                 r.target.damageAllRelationships();
                 r.target.damageAllRelationships();
@@ -362,7 +359,7 @@ class Player extends GameEntity {
 
             //whether or not i care about them, there's also the novelty factor.
             if (dead.length == 1) { //if only I am dead, death still has it's impact and even my enemies care.
-                r.target.addStat("sanity", -10);
+                r.target.addStat(Stats.SANITY, -10);
                 if (r.target.flipOutReason == null) {
                     r.target.flipOutReason = " the dead player, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead player.
                     r.target.flippingOutOverDeadPlayer = this;
@@ -440,9 +437,10 @@ class Player extends GameEntity {
     }
 
     void makeGodTier() {
-        this.addStat("hp", 500); //they are GODS.
-        this.addStat("currentHP", 500); //they are GODS.
-        this.addStat("power", 500); //they are GODS.
+        //this.addStat(Stats.HEALTH, 500); //they are GODS.
+        //this.addStat(Stats.CURRENT_HEALTH, 500); //they are GODS.
+        //this.addStat(Stats.POWER, 500); //they are GODS.
+        this.addBuff(new BuffGodTier()); // +100 base power and health, 2.5 stat multiplier
         this.increasePower();
         this.godTier = true;
         this.session.stats.godTier = true;
@@ -462,10 +460,10 @@ class Player extends GameEntity {
         this.influenceSymbol = null;
         this.dead = false;
         this.murderMode = false;
-        this.setStat("currentHP", Math.max(this.getStat("hp"), 1)); //if for some reason your hp is negative, don't do that.
+        this.setStat(Stats.CURRENT_HEALTH, Math.max(this.getStat(Stats.HEALTH), 1)); //if for some reason your hp is negative, don't do that.
         ////print("HP after being brought back from the dead: " + this.currentHP);
         this.grimDark = 0;
-        this.addStat("sanity", -101); //dying is pretty triggering.
+        this.addStat(Stats.SANITY, -101); //dying is pretty triggering.
         this.flipOutReason = "they just freaking died";
         //this.leftMurderMode = false; //no scars
         this.victimBlood = null; //clean face
@@ -555,13 +553,19 @@ class Player extends GameEntity {
         ret += "<br><Br>Prophecy Status: ${prophecy}";
 
         ret += "</td>";
-        List<String> as = new List<String>.from(allStats());
+        Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
-        for (int i = 0; i < as.length; i++) {
-            ret += "${as[i]}: ${getStat(as[i])}<br>";
+        for (Stat stat in as) {
+            ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
-        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
+
+        for (Buff b in buffs) {
+            ret += "$b<br>";
+        }
+
+        ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
@@ -622,48 +626,48 @@ class Player extends GameEntity {
         //telekenisis, mind control, mind reading, ghost communing, animal communing, laser blasts, vision xfold.
             {
             Fraymotif f = new Fraymotif("Telekinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " Large objects begin pelting the ENEMY. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Pyrokinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " Who knew shaving cream was so flammable? ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Aquakinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " A deluge begins damaging the ENEMY. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Electrokinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " An electric pulse begins damaging the ENEMY. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Terakinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " The very ground begins damaging the ENEMY. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Vitaekinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " The ENEMY's own body is turned against them as they begin punching their own face. ";
             psionics.add(f);
         }
         {
             Fraymotif f = new Fraymotif("Fungikinesis", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " A confusing array of mushrooms begins damaging the ENEMY. ";
             psionics.add(f);
         }
@@ -671,31 +675,31 @@ class Player extends GameEntity {
 
         {
             Fraymotif f = new Fraymotif("Mind Control", 1);
-            f.effects.add(new FraymotifEffect("freeWill", 3, true));
-            f.effects.add(new FraymotifEffect("freeWill", 3, false));
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, true));
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 3, false));
             f.desc = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Optic Blast", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " Appropriately colored eye beams pierce the ENEMY. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Ghost Communing", 1);
-            f.effects.add(new FraymotifEffect("sanity", 3, true));
-            f.effects.add(new FraymotifEffect("sanity", 3, false));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, false));
             f.desc = " The souls of the dead start hassling all enemies. ";
             psionics.add(f);
         }
 
         {
             Fraymotif f = new Fraymotif("Animal Communing", 1);
-            f.effects.add(new FraymotifEffect("sanity", 3, true));
-            f.effects.add(new FraymotifEffect("sanity", 3, false));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, false));
             f.desc = " Local animal equivalents start hassling all enemies. ";
             psionics.add(f);
         }
@@ -721,20 +725,20 @@ class Player extends GameEntity {
         //special psionics for high bloods and lime bloods.  highblood: #631db4  lime: #658200
         if (this.bloodColor == "#631db4") {
             Fraymotif f = new Fraymotif("Chucklevoodoos", 1);
-            f.effects.add(new FraymotifEffect("sanity", 3, false));
-            f.effects.add(new FraymotifEffect("sanity", 3, true));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, false));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
             f.desc = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#658200") {
             Fraymotif f = new Fraymotif("Limeade Refreshment", 1);
-            f.effects.add(new FraymotifEffect("sanity", 1, false));
-            f.effects.add(new FraymotifEffect("sanity", 1, true));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 1, false));
+            f.effects.add(new FraymotifEffect(Stats.SANITY, 1, true));
             f.desc = " All allies just settle their shit for a little while. Cool it. ";
             this.fraymotifs.add(f);
         } else if (this.bloodColor == "#ffc3df") {
             Fraymotif f = new Fraymotif("'<font color='pink'>${this.chatHandle} and the Power of Looove~~~~~<3<3<3</font>'", 1);
-            f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, false));
-            f.effects.add(new FraymotifEffect("RELATIONSHIPS", 3, true));
+            f.effects.add(new FraymotifEffect(Stats.RELATIONSHIPS, 3, false));
+            f.effects.add(new FraymotifEffect(Stats.RELATIONSHIPS, 3, true));
             f.desc = " You are pretty sure this is not a real type of Troll Psionic.  It heals everybody in a bullshit parade of sparkles, and heart effects despite your disbelief. Everybody is also SUPER MEGA ULTRA IN LOVE with each other now, but ESPECIALLY in love with ${this.htmlTitleHP()}. ";
             this.fraymotifs.add(f);
         }
@@ -838,7 +842,7 @@ class Player extends GameEntity {
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if ((this.session.npcHandler.king.getStat("currentHP") <= 0 || this.session.npcHandler.king.dead == true) && this.session.rand.nextDouble() > .2) {
+            if ((this.session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.npcHandler.king.dead == true) && this.session.rand.nextDouble() > .2) {
                 ret = true;
             }
         } else { //unlikely hero
@@ -846,7 +850,7 @@ class Player extends GameEntity {
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if (this.session.npcHandler.king.getStat("currentHP") <= 0 || this.session.npcHandler.king.dead == true && rand.nextDouble() > .4) {
+            if (this.session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.npcHandler.king.dead == true && rand.nextDouble() > .4) {
                 ret = true;
             }
         }
@@ -865,9 +869,11 @@ class Player extends GameEntity {
     //SO TAKE IN A GAMEENTITY HERE.
     void associatedStatsInteractionEffect(GameEntity target) {
         if (this.hasInteractionEffect()) { //don't even bother if you don't have an interaction effect.
+            //this.session.logger.info("$this: interact start");
             for (num i = 0; i < this.associatedStats.length; i++) {
                 this.processStatInteractionEffect(target, this.associatedStats[i]);
             }
+            //this.session.logger.info("$this: interact end");
         }
     }
 
@@ -1009,7 +1015,7 @@ class Player extends GameEntity {
         guardian.leftHorn = player.leftHorn;
         guardian.rightHorn = player.rightHorn;
         guardian.level_index = 5; //scratched kids start more leveled up
-        guardian.setStat("power", 50);
+        guardian.setStat(Stats.POWER, 50);
         guardian.leader = player.leader;
         if (this.session.rand.nextDouble() > 0.5) { //have SOMETHING in common with your ectorelative.
             guardian.interest1 = player.interest1;
@@ -1031,6 +1037,12 @@ class Player extends GameEntity {
 
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         return this.class_name.modPowerBoostByClass(powerBoost, stat);
+    }
+
+    double getPowerForEffects() {
+        double p = this.stats[Stats.POWER] / Stats.POWER.coefficient;
+        p = smoothCap(p, 200.0, 75.0, 0.5);
+        return p;
     }
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
@@ -1055,27 +1067,22 @@ class Player extends GameEntity {
         }
         num powerBoost = magnitude * this.class_name.powerBoostMultiplier * this.aspect.powerBoostMultiplier; // this applies the page 5x mult
 
-        if (this.godTier) {
-            powerBoost = powerBoost * 10; //god tiers are ridiculously strong.
-        }
-
-        if (this.denizenDefeated) {
-            powerBoost = powerBoost * 2; //permanent doubling of stats forever.
-        }
-
-        this.addStat("power", Math.max(1, powerBoost)); //no negatives
+        //this.addStat(Stats.POWER, Math.max(1, powerBoost)); //no negatives
+        this.addStat(Stats.EXPERIENCE, Math.max(1, powerBoost));
 
         this.associatedStatsIncreasePower(powerBoost);
         //gain a bit of hp, otherwise denizen will never let players fight them if their hp isn't high enough.
-        if (this.godTier || this.session.rand.nextDouble() > .85) {
-            this.addStat("hp", 5);
-            this.addStat("currentHP", 5);
-        }
+        /*if (this.godTier || this.session.rand.nextDouble() > .85) {
+            this.addStat(Stats.HEALTH, 5);
+            this.addStat(Stats.CURRENT_HEALTH, 5);
+        }*/
+        this.addStat(Stats.EXPERIENCE, this.rand.nextDoubleRange(0.1, 1.0));
         //TODO figure out what the actual fuck this line was supposed to be doing. set power to ITSELF???
         //IT IS THE REASON WHY 40+5 = 65 and i do not even know why. stats are still too high though.
-        // if (this.getStat("power") > 0) this.setStat("power", this.getStat("power").round());
+        // if (this.getStat(Stats.POWER) > 0) this.setStat(Stats.POWER, this.getStat(Stats.POWER).round());
 
         // //print("$this incpower post boost magnitude is $powerBoost on a power of ${getStat('power')}");
+        this.heal();
     }
 
     String shortLand() {
@@ -1091,7 +1098,7 @@ class Player extends GameEntity {
 
     @override
     String htmlTitleHP() {
-        return "${getToolTip()}${this.aspect.fontTag()}${this.title()} (${(this.getStat("currentHP")).round()}hp, ${(this.getStat("power")).round()} power)</font></span>";
+        return "${getToolTip()}${this.aspect.fontTag()}${this.title()} (${(this.getStat(Stats.CURRENT_HEALTH)).round()}hp, ${(this.getStat(Stats.POWER)).round()} power)</font></span>";
     }
 
     void generateBlandRelationships(List<Player> friends) {
@@ -1102,8 +1109,8 @@ class Player extends GameEntity {
                 Relationship r = Relationship.randomBlandRelationship(this, friends[i]);
                 if (this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d") {
                     r.value = -20; //biological imperitive to fight for throne.
-                    this.addStat("sanity", -100);
-                    friends[i].addStat("sanity", -100);
+                    this.addStat(Stats.SANITY, -100);
+                    friends[i].addStat(Stats.SANITY, -100);
                 }
                 this.relationships.add(r);
             }
@@ -1119,8 +1126,8 @@ class Player extends GameEntity {
                 Relationship r = Relationship.randomRelationship(this, friends[i]);
                 if (this.isTroll && this.bloodColor == "#99004d" && friends[i].isTroll && friends[i].bloodColor == "#99004d") {
                     r.value = -20; //biological imperitive to fight for throne.
-                    this.addStat("sanity", -10);
-                    friends[i].addStat("sanity", -10);
+                    this.addStat(Stats.SANITY, -10);
+                    friends[i].addStat(Stats.SANITY, -10);
                 }
                 this.relationships.add(r);
             } else {
@@ -1181,16 +1188,6 @@ class Player extends GameEntity {
             if (r != null) {
                 r.increase();
             }
-        }
-    }
-
-    @override
-    num rollForLuck([String stat]) {
-        if (stat == null || stat == "") {
-            return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
-        } else {
-            //don't care if it's min or max, just compare it to zero.
-            return this.session.rand.nextIntRange(0, this.getStat(stat));
         }
     }
 
@@ -1373,42 +1370,28 @@ class Player extends GameEntity {
 	}
 	String humanWordForBuffNamed(statName){
         if(statName == "MANGRIT") return "powerful";
-        if(statName == "hp") return "sturdy";
-        if(statName == "RELATIONSHIPS") return "friendly";
-        if(statName == "mobility") return "fast";
-        if(statName == "sanity") return "calm";
-        if(statName == "freeWill") return "willful";
-        if(statName == "maxLuck") return "lucky";
-        if(statName == "minLuck") return "lucky";
-        if(statName == "alchemy") return "creative";
+        if(statName == Stats.HEALTH) return "sturdy";
+        if(statName == Stats.RELATIONSHIPS) return "friendly";
+        if(statName == Stats.MOBILITY) return "fast";
+        if(statName == Stats.SANITY) return "calm";
+        if(statName == Stats.FREE_WILL) return "willful";
+        if(statName == Stats.MAX_LUCK) return "lucky";
+        if(statName == Stats.MIN_LUCK) return "lucky";
+        if(statName == Stats.ALCHEMY) return "creative";
         return "???";
 	}*/
     @override
     String describeBuffs() {
         List<String> ret = <String>[];
-        Iterable<String> allStats = this.allStats();
-        for (String stat in allStats) {
-            double b = this.getTotalBuffForStat(stat);
+        Iterable<Stat> allStats = Stats.all;
+        for (Stat stat in allStats) {
+            double b = this.stats[stat] - this.stats.derive(stat, false);
             //only say nothing if equal to zero
-            if (b > 0) ret.add("more ${this.humanWordForBuffNamed(stat)}");
-            if (b < 0) ret.add("less ${this.humanWordForBuffNamed(stat)}");
+            if (b > 0) ret.add("more ${stat.emphaticPositive}");
+            if (b < 0) ret.add("less ${stat.emphaticPositive}");
         }
         if (ret.isEmpty) return "";
         return "<br/><br/>${this.htmlTitleHP()} is feeling ${turnArrayIntoHumanSentence(ret)} than normal. ";
-    }
-
-
-    @override //players have ACTUAL relationships, not a placeholder stat, so do different shit
-    num getStat(String statName) {
-        num ret = 0;
-        if (statName == "RELATIONSHIPS") { //relationships, why you so cray cray???
-            for (num i = 0; i < this.relationships.length; i++) {
-                ret += this.relationships[i].value;
-            }
-            return ret.round();
-        } else {
-            return super.getStat(statName);
-        }
     }
 
 
@@ -1538,33 +1521,22 @@ class Player extends GameEntity {
     }
 
     void initializeLuck() {
-        this.setStat("minLuck", this.session.rand.nextIntRange(-10, 0)); //middle of the road.
-        this.setStat("maxLuck", this.session.rand.nextIntRange(1, 10)); //max needs to be more than min.
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat("minLuck", 11111111111);
-            this.setStat("maxLuck", 11111111111);
-        }
+        this.setStat(Stats.MIN_LUCK, this.session.rand.nextIntRange(-10, 0)); //middle of the road.
+        this.setStat(Stats.MAX_LUCK, this.session.rand.nextIntRange(1, 10)); //max needs to be more than min.
     }
 
 
     void initializeFreeWill() {
-        this.setStat("freeWill", this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat("freeWill", 11111111111);
-        }
+        this.setStat(Stats.FREE_WILL, this.session.rand.nextIntRange(-10, 10));
     }
 
     void initializeHP() {
-        this.setStat("hp", this.session.rand.nextIntRange(40, 60));
-        this.setStat("currentHP", this.getStat("hp"));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat("currentHP", 11111111111);
-            this.setStat("hp", 11111111111);
-        }
+        this.setStat(Stats.HEALTH, this.session.rand.nextIntRange(40, 60));
+        this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
 
         if (this.isTroll && this.bloodColor != "#ff0000") {
-            this.addStat("currentHP", bloodColorToBoost(this.bloodColor));
-            this.addStat("hp", bloodColorToBoost(this.bloodColor));
+            this.addStat(Stats.CURRENT_HEALTH, bloodColorToBoost(this.bloodColor));
+            this.addStat(Stats.HEALTH, bloodColorToBoost(this.bloodColor));
         }
     }
 
@@ -1598,14 +1570,11 @@ class Player extends GameEntity {
     }
 
     void initializeMobility() {
-        this.setStat("mobility", this.session.rand.nextIntRange(-10, 10));
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat("mobility", 11111111111);
-        }
+        this.setStat(Stats.MOBILITY, this.session.rand.nextIntRange(-10, 10));
     }
 
     void initializeSanity() {
-        this.setStat("sanity", this.session.rand.nextIntRange(-10, 10));
+        this.setStat(Stats.SANITY, this.session.rand.nextIntRange(-10, 10));
     }
 
     void initializeRelationships() {
@@ -1623,8 +1592,8 @@ class Player extends GameEntity {
                 Relationship r = this.relationships[i];
                 if (this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d") {
                     r.value = -20; //biological imperitive to fight for throne.
-                    this.addStat("sanity", -10);
-                    r.target.addStat("sanity", -10);
+                    this.addStat(Stats.SANITY, -10);
+                    r.target.addStat(Stats.SANITY, -10);
                 }
             }
         }
@@ -1652,17 +1621,14 @@ class Player extends GameEntity {
     }
 
     void initializePower() {
-        this.setStat("power", 0);
-        if (this.trickster && !this.aspect.ultimateDeadpan) {
-            this.setStat("power", 11111111111);
-        }
+        this.setStat(Stats.POWER, 10);
 
         if (this.robot) {
-            this.addStat("power", 100); //robots are superior
+            this.addStat(Stats.POWER, 100); //robots are superior
         }
 
         if (this.isTroll && this.bloodColor != "#ff0000") {
-            this.addStat("power", bloodColorToBoost(this.bloodColor));
+            this.addStat(Stats.POWER, bloodColorToBoost(this.bloodColor));
         }
         //print("power initialized to ${this.getStat("power")}");
     }
@@ -1805,6 +1771,7 @@ class Player extends GameEntity {
     }
 
     void initializeDerivedStuff() {
+        spawnLand();
         List<String> tmp = getRandomLandFromPlayer(this);
 
         this.land1 = tmp[0];
@@ -1815,7 +1782,7 @@ class Player extends GameEntity {
         if(class_name == SBURBClassManager.WRIT)  landLevel = -10.0;
         if (this.isTroll) {
             if (this.quirk == null) this.quirk = randomTrollSim(this.session.rand, this); //if i already have a quirk it was defined already. don't override it.;
-            this.addStat("sanity", -10); //trolls are slightly less stable
+            this.addStat(Stats.SANITY, -10); //trolls are slightly less stable
 
         } else {
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
@@ -1824,10 +1791,33 @@ class Player extends GameEntity {
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
     }
 
+    //I mark the source of the themes here, where i'm using them, rather than on creation
+    //need the source for QuestChains (want first quest to be interest related, second aspect, third class) <-- important
+    void spawnLand() {
+        Map<Theme, double> themes = new Map<Theme, double>();
+        Theme classTheme = session.rand.pickFrom(class_name.themes.keys);
+        classTheme.source = Theme.CLASSSOURCE;
+        Theme aspectTheme = session.rand.pickFrom(aspect.themes.keys);
+        aspectTheme.source = Theme.ASPECTSOURCE;
+        Theme interest1Theme = session.rand.pickFrom(interest1.category.themes.keys);
+        interest1Theme.source = Theme.INTERESTSOURCE;
+        Theme interest2Theme = session.rand.pickFrom(interest2.category.themes.keys);
+        interest2Theme.source = Theme.INTERESTSOURCE;
+
+        //the weight is the same weight it had in it's source
+        themes[classTheme] = class_name.themes[classTheme];
+        themes[aspectTheme] = aspect.themes[aspectTheme];
+        themes[interest1Theme] = interest1.category.themes[interest1Theme];
+        themes[interest2Theme] = interest2.category.themes[interest2Theme];
+
+        landFuture = new Land.fromWeightedThemes(themes, session);
+
+    }
+
     void initializeSprite() {
         this.sprite = new Sprite("sprite", session); //unprototyped.
         //minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
-        this.sprite.setStatsHash(<String, num>{"hp": 10, "currentHP": 10}); //same as denizen minion, but empty power
+        this.sprite.stats.setMap(<Stat, num>{Stats.HEALTH: 10, Stats.CURRENT_HEALTH: 10}); //same as denizen minion, but empty power
         this.sprite.doomed = true;
     }
 
@@ -1877,12 +1867,6 @@ class Player extends GameEntity {
         return helper;
     }
 
-    static List<String> playerStats = <String>["power", "hp", "RELATIONSHIPS", "mobility", "sanity", "freeWill", "maxLuck", "minLuck", "alchemy"];
-    @override
-    Iterable<String> allStats() {
-        return playerStats;
-    }
-
     List<AssociatedStat> getOnlyAspectAssociatedStats() {
         List<AssociatedStat> ret = <AssociatedStat>[];
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -1910,36 +1894,10 @@ class Player extends GameEntity {
     String voidDescription() {
         for (num i = 0; i < this.associatedStats.length; i++) {
             AssociatedStat stat = this.associatedStats[i];
-            if (stat.multiplier >= 3) return "SO ${this.getEmphaticDescriptionForStatNamed(stat.name)}";
+            if (stat.multiplier >= 3) return "SO ${stat.stat.emphaticDescriptor(this).toUpperCase()}";
         }
         return "SO BLAND";
     }
-
-    String getEmphaticDescriptionForStatNamed(String statName) {
-        if (this.highInit()) {
-            if (statName == "MANGRIT") return "STRONG";
-            if (statName == "hp") return "STURDY";
-            if (statName == "RELATIONSHIPS") return "FRIENDLY";
-            if (statName == "mobility") return "FAST";
-            if (statName == "sanity") return "CALM";
-            if (statName == "freeWill") return "WILLFUL";
-            if (statName == "maxLuck") return "LUCKY";
-            if (statName == "minLuck") return "LUCKY";
-            if (statName == "alchemy") return "CREATIVE";
-        } else {
-            if (statName == "MANGRIT") return "WEAK";
-            if (statName == "hp") return "FRAGILE";
-            if (statName == "RELATIONSHIPS") return "AGGRESSIVE";
-            if (statName == "mobility") return "SLOW";
-            if (statName == "sanity") return "CRAZY";
-            if (statName == "freeWill") return "GULLIBLE";
-            if (statName == "maxLuck") return "UNLUCKY";
-            if (statName == "minLuck") return "UNLUCKY";
-            if (statName == "alchemy") return "BORING";
-        }
-        return "CONFUSING";
-    }
-
 
     void initializeAssociatedStats() {
         for (num i = 0; i < this.associatedStats.length; i++) {
@@ -1955,14 +1913,12 @@ class Player extends GameEntity {
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         if (stat == null) return;
         //modValue * stat.multiplier.
-        if (stat.name == "RELATIONSHIPS") {
+        if (stat.stat == Stats.RELATIONSHIPS) {
             for (num i = 0; i < this.relationships.length; i++) {
-                this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier; //stop having relationship values on the scale of 100000
+                this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier * stat.stat.associatedGrowth; //stop having relationship values on the scale of 100000
             }
-        } else if (stat.name == "MANGRIT") {
-            this.permaBuffs["MANGRIT"] += modValue * stat.multiplier;
         } else {
-            this.stats[stat.name] += modValue * stat.multiplier;
+            this.addStat(stat.stat, modValue * stat.multiplier * stat.stat.associatedGrowth);
         }
     }
 
@@ -1983,13 +1939,14 @@ class Player extends GameEntity {
     void initializeStats() {
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
         if(trickster) {
+            this.addBuff(new BuffTricksterMode(), name:"trickster", source:this);
             landLevel = 11111111111.0;
             grist = 11111111111;
         }
         this.associatedStats = <AssociatedStat>[]; //this might be called multiple times, wipe yourself out.
         this.aspect.initAssociatedStats(this);
         this.class_name.initAssociatedStats(this);
-        this.setStat("sburbLore",0); //all start ignorant.
+        this.setStat(Stats.SBURB_LORE,0); //all start ignorant.
         this.initializeLuck();
         this.initializeFreeWill();
         this.initializeHP();
@@ -2014,24 +1971,24 @@ class Player extends GameEntity {
         if (luck > 5) {
             this.godDestiny = true;
         }
-        this.setStat("currentHP", getStat("hp")); //could have been altered by associated stats
+        this.setStat(Stats.CURRENT_HEALTH, getStat(Stats.HEALTH)); //could have been altered by associated stats
 
         if (this.class_name == SBURBClassManager.WASTE) {
             Fraymotif f = new Fraymotif("Rocks Fall, Everyone Dies", 1); //what better fraymotif for an Author to start with. Too bad it sucks.  If ONLY there were some way to hax0r SBURB???;
-            f.effects.add(new FraymotifEffect("power", 3, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
             f.desc = "Disappointingly sized meteors rain down from above.  Man, for such a cool name, this fraymotif kind of sucks. ";
             this.fraymotifs.add(f);
         } else if (this.class_name == SBURBClassManager.NULL) {
             {
                 Fraymotif f = new Fraymotif("What class???", 1);
-                f.effects.add(new FraymotifEffect("power", 1, true));
+                f.effects.add(new FraymotifEffect(Stats.POWER, 1, true));
                 f.desc = " I am certain there is not a class here and it is laughable to imply otherwise. ";
                 this.fraymotifs.add(f);
             }
 
             {
                 Fraymotif f = new Fraymotif("Nulzilla", 2);
-                f.effects.add(new FraymotifEffect("power", 1, true));
+                f.effects.add(new FraymotifEffect(Stats.POWER, 1, true));
                 f.desc = " If you get this reference, you may reward yourself 15 Good Taste In Media Points (tm).  ";
                 this.fraymotifs.add(f);
             }
@@ -2101,7 +2058,7 @@ class Player extends GameEntity {
         ret.session = player.session; //session is non negotiable.
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
-        ret.setStatsHash(player.stats);
+        ret.stats = player;
         return ret;
     }
 
@@ -2112,32 +2069,32 @@ class Player extends GameEntity {
         timeClone.dead = false;
         timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
         timeClone.prophecy = ProphecyState.ACTIVE;
-        timeClone.setStat("currentHP", doomedPlayer.getStat("hp")); //heal
+        timeClone.setStat(Stats.CURRENT_HEALTH, doomedPlayer.getStat(Stats.HEALTH)); //heal
         timeClone.doomed = true;
         //from a different timeline, things went differently.
         double r = doomedPlayer.rand.nextDouble();
-        timeClone.setStat("power", doomedPlayer.session.rand.nextDouble() * 80 + 10);
+        timeClone.setStat(Stats.POWER, doomedPlayer.session.rand.nextDouble() * 80 + 10);
         if (r > 0.9) {
             timeClone.robot = true;
             timeClone.hairColor = getRandomGreyColor();
         } else if (r > .8) {
             timeClone.godTier = !timeClone.godTier;
             if (timeClone.godTier) {
-                timeClone.setStat("power", 200); //act like a god, damn it.
+                timeClone.setStat(Stats.POWER, 200); //act like a god, damn it.
             }
         } else if (r > .6) {
             timeClone.isDreamSelf = !timeClone.isDreamSelf;
         } else if (r > .4) {
             timeClone.grimDark = doomedPlayer.session.rand.nextIntRange(0, 4);
-            timeClone.addStat("power", 50 * timeClone.grimDark);
+            timeClone.addStat(Stats.POWER, 50 * timeClone.grimDark);
         } else if (r > .2) {
             timeClone.murderMode = !timeClone.murderMode;
         }
 
         if (timeClone.grimDark > 3) {
             Fraymotif f = new Fraymotif(Zalgo.generate("The Broodfester Tongues"), 3);
-            f.effects.add(new FraymotifEffect("power", 3, true));
-            f.effects.add(new FraymotifEffect("power", 0, false));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
+            f.effects.add(new FraymotifEffect(Stats.POWER, 0, false));
             f.desc = " They are stubborn throes. ";
             timeClone.fraymotifs.add(f);
         }
@@ -2147,7 +2104,7 @@ class Player extends GameEntity {
             timeClone.fraymotifs.add(f);
         }
 
-        if (timeClone.getStat("power") > 50) {
+        if (timeClone.getStat(Stats.POWER) > 50) {
             Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 2); //probably beat denizen at least
             timeClone.fraymotifs.add(f);
         }

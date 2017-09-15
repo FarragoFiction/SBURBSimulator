@@ -268,7 +268,7 @@ class SceneRenderingEngine {
 
   }
 	dynamic drawReviveDead(div, player, ghost, enablingAspect){
-	  var canvasId = div.id + "commune_" +player.chatHandle + ghost.chatHandle+player.getStat("power")+ghost.getStat("power");
+	  var canvasId = div.id + "commune_" +player.chatHandle + ghost.chatHandle+player.getStat(Stats.POWER)+ghost.getStat(Stats.POWER);
 	  String canvasHTML = "<br><canvas id='" + canvasId +"' width='" +canvasWidth + "' height="+canvasHeight + "'>  </canvas>";
 	  div.append(canvasHTML);
 	  var canvas = querySelector("#${canvasId}");

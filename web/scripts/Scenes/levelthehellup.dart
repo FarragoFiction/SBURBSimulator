@@ -21,7 +21,7 @@ class LevelTheHellUp extends Scene {
 
     //TODO if i evenually do something with boonies, can have fraymotifs locked to this.
     dynamic getBoonies(p) {
-        var num = (p.getStat("power")).round() * 15;
+        var num = (p.getStat(Stats.POWER)).round() * 15;
         String denomination = " BOONDOLLARS";
         if (num > 1000000) {
             num = (num / 1000000).floor();
@@ -50,7 +50,7 @@ class LevelTheHellUp extends Scene {
         var boonies = this.getBoonies(player);
         String narration = "";
         num repeatTime = 1000;
-        var divID = (div.id) + "_" + player.chatHandle + player.ectoBiologicalSource.toString() + player.id.toString();
+        var divID = (div.id) + "_" + player.id.toString();
         String narrationHTML = "<br><div id = 'narration" + divID.toString() + "'></div>";
 
         appendHtml(div, narrationHTML);

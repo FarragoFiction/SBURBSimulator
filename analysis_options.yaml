@@ -21,7 +21,7 @@ linter:
     - directives_ordering
     - empty_catches
     - implementation_imports
-    - one_member_abstracts
+    #- one_member_abstracts # PL: seemed like a good idea at the time but fucks over using them as interfaces
     #- overridden_fields # PL: still unsure about turning this off but overriding fields is part of class/aspect now
     - prefer_contains
     - prefer_function_declarations_over_variables
