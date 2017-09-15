@@ -29,6 +29,9 @@ class Muse extends SBURBClass {
   }
 
   @override
+  double powerBoostMultiplier = 3.0;
+
+  @override
   double getAttackerModifier() {
     return 0.1;
   }

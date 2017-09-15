@@ -213,6 +213,7 @@ class VoidyStuff extends Scene {
 		appendHtml(div, " Why is the " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
+
 		if(rand.nextDouble() >.5){
 			this.player.addStat("power",this.player.getStat("power")*2);  //current and future doubling of power.
 			this.player.leveledTheHellUp = true;
