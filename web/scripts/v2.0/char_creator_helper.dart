@@ -486,9 +486,9 @@ class CharacterCreatorHelper {
         if (specific == "Waste")
             return "Wastes gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop hacking my damn code.";
         if (specific == "Scribe")
-            return "A Scribe distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They get a great deal of the positive of their aspect, but even more of the negative. ";
+            return "A Scribe distributes their associated aspect to the entire party. They start with very little of their aspect and must gain more through experience. They know a lot about SBURB/SGRUB. They get a great deal of the positive of their aspect, but even more of the negative.  They have a boost to SBURB Lore.";
         if (specific == "Sage")
-            return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
+            return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom. They have a boost to SBURB Lore.";
         if (specific == "Scout")
             return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
         if (specific == "Grace")
