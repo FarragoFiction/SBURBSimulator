@@ -5,6 +5,7 @@ import 'dart:html';
 import 'SBURBSim.dart';
 import "includes/tracer.dart";
 export 'includes/logger.dart';
+export 'includes/math_utils.dart';
 
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
@@ -118,6 +119,7 @@ void globalInit() {
     if (doneGlobalInit) { return; }
     doneGlobalInit = true;
 
+    Stats.init();
     SBURBClassManager.init();
     Aspects.init();
     InterestManager.init();

@@ -1,4 +1,4 @@
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
 
 class Grace extends SBURBClass {
@@ -11,13 +11,13 @@ class Grace extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 3.0, false) //basically all Wastes have.
+        new AssociatedStat(Stats.SBURB_LORE, 3.0, false) //basically all Wastes have.
     ]);
 
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-        if (stat.isFromAspect || stat.name != "sburbLore") {
+        if (stat.isFromAspect || stat.stat != Stats.SBURB_LORE) {
             powerBoost = powerBoost * 0; //wasted aspect
         } else {
             powerBoost = powerBoost * 1;

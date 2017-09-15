@@ -337,7 +337,7 @@ class YellowYard extends Scene {
 		Player timeClone = Player.makeRenderingSnapshot(this.timePlayer);
 		timeClone.dead = false;
 		timeClone.doomed = true;
-		timeClone.setStat("currentHP", timeClone.getStat("hp"));
+		timeClone.setStat(Stats.CURRENT_HEALTH, timeClone.getStat(Stats.HEALTH));
 		return timeClone;
 	}
 	String content(){

@@ -1,9 +1,9 @@
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 import "Interest.dart";
 
 class PopCulture extends InterestCategory {
     @override
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat("mobility", 2, true)]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.MOBILITY, 2, true)]);
 
     @override
     List<String> handles1 = <String>["bat","worthy", "mega", "player", "mighty", "knightly", "roguish", "super", "turbo", "titanic", "heroic", "bitchin", "power", "wonder", "wonderful", "sensational", "thors", "bat"];

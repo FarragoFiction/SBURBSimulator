@@ -10,10 +10,9 @@ enum ProphecyState {
 
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
-class GameEntity implements Comparable<GameEntity> {
+class GameEntity extends Object with StatOwner implements Comparable<GameEntity>  {
     static int _nextID = 0;
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
-    static int minPower = 1;  //hope player fucks with this, ab resets it
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
 
     /// can NEVER be null, but I expect this to be replaced.
@@ -41,10 +40,8 @@ class GameEntity implements Comparable<GameEntity> {
     bool corrupted = false; //players are corrupted at level 4. will be easier than always checking grimDark level
     List<Fraymotif> fraymotifs = <Fraymotif>[];
     bool usedFraymotifThisTurn = false;
-    List<BuffOld> buffs = <BuffOld>[]; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
-    Map<String, num> stats = <String, num>{};
     List<Relationship> relationships = <Relationship>[]; //not to be confused with the RELATIONSHIPS stat which is the value of all relationships.
-    Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly is confusing since it's also 'level')
+    //Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly is confusing since it's also 'level')
     num renderingType = 0; //0 means default for this sim.
     List<AssociatedStat> associatedStats = <AssociatedStat>[]; //most players will have a 2x, a 1x and a -1x stat.
     String spriteCanvasID = null; //part of new rendering engine.
@@ -54,29 +51,19 @@ class GameEntity implements Comparable<GameEntity> {
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
     GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
 
-    Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     GameEntity(this.name, this.session) {
+        this.initStatHolder();
         id = GameEntity.generateID();
-        //print("making a game entity named $name with id $id");
-        stats['sanity'] = 0;
-        stats['alchemy'] = 0;
-        stats['currentHP'] = 0;
-        stats['hp'] = 0;
-        stats['RELATIONSHIPS'] = 0;
-        stats['minLuck'] = 0;
-        stats['maxLuck'] = 0;
-        stats['freeWill'] = 0;
-        stats['mobility'] = 0;
-        stats['power'] = 0; //power is generic sign of level.
-        stats["sburbLore"] = 0;
     }
+
+    Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
 
     //otherwise ids won't be stable across yards/resets etc.
-    static resetNextIdTo(int val) {
+    static void resetNextIdTo(int val) {
         _nextID = val;
     }
-
+    
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
 
@@ -85,13 +72,19 @@ class GameEntity implements Comparable<GameEntity> {
         return this.title().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
     }
 
+
+    @override
+    StatHolder createHolder() {
+        return new ProphecyStatHolder<GameEntity>(this);
+    }
+
     void addPrototyping(GameEntity object) {
         this.name = "${object.name}${this.name}"; //sprite becomes puppetsprite.
         this.fraymotifs.addAll(object.fraymotifs);
         if (object.fraymotifs.isEmpty) {
             Fraymotif f = new Fraymotif("${object.name}Sprite Beam!", 1);
-            f.effects.add(new FraymotifEffect("power", 2, true)); //do damage
-            f.effects.add(new FraymotifEffect("hp", 1, true)); //heal
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true)); //do damage
+            f.effects.add(new FraymotifEffect(Stats.HEALTH, 1, true)); //heal
             f.desc = " An appropriately themed beam of light damages enemies and heals allies. ";
             this.fraymotifs.add(f);
         }
@@ -106,8 +99,8 @@ class GameEntity implements Comparable<GameEntity> {
             s.illegal = ps.illegal;
             s.player = ps.player;
         }
-        for (String key in object.stats.keys) {
-            addStat(key, object.stats[key]); //add your stats to my stas.
+        for (Stat key in object.stats) {
+            addStat(key, object.stats.getBase(key)); //add your stats to my stas.
         }
     }
 
@@ -120,7 +113,7 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void copyStatsTo(GameEntity clonege) {
-        clonege.setStatsHash(stats);
+        clonege.stats = this; // copies the stats via StatOwner's stats setter! (also buffs)
         clonege.fontColor = fontColor;
         clonege.ghost = ghost; //if you are ghost, you are rendered spoopy style
         clonege.grist = grist; //everything has it.
@@ -129,9 +122,7 @@ class GameEntity implements Comparable<GameEntity> {
         clonege.corrupted = corrupted; //players are corrupted at level 4. will be easier than always checking grimDark level
         clonege.fraymotifs = fraymotifs; //TODO should these be cloned, too?
         clonege.usedFraymotifThisTurn = usedFraymotifThisTurn;
-        clonege.buffs = buffs; //only used in strifes, array of BuffStats (from fraymotifs and eventually weapons)
         clonege.relationships = Relationship.cloneRelationshipsStopgap(relationships);
-        clonege.permaBuffs = permaBuffs; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly gets OP as shit because power controls future power)
         clonege.renderingType = renderingType; //0 means default for this sim.
         clonege.associatedStats = associatedStats; //most players will have a 2x, a 1x and a -1x stat.
         clonege.spriteCanvasID = spriteCanvasID; //part of new rendering engine.
@@ -149,11 +140,11 @@ class GameEntity implements Comparable<GameEntity> {
     //naturally sorted by mobility
     @override
     int compareTo(GameEntity other) {
-        return other.getStat("mobility") - getStat("mobility"); //TODO or is it the otherway around???
+        return (other.getStat(Stats.POWER) - getStat(Stats.POWER)).round(); //TODO or is it the otherway around???
     }
 
     String checkDiedInAStrife(List<Team> enemyTeams) {
-        if (getStat("currentHP") <= 0) {
+        if (getStat(Stats.CURRENT_HEALTH) <= 0) {
             //TODO check for jack, king
             GameEntity jack = Team.findJackInTeams(enemyTeams);
             GameEntity king = Team.findKingInTeams(enemyTeams);
@@ -170,7 +161,9 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     void resetFraymotifs() {
-        if(!session.mutator.rageField) this.buffs.clear(); //rage just keeps going.
+        if(!session.mutator.rageField) {
+            this.stats.onCombatEnd(); //rage just keeps going.
+        }
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
         }
@@ -219,15 +212,15 @@ class GameEntity implements Comparable<GameEntity> {
             usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
         }
         if (usableFraymotifs.isEmpty) return false;
-        num mine = getStat("sanity");
-        num theirs = getAverageSanity(living_enemies);
+        num mine = getStat(Stats.SANITY);
+        num theirs = Stats.SANITY.average(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
            // ////session.logger.info("Too insane to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but they are too crazy to focus. ");
             return false;
         }
-        mine = getStat("freeWill");
-        theirs = getAverageFreeWill(living_enemies);
+        mine = getStat(Stats.FREE_WILL);
+        theirs = Stats.FREE_WILL.average(living_enemies);
         if (mine + 200 < theirs && this.session.rand.nextDouble() < 0.5) {
             //////session.logger.info("Too controlled to use fraymotifs: ${htmlTitleHP()} against ${target.htmlTitleHP()} Mine: $mine Theirs: $theirs in session: ${this.session.session_id}");
             appendHtml(div, " The ${htmlTitleHP()} wants to use a Fraymotif, but Fate dictates otherwise. ");
@@ -264,13 +257,13 @@ class GameEntity implements Comparable<GameEntity> {
         for (Relationship diamond in diamonds) {
             if (whoINeedToProtect.contains(diamond.target)) reasonsToStay += 1;
         }
-        reasonsToStay += getStat("power") / Team.getTeamsStatTotal(enemies, "currentHP"); //i can take you.
-        reasonsToLeave += Team.getTeamsStatTotal(enemies, "power") / getStat("currentHP"); //you can take me.
+        reasonsToStay += getStat(Stats.POWER) / Team.getTeamsStatTotal(enemies, Stats.CURRENT_HEALTH); //i can take you.
+        reasonsToLeave += Team.getTeamsStatTotal(enemies, Stats.POWER) /getStat(Stats.CURRENT_HEALTH); //you can take me.
         if (reasonsToLeave > reasonsToStay * 2) {
-            addStat("sanity", -10);
+            addStat(Stats.SANITY, -10);
             flipOut("how terrifying ${Team.getTeamsNames(enemies)} were");
-            if (getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")) {
-                //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat("power") + this.session.session_id)
+            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, Stats.MOBILITY)) {
+                //console.log(" player actually absconds: they had " + player.hp + " and enemy had " + enemy.getStat(Stats.POWER) + this.session.session_id)
                 appendHtml(div, "<br><img src = 'images/sceneIcons/abscond_icon.png'> The ${htmlTitleHP()} absconds right the fuck out of this fight.");
                 mySide.absconded.add(this);
                 mySide.remainingPlayersHateYou(div, this);
@@ -280,7 +273,7 @@ class GameEntity implements Comparable<GameEntity> {
                 return false;
             }
         } else if (reasonsToLeave > reasonsToStay) {
-            if (getStat("mobility") > Team.getTeamsStatAverage(enemies, "mobility")) {
+            if (getStat(Stats.POWER) > Team.getTeamsStatAverage(enemies, Stats.MOBILITY)) {
                 //console.log(" player actually absconds: " + this.session.session_id)
                 appendHtml(div, "<br><img src = 'images/sceneIcons/abscond_icon.png'>  Shit. The ${htmlTitleHP()} doesn't know what to do. They don't want to die... They abscond. ");
                 mySide.absconded.add(this);
@@ -303,25 +296,25 @@ class GameEntity implements Comparable<GameEntity> {
         //luck dodge
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
         //////session.logger.info("gonna roll for luck.");
-        if (defense.rollForLuck("minLuck") > offense.rollForLuck("minLuck") * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
+        if (defense.rollForLuck(Stats.MIN_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
             //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
-            offense.addStat("currentHP", -1 * offense.getStat("power") / 10); //damaged by your own power.
+            offense.addStat(Stats.CURRENT_HEALTH, -1 * offense.getStat(Stats.POWER) / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return;
-        } else if (defense.rollForLuck("maxLuck") > offense.rollForLuck("maxLuck") * 5 + 100) {
+        } else if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MAX_LUCK) * 5 + 100) {
            // ////session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
         }
         //mobility dodge
         int r = this.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
-        if (defense.getStat("mobility") > offense.getStat("mobility") * 10 + 200 && r > 25) {
+        if (defense.getStat(Stats.POWER) > offense.getStat(Stats.POWER) * 10 + 200 && r > 25) {
             //////session.logger.info("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
-            if (defense.getStat("currentHP") > 0) {
+            if (defense.getStat(Stats.CURRENT_HEALTH) > 0) {
                 ret = "$ret. They miss so hard the ${defense.htmlTitleHP()} has plenty of time to get a counterattack in.";
-                offense.addStat("currentHP", -1 * defense.getStat("power"));
+                offense.addStat(Stats.CURRENT_HEALTH, -1 * defense.getStat(Stats.POWER));
             } else {
                 ret = "$ret. They miss pretty damn hard. ";
             }
@@ -329,15 +322,15 @@ class GameEntity implements Comparable<GameEntity> {
             //this.processDeaths(div, offense, defense);
 
             return;
-        } else if (defense.getStat("mobility") > offense.getStat("mobility") * 5 + 100 && r > 25) {
+        } else if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 5 + 100 && r > 25) {
             //////session.logger.info("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             appendHtml(div, " The ${defense.htmlTitleHP()} dodges the attack completely. ");
             return;
         }
         //base damage
-        num hit = Math.max(1,offense.getStat("power"));
-        num offenseRoll = offense.rollForLuck("");
-        num defenseRoll = defense.rollForLuck("");
+        num hit = Math.max(1,offense.getStat(Stats.POWER));
+        num offenseRoll = offense.rollForLuck();
+        num defenseRoll = defense.rollForLuck();
         //critical/glancing hit odds.
         if (defenseRoll > offenseRoll * 2) { //glancing blow.
             //////session.logger.info("Glancing Hit: " + this.session.session_id);
@@ -354,7 +347,7 @@ class GameEntity implements Comparable<GameEntity> {
         }
 
 
-        defense.addStat("currentHP", -1 * hit);
+        defense.addStat(Stats.CURRENT_HEALTH, -1 * hit);
         //this.processDeaths(div, offense, defense);
     }
 
@@ -378,9 +371,9 @@ class GameEntity implements Comparable<GameEntity> {
             // CanvasElement canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
             makeAlive();
             if (undrainedPacts[0][1] == "Life") {
-                addStat("currentHP", 100); //i won't let you die again.
+                addStat(Stats.CURRENT_HEALTH, 100); //i won't let you die again.
             } else if (undrainedPacts[0][1] == "Doom") {
-                addStat("minLuck", 100); //you've fulfilled the prophecy. you are no longer doomed.
+                addStat(Stats.MIN_LUCK, 100); //you've fulfilled the prophecy. you are no longer doomed.
                 div.appendHtml("The prophecy is fulfilled. ", treeSanitizer: NodeTreeSanitizer.trusted);
             }
         }
@@ -398,7 +391,7 @@ class GameEntity implements Comparable<GameEntity> {
         List<num> ratings = new List<num>();
         for (GameEntity t in targets) {
             num r = 0;
-            if (t.getStat("currentHP") < getStat("power")) r += 1; //i can kill you in one hit.
+            if (t.getStat(Stats.CURRENT_HEALTH) < getStat(Stats.POWER)) r += 1; //i can kill you in one hit.
             if (t is Player) {
                 Player p = t;
                 if (p.aspect == Aspects.VOID) r += -1; //hard to see
@@ -429,39 +422,14 @@ class GameEntity implements Comparable<GameEntity> {
         //stub for sprites, and maybe later consorts or carapcians
     }
 
-    double getTotalBuffForStat(String statName) {
-        double ret = 0.0;
-        for (int i = 0; i < this.buffs.length; i++) {
-            BuffOld b = this.buffs[i];
-            if (b.name == statName) ret += b.value;
-        }
-        return ret;
-    }
-
-    String humanWordForBuffNamed(String statName) {
-        if (statName == "MANGRIT") return "powerful";
-        if (statName == "hp") return "sturdy";
-        if (statName == "currentHP") return "sturdy";
-        if (statName == "RELATIONSHIPS") return "friendly";
-        if (statName == "mobility") return "fast";
-        if (statName == "sanity") return "calm";
-        if (statName == "freeWill") return "willful";
-        if (statName == "power") return "powerful"; //should never buff this directly, just use MANGRIT
-        if (statName == "maxLuck") return "lucky";
-        if (statName == "minLuck") return "lucky";
-        if (statName == "alchemy") return "creative";
-        ////session.logger.info("what the hell kind of stat name is: $statName");
-        return "glitchy";
-    }
-
     String describeBuffs() {
         List<String> ret = <String>[];
-        Iterable<String> allStats = this.allStats();
-        for (String stat in allStats) {
-            double b = this.getTotalBuffForStat(stat);
+        Iterable<Stat> allStats = Stats.all;
+        for (Stat stat in allStats) {
+            double b = this.stats[stat] - this.stats.derive(stat, false);
             //only say nothing if equal to zero
-            if (b > 0) ret.add("more ${this.humanWordForBuffNamed(stat)}");
-            if (b < 0) ret.add("less ${this.humanWordForBuffNamed(stat)}");
+            if (b > 0) ret.add("more ${stat.emphaticPositive}");
+            if (b < 0) ret.add("less ${stat.emphaticPositive}");
         }
         if (ret.isEmpty) return "";
         return "${this.htmlTitleHP()} is feeling ${turnArrayIntoHumanSentence(ret)} than normal. ";
@@ -470,70 +438,18 @@ class GameEntity implements Comparable<GameEntity> {
     void modifyAssociatedStat(num modValue, AssociatedStat stat) {
         //modValue * stat.multiplier.
         //////session.logger.info("Modify associated stat $stat on $this by $modValue");
-        if (stat.name == "RELATIONSHIPS") {
+        if (stat.stat == Stats.RELATIONSHIPS) {
             for (num i = 0; i < this.relationships.length; i++) {
                 this.relationships[i].value += modValue * stat.multiplier;
             }
         } else {
-            this.addStat(stat.name, modValue * stat.multiplier); // I hope this isn't doing something totally wonky -PL
+            this.addStat(stat.stat, modValue * stat.multiplier); // I hope this isn't doing something totally wonky -PL
         }
-    }
-
-    num getStat(String statName) {
-        if (statName == "MANGRIT") statName = "power"; //fraymotifs can try to get it directly
-        num ret = this.stats[statName];
-        if (ret == null) throw "What Kind of Stat is: $statName???";
-        for (int i = 0; i < this.buffs.length; i++) {
-            BuffOld b = this.buffs[i];
-            if (b.name == statName) ret += b.value;
-        }
-
-        if (statName == "power") {
-            //////session.logger.info("$this before mangrit, ret is: $ret, mangrit is ${this.permaBuffs["MANGRIT"]} ");
-            ret += this.permaBuffs["MANGRIT"]; //needed because if i mod power directly, it effects all future progress in an unbalanced way.;
-            ret = Math.max(GameEntity.minPower, ret); //no negative power, dunkass.
-           //if(ret < 0 ) ////session.logger.info("$this after mangrit, power is $ret in session ${session.session_id}");
-        }
-
-        //simple doom prophecy mechanic.  more likely to die, but buff if you get around it somehow (i.e. die but then revive)
-        if(prophecy == ProphecyState.ACTIVE) {
-            //////session.logger.info("Debugging: ${htmlTitle()} Lost half of $statName to prophecy in session ${session.session_id}");
-            ret += -1* (ret/2).abs();  //lose half your stats
-        }else if(prophecy == ProphecyState.FULLFILLED) {
-            ret += (ret/2).abs();  //gain half your stats
-            //////session.logger.info("Debugging: ${htmlTitle()} gained half of $statName to prophecy in session ${session.session_id}");
-        }
-        if(session.mutator.doomField) return -1* ret.round(); //bad is good good is bad.
-        return (ret).round();
     }
 
     //sets current hp to max hp. mostly called after strifes assuming you'll use healing items
     void heal() {
-        setStat("currentHP", getStat("hp"));
-    }
-
-    void setStat(String statName, num value) {
-        if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
-        this.stats[statName] = value;
-    }
-
-    void addStat(String statName, num value) {
-        if(statName == "MANGRIT") {
-          this.permaBuffs[statName] += value;
-          return;
-        }
-        //if(statName == "power") ////session.logger.info("$this boost power from ${this.stats[statName]} with $value");
-        if (this.stats[statName] == null) throw("I have never heard of a stat called: $statName");
-        this.stats[statName] += value;
-       // if(statName == "power") ////session.logger.info("$this boost power to ${this.stats[statName]}");
-    }
-
-
-    void setStatsHash(Map<String, num>hashStats) {
-        for (String key in hashStats.keys) {
-            this.stats[key] = hashStats[key];
-        }
-        this.stats["currentHP"] = Math.max(this.stats["hp"], 10); //no negative hp asshole.
+        this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
     }
 
     String htmlTitle() {
@@ -560,10 +476,9 @@ class GameEntity implements Comparable<GameEntity> {
         ret += "<br><Br>Prophecy Status: ${prophecy}";
 
         ret += "</td>";
-        List<String> as = new List<String>.from(allStats());
         ret += "<td class = 'toolTipSection'>Stats<hr>";
-        for (int i = 0; i < as.length; i++) {
-            ret += "${as[i]}: ${getStat(as[i])}<br>";
+        for (Stat stat in Stats.summarise) {
+            ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
         ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
@@ -588,7 +503,7 @@ class GameEntity implements Comparable<GameEntity> {
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
-        return "${getToolTip()}$ret$pname (${(this.getStat("currentHP")).round()} hp, ${(this.getStat("power")).round()} power)</font></span>"; //TODO denizens are aspect colored. also, that extra span there is to close out the tooltip
+        return "${getToolTip()}$ret$pname (${(this.getStat(Stats.CURRENT_HEALTH)).round()} hp, ${(this.getStat(Stats.POWER)).round()} power)</font></span>"; //TODO denizens are aspect colored. also, that extra span there is to close out the tooltip
     }
 
     void flipOut(String reason) {}
@@ -599,7 +514,7 @@ class GameEntity implements Comparable<GameEntity> {
 
     void makeAlive() {
         this.dead = false;
-        this.setStat("currentHP", this.getStat("hp"));
+        this.heal();
     }
 
 
@@ -619,12 +534,12 @@ class GameEntity implements Comparable<GameEntity> {
     }
 
     //takes in a stat name we want to use. for example, use only min luck to avoid bad events.
-    num rollForLuck([String stat]) {
-        if (stat == null || stat == "") {
-            return this.session.rand.nextIntRange(this.getStat("minLuck"), this.getStat("maxLuck"));
+    double rollForLuck([Stat stat]) {
+        if (stat == null) {
+            return this.session.rand.nextDoubleRange(this.getStat(Stats.MIN_LUCK), this.getStat(Stats.MAX_LUCK));
         } else {
             //don't care if it's min or max, just compare it to zero.
-            return this.session.rand.nextIntRange(0, this.getStat(stat));
+            return this.session.rand.nextDouble(this.getStat(stat));
         }
     }
 
@@ -640,10 +555,6 @@ class GameEntity implements Comparable<GameEntity> {
 
     List<Relationship> getDiamonds() {
         return <Relationship>[];
-    }
-
-    Iterable<String> allStats() {
-        return this.stats.keys;
     }
 
     static String getEntitiesNames(List<GameEntity> ges) {
@@ -670,44 +581,44 @@ class GameEntity implements Comparable<GameEntity> {
 //need to know if you're from aspect, 'cause only aspect associatedStats will be used for fraymotifs.
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
 class AssociatedStat {
-    String name;
+    Stat stat;
     num multiplier;
     bool isFromAspect;
 
-    AssociatedStat(String this.name, num this.multiplier, bool this.isFromAspect) {}
+    AssociatedStat(Stat this.stat, num this.multiplier, bool this.isFromAspect) {}
 
     void applyToPlayer(Player player) {
-        player.associatedStats.add(new AssociatedStat(this.name, this.multiplier, this.isFromAspect));
+        player.associatedStats.add(new AssociatedStat(this.stat, this.multiplier, this.isFromAspect));
     }
 
     @override
-    String toString() => "[$name x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
+    String toString() => "[$stat x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
 }
 
 /// AssociatedStat variant for use as a reference for "this will be random when given to a player" like in Void
 class AssociatedStatRandom extends AssociatedStat {
-    List<String> names;
+    Iterable<Stat> stats;
 
-    AssociatedStatRandom(List<String> this.names, num multiplier, bool isFromAspect):super("RANDOM LIST", multiplier, isFromAspect);
+    AssociatedStatRandom(Iterable<Stat> this.stats, num multiplier, bool isFromAspect):super(null, multiplier, isFromAspect);
 
     @override
     void applyToPlayer(Player player) {
-        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(this.names), this.multiplier, this.isFromAspect));
+        player.associatedStats.add(new AssociatedStat(player.rand.pickFrom(this.stats), this.multiplier, this.isFromAspect));
     }
 
     @override
-    String toString() => "[(Random from $names) x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
+    String toString() => "[(Random from $stats) x $multiplier${this.isFromAspect ? " (from Aspect)" : ""}]";
 }
 
 /// AssociatedStat variant for use as a reference for "will apply the player's interest stats when given" like in Heart
 class AssociatedStatInterests extends AssociatedStat {
 
-    AssociatedStatInterests(bool isFromAspect, [num multiplier = 1.0]):super("INTERESTS", multiplier, isFromAspect);
+    AssociatedStatInterests(bool isFromAspect, [num multiplier = 1.0]):super(null, multiplier, isFromAspect);
 
     @override
     void applyToPlayer(Player player) {
-        player.associatedStats.addAll(player.interest1.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier * this.multiplier, this.isFromAspect)));
-        player.associatedStats.addAll(player.interest2.category.stats.map((AssociatedStat s) => new AssociatedStat(s.name, s.multiplier * this.multiplier, this.isFromAspect)));
+        player.associatedStats.addAll(player.interest1.category.stats.map((AssociatedStat s) => new AssociatedStat(s.stat, s.multiplier * this.multiplier, this.isFromAspect)));
+        player.associatedStats.addAll(player.interest2.category.stats.map((AssociatedStat s) => new AssociatedStat(s.stat, s.multiplier * this.multiplier, this.isFromAspect)));
     }
 
     @override
@@ -716,9 +627,9 @@ class AssociatedStatInterests extends AssociatedStat {
 
 //can eventually have a duration, but for now, assumed to be the whole fight. i don't want fights to last long.
 class BuffOld {
-    BuffOld(String this.name, num this.value) {}
+    BuffOld(Stat this.name, num this.value) {}
 
-    String name;
+    Stat name;
     num value;
 }
 

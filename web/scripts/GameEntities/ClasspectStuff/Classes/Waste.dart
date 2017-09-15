@@ -1,4 +1,4 @@
-import "../../GameEntity.dart";
+import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
 //TODO when i do land update, wastes should have endless bug killing quests
 class Waste extends SBURBClass {
@@ -15,7 +15,7 @@ class Waste extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("sburbLore", 3.0, false) //basically all Wastes have.
+        new AssociatedStat(Stats.SBURB_LORE, 3.0, false) //basically all Wastes have.
     ]);
 
     @override
@@ -30,7 +30,7 @@ class Waste extends SBURBClass {
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
-        if (stat.isFromAspect || stat.name != "sburbLore") {
+        if (stat.isFromAspect || stat.stat != Stats.SBURB_LORE) {
             powerBoost = powerBoost * 0; //wasted aspect
         } else {
             powerBoost = powerBoost * 1;

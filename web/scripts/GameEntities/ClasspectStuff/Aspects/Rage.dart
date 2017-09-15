@@ -71,11 +71,11 @@ class Rage extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat("MANGRIT", 2, true),
-        new AssociatedStat("mobility", 1, true),
-        new AssociatedStat("sanity", -1, true),
-        new AssociatedStat("RELATIONSHIPS", -1, true),
-        new AssociatedStat("sburbLore", 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
+        new AssociatedStat(Stats.POWER, 2, true),
+        new AssociatedStat(Stats.MOBILITY, 1, true),
+        new AssociatedStat(Stats.SANITY, -1, true),
+        new AssociatedStat(Stats.RELATIONSHIPS, -1, true),
+        new AssociatedStat(Stats.SBURB_LORE, 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 
     Rage(int id) :super(id, "Rage", isCanon: true);

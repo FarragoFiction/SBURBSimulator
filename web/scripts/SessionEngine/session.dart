@@ -17,7 +17,7 @@ class Session {
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
     //TODO all these "session summary stats" things should just be a SessionSummary object I own.
 
-    num sessionHealth = 500; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
+    num sessionHealth = 500 * Stats.POWER.coefficient; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
     List<Player> replayers = <Player>[]; //used for fan oc easter eggs.
     AfterLife afterLife = new AfterLife();
 
@@ -28,7 +28,7 @@ class Session {
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     num numScenes = 0;
     bool sbahj = false;
-    num hardStrength = 1000;
+    num hardStrength = 2000 * Stats.POWER.coefficient;
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
     bool reckoningStarted = false;
@@ -429,7 +429,11 @@ class Session {
 
         Relationship.decideInitialQuadrants(rand, this.players);
 
-        this.hardStrength = 500 + 20 * this.players.length;
+        //this.hardStrength = 500 + 20 * this.players.length;
+
+        Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
+        double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
+        this.hardStrength = (100 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
     }
 
     String convertPlayerNumberToWords() {

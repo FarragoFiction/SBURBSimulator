@@ -38,7 +38,7 @@ class DoLandQuest extends Scene{
 		return this.playersPlusHelpers.length > 0;
 	}
 	List<Player> getPlayerPlusHelper(Player p, List<Player> availablePlayers){
-		if(p.land == null || p.getStat("power") < 2 || p.grimDark > 3) return null;  //can't do quests at all.
+		if(p.land == null || p.getStat(Stats.POWER) < 20 * Stats.POWER.coefficient || p.grimDark > 3) return null;  //can't do quests at all.
 		Player helper = p.findHelper(availablePlayers);
 		if(helper != null && helper.grimDark >= 3) helper = null;  //grim dark players aren't going to do quests.
 		var playerPlusHelper = [p,helper];
@@ -74,7 +74,7 @@ class DoLandQuest extends Scene{
 		return this.fraymotifFlavorTextForPlayer(player, f);
 
 	}
-	String fraymotifFlavorTextForPlayer(player, fraymotif){
+	String fraymotifFlavorTextForPlayer(Player player, Fraymotif fraymotif){
 		//fraymotif store names came from me looking up what places carry faygo near me and finding out
 		//that i live in the laziest piece of fiction of all time.
 		//"Super Low Grocery Outlet" and "Food Depot #27" sound fake as fuck, but also are the only places to carry faygo practically
@@ -105,7 +105,7 @@ class DoLandQuest extends Scene{
 	}
 	dynamic addImportantEvent(){
 			Player current_mvp = findStrongestPlayer(this.session.players);
-			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat("power"),null,null) );
+			return this.session.addImportantEvent(new FrogBreedingNeedsHelp(this.session, current_mvp.getStat(Stats.POWER),null,null) );
 	}
 
 	dynamic calculateClasspectBoost(Player player, Player helper){
@@ -160,7 +160,7 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == Aspects.BLOOD){
 			player.boostAllRelationships();
 			player.boostAllRelationshipsWithMe();
-			player.addStat("sanity", 1);
+			player.addStat(Stats.SANITY, 1);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time helping the " + player.htmlTitle() + " out with their relationship drama. " ;
 			}else{
@@ -181,8 +181,8 @@ class DoLandQuest extends Scene{
 		if(helper.aspect == Aspects.RAGE){
 			player.damageAllRelationships();
 			player.damageAllRelationshipsWithMe();
-			player.addStat("sanity", -10);
-			helper.addStat("sanity", -10);
+			player.addStat(Stats.SANITY, -10);
+			helper.addStat(Stats.SANITY, -10);
 			if(r2.value > 0){
 				ret += " The " + helper.htmlTitle() + " spends a great deal of time shit talking about the other players. ";
 			}else{
@@ -257,7 +257,7 @@ class DoLandQuest extends Scene{
 		}else if(player.sprite.helpfulness < 0){
 			////session.logger.info("bad sprite: " + this.session.session_id);
 			player.increaseLandLevel(-0.5);
-			player.addStat("sanity", -0.1);
+			player.addStat(Stats.SANITY, -0.1);
 		}else{
 			////session.logger.info("normal sprite: " + this.session.session_id);
 			player.increaseLandLevel(0.5);

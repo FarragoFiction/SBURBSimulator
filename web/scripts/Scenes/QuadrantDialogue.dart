@@ -404,7 +404,7 @@ class QuadrantDialogue extends Scene {
 
 		return  this.processChatPair(chats, relationship1, relationship2);
 	}
-	dynamic heartChat(relationship1, relationship2){
+	dynamic heartChat(Relationship relationship1, Relationship relationship2){
 		////session.logger.info("Heart Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
 		chats.add( new ConversationalPair("You're so good at this game!",["No, way, you're tons better than me.","Heh, about time I'm good at something, huh?","Only because I get to play it with you :)"]));
@@ -433,8 +433,8 @@ class QuadrantDialogue extends Scene {
 	dynamic diamondsChat(relationship1, relationship2){
 		////session.logger.info("Diamonds Chat  in: " + this.session.session_id);
 		List<dynamic> chats = [];
-		this.player1.addStat("sanity", 1);
-		this.player2.addStat("sanity", 1);
+		this.player1.addStat(Stats.SANITY, 1);
+		this.player2.addStat(Stats.SANITY, 1);
 		chats.add( new ConversationalPair("How have you been?",["Okay.","Good.","Alright.","As well as can be expected.","Better than I thought I'd be.", "Functioning."]));
 		chats.add( new ConversationalPair("You doing okay?",["Yes.","As well as can be expected.","Better than I thought I'd be.", "I'm fine. I think."]));
 		chats.add( new ConversationalPair("This game really sucks.",["Yes, you aren't kidding.","I know, right?","Represent", "I'm glad I got you to help me through it."]));
@@ -446,8 +446,8 @@ class QuadrantDialogue extends Scene {
 	}
 	dynamic feelingsJam(relationship, relationship2){
 		////session.logger.info("Feelings Jam in: " + this.session.session_id);
-		this.player1.addStat("sanity", 2);
-		this.player2.addStat("sanity", 2);
+		this.player1.addStat(Stats.SANITY, 2);
+		this.player2.addStat(Stats.SANITY, 2);
 		//figure out which player is flipping out, make them "flippingOut", make other player "shoosher"
 		String chat = "";
 		var freakOutWeasel = this.player1;

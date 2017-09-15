@@ -25,7 +25,7 @@ setup() {
 testName() {
   setup();
   //print(testGE.name);
-  assert(testGE.name == "Firsty Testy");
+  assert(testGE.stat == "Firsty Testy");
   jRAssert("toString", testGE.toString(),
       "FirstyTesty"); //to string gets rid of spaces, which is apparently important because sometimes use it for div.
   //print("Name passed");
@@ -42,27 +42,27 @@ testID() {
 testStats() {
   setup();
   //print(testGE.stats);
-  assert(testGE.getStat("hp") == 0
+  assert(testGE.getStat(Stats.HEALTH) == 0
       ? true
-      : throw "initial hp should be 0, but is: ${testGE..getStats("hp")}");
-  testGE.setStatsHash(<String,num>{"hp": 100, "currentHP": 10, "power": 3, "maxLuck": 100});
-  jRAssert("hp", testGE.getStat("hp"), 100);
-  jRAssert("currentHP", testGE.getStat("currentHP"),
+      : throw "initial hp should be 0, but is: ${testGE..getStats(Stats.HEALTH)}");
+  testGE.stats.setMap(<Stat, num>{Stats.HEALTH: 100, Stats.CURRENT_HEALTH: 10, Stats.POWER: 3, Stats.MAX_LUCK: 100});
+  jRAssert(Stats.HEALTH, testGE.getStat(Stats.HEALTH), 100);
+  jRAssert(Stats.CURRENT_HEALTH, testGE.getStat(Stats.CURRENT_HEALTH),
       100); //even though i set it to 10, setSTatsHash should not let it e less than HP
-  jRAssert("power", testGE.getStat("power"), 3);
-  jRAssert("maxLuck", testGE.getStat("maxLuck"), 100);
-  jRAssert("minLuck", testGE.getStat("minLuck"), 0); //confirm did not change.
-  jRAssert("sanity", testGE.getStat("sanity"), 0); //confirm did not change.
-  jRAssert("alchemy", testGE.getStat("alchemy"), 0); //confirm did not change.
-  jRAssert("RELATIONSHIPS", testGE.getStat("RELATIONSHIPS"),
+  jRAssert(Stats.POWER, testGE.getStat(Stats.POWER), 3);
+  jRAssert(Stats.MAX_LUCK, testGE.getStat(Stats.MAX_LUCK), 100);
+  jRAssert(Stats.MIN_LUCK, testGE.getStat(Stats.MIN_LUCK), 0); //confirm did not change.
+  jRAssert(Stats.SANITY, testGE.getStat(Stats.SANITY), 0); //confirm did not change.
+  jRAssert(Stats.ALCHEMY, testGE.getStat(Stats.ALCHEMY), 0); //confirm did not change.
+  jRAssert(Stats.RELATIONSHIPS, testGE.getStat(Stats.RELATIONSHIPS),
       0); //confirm did not change.
-  jRAssert("freeWill", testGE.getStat("freeWill"), 0); //confirm did not change.
-  jRAssert("mobility", testGE.getStat("mobility"), 0); //confirm did not change.
+  jRAssert(Stats.FREE_WILL, testGE.getStat(Stats.FREE_WILL), 0); //confirm did not change.
+  jRAssert(Stats.MOBILITY, testGE.getStat(Stats.POWER), 0); //confirm did not change.
   //print(testGE.stats);
-  testGE.setStat("hp", 50);
-  jRAssert("hp", testGE.getStat("hp"), 50);
-  testGE.addStat("hp", 5000);
-  jRAssert("hp", testGE.getStat("hp"), 5050);
+  testGE.setStat(Stats.HEALTH, 50);
+  jRAssert(Stats.HEALTH, testGE.getStat(Stats.HEALTH), 50);
+  testGE.addStat(Stats.HEALTH, 5000);
+  jRAssert(Stats.HEALTH, testGE.getStat(Stats.HEALTH), 5050);
   try {
     testGE.setStat("bogus413", 345); //test that it throws an error
   }catch(exception, stackTrace) {
@@ -75,41 +75,41 @@ testStats() {
     //print("Exception: $exception caught as expected for adding a stat.");
   }
 
-  testGE.setStat("power", 0);
-  testGE.permaBuffs["MANGRIT"] = 10;
-  jRAssert("power (taking into account MANGRIT)", testGE.getStat("power"), 10); //TODO implement MANGRIT
+  testGE.setStat(Stats.POWER, 0);
+  testGE.permaBuffs[Stats.POWER] = 10;
+  jRAssert("power (taking into account MANGRIT)", testGE.getStat(Stats.POWER), 10); //TODO implement MANGRIT
   //print("Stats passed");
 }
 
 void testBuffs() {
   setup();
-  jRAssert("currentHP", testGE.getStat("currentHP"), 0);
+  jRAssert(Stats.CURRENT_HEALTH, testGE.getStat(Stats.CURRENT_HEALTH), 0);
   jRAssert("number of buffs", testGE.buffs.length, 0);
-  jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 0);
-  BuffOld hpBuff1 = new BuffOld("currentHP", 10);
+  jRAssert("buffs for hp", testGE.getTotalBuffForStat(Stats.CURRENT_HEALTH), 0);
+  BuffOld hpBuff1 = new BuffOld(Stats.CURRENT_HEALTH, 10);
   testGE.buffs.add(hpBuff1); //TODO maybe eventaully should be a funciton instead of exposed array.
   jRAssert("number of buffs", testGE.buffs.length, 1);
-  jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 10);
-  BuffOld hpBuff2 = new BuffOld("currentHP", 5);
+  jRAssert("buffs for hp", testGE.getTotalBuffForStat(Stats.CURRENT_HEALTH), 10);
+  BuffOld hpBuff2 = new BuffOld(Stats.CURRENT_HEALTH, 5);
   testGE.buffs.add(hpBuff2);
   jRAssert("number of buffs", testGE.buffs.length, 2);
-  jRAssert("buffs for hp", testGE.getTotalBuffForStat("currentHP"), 15);
-  jRAssert("functional hp", testGE.getStat("currentHP"), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
-  jRAssert("real hp", testGE.stats["currentHP"], 0); //real hp is unmodified.
+  jRAssert("buffs for hp", testGE.getTotalBuffForStat(Stats.CURRENT_HEALTH), 15);
+  jRAssert("functional hp", testGE.getStat(Stats.CURRENT_HEALTH), 15); //functional is a pun, cuz it is both FROM a function AND the working value of hp (but not actual). I am the BEST at jokes.
+  jRAssert("real hp", testGE.stats[Stats.CURRENT_HEALTH], 0); //real hp is unmodified.
   jRAssert("glitch stat", testGE.stats["bogus413"], null); //how are glitchy things handled? good, don't want it to appear to be working when it's not.
   //print(testGE.describeBuffs());
   testGE.buffs
-    ..add(new BuffOld("minLuck", 5))
-    ..add(new BuffOld("MANGRIT", 5))
-    ..add(new BuffOld("mobility", 5))
-    ..add(new BuffOld("alchemy", 5));
+    ..add(new BuffOld(Stats.MIN_LUCK, 5))
+    ..add(new BuffOld(Stats.POWER, 5))
+    ..add(new BuffOld(Stats.MOBILITY, 5))
+    ..add(new BuffOld(Stats.ALCHEMY, 5));
   //print(testGE.describeBuffs()); //not gonna try to do unit testing for a narrative thing but at least call it and make sure it doesn't crash.
   testGE.buffs = <BuffOld>[];
   testGE.buffs
-    ..add(new BuffOld("minLuck", -5))
-    ..add(new BuffOld("MANGRIT", -5))
-    ..add(new BuffOld("mobility", -5))
-    ..add(new BuffOld("alchemy", -5));
+    ..add(new BuffOld(Stats.MIN_LUCK, -5))
+    ..add(new BuffOld(Stats.POWER, -5))
+    ..add(new BuffOld(Stats.MOBILITY, -5))
+    ..add(new BuffOld(Stats.ALCHEMY, -5));
   //print(testGE.describeBuffs());
 
   //print("Buffs passed");
@@ -118,7 +118,7 @@ void testBuffs() {
 //do you feel lucky, punk?
 void testLuck() {
   setup();
-  testGE.setStatsHash(<String,num>{"minLuck": -100,"maxLuck": 100});
+  testGE.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100,Stats.MAX_LUCK: 100});
   num roll = testGE.rollForLuck("");
   assert((roll < 100 && roll > -100)); //expect this to fail, for now. random numbers don't REALLY work yet.
 }

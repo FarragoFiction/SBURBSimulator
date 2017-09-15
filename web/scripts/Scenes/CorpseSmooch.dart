@@ -146,7 +146,7 @@ class CorpseSmooch extends Scene {
 			if(d.dreamSelf == true){
 				Player royalty = this.getRoyalty(d);
 				if(royalty != null){
-					royalty.addStat("sanity", -10);
+					royalty.addStat(Stats.SANITY, -10);
 					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of " + royalty.moon + ", administers the universal remedy for the unawakened ";
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on " + d.moon + ". ";
 					if(d.aspect == Aspects.DOOM) ret += "The prophecy is fulfilled. ";
@@ -186,9 +186,9 @@ class CorpseSmooch extends Scene {
 		//only one alternate event can happen at a time. if one gets replaced, return
 
 		if(player.godDestiny == false && player.godTier == false){//could god tier, but fate wn't let them
-			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
 		}else if(this.session.reckoningStarted == true && player.godTier == false) { //if the reckoning started, they couldn't god tier.
-			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
+			return this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
 		}
 		return null;
 	}

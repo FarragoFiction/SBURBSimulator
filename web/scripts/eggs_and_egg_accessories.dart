@@ -264,7 +264,7 @@ void roboMode(){
 		p.hairColor = getRandomGreyColor();
 		p.bloodColor = getRandomGreyColor();
 		p.robot  = true;
-		p.addStat("power",20); //Robots are superior.
+		p.addStat(Stats.POWER,20); //Robots are superior.
 		p.quirk.capitalization = 2; //OBVIOUSLY robots all speak in all caps.
 		p.quirk.punctuation = 0; //robots speak in monotone, DUH.
 		p.quirk.lettersToReplaceIgnoreCase.add(["\\bhuh\\b","BEEP"]);
@@ -310,7 +310,7 @@ void tricksterMode(){
 			}
 		}
 		if(p.aspect != Aspects.DOOM){
-			p.setStat("power",  111111);
+			p.setStat(Stats.POWER,  111111);
 			p.landLevel = 111111.0;
 			p.grist = 11111111111;
 			p.level_index = 111111;
@@ -328,7 +328,7 @@ void debugRoyalRumble(){
 		var p = curSessionGlobalVar.players[j];
 		p.isTroll = true; //only .evel 2 players up
 		p.bloodColor = "#99004d";
-		p.addStat("sanity",-10);
+		p.addStat(Stats.SANITY,-10);
 		p.decideLusus();
 		p.hairColor = "#000000";
 		p.object_to_prototype = p.myLusus;
@@ -1081,8 +1081,8 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Limeade Refreshment", 1);
-		f.effects.add(new FraymotifEffect("sanity",1,false));
-		f.effects.add(new FraymotifEffect("sanity",1,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,1,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,1,true));
 		f.desc = " All allies just settle their shit for a little while. Cool it. ";
 		player.fraymotifs.add(f);
 	}else if(index == 1){
@@ -1124,8 +1124,8 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Chucklevoodoos", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,false));
-		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
 		f.desc = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
 		player.fraymotifs.add(f);
 	}else if(index == 3){
@@ -1177,13 +1177,13 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Telekinisis", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
 		f = new Fraymotif( "Ghost Communing", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,true));
-		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
 		f.desc = " The souls of the dead start hassling all enemies. ";
 		player.fraymotifs.add(f);
 
@@ -1226,8 +1226,8 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Animal Communing", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,true));
-		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
 		f.desc = " Local animal equivalents start hassling all enemies. ";
 		player.fraymotifs.add(f);
 	}else if(index == 7){
@@ -1251,8 +1251,8 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.prefix = "";
 		player.godDestiny = true;
 		var f = new Fraymotif( "Mind Control", 1);
-		f.effects.add(new FraymotifEffect("freeWill",3,true));
-		f.effects.add(new FraymotifEffect("freeWill",3,false));
+		f.effects.add(new FraymotifEffect(Stats.FREE_WILL,3,true));
+		f.effects.add(new FraymotifEffect(Stats.FREE_WILL,3,false));
 		f.desc = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
 		player.fraymotifs.add(f);
 
@@ -1333,12 +1333,12 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		Fraymotif f = new Fraymotif( "Telekinisis", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
 		f = new Fraymotif( "Optic Blast", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Red and blue eye beams pierce the ENEMY. ";
 		player.fraymotifs.add(f);
 	}
@@ -1370,8 +1370,8 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Limeade Refreshment", 1);
-		f.effects.add(new FraymotifEffect("sanity",1,false));
-		f.effects.add(new FraymotifEffect("sanity",1,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,1,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,1,true));
 		f.desc = " All allies just settle their shit for a little while. Cool it. ";
 		player.fraymotifs.add(f);
 	}else if(index == 1){
@@ -1412,8 +1412,8 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Chucklevoodoos", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,false));
-		f.effects.add(new FraymotifEffect("sanity",3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
 		f.desc = " Oh god oh no no no no no no no no. The enemies are no longer doing okay, psychologically speaking. ";
 		player.fraymotifs.add(f);
 	}else if(index == 3){
@@ -1455,13 +1455,13 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Telekinisis", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
 		f = new Fraymotif( "Ghost Communing", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,true));
-		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
 		f.desc = " The souls of the dead start hassling all enemies. ";
 		player.fraymotifs.add(f);
 	}else if(index == 5){
@@ -1504,8 +1504,8 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Animal Communing", 1);
-		f.effects.add(new FraymotifEffect("sanity",3,true));
-		f.effects.add(new FraymotifEffect("sanity",3,false));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
+		f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
 		f.desc = " Local animal equivalents start hassling all enemies. ";
 		player.fraymotifs.add(f);
 	}else if(index == 7){
@@ -1529,8 +1529,8 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Mind Control", 1);
-		f.effects.add(new FraymotifEffect("freeWill",3,true));
-		f.effects.add(new FraymotifEffect("freeWill",3,false));
+		f.effects.add(new FraymotifEffect(Stats.FREE_WILL,3,true));
+		f.effects.add(new FraymotifEffect(Stats.FREE_WILL,3,false));
 		f.desc = " All enemies start damaging themselves. It's kind of embarassing how easy this is.  ";
 		player.fraymotifs.add(f);
 
@@ -1612,12 +1612,12 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 		var f = new Fraymotif( "Telekinisis", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
 
 		f = new Fraymotif( "Optic Blast", 1);
-		f.effects.add(new FraymotifEffect("power",2,true));
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Red and blue eye beams pierce the ENEMY. ";
 		player.fraymotifs.add(f);
 	}

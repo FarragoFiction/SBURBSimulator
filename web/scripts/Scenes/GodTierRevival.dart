@@ -10,11 +10,11 @@ class GodTierRevival extends Scene {
 	GodTierRevival(Session session): super(session);
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		this.godsToRevive = [];
+		this.godsToRevive = <Player>[];
 		//all dead players who aren't god tier and are destined to be god tier god tier now.
-		var deadPlayers = findDeadPlayers(playerList);
+		List<Player> deadPlayers = findDeadPlayers(playerList);
 		for(num i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
 			//only get one shot at this.
@@ -22,7 +22,7 @@ class GodTierRevival extends Scene {
 				this.godsToRevive.add(p);
 			}
 		}
-		return this.godsToRevive.length > 0;
+		return !this.godsToRevive.isEmpty;
 
 	}
 	@override
@@ -57,9 +57,9 @@ class GodTierRevival extends Scene {
 		String ret = " <img src = 'images/sceneIcons/judgement_icon.png'>The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
 		num breakNeeded = 200;
 		for(num i = 0; i< this.godsToRevive.length; i++){
-			var p = this.godsToRevive[i];
+			Player p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
-			var roll = p.rollForLuck();
+			double roll = p.rollForLuck();
 			if(p.justDeath()){
 				if(roll > breakNeeded){
 					////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
@@ -111,8 +111,8 @@ class GodTierRevival extends Scene {
 					p.makeAlive();
 					if(p.aspect == Aspects.DOOM){ //powered by their own doom.
 						//session.logger.info("doom is powered by their own death: " + this.session.session_id.toString()); //omg, they are sayians.
-						p.addStat("MANGRIT",500);
-						p.setStat("minLuck", 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
+						p.addStat(Stats.POWER, 500);
+						p.setStat(Stats.MIN_LUCK, 500); //prophecy fulfilled. you are no longer doomed. (will probably get drained again quickly, tho).  Do...do doom players EVER revive?????
 						ret += " They prophesied this death. Now that their Doom is over, they can finally get on with their life. ";
 						//session.logger.info("godtier doom player using their own death as a source of power. so proud of this. "  + this.session.session_id.toString());
 					}

@@ -10,43 +10,43 @@ class FaceDenizen extends Scene{
 	FaceDenizen(Session session): super(session);
 
 	@override
-	bool trigger(playerList){
+	bool trigger(List<Player> playerList){
 		this.denizenFighters = [];
 		this.playerList = playerList;
 		for(Player p in session.getReadOnlyAvailablePlayers()){
 			if(p.denizen == null && p.aspect != Aspects.NULL) session.logger.warn("A player has no denizen, but is not a Null player. Player is $p");
 			if (p.denizen_index >= 3 && !p.denizenDefeated && p.land != null && p.denizen != null) {
 				var d = p.denizen;
-				if (p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
+				if (p.getStat(Stats.POWER) > d.getStat(Stats.CURRENT_HEALTH) || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			} else if (p.landLevel >= 6 && !p.denizenMinionDefeated && p.land != null && p.denizen != null) {
 				var d = p.denizenMinion;
-				if (p.getStat("power") > d.getStat("currentHP") || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
+				if (p.getStat(Stats.POWER) > d.getStat(Stats.CURRENT_HEALTH) || rand.nextDouble() > .5) { //you're allowed to do other things between failed boss fights, you know.
 					this.denizenFighters.add(p);
 				}
 			}
 		}
 		return this.denizenFighters.length > 0;
 	}
-	dynamic addImportantEvent(player){  //TODO reimplment this for boss fights
+	dynamic addImportantEvent(Player player){  //TODO reimplment this for boss fights
 		/*
 		var current_mvp = findStrongestPlayer(this.session.players);
 		//need to grab this cause if they are dream self corpse smooch won't trigger an important event
 		if(player.godDestiny == false && player.isDreamSelf == true){//could god tier, but fate wn't let them
-			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
 			if(ret){
 				return ret;
 			}
-			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
+			this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat(Stats.POWER),player) );
 		}else if(this.session.reckoningStarted == true && player.isDreamSelf == true) { //if the reckoning started, they couldn't god tier.
-			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
+			var ret = this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat(Stats.POWER),player) );
 			if(ret){
 				return ret;
 			}
-			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat("power"),player) );
+			this.session.addImportantEvent(new PlayerDiedButCouldGodTier(this.session, current_mvp.getStat(Stats.POWER),player) );
 		}else if(player.isDreamSelf == true){
-				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat("power"),player) );
+				return this.session.addImportantEvent(new PlayerDiedForever(this.session, current_mvp.getStat(Stats.POWER),player) );
 		}
 		*/
 	}
@@ -67,28 +67,28 @@ class FaceDenizen extends Scene{
 	void faceDenizenMinion(Player p, Element div){
 		GameEntity denizenMinion = p.denizenMinion;
 		String ret = "<br>The " + p.htmlTitleHP() + " initiates a strife with the " + denizenMinion.name + ". ";
-		if(p.sprite != null && p.sprite.getStat("currentHP") > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! ";
+		if(p.sprite != null && p.sprite.getStat(Stats.CURRENT_HEALTH) > 0 ) ret += " " + p.sprite.htmlTitleHP() + " joins them! ";
     appendHtml(div,ret);
 		Team pTeam = new Team.withName("The ${p.htmlTitle()}",this.session, [p]);
 		Team dTeam = new Team(this.session, [denizenMinion]);
     dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
-		if(denizenMinion.getStat("currentHP") <= 0 || denizenMinion.dead){
+		if(denizenMinion.getStat(Stats.CURRENT_HEALTH) <= 0 || denizenMinion.dead){
 			p.denizenMinionDefeated = true;
 		}
 	}
-	void faceDenizen(p, Element div){
+	void faceDenizen(Player p, Element div){
 		String ret = " ";
 		var denizen = p.denizen;
 		if(!p.denizenFaced && p.getFriends().length > p.getEnemies().length){ //one shot at The Choice
 			////session.logger.info("confront icon: " + this.session.session_id);
 			ret += "<br><img src = 'images/sceneIcons/confront_icon.png'> The " + p.htmlTitle() + " cautiously approaches their " + denizen.name + " and are presented with The Choice. ";
-			if(p.getStat("power") > 27){ //calibrate this l8r
+			if(p.getStat(Stats.POWER) > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
 				p.denizenDefeated = true;
-				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
+				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
 				p.leveledTheHellUp = true;
 				p.grist += denizen.grist;
 				appendHtml(div,"<br>"+ret);
@@ -109,10 +109,10 @@ class FaceDenizen extends Scene{
       dTeam.canAbscond = false;
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
       strife.startTurn(div);
-			if(denizen.getStat("currentHP") <= 0 || denizen.dead) {
+			if(denizen.getStat(Stats.CURRENT_HEALTH) <= 0 || denizen.dead) {
 				p.denizenDefeated = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.addStat("power",p.getStat("power")*2);  //current and future doubling of power.
+				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
 				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
 				////session.logger.info("denizen kill " + this.session.session_id);
