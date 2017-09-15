@@ -134,7 +134,7 @@ class BuffBase extends Buff {
 }
 
 class BuffGodTier extends Buff {
-    BuffGodTier():super.multiple(Stats.pickable, false, false){
+    BuffGodTier():super.multiple(Stats.all, false, false){
         this.persistsThroughDeath = true;
     }
 
@@ -153,8 +153,17 @@ class BuffGodTier extends Buff {
 
     @override
     double additional(StatHolder holder, Stat stat, double val) {
-        return val * 2.5;
+        if (stat == Stats.SBURB_LORE) {
+            return val * 15.0;
+        }
+        if (stat.pickable) {
+            return val * 2.5;
+        }
+        return val;
     }
+
+    @override
+    String toString() => "God Tier";
 }
 
 class BuffDenizenBeaten extends BuffAdditional {
