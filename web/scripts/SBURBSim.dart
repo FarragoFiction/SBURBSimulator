@@ -167,33 +167,33 @@ bool printCorruptionMessage(ErrorEvent e) {
     Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
     if (curSessionGlobalVar.stats.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
-        recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ";
+        recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ${mutatorsInPlay(curSessionGlobalVar)}";
     }else if(curSessionGlobalVar.stats.cataclysmCrash) {
         appendHtml(story, "<BR>ERROR: WASTE TIER CATACLYSM ACTIVATED. SESSION HAS CRASHED.");
-        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ";
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(curSessionGlobalVar)}";
     }else if (curSessionGlobalVar.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
-        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE.";
+        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if (curSessionGlobalVar.players.length < 2) {
         appendHtml(story, "<BR>ERROR: DEAD SESSION DETECTED.");
         recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
     } else if (space == null) {
-        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED.");
+        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(curSessionGlobalVar)}");
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
-        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ";
+        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if (time == null) {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
-        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ";
+        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if(curSessionGlobalVar.mutator.effectsInPlay > 0){
         curSessionGlobalVar.stats.cataclysmCrash = true;
         appendHtml(story, "<BR>ERROR: NOW YOU FUCKED UP! YOUR SHITTY HACKED CODE CRASHED.");
-        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ";
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ${mutatorsInPlay(curSessionGlobalVar)} ";
 
     }else {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
-        recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(curSessionGlobalVar.getLineage())}";
+        recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(curSessionGlobalVar.getLineage())}   ${mutatorsInPlay(curSessionGlobalVar)}";
 
     }
     //var message = ['Message: ' + msg, 'URL: ' + url, 'Line: ' + lineNo, 'Column: ' + columnNo, 'Error object: ' + JSON.encode(error)].join(' - ');
@@ -243,6 +243,24 @@ bool printCorruptionMessage(ErrorEvent e) {
     SimController.instance.recoverFromCorruption();
 
     return false; //if i return true here, the real error doesn't show up;
+}
+
+String mutatorsInPlay(Session session) {
+    if(session.mutator.effectsInPlay == 0) return "";
+    List<String> fields = new List<String>();
+    if(session.mutator.lifeField) fields.add("Life");
+    if(session.mutator.hopeField) fields.add("Hope");
+    if(session.mutator.doomField) fields.add("Doom");
+    if(session.mutator.lightField) fields.add("Light");
+    if(session.mutator.breathField) fields.add("Breath");
+    if(session.mutator.spaceField) fields.add("Space");
+    if(session.mutator.timeField) fields.add("Time");
+    if(session.mutator.voidField) fields.add("Void");
+    if(session.mutator.heartField) fields.add("Heart");
+    if(session.mutator.bloodField) fields.add("Blood");
+    if(session.mutator.mindField) fields.add("Mind");
+    if(session.mutator.rageField) fields.add("Rage");
+    return "Mutators in Play: ${fields.join(",")}";
 }
 
 
