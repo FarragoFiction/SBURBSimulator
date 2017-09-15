@@ -94,9 +94,6 @@ class Land {
         processConsorts(consortFeatures);
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
-
-
-
     }
 
     //find strongest weighted feature. if multiple are identical, do multiple with string "and separated" and smellsGood additive.
