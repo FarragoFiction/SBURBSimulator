@@ -45,6 +45,7 @@ class Player extends GameEntity {
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
     Aspect aspect; //TODO eventually a full object
     String land = null;
+    Land landFuture; // will replace string land entirely eventually.
     Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
     Interest interest2 = null;
     String chatHandle = null;
@@ -1805,6 +1806,7 @@ class Player extends GameEntity {
     }
 
     void initializeDerivedStuff() {
+        spawnLand();
         List<String> tmp = getRandomLandFromPlayer(this);
         this.land1 = tmp[0];
         this.land2 = tmp[1];
@@ -1821,6 +1823,29 @@ class Player extends GameEntity {
         }
 
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
+    }
+
+    //I mark the source of the themes here, where i'm using them, rather than on creation
+    //need the source for QuestChains (want first quest to be interest related, second aspect, third class) <-- important
+    void spawnLand() {
+        Map<Theme, double> themes = new Map<Theme, double>();
+        Theme classTheme = session.rand.pickFrom(class_name.themes.keys);
+        classTheme.source = Theme.CLASSSOURCE;
+        Theme aspectTheme = session.rand.pickFrom(aspect.themes.keys);
+        aspectTheme.source = Theme.ASPECTSOURCE;
+        Theme interest1Theme = session.rand.pickFrom(interest1.category.themes.keys);
+        interest1Theme.source = Theme.INTERESTSOURCE;
+        Theme interest2Theme = session.rand.pickFrom(interest2.category.themes.keys);
+        interest2Theme.source = Theme.INTERESTSOURCE;
+
+        //the weight is the same weight it had in it's source
+        themes[classTheme] = class_name.themes[classTheme];
+        themes[aspectTheme] = aspect.themes[aspectTheme];
+        themes[interest1Theme] = interest1.category.themes[interest1Theme];
+        themes[interest2Theme] = interest2.category.themes[interest2Theme];
+
+        landFuture = new Land.fromWeightedThemes(themes, session);
+
     }
 
     void initializeSprite() {
