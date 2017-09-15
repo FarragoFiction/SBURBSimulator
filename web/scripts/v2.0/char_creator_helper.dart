@@ -491,6 +491,10 @@ class CharacterCreatorHelper {
             return "A Sage increases their own associated aspect and starts with a lot of it. They know a lot about SBURB/SGRUB. They reduce the negative parts of their Aspect through their wisdom.";
         if (specific == "Scout")
             return "A Scout increases their own associated aspect and starts with very little of it. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
+        if (specific == "Grace")
+            return "Graces gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop teaching people to hack my damn code.";
+        if (specific == "Guide")
+            return "A Guide increases associated aspect in others and starts a lot of it to guide others to. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
 
         return "Class help text not found for " + specific + ".";
     }
