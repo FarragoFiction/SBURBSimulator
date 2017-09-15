@@ -1043,6 +1043,11 @@ class MetaPlayerHandler {
         player.guardian.guardian = player;
         player.makeDenizenWithStrength('<span class = "void">Doomod, The </span>Wanderer', 13); //hope we span strong enough to fight them.
 
+        player.object_to_prototype = new PotentialSprite("Magical Princess Pony", s);
+        player.object_to_prototype.helpPhrase = " is helpful, but keeps pushing you to make friends";
+
+        player.sprite.addPrototyping(player.object_to_prototype);
+
         Fraymotif f = new Fraymotif("Song of Skaia", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect("hp", 3, true));
@@ -1053,7 +1058,6 @@ class MetaPlayerHandler {
 
         f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
         player.fraymotifs.add(f);
-
         return player;
     }
 
