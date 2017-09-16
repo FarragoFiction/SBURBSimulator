@@ -40,4 +40,65 @@ void main() {
 //TODO: figure out how to have this make a DeadSession instead of a regular one.
 class DeadStoryController extends SimController {
   DeadStoryController() : super();
+
+  @override
+  void startSession() {
+    globalInit(); // initialise classes and aspects if necessary
+
+    // //print("Debugging AB: Starting session $initial_seed");
+    curSessionGlobalVar = new DeadSession(initial_seed);
+    changeCanonState(getParameterByName("canonState",null));
+    //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    reinit();
+    ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    Scene.createScenesForSession(curSessionGlobalVar);
+    ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    curSessionGlobalVar.makePlayers();
+    ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    curSessionGlobalVar.randomizeEntryOrder();
+    //authorMessage();
+    curSessionGlobalVar.makeGuardians(); //after entry order established
+    //easter egg ^_^
+    if (getParameterByName("royalRumble", null) == "true") {
+      debugRoyalRumble();
+    }
+
+    if (getParameterByName("COOLK1D", null) == "true") {
+      cool_kid = true;
+      coolK1DMode();
+    }
+
+    if (getParameterByName("pen15", null) == "ouija") {
+      pen15Ouija();
+    }
+
+
+
+    if (getParameterByName("faces", null) == "off") {
+      faceOffMode();
+    }
+
+    if (getParameterByName("tier", null) == "cod") {
+      bardQuestMode();
+    }
+
+    if (getParameterByName("lollipop", null) == "true") {
+      tricksterMode();
+    }
+
+    if (getParameterByName("robot", null) == "true") {
+      roboMode();
+    }
+
+    if (getParameterByName("sbajifier", null) == "true") {
+      sbahjMode();
+    }
+
+    if (getParameterByName("babyStuck", null) == "true") {
+      babyStuckMode();
+    }
+
+    checkEasterEgg(easterEggCallBack, null);
+  }
+
 }

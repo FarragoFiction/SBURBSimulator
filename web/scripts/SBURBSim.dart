@@ -24,6 +24,7 @@ export "Lands/Feature.dart";
 export "Lands/Land.dart";
 export "Lands/FeatureFactory.dart";
 export "SessionEngine/session.dart";
+export "SessionEngine/DeadSession.dart";
 export "SessionEngine/sessionSummary.dart";
 export "FAQEngine/FAQFile.dart";
 export "FAQEngine/GeneratedFAQ.dart";
