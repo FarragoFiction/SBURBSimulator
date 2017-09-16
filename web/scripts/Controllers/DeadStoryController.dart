@@ -101,4 +101,25 @@ class DeadStoryController extends SimController {
     checkEasterEgg(easterEggCallBack, null);
   }
 
+
+  @override
+  void callNextIntro(int player_index) {
+    if (player_index >= curSessionGlobalVar.players.length) {
+      tick(); //NOW start ticking
+      return;
+    }
+    DeadIntro s = new DeadIntro(curSessionGlobalVar);
+    Player p = curSessionGlobalVar.players[player_index];
+    //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+    List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
+    s.trigger(<Player>[p]);
+    s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString())); //new scenes take care of displaying on their own.
+    curSessionGlobalVar.processScenes(playersInMedium);
+    //player_index += 1;
+    //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
+    this.gatherStats();
+    tick();
+  }
+
+
 }
