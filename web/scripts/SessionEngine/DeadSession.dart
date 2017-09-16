@@ -10,7 +10,7 @@ class DeadSession extends Session {
     void makePlayers() {
         this.players = new List<Player>(1); //it's a list so everything still works, but limited to one player.
         resetAvailableClasspects();
-        this.players.add(randomPlayer(this));
+        players[0] = (randomPlayer(this));
     }
 
     @override

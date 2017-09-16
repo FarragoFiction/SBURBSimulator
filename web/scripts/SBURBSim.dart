@@ -177,7 +177,11 @@ bool printCorruptionMessage(ErrorEvent e) {
         recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if (curSessionGlobalVar.players.length < 2) {
         appendHtml(story, "<BR>ERROR: DEAD SESSION DETECTED.");
-        recomendedAction = ":/ YEAH, MAYBE SOME DAY I'LL DO DEAD SESSIONS FOR YOUR SPECIAL SNOWFLAKE SINGLE PLAYER FANTASY, BUT TODAY IS NOT THAT DAY.";
+        String url = "dead_index.html?seed=${curSessionGlobalVar.session_id}&${generateURLParamsForPlayers(<Player>[curSessionGlobalVar.players[0]],true)}";
+        String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
+        if (params == window.location.href) params = "";
+        url = "$url";
+        recomendedAction = "WHOA. IS TODAY THE DAY I LET YOU DO A SPECIAL SNOWFLAKE SINGLE PLAYER SESSION??? <BR><BR><a href = '$url'>PLAY DEAD SESSION?</a><BR><BR>";
     } else if (space == null) {
         appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(curSessionGlobalVar)}");
         curSessionGlobalVar.stats.crashedFromSessionBug = true;

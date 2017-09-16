@@ -37,7 +37,7 @@ void main() {
 }
 
 
-//TODO: figure out how to have this make a DeadSession instead of a regular one.
+//TODO: have custom intro tick and aftermath. make dead sessions have X number of planets depending on theme.
 class DeadStoryController extends SimController {
   DeadStoryController() : super();
 
