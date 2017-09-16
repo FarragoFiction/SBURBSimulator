@@ -1,0 +1,44 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Homestuck SBURB Simulator, see how millions of non canon sessions turn out, then bug and fuss and meddle to change things. Similar to a 'Zero Player Game', with a focus on story over gameplay, but has limited user interactivity. Runs in most browsers.">
+
+	<link rel="stylesheet" href="css/oc.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<script type="text/javascript" src="scripts/includes/lz-string.min.js"></script>
+	<script type="text/javascript" src="scripts/includes/stacktrace.min.js"></script>
+	<script type="text/javascript" src="scripts/includes/tracer.js"></script>
+	<script type="application/dart" src="scripts/Controllers/DeadStoryController.dart"></script>
+	<script src="packages/browser/dart.js"></script>
+	<title>
+		Dead Session Simulator by jadedResearcher
+	</title>
+</head>
+
+<body>
+	<div id="navbar"></div>
+	<h3 id="seedText"><a href = "dead_index.html">Shareable URL </a></h3>
+	<div id="debug"></div>
+
+
+	<div id="story">
+		<div id="loading_stats"></div>
+		<img id="loading.png" src="images/loading.png"></div>
+
+	<div class="whiteCenterThingy" id='charSheets'> </div>
+
+
+	<canvas id="echeladder_template" width="202" height="300">  </canvas>
+	<canvas id="sprite_template" width="400" height="300">  </canvas>
+	<canvas id="canvas_template" width="1000" height="300">  </canvas>
+	<canvas id="rainbow_template" width="1" height="300">  </canvas>
+	<canvas id="chat_text_template" width="472" height="239">  </canvas>
+	<canvas id="godtierlevelup_template" width="1000" height="572">  </canvas>
+
+	<div id="image_staging"> </div>
+	<div id="loading_image_staging"> </div>
+	<div id="playerSprites"></div>
+</body>
+
+</html>
