@@ -1785,6 +1785,7 @@ class Player extends GameEntity {
     //I mark the source of the themes here, where i'm using them, rather than on creation
     //need the source for QuestChains (want first quest to be interest related, second aspect, third class) <-- important
     void spawnLand() {
+        if(!deriveLand) return;
         Map<Theme, double> themes = new Map<Theme, double>();
         Theme classTheme = session.rand.pickFrom(class_name.themes.keys);
         classTheme.source = Theme.CLASSSOURCE;

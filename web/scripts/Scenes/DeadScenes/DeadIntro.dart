@@ -11,10 +11,12 @@ class DeadIntro extends Scene {
     @override
     void renderContent(Element div) {
         Player player = session.players[0];
+        (session as DeadSession).makeDeadLand();
         String divID = "deadIntro${session.players[0].id}";
         String narration = "A wave of destruction heralds the arrival of the ${player.htmlTitle()}. They are the only Player. SBURB was never meant to be single player, and they have activated the secret 'Dead Session' mode as a punishment. Or is it a reward?  ";
         narration += " Skaia is black and lifeless. The Land itself is merely the ${player.htmlTitle()}'s now barren home world, dragged kicking and screaming into the session. ";
         narration += "What can they even do now? Is there even a way to win? ";
+        narration += " They stare hopelessly at what was their former planet, now transformed into the ${player.landFuture.name}.";
         String html = "<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas><br><Br>$narration";
         appendHtml(div, html);
         Drawing.drawSinglePlayer(querySelector("#${divID}"), player);

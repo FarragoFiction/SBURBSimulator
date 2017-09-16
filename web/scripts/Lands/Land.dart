@@ -26,23 +26,17 @@ class Land {
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
-        /*
-               Okay, so think this through and then go back to playing Hiveswap.
-
-               What needs to happen here is that I need to sort the features  into relevant sub maps, preserving their weights (with a bit of random wiggle.
-
-               If I find a feature that does NOT fit a sub map, then it's probably some random rendering thing and I should just save it or something? ignore for now though.
-         */
+        if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         List<Theme> themeList = new List.from(themes.keys);
         Theme strongestTheme = themeList[0];  //for picking name
         Theme secondStrongestTheme = themeList[0];  //for picking name
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
         //random modifiers are so interests arne't just flat out ignored 100% of the time.
-        Map<Feature, double> corruptionFeatures;
-        Map<Feature, double> smellsFeatures;
-        Map<Feature, double> soundsFeatures;
-        Map<Feature, double> feelsFeatures;
-        Map<Feature, double> consortFeatures;
+        Map<Feature, double> corruptionFeatures = new Map<Feature, double>();
+        Map<Feature, double> smellsFeatures = new Map<Feature, double>();
+        Map<Feature, double> soundsFeatures = new Map<Feature, double>();
+        Map<Feature, double> feelsFeatures = new Map<Feature, double>();
+        Map<Feature, double> consortFeatures = new Map<Feature, double>();
 
         for(Theme t in themes.keys) {
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
@@ -95,6 +89,7 @@ class Land {
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
     }
+
 
     //find strongest weighted feature. if multiple are identical, do multiple with string "and separated" and smellsGood additive.
     //negative smellsGood bool is a -1, postive is +1.

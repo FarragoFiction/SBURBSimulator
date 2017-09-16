@@ -2,6 +2,7 @@ import 'Feature.dart';
 /// a set of themes is meant to be used to generate a land.
 /// possible have a sub class of DeadTheme intended to be for dead sessions, with higher weighting and sports/game motifs.
 class Theme {
+    static double SUPERHIGH = 13.0;
     static double HIGH = 3.0;
     static double MEDIUM = 2.0;
     static double LOW = 1.0;
