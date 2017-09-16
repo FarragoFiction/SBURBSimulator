@@ -95,6 +95,10 @@ export "Scenes/StartDemocracy.dart";
 export "Scenes/UpdateShippingGrid.dart";
 export "Scenes/VoidyStuff.dart";
 export "Scenes/YellowYard.dart";
+export "Scenes/DeadScenes/DeadIntro.dart";
+export "Scenes/DeadScenes/DeadAftermath.dart";
+export "Scenes/DeadScenes/DeadMeta.dart";
+export "Scenes/DeadScenes/DeadQuests.dart";
 
 export "includes/colour.dart";
 export "includes/palette.dart";
