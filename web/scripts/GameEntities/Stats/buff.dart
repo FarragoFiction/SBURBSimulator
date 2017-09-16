@@ -167,7 +167,7 @@ class BuffGodTier extends Buff {
 }
 
 class BuffDenizenBeaten extends BuffAdditional {
-    BuffDenizenBeaten():super(Stats.POWER, 2.0) {
+    BuffDenizenBeaten():super.multiple(PlayerStatHolder.playerStats, 2.0) {
         this.persistsThroughDeath = true;
     }
 }

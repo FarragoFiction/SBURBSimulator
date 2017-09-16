@@ -249,6 +249,8 @@ class ProphecyStatHolder<T extends GameEntity> extends OwnedStatHolder<T> {
 
 class PlayerStatHolder extends ProphecyStatHolder<Player> {
 
+    static List<Stat> playerStats = <Stat>[Stats.POWER, Stats.HEALTH, Stats.SBURB_LORE, Stats.SANITY, Stats.FREE_WILL, Stats.MAX_LUCK, Stats.MIN_LUCK, Stats.MOBILITY, Stats.ALCHEMY, Stats.RELATIONSHIPS];
+
     PlayerStatHolder(Player owner):super(owner);
 
     @override
