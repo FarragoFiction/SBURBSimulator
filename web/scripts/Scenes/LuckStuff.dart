@@ -223,7 +223,7 @@ class LuckStuff extends Scene{
 
 			this.session.stats.luckyGodTier = true;
 			this.session.stats.godTier = true;
-			String divID = (div.id) + "_luckGodBS" + roll.player.chatHandle;
+			String divID = (div.id) + "_luckGodBS${roll.player.id}";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, ret);
 			appendHtml(div, canvasHTML);
@@ -253,7 +253,7 @@ class LuckStuff extends Scene{
 		ret += roll.player.makeDead("from a Bad Break.");
 		appendHtml(div, ret);
 
-		String divID = (div.id) + "_badLuckDeath" + roll.player.chatHandle;
+		String divID = (div.id) + "_badLuckDeath${roll.player.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		CanvasElement canvas = querySelector("#canvas"+ divID);

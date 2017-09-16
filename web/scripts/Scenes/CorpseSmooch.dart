@@ -122,7 +122,7 @@ class CorpseSmooch extends Scene {
 		//Player royalty = this.getRoyalty(deadPlayer); //don't reget royalty not garanteed to be samebecause interaction effects
 		if(royalty != null){
 
-			String divID = (div.id) + "_" + deadPlayer.chatHandle;
+			String divID = (div.id) + "_${deadPlayer.id}";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 			ret += deadPlayer.interactionEffect(royalty);
 			ret += royalty.interactionEffect(deadPlayer);

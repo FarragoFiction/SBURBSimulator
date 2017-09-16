@@ -276,7 +276,7 @@ class LifeStuff extends Scene {
     }
 
     CanvasElement drawDreamBubbleH(Element div, Player player, Player ghost) {
-        String canvasId = "${div.id}commune_${player.chatHandle}";
+        String canvasId = "${div.id}commune_${player.id}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
@@ -299,7 +299,7 @@ class LifeStuff extends Scene {
     }
 
     CanvasElement drawCommuneDead(Element div, Player player, Player ghost) {
-        String canvasId = "${div.id}commune_${player.chatHandle}";
+        String canvasId = "${div.id}commune_${player.id}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
@@ -315,7 +315,7 @@ class LifeStuff extends Scene {
 
     CanvasElement drawDrainDead(Element div, Player player, Player ghost, bool long) {
         //session.logger.info("drain dead in: ${this.session.session_id}");
-        String canvasId = "${div.id}commune_${player.chatHandle}";
+        String canvasId = "${div.id}commune_${player.id}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");
@@ -367,7 +367,7 @@ class LifeStuff extends Scene {
     }
 
     void helpPlayerCommuneDead(Element div, Player player1, Player player2) {
-        String divID = "${div.id}_communeDeadWithGuide${player1.chatHandle}";
+        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
         appendHtml(div, "<div id =$divID></div>");
         Element childDiv = querySelector("#$divID");
         String text = "";
@@ -435,7 +435,7 @@ class LifeStuff extends Scene {
 
     void helpPlayerDrainDeadForPower(Element div, Player player1, Player player2) {
         ////session.logger.info("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
-        String divID = "${div.id}_communeDeadWithGuide${player1.chatHandle}";
+        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
         appendHtml(div, "<div id =$divID></div>");
         Element childDiv = querySelector("#$divID");
         String text = "${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} allows the ${player2.htmlTitleBasic()} to take power from the dead. ";
@@ -494,7 +494,7 @@ class LifeStuff extends Scene {
     }
 
     void helpDrainDeadForReviveSelf(Element div, Player player1, Player player2) {
-        String divID = "${div.id}_communeDeadWithGuide${player1.chatHandle}";
+        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
         appendHtml(div, "<div id =$divID></div>");
         Element childDiv = querySelector("#$divID");
         String text = "${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} assists the ${player2.htmlTitleBasic()}. ";
@@ -516,7 +516,7 @@ class LifeStuff extends Scene {
     void enableDreamBubbles(Element div, Player player) {
         ////session.logger.info("Turning on dream bubble afterlife: " + this.session.session_id);
         this.session.stats.dreamBubbleAfterlife = true;
-        String canvasId = "${div.id}horror_terrors_${player.chatHandle}";
+        String canvasId = "${div.id}horror_terrors_${player.id}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
         appendHtml(div, canvasHTML);
         CanvasElement canvas = querySelector("#$canvasId");

@@ -748,7 +748,7 @@ class SessionMutator {
             target.victimBlood = deadPlayer.bloodColor;
 
 
-            var divID = (div.id) + "_alt_" + target.chatHandle;
+            var divID = (div.id) + "_alt_${target.id}";
             String canvasHTML = "<br><canvas id='canvas" + divID + "' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
             appendHtml(div, "$ret $canvasHTML");
             var canvasDiv = querySelector("#canvas" + divID);

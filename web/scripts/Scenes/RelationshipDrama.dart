@@ -33,7 +33,7 @@ class RelationshipDrama extends Scene {
 	void celebratoryRapBattle(Element div, Player player1, Player player2){
 		 //session.logger.info("AB:  celebratoryRapBattle :${this.session.session_id}");
 		this.session.stats.rapBattle = true;
-		String divId = (div.id) + player1.chatHandle + player1.id.toString();
+		String divId = (div.id) + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 		String canvasHTML = "<br><canvas id='canvas" + divId +"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
@@ -73,7 +73,7 @@ class RelationshipDrama extends Scene {
 		Player player1 = player;
 		Player player2 = crush;
 
-		String divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle + player.id.toString();
+		String divID = (div.id) + "_" +"confess_crush_${crush.id}${player1.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
@@ -187,7 +187,7 @@ class RelationshipDrama extends Scene {
 			this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 			return;
 		}
-		String divID = (div.id) + "_" + player.chatHandle+"confess_crush_"+crush.chatHandle+ player.id.toString();
+		String divID = (div.id) + "_${player1.id}confess_crush_${crush.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
@@ -275,7 +275,7 @@ class RelationshipDrama extends Scene {
 		Relationship relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		String divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id.toString();
+		String divID = (div.id) + "_${player1.id}advice_crush_${player1.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
@@ -299,7 +299,7 @@ class RelationshipDrama extends Scene {
 		Relationship relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		String divID = (div.id) + "_" + player1.chatHandle+"advice_crush_"+crush.chatHandle + player1.id.toString();
+		String divID = (div.id) + "_${player1.id}advice_crush_${crush.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
@@ -344,7 +344,7 @@ class RelationshipDrama extends Scene {
 		}
 		session.removeAvailablePlayer(player2);
 
-		String divID = (div.id) + "_" + player.chatHandle+"advice_crush_"+crush.chatHandle + player.id.toString();
+		String divID = (div.id) + "_${player.id}advice_crush_${crush.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
@@ -479,7 +479,7 @@ class RelationshipDrama extends Scene {
 			return;
 		}
 		session.removeAvailablePlayer(player2);
-		String divID = (div.id) + "_" + player.chatHandle+"vent_jerk_"+jerk.chatHandle +  player.id.toString();
+		String divID = (div.id) + "_${player1.id}vent_jerk_${jerk.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		//different format for canvas code
@@ -560,7 +560,7 @@ class RelationshipDrama extends Scene {
 			return;
 		}
 		session.removeAvailablePlayer(jerk);
-		String divID = (div.id) + "_" + player.chatHandle+"antagonize_jerk_"+jerk.chatHandle + player.id.toString();
+		String divID = (div.id) + "_${player.id}antagonize_jerk_${jerk.id}";
 		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 		appendHtml(div, canvasHTML);
 		CanvasElement canvasDiv = querySelector("#canvas"+ divID);

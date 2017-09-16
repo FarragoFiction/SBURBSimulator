@@ -18,6 +18,7 @@ void main()
   querySelector("#draw12Button").onClick.listen((e) => draw12());
   new CharViewerController();
   self = SimController.instance;
+  globalInit();
   self.renderHeader();
   var params = window.location.href.substring(window.location.href.indexOf("?")+1);
   if (params == window.location.href) params = "";
