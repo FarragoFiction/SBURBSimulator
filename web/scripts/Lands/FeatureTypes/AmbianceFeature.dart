@@ -5,7 +5,7 @@ class AmbianceFeature extends Feature {
     /// is a list because different feelings can be p similar.
     List<String> feelsLike;
     /// places that feel good give you + sanity, places that don't give you - sanity
-    bool goodFeeling;
+    int quality;
 
-    AmbianceFeature(this.feelsLike, [this.goodFeeling= true]);
+    AmbianceFeature(this.feelsLike, [this.quality= 0]);
 }

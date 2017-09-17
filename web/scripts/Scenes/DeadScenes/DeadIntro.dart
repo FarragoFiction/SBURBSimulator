@@ -16,7 +16,8 @@ class DeadIntro extends Scene {
         String narration = "A wave of destruction heralds the arrival of the ${player.htmlTitle()}. They are the only Player. SBURB was never meant to be single player, and they have activated the secret 'Dead Session' mode as a punishment. Or is it a reward?  ";
         narration += " Skaia is black and lifeless. The Land itself is merely the ${player.htmlTitle()}'s now barren home world, dragged kicking and screaming into the session. ";
         narration += "What can they even do now? Is there even a way to win? ";
-        narration += " They stare hopelessly at what was their former planet, now transformed into the ${player.landFuture.name}.";
+        narration += " They stare hopelessly at what was their former planet, now transformed into the ${player.landFuture.name}. ";
+        narration += " It smells like ${player.landFuture.smellsLike}. ";
         String html = "<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas><br><Br>$narration";
         appendHtml(div, html);
         Drawing.drawSinglePlayer(querySelector("#${divID}"), player);

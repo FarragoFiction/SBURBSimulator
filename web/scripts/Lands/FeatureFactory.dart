@@ -4,6 +4,7 @@ import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
 import "FeatureTypes/CorruptionFeature.dart";
 import "../random.dart";
+import "Feature.dart";
 /// just has a bunch of static references for features, created in a static initalizer
 class FeatureFactory {
     //TODO obviously will have more of all this shit, this is just for testing
@@ -63,31 +64,31 @@ class FeatureFactory {
 
     static iniatlizeSmells() {
         SPICYSMELL = new SmellFeature("spices");
-        BAKEDBREADSMELL = new SmellFeature("fresh baked bread");
-        NATURESMELL = new SmellFeature("nature");
-        ROTSMELL = new SmellFeature("rot", false);
-        OILSMELL = new SmellFeature("oil", false);
-        CHLORINESMELL = new SmellFeature("chlorine", false);
-        NOTHINGSMELL = new SmellFeature("nothing in particular", true);
-        GUNPOWDERSMELL = new SmellFeature("gunpowder", true);
+        BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
+        NATURESMELL = new SmellFeature("nature",Feature.GOOD);
+        ROTSMELL = new SmellFeature("rot", Feature.BAD);
+        OILSMELL = new SmellFeature("oil");
+        CHLORINESMELL = new SmellFeature("chlorine");
+        NOTHINGSMELL = new SmellFeature("nothing in particular");
+        GUNPOWDERSMELL = new SmellFeature("gunpowder");
 
     }
 
     //feelings effect sanity. rip eridan
     static initializeFeelings() {
-        CREEPYFEELING = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],false);
-        CALMFEELING = new AmbianceFeature(<String>["peaceful", "calm", "restful"]);
-        FRANTICFEELING = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"],false);
-        ENERGIZINGFEELING = new AmbianceFeature(<String>["energizing", "interesting", "amazing"]);
+        CREEPYFEELING = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],Feature.BAD);
+        CALMFEELING = new AmbianceFeature(<String>["peaceful", "calm", "restful"],Feature.GOOD);
+        FRANTICFEELING = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"]);
+        ENERGIZINGFEELING = new AmbianceFeature(<String>["energizing", "interesting", "amazing"],Feature.GOOD);
     }
 
     //most sounds are bad sounds
     static initializeSounds() {
         CLANKINGSOUND = new SoundFeature("clanking");
         CHILDRENLAUGHINGSOUND = new SoundFeature("children lauging");
-        RUSTLINGSOUND = new SoundFeature("rustling", true);
-        SCREAMSSOUND = new SoundFeature("screaming");
-        BEEPINGSOUND = new SoundFeature("beeping");
+        RUSTLINGSOUND = new SoundFeature("rustling", Feature.GOOD);
+        SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
+        BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
     }
 

@@ -12,6 +12,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.CHLORINESMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ,  Theme.SUPERHIGH);
         addTheme(new Theme(<String>["Minesweeper"])
@@ -24,7 +25,7 @@ class DeadSession extends Session {
         addTheme(new Theme(<String>["Solitaire"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             , Theme.SUPERHIGH); // end theme
     }

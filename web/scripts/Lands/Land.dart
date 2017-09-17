@@ -9,11 +9,11 @@ class Land {
     bool corrupted;
     //can be more than one thing, will be all together though. smells like "rot and cinamon"
     String smellsLike;
-    int smellsGood; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
+    int smellsGood = 0; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
     String soundsLike;
-    int soundsGood;//has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
+    int soundsGood = 0;//has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
     String feelsLike;
-    int feelsGood; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
+    int feelsGood = 0; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
     //two strongest themes in this land.
     Theme mainTheme;
     Theme secondaryTheme;
@@ -94,7 +94,20 @@ class Land {
     //find strongest weighted feature. if multiple are identical, do multiple with string "and separated" and smellsGood additive.
     //negative smellsGood bool is a -1, postive is +1.
     void processSmells( Map<Feature, double> features) {
-
+        //if(features.keys.isEmpty) features[FeatureFactory.NOTHINGSMELL] = 1.0;
+        Feature chosen = features.keys.first;
+        for(Feature f in features.keys) {
+            if(features[f] > features[chosen]) chosen = f;
+        }
+        List<String> smells = new List<String>();
+        //okay now i know max value see if any other things at that level
+        for(SmellFeature f in features.keys) {
+            if(features[f] == features[chosen]) {
+                smells.add(f.smellsLike);
+                smellsGood += f.quality;
+            }
+        }
+        smellsLike = turnArrayIntoHumanSentence(smells);
     }
 
     void processSounds( Map<Feature, double> features) {

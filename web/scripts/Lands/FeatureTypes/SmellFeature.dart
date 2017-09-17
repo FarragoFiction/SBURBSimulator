@@ -5,7 +5,7 @@ class SmellFeature extends Feature {
     /// a single string, not a list since smell is very specific
     String smellsLike;
     /// p self explanatory.
-    bool goodSmell;
+    int quality;
 
-    SmellFeature(this.smellsLike, [this.goodSmell = true]);
+    SmellFeature(this.smellsLike, [this.quality = 0]);
 }
