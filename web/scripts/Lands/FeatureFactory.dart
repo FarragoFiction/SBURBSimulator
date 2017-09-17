@@ -78,10 +78,10 @@ class FeatureFactory {
 
     //feelings effect sanity. rip eridan
     static void initializeFeelings() {
-        CREEPYFEELING = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],Feature.BAD);
-        CALMFEELING = new AmbianceFeature(<String>["peaceful", "calm", "restful"],Feature.GOOD);
-        FRANTICFEELING = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"]);
-        ENERGIZINGFEELING = new AmbianceFeature(<String>["energizing", "interesting", "amazing"],Feature.GOOD);
+        CREEPYFEELING = new AmbianceFeature("creepy",Feature.BAD);
+        CALMFEELING = new AmbianceFeature("calm",Feature.GOOD);
+        FRANTICFEELING = new AmbianceFeature("frantic");
+        ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
     }
 
     //most sounds are bad sounds

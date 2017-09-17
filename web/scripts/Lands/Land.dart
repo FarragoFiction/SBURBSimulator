@@ -7,13 +7,10 @@ import "FeatureTypes/CorruptionFeature.dart";
 ///A land is build from features.
 class Land {
     bool corrupted;
-    //can be more than one thing, will be all together though. smells like "rot and cinamon"
-    String smellsLike;
-    int smellsGood = 0; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
-    String soundsLike;
-    int soundsGood = 0;//has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
-    String feelsLike;
-    int feelsGood = 0; //has an actual effect. bad feelings are a low sanity debuff, good a low sanity buff. neutral is nothing.
+    //can be more than one thing, will pick one or two things at random by weight
+    WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>();
+    WeightedList<SoundFeature> sounds = new WeightedList<SoundFeature>();
+    WeightedList<AmbianceFeature> feels = new WeightedList<AmbianceFeature>();
     //two strongest themes in this land.
     Theme mainTheme;
     Theme secondaryTheme;
@@ -102,15 +99,12 @@ class Land {
         for(Feature f in features.keys) {
             if(features[f] > features[chosen]) chosen = f;
         }
-        List<String> smells = new List<String>();
         //okay now i know max value see if any other things at that level
         for(SmellFeature f in features.keys) {
-            if(features[f] == features[chosen]) {
-                smells.add(f.smellsLike);
-                smellsGood += f.quality;
+            if((features[f] - features[chosen]).abs()<Feature.LOW) {
+                smells.add(f, features[f]);
             }
         }
-        smellsLike = turnArrayIntoHumanSentence(smells);
     }
 
     void processSounds( Map<Feature, double> features) {
@@ -128,5 +122,37 @@ class Land {
     void processFeels( Map<Feature, double> features) {
 
     }
+
+    String modifySanityByQuality(Player p, int quality) {
+        if(quality >0) {
+            p.addStat(Stats.SANITY, 1);
+            return "The ${p.htmlTitleBasic()} is soothed. ";
+        }else if(quality < 0) {
+            p.addStat(Stats.SANITY, -1);
+            return "The ${p.htmlTitleBasic()} is freaking out a little bit. ";
+        }
+        return "";
+    }
+
+    ///if you pass me a player i will modify their sanity based on if it's a good or bad smell.
+    ///pick from a random smell associated with this land, weighted by smell strength
+    ///only pass a player if you want html
+    String smellsLike(Random rand, [Player p]) {
+        SmellFeature mainSmell = rand.pickFrom(smells);
+        SmellFeature secondarySmell;
+        if(rand.nextDouble()>.25) secondarySmell = rand.pickFrom(smells);
+        if(secondarySmell == mainSmell) secondarySmell = null;
+        int quality = mainSmell.quality;
+        String ret = mainSmell.simpleDesc;
+        if(secondarySmell != null) {
+            ret = "$ret and ${secondarySmell.simpleDesc}.";
+            quality += secondarySmell.quality;
+        }else {
+            ret = "$ret.";
+        }
+        if(p != null) ret ="$ret ${modifySanityByQuality(p, quality)}";
+        return ret;
+    }
+
 
 }

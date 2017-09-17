@@ -8,24 +8,22 @@ class DeadSession extends Session {
     }
 
     void makeThemes() {
-        addTheme(new Theme(<String>["Billiards","Pool","Stickball"])
-            ..addFeature(FeatureFactory.CHLORINESMELL, Feature.HIGH)
+        addTheme(new Theme(<String>["Billiards","Pool","Stickball", "Colors"])
+            ..addFeature(FeatureFactory.CHLORINESMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
-            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ,  Theme.SUPERHIGH);
-        addTheme(new Theme(<String>["Minesweeper"])
+        addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
-            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
             , Theme.SUPERHIGH);
 
-        addTheme(new Theme(<String>["Solitaire"])
+        addTheme(new Theme(<String>["Solitaire", "Cards"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             , Theme.SUPERHIGH); // end theme
     }
