@@ -924,6 +924,7 @@ class MetaPlayerHandler {
         return player;
     }
 
+    //myseriously absent. why would SBURB assign a troll to be the space player for a human session?
     Player makeIO(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.MAGE, Aspects.SPACE);
         player.hair = 68;
@@ -950,7 +951,7 @@ class MetaPlayerHandler {
         return player;
     }
 
-
+    //made a legit prophecy that could be suberted by stripping.
     Player makeMI(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.BARD, Aspects.DOOM);
         player.hair = 1;
