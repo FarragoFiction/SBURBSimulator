@@ -100,7 +100,7 @@ abstract class SimController {
         if (doNotRender == true) {
             intro();
         } else {
-            load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), ""); //in loading.js
+            load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
         }
     }
 

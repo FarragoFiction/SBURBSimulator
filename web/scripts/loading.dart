@@ -121,8 +121,7 @@ dynamic checkDone(String skipInit){
         //reroll();
         return null;
       }else if(skipInit == "ghosts"){
-      	throw("not supported yet.");
-        //renderGhosts();
+	      throw("deprecated, dunkass");
       }else{
         //SimController.instance as CharrenderPlayersForEditing();
       }

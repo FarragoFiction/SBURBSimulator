@@ -100,6 +100,7 @@ class Land {
         }
     }
 
+    //TODO reject if weight too low.
     void processSounds( Map<Feature, double> features) {
         if(features.keys.isEmpty) features[FeatureFactory.SILENCE] = 1.0;
 
