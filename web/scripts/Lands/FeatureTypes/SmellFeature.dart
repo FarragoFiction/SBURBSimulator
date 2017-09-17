@@ -18,7 +18,7 @@ class SmellFeature extends Feature {
     static String randomNeutralFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
         possibilities.add("The smell of $specific permeates the air. ");
-        possibilities.add("Is that $specific you smell? ");
+        possibilities.add("Is that $specific you smell? ", .5);
         possibilities.add("There is the faint hint of $specific lingering in the air. ");
 
         return rand.pickFrom(possibilities);

@@ -15,6 +15,12 @@ class FeatureFactory {
     static ConsortFeature CROCODILECONSORT;
     static ConsortFeature IGUANACONSORT;
     static ConsortFeature TURTLECONSORT;
+    static ConsortFeature CHAMELEONCONSORT;
+    static ConsortFeature AXOLOTLCONSORT;
+    static ConsortFeature LIZARDCONSORT;
+    static ConsortFeature SNAKECONSORT;
+    static ConsortFeature ALLIGATORCONSORT;
+    static ConsortFeature NEWTCONSORT;
     static ConsortFeature SKELETONCONSORT;
     static ConsortFeature ROBOTCONSORT;
 
@@ -63,6 +69,12 @@ class FeatureFactory {
         TURTLECONSORT = new ConsortFeature("Turtle", "...");
         SKELETONCONSORT = new ConsortFeature("Skeleton", "rattle");
         ROBOTCONSORT = new ConsortFeature("Robot", "BEEP");
+        CHAMELEONCONSORT = new ConsortFeature("Chameleon", "BLEP");
+        AXOLOTLCONSORT = new ConsortFeature("Axolotl", "BARP");
+        LIZARDCONSORT = new ConsortFeature("Lizard", "bleb");
+        SNAKECONSORT = new ConsortFeature("Snake", "hiss");
+        ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
+        NEWTCONSORT = new ConsortFeature("Newt", "skitter");
     }
 
     static void iniatlizeSmells() {
@@ -83,7 +95,7 @@ class FeatureFactory {
         CREEPYFEELING = new AmbianceFeature("creepy",Feature.BAD);
         CALMFEELING = new AmbianceFeature("calm",Feature.GOOD);
         FRANTICFEELING = new AmbianceFeature("frantic", Feature.BAD);
-        NOTHINGFEELING = new AmbianceFeature("nothing");
+        NOTHINGFEELING = new AmbianceFeature("like nothing");
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
     }
 
@@ -98,8 +110,8 @@ class FeatureFactory {
         SILENCE = new SoundFeature("silence");
     }
 
-    //if no consort is specified.
+    //if no consort is specified, pick something totally illegal
     static ConsortFeature getRandomConsortFeature(Random rand) {
-        return rand.pickFrom(<ConsortFeature>[SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT]);
+        return rand.pickFrom(<ConsortFeature>[SNAKECONSORT, ALLIGATORCONSORT, NEWTCONSORT, SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT, CHAMELEONCONSORT, AXOLOTLCONSORT, LIZARDCONSORT]);
     }
 }

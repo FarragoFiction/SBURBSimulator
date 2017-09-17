@@ -25,7 +25,6 @@ class Land {
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         List<Theme> themeList = new List.from(themes.keys);
-        print ("theme list is $themeList");
         Theme strongestTheme = themeList[0];  //for picking name
         Theme secondStrongestTheme = themeList[0];  //for picking name
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
@@ -44,7 +43,6 @@ class Land {
                 strongestTheme = t; //you are the winnar.
             }
             for(Feature f in t.features.keys) {
-                print("checking feature $f"); //oh look, they are all null. WHAT THE FUCK.
                 double w = weight * t.features[f];
                 if(f is SmellFeature) {
                     if(smellsFeatures[f] == null) {
@@ -158,13 +156,13 @@ class Land {
     }
 
     String soundFlavorText(Random rand, Player p) {
-        SpecificQualia qualia = smellsLike(rand, p);
-        return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
+        SpecificQualia qualia = soundsLike(rand, p);
+        return SoundFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
     }
 
     String feelingFlavorText(Random rand, Player p) {
-        SpecificQualia qualia = smellsLike(rand, p);
-        return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
+        SpecificQualia qualia = feelsLike(rand, p);
+        return AmbianceFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
     }
 
     String consortFlavorText(Random rand, Player p) {
