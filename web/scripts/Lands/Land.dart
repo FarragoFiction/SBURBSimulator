@@ -28,6 +28,7 @@ class Land {
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         List<Theme> themeList = new List.from(themes.keys);
+        print ("theme list is $themeList");
         Theme strongestTheme = themeList[0];  //for picking name
         Theme secondStrongestTheme = themeList[0];  //for picking name
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
@@ -39,12 +40,14 @@ class Land {
         Map<Feature, double> consortFeatures = new Map<Feature, double>();
 
         for(Theme t in themes.keys) {
+            print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
             if(weight > themes[strongestTheme]) {
                 secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
                 strongestTheme = t; //you are the winnar.
             }
             for(Feature f in t.features.keys) {
+                print("checking feature $f"); //oh look, they are all null. WHAT THE FUCK.
                 double w = weight * t.features[f];
                 if(f is SmellFeature) {
                     if(smellsFeatures[f] == null) {

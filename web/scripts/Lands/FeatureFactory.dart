@@ -28,6 +28,7 @@ class FeatureFactory {
     static SmellFeature CHLORINESMELL; //LIKE A POOL
     static SmellFeature NOTHINGSMELL; //absence.
     static SmellFeature GUNPOWDERSMELL;
+    static SmellFeature ZOOSMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
@@ -71,6 +72,7 @@ class FeatureFactory {
         CHLORINESMELL = new SmellFeature("chlorine");
         NOTHINGSMELL = new SmellFeature("nothing in particular");
         GUNPOWDERSMELL = new SmellFeature("gunpowder");
+        ZOOSMELL = new SmellFeature("zoo animals", Feature.GOOD);//do you get the joke
 
     }
 

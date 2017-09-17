@@ -26,6 +26,10 @@ class Theme {
         features[f] = weight;
     }
 
+    @override toString() {
+        return "Theme: $possibleNames";
+    }
+
     /*TODO have a thingy meant to help with picking this theme in a quiz
         Like, you pick your class, aspect, and interests.
         and then within each of those 4 things, you answer quiz questions to pick a single theme out of it
