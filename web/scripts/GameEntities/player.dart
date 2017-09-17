@@ -211,7 +211,7 @@ class Player extends GameEntity {
         for (num i = 0; i < this.associatedStats.length; i++) {
             //alert("I have associated stats: " + i);
             AssociatedStat stat = this.associatedStats[i];
-            tmpStatHolder[stat.stat] += tmpStatHolder[stat.stat] * stat.multiplier * strength;
+            if(tmpStatHolder[stat.stat] != null) tmpStatHolder[stat.stat] += tmpStatHolder[stat.stat] * stat.multiplier * strength;
         }
 
         //denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000);
@@ -1060,6 +1060,7 @@ class Player extends GameEntity {
         num powerBoost = magnitude * this.class_name.powerBoostMultiplier * this.aspect.powerBoostMultiplier; // this applies the page 5x mult
 
         //this.addStat(Stats.POWER, Math.max(1, powerBoost)); //no negatives
+        //wastes need to be nerfed even more
         this.addStat(Stats.EXPERIENCE, Math.max(1, powerBoost));
 
         this.associatedStatsIncreasePower(powerBoost);

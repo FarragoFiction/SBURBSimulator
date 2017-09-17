@@ -27,7 +27,7 @@ abstract class Stats {
         if (_initialised) {return;}
         _initialised = true;
 
-        EXPERIENCE = new Stat("Experience", "learned", "naïve", pickable: false);
+        EXPERIENCE = new Stat("Experience", "learned", "naïve", pickable: false)..minBase=0.0; //wastes can get 0
         GRIST = new Stat("Grist Level", "rich", "poor", pickable: false, summarise:false);
 
         POWER = new XPScaledStat("Power", "strong", "weak", 0.03, coefficient: 10.0, associatedGrowth: 0.5)..minBase=2.5..minDerived=1.0;

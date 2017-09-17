@@ -15,7 +15,8 @@ class Waste extends SBURBClass {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.SBURB_LORE, 3.0, false) //basically all Wastes have.
+        new AssociatedStat(Stats.SBURB_LORE, 3.0, false), //basically all Wastes have.
+        new AssociatedStat(Stats.EXPERIENCE, -2.0, false)
     ]);
 
     @override
