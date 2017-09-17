@@ -877,6 +877,8 @@ class MultiSessionSummary {
                 html.write("<Br><b>totalDeadPlayers: </b> ${this.num_stats['totalDeadPlayers']} (${this.num_stats['survivalRate']}% survival rate)"); //don't want to EVER ignore this.
             } else if (propertyName == "crashedFromSessionBug") {
                 html.write(this.generateHTMLForProperty(propertyName)); //don't ignore bugs, either.;
+            } else if (propertyName == "hasNoTier4Events") {
+                html.write(this.generateHTMLForProperty(propertyName)); //don't ignore bugs, either.;
             } else if (this.isRomanceProperty(propertyName)) {
                 romanceProperties.add(propertyName);
             } else if (this.isDramaticProperty(propertyName)) {
