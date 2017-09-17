@@ -34,6 +34,7 @@ class FeatureFactory {
     static AmbianceFeature CREEPYFEELING;
     static AmbianceFeature  CALMFEELING;
     static AmbianceFeature FRANTICFEELING;
+    static AmbianceFeature NOTHINGFEELING;
     static AmbianceFeature ENERGIZINGFEELING;
 
 
@@ -43,6 +44,7 @@ class FeatureFactory {
     static SoundFeature RUSTLINGSOUND;
     static SoundFeature BEEPINGSOUND;
     static SoundFeature CLACKINGSOUND;
+    static SoundFeature SILENCE;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -80,7 +82,8 @@ class FeatureFactory {
     static void initializeFeelings() {
         CREEPYFEELING = new AmbianceFeature("creepy",Feature.BAD);
         CALMFEELING = new AmbianceFeature("calm",Feature.GOOD);
-        FRANTICFEELING = new AmbianceFeature("frantic");
+        FRANTICFEELING = new AmbianceFeature("frantic", Feature.BAD);
+        NOTHINGFEELING = new AmbianceFeature("nothing");
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
     }
 
@@ -92,10 +95,11 @@ class FeatureFactory {
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
+        SILENCE = new SoundFeature("silence");
     }
 
     //if no consort is specified.
-    ConsortFeature getRandomConsortFeature(Random rand) {
+    static ConsortFeature getRandomConsortFeature(Random rand) {
         return rand.pickFrom(<ConsortFeature>[SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT]);
     }
 }

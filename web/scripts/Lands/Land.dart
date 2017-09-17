@@ -85,74 +85,136 @@ class Land {
         name = "Land of ${session.rand.pickFrom(mainTheme.possibleNames)} and ${session.rand.pickFrom(secondaryTheme.possibleNames)}";
         processSmells(smellsFeatures);
         processSounds(soundsFeatures);
-        processConsorts(consortFeatures);
+        processConsorts(session, consortFeatures);
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
     }
 
 
-    //find strongest weighted feature. if multiple are identical, do multiple with string "and separated" and smellsGood additive.
-    //negative smellsGood bool is a -1, postive is +1.
+    //smells are weighted but only pick the strongest ones
     void processSmells( Map<Feature, double> features) {
-        //if(features.keys.isEmpty) features[FeatureFactory.NOTHINGSMELL] = 1.0;
-        Feature chosen = features.keys.first;
-        for(Feature f in features.keys) {
-            if(features[f] > features[chosen]) chosen = f;
-        }
-        //okay now i know max value see if any other things at that level
+        if(features.keys.isEmpty) features[FeatureFactory.NOTHINGSMELL] = 1.0;
+
         for(SmellFeature f in features.keys) {
-            if((features[f] - features[chosen]).abs()<Feature.LOW) {
-                smells.add(f, features[f]);
-            }
+            smells.add(f, features[f]);
         }
     }
 
     void processSounds( Map<Feature, double> features) {
+        if(features.keys.isEmpty) features[FeatureFactory.SILENCE] = 1.0;
 
+        for(SoundFeature f in features.keys) {
+            sounds.add(f, features[f]);
+        }
     }
 
     void processCorruption( Map<Feature, double> features) {
-
+        if(features.keys.isNotEmpty) corrupted = true; //can not escape
     }
 
-    void processConsorts( Map<Feature, double> features) {
-
+    void processConsorts(Session s,  Map<Feature, double> features) {
+        if(features.keys.isEmpty) features[FeatureFactory.getRandomConsortFeature(s.rand)] = 1.0;
+        WeightedList<ConsortFeature> consorts = new WeightedList<ConsortFeature>();
+        for(ConsortFeature f in features.keys) {
+            consorts.add(f, features[f]);
+        }
+        ConsortFeature chosen = s.rand.pickFrom(consorts);
+        consort = chosen.makeConsort(s);
     }
 
-    void processFeels( Map<Feature, double> features) {
+    void processFeels(Map<Feature, double> features) {
+        if(features.keys.isEmpty) features[FeatureFactory.NOTHINGFEELING] = 1.0;
 
+        for(AmbianceFeature f in features.keys) {
+            feels.add(f, features[f]);
+        }
     }
 
-    String modifySanityByQuality(Player p, int quality) {
+    void modifySanityByQuality(Player p, int quality) {
         if(quality >0) {
             p.addStat(Stats.SANITY, 1);
-            return "The ${p.htmlTitleBasic()} is soothed. ";
         }else if(quality < 0) {
             p.addStat(Stats.SANITY, -1);
-            return "The ${p.htmlTitleBasic()} is freaking out a little bit. ";
         }
-        return "";
+    }
+
+    String smellFlavorText(Random rand, Player p) {
+        SpecificQualia qualia = smellsLike(rand, p);
+        return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
+
+    }
+
+    String soundFlavorText(Random rand, Player p) {
+
+
+    }
+
+    String feelingFlavorText(Random rand, Player p) {
+
+    }
+
+    String consortFlavorText(Random rand, Player p) {
+
     }
 
     ///if you pass me a player i will modify their sanity based on if it's a good or bad smell.
     ///pick from a random smell associated with this land, weighted by smell strength
     ///only pass a player if you want html
-    String smellsLike(Random rand, [Player p]) {
+    SpecificQualia smellsLike(Random rand, [Player p]) {
         SmellFeature mainSmell = rand.pickFrom(smells);
         SmellFeature secondarySmell;
-        if(rand.nextDouble()>.25) secondarySmell = rand.pickFrom(smells);
+        if(rand.nextDouble()>.75) secondarySmell = rand.pickFrom(smells);
         if(secondarySmell == mainSmell) secondarySmell = null;
         int quality = mainSmell.quality;
         String ret = mainSmell.simpleDesc;
         if(secondarySmell != null) {
             ret = "$ret and ${secondarySmell.simpleDesc}.";
             quality += secondarySmell.quality;
-        }else {
-            ret = "$ret.";
         }
-        if(p != null) ret ="$ret ${modifySanityByQuality(p, quality)}";
-        return ret;
+        if(p != null) modifySanityByQuality(p, quality);
+        return new SpecificQualia(ret, quality);
+    }
+
+    SpecificQualia feelsLike(Random rand, [Player p]) {
+        AmbianceFeature main = rand.pickFrom(feels);
+        AmbianceFeature secondary;
+        if(rand.nextDouble()>.75) secondary = rand.pickFrom(feels);
+        if(secondary == main) secondary = null;
+        int quality = main.quality;
+        String ret = main.simpleDesc;
+        if(secondary != null) {
+            ret = "$ret and ${secondary.simpleDesc}";
+            quality += secondary.quality;
+        }else {
+            ret = "$ret";
+        }
+        if(p != null) modifySanityByQuality(p, quality);
+        return new SpecificQualia(ret, quality);
     }
 
 
+    SpecificQualia soundsLike(Random rand, [Player p]) {
+        SmellFeature mainSmell = rand.pickFrom(smells);
+        SmellFeature secondarySmell;
+        if(rand.nextDouble()>.75) secondarySmell = rand.pickFrom(smells);
+        if(secondarySmell == mainSmell) secondarySmell = null;
+        int quality = mainSmell.quality;
+        String ret = mainSmell.simpleDesc;
+        if(secondarySmell != null) {
+            ret = "$ret and ${secondarySmell.simpleDesc}";
+            quality += secondarySmell.quality;
+        }else {
+            ret = "$ret";
+        }
+        if(p != null) modifySanityByQuality(p, quality);
+        return new SpecificQualia(ret, quality);
+    }
+
+
+}
+
+class SpecificQualia {
+    String desc;
+    int quality;
+    SpecificQualia(this.desc, this.quality);
 }

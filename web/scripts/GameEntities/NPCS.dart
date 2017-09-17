@@ -40,6 +40,7 @@ class Consort extends NPC {
     ///what sound do these consorts make?
     String sound;
     Consort(String name, Session session) : super(name, session);
+    Consort.withSound(String name, Session session,  this.sound): super(name, session);
 }
 
 //denizens are spawned with innate knowledge of a personal fraymotif.
