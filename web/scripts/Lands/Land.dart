@@ -16,7 +16,7 @@ class Land {
     Theme secondaryTheme;
     String name;
 
-    NPC consort;
+    ConsortFeature consortFeature;
 
     //TODO need to have pre, during and post denizen quest chains as well. but that's second pass through shit.
 
@@ -119,8 +119,7 @@ class Land {
         for(ConsortFeature f in features.keys) {
             consorts.add(f, features[f]);
         }
-        ConsortFeature chosen = s.rand.pickFrom(consorts);
-        consort = chosen.makeConsort(s);
+        consortFeature = s.rand.pickFrom(consorts);
     }
 
     void processFeels(Map<Feature, double> features) {
@@ -139,6 +138,19 @@ class Land {
         }
     }
 
+    String randomFlavorText(Random rand, Player p) {
+        double randomNum = rand.nextDouble();
+        if(randomNum > .75) {
+            return smellFlavorText(rand, p);
+        }else if(randomNum > .5) {
+            return soundFlavorText(rand, p);
+        }else if (randomNum > .25) {
+            return feelingFlavorText(rand, p);
+        }else {
+            return consortFlavorText(rand, p);
+        }
+    }
+
     String smellFlavorText(Random rand, Player p) {
         SpecificQualia qualia = smellsLike(rand, p);
         return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
@@ -146,16 +158,17 @@ class Land {
     }
 
     String soundFlavorText(Random rand, Player p) {
-
-
+        SpecificQualia qualia = smellsLike(rand, p);
+        return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
     }
 
     String feelingFlavorText(Random rand, Player p) {
-
+        SpecificQualia qualia = smellsLike(rand, p);
+        return SmellFeature.randomFlavorText(rand, qualia.desc, qualia.quality, p);
     }
 
     String consortFlavorText(Random rand, Player p) {
-
+        return consortFeature.randomNeutralFlavorText(rand, p);
     }
 
     ///if you pass me a player i will modify their sanity based on if it's a good or bad smell.

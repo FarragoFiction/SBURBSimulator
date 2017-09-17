@@ -55,7 +55,7 @@ class AfterlifeController extends SimController {
     //print("rendering ghost");
     Element div = querySelector("#afterlifeViewer");
     String html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
-    if(ghost.causeOfDrain != null){
+    if(ghost.causeOfDrain != null && ghost.causeOfDrain.isNotEmpty){
       html += " They were drained to the point of uselessness by the" + ghost.causeOfDrain + ".  They will recover eventually. ";
     }
     html +="</div>";

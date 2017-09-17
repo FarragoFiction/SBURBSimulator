@@ -1,6 +1,8 @@
 import "../Feature.dart";
 import "../../GameEntities/NPCS.dart";
 import "../../SessionEngine/session.dart";
+import "../../SBURBSim.dart";
+
 
 class ConsortFeature extends Feature {
     /// what are these consorts called?
@@ -14,4 +16,13 @@ class ConsortFeature extends Feature {
     Consort makeConsort(Session s) {
         return new Consort.withSound(name, s, sound);
     }
+
+    //passed in specific can have 'ands' in the middle
+     String randomNeutralFlavorText(Random rand, Player p) {
+        WeightedList<String> possibilities = new WeightedList<String>();
+        possibilities.add("");
+
+        return rand.pickFrom(possibilities);
+    }
+
 }
