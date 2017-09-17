@@ -112,7 +112,7 @@ class Aftermath extends Scene {
 
     String democracyBonus() {
         String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-        if (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0) {
+        if (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) <= 0) {
             return "";
         }
         if (this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 10 && findLivingPlayers(this.session.players).length > 0) {
