@@ -125,10 +125,10 @@ void globalInit() {
     doneGlobalInit = true;
 
     Stats.init();
+    FeatureFactory.init();
     SBURBClassManager.init();
     Aspects.init();
     InterestManager.init();
-    FeatureFactory.init();
 }
 
 Random globalRand = new Random();

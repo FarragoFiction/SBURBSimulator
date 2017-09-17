@@ -26,7 +26,8 @@ class Theme {
         features[f] = weight;
     }
 
-    @override toString() {
+    @override
+    String toString() {
         return "Theme: $possibleNames";
     }
 

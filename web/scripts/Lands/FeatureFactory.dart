@@ -47,14 +47,14 @@ class FeatureFactory {
 
     static CorruptionFeature Corruption;
 
-    static init() {
+    static void init() {
         initializeConsorts();
         iniatlizeSmells();
         initializeFeelings();
         initializeSounds();
     }
 
-    static initializeConsorts() {
+    static void initializeConsorts() {
         SALAMANDERCONSORT = new ConsortFeature("Salamander", "GLUB");
         CROCODILECONSORT = new ConsortFeature("Crocodile", "NAK");
         IGUANACONSORT = new ConsortFeature("Iguana", "thip");
@@ -63,7 +63,7 @@ class FeatureFactory {
         ROBOTCONSORT = new ConsortFeature("Robot", "BEEP");
     }
 
-    static iniatlizeSmells() {
+    static void iniatlizeSmells() {
         SPICYSMELL = new SmellFeature("spices");
         BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
         NATURESMELL = new SmellFeature("nature",Feature.GOOD);
@@ -77,7 +77,7 @@ class FeatureFactory {
     }
 
     //feelings effect sanity. rip eridan
-    static initializeFeelings() {
+    static void initializeFeelings() {
         CREEPYFEELING = new AmbianceFeature(<String>["creepy", "unsettling", "disturbing"],Feature.BAD);
         CALMFEELING = new AmbianceFeature(<String>["peaceful", "calm", "restful"],Feature.GOOD);
         FRANTICFEELING = new AmbianceFeature(<String>["frantic", "chaotic", "crazy"]);
@@ -85,7 +85,7 @@ class FeatureFactory {
     }
 
     //most sounds are bad sounds
-    static initializeSounds() {
+    static void initializeSounds() {
         CLANKINGSOUND = new SoundFeature("clanking");
         CHILDRENLAUGHINGSOUND = new SoundFeature("children lauging");
         RUSTLINGSOUND = new SoundFeature("rustling", Feature.GOOD);
