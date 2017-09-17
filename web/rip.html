@@ -2,17 +2,11 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/oc.css">
-		<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="javascripts/lz-string.min.js"></script>
-		<script type="text/javascript" src="javascripts/random_tables.js"></script>
-		<script type="text/javascript" src="javascripts/player.js"></script>
-		<script type="text/javascript" src="javascripts/scene_controller.js"></script>
-		<script type="text/javascript" src="javascripts/playerSnapshot.js"></script>
-		<script type="text/javascript" src="javascripts/handle_sprites.js"></script>
-		<script type="text/javascript" src="javascripts/afterlife_viewer.js"></script>
-		<script type="text/javascript" src="javascripts/loading.js"></script>
-		<script type="text/javascript" src="javascripts/quirk.js"></script>
-		<script type="text/javascript" src="javascripts/navbar.js"></script>
+		<script type="text/javascript" src="scripts/includes/lz-string.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/stacktrace.min.js"></script>
+		<script type="text/javascript" src="scripts/includes/tracer.js"></script>
+		<script type="application/dart" src="scripts/Controllers/AfterlifeController.dart"></script>
+		<script src="packages/browser/dart.js"></script>
 		<title>
 			Afterlife
 		</title>
@@ -40,4 +34,5 @@
 			<div id = "loading_image_staging">  </div>
 			
 			<img id="loading.png" src = "images/loading.png" style="display:none">
+			<div id="playerSprites"></div>
 </html>
