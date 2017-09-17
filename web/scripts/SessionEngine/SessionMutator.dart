@@ -951,7 +951,7 @@ class MetaPlayerHandler {
         return player;
     }
 
-    //made a legit prophecy that could be suberted by stripping.
+    //made a legit prophecy that could be subverted by stripping.
     Player makeMI(Session s) {
         Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.BARD, Aspects.DOOM);
         player.hair = 1;

@@ -180,7 +180,7 @@ class Land {
         int quality = mainSmell.quality;
         String ret = mainSmell.simpleDesc;
         if(secondarySmell != null) {
-            ret = "$ret and ${secondarySmell.simpleDesc}.";
+            ret = "$ret and ${secondarySmell.simpleDesc}";
             quality += secondarySmell.quality;
         }
         if(p != null) modifySanityByQuality(p, quality);
