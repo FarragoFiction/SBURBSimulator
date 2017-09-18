@@ -2,12 +2,12 @@ import "SBURBSim.dart";
 
 //the afterlife is essentially just a list of player snapshots. when a snapshot is added, make them not "dead". ghosts can double die.
 class AfterLife {
-    Logger logger = new Logger("Afterlife");
+	Logger logger = new Logger("Afterlife");
 	List<Player> ghosts = []; //TODO maybe eventually have "ghost" object
 	List<Player> ghostsBannedFromInteracting = []; //for time reasons, if ghosts didn't interact with session the first time, they can't until the timeline divurges.
 	var timeLineSplitsWhen = null; //what is the event i'm waitin for to allow ghosts back in?
 
-	
+
 
 
 	AfterLife() {}
@@ -26,7 +26,7 @@ class AfterLife {
 		this.timeLineSplitsWhen = null;
 	}
 	void complyWithLifeTimeShenanigans(importantEvent){
-        logger.debug("ghosts cant interact with a yellow yyard until timelines divurge");
+		logger.debug("ghosts cant interact with a yellow yyard until timelines divurge");
 		this.ghostsBannedFromInteracting.addAll(this.ghosts);
 		this.ghosts = [];
 		this.timeLineSplitsWhen = importantEvent; //e can be null if undoing an undo
@@ -49,9 +49,9 @@ class AfterLife {
 		List<Relationship> diamonds = player.getDiamonds();
 		List<Relationship> crushes = player.getCrushes();
 		List<Relationship> relationships = new List<Relationship>();
-    relationships.addAll(hearts);
+		relationships.addAll(hearts);
 		relationships.addAll(diamonds);
-	  relationships.addAll(crushes);
+		relationships.addAll(crushes);
 		for(num i = 0; i<relationships.length; i++){
 			var r = relationships[i];
 			lovedOnes.addAll(this.findAllAlternateSelves(r.target));
@@ -61,9 +61,9 @@ class AfterLife {
 	}
 	dynamic findAllDeadHatedOnes(player){
 		List<Player> hatedOnes = [];
-    List<Player> clubs = player.getClubs();
-    List<Player> spades = player.getSpades();
-    List<Player> crushes = player.getBlackCrushes();
+		List<Player> clubs = player.getClubs();
+		List<Player> spades = player.getSpades();
+		List<Player> crushes = player.getBlackCrushes();
 		List<Player> relationships = new List<Player>();
 		relationships.addAll(spades);
 		relationships.addAll(clubs);
