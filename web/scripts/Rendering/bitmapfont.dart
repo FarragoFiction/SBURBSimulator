@@ -24,11 +24,14 @@ class BitmapFontDefinition {
         offsets[character.codeUnitAt(0)] = o;
     }
 
-    int charWidth(int char) {
-        if (this.widthOverrides.containsKey(char)) {
-            return this.widthOverrides[char];
+    int charWidth(int char, [bool useSpacing=true]) {
+        if (useSpacing) {
+            if (this.widthOverrides.containsKey(char)) {
+                return this.widthOverrides[char];
+            }
+            return this.spacing;
         }
-        return this.spacing;
+        return this.glyphWidth;
     }
 
     int charOffset(int char) {
@@ -42,7 +45,8 @@ class BitmapFontDefinition {
         int length = 0;
         for (int i=0; i<text.length; i++) {
             int code = text.codeUnitAt(i);
-            length += this.charWidth(code);
+            int w = this.charWidth(code, i != text.length -1);
+            length += w;
         }
         return length;
     }

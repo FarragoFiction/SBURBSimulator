@@ -8,6 +8,7 @@ abstract class Fonts {
         ..widthOverride("C", 7)
         ..widthOverride("X", 7)
         ..widthOverride("Y", 7)
+        ..widthOverride("m", 9)
 
         ..offset("!", -1)
         ..offset("S", -1)
