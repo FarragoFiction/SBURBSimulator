@@ -4,6 +4,8 @@ import "../../SBURBSim.dart";
 
 //if more than one quest chain is assigned to a land then you need to know how to trigger it. use predicate
 //TODO when you print out the text for this allow modulariy, like PLAY THE X (where x is the associated word for the aspect of the main player)
+//TODO make sure to remember that each quest in a chain could be at wildly different times. each quest should be self contained.
+//if it's a bank heist then first quest is plan the heist, second is recruit your team, third is rob the bank and abscond, fourth is divy spoils.
 class QuestChain extends Feature {
    String name;
    List<Quest> quests;
