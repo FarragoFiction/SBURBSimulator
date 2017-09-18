@@ -51,6 +51,7 @@ class FeatureFactory {
     static SoundFeature BEEPINGSOUND;
     static SoundFeature CLACKINGSOUND;
     static SoundFeature SILENCE;
+    static SoundFeature NATURESOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -107,6 +108,7 @@ class FeatureFactory {
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
+        NATURESOUND = new SoundFeature("nature", Feature.GOOD);
         SILENCE = new SoundFeature("silence");
     }
 

@@ -2,7 +2,14 @@ import '../SBURBSim.dart';
 
 //only one player, player has no sprite, player has DeadLand, and session has 16 (or less) subLands.
 class DeadSession extends Session {
+    //TODO any denizen fraymotif should be the caliborn quote
+    //page #007356
+    // A stupid note is produced, It's the one assholes play to make their audience start punching themselves in the crouch repeatidly
     Map<Theme, double> themes = new Map<Theme, double>();
+    int numberLandsRemaining = 16; //can remove some in "the break".
+    //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
+    //lands can only happen once the player's main land has gotten past the first stage.
+    Land currentLand;
     DeadSession(int sessionID): super(sessionID) {
         makeThemes();
     }

@@ -7,7 +7,7 @@ class QuestChain extends Feature {
    String name;
    List<Quest> quests;
    ///if condition is met, then might be chosen to start. once started, goes linear.
-   Predicate<Player> condition;
+   Predicate<Player> condition; //like playerIsStealthy
    bool finished = false;
    bool started = false;
 

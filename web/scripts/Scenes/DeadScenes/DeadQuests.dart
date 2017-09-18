@@ -13,11 +13,22 @@ class DeadQuests extends Scene {
 
     @override
     void renderContent(Element div) {
-        String html = "";
+        if((session as DeadSession).currentLand != null) {
+            throw "don't support child lands yet";
+        }else {
+            processMetaLand(div);
+        }
+    }
+
+    void processMetaLand(Element div) {
+        Player player = session.players[0];
+        String html = "<br><Br>The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)}";
+        appendHtml(div, html);
+        //TODO have the land be called with the div to figure out what should be happening here.
     }
 
     @override
     bool trigger(List<Player> playerList) {
-       throw ("todo");
+       return session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
     }
 }

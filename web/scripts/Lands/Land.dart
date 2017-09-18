@@ -15,11 +15,13 @@ class Land {
     Theme mainTheme;
     Theme secondaryTheme;
     String name;
+    //TODO  keep current questChain in a var. if there is none, go to PreDenizenChains and pick one.
+    //if there is a stored questChain, see if it's beaten. if it is, pick chain from next set.  if it's not, do a quest from it.
 
     ConsortFeature consortFeature;
 
     //TODO need to have pre, during and post denizen quest chains as well. but that's second pass through shit.
-
+    //TODO it's possible I can have all quest chains come from a single theme. see how hard it'd be vs how disjoint the other is.
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
@@ -206,15 +208,15 @@ class Land {
 
 
     SpecificQualia soundsLike(Random rand, [Player p]) {
-        SmellFeature mainSmell = rand.pickFrom(smells);
-        SmellFeature secondarySmell;
-        if(rand.nextDouble()>.75) secondarySmell = rand.pickFrom(smells);
-        if(secondarySmell == mainSmell) secondarySmell = null;
-        int quality = mainSmell.quality;
-        String ret = mainSmell.simpleDesc;
-        if(secondarySmell != null) {
-            ret = "$ret and ${secondarySmell.simpleDesc}";
-            quality += secondarySmell.quality;
+        SoundFeature main = rand.pickFrom(sounds);
+        SoundFeature secondary;
+        if(rand.nextDouble()>.75) secondary = rand.pickFrom(sounds);
+        if(secondary == main) secondary = null;
+        int quality = main.quality;
+        String ret = main.simpleDesc;
+        if(secondary != null) {
+            ret = "$ret and ${secondary.simpleDesc}";
+            quality += secondary.quality;
         }else {
             ret = "$ret";
         }
