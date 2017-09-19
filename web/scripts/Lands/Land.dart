@@ -31,7 +31,7 @@ class Land {
 
     void doQuest(Element div, Player p1, Player p2) {
         //first, do i have a current quest chain?
-            //if i do not, select a random quest from firstQuests.
+            //if i do not, select a random quest from firstQuests. it HAS to be triggered, though. So go through first and check the trigger, and that are false, remove. then pick randomly from remainder.
         //ask my quest chain if it's finished. if it is, go to the next set of quest chains (if this is Pre, go to denizen, if this is denizen, go to post
         //okay, now that i have a quest chain I KNOW is ready for me, it's time to D-D-D-D-Duel.   Or do the quest. one of the two.
         //so call doQuest on the chain and pass it all your shit.
@@ -39,8 +39,7 @@ class Land {
         //the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
     }
 
-    //TODO need to have pre, during and post denizen quest chains as well. but that's second pass through shit.
-    //TODO it's possible I can have all quest chains come from a single theme. see how hard it'd be vs how disjoint the other is.
+
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
@@ -58,7 +57,6 @@ class Land {
         Map<Feature, double> preDenFeatures = new Map<Feature, double>();
         Map<Feature, double> denFeatures = new Map<Feature, double>();
         Map<Feature, double> postDenFeatures = new Map<Feature, double>();
-        //TODO grab out predenizen, denizen and post denizen quest chains.  Right here, you are not caring if it's from class or interest or aspect.
         //Instead, all you're doing here is collating them.  it's up to future JR to make sure quest chains from class are all post denizen and etc if that's a thing future JR cares about.
         for(Theme t in themes.keys) {
             print("Theme is $t");

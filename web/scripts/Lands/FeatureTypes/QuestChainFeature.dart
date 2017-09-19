@@ -27,7 +27,7 @@ class QuestChainFeature extends Feature {
     void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
         throw("TODO");
         /*TODO
-            I need to call the first quest in the list, then append whatever it returns to myself.
+            I need to call the first quest in the list, then append whatever it returns to myself. (along with my name and which quest I'm on.   Bank Heist, Chapter 2: <quest text>)
             then i need to remove that quest from the list
             if there are no quests left, set finished to true, and ask your reward to render itself.
 
