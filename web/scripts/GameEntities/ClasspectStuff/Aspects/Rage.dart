@@ -44,6 +44,9 @@ class Rage extends Aspect {
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Rage', 'Ares', 'Dyonisus', 'Bacchus', 'Abbadon', 'Mammon', 'Mania', 'Asmodeus', 'Belphegor', 'Set', 'Apophis', 'Nemesis', 'Menoetius', 'Shogorath', 'Loki', 'Alastor', 'Mol Bal', 'Deimos', 'Achos', 'Pallas', 'Deimos', 'Ania', 'Lupe', 'Lyssa', 'Ytilibatsni', 'Discord']);
 
     @override
+    List<String> mcguffins = ["rage","sanity", "power", "whimsy"];
+
+    @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "fighting hordes upon hordes of enemies in increasingly unfair odds until defeating them all in a berserk rage", //You can't believe how easy it is. You just have to go... a little crazy. And then, suddenly, it all makes sense, and everything you do turns to gold.
         "figuring out increasingly illogical puzzles until lateral thinking becomes second nature",

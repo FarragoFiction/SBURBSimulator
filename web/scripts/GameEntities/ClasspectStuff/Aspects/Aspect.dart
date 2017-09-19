@@ -190,6 +190,14 @@ class Aspect {
         "Boring",
         "Error"
     ]);
+
+    //what do interacting effects claim to modify, what do land quests reference?
+    List<String> mcguffins = new List<String>.unmodifiable(<String>[
+        "Nothing",
+        "Errors",
+        "Glitches"
+    ]);
+
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A static sound is heard. It is the one Forgetfulness uses to cover the lacunae. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And there's nothing else to say on the matter. ";
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[

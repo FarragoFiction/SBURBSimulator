@@ -61,7 +61,7 @@ class Sylph extends SBURBClass {
     }
 
     @override
-    String interactionFlavorText(GameEntity me, GameEntity target) {
+    String interactionFlavorText(Player me, GameEntity target, Random rand) {
         return " The ${me.htmlTitle()} appears to be feeling more helpful after being around the ${target.htmlTitle()}. ";
     }
 

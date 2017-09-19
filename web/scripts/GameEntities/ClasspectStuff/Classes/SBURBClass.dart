@@ -154,7 +154,7 @@ class SBURBClass {
         return false;
     }
 
-    String interactionFlavorText(GameEntity me, GameEntity target) {
+    String interactionFlavorText(Player me, GameEntity target, Random rand) {
         Relationship r = me.getRelationshipWith(target);
         //only time clones or similar should have no relationships
         if(r == null) return "The ${me.htmlTitle()} is kind of weirded out being around their clone.}.";

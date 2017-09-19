@@ -41,6 +41,10 @@ class Void extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hœnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova']);
 
+
+    @override
+    List<String> mcguffins = ["void","obscurity", "irrelevance", "stealth"];
+
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "destroying and/or censoring embarrassing consort records",

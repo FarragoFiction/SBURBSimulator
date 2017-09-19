@@ -42,6 +42,11 @@ class Light extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Light', 'Helios', 'Ra', 'Cetus', 'Iris', 'Heimdall', 'Apollo', 'Coeus', 'Hyperion', "Belobog", 'Phoebe', 'Metis', 'Eos', 'Dagr', 'Asura', 'Amaterasu', 'Sol', 'Tyche', 'Odin ', 'Erutuf']);
 
+
+    @override
+    List<String> mcguffins = ["light","fortune", "knowledge", "illumination"];
+
+
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "winning at increasingly unfair gambling challenges",

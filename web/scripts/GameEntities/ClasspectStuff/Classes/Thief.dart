@@ -20,8 +20,8 @@ class Thief extends SBURBClass {
     }
 
     @override
-    String interactionFlavorText(GameEntity me, GameEntity target) {
-        return " The ${me.htmlTitle()} appears to be taking something from the ${target.htmlTitle()} and keeping it for themself. ";
+    String interactionFlavorText(Player me, GameEntity target, Random rand) {
+        return " The ${me.htmlTitle()} appears to be taking ${rand.pickFrom(me.aspect.mcguffins)}  from the ${target.htmlTitle()} and keeping it for themself. ";
     }
 
     @override

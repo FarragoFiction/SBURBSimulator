@@ -39,8 +39,8 @@ class Prince extends SBURBClass {
         return true;
     }
     @override
-    String interactionFlavorText(GameEntity me, GameEntity target) {
-        return " The ${me.htmlTitle()} appears to be destroying something in themselves. ";
+    String interactionFlavorText(Player me, GameEntity target, Random rand) {
+        return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.mcguffins)} in themselves. ";
     }
 
     @override

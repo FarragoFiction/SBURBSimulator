@@ -41,6 +41,10 @@ class Time extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Time', 'Ignis', 'Saturn', 'Cronos', 'Aion', 'Hephaestus', 'Vulcan', 'Perses', 'Prometheus', 'Geras', 'Acetosh', 'Styx', 'Kairos', 'Veter', 'Gegute', 'Etu', 'Postverta and Antevorta', 'Emitus', 'Moirai']);
 
+
+    @override
+    List<String> mcguffins = ["time","speed", "inevitability", "paradoxes"];
+
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "manipulating the local stock exchange through a series of cunningly disguised time doubles",

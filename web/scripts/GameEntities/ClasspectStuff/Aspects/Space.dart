@@ -67,6 +67,9 @@ class Space extends Aspect {
     ]);
 
     @override
+    List<String> mcguffins = ["space","commitment", "creation", "room"];
+
+    @override
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[
         "trying to figure out why the Forge is unlit",
         "clearing various bullshit obstacles to lighting the Forge",

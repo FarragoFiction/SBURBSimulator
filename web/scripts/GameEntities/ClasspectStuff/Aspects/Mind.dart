@@ -43,6 +43,10 @@ class Mind extends Aspect {
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Mind', 'Athena', 'Forseti', 'Janus', 'Anubis', 'Maat', 'Seshat', 'Thoth', 'Jyglag', 'Peryite', 'Nomos', 'Lugus', 'Sithus', 'Dike', 'Epimetheus', 'Metis', 'Morpheus', 'Omoikane', 'Argus', 'Hermha', 'Morha', 'Sespille', 'Selcric', 'Tzeench']);
 
+
+    @override
+    List<String> mcguffins = ["mind","decisions", "consequences", "free will"];
+
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
         "manipulating the local consorts into providing dungeon clearing services",

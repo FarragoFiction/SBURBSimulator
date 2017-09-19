@@ -3443,3 +3443,38 @@ Alright. Got some frameworks to do. Foundation step is get a YellowYard displayi
 Okay, so put the if tmpSession != nul shit into it's own method. simple.
 
 I shouldn't ONLY call it from processCombo though. Button should be rendered for ANY aftermath. So don't render combo from process Combo. Instead, render where time button would be renedered.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Okay.
+
+I spent an ENTIRE FUCKING DAY not working on the land update yesterday, which means I , of course, no longer remember waht i was doing. That's just how it goes.
+
+My goal here is for quest chains to be as dynamic as possible. Now, when I CREATE a quest chain, quite obviously there won't BE a
+ denizen or a player or an aspect or anything like that.
+
+So. WhatI need to do is, much like FRAYMOTIFS, define a simple word replacement scheme thingy.
+
+Any mcguffins will be aspect related.  Play the wind, play the rain, play the bones, etc. etc.
+
+So:  ASPECT_MCGUFFIN is one key word.
+PLAYER1 is an obvious one.
+PLAYER2, being an optional one.
+DENIZEN is another (especially since in dead sessions they'll just be CALLED like LORAS boss).
+CONSORT and CONSORTSOUND.
+SMELL, SOUND, FEELING of course, though mostly I want it to use the built in shit.
+
+What's the pipeline I'm expecting here?
+
+
+I create a quest chain, with a quest in it like:
+
+"The Heir of Breath and the Thief of Light are in the Land of Wind and Shade. They are reassured by how calm it feels.
+Suddenly a Salamander runs towards them, glubbing up a storm.  It turns out that Typheus has woken up!  It is now up to the
+Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light appears to be taking fortune from the Heir of Breath and keeping it for themself. "
+
+ so that would translate to:
+
+ text from quest start scene + "Suddenly a CONSORT runs towards them, CONSORTSOUNDing up a storm.  It turns out that DENIZEN has woken up!  It is now up to the
+  PLAYER1 to play the ASPECT_MCGUFFIN in an attempt to calm them down. ${interaction_effect}"

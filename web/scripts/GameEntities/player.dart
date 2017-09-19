@@ -891,7 +891,7 @@ class Player extends GameEntity {
             target.prophecy = ProphecyState.ACTIVE;
         }
         //even if there is no effect, still is doing relationship shit.
-        ret += class_name.interactionFlavorText(this, target);
+        ret += class_name.interactionFlavorText(this, target, session.rand);
         return ret;
     }
 
