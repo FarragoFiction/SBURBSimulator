@@ -40,9 +40,9 @@ class Land {
         if(symbolicMcguffin == null) decideMcGuffins(p1);
         if(noMoreQuests) return;
         //first, do i have a current quest chain?
-        if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(firstQuests);
+        if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(p1, firstQuests);
         //ask my quest chain if it's finished. if it is, go to the next set of quest chains
-        decideIfTimeForNextChain(); //will pick next chain if this is done.
+        decideIfTimeForNextChain(p1); //will pick next chain if this is done.
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         currentQuestChain.doQuest(p1, p2, denizenFeature.name, consortFeature.name, consortFeature.sound, symbolicMcguffin, physicalMcguffin, div);
     }
@@ -52,12 +52,12 @@ class Land {
         physicalMcguffin = session.rand.pickFrom(p1.aspect.physicalMcguffins);
     }
 
-    void decideIfTimeForNextChain() {
+    void decideIfTimeForNextChain(Player p1) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
-                currentQuestChain = selectQuestChainFromSource(secondQuests);
+                currentQuestChain = selectQuestChainFromSource(p1, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
-                currentQuestChain = selectQuestChainFromSource(thirdQuests);
+                currentQuestChain = selectQuestChainFromSource(p1, thirdQuests);
             }else{
                 noMoreQuests = true;
                 currentQuestChain = null;
@@ -68,8 +68,13 @@ class Land {
     // select a random quest from source. it HAS to be triggered, though.
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
-    QuestChainFeature selectQuestChainFromSource(WeightedList<QuestChainFeature> source) {
-        throw('todo');
+    QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
+        //Step one, check all for condition. if your condition is met , you make it to round 2.
+        WeightedList<QuestChainFeature> valid = new List<QuestChainFeature>();
+        for(QuestChainFeature q in source) {
+            if(q.condition(p1)) valid.add(q);
+        }
+        return session.rand.pickFrom(valid);
     }
 
 
