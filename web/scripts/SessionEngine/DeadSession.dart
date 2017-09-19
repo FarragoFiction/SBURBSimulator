@@ -17,21 +17,22 @@ class DeadSession extends Session {
         makeThemes();
     }
 
-    //no reward for your boring bullshit.
+    //no reward for your boring bullshit. make quest chains so stupidly long too.
     //also, normally quests will be custom per theme, but not for boring bullshit.
+    //http://www.mspaintadventures.com/?s=6&p=007682  thanks to nobody for finding this page for me to be inspired by
     void makeBoringBullshit() {
         boringBullshit = new List<QuestChainFeature>()
-        ..add(new QuestChainFeature("Find Bullshit Keys", <Quest>[
-            new Quest("test1"),
-            new Quest("test1"),
+        ..add(new PreDenizenQuestChain("Find Bullshit Keys", <Quest>[
+            new Quest("The PLAYER1 finds another key under a random ass unlabeled stone."),
+            new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time!"),
             new Quest("test1")
         ], null))
-        ..add(new QuestChainFeature("Count Bullshit Bugs", <Quest>[
-            new Quest("test1"),
-            new Quest("test1"),
+        ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
+            new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
+            new Quest("The PLAYER1 knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
             new Quest("test1")
         ], null))
-        ..add(new QuestChainFeature("Collect Bullshit Rocks", <Quest>[
+        ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
             new Quest("test1"),
             new Quest("test1"),
             new Quest("test1")

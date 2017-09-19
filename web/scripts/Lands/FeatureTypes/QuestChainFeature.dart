@@ -24,8 +24,14 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
    ///this will handle all drawing, Quest itself just returns a string.
-    void goQuesting(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
+    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
         throw("TODO");
+        /*TODO
+            I need to call the first quest in the list, then append whatever it returns to myself.
+            then i need to remove that quest from the list
+            if there are no quests left, set finished to true, and ask your reward to render itself.
+
+         */
     }
 
     bool playerIsStealthyAspect(Player p) {

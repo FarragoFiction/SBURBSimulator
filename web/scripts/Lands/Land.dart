@@ -4,6 +4,8 @@ import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
 import "FeatureTypes/CorruptionFeature.dart";
+import "FeatureTypes/QuestChainFeature.dart";
+import "dart:html";
 ///A land is build from features.
 class Land {
     bool corrupted;
@@ -11,6 +13,13 @@ class Land {
     WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>();
     WeightedList<SoundFeature> sounds = new WeightedList<SoundFeature>();
     WeightedList<AmbianceFeature> feels = new WeightedList<AmbianceFeature>();
+
+    QuestChainFeature currentQuestChain;
+    //IMPORTANT i expect any quest chain that has the default trigger to be weighted very low, and everything else equal. TODO take care of this when creating land
+    WeightedList<PreDenizenQuestChain> firstQuests = new WeightedList<PreDenizenQuestChain>();
+    WeightedList<DenizenQuestChain> secondQuests = new WeightedList<DenizenQuestChain>();
+    WeightedList<PostDenizenQuestChain> thirdQuests = new WeightedList<PostDenizenQuestChain>();
+
     //two strongest themes in this land.
     Theme mainTheme;
     Theme secondaryTheme;
@@ -19,6 +28,16 @@ class Land {
     //if there is a stored questChain, see if it's beaten. if it is, pick chain from next set.  if it's not, do a quest from it.
 
     ConsortFeature consortFeature;
+
+    void doQuest(Element div, Player p1, Player p2) {
+        //first, do i have a current quest chain?
+            //if i do not, select a random quest from firstQuests.
+        //ask my quest chain if it's finished. if it is, go to the next set of quest chains (if this is Pre, go to denizen, if this is denizen, go to post
+        //okay, now that i have a quest chain I KNOW is ready for me, it's time to D-D-D-D-Duel.   Or do the quest. one of the two.
+        //so call doQuest on the chain and pass it all your shit.
+        //    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
+        //the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
+    }
 
     //TODO need to have pre, during and post denizen quest chains as well. but that's second pass through shit.
     //TODO it's possible I can have all quest chains come from a single theme. see how hard it'd be vs how disjoint the other is.
@@ -36,7 +55,11 @@ class Land {
         Map<Feature, double> soundsFeatures = new Map<Feature, double>();
         Map<Feature, double> feelsFeatures = new Map<Feature, double>();
         Map<Feature, double> consortFeatures = new Map<Feature, double>();
-
+        Map<Feature, double> preDenFeatures = new Map<Feature, double>();
+        Map<Feature, double> denFeatures = new Map<Feature, double>();
+        Map<Feature, double> postDenFeatures = new Map<Feature, double>();
+        //TODO grab out predenizen, denizen and post denizen quest chains.  Right here, you are not caring if it's from class or interest or aspect.
+        //Instead, all you're doing here is collating them.  it's up to future JR to make sure quest chains from class are all post denizen and etc if that's a thing future JR cares about.
         for(Theme t in themes.keys) {
             print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
@@ -76,6 +99,24 @@ class Land {
                     }else {
                         consortFeatures[f] += w;
                     }
+                }else if(f is PostDenizenQuestChain){
+                    if(postDenFeatures[f] == null) {
+                        postDenFeatures[f] = w;
+                    }else {
+                        postDenFeatures[f] += w;
+                    }
+                }else if(f is DenizenQuestChain){
+                    if(consortFeatures[f] == null) {
+                        denFeatures[f] = w;
+                    }else {
+                        denFeatures[f] += w;
+                    }
+                }else if(f is PreDenizenQuestChain){
+                    if(preDenFeatures[f] == null) {
+                        preDenFeatures[f] = w;
+                    }else {
+                        preDenFeatures[f] += w;
+                    }
                 }
             }
         }//done for loop omg.
@@ -88,6 +129,27 @@ class Land {
         processConsorts(session, consortFeatures);
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
+        processPreDenizen(preDenFeatures);
+        processDenizen(preDenFeatures);
+        processPostDenizen(preDenFeatures);
+    }
+
+    void processPreDenizen( Map<Feature, double> features) {
+        for(PreDenizenQuestChain f in features.keys) {
+            firstQuests.add(f, features[f]);
+        }
+    }
+
+    void processDenizen( Map<Feature, double> features) {
+        for(DenizenQuestChain f in features.keys) {
+            secondQuests.add(f, features[f]);
+        }
+    }
+
+    void processPostDenizen( Map<Feature, double> features) {
+        for(PostDenizenQuestChain f in features.keys) {
+            thirdQuests.add(f, features[f]);
+        }
     }
 
 
