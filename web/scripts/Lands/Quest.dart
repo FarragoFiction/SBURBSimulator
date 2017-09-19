@@ -18,7 +18,7 @@ class Quest {
 
 
     //passed in everything they need to know to fill in all possible tags.
-    String doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical) {
+    String doQuest(Player p1, Player p2, String denizenName, String consortName,  String mcguffin, String mcguffinPhysical) {
         throw("TODO: need to replace any tags in the quest with the passed in shit. then just return your text.");
     }
 

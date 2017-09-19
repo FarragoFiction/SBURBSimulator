@@ -1,5 +1,6 @@
 import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
+import "FeatureTypes/DenizenFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
@@ -8,6 +9,7 @@ import "FeatureTypes/QuestChainFeature.dart";
 import "dart:html";
 ///A land is build from features.
 class Land {
+    Session session;
     bool corrupted;
     //can be more than one thing, will pick one or two things at random by weight
     WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>();
@@ -20,29 +22,61 @@ class Land {
     WeightedList<DenizenQuestChain> secondQuests = new WeightedList<DenizenQuestChain>();
     WeightedList<PostDenizenQuestChain> thirdQuests = new WeightedList<PostDenizenQuestChain>();
 
+    String symbolicMcguffin;
+    String physicalMcguffin;
+
     //two strongest themes in this land.
     Theme mainTheme;
     Theme secondaryTheme;
     String name;
+    bool noMoreQuests = false; //no more infinite quests yo.
     //TODO  keep current questChain in a var. if there is none, go to PreDenizenChains and pick one.
     //if there is a stored questChain, see if it's beaten. if it is, pick chain from next set.  if it's not, do a quest from it.
 
     ConsortFeature consortFeature;
+    DenizenFeature denizenFeature;
 
     void doQuest(Element div, Player p1, Player p2) {
+        if(symbolicMcguffin == null) decideMcGuffins(p1);
+        if(noMoreQuests) return;
         //first, do i have a current quest chain?
-            //if i do not, select a random quest from firstQuests. it HAS to be triggered, though. So go through first and check the trigger, and that are false, remove. then pick randomly from remainder.
-        //ask my quest chain if it's finished. if it is, go to the next set of quest chains (if this is Pre, go to denizen, if this is denizen, go to post
-        //okay, now that i have a quest chain I KNOW is ready for me, it's time to D-D-D-D-Duel.   Or do the quest. one of the two.
-        //so call doQuest on the chain and pass it all your shit.
-        //    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
-        //the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
+        if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(firstQuests);
+        //ask my quest chain if it's finished. if it is, go to the next set of quest chains
+        decideIfTimeForNextChain(); //will pick next chain if this is done.
+        // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
+        currentQuestChain.doQuest(p1, p2, denizenFeature.name, consortFeature.name, consortFeature.sound, symbolicMcguffin, physicalMcguffin, div);
+    }
+
+    void decideMcGuffins(Player p1) {
+        symbolicMcguffin = session.rand.pickFrom(p1.aspect.symbolicMcguffins);
+        physicalMcguffin = session.rand.pickFrom(p1.aspect.physicalMcguffins);
+    }
+
+    void decideIfTimeForNextChain() {
+        if(currentQuestChain.finished) {
+            if(currentQuestChain is PreDenizenQuestChain) {
+                currentQuestChain = selectQuestChainFromSource(secondQuests);
+            }else if(currentQuestChain is DenizenQuestChain) {
+                currentQuestChain = selectQuestChainFromSource(thirdQuests);
+            }else{
+                noMoreQuests = true;
+                currentQuestChain = null;
+            }
+        }
+    }
+
+    // select a random quest from source. it HAS to be triggered, though.
+    // So go through first and check the trigger, and that are false, remove.
+    // then pick randomly from remainder.
+    QuestChainFeature selectQuestChainFromSource(WeightedList<QuestChainFeature> source) {
+        throw('todo');
     }
 
 
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
-    Land.fromWeightedThemes(Map<Theme, double> themes, Session session){
+    Land.fromWeightedThemes(Map<Theme, double> themes, this.session){
+
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         List<Theme> themeList = new List.from(themes.keys);
         Theme strongestTheme = themeList[0];  //for picking name

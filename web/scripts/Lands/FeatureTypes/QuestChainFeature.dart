@@ -24,7 +24,7 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
    ///this will handle all drawing, Quest itself just returns a string.
-    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String smell, String sound, String feeling, String mcguffin, String mcguffinPhysical,  Element div ) {
+    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String mcguffin, String mcguffinPhysical,  Element div ) {
         throw("TODO");
         /*TODO
             I need to call the first quest in the list, then append whatever it returns to myself. (along with my name and which quest I'm on.   Bank Heist, Chapter 2: <quest text>)
