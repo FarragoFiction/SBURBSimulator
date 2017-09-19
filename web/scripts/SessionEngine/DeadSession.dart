@@ -1,5 +1,7 @@
 import '../SBURBSim.dart';
-
+import "../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../Lands/Quest.dart";
+import "../Lands/Reward.dart";
 //only one player, player has no sprite, player has DeadLand, and session has 16 (or less) subLands.
 class DeadSession extends Session {
     //TODO any denizen fraymotif should be the caliborn quote
@@ -7,6 +9,7 @@ class DeadSession extends Session {
     // A stupid note is produced, It's the one assholes play to make their audience start punching themselves in the crouch repeatidly
     Map<Theme, double> themes = new Map<Theme, double>();
     int numberLandsRemaining = 16; //can remove some in "the break".
+    List<QuestChainFeature> boringBullshit;
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
@@ -14,24 +17,49 @@ class DeadSession extends Session {
         makeThemes();
     }
 
+    //no reward for your boring bullshit.
+    //also, normally quests will be custom per theme, but not for boring bullshit.
+    void makeBoringBullshit() {
+        boringBullshit = new List<QuestChainFeature>()
+        ..add(new QuestChainFeature("Find Bullshit Keys", <Quest>[
+            new Quest("test1"),
+            new Quest("test1"),
+            new Quest("test1")
+        ], null))
+        ..add(new QuestChainFeature("Count Bullshit Bugs", <Quest>[
+            new Quest("test1"),
+            new Quest("test1"),
+            new Quest("test1")
+        ], null))
+        ..add(new QuestChainFeature("Collect Bullshit Rocks", <Quest>[
+            new Quest("test1"),
+            new Quest("test1"),
+            new Quest("test1")
+        ], null));
+    }
+
     void makeThemes() {
+        makeBoringBullshit();
         addTheme(new Theme(<String>["Billiards","Pool","Stickball", "Colors"])
             ..addFeature(FeatureFactory.CHLORINESMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             ,  Theme.SUPERHIGH);
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             , Theme.SUPERHIGH);
 
         addTheme(new Theme(<String>["Solitaire", "Cards"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             , Theme.SUPERHIGH); // end theme
     }
 

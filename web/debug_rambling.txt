@@ -3478,3 +3478,48 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
 
  text from quest start scene + "Suddenly a CONSORT runs towards them, CONSORTSOUNDing up a storm.  It turns out that DENIZEN has woken up!  It is now up to the
   PLAYER1 to play the ASPECT_MCGUFFIN in an attempt to calm them down. ${interaction_effect}"
+
+  ~~~
+  Alright, I've got the mcguffin words set up.
+
+  What now. I guess....I need to look at the pipeline again.
+
+  I create a quest chain in like, Thief.dart.  It's attached to the Bank/Vaults/Safes/Money theme.
+
+  It has a lot of text, with things like ASPECT_MCGUFFIN inside of it.
+
+  Then, later, DoLandQuest or it's new equivalent calls shit.
+
+  The land is asked "what's your current quest chain." It says, shit, I don't have one.
+
+  It checks all it's quest chains that are stored in the "pre denizen" list, and sees if they are triggered.
+
+  It takes all triggered chains, and picks one at at random and sets it's variables that the things like ASPECT_MCGUFFIN are going to look for.
+
+  Now that's the 'current quest chain.'  I then say "quest chain, are you finished? ".  It says no.
+
+  So then I say "okay, here's one or two players and a div. Do whatever with it."
+
+  The quest chain then gives it to the current quest.
+
+  The current quest prints some text out to the passed in div.
+
+  It then returns, and the Quest chain itself says "okay, am I done now? ".
+
+  If the quest chain IS done it marks it's flag and also distributes it's Reward (which it prints out to the screen as well).
+
+  ~~~
+
+  Okay, is there a reason that a Quest doesn't just return a string? does it NEED that div?  Let's go with no.  You can only have canvas shit at the end of a QuestChain, let's say.
+  Hell, let's just say that Rewards know how to render themselves.
+
+
+  Alright, let's start with QuestChain.
+
+  ~~
+  Okay, a lot of the structure is there, minus the deeper stuff.  So I need to start wiring things up. I'll start with the dead session stuff.
+
+  A planet like "colors and mayhem" needs to start off with completely bullshit menial stuff to do. That is the "pre denizen" parts.
+
+  Once that first quest chain is completed, then the special do Dead Quests will know to switch over to mini planets until they are done,
+   with a Colors and Mayhem quest in between each full mini planet. Then, all the denizen quests.

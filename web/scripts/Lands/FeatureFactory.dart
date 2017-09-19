@@ -3,6 +3,7 @@ import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
 import "FeatureTypes/CorruptionFeature.dart";
+import "FeatureTypes/QuestChainFeature.dart";
 import "../random.dart";
 import "Feature.dart";
 /// just has a bunch of static references for features, created in a static initalizer
