@@ -18,6 +18,7 @@ export "GameEntities/Stats/buff.dart";
 export "GameEntities/Stats/stat.dart";
 export "GameEntities/Stats/statholder.dart";
 export "formats/FileFormat.dart";
+export "loader/loader.dart";
 export "fraymotif.dart";
 export "Lands/Theme.dart";
 export "Lands/Feature.dart";
@@ -129,6 +130,8 @@ void globalInit() {
     SBURBClassManager.init();
     Aspects.init();
     InterestManager.init();
+
+    Loader.init();
 }
 
 Random globalRand = new Random();

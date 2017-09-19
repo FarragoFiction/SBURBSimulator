@@ -42,7 +42,10 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });
 
-
+    Loader.init();
+    Loader.getResource("../hello_world.txt").then(print);
+    Loader.getResource("../hello_world.txt").then(print);
+    Loader.getResource("../hello_world.txt").then(print);
 }
 
 void checkLABRanges() {

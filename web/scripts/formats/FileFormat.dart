@@ -6,6 +6,8 @@ import 'dart:typed_data';
 import '../includes/predicates.dart';
 
 abstract class FileFormat<T,U> {
+    List<String> extensions = <String>[];
+
     String mimeType();
     String header();
 
@@ -18,6 +20,7 @@ abstract class FileFormat<T,U> {
     String objectToDataURI(T object) => dataToDataURI(write(object));
 
     Future<U> readFromFile(File file);
+    Future<U> requestFromUrl(String url);
 
     static Element loadButton<T,U>(FileFormat<T,U> format, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
         return loadButtonVersioned(<FileFormat<T,U>>[format], callback, multiple:multiple, caption:caption);
@@ -80,6 +83,16 @@ abstract class BinaryFileFormat<T> extends FileFormat<T,ByteBuffer> {
         }
         return null;
     }
+
+    @override
+    Future<ByteBuffer> requestFromUrl(String url) async {
+        Completer<ByteBuffer> callback = new Completer<ByteBuffer>();
+        HttpRequest.request(url, responseType: "arraybuffer", mimeType: this.mimeType()).then((HttpRequest request) {
+            print(request.response.runtimeType);
+            callback.complete((request.response as ByteBuffer));
+        });
+        return callback.future;
+    }
 }
 
 abstract class StringFileFormat<T> extends FileFormat<T,String> {
@@ -100,5 +113,10 @@ abstract class StringFileFormat<T> extends FileFormat<T,String> {
             return reader.result;
         }
         return null;
+    }
+
+    @override
+    Future<String> requestFromUrl(String url) async {
+        return HttpRequest.getString(url);
     }
 }
