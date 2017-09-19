@@ -26,17 +26,17 @@ class DeadSession extends Session {
             new Quest("The PLAYER1 finds another key under a random ass unlabeled stone."),
             new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time!"),
             new Quest("test1")
-        ], null))
+        ], null, QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
             new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
             new Quest("The PLAYER1 knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
             new Quest("test1")
-        ], null))
+        ], null, QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
             new Quest("test1"),
             new Quest("test1"),
             new Quest("test1")
-        ], null));
+        ], null, QuestChainFeature.defaultOption));
     }
 
     void makeThemes() {

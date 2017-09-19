@@ -19,7 +19,7 @@ class QuestChainFeature extends Feature {
 
 
 
-    QuestChainFeature(this.name, this.quests, this.reward);
+    QuestChainFeature(this.name, this.quests, this.reward, this.condition);
 
 
     ///assume first player is the owner of the quest.
@@ -34,20 +34,20 @@ class QuestChainFeature extends Feature {
          */
     }
 
-    bool playerIsStealthyAspect(Player p) {
+    static bool playerIsStealthyAspect(Player p) {
         return p.aspect == Aspects.VOID || p.aspect == Aspects.BREATH;
     }
 
-   bool playerIsSneakyClass(Player p) {
+   static bool playerIsSneakyClass(Player p) {
        return p.class_name == SBURBClassManager.ROGUE || p.class_name == SBURBClassManager.THIEF;
    }
 
-   bool playerIsProtectiveClass(Player p) {
+   static bool playerIsProtectiveClass(Player p) {
        return p.class_name == SBURBClassManager.KNIGHT || p.class_name == SBURBClassManager.PAGE;
    }
 
    //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
-   bool defaultOption(Player p) {
+   static bool defaultOption(Player p) {
        return true;
    }
 }
@@ -55,16 +55,16 @@ class QuestChainFeature extends Feature {
 //want to be able to quickly tell what sort of quest chain it is.
 class PreDenizenQuestChain extends QuestChainFeature {
 
-    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward): super(name, quests, reward);
+    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition): super(name, quests, reward, condition);
 }
 
 class DenizenQuestChain extends QuestChainFeature {
 
-    DenizenQuestChain(String name, List<Quest> quests, Reward reward): super(name, quests, reward);
+    DenizenQuestChain(String name, List<Quest> quests, Reward reward,Predicate<Player> condition): super(name, quests, reward, condition);
 }
 
 class PostDenizenQuestChain extends QuestChainFeature {
 
-    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward): super(name, quests, reward);
+    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward,Predicate<Player> condition): super(name, quests, reward, condition);
 }
 
