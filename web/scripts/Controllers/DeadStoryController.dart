@@ -21,6 +21,12 @@ void main() {
     return;
   });
   loadNavbar();
+  //be dead looking
+  querySelector("#story").style.backgroundColor = "grey";
+  //querySelector("#links").style.backgroundColor = "grey";
+  querySelector("#debug").style.backgroundColor = "grey";
+  querySelector("#charSheets").style.backgroundColor = "grey";
+
   new DeadStoryController(); //will set this as SimController's instance variable.
   if(getParameterByName("seed",null) != null){
    // Math.seed = getParameterByName("seed");  //TODO replace this somehow
