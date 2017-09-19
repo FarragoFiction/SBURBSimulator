@@ -20,7 +20,7 @@ class Rogue extends SBURBClass {
 
     @override
     String interactionFlavorText(Player me, GameEntity target, Random rand) {
-        return " The ${me.htmlTitle()} appears to be taking ${rand.pickFrom(me.aspect.mcguffins)} from the ${target.htmlTitle()} and distributing it to everyone. ";
+        return " The ${me.htmlTitle()} appears to be taking ${rand.pickFrom(me.aspect.symbolicMcguffins)} from the ${target.htmlTitle()} and distributing it to everyone. ";
     }
 
     @override

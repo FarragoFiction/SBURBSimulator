@@ -32,7 +32,7 @@ class Bard extends SBURBClass {
 
     @override
     String interactionFlavorText(Player me, GameEntity target, Random rand) {
-        return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.mcguffins)} in everyone. ";
+        return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.symbolicMcguffins)} in everyone. ";
     }
 
     @override

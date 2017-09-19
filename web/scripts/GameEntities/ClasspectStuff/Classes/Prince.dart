@@ -40,7 +40,7 @@ class Prince extends SBURBClass {
     }
     @override
     String interactionFlavorText(Player me, GameEntity target, Random rand) {
-        return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.mcguffins)} in themselves. ";
+        return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.symbolicMcguffins)} in themselves. ";
     }
 
     @override

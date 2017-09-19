@@ -39,7 +39,10 @@ class Heart extends Aspect {
     String denizenSongDesc = " A chord begins to echo. It is the one Damnation will play at their birth. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
     @override
-    List<String> mcguffins = ["heart","identity", "emotions", "core"];
+    List<String> symbolicMcguffins = ["heart","identity", "emotions", "core"];
+
+    @override
+    List<String> physicalMcguffins = ["heart","doll", "locket", "mirror"];
 
     @override
     bool deadpan = true; // heart cares not for your trickster bullshit

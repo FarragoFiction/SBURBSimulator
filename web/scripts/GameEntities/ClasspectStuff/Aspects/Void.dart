@@ -43,7 +43,9 @@ class Void extends Aspect {
 
 
     @override
-    List<String> mcguffins = ["void","obscurity", "irrelevance", "stealth"];
+    List<String> symbolicMcguffins = ["void","obscurity", "irrelevance", "stealth"];
+    @override
+    List<String> physicalMcguffins = ["void","cloak", "disguise", "shadow"];
 
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[

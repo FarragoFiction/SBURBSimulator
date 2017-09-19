@@ -40,7 +40,10 @@ class Life extends Aspect {
     String denizenSongDesc = " A plucked note echos in the stillness. It is the one Desire plays to summon it's audience. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
     @override
-    List<String> mcguffins = ["life","health", "growth", "strength"];
+    List<String> symbolicMcguffins = ["life","health", "growth", "strength"];
+    @override
+    List<String> physicalMcguffins = ["life","plant", "fertilizer", "food"];
+
 
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Life', 'Demeter', 'Pan', 'Nephthys', 'Ceres', 'Isis', 'Hemera', 'Andhrímnir', 'Agathodaemon', 'Eir', 'Baldur', 'Prometheus', 'Adonis', 'Geb', 'Panacea', 'Aborof', 'Nurgel', 'Adam']);

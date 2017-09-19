@@ -67,7 +67,9 @@ class Space extends Aspect {
     ]);
 
     @override
-    List<String> mcguffins = ["space","commitment", "creation", "room"];
+    List<String> symbolicMcguffins = ["space","commitment", "creation", "room"];
+    @override
+    List<String> physicalMcguffins = ["space","frog", "globe", "map"];
 
     @override
     List<String> denizenQuests = new List<String>.unmodifiable(<String>[

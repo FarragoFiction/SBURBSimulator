@@ -32,7 +32,10 @@ class Dream extends Aspect {
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Lunar", "Lucid",  "Prospit", "Derse", "Dream", "Creative", "Imagination"]);
 
     @override
-    List<String> mcguffins = ["dreams","creativity", "obsession", "art"];
+    List<String> symbolicMcGuffins = ["dreams","creativity", "obsession", "art"];
+    @override
+    List<String> physicalMcguffins = ["dreams","dream catcher", "scultpture", "painting"];
+
 
     @override
     String denizenSongTitle = "Fantasia"; //a musical theme representing a particular character;

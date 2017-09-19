@@ -44,7 +44,10 @@ class Rage extends Aspect {
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Rage', 'Ares', 'Dyonisus', 'Bacchus', 'Abbadon', 'Mammon', 'Mania', 'Asmodeus', 'Belphegor', 'Set', 'Apophis', 'Nemesis', 'Menoetius', 'Shogorath', 'Loki', 'Alastor', 'Mol Bal', 'Deimos', 'Achos', 'Pallas', 'Deimos', 'Ania', 'Lupe', 'Lyssa', 'Ytilibatsni', 'Discord']);
 
     @override
-    List<String> mcguffins = ["rage","sanity", "power", "whimsy"];
+    List<String> symbolicMcguffins = ["rage","sanity", "power", "whimsy"];
+    @override
+    List<String> physicalMcguffins = ["rage","face paint", "script", "bike horn"];
+
 
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[

@@ -192,7 +192,13 @@ class Aspect {
     ]);
 
     //what do interacting effects claim to modify, what do land quests reference?
-    List<String> mcguffins = new List<String>.unmodifiable(<String>[
+    List<String> symbolicMcguffins = new List<String>.unmodifiable(<String>[
+        "Nothing",
+        "Errors",
+        "Glitches"
+    ]);
+
+    List<String> physicalMcguffins = new List<String>.unmodifiable(<String>[
         "Nothing",
         "Errors",
         "Glitches"
