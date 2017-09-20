@@ -28,11 +28,15 @@ abstract class Loader {
                 throw "Requested resource ($path) is ${res.object.runtimeType}. Expected $T";
             }
         } else {
-            return _load(PathUtils.adjusted(path), format);
+            return _load(path, format);
         }
     }
 
-    static Future<T> _load<T, U>(String path, [FileFormat<U, T> format = null]) async {
+    static Future<T> _load<T, U>(String path, [FileFormat<U, T> format = null]) {
+        if(_resources.containsKey(path)) {
+            throw "Resource $path has already been requested for loading";
+        }
+
         if (format == null) {
             String extension = path.split(".").last;
             format = Formats.getFormatForExtension(extension);
@@ -41,7 +45,7 @@ abstract class Loader {
         Resource<T> res = new Resource<T>(path);
         _resources[path] = res;
 
-        format.requestFromUrl(path)..then((T item) => res.populate(item));
+        format.requestFromUrl(PathUtils.adjusted(path))..then((T item) => res.populate(item));
 
         return res.addListener();
     }

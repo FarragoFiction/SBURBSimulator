@@ -43,9 +43,11 @@ void main() {
     });
 
     Loader.init();
-    Loader.getResource("../hello_world.txt").then(print);
-    Loader.getResource("../hello_world.txt").then(print);
-    Loader.getResource("../hello_world.txt").then(print);
+
+    new Future<String>(() async {
+       String s = await Loader.getResource("../hello_world.txt");
+       print(s);
+    });
 }
 
 void checkLABRanges() {
