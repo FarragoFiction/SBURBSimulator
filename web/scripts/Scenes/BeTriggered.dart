@@ -35,7 +35,7 @@ class BeTriggered extends Scene{
 				return true;
 			}else if(player.flippingOutOverDeadPlayer != null){ //they got better.
 			//	////session.logger.info(" i think i need to know about a dead player to flip my shit. " + player.flippingOutOverDeadPlayer.title())
-				player.flipOutReason = null;;
+				player.flipOutReason = null;
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}

@@ -30,6 +30,8 @@ class SmellFeature extends Feature {
         possibilities.add("The ${p.htmlTitleBasicNoTip()} breathes deeply to appreciate the  smell of $specific. ");
         possibilities.add("The smell of $specific reminds the ${p.htmlTitleBasic()} of their childhood, somehow. ");
         possibilities.add("The intriguing smell of $specific wafts gently in the air. ");
+        p.addStat(Stats.SANITY, 10);
+        p.flipOutReason = null; //you are soothed
         return rand.pickFrom(possibilities);
     }
 
@@ -39,6 +41,8 @@ class SmellFeature extends Feature {
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is almost gagging on the smell of $specific that permeates the air. ");
         possibilities.add("The smell of $specific is so thick you can almost taste it. ");
         possibilities.add("The smell of $specific is nearly unbearable. ");
+        p.flipOutReason = "how terrible the smell of $specific is. ";
+        p.addStat(Stats.SANITY, -10);
         return rand.pickFrom(possibilities);
     }
 }

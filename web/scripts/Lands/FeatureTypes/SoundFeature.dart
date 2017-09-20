@@ -32,6 +32,8 @@ class SoundFeature extends Feature {
         possibilities.add("The ${p.htmlTitleBasicNoTip()}, is soothed by the sound of $specific.");
         possibilities.add("The joyful sound of $specific fills the air.");
         possibilities.add("In the distance, you can hear the relaxing sound of $specific.");
+        p.addStat(Stats.SANITY, 10);
+        p.flipOutReason = null; //you are soothed
         return rand.pickFrom(possibilities);
     }
 
@@ -41,6 +43,8 @@ class SoundFeature extends Feature {
         possibilities.add("Oh god. Where is that  $specific coming from?");
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is on the verge of snapping from all that fucking $specific.",0.5);
         possibilities.add("You can ALMOST ignore all the $specific that fills the air.");
+        p.flipOutReason = "how terrible the sound of $specific is. ";
+        p.addStat(Stats.SANITY, -10);
         return rand.pickFrom(possibilities);
     }
 }
