@@ -24,3 +24,15 @@ class Quest {
 
 
 }
+
+//TODO FIGURE OUT IF THIS IS HOW I WANT TO DO FIGHTS OR NOT. MAKES SENSE TO MAKE THEM QUESTS HERE INSTEAD OF SEPARATE SCENES
+//WOULD NEED TO TAKE IN A DENIZEN (NOT JUST A NAME). THEN SPAWN THE DENIZEN BASED ON STRENGTH SETTING AND WITH NAME
+//MAYBE OFFLOAD THE FRAYMOTIF REWARD TO BE A QUEST CHAIN REWARD?
+
+class BossFight extends Quest {
+  BossFight(String text) : super(text);
+}
+
+class MiniBossFight extends Quest {
+    MiniBossFight(String text) : super(text);
+}
