@@ -30,7 +30,18 @@ class DeadQuests extends Scene {
            then every quest in the now current land, etc.
            when you beat, have dead session numberLandsRemaining decrement.
          */
-        throw("TODO have a session land quest happen. if the land is beaten, then end with a single quest from dead land");
+        print("doing a meta land bullshit quest");
+        Player player = session.players[0];
+        Land l = (session as DeadSession).currentLand;
+        l.initQuest(player);
+        String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}.  ${l.randomFlavorText(session.rand, player)} ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        l.doQuest(div, player, null);
+        if(player.landFuture.noMoreQuests) {
+            chooseChildLand();
+            middleIntermissions(div);
+        }
     }
 
 
@@ -44,6 +55,19 @@ class DeadQuests extends Scene {
             ds.currentLand = null;
         }
         print("choose a child land of ${ds.currentLand.name}");
+    }
+
+    void middleIntermissions(Element div) {
+        print("sports intermissions.");
+        DeadSession ds = session as DeadSession;
+        Player player = session.players[0];
+        //TODO have the first quest in the dead land's denizen quests print out, which should
+        //explain teh pool/bowling/solitaire/whatever theme.
+        player.landFuture.initQuest(player);
+        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()}  has completed one planet. ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        player.landFuture.doQuest(div, player, null);
     }
 
     void introduceSecondPartOfQuests(Element div) {

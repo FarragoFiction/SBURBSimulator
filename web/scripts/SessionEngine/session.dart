@@ -28,6 +28,8 @@ class Session {
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     num numScenes = 0;
     bool sbahj = false;
+    num minTimeTillReckoning = 10;
+    num maxTimeTillReckoning = 30;
     num hardStrength = 2000 * Stats.POWER.coefficient;
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
@@ -394,7 +396,7 @@ class Session {
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
         ////print("reinit with seed: "  + Math.seed);
-        this.timeTillReckoning = this.rand.nextIntRange(10, 30); //rand.nextIntRange(10,30);
+        this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         this.available_scenes = <Scene>[]; //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
         Scene.createScenesForSession(this);
@@ -531,7 +533,7 @@ class Session {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
-        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if(mutator.lightField || true) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";

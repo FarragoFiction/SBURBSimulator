@@ -12,6 +12,10 @@ class DeadSession extends Session {
     int numberLandsRemaining = 16; //can remove some in "the break".
     List<QuestChainFeature> boringBullshit;
     Player metaPlayer;
+    @override
+    num minTimeTillReckoning = 100;
+    @override
+    num maxTimeTillReckoning = 300;
 
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
