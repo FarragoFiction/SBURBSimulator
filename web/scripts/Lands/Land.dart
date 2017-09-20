@@ -69,8 +69,9 @@ class Land {
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
     QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
+        print("Selecting a quest from $source");
         //Step one, check all for condition. if your condition is met , you make it to round 2.
-        WeightedList<QuestChainFeature> valid = new List<QuestChainFeature>();
+        WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
         for(QuestChainFeature q in source) {
             if(q.condition(p1)) valid.add(q);
         }
@@ -96,6 +97,7 @@ class Land {
         Map<Feature, double> preDenFeatures = new Map<Feature, double>();
         Map<Feature, double> denFeatures = new Map<Feature, double>();
         Map<Feature, double> postDenFeatures = new Map<Feature, double>();
+        Map<Feature, double> denizenFeatures = new Map<Feature, double>();
         //Instead, all you're doing here is collating them.  it's up to future JR to make sure quest chains from class are all post denizen and etc if that's a thing future JR cares about.
         for(Theme t in themes.keys) {
             print("Theme is $t");
@@ -154,6 +156,12 @@ class Land {
                     }else {
                         preDenFeatures[f] += w;
                     }
+                }else if(f is DenizenFeature){
+                    if(denizenFeatures[f] == null) {
+                        denizenFeatures[f] = w;
+                    }else {
+                        denizenFeatures[f] += w;
+                    }
                 }
             }
         }//done for loop omg.
@@ -166,24 +174,33 @@ class Land {
         processConsorts(session, consortFeatures);
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
-        processPreDenizen(preDenFeatures);
-        processDenizen(preDenFeatures);
-        processPostDenizen(preDenFeatures);
+        processPreDenizenQuests(preDenFeatures);
+        processDenizenQuests(denFeatures);
+        processPostDenizenQuests(postDenFeatures);
+        processDenizenFeatures(denizenFeatures);
     }
 
-    void processPreDenizen( Map<Feature, double> features) {
+    void processDenizenFeatures( Map<Feature, double> features) {
+        WeightedList<DenizenFeature> choices = new WeightedList<DenizenFeature>();
+        for(DenizenFeature f in features.keys) {
+            choices.add(f, features[f]);
+        }
+        denizenFeature = session.rand.pickFrom(choices);
+    }
+
+    void processPreDenizenQuests( Map<Feature, double> features) {
         for(PreDenizenQuestChain f in features.keys) {
             firstQuests.add(f, features[f]);
         }
     }
 
-    void processDenizen( Map<Feature, double> features) {
+    void processDenizenQuests( Map<Feature, double> features) {
         for(DenizenQuestChain f in features.keys) {
             secondQuests.add(f, features[f]);
         }
     }
 
-    void processPostDenizen( Map<Feature, double> features) {
+    void processPostDenizenQuests( Map<Feature, double> features) {
         for(PostDenizenQuestChain f in features.keys) {
             thirdQuests.add(f, features[f]);
         }

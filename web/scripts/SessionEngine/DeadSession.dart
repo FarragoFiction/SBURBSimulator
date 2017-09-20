@@ -26,17 +26,17 @@ class DeadSession extends Session {
             new Quest("The PLAYER1 finds another key under a random ass unlabeled stone."),
             new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time!"),
             new Quest("test1")
-        ], null, QuestChainFeature.defaultOption))
+        ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
             new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
             new Quest("The PLAYER1 knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
             new Quest("test1")
-        ], null, QuestChainFeature.defaultOption))
+        ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
             new Quest("test1"),
             new Quest("test1"),
             new Quest("test1")
-        ], null, QuestChainFeature.defaultOption));
+        ], new Reward(), QuestChainFeature.defaultOption));
     }
 
     void makeThemes() {
@@ -47,13 +47,14 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ,  Theme.SUPERHIGH);
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
-            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             , Theme.SUPERHIGH);
 
         addTheme(new Theme(<String>["Solitaire", "Cards"])
@@ -61,6 +62,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             , Theme.SUPERHIGH); // end theme
     }
 

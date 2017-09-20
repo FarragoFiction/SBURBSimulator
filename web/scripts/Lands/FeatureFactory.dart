@@ -6,6 +6,7 @@ import "FeatureTypes/CorruptionFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "../random.dart";
 import "Feature.dart";
+import "FeatureTypes/DenizenFeature.dart";
 /// just has a bunch of static references for features, created in a static initalizer
 class FeatureFactory {
     //TODO obviously will have more of all this shit, this is just for testing
@@ -24,6 +25,8 @@ class FeatureFactory {
     static ConsortFeature NEWTCONSORT;
     static ConsortFeature SKELETONCONSORT;
     static ConsortFeature ROBOTCONSORT;
+
+    static DenizenFeature YALDABAOTHDENIZEN;
 
 
     /////////////////////SMELLS////////////////////////
@@ -62,6 +65,11 @@ class FeatureFactory {
         iniatlizeSmells();
         initializeFeelings();
         initializeSounds();
+        initializeDenizens();
+    }
+
+    static void initializeDenizens() {
+        YALDABAOTHDENIZEN = new DenizenFeature("Yaldabaoth", 13);
     }
 
     static void initializeConsorts() {

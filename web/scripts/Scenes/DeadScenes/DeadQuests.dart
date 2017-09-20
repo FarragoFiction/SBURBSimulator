@@ -26,7 +26,7 @@ class DeadQuests extends Scene {
         appendHtml(div, html);
         //doQuests will append itself.
         player.landFuture.doQuest(div, player, null);
-        //TODO have the land be called with the div to figure out what should be happening here.
+        //TODO have trigger know if there are no more quests to do
     }
 
     @override

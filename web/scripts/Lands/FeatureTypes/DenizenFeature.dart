@@ -6,7 +6,8 @@ import "../../SBURBSim.dart";
 
 class DenizenFeature extends Feature {
     String name;
-     DenizenFeature(this.name);
+    int strength; //highest is 13
+     DenizenFeature(this.name, this.strength);
 
     Denizen makeDenizen(Session s) {
         return new Denizen(name, s);
