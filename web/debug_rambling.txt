@@ -3523,3 +3523,28 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
 
   Once that first quest chain is completed, then the special do Dead Quests will know to switch over to mini planets until they are done,
    with a Colors and Mayhem quest in between each full mini planet. Then, all the denizen quests.
+
+ ~~~
+ Alright, current status is that the pre denizen meta land shit is printing out, then crashing when finished
+ (since there are no denizen quests.)
+
+ What I want is for denizen quests for the meta land to be all sports themed.  huge weighting.
+
+ And I want the ordering to be like,
+
+ Do denizen quest, do the entirity of a mini planet chain, do denizen quest.
+
+ And denizen quest is like.
+
+ Oh shit, the medium has turned into a giant bowling alley. You have to beat knock all 10 planets down to win. Luckily two
+ got knocked down when things started.
+
+ All of the quests for one planet.
+
+ With an echoing crash, the planet tumbles into the black hole. You are really getting the hang of this bowling thing.
+
+ (when no planets left, skip to end, 16 total denizen quests but might not need all of them).
+
+ You get a STRIKE! You are officially declared the bowling champion! Congratulations to you! Now, all you need to do
+ is make you way to the Denizen Yaldobooger.  You barely even care what sorts of annoying things are in the way, you are
+ so close you can TASTE victory.

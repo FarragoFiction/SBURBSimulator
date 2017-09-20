@@ -22,6 +22,10 @@ class Land {
     WeightedList<DenizenQuestChain> secondQuests = new WeightedList<DenizenQuestChain>();
     WeightedList<PostDenizenQuestChain> thirdQuests = new WeightedList<PostDenizenQuestChain>();
 
+    bool firstCompleted = false;
+    bool secondCompleted = false;
+    bool thirdCompleted = false;
+
     String symbolicMcguffin;
     String physicalMcguffin;
 
@@ -62,10 +66,13 @@ class Land {
     void decideIfTimeForNextChain(Player p1) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
+                firstCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
+                secondCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, thirdQuests);
             }else{
+                thirdCompleted = true;
                 noMoreQuests = true;
                 currentQuestChain = null;
             }

@@ -8,6 +8,7 @@ class DeadSession extends Session {
     //page #007356
     // A stupid note is produced, It's the one assholes play to make their audience start punching themselves in the crouch repeatidly
     Map<Theme, double> themes = new Map<Theme, double>();
+    Map<Theme, double> chosenThemesForDeadSession =  new Map<Theme, double>();
     int numberLandsRemaining = 16; //can remove some in "the break".
     List<QuestChainFeature> boringBullshit;
     Player metaPlayer;
@@ -105,18 +106,18 @@ class DeadSession extends Session {
 
     void makeDeadLand() {
         Player player = players[0];
-        Map<Theme, double> themesMap = new Map<Theme, double>();
+        chosenThemesForDeadSession = new Map<Theme, double>();
         Theme deadTheme = rand.pickFrom(themes.keys);
 
         Theme interest1Theme = rand.pickFrom(player.interest1.category.themes.keys);
         interest1Theme.source = Theme.INTERESTSOURCE;
         Theme interest2Theme = rand.pickFrom(player.interest2.category.themes.keys);
         interest2Theme.source = Theme.INTERESTSOURCE;
-        themesMap[interest1Theme] = player.interest1.category.themes[interest1Theme];
-        themesMap[interest2Theme] = player.interest2.category.themes[interest2Theme];
-        themesMap[deadTheme] = themes[deadTheme];
-        //TODO when have quest chains done make sure they can handle not being given class or aspect
-        players[0].landFuture = new Land.fromWeightedThemes(themesMap, this);
+        chosenThemesForDeadSession[interest1Theme] = player.interest1.category.themes[interest1Theme];
+        chosenThemesForDeadSession[interest2Theme] = player.interest2.category.themes[interest2Theme];
+        chosenThemesForDeadSession[deadTheme] = themes[deadTheme];
+
+        players[0].landFuture = new Land.fromWeightedThemes(chosenThemesForDeadSession, this);
     }
 
     @override

@@ -8,26 +8,66 @@ import "../../SBURBSim.dart";
 ///once those are done, planets are created and given to the session.
 ///once all planets are clear, big stupid boss fight. then victory.
 class DeadQuests extends Scene {
-
+    int section = 1;
     DeadQuests(Session session) : super(session);
 
     @override
     void renderContent(Element div) {
-        if((session as DeadSession).currentLand != null) {
-            throw "don't support child lands yet";
+
+        if(section == 1) {
+            processMetaLandIntro(div); //when it ends will handle intro.
+        }else if (section == 2) {
+            processMiddleQuests(div);
+        }
+
+    }
+
+    void processMiddleQuests(Element div) {
+        /*
+           Middle quests consist of  every quest in teh dead session's current land
+           then a quest from the next denizen quest, and choosing new current land
+           then every quest in the now current land, etc.
+           when you beat, have dead session numberLandsRemaining decrement.
+         */
+        throw("TODO have a session land quest happen. if the land is beaten, then end with a single quest from dead land");
+    }
+
+
+    void chooseChildLand() {
+        DeadSession ds = session as DeadSession;
+        Player player = session.players[0];
+        //will make a regular player land but with extra themes from the dead session.
+        if(ds.numberLandsRemaining >1 ) {
+            ds.currentLand = ds.players[0].spawnLand(ds.themes);
         }else {
-            processMetaLand(div);
+            ds.currentLand = null;
         }
     }
 
-    void processMetaLand(Element div) {
+    void introduceSecondPartOfQuests(Element div) {
+        DeadSession ds = session as DeadSession;
+        Player player = session.players[0];
+        //TODO have the first quest in the dead land's denizen quests print out, which should
+        //explain teh pool/bowling/solitaire/whatever theme.
+        player.landFuture.initQuest(player);
+        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} looks up at the ${ds.numberLandsRemaining} planets now orbiting the ${player.landFuture.name}.  ${ds.metaPlayer.chatHandle} is a smug asshole as they explain what needs to happen next. ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        player.landFuture.doQuest(div, player, null);
+        section = 2;
+    }
+
+    void processMetaLandIntro(Element div) {
         Player player = session.players[0];
         player.landFuture.initQuest(player);
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
         player.landFuture.doQuest(div, player, null);
-        //TODO have trigger know if there are no more quests to do
+        if(player.landFuture.firstCompleted) {
+            chooseChildLand();
+            introduceSecondPartOfQuests(div);
+        }
     }
 
     @override

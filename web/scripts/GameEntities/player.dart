@@ -1767,7 +1767,8 @@ class Player extends GameEntity {
     }
 
     void initializeDerivedStuff() {
-        spawnLand();
+        Land l = spawnLand();
+        if(l != null) landFuture = l;
         List<String> tmp = getRandomLandFromPlayer(this);
         this.land1 = tmp[0];
         this.land2 = tmp[1];
@@ -1788,9 +1789,10 @@ class Player extends GameEntity {
 
     //I mark the source of the themes here, where i'm using them, rather than on creation
     //need the source for QuestChains (want first quest to be interest related, second aspect, third class) <-- important
-    void spawnLand() {
-        if(!deriveLand) return;
+    Land spawnLand([Map<Theme, double> extraThemes]) {
+        if(!deriveLand) return null;
         Map<Theme, double> themes = new Map<Theme, double>();
+        if(extraThemes != null) themes = new Map<Theme, double>.from(extraThemes);
         Theme classTheme = session.rand.pickFrom(class_name.themes.keys);
         classTheme.source = Theme.CLASSSOURCE;
         Theme aspectTheme = session.rand.pickFrom(aspect.themes.keys);
@@ -1806,7 +1808,7 @@ class Player extends GameEntity {
         themes[interest1Theme] = interest1.category.themes[interest1Theme];
         themes[interest2Theme] = interest2.category.themes[interest2Theme];
 
-        landFuture = new Land.fromWeightedThemes(themes, session);
+        return new Land.fromWeightedThemes(themes, session);
 
     }
 
