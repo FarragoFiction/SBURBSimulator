@@ -1378,10 +1378,13 @@ class Player extends GameEntity {
         List<String> ret = <String>[];
         Iterable<Stat> allStats = Stats.all;
         for (Stat stat in allStats) {
-            double b = this.stats[stat] - this.stats.derive(stat, false);
+            double withbuffs = this.stats.derive(stat); // functionally this.stats[stat]
+            double withoutbuffs = this.stats.derive(stat, (Buff b) => !b.combat);
+            double diff = withbuffs - withoutbuffs;
+            //print("$stat: with: $withbuffs, without: $withoutbuffs, diff: $diff");
             //only say nothing if equal to zero
-            if (b > 0) ret.add("more ${stat.emphaticPositive}");
-            if (b < 0) ret.add("less ${stat.emphaticPositive}");
+            if (diff > 0) ret.add("more ${stat.emphaticPositive}");
+            if (diff < 0) ret.add("less ${stat.emphaticPositive}");
         }
         if (ret.isEmpty) return "";
         return "<br/><br/>${this.htmlTitleHP()} is feeling ${turnArrayIntoHumanSentence(ret)} than normal. ";

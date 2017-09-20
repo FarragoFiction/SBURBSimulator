@@ -73,31 +73,29 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
         return val;
     }
 
-    double derive(Stat stat, [bool buffs = true]) {
+    double derive(Stat stat, [Predicate<Buff> filter = null]) {
         // get the actual base value
         double val = this.getBase(stat).clamp(stat.minBase, stat.maxBase);
 
-        Iterable<Buff> relevantBuffs;
-        if (buffs) {
-            relevantBuffs = this.getBuffsForStat(stat);
-
-            // add any base value from buffs
-            val = this.applyBaseAdditive(stat, val, relevantBuffs);
+        Iterable<Buff> relevantBuffs = this.getBuffsForStat(stat);
+        if (filter != null) {
+            relevantBuffs = relevantBuffs.where(filter);
         }
+
+        // add any base value from buffs
+        val = this.applyBaseAdditive(stat, val, relevantBuffs);
 
         // let the stat do its own baseline modifications
         val = stat.derived(this, val);
 
-        if (buffs) {
-            // additional - additve modifiers
-            val = this.applyAdditional(stat, val, relevantBuffs);
+        // additional - additve modifiers
+        val = this.applyAdditional(stat, val, relevantBuffs);
 
-            // more - multiplicative modifiers
-            val = this.applyMore(stat, val, relevantBuffs);
+        // more - multiplicative modifiers
+        val = this.applyMore(stat, val, relevantBuffs);
 
-            // final flat additives
-            val = this.applyFinalAdditive(stat, val, relevantBuffs);
-        }
+        // final flat additives
+        val = this.applyFinalAdditive(stat, val, relevantBuffs);
 
         val = val.clamp(stat.minDerived, stat.maxDerived);
         return val;
