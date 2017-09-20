@@ -15,7 +15,7 @@ abstract class Loader {
         Formats.init();
     }
 
-    static Future<T> getResource<T, U>(String path, [FileFormat<U, T> format]) async {
+    static Future<T> getResource<T>(String path, [FileFormat<dynamic, T> format]) async {
         if (_resources.containsKey(path)) {
             Resource<dynamic> res = _resources[path];
             if (res is Resource<T>) {
@@ -32,7 +32,7 @@ abstract class Loader {
         }
     }
 
-    static Future<T> _load<T, U>(String path, [FileFormat<U, T> format = null]) {
+    static Future<T> _load<T>(String path, [FileFormat<dynamic, T> format = null]) {
         if(_resources.containsKey(path)) {
             throw "Resource $path has already been requested for loading";
         }
