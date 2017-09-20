@@ -14,6 +14,9 @@ import "Social.dart";
 import "Technology.dart";
 import "Terrible.dart";
 import "Writing.dart";
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 //because "interests" is too easy to misstype to Interest and i am made of typos
 class InterestManager {
@@ -145,26 +148,42 @@ class InterestCategory {
     }
 
     void initializeThemes() {
-            addTheme(new Theme(<String>["Decay","Rot","Death"])
-                ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
-            ,  Theme.LOW);
-            addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
-                ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
-                ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
-                ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
-                ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
-                ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
-                , Theme.LOW);
+        addTheme(new Theme(<String>["Decay","Rot","Death"])
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            ..addFeature(new PreDenizenQuestChain("Revive the Consorts", [
+                new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s are dead. This is....really depressing, actually. "),
+                new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),
+                new Quest("With a satisfying CLICK, the ${Quest.PLAYER1} has solved the final block puzzle.  A wave of energy overtakes the land. There is an immediate chorus of ${Quest.CONSORTSOUND}ing.  The ${Quest.CONSORT}s are alive again!  "),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
+            ,  Theme.HIGH);
+        addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
+            ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
+            ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
+            ..addFeature(new PreDenizenQuestChain("Produce the Goods", [
+                new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have a severe shortage of gears and cogs. It is up to the ${Quest.PLAYER1} to get the assembly lines up and running again. "),
+                new Quest("The ${Quest.PLAYER1} is running around and fixing all the broken down equipment. This sure is tiring! "),
+                new Quest("The ${Quest.PLAYER1} is training the local ${Quest.CONSORT}s to operate the manufacturing equipment. There is ${Quest.CONSORTSOUND}ing and chaos everywhere. "),
+                new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
+            , Theme.HIGH);
 
-            addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
-                ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-                ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-                ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
-                , Theme.LOW); // end theme
+        addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Relax the Consorts", [
+                new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have been too stressed about an impending famine to relax. They vow to help however they can."),
+                new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. "),
+                new Quest("The ${Quest.PLAYER1} finds the foretold RELAXING MIX TAPE and plays it for all the local ${Quest.CONSORT}s, who become so chill they do not even ${Quest.CONSORTSOUND} once. ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
+            , Theme.HIGH); // end theme
     }
 
     @override
