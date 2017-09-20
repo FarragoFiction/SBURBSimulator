@@ -32,6 +32,7 @@ class QuestChainFeature extends Feature {
         appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
         if (quests.isEmpty) {
+            print("I've finished this quest chain!");
             finished = true;
             reward.apply(div, p1, p2);
         }

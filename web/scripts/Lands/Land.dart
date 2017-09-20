@@ -56,6 +56,7 @@ class Land {
     void doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
+        if(currentQuestChain.finished) decideIfTimeForNextChain(p1); //need to mark appropriate bool as completed.
     }
 
     void decideMcGuffins(Player p1) {
@@ -66,6 +67,7 @@ class Land {
     void decideIfTimeForNextChain(Player p1) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
+                print("moving on to next set of quests");
                 firstCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
@@ -96,7 +98,7 @@ class Land {
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     Land.fromWeightedThemes(Map<Theme, double> themes, this.session){
-
+       // print("making a land for session $session");
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         List<Theme> themeList = new List.from(themes.keys);
         Theme strongestTheme = themeList[0];  //for picking name
@@ -114,7 +116,7 @@ class Land {
         Map<Feature, double> denizenFeatures = new Map<Feature, double>();
         //Instead, all you're doing here is collating them.  it's up to future JR to make sure quest chains from class are all post denizen and etc if that's a thing future JR cares about.
         for(Theme t in themes.keys) {
-            print("Theme is $t");
+            //print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
             if(weight > themes[strongestTheme]) {
                 secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
@@ -192,7 +194,7 @@ class Land {
         processDenizenQuests(denFeatures);
         processPostDenizenQuests(postDenFeatures);
         processDenizenFeatures(denizenFeatures);
-        print("Should have gotten predenizen quests");
+        //print("Should have gotten predenizen quests");
     }
 
     void processDenizenFeatures( Map<Feature, double> features) {

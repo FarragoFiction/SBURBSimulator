@@ -1,4 +1,5 @@
 class Feature {
+    static double WAY_HIGH = 15.0;
     static double HIGH = 3.0;
     static double MEDIUM = 2.0;
     static double LOW = 1.0;

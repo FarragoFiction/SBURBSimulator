@@ -21,7 +21,7 @@ class DeadSession extends Session {
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         makeThemes();
-        timeTillReckoning = 100; //pretty long compared to a normal session, but not 16 times longer. what will you do?
+        timeTillReckoning = 200; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
 
     //no reward for your boring bullshit. make quest chains so stupidly long too.
@@ -69,6 +69,25 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Sink the Balls", [
+                new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key.")
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
@@ -77,6 +96,25 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Find the Mines", [
+                new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key.")
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.SUPERHIGH);
 
         addTheme(new Theme(<String>["Solitaire", "Cards"])
@@ -85,6 +123,25 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Remove the Cards", [
+                new Quest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key."),
+                new Quest("The ${Quest.PLAYER1} finds another key.")
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.SUPERHIGH); // end theme
     }
 

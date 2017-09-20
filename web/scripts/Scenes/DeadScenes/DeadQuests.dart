@@ -23,6 +23,7 @@ class DeadQuests extends Scene {
     }
 
     void processMiddleQuests(Element div) {
+        print("doing the middle quests which are whole planets worth of shit");
         /*
            Middle quests consist of  every quest in teh dead session's current land
            then a quest from the next denizen quest, and choosing new current land
@@ -38,13 +39,15 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         //will make a regular player land but with extra themes from the dead session.
         if(ds.numberLandsRemaining >1 ) {
-            ds.currentLand = ds.players[0].spawnLand(ds.themes);
+            ds.currentLand = ds.players[0].spawnLand(ds.themes); //TODO make sure the meta quests are removed from here
         }else {
             ds.currentLand = null;
         }
+        print("choose a child land of ${ds.currentLand.name}");
     }
 
     void introduceSecondPartOfQuests(Element div) {
+        print("introducing teh second part of the quest, where things really open up.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
         //TODO have the first quest in the dead land's denizen quests print out, which should
@@ -58,6 +61,7 @@ class DeadQuests extends Scene {
     }
 
     void processMetaLandIntro(Element div) {
+        print("doing a meta land bullshit quest");
         Player player = session.players[0];
         player.landFuture.initQuest(player);
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
