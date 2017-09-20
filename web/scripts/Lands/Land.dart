@@ -36,13 +36,20 @@ class Land {
     ConsortFeature consortFeature;
     DenizenFeature denizenFeature;
 
-    void doQuest(Element div, Player p1, Player p2) {
+    String initQuest(Player p1) {
         if(symbolicMcguffin == null) decideMcGuffins(p1);
-        if(noMoreQuests) return;
+        if(noMoreQuests) return "";
         //first, do i have a current quest chain?
         if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(p1, firstQuests);
         //ask my quest chain if it's finished. if it is, go to the next set of quest chains
         decideIfTimeForNextChain(p1); //will pick next chain if this is done.
+    }
+
+    String getChapter() {
+        return "<h3>${currentQuestChain.name}, Chapter ${currentQuestChain.chapter}: </h3>";
+    }
+
+    void doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         currentQuestChain.doQuest(p1, p2, denizenFeature.name, consortFeature.name, consortFeature.sound, symbolicMcguffin, physicalMcguffin, div);
     }

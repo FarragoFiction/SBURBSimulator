@@ -22,7 +22,8 @@ class DeadQuests extends Scene {
 
     void processMetaLand(Element div) {
         Player player = session.players[0];
-        String html = "<br><Br>The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} }";
+        player.landFuture.initQuest(player);
+        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
         player.landFuture.doQuest(div, player, null);

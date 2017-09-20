@@ -16,6 +16,7 @@ class QuestChainFeature extends Feature {
     bool finished = false;
     bool started = false;
     Reward reward;
+    int chapter = 1;
 
     QuestChainFeature(this.name, this.quests, this.reward, this.condition);
 
@@ -23,8 +24,9 @@ class QuestChainFeature extends Feature {
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
     void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String mcguffin, String mcguffinPhysical, Element div) {
+        chapter ++;
         String ret = quests.first.doQuest(p1, p2, denizenName, consortName, consortSound, mcguffin, mcguffinPhysical);
-        appendHtml(div, ret);
+        appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
         if (quests.isEmpty) {
             finished = true;
