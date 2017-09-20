@@ -10,30 +10,37 @@ class DeadSession extends Session {
     Map<Theme, double> themes = new Map<Theme, double>();
     int numberLandsRemaining = 16; //can remove some in "the break".
     List<QuestChainFeature> boringBullshit;
+    Player metaPlayer;
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
     DeadSession(int sessionID): super(sessionID) {
+        //have a metaplayer BEFORE you make the bullshit quests.
+        mutator.metaHandler.initalizePlayers(this);
+        metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         makeThemes();
     }
 
     //no reward for your boring bullshit. make quest chains so stupidly long too.
     //also, normally quests will be custom per theme, but not for boring bullshit.
     //http://www.mspaintadventures.com/?s=6&p=007682  thanks to nobody for finding this page for me to be inspired by
+    //Also, since I KNOW this will be called post initialization, I can reference the meta player directly.
     void makeBoringBullshit() {
         boringBullshit = new List<QuestChainFeature>()
         ..add(new PreDenizenQuestChain("Find Bullshit Keys", <Quest>[
+            new Quest("The PLAYER1 discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
             new Quest("The PLAYER1 finds another key under a random ass unlabeled stone."),
-            new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time!"),
+            new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time! That weird ${metaPlayer.chatHandle} makes sure to be an even bigger asshole than normal to compensate."),
             new Quest("test1")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
+            new Quest("The PLAYER1 discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
             new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
             new Quest("The PLAYER1 knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
             new Quest("test1")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
-            new Quest("test1"),
+            new Quest("The PLAYER1 discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
             new Quest("test1"),
             new Quest("test1")
         ], new Reward(), QuestChainFeature.defaultOption));

@@ -185,6 +185,7 @@ class Land {
         processDenizenQuests(denFeatures);
         processPostDenizenQuests(postDenFeatures);
         processDenizenFeatures(denizenFeatures);
+        print("Should have gotten predenizen quests");
     }
 
     void processDenizenFeatures( Map<Feature, double> features) {

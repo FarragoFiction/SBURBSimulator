@@ -854,7 +854,7 @@ class MetaPlayerHandler {
     }
 
     Player makeAW(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.SCRIBE, Aspects.LIFE);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.SCRIBE, Aspects.LIFE);
         player.hair = 56;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#000000";
@@ -892,7 +892,7 @@ class MetaPlayerHandler {
 
     //DM agreed to be our time player
     Player makeDM(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.PRINCE, Aspects.TIME);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.PRINCE, Aspects.TIME);
         player.hair = 29;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
@@ -926,7 +926,7 @@ class MetaPlayerHandler {
 
     //myseriously absent. why would SBURB assign a troll to be the space player for a human session?
     Player makeIO(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.MAGE, Aspects.SPACE);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.MAGE, Aspects.SPACE);
         player.hair = 68;
         player.hairColor = "#000000";
         player.bloodColor = "#0021cb";
@@ -953,7 +953,7 @@ class MetaPlayerHandler {
 
     //made a legit prophecy that could be subverted by stripping.
     Player makeMI(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.BARD, Aspects.DOOM);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.BARD, Aspects.DOOM);
         player.hair = 1;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
@@ -988,7 +988,7 @@ class MetaPlayerHandler {
     }
 
     Player makeNB(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.PAGE, Aspects.BLOOD);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
         player.hair = 67;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
@@ -1022,7 +1022,7 @@ class MetaPlayerHandler {
     }
 
     Player makeWM(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.SYLPH, Aspects.BREATH);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.SYLPH, Aspects.BREATH);
         player.hair = 17;
         player.hairColor = "#800000";
         player.ectoBiologicalSource = 13;
@@ -1063,7 +1063,7 @@ class MetaPlayerHandler {
     }
 
     Player makeRS(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.SEER, Aspects.VOID);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.SEER, Aspects.VOID);
         player.hair = 60;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
@@ -1101,7 +1101,7 @@ class MetaPlayerHandler {
     }
 
     Player makeKR(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.ROGUE, Aspects.DREAM);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.ROGUE, Aspects.DREAM);
         player.hair = 46;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#E8D099";
@@ -1136,7 +1136,7 @@ class MetaPlayerHandler {
     }
 
     Player makePL(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.WITCH, Aspects.VOID);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.WITCH, Aspects.VOID);
         player.hair = 47;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#453012";
@@ -1176,7 +1176,7 @@ class MetaPlayerHandler {
     }
 
     Player makeJR(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.WASTE, Aspects.MIND);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.WASTE, Aspects.MIND);
         player.hair = 13;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#3C1E07";
@@ -1202,7 +1202,7 @@ class MetaPlayerHandler {
     }
 
     Player makeAB(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.GUIDE, Aspects.MIND);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.GUIDE, Aspects.MIND);
         player.hair = 13;
         player.ectoBiologicalSource = 13;
         player.robot = true;
@@ -1229,7 +1229,7 @@ class MetaPlayerHandler {
     }
 
     Player makeABJ(Session s) {
-        Player player = randomPlayerNoDerived(curSessionGlobalVar, SBURBClassManager.SCOUT, Aspects.MIND);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.SCOUT, Aspects.MIND);
         player.hair = 13;
         player.ectoBiologicalSource = 13;
         player.robot = true;
