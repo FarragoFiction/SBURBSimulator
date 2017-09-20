@@ -3,6 +3,8 @@ import "../Quest.dart";
 import "../Reward.dart";
 import "dart:html";
 import "../../SBURBSim.dart";
+import "ConsortFeature.dart";
+import "DenizenFeature.dart";
 
 //if more than one quest chain is assigned to a land then you need to know how to trigger it. use predicate
 //TODO when you print out the text for this allow modulariy, like PLAY THE X (where x is the associated word for the aspect of the main player)
@@ -23,9 +25,10 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
-    void doQuest(Player p1, Player p2, String denizenName, String consortName, String consortSound, String mcguffin, String mcguffinPhysical, Element div) {
+    void doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
         chapter ++;
-        String ret = quests.first.doQuest(p1, p2, denizenName, consortName, consortSound, mcguffin, mcguffinPhysical);
+        //p2 is for interaction effect and also reward.
+        String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
         if (quests.isEmpty) {

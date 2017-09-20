@@ -51,7 +51,7 @@ class Land {
 
     void doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
-        currentQuestChain.doQuest(p1, p2, denizenFeature.name, consortFeature.name, consortFeature.sound, symbolicMcguffin, physicalMcguffin, div);
+        currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
     }
 
     void decideMcGuffins(Player p1) {

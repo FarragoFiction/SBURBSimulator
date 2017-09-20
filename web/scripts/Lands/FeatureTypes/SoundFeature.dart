@@ -29,7 +29,7 @@ class SoundFeature extends Feature {
     //passed in specific can have 'ands' in the middle
     static String randomGoodFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The ${p.htmlTitleBasic()}, is soothed by the sound of $specific.");
+        possibilities.add("The ${p.htmlTitleBasicNoTip()}, is soothed by the sound of $specific.");
         possibilities.add("The joyful sound of $specific fills the air.");
         possibilities.add("In the distance, you can hear the relaxing sound of $specific.");
         return rand.pickFrom(possibilities);
@@ -39,7 +39,7 @@ class SoundFeature extends Feature {
     static String randomBadFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
         possibilities.add("Oh god. Where is that  $specific coming from?");
-        possibilities.add("The ${p.htmlTitleBasic()} is on the verge of snapping from all that fucking $specific.",0.5);
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} is on the verge of snapping from all that fucking $specific.",0.5);
         possibilities.add("You can ALMOST ignore all the $specific that fills the air.");
         return rand.pickFrom(possibilities);
     }

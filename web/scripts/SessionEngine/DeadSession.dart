@@ -11,6 +11,7 @@ class DeadSession extends Session {
     int numberLandsRemaining = 16; //can remove some in "the break".
     List<QuestChainFeature> boringBullshit;
     Player metaPlayer;
+
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
@@ -19,6 +20,7 @@ class DeadSession extends Session {
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         makeThemes();
+        timeTillReckoning = 100; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
 
     //no reward for your boring bullshit. make quest chains so stupidly long too.
@@ -28,21 +30,32 @@ class DeadSession extends Session {
     void makeBoringBullshit() {
         boringBullshit = new List<QuestChainFeature>()
         ..add(new PreDenizenQuestChain("Find Bullshit Keys", <Quest>[
-            new Quest("The PLAYER1 discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
-            new Quest("The PLAYER1 finds another key under a random ass unlabeled stone."),
-            new Quest("Oh, look, another random ass unlabeled stone, another key. The PLAYER1 almost didn't feel despair that time! That weird ${metaPlayer.chatHandle} makes sure to be an even bigger asshole than normal to compensate."),
-            new Quest("test1")
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} finds another key."),
+            new Quest("The ${Quest.PLAYER1} finds another key under a random ass unlabeled stone."),
+            new Quest("Oh, look, another random ass unlabeled stone, another key. The ${Quest.PLAYER1} almost didn't feel despair that time! That weird ${metaPlayer.chatHandle} makes sure to be an even bigger asshole than normal to compensate."),
+            new Quest("The ${Quest.PLAYER1} finds another key."),
+            new Quest("The ${Quest.PLAYER1} finds another key. Wait. No, it turns out it's somehow just a SCULPTURE of a key.  It doesn't fit in the godamned console. "),
+            new Quest("Wait.  What? Really!  It's the final bullshit key! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
-            new Quest("The PLAYER1 discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} finds another bug."),
             new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
-            new Quest("The PLAYER1 knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
-            new Quest("test1")
+            new Quest("The ${Quest.PLAYER1} knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
+            new Quest("The ${Quest.PLAYER1} finds another bug."),
+            new Quest("The ${Quest.PLAYER1} finds yet another bug."),
+            new Quest("The ${Quest.PLAYER1} finds another bug. Wait. No. It was just a rock. God damn it."),
+            new Quest("Wait.  What? Really!  It's the final bug! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
-            new Quest("The PLAYER1 discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the PLAYER1 with how they can't progress until they finish this boring, tedius, STUPID quest."),
-            new Quest("test1"),
-            new Quest("test1")
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a chute to accept rocks. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} finds another rock."),
+            new Quest("Oh look. A rock. But the multiverses biggest asshole, ${metaPlayer.chatHandle} helpfully lets you know that it is not, in fact, ROCKY enough to count.  Marvelous."),
+            new Quest("The ${Quest.PLAYER1} finds another rock."),
+            new Quest("The ${Quest.PLAYER1} finds another rock. Thrilling."),
+            new Quest("The ${Quest.PLAYER1} finds another rock."),
+            new Quest("Wait.  What? Really!  It's the final bullshit rock! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption));
     }
 
@@ -61,6 +74,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             , Theme.SUPERHIGH);
 

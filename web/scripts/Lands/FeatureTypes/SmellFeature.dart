@@ -27,7 +27,7 @@ class SmellFeature extends Feature {
     //passed in specific can have 'ands' in the middle
     static String randomGoodFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The ${p.htmlTitleBasic()} breathes deeply to appreciate the  smell of $specific. ");
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} breathes deeply to appreciate the  smell of $specific. ");
         possibilities.add("The smell of $specific reminds the ${p.htmlTitleBasic()} of their childhood, somehow. ");
         possibilities.add("The intriguing smell of $specific wafts gently in the air. ");
         return rand.pickFrom(possibilities);
@@ -36,7 +36,7 @@ class SmellFeature extends Feature {
     //passed in specific can have 'ands' in the middle
     static String randomBadFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The ${p.htmlTitleBasic()} is almost gagging on the smell of $specific that permeates the air. ");
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} is almost gagging on the smell of $specific that permeates the air. ");
         possibilities.add("The smell of $specific is so thick you can almost taste it. ");
         possibilities.add("The smell of $specific is nearly unbearable. ");
         return rand.pickFrom(possibilities);

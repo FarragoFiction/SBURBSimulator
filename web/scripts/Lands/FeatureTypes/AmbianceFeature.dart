@@ -24,8 +24,8 @@ class AmbianceFeature extends Feature {
     //passed in specific can have 'ands' in the middle
     static String randomGoodFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The ${p.htmlTitleBasic()} is reassured by how $specific it feels.");
-        possibilities.add("The ${p.htmlTitleBasic()} feels right at home with how $specific it feels here. ", 0.5);
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} is reassured by how $specific it feels.");
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} feels right at home with how $specific it feels here. ", 0.5);
         possibilities.add("It feels $specific.  It's pretty great, actually. ");
         return rand.pickFrom(possibilities);
     }
@@ -33,9 +33,9 @@ class AmbianceFeature extends Feature {
     //passed in specific can have 'ands' in the middle
     static String randomBadFlavorText(Random rand, String specific, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The ${p.htmlTitleBasic()} is getting tired of how $specific it feels.", 0.5);
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} is getting tired of how $specific it feels.", 0.5);
         possibilities.add("It's a little unsettling how $specific it feels. ");
-        possibilities.add("The ${p.htmlTitleBasic()} is unnerved with how $specific it feels here.");
+        possibilities.add("The ${p.htmlTitleBasicNoTip()} is unnerved with how $specific it feels here.");
 
         return rand.pickFrom(possibilities);
     }
