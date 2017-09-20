@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import "../SBURBSim.dart";
 import "../formats/Formats.dart";
 import "../includes/path_utils.dart";
 import "resource.dart";
@@ -15,7 +14,7 @@ abstract class Loader {
         Formats.init();
     }
 
-    static Future<T> getResource<T>(String path, [FileFormat<dynamic, T> format]) async {
+    static Future<T> getResource<T>(String path, [FileFormat<T, dynamic> format]) async {
         if (_resources.containsKey(path)) {
             Resource<dynamic> res = _resources[path];
             if (res is Resource<T>) {
@@ -32,7 +31,7 @@ abstract class Loader {
         }
     }
 
-    static Future<T> _load<T>(String path, [FileFormat<dynamic, T> format = null]) {
+    static Future<T> _load<T>(String path, [FileFormat<T, dynamic> format = null]) {
         if(_resources.containsKey(path)) {
             throw "Resource $path has already been requested for loading";
         }

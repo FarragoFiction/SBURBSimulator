@@ -1,12 +1,18 @@
 import "BasicFormats.dart";
 import "FileFormat.dart";
+import "TarManifestFormat.dart";
+
+export "FileFormat.dart";
 
 abstract class Formats {
     static TextFileFormat text;
+    static TarManifestFormat manifest;
 
     static void init() {
         text = new TextFileFormat();
         addMapping(text, "txt");
+
+        manifest = new TarManifestFormat();
     }
 
     static void addMapping(FileFormat<dynamic,dynamic> format, String extension) {
