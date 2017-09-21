@@ -33,9 +33,11 @@ class QuestChainFeature extends Feature {
     void doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
         chapter ++;
         //p2 is for interaction effect and also reward.
+        print("number of quests before is ${quests.length}");
         String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
+        print("number of quests after is ${quests.length}");
         if (quests.isEmpty) {
             print("I've finished this quest chain!");
             finished = true;

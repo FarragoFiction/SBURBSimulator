@@ -75,6 +75,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
                 new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
+                new Quest("With an echoing crash, the planet tumbles into the black hole. The ${Quest.PLAYER1} is really getting the hang of this pool thing."),
                 new Quest("The ${Quest.PLAYER1} finds another key."),
                 new Quest("The ${Quest.PLAYER1} finds another key."),
                 new Quest("The ${Quest.PLAYER1} finds another key."),
@@ -89,8 +90,7 @@ class DeadSession extends Session {
                 new Quest("The ${Quest.PLAYER1} finds another key."),
                 new Quest("The ${Quest.PLAYER1} finds another key."),
                 new Quest("The ${Quest.PLAYER1} finds another key."),
-                new Quest("The ${Quest.PLAYER1} finds another key."),
-                new Quest("The ${Quest.PLAYER1} finds another key.")
+                new Quest("The ${Quest.PLAYER1} sinks the 8 ball! They are officially declared the pool champion! Congratulations! Now, all they need to do is make their way to the finall Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
@@ -163,6 +163,8 @@ class DeadSession extends Session {
 
         players[0] = (randomPlayer(this));
         players[0].deriveLand = false;
+        players[0].relationships.add(new Relationship(players[0], -999, metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
+        metaPlayer.relationships.add(new Relationship(metaPlayer, -999, players[0])); //if you need to talk to anyone, talk to metaplayer.
     }
 
     void makeDeadLand() {

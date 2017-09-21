@@ -34,15 +34,17 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         Land l = (session as DeadSession).currentLand;
         l.initQuest(player);
+        if(l.noMoreQuests || l.currentQuestChain == null) {
+            print("picking next land");
+            chooseChildLand();
+            middleIntermissions(div);
+            return;
+        }
         String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}.  ${l.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
         l.doQuest(div, player, null);
-        if(l.noMoreQuests) {
-            print("picking next land");
-            chooseChildLand();
-            middleIntermissions(div);
-        }
+
     }
 
 

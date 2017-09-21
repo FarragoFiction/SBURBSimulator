@@ -75,6 +75,7 @@ class Land {
                 secondCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, thirdQuests);
             }else{
+                print("no more quests for $name");
                 thirdCompleted = true;
                 noMoreQuests = true;
                 currentQuestChain = null;

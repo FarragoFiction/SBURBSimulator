@@ -3548,3 +3548,9 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  You get a STRIKE! You are officially declared the bowling champion! Congratulations to you! Now, all you need to do
  is make you way to the Denizen Yaldobooger.  You barely even care what sorts of annoying things are in the way, you are
  so close you can TASTE victory.
+
+ ~~~
+
+ Okay muse is in.  I see no crashes at this point with quests, BUT it only does one land of quests and then just stops until the reckoning.
+
+ Need to track that shit down after lunch. Actually there is a few crashes still. bluh.
