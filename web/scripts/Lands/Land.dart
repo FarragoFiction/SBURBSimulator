@@ -87,7 +87,12 @@ class Land {
     QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
         print("Selecting a quest from $source");
         //Step one, check all for condition. if your condition is met , you make it to round 2.
-        WeightedList<QuestChainFeature> valid = source.where((QuestChainFeature c) => c.condition(p1));
+       // WeightedList<QuestChainFeature> valid = (source.where((QuestChainFeature c) => c.condition(p1)).toList() as WeightedList);
+        WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
+        for(QuestChainFeature q in source) {
+            WeightPair<QuestChainFeature> p = source.getPair(source.indexOf(q));
+            if(q.condition(p1)) valid.add(q,  p.weight);
+        }
         return session.rand.pickFrom(valid);
     }
 
