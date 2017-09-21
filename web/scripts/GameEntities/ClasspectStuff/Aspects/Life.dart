@@ -71,9 +71,9 @@ class Life extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.HEALTH, 2, true),
-        new AssociatedStat(Stats.POWER, 1, true),
-        new AssociatedStat(Stats.ALCHEMY, -2, true)
+        new AssociatedStat(Stats.HEALTH, 2.0, true),
+        new AssociatedStat(Stats.POWER, 1.0, true),
+        new AssociatedStat(Stats.ALCHEMY, -2.0, true)
     ]);
 
     Life(int id) :super(id, "Life", isCanon: true);

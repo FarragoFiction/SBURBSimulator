@@ -4,7 +4,7 @@ import "Interest.dart";
 class Romantic extends InterestCategory {
 
     @override
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.RELATIONSHIPS, 2, true)]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.RELATIONSHIPS, 2.0, true)]);
     @override
     List<String> handles1 = <String>["wishful", "matchmaking", "passionate", "kinky", "romantic", "serendipitous", "true", "hearts", "blushing", "precious", "warm", "serenading", "mesmerizing", "mirrored", "pairing", "perverse"];
 

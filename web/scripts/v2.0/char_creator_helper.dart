@@ -495,6 +495,8 @@ class CharacterCreatorHelper {
             return "Graces gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop teaching people to hack my damn code.";
         if (specific == "Guide")
             return "A Guide increases associated aspect in others and starts a lot of it to guide others to. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
+        if (specific == "Muse")
+            return "A Muse is the most passive possible class. They take on all the negatives of their Aspect and give the positives to others. They do not start with a lot of their Aspect.";
 
         return "Class help text not found for " + specific + ".";
     }

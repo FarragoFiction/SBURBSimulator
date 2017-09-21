@@ -70,9 +70,9 @@ class Void extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStatRandom(Stats.pickable, 3, true), //really good at one thing
-        new AssociatedStatRandom(Stats.pickable, -1, true), //hit to another thing.
-        new AssociatedStat(Stats.MIN_LUCK, -1, true), //hit to another thing.
+        new AssociatedStatRandom(Stats.pickable, 3.0, true), //really good at one thing
+        new AssociatedStatRandom(Stats.pickable, -1.0, true), //hit to another thing.
+        new AssociatedStat(Stats.MIN_LUCK, -1.0, true), //hit to another thing.
         new AssociatedStat(Stats.SBURB_LORE, 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 

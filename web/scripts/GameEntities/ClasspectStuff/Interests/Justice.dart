@@ -4,7 +4,7 @@ import "Interest.dart";
 
 class Justice extends InterestCategory {
     @override
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.POWER, 1, true), new AssociatedStat(Stats.HEALTH, 1, true)]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.POWER, 1.0, true), new AssociatedStat(Stats.HEALTH, 1.0, true)]);
     @override
     List<String> handles1 = <String>["karmic", "mysterious", "police", "mind", "keen", "retribution", "saving", "tracking", "hardboiled", "broken", "perceptive", "watching", "searching"];
 

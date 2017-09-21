@@ -5,7 +5,7 @@ class Fantasy extends InterestCategory {
 
 
     @override
-    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.MAX_LUCK, 1, true), new AssociatedStat(Stats.ALCHEMY, 1, true)]);
+    List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[new AssociatedStat(Stats.MAX_LUCK, 1.0, true), new AssociatedStat(Stats.ALCHEMY, 1.0, true)]);
     @override
     List<String> handles1 = <String>["musing", "pacific", "minotaurs", "kappas", "restful", "serene", "titans", "hazy", "best", "peaceful", "witchs", "sylphic", "sylvan", "shivan", "hellkite", "malachite"];
 

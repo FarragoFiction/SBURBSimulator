@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
-import "package:archive/archive_io.dart";
+import "package:archive/archive.dart";
 
 String relPath = "web/";
 RegExp slash = new RegExp("[\\/]");
@@ -12,17 +13,16 @@ void main() {
 }
 
 Future<bool> process() async {
+    print("Reading source manifest");
     Map<String, Set<String>> sourceManifest = readManifest(await readSource());
-
-    print(sourceManifest);
 
     Map<String, Set<String>> manifest = <String, Set<String>>{};
 
-    for (String tar in sourceManifest.keys) {
-        Set<String> files = sourceManifest[tar];
+    for (String bundle in sourceManifest.keys) {
+        Set<String> files = sourceManifest[bundle];
 
-        int split = tar.lastIndexOf(slash)+1;
-        String dir = tar.substring(0, split);
+        int split = bundle.lastIndexOf(slash)+1;
+        String dir = bundle.substring(0, split);
 
         String remdir = "$relPath$dir";
 
@@ -36,14 +36,14 @@ Future<bool> process() async {
                 return (f is File) && p.hasMatch(f.path.split(slash).last);
             }).toList();
 
-            if (!manifest.containsKey(tar)) {
-                manifest[tar] = new Set<String>();
+            if (!manifest.containsKey(bundle)) {
+                manifest[bundle] = new Set<String>();
             }
 
             for (FileSystemEntity f in matching) {
                 String name = f.path.substring(remdir.length);
 
-                manifest[tar].add(name);
+                manifest[bundle].add(name);
             }
         }
     }
@@ -51,8 +51,19 @@ Future<bool> process() async {
     List<String> output = writeManifest(manifest);
     writeManifestFile(output);
 
-    for (String tar in manifest.keys) {
-        writeTar(tar, manifest[tar]);
+    Directory root = Directory.current;
+    List<FileSystemEntity> bundles = root.listSync(recursive: true).where((FileSystemEntity e) => (e is File) && (e.path.endsWith(".bundle"))).toList();
+    for (FileSystemEntity bundle in bundles) {
+        String path = bundle.path.substring(root.path.length + relPath.length + 1).replaceAll("\\", "/").split(".").first;
+
+        if (!manifest.containsKey(path)) {
+            print("Deleting orphaned bundle $path");
+            bundle.delete();
+        }
+    }
+
+    for (String bundle in manifest.keys) {
+        writeBundle(bundle, manifest[bundle]);
     }
 
     return true;
@@ -72,6 +83,7 @@ Future<List<String>> readSource() async {
 }
 
 void writeManifestFile(List<String> lines) {
+    print("Writing manifest file");
     final File manifest = new File("${relPath}manifest/manifest.txt");
 
     IOSink writer = manifest.openWrite();
@@ -86,25 +98,25 @@ void writeManifestFile(List<String> lines) {
 Map<String,Set<String>> readManifest(List<String> lines) {
     Map<String, Set<String>> data = <String, Set<String>>{};
 
-    String tar = null;
+    String bundle = null;
 
     for (int i=1; i<lines.length; i++) {
         String line = lines[i];
 
         if (line.isEmpty) {
             // empty line, not in a block
-            tar = null;
+            bundle = null;
         } else {
-            if (tar == null) {
-                // first non-empty, set tar
-                tar = line.trim();
+            if (bundle == null) {
+                // first non-empty, set bundle
+                bundle = line.trim();
             } else {
                 // subsequent non-empty, add to category
-                if (!data.containsKey(tar)) {
-                    data[tar] = new Set<String>();
+                if (!data.containsKey(bundle)) {
+                    data[bundle] = new Set<String>();
                 }
 
-                data[tar].add(line.trim());
+                data[bundle].add(line.trim());
             }
         }
     }
@@ -115,11 +127,11 @@ Map<String,Set<String>> readManifest(List<String> lines) {
 List<String> writeManifest(Map<String,Set<String>> data) {
     List<String> lines = <String>[];
 
-    lines..add("SBURBSim Tar Manifest")..add("");
+    lines..add("SBURBSim Bundle Manifest")..add("");
 
-    for (String tar in data.keys) {
-        lines.add(tar);
-        for (String file in data[tar]) {
+    for (String bundle in data.keys) {
+        lines.add(bundle);
+        for (String file in data[bundle]) {
             lines.add("    $file");
         }
         lines.add("");
@@ -128,17 +140,24 @@ List<String> writeManifest(Map<String,Set<String>> data) {
     return lines;
 }
 
-void writeTar(String path, Iterable<String> files) {
-    TarFileEncoder encoder = new TarFileEncoder();
+Future<bool> writeBundle(String path, Iterable<String> files) async {
+    print("Creating bundle $path with ${files.length} files");
+    ZipEncoder encoder = new ZipEncoder();
 
     String dirpath = "$relPath${path.substring(0,path.lastIndexOf(slash)+1)}";
-    String fullpath = "$relPath$path.tar";
+    String fullpath = "$relPath$path.bundle";
 
-    encoder.open(fullpath);
+    Archive archive = new Archive();
 
     for (String file in files) {
-        encoder.addFile(new File("$dirpath$file"), file);
+        File f = new File("$dirpath$file");
+        int len = f.lengthSync();
+        archive.addFile(new ArchiveFile(file, len, await f.readAsBytes()));
     }
 
-    encoder.close();
+    Uint8List compressed = encoder.encode(archive);
+    File out = new File(fullpath);
+    out.writeAsBytes(compressed, flush: true);
+
+    return true;
 }

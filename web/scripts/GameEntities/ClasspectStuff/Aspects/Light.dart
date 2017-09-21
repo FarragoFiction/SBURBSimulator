@@ -73,10 +73,10 @@ class Light extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.MAX_LUCK, 2, true),
-        new AssociatedStat(Stats.FREE_WILL, 1, true),
-        new AssociatedStat(Stats.SANITY, -1, true),
-        new AssociatedStat(Stats.HEALTH, -1, true),
+        new AssociatedStat(Stats.MAX_LUCK, 2.0, true),
+        new AssociatedStat(Stats.FREE_WILL, 1.0, true),
+        new AssociatedStat(Stats.SANITY, -1.0, true),
+        new AssociatedStat(Stats.HEALTH, -1.0, true),
         new AssociatedStat(Stats.SBURB_LORE, 0.2, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 

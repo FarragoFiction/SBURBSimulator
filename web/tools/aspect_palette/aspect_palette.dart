@@ -44,10 +44,23 @@ void main() {
 
     Loader.init();
 
-    new Future<String>(() async {
-       String s = await Loader.getResource("../hello_world.txt");
-       print(s);
-    });
+    Loader.getResource("manifest/testtext.txt").then(print);
+
+    Loader.getResource("images/Hair/hair7.png").then((ImageElement img) => stuff.append(img));
+
+    WeightedList<String> testlist = new WeightedList<String>()
+    ..add("one", 1.0)
+    ..add("two", 2.0)
+    ..add("three", 3.0)
+    ..add("four", 4.0);
+
+    Iterable<String> where = testlist.where((String s) => s.length < 4);
+    print(where.runtimeType);
+
+    List<String> other = where.toList();
+    print(other.runtimeType);
+
+    print(other);
 }
 
 void checkLABRanges() {

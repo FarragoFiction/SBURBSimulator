@@ -77,10 +77,10 @@ class Doom extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.ALCHEMY, 2, true),
-        new AssociatedStat(Stats.FREE_WILL, 1, true),
-        new AssociatedStat(Stats.MIN_LUCK, -1, true),
-        new AssociatedStat(Stats.HEALTH, -1, true),
+        new AssociatedStat(Stats.ALCHEMY, 2.0, true),
+        new AssociatedStat(Stats.FREE_WILL, 1.0, true),
+        new AssociatedStat(Stats.MIN_LUCK, -1.0, true),
+        new AssociatedStat(Stats.HEALTH, -1.0, true),
         new AssociatedStat(Stats.SBURB_LORE, 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 

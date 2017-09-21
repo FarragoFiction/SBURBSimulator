@@ -35,10 +35,7 @@ class Logger {
 
     /// Pretties up the output
     String _format(LogLevel level, Object arg) {
-        //DateTime now = new DateTime.now();
-        //String timestamp = "${now.hour.toString().padLeft(2,"0")}:${now.minute.toString().padLeft(2,"0")}:${now.second.toString().padLeft(2,"0")}";
-        String timestamp = "";//seeing if this is what is slowing AB down so much.
-        return "[$timestamp](${this.name})[${level.toString().split(".").last}]: $arg";
+        return "(${this.name})[${level.toString().split(".").last}]: $arg";
     }
 
     /// Gets the console method for a LogLevel

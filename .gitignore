@@ -11,3 +11,7 @@ pubspec.lock
 
 # Directory created by dartdoc
 doc/api/
+
+# No need to push bundles or the manifest I guess - those can be generated simply enough
+*.bundle
+web/manifest/manifest.txt

@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "FileFormat.dart";
 
 class TextFileFormat extends StringFileFormat<String> {
@@ -6,10 +8,10 @@ class TextFileFormat extends StringFileFormat<String> {
     String mimeType() => "text/plain";
 
     @override
-    String read(String input) => input;
+    Future<String> read(String input) async => input;
 
     @override
-    String write(String data) => data;
+    Future<String> write(String data) async => data;
 
     @override
     String header() => "";

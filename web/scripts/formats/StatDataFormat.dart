@@ -1,3 +1,4 @@
+import "dart:async";
 import 'dart:typed_data';
 
 import '../GameEntities/Stats/sampler/statsampler.dart';
@@ -20,7 +21,7 @@ abstract class StatDataFormat extends BinaryFileFormat<Iterable<DataPoint>> {
     String header() => "SimStat$version";
 
     @override
-    ByteBuffer write(Iterable<DataPoint> data) {
+    Future<ByteBuffer> write(Iterable<DataPoint> data) async {
         ByteBuilder builder = new ByteBuilder();
 
         builder.appendAllBytes(header().codeUnits);
@@ -38,7 +39,7 @@ abstract class StatDataFormat extends BinaryFileFormat<Iterable<DataPoint>> {
     void writeDataPoint(ByteBuilder builder, DataPoint data);
 
     @override
-    List<DataPoint> read(ByteBuffer buffer) {
+    Future<List<DataPoint>> read(ByteBuffer buffer) async {
         ByteReader reader = new ByteReader(buffer);
 
         //print("${header()}: ${header().codeUnits.map((int i) => "0x${i.toRadixString(16).padLeft(2,"0")}")}");
