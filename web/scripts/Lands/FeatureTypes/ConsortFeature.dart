@@ -20,7 +20,7 @@ class ConsortFeature extends Feature {
     //passed in specific can have 'ands' in the middle
      String randomNeutralFlavorText(Random rand, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();
-        possibilities.add("The local ${name}s beging flipping the fuck out. Do they ever stop ${sound}ing?");
+        possibilities.add("The local ${name}s begin flipping the fuck out. Do they ever stop ${sound}ing?");
         possibilities.add("A local ${name} shows up wearing some bedsheets and  ${sound}ing up a storm. You're not sure you want to know. ");
         possibilities.add("With a loud ${sound.toUpperCase()} a local $name falls over, comically. Adorable.",0.3);
         return rand.pickFrom(possibilities);

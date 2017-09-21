@@ -12,7 +12,7 @@ import "../SBURBSim.dart";
            `.-..........................................................................................................................-.`
            `......:-....-::::::::::----:++++++++++++++oo+++::::::::::::::...::::::::::::::---------::::::::::::::::::::::::::-....-:......`
            `.-..../.                 -ohddddddddddddddddddhh+`           `.`                                                      ./....-.`
-           `......+.              .+yhddddddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
+           `......+.              .+yhdddxdddddddddddddmmmmmddy.          `.`                            `     `                   .+......`
        `````.-....+.           `:shddddddddddddddddmNNNNNNNNmdy.         `.``.+o+.`  `.oo/.           .sh   .sh                   .+....-.` ```
      ```   `......+.         -ohdddddddddddddddmmNNNNNNNNNNNNmdy`        `.`  +d+      sd:             yd    yd                   .+......`   ```
      ```   `.:....+.         .yddddddddddddmmddNNNNmshNNNNmmNNmdo        `.`  +d+      sd-    ---:.    yd    yd    `---:.         .+....:.`    ```
@@ -611,7 +611,7 @@ class UpdateShippingGrid extends Scene{
 		////session.logger.info("Chosen Shipper: ${this.chosenShipper.player}");
 		session.removeAvailablePlayer(chosenShipper.player);
 		this.chosenShipper.player.increasePower();
-		String shippingStyle = "They like the concillitory ships best, and default to those for people not yet in a quadrant.";
+		String shippingStyle = "They like the conciliatory ships best, and default to those for people not yet in a quadrant.";
 		if(this.chosenShipper.player.aspect == Aspects.HEART) shippingStyle = "They like the concupiscient ships best, and default to those for people not yet in a quadrant.";
 		String fuckPile = "";
 		if(this.chosenShipper.savedShipText.length > 4000){

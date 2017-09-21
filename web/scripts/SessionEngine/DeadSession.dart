@@ -35,7 +35,7 @@ class DeadSession extends Session {
     void makeBoringBullshit() {
         boringBullshit = new List<QuestChainFeature>()
         ..add(new PreDenizenQuestChain("Find Bullshit Keys", <Quest>[
-            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedious, STUPID quest."),
             new Quest("The ${Quest.PLAYER1} finds another key."),
             new Quest("The ${Quest.PLAYER1} finds another key under a random ass unlabeled stone."),
             new Quest("Oh, look, another random ass unlabeled stone, another key. The ${Quest.PLAYER1} almost didn't feel despair that time! That weird ${metaPlayer.chatHandle} makes sure to be an even bigger asshole than normal to compensate."),
@@ -44,7 +44,7 @@ class DeadSession extends Session {
             new Quest("Wait.  What? Really!  It's the final bullshit key! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
-            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedious, STUPID quest."),
             new Quest("The ${Quest.PLAYER1} finds another bug."),
             new Quest("Holy fuck, just...hold still you asshole bugs! How are you supposed to count these things?"),
             new Quest("The ${Quest.PLAYER1} knocks over the jar containing the counted bugs. OH MY FUCKING GOD they have to start back over."),
@@ -54,7 +54,7 @@ class DeadSession extends Session {
             new Quest("Wait.  What? Really!  It's the final bug! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Collect Bullshit Rocks", <Quest>[
-            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a chute to accept rocks. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedius, STUPID quest."),
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a chute to accept rocks. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedious, STUPID quest."),
             new Quest("The ${Quest.PLAYER1} finds another rock."),
             new Quest("Oh look. A rock. But the multiverses biggest asshole, ${metaPlayer.chatHandle} helpfully lets you know that it is not, in fact, ROCKY enough to count.  Marvelous."),
             new Quest("The ${Quest.PLAYER1} finds another rock."),
