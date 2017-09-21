@@ -12,6 +12,18 @@ class Sage extends SBURBClass {
     @override
     List<String> handles = ["serious", "sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = true;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = true;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

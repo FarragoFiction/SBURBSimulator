@@ -126,6 +126,14 @@ class SBURBClass {
     bool isCanon = false; //you gotta earn canon, baby.
     bool isInternal = false; //if you're an internal aspect or class you shouldn't show up in lists.
 
+    //for quests and shit, assume canon classes pick ONE of these and fanon can pick two
+    bool isProtective = false;
+    bool isSmart = false;
+    bool isSneaky = false;
+    bool isMagical = false;
+    bool isDestructive = false;
+    bool isHelpful = false;
+
 
     SBURBClass(this.name, this.id, this.isCanon,{ this.isInternal = false}) {
         this.savedName = name;

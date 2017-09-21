@@ -11,6 +11,19 @@ class Seer extends SBURBClass {
     @override
     List<String> handles = ["sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = true;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
     Seer() : super("Seer", 6, true);
 
 

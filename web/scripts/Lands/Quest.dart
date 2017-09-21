@@ -34,7 +34,8 @@ class Quest {
 //WOULD NEED TO TAKE IN A DENIZEN (NOT JUST A NAME). THEN SPAWN THE DENIZEN BASED ON STRENGTH SETTING AND WITH NAME
 //MAYBE OFFLOAD THE FRAYMOTIF REWARD TO BE A QUEST CHAIN REWARD?
 //TODO also do i want even more types of subquests? maybe ones that change the world in addition to printing out some text.
-
+//TODO fights can be failed. if they are failed, then their quest chain shouldn't remove them.
+//let's assume that if  a doQuest returns null, it was failed.
 class BossFight extends Quest {
   BossFight(String text) : super(text);
 }

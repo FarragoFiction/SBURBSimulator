@@ -12,6 +12,19 @@ class Thief extends SBURBClass {
     @override
     List<String> handles = ["talented", "terrible", "talkative", "tenacious", "tried", "torrented"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = true;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
     Thief() : super("Thief", 7, true);
 
     @override

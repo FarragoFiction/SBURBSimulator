@@ -7,6 +7,19 @@ class Grace extends SBURBClass {
     @override
     List<String> handles = <String>["graceful", "gracious", "great", "gratuitous", "greeting", "gloved", "gone"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = true;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = true;
+    @override
+    bool isHelpful = false;
+
     Grace() : super("Grace", 17, false);
 
     @override

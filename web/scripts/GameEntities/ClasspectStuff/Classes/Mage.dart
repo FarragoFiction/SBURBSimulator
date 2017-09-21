@@ -11,6 +11,19 @@ class Mage extends SBURBClass {
     @override
     List<String> handles = ["magnificent", "managerial", "major", "majestic", "mannerly", "malignant", "morbid"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = true;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
     Mage() : super("Mage", 2, true);
 
     @override

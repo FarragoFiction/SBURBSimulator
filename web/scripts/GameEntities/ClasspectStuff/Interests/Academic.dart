@@ -31,11 +31,16 @@ class Academic extends InterestCategory {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
-            ..addFeature(new PreDenizenQuestChain("Shelve the Books", [
+            ..addFeature(new PreDenizenQuestChain("Recover the Books", [
                 new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that underlings stole all the books. "),
                 new Quest("The ${Quest.PLAYER1} has tracked down the book thieves to a nearby dungeon. After some harrowing puzzles and frankly amazing battles, the books are recovered. "),
                 new Quest("The ${Quest.CONSORT} librarian is beside himself and cannot stop ${Quest.CONSORTSOUND}ing. The  ${Quest.PLAYER1} is hailed as a local hero for returning the books!  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ..addFeature(new PreDenizenQuestChain("Shelve the Books", [
+                new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that the Librarian quit and none of the books have been reshelved. "),
+                new Quest("The ${Quest.PLAYER1} decides to volunteer at the library, and beings shelving books. There's a book.  And another book. Oooo, that one looks interesting.... "),
+                new Quest("The ${Quest.PLAYER1} has finally shelved the final book!  They are first in line to begin checking things out, too. Books!  "),
+            ], new FraymotifReward(), QuestChainFeature.playerIsProtectiveClass), Feature.HIGH)
             ,  Theme.HIGH);
     }
 

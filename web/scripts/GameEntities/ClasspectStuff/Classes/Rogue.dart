@@ -14,6 +14,19 @@ class Rogue extends SBURBClass {
     List<String> handles = ["rouge", "radical", "retrobate", "roguish", "retroactive", "robins", "red"];
 
     @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = true;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
+    @override
     bool highHinit() {
         return true;
     }
