@@ -72,9 +72,9 @@ class Hope extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.SANITY, 2, true),
-        new AssociatedStat(Stats.MAX_LUCK, 1, true),
-        new AssociatedStatRandom(Stats.pickable, -2, true)
+        new AssociatedStat(Stats.SANITY, 2.0, true),
+        new AssociatedStat(Stats.MAX_LUCK, 1.0, true),
+        new AssociatedStatRandom(Stats.pickable, -2.0, true)
     ]);
 
     Hope(int id) :super(id, "Hope", isCanon: true);

@@ -80,9 +80,9 @@ class Space extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.ALCHEMY, 2, true),
-        new AssociatedStat(Stats.HEALTH, 1, true),
-        new AssociatedStat(Stats.MOBILITY, -2, true)
+        new AssociatedStat(Stats.ALCHEMY, 2.0, true),
+        new AssociatedStat(Stats.HEALTH, 1.0, true),
+        new AssociatedStat(Stats.MOBILITY, -2.0, true)
     ]);
 
     Space(int id) :super(id, "Space", isCanon: true);

@@ -72,10 +72,10 @@ class Mind extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.FREE_WILL, 2, true),
-        new AssociatedStat(Stats.MIN_LUCK, 1, true),
-        new AssociatedStat(Stats.RELATIONSHIPS, -1, true),
-        new AssociatedStat(Stats.MAX_LUCK, -1, true) //LUCK DO3SN'T M4TT3R!!!
+        new AssociatedStat(Stats.FREE_WILL, 2.0, true),
+        new AssociatedStat(Stats.MIN_LUCK, 1.0, true),
+        new AssociatedStat(Stats.RELATIONSHIPS, -1.0, true),
+        new AssociatedStat(Stats.MAX_LUCK, -1.0, true) //LUCK DO3SN'T M4TT3R!!!
     ]);
 
     Mind(int id) :super(id, "Mind", isCanon: true);

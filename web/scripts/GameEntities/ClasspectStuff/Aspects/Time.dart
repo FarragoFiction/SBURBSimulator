@@ -70,9 +70,9 @@ class Time extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.MIN_LUCK, 2, true),
-        new AssociatedStat(Stats.MOBILITY, 1, true),
-        new AssociatedStat(Stats.FREE_WILL, -2, true)
+        new AssociatedStat(Stats.MIN_LUCK, 2.0, true),
+        new AssociatedStat(Stats.MOBILITY, 1.0, true),
+        new AssociatedStat(Stats.FREE_WILL, -2.0, true)
     ]);
 
     Time(int id) :super(id, "Time", isCanon: true);

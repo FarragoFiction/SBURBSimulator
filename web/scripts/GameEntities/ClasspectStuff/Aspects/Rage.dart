@@ -77,10 +77,10 @@ class Rage extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.POWER, 2, true),
-        new AssociatedStat(Stats.MOBILITY, 1, true),
-        new AssociatedStat(Stats.SANITY, -1, true),
-        new AssociatedStat(Stats.RELATIONSHIPS, -1, true),
+        new AssociatedStat(Stats.POWER, 2.0, true),
+        new AssociatedStat(Stats.MOBILITY, 1.0, true),
+        new AssociatedStat(Stats.SANITY, -1.0, true),
+        new AssociatedStat(Stats.RELATIONSHIPS, -1.0, true),
         new AssociatedStat(Stats.SBURB_LORE, 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
     ]);
 

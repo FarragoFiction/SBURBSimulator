@@ -586,10 +586,10 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 //except for heart, which can use ALL associated stats. (cause none will be from aspect.)
 class AssociatedStat {
     Stat stat;
-    num multiplier;
+    double multiplier;
     bool isFromAspect;
 
-    AssociatedStat(Stat this.stat, num this.multiplier, bool this.isFromAspect) {}
+    AssociatedStat(Stat this.stat, this.multiplier, bool this.isFromAspect) {}
 
     void applyToPlayer(Player player) {
         player.associatedStats.add(new AssociatedStat(this.stat, this.multiplier, this.isFromAspect));
