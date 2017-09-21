@@ -294,6 +294,7 @@ class Aspect {
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Revive the Consorts", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s are dead. This is....really depressing, actually. "),
                 new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),
@@ -306,6 +307,7 @@ class Aspect {
             ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Produce the Goods", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have a severe shortage of gears and cogs. It is up to the ${Quest.PLAYER1} to get the assembly lines up and running again. "),
                 new Quest("The ${Quest.PLAYER1} is running around and fixing all the broken down equipment. This sure is tiring! "),
@@ -318,6 +320,7 @@ class Aspect {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Relax the Consorts", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have been too stressed about an impending famine to relax. They vow to help however they can."),
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. "),

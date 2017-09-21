@@ -38,7 +38,7 @@ class DeadQuests extends Scene {
         appendHtml(div, html);
         //doQuests will append itself.
         l.doQuest(div, player, null);
-        if(player.landFuture.noMoreQuests) {
+        if(l.noMoreQuests) {
             chooseChildLand();
             middleIntermissions(div);
         }
@@ -51,6 +51,8 @@ class DeadQuests extends Scene {
         //will make a regular player land but with extra themes from the dead session.
         if(ds.numberLandsRemaining >1 ) {
             ds.currentLand = ds.players[0].spawnLand();
+            //they aren't denizens for dead session, there can be only one.
+            ds.currentLand.denizenFeature.name = "${ds.currentLand.name} Boss";
         }else {
             ds.currentLand = null;
         }
