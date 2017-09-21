@@ -191,7 +191,7 @@ class Aftermath extends Scene {
 
     void drawMourning(div, dead_player, friend) {
         if (doNotRender) return;
-        var divID = (div.id) + "_" + dead_player.chatHandle;
+        var divID = (div.id) + "_${dead_player.id}";
         String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
         appendHtml(div, canvasHTML);
         var canvasDiv = querySelector("#canvas" + divID);

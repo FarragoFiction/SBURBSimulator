@@ -23,6 +23,11 @@ class QuestChainFeature extends Feature {
     QuestChainFeature(this.name, this.quests, this.reward, this.condition);
 
 
+    @override
+    String toString() {
+        return "${super.toString()}: ${this.name}";
+    }
+
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
     void doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {

@@ -28,7 +28,7 @@ class FraymotifReward extends Reward
     @override
     String text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
     @override
-    String image = "Rewards/no_reward.png";
+    String image = "Rewards/sweetLoot.png";
     @override
     void apply(Element div, Player p1, Player p2) {
         Fraymotif f1 = p1.getNewFraymotif(p2);

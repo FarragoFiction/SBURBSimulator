@@ -71,7 +71,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
-            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
                 new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
@@ -98,7 +98,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
-            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
                 new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
@@ -125,7 +125,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
-            ..addFeature(rand.pickFrom(boringBullshit), Feature.HIGH)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Remove the Cards", [
                 new Quest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land."),
@@ -177,7 +177,7 @@ class DeadSession extends Session {
         chosenThemesForDeadSession[interest1Theme] = player.interest1.category.themes[interest1Theme];
         chosenThemesForDeadSession[interest2Theme] = player.interest2.category.themes[interest2Theme];
         chosenThemesForDeadSession[deadTheme] = themes[deadTheme];
-
+        print("making a dead land. with themes: ${chosenThemesForDeadSession}");
         players[0].landFuture = new Land.fromWeightedThemes(chosenThemesForDeadSession, this);
     }
 

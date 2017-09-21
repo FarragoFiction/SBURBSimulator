@@ -50,7 +50,7 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         //will make a regular player land but with extra themes from the dead session.
         if(ds.numberLandsRemaining >1 ) {
-            ds.currentLand = ds.players[0].spawnLand(ds.themes); //TODO make sure the meta quests are removed from here
+            ds.currentLand = ds.players[0].spawnLand();
         }else {
             ds.currentLand = null;
         }

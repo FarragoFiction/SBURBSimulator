@@ -50,7 +50,7 @@ class Land {
     }
 
     String getChapter() {
-        return "<h3>${currentQuestChain.name}, Chapter ${currentQuestChain.chapter}: </h3>";
+        return "<h3>${currentQuestChain.name}, Part ${currentQuestChain.chapter}: </h3>";
     }
 
     void doQuest(Element div, Player p1, Player p2) {
@@ -87,10 +87,7 @@ class Land {
     QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
         print("Selecting a quest from $source");
         //Step one, check all for condition. if your condition is met , you make it to round 2.
-        WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
-        for(QuestChainFeature q in source) {
-            if(q.condition(p1)) valid.add(q);
-        }
+        WeightedList<QuestChainFeature> valid = source.where((QuestChainFeature c) => c.condition(p1));
         return session.rand.pickFrom(valid);
     }
 
@@ -118,12 +115,14 @@ class Land {
         for(Theme t in themes.keys) {
             //print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
+            print("Weight for theme $t is $weight");
             if(weight > themes[strongestTheme]) {
                 secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
                 strongestTheme = t; //you are the winnar.
             }
             for(Feature f in t.features.keys) {
                 double w = weight * t.features[f];
+                print("weight for feature $f is $w");
                 if(f is SmellFeature) {
                     if(smellsFeatures[f] == null) {
                         smellsFeatures[f] = w;
@@ -207,6 +206,7 @@ class Land {
 
     void processPreDenizenQuests( Map<Feature, double> features) {
         for(PreDenizenQuestChain f in features.keys) {
+            print("pre denizen feature: $f with weight ${features[f]}");
             firstQuests.add(f, features[f]);
         }
     }
