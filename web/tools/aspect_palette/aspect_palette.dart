@@ -10,6 +10,7 @@ import "../../scripts/includes/colour_picker.dart";
 
 
 void main() {
+    Stats.init();
     Element stuff = querySelector("#stuff");
 
     /*Random rand = new Random();

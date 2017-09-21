@@ -39,6 +39,7 @@ class DeadQuests extends Scene {
         //doQuests will append itself.
         l.doQuest(div, player, null);
         if(l.noMoreQuests) {
+            print("picking next land");
             chooseChildLand();
             middleIntermissions(div);
         }

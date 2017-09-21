@@ -71,6 +71,7 @@ class Land {
                 firstCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
+                print("moving on to next set of quests");
                 secondCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(p1, thirdQuests);
             }else{
@@ -86,6 +87,10 @@ class Land {
     // then pick randomly from remainder.
     QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
         print("Selecting a quest from $source");
+        if(source.isEmpty) {
+            currentQuestChain = null;
+            noMoreQuests = true;
+        }
         //Step one, check all for condition. if your condition is met , you make it to round 2.
        // WeightedList<QuestChainFeature> valid = (source.where((QuestChainFeature c) => c.condition(p1)).toList() as WeightedList);
         WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
