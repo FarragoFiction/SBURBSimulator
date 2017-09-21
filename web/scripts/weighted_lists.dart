@@ -66,7 +66,7 @@ abstract class WeightedIterable<T> implements Iterable<T> {
     Iterable<U> map<U>(Mapping<T,U> mapping) => new WeightedMappedIterable<T,U>(this, mapping);
 
     @override
-    List<T> toList({bool growable}) => new WeightedList<T>.from(this, growable: growable);
+    List<T> toList({bool growable = true}) => new WeightedList<T>.from(this, growable: growable);
 }
 
 class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
@@ -85,7 +85,7 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
 
     factory WeightedList.from(Iterable<dynamic> other, {bool growable = true, WeightFunction<T> initialWeightSetter, bool copyPairs = false}) {
         WeightedList<T> list;
-        if (growable) {
+        if (growable == true) {
             list = new WeightedList<T>(initialWeightSetter: initialWeightSetter)..length = other.length;
         } else {
             list = new WeightedList<T>(length: other.length, initialWeightSetter: initialWeightSetter);
@@ -213,6 +213,23 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
 
     @override
     void set length(int val) => _list.length = val;
+
+    // it's bullshit that I have to re-override these but hey it's the simplest way...
+
+    @override
+    Iterable<T> where(Predicate<T> test) => new WeightedWhereIterable<T>(this, test);
+
+    @override
+    Iterable<T> take(int count) => new WeightedTakeIterable<T>(this, count);
+
+    @override
+    Iterable<T> takeWhile(Predicate<T> test) => new WeightedTakeWhileIterable<T>(this, test);
+
+    @override
+    Iterable<U> map<U>(Mapping<T,U> mapping) => new WeightedMappedIterable<T,U>(this, mapping);
+
+    @override
+    List<T> toList({bool growable = true}) => new WeightedList<T>.from(this, growable: growable);
 }
 
 class WeightPair<T> {
@@ -244,6 +261,23 @@ abstract class WrappedWeightedIterable<T> extends WeightedIterable<T> with Itera
 
     @override
     int get length => source.length;
+
+    // it's bullshit that I have to re-override these but hey it's the simplest way...
+
+    @override
+    Iterable<T> where(Predicate<T> test) => new WeightedWhereIterable<T>(this, test);
+
+    @override
+    Iterable<T> take(int count) => new WeightedTakeIterable<T>(this, count);
+
+    @override
+    Iterable<T> takeWhile(Predicate<T> test) => new WeightedTakeWhileIterable<T>(this, test);
+
+    @override
+    Iterable<U> map<U>(Mapping<T,U> mapping) => new WeightedMappedIterable<T,U>(this, mapping);
+
+    @override
+    List<T> toList({bool growable = true}) => new WeightedList<T>.from(this, growable: growable);
 }
 
 class WeightPairIterator<T> extends Iterator<T> {
