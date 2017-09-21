@@ -4,7 +4,7 @@ import '../../scripts/SBURBSim.dart';
 
 void main() {
     //print("test");
-
+    Stats.init();
     Aspects.init();
     SBURBClassManager.init();
 
