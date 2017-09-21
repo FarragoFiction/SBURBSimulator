@@ -51,6 +51,17 @@ Future<bool> process() async {
     List<String> output = writeManifest(manifest);
     writeManifestFile(output);
 
+    Directory root = Directory.current;
+    List<FileSystemEntity> bundles = root.listSync(recursive: true).where((FileSystemEntity e) => (e is File) && (e.path.endsWith(".bundle"))).toList();
+    for (FileSystemEntity bundle in bundles) {
+        String path = bundle.path.substring(root.path.length + relPath.length + 1).replaceAll("\\", "/").split(".").first;
+
+        if (!manifest.containsKey(path)) {
+            print("Deleting orphaned bundle $path");
+            bundle.delete();
+        }
+    }
+
     for (String bundle in manifest.keys) {
         writeBundle(bundle, manifest[bundle]);
     }
