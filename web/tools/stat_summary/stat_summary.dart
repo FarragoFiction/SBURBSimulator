@@ -7,6 +7,7 @@ void main() {
     Stats.init();
     Aspects.init();
     SBURBClassManager.init();
+    InterestManager.init();
 
     Element aspectdiv = querySelector("#aspects");
 
@@ -22,6 +23,14 @@ void main() {
 
     for (SBURBClass clazz in classes) {
         classdiv.append(getClassInfo(clazz));
+    }
+
+    Element interestdiv = querySelector("#interests");
+
+    List<InterestCategory> interests = InterestManager.allCategories.toList()..sort((InterestCategory a, InterestCategory b) => a.name.compareTo(b.name));
+
+    for (InterestCategory interest in interests) {
+        interestdiv.append(getInterestInfo(interest));
     }
 }
 
@@ -240,4 +249,37 @@ Element namedValue(String name, Object value) {
     return new SpanElement()
         ..append(new SpanElement()..className = "toggleTitle"..text = "$name:")
         ..append(new SpanElement()..text = value.toString());
+}
+
+Element getInterestInfo(InterestCategory interest) {
+    DivElement element = new DivElement()
+        ..className="box";
+
+    element.append(new DivElement()
+        ..className = "title"
+        ..style.backgroundColor = "#CCCCCC"
+        ..append(new HeadingElement.h1()
+            ..className="title"
+            ..style.color = "#FFFFFF"
+            ..style.marginLeft = "10px"
+            ..style.marginTop = "19px"
+            ..style.textShadow = "-1px -1px 0px black, -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black, -1px 0px 0px black, 1px 0px 0px black, 0px 1px 0px black, 0px -1px 0px black"
+            ..text = interest.name
+        )
+    );
+
+    element.append(new HeadingElement.h3()
+        ..appendText("id: ${interest.id}")
+    );
+
+    element.append(drawStats(interest.stats));
+
+    element.append(toggleList("Sub-types", interest.interestStrings));
+    element.append(toggleList("Levels", interest.levels));
+    element.append(toggleBox("ChumHandles", new DivElement()..className="section"
+        ..append(toggleList("First", interest.handles1))
+        ..append(toggleList("Second", interest.handles2))
+    ));
+
+    return element;
 }
