@@ -13,20 +13,25 @@ abstract class FileFormat<T,U> {
 
     bool identify(U data);
 
-    U write(T data);
-    T read(U input);
+    Future<U> write(T data);
+    Future<T> read(U input);
 
-    String dataToDataURI(U data);
-    String objectToDataURI(T object) => dataToDataURI(write(object));
+    Future<U> fromBytes(ByteBuffer buffer);
+
+    Future<String> dataToDataURI(U data);
+    Future<String> objectToDataURI(T object) async => dataToDataURI(await write(object));
 
     Future<U> readFromFile(File file);
-    Future<U> requestFromUrl(String url);
+    Future<T> readObjectFromFile(File file) async => read(await readFromFile(file));
 
-    static Element loadButton<T,U>(FileFormat<T,U> format, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
+    Future<U> requestFromUrl(String url);
+    Future<T> requestObjectFromUrl(String url) async => read(await requestFromUrl(url));
+
+    static Future<Element> loadButton<T,U>(FileFormat<T,U> format, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
         return loadButtonVersioned(<FileFormat<T,U>>[format], callback, multiple:multiple, caption:caption);
     }
 
-    static Element loadButtonVersioned<T,U>(List<FileFormat<T,U>> formats, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
+    static Future<Element> loadButtonVersioned<T,U>(List<FileFormat<T,U>> formats, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) async {
         Element container = new DivElement();
 
         FileUploadInputElement upload = new FileUploadInputElement()..style.display="none"..multiple=multiple;
@@ -38,7 +43,7 @@ abstract class FileFormat<T,U> {
                 for (FileFormat<T, U> format in formats) {
                     U output = await format.readFromFile(file);
                     if (output != null) {
-                        callback(format.read(output));
+                        callback(await format.read(output));
                         break;
                     }
                 }
@@ -69,7 +74,10 @@ abstract class BinaryFileFormat<T> extends FileFormat<T,ByteBuffer> {
     }
 
     @override
-    String dataToDataURI(ByteBuffer buffer) {
+    Future<ByteBuffer> fromBytes(ByteBuffer buffer) async => buffer;
+
+    @override
+    Future<String> dataToDataURI(ByteBuffer buffer) async {
         return Url.createObjectUrlFromBlob(new Blob(<dynamic>[buffer.asUint8List()], mimeType()));
     }
 
@@ -88,7 +96,6 @@ abstract class BinaryFileFormat<T> extends FileFormat<T,ByteBuffer> {
     Future<ByteBuffer> requestFromUrl(String url) async {
         Completer<ByteBuffer> callback = new Completer<ByteBuffer>();
         HttpRequest.request(url, responseType: "arraybuffer", mimeType: this.mimeType()).then((HttpRequest request) {
-            print(request.response.runtimeType);
             callback.complete((request.response as ByteBuffer));
         });
         return callback.future;
@@ -100,7 +107,17 @@ abstract class StringFileFormat<T> extends FileFormat<T,String> {
     bool identify(String data) => data.startsWith(header());
 
     @override
-    String dataToDataURI(String content) {
+    Future<String> fromBytes(ByteBuffer buffer) async {
+        StringBuffer sb = new StringBuffer();
+        Uint8List ints = buffer.asUint8List();
+        for (int i in ints) {
+            sb.writeCharCode(i);
+        }
+        return sb.toString();
+    }
+
+    @override
+    Future<String> dataToDataURI(String content) async {
         return new Uri.dataFromString(content, encoding:UTF8, base64:true).toString();
     }
 

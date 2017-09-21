@@ -44,10 +44,9 @@ void main() {
 
     Loader.init();
 
-    new Future<String>(() async {
-       String s = await Loader.getResource("../hello_world.txt");
-       print(s);
-    });
+    Loader.getResource("manifest/testtext.txt").then(print);
+
+    Loader.getResource("images/Hair/hair7.png").then((ImageElement img) => stuff.append(img));
 }
 
 void checkLABRanges() {

@@ -1,4 +1,4 @@
-SBURBSim Tar Manifest
+SBURBSim Bundle Manifest
 
 images/Hair/hair
     hair1.png
@@ -163,4 +163,8 @@ images/Bodies/baby
     grub1.png
     grub2.png
     grub3.png
+
+manifest/test
+    testtext.txt
+    testtext2.txt
 

@@ -1,18 +1,30 @@
 import "BasicFormats.dart";
 import "FileFormat.dart";
-import "TarManifestFormat.dart";
+import "ImageFormats.dart";
+import "ZipFormat.dart";
+import "BundleManifestFormat.dart";
 
 export "FileFormat.dart";
 
 abstract class Formats {
     static TextFileFormat text;
-    static TarManifestFormat manifest;
+    static BundleManifestFormat manifest;
+    static ZipFormat zip;
+
+    static PngFileFormat png;
 
     static void init() {
         text = new TextFileFormat();
         addMapping(text, "txt");
 
-        manifest = new TarManifestFormat();
+        manifest = new BundleManifestFormat();
+
+        zip = new ZipFormat();
+        addMapping(zip, "zip");
+        addMapping(zip, "bundle");
+
+        png = new PngFileFormat();
+        addMapping(png, "png");
     }
 
     static void addMapping(FileFormat<dynamic,dynamic> format, String extension) {

@@ -7,3 +7,7 @@ images/Hair/hair
 images/Bodies/baby
     baby\d*.png
     grub\d*.png
+
+manifest/test
+    testtext.txt
+    testtext2.txt

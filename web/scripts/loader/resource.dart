@@ -17,6 +17,7 @@ class Resource<T> {
     }
 
     void populate(T item) {
+        print("populate $path");
         if (this.object != null) {
             throw "Resource ($path) already loaded";
         }

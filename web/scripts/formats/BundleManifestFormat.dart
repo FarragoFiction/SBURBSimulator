@@ -1,33 +1,35 @@
+import "dart:async";
+
 import "../SBURBSim.dart";
 
-import "TarManifest.dart";
+import "BundleManifest.dart";
 
-class TarManifestFormat extends StringFileFormat<TarManifest> {
+class BundleManifestFormat extends StringFileFormat<BundleManifest> {
 
     @override
     String mimeType() => "text/plain";
 
     @override
-    TarManifest read(String input) {
+    Future<BundleManifest> read(String input) async {
         List<String> lines = input.split("\n");
 
-        TarManifest out = new TarManifest();
+        BundleManifest out = new BundleManifest();
 
-        String tar = null;
+        String bundle = null;
 
         for (int i=1; i<lines.length; i++) {
             String line = lines[i];
 
-            if (line.isEmpty) {
+            if (line.trim().isEmpty) {
                 // empty line, not in a block
-                tar = null;
+                bundle = null;
             } else {
-                if (tar == null) {
+                if (bundle == null) {
                     // first non-empty, set tar
-                    tar = line.trim();
+                    bundle = line.trim();
                 } else {
                     // subsequent non-empty, add to category
-                    out.add(line.trim(), tar);
+                    out.add(line.trim(), bundle);
                 }
             }
         }
@@ -36,14 +38,14 @@ class TarManifestFormat extends StringFileFormat<TarManifest> {
     }
 
     @override
-    String write(TarManifest data) {
+    Future<String> write(BundleManifest data) async {
         StringBuffer sb = new StringBuffer()
         ..writeln(header())
         ..writeln();
 
-        for (String tar in data.tarFiles) {
-            sb.writeln(tar);
-            for (String file in data.getFilesInTar(tar)) {
+        for (String bundle in data.bundleFiles) {
+            sb.writeln(bundle);
+            for (String file in data.getFilesInBundle(bundle)) {
                 sb..writeln("\t$file");
             }
             sb.writeln();
@@ -53,5 +55,5 @@ class TarManifestFormat extends StringFileFormat<TarManifest> {
     }
 
     @override
-    String header() => "SBURBSim tar manifest";
+    String header() => "SBURBSim Bundle Manifest";
 }
