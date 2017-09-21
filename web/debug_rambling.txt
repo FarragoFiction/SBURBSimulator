@@ -3549,6 +3549,9 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  is make you way to the Denizen Yaldobooger.  You barely even care what sorts of annoying things are in the way, you are
  so close you can TASTE victory.
 
+
+
+
  ~~~
 
  Okay muse is in.  I see no crashes at this point with quests, BUT it only does one land of quests and then just stops until the reckoning.
@@ -3563,3 +3566,10 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
 
  Should I just make a clone of the quest chain and it's quest?  actually, both quest and reward seem to be stateless so....just the chain.
  that's not too bad.
+
+ ~~~~~~
+
+ Okay, I'm fleshing out these first three dead session themes. I probably should just say "is over when no more quests" instead
+ of keeping track of a number. Would be easier than "doing quests in order but when run out of numbers do last quest";
+
+ dunno though yet, will wait till it's time to do the third set of quests (which we know the least amount about).
