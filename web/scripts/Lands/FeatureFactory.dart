@@ -38,6 +38,8 @@ class FeatureFactory {
     static SmellFeature CHLORINESMELL; //LIKE A POOL
     static SmellFeature NOTHINGSMELL; //absence.
     static SmellFeature GUNPOWDERSMELL;
+    static SmellFeature FEETSMELL;
+    static SmellFeature MUSTSMELL;
     static SmellFeature ZOOSMELL;
 
     ////////////////////FEELINGS//////////////////////
@@ -92,10 +94,12 @@ class FeatureFactory {
         BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
         NATURESMELL = new SmellFeature("nature",Feature.GOOD);
         ROTSMELL = new SmellFeature("rot", Feature.BAD);
+        FEETSMELL = new SmellFeature("feet", Feature.BAD);
         OILSMELL = new SmellFeature("oil");
         CHLORINESMELL = new SmellFeature("chlorine");
         NOTHINGSMELL = new SmellFeature("nothing in particular");
         GUNPOWDERSMELL = new SmellFeature("gunpowder");
+        MUSTSMELL = new SmellFeature("must");
         ZOOSMELL = new SmellFeature("zoo animals", Feature.GOOD);//do you get the joke
 
     }

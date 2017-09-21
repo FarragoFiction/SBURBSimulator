@@ -74,7 +74,7 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
-                new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
+                new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
                 new Quest("With an echoing crash, the first planet tumbles into the black hole. "),
                 new Quest("The ${Quest.PLAYER1} is really getting the hang of this stickball thing."),
                 new Quest("Another planet enters the corner pocket."),
@@ -90,9 +90,32 @@ class DeadSession extends Session {
                 new Quest("Another planet enters the shitty black hole. Wow. This is really getting repetitve."),
                 new Quest("Like, you can barely make your eyes focus enough to read these things."),
                 new Quest("Can you imagine having to LIVE through all these shitt planets being destroyed?"),
-                new Quest("The ${Quest.PLAYER1} sinks the 8 ball! They are officially declared the pool champion! Congratulations! Now, all they need to do is make their way to the finall Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
+                new Quest("The ${Quest.PLAYER1} sinks the 8 ball! They are officially declared the pool champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
+
+        addTheme(new Theme(<String>["Bowling","Pins","Heavy Balls", "Gutters"])
+            ..addFeature(FeatureFactory.FEETSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
+            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
+                new Quest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  "),
+                new Quest("With an echoing crash, the first planet knocks over all the pins. "),
+                new Quest("The ${Quest.PLAYER1} gets another strike!"),
+                new Quest("The ${Quest.PLAYER1} almost misses a pin, but a secondary explosion going off on the planet tips it over. "),
+                new Quest("The ${Quest.PLAYER1} gets another strike! This is going surprisingly well, actually.  Maybe planets just inherently make good bowling balls? "),
+                new Quest("The ${Quest.PLAYER1} gets another strike! Wait, don't planets have like, gravity and shit? Maybe they are so good at knocking over pins because of that? "),
+                new Quest("The ${Quest.PLAYER1} gets another strike! You try to look closely to see if some sort of planetary gravitational pull is making it easier to knock over pins."),
+                new Quest("The ${Quest.PLAYER1} gets another strike! Maybe the pins are just REALLY close together compared to 'regulation' bowling. "),
+                new Quest("The ${Quest.PLAYER1} gets another strike! "),
+                new Quest("The ${Quest.PLAYER1} gets another strike! Maybe the game is just straight up rigged then? This is BORING but it's not hard at all."),
+                new Quest("The ${Quest.PLAYER1} gets the final strike!!! They are officially declared the bowling champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ,  Theme.SUPERHIGH);
+
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)

@@ -69,7 +69,7 @@ class DeadQuests extends Scene {
         //TODO have the first quest in the dead land's denizen quests print out, which should
         //explain teh pool/bowling/solitaire/whatever theme.
         player.landFuture.initQuest(player);
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()}  has completed one planet. ";
+        String html = "${player.landFuture.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
         player.landFuture.doQuest(div, player, null);

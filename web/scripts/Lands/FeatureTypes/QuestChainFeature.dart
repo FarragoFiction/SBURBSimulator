@@ -61,6 +61,10 @@ class QuestChainFeature extends Feature {
         return p.class_name == SBURBClassManager.KNIGHT || p.class_name == SBURBClassManager.PAGE;
     }
 
+    static bool playerIsFateAspect(Player p) {
+        return p.aspect == Aspects.DOOM || p.aspect == Aspects.TIME;
+    }
+
     //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
     static bool defaultOption(Player p) {
         return true;

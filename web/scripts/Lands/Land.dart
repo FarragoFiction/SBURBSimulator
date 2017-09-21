@@ -49,8 +49,13 @@ class Land {
         decideIfTimeForNextChain(p1); //will pick next chain if this is done.
     }
 
+    String get shortName {
+        RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
+        return joinMatches(exp.allMatches(name)).toUpperCase();
+    }
+
     String getChapter() {
-        return "<h3>${currentQuestChain.name}, Part ${currentQuestChain.chapter}: </h3>";
+        return "<h3>$shortName ${currentQuestChain.name}, Part ${currentQuestChain.chapter}: </h3>";
     }
 
     void doQuest(Element div, Player p1, Player p2) {
