@@ -14,6 +14,7 @@ abstract class Loader {
 
     static BundleManifest manifest;
     static Map<String, Resource<dynamic>> _resources = <String, Resource<dynamic>>{};
+    static RegExp _slash = new RegExp("[\\/]");
 
     static void init() {
         Formats.init();
@@ -40,8 +41,6 @@ abstract class Loader {
                 String bundle = manifest.getBundleForFile(path);
 
                 if (bundle != null) {
-                    print("File $path is in bundle $bundle");
-
                     _loadBundle(bundle);
                     return _createResource(path).addListener();
                 }
@@ -75,23 +74,19 @@ abstract class Loader {
     }
 
     static Future<bool> _loadBundle(String path) async {
-        print(path);
         Archive bundle = await Loader.getResource("$path.bundle", bypassManifest: true);
 
-        String dir = path.substring(0, path.lastIndexOf("/"));
+        String dir = path.substring(0, path.lastIndexOf(_slash));
 
         for (ArchiveFile file in bundle.files) {
             String extension = file.name.split(".").last;
             FileFormat<dynamic, dynamic> format = Formats.getFormatForExtension(extension);
 
             String fullname = "$dir/${file.name}";
-            print(fullname);
 
             Resource<dynamic> res = _createResource(fullname);
 
             Uint8List data = file.content as Uint8List;
-
-            print(data.sublist(0,8));
 
             format.read(await format.fromBytes(data.buffer)).then(res.populate);
         }

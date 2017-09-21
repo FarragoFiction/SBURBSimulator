@@ -1,4 +1,4 @@
-SBURBSim Tar Manifest
+SBURBSim Bundle Manifest
 
 images/Hair/hair
     hair\d+.png

@@ -13,9 +13,8 @@ void main() {
 }
 
 Future<bool> process() async {
+    print("Reading source manifest");
     Map<String, Set<String>> sourceManifest = readManifest(await readSource());
-
-    print(sourceManifest);
 
     Map<String, Set<String>> manifest = <String, Set<String>>{};
 
@@ -73,6 +72,7 @@ Future<List<String>> readSource() async {
 }
 
 void writeManifestFile(List<String> lines) {
+    print("Writing manifest file");
     final File manifest = new File("${relPath}manifest/manifest.txt");
 
     IOSink writer = manifest.openWrite();
@@ -130,6 +130,7 @@ List<String> writeManifest(Map<String,Set<String>> data) {
 }
 
 Future<bool> writeBundle(String path, Iterable<String> files) async {
+    print("Creating bundle $path with ${files.length} files");
     ZipEncoder encoder = new ZipEncoder();
 
     String dirpath = "$relPath${path.substring(0,path.lastIndexOf(slash)+1)}";
