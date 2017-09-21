@@ -3,6 +3,7 @@ import "../SBURBSim.dart";
 
 
 //there are different sub classes of reward. can get a fraymotif, can get grist, land level, items (post alchemy) minions (post npc).
+//IMPORTANT don't keep state data here.
 class Reward {
     static String PLAYER1 = "PLAYER1TAG";
     static String PLAYER2 = "PLAYER2TAG";

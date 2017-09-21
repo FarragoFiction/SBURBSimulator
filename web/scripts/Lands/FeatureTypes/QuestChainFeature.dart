@@ -28,18 +28,22 @@ class QuestChainFeature extends Feature {
         return "${super.toString()}: ${this.name}";
     }
 
+    QuestChainFeature clone() {
+        return new QuestChainFeature(this.name, this.quests, this.reward, this.condition);
+    }
+
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
     void doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
         chapter ++;
         //p2 is for interaction effect and also reward.
-        print("number of quests before is ${quests.length}");
+        print("$this number of quests before is ${quests.length}");
         String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
-        print("number of quests after is ${quests.length}");
+        print("$this number of quests after is ${quests.length}");
         if (quests.isEmpty) {
-            print("I've finished this quest chain!");
+            print("I've finished quest chain $name!");
             finished = true;
             reward.apply(div, p1, p2);
         }
@@ -67,15 +71,27 @@ class QuestChainFeature extends Feature {
 class PreDenizenQuestChain extends QuestChainFeature {
 
     PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    @override
+    PreDenizenQuestChain clone() {
+        return new PreDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+    }
 }
 
 class DenizenQuestChain extends QuestChainFeature {
 
     DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    @override
+    DenizenQuestChain clone() {
+        return new DenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+    }
 }
 
 class PostDenizenQuestChain extends QuestChainFeature {
 
     PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    @override
+    PostDenizenQuestChain clone() {
+        return new PostDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+    }
 }
 

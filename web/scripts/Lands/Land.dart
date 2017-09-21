@@ -126,14 +126,14 @@ class Land {
         for(Theme t in themes.keys) {
             //print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
-            print("Weight for theme $t is $weight");
+            //print("Weight for theme $t is $weight");
             if(weight > themes[strongestTheme]) {
                 secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
                 strongestTheme = t; //you are the winnar.
             }
             for(Feature f in t.features.keys) {
                 double w = weight * t.features[f];
-                print("weight for feature $f is $w");
+                //print("weight for feature $f is $w");
                 if(f is SmellFeature) {
                     if(smellsFeatures[f] == null) {
                         smellsFeatures[f] = w;
@@ -214,23 +214,23 @@ class Land {
         }
         denizenFeature = session.rand.pickFrom(choices);
     }
-
+    //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.
     void processPreDenizenQuests( Map<Feature, double> features) {
         for(PreDenizenQuestChain f in features.keys) {
             print("pre denizen feature: $f with weight ${features[f]}");
-            firstQuests.add(f, features[f]);
+            firstQuests.add(f.clone(), features[f]);
         }
     }
 
     void processDenizenQuests( Map<Feature, double> features) {
         for(DenizenQuestChain f in features.keys) {
-            secondQuests.add(f, features[f]);
+            secondQuests.add(f.clone(), features[f]);
         }
     }
 
     void processPostDenizenQuests( Map<Feature, double> features) {
         for(PostDenizenQuestChain f in features.keys) {
-            thirdQuests.add(f, features[f]);
+            thirdQuests.add(f.clone(), features[f]);
         }
     }
 

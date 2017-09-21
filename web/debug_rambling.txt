@@ -3554,3 +3554,12 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  Okay muse is in.  I see no crashes at this point with quests, BUT it only does one land of quests and then just stops until the reckoning.
 
  Need to track that shit down after lunch. Actually there is a few crashes still. bluh.
+
+ Okay. *bangs head on desk* I am removing the quests when I should be changing a pointer or some shit. bad JR.
+ It wouldn't be a problem, except the same theme is getting reused for new lands and i should have been able to handle that.
+
+ What do I do here, what if this happens in a multiplayer session? then the same "quest chain" will be happening for multiple players
+ and it will be jumping around.
+
+ Should I just make a clone of the quest chain and it's quest?  actually, both quest and reward seem to be stateless so....just the chain.
+ that's not too bad.

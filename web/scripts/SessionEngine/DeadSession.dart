@@ -165,6 +165,7 @@ class DeadSession extends Session {
         players[0].deriveLand = false;
         players[0].relationships.add(new Relationship(players[0], -999, metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
         metaPlayer.relationships.add(new Relationship(metaPlayer, -999, players[0])); //if you need to talk to anyone, talk to metaplayer.
+        metaPlayer.renderSelf();
     }
 
     void makeDeadLand() {

@@ -30,16 +30,16 @@ class DeadQuests extends Scene {
            then every quest in the now current land, etc.
            when you beat, have dead session numberLandsRemaining decrement.
          */
-        print("doing a meta land bullshit quest");
         Player player = session.players[0];
         Land l = (session as DeadSession).currentLand;
-        l.initQuest(player);
+        if(!l.noMoreQuests) l.initQuest(player);
         if(l.noMoreQuests || l.currentQuestChain == null) {
             print("picking next land");
             chooseChildLand();
             middleIntermissions(div);
             return;
         }
+        print("Not time for a new planet");
         String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}.  ${l.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
