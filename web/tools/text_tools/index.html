@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="../../css/colour_picker.css">
     <script type="application/dart" src="text_tools.dart"></script>
     <script src="packages/browser/dart.js"></script>
+    <style>
+        @font-face {
+            font-family: Alternian;
+            src: url(../../Fonts/Alternian.ttf);
+        }
+    </style>
 </head>
 <body>
     <h1>Gif Words</h1>
@@ -34,5 +40,16 @@
     <button id="shitty_generate"title="Generate" >Make shitty word art</button>
 
     <div id="shitty"></div>
+
+    <h1 style="font-family:Alternian">Alternian</h1>
+    <p>It's just a font, so rendering it is pretty simple.</p>
+    <p><a href="https://fontstruct.com/fontstructions/show/1437143">Credit for the font</a> to Lone on our discord.</p>
+    <input id="alternian_text" title="Text"/><br/>
+    <input id="alternian_size" type="number" min="1" title="Font size" value="50"/><br/>
+    <input id="alternian_colour" type="color" value="#FF0000" title="Text colour"/><input id="alternian_aa" type="checkbox" title="Text Smoothing (Currently does nothing)" checked/><br/>
+    <input id="alternian_background" type="color" value="#000000" title="Background colour"/><input id="alternian_transparent" type="checkbox" title="Transparency"/><br/>
+    <button id="alternian_generate"title="Generate" >Make Alternian text</button>
+
+    <div id="alternian"></div>
 </body>
 </html>

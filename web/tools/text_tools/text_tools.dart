@@ -10,6 +10,7 @@ import '../../scripts/includes/colour_picker.dart';
 void main() {
     setupWordgif();
     setupShittyWordArt();
+    setupAlternian();
 }
 
 void setupWordgif() {
@@ -98,4 +99,64 @@ Gradient getGradientFromValue(String val) {
         return SBAHJGradients.fire;
     }
     return null;
+}
+
+void setupAlternian() {
+    TextInputElement text = querySelector("#alternian_text");
+    NumberInputElement size = querySelector("#alternian_size");
+    InputElement colour = querySelector("#alternian_colour");
+    InputElement background = querySelector("#alternian_background");
+    CheckboxInputElement smooth = querySelector("#alternian_aa");
+    CheckboxInputElement transparent = querySelector("#alternian_transparent");
+
+    ButtonElement generate = querySelector("#alternian_generate");
+
+    Element container = querySelector("#alternian");
+
+    print(colour);
+
+    ColourPicker.create(colour);
+    ColourPicker.create(background);
+
+    generate.onClick.listen((Event e){
+        container.setInnerHtml("");
+        container.append(generateAlternian(text.value, size.valueAsNumber, colour.value, background.value, transparent.checked, smooth.checked));
+    });
+}
+
+Element generateAlternian(String text, int size, String colour, String background, bool transparent, bool smooth) {
+    CanvasElement canvas = new CanvasElement();
+    CanvasRenderingContext2D ctx = canvas.context2D;
+
+    double border = 10.0;
+
+    ctx
+        ..font="${size}px Alternian"
+        ..textBaseline="top";
+
+    print(ctx.font);
+
+    TextMetrics tm = ctx.measureText(text);
+    int width = (border * 2 + tm.width).ceil();
+    int height = (border * 2 + size * 1.2).ceil();
+    int baseline = (border).round();
+
+    canvas..width=width..height=height;
+
+    ctx
+        ..font="${size}px Alternian"
+        ..textBaseline="top";
+
+    if (transparent) {
+        ctx.clearRect(0, 0, width, height);
+    } else {
+        ctx.fillStyle = background;
+        ctx.fillRect(0, 0, width, height);
+    }
+
+    ctx
+        ..fillStyle = colour
+        ..fillText(text, border, baseline);
+
+    return canvas;
 }

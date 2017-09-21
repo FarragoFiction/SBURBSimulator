@@ -7,7 +7,7 @@ import "BundleManifest.dart";
 class BundleManifestFormat extends StringFileFormat<BundleManifest> {
 
     @override
-    String mimeType() => "text/plain";
+    String mimeType() => "application/octet-stream"; // hopefully this will discourage caches of the manifest
 
     @override
     Future<BundleManifest> read(String input) async {
