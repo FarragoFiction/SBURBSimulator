@@ -903,8 +903,8 @@ class Player extends GameEntity {
         return playersMade;
     }
 
-    bool isActive() {
-        return class_name.isActive();
+    bool isActive([double multiplier = 0.0]) {
+        return class_name.isActive(multiplier);
     }
 
 
@@ -1039,7 +1039,7 @@ class Player extends GameEntity {
 
     void processStatPowerIncrease(num powerBoost, AssociatedStat stat) {
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
-        if (this.isActive()) { //modify me
+        if (this.isActive(stat.multiplier)) { //modify me
             this.modifyAssociatedStat(powerBoost, stat);
         } else { //modify others.
             powerBoost = 1 * powerBoost; //to make up for passives being too nerfed. 1 for you

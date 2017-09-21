@@ -1022,7 +1022,7 @@ class MetaPlayerHandler {
     }
 
     Player makeWM(Session s) {
-        Player player = randomPlayerNoDerived(s, SBURBClassManager.SYLPH, Aspects.BREATH);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.MUSE, Aspects.BREATH);
         player.hair = 17;
         player.hairColor = "#800000";
         player.ectoBiologicalSource = 13;

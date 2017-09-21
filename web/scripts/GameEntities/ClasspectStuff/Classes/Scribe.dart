@@ -23,7 +23,7 @@ class Scribe extends SBURBClass {
     }
 
     @override
-    bool isActive() {
+    bool isActive([double multiplier = 0.0]) {
         return true;
     }
 
