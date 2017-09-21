@@ -29,7 +29,7 @@ class QuestChainFeature extends Feature {
     }
 
     QuestChainFeature clone() {
-        return new QuestChainFeature(this.name, this.quests, this.reward, this.condition);
+        return new QuestChainFeature(this.name, new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 
     ///assume first player is the owner of the quest.
@@ -73,7 +73,7 @@ class PreDenizenQuestChain extends QuestChainFeature {
     PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     PreDenizenQuestChain clone() {
-        return new PreDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new PreDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
@@ -82,7 +82,7 @@ class DenizenQuestChain extends QuestChainFeature {
     DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     DenizenQuestChain clone() {
-        return new DenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new DenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
@@ -91,7 +91,7 @@ class PostDenizenQuestChain extends QuestChainFeature {
     PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     PostDenizenQuestChain clone() {
-        return new PostDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
