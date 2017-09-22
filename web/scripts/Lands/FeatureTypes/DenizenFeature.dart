@@ -7,6 +7,7 @@ import "../../SBURBSim.dart";
 class DenizenFeature extends Feature {
     String name;
     int strength; //highest is 13
+    //TODO have them take in a fraymotif as well, to give out in their reward??? or should that be on teh reward and not the boss?
      DenizenFeature(this.name, this.strength);
 
     Denizen makeDenizen(Session s) {

@@ -57,7 +57,7 @@ class DeadQuests extends Scene {
         if(ds.numberLandsRemaining >1 ) {
             ds.currentLand = ds.players[0].spawnLand();
             //they aren't denizens for dead session, there can be only one.
-            ds.currentLand.denizenFeature.name = "${ds.currentLand.name} Boss";
+            ds.currentLand.denizenFeature.name = "${ds.currentLand.shortName} Boss";
         }else {
             ds.currentLand = null;
         }

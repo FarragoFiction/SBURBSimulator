@@ -294,7 +294,6 @@ class Aspect {
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.LOW)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Revive the Consorts", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s are dead. This is....really depressing, actually. "),
                 new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),

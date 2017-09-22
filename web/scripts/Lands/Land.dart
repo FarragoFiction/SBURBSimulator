@@ -121,7 +121,8 @@ class Land {
 
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
-    Land.fromWeightedThemes(Map<Theme, double> themes, this.session){
+    ///pass in an aspect so i can make denizens.
+    Land.fromWeightedThemes(Map<Theme, double> themes, this.session, Aspect a){
        // print("making a land for session $session");
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
@@ -210,16 +211,20 @@ class Land {
         processPreDenizenQuests(preDenFeatures);
         processDenizenQuests(denFeatures);
         processPostDenizenQuests(postDenFeatures);
-        processDenizenFeatures(denizenFeatures);
+        processDenizenFeatures(denizenFeatures,a);
         //print("Should have gotten predenizen quests");
     }
 
-    void processDenizenFeatures( Map<Feature, double> features) {
+    void processDenizenFeatures( Map<Feature, double> features, Aspect a) {
         WeightedList<DenizenFeature> choices = new WeightedList<DenizenFeature>();
         for(DenizenFeature f in features.keys) {
             choices.add(f, features[f]);
         }
         denizenFeature = session.rand.pickFrom(choices);
+        //pick random one from aspect.
+        if(denizenFeature == null) {
+            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3);
+        }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.
     void processPreDenizenQuests( Map<Feature, double> features) {

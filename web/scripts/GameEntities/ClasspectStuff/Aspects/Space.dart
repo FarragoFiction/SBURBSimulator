@@ -1,5 +1,8 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Space extends Aspect {
 
@@ -91,4 +94,35 @@ class Space extends Aspect {
     String activateCataclysm(Session s, Player p) {
         return s.mutator.space(s, p);
     }
+
+    //space quests have only one (FROGS) but it has a shit ton of questchains for every tier at hella high levels
+    //so it overrides any other theme  (yes space players still have frog quests )
+    @override
+    void initializeThemes() {
+        //TODO have different themes that are all still frogs but have different quests attached and graphical stuff (once PL is there)
+        //like, one where you have the thaw the planet, one where you have to drain it, fix a drought, whatever.
+        addTheme(new Theme(<String>["Frogs"])
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.HIGH)
+            ..addFeature(new PreDenizenQuestChain("Learn about Frogs", [
+                new Quest("Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}. "),
+                new Quest("The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame? "),
+                new Quest("The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  "),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest("A wise old ${Quest.CONSORT} tells he ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "),
+                new Quest("The ${Quest.PLAYER1} begins collecting the information needed to meet with ${Quest.DENIZEN}. So many puzzles and dungeons and ${Quest.CONSORTSOUND}ing consorts to shuffle through. "),
+                new Quest("The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.  "),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+            ..addFeature(new PostDenizenQuestChain("Breed the Frogs", [
+                new Quest("The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
+                new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ,  Theme.SUPERHIGH);
+
+    }
+
 }

@@ -61,6 +61,7 @@ class FeatureFactory {
     static SoundFeature SILENCE;
     static SoundFeature NATURESOUND;
     static SoundFeature WHISTLINGGSOUND;
+    static SoundFeature CROAKINGSOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -73,6 +74,7 @@ class FeatureFactory {
         initializeDenizens();
     }
 
+    //premade, important denizens.
     static void initializeDenizens() {
         YALDABAOTHDENIZEN = new DenizenFeature("Yaldabaoth", 13);
     }
@@ -128,6 +130,7 @@ class FeatureFactory {
         CLACKINGSOUND = new SoundFeature("clacking");
         WHISTLINGGSOUND = new SoundFeature("whistling");
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
+        CROAKINGSOUND = new SoundFeature("croaking");
         SILENCE = new SoundFeature("silence");
     }
 

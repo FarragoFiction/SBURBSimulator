@@ -47,6 +47,8 @@ class QuestChainFeature extends Feature {
         String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         //TODO if ret is null, quest was failed. do not remove, need to try again.
         appendHtml(div, "$ret");
+        //only if you win. mostly only used for frogs and grist at this point.
+        p1.increaseLandLevel();
         removeFromArray(quests.first, quests);
         print("$this number of quests after is ${quests.length}");
         if (quests.isEmpty) {

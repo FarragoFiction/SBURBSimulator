@@ -1807,7 +1807,7 @@ class Player extends GameEntity {
         themes[interest1Theme] = interest1.category.themes[interest1Theme];
         themes[interest2Theme] = interest2.category.themes[interest2Theme];
 
-        return new Land.fromWeightedThemes(themes, session);
+        return new Land.fromWeightedThemes(themes, session, aspect);
 
     }
 
