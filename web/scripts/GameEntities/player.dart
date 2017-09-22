@@ -505,7 +505,7 @@ class Player extends GameEntity {
         } else if (this.ghost) {
             ret = "$ret's Ghost";
         }
-        ret = "$ret (${this.chatHandle})";
+
         return ret;
     }
 
@@ -515,7 +515,7 @@ class Player extends GameEntity {
     }
 
     String htmlTitleBasicNoTip() {
-        return "${this.aspect.fontTag()}${this.titleBasic()}</font>";
+        return "${this.aspect.fontTag()}${this.titleBasic()}</font> (<font color = '${getChatFontColor()}'>${chatHandle}</font>)";
     }
 
     //@override
