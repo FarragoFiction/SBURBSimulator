@@ -18,10 +18,10 @@ class DeadSession extends Session {
     num maxTimeTillReckoning = 300;
 
     ///number between 0 and 1 to pass DeadQuests
-    double oddsOfSuccess = 1.0;
+    double oddsOfSuccess = 0.99;
 
     //harsh, but once you fail that's it. no more quests.
-    bool failed;
+    bool failed = false;
 
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
@@ -80,7 +80,7 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
-                new FailableQuest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. ", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
                 new FailableQuest("With an echoing crash, the first planet tumbles into the black hole. ", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} is really getting the hang of this stickball thing.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("Another planet enters the corner pocket.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
@@ -108,7 +108,7 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
-                new FailableQuest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new Quest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  " ),
                 new FailableQuest("With an echoing crash, the first planet knocks over all the pins. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} gets another strike!", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} almost misses a pin, but a secondary explosion going off on the planet tips it over. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
@@ -130,7 +130,7 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
-                new FailableQuest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
                 new FailableQuest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} is about to place their flag down where they think the mine is when ${metaPlayer.chatHandle} starts pestering them. Gah, now they lost their place! Wait....Okay. There you go. Mine secured.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),

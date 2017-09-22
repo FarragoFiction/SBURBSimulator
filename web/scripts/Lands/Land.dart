@@ -62,6 +62,7 @@ class Land {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
         if(currentQuestChain.finished) decideIfTimeForNextChain(p1); //need to mark appropriate bool as completed.
+        print("ret is $ret from $currentQuestChain");
         return ret;
     }
 

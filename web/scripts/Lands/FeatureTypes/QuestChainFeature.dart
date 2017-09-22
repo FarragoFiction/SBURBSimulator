@@ -37,15 +37,13 @@ class QuestChainFeature extends Feature {
     bool doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
         chapter ++;
         //p2 is for interaction effect and also reward.
-
-        //whether you win or not.
+        //whether you win or not, get power
         p1.increasePower();
         if(p2 != null) p2.increasePower();
 
-
         QuestResult result = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         //TODO if ret is null, quest was failed. do not remove, need to try again.
-        appendHtml(div, "$result.text");
+        appendHtml(div, "${result.text}");
         //only if you win. mostly only used for frogs and grist at this point.
         if(result.success) {
             p1.increaseLandLevel();
@@ -54,12 +52,11 @@ class QuestChainFeature extends Feature {
                 print("I've finished quest chain $name!");
                 finished = true;
                 reward.apply(div, p1, p2);
-                return true;
             }
+            return true;
         }else {
             return false;
         }
-        //since i'm not removing the quest, that means you gotta redo it again next time. or just fail if it's a dead session.
     }
 
     static bool playerIsStealthyAspect(Player p) {
