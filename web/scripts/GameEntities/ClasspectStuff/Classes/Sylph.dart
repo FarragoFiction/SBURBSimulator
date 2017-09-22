@@ -12,6 +12,19 @@ class Sylph extends SBURBClass {
     List<String> handles = ["serious", "surly", "sour", "sweet", "stylish", "soaring", "serene", "salacious"];
 
     @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = true;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.SBURB_LORE, 0.1, false)
     ]);

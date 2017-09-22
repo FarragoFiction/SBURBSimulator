@@ -11,6 +11,19 @@ class Waste extends SBURBClass {
     @override
     List<String> handles = <String>["wasteful", "worrying", "wacky", "withering", "worldly", "weighty"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = true;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = true;
+    @override
+    bool isHelpful = false;
+
     Waste() : super("Waste", 12, false);
 
     @override

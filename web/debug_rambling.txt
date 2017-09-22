@@ -3549,6 +3549,9 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  is make you way to the Denizen Yaldobooger.  You barely even care what sorts of annoying things are in the way, you are
  so close you can TASTE victory.
 
+
+
+
  ~~~
 
  Okay muse is in.  I see no crashes at this point with quests, BUT it only does one land of quests and then just stops until the reckoning.
@@ -3563,3 +3566,40 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
 
  Should I just make a clone of the quest chain and it's quest?  actually, both quest and reward seem to be stateless so....just the chain.
  that's not too bad.
+
+ ~~~~~~
+
+ Okay, I'm fleshing out these first three dead session themes. I probably should just say "is over when no more quests" instead
+ of keeping track of a number. Would be easier than "doing quests in order but when run out of numbers do last quest";
+
+ dunno though yet, will wait till it's time to do the third set of quests (which we know the least amount about).
+
+ ~~~~~~~~
+
+ Alright, my two goals here are to make interest/class/aspect quests, as well as to get boss fights hooked up.
+
+ The first is basically just brainstorming/creative writing work.
+
+ Boss fights will be a bit different. Unlike regular quests, boss fights can be failed.
+
+ Right now, my thoughts are that if you do not win the strife, you have to do it again.
+
+ Right this second, quests are just dumb. They do their thing. and nothing else.
+
+ Quest CHAINS handle "remove this quest" and "pay out this reward. "
+
+ First and foremost, I should make each quest you do increase your power. That's how it was before, don't want to make power way lower.
+
+ This means that each time you challenge a boss you are slightly stronger than previously. (more so than just a regular strife would make you).
+
+ Print out something about how you go grind against regular enemies when you are done getting your ass handed to you to justify.
+
+ Okay, so how are the actual mechanics going to work?   Pre-Derse JR was all "okay, if a quest returns null, it failed"...
+
+ This actually makes sense to me. If a quest is failed, you don't remove it from the array, so you have to do it again
+ next time.
+
+ Do I want 'regular' quests to be failable? No.  BUT I DO want the special dead quests to be failable. Can let me control
+ the odds of winning a dead session.
+
+ new DeadQuest(odds, failMsg) maybe? then tweak the odds in dead session.  

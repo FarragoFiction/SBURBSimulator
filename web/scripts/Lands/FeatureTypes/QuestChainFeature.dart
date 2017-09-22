@@ -29,7 +29,7 @@ class QuestChainFeature extends Feature {
     }
 
     QuestChainFeature clone() {
-        return new QuestChainFeature(this.name, this.quests, this.reward, this.condition);
+        return new QuestChainFeature(this.name, new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 
     ///assume first player is the owner of the quest.
@@ -39,6 +39,7 @@ class QuestChainFeature extends Feature {
         //p2 is for interaction effect and also reward.
         print("$this number of quests before is ${quests.length}");
         String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
+        //TODO if ret is null, quest was failed. do not remove, need to try again.
         appendHtml(div, "$ret");
         removeFromArray(quests.first, quests);
         print("$this number of quests after is ${quests.length}");
@@ -54,11 +55,28 @@ class QuestChainFeature extends Feature {
     }
 
     static bool playerIsSneakyClass(Player p) {
-        return p.class_name == SBURBClassManager.ROGUE || p.class_name == SBURBClassManager.THIEF;
+        return p.class_name.isSneaky;
     }
 
     static bool playerIsProtectiveClass(Player p) {
-        return p.class_name == SBURBClassManager.KNIGHT || p.class_name == SBURBClassManager.PAGE;
+        return p.class_name.isProtective;
+    }
+
+    static bool playerIsMagicalClass(Player p) {
+        return p.class_name.isMagical ;
+    }
+    static bool playerIsDestructiveClass(Player p) {
+        return p.class_name.isDestructive ;
+    }
+    static bool playerIsHelpfulClass(Player p) {
+        return p.class_name.isHelpful ;
+    }
+    static bool playerIsSmartClass(Player p) {
+        return p.class_name.isSmart ;
+    }
+
+    static bool playerIsFateAspect(Player p) {
+        return p.aspect == Aspects.DOOM || p.aspect == Aspects.TIME;
     }
 
     //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
@@ -73,7 +91,7 @@ class PreDenizenQuestChain extends QuestChainFeature {
     PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     PreDenizenQuestChain clone() {
-        return new PreDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new PreDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
@@ -82,7 +100,7 @@ class DenizenQuestChain extends QuestChainFeature {
     DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     DenizenQuestChain clone() {
-        return new DenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new DenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
@@ -91,7 +109,7 @@ class PostDenizenQuestChain extends QuestChainFeature {
     PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
     @override
     PostDenizenQuestChain clone() {
-        return new PostDenizenQuestChain(this.name, this.quests, this.reward, this.condition);
+        return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 

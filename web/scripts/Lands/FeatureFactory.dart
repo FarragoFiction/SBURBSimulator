@@ -38,11 +38,14 @@ class FeatureFactory {
     static SmellFeature CHLORINESMELL; //LIKE A POOL
     static SmellFeature NOTHINGSMELL; //absence.
     static SmellFeature GUNPOWDERSMELL;
+    static SmellFeature FEETSMELL;
+    static SmellFeature MUSTSMELL;
     static SmellFeature ZOOSMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
     static AmbianceFeature  CALMFEELING;
+    static AmbianceFeature  STUDIOUSFEELING;
     static AmbianceFeature FRANTICFEELING;
     static AmbianceFeature NOTHINGFEELING;
     static AmbianceFeature ENERGIZINGFEELING;
@@ -92,10 +95,12 @@ class FeatureFactory {
         BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
         NATURESMELL = new SmellFeature("nature",Feature.GOOD);
         ROTSMELL = new SmellFeature("rot", Feature.BAD);
+        FEETSMELL = new SmellFeature("feet", Feature.BAD);
         OILSMELL = new SmellFeature("oil");
         CHLORINESMELL = new SmellFeature("chlorine");
         NOTHINGSMELL = new SmellFeature("nothing in particular");
         GUNPOWDERSMELL = new SmellFeature("gunpowder");
+        MUSTSMELL = new SmellFeature("must");
         ZOOSMELL = new SmellFeature("zoo animals", Feature.GOOD);//do you get the joke
 
     }
@@ -107,6 +112,7 @@ class FeatureFactory {
         FRANTICFEELING = new AmbianceFeature("frantic", Feature.BAD);
         NOTHINGFEELING = new AmbianceFeature("like nothing");
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
+        STUDIOUSFEELING = new AmbianceFeature("studious");
     }
 
     //most sounds are bad sounds

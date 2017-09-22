@@ -13,6 +13,20 @@ class Bard extends SBURBClass {
     @override
     List<String> handles = ["bat","benign", "blissful", "boisterous", "bonkers", "broken", "bizarre", "barking"];
 
+    //for quests and shit
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = true;
+    @override
+    bool isHelpful = false;
+
     Bard() : super("Bard", 9, true);
 
     @override

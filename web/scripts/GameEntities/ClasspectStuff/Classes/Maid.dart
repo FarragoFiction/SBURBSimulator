@@ -11,6 +11,19 @@ class Maid extends SBURBClass {
     @override
     List<String> handles = ["meandering", "motley", "musing", "mischievous", "macabre", "maiden", "morose"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = true;
+
     Maid() : super("Maid", 0, true);
 
     @override

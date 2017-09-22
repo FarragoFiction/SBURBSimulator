@@ -14,6 +14,19 @@ class Prince extends SBURBClass {
     List<String> handles = ["precocious","priceless","proficient","prominent","proper", "perfect", "pantheon"];
 
     @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = true;
+    @override
+    bool isHelpful = false;
+
+    @override
     bool highHinit() {
         return true;
     }

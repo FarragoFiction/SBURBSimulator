@@ -12,6 +12,19 @@ class Muse extends SBURBClass {
     List<String> handles = ["magical", "musing", "majestic", "managerial"];
 
     @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = true;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = true;
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.SBURB_LORE, 0.1, false)
     ]);
@@ -27,7 +40,7 @@ class Muse extends SBURBClass {
     //and vice versa for lord.
     @override
     bool isActive([double multiplier = 0.0]) {
-        if(multiplier <= 0) { //if no stat passed, act active
+        if(multiplier < 0) { //if no stat passed, act passive
            // print("Muse taking in the bad of stat");
             return true; //muse applies it to self if bad.
         }

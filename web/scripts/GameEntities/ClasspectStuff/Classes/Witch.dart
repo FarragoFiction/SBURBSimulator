@@ -13,6 +13,19 @@ class Witch extends SBURBClass {
     List<String> handles = ["wondering", "wonderful", "wacky", "withering", "worldly", "weighty"];
 
     @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = true;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.SBURB_LORE, 0.1, false)
     ]);

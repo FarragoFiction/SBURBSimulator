@@ -12,6 +12,18 @@ class Heir extends SBURBClass {
     @override
     List<String> handles = ["home", "honorable", "humble", "hot", "horrific", "hardened", "havocs"];
 
+    @override
+    bool isProtective = false;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = true;
 
     Heir() : super("Heir", 8, true);
 

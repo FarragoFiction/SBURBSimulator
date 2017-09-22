@@ -13,6 +13,19 @@ class Scout extends SBURBClass {
     List<String> handles = ["surly", "sour", "sweet", "stylish", "soaring", "serene", "salacious"];
 
     @override
+    bool isProtective = true;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = true;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
+    @override
     bool highHinit() {
         return false;
     }

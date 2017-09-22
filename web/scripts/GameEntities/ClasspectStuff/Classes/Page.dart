@@ -13,6 +13,19 @@ class Page extends SBURBClass {
     List<String> handles =  ["passionate","patient","peaceful","perfect","perceptive", "practical", "pathetic"];
 
     @override
+    bool isProtective = true;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
+    @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         if (stat.multiplier > 0) {
             powerBoost = powerBoost * 2;

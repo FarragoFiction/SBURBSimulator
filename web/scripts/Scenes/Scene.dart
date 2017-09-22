@@ -50,12 +50,13 @@ abstract class Scene {
     session.scenes = [new GetWasted(session),new DeadQuests(session),new StartDemocracy(session), new JackBeginScheming(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
     session.scenes.addAll([new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);
-    session.scenes.addAll([ ]); //readd luck and void l8r
+    session.scenes.addAll([new VoidyStuff(session), new LuckStuff(session)]);
+
     session.scenes.addAll([new LevelTheHellUp(session)]);
 
     //make sure kiss, then godtier, then godtierrevival, then any other form of revival.
     //make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
-    session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
+    session.deathScenes = [ new SaveDoomedTimeLine(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
     session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
     //scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)

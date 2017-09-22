@@ -11,6 +11,8 @@ class DeadQuests extends Scene {
     int section = 1;
     DeadQuests(Session session) : super(session);
 
+    //TODO when i do this but for regular sessions will need interaction effects, corruption, and sprites
+    //TODO stop ticking when the player is dead. They can ONLY god tier when they beat their middle Dead Land Quests
     @override
     void renderContent(Element div) {
 
@@ -69,7 +71,7 @@ class DeadQuests extends Scene {
         //TODO have the first quest in the dead land's denizen quests print out, which should
         //explain teh pool/bowling/solitaire/whatever theme.
         player.landFuture.initQuest(player);
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()}  has completed one planet. ";
+        String html = "${player.landFuture.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
         player.landFuture.doQuest(div, player, null);

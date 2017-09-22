@@ -11,6 +11,19 @@ class Knight extends SBURBClass {
     @override
     List<String> handles = ["keen", "knightly", "kooky", "kindred", "kaos",];
 
+    @override
+    bool isProtective = true;
+    @override
+    bool isSmart = false;
+    @override
+    bool isSneaky = false;
+    @override
+    bool isMagical = false;
+    @override
+    bool isDestructive = false;
+    @override
+    bool isHelpful = false;
+
     Knight() : super("Knight", 3, true);
 
     @override
