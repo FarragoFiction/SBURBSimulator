@@ -34,28 +34,32 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
-    void doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
+    bool doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
         chapter ++;
         //p2 is for interaction effect and also reward.
-        print("$this number of quests before is ${quests.length}");
 
         //whether you win or not.
         p1.increasePower();
         if(p2 != null) p2.increasePower();
 
 
-        String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
+        QuestResult result = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         //TODO if ret is null, quest was failed. do not remove, need to try again.
-        appendHtml(div, "$ret");
+        appendHtml(div, "$result.text");
         //only if you win. mostly only used for frogs and grist at this point.
-        p1.increaseLandLevel();
-        removeFromArray(quests.first, quests);
-        print("$this number of quests after is ${quests.length}");
-        if (quests.isEmpty) {
-            print("I've finished quest chain $name!");
-            finished = true;
-            reward.apply(div, p1, p2);
+        if(result.success) {
+            p1.increaseLandLevel();
+            removeFromArray(quests.first, quests);
+            if (quests.isEmpty) {
+                print("I've finished quest chain $name!");
+                finished = true;
+                reward.apply(div, p1, p2);
+                return true;
+            }
+        }else {
+            return false;
         }
+        //since i'm not removing the quest, that means you gotta redo it again next time. or just fail if it's a dead session.
     }
 
     static bool playerIsStealthyAspect(Player p) {

@@ -17,6 +17,12 @@ class DeadSession extends Session {
     @override
     num maxTimeTillReckoning = 300;
 
+    ///number between 0 and 1 to pass DeadQuests
+    double oddsOfSuccess = 1.0;
+
+    //harsh, but once you fail that's it. no more quests.
+    bool failed;
+
     //not to be confused with the land on the player. this would be a pool bar for colors and mayhem
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
@@ -74,23 +80,23 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
-                new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
-                new Quest("With an echoing crash, the first planet tumbles into the black hole. "),
-                new Quest("The ${Quest.PLAYER1} is really getting the hang of this stickball thing."),
-                new Quest("Another planet enters the corner pocket."),
-                new Quest("Oh shit, that one almost didn't make it into the hole.  ${metaPlayer.chatHandle} is probablly yucking it up somewhere."),
-                new Quest("You start to wonder if these things are actually supposed to be challenging?"),
-                new Quest("Isn't actual billiards harder than this?"),
-                new Quest("Another planet enters yet another pocket. Seriously, in real pool you'd be bouncing off other balls and walls and shit."),
-                new Quest("Another planet enters yet another pocket. But you guess in real pool you ALSO get more than once chance to get each ball in."),
-                new Quest("Another planet careens into yet another pocket."),
-                new Quest("Another planet enters yet another pocket. How has this game managed to make EXPLOSIONS boring?"),
-                new Quest("Another planet enters yet another pocket."),
-                new Quest("Another planet enters yet another pocket."),
-                new Quest("Another planet enters the shitty black hole. Wow. This is really getting repetitve."),
-                new Quest("Like, you can barely make your eyes focus enough to read these things."),
-                new Quest("Can you imagine having to LIVE through all these shitt planets being destroyed?"),
-                new Quest("The ${Quest.PLAYER1} sinks the 8 ball! They are officially declared the pool champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
+                new FailableQuest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. ", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("With an echoing crash, the first planet tumbles into the black hole. ", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} is really getting the hang of this stickball thing.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters the corner pocket.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Oh shit, that one almost didn't make it into the hole.  ${metaPlayer.chatHandle} is probablly yucking it up somewhere.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("You start to wonder if these things are actually supposed to be challenging?", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Isn't actual billiards harder than this?", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters yet another pocket. Seriously, in real pool you'd be bouncing off other balls and walls and shit.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters yet another pocket. But you guess in real pool you ALSO get more than once chance to get each ball in.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet careens into yet another pocket.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters yet another pocket. How has this game managed to make EXPLOSIONS boring?", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters yet another pocket.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters yet another pocket.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Another planet enters the shitty black hole. Wow. This is really getting repetitve.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Like, you can barely make your eyes focus enough to read these things.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("Can you imagine having to LIVE through all these shitt planets being destroyed?", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} sinks the 8 ball! They are officially declared the pool champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess)
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
 
@@ -102,17 +108,17 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
-                new Quest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  "),
-                new Quest("With an echoing crash, the first planet knocks over all the pins. "),
-                new Quest("The ${Quest.PLAYER1} gets another strike!"),
-                new Quest("The ${Quest.PLAYER1} almost misses a pin, but a secondary explosion going off on the planet tips it over. "),
-                new Quest("The ${Quest.PLAYER1} gets another strike! This is going surprisingly well, actually.  Maybe planets just inherently make good bowling balls? "),
-                new Quest("The ${Quest.PLAYER1} gets another strike! Wait, don't planets have like, gravity and shit? Maybe they are so good at knocking over pins because of that? "),
-                new Quest("The ${Quest.PLAYER1} gets another strike! You try to look closely to see if some sort of planetary gravitational pull is making it easier to knock over pins."),
-                new Quest("The ${Quest.PLAYER1} gets another strike! Maybe the pins are just REALLY close together compared to 'regulation' bowling. "),
-                new Quest("The ${Quest.PLAYER1} gets another strike! "),
-                new Quest("The ${Quest.PLAYER1} gets another strike! Maybe the game is just straight up rigged then? This is BORING but it's not hard at all."),
-                new Quest("The ${Quest.PLAYER1} gets the final strike!!! They are officially declared the bowling champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.")
+                new FailableQuest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("With an echoing crash, the first planet knocks over all the pins. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike!", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} almost misses a pin, but a secondary explosion going off on the planet tips it over. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! This is going surprisingly well, actually.  Maybe planets just inherently make good bowling balls? ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! Wait, don't planets have like, gravity and shit? Maybe they are so good at knocking over pins because of that? ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! You try to look closely to see if some sort of planetary gravitational pull is making it easier to knock over pins.", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! Maybe the pins are just REALLY close together compared to 'regulation' bowling. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets another strike! Maybe the game is just straight up rigged then? This is BORING but it's not hard at all.", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} gets the final strike!!! They are officially declared the bowling champion! Congratulations! Now, all they need to do is make their way to the final Boss.  The ${Quest.PLAYER1} barely even cares what sorts of annoying things are in the way, they are so close they can TASTE victory.", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess)
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
 
@@ -124,22 +130,22 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
-                new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
-                new Quest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! "),
-                new Quest("The ${Quest.PLAYER1} is about to place their flag down where they think the mine is when ${metaPlayer.chatHandle} starts pestering them. Gah, now they lost their place! Wait....Okay. There you go. Mine secured."),
-                new Quest("The ${Quest.PLAYER1} finds another mine. "),
-                new Quest("The ${Quest.PLAYER1} thinks they have another mine found. All they have to do is figure out if there's 3 empty spots here and 4 on the other planet...then....YES. They place their flag."),
-                new Quest("The ${Quest.PLAYER1} yanks a ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} out of the way before they walk right onto this planet's mine like an asshole."),
-                new Quest("You begin to wonder how many different ways there are to say 'The ${Quest.PLAYER1} finds another mine.'"),
-                new Quest("The ${Quest.PLAYER1} locates another mine."),
-                new Quest("The ${Quest.PLAYER1} discovers a buried explosive device."),
-                new Quest("The ${Quest.PLAYER1} ascertains the location of an additional incendiary device."),
-                new Quest("You smack the Thesaurus out of JR's hand. The ${Quest.PLAYER1} finds another mine."),
-                new Quest("You fondly regard longifcation, which is to say, the beautiful dream of SBURBSim 'too many words' mode. If only it were not too good and pure for this world, then EVERYthing on this page would fear the wrath of JR's thesaurus. In conclusion: The ${Quest.PLAYER1} finds another mine. "),
-                new Quest("${metaPlayer.chatHandle} breaks the ${Quest.PLAYER1} concentration just to ask them about windows98. Another mine is found, regardless. "),
-                new Quest("The ${Quest.PLAYER1} finds another mine. This would be boring if dealing with mines wasn't so nerve wracking."),
-                new Quest("The ${Quest.PLAYER1} finds another mine."),
-                new Quest("The ${Quest.PLAYER1} finds the final mine! Holy shit! They are the winner, it is them!  They press the big red button that has taunted them this entire time, and each planet blows up in turn.  There is a nerveracking moment when the third planet's explosion is delayed, but in the end it pull through. The ${Quest.PLAYER1} is finally done with this shitty section of the game!!!")
+                new FailableQuest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} is about to place their flag down where they think the mine is when ${metaPlayer.chatHandle} starts pestering them. Gah, now they lost their place! Wait....Okay. There you go. Mine secured.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} thinks they have another mine found. All they have to do is figure out if there's 3 empty spots here and 4 on the other planet...then....YES. They place their flag.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} yanks a ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} out of the way before they walk right onto this planet's mine like an asshole.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("You begin to wonder how many different ways there are to say 'The ${Quest.PLAYER1} finds another mine.'", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} locates another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} discovers a buried explosive device.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} ascertains the location of an additional incendiary device.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("You smack the Thesaurus out of JR's hand. The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("You fondly regard longifcation, which is to say, the beautiful dream of SBURBSim 'too many words' mode. If only it were not too good and pure for this world, then EVERYthing on this page would fear the wrath of JR's thesaurus. In conclusion: The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("${metaPlayer.chatHandle} breaks the ${Quest.PLAYER1} concentration just to ask them about windows98. Another mine is found, regardless. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine. This would be boring if dealing with mines wasn't so nerve wracking.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds the final mine! Holy shit! They are the winner, it is them!  They press the big red button that has taunted them this entire time, and each planet blows up in turn.  There is a nerveracking moment when the third planet's explosion is delayed, but in the end it pull through. The ${Quest.PLAYER1} is finally done with this shitty section of the game!!!", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess)
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.SUPERHIGH);
 

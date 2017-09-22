@@ -3603,3 +3603,6 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  the odds of winning a dead session.
 
  new DeadQuest(odds, failMsg) maybe? then tweak the odds in dead session.
+
+ ---
+ before i get lost down that rabbit hole tho....

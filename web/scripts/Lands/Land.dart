@@ -58,10 +58,11 @@ class Land {
         return "<h3>$shortName ${currentQuestChain.name}, Part ${currentQuestChain.chapter}: </h3>";
     }
 
-    void doQuest(Element div, Player p1, Player p2) {
+    bool doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
-        currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
+        bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
         if(currentQuestChain.finished) decideIfTimeForNextChain(p1); //need to mark appropriate bool as completed.
+        return ret;
     }
 
     void decideMcGuffins(Player p1) {

@@ -99,6 +99,7 @@ class Space extends Aspect {
     //so it overrides any other theme  (yes space players still have frog quests )
     @override
     void initializeThemes() {
+        //space player don't get boss fights
         //TODO have different themes that are all still frogs but have different quests attached and graphical stuff (once PL is there)
         //like, one where you have the thaw the planet, one where you have to drain it, fix a drought, whatever.
         addTheme(new Theme(<String>["Frogs"])
@@ -111,7 +112,7 @@ class Space extends Aspect {
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
-                new Quest("A wise old ${Quest.CONSORT} tells he ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "),
+                new Quest("A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "),
                 new Quest("The ${Quest.PLAYER1} begins collecting the information needed to meet with ${Quest.DENIZEN}. So many puzzles and dungeons and ${Quest.CONSORTSOUND}ing consorts to shuffle through. "),
                 new Quest("The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)

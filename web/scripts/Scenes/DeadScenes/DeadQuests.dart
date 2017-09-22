@@ -74,7 +74,7 @@ class DeadQuests extends Scene {
         String html = "${player.landFuture.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
-        player.landFuture.doQuest(div, player, null);
+        if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
     }
 
     void introduceSecondPartOfQuests(Element div) {
@@ -107,6 +107,6 @@ class DeadQuests extends Scene {
 
     @override
     bool trigger(List<Player> playerList) {
-       return session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
+       return !(session as DeadSession).failed && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
     }
 }

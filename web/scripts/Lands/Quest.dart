@@ -1,5 +1,6 @@
 import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
+import "FeatureTypes/QuestChainFeature.dart";
 import "FeatureTypes/DenizenFeature.dart";
 class Quest {
     //not sure if i'll need all of these. just...trying things out.
@@ -16,15 +17,20 @@ class Quest {
 
 
     //passed in everything they need to know to fill in all possible tags.
-    String doQuest(Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
-        String ret = text;
+    QuestResult doQuest(Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+        return replaceTags(true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+    }
+
+    QuestResult replaceTags(bool success, String ret,Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         ret = ret.replaceAll("$PLAYER1", "${p1.htmlTitleBasicNoTip()}");
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         ret = ret.replaceAll("$MCGUFFIN", "${mcguffin}");
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${physicalMcguffin}");
         ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
-        return ret;
+
+
+        return new QuestResult(ret, success);
     }
 
 
@@ -42,4 +48,28 @@ class BossFight extends Quest {
 
 class MiniBossFight extends Quest {
     MiniBossFight(String text) : super(text);
+}
+
+//dead quests can be failed and when you fail them it's game over.
+class FailableQuest extends Quest {
+    double odds;
+    String failureText;
+    ///odds are between 0 and 1, 1 basically means "act like a regular quest", and 0 means insta fail.
+    FailableQuest(String text, this.failureText, this.odds) : super(text);
+
+    //passed in everything they need to know to fill in all possible tags.
+    @override
+    QuestResult doQuest(Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+        if(p1.session.rand.nextDouble() < odds) {
+            return replaceTags(true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        }else {
+            return replaceTags(false, failureText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        }
+    }
+}
+
+class QuestResult {
+    String text;
+    bool success;
+    QuestResult(this.text, this.success);
 }
