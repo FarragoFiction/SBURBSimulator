@@ -41,6 +41,7 @@ class FeatureFactory {
     static SmellFeature FEETSMELL;
     static SmellFeature MUSTSMELL;
     static SmellFeature ZOOSMELL;
+    static SmellFeature SWEATSMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
@@ -59,6 +60,7 @@ class FeatureFactory {
     static SoundFeature CLACKINGSOUND;
     static SoundFeature SILENCE;
     static SoundFeature NATURESOUND;
+    static SoundFeature WHISTLINGGSOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -102,6 +104,7 @@ class FeatureFactory {
         GUNPOWDERSMELL = new SmellFeature("gunpowder");
         MUSTSMELL = new SmellFeature("must");
         ZOOSMELL = new SmellFeature("zoo animals", Feature.GOOD);//do you get the joke
+        SWEATSMELL = new SmellFeature("sweat", Feature.BAD);
 
     }
 
@@ -123,6 +126,7 @@ class FeatureFactory {
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
+        WHISTLINGGSOUND = new SoundFeature("whistling");
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
         SILENCE = new SoundFeature("silence");
     }
