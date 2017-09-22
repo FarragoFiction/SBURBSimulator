@@ -107,17 +107,26 @@ class Land {
         return session.rand.pickFrom(valid);
     }
 
+    void pickName(Map<Theme, double> themes) {
+        WeightedList<Theme> themeList = new WeightedList<Theme>();
+        for(Theme t in themes.keys) {
+            themeList.add(t, themes[t]);
+        }
+        Theme main = session.rand.pickFrom(themeList);
+        themeList.remove(main);
+        Theme secondary = session.rand.pickFrom(themeList);
+        name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(secondary.possibleNames)}";
+    }
+
 
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     Land.fromWeightedThemes(Map<Theme, double> themes, this.session){
        // print("making a land for session $session");
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
-        List<Theme> themeList = new List.from(themes.keys);
-        Theme strongestTheme = themeList[0];  //for picking name
-        Theme secondStrongestTheme = themeList[0];  //for picking name
         //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
         //random modifiers are so interests arne't just flat out ignored 100% of the time.
+        pickName(themes);
         Map<Feature, double> corruptionFeatures = new Map<Feature, double>();
         Map<Feature, double> smellsFeatures = new Map<Feature, double>();
         Map<Feature, double> soundsFeatures = new Map<Feature, double>();
@@ -132,10 +141,6 @@ class Land {
             //print("Theme is $t");
             double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
             //print("Weight for theme $t is $weight");
-            if(weight > themes[strongestTheme]) {
-                secondStrongestTheme = strongestTheme; //previous strongest is num 2 now
-                strongestTheme = t; //you are the winnar.
-            }
             for(Feature f in t.features.keys) {
                 double w = weight * t.features[f];
                 //print("weight for feature $f is $w");
@@ -197,9 +202,6 @@ class Land {
             }
         }//done for loop omg.
 
-        mainTheme = strongestTheme;
-        secondaryTheme = secondStrongestTheme;
-        name = "Land of ${session.rand.pickFrom(mainTheme.possibleNames)} and ${session.rand.pickFrom(secondaryTheme.possibleNames)}";
         processSmells(smellsFeatures);
         processSounds(soundsFeatures);
         processConsorts(session, consortFeatures);

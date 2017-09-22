@@ -73,6 +73,7 @@ class Academic extends InterestCategory {
         addTheme(new Theme(<String>["Flasks","Test Tubes","Chemicals", "Science", "Labs", "Beakers"])
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.CHLORINESMELL, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Test the Hypothesis", [
                 new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
@@ -81,7 +82,7 @@ class Academic extends InterestCategory {
             ], new FraymotifReward(), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Make the Cure", [
                 new Quest("Too many local ${Quest.CONSORT} have fallen ill from a mysterious plague.  Those inflicted are too weak to even ${Quest.CONSORTSOUND}.  It is up to the ${Quest.PLAYER1} to figure out how to cure the disease.  They are provided with a state of the art lab and a team of ...not completely terrible ${Quest.CONSORT}s."),
-                new Quest("The ${Quest.CONSORT} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
+                new Quest("The ${Quest.PLAYER1} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
                 new Quest("Each ${Quest.CONSORT} lines up to receive their ${Quest.PHYSICALMCGUFFIN} injection. The sound of joyful ${Quest.CONSORTSOUND} fills the air. The plague is defeated!  The ${Quest.PLAYER1} has a statue made of them in the town center. "),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Be the Scientist", [

@@ -27,7 +27,7 @@ class FraymotifReward extends Reward
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     @override
-    String text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
+    String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
     @override
     String image = "Rewards/sweetLoot.png";
     @override

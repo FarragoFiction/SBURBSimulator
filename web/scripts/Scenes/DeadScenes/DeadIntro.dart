@@ -13,7 +13,7 @@ class DeadIntro extends Scene {
         Player player = session.players[0];
         (session as DeadSession).makeDeadLand();
         String divID = "deadIntro${session.players[0].id}";
-        String narration = "A wave of destruction heralds the arrival of the ${player.htmlTitle()}. They are the only Player. SBURB was never meant to be single player, and they have activated the secret 'Dead Session' mode as a punishment. Or is it a reward?  ";
+        String narration = "A wave of destruction heralds the arrival of the ${player.htmlTitle()}. They have many INTERESTS, including ${player.interest1.name} and ${player.interest2.name}.  They are the only Player. SBURB was never meant to be single player, and they have activated the secret 'Dead Session' mode as a punishment. Or is it a reward?  ";
         narration += " <Br><br>Skaia is black and lifeless. ";
         narration += "What can they even do now? Is there even a way to win? ";
         narration += " <Br><Br>They stare hopelessly at what was their former planet, now transformed into the ${player.landFuture.name}. ";

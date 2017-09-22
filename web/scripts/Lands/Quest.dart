@@ -8,7 +8,7 @@ class Quest {
     static String CONSORT = "CONSORTTAG";
     static String CONSORTSOUND = "CONSORTSOUNDTAG";
     static String MCGUFFIN = "MCGUFFINTAG";
-    static String PHYSICALMCGUFFIN = "PHYSICALMCGUFFINTAG";
+    static String PHYSICALMCGUFFIN = "TAGPHYSICALMCGUFFIN";
 
     String text;
 
