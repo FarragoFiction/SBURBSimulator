@@ -38,6 +38,12 @@ class QuestChainFeature extends Feature {
         chapter ++;
         //p2 is for interaction effect and also reward.
         print("$this number of quests before is ${quests.length}");
+
+        //whether you win or not.
+        p1.increasePower();
+        if(p2 != null) p2.increasePower();
+
+
         String ret = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
         //TODO if ret is null, quest was failed. do not remove, need to try again.
         appendHtml(div, "$ret");

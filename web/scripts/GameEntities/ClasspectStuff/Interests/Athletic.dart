@@ -54,19 +54,19 @@ class Athletic extends InterestCategory {
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Enter the Dungeon", [
-                new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who had 13 apples, but needs to give them to their 3 children proportionate to their ages.   Oh god. Math. "),
-                new Quest("The ${Quest.PLAYER1} catches some thieves only to discover that robbery is illegal only on days that are prime factors of 1300. Oh god. Math. "),
-                new Quest("The ${Quest.CONSORT}  finds a ${Quest.CONSORT} child ${Quest.CONSORTSOUND}ing up a storm. It turns out they got their quiz question wrong and they don't know why.  Does the ${Quest.PLAYER1} know why? (Spoiler alert, it turns out to be order of operations.) You beging to wonder if SBURB is one of those shitty 'educational' games. "),
+                new Quest("The ${Quest.PLAYER1} approaches a dungeon blocked off by a huge boulder. They push and pull at it, but just can't budge it.  A ${Quest.CONSORT} walks by talking about how wimpy and low level the ${Quest.PLAYER1} is. They vow to get STRONGER!. "),
+                new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time, complete with various ${Quest.CONSORT} providing a motivational soundtrack of ${Quest.CONSORTSOUND}s. "),
+                new Quest("The ${Quest.CONSORT} dramatically heaves the boulder out of the way. They are now STRONG!  The actual dungeon proves to be a disappointing afterthought.  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Clear the Road", [
-                new Quest("The ${Quest.PLAYER1} finds a mysterious calculator in a place of prominence on their land. They poke and prod at it.  What could it be? "),
-                new Quest("BZAP!  There are now two ${Quest.CONSORT}s.  BZAP!  Now there are four.  The ${Quest.PLAYER1} is getting the hang of this weird calculator that controls reality. "),
-                new Quest("With a frantic ${Quest.CONSORTSOUND}, a small ${Quest.CONSORT} sprints towards the ${Quest.PLAYER1}.  A giant ogre is chasing them.  In a panic, the ${Quest.PLAYER1} hits the 'divide' key, and the Ogre is defeated. Holy shit.  "),
+                new Quest("The ${Quest.PLAYER1} finds a road blocked by a giant tree. Where did it even come from? There is a pile up of ${Quest.CONSORT} merchants waiting for it to be cleared. "),
+                new Quest("The ${Quest.PLAYER1} is tired of waiting. They organize the ${Quest.CONSORT}s into groups, and tries to explain the concept of team work to the. Huh. This is going to take a while. "),
+                new Quest("With a triumpant ${Quest.CONSORTSOUND}, the organized ${Quest.CONSORT} pull the fallen tree away from the road with the ${Quest.PLAYER1}'s help.  Everyone can finally get on with their day now!  "),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Be the Strongest", [
-                new Quest("The ${Quest.PLAYER1}  finds a mysterious equation scrawled onto a wall. What could it mean? "),
-                new Quest("There is a flurry of motion.  The ${Quest.PLAYER1} shouts out in triumph.  THAT's what that variable means! The equation on the wall is one step closer to being solved.  "),
-                new Quest("The ${Quest.PLAYER1} has done it. Against all odds they have solved the equation.  A ${Quest.CONSORT} runs up to them and gives them a fraymotif as the prize for being so good at math.  "),
+                new Quest("The ${Quest.PLAYER1}  wanders into a bunch of ${Quest.CONSORT} arguing over who the strongest being in the Land is. Wow, they all seem so STRONG! Apparently there is a STRENGTH competition soon? The ${Quest.PLAYER1} enters it, and tries to ignore the snickers of the ${Quest.CONSORT}s. They can get strong, just you wait and see!"),
+                new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time.  They are getting STRONG! "),
+                new Quest("It is the day of the STRENGTH competition. The ${Quest.PLAYER1} is the star, it is them.  A ${Quest.CONSORT} puts a gold medal around their neck. Everyone agrees that the ${Quest.PLAYER1} is the strongest."),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.HIGH)
             ,  Theme.LOW);
 
@@ -80,14 +80,14 @@ class Athletic extends InterestCategory {
                 new Quest("The Symposium has started. The crowd of unruly ${Quest.CONSORT}s begins ${Quest.CONSORTSOUND}ing louder and louder. Finally, the ${Quest.PLAYER1} bursts in, looking disheveled. It was last minute, but they managed to find something groundbreaking about ${Quest.PHYSICALMCGUFFIN}, and they do an enthralling presentation on their findings. They are hailed as a SCIENCE HERO!"),
             ], new FraymotifReward(), QuestChainFeature.playerIsProtectiveClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Coach the Sports", [
-                new Quest("Too many local ${Quest.CONSORT} have fallen ill from a mysterious plague.  Those inflicted are too weak to even ${Quest.CONSORTSOUND}.  It is up to the ${Quest.PLAYER1} to figure out how to cure the disease.  They are provided with a state of the art lab and a team of ...not completely terrible ${Quest.CONSORT}s."),
-                new Quest("The ${Quest.PLAYER1} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
-                new Quest("Each ${Quest.CONSORT} lines up to receive their ${Quest.PHYSICALMCGUFFIN} injection. The sound of joyful ${Quest.CONSORTSOUND} fills the air. The plague is defeated!  The ${Quest.PLAYER1} has a statue made of them in the town center. "),
+                new Quest("A group of ${Quest.CONSORT}s approach the ${Quest.PLAYER1}. Apparently their sports team lost their coach to the ${Quest.DENIZEN} recently, and they need help training for THE BIG GAME. "),
+                new Quest("The ${Quest.PLAYER1}  has the worst training montage in all of paradox space as they get their team of shitty ${Quest.CONSORT}s into fighting shape. "),
+                new Quest("The ${Quest.CONSORT}s fall over ${Quest.CONSORTSOUND}ing and just...generally being the worst at sports.  Luckily, the opposing team is somehow WORSE at it. The ${Quest.PLAYER1} is pretty nonplussed to win the trophecy, even with all the ${Quest.CONSORT}s cheering and ${Quest.CONSORTSOUND}ing."),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Win at Sports", [
-                new Quest("The ${Quest.PLAYER1}  finds a mysterious lab, fully stocked with equipment and chemicals. It is completely abandoned. Locked doors are on every wall of the main area. "),
-                new Quest("The ${Quest.PLAYER1}  realizes that various sections of the lab open up if you pour the right kind of chemical into a slot on the door. The begin venturing deeper and deeper into the lab.  "),
-                new Quest("The ${Quest.PLAYER1} has finally reached the final door. They bite their lip in concentration as they pour the final mixed chemical into the slot.  The door slides open.  A sudden ${Quest.CONSORTSOUND} nearly has them drop the dangerous fluid, but they manage to regain their composure in time.  An entire room of ${Quest.CONSORT}s are inside the final room, outfitted for a surprise party.  It is for ${Quest.PLAYER1} to celebrate how great at science they are! There is even a SCIENCE CAKE."),
+                new Quest("A group of ${Quest.CONSORT}s approach the ${Quest.PLAYER1}. Apparently their sports team lost a member to the ${Quest.DENIZEN} recently, and if they can't replace him in time they can't compete in the TOURNAMENT. The ${Quest.PLAYER1} agrees to join their team before they can even suggest it. Sports!"),
+                new Quest("The ${Quest.PLAYER1}  has the best training montage in all of paradox space as they get their team into fighting shape. "),
+                new Quest("The ${Quest.PLAYER1} ganks the ${Quest.PHYSICALMCGUFFIN} and steals the big man's thunder. They win all the sports points. They are the star. It is them. Their team of trusty ${Quest.CONSORT}s lifts the ${Quest.PLAYER1} up onto their shoulders. This is the best day of their life."),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }

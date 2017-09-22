@@ -3602,4 +3602,4 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  Do I want 'regular' quests to be failable? No.  BUT I DO want the special dead quests to be failable. Can let me control
  the odds of winning a dead session.
 
- new DeadQuest(odds, failMsg) maybe? then tweak the odds in dead session.  
+ new DeadQuest(odds, failMsg) maybe? then tweak the odds in dead session.
