@@ -55,15 +55,24 @@ class QuestChainFeature extends Feature {
     }
 
     static bool playerIsSneakyClass(Player p) {
-        return p.class_name == SBURBClassManager.ROGUE || p.class_name == SBURBClassManager.THIEF;
+        return p.class_name.isSneaky;
     }
 
     static bool playerIsProtectiveClass(Player p) {
-        return p.class_name == SBURBClassManager.KNIGHT || p.class_name == SBURBClassManager.PAGE;
+        return p.class_name.isProtective;
     }
 
+    static bool playerIsMagicalClass(Player p) {
+        return p.class_name.isMagical ;
+    }
+    static bool playerIsDestructiveClass(Player p) {
+        return p.class_name.isDestructive ;
+    }
+    static bool playerIsHelpfulClass(Player p) {
+        return p.class_name.isHelpful ;
+    }
     static bool playerIsSmartClass(Player p) {
-        return p.class_name == SBURBClassManager.SEER || p.class_name == SBURBClassManager.MAGE ||  p.class_name ==SBURBClassManager.SCRIBE || p.class_name == SBURBClassManager.SAGE ;
+        return p.class_name.isSmart ;
     }
 
     static bool playerIsFateAspect(Player p) {

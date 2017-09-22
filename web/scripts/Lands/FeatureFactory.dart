@@ -45,6 +45,7 @@ class FeatureFactory {
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
     static AmbianceFeature  CALMFEELING;
+    static AmbianceFeature  STUDIOUSFEELING;
     static AmbianceFeature FRANTICFEELING;
     static AmbianceFeature NOTHINGFEELING;
     static AmbianceFeature ENERGIZINGFEELING;
@@ -111,6 +112,7 @@ class FeatureFactory {
         FRANTICFEELING = new AmbianceFeature("frantic", Feature.BAD);
         NOTHINGFEELING = new AmbianceFeature("like nothing");
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
+        STUDIOUSFEELING = new AmbianceFeature("studious");
     }
 
     //most sounds are bad sounds

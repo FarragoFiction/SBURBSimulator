@@ -11,6 +11,7 @@ class DeadQuests extends Scene {
     int section = 1;
     DeadQuests(Session session) : super(session);
 
+    //TODO when i do this but for regular sessions will need interaction effects, corruption, and sprites
     @override
     void renderContent(Element div) {
 
