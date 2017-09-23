@@ -1,6 +1,6 @@
 import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
-import "FeatureTypes/DenizenFeature.dart";
+import "FeatureTypes/EnemyFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
@@ -226,7 +226,7 @@ class Land {
         denizenFeature = session.rand.pickFrom(choices);
         //pick random one from aspect.
         if(denizenFeature == null) {
-            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3);
+            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3.0, new Denizen("Placeholder", null));
         }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.

@@ -3,12 +3,28 @@ import "../../GameEntities/NPCS.dart";
 import "../../SessionEngine/session.dart";
 import "../../SBURBSim.dart";
 
-
-class DenizenFeature extends Feature {
+//TODO have a 'premade enemy' feature. useful for royalty and shit.
+class EnemyFeature extends Feature {
+    ///dynamic strength means enemy is scaled to the first time the enemy faces them.
+    static double DYNAMIC_STRENGTH = -13.0;
     String name;
-    int strength; //highest is 13
+    double strength; //highest is 13
+    GameEntity enemy;
     //TODO have them take in a fraymotif as well, to give out in their reward??? or should that be on teh reward and not the boss?
-     DenizenFeature(this.name, this.strength);
+   EnemyFeature(this.name, this.strength, GameEntity enemy);
+
+    GameEntity makeEnemy(Session session, Player p) {
+        if(strength == DYNAMIC_STRENGTH) strength = p.getStat(Stats.EXPERIENCE)/100.round();
+        enemy.setImportantShit(session, <AssociatedStat>[],name, strength, <Fraymotif> []);
+        return enemy;
+    }
+
+}
+
+
+class DenizenFeature extends EnemyFeature {
+
+     DenizenFeature(String name, double strength, Denizen d):super(name, strength,d);
 
     Denizen makeDenizen(Session s) {
         return new Denizen(name, s);

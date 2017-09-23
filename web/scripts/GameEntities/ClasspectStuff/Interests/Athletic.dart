@@ -61,7 +61,7 @@ class Athletic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Clear the Road", [
                 new Quest("The ${Quest.PLAYER1} finds a road blocked by a giant tree. Where did it even come from? There is a pile up of ${Quest.CONSORT} merchants waiting for it to be cleared. "),
                 new Quest("The ${Quest.PLAYER1} is tired of waiting. They organize the ${Quest.CONSORT}s into groups, and tries to explain the concept of team work to the. Huh. This is going to take a while. "),
-                new Quest("With a triumpant ${Quest.CONSORTSOUND}, the organized ${Quest.CONSORT} pull the fallen tree away from the road with the ${Quest.PLAYER1}'s help.  Everyone can finally get on with their day now!  "),
+                new Quest("With a triumphant ${Quest.CONSORTSOUND}, the organized ${Quest.CONSORT} pull the fallen tree away from the road with the ${Quest.PLAYER1}'s help.  Everyone can finally get on with their day now!  "),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Be the Strongest", [
                 new Quest("The ${Quest.PLAYER1}  wanders into a bunch of ${Quest.CONSORT} arguing over who the strongest being in the Land is. Wow, they all seem so STRONG! Apparently there is a STRENGTH competition soon? The ${Quest.PLAYER1} enters it, and tries to ignore the snickers of the ${Quest.CONSORT}s. They can get strong, just you wait and see!"),
@@ -75,7 +75,7 @@ class Athletic extends InterestCategory {
             ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Save the Sports", [
-                new Quest("The ${Quest.PLAYER1} finds a team of underdog ${Quest.CONSORT}s that need to win a SPORTSBALL tournament against underlings in order to save their village. The ${Quest.PLAYER1} agrees to help their nobel cause.  "),
+                new Quest("The ${Quest.PLAYER1} finds a team of underdog ${Quest.CONSORT}s that need to win a SPORTSBALL tournament against underlings in order to save their village. The ${Quest.PLAYER1} agrees to help their noble cause.  "),
                 new Quest("The ${Quest.PLAYER1} sees a shady underling offering a comically large sack of boonies to the SPORTS AUTHORITY! Oh no, sports corruption! How will they ever save the village now?  "),
                 new Quest("The ${Quest.PLAYER1} exposes the underlings' SPORTSBALL cheating at the most hilarious possible moment. Through the power of true friendship, justice and a heaping helping of montages, the underdog ${Quest.CONSORT} have won the SPORTSBALL tournament."),
             ], new FraymotifReward(), QuestChainFeature.playerIsProtectiveClass), Feature.HIGH)

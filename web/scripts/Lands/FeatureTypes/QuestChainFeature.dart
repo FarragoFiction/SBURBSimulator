@@ -4,7 +4,7 @@ import "../Reward.dart";
 import "dart:html";
 import "../../SBURBSim.dart";
 import "ConsortFeature.dart";
-import "DenizenFeature.dart";
+import "EnemyFeature.dart";
 
 //if more than one quest chain is assigned to a land then you need to know how to trigger it. use predicate
 //TODO when you print out the text for this allow modulariy, like PLAY THE X (where x is the associated word for the aspect of the main player)

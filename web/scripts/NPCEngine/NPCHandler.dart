@@ -78,4 +78,5 @@ class NPCHandler
         this.queen.crowned = null;
     }
 
+
 }
