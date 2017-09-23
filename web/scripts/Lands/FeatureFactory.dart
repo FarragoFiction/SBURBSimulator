@@ -32,6 +32,7 @@ class FeatureFactory {
     /////////////////////SMELLS////////////////////////
     static SmellFeature SPICYSMELL;
     static SmellFeature BAKEDBREADSMELL;
+    static SmellFeature SWEETSMELL;
     static SmellFeature ROTSMELL;
     static SmellFeature OILSMELL;
     static SmellFeature NATURESMELL;
@@ -54,7 +55,7 @@ class FeatureFactory {
 
     ///////////////////SOUNDS////////////////////////
     static SoundFeature CLANKINGSOUND;
-    static SoundFeature CHILDRENLAUGHINGSOUND;
+    static SoundFeature LAUGHINGSOUND;
     static SoundFeature RUSTLINGSOUND;
     static SoundFeature BEEPINGSOUND;
     static SoundFeature CLACKINGSOUND;
@@ -97,6 +98,7 @@ class FeatureFactory {
     static void iniatlizeSmells() {
         SPICYSMELL = new SmellFeature("spices");
         BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
+        SWEETSMELL = new SmellFeature("sweetness",Feature.GOOD);
         NATURESMELL = new SmellFeature("nature",Feature.GOOD);
         ROTSMELL = new SmellFeature("rot", Feature.BAD);
         FEETSMELL = new SmellFeature("feet", Feature.BAD);
@@ -123,7 +125,7 @@ class FeatureFactory {
     //most sounds are bad sounds
     static void initializeSounds() {
         CLANKINGSOUND = new SoundFeature("clanking");
-        CHILDRENLAUGHINGSOUND = new SoundFeature("children lauging");
+        LAUGHINGSOUND = new SoundFeature("lauging");
         RUSTLINGSOUND = new SoundFeature("rustling", Feature.GOOD);
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
