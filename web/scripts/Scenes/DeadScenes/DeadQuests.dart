@@ -34,7 +34,7 @@ class DeadQuests extends Scene {
          */
         Player player = session.players[0];
         Land l = (session as DeadSession).currentLand;
-        if(!l.noMoreQuests) l.initQuest(player);
+        if(!l.noMoreQuests) l.initQuest([player]);
         if(l.noMoreQuests || l.currentQuestChain == null) {
             print("picking next land");
             chooseChildLand();
@@ -70,7 +70,7 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         //TODO have the first quest in the dead land's denizen quests print out, which should
         //explain teh pool/bowling/solitaire/whatever theme.
-        player.landFuture.initQuest(player);
+        player.landFuture.initQuest([player]);
         String html = "${player.landFuture.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
@@ -83,7 +83,7 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         //TODO have the first quest in the dead land's denizen quests print out, which should
         //explain teh pool/bowling/solitaire/whatever theme.
-        player.landFuture.initQuest(player);
+        player.landFuture.initQuest([player]);
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} looks up at the ${ds.numberLandsRemaining} planets now orbiting the ${player.landFuture.name}.  ${ds.metaPlayer.chatHandle} is a smug asshole as they explain what needs to happen next. ";
         appendHtml(div, html);
         //doQuests will append itself.
@@ -94,7 +94,7 @@ class DeadQuests extends Scene {
     void processMetaLandIntro(Element div) {
         print("doing a meta land bullshit quest");
         Player player = session.players[0];
-        player.landFuture.initQuest(player);
+        player.landFuture.initQuest([player]);
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.

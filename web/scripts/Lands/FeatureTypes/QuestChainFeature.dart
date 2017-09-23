@@ -14,7 +14,7 @@ class QuestChainFeature extends Feature {
     String name;
     List<Quest> quests; //quest will be removed when completed.
     ///if condition is met, then might be chosen to start. once started, goes linear.
-    Predicate<Player> condition; //like playerIsStealthy
+    Predicate<List<Player>> condition; //like playerIsStealthy
     bool finished = false;
     bool started = false;
     Reward reward;
@@ -59,37 +59,47 @@ class QuestChainFeature extends Feature {
         }
     }
 
-    static bool playerIsStealthyAspect(Player p) {
+    //TODO how can I have specifically two player quests? I guess I could take in a List<Player>, and have most of them check p1 but have twoPlayer quests be a thing?
+
+    static bool playerIsStealthyAspect(List<Player> ps) {
+        Player p = ps.first;
         return p.aspect == Aspects.VOID || p.aspect == Aspects.BREATH;
     }
 
-    static bool playerIsSneakyClass(Player p) {
+    static bool playerIsSneakyClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isSneaky;
     }
 
-    static bool playerIsProtectiveClass(Player p) {
+    static bool playerIsProtectiveClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isProtective;
     }
 
-    static bool playerIsMagicalClass(Player p) {
+    static bool playerIsMagicalClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isMagical ;
     }
-    static bool playerIsDestructiveClass(Player p) {
+    static bool playerIsDestructiveClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isDestructive ;
     }
-    static bool playerIsHelpfulClass(Player p) {
+    static bool playerIsHelpfulClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isHelpful ;
     }
-    static bool playerIsSmartClass(Player p) {
+    static bool playerIsSmartClass(List<Player> ps) {
+        Player p = ps.first;
         return p.class_name.isSmart ;
     }
 
-    static bool playerIsFateAspect(Player p) {
+    static bool playerIsFateAspect(List<Player> ps) {
+        Player p = ps.first;
         return p.aspect == Aspects.DOOM || p.aspect == Aspects.TIME;
     }
 
     //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
-    static bool defaultOption(Player p) {
+    static bool defaultOption(List<Player> ps) {
         return true;
     }
 }
@@ -97,7 +107,7 @@ class QuestChainFeature extends Feature {
 //want to be able to quickly tell what sort of quest chain it is.
 class PreDenizenQuestChain extends QuestChainFeature {
 
-    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
     @override
     PreDenizenQuestChain clone() {
         return new PreDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
@@ -106,7 +116,7 @@ class PreDenizenQuestChain extends QuestChainFeature {
 
 class DenizenQuestChain extends QuestChainFeature {
 
-    DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
     @override
     DenizenQuestChain clone() {
         return new DenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
@@ -115,7 +125,7 @@ class DenizenQuestChain extends QuestChainFeature {
 
 class PostDenizenQuestChain extends QuestChainFeature {
 
-    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<Player> condition) : super(name, quests, reward, condition);
+    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
     @override
     PostDenizenQuestChain clone() {
         return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
