@@ -76,17 +76,17 @@ class Comedy extends InterestCategory {
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Protect the Sports", [
-                new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
-                new Quest("The ${Quest.PLAYER1} forms hypothesis after hypothesis only for each to be completely falsified in turn. This is a disastor! "),
-                new Quest("The Symposium has started. The crowd of unruly ${Quest.CONSORT}s begins ${Quest.CONSORTSOUND}ing louder and louder. Finally, the ${Quest.PLAYER1} bursts in, looking disheveled. It was last minute, but they managed to find something groundbreaking about ${Quest.PHYSICALMCGUFFIN}, and they do an enthralling presentation on their findings. They are hailed as a SCIENCE HERO!"),
-            ], new FraymotifReward(), QuestChainFeature.playerIsProtectiveClass), Feature.HIGH)
-            ..addFeature(new PreDenizenQuestChain("Coach the Sports", [
+            ..addFeature(new PreDenizenQuestChain("Trick the Villian", [
+                new Quest("The ${Quest.PLAYER1}  is approached by a Crafty ${Quest.CONSORT} who offers them a magical ${Quest.PHYSICALMCGUFFIN}, guaranteed to grant them any wish. The ${Quest.PLAYER1} is shocked to discover it was a ruse, and the Crafty ${Quest.CONSORT} has already escaped to the side with their ill earned boonies. "),
+                new Quest("The ${Quest.PLAYER1} find many ${Quest.CONSORT}s, too sad to even ${Quest.CONSORTSOUND}, holding ${Quest.PHYSICALMCGUFFIN}.  The Crafty ${Quest.CONSORT} must be stopped!  "),
+                new Quest("The has finally caught up with the Crafty ${Quest.CONSORT}.  They thank the confused consort for how much the ${Quest.PHYSICALMCGUFFIN} helped them. Confused, the Crafty ${Quest.CONSORT} offers to buy the ${Quest.PHYSICALMCGUFFIN} back, and is upset when the ${Quest.PLAYER1} refuses. They begin ${Quest.CONSORTSOUND}ing and begging until the ${Quest.PLAYER1} begrudgingly claims that they could be convinced to part with it if a sufficiently valuable offer is made.  The Crafty ${Quest.CONSORT} offers them a comically large bag of boonies, which the ${Quest.PLAYER1} promptly distributes to the swindled consorts.  The ${Quest.PHYSICALMCGUFFIN} working was a ruse all along, and the Crafty ${Quest.CONSORT} is the one who is now tricked.  (That is what the parable is) "),
+            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
+            ..addFeature(new PreDenizenQuestChain("Expose the Ruse", [
                 new Quest("A group of ${Quest.CONSORT}s approach the ${Quest.PLAYER1}. Apparently their sports team lost their coach to the ${Quest.DENIZEN} recently, and they need help training for THE BIG GAME. "),
                 new Quest("The ${Quest.PLAYER1}  has the worst training montage in all of paradox space as they get their team of shitty ${Quest.CONSORT}s into fighting shape. "),
                 new Quest("The ${Quest.CONSORT}s fall over ${Quest.CONSORTSOUND}ing and just...generally being the worst at sports.  Luckily, the opposing team is somehow WORSE at it. The ${Quest.PLAYER1} is pretty nonplussed to win the trophecy, even with all the ${Quest.CONSORT}s cheering and ${Quest.CONSORTSOUND}ing."),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
-            ..addFeature(new PreDenizenQuestChain("Win at Sports", [
+            ..addFeature(new PreDenizenQuestChain("Play the Prank", [
                 new Quest("A group of ${Quest.CONSORT}s approach the ${Quest.PLAYER1}. Apparently their sports team lost a member to the ${Quest.DENIZEN} recently, and if they can't replace him in time they can't compete in the TOURNAMENT. The ${Quest.PLAYER1} agrees to join their team before they can even suggest it. Sports!"),
                 new Quest("The ${Quest.PLAYER1}  has the best training montage in all of paradox space as they get their team into fighting shape. "),
                 new Quest("The ${Quest.PLAYER1} ganks the ${Quest.PHYSICALMCGUFFIN} and steals the big man's thunder. They win all the sports points. They are the star. It is them. Their team of trusty ${Quest.CONSORT}s lifts the ${Quest.PLAYER1} up onto their shoulders. This is the best day of their life."),
