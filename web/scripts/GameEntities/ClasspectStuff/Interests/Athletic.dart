@@ -67,17 +67,17 @@ class Athletic extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1}  wanders into a bunch of ${Quest.CONSORT} arguing over who the strongest being in the Land is. Wow, they all seem so STRONG! Apparently there is a STRENGTH competition soon? The ${Quest.PLAYER1} enters it, and tries to ignore the snickers of the ${Quest.CONSORT}s. They can get strong, just you wait and see!"),
                 new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time.  They are getting STRONG! "),
                 new Quest("It is the day of the STRENGTH competition. The ${Quest.PLAYER1} is the star, it is them.  A ${Quest.CONSORT} puts a gold medal around their neck. Everyone agrees that the ${Quest.PLAYER1} is the strongest."),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.HIGH)
+            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Teams","Sports","Balls", "Competition", "Athletics", "Olympians"])
             ..addFeature(FeatureFactory.SWEATSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Protect the Sports", [
-                new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
-                new Quest("The ${Quest.PLAYER1} forms hypothesis after hypothesis only for each to be completely falsified in turn. This is a disastor! "),
-                new Quest("The Symposium has started. The crowd of unruly ${Quest.CONSORT}s begins ${Quest.CONSORTSOUND}ing louder and louder. Finally, the ${Quest.PLAYER1} bursts in, looking disheveled. It was last minute, but they managed to find something groundbreaking about ${Quest.PHYSICALMCGUFFIN}, and they do an enthralling presentation on their findings. They are hailed as a SCIENCE HERO!"),
+            ..addFeature(new PreDenizenQuestChain("Save the Sports", [
+                new Quest("The ${Quest.PLAYER1} finds a team of underdog ${Quest.CONSORT}s that need to win a SPORTSBALL tournament against underlings in order to save their village. The ${Quest.PLAYER1} agrees to help their nobel cause.  "),
+                new Quest("The ${Quest.PLAYER1} sees a shady underling offering a comically large sack of boonies to the SPORTS AUTHORITY! Oh no, sports corruption! How will they ever save the village now?  "),
+                new Quest("The ${Quest.PLAYER1} exposes the underlings' SPORTSBALL cheating at the most hilarious possible moment. Through the power of true friendship, justice and a heaping helping of montages, the underdog ${Quest.CONSORT} have won the SPORTSBALL tournament."),
             ], new FraymotifReward(), QuestChainFeature.playerIsProtectiveClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Coach the Sports", [
                 new Quest("A group of ${Quest.CONSORT}s approach the ${Quest.PLAYER1}. Apparently their sports team lost their coach to the ${Quest.DENIZEN} recently, and they need help training for THE BIG GAME. "),
