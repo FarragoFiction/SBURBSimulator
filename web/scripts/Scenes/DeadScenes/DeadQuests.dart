@@ -107,6 +107,6 @@ class DeadQuests extends Scene {
 
     @override
     bool trigger(List<Player> playerList) {
-       return !(session as DeadSession).failed && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
+       return !(session as DeadSession).failed && !session.players[0].dead && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
     }
 }

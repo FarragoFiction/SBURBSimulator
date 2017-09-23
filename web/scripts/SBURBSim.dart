@@ -179,24 +179,28 @@ bool printCorruptionMessage(ErrorEvent e) {
     }else if(curSessionGlobalVar.stats.cataclysmCrash) {
         appendHtml(story, "<BR>ERROR: WASTE TIER CATACLYSM ACTIVATED. SESSION HAS CRASHED.");
         recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(curSessionGlobalVar)}";
+    }else if((curSessionGlobalVar is DeadSession)) {
+        appendHtml(story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
+        recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(curSessionGlobalVar)}";
+
     }else if (curSessionGlobalVar.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
         recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(curSessionGlobalVar)}";
-    } else if (curSessionGlobalVar.players.length < 2) {
+    } else if (curSessionGlobalVar.players.length < 2 ) {
         appendHtml(story, "<BR>ERROR: DEAD SESSION DETECTED.");
         String url = "dead_index.html?seed=${curSessionGlobalVar.session_id}&${generateURLParamsForPlayers(<Player>[curSessionGlobalVar.players[0]],true)}";
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
         url = "$url";
         recomendedAction = "WHOA. IS TODAY THE DAY I LET YOU DO A SPECIAL SNOWFLAKE SINGLE PLAYER SESSION??? <BR><BR><a href = '$url'>PLAY DEAD SESSION?</a><BR><BR>";
-    } else if (space == null) {
-        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(curSessionGlobalVar)}");
-        curSessionGlobalVar.stats.crashedFromSessionBug = true;
-        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if (time == null) {
         curSessionGlobalVar.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
+    } else if (space == null) {
+        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(curSessionGlobalVar)}");
+        curSessionGlobalVar.stats.crashedFromSessionBug = true;
+        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
     } else if(curSessionGlobalVar.mutator.effectsInPlay > 0){
         curSessionGlobalVar.stats.cataclysmCrash = true;
         appendHtml(story, "<BR>ERROR: NOW YOU FUCKED UP! YOUR SHITTY HACKED CODE CRASHED.");
