@@ -9,7 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
-      new Newspost("9/24/17","Dead sessions continue to chug along. Lords are finally in, as well, though of course tragically minionless.")
+      new Newspost("9/24/17","Dead sessions continue to chug along. Lords are finally in (courtsey of tinkeredCalculation /jinkeredRaculation/Pixel and KR)  , as well, though of course tragically minionless.")
       ,new Newspost("9/21/17","More dead session stuff, and Muses are added courtesy of tinkeredCalculation /jinkeredRaculation/Pixel (with KR modifying them to work with the rendering engine). They aren't in their final state (since, like Lords, they are planned to have npc minions as quest rewards), but they are p close.")
       ,new Newspost("9/20/17","Dead sessions are really picking up, along with the land update that they are designed to test. Simple, bullshit quests are now available for the unlucky Dead Session Players.<Br><br> I'll expand them out and add frame stories and shit over the next few days, then when dead sessions v1 are done I'll shift my focus to getting all this working in the regular sessions as well.")
       ,new Newspost("9/17/17","Hey! Guess who DIDN'T find out that the afterlife was destroyed and then proceded to NOT completely forget about it for a day or so?  Wait....too many negatives, I've gotten confused. Fuck. <br><Br>Uh. So. The afterlife exists again! Yay! I am definitely not the most asshole creator of all time. <br><Br>And on a completely unrelated note I am REALLY enjoying how the Land update is going so far. Not yet really anything to show you guys yet, but it's p fun so far. Also what could <a href = 'dead_index.html'>this</a> shitty half finished thing be? ")
