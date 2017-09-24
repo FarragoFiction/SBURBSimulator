@@ -8,6 +8,8 @@ import "../../scripts/SBURBSim.dart";
 import "../../scripts/includes/colour.dart";
 import "../../scripts/includes/colour_picker.dart";
 
+import "../../scripts/Rendering/3d/three.dart" as THREE;
+
 
 void main() {
     Element stuff = querySelector("#stuff");
@@ -42,25 +44,10 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });
 
-    Loader.init();
-
-    Loader.getResource("manifest/testtext.txt").then(print);
-
-    Loader.getResource("images/Hair/hair7.png").then((ImageElement img) => stuff.append(img));
-
-    WeightedList<String> testlist = new WeightedList<String>()
-    ..add("one", 1.0)
-    ..add("two", 2.0)
-    ..add("three", 3.0)
-    ..add("four", 4.0);
-
-    Iterable<String> where = testlist.where((String s) => s.length < 4);
-    print(where.runtimeType);
-
-    List<String> other = where.toList();
-    print(other.runtimeType);
-
-    print(other);
+    Renderer.loadThree().then((bool b) {
+        THREE.WebGLRenderer r = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions());
+        stuff.append(r.domElement);
+    });
 }
 
 void checkLABRanges() {

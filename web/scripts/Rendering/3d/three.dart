@@ -1,0 +1,462 @@
+@JS('THREE')
+library three;
+
+import "dart:html";
+import "dart:js";
+import "dart:typed_data";
+
+import "package:js/js.dart";
+
+@JS()
+abstract class Object3D {
+	external void lookAt(Vector3 vector);
+	external void add(Object3D object);
+	external void remove(Object3D object);
+
+	external Vector3 get position;
+	external Vector3 get scale;
+
+	external Vector3 get up;
+}
+
+@JS()
+class Vector3 {
+	external Vector3(num x, num y, num z);
+	factory Vector3.zero() {
+		return new Vector3(0,0,0);
+	}
+
+	external num get x;
+	external void set x(num x);
+
+	external num get y;
+	external void set y(num y);
+
+	external num get z;
+	external void set z(num z);
+}
+
+@JS()
+class Face3 {
+
+}
+
+// Renderer ################################################################
+
+@JS()
+class Scene extends Object3D {
+	external Scene();
+}
+
+@JS()
+class WebGLRenderer {
+	external WebGLRenderer(WebGLRendererOptions parameters);
+	external CanvasElement get domElement;
+
+	external void setClearColor(num color, num alpha);
+	external void render(Scene scene, Camera camera);
+}
+
+@anonymous
+@JS()
+class WebGLRendererOptions {
+	external factory WebGLRendererOptions ({
+		CanvasElement canvas,
+		bool alpha : false,
+		bool antialias : false
+	});
+}
+
+// Camera ################################################################
+
+@JS()
+abstract class Camera extends Object3D {
+	external Camera();
+}
+
+@JS()
+class PerspectiveCamera extends Camera {
+	external PerspectiveCamera( num fov, num aspect, num near, num far );
+}
+
+// Lights  ################################################################
+
+@JS()
+abstract class Light extends Object3D {
+	external num get color;
+	external void set color(num val);
+
+	external num get intensity;
+	external void set intensity(num val);
+}
+
+@JS()
+class DirectionalLight extends Light {
+	external DirectionalLight([int color, double intensity]);
+}
+
+@JS()
+class AmbientLight extends Light {
+	external AmbientLight([int color, double intensity]);
+}
+
+// Geometry ################################################################
+
+@anonymous
+@JS()
+abstract class AbstractGeometry {}
+
+@JS()
+abstract class Geometry implements AbstractGeometry {
+	external JsArray get vertices;
+	external JsArray get faces;
+	external JsArray get faceVertexUvs;
+
+	external void set dynamic(bool flag);
+
+	external void set verticesNeedUpdate(bool flag);
+	external void set elementsNeedUpdate(bool flag);
+	external void set uvsNeedUpdate(bool flag);
+	external void set normalsNeedUpdate(bool flag);
+	external void set colorsNeedUpdate(bool flag);
+	external void set groupsNeedUpdate(bool flag);
+	external void set lineDistancesNeedUpdate(bool flag);
+
+	external void computeFaceNormals();
+	external void computeVertexNormals([bool areaWeighted]);
+	external void computeBoundingBox();
+	external void computeBoundingSphere();
+
+	external void dispose();
+}
+
+@JS()
+class BufferGeometry implements AbstractGeometry {
+	external void fromGeometry(Geometry source);
+
+	external BufferGeometryAttributes get attributes;
+
+	external void set verticesNeedUpdate(bool flag);
+	external void set uvsNeedUpdate(bool flag);
+	external void set normalsNeedUpdate(bool flag);
+	external void set colorsNeedUpdate(bool flag);
+	external void set groupsNeedUpdate(bool flag);
+}
+
+@anonymous
+@JS()
+class BufferGeometryAttributes {
+	external BufferAttribute get position;
+}
+
+@JS()
+class BufferAttribute {
+	external Float32List get array;
+	external int get itemSize;
+	external int get count;
+}
+
+@JS()
+class PlaneBufferGeometry extends BufferGeometry {
+	external PlaneBufferGeometry(num width, num height, [num widthSegments, num heightSegments]);
+}
+
+@JS()
+class SphereGeometry extends Geometry {
+	external SphereGeometry( num radius, [num widthSegments, num heightSegments, num phiStart, num phiLength, num thetaStart, num thetaLength]);
+}
+
+@JS()
+class PlaneGeometry extends Geometry {
+	external PlaneGeometry(num width, num height, [num widthSegments, num heightSegments]);
+}
+
+// Textures ################################################################
+
+@JS()
+class Texture {
+	external Texture(CanvasImageSource image, [int mapping, int wrapS, int wrapT, int magFilter, int minFilter, int format, int anisotropy]);
+
+	external void dispose();
+
+	external void set needsUpdate(bool flag);
+
+	external CanvasImageSource get image;
+	external void set image(CanvasImageSource img);
+
+	external void set flipY(bool flag);
+
+	external num get minFilter;
+	external void set minFilter(int val);
+	external num get magFilter;
+	external void set magFilter(int val);
+	external num get wrapS;
+	external void set wrapS(int val);
+	external num get wrapT;
+	external void set wrapT(int val);
+	external num get format;
+	external void set format(int val);
+	external num get type;
+	external void set type(int val);
+	external num get anisotropy;
+	external void set anisotropy(int val);
+}
+
+// Material ################################################################
+
+@JS()
+abstract class Material {
+	external void dispose();
+}
+
+@JS()
+class MeshBasicMaterial extends Material {
+	external MeshBasicMaterial();
+}
+
+@JS()
+class MeshStandardMaterial extends Material {
+	external MeshStandardMaterial(MeshStandardMaterialParameters parameters);
+}
+
+@anonymous
+@JS()
+class MeshStandardMaterialParameters {
+	external factory MeshStandardMaterialParameters ({
+		num color : 0xffffff,
+		num roughness : 0.5,
+		num metalness : 0.5,
+		Texture map,
+		Texture lightmap,
+		num lightMapIntensity : 1.0,
+		Texture aoMap,
+		num aoMapIntensity : 1.0,
+		num emissive : 0x000000,
+		Texture emissiveMap,
+		num emissiveIntensity : 1.0,
+		Texture bumpMap,
+		num bumpMapScale : 1.0,
+		Texture normalMap,
+		// normalMapScale
+		Texture displacementMap,
+		num displacementScale : 1.0,
+		num displacementBias : 0.0,
+		Texture roughnessMap,
+		Texture metalnessMap,
+		Texture alphaMap,
+		Texture envMap,
+		num envMapIntensity : 1.0,
+		num refractionRatio : 0.98,
+		bool fog : true,
+		num shading,
+		bool wireframe : false,
+		num wireframeLinewidth : 1.0,
+		String wireframeLinecap : "round",
+		String wireframeLinejoin : "round",
+		num vertexColors,
+		bool skinning : false,
+		bool morphTargets : false,
+		bool morphNormals : false
+	});
+}
+
+// Meshes ################################################################
+
+@JS()
+class Mesh extends Object3D {
+	external Mesh(AbstractGeometry geometry, Material material);
+}
+
+// Controls ################################################################
+
+@JS()
+class OrbitControls {
+	external OrbitControls(Object3D object, Element domElement);
+
+	external bool update();
+
+	external bool get enabled;
+	external void set enabled(bool flag);
+
+	external Vector3 get target;
+
+	external void set enableDamping(bool flag);
+	external void set dampingFactor(num val);
+	external void set enableZoom(bool flag);
+	external void set zoomSpeed(num val);
+	external void set enableRotate(bool flag);
+	external void set rotateSpeed(num val);
+	external void set enablePan(bool flag);
+	external void set keyPanSpeed(num val);
+	external void set autoRotate(bool flag);
+	external void set autoRotateSpeed(num val);
+	external void set enableKeys(bool flag);
+}
+
+// Constants ################################################################
+
+@JS() external num get REVISION;
+@anonymous @JS() class MouseButtons {
+	external int get LEFT;
+	external int get MIDDLE;
+	external int get RIGHT;
+}
+@JS() external MouseButtons get MOUSE;
+@JS() external num get CullFaceNone;
+@JS() external num get CullFaceBack;
+@JS() external num get CullFaceFront;
+@JS() external num get CullFaceFrontBack;
+@JS() external num get FrontFaceDirectionCW;
+@JS() external num get FrontFaceDirectionCCW;
+@JS() external num get BasicShadowMap;
+@JS() external num get PCFShadowMap;
+@JS() external num get PCFSoftShadowMap;
+@JS() external num get FrontSide;
+@JS() external num get BackSide;
+@JS() external num get DoubleSide;
+@JS() external num get FlatShading;
+@JS() external num get SmoothShading;
+@JS() external num get NoColors;
+@JS() external num get FaceColors;
+@JS() external num get VertexColors;
+@JS() external num get NoBlending;
+@JS() external num get NormalBlending;
+@JS() external num get AdditiveBlending;
+@JS() external num get SubtractiveBlending;
+@JS() external num get MultiplyBlending;
+@JS() external num get CustomBlending;
+@anonymous @JS() class BlendingModeEnum {
+	external num get NoBlending;
+	external num get NormalBlending;
+	external num get AdditiveBlending;
+	external num get SubtractiveBlending;
+	external num get MultiplyBlending;
+	external num get CustomBlending;
+}
+@JS() external BlendingModeEnum get BlendingMode;
+@JS() external num get AddEquation;
+@JS() external num get SubtractEquation;
+@JS() external num get ReverseSubtractEquation;
+@JS() external num get MinEquation;
+@JS() external num get MaxEquation;
+@JS() external num get ZeroFactor;
+@JS() external num get OneFactor;
+@JS() external num get SrcColorFactor;
+@JS() external num get OneMinusSrcColorFactor;
+@JS() external num get SrcAlphaFactor;
+@JS() external num get OneMinusSrcAlphaFactor;
+@JS() external num get DstAlphaFactor;
+@JS() external num get OneMinusDstAlphaFactor;
+@JS() external num get DstColorFactor;
+@JS() external num get OneMinusDstColorFactor;
+@JS() external num get SrcAlphaSaturateFactor;
+@JS() external num get NeverDepth;
+@JS() external num get AlwaysDepth;
+@JS() external num get LessDepth;
+@JS() external num get LessEqualDepth;
+@JS() external num get EqualDepth;
+@JS() external num get GreaterEqualDepth;
+@JS() external num get GreaterDepth;
+@JS() external num get NotEqualDepth;
+@JS() external num get MultiplyOperation;
+@JS() external num get MixOperation;
+@JS() external num get AddOperation;
+@JS() external num get NoToneMapping;
+@JS() external num get LinearToneMapping;
+@JS() external num get ReinhardToneMapping;
+@JS() external num get Uncharted2ToneMapping;
+@JS() external num get CineonToneMapping;
+@JS() external num get UVMapping;
+@JS() external num get CubeReflectionMapping;
+@JS() external num get CubeRefractionMapping;
+@JS() external num get EquirectangularReflectionMapping;
+@JS() external num get EquirectangularRefractionMapping;
+@JS() external num get SphericalReflectionMapping;
+@JS() external num get CubeUVReflectionMapping;
+@JS() external num get CubeUVRefractionMapping;
+@anonymous @JS() class TextureMappingEnum {
+	external num get UVMapping;
+	external num get CubeReflectionMapping;
+	external num get CubeRefractionMapping;
+	external num get EquirectangularReflectionMapping;
+	external num get EquirectangularRefractionMapping;
+	external num get SphericalReflectionMapping;
+	external num get CubeUVReflectionMapping;
+	external num get CubeUVRefractionMapping;
+}
+@JS() external TextureMappingEnum get TextureMapping;
+@JS() external num get RepeatWrapping;
+@JS() external num get ClampToEdgeWrapping;
+@JS() external num get MirroredRepeatWrapping;
+@anonymous @JS() class TextureWrappingEnum {
+	external num get RepeatWrapping;
+	external num get ClampToEdgeWrapping;
+	external num get MirroredRepeatWrapping;
+}
+@JS() external TextureMappingEnum get TextureWrapping;
+@JS() external num get NearestFilter;
+@JS() external num get NearestMipMapNearestFilter;
+@JS() external num get NearestMipMapLinearFilter;
+@JS() external num get LinearFilter;
+@JS() external num get LinearMipMapNearestFilter;
+@JS() external num get LinearMipMapLinearFilter;
+@anonymous @JS() class TextureFilterEnum {
+	external num get NearestFilter;
+	external num get NearestMipMapNearestFilter;
+	external num get NearestMipMapLinearFilter;
+	external num get LinearFilter;
+	external num get LinearMipMapNearestFilter;
+	external num get LinearMipMapLinearFilter;
+}
+@JS() external TextureFilterEnum get TextureFilter;
+@JS() external num get UnsignedByteType;
+@JS() external num get ByteType;
+@JS() external num get ShortType;
+@JS() external num get UnsignedShortType;
+@JS() external num get IntType;
+@JS() external num get UnsignedIntType;
+@JS() external num get FloatType;
+@JS() external num get HalfFloatType;
+@JS() external num get UnsignedShort4444Type;
+@JS() external num get UnsignedShort5551Type;
+@JS() external num get UnsignedShort565Type;
+@JS() external num get UnsignedInt248Type;
+@JS() external num get AlphaFormat;
+@JS() external num get RGBFormat;
+@JS() external num get RGBAFormat;
+@JS() external num get LuminanceFormat;
+@JS() external num get LuminanceAlphaFormat;
+@JS() external num get RGBEFormat;
+@JS() external num get DepthFormat;
+@JS() external num get DepthStencilFormat;
+@JS() external num get RGB_S3TC_DXT1_Format;
+@JS() external num get RGBA_S3TC_DXT1_Format;
+@JS() external num get RGBA_S3TC_DXT3_Format;
+@JS() external num get RGBA_S3TC_DXT5_Format;
+@JS() external num get RGB_PVRTC_4BPPV1_Format;
+@JS() external num get RGB_PVRTC_2BPPV1_Format;
+@JS() external num get RGBA_PVRTC_4BPPV1_Format;
+@JS() external num get RGBA_PVRTC_2BPPV1_Format;
+@JS() external num get RGB_ETC1_Format;
+@JS() external num get LoopOnce;
+@JS() external num get LoopRepeat;
+@JS() external num get LoopPingPong;
+@JS() external num get InterpolateDiscrete;
+@JS() external num get InterpolateLinear;
+@JS() external num get InterpolateSmooth;
+@JS() external num get ZeroCurvatureEnding;
+@JS() external num get ZeroSlopeEnding;
+@JS() external num get WrapAroundEnding;
+@JS() external num get TrianglesDrawMode;
+@JS() external num get TriangleStripDrawMode;
+@JS() external num get TriangleFanDrawMode;
+@JS() external num get LinearEncoding;
+@JS() external num get sRGBEncoding;
+@JS() external num get GammaEncoding;
+@JS() external num get RGBEEncoding;
+@JS() external num get LogLuvEncoding;
+@JS() external num get RGBM7Encoding;
+@JS() external num get RGBM16Encoding;
+@JS() external num get RGBDEncoding;
+@JS() external num get BasicDepthPacking;
+@JS() external num get RGBADepthPacking;
