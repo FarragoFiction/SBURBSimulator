@@ -1,7 +1,7 @@
 import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
-import "FeatureTypes/DenizenFeature.dart";
+import "FeatureTypes/EnemyFeature.dart";
 class Quest {
     //not sure if i'll need all of these. just...trying things out.
     static String PLAYER1 = "PLAYER1TAG";
@@ -43,12 +43,10 @@ class Quest {
 //TODO fights can be failed. if they are failed, then their quest chain shouldn't remove them.
 //let's assume that if  a doQuest returns null, it was failed.
 class BossFight extends Quest {
-  BossFight(String text) : super(text);
+    EnemyFeature enemy;
+    BossFight(String text) : super(text);
 }
 
-class MiniBossFight extends Quest {
-    MiniBossFight(String text) : super(text);
-}
 
 //dead quests can be failed and when you fail them it's game over.
 class FailableQuest extends Quest {

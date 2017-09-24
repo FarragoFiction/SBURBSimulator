@@ -5,6 +5,7 @@ import "../SBURBSim.dart";
 
 class NPC extends GameEntity {
     NPC(String name, Session session) : super(name, session);
+
 }
 
 //carapaces are the only things that can be crowned and have it give anything but fraymotifs.

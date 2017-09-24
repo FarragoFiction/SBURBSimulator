@@ -1,6 +1,6 @@
 import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
-import "FeatureTypes/DenizenFeature.dart";
+import "FeatureTypes/EnemyFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
@@ -40,13 +40,13 @@ class Land {
     ConsortFeature consortFeature;
     DenizenFeature denizenFeature;
 
-    String initQuest(Player p1) {
-        if(symbolicMcguffin == null) decideMcGuffins(p1);
+    String initQuest(List<Player> players) {
+        if(symbolicMcguffin == null) decideMcGuffins(players.first);
         if(noMoreQuests) return "";
         //first, do i have a current quest chain?
-        if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(p1, firstQuests);
+        if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(players, firstQuests);
         //ask my quest chain if it's finished. if it is, go to the next set of quest chains
-        decideIfTimeForNextChain(p1); //will pick next chain if this is done.
+        decideIfTimeForNextChain(players); //will pick next chain if this is done.
     }
 
     String get shortName {
@@ -61,7 +61,7 @@ class Land {
     bool doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
-        if(currentQuestChain.finished) decideIfTimeForNextChain(p1); //need to mark appropriate bool as completed.
+        if(currentQuestChain.finished) decideIfTimeForNextChain(<Player>[p1,p2]); //need to mark appropriate bool as completed.
         print("ret is $ret from $currentQuestChain");
         return ret;
     }
@@ -71,16 +71,16 @@ class Land {
         physicalMcguffin = session.rand.pickFrom(p1.aspect.physicalMcguffins);
     }
 
-    void decideIfTimeForNextChain(Player p1) {
+    void decideIfTimeForNextChain(List<Player> players) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
                 print("moving on to next set of quests");
                 firstCompleted = true;
-                currentQuestChain = selectQuestChainFromSource(p1, secondQuests);
+                currentQuestChain = selectQuestChainFromSource(players, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
                 print("moving on to next set of quests");
                 secondCompleted = true;
-                currentQuestChain = selectQuestChainFromSource(p1, thirdQuests);
+                currentQuestChain = selectQuestChainFromSource(players, thirdQuests);
             }else{
                 print("no more quests for $name");
                 thirdCompleted = true;
@@ -93,7 +93,7 @@ class Land {
     // select a random quest from source. it HAS to be triggered, though.
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
-    QuestChainFeature selectQuestChainFromSource(Player p1, WeightedList<QuestChainFeature> source) {
+    QuestChainFeature selectQuestChainFromSource(List<Player> players, WeightedList<QuestChainFeature> source) {
         print("Selecting a quest from $source");
         if(source.isEmpty) {
             currentQuestChain = null;
@@ -104,7 +104,8 @@ class Land {
         WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
         for(QuestChainFeature q in source) {
             WeightPair<QuestChainFeature> p = source.getPair(source.indexOf(q));
-            if(q.condition(p1)) valid.add(q,  p.weight);
+            //TODO make work for multiple players post DEAD Sessions
+            if(q.condition(players)) valid.add(q,  p.weight);
         }
         return session.rand.pickFrom(valid);
     }
@@ -225,7 +226,7 @@ class Land {
         denizenFeature = session.rand.pickFrom(choices);
         //pick random one from aspect.
         if(denizenFeature == null) {
-            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3);
+            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3.0, new Denizen("Placeholder", null));
         }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.

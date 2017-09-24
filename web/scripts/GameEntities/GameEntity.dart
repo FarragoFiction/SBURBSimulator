@@ -579,6 +579,36 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
   String title() {
       return name; //players will override this
   }
+
+  void setImportantShit(Session newSession, List<AssociatedStat> newAssociatedStats, String newName, double strength, List<Fraymotif> newFraymotifs) {
+      //print("Strength for denizen $name is: $strength");
+      //based off existing denizen code.  care about which aspect i am.
+      //also make minion here.
+      this.name = newName;
+      this.session = newSession;
+      Map<Stat, num> tmpStatHolder = <Stat, num>{};
+      tmpStatHolder[Stats.MIN_LUCK] = -10;
+      tmpStatHolder[Stats.MAX_LUCK] = 10;
+      tmpStatHolder[Stats.HEALTH] = 10 * strength;
+      tmpStatHolder[Stats.MOBILITY] = 10;
+      tmpStatHolder[Stats.SANITY] = 10;
+      tmpStatHolder[Stats.ALCHEMY] = 10;
+      tmpStatHolder[Stats.FREE_WILL] = 10;
+      tmpStatHolder[Stats.POWER] = 5 * strength;
+      tmpStatHolder[Stats.GRIST] = 100;
+      tmpStatHolder[Stats.RELATIONSHIPS] = 10; //not REAL relationships, but real enough for our purposes.
+      tmpStatHolder[Stats.SBURB_LORE] = 0;
+      this.associatedStats = newAssociatedStats;
+      for (num i = 0; i < associatedStats.length; i++) {
+          //alert("I have associated stats: " + i);
+          AssociatedStat stat = associatedStats[i];
+          if(tmpStatHolder[stat.stat] != null) tmpStatHolder[stat.stat] += tmpStatHolder[stat.stat] * stat.multiplier * strength;
+      }
+      //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000000);
+      this.stats.setMap(tmpStatHolder);
+      this.grist = strength * 100;
+      this.fraymotifs = newFraymotifs;
+  }
 }
 
 
