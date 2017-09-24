@@ -36,6 +36,7 @@ export "random.dart";
 export "weighted_lists.dart";
 export "relationship.dart";
 export "handle_sprites.dart";
+export "Rendering/renderer.dart";
 export "AfterLife.dart";
 export "v2.0/ImportantEvents.dart";
 export "Strife.dart";

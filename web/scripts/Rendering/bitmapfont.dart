@@ -4,7 +4,7 @@ import 'dart:html';
 import '../includes/colour.dart';
 import '../includes/logger.dart';
 
-import 'imageloader.dart';
+import '../loader/loader.dart';
 
 class BitmapFontDefinition {
     final String path;
@@ -174,7 +174,7 @@ class BitmapFontData {
 
             logger.debug("Requesting $path");
 
-            ImageLoader.load(path).then((ImageElement img){
+            Loader.getResource(path).then((ImageElement img){
                 BitmapFontData font = new BitmapFontData(img, glyphwidth, glyphheight);
                 _fonts[path] = font;
 

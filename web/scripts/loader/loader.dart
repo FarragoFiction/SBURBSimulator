@@ -1,26 +1,31 @@
 import 'dart:async';
+import 'dart:html';
 import "dart:typed_data";
 
 import "package:archive/archive.dart";
 
-import "../formats/Formats.dart";
 import "../formats/BundleManifest.dart";
+import "../formats/Formats.dart";
 import "../includes/path_utils.dart";
 import "resource.dart";
 
 export "resource.dart";
 
 abstract class Loader {
-
+    static bool _initialised = false;
     static BundleManifest manifest;
     static Map<String, Resource<dynamic>> _resources = <String, Resource<dynamic>>{};
     static RegExp _slash = new RegExp("[\\/]");
 
     static void init() {
+        if (_initialised) { return; }
+        _initialised = true;
+
         Formats.init();
     }
 
     static Future<T> getResource<T>(String path, {FileFormat<T, dynamic> format, bool bypassManifest = false}) async {
+        init();
         if (_resources.containsKey(path)) {
             Resource<dynamic> res = _resources[path];
             if (res is Resource<T>) {
@@ -92,5 +97,23 @@ abstract class Loader {
         }
 
         return true;
+    }
+
+    // JS loading extra special dom stuff
+
+    static Map<String, ScriptElement> _loadedScripts = <String, ScriptElement>{};
+
+    static Future<ScriptElement> loadJavaScript(String path) async {
+        if (_loadedScripts.containsKey(path)) {
+            return _loadedScripts[path];
+        }
+        Completer<ScriptElement> completer = new Completer<ScriptElement>();
+
+        ScriptElement script = new ScriptElement();
+        document.head.append(script);
+        script.onLoad.listen((Event e) => completer.complete(script));
+        script.src = PathUtils.adjusted(path);
+
+        return completer.future;
     }
 }
