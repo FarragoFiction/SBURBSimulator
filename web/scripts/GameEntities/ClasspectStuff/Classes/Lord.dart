@@ -20,9 +20,9 @@ class Lord extends SBURBClass {
     @override
     bool isMagical = true;
     @override
-    bool isDestructive = false;
+    bool isDestructive = true;
     @override
-    bool isHelpful = true;
+    bool isHelpful = false;
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
