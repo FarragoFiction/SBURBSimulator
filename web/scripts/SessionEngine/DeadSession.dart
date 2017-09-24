@@ -108,7 +108,7 @@ class DeadSession extends Session {
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
-                new Quest("The ${Quest.PLAYER1} that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  " ),
+                new Quest("The ${Quest.PLAYER1} learns that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  " ),
                 new FailableQuest("With an echoing crash, the first planet knocks over all the pins. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} gets another strike!", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
                 new FailableQuest("The ${Quest.PLAYER1} almost misses a pin, but a secondary explosion going off on the planet tips it over. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
