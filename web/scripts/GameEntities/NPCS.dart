@@ -588,7 +588,7 @@ class PotentialSprite extends NPC {
                     ..effects.add(new FraymotifEffect(Stats.SANITY, 0, false))
                     ..effects.add(new FraymotifEffect(Stats.SANITY, 0, true))
                     ..desc =
-                        " You are pretty sure it is impossible for Clwons to die. "),
+                        " You are pretty sure it is impossible for Clowns to die. "),
             new PotentialSprite("Puppet", null)
                 ..disaster = true
                 ..stats.setMap(<Stat,num>{
