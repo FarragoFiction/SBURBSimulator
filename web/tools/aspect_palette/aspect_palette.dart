@@ -45,10 +45,6 @@ void main() {
     });
 
     Renderer.loadThree().then((bool b) {
-        THREE.WebGLRenderer r = new THREE.WebGLRenderer();
-        stuff.append(r.domElement);
-        r.setSize(640, 480);
-
         THREE.PerspectiveCamera camera = new THREE.PerspectiveCamera(45, 640.0/480.0, 1, 1000);
         camera.position..y=-30;//..z=-30;
         camera.lookAt(new THREE.Vector3.zero());
@@ -71,7 +67,11 @@ void main() {
         scene.add(light);
         scene.add(light2);
 
-        r.render(scene, camera);
+        //r.render(scene, camera);
+
+        RenderJob job = new RenderJob(scene, 640, 480)..camera = camera;
+        stuff.append(job.div);
+        Renderer.render(job);
     });
 }
 

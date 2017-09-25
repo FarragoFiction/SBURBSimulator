@@ -83,6 +83,33 @@ class PerspectiveCamera extends Camera {
 	external PerspectiveCamera( num fov, num aspect, num near, num far );
 }
 
+@JS()
+class OrthographicCamera extends Camera {
+	external OrthographicCamera( num left, num right, num top, num bottom, num near, num far );
+
+	factory OrthographicCamera.flat(int width, int height) {
+		return new OrthographicCamera(0, width, 0, height, 0.1, 1000.0);
+	}
+
+	void setFlatSize(int w, int h) {
+		this.right = w;
+		this.bottom = h;
+		this.updateProjectionMatrix();
+	}
+
+	external void updateProjectionMatrix();
+
+	external num get left;
+	external void set left(num val);
+	external num get right;
+	external void set right(num val);
+	external num get top;
+	external void set top(num val);
+	external num get bottom;
+	external void set bottom(num val);
+
+}
+
 // Lights  ################################################################
 
 @JS()
