@@ -1,6 +1,6 @@
 import "dart:html";
-import '../Rendering/sbahj.dart';
-import '../Rendering/wordgif.dart';
+import '../Rendering/effects/sbahj.dart';
+import '../Rendering/text/wordgif.dart';
 import "../SBURBSim.dart";
 
 

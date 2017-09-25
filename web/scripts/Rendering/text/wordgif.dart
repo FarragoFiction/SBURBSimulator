@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'dart:math' as Math;
 
-import '../includes/colour.dart';
-import '../includes/gif.dart';
+import '../../includes/colour.dart';
+import '../../includes/gif.dart';
 import 'bitmapfont.dart';
 import 'fonts.dart';
 

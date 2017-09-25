@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:html';
 
-import '../includes/colour.dart';
-import '../includes/logger.dart';
+import '../../includes/colour.dart';
+import '../../includes/logger.dart';
 
-import '../loader/loader.dart';
+import '../../loader/loader.dart';
 
 class BitmapFontDefinition {
     final String path;

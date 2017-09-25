@@ -45,8 +45,33 @@ void main() {
     });
 
     Renderer.loadThree().then((bool b) {
-        THREE.WebGLRenderer r = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions());
+        THREE.WebGLRenderer r = new THREE.WebGLRenderer();
         stuff.append(r.domElement);
+        r.setSize(640, 480);
+
+        THREE.PerspectiveCamera camera = new THREE.PerspectiveCamera(45, 640.0/480.0, 1, 1000);
+        camera.position..y=-30;//..z=-30;
+        camera.lookAt(new THREE.Vector3.zero());
+
+        THREE.Scene scene = new THREE.Scene();
+
+        scene.add(camera);
+
+        THREE.Mesh object = new THREE.Mesh(new THREE.SphereGeometry(5.0, 32, 32), new THREE.MeshStandardMaterial(new THREE.MeshStandardMaterialParameters(color: 0x808080)));
+
+        scene.add(object);
+
+        for(int i=0; i<5; i++) {
+            scene.add(object.clone()..position.x = 5 + 2 * i);
+        }
+
+        THREE.AmbientLight light = new THREE.AmbientLight();
+        THREE.DirectionalLight light2 = new THREE.DirectionalLight()..position.z=10..lookAt(new THREE.Vector3.zero());
+
+        scene.add(light);
+        scene.add(light2);
+
+        r.render(scene, camera);
     });
 }
 

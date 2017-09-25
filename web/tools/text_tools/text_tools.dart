@@ -1,7 +1,7 @@
-import '../../scripts/Rendering/sbahj.dart';
+import '../../scripts/Rendering/effects/sbahj.dart';
 import 'dart:html';
 
-import '../../scripts/Rendering/wordgif.dart';
+import '../../scripts/Rendering/text/wordgif.dart';
 import '../../scripts/includes/colour.dart';
 import '../../scripts/includes/colour_picker.dart';
 

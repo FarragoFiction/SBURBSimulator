@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 
-import '../handle_sprites.dart';
-import '../includes/colour.dart';
+import '../../handle_sprites.dart';
+import '../../includes/colour.dart';
 
 typedef CanvasGradient Gradient(CanvasRenderingContext2D ctx, num top, num bottom, num left, num right);
 

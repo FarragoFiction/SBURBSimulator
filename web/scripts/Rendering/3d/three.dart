@@ -10,13 +10,15 @@ import "package:js/js.dart";
 @JS()
 abstract class Object3D {
 	external void lookAt(Vector3 vector);
-	external void add(Object3D object);
-	external void remove(Object3D object);
+	external Object3D add(Object3D object);
+	external Object3D remove(Object3D object);
 
 	external Vector3 get position;
 	external Vector3 get scale;
 
 	external Vector3 get up;
+
+	external Object3D clone([bool recursive]);
 }
 
 @JS()
@@ -50,11 +52,13 @@ class Scene extends Object3D {
 
 @JS()
 class WebGLRenderer {
-	external WebGLRenderer(WebGLRendererOptions parameters);
+	external WebGLRenderer([WebGLRendererOptions parameters]);
 	external CanvasElement get domElement;
 
 	external void setClearColor(num color, num alpha);
 	external void render(Scene scene, Camera camera);
+
+	external void setSize(int width, int height, [bool updateStyle]);
 }
 
 @anonymous
