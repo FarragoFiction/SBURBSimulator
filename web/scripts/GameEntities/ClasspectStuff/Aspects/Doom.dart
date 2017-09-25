@@ -42,10 +42,10 @@ class Doom extends Aspect {
     String denizenSongDesc = " A slow dirge begins to play. It is the one Death plays to keep in practice. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
     @override
-    List<String> symbolicMcguffins = ["doom","rules", "fate", "judgement"];
+    List<String> symbolicMcguffins = ["doom","rules", "fate", "judgement", "fog", "gas"];
 
     @override
-    List<String> physicalMcguffins = ["doom","bones", "skulls", "mural"];
+    List<String> physicalMcguffins = ["doom","bones", "skulls", "mural", "gravestones", "tomes", "tombs"];
 
     @override
     bool deadpan = true; // Ain't havin' none 'o' that trickster shit

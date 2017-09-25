@@ -41,10 +41,10 @@ class Hope extends Aspect {
 
 
     @override
-    List<String> symbolicMcguffins = ["hope","beliefs", "imagination", "dreams"];
+    List<String> symbolicMcguffins = ["hope","beliefs", "imagination", "dreams", "waves"];
 
     @override
-    List<String> physicalMcguffins = ["hope","magic feather", "wand", "talisman"];
+    List<String> physicalMcguffins = ["hope","magic feather", "wand", "talisman", "spell book", "stone tablets", "idol", "lottery ticket"];
 
     @override
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Hope', 'Isis', 'Marduk', 'Fenrir', 'Apollo', 'Sekhmet', 'Votan', 'Wadjet', 'Baldur', 'Zanthar', 'Raphael', 'Metatron', 'Jerahmeel', 'Gabriel', 'Michael', 'Cassiel', 'Gavreel', 'Aariel', 'Uriel', 'Barachiel ', 'Jegudiel', 'Samael', 'Taylus', 'Tzeench']);

@@ -64,11 +64,6 @@ class Comedy extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} is tired of waiting. They organize the ${Quest.CONSORT}s into groups, and tries to explain the concept of team work to the. Huh. This is going to take a while. "),
                 new Quest("With a triumpant ${Quest.CONSORTSOUND}, the organized ${Quest.CONSORT} pull the fallen tree away from the road with the ${Quest.PLAYER1}'s help.  Everyone can finally get on with their day now!  "),
             ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
-            ..addFeature(new PreDenizenQuestChain("Be the Strongest", [
-                new Quest("The ${Quest.PLAYER1}  wanders into a bunch of ${Quest.CONSORT} arguing over who the strongest being in the Land is. Wow, they all seem so STRONG! Apparently there is a STRENGTH competition soon? The ${Quest.PLAYER1} enters it, and tries to ignore the snickers of the ${Quest.CONSORT}s. They can get strong, just you wait and see!"),
-                new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time.  They are getting STRONG! "),
-                new Quest("It is the day of the STRENGTH competition. The ${Quest.PLAYER1} is the star, it is them.  A ${Quest.CONSORT} puts a gold medal around their neck. Everyone agrees that the ${Quest.PLAYER1} is the strongest."),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.HIGH)
             ,  Theme.LOW);
 
         //the sock ruse was a distaction

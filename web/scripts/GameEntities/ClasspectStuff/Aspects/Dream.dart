@@ -34,7 +34,7 @@ class Dream extends Aspect {
     @override
     List<String> symbolicMcGuffins = ["dreams","creativity", "obsession", "art"];
     @override
-    List<String> physicalMcguffins = ["dreams","dream catcher", "scultpture", "painting"];
+    List<String> physicalMcguffins = ["dreams","dream catcher", "sculpture", "painting", "sketch"];
 
 
     @override

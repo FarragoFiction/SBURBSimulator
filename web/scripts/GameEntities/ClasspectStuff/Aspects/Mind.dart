@@ -45,9 +45,9 @@ class Mind extends Aspect {
 
 
     @override
-    List<String> symbolicMcguffins = ["mind","decisions", "consequences", "free will"];
+    List<String> symbolicMcguffins = ["mind","decisions", "consequences", "free will", "path", "neurons", "causality"];
     @override
-    List<String> physicalMcguffins = ["mind","coin", "plans", "mask"];
+    List<String> physicalMcguffins = ["mind","coin", "plans", "mask", "map", "brains", "circuits"];
 
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[

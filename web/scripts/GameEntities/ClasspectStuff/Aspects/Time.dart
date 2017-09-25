@@ -43,9 +43,9 @@ class Time extends Aspect {
 
 
     @override
-    List<String> symbolicMcguffins = ["time","speed", "inevitability", "paradoxes"];
+    List<String> symbolicMcguffins = ["time","speed", "inevitability", "paradoxes", "rhythm"];
     @override
-    List<String> physicalMcguffins = ["time","clock", "metronome", "beat"];
+    List<String> physicalMcguffins = ["time","clock", "metronome", "beat", "turntables", "music boxes", "sheet music", "drums", "sundials", "beatbox", "trousers", "river"];
 
     @override
     List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
