@@ -34,7 +34,7 @@ class Lord extends SBURBClass {
 
     @override
     bool highHinit() {
-        return false;
+        return true;
     }
 
     @override

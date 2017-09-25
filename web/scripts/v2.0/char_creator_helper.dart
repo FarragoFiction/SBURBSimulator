@@ -497,6 +497,8 @@ class CharacterCreatorHelper {
             return "A Guide increases associated aspect in others and starts a lot of it to guide others to. They give a  boost to the positive parts of their Aspect, while reducing the damage from the negative parts. They know how to navigate their Aspect to avoid the pitfalls.";
         if (specific == "Muse")
             return "A Muse is the most passive possible class. They take on all the negatives of their Aspect and give the positives to others. They do not start with a lot of their Aspect.";
+        if (specific == "Lord")
+            return "A Lord is the most active possible class. They hoard on all the postives of their Aspect and delegate the negatives to others. They start with a lot of their Aspect.";
 
         return "Class help text not found for " + specific + ".";
     }
