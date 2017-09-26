@@ -37,7 +37,7 @@ class DeadQuests extends Scene {
         if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
         if(player.landFuture.secondCompleted) {
             section = 4;
-            window.alert("I finished the last set!");
+            //window.alert("I finished the last set!");
         }
     }
 
@@ -92,7 +92,7 @@ class DeadQuests extends Scene {
         if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
         if(player.landFuture.secondCompleted) {
             section = 3;
-            window.alert("I finished the second set!");
+            //window.alert("I finished the second set!");
         }
     }
 
