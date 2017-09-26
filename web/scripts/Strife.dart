@@ -29,8 +29,8 @@ class Strife {
         bool over = strifeEnded();
         if (over || strifeIsOver) {
             Team winner = findWinningTeam();
-            winner.won = true;
             if (winner != null) {
+                winner.won = true;
                 describeEnding(div, winner); //will call processEnding.
             } else {
                 //print("Strife ended with no clear winner");
