@@ -91,12 +91,6 @@ class OrthographicCamera extends Camera {
 		return new OrthographicCamera(0, width, 0, height, 0.1, 1000.0);
 	}
 
-	void setFlatSize(int w, int h) {
-		this.right = w;
-		this.bottom = h;
-		this.updateProjectionMatrix();
-	}
-
 	external void updateProjectionMatrix();
 
 	external num get left;
