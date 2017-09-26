@@ -15,7 +15,8 @@ class DenizenFeature extends Feature {
         Denizen ret =  new Denizen(name, p.session);
         List<Fraymotif> f = new List<Fraymotif>();
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
-        ret.setImportantShit(p.session, p.associatedStatsFromAspect,name, strength,f);
+        ret.setImportantShit(p.session, new List<AssociatedStat>.from(p.associatedStatsFromAspect),name, strength,f);
+        return ret;
 
     }
 

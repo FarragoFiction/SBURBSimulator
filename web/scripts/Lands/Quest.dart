@@ -49,13 +49,13 @@ class Quest {
 class DenizenFightQuest extends Quest {
     String introText;
     String failureText;
-    DenizenFightQuest(String introText, String text, this.failureText) : super(text);
+    DenizenFightQuest(this.introText, String text, this.failureText) : super(text);
 
     //TODO shit if i'm gonna have a strife here i need to pass a div in not return a string. fuck.
     @override
     bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         //TODO initalize a strife, start the strife, ask the strife if team 0 won. (that is success)
-        replaceTags(div, true, introText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        replaceTags(div, true, "<Br><br>$introText<br><br>", p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
         Team pTeam = new Team.withName("The ${p1.title()}",p1.session, [p1]);
         Team dTeam = new Team(p1.session, [denizen.makeDenizen(p1)]);
         Strife strife = new Strife(p1.session, [pTeam, dTeam]);
