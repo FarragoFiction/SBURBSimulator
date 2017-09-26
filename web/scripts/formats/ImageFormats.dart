@@ -18,20 +18,14 @@ abstract class ImageFileFormat extends BinaryFileFormat<ImageElement> {
 }
 
 class PngFileFormat extends ImageFileFormat {
-
     @override
     String mimeType() => "image/png";
 
     @override
     Future<ImageElement> read(ByteBuffer input) async {
-        //print(1);
         String url = await this.dataToDataURI(input);
-        //print(2);
-        //print(url);
         ImageElement img = new ImageElement(src: url);
-        //print(3);
-        //await img.onLoad.first;
-        //print(4);
+        await img.onLoad.first;
         return img;
     }
 
