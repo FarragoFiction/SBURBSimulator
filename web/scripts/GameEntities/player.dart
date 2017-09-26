@@ -17,6 +17,8 @@ class Player extends GameEntity {
     num timesDied = 0;
     GameEntity denizen = null;
     GameEntity denizenMinion = null;
+    //mostly for dead sessions.
+    bool unconditionallyImmortal = false;
     num maxHornNumber = 73; //don't fuck with this
     num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
@@ -788,6 +790,7 @@ class Player extends GameEntity {
 
     bool justDeath() {
         if(session.mutator.rageField) return true; //you earned it, kid. no take backs.
+        if(unconditionallyImmortal) return false;
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
@@ -831,6 +834,7 @@ class Player extends GameEntity {
     }
 
     bool heroicDeath() {
+        if(unconditionallyImmortal) return false;
         bool ret = false;
 
         //it's not heroic derping to death against a minion or whatever, or in a solo fight.

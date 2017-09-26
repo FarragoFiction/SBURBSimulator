@@ -91,7 +91,7 @@ class VoidyStuff extends Scene {
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && rand.nextDouble() > .8){
+		}else if(this.player.denizen != null && this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && rand.nextDouble() > .8){
 			this.fightDenizen(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -101,7 +101,6 @@ class VoidyStuff extends Scene {
 			this.endingPhrase(classDiv, newDiv);
 			return;
 		}else{ //pick from random array.
-				//TODO is there a dart equivalent to bind?
 				//var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
 				var options = [this.findFraymotif, this.makeEnemies, this.makeFriends, this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites];
         ShenaniganCallback chosen = rand.pickFrom(options);

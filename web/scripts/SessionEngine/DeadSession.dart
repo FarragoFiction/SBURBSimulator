@@ -11,14 +11,15 @@ class DeadSession extends Session {
     Map<Theme, double> chosenThemesForDeadSession =  new Map<Theme, double>();
     int numberLandsRemaining = 16; //can remove some in "the break".
     List<QuestChainFeature> boringBullshit;
+    QuestChainFeature victoryLap;
     Player metaPlayer;
     @override
-    num minTimeTillReckoning = 100;
+    num minTimeTillReckoning = 1000;
     @override
-    num maxTimeTillReckoning = 300;
+    num maxTimeTillReckoning = 1200;
 
     ///number between 0 and 1 to pass DeadQuests
-    double oddsOfSuccess = 0.99;
+    double oddsOfSuccess = 1.00;
 
     //harsh, but once you fail that's it. no more quests.
     bool failed = false;
@@ -68,6 +69,11 @@ class DeadSession extends Session {
             new Quest("The ${Quest.PLAYER1} finds another rock."),
             new Quest("Wait.  What? Really!  It's the final bullshit rock! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption));
+
+        victoryLap = new PostDenizenQuestChain("Take your Victory Lap", <Quest>[
+            new Quest("The ${Quest.PLAYER1} just needs to find ${Quest.DENIZEN}. How much bullshit will this shitty game manage to make this into? "),
+            new DenizenFightQuest("Huh. You kind of thought it was going to be a federal fucking issue, but it turns out ${Quest.DENIZEN} was in the giant dungeon with their face on it. Who knew?", "Welp. This is it. A completed dead session. How the fuck did this happen?", "Oh wow. How the fuck did the ${Quest.PLAYER1} manage to get owned so hard after coming so far?")
+        ], new ImmortalityReward(),  QuestChainFeature.defaultOption);
     }
 
     void makeThemes() {

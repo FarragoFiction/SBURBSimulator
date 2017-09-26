@@ -27,27 +27,6 @@ class Athletic extends InterestCategory {
 
     @override
     void initializeThemes() {
-        addTheme(new Theme(<String>["Tracks","Running","Hurdles", "Fields", "Relays", "Races", "Sprinting"])
-            ..addFeature(FeatureFactory.SWEATSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Outrun the Imps", [
-                new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that underlings stole all the books. "),
-                new Quest("The ${Quest.PLAYER1} has tracked down the book thieves to a nearby dungeon. After some harrowing puzzles and frankly amazing battles, the books are recovered. "),
-                new Quest("The ${Quest.CONSORT} librarian is beside himself and cannot stop ${Quest.CONSORTSOUND}ing. The  ${Quest.PLAYER1} is hailed as a local hero for returning the books!  "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsSneakyClass), Feature.HIGH)
-            ..addFeature(new PreDenizenQuestChain("Deliever the Message", [
-                new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that the Librarian quit and none of the books have been reshelved. "),
-                new Quest("The ${Quest.PLAYER1} decides to volunteer at the library, and beings shelving books. There's a book.  And another book. Oooo, that one looks interesting.... "),
-                new Quest("The ${Quest.PLAYER1} has finally shelved the final book!  They are first in line to begin checking things out, too. Books!  "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
-                ..addFeature(new PreDenizenQuestChain("Win the Race", [
-                    new Quest("The ${Quest.PLAYER1} finds a massive library, filled with books. The ${Quest.CONSORT} librarian offers to help the ${Quest.PLAYER1} search for useful books. "),
-                    new Quest("The ${Quest.PLAYER1} begins to learn about ${Quest.DENIZEN} and how they have persecuted the ${Quest.CONSORT}s.  "),
-                    new Quest("The ${Quest.PLAYER1} has read the final book about ${Quest.DENIZEN} and feels much more prepared to face them.  "),
-                ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            ,  Theme.LOW);
-
 
         addTheme(new Theme(<String>["Weights","Strength","Barbells", "Muscles", "Dumbbells", "Bodybuilding"])
             ..addFeature(FeatureFactory.SWEATSMELL, Feature.LOW)
@@ -56,7 +35,7 @@ class Athletic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Enter the Dungeon", [
                 new Quest("The ${Quest.PLAYER1} approaches a dungeon blocked off by a huge boulder. They push and pull at it, but just can't budge it.  A ${Quest.CONSORT} walks by talking about how wimpy and low level the ${Quest.PLAYER1} is. They vow to get STRONGER!. "),
                 new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time, complete with various ${Quest.CONSORT} providing a motivational soundtrack of ${Quest.CONSORTSOUND}s. "),
-                new Quest("The ${Quest.CONSORT} dramatically heaves the boulder out of the way. They are now STRONG!  The actual dungeon proves to be a disappointing afterthought.  "),
+                new Quest("The ${Quest.PLAYER1} dramatically heaves the boulder out of the way. They are now STRONG!  The actual dungeon proves to be a disappointing afterthought.  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Clear the Road", [
                 new Quest("The ${Quest.PLAYER1} finds a road blocked by a giant tree. Where did it even come from? There is a pile up of ${Quest.CONSORT} merchants waiting for it to be cleared. "),

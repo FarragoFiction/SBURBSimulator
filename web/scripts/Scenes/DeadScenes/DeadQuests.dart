@@ -20,8 +20,25 @@ class DeadQuests extends Scene {
             processMetaLandIntro(div); //when it ends will handle intro.
         }else if (section == 2) {
             processMiddleQuests(div);
+        }else if(section == 3) {
+            processEndQuests(div);
         }
 
+    }
+
+    void processEndQuests(div) {
+        print("finale.");
+        DeadSession ds = session as DeadSession;
+        Player player = session.players[0];
+        player.landFuture.initQuest([player]);
+        String html = "${player.landFuture.getChapter()}  ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
+        if(player.landFuture.secondCompleted) {
+            section = 4;
+            window.alert("I finished the last set!");
+        }
     }
 
     void processMiddleQuests(Element div) {
@@ -68,13 +85,15 @@ class DeadQuests extends Scene {
         print("sports intermissions.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
-        //TODO have the first quest in the dead land's denizen quests print out, which should
-        //explain teh pool/bowling/solitaire/whatever theme.
         player.landFuture.initQuest([player]);
         String html = "${player.landFuture.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
         if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
+        if(player.landFuture.secondCompleted) {
+            section = 3;
+            window.alert("I finished the second set!");
+        }
     }
 
     void introduceSecondPartOfQuests(Element div) {
@@ -107,6 +126,6 @@ class DeadQuests extends Scene {
 
     @override
     bool trigger(List<Player> playerList) {
-       return !(session as DeadSession).failed && !session.players[0].dead && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
+       return !(session as DeadSession).failed && section <4 && !session.players[0].dead && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
     }
 }

@@ -64,7 +64,6 @@ class DenizenReward extends Reward {
     String bgImage = "Rewards/sweetGrist.png";
     @override
     void apply(Element div, Player p1, Player p2, Land land) {
-        //TODO how the fuck should i get the copy of the fraymotif the enemy was using in the fight?
         p1.increaseGrist(100.0);
         DenizenFeature df = land.denizenFeature;
         Fraymotif f1 = df.denizen.fraymotifs.first;
@@ -72,6 +71,26 @@ class DenizenReward extends Reward {
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
         p1.setDenizenDefeated();
+        super.apply(div, p1, p2, land);
+    }
+}
+
+class ImmortalityReward extends Reward {
+
+    @override
+    String text = " The ${Reward.PLAYER1} finds a strange clock and destroys it utterly. Where did they even get that crowbar? It doesn't matter.   They are now unconditionally immortal. What will happen? ";
+    @override
+    String image = "Rewards/ohShit.png";
+    String bgImage = "Rewards/sweetClock.png";
+
+
+    void apply(Element div, Player p1, Player p2, Land land) {
+        if(!p1.godTier) {
+            text = "There remains to be a trivial act of self-suicide. And then... $text";
+            p1.makeGodTier();
+        }
+        p1.unconditionallyImmortal = true;
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         super.apply(div, p1, p2, land);
     }
 }
