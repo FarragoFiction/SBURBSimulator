@@ -25,6 +25,7 @@ abstract class Formats {
 
         png = new PngFileFormat();
         addMapping(png, "png");
+        addMapping(png, "jpg");
     }
 
     static void addMapping(FileFormat<dynamic,dynamic> format, String extension) {

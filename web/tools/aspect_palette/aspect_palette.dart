@@ -44,34 +44,37 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });
 
-    Renderer.loadThree().then((bool b) {
-        THREE.PerspectiveCamera camera = new THREE.PerspectiveCamera(45, 640.0/480.0, 1, 1000);
-        camera.position..y=-30;//..z=-30;
-        camera.lookAt(new THREE.Vector3.zero());
+    new Future<bool>(() async {
 
-        THREE.Scene scene = new THREE.Scene();
+        RenderJob job = await RenderJob.create(640, 480);
 
-        scene.add(camera);
+        job.div.style.backgroundColor="#808080";
 
-        THREE.Mesh object = new THREE.Mesh(new THREE.SphereGeometry(5.0, 32, 32), new THREE.MeshStandardMaterial(new THREE.MeshStandardMaterialParameters(color: 0x808080)));
+        //THREE.PerspectiveCamera camera = new THREE.PerspectiveCamera(45, 640.0/480.0, 1, 1000);
+        //camera.position..y=-30;
+        //camera.lookAt(new THREE.Vector3.zero());
 
-        scene.add(object);
+        //job.camera = camera;
 
-        for(int i=0; i<5; i++) {
-            scene.add(object.clone()..position.x = 5 + 2 * i);
-        }
+        //THREE.Mesh object = new THREE.Mesh(new THREE.SphereGeometry(25.0, 32, 32), new THREE.MeshStandardMaterial(new THREE.MeshStandardMaterialParameters(color: 0x808080)));
 
-        THREE.AmbientLight light = new THREE.AmbientLight();
-        THREE.DirectionalLight light2 = new THREE.DirectionalLight()..position.z=10..lookAt(new THREE.Vector3.zero());
+        //job.add(object);
 
-        scene.add(light);
-        scene.add(light2);
+        /*for(int y = 0; y < 5; y++) {
+            for (int x = 0; x < 5; x++) {
+                job.add(object.clone()..position.x = 50 + x * 50..position.y = 50 + y * 50);
+            }
+        }*/
 
-        //r.render(scene, camera);
+        //THREE.DirectionalLight light = new THREE.DirectionalLight()..position.z=-50..position.x = 25..lookAt(new THREE.Vector3.zero());
 
-        RenderJob job = new RenderJob(scene, 640, 480)..camera = camera;
-        stuff.append(job.div);
-        Renderer.render(job);
+        //job.add(light);
+
+        await job.addImage("images/copypasta_jr.png", 25, 25);
+
+        stuff.append(job.dispatch());
+
+        return true;
     });
 }
 
