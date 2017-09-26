@@ -46,3 +46,22 @@ class FraymotifReward extends Reward
         super.apply(div, p1, p2);
     }
 }
+
+class DenizenReward extends Reward {
+
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    @override
+    String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. ";
+    @override
+    String image = "Rewards/sweetLoot.png";
+    @override
+    void apply(Element div, Player p1, Player p2) {
+        //TODO how the fuck should i get the copy of the fraymotif the enemy was using in the fight?
+        Fraymotif f1 = p1.getNewFraymotif(p2);
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
+        //super increases power and renders self.
+        super.apply(div, p1, p2);
+    }
+}

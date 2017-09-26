@@ -41,11 +41,10 @@ class QuestChainFeature extends Feature {
         p1.increasePower();
         if(p2 != null) p2.increasePower();
 
-        QuestResult result = quests.first.doQuest(p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
-        //TODO if ret is null, quest was failed. do not remove, need to try again.
-        appendHtml(div, "${result.text}");
+        bool success = quests.first.doQuest(div, p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
+
         //only if you win. mostly only used for frogs and grist at this point.
-        if(result.success) {
+        if(success) {
             p1.increaseLandLevel();
             removeFromArray(quests.first, quests);
             if (quests.isEmpty) {

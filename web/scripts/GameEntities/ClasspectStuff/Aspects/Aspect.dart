@@ -287,6 +287,7 @@ class Aspect {
     }
 
     //TODO remember to give space only Frogs and give it a stupid high weighting.
+    //TODO have some branches of the quest chain not end in a denizen fight, but in a Choice. (and somehow failing the choice means you ahve to fight them)
     void initializeThemes() {
         addTheme(new Theme(<String>["Decay","Rot","Death"])
             ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
@@ -298,6 +299,8 @@ class Aspect {
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s are dead. This is....really depressing, actually. "),
                 new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),
                 new Quest("With a satisfying CLICK, the ${Quest.PLAYER1} has solved the final block puzzle.  A wave of energy overtakes the land. There is an immediate chorus of ${Quest.CONSORTSOUND}ing.  The ${Quest.CONSORT}s are alive again!  "),
+                new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. ","The ${Quest.CONSORT} lies slain. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.CONSORT} continues with the defeat of the ${Quest.PLAYER1}.")
+
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
         addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
@@ -306,12 +309,12 @@ class Aspect {
             ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Produce the Goods", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have a severe shortage of gears and cogs. It is up to the ${Quest.PLAYER1} to get the assembly lines up and running again. "),
                 new Quest("The ${Quest.PLAYER1} is running around and fixing all the broken down equipment. This sure is tiring! "),
                 new Quest("The ${Quest.PLAYER1} is training the local ${Quest.CONSORT}s to operate the manufacturing equipment. There is ${Quest.CONSORTSOUND}ing and chaos everywhere. "),
-                new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. ")
+                new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. "),
+                new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. ","The ${Quest.CONSORT} lies slain. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.CONSORT} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH);
 
@@ -323,12 +326,15 @@ class Aspect {
             ..addFeature(new PreDenizenQuestChain("Relax the Consorts According to Prophecy", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have been too stressed about an impending famine to relax. They vow to help however they can."),
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. Huh, what is this ${Quest.CONSORT} ${Quest.CONSORTSOUND}ing about? A prophecy?  "),
-                new Quest("The ${Quest.PLAYER1} finds the foretold RELAXING MIX TAPE and plays it for all the local ${Quest.CONSORT}s, who become so chill they do not even ${Quest.CONSORTSOUND} once. ")
+                new Quest("The ${Quest.PLAYER1} finds the foretold RELAXING MIX TAPE and plays it for all the local ${Quest.CONSORT}s, who become so chill they do not even ${Quest.CONSORTSOUND} once. "),
+                new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. ","The ${Quest.CONSORT} lies slain. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.CONSORT} continues with the defeat of the ${Quest.PLAYER1}.")
+
             ], new FraymotifReward(), QuestChainFeature.playerIsFateAspect), Feature.LOW)
             ..addFeature(new DenizenQuestChain("Relax the Consorts", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have been too stressed about an impending famine to relax. They vow to help however they can."),
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. "),
-                new Quest("The ${Quest.PLAYER1}  teaches the local ${Quest.CONSORT}s to find their chill. ")
+                new Quest("The ${Quest.PLAYER1}  teaches the local ${Quest.CONSORT}s to find their chill. "),
+                new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. ", "The ${Quest.CONSORT} lies slain. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.CONSORT} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }

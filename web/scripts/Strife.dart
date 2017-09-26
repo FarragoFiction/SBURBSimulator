@@ -144,6 +144,7 @@ class Strife {
         denizenManagesToNotKillYou(div); //only for player on denizen matches.
         processEnding();
         winner.level();
+        winner.won = true;
         winner.giveGristFromTeams(teams); //will filter out 'me'
         //TODO give winner any ITEMS (such as QUEENS RING) as well. Item should inherit from GameEntity. Maybe. It does now.
         //anything i'm missing? go check current code
@@ -249,6 +250,7 @@ class Strife {
 class Team implements Comparable<Team> {
     //when you want to sort teams, you sort by mobility.
     Session session;
+    bool won = true; //need to be able to ask who won.
     List<GameEntity> members;
     List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
     List<GameEntity> absconded = new List<GameEntity>(); //this only matters for one strife, so save to the team.

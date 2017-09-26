@@ -2,6 +2,8 @@ import "../SBURBSim.dart";
 import "FeatureTypes/ConsortFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "FeatureTypes/EnemyFeature.dart";
+import "dart:html";
+
 class Quest {
     //not sure if i'll need all of these. just...trying things out.
     static String PLAYER1 = "PLAYER1TAG";
@@ -17,11 +19,11 @@ class Quest {
 
 
     //passed in everything they need to know to fill in all possible tags.
-    QuestResult doQuest(Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
-        return replaceTags(true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+        return replaceTags(div, true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
     }
 
-    QuestResult replaceTags(bool success, String ret,Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+    bool replaceTags(Element div, bool success, String ret,Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         ret = ret.replaceAll("$PLAYER1", "${p1.htmlTitleBasicNoTip()}");
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
@@ -29,8 +31,8 @@ class Quest {
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${physicalMcguffin}");
         ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
 
-
-        return new QuestResult(ret, success);
+        appendHtml(div, ret);
+        return success;
     }
 
 
@@ -42,10 +44,30 @@ class Quest {
 //TODO also do i want even more types of subquests? maybe ones that change the world in addition to printing out some text.
 //TODO fights can be failed. if they are failed, then their quest chain shouldn't remove them.
 //let's assume that if  a doQuest returns null, it was failed.
-class BossFight extends Quest {
-    EnemyFeature enemy;
-    BossFight(String text) : super(text);
+
+//when over, set denizen to defeated so player gets bonuses. TODO if i ever have non denizen boss fights through this, will need to figure out how i want to do this.
+class DenizenFightQuest extends Quest {
+    String introText;
+    String failureText;
+    DenizenFightQuest(String introText, String text, this.failureText) : super(text);
+
+    //TODO shit if i'm gonna have a strife here i need to pass a div in not return a string. fuck.
+    @override
+    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+        //TODO initalize a strife, start the strife, ask the strife if team 0 won. (that is success)
+        replaceTags(div, true, introText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        Team pTeam = new Team.withName("The ${p1.title()}",p1.session, [p1]);
+        Team dTeam = new Team(p1.session, [denizen.makeDenizen(p1)]);
+        Strife strife = new Strife(p1.session, [pTeam, dTeam]);
+        strife.startTurn(div);
+        bool success = pTeam.won;
+        String ret = failureText;
+        if(success) ret = text;
+        replaceTags(div, success, ret, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+
+    }
 }
+
 
 
 //dead quests can be failed and when you fail them it's game over.
@@ -57,17 +79,12 @@ class FailableQuest extends Quest {
 
     //passed in everything they need to know to fill in all possible tags.
     @override
-    QuestResult doQuest(Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         if(p1.session.rand.nextDouble() < odds) {
-            return replaceTags(true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+            return replaceTags(div, true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
         }else {
-            return replaceTags(false, failureText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+            return replaceTags(div, false, failureText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
         }
     }
 }
 
-class QuestResult {
-    String text;
-    bool success;
-    QuestResult(this.text, this.success);
-}
