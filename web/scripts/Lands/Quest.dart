@@ -63,6 +63,7 @@ class DenizenFightQuest extends Quest {
         Strife strife = new Strife(p1.session, [pTeam, dTeam]);
         strife.startTurn(div);
         bool success = pTeam.won;
+        print("I won: $success");
         String ret = failureText;
         if(success) ret = text;
         replaceTags(div, success, ret, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);

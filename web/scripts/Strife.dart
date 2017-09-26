@@ -75,10 +75,12 @@ class Strife {
         //okay, now i know it IS a denizen fight.
         if (turnsPassed > 5) return true; //you should have beaten me by now.
         if (p.godDestiny) return false; //eh, you'll be okay even if I kill you.
-        if (p.getStat(Stats.CURRENT_HEALTH) < d.getStat(Stats.POWER))
-            return true; //i can kill you in one hit.
-        if (p.getStat(Stats.CURRENT_HEALTH) < 2 * d.getStat(Stats.POWER) && p.session.rand.nextDouble() > 0.5)
-            return true; //i can kill you in two hits and am worried about a critical hit.
+        bool iCanKillYouNext = p.getStat(Stats.CURRENT_HEALTH) < d.getStat(Stats.POWER);
+        bool youCanKillMeNext = p.getStat(Stats.POWER) > d.getStat(Stats.CURRENT_HEALTH);
+
+        if(iCanKillYouNext && !youCanKillMeNext) return true;
+
+        //if (p.getStat(Stats.CURRENT_HEALTH) < 2 * d.getStat(Stats.POWER) && p.session.rand.nextDouble() > 0.8) return true; //i can kill you in two hits and am worried about a critical hit.
 
         return false; // need to cover all the bases! -PL
     }
@@ -250,7 +252,7 @@ class Strife {
 class Team implements Comparable<Team> {
     //when you want to sort teams, you sort by mobility.
     Session session;
-    bool won = true; //need to be able to ask who won.
+    bool won = false; //need to be able to ask who won.
     List<GameEntity> members;
     List<GameEntity> potentialMembers = new List<GameEntity>(); //who is allowed to join this team mid-strife. (i.e. I would be shocked if a player showed up to help a Denizen kill their buddy).
     List<GameEntity> absconded = new List<GameEntity>(); //this only matters for one strife, so save to the team.

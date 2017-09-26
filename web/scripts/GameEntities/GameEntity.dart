@@ -206,7 +206,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     bool useFraymotif(Element div, Team mySide, GameEntity target, Team targetTeam) {
         List<GameEntity> living_enemies = targetTeam.getLivingMinusAbsconded();
         List<GameEntity> living_allies = mySide.getLivingMinusAbsconded();
-        if (this.session.rand.nextDouble() > 0.5) return false; //don't use them all at once, dunkass.
+        if (this.session.rand.nextDouble() > 0.5 && !(this is Player)) return false; //don't use them all at once, dunkass. unless you are a player. fraymotifs 4 lyfe
         List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
         if (crowned != null) { //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
             usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
