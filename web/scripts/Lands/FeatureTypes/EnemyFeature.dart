@@ -8,14 +8,23 @@ import "../../SBURBSim.dart";
 class DenizenFeature extends Feature {
     static double DYNAMIC_STRENGTH = -13.0;
     String name;
-    double strength; //highest is 13
-     DenizenFeature(this.name, this.strength, GameEntity enemy);
+    double strength; //basically just experience
+    Denizen denizen;
+     DenizenFeature(this.name);
 
     Denizen makeDenizen(Player p) {
+        if(denizen != null) return denizen;
+        if(strength == DYNAMIC_STRENGTH) {
+            strength = p.getStat(Stats.EXPERIENCE);
+        }
+        print("making denizen with strength $strength");
         Denizen ret =  new Denizen(name, p.session);
         List<Fraymotif> f = new List<Fraymotif>();
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
-        ret.setImportantShit(p.session, new List<AssociatedStat>.from(p.associatedStatsFromAspect),name, strength,f);
+        ret.fraymotifs = f;
+        ret.name = name;
+        ret.stats.copyFrom(p.stats); //mirror image, but won't improve any.
+        denizen = ret;
         return ret;
 
     }

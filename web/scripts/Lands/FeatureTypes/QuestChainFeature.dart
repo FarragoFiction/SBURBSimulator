@@ -34,7 +34,7 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
-    bool doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div) {
+    bool doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div, Land land) {
         chapter ++;
         //p2 is for interaction effect and also reward.
         //whether you win or not, get power
@@ -50,7 +50,7 @@ class QuestChainFeature extends Feature {
             if (quests.isEmpty) {
                 print("I've finished quest chain $name!");
                 finished = true;
-                reward.apply(div, p1, p2);
+                reward.apply(div, p1, p2,  land);
             }
             return true;
         }else {
@@ -63,6 +63,17 @@ class QuestChainFeature extends Feature {
     static bool playerIsStealthyAspect(List<Player> ps) {
         Player p = ps.first;
         return p.aspect == Aspects.VOID || p.aspect == Aspects.BREATH;
+    }
+
+    //useful for denizen choices, etc.
+    static bool playerIsADick(List<Player> ps) {
+        Player p = ps.first;
+        return p.getFriends().length < p.getEnemies().length;
+    }
+
+    static bool playerIsNice(List<Player> ps) {
+        Player p = ps.first;
+        return p.getFriends().length > p.getEnemies().length;
     }
 
     static bool playerIsSneakyClass(List<Player> ps) {

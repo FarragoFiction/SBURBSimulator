@@ -1,5 +1,6 @@
 import "dart:html";
 import "../SBURBSim.dart";
+import "FeatureTypes/EnemyFeature.dart";
 
 
 //there are different sub classes of reward. can get a fraymotif, can get grist, land level, items (post alchemy) minions (post npc).
@@ -10,15 +11,20 @@ class Reward {
     //children replace these two things.
     String text = " You get jack shit, asshole!";
     String image = "Rewards/no_reward.png";
-    void apply(Element div, Player p1, Player p2) {
+    String bgImage = null;
+    void apply(Element div, Player p1, Player p2, Land land) {
         p1.increasePower();
+        p1.increaseLandLevel();
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
         String divID = "canvas${div.id}_${p1.id}";
         String ret = "$text <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
         appendHtml(div, ret);
         Element canvas = querySelector("#$divID");
-        Drawing.drawSinglePlayer(canvas, p1);
-        Drawing.drawWhatever(canvas, image);
+        Element buffer = Drawing.getBufferCanvas(canvas);
+        Drawing.drawSinglePlayer(buffer, p1);
+        Drawing.drawWhatever(buffer, image);
+        if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
+        Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
     }
 }
 
@@ -31,7 +37,7 @@ class FraymotifReward extends Reward
     @override
     String image = "Rewards/sweetLoot.png";
     @override
-    void apply(Element div, Player p1, Player p2) {
+    void apply(Element div, Player p1, Player p2, Land land) {
         Fraymotif f1 = p1.getNewFraymotif(p2);
         Fraymotif f2;
         if(p2 != null) {
@@ -43,7 +49,7 @@ class FraymotifReward extends Reward
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2);
+        super.apply(div, p1, p2, land);
     }
 }
 
@@ -55,13 +61,17 @@ class DenizenReward extends Reward {
     String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. ";
     @override
     String image = "Rewards/sweetLoot.png";
+    String bgImage = "Rewards/sweetGrist.png";
     @override
-    void apply(Element div, Player p1, Player p2) {
+    void apply(Element div, Player p1, Player p2, Land land) {
         //TODO how the fuck should i get the copy of the fraymotif the enemy was using in the fight?
-        Fraymotif f1 = p1.getNewFraymotif(p2);
+        p1.increaseGrist(100.0);
+        DenizenFeature df = land.denizenFeature;
+        Fraymotif f1 = df.denizen.fraymotifs.first;
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2);
+        p1.setDenizenDefeated();
+        super.apply(div, p1, p2, land);
     }
 }

@@ -79,7 +79,8 @@ class FeatureFactory {
 
     //premade, important denizens.
     static void initializeDenizens() {
-        YALDABAOTHDENIZEN = new DenizenFeature("Yaldabaoth", 13.0, new Denizen("Placeholder", null));
+        //TODO instead make this an op denizen or some shit i dunno.
+        YALDABAOTHDENIZEN = new DenizenFeature("Yaldabaoth");
     }
 
     static void initializeConsorts() {

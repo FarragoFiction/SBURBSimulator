@@ -192,6 +192,7 @@ dynamic loadOther(String skipInit){
 	loadImage("charSheet.png", skipInit);
 	loadImage("Rewards/no_reward.png", skipInit);
 	loadImage("Rewards/sweetLoot.png", skipInit);
+	loadImage("Rewards/sweetGrist.png", skipInit);
 
 	if(bardQuest){
 		loadImage("/Bodies/cod.png",skipInit);

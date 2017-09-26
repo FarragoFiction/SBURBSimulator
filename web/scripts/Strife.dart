@@ -29,6 +29,7 @@ class Strife {
         bool over = strifeEnded();
         if (over || strifeIsOver) {
             Team winner = findWinningTeam();
+            winner.won = true;
             if (winner != null) {
                 describeEnding(div, winner); //will call processEnding.
             } else {
@@ -144,7 +145,6 @@ class Strife {
         denizenManagesToNotKillYou(div); //only for player on denizen matches.
         processEnding();
         winner.level();
-        winner.won = true;
         winner.giveGristFromTeams(teams); //will filter out 'me'
         //TODO give winner any ITEMS (such as QUEENS RING) as well. Item should inherit from GameEntity. Maybe. It does now.
         //anything i'm missing? go check current code

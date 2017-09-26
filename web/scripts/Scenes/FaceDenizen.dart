@@ -87,16 +87,13 @@ class FaceDenizen extends Scene{
 			if(p.getStat(Stats.POWER) > 27){ //calibrate this l8r
 				ret += " The " + p.htmlTitle() + " manages to choose correctly, despite the seeming impossibility of the matter. ";
 				ret += " They gain the power they need to acomplish their objectives. ";
-				p.denizenDefeated = true;
-				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
-				p.leveledTheHellUp = true;
+				p.setDenizenDefeated();
 				p.grist += denizen.grist;
 				appendHtml(div,"<br>"+ret);
 				this.session.stats.denizenBeat = true;
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
 				////session.logger.info("denizen beat through choice in session: " + this.session.session_id);
 			}else{
-				p.denizenDefeated = false;
 				ret += " They are unable to bring themselves to make the clearly correct, yet impossible, Choice, and are forced to admit defeat. " + denizen.name + " warns them to prepare for a strife the next time they come back. ";
         appendHtml(div,"<br>"+ret);
 			}
@@ -110,10 +107,8 @@ class FaceDenizen extends Scene{
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
       strife.startTurn(div);
 			if(denizen.getStat(Stats.CURRENT_HEALTH) <= 0 || denizen.dead) {
-				p.denizenDefeated = true;
+				p.setDenizenDefeated();
 				p.fraymotifs.addAll(p.denizen.fraymotifs);
-				p.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
-				this.session.stats.denizenBeat = true;
 			}else if(p.dead){
 				////session.logger.info("denizen kill " + this.session.session_id);
 			}

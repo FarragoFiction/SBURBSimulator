@@ -78,8 +78,15 @@ class Player extends GameEntity {
     bool leader = false;
     double landLevel = 0.0; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
     bool denizenFaced = false;
-    bool denizenDefeated = false;
+    bool _denizenDefeated = false;
     bool denizenMinionDefeated = false;
+
+    //no longer allowed to set it.
+    bool get denizenDefeated => _denizenDefeated;
+
+    void set denizenDefeatedExplicitlySet(bool x) {
+        _denizenDefeated = x;
+    }
 
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
@@ -426,6 +433,13 @@ class Player extends GameEntity {
             tmp = "${tmp}2";
         }
         return tmp;
+    }
+
+    void setDenizenDefeated() {
+        _denizenDefeated = true;
+        addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
+        leveledTheHellUp = true;
+        session.stats.denizenBeat = true;
     }
 
     void makeGodTier() {
@@ -972,7 +986,7 @@ class Player extends GameEntity {
         clone.leader = leader;
         clone.landLevel = landLevel; //at 10, you can challenge denizen.  only space player can go over 100 (breed better universe.)
         clone.denizenFaced = denizenFaced;
-        clone.denizenDefeated = denizenDefeated;
+        clone.denizenDefeatedExplicitlySet = denizenDefeated;
         clone.denizenMinionDefeated = denizenMinionDefeated;
         clone.session = session;
         //do not clone guardian, thing that calls you will do that

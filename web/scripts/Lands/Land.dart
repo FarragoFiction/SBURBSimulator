@@ -60,7 +60,7 @@ class Land {
 
     bool doQuest(Element div, Player p1, Player p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
-        bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div);
+        bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) decideIfTimeForNextChain(<Player>[p1,p2]); //need to mark appropriate bool as completed.
         print("ret is $ret from $currentQuestChain");
         return ret;
@@ -226,7 +226,7 @@ class Land {
         denizenFeature = session.rand.pickFrom(choices);
         //pick random one from aspect.
         if(denizenFeature == null) {
-            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}", 3.0, new Denizen("Placeholder", null));
+            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
         }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.

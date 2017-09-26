@@ -190,16 +190,13 @@ class VoidyStuff extends Scene {
 		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
 		if(rand.nextDouble() >.5){
-			this.player.addBuff(new BuffDenizenBeaten());  //current and future doubling of power.
-			this.player.leveledTheHellUp = true;
-			this.player.denizenDefeated = true;
+			player.setDenizenDefeated();
 			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);
 			this.player.grist += denizen.grist;
 			ret += denizen.name + " lies dead on the ground. ";
 			appendHtml(specialDiv, ret);
 		}else{ //no CHOICE.  either you are berserking, or the denizen doesn't notice you in time to give you one.
 				this.player.denizenFaced = true;
-				this.player.denizenDefeated = false;
 				appendHtml(div, " That didn't sound good... ");
 				this.player.dead = true;
 				if(this.enablingPlayer.aspect == Aspects.VOID) ret += this.player.makeDead("fighting their Denizen way too early, cloaked in Void");

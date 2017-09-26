@@ -580,21 +580,25 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
       return name; //players will override this
   }
 
-  void setImportantShit(Session newSession, List<AssociatedStat> newAssociatedStats, String newName, double strength, List<Fraymotif> newFraymotifs) {
-      //print("Strength for denizen $name is: $strength");
+  void setImportantShit(Session newSession, List<AssociatedStat> newAssociatedStats, String newName, double strength, List<Fraymotif> newFraymotifs, bool denizenBeat, bool god) {
+      print("Strength for denizen $name is: $strength");
       //based off existing denizen code.  care about which aspect i am.
       //also make minion here.
       this.name = newName;
       this.session = newSession;
+      if(denizenBeat) this.addBuff(new BuffDenizenBeaten());
+      if(god) this.addBuff(new BuffGodTier());
+      this.setStat(Stats.EXPERIENCE, strength);
       Map<Stat, num> tmpStatHolder = <Stat, num>{};
       tmpStatHolder[Stats.MIN_LUCK] = -10;
       tmpStatHolder[Stats.MAX_LUCK] = 10;
-      tmpStatHolder[Stats.HEALTH] = 10 * strength;
+      tmpStatHolder[Stats.HEALTH] = 10;
+      tmpStatHolder[Stats.CURRENT_HEALTH] = 10;
       tmpStatHolder[Stats.MOBILITY] = 10;
       tmpStatHolder[Stats.SANITY] = 10;
       tmpStatHolder[Stats.ALCHEMY] = 10;
       tmpStatHolder[Stats.FREE_WILL] = 10;
-      tmpStatHolder[Stats.POWER] = 5 * strength;
+      tmpStatHolder[Stats.POWER] =10;
       tmpStatHolder[Stats.GRIST] = 100;
       tmpStatHolder[Stats.RELATIONSHIPS] = 10; //not REAL relationships, but real enough for our purposes.
       tmpStatHolder[Stats.SBURB_LORE] = 0;
@@ -607,6 +611,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
       //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000000);
       this.stats.setMap(tmpStatHolder);
       this.grist = strength * 100;
+      this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
       this.fraymotifs = newFraymotifs;
   }
 }

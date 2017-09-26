@@ -57,14 +57,16 @@ class DenizenFightQuest extends Quest {
         //TODO initalize a strife, start the strife, ask the strife if team 0 won. (that is success)
         replaceTags(div, true, "<Br><br>$introText<br><br>", p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
         Team pTeam = new Team.withName("The ${p1.title()}",p1.session, [p1]);
+        pTeam.canAbscond = false;
         Team dTeam = new Team(p1.session, [denizen.makeDenizen(p1)]);
+        dTeam.canAbscond = false;
         Strife strife = new Strife(p1.session, [pTeam, dTeam]);
         strife.startTurn(div);
         bool success = pTeam.won;
         String ret = failureText;
         if(success) ret = text;
         replaceTags(div, success, ret, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
-
+        return success;
     }
 }
 
