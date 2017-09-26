@@ -607,6 +607,7 @@ abstract class Drawing {
         for (int i = 0; i < dead_players.length; i++) {
             dead_spriteBuffers.add(getBufferCanvas(querySelector("#sprite_template")));
             //drawBG(dead_spriteBuffers[i], "#00ff00", "#ff0000");
+            drawWhatever(dead_spriteBuffers[i], dead_players[i].aspect.bigSymbolImgLocation);
             drawSprite(dead_spriteBuffers[i], dead_players[i]);
         }
 
