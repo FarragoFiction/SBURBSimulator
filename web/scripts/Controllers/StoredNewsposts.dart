@@ -9,6 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
+      new Newspost("9/27/17","The contents of strifes are finally toggleable (besides the results)! Hell yes, no more strife spam!"),
       new Newspost("9/26/17","Dead sessions have working planet bosses (what will be denizens in regular sessions). Hell yes.")
       ,new Newspost("9/24/17","Dead sessions continue to chug along. Lords are finally in (courtsey of tinkeredCalculation /jinkeredRaculation/Pixel and KR)  , as well, though of course tragically minionless.")
       ,new Newspost("9/21/17","More dead session stuff, and Muses are added courtesy of tinkeredCalculation /jinkeredRaculation/Pixel (with KR modifying them to work with the rendering engine). They aren't in their final state (since, like Lords, they are planned to have npc minions as quest rewards), but they are p close.")

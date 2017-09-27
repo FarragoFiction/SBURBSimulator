@@ -82,6 +82,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.CHLORINESMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+            ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
@@ -112,6 +113,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
+            ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
                 new Quest("The ${Quest.PLAYER1} learns that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  " ),
@@ -134,6 +136,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.BEEPINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
+            ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
                 new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
@@ -160,6 +163,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
+            ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Remove the Cards", [
                 new Quest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land."),
