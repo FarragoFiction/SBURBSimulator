@@ -392,7 +392,7 @@ class Aftermath extends Scene {
         f.effects.add(new FraymotifEffect(Stats.POWER, 1, false));
         f.desc = " OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.  A weakness? ";
         trollKidRock.fraymotifs.add(f);
-        initializePlayers([trollKidRock], null); //TODO: confirm -PL
+        initializePlayersNoReplayers([trollKidRock], null); //don't let troll kid rock get replaced.
         trollKidRock.setStat(Stats.CURRENT_HEALTH, 1000);
         return trollKidRock;
     }

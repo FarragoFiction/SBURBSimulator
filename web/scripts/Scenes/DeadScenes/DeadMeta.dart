@@ -89,6 +89,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(KRIntro());
         }else if(meta == session.mutator.metaHandler.wooMod ) {
             conversation = session.rand.pickFrom(WMIntro());
+        }else if(meta == session.mutator.metaHandler.dilletantMathematician ) {
+            conversation = session.rand.pickFrom(DMIntro());
         }else {
             conversation = session.rand.pickFrom(GenericIntro());
         }
@@ -101,6 +103,15 @@ class DeadMeta extends Scene {
     List<Conversation> KRIntro() {
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Good job breaking it, hero."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]));
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        return ret;
+    }
+
+    List<Conversation> DMIntro() {
+        List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my life and 1 person for the rest of my life, the current situation would come in a distant second."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]));
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));

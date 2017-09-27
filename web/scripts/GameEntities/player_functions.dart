@@ -68,6 +68,17 @@ void redoRelationships(List<Player> players) {
     }
 }
 
+void initializePlayersNoReplayers(List<Player> players, Session session) {
+    for (num i = 0; i < players.length; i++) {
+        if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
+            players[i].initialize();
+            players[i].guardian.initialize();
+
+        }
+    }
+    players[0].leader == true; //TODO why does this need to happen, why isn't it already true?
+
+}
 
 void initializePlayers(List<Player> players, Session session) {
     List<Player> replayPlayers = getReplayers();
