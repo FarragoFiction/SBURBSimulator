@@ -48,6 +48,16 @@ class DeadStoryController extends SimController {
   DeadStoryController() : super();
 
   @override
+  void createInitialSprites() {
+    //print("players: ${curSessionGlobalVar.players}");
+    for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
+      Player player = curSessionGlobalVar.players[i];
+      player.renderSelf();
+    }
+    (curSessionGlobalVar as DeadSession).metaPlayer.renderSelf();
+  }
+
+  @override
   void startSession() {
     globalInit(); // initialise classes and aspects if necessary
 
@@ -163,7 +173,7 @@ class DeadStoryController extends SimController {
           querySelector("#charSheets").setInnerHtml("");
           querySelector("#story").setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
       }
-      load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+      load(curSessionGlobalVar.players, <Player>[(curSessionGlobalVar as DeadSession).metaPlayer], ""); //in loading.js
   }
 
 

@@ -90,7 +90,7 @@ class DeadMeta extends Scene {
     List<Conversation> JRIntro() {
         // c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["You probably gonna fail, you know."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["You're probably gonna fail, you know."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
              ..add(new PlusMinusConversationalPair(["I'm totally serious, yo. Dead sessions are meant to be unwinnable."], ["..."],["Well that's just fucking great. And how the fuck do you know this?", "There's no way you know that."]))
              ..add(new PlusMinusConversationalPair(["Dude, I'm like the fucking Author. Of COURSE I know what I'm talking about."], ["..."],["Well fuck you for me existing.", "Fuck off."]));
 
@@ -110,12 +110,12 @@ class DeadMeta extends Scene {
     List<Conversation> GenericIntro() {
         // c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["You probably gonna fail, you know."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["You're probably gonna fail, you know."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
             ..add(new PlusMinusConversationalPair(["I'm serious. Dead sessions are meant to be unwinnable."], ["..."],["Well that's just fucking great. And how the fuck do you know this?", "There's no way you know that."]))
             ..add(new PlusMinusConversationalPair(["I helped make this thing,  I know what I'm talking about."], ["..."],["Well fuck you for me existing.", "Fuck off."]));
 
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Hey, I'm one of the cretors for this thing."], ["..."],["What the fuck?", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["Hey, I'm one of the creators for this thing."], ["..."],["What the fuck?", "Fuck off."]))
             ..add(new PlusMinusConversationalPair(["Yup, totally helped make this thing you're in. Weird, huh?"], ["..."],["Well that's just fucking great.", "There's no way."]))
             ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],["Well fuck you for me existing.", "Fuck off."]));
 
@@ -135,7 +135,7 @@ class DeadMeta extends Scene {
 
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Shit, that looks like it sucked. "], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["No seriously, that was absolutley something you didn't deserve. "],["..."], notSoBad))
+            ..add(new PlusMinusConversationalPair(["No seriously, that was absolutely something you didn't deserve. "],["..."], notSoBad))
             ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],fuckOff));
 
 
@@ -245,7 +245,7 @@ class DeadMeta extends Scene {
     bool trigger(List<Player> playerList) {
         if(player1Start == null) player1Start = session.players[0].chatHandleShort()+ ": ";
         if(player2Start == null) player2Start = (session as DeadSession).metaPlayer.chatHandleShortCheckDup(session.players[0].chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-        return !finished && !session.players[0].dead && session.rand.nextBool();
+        return !finished && !session.players[0].dead && session.rand.nextDouble()>.9;
     }
 }
 

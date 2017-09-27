@@ -253,6 +253,7 @@ abstract class SimController {
     }
 
     void startSession() {
+
         globalInit(); // initialise classes and aspects if necessary
 
 
