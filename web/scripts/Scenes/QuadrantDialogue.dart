@@ -616,6 +616,11 @@ class QuadrantDialogue extends Scene {
 
 }
 
+//conversational pairs in order
+class Conversation {
+	List<PlusMinusConversationalPair> pairs;
+	Conversation(this.pairs);
+}
 
 
 //set of possible responses if i like you, set of possible respones if i don't.  (nothing generic)

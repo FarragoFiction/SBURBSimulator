@@ -855,11 +855,19 @@ class MetaPlayerHandler {
 
     Player makeAW(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SCRIBE, Aspects.LIFE);
+        player.quirk = randomHumanQuirk(s.rand);
         player.hair = 56;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#000000";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
+
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
+
         player.deriveSprite = false;
         player.chatHandle = "aspiringWatcher";
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
@@ -893,6 +901,8 @@ class MetaPlayerHandler {
     //DM agreed to be our time player
     Player makeDM(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PRINCE, Aspects.TIME);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 29;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
@@ -906,6 +916,12 @@ class MetaPlayerHandler {
         player.land = "Land of Cardboard and Grass";
         player.godTier = true;
         player.deriveChatHandle = false;
+
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
@@ -927,6 +943,8 @@ class MetaPlayerHandler {
     //myseriously absent. why would SBURB assign a troll to be the space player for a human session?
     Player makeIO(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.MAGE, Aspects.SPACE);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 68;
         player.hairColor = "#000000";
         player.bloodColor = "#0021cb";
@@ -936,9 +954,15 @@ class MetaPlayerHandler {
         player.deriveSprite = false;
         player.rightHorn = 71;
         player.godTier = true;
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
         player.chatHandle = "InsufferableOracle";
         player.interest1 = new Interest("Drawing", InterestManager.CULTURE);
         player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
+
         player.moon = "Prospit";
         player.land = "Land of Doors and Frogs";
         player.deriveChatHandle = false;
@@ -954,6 +978,8 @@ class MetaPlayerHandler {
     //made a legit prophecy that could be subverted by stripping.
     Player makeMI(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.BARD, Aspects.DOOM);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 1;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
@@ -975,6 +1001,10 @@ class MetaPlayerHandler {
         player.makeDenizenWithStrength('<span class = "void">Maniomnia, the </span>Dreamwaker', 13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("Caliban", s);
         player.sprite.addPrototyping(player.object_to_prototype);
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
 
         Fraymotif f = new Fraymotif("Fraymixing", 13);
         f.baseValue = 1300;
@@ -989,6 +1019,8 @@ class MetaPlayerHandler {
 
     Player makeNB(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 67;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
@@ -1015,6 +1047,10 @@ class MetaPlayerHandler {
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect(Stats.SANITY, 0, true));
         f.effects.add(new FraymotifEffect(Stats.SANITY, 3, true));
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);
@@ -1023,6 +1059,8 @@ class MetaPlayerHandler {
 
     Player makeWM(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.MUSE, Aspects.BREATH);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 17;
         player.hairColor = "#800000";
         player.ectoBiologicalSource = 13;
@@ -1056,6 +1094,10 @@ class MetaPlayerHandler {
         //let's find out together if this crashes.
         f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 3, true));
         f.effects.add(new FraymotifEffect(Stats.SBURB_LORE, 1, false));
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
 
         f.desc = "Begins spouting hippie gnostic crap. You think it's supposed to be enlightening, but mostly you are just confused. ";
         player.fraymotifs.add(f);
@@ -1064,6 +1106,8 @@ class MetaPlayerHandler {
 
     Player makeRS(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SEER, Aspects.VOID);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 60;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
@@ -1087,6 +1131,10 @@ class MetaPlayerHandler {
         player.object_to_prototype.helpPhrase = "was a clever choice for a sprite. He showers enemies in currency. Damn balance-breaking void players.";
 
         player.sprite.addPrototyping(player.object_to_prototype);
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
 
         Fraymotif f = new Fraymotif("Maw of the Void", 13);
         f.baseValue = 1300;
@@ -1102,6 +1150,8 @@ class MetaPlayerHandler {
 
     Player makeKR(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.ROGUE, Aspects.DREAM);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 46;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#E8D099";
@@ -1132,11 +1182,17 @@ class MetaPlayerHandler {
 
         f.desc = "ENEMY is banned. ";
         player.fraymotifs.add(f);
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
         return player;
     }
 
     Player makePL(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.WITCH, Aspects.VOID);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 47;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#453012";
@@ -1172,11 +1228,19 @@ class MetaPlayerHandler {
         f.desc = "OWNER and their allies vanish into the void. ENEMY is confused. Where did they go? This is such bullshit. ";
         player.fraymotifs.add(f);
 
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
+
         return player;
     }
 
     Player makeJR(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.WASTE, Aspects.MIND);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 13;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#3C1E07";
@@ -1198,13 +1262,22 @@ class MetaPlayerHandler {
         player.makeDenizenWithStrength('<span class = "void">Jadeacher the,</span>Researcher', 13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("JR", s);
         player.sprite.addPrototyping(player.object_to_prototype);
+
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 3;
+        player.quirk.favoriteNumber = 3;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [["\\bvery\\b", "hella"],["\\bgood\\b", "sweet"],["\\byes\\b", "yup"],["\\bnope\\b", "nope"]];
         return player;
     }
 
     Player makeAB(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.GUIDE, Aspects.MIND);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 13;
         player.ectoBiologicalSource = 13;
+        player.quirk.favoriteNumber = 3;
         player.robot = true;
         player.hairColor = "#2B2A2D";
         player.bloodColor = "#0021cb";
@@ -1225,12 +1298,20 @@ class MetaPlayerHandler {
         player.makeDenizenWithStrength('<span class = "void">Authorot, the</span> Robot', 13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("Compass", s);
         player.sprite.addPrototyping(player.object_to_prototype);
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 3;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [["\\bvery\\b", "hella"],["\\bgood\\b", "98.231423134% sweet"],["\\byes\\b", "yup"],["\\bnope\\b", "nope"]];
+
         return player;
     }
 
     Player makeABJ(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SCOUT, Aspects.MIND);
+        player.quirk = randomHumanQuirk(s.rand);
+
         player.hair = 13;
+        player.quirk.favoriteNumber = 3;
         player.ectoBiologicalSource = 13;
         player.robot = true;
         player.hairColor = "#2B2A2D";
@@ -1251,6 +1332,11 @@ class MetaPlayerHandler {
         player.makeDenizenWithStrength('<span class = "void">Abbiejean, the </span>Scout', 13); //hope we span strong enough to fight them.
         player.object_to_prototype = new PotentialSprite("Fire", s);
         player.sprite.addPrototyping(player.object_to_prototype);
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 3;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [["^.*\$", "Hrmmm...."],["[.]\$", " Yes.."],["[.]\$", " Interesting!!!"],];
+
         return player;
     }
 
