@@ -11,12 +11,23 @@ void renderContent(Element div) {
     String content = "<Br><br>While there are no meteors, and no babies, a Reckoning is a Universal Constant, and has just been triggered through Skaia's unknowable will.  It is no longer possible to progress in this game.  ";
     Player player = session.players[0];
     if(player.unconditionallyImmortal) {
-        content += " Despite bullshit odds, the ${player.htmlTitle()} has won. What will they do now, with their Unconditional Immortality?";
+        session.stats.won = true;
+        content += " Despite bullshit odds, the ${player.htmlTitle()} has won. What will they do now, with their Unconditional Immortality? <Br><Br> <button id = 'deadButton'> Perhaps they will invade a new session?</button>";
     }else {
         content += " We all fail to be surprised that the ${player.htmlTitle()}  didn't manage to beat such a bullshit game. Guess they are stuck here, huh?";
     }
     appendHtml(div, content);
+    ButtonElement button = querySelector("#deadButton");
+    if(button != null) {
+        button.onClick.listen((e) {
+            startNewSession();
+        });
+    }
     lastRender(div);
+}
+
+void startNewSession() {
+    window.alert("TODO");
 }
 
 @override
