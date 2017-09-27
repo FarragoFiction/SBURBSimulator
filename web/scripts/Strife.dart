@@ -1,7 +1,6 @@
 import "dart:html";
-
-import "SBURBSim.dart";
 import "navbar.dart";
+import "SBURBSim.dart";
 /*
   Though this FEELS like it should take a back burner to the general refactoring effort, the fact
   remains that GameEntities, Players and PlayerSnapshots are all treated as interchangeable
@@ -27,8 +26,17 @@ class Strife {
             String buttonID = "${div.id}Button";
             appendHtml(div, "<br><br><button id = '$buttonID' class = 'strifeButton'>View Strife!</button><div style = 'display:none;' id = '$divID'></div>");
             innerDiv = querySelector("#$divID");
-            querySelector("#$buttonID").onClick.listen((e) {
-                toggle(innerDiv);
+            ButtonElement button = querySelector("#$buttonID");
+            button.onClick.listen((e) {
+                String display = innerDiv.style.display;
+                ////print("display is $display");
+                if (display == "none" || display.isEmpty) {
+                    show(innerDiv);
+                    button.setInnerHtml("Unview Strife!");
+                } else {
+                    hide(innerDiv);
+                    button.setInnerHtml("View Strife!");
+                }
             });
         }
         div = innerDiv;
