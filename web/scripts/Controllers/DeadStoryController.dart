@@ -113,8 +113,7 @@ class DeadStoryController extends SimController {
     Scene s = new DeadReckoning(curSessionGlobalVar);
     s.trigger(curSessionGlobalVar.players);
     s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
-    //TODO render button to start up new session with Dead Player as alien.
-      // make sure bgs change
+    renderAfterlifeURL();
   }
 
 

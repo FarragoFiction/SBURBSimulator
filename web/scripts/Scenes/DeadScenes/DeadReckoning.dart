@@ -27,7 +27,26 @@ void renderContent(Element div) {
 }
 
 void startNewSession() {
-    window.alert("TODO");
+    Element div = querySelector("#story");
+    div.setInnerHtml("");
+    Player player = session.players[0];
+    String divID = "canvasdeadInvader";
+    String ret = "The ${player.htmlTitle()} enters a new session. Huh.  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+    appendHtml(div, ret);
+    Element canvas = querySelector("#$divID");
+    Element buffer = Drawing.getBufferCanvas(canvas);
+    Drawing.drawSinglePlayer(buffer, player);
+    Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
+    querySelector('body').style.backgroundImage = "url(images/Skaia_Clouds.png)";
+    querySelector("#story").style.backgroundColor = "white";
+    querySelector("#debug").style.backgroundColor = "white";
+    querySelector("#charSheets").style.backgroundColor = "white";
+    window.scrollTo(0, 0);
+
+
+    //TODO have an 'enemy' mechanic for sessions. normal use case is if everybody hates you AND you have killed
+    //you get an enemy flag, which makes you strifable (new scene? ). EVERYBODY who is available will drop what they are doing to fight you.
+    //dead session players aren't necessarily set to enemy. but i bet quite a few of them will earn it naturally, caliborn style
 }
 
 @override
