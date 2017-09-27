@@ -533,7 +533,7 @@ class Session {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
-        if(mutator.lightField || true) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";
