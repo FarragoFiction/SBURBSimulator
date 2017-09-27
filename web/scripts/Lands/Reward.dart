@@ -86,7 +86,7 @@ class ImmortalityReward extends Reward {
 
     void apply(Element div, Player p1, Player p2, Land land) {
         if(!p1.godTier) {
-            text = "There remains to be a trivial act of self-suicide. And then... $text";
+            text = " There remains to be a trivial act of self-suicide. And then... $text";
             p1.makeGodTier();
         }
         p1.unconditionallyImmortal = true;
