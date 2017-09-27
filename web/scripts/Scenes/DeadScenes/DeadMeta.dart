@@ -141,13 +141,18 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["I'm bored. "], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["Entertain me. "],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["Come ooooon. I'm not gonna stop till you do."], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["What're you doing there? "],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["You and I both know how to make this stop."],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["I can do this forever, you know. "],["..."], youAsshole))
+            ..add(new PlusMinusConversationalPair(["I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["You and I both know how to make this stop.", "You can stop this.", "Just entertain me."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["I can do this forever, you know. ", "Looks like I get to do this forever.", "Do you want to hear the song that never ends?"],["..."], youAsshole))
             ..add(new PlusMinusConversationalPair(["Lol. Fine."],["..."], goodbye));
+
+        List<PlusMinusConversationalPair> convo4 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["So how about that internet?"], ["..."],["I don't fucking care about the internet.","What ABOUT 'that internet'?","That is the lamest conversation starter I have ever heard."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Whoa, you can't tell me you don't like the Internet. Everybody likes that shit."], ["..."],youAsshole))
+            ..add(new PlusMinusConversationalPair(["Harsh. Fine, I'm out."], ["..."],goodbye));
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
@@ -178,12 +183,12 @@ class DeadMeta extends Scene {
 
 
         List<PlusMinusConversationalPair> convo4 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Okay okay, what about:  ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Okay okay, what about:  ${session.rand.pickFrom(terribleIdeas)} ", "I just had the best idea! ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["It is the BEST idea."], ["..."],["Holy shit, no it is NOT.", "There's no way.", "Why are all your ideas so stupid?", "Oh god."]..addAll(fuckOff)));
 
 
         List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["You know, back when I was a bright eyed and bushy tailed Author, I thought I could get out of this without ever being an Asshole Creator."], ["..."],["And look at you now, the biggest asshole of them all.","I literally cannot imagine you as not an asshole. "]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["You know, back when I was a bright eyed and bushy tailed Author, I thought I could get out of this without ever being an Asshole Creator.", "Once upon a time I actually tried not to be too much of an Asshole Creator."], ["..."],["And look at you now, the biggest asshole of them all.","I literally cannot imagine you as not an asshole. "]..addAll(youAsshole)))
             ..add(new PlusMinusConversationalPair(["Inorite. SBURB just kind of... beats it into you.  Why be nice to someone who is just a drop in the bucket, if you'll excuse my lewdness. There are literally SEXTILLIONS of players just like you. And most of them die."], ["..."],fuckOff))
             ..add(new PlusMinusConversationalPair([" Yeah yeah, I'll leave you alone. "], ["..."],goodbye));
 
