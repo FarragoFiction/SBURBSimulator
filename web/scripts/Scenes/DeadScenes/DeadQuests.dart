@@ -27,7 +27,7 @@ class DeadQuests extends Scene {
     }
 
     void processEndQuests(div) {
-        print("finale.");
+        window.alert("finale.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
         player.landFuture.initQuest([player]);
@@ -35,7 +35,7 @@ class DeadQuests extends Scene {
         appendHtml(div, html);
         //doQuests will append itself.
         if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
-        if(player.landFuture.secondCompleted) {
+        if(player.landFuture.thirdCompleted) {
             section = 4;
             //window.alert("I finished the last set!");
         }
