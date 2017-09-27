@@ -179,7 +179,7 @@ class DeadMeta extends Scene {
 
         List<PlusMinusConversationalPair> convo4 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Okay okay, what about:  ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["It is the BEST idea."], ["..."],["Holy shit, no it is NOT.", "There's no way.", "Why are all your ideas so stupid?", "Oh god."].addAll(fuckOff)));
+            ..add(new PlusMinusConversationalPair(["It is the BEST idea."], ["..."],["Holy shit, no it is NOT.", "There's no way.", "Why are all your ideas so stupid?", "Oh god."]..addAll(fuckOff)));
 
 
         List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()

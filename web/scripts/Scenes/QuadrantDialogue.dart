@@ -635,9 +635,9 @@ class Conversation {
 
 //set of possible responses if i like you, set of possible respones if i don't.  (nothing generic)
 class PlusMinusConversationalPair {
-	var openingLines;
-	var positiveRespones;
-	var negativeResponses;	//have a variety of ways you can start.
+	List<String> openingLines;
+	List<String> positiveRespones;
+	List<String> negativeResponses;	//have a variety of ways you can start.
 	
 
 
