@@ -212,13 +212,13 @@ class DeadMeta extends Scene {
 
         List<PlusMinusConversationalPair> convo7 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Wow, you exterminated your entire species! Good job there!", "So how's it feel to be the destroyer of your species?"], ["..."],["Like I fucking knew what playing this game would do.","You tell me, you played this shitty game, too, right?"]..addAll(youAsshole)))
-            ..add(new PlusMinusConversationalPair(["Now, now, no need to get all defensive." "Let it all out.","Don't worry,  I've killed WAY more than just my own species. You don't get how meta players work, do you?"], ["..."],["You are literally the worst.","How the fuck did you just turn GENOCIDE into a competition?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Now, now, no need to get all defensive.", "Let it all out.","Don't worry,  I've killed WAY more than just my own species. You don't get how meta players work, do you?"], ["..."],["You are literally the worst.","How the fuck did you just turn GENOCIDE into a competition?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo8 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Would you like to play a game?", "Haha, WOW, dude, nice job. Really, I'm completely fucking floored by your masterful skills in the fields of fucking things up so badly they become unwinnable. It's a thing of beauty, really. That being said, let's start the game."], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["Come on, it'll be the best game!" "Just a little game, what could it hurt?","I'm bored, play a game with me."], ["..."],["What game?","*sigh* What game, asshole?", "...What game are you talking about?"]))
-            ..add(new PlusMinusConversationalPair(["I'm THINKING of a number between 450 and 850." "Let's go deeper, I bet we could play SBURB while we play SBURB, dog.","I just lost the game."], ["..."],youAsshole))
+            ..add(new PlusMinusConversationalPair(["Come on, it'll be the best game!", "Just a little game, what could it hurt?","I'm bored, play a game with me."], ["..."],["What game?","*sigh* What game, asshole?", "...What game are you talking about?"]))
+            ..add(new PlusMinusConversationalPair(["I'm THINKING of a number between 450 and 850.", "Let's go deeper, I bet we could play SBURB while we play SBURB, dog.","I just lost the game."], ["..."],youAsshole))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
         List<Conversation> ret = new List<Conversation>();
