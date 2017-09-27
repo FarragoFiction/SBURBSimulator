@@ -176,6 +176,15 @@ class DeadStoryController extends SimController {
       load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
   }
 
+  @override
+  void shareableURL() {
+    String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
+    if (params == window.location.href) params = "";
+    String str = '<div class = "links"><a href = "dead_index.html?seed=$initial_seed&$params">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed$initial_seed&$params" target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "dead_index.html">Random Session URL </a> </div>';
+    setHtml(querySelector("#seedText"), str);
+    querySelector("#story").appendHtml("Session: $initial_seed", treeSanitizer: NodeTreeSanitizer.trusted);
+  }
+
 
 }
 
