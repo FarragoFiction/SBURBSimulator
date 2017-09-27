@@ -116,6 +116,16 @@ class DeadStoryController extends SimController {
     renderAfterlifeURL();
   }
 
+  @override
+  void processCombinedSession() {
+      //guaranteed to make one since it's a dead session
+      Session tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+      SimController.instance = null;
+      new StoryController();
+      doComboSession(tmpcurSessionGlobalVar);
+
+  }
+
 
   @override
   void callNextIntro(int player_index) {
@@ -136,5 +146,30 @@ class DeadStoryController extends SimController {
     tick();
   }
 
+  @override
+  void doComboSession(Session tmpcurSessionGlobalVar) {
+      if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
+      curSessionGlobalVar = tmpcurSessionGlobalVar;
+      //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+      List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
+      if(living.isEmpty) {
+          appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
+      }else {
+          appendHtml(querySelector("#story"), "<br><Br> Entering: session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>");
+      }
+      checkSGRUB();
+      if(curSessionGlobalVar.mutator.spaceField) {
+          window.scrollTo(0, 0);
+          querySelector("#charSheets").setInnerHtml("");
+          querySelector("#story").setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
+      }
+      load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+  }
 
+
+}
+
+
+class StoryController extends SimController {
+    StoryController() : super();
 }

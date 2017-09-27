@@ -61,11 +61,11 @@ class GrimDarkQuests extends Scene{
 			}
 			this.session.sessionHealth += amount;
 			player.landLevel += -1; //if they manage to snap out of this, they are gonna still have a bad time. why did they think this was a good idea?
-			if(player.getStat(Stats.POWER) < 250){
+			if(player.getStat(Stats.POWER) < 250 * Stats.POWER.coefficient){
 				quip = " Luckily, they kind of suck at this game. ";
-			}else if(player.getStat(Stats.POWER) > 500){
+			}else if(player.getStat(Stats.POWER) > 500* Stats.POWER.coefficient){
 				quip = " Oh shit. This looks bad. ";
-			}else if(player.getStat(Stats.POWER) > 300){
+			}else if(player.getStat(Stats.POWER) > 300* Stats.POWER.coefficient){
 				quip = " They seem strong enough to do some serious damage. ";
 			}
 			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + rand.pickFrom(tasks) + quip;

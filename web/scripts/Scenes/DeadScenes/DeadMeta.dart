@@ -10,6 +10,13 @@ class DeadMeta extends Scene {
     @override
     void renderContent(Element div) {
         // TODO: implement renderContent
+        /**
+         * not a pesterlog, literally part of the narration just like hussie and caliborn.
+         *
+         * use quirks and color though, go wild. and chat handle
+         * JR: alsjdf
+         * BL :;lakjsfd
+         */
     }
 
     @override

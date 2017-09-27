@@ -237,4 +237,29 @@ class DeadSession extends Session {
         //does nothing.
     }
 
+    //unlike regular sessions there is no way to fail this.
+    @override
+    Session initializeCombinedSession() {
+        this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
+        List<Player> living = findLivingPlayers(this.players);
+        living.add((curSessionGlobalVar as DeadSession).metaPlayer);
+        //nobody is the leader anymore.
+        Session newSession = new Session(this.rand.nextInt()); //Math.seed);  //this is a real session that could have gone on without these new players.
+        newSession
+            ..currentSceneNum = this.currentSceneNum
+            ..afterLife = this.afterLife //afterlife carries over.
+            ..stats.dreamBubbleAfterlife = this.stats.dreamBubbleAfterlife //this, too
+            ..reinit()
+            ..makePlayers()
+            ..randomizeEntryOrder()
+            ..makeGuardians();
+
+        addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
+
+        this.stats.hadCombinedSession = true;
+        newSession.parentSession = this;
+        Scene.createScenesForSession(newSession);
+        return newSession;
+    }
+
 }
