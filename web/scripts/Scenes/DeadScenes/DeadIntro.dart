@@ -11,6 +11,10 @@ class DeadIntro extends Scene {
     @override
     void renderContent(Element div) {
         Player player = session.players[0];
+        String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";
+        appendHtml(div, canvasHTML);
+        Element canvasDiv = querySelector("#firstcanvas"+ player.id.toString()+"_" + session.session_id.toString());
+        Drawing.drawCharSheet(canvasDiv,player);
         (session as DeadSession).makeDeadLand();
         String divID = "deadIntro${session.players[0].id}";
         String narration = "A wave of destruction heralds the arrival of the ${player.htmlTitle()}. They have many INTERESTS, including ${player.interest1.name} and ${player.interest2.name}.  They are the only Player. SBURB was never meant to be single player, and they have activated the secret 'Dead Session' mode as a punishment. Or is it a reward?  ";

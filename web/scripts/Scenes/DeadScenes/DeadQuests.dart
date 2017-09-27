@@ -27,7 +27,6 @@ class DeadQuests extends Scene {
     }
 
     void processEndQuests(div) {
-        window.alert("finale.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
         player.landFuture.initQuest([player]);

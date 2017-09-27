@@ -14,9 +14,9 @@ class DeadSession extends Session {
     QuestChainFeature victoryLap;
     Player metaPlayer;
     @override
-    num minTimeTillReckoning = 1000;
+    num minTimeTillReckoning = 350; //just enough time to finish game if you do NOTHING else.
     @override
-    num maxTimeTillReckoning = 1200;
+    num maxTimeTillReckoning = 500;
 
     ///number between 0 and 1 to pass DeadQuests
     double oddsOfSuccess = 1.00;
