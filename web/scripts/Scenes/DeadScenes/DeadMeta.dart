@@ -44,7 +44,7 @@ class DeadMeta extends Scene {
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
-        conversation.haveConversation(div, meta, player, player2Start, player1Start);
+        conversation.haveHTMLConversation(div, meta, player, player2Start, player1Start);
         doneOnce = true;
     }
 
@@ -63,7 +63,7 @@ class DeadMeta extends Scene {
         }else {
             conversation = session.rand.pickFrom(GenericEnd());
         }
-        conversation.haveConversation(div, meta, player, player2Start, player1Start);
+        conversation.haveHTMLConversation(div, meta, player, player2Start, player1Start);
         doneOnce = true;
 
     }
@@ -93,7 +93,7 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(GenericIntro());
         }
 
-        conversation.haveConversation(div, meta, player, player2Start, player1Start);
+        conversation.haveHTMLConversation(div, meta, player, player2Start, player1Start);
         doneOnce = true;
 
     }
@@ -216,7 +216,7 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo8 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Would you like to play a game?", "Haha, WOW, dude, nice job. Really, I'm completely fucking floored by your masterful skills in the fields of fucking things up so badly they become unwinnable. It's a thing of beauty, really. That being said, let's start the game."], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Would you like to play a game?", " Let's play a game, asshole.", "Do you want to play a game?"], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["Come on, it'll be the best game!", "Just a little game, what could it hurt?","I'm bored, play a game with me."], ["..."],["What game?","*sigh* What game, asshole?", "...What game are you talking about?"]))
             ..add(new PlusMinusConversationalPair(["I'm THINKING of a number between 450 and 850.", "Let's go deeper, I bet we could play SBURB while we play SBURB, dog.","I just lost the game."], ["..."],youAsshole))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));

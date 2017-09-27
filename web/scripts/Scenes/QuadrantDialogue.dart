@@ -621,12 +621,12 @@ class Conversation {
 	List<PlusMinusConversationalPair> pairs;
 	Conversation(this.pairs);
 
-	void haveConversation(Element div, Player p1, Player p2, String player1Start, String player2Start) {
+	void haveHTMLConversation(Element div, Player p1, Player p2, String player1Start, String player2Start) {
 		String ret = "<br>";
 		for(PlusMinusConversationalPair convo in pairs) {
 		String metaLine = convo.getOpeningLine(p1, player1Start);
 		String playerLine = convo.getP2ResponseBasedOnBool(p2, player2Start, p2.getRelationshipWith(p1).value > 0);
-		ret += "<br><font color = '${p1.getChatFontColor()}'>$metaLine</font><br><font color = '${p2.getChatFontColor()}'>$playerLine</font><br>";
+		ret += "<br><font color = '${p1.getChatFontColor()}'>$metaLine</font><br><font color = '${p2.getChatFontColor()}'>$playerLine</font>";
 		}
 		appendHtml(div, ret);
 	}
