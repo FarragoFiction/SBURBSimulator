@@ -14,28 +14,6 @@ import "../../scripts/Rendering/3d/three.dart" as THREE;
 void main() {
     Element stuff = querySelector("#stuff");
 
-    /*Random rand = new Random();
-    for (int i=0; i<100; i++) {
-        Colour test = new Colour.double(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-
-        //print(test);
-
-        //print("${test.lab_lightness}, ${test.lab_a}, ${test.lab_b}");
-
-        Colour test2 = new Colour.lab(test.lab_lightness, test.lab_a, test.lab_b);
-
-        //print(test2);
-        //print("-----");
-    }*/
-
-    /*for (int i=0; i<100; i++) {
-        stuff.append(makeGradientSwatch());
-    }*/
-
-    //checkLABRanges();
-
-    //print("event stuff:");
-    //print(querySelector("#testpicker"));
     new Timer(new Duration(seconds: 1),()
     {
         //print("event stuff:");
@@ -45,34 +23,53 @@ void main() {
     });
 
     new Future<bool>(() async {
+        // preload to be fair
+        await Loader.getResource("images/guide_bot.png");
+        await Renderer.loadThree();
+
+        int dim = 5;
+        int space = 10;
+
+        DateTime then = new DateTime.now();
 
         RenderJob job = await RenderJob.create(640, 480);
 
-        job.div.style.backgroundColor="#808080";
+        ImageElement img = await Loader.getResource("images/guide_bot.png");
+        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial.parameters(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true)..transparent = true);
+        image.position..x = img.width/2..y = img.height/2;
+        image.rotation.x = Math.PI;
 
-        //THREE.PerspectiveCamera camera = new THREE.PerspectiveCamera(45, 640.0/480.0, 1, 1000);
-        //camera.position..y=-30;
-        //camera.lookAt(new THREE.Vector3.zero());
-
-        //job.camera = camera;
-
-        //THREE.Mesh object = new THREE.Mesh(new THREE.SphereGeometry(25.0, 32, 32), new THREE.MeshStandardMaterial(new THREE.MeshStandardMaterialParameters(color: 0x808080)));
-
-        //job.add(object);
-
-        /*for(int y = 0; y < 5; y++) {
-            for (int x = 0; x < 5; x++) {
-                job.add(object.clone()..position.x = 50 + x * 50..position.y = 50 + y * 50);
+        for (int x=0; x<dim; x++) {
+            for (int y=0; y<dim; y++) {
+                //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
+                job.scene.add(image.clone(false)..position.x += space * x..position.y += space * y);
             }
-        }*/
-
-        //THREE.DirectionalLight light = new THREE.DirectionalLight()..position.z=-50..position.x = 25..lookAt(new THREE.Vector3.zero());
-
-        //job.add(light);
-
-        await job.addImage("images/copypasta_jr.png", 25, 25);
+        }
 
         stuff.append(job.dispatch());
+
+        DateTime now = new DateTime.now();
+        int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+
+        print("3d: ${mis/1000}ms");
+
+        then = new DateTime.now();
+
+        CanvasElement testcanvas = new CanvasElement(width:640, height:480);
+        CanvasRenderingContext2D ctx = testcanvas.context2D;
+
+        for (int x=0; x<dim; x++) {
+            for (int y=0; y<dim; y++) {
+                ctx.drawImage(await Loader.getResource("images/guide_bot.png"), space * x, space * y);
+            }
+        }
+
+        stuff.append(testcanvas);
+
+        now = new DateTime.now();
+        mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+
+        print("2d: ${mis/1000}ms");
 
         return true;
     });

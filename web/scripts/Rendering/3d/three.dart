@@ -8,13 +8,16 @@ import "dart:typed_data";
 import "package:js/js.dart";
 
 @JS()
-abstract class Object3D {
+class Object3D {
+	external Object3D();
+
 	external void lookAt(Vector3 vector);
 	external Object3D add(Object3D object);
 	external Object3D remove(Object3D object);
 
 	external Vector3 get position;
 	external Vector3 get scale;
+	external Euler get rotation;
 
 	external Vector3 get up;
 
@@ -27,6 +30,22 @@ class Vector3 {
 	factory Vector3.zero() {
 		return new Vector3(0,0,0);
 	}
+
+	external num get x;
+	external void set x(num x);
+
+	external num get y;
+	external void set y(num y);
+
+	external num get z;
+	external void set z(num z);
+}
+
+@JS()
+class Euler {
+	external Euler(num x, num y, num z, [String order]);
+
+	external void set(num x, num y, num z, [String order]);
 
 	external num get x;
 	external void set x(num x);
@@ -232,16 +251,33 @@ class Texture {
 @JS()
 abstract class Material {
 	external void dispose();
+
+	external bool get transparent;
+	external void set transparent(bool flag);
 }
 
 @JS()
 class MeshBasicMaterial extends Material {
-	external MeshBasicMaterial();
+	external MeshBasicMaterial([MeshBasicMaterialProperties parameters]);
+
+	factory MeshBasicMaterial.parameters({int color : 0xffffff, Texture map}) {
+		return new MeshBasicMaterial(new MeshBasicMaterialProperties(color:color, map:map));
+	}
 }
+
+@anonymous
+@JS()
+class MeshBasicMaterialProperties {
+	external factory MeshBasicMaterialProperties ({
+		int color : 0xffffff,
+		Texture map,
+	});
+}
+
 
 @JS()
 class MeshStandardMaterial extends Material {
-	external MeshStandardMaterial(MeshStandardMaterialParameters parameters);
+	external MeshStandardMaterial([MeshStandardMaterialParameters parameters]);
 }
 
 @anonymous

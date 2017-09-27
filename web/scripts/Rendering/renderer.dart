@@ -1,5 +1,6 @@
 import "dart:async";
 import "dart:html";
+import "dart:math";
 
 import "../SBURBSim.dart";
 import "3d/texturehelper.dart";
@@ -62,7 +63,7 @@ class Renderer {
 }
 
 abstract class RendererDefaults {
-    static THREE.AmbientLight defaultAmbient = new THREE.AmbientLight();
+    static THREE.AmbientLight defaultAmbient = new THREE.AmbientLight(0xFFFFFF, 2.0);
 }
 
 class RenderJob {
@@ -70,6 +71,8 @@ class RenderJob {
     THREE.Scene scene = new THREE.Scene();
     int width;
     int height;
+
+    double _imagedepth = 0.0;
 
     THREE.Camera camera = null;
 
@@ -109,10 +112,10 @@ class RenderJob {
     }
 
     Future<THREE.Mesh> _addImage(CanvasImageSource img, int x, int y, int w, int h) async {
-        THREE.Mesh image = new THREE.Mesh(new THREE.SphereGeometry(100, 32, 32), new THREE.MeshStandardMaterial(new THREE.MeshStandardMaterialParameters(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true)));
-//new THREE.PlaneGeometry(w, h)
-        //image.position..x = x + w/2..y = y + h/2;
-        image.position..x = 200..y=200;
+        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(w, h, 1, 1), new THREE.MeshBasicMaterial.parameters(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true)..transparent = true);
+        image.position..x = x + w/2..y = y + h/2..z = _imagedepth;
+        _imagedepth += 0.01;
+        image.rotation.x = PI;
         this.add(image);
         return image;
     }
