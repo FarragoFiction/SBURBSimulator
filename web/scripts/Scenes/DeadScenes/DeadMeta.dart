@@ -109,7 +109,7 @@ class DeadMeta extends Scene {
 
     List<Conversation> WMIntro() {
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Oh sweet skaia, why did you do this? This is a textbook definition of hubris. Literally textbook. I'll do what I can to guide you but really, your kinda fucked."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]));
+            ..add(new PlusMinusConversationalPair(["Oh sweet skaia, why did you do this? This is a textbook definition of hubris. Literally textbook. I'll do what I can to guide you but really, you're kinda fucked."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]));
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
