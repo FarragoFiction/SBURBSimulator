@@ -32,7 +32,7 @@ class DeadSession extends Session {
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         makeThemes();
-        timeTillReckoning = 200; //pretty long compared to a normal session, but not 16 times longer. what will you do?
+        timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
 
     //no reward for your boring bullshit. make quest chains so stupidly long too.
