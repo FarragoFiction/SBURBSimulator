@@ -79,6 +79,8 @@ class CharCreatorController extends SimController {
     numURLS ++;
     //print("getting ready to generate urls");
     String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>";
+    if(curSessionGlobalVar.players.length == 1)  html = "<Br><br><a href = 'dead_index.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Players into a Dead Session? (Link $numURLS)</a>";
+
     appendHtml(querySelector("#character_creator"),html);
   }
 
