@@ -173,7 +173,7 @@ class DeadMeta extends Scene {
             ..add("What if I had a trollsona? I'm thinking...jade blooded researcher? ");
 
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Have I told you about my latest amazing idea? ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Have I told you about my latest amazing idea? ${session.rand.pickFrom(terribleIdeas)} ", "Let me tell you about my latest amazing idea:  ${session.rand.pickFrom(terribleIdeas)}"], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I have literally never had a better idea in my life."], ["..."],["Well that's just fucking great.", "There's no way.", "You know, I can believe that.", "Oh god."]));
 
 
