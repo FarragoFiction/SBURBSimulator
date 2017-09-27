@@ -112,7 +112,7 @@ class RenderJob {
     }
 
     Future<THREE.Mesh> _addImage(CanvasImageSource img, int x, int y, int w, int h) async {
-        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(w, h, 1, 1), new THREE.MeshBasicMaterial.parameters(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true)..transparent = true);
+        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(w, h, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true))..transparent = true);
         image.position..x = x + w/2..y = y + h/2..z = _imagedepth;
         _imagedepth += 0.01;
         image.rotation.x = PI;

@@ -259,10 +259,6 @@ abstract class Material {
 @JS()
 class MeshBasicMaterial extends Material {
 	external MeshBasicMaterial([MeshBasicMaterialProperties parameters]);
-
-	factory MeshBasicMaterial.parameters({int color : 0xffffff, Texture map}) {
-		return new MeshBasicMaterial(new MeshBasicMaterialProperties(color:color, map:map));
-	}
 }
 
 @anonymous

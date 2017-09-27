@@ -30,46 +30,57 @@ void main() {
         int dim = 5;
         int space = 10;
 
-        DateTime then = new DateTime.now();
+        {
+            DateTime then = new DateTime.now();
 
-        RenderJob job = await RenderJob.create(640, 480);
+            CanvasElement testcanvas = new CanvasElement(width: 640, height: 480);
+            CanvasRenderingContext2D ctx = testcanvas.context2D;
 
-        ImageElement img = await Loader.getResource("images/guide_bot.png");
-        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial.parameters(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true)..transparent = true);
-        image.position..x = img.width/2..y = img.height/2;
-        image.rotation.x = Math.PI;
-
-        for (int x=0; x<dim; x++) {
-            for (int y=0; y<dim; y++) {
-                //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
-                job.scene.add(image.clone(false)..position.x += space * x..position.y += space * y);
+            for (int x = 0; x < dim; x++) {
+                for (int y = 0; y < dim; y++) {
+                    ctx.drawImage(await Loader.getResource("images/guide_bot.png"), space * x, space * y);
+                }
             }
+
+            stuff.append(testcanvas);
+
+            DateTime now = new DateTime.now();
+            int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+
+            print("2d: ${mis / 1000}ms");
         }
 
-        stuff.append(job.dispatch());
+        {
+            DateTime then = new DateTime.now();
 
-        DateTime now = new DateTime.now();
-        int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+            RenderJob job = await RenderJob.create(640, 480);
 
-        print("3d: ${mis/1000}ms");
+            ImageElement img = await Loader.getResource("images/guide_bot.png");
+            THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)
+                ..magFilter = THREE.NearestFilter
+                ..minFilter = THREE.NearestFilter
+                ..needsUpdate = true))
+                ..transparent = true);
+            image.position
+                ..x = img.width / 2
+                ..y = img.height / 2;
+            image.rotation.x = Math.PI;
 
-        then = new DateTime.now();
-
-        CanvasElement testcanvas = new CanvasElement(width:640, height:480);
-        CanvasRenderingContext2D ctx = testcanvas.context2D;
-
-        for (int x=0; x<dim; x++) {
-            for (int y=0; y<dim; y++) {
-                ctx.drawImage(await Loader.getResource("images/guide_bot.png"), space * x, space * y);
+            for (int x = 0; x < dim; x++) {
+                for (int y = 0; y < dim; y++) {
+                    //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
+                    job.scene.add(image.clone(false)
+                        ..position.x += space * x..position.y += space * y);
+                }
             }
+
+            stuff.append(job.dispatch());
+
+            DateTime now = new DateTime.now();
+            int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+
+            print("3d: ${mis / 1000}ms");
         }
-
-        stuff.append(testcanvas);
-
-        now = new DateTime.now();
-        mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
-
-        print("2d: ${mis/1000}ms");
 
         return true;
     });
