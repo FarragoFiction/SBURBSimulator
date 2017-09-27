@@ -1002,7 +1002,7 @@ class MetaPlayerHandler {
         player.object_to_prototype = new PotentialSprite("Caliban", s);
         player.sprite.addPrototyping(player.object_to_prototype);
         player.quirk.capitalization = 1;
-        player.quirk.punctuation = 2;
+        player.quirk.punctuation = 1;
         player.quirk.lettersToReplace = [];
         player.quirk.lettersToReplaceIgnoreCase = [];
 

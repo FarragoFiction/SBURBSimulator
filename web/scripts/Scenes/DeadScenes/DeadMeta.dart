@@ -13,12 +13,14 @@ class DeadMeta extends Scene {
     List<String> fuckOff;
     List<String> youAsshole;
     List<String> notSoBad;
+    List<String> goodbye;
 
     @override
     void renderContent(Element div) {
         if(fuckOff == null) {
             fuckOff = <String>["Oh my god just leave me alone!", "Fuck off.", "Just go away!", "I am NOT up for your bullshit right now!", "Oh my fucking god, go AWAY!", "NOT right now.", "No. Just, no. Go away.", "Does it HAVE to be right now?", "No. ", "I can't fucking deal with you right now. Fuck off."];
             youAsshole = <String>["God. I really do hate you.", "You are just a magnificent asshole, you know that?", "You are the very worst asshole in existance.", "I cannot fucking STAND you.", "Amazing. You are Paradox Space's biggest asshole.", "Wow. Rude.", "You fucking asshole.", "Who died and made you king asshole?", "You are the asshole. It is you."];
+            goodbye = <String>["Fucking finally.", "See you never, asshole.", "About time.", "Finally.", "And may you never return."];
             notSoBad = <String>["Huh. That...was actually kind of decent of you.", "Wow. Thanks, I guess? ","Huh. Not what I would have expected you to say.",  "Don't think that makes up for what an asshole you usually are.", "Uh. Thanks?", "Oh. Okay. Thanks?", "Huh. I ALMOST forgot you were an asshole there."];
         }
         Player player = session.players[0];
@@ -131,17 +133,26 @@ class DeadMeta extends Scene {
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Haha, wow, this sure looks hard!"], ["..."],fuckOff))
             ..add(new PlusMinusConversationalPair(["I sure am glad I wasn't part of a dead session."], ["..."],youAsshole))
-            ..add(new PlusMinusConversationalPair(["Harsh. Fine, I'm out."], ["..."],fuckOff));
+            ..add(new PlusMinusConversationalPair(["Harsh. Fine, I'm out."], ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Shit, that looks like it sucked. "], ["..."],fuckOff))
             ..add(new PlusMinusConversationalPair(["No seriously, that was absolutely something you didn't deserve. "],["..."], notSoBad))
-            ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],fuckOff));
+            ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],goodbye));
 
+        List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["I'm bored. "], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["Entertain me. "],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["Come ooooon. I'm not gonna stop till you do."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["What're you doing there? "],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["You and I both know how to make this stop."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["I can do this forever, you know. "],["..."], youAsshole))
+            ..add(new PlusMinusConversationalPair(["Lol. Fine."],["..."], goodbye));
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
+        ret.add(new Conversation(convo3));
         return ret;
     }
 
@@ -162,13 +173,26 @@ class DeadMeta extends Scene {
             ..add("What if I had a trollsona? I'm thinking...jade blooded researcher? ");
 
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Have I told you about my latest amazing idea? ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]))
+            ..add(new PlusMinusConversationalPair(["Have I told you about my latest amazing idea? ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I have literally never had a better idea in my life."], ["..."],["Well that's just fucking great.", "There's no way.", "You know, I can believe that.", "Oh god."]));
+
+
+        List<PlusMinusConversationalPair> convo4 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["Okay okay, what about:  ${session.rand.pickFrom(terribleIdeas)} "], ["..."],["What the fuck?", "Fuck off.", "Oh god, why would you do this?", "What would even be the point of that?", "What the fuck would that acomplish?", "Why. Why is this my life?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["It is the BEST idea."], ["..."],["Holy shit, no it is NOT.", "There's no way.", "Why are all your ideas so stupid?", "Oh god."].addAll(fuckOff)));
+
+
+        List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["You know, back when I was a bright eyed and bushy tailed Author, I thought I could get out of this without ever being an Asshole Creator."], ["..."],["And look at you now, the biggest asshole of them all.","I literally cannot imagine you as not an asshole. "]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Inorite. SBURB just kind of... beats it into you.  Why be nice to someone who is just a drop in the bucket, if you'll excuse my lewdness. There are literally SEXTILLIONS of players just like you. And most of them die."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair([" Yeah yeah, I'll leave you alone. "], ["..."],goodbye));
 
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
+        ret.add(new Conversation(convo3));
+        ret.add(new Conversation(convo4));
         ret.addAll(GenericMiddle());
         return ret;
     }
@@ -245,7 +269,8 @@ class DeadMeta extends Scene {
     bool trigger(List<Player> playerList) {
         if(player1Start == null) player1Start = session.players[0].chatHandleShort()+ ": ";
         if(player2Start == null) player2Start = (session as DeadSession).metaPlayer.chatHandleShortCheckDup(session.players[0].chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-        return !finished && !session.players[0].dead && session.rand.nextDouble()>.9;
+        //if haven't gone yet, fucking go. otherwise go if you're not done, the player is not dead and a random number is passed.
+        return !doneOnce || (!finished && !session.players[0].dead && session.rand.nextDouble()>.9);
     }
 }
 
