@@ -30,7 +30,7 @@ class SessionMutator {
     num goodFrogLevel = 20;
     int expectedGristContributionPerPlayer = 400;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
-    num sessionHealth = 500;
+    num sessionHealth = 500 *  Stats.POWER.coefficient;
     Session savedSession; //for heart callback
     Player inSpotLight; //there can be only one.
     Player spacePlayer; //there only needs to be one.
@@ -454,11 +454,11 @@ class SessionMutator {
         String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
         String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. Lines of SBURBs code light up around them. <div class = 'jake'>$scream</div>";
         ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
-
+        Stats.POWER.coefficient = 9001.0;
         hopePlayer.setStat(Stats.POWER, 9001); //i know i can save everyone.
         Stats.POWER.minDerived = 9000.0; //you have to be be OVER 9000!!!
         gameEntityMinPower = 9000.0;
-        s.sessionHealth = 9001;
+        s.sessionHealth = 9001* Stats.POWER.coefficient;
         s.stats.ectoBiologyStarted = true; //of COURSE we're not paradox doomed. You'd be crazy to say otherwise.
         s.minimumGristPerPlayer = 1;
         s.expectedGristContributionPerPlayer = 10;

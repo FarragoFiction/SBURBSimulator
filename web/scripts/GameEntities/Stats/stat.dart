@@ -63,7 +63,7 @@ class Stat {
     final bool summarise;
     final bool transient;
 
-    final double coefficient;
+    double coefficient; //hope players can change
     final double associatedGrowth;
 
     double minBase = double.NEGATIVE_INFINITY;
