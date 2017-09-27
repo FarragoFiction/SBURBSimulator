@@ -1,7 +1,7 @@
 import "dart:html";
 
 import "SBURBSim.dart";
-
+import "navbar.dart";
 /*
   Though this FEELS like it should take a back burner to the general refactoring effort, the fact
   remains that GameEntities, Players and PlayerSnapshots are all treated as interchangeable
@@ -12,14 +12,26 @@ class Strife {
     List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
     num turnsPassed = 0; //keep track for interuptions and etc.
     Session session;
-    bool strifeIsOver = false; //just in case death doesn't stick because of bullshit, need a way to know it's over
-
+    bool strifeIsOver =  false; //just in case death doesn't stick because of bullshit, need a way to know it's over
+    Element outerDiv;
+    Element innerDiv;
     Strife(this.session, this.teams);
 
     num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
 
     void startTurn(Element div) {
+        if(turnsPassed == 0) {
+            outerDiv = div;
+            String divID = "${div.id}Inner";
+            String buttonID = "${div.id}Button";
+            appendHtml(div, "<br><br><button id = '$buttonID' class = 'strifeButton'>View Strife!</button><div style = 'display:none;' id = '$divID'></div>");
+            innerDiv = querySelector("#$divID");
+            querySelector("#$buttonID").onClick.listen((e) {
+                toggle(innerDiv);
+            });
+        }
+        div = innerDiv;
         if (turnsPassed > 30) //session.logger.info("AB:  $turnsPassed turns passed in strife in session ${session.session_id}");
             teams.sort(); //we do this every turn because mobility can change and should effect turn order.
         for (Team team in teams) {
@@ -31,13 +43,13 @@ class Strife {
             Team winner = findWinningTeam();
             if (winner != null) {
                 winner.won = true;
-                describeEnding(div, winner); //will call processEnding.
+                describeEnding(winner); //will call processEnding.
             } else {
                 //print("Strife ended with no clear winner");
             }
         } else {
             turnsPassed ++;
-            startTurn(div);
+            startTurn(null); //don't need to repass the div
         }
     }
 
@@ -143,8 +155,9 @@ class Strife {
 
 
     //need to list out who is dead, who absconded, and who is alive.  Who WON.
-    void describeEnding(Element div, Team winner) {
-        denizenManagesToNotKillYou(div); //only for player on denizen matches.
+    //happens outside the spoiler tagged innser stuff. only ending matters.
+    void describeEnding( Team winner) {
+        denizenManagesToNotKillYou(outerDiv); //only for player on denizen matches.
         processEnding();
         winner.level();
         winner.giveGristFromTeams(teams); //will filter out 'me'
@@ -155,8 +168,8 @@ class Strife {
         if (winner.findPlayer() != null)
             icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
         String endingHTML = "<Br><br> $icon The fight is over. ${winner.name} remains alive and unabsconded. <br>";
-        appendHtml(div, endingHTML);
-        if (winner.findPlayer() != null) winner.renderPoseAsATeam(div); //only call this if winning team has a player in it. (otherwise blank canvas)
+        appendHtml(outerDiv, endingHTML);
+        if (winner.findPlayer() != null) winner.renderPoseAsATeam(outerDiv); //only call this if winning team has a player in it. (otherwise blank canvas)
     }
 
 
