@@ -22,7 +22,7 @@ class DeadIntro extends Scene {
         narration += "What can they even do now? Is there even a way to win? ";
         narration += " <Br><Br>They stare hopelessly at what was their former planet, now transformed into the ${player.landFuture.name}. ";
         narration += "<br><br>Some asshole called ${(session as DeadSession).metaPlayer.htmlTitleBasicNoTip()} is bothering them too, claiming to somehow both be a player from another session AND responsible for SBURB? This is bullshit.";
-        narration += "<HR><h2>HEY, JR HERE. THIS IS A WORK IN PROGRESS THAT IS <B>GOING</B> TO CRASH. DEAL WITH IT. I'M STILL CODING IT.</h2><hr>";
+        //narration += "<HR><h2>HEY, JR HERE. THIS IS A WORK IN PROGRESS THAT IS <B>GOING</B> TO CRASH. DEAL WITH IT. I'M STILL CODING IT.</h2><hr>";
         narration += " ${player.landFuture.randomFlavorText(session.rand, player)} ";
         String html = "<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas><br><Br>$narration";
         appendHtml(div, html);
