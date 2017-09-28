@@ -69,6 +69,7 @@ class Comedy extends InterestCategory {
         //the sock ruse was a distaction
         addTheme(new Theme(<String>["Pranks","Mischief","Tricks", "Deceit", "Ruses", "Distactions"])
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Trick the Villain", [

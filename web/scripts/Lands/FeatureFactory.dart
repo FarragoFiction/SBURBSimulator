@@ -26,6 +26,9 @@ class FeatureFactory {
     static ConsortFeature NEWTCONSORT;
     static ConsortFeature SKELETONCONSORT;
     static ConsortFeature ROBOTCONSORT;
+    static CarapaceFeature PROSPITIANCARAPACE;
+    static CarapaceFeature DERSECARAPACE;
+
 
     static DenizenFeature YALDABAOTHDENIZEN;
 
@@ -37,6 +40,7 @@ class FeatureFactory {
     static SmellFeature ROTSMELL;
     static SmellFeature OILSMELL;
     static SmellFeature NATURESMELL;
+    static SmellFeature DECEITSMELL;
     static SmellFeature CHLORINESMELL; //LIKE A POOL
     static SmellFeature NOTHINGSMELL; //absence.
     static SmellFeature GUNPOWDERSMELL;
@@ -53,6 +57,7 @@ class FeatureFactory {
     static AmbianceFeature FRANTICFEELING;
     static AmbianceFeature NOTHINGFEELING;
     static AmbianceFeature ENERGIZINGFEELING;
+    static AmbianceFeature DANGEROUSFEELING;
 
 
     ///////////////////SOUNDS////////////////////////
@@ -60,6 +65,9 @@ class FeatureFactory {
     static SoundFeature LAUGHINGSOUND;
     static SoundFeature RUSTLINGSOUND;
     static SoundFeature BEEPINGSOUND;
+    static SoundFeature JAZZSOUND;
+    static SoundFeature DISCOSOUND;
+    static SoundFeature MUSICSOUND;
     static SoundFeature CLACKINGSOUND;
     static SoundFeature SILENCE;
     static SoundFeature NATURESOUND;
@@ -87,7 +95,7 @@ class FeatureFactory {
         SALAMANDERCONSORT = new ConsortFeature("Salamander", "GLUB");
         CROCODILECONSORT = new ConsortFeature("Crocodile", "NAK");
         IGUANACONSORT = new ConsortFeature("Iguana", "thip");
-        TURTLECONSORT = new ConsortFeature("Turtle", "...");
+        TURTLECONSORT = new ConsortFeature("Turtle", "click");
         SKELETONCONSORT = new ConsortFeature("Skeleton", "rattle");
         ROBOTCONSORT = new ConsortFeature("Robot", "BEEP");
         CHAMELEONCONSORT = new ConsortFeature("Chameleon", "BLEP");
@@ -96,6 +104,8 @@ class FeatureFactory {
         SNAKECONSORT = new ConsortFeature("Snake", "hiss");
         ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
+        PROSPITIANCARAPACE = new CarapaceFeature("Prospitian", "murmur");
+        DERSECARAPACE = new CarapaceFeature("Dersite", "mutter");
     }
 
     static void iniatlizeSmells() {
@@ -113,6 +123,7 @@ class FeatureFactory {
         ZOOSMELL = new SmellFeature("zoo animals", Feature.GOOD);//do you get the joke
         SWEATSMELL = new SmellFeature("sweat", Feature.BAD);
         OZONESMELL = new SmellFeature("ozone");
+        DECEITSMELL = new SmellFeature("deceit");//senator lemonsnout, how COULD you?
 
     }
 
@@ -124,6 +135,7 @@ class FeatureFactory {
         NOTHINGFEELING = new AmbianceFeature("like nothing");
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
         STUDIOUSFEELING = new AmbianceFeature("studious");
+        DANGEROUSFEELING = new AmbianceFeature("dangerous");
     }
 
     //most sounds are bad sounds
@@ -134,6 +146,9 @@ class FeatureFactory {
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
+        JAZZSOUND = new SoundFeature("jazz");
+        DISCOSOUND = new SoundFeature("disco");
+        MUSICSOUND = new SoundFeature("music");
         WHISTLINGGSOUND = new SoundFeature("whistling");
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
         CROAKINGSOUND = new SoundFeature("croaking");

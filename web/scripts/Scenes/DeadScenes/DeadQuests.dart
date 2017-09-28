@@ -9,9 +9,7 @@ import "../../SBURBSim.dart";
 ///once all planets are clear, big stupid boss fight. then victory.
 class DeadQuests extends Scene {
     int section = 1;
-    DeadQuests(Session session) : super(session) {
-
-    };
+    DeadQuests(Session session) : super(session);
 
     //TODO when i do this but for regular sessions will need interaction effects, corruption, and sprites
     //TODO stop ticking when the player is dead. They can ONLY god tier when they beat their middle Dead Land Quests

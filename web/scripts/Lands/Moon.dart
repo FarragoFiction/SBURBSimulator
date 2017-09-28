@@ -17,8 +17,10 @@ import "FeatureTypes/QuestChainFeature.dart";
 class Moon extends Land {
     WeightedList<MoonQuestChainFeature> moonQuestChains = new WeightedList<MoonQuestChainFeature>();
 
-  Moon.fromWeightedThemes(Map<Theme, double> themes, Session session, Aspect a) : super.fromWeightedThemes(themes, session, a){
+  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a) : super.fromWeightedThemes(themes, session, a){
       Map<MoonQuestChainFeature, double> moonFeatures = new Map<MoonQuestChainFeature, double>();
+      //override land of x and y. you are named Prospit/derse/etc
+      this.name = name;
       processMoonShit(moonFeatures);
   }
 
@@ -42,7 +44,7 @@ class Moon extends Land {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished){
-            //if it's not repeatable, then don't let it repeat, dunkass. 
+            //if it's not repeatable, then don't let it repeat, dunkass.
             if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);
             currentQuestChain = null;
         }

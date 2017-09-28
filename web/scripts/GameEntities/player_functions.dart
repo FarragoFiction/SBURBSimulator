@@ -132,6 +132,7 @@ Player blankPlayerNoDerived(Session session) {
     Player p = new Player(session, SBURBClassManager.PAGE, Aspects.VOID, k, m, gd);
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);
+    p.moonFuture = session.prospit;
     p.baby = 1;
     p.hair = 1;
     p.leftHorn = 1;
@@ -158,6 +159,7 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);
     p.baby = session.rand.nextIntRange(1, 3);
+    p.moonFuture = session.stringToMoon(m);
 
 
     p.hair = session.rand.nextIntRange(1, p.maxHairNumber);
@@ -185,6 +187,7 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
 
     String m = session.rand.pickFrom(moons);
     Player p = new Player(session, c, a, k, m, gd);
+    p.moonFuture = session.stringToMoon(m);
     p.decideTroll();
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);

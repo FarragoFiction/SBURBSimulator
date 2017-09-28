@@ -22,7 +22,7 @@ class Reward {
         Element canvas = querySelector("#$divID");
         Element buffer = Drawing.getBufferCanvas(canvas);
         Drawing.drawSinglePlayer(buffer, p1);
-        Drawing.drawWhatever(buffer, image);
+        if(image != null ) Drawing.drawWhatever(buffer, image);
         if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
         Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
     }
@@ -94,6 +94,35 @@ class ImmortalityReward extends Reward {
         }
         p1.unconditionallyImmortal = true;
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        super.apply(div, p1, p2, land);
+    }
+}
+
+//TODO once npc update hits maybe some kind of moon rep system?
+class DerseReward extends Reward {
+
+    @override
+    String text = " The ${Reward.PLAYER1} is getting pretty popular among Dersites. ";
+    @override
+    String image = null;
+    String bgImage = "Derse.png";
+
+
+    void apply(Element div, Player p1, Player p2, Land land) {
+        super.apply(div, p1, p2, land);
+    }
+}
+
+class ProspitReward extends Reward {
+
+    @override
+    String text = " The ${Reward.PLAYER1} is getting pretty popular among Prospitian. ";
+    @override
+    String image = null;
+    String bgImage = "Prospit.png";
+
+
+    void apply(Element div, Player p1, Player p2, Land land) {
         super.apply(div, p1, p2, land);
     }
 }

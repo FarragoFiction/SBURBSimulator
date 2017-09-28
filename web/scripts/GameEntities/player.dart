@@ -48,6 +48,7 @@ class Player extends GameEntity {
     Aspect aspect; //TODO eventually a full object
     String land = null;
     Land landFuture; // will replace string land entirely eventually.
+    Moon moonFuture; //will replace string moon entirely eventually.
     Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
     Interest interest2 = null;
     String chatHandle = null;
