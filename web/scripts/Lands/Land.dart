@@ -205,12 +205,13 @@ class Land {
                 }
             }
         }//done for loop omg.
-
         processSmells(smellsFeatures);
         processSounds(soundsFeatures);
         processConsorts(session, consortFeatures);
         processCorruption(corruptionFeatures);
         processFeels(feelsFeatures);
+        //TODO add a generic GrimDark quest chain for each level with high weight.
+
         processPreDenizenQuests(preDenFeatures);
         processDenizenQuests(denFeatures);
         processPostDenizenQuests(postDenFeatures);
@@ -224,10 +225,10 @@ class Land {
             choices.add(f, features[f]);
         }
         denizenFeature = session.rand.pickFrom(choices);
-        print("Denizen feature is $denizenFeature");
+        //print("Denizen feature is $denizenFeature");
         //pick random one from aspect.
         if(denizenFeature == null) {
-            print("picking random denizen feature");
+            //print("picking random denizen feature");
             denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
         }
     }

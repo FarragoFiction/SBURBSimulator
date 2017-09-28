@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:collection';
 import 'DeadAuthorBot.dart';
+import "../../SessionEngine/DeadSessionSummary.dart";
 
 //replaces the poorly named scenario_controller2.js
 /*
@@ -333,14 +334,14 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
   }
 
   void printStats(List<String> filters, List<SBURBClass> classes, List<Aspect> aspects) {
-    MultiSessionSummary mms;
+    DeadMultiSessionSummary mms;
     if(sessionSummariesDisplayed.isEmpty) {
-      mms = new MultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
+      mms = new DeadMultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
     }else {
-      mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
+      mms = DeadMultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     }
 
-    ////print("MMS is: ${mms.num_stats}");
+    print("$mms is: ${mms.num_stats}");
     setHtml(querySelector("#stats"), mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
     wireUpAllCheckBoxesAndButtons();

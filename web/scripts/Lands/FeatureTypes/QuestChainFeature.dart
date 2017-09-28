@@ -58,7 +58,6 @@ class QuestChainFeature extends Feature {
         }
     }
 
-    //TODO how can I have specifically two player quests? I guess I could take in a List<Player>, and have most of them check p1 but have twoPlayer quests be a thing?
 
     static bool playerIsStealthyAspect(List<Player> ps) {
         Player p = ps.first;
@@ -70,6 +69,19 @@ class QuestChainFeature extends Feature {
         Player p = ps.first;
         return p.getFriends().length < p.getEnemies().length;
     }
+
+    //TODO have lands have generic grim dark quest chains with high weight, but themes can have their own, too
+    static bool isGrimDark(List<Player> ps) {
+        Player p = ps.first;
+        return p.grimDark > 2;
+    }
+
+    static bool murderMode(List<Player> ps) {
+        Player p = ps.first;
+        return p.murderMode;
+    }
+
+
 
     static bool playerIsNice(List<Player> ps) {
         Player p = ps.first;

@@ -2,6 +2,7 @@ import '../SBURBSim.dart';
 import "../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../Lands/Quest.dart";
 import "../Lands/Reward.dart";
+import "DeadSessionSummary.dart";
 //only one player, player has no sprite, player has DeadLand, and session has 16 (or less) subLands.
 class DeadSession extends Session {
     //TODO any denizen fraymotif should be the caliborn quote
@@ -41,6 +42,11 @@ class DeadSession extends Session {
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
+    }
+
+    @override
+    SessionSummary generateSummary() {
+        return DeadSessionSummary.makeSummaryForSession(this);
     }
 
     //no reward for your boring bullshit. make quest chains so stupidly long too.
