@@ -12,6 +12,7 @@ import "EnemyFeature.dart";
 //if it's a bank heist then first quest is plan the heist, second is recruit your team, third is rob the bank and abscond, fourth is divy spoils.
 class QuestChainFeature extends Feature {
     String name;
+    bool canRepeat;  //not all circumstances has this matter.
     List<Quest> quests; //quest will be removed when completed.
     ///if condition is met, then might be chosen to start. once started, goes linear.
     Predicate<List<Player>> condition; //like playerIsStealthy
@@ -20,7 +21,7 @@ class QuestChainFeature extends Feature {
     Reward reward;
     int chapter = 1;
 
-    QuestChainFeature(this.name, this.quests, this.reward, this.condition);
+    QuestChainFeature(this.canRepeat, this.name, this.quests, this.reward, this.condition);
 
 
     @override
@@ -29,7 +30,7 @@ class QuestChainFeature extends Feature {
     }
 
     QuestChainFeature clone() {
-        return new QuestChainFeature(this.name, new List<Quest>.from(this.quests), this.reward, this.condition);
+        return new QuestChainFeature(this.canRepeat,this.name, new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 
     ///assume first player is the owner of the quest.
@@ -129,7 +130,7 @@ class QuestChainFeature extends Feature {
 //want to be able to quickly tell what sort of quest chain it is.
 class PreDenizenQuestChain extends QuestChainFeature {
 
-    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
+    PreDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(false, name, quests, reward, condition);
     @override
     PreDenizenQuestChain clone() {
         return new PreDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
@@ -138,7 +139,7 @@ class PreDenizenQuestChain extends QuestChainFeature {
 
 class DenizenQuestChain extends QuestChainFeature {
 
-    DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
+    DenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(false, name, quests, reward, condition);
     @override
     DenizenQuestChain clone() {
         return new DenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
@@ -147,10 +148,21 @@ class DenizenQuestChain extends QuestChainFeature {
 
 class PostDenizenQuestChain extends QuestChainFeature {
 
-    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
+    PostDenizenQuestChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(false, name, quests, reward, condition);
     @override
     PostDenizenQuestChain clone() {
         return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
+
+
+class MoonQuestChainFeature extends QuestChainFeature {
+
+    MoonQuestChainFeature(bool canRepeat, String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(canRepeat,name, quests, reward, condition);
+    @override
+    PostDenizenQuestChain clone() {
+        return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
+    }
+}
+
 
