@@ -56,7 +56,7 @@ class Lord extends SBURBClass {
     //you don't expect a muse to start shit
     @override
     double getAttackerModifier() {
-        return 0.1;
+        return 3.1;
     }
 
     @override
@@ -66,7 +66,7 @@ class Lord extends SBURBClass {
 
     @override
     double getMurderousModifier() {
-        return 0.1;
+        return 3.1;
     }
 
     @override

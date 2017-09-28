@@ -145,22 +145,7 @@ class Session {
             ..addFeature(randomProspitQuestChain(), Feature.LOW)
             ..addFeature(randomProspitQuestChain(), Feature.LOW)
             ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(new MoonQuestChainFeature(true, "Test the Hypothesis", [
-                new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
-                new Quest("The ${Quest.PLAYER1} forms hypothesis after hypothesis only for each to be completely falsified in turn. This is a disastor! "),
-                new Quest("The Symposium has started. The crowd of unruly ${Quest.CONSORT}s begins ${Quest.CONSORTSOUND}ing louder and louder. Finally, the ${Quest.PLAYER1} bursts in, looking disheveled. It was last minute, but they managed to find something groundbreaking about ${Quest.PHYSICALMCGUFFIN}, and they do an enthralling presentation on their findings. They are hailed as a SCIENCE HERO!"),
-            ], new ProspitReward(), QuestChainFeature.defaultOption), Feature.HIGH)
-            ..addFeature(new MoonQuestChainFeature(true, "Make the Cure", [
-                new Quest("Too many local ${Quest.CONSORT} have fallen ill from a mysterious plague.  Those inflicted are too weak to even ${Quest.CONSORTSOUND}.  It is up to the ${Quest.PLAYER1} to figure out how to cure the disease.  They are provided with a state of the art lab and a team of ...not completely terrible ${Quest.CONSORT}s."),
-                new Quest("The ${Quest.PLAYER1} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
-                new Quest("Each ${Quest.CONSORT} lines up to receive their ${Quest.PHYSICALMCGUFFIN} injection. The sound of joyful ${Quest.CONSORTSOUND} fills the air. The plague is defeated!  The ${Quest.PLAYER1} has a statue made of them in the town center. "),
-            ], new ProspitReward(), QuestChainFeature.defaultOption), Feature.HIGH)
-            ..addFeature(new MoonQuestChainFeature(true, "Be the Scientist", [
-                new Quest("The ${Quest.PLAYER1}  finds a mysterious lab, fully stocked with equipment and chemicals. It is completely abandoned. Locked doors are on every wall of the main area. "),
-                new Quest("The ${Quest.PLAYER1}  realizes that various sections of the lab open up if you pour the right kind of chemical into a slot on the door. The begin venturing deeper and deeper into the lab.  "),
-                new Quest("The ${Quest.PLAYER1} has finally reached the final door. They bite their lip in concentration as they pour the final mixed chemical into the slot.  The door slides open.  A sudden ${Quest.CONSORTSOUND} nearly has them drop the dangerous fluid, but they manage to regain their composure in time.  An entire room of ${Quest.CONSORT}s are inside the final room, outfitted for a surprise party.  It is for ${Quest.PLAYER1} to celebrate how great at science they are! There is even a SCIENCE CAKE."),
-            ], new ProspitReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW);
+            ..addFeature(randomProspitQuestChain(), Feature.LOW);
 
 
 

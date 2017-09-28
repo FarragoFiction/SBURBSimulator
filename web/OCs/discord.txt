@@ -90,4 +90,8 @@ b=%3B0%24%1A%C3%BE%C2%9B%00Q%0D%0D%01&s=,,Video Games,Dogs,phlegmaticCanine
 b=N%1B%1Bx%C3%BE%C2%AD%00%18..%04&s=,,Computers,Science,SniperZee
 b=%C3%BF%C2%87%C2%B7%C2%A5%C3%BE%2C%00%08%04%0A%3F&s=,,Red-bean Buns,Boys,azukiMochi
 b=.%1F%06q%C3%BE%C2%B3%00%10EE%10&s=,,Role Playing,Writing,catalysticPicasso
-b=%00%00%00%C3%8B%C3%B2%C2%8D%10Y778&s=,,Cooking,Knowledge,cookingTeacher&x=AQ==
+b=%00%00%00%C3%8B%C3%B2%C2%8D%10Y778&s=,,Cooking,Knowledge,cookingTeacher
+b=%00%00%00%C2%B3%C3%B6%C2%A5%10%04%40%40%10&s=,,Wetware,Apocalypses,calenderAftermath
+b=%00%00%00%C2%AB%C3%BE%C3%93%00%1C))%1E&s=,,History,Fan Fiction,ramblingWriter
+b=%C2%AF%7B%01E%C3%BE%C3%99%00U%20%204&s=,,Chemistry,Movies,alchemicalTrekkie
+b=Q(%00%C2%B4%C3%BEZ%00X%22%22(&s=,,Online Trolling,Coding,masterShitposter
