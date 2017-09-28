@@ -38,6 +38,7 @@ class DeadSession extends Session {
         //have a metaplayer BEFORE you make the bullshit quests.
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
+        metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
