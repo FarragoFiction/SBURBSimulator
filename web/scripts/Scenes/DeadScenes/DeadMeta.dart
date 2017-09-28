@@ -303,7 +303,17 @@ class DeadMeta extends Scene {
     }
 
     List<Conversation> ABMiddle() {
-        // c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
+
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["If you were a flawless automaton, you would have already beaten this game.","Wow, are you STILL playing this game?"], ["..."],["Oh sure, yuck it up while you back seat game. Asshole.", "Not everybody can be 'flawless' robots, asshole."]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Wow, good job. That was sarcasm, by the way, in case your inferior fleshy brain couldn't detect that.","Wow, even for a fleshy disastor you failed that one p hard, huh?"], ["..."],["a;sldfj FUCK OF.", "OMFG why are you commenting on this!", ]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["There is a ${bullshit}% chance that you fail, you know. May as well learn to like your shitty planets."], ["..."],["Why is this my life?", "Oh, you'd LIKE that, wouldn't you?"]..addAll(fuckOff)));
+
+
+        List<PlusMinusConversationalPair> convoRand0 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convoRand1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["There is a ${bullshit}% chance that you will fail should you become distracted. "], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I can hardly be blamed for you failing to be a flawless automaton."], ["..."],fuckOff))
@@ -311,6 +321,8 @@ class DeadMeta extends Scene {
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convoRand0));
+        ret.add(new Conversation(convoRand1));
         ret.addAll(GenericMiddle());
         return ret;
     }
