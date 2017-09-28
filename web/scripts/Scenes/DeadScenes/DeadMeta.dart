@@ -47,6 +47,10 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(DMMiddle());
         }else if(meta == session.mutator.metaHandler.wooMod ) {
             conversation = session.rand.pickFrom(WMMiddle());
+        } else if(meta == session.mutator.metaHandler.nobody ) {
+            conversation = session.rand.pickFrom(NBMiddle());
+        } else if(meta == session.mutator.metaHandler.recusiveSlacker ) {
+            conversation = session.rand.pickFrom(RSMiddle());
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -370,6 +374,44 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(["The logarithm of 1 is you."], ["..."],["What does that even fucking mean!?", "Wow. Lame."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["Is this situation a local Stupidity Maxima, or a global Stupidity Maxima?"], ["..."],["Fuck you I can be ten times as stupid as this.", "What does that even mean!?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my life and 1 person for the rest of my life, the current situation would come in a distant second"], ["..."],["Oh trust me, the feeling is mutual.", "If I could choose not to talk to you, I fucking would.","Then why don't you stop fucking bothering me!?"]..addAll(fuckOff)));
+
+
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convo2));
+
+        ret.addAll(GenericMiddle());
+        return ret;
+    }
+
+    List<Conversation> NBMiddle() {
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["Sorry dawg, you fucked up because I fucked up"], ["..."],["How does that even make sense?", "Yeah, I blame you, too."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["You're doing it wrong. That too. Stop."], ["..."],["Fuck you, I do what I want.", "Yes. I am absolutely failing this game on purpose.","Oh yeah, you're right, why didn't it occur to me to just STOP FAILING AT THIS SHITTY GAME?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["If you manage to actually beat this I'll eat my fucking socks"], ["..."],["Hope you enjoy the taste of athelete's foot.", "Get ready for a high fiber diet, asshole."]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["I cannot even express how much of a disappointment you are."], ["..."],["Oh trust me, the feeling is mutual.", "You patronizing asshole."]..addAll(youAsshole)));
+
+
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convo2));
+
+        ret.addAll(GenericMiddle());
+        return ret;
+    }
+
+    List<Conversation> RSMiddle() {
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["Wow, what a brilliant, grade-A, FDA certified FAILURE of a person you are."], ["..."],["Fuck you, you think you hurt my feelings? I've heard better insults from little diaper wearing babies.", "Yeah, well at least I have something better to do with my day than just be an asshole."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Well, they say one is the loneliest number.  Funny thing, it's also the stupidest."], ["..."],["Fuck you, you just can't fathom my brilliant strategy here.", "Like this shitty game would be an easier with friends. ","I'd rather be stupid and me than ANYTHING and you."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["F is for fucked up single player sessions, U us for ur alone, N is for no practical victory conditions, welcome to the loser zone!"], ["..."],["Who would have guessed you knew how to spell? Will wonders ever cease?", "Fuck you, I'll figure something out."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Straight up, you are FUCKED bro. This is like an unwinnable joke level that only the numbest of the numbskulls are willing to try."], ["..."],["Oh because I DECIDED to play this game knowing what that meant.", "You patronizing asshole.","Yeah, because I knew that going in. "]..addAll(fuckOff)));
 
 
         List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
