@@ -14,6 +14,8 @@ class QuestChainFeature extends Feature {
     String name;
     bool canRepeat;  //not all circumstances has this matter.
     List<Quest> quests; //quest will be removed when completed.
+    //stored for repeatable quest chains
+    List<Quest> completedQuests = new List<Quest>();
     ///if condition is met, then might be chosen to start. once started, goes linear.
     Predicate<List<Player>> condition; //like playerIsStealthy
     bool finished = false;
@@ -42,12 +44,19 @@ class QuestChainFeature extends Feature {
         p1.increasePower();
         if(p2 != null) p2.increasePower();
 
+
+        if(quests.isEmpty && canRepeat) {
+            quests = new List.from(completedQuests);
+            completedQuests.clear();
+        }
+        
         bool success = quests.first.doQuest(div, p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
 
         //only if you win. mostly only used for frogs and grist at this point.
         if(success) {
             p1.increaseLandLevel();
-            removeFromArray(quests.first, quests);
+            completedQuests.add(quests.first);
+            quests.remove(quests.first);
             if (quests.isEmpty) {
                 //print("I've finished quest chain $name!");
                 finished = true;
