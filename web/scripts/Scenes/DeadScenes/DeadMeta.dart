@@ -22,7 +22,7 @@ class DeadMeta extends Scene {
             fuckOff = <String>["Oh my god just leave me alone!", "Fuck off.", "Just go away!", "I am NOT up for your bullshit right now!", "Oh my fucking god, go AWAY!", "NOT right now.", "No. Just, no. Go away.", "Does it HAVE to be right now?", "No. ", "I can't fucking deal with you right now. Fuck off."];
             youAsshole = <String>["God. I really do hate you.", "You are just a magnificent asshole, you know that?", "You are the very worst asshole in existance.", "I cannot fucking STAND you.", "Amazing. You are Paradox Space's biggest asshole.", "Wow. Rude.", "You fucking asshole.", "Who died and made you king asshole?", "You are the asshole. It is you."];
             goodbye = <String>["Fucking finally.", "See you never, asshole.", "About time.", "Finally.", "And may you never return."];
-            notSoBad = <String>["Huh. That...was actually kind of decent of you.", "Wow. Thanks, I guess? ","Huh. Not what I would have expected you to say.",  "Don't think that makes up for what an asshole you usually are.", "Uh. Thanks?", "Oh. Okay. Thanks?", "Huh. I ALMOST forgot you were an asshole there."];
+            notSoBad = <String>["Gee, thanks","Huh. That...was actually kind of decent of you.", "Wow. Thanks, I guess? ","Huh. Not what I would have expected you to say.",  "Don't think that makes up for what an asshole you usually are.", "Uh. Thanks?", "Oh. Okay. Thanks?", "Huh. I ALMOST forgot you were an asshole there."];
         }
         Player player = session.players[0];
 
@@ -45,6 +45,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(MIMiddle());
         }else if(meta == session.mutator.metaHandler.dilletantMathematician ) {
             conversation = session.rand.pickFrom(DMMiddle());
+        }else if(meta == session.mutator.metaHandler.wooMod ) {
+            conversation = session.rand.pickFrom(WMMiddle());
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -328,6 +330,26 @@ class DeadMeta extends Scene {
         ret.add(new Conversation(convo2));
 
         ret.addAll(GenericMiddle());
+        return ret;
+    }
+
+    List<Conversation> WMMiddle() {
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["What? Oh your finally done? Hope you're excited for more pointless tasks!"], ["..."],["Estatic.", "How about 'no'."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Look you really don't deserve this despite being an asshole."], ["..."],["Wow, what a back handed...WAS that even a compliment?"]..addAll(notSoBad)))
+            ..add(new PlusMinusConversationalPair(["I know you can do it, I mean you fail in the alpha timeline but we can change the future!"], ["..."],["That....seems wrong, somehow.", "Wait, so you WANT me to doom myself?", "Words of encouragment right there."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["I brought some shitty retro games for you to try before the next bullshit if you need a break."], ["..."],["What is it with you and shitty retro games?", "Why is that even a thing you care about?", "So I can take a break from playing a shitty game by playing...a shitty game with worse graphics. Okay."]..addAll(notSoBad)))
+            ..add(new PlusMinusConversationalPair(["You know if you'd had more friends this wouldn't have happened....why the fuck is the muse of breath telling you this?"], ["..."],[" How is it MY fault that people are shitty assholes?"]..addAll(youAsshole)));
+
+
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convo2));
+
+        //ret.addAll(GenericMiddle());  WM wants to be less combatative
         return ret;
     }
 

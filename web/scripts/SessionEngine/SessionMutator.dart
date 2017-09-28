@@ -504,7 +504,7 @@ class SessionMutator {
                 //r.value = 3333; //testing something
                 r2.value = 9001; //you love me back. not creepy at all
                 r2.type(); //they reevaluate what they think about the hope player.
-                modCrushes = true
+                modCrushes = true;
                 s.logger.info("AB: They are making their crush love them ${r.target}");
             }
         }
