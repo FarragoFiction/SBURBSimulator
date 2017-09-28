@@ -18,6 +18,11 @@ class DeadSession extends Session {
     @override
     num maxTimeTillReckoning = 500;
 
+    //much harder to kill
+    @override
+    num sessionHealth = 13000 * Stats.POWER.coefficient; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
+
+
     ///number between 0 and 1 to pass DeadQuests
     double oddsOfSuccess = 1.00;
 
@@ -28,6 +33,8 @@ class DeadSession extends Session {
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
     DeadSession(int sessionID): super(sessionID) {
+        mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
+        sessionHealth = mutator.sessionHealth;
         //have a metaplayer BEFORE you make the bullshit quests.
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);

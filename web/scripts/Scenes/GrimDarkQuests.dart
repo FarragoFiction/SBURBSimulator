@@ -68,7 +68,7 @@ class GrimDarkQuests extends Scene{
 			}else if(player.getStat(Stats.POWER) > 300* Stats.POWER.coefficient){
 				quip = " They seem strong enough to do some serious damage. ";
 			}
-			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They " + rand.pickFrom(tasks) + quip;
+			return "The "+ player.htmlTitle() + " is trying to break SBURB itself. They ${rand.pickFrom(tasks)} $quip. Session health is at ${session.sessionHealth}.";
 
 	}
 	void crashSession(){

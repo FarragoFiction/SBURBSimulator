@@ -329,7 +329,7 @@ class DeadMeta extends Scene {
 
     List<Conversation> MIMiddle() {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Man, its like you don't even notice all the goddamn hard work that I put in for you."], ["..."],["What work!? All you do is bother me!", "Oh yeah, it must be SO tought being the worlds biggest asshole."]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Man, its like you don't even notice all the goddamn hard work that I put in for you."], ["..."],["What work!? All you do is bother me!", "Oh yeah, it must be SO tough being the worlds biggest asshole."]..addAll(youAsshole)))
             ..add(new PlusMinusConversationalPair(["Have you been using fraymotifs?"], ["..."],["Don't know, don't care.", "Why is that even a thing you care about?", "Is it even an option not to in this shitty game?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["The sheer variety of fucking quests available is giant, stop complaining about how you only ever do a few."], ["..."],["I don't care how many quests are THEORETICALLY in this shitty game if I don't get to play them, asshole."]..addAll(youAsshole)));
 
@@ -367,9 +367,9 @@ class DeadMeta extends Scene {
 
     List<Conversation> DMMiddle() {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["The logarithm of 1 is you."], ["..."],["What does that even fuckign mean!?", "Wow. Lame."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["The logarithm of 1 is you."], ["..."],["What does that even fucking mean!?", "Wow. Lame."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["Is this situation a local Stupidity Maxima, or a global Stupidity Maxima?"], ["..."],["Fuck you I can be ten times as stupid as this.", "What does that even mean!?"]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my lifeand 1 person for the rest of my life, the current situation would comein a distant second"], ["..."],["Oh trust me, the feeling is mutual.", "If I could choose not to talk to you, I fucking would.","Then why don't you stop fucking bothering me!?"]..addAll(fuckOff)));
+            ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my life and 1 person for the rest of my life, the current situation would come in a distant second"], ["..."],["Oh trust me, the feeling is mutual.", "If I could choose not to talk to you, I fucking would.","Then why don't you stop fucking bothering me!?"]..addAll(fuckOff)));
 
 
         List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
