@@ -167,6 +167,10 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
         _list.add(pair);
     }
 
+    void addConditional(T item, Generator<double> weightFunction) {
+        this.addPair(new FunctionWeightPair<T>(item, weightFunction));
+    }
+
     // ##########################################
     // Add multiple
 
@@ -241,6 +245,15 @@ class WeightPair<T> {
     factory WeightPair.from(WeightPair<T> other) {
         return new WeightPair<T>(other.item, other.weight);
     }
+}
+
+class FunctionWeightPair<T> extends WeightPair<T> {
+    Generator<double> weightFunction;
+
+    FunctionWeightPair(T item, Generator<double> this.weightFunction) : super(item, weightFunction());
+
+    @override
+    double get weight => weightFunction();
 }
 
 abstract class WeightedItem {

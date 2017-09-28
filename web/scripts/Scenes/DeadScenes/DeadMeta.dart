@@ -54,6 +54,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(NBMiddle());
         } else if(meta == session.mutator.metaHandler.recusiveSlacker ) {
             conversation = session.rand.pickFrom(RSMiddle());
+        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
+        //    conversation = DeadTextPL.INSTANCE.middle();
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -74,6 +76,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(ABEnd());
         }else if(meta == session.mutator.metaHandler.jadedResearcher ) {
             conversation = session.rand.pickFrom(JREnd());
+        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
+        //    conversation = DeadTextPL.INSTANCE.end();
         }else {
             conversation = session.rand.pickFrom(GenericEnd());
         }
@@ -105,6 +109,9 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(WMIntro());
         }else if(meta == session.mutator.metaHandler.dilletantMathematician ) {
             conversation = session.rand.pickFrom(DMIntro());
+        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
+        //    new DeadTextPL(session);
+        //    conversation = DeadTextPL.INSTANCE.intro();
         }else {
             conversation = session.rand.pickFrom(GenericIntro());
         }
@@ -492,4 +499,30 @@ class DeadMeta extends Scene {
     }
 }
 
+class DeadTextPL {
+    static DeadTextPL INSTANCE;
+
+    Session session;
+
+    Conversation placeholder = new Conversation(<PlusMinusConversationalPair>[
+        new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
+        new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
+    ]);
+
+    DeadTextPL(Session this.session) {
+        INSTANCE = this;
+    }
+
+    Conversation intro() {
+        return placeholder;
+    }
+
+    Conversation middle() {
+        return placeholder;
+    }
+
+    Conversation end() {
+        return placeholder;
+    }
+}
 
