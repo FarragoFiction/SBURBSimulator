@@ -26,9 +26,12 @@ class DeadMeta extends Scene {
         }
         Player player = session.players[0];
 
-        if(!doneOnce) return intro(div);
-        if(!player.landFuture.thirdCompleted) return middle(div);
-        if(player.landFuture.thirdCompleted) return end(div);
+        Element container = new DivElement()..className = "consoleConversation";
+        div.append(container);
+
+        if(!doneOnce) return intro(container);
+        if(!player.landFuture.thirdCompleted) return middle(container);
+        if(player.landFuture.thirdCompleted) return end(container);
     }
 
     void middle(Element div) {
