@@ -194,9 +194,9 @@ class GetWasted extends Scene {
        // //session.logger.info("gonna display generated faq in div ${div.id} with ${faq.sections.length} sections ${faq.sections}");
         //TODO take one of the headers from sections and pass it here.
         if(faq.reader == faq.author) {
-            text = "The ${faq.author.htmlTitle()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
+            text = "The ${faq.author.htmlTitleBasicNoTip()}has been trying to explain to anyone who will listen how this bullshit game works. They finally just write a goddamned FAQ so they don't have to keep repeating themselves. I wonder what it says?";
         }else {
-            text = "The ${faq.reader.htmlTitle()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
+            text = "The ${faq.reader.htmlTitleBasicNoTip()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
         }
         String id = "faq${div.id}${faq.author.id}";
         //alright, i've got the intro, and i've got the quirk. what now? well, need to session.logger.info out the phrase and then a link to pop up the faq
