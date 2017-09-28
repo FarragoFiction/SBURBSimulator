@@ -66,6 +66,7 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
+        this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
         mutator = SessionMutator.getInstance();
@@ -78,7 +79,6 @@ class Session {
         logger = Logger.get("Session: $session_id", false);
 
         mutator.syncToSession(this);
-        this.rand = new Random(session_id);
        resetAvailableClasspects();
     }
 

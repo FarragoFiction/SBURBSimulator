@@ -118,7 +118,12 @@ class Land {
         Theme main = session.rand.pickFrom(themeList);
         themeList.remove(main);
         Theme secondary = session.rand.pickFrom(themeList);
-        name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(secondary.possibleNames)}";
+        if(secondary != null) {
+            name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(secondary.possibleNames)}";
+
+        }else {
+            name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(main.possibleNames)}";
+        }
     }
 
 
