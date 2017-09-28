@@ -16,7 +16,9 @@ class DeadQuests extends Scene {
     @override
     void renderContent(Element div) {
 
-        if(section == 1) {
+        if(session.rand.nextDouble() > .75) {
+            processMoon(div);
+        }else if(section == 1) {
             processMetaLandIntro(div); //when it ends will handle intro.
         }else if (section == 2) {
             processMiddleQuests(div);
@@ -24,6 +26,15 @@ class DeadQuests extends Scene {
             processEndQuests(div);
         }
 
+    }
+
+    void processMoon(div) {
+        Player player = session.players[0];
+        player.moonFuture.initQuest([player]);
+        String html = "${player.moonFuture.getChapter()}  ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        player.moonFuture.doQuest(div, player, null);
     }
 
     void processEndQuests(div) {

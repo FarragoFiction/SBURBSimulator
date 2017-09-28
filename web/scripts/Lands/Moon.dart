@@ -21,12 +21,14 @@ class Moon extends Land {
       Map<MoonQuestChainFeature, double> moonFeatures = new Map<MoonQuestChainFeature, double>();
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
-      processMoonShit(moonFeatures);
+      processMoonShit(allQuestChains);
   }
 
-  void processMoonShit( Map<MoonQuestChainFeature, double> features) {
-      for(MoonQuestChainFeature f in features.keys) {
-          moonQuestChains.add(f, features[f]);
+  void processMoonShit( Map<QuestChainFeature, double> features) {
+      print("Processing moon shit: ${features.keys}");
+      for(QuestChainFeature f in features.keys) {
+          print("adding moon quest chain");
+          if(QuestChainFeature is MoonQuestChainFeature) moonQuestChains.add(f, features[f]);
       }
   }
 
@@ -35,7 +37,13 @@ class Moon extends Land {
   String initQuest(List<Player> players) {
       if(symbolicMcguffin == null) decideMcGuffins(players.first);
       //first, do i have a current quest chain?
-      if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(players, moonQuestChains);
+      if(currentQuestChain == null) {
+          currentQuestChain = selectQuestChainFromSource(players, moonQuestChains);
+          //nobody else can do this.
+          if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);
+
+      }
+
 
   }
 
@@ -44,8 +52,6 @@ class Moon extends Land {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished){
-            //if it's not repeatable, then don't let it repeat, dunkass.
-            if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);
             currentQuestChain = null;
         }
         //print("ret is $ret from $currentQuestChain");

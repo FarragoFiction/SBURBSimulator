@@ -21,6 +21,7 @@ class Land {
     WeightedList<PreDenizenQuestChain> firstQuests = new WeightedList<PreDenizenQuestChain>();
     WeightedList<DenizenQuestChain> secondQuests = new WeightedList<DenizenQuestChain>();
     WeightedList<PostDenizenQuestChain> thirdQuests = new WeightedList<PostDenizenQuestChain>();
+    Map<QuestChainFeature, double> allQuestChains = new Map<QuestChainFeature, double>();
 
     bool firstCompleted = false;
     bool secondCompleted = false;
@@ -206,6 +207,15 @@ class Land {
                         denizenFeatures[f] = w;
                     }else {
                         denizenFeatures[f] += w;
+                    }
+                }
+
+                //need for custom processing
+                if(f is QuestChainFeature) {
+                    if(allQuestChains[f] == null) {
+                        allQuestChains[f] = w;
+                    }else {
+                        allQuestChains[f] += w;
                     }
                 }
             }
