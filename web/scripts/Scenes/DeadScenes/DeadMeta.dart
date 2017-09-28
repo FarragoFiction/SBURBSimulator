@@ -93,6 +93,9 @@ class DeadMeta extends Scene {
         Player meta = (session as DeadSession).metaPlayer;
         Player player = session.players[0];
 
+        //you get to fight my denizen self now, bitch.
+        player.landFuture.denizenFeature.name = meta.denizen.name;
+
         Conversation conversation;
 
         if(meta == session.mutator.metaHandler.authorBot || meta == session.mutator.metaHandler.authorBotJunior) {
