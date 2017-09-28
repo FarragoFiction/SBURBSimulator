@@ -3624,3 +3624,34 @@ Heir of Breath to play the wind in an attempt to calm them.  The Thief of Light 
  But before i can even do that, MOST sessions get to the reckoning before completing all the shit. Which. Why?
 
  I thought i Made the reckoning stupid long.
+
+
+~~~~~~~~~~~~~~~~~~
+
+Okay.  Time to figure out how I want moons to work.
+
+Obviously moons will be an array on a session. Prospit/Derse.
+
+Should they be Lands, or a sub class of land?
+
+If they are subclass, then I know to do things like kill dream selves when they are exploded. Good enough for me.
+
+Anything else special they do?
+
+My thinking is the DoLandQuest equivalent (DeadQuests right now) has a random chance of either calling the next quest
+on the planet, or the next quest on the moon.
+
+Moon quests should be infinite though. Like, no pre, denizne, post, just....keep going, forever.
+
+Once NPC update hits, though, it might have different categories. Dunno.
+
+What can you do on a moon?
+
+1 Bullshit (dance parties, drink tea, etc.)
+2 Augery (moon/horror terror etc)
+3 Royalty shit  (work to weaken the queen, get the rings, etc)
+4 NPC shit. (recruit clubs deuce, maybe?)
+
+For now just implement 1 and 2.   Once dead sessions are done i can implement part of 3
+
+I want the land update to get rid of bullshit sidequests and moon quests as separate scenes entirely.

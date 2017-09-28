@@ -64,6 +64,7 @@ class DeadMeta extends Scene {
     //only happens once.
     void end(Element div) {
         finished = true;
+        session.timeTillReckoning = 0;
         Player meta = (session as DeadSession).metaPlayer;
         Player player = session.players[0];
 
