@@ -191,6 +191,15 @@ class DeadMeta extends Scene {
 
     List<Conversation> GenericMiddle() {
         List<String> myGoodbyes = <String>["Lol. Fine.","Wow, lame.","Anyways, have fun totally losing this dead session.","Harsh. Fine, I'm out."];
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["Apparently playing the worlds shittiest game.", "More useful things than you are. Don't you have anything better to do than bother me?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["Don't know, don't care.", "I could literally not care less.", "Apparently my point is to be the sole object of your attention. Find a friend, asshole."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["What would I even do if I did? Just sit here and wait to die?", "Oh, you'd LIKE that, wouldn't you?"]..addAll(fuckOff)));
+
+        List<PlusMinusConversationalPair> convoRand0 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convoRand1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Haha, wow, this sure looks hard!","Man, that looks like it sucked","Dead sessions suck."], ["..."],fuckOff))
             ..add(new PlusMinusConversationalPair(["I sure am glad I wasn't part of a dead session.","It sure does pay to be a Meta player and not a Dead Player.","Better you than me."], ["..."],youAsshole))
@@ -245,6 +254,8 @@ class DeadMeta extends Scene {
         ret.add(new Conversation(convo6));
         ret.add(new Conversation(convo7));
         ret.add(new Conversation(convo8));
+        ret.add(new Conversation(convoRand0));
+        ret.add(new Conversation(convoRand1));
         return ret;
     }
 
@@ -304,9 +315,9 @@ class DeadMeta extends Scene {
 
     List<Conversation> MIMiddle() {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["Apparently playing the worlds shittiest game.", "More useful things than you are. Don't you have anything better to do than bother me?"]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["Don't know, don't care.", "I could literally not care less.", "Apparently my point is to be the sole object of your attention. Find a friend, asshole."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["What would I even do if I did? Just sit here and wait to die?", "Oh, you'd LIKE that, wouldn't you?"]..addAll(fuckOff)));
+            ..add(new PlusMinusConversationalPair(["Man, its like you don't even notice all the goddamn hard work that I put in for you."], ["..."],["What work!? All you do is bother me!", "Oh yeah, it must be SO tought being the worlds biggest asshole."]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Have you been using fraymotifs?"], ["..."],["Don't know, don't care.", "Why is that even a thing you care about?", "Is it even an option not to in this shitty game?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["The sheer variety of fucking quests available is giant, stop complaining about how you only ever do a few."], ["..."],["I don't care how many quests are THEORETICALLY in this shitty game if I don't get to play them, asshole."]..addAll(youAsshole)));
 
 
         List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
