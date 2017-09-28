@@ -486,6 +486,7 @@ class SessionMutator {
             p.leftMurderMode = false; //never even happened.
             p.setStat(Stats.CURRENT_HEALTH, 9001);
             p.setStat(Stats.SANITY, 9001);
+            p.unconditionallyImmortal = true; //i BELIEVE no one will die.  (of course, this does nothing if they are'nt god tier)
             p.renderSelf();
             Relationship r = hopePlayer.getRelationshipWith(p);
             if (r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
@@ -495,14 +496,15 @@ class SessionMutator {
                 r.target.aspect.name = s.rand.pickFrom(insults);
                 r.target.class_name.name = s.rand.pickFrom(insults);
                 s.logger.info("AB: Now they are ${r.target.aspect.name} and ${r.target.class_name.name}");
-
+                r.target.canGodTierRevive = false; //you're secretly mortal now, asshole.
+                r.target.unconditionallyImmortal = false;
                 modEnemies = true;
             } else if (r != null && (r.saved_type == r.goodBig || r.saved_type == r.heart || r.saved_type == r.diamond)) {
                 Relationship r2 = p.getRelationshipWith(hopePlayer);
                 //r.value = 3333; //testing something
                 r2.value = 9001; //you love me back. not creepy at all
                 r2.type(); //they reevaluate what they think about the hope player.
-                modCrushes = true;
+                modCrushes = true
                 s.logger.info("AB: They are making their crush love them ${r.target}");
             }
         }

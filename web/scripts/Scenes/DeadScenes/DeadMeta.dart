@@ -301,21 +301,22 @@ class DeadMeta extends Scene {
     }
 
     List<Conversation> MIMiddle() {
-        List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
-
-        List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
-
-
-        List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
 
+
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo3 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo4 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
         ret.add(new Conversation(convo3));
+        ret.add(new Conversation(convo4));
         ret.addAll(GenericMiddle());
         return ret;
     }
