@@ -71,42 +71,47 @@ class DeadSessionSummary extends SessionSummary {
 
 class DeadMultiSessionSummary extends MultiSessionSummary {
 
-    DeadMultiSessionSummary() {
-        //can switch order to change order AB displays in
-        //if i don't initialize stats here, then AB won't bothe rlisting stats this.are zero.
-        setStat("total", 0);
-        setStat("totalDeadPlayers", 0);
-        setStat("won", 0);
-        setStat("crashedFromPlayerActions", 0);
-        setStat("timesAllDied", 0);
-        setStat("luckyGodTier", 0);
-        setStat("choseGodTier", 0);
-        setStat("timesAllLived", 0);
-        setStat("denizenBeat", 0);
-        setStat("plannedToExileJack", 0);
-        setStat("exiledJack", 0);
-        setStat("exiledQueen", 0);
-        setStat("jackGotWeapon", 0);
-        setStat("jackRampage", 0);
-        setStat("jackScheme", 0);
-        setStat("queenRejectRing", 0);
-        setStat("democracyStarted", 0);
-        setStat("murderMode", 0);
-        setStat("grimDark", 0);
 
-        setStat("godTier", 0);
-        setStat("questBed", 0);
-        setStat("sacrificialSlab", 0);
-        setStat("justDeath", 0);
-        setStat("heroicDeath", 0);
-        setStat("rapBattle", 0);
-        setStat("sickFires", 0);
-        setStat("hasLuckyEvents", 0);
-        setStat("hasUnluckyEvents", 0);
-        setStat("hasFreeWillEvents", 0);
 
-        setStat("crashedFromSessionBug", 0);
-        setStat("averageGrist", 0);
+    @override
+    void initStats()
+
+    {
+    //can switch order to change order AB displays in
+    //if i don't initialize stats here, then AB won't bothe rlisting stats this.are zero.
+    setStat("total", 0);
+    setStat("totalDeadPlayers", 0);
+    setStat("won", 0);
+    setStat("crashedFromPlayerActions", 0);
+    setStat("timesAllDied", 0);
+    setStat("luckyGodTier", 0);
+    setStat("choseGodTier", 0);
+    setStat("timesAllLived", 0);
+    setStat("denizenBeat", 0);
+    setStat("plannedToExileJack", 0);
+    setStat("exiledJack", 0);
+    setStat("exiledQueen", 0);
+    setStat("jackGotWeapon", 0);
+    setStat("jackRampage", 0);
+    setStat("jackScheme", 0);
+    setStat("queenRejectRing", 0);
+    setStat("democracyStarted", 0);
+    setStat("murderMode", 0);
+    setStat("grimDark", 0);
+
+    setStat("godTier", 0);
+    setStat("questBed", 0);
+    setStat("sacrificialSlab", 0);
+    setStat("justDeath", 0);
+    setStat("heroicDeath", 0);
+    setStat("rapBattle", 0);
+    setStat("sickFires", 0);
+    setStat("hasLuckyEvents", 0);
+    setStat("hasUnluckyEvents", 0);
+    setStat("hasFreeWillEvents", 0);
+
+    setStat("crashedFromSessionBug", 0);
+    setStat("averageGrist", 0);
     }
 
 

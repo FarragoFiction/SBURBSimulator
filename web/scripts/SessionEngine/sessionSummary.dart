@@ -505,7 +505,11 @@ class MultiSessionSummary {
 
 
     MultiSessionSummary() {
-        //can switch order to change order AB displays in
+        initStats();
+    }
+
+    void initStats() {
+//can switch order to change order AB displays in
         //if i don't initialize stats here, then AB won't bothe rlisting stats this.are zero.
         setStat("total", 0);
         setStat("totalDeadPlayers", 0);
