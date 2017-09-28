@@ -1,8 +1,8 @@
-import '../SBURBSim.dart';
-import '../navbar.dart';
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
 import 'dart:html';
 import 'dart:async';
-import 'AuthorBot.dart';
+import '../SessionFinder/AuthorBot.dart';
 
 Random rand;
 MysteryController self; //want to access myself as more than just a sim controller occasionally

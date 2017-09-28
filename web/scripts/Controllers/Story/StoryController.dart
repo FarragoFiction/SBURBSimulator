@@ -1,5 +1,5 @@
-import '../SBURBSim.dart';
-import '../navbar.dart';
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
 import 'dart:async';
 import 'dart:html';
 import 'dart:typed_data';

@@ -1,10 +1,10 @@
-import '../SBURBSim.dart';
-import '../navbar.dart';
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
 import 'dart:html';
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:collection';
-import 'AuthorBot.dart';
+import 'DeadAuthorBot.dart';
 
 //replaces the poorly named scenario_controller2.js
 /*
@@ -13,7 +13,7 @@ import 'AuthorBot.dart';
  */
 Random rand;
 int round = 0;
-SessionFinderController self; //want to access myself as more than just a sim controller occasionally
+DeadSessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
 
   doNotRender = true;
@@ -25,7 +25,7 @@ void main() {
     printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
     return;
   });
-  new SessionFinderController();
+  new DeadSessionFinderController();
   self = SimController.instance;
   self.percentBullshit();
 
@@ -86,7 +86,7 @@ void toggleAverage(){
 
 
 
-class SessionFinderController extends AuthorBot { //works exactly like Sim unless otherwise specified.
+class DeadSessionFinderController extends DeadAuthorBot { //works exactly like Sim unless otherwise specified.
   bool displayRomance = true;
   bool displayEnding = true;
   bool displayDrama = true;

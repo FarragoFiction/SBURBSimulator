@@ -71,7 +71,7 @@ class Comedy extends InterestCategory {
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Trick the Villian", [
+            ..addFeature(new PreDenizenQuestChain("Trick the Villain", [
                 new Quest("The ${Quest.PLAYER1}  is approached by a Crafty ${Quest.CONSORT} who offers them a magical ${Quest.PHYSICALMCGUFFIN}, guaranteed to grant them any wish. The ${Quest.PLAYER1} is shocked to discover it was a ruse, and the Crafty ${Quest.CONSORT} has already escaped to the side with their ill earned boonies. "),
                 new Quest("The ${Quest.PLAYER1} find many ${Quest.CONSORT}s, too sad to even ${Quest.CONSORTSOUND}, holding ${Quest.PHYSICALMCGUFFIN}.  The Crafty ${Quest.CONSORT} must be stopped!  "),
                 new Quest("The has finally caught up with the Crafty ${Quest.CONSORT}.  They thank the confused consort for how much the ${Quest.PHYSICALMCGUFFIN} helped them. Confused, the Crafty ${Quest.CONSORT} offers to buy the ${Quest.PHYSICALMCGUFFIN} back, and is upset when the ${Quest.PLAYER1} refuses. They begin ${Quest.CONSORTSOUND}ing and begging until the ${Quest.PLAYER1} begrudgingly claims that they could be convinced to part with it if a sufficiently valuable offer is made.  The Crafty ${Quest.CONSORT} offers them a comically large bag of boonies, which the ${Quest.PLAYER1} promptly distributes to the swindled consorts.  The ${Quest.PHYSICALMCGUFFIN} working was a ruse all along, and the Crafty ${Quest.CONSORT} is the one who is now tricked.  (That is what the parable is) "),

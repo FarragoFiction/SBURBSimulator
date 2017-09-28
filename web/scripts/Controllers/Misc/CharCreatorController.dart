@@ -1,7 +1,7 @@
 import 'dart:html';
-import '../SBURBSim.dart';
-import '../navbar.dart';
-import '../v2.0/char_creator_helper.dart';
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
+import '../../v2.0/char_creator_helper.dart';
 
 CharCreatorController self;
 void main()

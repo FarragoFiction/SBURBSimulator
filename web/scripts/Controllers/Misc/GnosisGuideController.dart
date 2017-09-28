@@ -1,5 +1,5 @@
 import "dart:html";
-import "../SBURBSim.dart";
+import "../../SBURBSim.dart";
 
 Quiz quiz;
 int guideNum = 1;

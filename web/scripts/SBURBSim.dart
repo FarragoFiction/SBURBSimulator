@@ -10,7 +10,7 @@ export 'includes/math_utils.dart';
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
 export "SessionEngine/SessionStats.dart";
-export "Controllers/SimController.dart";
+export "Controllers/Misc/SimController.dart";
 export "GameEntities/ClasspectStuff/Aspects/Aspect.dart";
 export "GameEntities/ClasspectStuff/Classes/SBURBClass.dart";
 export "GameEntities/ClasspectStuff/Interests/Interest.dart";

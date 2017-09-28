@@ -3,8 +3,8 @@
 Needed so multiple screens can all know how to quickly find sessions.
 Rare session finder, tournament,  etc.
  */
-import '../SBURBSim.dart';
-import '../navbar.dart';
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
 import 'dart:html';
 abstract class AuthorBot extends SimController {
 

@@ -1,7 +1,7 @@
 import "dart:html";
-import '../GameEntities/Stats/sampler/statsampler.dart';
-import "../SBURBSim.dart";
-import "../navbar.dart";
+import '../../GameEntities/Stats/sampler/statsampler.dart';
+import "../../SBURBSim.dart";
+import "../../navbar.dart";
 /*
   Each way the sim is able to be used inherits from this abstract class.
 
