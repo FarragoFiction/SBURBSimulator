@@ -41,6 +41,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(ABMiddle());
         }else if(meta == session.mutator.metaHandler.jadedResearcher ) {
             conversation = session.rand.pickFrom(JRMiddle());
+        }else if(meta == session.mutator.metaHandler.manicInsomniac ) {
+            conversation = session.rand.pickFrom(MIMiddle());
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -198,10 +200,10 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(["Anyways, have fun totally losing this dead session."], ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored."], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["I demand Entertainment.","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["I demand Entertainment.","What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
+            ..add(new PlusMinusConversationalPair(["I demand Entertainment.","What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."], ["..."],fuckOff))
+            ..add(new PlusMinusConversationalPair(["I demand Entertainment.","What're you doing there? ","I'm bored. ", "Sooo....bored.", "Entertain me.", "So. Bored.","Come ooooon. I'm not gonna stop till you do."],["..."], fuckOff))
             ..add(new PlusMinusConversationalPair(["You and I both know how to make this stop.", "You can stop this.", "Just entertain me."],["..."], fuckOff))
             ..add(new PlusMinusConversationalPair(["I can do this forever, you know. ", "Looks like I get to do this forever.", "Do you want to hear the song that never ends?"],["..."], youAsshole))
             ..add(new PlusMinusConversationalPair(myGoodbyes,["..."], goodbye));
@@ -288,7 +290,7 @@ class DeadMeta extends Scene {
     List<Conversation> ABMiddle() {
         // c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["There is a ${bullshit}% chance that you will fail should you become distracted. "], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["There is a ${bullshit}% chance that you will fail should you become distracted. "], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I can hardly be blamed for you failing to be a flawless automaton."], ["..."],fuckOff))
             ..add(new PlusMinusConversationalPair(["I suppose I will let you focus, rad robot that I am."], ["..."],["Jegus fuck.", "..."]));
 
@@ -298,6 +300,25 @@ class DeadMeta extends Scene {
         return ret;
     }
 
+    List<Conversation> MIMiddle() {
+        List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
+
+        List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
+
+
+        List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
+
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convo2));
+        ret.add(new Conversation(convo3));
+        ret.addAll(GenericMiddle());
+        return ret;
+    }
 
 
     List<Conversation> GenericEnd() {

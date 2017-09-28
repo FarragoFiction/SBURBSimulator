@@ -146,6 +146,7 @@ class DeadStoryController extends SimController {
   @override
   void processCombinedSession() {
       //guaranteed to make one since it's a dead session
+      curSessionGlobalVar.players[0].relationships.clear(); //forgot about that annoying voice in your head.
       Session tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
       SimController.instance = null;
       new StoryController();
