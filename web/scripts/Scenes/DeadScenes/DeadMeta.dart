@@ -43,6 +43,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(JRMiddle());
         }else if(meta == session.mutator.metaHandler.manicInsomniac ) {
             conversation = session.rand.pickFrom(MIMiddle());
+        }else if(meta == session.mutator.metaHandler.dilletantMathematician ) {
+            conversation = session.rand.pickFrom(DMMiddle());
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -302,21 +304,36 @@ class DeadMeta extends Scene {
 
     List<Conversation> MIMiddle() {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["And let me guess, you're the perfect distraction.", "Fuck off."]..addAll(fuckOff)));
+            ..add(new PlusMinusConversationalPair(["What the actual fuck are you doing with your life."], ["..."],["Apparently playing the worlds shittiest game.", "More useful things than you are. Don't you have anything better to do than bother me?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Hey, do you know what the point your existence is? I do."], ["..."],["Don't know, don't care.", "I could literally not care less.", "Apparently my point is to be the sole object of your attention. Find a friend, asshole."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["I'm surprised you haven't given up yet."], ["..."],["What would I even do if I did? Just sit here and wait to die?", "Oh, you'd LIKE that, wouldn't you?"]..addAll(fuckOff)));
 
 
-        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
-        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
-        List<PlusMinusConversationalPair> convo3 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
-        List<PlusMinusConversationalPair> convo4 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
-        ret.add(new Conversation(convo3));
-        ret.add(new Conversation(convo4));
+
+        ret.addAll(GenericMiddle());
+        return ret;
+    }
+
+    List<Conversation> DMMiddle() {
+        List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["The logarithm of 1 is you."], ["..."],["What does that even fuckign mean!?", "Wow. Lame."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Is this situation a local Stupidity Maxima, or a global Stupidity Maxima?"], ["..."],["Fuck you I can be ten times as stupid as this.", "What does that even mean!?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my lifeand 1 person for the rest of my life, the current situation would comein a distant second"], ["..."],["Oh trust me, the feeling is mutual.", "If I could choose not to talk to you, I fucking would.","Then why don't you stop fucking bothering me!?"]..addAll(fuckOff)));
+
+
+        List<PlusMinusConversationalPair> convo1 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+        List<PlusMinusConversationalPair> convo2 = <PlusMinusConversationalPair>[session.rand.pickFrom(randomPairs),session.rand.pickFrom(randomPairs)];
+
+        List<Conversation> ret = new List<Conversation>();
+        ret.add(new Conversation(convo1));
+        ret.add(new Conversation(convo2));
+
         ret.addAll(GenericMiddle());
         return ret;
     }
