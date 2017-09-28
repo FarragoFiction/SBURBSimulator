@@ -1269,7 +1269,7 @@ class MetaPlayerHandler {
         player.quirk.punctuation = 3;
         player.quirk.favoriteNumber = 3;
         player.quirk.lettersToReplace = [];
-        player.quirk.lettersToReplaceIgnoreCase = [["like","liek"],["\\bfucking\\b", "fucknig"],["the","teh"],["\\bvery\\b", "hella"],["\\bgood\\b", "sweet"],["\\byes\\b", "yup"],["\\bnope\\b", "nope"]];
+        player.quirk.lettersToReplaceIgnoreCase = [["typoes","typoes"],["maid","miad"],["like","liek"],["\\bfucking\\b", "fucknig"],["the","teh"],["\\bvery\\b", "hella"],["\\bgood\\b", "sweet"],["\\byes\\b", "yup"],["\\bnope\\b", "nope"]];
         return player;
     }
 
