@@ -274,8 +274,8 @@ class DeadMeta extends Scene {
 
         List<String> terribleIdeas = new List<String>()
             ..add("I'm thinking I figure out how to make everybody replace the word 'dick' with 'bulge'.")
-            ..add("I could probably modify SBURB until it just shit out B horror movies forever.")
-            ..add("What if, and stay with me here, what if everybody DIDN'T player SBURB, and instead went to high school.  And dated.")
+            ..add("I could probably modify SBURB until it just shits out B horror movies forever.")
+            ..add("What if, and stay with me here, what if everybody DIDN'T play SBURB, and instead went to high school.  And dated.")
             ..add("What if I filled SBURB with shitty easter eggs. It'd be like fucking Easter all up ins.  Instead of Christmas.")
             ..add("What if I made a robot clone of myself?")
             ..add("What if I came up with a series of riddles, each more shitty and less rewarding than the last?")
@@ -373,6 +373,7 @@ class DeadMeta extends Scene {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["The logarithm of 1 is you."], ["..."],["What does that even fucking mean!?", "Wow. Lame."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["Is this situation a local Stupidity Maxima, or a global Stupidity Maxima?"], ["..."],["Fuck you I can be ten times as stupid as this.", "What does that even mean!?"]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["You realize that your victory was so unlikely that there are an infinite number of quantum alternatives where you failed miserably."], ["..."],["And I'll win anyways and then I'll laught at you.", "What does that even mean!?"]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["If I had to choose between talking to 0 people for the rest of my life and 1 person for the rest of my life, the current situation would come in a distant second"], ["..."],["Oh trust me, the feeling is mutual.", "If I could choose not to talk to you, I fucking would.","Then why don't you stop fucking bothering me!?"]..addAll(fuckOff)));
 
 
@@ -409,9 +410,9 @@ class DeadMeta extends Scene {
     List<Conversation> RSMiddle() {
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Wow, what a brilliant, grade-A, FDA certified FAILURE of a person you are."], ["..."],["Fuck you, you think you hurt my feelings? I've heard better insults from little diaper wearing babies.", "Yeah, well at least I have something better to do with my day than just be an asshole."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["Well, they say one is the loneliest number.  Funny thing, it's also the stupidest."], ["..."],["Fuck you, you just can't fathom my brilliant strategy here.", "Like this shitty game would be an easier with friends. ","I'd rather be stupid and me than ANYTHING and you."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Well, they say one is the loneliest number.  Funny thing, it's also the stupidest.","I think you might have actually been destined to play alone, since a combination of fate and a shitty personality meant that you had like zero chance of hitting up a friend and being like 'yo let's play some Sburb dawg' because you have no friends and that's kinda sad."], ["..."],["Fuck you, you just can't fathom my brilliant strategy of single-player shenanigans here.", "Like this shitty game would be an easier with friends. ","I'd rather be stupid and me than ANYTHING and you."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["F is for fucked up single player sessions, U us for ur alone, N is for no practical victory conditions, welcome to the loser zone!"], ["..."],["Who would have guessed you knew how to spell? Will wonders ever cease?", "Fuck you, I'll figure something out."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["Bro I am literally DYING laughing at how exquisitely you fucked up. The creme de la creme of crappy decisions. The filet mignon of failure. The unrivaled champion of doing it wrong. You ordered everything on the menu at the Terrible Ideas cafe, and it's being served piping hot up your asshole. "], ["..."],["Jesus fuck, like the sound of your voice much, asshole?", "Fuck you, I'll figure something out."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Bro I am literally DYING laughing at how exquisitely you fucked up. The creme de la creme of crappy decisions. The filet mignon of failure. The unrivaled champion of doing it wrong. You ordered everything on the menu at the Terrible Ideas cafe, and it's being served piping hot up your asshole. ","Ah, I love Dead Sessions.  Sburb already had Dark Souls levels of difficulty, and this just kicks you in the tender bits in addition to the deathtrap that is the game.  I mean.  Kids and fun!"], ["..."],["Jesus fuck, like the sound of your voice much, asshole?", "Fuck you, I'll figure something out."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["Straight up, you are FUCKED bro. This is like an unwinnable joke level that only the numbest of the numbskulls are willing to try."], ["..."],["Oh because I DECIDED to play this game knowing what that meant.", "You patronizing asshole.","Yeah, because I knew that going in. "]..addAll(fuckOff)));
 
 
