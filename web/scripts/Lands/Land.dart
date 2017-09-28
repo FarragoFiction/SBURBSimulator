@@ -62,7 +62,7 @@ class Land {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) decideIfTimeForNextChain(<Player>[p1,p2]); //need to mark appropriate bool as completed.
-        print("ret is $ret from $currentQuestChain");
+        //print("ret is $ret from $currentQuestChain");
         return ret;
     }
 
@@ -74,15 +74,15 @@ class Land {
     void decideIfTimeForNextChain(List<Player> players) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
-                print("moving on to next set of quests");
+                //print("moving on to next set of quests");
                 firstCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(players, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
-                print("moving on to next set of quests");
+                //print("moving on to next set of quests");
                 secondCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(players, thirdQuests);
             }else{
-                print("no more quests for $name");
+                //print("no more quests for $name");
                 thirdCompleted = true;
                 noMoreQuests = true;
                 currentQuestChain = null;
@@ -94,7 +94,7 @@ class Land {
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
     QuestChainFeature selectQuestChainFromSource(List<Player> players, WeightedList<QuestChainFeature> source) {
-        print("Selecting a quest from $source");
+        //print("Selecting a quest from $source");
         if(source.isEmpty) {
             currentQuestChain = null;
             noMoreQuests = true;
@@ -224,15 +224,17 @@ class Land {
             choices.add(f, features[f]);
         }
         denizenFeature = session.rand.pickFrom(choices);
+        print("Denizen feature is $denizenFeature");
         //pick random one from aspect.
         if(denizenFeature == null) {
+            print("picking random denizen feature");
             denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
         }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.
     void processPreDenizenQuests( Map<Feature, double> features) {
         for(PreDenizenQuestChain f in features.keys) {
-            print("pre denizen feature: $f with weight ${features[f]}");
+            //print("pre denizen feature: $f with weight ${features[f]}");
             firstQuests.add(f.clone(), features[f]);
         }
     }

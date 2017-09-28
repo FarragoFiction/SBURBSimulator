@@ -48,7 +48,7 @@ class QuestChainFeature extends Feature {
             p1.increaseLandLevel();
             removeFromArray(quests.first, quests);
             if (quests.isEmpty) {
-                print("I've finished quest chain $name!");
+                //print("I've finished quest chain $name!");
                 finished = true;
                 reward.apply(div, p1, p2,  land);
             }

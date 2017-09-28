@@ -66,6 +66,9 @@ class DenizenReward extends Reward {
     void apply(Element div, Player p1, Player p2, Land land) {
         p1.increaseGrist(100.0);
         DenizenFeature df = land.denizenFeature;
+        if(df.denizen == null) {
+            df.makeDenizen(p1);
+        }
         Fraymotif f1 = df.denizen.fraymotifs.first;
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");

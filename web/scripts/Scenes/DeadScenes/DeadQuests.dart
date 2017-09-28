@@ -41,7 +41,7 @@ class DeadQuests extends Scene {
     }
 
     void processMiddleQuests(Element div) {
-        print("doing the middle quests which are whole planets worth of shit");
+        //print("doing the middle quests which are whole planets worth of shit");
         /*
            Middle quests consist of  every quest in teh dead session's current land
            then a quest from the next denizen quest, and choosing new current land
@@ -52,12 +52,12 @@ class DeadQuests extends Scene {
         Land l = (session as DeadSession).currentLand;
         if(!l.noMoreQuests) l.initQuest([player]);
         if(l.noMoreQuests || l.currentQuestChain == null) {
-            print("picking next land");
+            //print("picking next land");
             chooseChildLand();
             middleIntermissions(div);
             return;
         }
-        print("Not time for a new planet");
+       // print("Not time for a new planet");
         String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}.  ${l.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
@@ -77,11 +77,11 @@ class DeadQuests extends Scene {
         }else {
             ds.currentLand = null;
         }
-        print("choose a child land of ${ds.currentLand.name}");
+       // print("choose a child land of ${ds.currentLand.name}");
     }
 
     void middleIntermissions(Element div) {
-        print("sports intermissions.");
+       // print("sports intermissions.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
         player.landFuture.initQuest([player]);
@@ -96,7 +96,7 @@ class DeadQuests extends Scene {
     }
 
     void introduceSecondPartOfQuests(Element div) {
-        print("introducing teh second part of the quest, where things really open up.");
+        //print("introducing teh second part of the quest, where things really open up.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
         //TODO have the first quest in the dead land's denizen quests print out, which should
@@ -110,7 +110,7 @@ class DeadQuests extends Scene {
     }
 
     void processMetaLandIntro(Element div) {
-        print("doing a meta land bullshit quest");
+        //print("doing a meta land bullshit quest");
         Player player = session.players[0];
         player.landFuture.initQuest([player]);
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";

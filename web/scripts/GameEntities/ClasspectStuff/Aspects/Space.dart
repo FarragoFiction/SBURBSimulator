@@ -109,7 +109,7 @@ class Space extends Aspect {
                 new Quest("Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}. "),
                 new Quest("The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame? "),
                 new Quest("The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  "),
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest("A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "),
@@ -121,7 +121,7 @@ class Space extends Aspect {
                 new Quest("The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),
                 new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
 
     }
