@@ -24,11 +24,19 @@ class Moon extends Land {
       processMoonShit(allQuestChains);
   }
 
+  @override
+    String get shortName {
+        return name;
+    }
+
   void processMoonShit( Map<QuestChainFeature, double> features) {
-      print("Processing moon shit: ${features.keys}");
+     // print("Processing moon shit: ${features.keys}");
       for(QuestChainFeature f in features.keys) {
-          print("adding moon quest chain");
-          if(QuestChainFeature is MoonQuestChainFeature) moonQuestChains.add(f, features[f]);
+         // print("checking if ${f} is a moon quest.  ${f is MoonQuestChainFeature}");
+          if(f is MoonQuestChainFeature) {
+              //print("adding moon quest chain");
+              moonQuestChains.add(f, features[f]);
+          }
       }
   }
 
@@ -38,6 +46,7 @@ class Moon extends Land {
       if(symbolicMcguffin == null) decideMcGuffins(players.first);
       //first, do i have a current quest chain?
       if(currentQuestChain == null) {
+          print("going to pick a moon quest from ${moonQuestChains}");
           currentQuestChain = selectQuestChainFromSource(players, moonQuestChains);
           //nobody else can do this.
           if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);
