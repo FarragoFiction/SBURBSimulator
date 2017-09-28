@@ -47,7 +47,7 @@ abstract class Scene {
 
   //dead sessions are exactly like regular sessions but only 1 player in array and less scenes. no romance, etc.
   static void createScenesForDeadSession(Session session) {
-    session.scenes = [new GetWasted(session),new DeadQuests(session),new DeadMeta(session), new JackBeginScheming(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
+    session.scenes = [new DeadQuests(session),new DeadMeta(session), new JackBeginScheming(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
     session.scenes.addAll([new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);
     session.scenes.addAll([new VoidyStuff(session), new LuckStuff(session)]);
