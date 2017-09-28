@@ -49,7 +49,7 @@ class QuestChainFeature extends Feature {
             quests = new List.from(completedQuests);
             completedQuests.clear();
         }
-        
+
         bool success = quests.first.doQuest(div, p1,denizen, consort, symbolicMcguffin, physicalMcguffin);
 
         //only if you win. mostly only used for frogs and grist at this point.

@@ -110,19 +110,21 @@ class DerseReward extends Reward {
 
     void apply(Element div, Player p1, Player p2, Land land) {
         super.apply(div, p1, p2, land);
+        p1.corruptionLevelOther ++;
     }
 }
 
 class ProspitReward extends Reward {
 
     @override
-    String text = " The ${Reward.PLAYER1} is getting pretty popular among Prospitian. ";
+    String text = " The ${Reward.PLAYER1} is getting pretty popular among Prospitians. ";
     @override
     String image = null;
     String bgImage = "Prospit.png";
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
+        p1.addStat(Stats.SANITY, -1); //just a bit.
         super.apply(div, p1, p2, land);
     }
 }

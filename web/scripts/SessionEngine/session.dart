@@ -88,6 +88,41 @@ class Session {
         return null;
     }
 
+    MoonQuestChainFeature randomProspitQuestChain() {
+        List<Quest> possibleActivities = new List<Quest>()
+            ..add(new Quest("The ${Quest.PLAYER1} bets 50 boonies on the red frog.   After a nerve wracking set of hops, it comes in first!  "))
+            ..add(new Quest("The VAST CROAK will redeem us all.  The VAST CROAK is the purity of creation, untainted by the old universe.  The ${Quest.PLAYER1} isn’t sure they believe in the Church of the Frog’s message, but the sermon itself is very soothing."))
+            ..add(new Quest("Two parts flour. One part good sweet butter.  A bowl egg whites to brush onto the surface.  Sugar to taste. Plenty of elbow grease. The ${Quest.PLAYER1} is learning to master the secret art of the HOLY PASTRIES."))
+            ..add(new Quest("The ${Quest.PLAYER1} talks to several Prospitians, learning about their daily lives and how happy they are under the WHITE QUEEN’s rule."))
+            ..add(new Quest("The ${Quest.PLAYER1} flutters about aimlessly, simply enjoying the feeling of flying."))
+            ..add(new Quest("The ${Quest.PLAYER1} attends a glorious dance party, complete with masquerades, tea parties and friendship.  The Prospitians admire the ${Quest.PLAYER1}’s cheerful demeanor and willingness to invent new dance steps."))
+            ..add(new Quest("The ${Quest.PLAYER1} stares into the clouds on Skaia. Visions swim in their head. Is this game….more terrible than they thought?"));
+        List<Quest> chosen = new List<Quest>();
+        int times = rand.nextInt(2) + 3;
+        for(int i = 0; i<times; i++) {
+            chosen.add(rand.pickFrom(possibleActivities));
+        }
+        return new MoonQuestChainFeature(true, "Do Prospit Bullshit", chosen, new ProspitReward(), QuestChainFeature.defaultOption);
+    }
+
+    MoonQuestChainFeature randomDerseQuestChain() {
+        List<Quest> possibleActivities = new List<Quest>()
+            ..add(new Quest("The ${Quest.PLAYER1} attends a glorious dance party, complete with masquerades, backstabbing and intrigue.  The Dersites admire the ${Quest.PLAYER1}’s deftness at avoiding stabs in time to music. "))
+            ..add(new Quest("The ${Quest.PLAYER1} is taking part in a high stakes poker game. Everybody is cheating, and that’s what makes it interesting.  The ${Quest.PLAYER1}  thinks they can convince everyone that all decks of cards come with five aces."))
+            ..add(new Quest("The ${Quest.PLAYER1} is keeping tabs on the lifeblood of Derse. The Inquiring Carapacian is a VERY disreputable newspaper, which is what makes it so great for hearing the juicy gossip the Queen doesn’t WANT you to hear."))
+            ..add(new Quest("The BLACK QUEEN is just three Salamanders in a robe.  The BLACK KING likes reading fanfiction. The ${Quest.PLAYER1} is keeping their LYING ATTRIBUTE sharp."))
+            ..add(new Quest("The ${Quest.PLAYER1} does their best to ignore the unsettling...whispering that seems to be omnipresent on Derse. "))
+            ..add(new Quest("The ${Quest.PLAYER1} is learning the steps to the Derse Waltz. There is no reason one can’t look classy as fuck while also being a lying, cheating, manipulative bastard, that’s what their dance teacher always says."))
+            ..add(new Quest("SLICE!  The ${Quest.PLAYER1} slices open a watermelon while a local Dersite looks on in disgust.  ANYBODY can slice with a knife, it takes real commitment to stab.  The ${Quest.PLAYER1} has a lot to learn."))
+            ..add(new Quest("The ${Quest.PLAYER1} is relaxing in a dimly lit jazz club.  The band is pretty good, but a nearby Dersite assures the ${Quest.PLAYER1}  that they got nothing on some outfit called ‘The Midnight Crew’. Shame they aren’t around right now."));
+            List<Quest> chosen = new List<Quest>();
+            int times = rand.nextInt(2) + 3;
+            for(int i = 0; i<times; i++) {
+                chosen.add(rand.pickFrom(possibleActivities));
+            }
+        return new MoonQuestChainFeature(true, "Do Derse Bullshit", chosen, new DerseReward(), QuestChainFeature.defaultOption);
+    }
+
     void setupMoons() {
         //no more than one of each.
         moons.clear();
@@ -99,6 +134,18 @@ class Session {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.PROSPITIANCARAPACE, Feature.HIGH)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.LOW)
             ..addFeature(new MoonQuestChainFeature(true, "Test the Hypothesis", [
                 new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
                 new Quest("The ${Quest.PLAYER1} forms hypothesis after hypothesis only for each to be completely falsified in turn. This is a disastor! "),
@@ -115,29 +162,35 @@ class Session {
                 new Quest("The ${Quest.PLAYER1} has finally reached the final door. They bite their lip in concentration as they pour the final mixed chemical into the slot.  The door slides open.  A sudden ${Quest.CONSORTSOUND} nearly has them drop the dangerous fluid, but they manage to regain their composure in time.  An entire room of ${Quest.CONSORT}s are inside the final room, outfitted for a surprise party.  It is for ${Quest.PLAYER1} to celebrate how great at science they are! There is even a SCIENCE CAKE."),
             ], new ProspitReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW);
 
+
+
         Map<Theme,double> derseThemes = new Map<Theme, double>();
         Theme derseTheme = new Theme(<String>["Prospit"])
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.WHISPERSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.DERSECARAPACE, Feature.HIGH)
-            ..addFeature(new MoonQuestChainFeature(true, "Test the Hypothesis", [
-                new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who offers them a grant to study ${Quest.PHYSICALMCGUFFIN}, the only catch is they must present their findings at a giant symposium in just a little bit. "),
-                new Quest("The ${Quest.PLAYER1} forms hypothesis after hypothesis only for each to be completely falsified in turn. This is a disastor! "),
-                new Quest("The Symposium has started. The crowd of unruly ${Quest.CONSORT}s begins ${Quest.CONSORTSOUND}ing louder and louder. Finally, the ${Quest.PLAYER1} bursts in, looking disheveled. It was last minute, but they managed to find something groundbreaking about ${Quest.PHYSICALMCGUFFIN}, and they do an enthralling presentation on their findings. They are hailed as a SCIENCE HERO!"),
-            ], new DerseReward(), QuestChainFeature.defaultOption), Feature.HIGH)
-            ..addFeature(new MoonQuestChainFeature(true, "Make the Cure", [
-                new Quest("Too many local ${Quest.CONSORT} have fallen ill from a mysterious plague.  Those inflicted are too weak to even ${Quest.CONSORTSOUND}.  It is up to the ${Quest.PLAYER1} to figure out how to cure the disease.  They are provided with a state of the art lab and a team of ...not completely terrible ${Quest.CONSORT}s."),
-                new Quest("The ${Quest.PLAYER1} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
-                new Quest("Each ${Quest.CONSORT} lines up to receive their ${Quest.PHYSICALMCGUFFIN} injection. The sound of joyful ${Quest.CONSORTSOUND} fills the air. The plague is defeated!  The ${Quest.PLAYER1} has a statue made of them in the town center. "),
-            ], new DerseReward(), QuestChainFeature.defaultOption), Feature.HIGH)
-            ..addFeature(new MoonQuestChainFeature(true, "Be the Scientist", [
-                new Quest("The ${Quest.PLAYER1}  finds a mysterious lab, fully stocked with equipment and chemicals. It is completely abandoned. Locked doors are on every wall of the main area. "),
-                new Quest("The ${Quest.PLAYER1}  realizes that various sections of the lab open up if you pour the right kind of chemical into a slot on the door. The begin venturing deeper and deeper into the lab.  "),
-                new Quest("The ${Quest.PLAYER1} has finally reached the final door. They bite their lip in concentration as they pour the final mixed chemical into the slot.  The door slides open.  A sudden ${Quest.CONSORTSOUND} nearly has them drop the dangerous fluid, but they manage to regain their composure in time.  An entire room of ${Quest.CONSORT}s are inside the final room, outfitted for a surprise party.  It is for ${Quest.PLAYER1} to celebrate how great at science they are! There is even a SCIENCE CAKE."),
-            ], new DerseReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW);
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(new MoonQuestChainFeature(true, "Be a Legitimate Business Player", [
+                new Quest("The ${Quest.PLAYER1} learns of a lucrative business opportunity. The BLACK QUEEN has all sorts of contraband laws. Everything from frogs to ice cream is so totally illegal. But that doesn't stop the right sort of Dersite from getting cravings, if you understand me. The ${Quest.PLAYER1} looks like they can be discreet. "),
+                new Quest("The ${Quest.PLAYER1} runs afoul of the Authority Regulators. Through a frankly preposterous amount of running, parkour and misdirection, they finally escape, only to remember that they could have just flown away.  Dream selves sure are dumb!  "),
+                new Quest("The ${Quest.PLAYER1} has decided to retire from a life of...legitimate business, highly lucrative though it was.  They use their earnings to set up a simple and refined Suit shot, catering to only the most exclusive clientel. "),
+            ], new DerseReward(), QuestChainFeature.defaultOption), Feature.LOW);
 
 
         prospitThemes[prospitTheme] = Theme.HIGH;

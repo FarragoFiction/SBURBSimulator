@@ -874,7 +874,7 @@ class MetaPlayerHandler {
         player.chatHandle = "aspiringWatcher";
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
-        player.moon = "Prospit";
+        player.moon = "Derse";
         player.land = "Land of Spires and Nature";
         player.deriveChatHandle = false;
         player.godTier = true;
