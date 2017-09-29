@@ -22,4 +22,6 @@ class Domestic extends InterestCategory {
 
     Domestic() :super(8, "Domestic", "domestic", "boring");
 
+    
+
 }

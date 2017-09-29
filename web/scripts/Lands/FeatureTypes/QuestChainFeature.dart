@@ -23,6 +23,11 @@ class QuestChainFeature extends Feature {
     Reward reward;
     int chapter = 1;
 
+    @override
+    String toHTML() {
+        return "<div class = 'feature'>QuestChain: ${name}, Reward: ${reward}</div>";
+    }
+
     QuestChainFeature(this.canRepeat, this.name, this.quests, this.reward, this.condition);
 
 

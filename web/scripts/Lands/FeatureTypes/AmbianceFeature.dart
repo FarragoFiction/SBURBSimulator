@@ -5,8 +5,10 @@ class AmbianceFeature extends Feature {
 
     AmbianceFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
 
-    //TODO when this is called "normally" each player can react to a different feature of the land. so only one player at a time
-
+    @override
+    String toHTML() {
+        return "<div class = 'feature'>Feels ${simpleDesc}, Quality: ${quality}</div>";
+    }
     static String randomFlavorText(Random rand, String specific, int quality, Player p) {
         if(quality>0) return AmbianceFeature.randomGoodFlavorText(rand, specific, p);
         if(quality<0) return AmbianceFeature.randomBadFlavorText(rand, specific, p);

@@ -26,6 +26,15 @@ class Theme {
         features[f] = weight;
     }
 
+    String toHTML() {
+        String features = "";
+        for(Feature f in this.features.keys) {
+           // features += "W: ${this.features[f]}, F: ${f.toHTML()}";  //TODO turn this back on when i care about making this toggleable.
+        }
+        String ret = "<div class = 'theme'><b>$possibleNames</div></b><div class = 'features'>$features</div></theme>";
+        return ret;
+    }
+
     @override
     String toString() {
         return "Theme: $possibleNames";

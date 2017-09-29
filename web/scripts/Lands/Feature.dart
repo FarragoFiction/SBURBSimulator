@@ -12,6 +12,9 @@ class Feature {
 
     Feature([this.simpleDesc, this.quality]);
 
+    String toHTML() {
+        return "${simpleDesc}, Quality: ${quality}";
+    }
     bool goodFeature() {
         return quality >0;
     }

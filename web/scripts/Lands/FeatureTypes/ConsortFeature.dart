@@ -17,6 +17,11 @@ class ConsortFeature extends Feature {
         return new Consort.withSound(name, s, sound);
     }
 
+    @override
+    String toHTML() {
+        return "<div class = 'feature'>${name}, Says: ${sound}</div>";
+    }
+
     //passed in specific can have 'ands' in the middle
      String randomNeutralFlavorText(Random rand, Player p) {
         WeightedList<String> possibilities = new WeightedList<String>();

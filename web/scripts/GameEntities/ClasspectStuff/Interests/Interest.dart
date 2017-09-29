@@ -159,7 +159,7 @@ class InterestCategory {
                 new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),
                 new Quest("With a satisfying CLICK, the ${Quest.PLAYER1} has solved the final block puzzle.  A wave of energy overtakes the land. There is an immediate chorus of ${Quest.CONSORTSOUND}ing.  The ${Quest.CONSORT}s are alive again!  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            ,  Theme.HIGH);
+            ,  Theme.LOW);
         addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
@@ -172,7 +172,7 @@ class InterestCategory {
                 new Quest("The ${Quest.PLAYER1} is training the local ${Quest.CONSORT}s to operate the manufacturing equipment. There is ${Quest.CONSORTSOUND}ing and chaos everywhere. "),
                 new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH);
+            , Theme.LOW);
 
         addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
@@ -188,7 +188,7 @@ class InterestCategory {
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. Huh, what is this ${Quest.CONSORT} ${Quest.CONSORTSOUND}ing about? A prophecy?  "),
                 new Quest("The ${Quest.PLAYER1} finds the foretold RELAXING MIX TAPE and plays it for all the local ${Quest.CONSORT}s, who become so chill they do not even ${Quest.CONSORTSOUND} once. ")
             ], new FraymotifReward(), QuestChainFeature.playerIsFateAspect), Feature.LOW)
-            , Theme.HIGH); // end theme
+            , Theme.LOW); // end theme
     }
 
     @override

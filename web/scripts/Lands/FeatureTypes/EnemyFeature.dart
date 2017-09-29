@@ -10,6 +10,11 @@ class DenizenFeature extends Feature {
     Denizen denizen;
      DenizenFeature(this.name);
 
+    @override
+    String toHTML() {
+        return "<div class = 'feature'>${name}</div>";
+    }
+
     Denizen makeDenizen(Player p) {
         if(denizen != null) return denizen;
 

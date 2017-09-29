@@ -10,6 +10,11 @@ class SoundFeature extends Feature {
     //most sounds are p annoying, lets face it
     SoundFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
 
+    @override
+    String toHTML() {
+        return "<div class = 'feature'>Sounds Like ${simpleDesc}, Quality: ${quality}</div>";
+    }
+
     static String randomFlavorText(Random rand, String specific, int quality, Player p) {
         if(quality>0) return SoundFeature.randomGoodFlavorText(rand, specific, p);
         if(quality<0) return SoundFeature.randomBadFlavorText(rand, specific, p);
