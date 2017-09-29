@@ -152,6 +152,25 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
         _list[index] = pair;
     }
 
+    /// Merges multiple pairs with the same item into single pairs with summed weight.
+    ///
+    /// WARNING: This will DISCARD any special conditional weightings!
+    /// Resulting pairs will be static weights.
+    void collateWeights() {
+        Map<T, double> totals = <T, double>{};
+
+        for (WeightPair<T> pair in _list) {
+            if (!totals.containsKey(pair.item)) {
+                totals[pair.item] = 0.0;
+            }
+
+            totals[pair.item] += pair.weight;
+        }
+
+        _list.clear();
+        this.addAllMap(totals);
+    }
+
     @override
     Iterable<WeightPair<T>> get pairs => _list;
 
@@ -199,6 +218,10 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
 
     void addAllGenerative(Iterable<T> items, double generator(T input)) {
         _list.addAll(items.map((T item) => _createPair(item, generator(item))));
+    }
+
+    void addAllMap(Map<T, double> map) {
+        this.addAllIterables(map.keys, map.values);
     }
 
     // ##########################################

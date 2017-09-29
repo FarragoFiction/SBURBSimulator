@@ -16,6 +16,8 @@ class Land {
     WeightedList<SoundFeature> sounds = new WeightedList<SoundFeature>();
     WeightedList<AmbianceFeature> feels = new WeightedList<AmbianceFeature>();
 
+    WeightedList<Feature> features = new WeightedList<Feature>();
+
     QuestChainFeature currentQuestChain;
     //IMPORTANT i expect any quest chain that has the default trigger to be weighted very low, and everything else equal. TODO take care of this when creating land
     WeightedList<PreDenizenQuestChain> firstQuests = new WeightedList<PreDenizenQuestChain>();

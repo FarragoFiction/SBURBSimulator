@@ -71,7 +71,7 @@ abstract class Scene {
 
 
   //scenes call this to know how to put together pesterlogs
-  static String chatLine(start, player, line){
+  static String chatLine(String start, Player player, String line){
     if(player.grimDark  > 3){
       line = Zalgo.generate(line);
       return start + line.trim()+"\n"; //no whimsy for grim dark players

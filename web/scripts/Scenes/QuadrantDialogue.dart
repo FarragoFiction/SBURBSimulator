@@ -375,10 +375,10 @@ class QuadrantDialogue extends Scene {
 		var chosen = rand.pickFrom(chats);
 		if(rand.nextDouble() > 0.5){
 			chat +=  Scene.chatLine(this.player1Start, this.player1, chosen.line1);
-			chat += chosen.p2GetResponseBasedOnRelationship(this.player2, this.player2Start, relationship2);
+			chat += chosen.getResponseRelationship(this.player2, this.player2Start, relationship2);
 		}else{
 			chat +=  Scene.chatLine(this.player2Start, this.player2, chosen.line1);
-			chat += chosen.p2GetResponseBasedOnRelationship(this.player1, this.player1Start, relationship1);
+			chat += chosen.getResponseRelationship(this.player1, this.player1Start, relationship1);
 		}
 		return chat;
 	}
@@ -630,11 +630,15 @@ class Conversation {
 		String ret = "";
 		for(PlusMinusConversationalPair convo in pairs) {
 			String metaLine = convo.getOpeningLine(p1, player1Start);
-			String playerLine = convo.getP2ResponseBasedOnBool(p2, player2Start, p2.getRelationshipWith(p1).value > 0);
+			String playerLine = convo.getResponseBool(p2, player2Start, p2.getRelationshipWith(p1).value > 0);
 			if (first) { first = false; } else { ret += "<br>"; }
 			ret += "<font color = '${p1.getChatFontColor()}'>$metaLine</font><br><font color = '${p2.getChatFontColor()}'>$playerLine</font>";
 		}
-		appendHtml(div, ret);
+		appendText(div, ret);
+	}
+
+	void appendText(Element div, String text) {
+		appendHtml(div, text);
 	}
 
 	void line(dynamic opener, dynamic positive, dynamic negative) {
@@ -645,6 +649,17 @@ class Conversation {
 	}
 }
 
+class ConversationProcessed extends Conversation {
+	Mapping<String,String> processing;
+
+	ConversationProcessed(Mapping<String,String> this.processing, [List<PlusMinusConversationalPair> pairs]) : super(pairs);
+
+	@override
+	void appendText(Element div, String text) {
+		text = processing(text);
+		super.appendText(div,text);
+	}
+}
 
 //set of possible responses if i like you, set of possible respones if i don't.  (nothing generic)
 class PlusMinusConversationalPair {
@@ -657,24 +672,19 @@ class PlusMinusConversationalPair {
 	PlusMinusConversationalPair(this.openingLines, this.positiveRespones, this.negativeResponses) {}
 
 
-	dynamic getOpeningLine(player, playerStart){
+	String getOpeningLine(Player player, String playerStart){
 		return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.openingLines));
 	}
-	dynamic getP2ResponseBasedOnBool(player, playerStart, calculatedBool){
-		if(calculatedBool){
-			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.positiveRespones));
+	String getResponseBool(Player player, String handle, bool condition){
+		if(condition){
+			return Scene.chatLine(handle, player, player.session.rand.pickFrom(this.positiveRespones));
 		}else{ //negative response.
-			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.negativeResponses));
+			return Scene.chatLine(handle, player, player.session.rand.pickFrom(this.negativeResponses));
 		}
 	}
-	dynamic p2GetResponseBasedOnRelationship(player, playerStart, relationship){
-		if(relationship != null && relationship.value > 0){
-			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.positiveRespones));
-		}else{ //negative response.
-			return Scene.chatLine(playerStart, player, player.session.rand.pickFrom(this.negativeResponses));
-		}
+	String getResponseRelationship(Player player, String handle, Relationship relationship){
+		return getResponseBool(player, handle, relationship != null && relationship.value > 0);
 	}
-
 }
 
 

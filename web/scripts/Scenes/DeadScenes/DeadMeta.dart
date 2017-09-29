@@ -76,8 +76,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(ABEnd());
         }else if(meta == session.mutator.metaHandler.jadedResearcher ) {
             conversation = session.rand.pickFrom(JREnd());
-        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
-        //    conversation = DeadTextPL.INSTANCE.end();
+        }else if(meta == session.mutator.metaHandler.paradoxLands ) {
+            conversation = DeadTextPL.INSTANCE.end();
         }else {
             conversation = session.rand.pickFrom(GenericEnd());
         }
@@ -505,7 +505,7 @@ class DeadMeta extends Scene {
 class DeadTextPL {
     static DeadTextPL INSTANCE;
 
-    Session session;
+    DeadSession session;
 
     Conversation placeholder = new Conversation(<PlusMinusConversationalPair>[
         new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
@@ -516,8 +516,18 @@ class DeadTextPL {
     WeightedList<Conversation> middles;
     WeightedList<Conversation> ends;
 
-    DeadTextPL(Session this.session) {
+    int _chats = 0;
+    Set<Land> _lands = new Set<Land>();
+
+    DeadTextPL(Session session) {
+        if (session is DeadSession) {
+            this.session = session;
+        } else {
+            throw "Invalid session";
+        }
         INSTANCE = this;
+
+        Player player = session.players[0];
 
         // #################################################################
 
@@ -594,7 +604,64 @@ class DeadTextPL {
         // #################################################################
 
         middles = new WeightedList<Conversation>()
-            ..add(placeholder);
+            // ---------------------------------
+            ..addConditional(new ConversationProcessed(_landConvo)
+                ..line(<String>[
+                    "Having fun yet?",
+                    "Sure looks like a whooole lot of bullshit.",
+                    "Ready to listen yet?",
+                    "Sure you don't want any help?",
+                    "Hey, jerkwad.",
+                    "Yo asshole!",
+                ], "...", <String>[
+                    "Now is NOT the time.",
+                    "I do NOT need this now.",
+                    "A little busy here.",
+                    "Not again...",
+                    "Occupied. Fuck off!",
+                    "Fuck off.",
+                ])
+                ..line(<String>[
+                    "I can help but I'm gonna need you to tell me aobut where you are.",
+                    "Listen, I can help but I need you to describe your location.",
+                    "Look, I need to know about where you are. I can help you.",
+                    "What's it like there? I can help you but you need to tell me.",
+                ], "...", <String>[
+                    "What? Why?",
+                    "What does that have to do with anything?",
+                    "What's it to you?",
+                    "I said fuck off.",
+                    "Leave me alone.",
+                    "I said I didn't need any help.",
+                ])
+                ..line(<String>[
+                    "Come on! I want to know about that place. It's what I do.",
+                    "Don't be an ass. Tell me. What's it like? WRONGGUESS? RIGHTGUESS?",
+                    "'The LANDNAMEFULL', right? So... RIGHTGUESS? WRONGGUESS maybe?",
+                    "Oh come on! It's the LANDNAMEFULL for fuck's sake, how hard could it be to describe?",
+                    "I can't get a clear view from here, just tell me, ok?",
+                    "Don't be a jerk. Just tell me what it's like there. 'LANDNAME'. Can't be hard...",
+                ], "...", <String>[
+                    "Ugh, fine. FEATURE1, and FEATURE2 I guess.",
+                    "If I tell you will you get lost? FEATURE1.",
+                    "Fine. FEATURE2. Will you just fuck off now?!",
+                    "Lots of LANDNAME. Now GO AWAY!",
+                    "Right, RIGHTGUESS, now fuck off and leave me alone!",
+                ])
+                ..line(<String>[
+                    "Close enough... brb.",
+                    "Interesting. I'll be back.",
+                    "That wasn't so hard, was it? I'll be back later.",
+                ], "...", <String>[
+                    "Ugh.",
+                    "Fuck.",
+                    "Shit.",
+                    "...",
+                ])
+            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            // ---------------------------------
+            ..add(placeholder, 0.1)
+        ;
 
         // #################################################################
 
@@ -609,11 +676,30 @@ class DeadTextPL {
     }
 
     Conversation middle() {
-        return session.rand.pickFrom(middles);
+        Conversation out = session.rand.pickFrom(middles);
+        _chats++;
+        return out;
     }
 
     Conversation end() {
         return session.rand.pickFrom(ends);
+    }
+
+    Land _getCurrentLand() {
+        return session.currentLand == null ? session.players[0].landFuture : session.currentLand;
+    }
+
+    String _landConvo(String text) {
+        Land land = _getCurrentLand();
+        _lands.add(land);
+
+        String landnamefull = land.name;
+        String landname = land.name.substring(7);
+
+        return text
+            .replaceAll("LANDNAMEFULL", landnamefull)
+            .replaceAll("LANDNAME", landname)
+        ;
     }
 }
 
