@@ -238,7 +238,7 @@ class SBURBClass {
                 new Quest("The ${Quest.PLAYER1} has found a series of intriguing block puzzles and symbols. What could it all mean? "),
                 new Quest("With a satisfying CLICK, the ${Quest.PLAYER1} has solved the final block puzzle.  A wave of energy overtakes the land. There is an immediate chorus of ${Quest.CONSORTSOUND}ing.  The ${Quest.CONSORT}s are alive again!  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            ,  Theme.HIGH);
+            ,  Theme.MEDIUM);
         addTheme(new Theme(<String>["Factories", "Manufacture", "Assembly Lines"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.IGUANACONSORT, Feature.LOW)
@@ -251,7 +251,7 @@ class SBURBClass {
                 new Quest("The ${Quest.PLAYER1} is training the local ${Quest.CONSORT}s to operate the manufacturing equipment. There is ${Quest.CONSORTSOUND}ing and chaos everywhere. "),
                 new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH);
+            , Theme.MEDIUM);
 
         addTheme(new Theme(<String>["Peace","Tranquility","Rest"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
@@ -267,7 +267,7 @@ class SBURBClass {
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. "),
                 new Quest("The ${Quest.PLAYER1} teaches the local ${Quest.CONSORT}s to find their chill. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH); // end theme
+            , Theme.MEDIUM); // end theme
     }
 
     @override

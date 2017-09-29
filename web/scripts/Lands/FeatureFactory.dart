@@ -63,6 +63,7 @@ class FeatureFactory {
     static SoundFeature RUSTLINGSOUND;
     static SoundFeature BEEPINGSOUND;
     static SoundFeature JAZZSOUND;
+    static SoundFeature ROARINGSOUND;
     static SoundFeature DISCOSOUND;
     static SoundFeature MUSICSOUND;
     static SoundFeature WHISPERSOUND;
@@ -143,6 +144,7 @@ class FeatureFactory {
         CLACKINGSOUND = new SoundFeature("clacking");
         JAZZSOUND = new SoundFeature("jazz");
         DISCOSOUND = new SoundFeature("disco");
+        ROARINGSOUND = new SoundFeature("roaring", Feature.BAD);
         MUSICSOUND = new SoundFeature("music");
         WHISTLINGGSOUND = new SoundFeature("whistling");
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
