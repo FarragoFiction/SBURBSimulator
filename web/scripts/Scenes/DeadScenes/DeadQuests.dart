@@ -16,7 +16,7 @@ class DeadQuests extends Scene {
     @override
     void renderContent(Element div) {
 
-        if(session.rand.nextDouble() > .75) {
+        if(session.rand.nextDouble() > .9) {
             processMoon(div);
         }else if(section == 1) {
             processMetaLandIntro(div); //when it ends will handle intro.
@@ -136,6 +136,6 @@ class DeadQuests extends Scene {
 
     @override
     bool trigger(List<Player> playerList) {
-       return !(session as DeadSession).failed && section <4 && !session.players[0].dead && session.rand.nextBool();  //doesn't ALWAYS happen, there's also meta shit.
+       return !(session as DeadSession).failed && section <4 && !session.players[0].dead && session.rand.nextDouble()<.75;  //doesn't ALWAYS happen, there's also meta shit.
     }
 }

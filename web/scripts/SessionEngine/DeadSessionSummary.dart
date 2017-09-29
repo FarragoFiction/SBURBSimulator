@@ -76,11 +76,6 @@ class DeadSessionSummary extends SessionSummary {
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 
 
-        summary.setBoolStat("hasDiamonds", session.stats.hasDiamonds);
-        summary.setBoolStat("hasSpades", session.stats.hasSpades);
-        summary.setBoolStat("hasClubs", session.stats.hasClubs);
-        summary.setBoolStat("hasHearts", session.stats.hasHearts);
-
         return summary;
 
     }
