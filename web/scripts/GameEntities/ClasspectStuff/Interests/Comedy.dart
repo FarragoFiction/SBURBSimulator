@@ -44,6 +44,7 @@ class Comedy extends InterestCategory {
             ..addFeature(FeatureFactory.SWEATSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Win the Laughs", [
                 new Quest("The ${Quest.PLAYER1} learns of an Open Mic Nite at the ${Quest.MCGUFFIN} Club. Do they have what it takes to make the toughest crowd in all of Paradox Space laugh? "),
                 new Quest("The ${Quest.PLAYER1} is practicing their jokes on a street corner. A few ${Quest.CONSORT}s let out a braying ${Quest.CONSORTSOUND} of laughter, but most seem unimpressed. The ${Quest.PLAYER1} sure has a long way to go. "),
