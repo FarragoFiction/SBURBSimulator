@@ -28,7 +28,7 @@ class DeadSession extends Session {
     ///number between 0 and 1 to pass DeadQuests
     ///0.9 isn't the same thing as saying 9/10 sessions win. it's saying EVERY sports quest has a 1/10 chance of failing
     /// and there's usually at least ten of them.
-    double oddsOfSuccess = 0.5;
+    double oddsOfSuccess = 0.8;
 
     //harsh, but once you fail that's it. no more quests.
     bool failed = false;
@@ -154,21 +154,21 @@ class DeadSession extends Session {
             ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
                 new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
-                new FailableQuest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} is about to place their flag down where they think the mine is when ${metaPlayer.chatHandle} starts pestering them. Gah, now they lost their place! Wait....Okay. There you go. Mine secured.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} thinks they have another mine found. All they have to do is figure out if there's 3 empty spots here and 4 on the other planet...then....YES. They place their flag.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} yanks a ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} out of the way before they walk right onto this planet's mine like an asshole.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("You begin to wonder how many different ways there are to say 'The ${Quest.PLAYER1} finds another mine.'", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} locates another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} discovers a buried explosive device.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} ascertains the location of an additional incendiary device.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("You smack the Thesaurus out of JR's hand. The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("You fondly regard longifcation, which is to say, the beautiful dream of SBURBSim 'too many words' mode. If only it were not too good and pure for this world, then EVERYthing on this page would fear the wrath of JR's thesaurus. In conclusion: The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("${metaPlayer.chatHandle} breaks the ${Quest.PLAYER1} concentration just to ask them about windows98. Another mine is found, regardless. ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} finds another mine. This would be boring if dealing with mines wasn't so nerve wracking.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
-                new FailableQuest("The ${Quest.PLAYER1} finds the final mine! Holy shit! They are the winner, it is them!  They press the big red button that has taunted them this entire time, and each planet blows up in turn.  There is a nerveracking moment when the third planet's explosion is delayed, but in the end it pull through. The ${Quest.PLAYER1} is finally done with this shitty section of the game!!!", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess)
+                new FailableQuest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! ", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} is about to place their flag down where they think the mine is when ${metaPlayer.chatHandle} starts pestering them. Gah, now they lost their place! Wait....Okay. There you go. Mine secured.", "The ${Quest.PLAYER1} is careless and explodes a planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes a planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} thinks they have another mine found. All they have to do is figure out if there's 3 empty spots here and 4 on the other planet...then....YES. They place their flag.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} yanks a ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} out of the way before they walk right onto this planet's mine like an asshole.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("You begin to wonder how many different ways there are to say 'The ${Quest.PLAYER1} finds another mine.'", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} locates another mine.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} discovers a buried explosive device.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} ascertains the location of an additional incendiary device.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("You smack the Thesaurus out of JR's hand. The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("You fondly regard longifcation, which is to say, the beautiful dream of SBURBSim 'too many words' mode. If only it were not too good and pure for this world, then EVERYthing on this page would fear the wrath of JR's thesaurus. In conclusion: The ${Quest.PLAYER1} finds another mine. ", "The ${Quest.PLAYER1} is careless and explodes a planet too early.", oddsOfSuccess),
+                new FailableQuest("${metaPlayer.chatHandle} breaks the ${Quest.PLAYER1} concentration just to ask them about windows98. Another mine is found, regardless. ", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine. This would be boring if dealing with mines wasn't so nerve wracking.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another mine.", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds the final mine! Holy shit! They are the winner, it is them!  They press the big red button that has taunted them this entire time, and each planet blows up in turn.  There is a nerveracking moment when the third planet's explosion is delayed, but in the end it pull through. The ${Quest.PLAYER1} is finally done with this shitty section of the game!!!", "The ${Quest.PLAYER1} is careless and explodes the planet too early.", oddsOfSuccess)
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.SUPERHIGH);
 
@@ -180,23 +180,23 @@ class DeadSession extends Session {
             ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(new HardDenizenFeature("temp"), Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Remove the Cards", [
-                new Quest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land."),
-                new Quest("The ${Quest.PLAYER1} removes their first card from play. They...aren't exactly sure how a big round ball counts as a playing card, but they aren't invested enough in this conceit to really debate it."),
-                new Quest("The ${Quest.PLAYER1} removes another card from play. It is actually really annoying trying to play a vaguely Solitare game when the planets aren't actually cards. What would this planet even be? An ace?"),
-                new Quest("The ${Quest.PLAYER1} removes another card. They have just gotten used to planets = cards at this point."),
-                new Quest("The ${Quest.PLAYER1} removes another card and imagines that they are playing a sane game. 52 card pickup, anyone?"),
-                new Quest("The ${Quest.PLAYER1} figures out how to contact ${metaPlayer.chatHandle} just to ask them if this latest planet is a ten of spades, or if it's more a 8 of clubs. It feels good to irritate THAT asshole, instead of the other way around. "),
-                new Quest("The ${Quest.PLAYER1} wonders how poorly whoever designed this game understood Solitaire. You don't chuck cards into blackholes, you dunkass."),
-                new Quest("The ${Quest.PLAYER1} removes another card."),
-                new Quest("The ${Quest.PLAYER1} removes another planet. They are briefly rebelling by refusing to cooperate with this whole 'cards' theme."),
-                new Quest("The ${Quest.PLAYER1} removes another planet. So there."),
-                new Quest("The ${Quest.PLAYER1} removes another card. They are kind of feeling bad about rebelling. If nothing else it is making the ${Quest.CONSORT}s  ${Quest.CONSORTSOUND} way more than usual. They agree to stop. "),
-                new Quest("The ${Quest.PLAYER1} removes another card. This actually barely requires any concentration. The ${Quest.PLAYER1} can see why this is normally a 'so bored you are going to pass out' kind of game. "),
-                new Quest("The ${Quest.PLAYER1} removes another card."),
-                new Quest("The ${Quest.PLAYER1} removes another planet, or is it a card? You briefly curse object duality before remember that that's probably not a thing in this game. "),
-                new Quest("The ${Quest.PLAYER1} finds another pumpkin. You mean planet.  By which you mean card. And by find, you mean remove. You don't even care anymore. "),
-                new Quest("The ${Quest.PLAYER1} removes another card."),
-                new Quest("Holy shit!!! That's the last of the shitty not-cards-but-actually-planets! The ${Quest.PLAYER1} can finally move on!")
+                new FailableQuest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes their first card from play. They...aren't exactly sure how a big round ball counts as a playing card, but they aren't invested enough in this conceit to really debate it.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card from play. It is actually really annoying trying to play a vaguely Solitare game when the planets aren't actually cards. What would this planet even be? An ace?", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card. They have just gotten used to planets = cards at this point.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card and imagines that they are playing a sane game. 52 card pickup, anyone?", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} figures out how to contact ${metaPlayer.chatHandle} just to ask them if this latest planet is a ten of spades, or if it's more a 8 of clubs. It feels good to irritate THAT asshole, instead of the other way around. ", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} wonders how poorly whoever designed this game understood Solitaire. You don't chuck cards into blackholes, you dunkass.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another planet. They are briefly rebelling by refusing to cooperate with this whole 'cards' theme.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another planet. So there.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card. They are kind of feeling bad about rebelling. If nothing else it is making the ${Quest.CONSORT}s  ${Quest.CONSORTSOUND} way more than usual. They agree to stop. ", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card. This actually barely requires any concentration. The ${Quest.PLAYER1} can see why this is normally a 'so bored you are going to pass out' kind of game. ", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another planet, or is it a card? You briefly curse object duality before remember that that's probably not a thing in this game. ", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} finds another pumpkin. You mean planet.  By which you mean card. And by find, you mean remove. You don't even care anymore. ", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} removes another card.", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess),
+                new FailableQuest("Holy shit!!! That's the last of the shitty not-cards-but-actually-planets! The ${Quest.PLAYER1} can finally move on!", "The ${Quest.PLAYER1} is careless and makes an important planet impossible to remove.", oddsOfSuccess)
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.SUPERHIGH); // end theme
     }

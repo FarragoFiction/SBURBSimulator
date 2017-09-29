@@ -11,6 +11,7 @@
       <a href="character_creator.html">Customize Random</a>
       <a href="rare_session_finder.html">Find Rare</a>
       <a href="dead_index.html">Random Dead Session</a>
+      <a href="dead_session_finder.html">Find Dead Sessions</a>
       <a href="http://farragofiction.com/SBURBSim/mainLanding.html">Main Branch</a>
       <a href="http://farragofiction.com/SBURBSimE/experimentalLanding.html">Experimental Branch</a>
     </div>

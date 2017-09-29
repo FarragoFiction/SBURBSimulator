@@ -83,7 +83,9 @@ class FailableQuest extends Quest {
     //passed in everything they need to know to fill in all possible tags.
     @override
     bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
-        if(p1.session.rand.nextDouble() < odds) {
+        double roll = p1.session.rand.nextDouble();
+       // print("roll is ${roll} and odds are ${odds}");
+        if(roll < odds) {
             return replaceTags(div, true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
         }else {
             return replaceTags(div, false, failureText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
