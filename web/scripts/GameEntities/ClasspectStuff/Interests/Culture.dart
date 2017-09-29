@@ -62,7 +62,7 @@ class Culture extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1}  is cordially invited to the dinner party of Miss ${Quest.CONSORTSOUND}ingworth, ${Quest.CONSORT} heiress to the ${Quest.PHYSICALMCGUFFIN} fortune. "),
                 new Quest("The ${Quest.PLAYER1} is coached on etiquette by  Miss ${Quest.CONSORTSOUND}ingworth's butler. It would not do to embarass the young Miss.  "),
                 new Quest("It is finally time for Miss ${Quest.CONSORTSOUND}ingworth's party. Anyone who is anyone is attending, and it is clear that the ${Quest.PLAYER1} is the guest of honor. They successfully charm all of the ${Quest.CONSORT}s with a captivating story of dining customs from their home world. "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.HIGH)
             ,  Theme.LOW);
     }
 

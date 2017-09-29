@@ -32,8 +32,8 @@ class Domestic extends InterestCategory {
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Design the Dress", [
                 new Quest("The ${Quest.PLAYER1} is visited by a Beautiful ${Quest.CONSORT} who wishes to commision a dress. Only the finest ${Quest.PHYSICALMCGUFFIN}will do for material The Beautiful ${Quest.CONSORT} refuses to take 'no' for an answer. "),
-                new Quest(" The ${Quest.PLAYER1} has almost fallen asleep during their latest ${Quest.PHYSICALMCGUFFIN} Museum stakeout, when the thief arrives! It looks to be a ${Quest.DENIZEN} minion! After a brief scuffle, it is defeated. They drop various pieces of art along with the standard amount of grist. The museum is saved! "),
-                new Quest("The ${Quest.PLAYER1} attends a fancy gala in their honor, hosted in the ${Quest.PHYSICALMCGUFFIN} Museum itself.  ${Quest.CONSORT}s quietly ${Quest.CONSORTSOUND} and exchange pleasantries. It sure is nice to be recognized by high society!  "),
+                new Quest(" The ${Quest.PLAYER1} had almost given up, but they finally find the perfect ${Quest.PHYSICALMCGUFFIN} to decorate the dress. Now they just need to sew it on."),
+                new Quest("The ${Quest.PLAYER1} presents the  ${Quest.PHYSICALMCGUFFIN} dress to the Beautiful ${Quest.CONSORT}, who ${Quest.CONSORTSOUND}s with delight. They will be SURE to tell all their friends where they got such a wonderful dress.  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
@@ -45,23 +45,23 @@ class Domestic extends InterestCategory {
             ..addFeature(FeatureFactory.HAPPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Bake the Cake", [
-                new Quest("The ${Quest.PLAYER1} finds a troupe of dejected looking ${Quest.CONSORT}s. Apparently they want to put on a famous ${Quest.CONSORT} play called 'The ${Quest.MCGUFFIN} ${Quest.PHYSICALMCGUFFIN}', but have no one to play the titular role!  Does the ${Quest.PLAYER1} have what it takes to bring the iconic role to life? "),
-                new Quest("The ${Quest.PLAYER1} is practicing their lines for the upcoming performance of 'The ${Quest.MCGUFFIN.toUpperCase()} ${Quest.PHYSICALMCGUFFIN.toUpperCase()}'. Man, who would have thought a ${Quest.PHYSICALMCGUFFIN} would have so many different emotions! "),
-                new Quest("It's finally time for performance of the 'The ${Quest.MCGUFFIN.toUpperCase()} ${Quest.PHYSICALMCGUFFIN.toUpperCase()}'. The audience is moved to tears and ${Quest.CONSORTSOUND}ing at the ${Quest.PLAYER1} stirring performance as the ${Quest.PHYSICALMCGUFFIN}. "),
+                new Quest("The ${Quest.PLAYER1} enters a competition to bake the single best cake that Paradox Space has ever seen. "),
+                new Quest("The ${Quest.PLAYER1} is trying out recipe after recipe, but nothing really feels right until they try adding a pinch of ${Quest.PHYSICALMCGUFFIN}'. It is incredible how much of a difference it makes! "),
+                new Quest("It's finally time for competition! The Distinguised ${Quest.CONSORT} takes a slow, thoughtful bite of the ${Quest.PLAYER1}'s cake. There is a pause, and then the Distinguished ${Quest.CONSORT} begins ${Quest.CONSORTSOUND}ing up a storm!  The ${Quest.PHYSICALMCGUFFIN} did the trick, ${Quest.PLAYER1}'s cake is immediately declared the winner! "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         //the sock ruse was a distaction
-        addTheme(new Theme(<String>["Yarn","Needles","Purls", "Looms", "Weaving", "Sewing", "Stitching"])
+        addTheme(new Theme(<String>["Yarn","Needles","Purls", "Looms", "Weaving", "Sewing", "Stitching", "Spiders"])
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Weave the Cloth", [
-                new Quest("The ${Quest.PLAYER1}  is cordially invited to the dinner party of Miss ${Quest.CONSORTSOUND}ingworth, ${Quest.CONSORT} heiress to the ${Quest.PHYSICALMCGUFFIN} fortune. "),
-                new Quest("The ${Quest.PLAYER1} is coached on etiquette by  Miss ${Quest.CONSORTSOUND}ingworth's butler. It would not do to embarass the young Miss.  "),
-                new Quest("It is finally time for Miss ${Quest.CONSORTSOUND}ingworth's party. Anyone who is anyone is attending, and it is clear that the ${Quest.PLAYER1} is the guest of honor. They successfully charm all of the ${Quest.CONSORT}s with a captivating story of dining customs from their home world. "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
+                new Quest("The ${Quest.PLAYER1} finds a loom, and a Wizened ${Quest.CONSORT} who spins them a tale of a magical thread that, when woven into a shawl, confers great mystical power.  The ${Quest.PLAYER1} is enchanted by the thought of this. "),
+                new Quest("The ${Quest.PLAYER1} searches the land high and low. What thread could possibly be worthy of such a legend? Finally, deep in a dungeon, they find a single skein of ${Quest.PHYSICALMCGUFFIN} colored thread. Is this finally it?  "),
+                new Quest("The ${Quest.PLAYER1}, slowly, methodically weaves a shawl from the skein of ${Quest.PHYSICALMCGUFFIN} colored thread. When it is over, the Wizened ${Quest.CONSORT} lets out a strained ${Quest.CONSORTSOUND} and declares it to be the shawl of Legend indeed."),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.HIGH)
             ,  Theme.LOW);
     }
 
