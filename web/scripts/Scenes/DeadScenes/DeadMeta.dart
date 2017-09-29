@@ -112,9 +112,9 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(WMIntro());
         }else if(meta == session.mutator.metaHandler.dilletantMathematician ) {
             conversation = session.rand.pickFrom(DMIntro());
-        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
-        //    new DeadTextPL(session);
-        //    conversation = DeadTextPL.INSTANCE.intro();
+        }else if(meta == session.mutator.metaHandler.paradoxLands ) {
+            new DeadTextPL(session);
+            conversation = DeadTextPL.INSTANCE.intro();
         }else {
             conversation = session.rand.pickFrom(GenericIntro());
         }
@@ -512,20 +512,108 @@ class DeadTextPL {
         new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
     ]);
 
+    WeightedList<Conversation> intros;
+    WeightedList<Conversation> middles;
+    WeightedList<Conversation> ends;
+
     DeadTextPL(Session this.session) {
         INSTANCE = this;
+
+        // #################################################################
+
+        intros = new WeightedList<Conversation>()
+            // ---------------------------------
+            ..add(new Conversation()
+                ..line(<String>[
+                    "Wow, great job dunkass.",
+                    "In what universe exactly did you think this was a good idea?",
+                    "Congratulations, you played yourself...",
+                    "Do you really expect to survive this?",
+                    "Great, another fool into the grinder.",
+                    "Welcome to hell, scrub.",
+                ], "...", <String>[
+                    "Nobody asked you!",
+                    "Fuck off!",
+                    "Get lost.",
+                    "What the hell?",
+                    "Shut up.",
+                ])
+                ..line(<String>[
+                    "And here I am trying to help you and everything.",
+                    "Woah woah woah - I'm here to *help* you...",
+                    "Hey now, I'm the one who's meant to be helping you here.",
+                    "Rude. I'm here to help you *through* this nightmare!",
+                    "Off to a good start I see... I'm here to help.",
+                    "Great, a dumbass. I'm meant to be helping you.",
+                ], "...", <String>[
+                    "And who the fuck are you, anyway?",
+                    "Who the hell are you?",
+                    "Not interested.",
+                    "Help? Who the hell are you?",
+                    "I said get lost.",
+                    "You want to help? Go away.",
+                    "I don't need any help.",
+                ])
+                ..line(<String>[
+                    "I'm the Architect. I helped make this place.",
+                    "I'm the Architect. I helped make this place. See this console? That was me.",
+                    "I helped make this mess you're in. I'm the Architect.",
+                    "So, uh, funny story. I helped make all this, and you're in for some pain.",
+                    "They call me the Architect. I help maintain this place.",
+                    "Some call me the Architect. I helped make this place so you'd better listen up.",
+                ], "...", <String>[
+                    "I don't care.",
+                    "I could not care less about your bullshit.",
+                    "Just go away.",
+                    "I said FUCK OFF!",
+                    "I really don't give a shit.",
+                    "Why won't you leave me alone?",
+                ])
+                ..line(<String>[
+                    "Fine, have it your way.",
+                    "Ok, if you say so. You're on your own.",
+                    "You know what? Fine. Good luck making it through, asshole.",
+                    "Whatever. Have 'fun' in oblivion.",
+                    "Good luck winning without my help, genius.",
+                    "Right then, I'm out. You won't last five minutes...",
+                    "Sure. Whatever. You're clearly an idiot, so I'm out.",
+                ], "...", <String>[
+                    "Finally.",
+                    "At last.",
+                    "...",
+                    "Fuck you.",
+                    "Good riddance.",
+                    "Good fucking riddance!",
+                    "About time.",
+                    "What a jerk.",
+                ])
+            )
+            // ---------------------------------
+        ;
+
+        // #################################################################
+
+        middles = new WeightedList<Conversation>()
+            ..add(placeholder);
+
+        // #################################################################
+
+        ends = new WeightedList<Conversation>()
+            ..add(placeholder);
+
+        // #################################################################
     }
 
     Conversation intro() {
-        return placeholder;
+        return session.rand.pickFrom(intros);
     }
 
     Conversation middle() {
-        return placeholder;
+        return session.rand.pickFrom(middles);
     }
 
     Conversation end() {
-        return placeholder;
+        return session.rand.pickFrom(ends);
     }
 }
 

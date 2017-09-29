@@ -619,7 +619,11 @@ class QuadrantDialogue extends Scene {
 //conversational pairs in order
 class Conversation {
 	List<PlusMinusConversationalPair> pairs;
-	Conversation(this.pairs);
+	Conversation([this.pairs]) {
+		if (this.pairs == null) {
+			this.pairs = <PlusMinusConversationalPair>[];
+		}
+	}
 
 	void haveHTMLConversation(Element div, Player p1, Player p2, String player1Start, String player2Start) {
 		bool first = true;
@@ -632,14 +636,21 @@ class Conversation {
 		}
 		appendHtml(div, ret);
 	}
+
+	void line(dynamic opener, dynamic positive, dynamic negative) {
+		Iterable<String> openers = (opener is Iterable<String>) ? opener : (opener is String) ? <String>[opener] : throw "Opener must be a string or Iteralbe<String>";
+		Iterable<String> positives = (positive is Iterable<String>) ? positive : (positive is String) ? <String>[positive] : throw "positive must be a string or Iteralbe<String>";
+		Iterable<String> negatives = (negative is Iterable<String>) ? negative : (negative is String) ? <String>[negative] : throw "negative must be a string or Iteralbe<String>";
+		this.pairs.add(new PlusMinusConversationalPair(openers, positives, negatives));
+	}
 }
 
 
 //set of possible responses if i like you, set of possible respones if i don't.  (nothing generic)
 class PlusMinusConversationalPair {
-	List<String> openingLines;
-	List<String> positiveRespones;
-	List<String> negativeResponses;	//have a variety of ways you can start.
+	Iterable<String> openingLines;
+	Iterable<String> positiveRespones;
+	Iterable<String> negativeResponses;	//have a variety of ways you can start.
 	
 
 
