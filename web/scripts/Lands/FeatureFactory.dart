@@ -29,10 +29,6 @@ class FeatureFactory {
     static CarapaceFeature PROSPITIANCARAPACE;
     static CarapaceFeature DERSECARAPACE;
 
-
-    static DenizenFeature YALDABAOTHDENIZEN;
-
-
     /////////////////////SMELLS////////////////////////
     static SmellFeature SPICYSMELL;
     static SmellFeature BAKEDBREADSMELL;
@@ -83,14 +79,8 @@ class FeatureFactory {
         iniatlizeSmells();
         initializeFeelings();
         initializeSounds();
-        initializeDenizens();
     }
 
-    //premade, important denizens.
-    static void initializeDenizens() {
-        //TODO instead make this an op denizen or some shit i dunno.
-        YALDABAOTHDENIZEN = new DenizenFeature("Yaldabaoth");
-    }
 
     static void initializeConsorts() {
         SALAMANDERCONSORT = new ConsortFeature("Salamander", "GLUB");

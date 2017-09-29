@@ -100,15 +100,13 @@ class ImmortalityReward extends Reward {
 
 //TODO once npc update hits maybe some kind of moon rep system?
 class DerseReward extends Reward {
-
-    @override
-    String text = " The ${Reward.PLAYER1} is getting pretty popular among Dersites. ";
     @override
     String image = null;
     String bgImage = "Derse.png";
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
+        text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         super.apply(div, p1, p2, land);
         p1.corruptionLevelOther ++;
     }
@@ -117,13 +115,12 @@ class DerseReward extends Reward {
 class ProspitReward extends Reward {
 
     @override
-    String text = " The ${Reward.PLAYER1} is getting pretty popular among Prospitians. ";
-    @override
     String image = null;
     String bgImage = "Prospit.png";
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
+        text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
         p1.addStat(Stats.SANITY, -1); //just a bit.
         super.apply(div, p1, p2, land);
     }

@@ -3,7 +3,7 @@ import "SBURBClass.dart";
 
 class Lord extends SBURBClass {
     @override
-    List<String> levels = ["AMUSING AMATEUR", "SPOTLIGHT POINTER", "GREEK GOD"];
+    List<String> levels = ["LAUGHING STOCKINGS", "DELEGATION DELIVERER", "LORDLING"];
     @override
     List<String> quests = ["inspiring the consorts to produce great works of art", "causing events to transpire such that the consorts improve themselves", "avidly learning about consort history and art"];
     @override

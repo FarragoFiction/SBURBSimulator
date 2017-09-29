@@ -39,3 +39,27 @@ class DenizenFeature extends Feature {
     }
 
 }
+
+class HardDenizenFeature extends DenizenFeature
+{
+    HardDenizenFeature(String name): super(name);
+
+    Denizen makeDenizen(Player p) {
+        if(denizen != null) return denizen;
+
+        //print("making denizen with strength $strength");
+        HardDenizen ret =  new HardDenizen(name, p.session);
+        List<Fraymotif> f = new List<Fraymotif>();
+        f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
+        ret.fraymotifs = f;
+        ret.name = name;
+        ret.stats.copyFrom(p.stats); //mirror image, but won't improve any.
+        Iterable<Stat> allStats = Stats.all;
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.POWER) ret.addStat(stat, -1*ret.getStat(stat)/6); //stronger
+        }
+        denizen = ret;
+        return ret;
+
+    }
+}

@@ -3,6 +3,7 @@ import "../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../Lands/Quest.dart";
 import "../Lands/Reward.dart";
 import "DeadSessionSummary.dart";
+import "../Lands/FeatureTypes/EnemyFeature.dart";
 //only one player, player has no sprite, player has DeadLand, and session has 16 (or less) subLands.
 class DeadSession extends Session {
     //TODO any denizen fraymotif should be the caliborn quote
@@ -99,7 +100,6 @@ class DeadSession extends Session {
             ..addFeature(victoryLap, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Sink the Balls", [
                 new Quest("The ${Quest.PLAYER1} listens as the rules of pool are explained to them. In insufferable detail.  Multiple times. By every single fucking ${Quest.CONSORT} they meet, not just the asshole ${metaPlayer.chatHandle}.  It's almost enough to make them wish the damn things would just stick to ${Quest.CONSORTSOUND}ing. Yes, I GET it you asshole, explode the planets into the center black hole in order. Geez. "),
                 new FailableQuest("With an echoing crash, the first planet tumbles into the black hole. ", "The ${Quest.PLAYER1} fails to pocket the planet. A perfect game is no longer possible.", oddsOfSuccess),
@@ -128,7 +128,6 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(victoryLap, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Knock Over the Pins", [
                 new Quest("The ${Quest.PLAYER1} learns that they have to use each planet as a shitty bowling ball to get a pefect bowling game. Okay. Wow  " ),
                 new FailableQuest("With an echoing crash, the first planet knocks over all the pins. ", "The ${Quest.PLAYER1} gets a gutter ball. A perfect game is no longer possible.", oddsOfSuccess),
@@ -151,7 +150,6 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.LOW)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(victoryLap, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Find the Mines", [
                 new Quest("The ${Quest.PLAYER1} listens with dismay as it is explained to them that each planet has a hidden mine which must be detected based on clues scattered around the planet. The ${Quest.PLAYER1} must clearly mark the mine on the planet before moving on, and this mark will serve as the clue for where the mine is on the next planet.  Needless to say, if the ${Quest.PLAYER1} screws up at any point without realizing it, it will make all OTHER planets wrong too.  Hooray."),
                 new FailableQuest("The ${Quest.PLAYER1} finds their first mine! Probably. Here's hoping they didn't screw up here and leave the entire rest of the game unwinnable! ", "The ${Quest.PLAYER1} is careless and explodes.", oddsOfSuccess),
@@ -178,7 +176,7 @@ class DeadSession extends Session {
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.HIGH)
             ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
             ..addFeature(victoryLap, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.HIGH)
+            ..addFeature(new HardDenizenFeature("temp"), Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Remove the Cards", [
                 new Quest("The ${Quest.PLAYER1} manages to pay attention to the giggle snort long enough to discover that each planet 'card' needs to be removed 'from play', but can only be removed after solving all sort of magical, incredibly bullshit challenges on each land."),
                 new Quest("The ${Quest.PLAYER1} removes their first card from play. They...aren't exactly sure how a big round ball counts as a playing card, but they aren't invested enough in this conceit to really debate it."),

@@ -59,6 +59,19 @@ class Denizen extends NPC {
 
 }
 
+//unlike a regular denizen, will fucking kill your ass.
+class HardDenizen extends Denizen {
+    HardDenizen(String name, Session session) : super(name, session);
+
+    @override
+    HardDenizen clone() {
+        HardDenizen clone = new HardDenizen(name, session);
+        copyStatsTo(clone);
+        return clone;
+    }
+
+}
+
 class DenizenMinion extends NPC {
     DenizenMinion(String name, Session session)
         : super(name, session);

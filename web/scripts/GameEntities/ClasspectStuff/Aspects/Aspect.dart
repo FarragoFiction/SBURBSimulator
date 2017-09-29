@@ -322,7 +322,6 @@ class Aspect {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.YALDABAOTHDENIZEN, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Relax the Consorts According to Prophecy", [
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have been too stressed about an impending famine to relax. They vow to help however they can."),
                 new Quest("The ${Quest.PLAYER1} fluffs more pillows than any other Player ever has before them. Huh, what is this ${Quest.CONSORT} ${Quest.CONSORTSOUND}ing about? A prophecy?  "),

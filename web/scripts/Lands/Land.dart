@@ -245,6 +245,8 @@ class Land {
         if(denizenFeature == null) {
             //print("picking random denizen feature");
             denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
+        }else { //rename it, but don't replace it because it could be a hard denizen.
+            denizenFeature.name = "Denizen ${session.rand.pickFrom(a.denizenNames)}";
         }
     }
     //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.
