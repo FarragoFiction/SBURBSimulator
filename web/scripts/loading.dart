@@ -148,7 +148,7 @@ void loadImage(String img, String skipInit) {
   });
 
   imageObj.onError.listen((Event e){
-    debug("Error loading image: " + imageObj.src);
+    debug("Error loading image: ${imageObj.src} $e");
 		//print("Error loading image: " + imageObj.src);
     //alert(this.src);
   });

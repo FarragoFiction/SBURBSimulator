@@ -28,7 +28,7 @@ class DeadSession extends Session {
     ///number between 0 and 1 to pass DeadQuests
     ///0.9 isn't the same thing as saying 9/10 sessions win. it's saying EVERY sports quest has a 1/10 chance of failing
     /// and there's usually at least ten of them.
-    double oddsOfSuccess = 0.6;
+    double oddsOfSuccess = 0.5;
 
     //harsh, but once you fail that's it. no more quests.
     bool failed = false;

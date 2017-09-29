@@ -136,6 +136,7 @@ class DeadQuests extends Scene {
 
     @override
     bool trigger(List<Player> playerList) {
+        if((session as DeadSession).failed && session.timeTillReckoning > 11) session.timeTillReckoning = 10;
        return !(session as DeadSession).failed && section <4 && !session.players[0].dead && session.rand.nextDouble()<.75;  //doesn't ALWAYS happen, there's also meta shit.
     }
 }
