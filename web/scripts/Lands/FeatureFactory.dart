@@ -54,7 +54,10 @@ class FeatureFactory {
     static AmbianceFeature FRANTICFEELING;
     static AmbianceFeature NOTHINGFEELING;
     static AmbianceFeature ENERGIZINGFEELING;
+    static AmbianceFeature HAPPYFEELING;
     static AmbianceFeature DANGEROUSFEELING;
+    static AmbianceFeature GLAMOROUSFEELING;
+    static AmbianceFeature ROMANTICFEELING;
 
 
     ///////////////////SOUNDS////////////////////////
@@ -132,6 +135,9 @@ class FeatureFactory {
         ENERGIZINGFEELING = new AmbianceFeature("energizing",Feature.GOOD);
         STUDIOUSFEELING = new AmbianceFeature("studious");
         DANGEROUSFEELING = new AmbianceFeature("dangerous");
+        GLAMOROUSFEELING = new AmbianceFeature("glamorous");
+        ROMANTICFEELING = new AmbianceFeature("romantic");
+        HAPPYFEELING = new AmbianceFeature("happy");
     }
 
     //most sounds are bad sounds
@@ -143,7 +149,7 @@ class FeatureFactory {
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         WHISPERSOUND = new SoundFeature("whispering",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
-        CLAPPINGSOUND = new SoundFeature("clapping");
+        CLAPPINGSOUND = new SoundFeature("applause");
         JAZZSOUND = new SoundFeature("jazz");
         DISCOSOUND = new SoundFeature("disco");
         ROARINGSOUND = new SoundFeature("roaring", Feature.BAD);
