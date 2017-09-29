@@ -9,7 +9,7 @@ class Lord extends SBURBClass {
     @override
     List<String> postDenizenQuests = ["inspiring the consorts to rebuild their land", "showing the consorts what strength through adversity means", "hanging back and watching the consorts rebuild", "making sure the recovery process is going as intended"];
     @override
-    List<String> handles = ["magical", "musing", "majestic", "managerial"];
+    List<String> handles = ["lording", "leaderly", "laughing", "laughsassin","lawful", "lordly", "legendary", "legionnaires", "lacerating", "lactate", "legislacerator"];
 
     @override
     bool isProtective = false;

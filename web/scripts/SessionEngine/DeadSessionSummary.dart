@@ -1,11 +1,28 @@
 import "DeadSession.dart";
 import "../SBURBSim.dart";
+import "../navbar.dart";
 
 
 //has less or different fields.
 class DeadSessionSummary extends SessionSummary {
 
     DeadSessionSummary(int session_id): super(session_id);
+
+    @override
+    String generateHTML() {
+        String params = getParamStringMinusParam("seed");
+        String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
+
+        html = "$html<Br><b> Session</b>: <a href = 'dead_index.html?seed=${this.session_id}&$params'>${this.session_id}</a>";
+        html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
+        html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Grist Level of: ${this.mvp.grist}";
+        html = "$html${generateNumHTML()}";
+        html = "$html${generateBoolHTML()}";
+
+
+        html = "$html</div><br>";
+        return html;
+    }
 
     //whatever i don't care if it's a constructor or not, just following oldd style
     static makeSummaryForSession(DeadSession session)
