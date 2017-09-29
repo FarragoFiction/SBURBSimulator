@@ -31,7 +31,7 @@ class Domestic extends InterestCategory {
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Design the Dress", [
-                new Quest("The ${Quest.PLAYER1} visits a beautiful ${Quest.PHYSICALMCGUFFIN} Museum, only to discover that it's walls are practically bare! The ${Quest.CONSORT} curator is apologetic, and explains that each night a new piece goes missing. The ${Quest.PLAYER1} agrees to catch the thief, art is for everyone! "),
+                new Quest("The ${Quest.PLAYER1} is visited by a Beautiful ${Quest.CONSORT} who wishes to commision a dress. Only the finest ${Quest.PHYSICALMCGUFFIN}will do for material The Beautiful ${Quest.CONSORT} refuses to take 'no' for an answer. "),
                 new Quest(" The ${Quest.PLAYER1} has almost fallen asleep during their latest ${Quest.PHYSICALMCGUFFIN} Museum stakeout, when the thief arrives! It looks to be a ${Quest.DENIZEN} minion! After a brief scuffle, it is defeated. They drop various pieces of art along with the standard amount of grist. The museum is saved! "),
                 new Quest("The ${Quest.PLAYER1} attends a fancy gala in their honor, hosted in the ${Quest.PHYSICALMCGUFFIN} Museum itself.  ${Quest.CONSORT}s quietly ${Quest.CONSORTSOUND} and exchange pleasantries. It sure is nice to be recognized by high society!  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
@@ -53,10 +53,10 @@ class Domestic extends InterestCategory {
 
         //the sock ruse was a distaction
         addTheme(new Theme(<String>["Yarn","Needles","Purls", "Looms", "Weaving", "Sewing", "Stitching"])
-            ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Weave the Cloth", [
                 new Quest("The ${Quest.PLAYER1}  is cordially invited to the dinner party of Miss ${Quest.CONSORTSOUND}ingworth, ${Quest.CONSORT} heiress to the ${Quest.PHYSICALMCGUFFIN} fortune. "),
                 new Quest("The ${Quest.PLAYER1} is coached on etiquette by  Miss ${Quest.CONSORTSOUND}ingworth's butler. It would not do to embarass the young Miss.  "),

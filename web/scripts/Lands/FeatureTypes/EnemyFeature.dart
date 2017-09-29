@@ -58,11 +58,7 @@ class HardDenizenFeature extends DenizenFeature
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
         ret.fraymotifs = f;
         ret.name = name;
-        ret.stats.copyFrom(p.stats); //mirror image, but won't improve any.
-        Iterable<Stat> allStats = Stats.all;
-        for (Stat stat in allStats) {
-            if(stat != Stats.EXPERIENCE && stat != Stats.POWER) ret.addStat(stat, -1*ret.getStat(stat)/6); //stronger
-        }
+        ret.stats.copyFrom(p.stats); //mirror image,no detriments.
         denizen = ret;
         return ret;
 

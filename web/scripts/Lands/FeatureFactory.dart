@@ -24,6 +24,7 @@ class FeatureFactory {
     static ConsortFeature SNAKECONSORT;
     static ConsortFeature ALLIGATORCONSORT;
     static ConsortFeature NEWTCONSORT;
+    static ConsortFeature SPIDERCONSORT;
     static ConsortFeature SKELETONCONSORT;
     static ConsortFeature ROBOTCONSORT;
     static CarapaceFeature PROSPITIANCARAPACE;
@@ -102,6 +103,7 @@ class FeatureFactory {
         SNAKECONSORT = new ConsortFeature("Snake", "hiss");
         ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
+        SPIDERCONSORT = new ConsortFeature("SPIDER", "skitter");
         PROSPITIANCARAPACE = new CarapaceFeature("Prospitian", "murmur");
         DERSECARAPACE = new CarapaceFeature("Dersite", "mutter");
     }
