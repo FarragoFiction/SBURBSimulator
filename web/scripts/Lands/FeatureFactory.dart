@@ -45,6 +45,7 @@ class FeatureFactory {
     static SmellFeature ZOOSMELL;
     static SmellFeature SWEATSMELL;
     static SmellFeature OZONESMELL;
+    static SmellFeature BLOODSMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
@@ -70,6 +71,7 @@ class FeatureFactory {
     static SoundFeature NATURESOUND;
     static SoundFeature WHISTLINGGSOUND;
     static SoundFeature CROAKINGSOUND;
+    static SoundFeature PULSINGSOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -115,6 +117,7 @@ class FeatureFactory {
         SWEATSMELL = new SmellFeature("sweat", Feature.BAD);
         OZONESMELL = new SmellFeature("ozone");
         DECEITSMELL = new SmellFeature("deceit");//senator lemonsnout, how COULD you?
+        BLOODSMELL = new SmellFeature("blood", Feature.BAD);
 
     }
 
@@ -145,6 +148,7 @@ class FeatureFactory {
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
         CROAKINGSOUND = new SoundFeature("croaking");
         SILENCE = new SoundFeature("silence");
+        PULSINGSOUND = new SoundFeature("pulsing");
     }
 
     //if no consort is specified, pick something totally illegal
