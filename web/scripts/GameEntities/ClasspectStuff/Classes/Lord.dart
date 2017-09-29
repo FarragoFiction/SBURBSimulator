@@ -61,7 +61,7 @@ class Lord extends SBURBClass {
 
     @override
     double getDefenderModifier() {
-        return 3.0;
+        return 0.1; //john pounds the living daylights outta calliborn, AW points out
     }
 
     @override
