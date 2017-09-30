@@ -858,7 +858,7 @@ class MetaPlayerHandler {
     Player makeAW(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SCRIBE, Aspects.LIFE);
         player.quirk = randomHumanQuirk(s.rand);
-        player.hair = 56;
+        player.hair = 30;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#000000";
         player.bloodColor = "#ff0000";
