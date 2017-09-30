@@ -1112,7 +1112,7 @@ class MetaPlayerHandler {
 
         player.hair = 60;
         player.ectoBiologicalSource = 13;
-        player.hairColor = "#382207";
+        player.hairColor = "#000000";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
         player.chatHandle = "recursiveSlacker";
