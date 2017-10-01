@@ -35,6 +35,7 @@ class SessionStats {
     bool goodLuckEvent = false;
     bool badLuckEvent = false;
     bool hasFreeWillEvents = false;
+    bool hasGhostEvents = false;
     bool hasTier1Events = false;
     bool hasTier2Events = false;
     bool hasTier3Events = false;

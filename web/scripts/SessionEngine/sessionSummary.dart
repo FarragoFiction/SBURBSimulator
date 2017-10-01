@@ -249,6 +249,7 @@ class SessionSummary {
         summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
+        summary.setBoolStat("hasGhostEvents", session.stats.hasGhostEvents);
         summary.setBoolStat("loveEnding", session.stats.loveEnding);
         summary.setBoolStat("hateEnding", session.stats.hateEnding);
         summary.setBoolStat("monoTheismEnding", session.stats.monoTheismEnding);
@@ -576,6 +577,7 @@ class MultiSessionSummary {
         setStat("hasTier4GnosisEvents", 0);
         setStat("hasNoTier4Events",0);
         setStat("hasFreeWillEvents", 0);
+        setStat("hasGhostEvents", 0);
         setStat("scratched", 0);
         setStat("rocksFell", 0);
         setStat("opossumVictory", 0);
@@ -825,7 +827,7 @@ class MultiSessionSummary {
         if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murderMode" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
-        if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
+        if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "hasGhostEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
         return false;
     }
 
@@ -1070,6 +1072,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
             if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
             if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
+            if (ss.getBoolStat("hasGhostEvents")) mss.incNumStat("hasGhostEvents");
             if (ss.getBoolStat("hasTier1GnosisEvents")) mss.incNumStat("hasTier1GnosisEvents");
             if (ss.getBoolStat("hasTier2GnosisEvents")) mss.incNumStat("hasTier2GnosisEvents");
             if (ss.getBoolStat("hasTier3GnosisEvents")) mss.incNumStat("hasTier3GnosisEvents");

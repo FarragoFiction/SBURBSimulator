@@ -217,6 +217,7 @@ class LifeStuff extends Scene {
             appendHtml(div, "<br><br>$str");
             CanvasElement canvas = drawDreamBubbleH(div, player, ghost);
             session.removeAvailablePlayer(player);
+            session.stats.hasGhostEvents = true;
             return canvas;
         } else {
             ////session.logger.info("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
@@ -265,6 +266,7 @@ class LifeStuff extends Scene {
             appendHtml(div, "<br><br>${this.ghostPsionics(player)}$str${this.communeDeadResult(playerClass, player, ghost, ghostName, enablingAspect)}");
             CanvasElement canvas = this.drawCommuneDead(div, player, ghost);
             session.removeAvailablePlayer(player);
+            session.stats.hasGhostEvents = true;
             return canvas;
         } else {
             ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
@@ -301,7 +303,7 @@ class LifeStuff extends Scene {
             //copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 400, 0);
         }
-
+        session.stats.hasGhostEvents = true;
         return canvas;
     }
 
@@ -317,6 +319,7 @@ class LifeStuff extends Scene {
         //leave room on left for possible 'guide' player.
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
+        session.stats.hasGhostEvents = true;
         return canvas;
     }
 
@@ -343,7 +346,7 @@ class LifeStuff extends Scene {
         //CanvasElement canvasBuffer = getBufferCanvas(querySelector("#canvas_template"));
 
         Drawing.drawWhatever(canvas, "drain_halo.png");
-
+        session.stats.hasGhostEvents = true;
         return canvas;
     }
 
@@ -433,6 +436,7 @@ class LifeStuff extends Scene {
             appendHtml(div, "<br><br>$str");
             CanvasElement canvas = this.drawDrainDead(div, player, ghost, long);
             session.removeAvailablePlayer(player);
+            session.stats.hasGhostEvents = true;
             return canvas;
         } else {
             ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
@@ -493,6 +497,7 @@ class LifeStuff extends Scene {
 
             removeFromArray(myGhost, this.session.afterLife.ghosts);
             session.removeAvailablePlayer(player);
+            session.stats.hasGhostEvents = true;
             return canvas;
         } else {
             ////session.logger.info("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);
