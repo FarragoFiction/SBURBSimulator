@@ -59,11 +59,11 @@ class AfterLife {
 
 		return lovedOnes;
 	}
-	dynamic findAllDeadHatedOnes(player){
+	dynamic findAllDeadHatedOnes(Player player){
 		List<Player> hatedOnes = [];
-    List<Player> clubs = player.getClubs();
-    List<Player> spades = player.getSpades();
-    List<Player> crushes = player.getBlackCrushes();
+    List<Player> clubs = player.getClubs().map((Relationship r) =>r.target);
+    List<Player> spades = player.getSpades().map((Relationship r) =>r.target);
+    List<Player> crushes = player.getBlackCrushes().map((Relationship r) =>r.target);
 		List<Player> relationships = new List<Player>();
 		relationships.addAll(spades);
 		relationships.addAll(clubs);
@@ -76,7 +76,7 @@ class AfterLife {
 
 		return hatedOnes;
 	}
-	dynamic findAllDeadFriends(player){
+	dynamic findAllDeadFriends(Player player){
 		List<dynamic> lovedOnes = [];
 		var relationships = player.getFriends();
 		for(num i = 0; i <relationships.length; i++){
@@ -87,7 +87,7 @@ class AfterLife {
 
 		return lovedOnes;
 	}
-	dynamic findAllDeadEnemies(player){
+	dynamic findAllDeadEnemies(Player player){
 		List<dynamic> hatedOnes = [];
 		var relationships = player.getEnemies();
 		for(num i = 0; i <relationships.length; i++){
@@ -97,16 +97,16 @@ class AfterLife {
 
 		return hatedOnes;
 	}
-	dynamic findAssholeSpirit(player){
+	dynamic findAssholeSpirit(Player player){
 		return player.rand.pickFrom(this.findAllDeadEnemies(player));
 	}
-	dynamic findFriendlySpirit(player){
+	dynamic findFriendlySpirit(Player player){
 		return player.rand.pickFrom(this.findAllDeadFriends(player));
 	}
-	bool areTwoPlayersTheSame(player1, player2){
-		return player2.id == player1.id && player2.class_name == player1.class_name && player2.aspect == player1.aspect && player1.hair == player2.hair;   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
+	bool areTwoPlayersTheSame(Player player1, Player player2){
+		return player2.id == player1.id ;   //if they STILL match, well fuck it. they are the same person just alternate universe versions of each other.;
 	}
-	dynamic findClosesToRealSelf(player){
+	dynamic findClosesToRealSelf(Player player){
 		var selves = this.findAllAlternateSelves(player);
 		if(selves.length == 0) return null;
 		num bestCanidateValue = 9999999;
@@ -124,7 +124,7 @@ class AfterLife {
 		}
 		return bestCanidate; //no way to know for SURE this is the most recent ghost...but...PRETTY sure???
 	}
-	List<Player> findAllAlternateSelves(player){
+	List<Player> findAllAlternateSelves(Player player){
 		List<Player> selves = [];
 		for(num i = 0; i<this.ghosts.length; i++){
 			var ghost = this.ghosts[i];
@@ -134,7 +134,7 @@ class AfterLife {
 		}
 		return selves;
 	}
-	dynamic findAnyAlternateSelf(player){
+	dynamic findAnyAlternateSelf(Player player){
 		return player.rand.pickFrom(this.findAllAlternateSelves(player));
 	}
 	dynamic findAnyGhost(player){
