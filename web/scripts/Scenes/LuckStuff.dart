@@ -61,7 +61,7 @@ class LuckStuff extends Scene{
 		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
 		}
-		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoarde of grist. It will be easier to complete their land quests now.";
+		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoard of grist. It will be easier to complete their land quests now.";
 		roll.player.increaseLandLevel();
 		this.session.stats.goodLuckEvent = true;
 		return ret;
