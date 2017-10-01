@@ -16,8 +16,13 @@ class DeadQuests extends Scene {
     @override
     void renderContent(Element div) {
 
-        if(session.rand.nextDouble() > .9) {
-            processMoon(div);
+        //TODO eventually moon should just have a copy of the player on it.
+        if(session.rand.nextDouble() > .9 ) {
+            if(session.players[0].dreamSelf) {
+                processMoon(div);
+            }else {
+                unendingTorment(div);
+            }
         }else if(section == 1) {
             processMetaLandIntro(div); //when it ends will handle intro.
         }else if (section == 2) {
@@ -28,7 +33,15 @@ class DeadQuests extends Scene {
 
     }
 
-    void processMoon(div) {
+    //TODO make this work with dream quests for regular sessions, which also take into account bubbles
+    void unendingTorment(Element div) {
+        Player player = session.players[0];
+        player.setStat(Stats.SANITY, -1);
+        player.corruptionLevelOther ++;
+        appendHtml(div, "<br>The ${player.htmlTitleBasicNoTip()} is writhing in the grasp of the horrorterrors. Why does sleeping without a dream self suck so much? And more importantly, why is sleep still a thing that needs to happen?");
+    }
+
+    void processMoon(Element div) {
         Player player = session.players[0];
         player.moonFuture.initQuest([player]);
         String html = "${player.moonFuture.getChapter()}  ";

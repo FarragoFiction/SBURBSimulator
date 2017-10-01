@@ -106,8 +106,14 @@ class DerseReward extends Reward {
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
+       // p1.session.logger.info("derse reward");
         text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
+        bool savedDream = p1.isDreamSelf;
+        p1.isDreamSelf = true;
+        p1.renderSelf();
         super.apply(div, p1, p2, land);
+        p1.isDreamSelf = savedDream;
+        p1.renderSelf();
         p1.corruptionLevelOther ++;
     }
 }
@@ -120,8 +126,14 @@ class ProspitReward extends Reward {
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
+        //p1.session.logger.info("prospit reward");
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
         p1.addStat(Stats.SANITY, -1); //just a bit.
+        bool savedDream = p1.isDreamSelf;
+        p1.isDreamSelf = true;
+        p1.renderSelf();
         super.apply(div, p1, p2, land);
+        p1.isDreamSelf = savedDream;
+        p1.renderSelf();
     }
 }
