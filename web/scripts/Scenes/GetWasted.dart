@@ -451,7 +451,7 @@ class GetWasted extends Scene {
 
     ///first player is corpse, second is ghost wrangler
     void drawGhostRevive(String canvasID, List<Player> players) {
-        CanvasElement canvas = Drawing.drawReviveDead(querySelector("#${canvasID}"), players[0], players[1], players[2].name);
+        CanvasElement canvas = Drawing.drawReviveDead(querySelector("#${canvasID}"), players[0], players[1], players[2].aspect);
 
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, players[2]);

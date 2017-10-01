@@ -466,7 +466,7 @@ abstract class Drawing {
 
     */
 
-    static CanvasElement drawReviveDead(Element div, Player player, Player ghost, String enablingAspect) {
+    static CanvasElement drawReviveDead(Element div, Player player, Player ghost, Aspect enablingAspect) {
         String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}";
         String canvasHTML = "<br><canvas id='$canvasId' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
         appendHtml(div, canvasHTML);
@@ -479,14 +479,14 @@ abstract class Drawing {
         //CanvasElement canvasBuffer = getBufferCanvas(querySelector("#canvas_template"));
 
         //leave room on left for possible 'guide' player.
-        if (enablingAspect == "Life") {
+        if (enablingAspect == Aspects.LIFE) {
             drawWhatever(canvas, "afterlife_life.png");
         } else if (enablingAspect == "Doom") {
             drawWhatever(canvas, "afterlife_doom.png");
         }
         copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
-        if (enablingAspect == "Life") {
+        if (enablingAspect ==  Aspects.DOOM) {
             drawWhatever(canvas, "life_res.png");
         } else if (enablingAspect == "Doom") {
             drawWhatever(canvas, "doom_res.png");

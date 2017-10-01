@@ -153,12 +153,11 @@ class AfterLife {
 }
 
 
-//pastJR was a dunkass and made ghostPacts lists of [Player, enablingAspect] pairs. need to make that an object later.
-List<dynamic> removeDrainedGhostsFromPacts(ghostPacts){
-	List<dynamic> ret = [];
+List<GhostPact> removeDrainedGhostsFromPacts(List<GhostPact> ghostPacts){
+	List<GhostPact> ret = [];
 	if(ghostPacts == null) return [];
 	for(num i = 0; i<ghostPacts.length; i++){
-		if(!ghostPacts[i][0].causeOfDrain.empty){
+		if(ghostPacts[i].ghost.causeOfDrain != null && ghostPacts[i].ghost.causeOfDrain.isNotEmpty){
 			ret.add(ghostPacts[i]);
 		}
 	}

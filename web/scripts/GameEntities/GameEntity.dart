@@ -354,10 +354,10 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 
     //currently only thing ghost pacts are good for post refactor.
     void reviveViaGhostPact(Element div) {
-        List<dynamic> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
+        List<GhostPact> undrainedPacts = removeDrainedGhostsFromPacts(ghostPacts);
         if (!undrainedPacts.isEmpty) {
             ////session.logger.info("using a pact to autorevive in session ${this.session.session_id}");
-            Player source = undrainedPacts[0][0];
+            Player source = undrainedPacts[0].ghost;
             source.causeOfDrain = name;
             String ret = " In the afterlife, the ${htmlTitleBasic()} reminds the ${source.htmlTitleBasic()} of their promise of aid. The ghost agrees to donate their life force to return the ${htmlTitleBasic()} to life ";
             if (this is Player) {
@@ -370,9 +370,9 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
             removeFromArray(myGhost, this.session.afterLife.ghosts);
             // CanvasElement canvas = drawReviveDead(div, this, source, undrainedPacts[0][1]);
             makeAlive();
-            if (undrainedPacts[0][1] == "Life") {
+            if (undrainedPacts[0].enablingAspect == Aspects.LIFE) {
                 addStat(Stats.CURRENT_HEALTH, 100); //i won't let you die again.
-            } else if (undrainedPacts[0][1] == "Doom") {
+            } else if (undrainedPacts[0].enablingAspect == Aspects.DOOM) {
                 addStat(Stats.MIN_LUCK, 100); //you've fulfilled the prophecy. you are no longer doomed.
                 div.appendHtml("The prophecy is fulfilled. ", treeSanitizer: NodeTreeSanitizer.trusted);
             }

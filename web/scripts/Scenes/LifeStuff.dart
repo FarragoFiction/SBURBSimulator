@@ -11,9 +11,9 @@ class LifeStuffPair {
 
 class GhostPact {
     Player ghost;
-    String enablingAspect;
+    Aspect enablingAspect;
 
-    GhostPact(Player this.ghost, String this.enablingAspect);
+    GhostPact(Player this.ghost, Aspect this.enablingAspect);
 }
 
 class LifeStuff extends Scene {
@@ -349,7 +349,7 @@ class LifeStuff extends Scene {
 
     String communeDeadResult(SBURBClass playerClass, Player player, Player ghost, String ghostName, Aspect enablingAspect) {
         if (playerClass == SBURBClassManager.KNIGHT || playerClass == SBURBClassManager.PAGE) {
-            player.ghostPacts.add(new GhostPact(ghost, enablingAspect.name)); //help with a later fight.
+            player.ghostPacts.add(new GhostPact(ghost, enablingAspect)); //help with a later fight.
             ////session.logger.info("Knight or Page promise of ghost attack: " + this.session.session_id);
             return " The ${player.htmlTitleBasic()} gains a promise of aid from the $ghostName. ";
         } else if (playerClass == SBURBClassManager.SEER || playerClass == SBURBClassManager.MAGE) {
@@ -480,7 +480,7 @@ class LifeStuff extends Scene {
 
             appendHtml(div, "<br><br>$str");
             ghost.causeOfDrain = player.title();
-            CanvasElement canvas = Drawing.drawReviveDead(div, player, ghost, enablingAspect.name);
+            CanvasElement canvas = Drawing.drawReviveDead(div, player, ghost, enablingAspect);
             player.makeAlive();
             if (enablingAspect == Aspects.LIFE) {
                 player.addStat(Stats.CURRENT_HEALTH, 100 * Stats.HEALTH.coefficient); //i won't let you die again.
