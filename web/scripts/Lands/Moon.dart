@@ -26,7 +26,7 @@ class Moon extends Land {
 
   @override
     String get shortName {
-        return "$name:";
+        return "Strange Dreams:";
     }
 
   void processMoonShit( Map<QuestChainFeature, double> features) {
