@@ -702,7 +702,7 @@ class ConversationalPair {
 	ConversationalPair(this.line1, this.responseLines) {}
 
 
-	dynamic p2GetResponseBasedOnRelationship(player, playerStart, relationship){
+	String getResponseRelationship(player, playerStart, relationship){
 		String chat = "";
 		if(relationship.saved_type == relationship.heart || relationship.saved_type == relationship.diamond){
 			if(relationship != null && relationship.value > 0){
