@@ -46,7 +46,7 @@ class Moon extends Land {
       if(symbolicMcguffin == null) decideMcGuffins(players.first);
       //first, do i have a current quest chain?
       if(currentQuestChain == null) {
-          print("going to pick a moon quest from ${moonQuestChains}");
+          //print("going to pick a moon quest from ${moonQuestChains}");
           currentQuestChain = selectQuestChainFromSource(players, moonQuestChains);
           //nobody else can do this.
           if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);

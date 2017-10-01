@@ -91,6 +91,7 @@ class LifeStuff extends Scene {
                 double r = rand.nextDouble(); //only spend half your time dreaming right.;
                 Player player = nonGuides[i];
                 if (!player.dreamSelf && !player.dead && r > .5) {
+                    session.logger.info("I think i should be making bubbles");
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null, true));
                 }
             }
@@ -135,11 +136,15 @@ class LifeStuff extends Scene {
 
             Player other_player = this.enablingPlayerPairs[i].player2; //could be null or a corpse.
             bool dreaming = this.enablingPlayerPairs[i].dream;
+            //session.logger.info("$player wants to do life shit. dreaming is ${dreaming}");
+
             if (player.dead && !dreaming) { //if you'e dreaming, you're not a dead life/doom heir/thief
+                //session.logger.info("player is dead and not dreaming");
                 if (player.class_name == SBURBClassManager.HEIR || player.class_name == SBURBClassManager.THIEF) {
                     this.drainDeadForReviveSelf(div, "", player, player.class_name, player.aspect);
                 }
-            } else if (dreaming == null) {
+            } else if (!dreaming) {
+                //session.logger.info("dreaming is null");
                 if (player.class_name == SBURBClassManager.MAGE || player.class_name == SBURBClassManager.KNIGHT || player.class_name == SBURBClassManager.SAGE || player.class_name == SBURBClassManager.SCOUT) {
                     this.communeDead(div, "", player, player.class_name, player.aspect);
                 } else if ((player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.SCRIBE|| player.class_name == SBURBClassManager.PAGE) && other_player != null && !other_player.dead) {
@@ -151,9 +156,11 @@ class LifeStuff extends Scene {
                 } else if ((player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID) && other_player != null && other_player.dead) {
                     this.helpDrainDeadForReviveSelf(div, player, other_player);
                 } else if ((player.class_name == SBURBClassManager.WITCH || player.class_name == SBURBClassManager.SYLPH) && !this.session.stats.dreamBubbleAfterlife) {
+                    //session.logger.info("Want to enable dream bubbles");
                     this.enableDreamBubbles(div, player);
                 }
             } else if (this.session.stats.dreamBubbleAfterlife) {
+               // session.logger.info("dream bubble plot");
                 this.dreamBubbleAfterlifeAction(div, player);
             }
         }
@@ -514,7 +521,7 @@ class LifeStuff extends Scene {
     }
 
     void enableDreamBubbles(Element div, Player player) {
-        ////session.logger.info("Turning on dream bubble afterlife: " + this.session.session_id);
+        session.logger.info("Turning on dream bubble afterlife");
         this.session.stats.dreamBubbleAfterlife = true;
         String canvasId = "${div.id}horror_terrors_${player.id}";
         String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
