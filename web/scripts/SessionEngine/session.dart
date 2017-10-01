@@ -102,7 +102,7 @@ class Session {
         for(int i = 0; i<times; i++) {
             chosen.add(rand.pickFrom(possibleActivities));
         }
-        return new MoonQuestChainFeature(true, "Do Prospit Bullshit", chosen, new ProspitReward(), QuestChainFeature.defaultOption);
+        return new MoonQuestChainFeature(true, "Do Prospit Bullshit", chosen, new ProspitReward(), QuestChainFeature.hasDreamSelf);
     }
 
     MoonQuestChainFeature randomDerseQuestChain() {
@@ -120,8 +120,35 @@ class Session {
             for(int i = 0; i<times; i++) {
                 chosen.add(rand.pickFrom(possibleActivities));
             }
-        return new MoonQuestChainFeature(true, "Do Derse Bullshit", chosen, new DerseReward(), QuestChainFeature.defaultOption);
+        return new MoonQuestChainFeature(true, "Do Derse Bullshit", chosen, new DerseReward(), QuestChainFeature.hasDreamSelf);
     }
+
+    MoonQuestChainFeature randomHorrorTerrorQuestChain() {
+        List<Quest> possibleActivities = new List<Quest>()
+            ..add(new Quest("The ${Quest.PLAYER1} writhes in terror and pain. Why do players without dreamselves dream in the Furthest Ring with the Horror Terrors? "))
+            ..add(new Quest("The ${Quest.PLAYER1} vows to never sleep again.  Why do players without dreamselves dream in the Furthest Ring with the Horror Terrors? "))
+            ..add(new Quest("The ${Quest.PLAYER1} is reliving embarassing childhood memories for the amusement of the Horror Terrors.  Why do players without dreamselves dream in the Furthest Ring with the Horror Terrors?"));
+        List<Quest> chosen = new List<Quest>();
+        int times = rand.nextInt(2) + 3;
+        for(int i = 0; i<times; i++) {
+            chosen.add(rand.pickFrom(possibleActivities));
+        }
+        return new MoonQuestChainFeature(true, "Writhe In Pain", chosen, new DerseReward(), QuestChainFeature.hasNoDreamSelfNoBubbles);
+    }
+
+    MoonQuestChainFeature randomBubbleQuestChain() {
+        List<Quest> possibleActivities = new List<Quest>()
+            ..add(new Quest("The ${Quest.PLAYER1} has a relatively sedate time of reliving past memories and chatting up inconsequential ghosts. Good thing the dream bubbles were set up, huh?"))
+            ..add(new Quest("The ${Quest.PLAYER1} enjoys a relaxing memory of their home planet while dreaming in the bubbles. "))
+            ..add(new Quest("The ${Quest.PLAYER1}  tries not to give into existential horror as they realize just how MANY versions of their dead friends exist."));
+        List<Quest> chosen = new List<Quest>();
+        int times = rand.nextInt(2) + 3;
+        for(int i = 0; i<times; i++) {
+            chosen.add(rand.pickFrom(possibleActivities));
+        }
+        return new MoonQuestChainFeature(true, "Do Dream Bubble Bullshit", chosen, new DerseReward(), QuestChainFeature.hasNoDreamSelfBubbles);
+    }
+
 
     void setupMoons() {
         //no more than one of each.
@@ -134,18 +161,24 @@ class Session {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.PROSPITIANCARAPACE, Feature.HIGH)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW)
-            ..addFeature(randomProspitQuestChain(), Feature.LOW);
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomProspitQuestChain(), Feature.WAY_LOW)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH);
 
 
 
@@ -171,11 +204,17 @@ class Session {
             ..addFeature(randomDerseQuestChain(), Feature.LOW)
             ..addFeature(randomDerseQuestChain(), Feature.LOW)
             ..addFeature(randomDerseQuestChain(), Feature.LOW)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+            ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
             ..addFeature(new MoonQuestChainFeature(true, "Be a Legitimate Business Player", [
                 new Quest("The ${Quest.PLAYER1} learns of a lucrative business opportunity. The BLACK QUEEN has all sorts of contraband laws. Everything from frogs to ice cream is so totally illegal. But that doesn't stop the right sort of Dersite from getting cravings, if you understand me. The ${Quest.PLAYER1} looks like they can be discreet. "),
                 new Quest("The ${Quest.PLAYER1} runs afoul of the Authority Regulators. Through a frankly preposterous amount of running, parkour and misdirection, they finally escape, only to remember that they could have just flown away.  Dream selves sure are dumb!  "),
                 new Quest("The ${Quest.PLAYER1} has decided to retire from a life of...legitimate business, highly lucrative though it was.  They use their earnings to set up a simple and refined Suit shot, catering to only the most exclusive clientel. "),
-            ], new DerseReward(), QuestChainFeature.defaultOption), Feature.LOW);
+            ], new DerseReward(), QuestChainFeature.hasDreamSelf), Feature.LOW);
 
 
         prospitThemes[prospitTheme] = Theme.HIGH;

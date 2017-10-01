@@ -91,6 +91,23 @@ class QuestChainFeature extends Feature {
         return p.grimDark > 2;
     }
 
+    //for moon shit
+    static bool hasDreamSelf(List<Player> ps) {
+
+        return ps[0].dreamSelf;
+    }
+
+    //for moon shit
+    static bool hasNoDreamSelfNoBubbles(List<Player> ps) {
+
+        return !ps[0].dreamSelf && !ps[0].session.stats.dreamBubbleAfterlife;
+    }
+
+    //for moon shit.
+    static bool hasNoDreamSelfBubbles(List<Player> ps) {
+        return !ps[0].dreamSelf && ps[0].session.stats.dreamBubbleAfterlife;
+    }
+
     static bool murderMode(List<Player> ps) {
         Player p = ps.first;
         return p.murderMode;
