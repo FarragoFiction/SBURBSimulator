@@ -102,7 +102,7 @@ class Session {
         for(int i = 0; i<times; i++) {
             chosen.add(rand.pickFrom(possibleActivities));
         }
-        return new MoonQuestChainFeature(true, "Do Prospit Bullshit", chosen, new ProspitReward(), QuestChainFeature.hasDreamSelf);
+        return new MoonQuestChainFeature(true, "Do Prospit Bullshit", chosen, new DreamReward(), QuestChainFeature.hasDreamSelf);
     }
 
     MoonQuestChainFeature randomDerseQuestChain() {
@@ -120,7 +120,7 @@ class Session {
             for(int i = 0; i<times; i++) {
                 chosen.add(rand.pickFrom(possibleActivities));
             }
-        return new MoonQuestChainFeature(true, "Do Derse Bullshit", chosen, new DerseReward(), QuestChainFeature.hasDreamSelf);
+        return new MoonQuestChainFeature(true, "Do Derse Bullshit", chosen, new DreamReward(), QuestChainFeature.hasDreamSelf);
     }
 
     MoonQuestChainFeature randomHorrorTerrorQuestChain() {
@@ -133,7 +133,7 @@ class Session {
         for(int i = 0; i<times; i++) {
             chosen.add(rand.pickFrom(possibleActivities));
         }
-        return new MoonQuestChainFeature(true, "Writhe In Pain", chosen, new DerseReward(), QuestChainFeature.hasNoDreamSelfNoBubbles);
+        return new MoonQuestChainFeature(true, "Writhe In Pain", chosen, new DreamReward(), QuestChainFeature.hasNoDreamSelfNoBubbles);
     }
 
     MoonQuestChainFeature randomBubbleQuestChain() {
@@ -146,7 +146,7 @@ class Session {
         for(int i = 0; i<times; i++) {
             chosen.add(rand.pickFrom(possibleActivities));
         }
-        return new MoonQuestChainFeature(true, "Do Dream Bubble Bullshit", chosen, new DerseReward(), QuestChainFeature.hasNoDreamSelfBubbles);
+        return new MoonQuestChainFeature(true, "Do Dream Bubble Bullshit", chosen, new DreamReward(), QuestChainFeature.hasNoDreamSelfBubbles);
     }
 
 
@@ -214,7 +214,7 @@ class Session {
                 new Quest("The ${Quest.PLAYER1} learns of a lucrative business opportunity. The BLACK QUEEN has all sorts of contraband laws. Everything from frogs to ice cream is so totally illegal. But that doesn't stop the right sort of Dersite from getting cravings, if you understand me. The ${Quest.PLAYER1} looks like they can be discreet. "),
                 new Quest("The ${Quest.PLAYER1} runs afoul of the Authority Regulators. Through a frankly preposterous amount of running, parkour and misdirection, they finally escape, only to remember that they could have just flown away.  Dream selves sure are dumb!  "),
                 new Quest("The ${Quest.PLAYER1} has decided to retire from a life of...legitimate business, highly lucrative though it was.  They use their earnings to set up a simple and refined Suit shot, catering to only the most exclusive clientel. "),
-            ], new DerseReward(), QuestChainFeature.hasDreamSelf), Feature.LOW);
+            ], new DreamReward(), QuestChainFeature.hasDreamSelf), Feature.LOW);
 
 
         prospitThemes[prospitTheme] = Theme.HIGH;

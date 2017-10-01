@@ -42,6 +42,7 @@ class DeadSessionSummary extends SessionSummary {
         summary.setBoolStat("crashedFromSessionBug", session.stats.crashedFromSessionBug);
         summary.setBoolStat("crashedFromPlayerActions", session.stats.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.stats.hasFreeWillEvents);
+        summary.setBoolStat("hasGhostEvents", session.stats.hasFreeWillEvents);
         summary.setNumStat("averageMinLuck", Stats.MIN_LUCK.average(session.players));
         summary.setNumStat("averageMaxLuck", Stats.MAX_LUCK.average(session.players));
         summary.setNumStat("averagePower", Stats.POWER.average(session.players));
@@ -121,6 +122,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
     setStat("hasLuckyEvents", 0);
     setStat("hasUnluckyEvents", 0);
     setStat("hasFreeWillEvents", 0);
+    setStat("hasGhostEvents", 0);
 
     setStat("crashedFromSessionBug", 0);
     setStat("averageGrist", 0);
@@ -168,6 +170,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
             if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
             if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
+            if (ss.getBoolStat("hasGhostEvents")) mss.incNumStat("hasGhostEvents");
 
             if (ss.scratched) mss.incNumStat("scratched");
 

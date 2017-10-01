@@ -98,27 +98,9 @@ class ImmortalityReward extends Reward {
     }
 }
 
-//TODO once npc update hits maybe some kind of moon rep system?
-class DerseReward extends Reward {
-    @override
-    String image = null;
-    String bgImage = "Derse.png";
 
-
-    void apply(Element div, Player p1, Player p2, Land land) {
-       // p1.session.logger.info("derse reward");
-        text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
-        bool savedDream = p1.isDreamSelf;
-        p1.isDreamSelf = true;
-        p1.renderSelf();
-        super.apply(div, p1, p2, land);
-        p1.isDreamSelf = savedDream;
-        p1.renderSelf();
-        p1.corruptionLevelOther ++;
-    }
-}
-
-class ProspitReward extends Reward {
+///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
+class DreamReward extends Reward {
 
     @override
     String image = null;
@@ -126,7 +108,22 @@ class ProspitReward extends Reward {
 
 
     void apply(Element div, Player p1, Player p2, Land land) {
-        //p1.session.logger.info("prospit reward");
+        if(p1.dreamSelf) {
+            if(p1.moonFuture == p1.session.prospit) {
+                applyProspit(div, p1, p2, land);
+            }else {
+                applyDerse(div, p1, p2, land);
+            }
+        }else if(!p1.dreamSelf && p1.session.stats.dreamBubbleAfterlife) {
+            applyBubbles(div, p1, p2, land);
+        }else {
+            applyHorrorTerrors(div, p1, p2, land);
+        }
+    }
+
+    void applyProspit(Element div, Player p1, Player p2, Land land) {
+        p1.session.logger.info("prospit reward");
+        bgImage = "Prospit.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
         p1.addStat(Stats.SANITY, -1); //just a bit.
         bool savedDream = p1.isDreamSelf;
@@ -135,5 +132,38 @@ class ProspitReward extends Reward {
         super.apply(div, p1, p2, land);
         p1.isDreamSelf = savedDream;
         p1.renderSelf();
+
+    }
+
+    void applyDerse(Element div, Player p1, Player p2, Land land) {
+        p1.session.logger.info("derse reward");
+        bgImage = "Derse.png";
+        text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
+        p1.corruptionLevelOther ++; //just a bit.
+        bool savedDream = p1.isDreamSelf;
+        p1.isDreamSelf = true;
+        p1.renderSelf();
+        super.apply(div, p1, p2, land);
+        p1.isDreamSelf = savedDream;
+        p1.renderSelf();
+
+    }
+
+    void applyBubbles(Element div, Player p1, Player p2, Land land) {
+        p1.session.logger.info("bubble reward");
+        bgImage = "dreambubbles.png";
+        text = "The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
+        p1.addStat(Stats.SANITY, 2); //just a bit better.
+        super.apply(div, p1, p2, land);
+
+    }
+
+    void applyHorrorTerrors(Element div, Player p1, Player p2, Land land) {
+        p1.session.logger.info("terror reward");
+        bgImage = "horrorterror.png";
+        text = "The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
+        p1.corruptionLevelOther += 2; //just a bit.
+        p1.addStat(Stats.SANITY, -2); //just a bit.
+        super.apply(div, p1, p2, land);
     }
 }
