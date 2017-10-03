@@ -12,7 +12,8 @@ class Player extends GameEntity {
     num baby = null;
     @override
     num grist = 0; // players do not spawn with grist
-
+    //if 0, not yet woken up.
+    double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
     GameEntity denizen = null;
@@ -1802,7 +1803,8 @@ class Player extends GameEntity {
         } else {
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
         }
-
+        moonChance += session.rand.nextDouble() * 5; //small chance for regular players to be woken up pre-entry
+        if(aspect == Aspects.SPACE) moonChance += 33.0; //huge chance for space players.
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
     }
 

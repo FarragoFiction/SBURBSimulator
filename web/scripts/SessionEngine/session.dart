@@ -226,8 +226,13 @@ class Session {
         moons.add(derse);
     }
 
+    //yes this should have been a get, but it's too annoying to fix now, used in too many places and refactoring menu doesn't know how to convert from method to get.
     List<Player> getReadOnlyAvailablePlayers() {
         return new List<Player>.from(_availablePlayers);
+    }
+
+    bool isPlayerAvailable(Player p) {
+        return (_availablePlayers.contains(p));
     }
 
     void addAvailablePlayer(Player p) {
