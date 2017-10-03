@@ -91,10 +91,6 @@ class VoidyStuff extends Scene {
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.denizen != null && this.player.landLevel >= 6 && this.player.land != null && !this.player.denizenDefeated && rand.nextDouble() > .8){
-			this.fightDenizen(normalDiv, newDiv);
-			this.endingPhrase(classDiv, newDiv);
-			return;
 		}else if(this.player.getStat(Stats.SANITY) < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
 			//session.logger.info("AB: flipping shit through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
@@ -164,16 +160,10 @@ class VoidyStuff extends Scene {
 	void dolandQuests(Element div, Element specialDiv){
 		this.player.increaseLandLevel(2.0);
 		appendHtml(div, " Their consorts seem pretty happy, though. ") ;
-		if(rand.nextDouble() > .95){ //small chance of serious.
-			appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(this.player.aspect.preDenizenQuests) + ". ");
-		}else{
-			List<String> specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
-			specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
-			specialStuff.addAll(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
-
-			appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(specialStuff) + ". ");
-		}
-
+		List<String> specialStuff = ["teaching the local consorts all the illest of beats","explaining the finer points of the human game 'hopscotch' to local consorts","passing out banned orange fruits that may or may not exist to hungry local consorts","throwing a birthday party for the local consorts"];
+		specialStuff.addAll(["reenacting tear jerking scenes from classic cinema with local consorts","adopting a local consort as their beloved daughter","explaining that all conflict will be resolved through the medium of rap, going forwards","passing out rumpled headgear like cheap cigars"]);
+		specialStuff.addAll(["completely destabilizing the local consort economy by just handing out fat stacks of boonbucks","showing the local consorts how to draw graffiti all over the Denizen temples","explaining that each local consort is probably the hero of legend or some shit","encouraging local consorts to form secret societies around household items"]);
+		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(specialStuff) + ". ");
 	}
 	void weakenDesites(Element div, Element specialDiv){
 		this.session.npcHandler.queen.addStat(Stats.POWER,-5);
@@ -182,38 +172,7 @@ class VoidyStuff extends Scene {
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
 	}
-	void fightDenizen(Element div, Element specialDiv){
-		this.player.denizenFaced = true;
-		GameEntity denizen = this.player.denizen;
-		appendHtml(div, " Why is the " + denizen.name + " bellowing so loudly on " + this.player.shortLand() + "? ");
-		String ret = "The " + this.player.htmlTitle() + " is fighting " +denizen.name + ".  It is bloody, brutal and short. ";
 
-		if(rand.nextDouble() >.5){
-			player.setDenizenDefeated();
-			this.player.fraymotifs.addAll(this.player.denizen.fraymotifs);
-			this.player.grist += denizen.grist;
-			ret += denizen.name + " lies dead on the ground. ";
-			appendHtml(specialDiv, ret);
-		}else{ //no CHOICE.  either you are berserking, or the denizen doesn't notice you in time to give you one.
-				this.player.denizenFaced = true;
-				appendHtml(div, " That didn't sound good... ");
-				this.player.dead = true;
-				if(this.enablingPlayer.aspect == Aspects.VOID) ret += this.player.makeDead("fighting their Denizen way too early, cloaked in Void");
-				if(this.enablingPlayer.aspect == Aspects.RAGE) ret += this.player.makeDead("fighting their Denizen way too early, lost in Madness");
-				ret += " The " +this.player.htmlTitleBasic() + " lies dead on the ground. ";
-				appendHtml(specialDiv, ret);
-
-				String divID = (specialDiv.id) + "denizenDeath";
-				String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-				appendHtml(specialDiv, canvasHTML);
-				CanvasElement canvas = querySelector("#canvas"+ divID);
-
-				CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
-				Drawing.drawSprite(pSpriteBuffer,this.player);
-
-				Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
-		}
-	}
 	void ectoBiologyStarted(Element div, Element specialDiv){
 		//session.logger.info("AB: Void/Rage ecto babies:" );
 		List<Player> playersMade = this.player.performEctobiology(this.session);

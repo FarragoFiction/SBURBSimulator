@@ -144,11 +144,6 @@ class Aspect {
     // ##################################################################################################
     // Values
 
-    /// Checked against a Random.nextDouble() to determine if a quest should be aspect related.
-    /// Values <= 0.0 yield no aspect quests.
-    /// Values >= 1.0 yield only aspect quests.
-    double aspectQuestChance = 0.5;
-
     /// Multiplier to Player.increasePower magnitude.
     double powerBoostMultiplier = 1.0;
 
@@ -209,24 +204,11 @@ class Aspect {
 
     String denizenSongTitle = "Song";
     String denizenSongDesc = "A static sound is heard. It is the one Forgetfulness uses to cover the lacunae. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And there's nothing else to say on the matter. ";
-    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
-        "definitely doing class related quests",
-        "solving consorts problems in a class themed manner",
-        "absolutely not goofing off"
-    ]);
+
     List<String> handles = new List<String>.unmodifiable(
         <String>["Null", "Nothing", "Mystery"]);
-    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-        "cleaning up after their Denizen in a class approrpiate fashion",
-        "absolutly not goofing off instead of cleaing up after their Denizen",
-        "vaguely sweeping up rubble"
-    ]);
 
-    List<String> denizenQuests = new List<String>.unmodifiable(<String>[
-        "learning of how the Denizen destroyed their land",
-        "begining to oppose the damage the Denizen has done to the land",
-        "preparing to challeng their Denizen to prevent future damage"
-    ]);
+
 
     /// DO NOT transfer these directly to a Player - they may not be valid for use and require processing!
     /// Use initAssociatedStats for adding stats to a Player!
@@ -263,23 +245,14 @@ class Aspect {
     /// e.g. Doom prophecies
     void onDeath(Player player) {}
 
-    String getRandomQuest(Random rand, bool denizenDefeated) {
-        return rand.pickFrom(denizenDefeated ? this.postDenizenQuests : this.preDenizenQuests);
-    }
+
 
     //each aspect has a unique Cataclysm.  Just call appropriate mutator method
     String activateCataclysm(Session s, Player p) {
         return s.mutator.abjectFailure(s, p);
     }
 
-    String getDenizenQuest(Player player) {
-        if (player.denizen_index > this.denizenQuests.length) {
-            throw("${player.title()} denizen index too high: ${player.session.session_id}");
-        }
-        String quest = this.denizenQuests[player.denizen_index];
-        player.denizen_index ++;
-        return quest;
-    }
+
 
     /// Returns an opening font tag with the class text colour.
     String fontTag() {

@@ -68,7 +68,7 @@ Element getAspectInfo(Aspect aspect) {
 
     element.append(toggleBox("Denizen", new DivElement()..className="section"
         ..append(toggleList("Names", aspect.denizenNames))
-        ..append(toggleList("Quests", aspect.denizenQuests))
+        //..append(toggleList("Quests", aspect.denizenQuests))
         ..append(toggleBox("Song", new DivElement()..className = "section"
                 ..append(new ParagraphElement()..className="toggleTitle"..text = aspect.denizenSongTitle)
                 ..append(new ParagraphElement()..text = aspect.denizenSongDesc)
@@ -78,9 +78,9 @@ Element getAspectInfo(Aspect aspect) {
 
 
     element.append(toggleBox("Quests", new DivElement()..className="section"
-        ..append(namedValue("Aspect Quest Chance", aspect.aspectQuestChance))
-        ..append(toggleList("Pre-Denizen", aspect.preDenizenQuests))
-        ..append(toggleList("Post-Denizen", aspect.postDenizenQuests))
+        //..append(namedValue("Aspect Quest Chance", aspect.aspectQuestChance))
+        //..append(toggleList("Pre-Denizen", aspect.preDenizenQuests))
+        //..append(toggleList("Post-Denizen", aspect.postDenizenQuests))
     ));
 
     element.append(toggleList("ChumHandles", aspect.handles));

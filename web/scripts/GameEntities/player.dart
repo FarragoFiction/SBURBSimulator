@@ -595,27 +595,6 @@ class Player extends GameEntity {
         return ret;
     }
 
-    String getRandomQuest() {
-        if (this.landLevel >= 9 && this.denizen_index < 3 && this.denizenDefeated == false) { //three quests before denizen
-            ////print("denizen quest");
-            return this.aspect.getDenizenQuest(this); //denizen quests are aspect only, no class.
-        } else if ((this.landLevel < 9 || this.denizen_index >= 3) && this.denizenDefeated == false) { //can do more land quests if denizen kicked your ass. need to grind.
-            if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
-                return this.aspect.getRandomQuest(rand, denizenDefeated);
-            } else {
-                return this.class_name.getQuest(rand, false);
-            }
-        } else if (this.denizenDefeated) {
-            ////print("post denizen quests " +this.session.session_id);
-            //return "restoring their land from the ravages of " + this.session.getDenizenForPlayer(this).name;
-            if (this.session.rand.nextDouble() < this.aspect.aspectQuestChance) { //back to having space players be locked to frogs.
-                return this.aspect.getRandomQuest(rand, denizenDefeated);
-            } else {
-                return this.class_name.getQuest(rand, true);
-            }
-        }
-        return null;
-    }
 
     String canMindControl() {
         for (num i = 0; i < this.fraymotifs.length; i++) {

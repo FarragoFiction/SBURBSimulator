@@ -50,26 +50,6 @@ class Light extends Aspect {
     List<String> physicalMcguffins = ["light","clover", "horseshoe", "encyclopedia","sun", "dice", "8-ball", "deck of tarot cards"];
 
 
-    @override
-    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
-        "winning at increasingly unfair gambling challenges",
-        "researching way too much lore and minutia to win at trivia contests",
-        "explaining how to play a mini game to particularly stupid consorts until they finally get it"
-    ]);
-    @override
-    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-        "distracting underlings by with over the top displays of their game powers",
-        "teaching the local consorts how to count cards without eating them.",
-        "educating themselves on the consequences of betting against the house. As it happens, there are no consequences.",
-        "collecting the complete history and mythos of their land into an easy to navigate 1,000 volume encyclopedia."
-    ]);
-
-    @override
-    List<String> denizenQuests = new List<String>.unmodifiable(<String>[
-        "realizing the the entire point of SBURB has been a lie",
-        "learning the true purpose of SBURB",
-        "realizing just how important frogs and grist and the Ultimate Alchemy truly are"
-    ]);
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

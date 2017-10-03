@@ -50,26 +50,7 @@ class Dream extends Aspect {
     @override  //muse names
     List<String> denizenNames = new List<String>.unmodifiable(<String>['Dream', 'Dreamer','Calliope', 'Clio', 'Euterpe', 'Thalia', 'Melpomene', 'Terpsichore', 'Erato', 'Polyhmnia', 'Urania', 'Melete', 'Mneme', 'Aoide','Hypnos', 'Morpheus','Oneiros','Phobetor','Icelus', 'Somnus','Metztli','Yohualticetl','Khonsu','Chandra', 'Mėnuo','Nyx']);
 
-    @override
-    List<String> preDenizenQuests = new List<String>.unmodifiable(<String>[
-        "brainstorming five different ways to solve the same problem",
-        "navigating a dungeon where enemies constantly give you incorrect advice on how to proceed",
-        "navigating the exact same dungeon three different times, but you are teleported to the begining if you go the same way twice"
-    ]);
-    @override
-    List<String> postDenizenQuests = new List<String>.unmodifiable(<String>[
-        "helping each consort village to look completely unique",
-        "distributing hundreds of different recovery plans to the various Consort villages",
-        "accepting that sometimes repetition is fine for the smaller works, if it gives you the willpower needed for the bigger ones",
-        "designing a dozen different epic statues depicting their defeat of the Denizen"
-    ]);
 
-    @override
-    List<String> denizenQuests = new List<String>.unmodifiable(<String>[
-        "realizing that their Denizen has literally done everything first",
-        "proving to the local Consorts that while there is nothing new under the sun, what THEY are doing is unique",
-        "exposing the Denizen as a dirty plagarist"
-    ]);
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
