@@ -12,7 +12,7 @@ class Reward {
     String text = " You get jack shit, asshole!";
     String image = "Rewards/no_reward.png";
     String bgImage = null;
-    void apply(Element div, Player p1, Player p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
         p1.increasePower();
         p1.increaseLandLevel();
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
@@ -37,15 +37,20 @@ class FraymotifReward extends Reward
     @override
     String image = "Rewards/sweetLoot.png";
     @override
-    void apply(Element div, Player p1, Player p2, Land land) {
-        Fraymotif f1 = p1.getNewFraymotif(p2);
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        Fraymotif f1;
         Fraymotif f2;
         if(p2 != null) {
             text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
-            f2 = p2.getNewFraymotif(p1);
-            text = text.replaceAll("${Reward.PLAYER2}", "${p2.htmlTitleBasicNoTip()}");
-            text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+            if(p2 is Player) {
+                f1 = p1.getNewFraymotif(p2); //with other player
+                f2 = (p2 as Player).getNewFraymotif(p1);
+                text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+                text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+            }
         }
+
+        if (f1 == null) f1 = p1.getNewFraymotif(null);
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
@@ -63,7 +68,7 @@ class DenizenReward extends Reward {
     String image = "Rewards/sweetLoot.png";
     String bgImage = "Rewards/sweetGrist.png";
     @override
-    void apply(Element div, Player p1, Player p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
         p1.increaseGrist(100.0);
         DenizenFeature df = land.denizenFeature;
         if(df.denizen == null) {
@@ -87,7 +92,8 @@ class ImmortalityReward extends Reward {
     String bgImage = "Rewards/sweetClock.png";
 
 
-    void apply(Element div, Player p1, Player p2, Land land) {
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
         if(!p1.godTier) {
             text = " There remains to be a trivial act of self-suicide. And then... $text";
             p1.makeGodTier();
@@ -106,8 +112,8 @@ class DreamReward extends Reward {
     String image = null;
     String bgImage = "Prospit.png";
 
-
-    void apply(Element div, Player p1, Player p2, Land land) {
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
         if(p1.dreamSelf) {
             if(p1.moonFuture == p1.session.prospit) {
                 applyProspit(div, p1, p2, land);
@@ -121,7 +127,7 @@ class DreamReward extends Reward {
         }
     }
 
-    void applyProspit(Element div, Player p1, Player p2, Land land) {
+    void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("prospit reward");
         bgImage = "Prospit.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
@@ -135,7 +141,7 @@ class DreamReward extends Reward {
 
     }
 
-    void applyDerse(Element div, Player p1, Player p2, Land land) {
+    void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
@@ -149,7 +155,7 @@ class DreamReward extends Reward {
 
     }
 
-    void applyBubbles(Element div, Player p1, Player p2, Land land) {
+    void applyBubbles(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("bubble reward");
         bgImage = "dreambubbles.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
@@ -158,7 +164,7 @@ class DreamReward extends Reward {
 
     }
 
-    void applyHorrorTerrors(Element div, Player p1, Player p2, Land land) {
+    void applyHorrorTerrors(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("terror reward");
         bgImage = "horrorterror.png";
         text = "The ${p1.htmlTitleBasicNoTip()} writhes in agony.";

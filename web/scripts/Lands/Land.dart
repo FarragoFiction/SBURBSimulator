@@ -10,7 +10,8 @@ import "dart:html";
 ///A land is build from features.
 class Land {
     Session session;
-    bool corrupted;
+    //TODO implement this.
+    bool corrupted = false;
     //can be more than one thing, will pick one or two things at random by weight
     WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>();
     WeightedList<SoundFeature> sounds = new WeightedList<SoundFeature>();
@@ -61,10 +62,10 @@ class Land {
         return "<h3>$shortName ${currentQuestChain.name}, Part ${currentQuestChain.chapter}: </h3>";
     }
 
-    bool doQuest(Element div, Player p1, Player p2) {
+    bool doQuest(Element div, Player p1, GameEntity p2) {
         // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
-        if(currentQuestChain.finished) decideIfTimeForNextChain(<Player>[p1,p2]); //need to mark appropriate bool as completed.
+        if(currentQuestChain.finished) decideIfTimeForNextChain(<GameEntity>[p1,p2]); //need to mark appropriate bool as completed.
         //print("ret is $ret from $currentQuestChain");
         return ret;
     }
@@ -74,7 +75,7 @@ class Land {
         physicalMcguffin = session.rand.pickFrom(p1.aspect.physicalMcguffins);
     }
 
-    void decideIfTimeForNextChain(List<Player> players) {
+    void decideIfTimeForNextChain(List<GameEntity> players) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
                 //print("moving on to next set of quests");
@@ -96,7 +97,7 @@ class Land {
     // select a random quest from source. it HAS to be triggered, though.
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
-    QuestChainFeature selectQuestChainFromSource(List<Player> players, WeightedList<QuestChainFeature> source) {
+    QuestChainFeature selectQuestChainFromSource(List<GameEntity> players, WeightedList<QuestChainFeature> source) {
         //print("Selecting a quest from $source");
         if(source.isEmpty) {
             currentQuestChain = null;

@@ -99,7 +99,7 @@ class QuestsAndStuff extends Scene {
 
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
-        Player helper = questingParty.helper;
+        GameEntity helper = questingParty.helper;
         player.landFuture.initQuest([player]);
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
@@ -167,7 +167,7 @@ class QuestingParty
     GameEntity helper;
     Session session;
     ///will handle setting unavailable, don't need to worry about it modifying the array i'm looping on since it's read only.
-    QuestingParty(Session this.session, Player this.player1, Player this.helper) {
+    QuestingParty(Session this.session, Player this.player1, GameEntity this.helper) {
         session.removeAvailablePlayer(this.player1);
         session.removeAvailablePlayer(this.helper);
     }

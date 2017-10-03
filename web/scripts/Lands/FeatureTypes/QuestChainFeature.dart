@@ -17,7 +17,7 @@ class QuestChainFeature extends Feature {
     //stored for repeatable quest chains
     List<Quest> completedQuests = new List<Quest>();
     ///if condition is met, then might be chosen to start. once started, goes linear.
-    Predicate<List<Player>> condition; //like playerIsStealthy
+    Predicate<List<GameEntity>> condition; //like playerIsStealthy
     bool finished = false;
     bool started = false;
     Reward reward;
@@ -42,7 +42,7 @@ class QuestChainFeature extends Feature {
 
     ///assume first player is the owner of the quest.
     ///this will handle all drawing, Quest itself just returns a string.
-    bool doQuest(Player p1, Player p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div, Land land) {
+    bool doQuest(Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div, Land land) {
         chapter ++;
         //p2 is for interaction effect and also reward.
         //whether you win or not, get power
@@ -74,86 +74,91 @@ class QuestChainFeature extends Feature {
     }
 
 
-    static bool playerIsStealthyAspect(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsStealthyAspect(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.aspect == Aspects.VOID || p.aspect == Aspects.BREATH;
     }
 
+    static bool twoPlayers(List<GameEntity> ps) {
+        return ps[1] != null && ps[1] is Player;
+    }
+
     //useful for denizen choices, etc.
-    static bool playerIsADick(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsADick(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.getFriends().length < p.getEnemies().length;
     }
 
     //TODO have lands have generic grim dark quest chains with high weight, but themes can have their own, too
-    static bool isGrimDark(List<Player> ps) {
-        Player p = ps.first;
+    static bool isGrimDark(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.grimDark > 2;
     }
 
     //for moon shit
-    static bool hasDreamSelf(List<Player> ps) {
-
-        return ps[0].dreamSelf;
+    static bool hasDreamSelf(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.dreamSelf;
     }
 
     //for moon shit
-    static bool hasNoDreamSelfNoBubbles(List<Player> ps) {
-
-        return !ps[0].dreamSelf && !ps[0].session.stats.dreamBubbleAfterlife;
+    static bool hasNoDreamSelfNoBubbles(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return !p.dreamSelf && !p.session.stats.dreamBubbleAfterlife;
     }
 
     //for moon shit.
-    static bool hasNoDreamSelfBubbles(List<Player> ps) {
-        return !ps[0].dreamSelf && ps[0].session.stats.dreamBubbleAfterlife;
+    static bool hasNoDreamSelfBubbles(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return !p.dreamSelf && p.session.stats.dreamBubbleAfterlife;
     }
 
-    static bool murderMode(List<Player> ps) {
-        Player p = ps.first;
+    static bool murderMode(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.murderMode;
     }
 
 
 
-    static bool playerIsNice(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsNice(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.getFriends().length > p.getEnemies().length;
     }
 
-    static bool playerIsSneakyClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsSneakyClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isSneaky;
     }
 
-    static bool playerIsProtectiveClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsProtectiveClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isProtective;
     }
 
-    static bool playerIsMagicalClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsMagicalClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isMagical ;
     }
-    static bool playerIsDestructiveClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsDestructiveClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isDestructive ;
     }
-    static bool playerIsHelpfulClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsHelpfulClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isHelpful ;
     }
-    static bool playerIsSmartClass(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsSmartClass(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.class_name.isSmart ;
     }
 
-    static bool playerIsFateAspect(List<Player> ps) {
-        Player p = ps.first;
+    static bool playerIsFateAspect(List<GameEntity> ps) {
+        Player p = ps.first as Player;
         return p.aspect == Aspects.DOOM || p.aspect == Aspects.TIME;
     }
 
     //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
-    static bool defaultOption(List<Player> ps) {
+    static bool defaultOption(List<GameEntity> ps) {
         return true;
     }
 }
