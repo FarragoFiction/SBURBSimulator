@@ -103,9 +103,14 @@ class QuestsAndStuff extends Scene {
         player.landFuture.initQuest([player]);
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
-            helperText = "The ${helper.htmlTitle()} is helping where they can. ";
+            if(helper is Sprite) {
+                helperText = "${helper.htmlTitle()} $helperText ${(helper as Sprite).helpPhrase}";
+            }else {
+                helperText = "The ${helper.htmlTitle()} is helping where they can. ";
+            }
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
             if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} "; //helpers do not.
+
         }
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
