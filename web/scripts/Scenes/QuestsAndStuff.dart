@@ -72,13 +72,17 @@ class QuestsAndStuff extends Scene {
 
 
     QuestingParty createQuestingParty(Player player) {
-        Player helper = player.findHelper(session.getReadOnlyAvailablePlayers());
+        GameEntity helper = player.findHelper(session.getReadOnlyAvailablePlayers());
         //pages REQUIRE a helper, so if helper is null, return null.
         //if either player is grim dark >= 3, then no party. assume grim dark friend actively encourages peoplel they hang out with to not quest
         if(player.class_name == SBURBClassManager.PAGE && helper == null) return null;
-        if(player.grimDark >=3 || (helper != null && helper.grimDark >=3)) return null;
+        if(player.grimDark >=3 || (helper != null && (helper as Player).grimDark >=3)) return null;
         //it's okay if helper is null.
         if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
+
+        if(helper == null && !player.sprite.dead) {
+            helper = player.sprite;
+        }
         return new QuestingParty(session, player, helper);
     }
 
@@ -95,19 +99,46 @@ class QuestsAndStuff extends Scene {
 
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
-        Player helper = questingParty.player2;
+        Player helper = questingParty.helper;
         player.landFuture.initQuest([player]);
-        String helperText = "";
+        String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
             helperText = "The ${helper.htmlTitle()} is helping where they can. ";
-            helperText = "$helperText ${player.interactionEffect(helper)} ";
-            helperText = "$helperText ${helper.interactionEffect(player)} ";
+            helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
+            if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} "; //helpers do not.
         }
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
         player.landFuture.doQuest(div, player, helper);
 
 
+    }
+
+    String corruptionIsSpreading(QuestingParty questingParty) {
+	    Player player = questingParty.player1;
+	    GameEntity helper = questingParty.helper;
+	    bool playerCorrupted = false;
+	    bool helperCorrupted = false;
+	    if(player.landFuture.corrupted || helper.corrupted) {
+            playerCorrupted = true;
+            helperCorrupted = true;
+        }
+	    if(helper != null ) {
+            if(helper is Player) {
+                Player player2 = helper as Player;
+                if(player2.grimDark > 0) playerCorrupted = true;
+                if(player.grimDark > 0) helperCorrupted = true;
+
+                if(helperCorrupted) player2.corruptionLevelOther += 5;
+            }
+        }
+
+        if(playerCorrupted) player.corruptionLevelOther += 5;
+	    if(playerCorrupted || helperCorrupted) {
+	        session.logger.info("The corruption is spreading.");
+            return "The corruption is spreading.";
+        }
+	    return "";
     }
 
 
@@ -133,11 +164,11 @@ class QuestsAndStuff extends Scene {
 class QuestingParty
 {
     Player player1;
-    Player player2;
+    GameEntity helper;
     Session session;
     ///will handle setting unavailable, don't need to worry about it modifying the array i'm looping on since it's read only.
-    QuestingParty(Session this.session, Player this.player1, Player this.player2) {
+    QuestingParty(Session this.session, Player this.player1, Player this.helper) {
         session.removeAvailablePlayer(this.player1);
-        session.removeAvailablePlayer(this.player2);
+        session.removeAvailablePlayer(this.helper);
     }
 }

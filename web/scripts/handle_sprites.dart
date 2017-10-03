@@ -683,7 +683,7 @@ abstract class Drawing {
             i++;
         }
 
-        ctx.fillText("Quests Completed: ", left_margin, current + line_height * i);
+        ctx.fillText("Land Rep: ", left_margin, current + line_height * i);
         ctx.fillText(player.landLevel.toString(), right_margin, current + line_height * i);
         i++;
 
