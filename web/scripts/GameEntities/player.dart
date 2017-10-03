@@ -1827,7 +1827,7 @@ class Player extends GameEntity {
          if(aspect == Aspects.SPACE){//this shit is so illegal
             // print("I'm a space player, I can only be helped by knight");
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper != null && helper.id != this.id){ //a knight of space can't help themselves.
+             if(helper != null && helper.id != this.id && helper.landFuture.firstCompleted){ //a knight of space can't help themselves.
                  ////print("Debugging helpers: Found $helper in session ${session.session_id}");
                  //print("found a knight");
                  return helper;
@@ -1848,11 +1848,11 @@ class Player extends GameEntity {
         for(Player p in sortedChoices) {
             if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.
-                if(p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel) {
+                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.landFuture.firstCompleted) {
                     helper = p;
                     //print("randomly picking helper with an id of $helper");
                 }
-            }else if((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.landFuture.firstCompleted) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
                // print("i believe i'm a blood player or a page and picked helper $helper");
             }

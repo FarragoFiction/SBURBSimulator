@@ -80,7 +80,7 @@ class QuestsAndStuff extends Scene {
         //it's okay if helper is null.
         if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
 
-        if(helper == null && !player.sprite.dead) {
+        if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .75) {
             helper = player.sprite;
         }
         return new QuestingParty(session, player, helper);
@@ -104,9 +104,9 @@ class QuestsAndStuff extends Scene {
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
             if(helper is Sprite) {
-                helperText = "${helper.htmlTitle()} $helperText ${(helper as Sprite).helpPhrase}";
+                helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}";
             }else {
-                helperText = "The ${helper.htmlTitle()} is helping where they can. ";
+                helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
             if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} "; //helpers do not.
@@ -114,8 +114,12 @@ class QuestsAndStuff extends Scene {
         }
         String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
+        bool savedLevel = player.landFuture.firstCompleted;
         player.landFuture.doQuest(div, player, helper);
 
+        if(savedLevel != player.landFuture.firstCompleted) {
+            appendHtml(div, "<br><br>The ${player.htmlTitleBasicNoTip()}'s house has been built up enough to let them start visiting other lands. ");
+        }
 
     }
 
@@ -124,7 +128,7 @@ class QuestsAndStuff extends Scene {
 	    GameEntity helper = questingParty.helper;
 	    bool playerCorrupted = false;
 	    bool helperCorrupted = false;
-	    if(player.landFuture.corrupted || helper.corrupted) {
+	    if(player.landFuture.corrupted || (helper != null && helper.corrupted)) {
             playerCorrupted = true;
             helperCorrupted = true;
         }

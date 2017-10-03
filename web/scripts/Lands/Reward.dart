@@ -41,8 +41,8 @@ class FraymotifReward extends Reward
         Fraymotif f1;
         Fraymotif f2;
         if(p2 != null) {
-            text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
             if(p2 is Player) {
+                text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
                 f1 = p1.getNewFraymotif(p2); //with other player
                 f2 = (p2 as Player).getNewFraymotif(p1);
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
