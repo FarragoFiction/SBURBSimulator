@@ -4,7 +4,7 @@ import 'dart:math' as Math;
 
 ///in what way is this supposed to be an RPG if you can do quests and stuff?
 class QuestsAndStuff extends Scene {
-	bool canRepeat = false;
+	bool canRepeat = true;
 	List<QuestingParty> landParties = new List<QuestingParty>();
     List<QuestingParty> moonParties = new List<QuestingParty>();
     List<QuestingParty> skaiaParties = new List<QuestingParty>();
@@ -54,7 +54,7 @@ class QuestsAndStuff extends Scene {
     void allocateMoonQuests() {
         //you need to be alive. (available doesn't matter, you can dream after doing something. consider it a free action, otherwise they won't get into the medium).
         for(Player p in session.players) {
-            if(!p.dead && session.rand.nextDouble() < p.moonChance) {
+            if(!p.dead && (session.rand.nextDouble()*100) < p.moonChance) {
                 //TODO decide if i will allow co-op moon shit.
                 moonParties.add(new QuestingParty(session, p, null));
                 //back down to "normal"
@@ -78,13 +78,16 @@ class QuestsAndStuff extends Scene {
         if(player.class_name == SBURBClassManager.PAGE && helper == null) return null;
         if(player.grimDark >=3 || (helper != null && helper.grimDark >=3)) return null;
         //it's okay if helper is null.
+        if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
         return new QuestingParty(session, player, helper);
     }
 
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
 		player.moonFuture.initQuest([player]);
-		String html = "${player.moonFuture.getChapter()} ${player.moonFuture.randomFlavorText(session.rand, player)} ";
+		String inEarly = "";
+		if(player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
+		String html = "${player.moonFuture.getChapter()} ${inEarly}  ${player.moonFuture.randomFlavorText(session.rand, player)} ";
 		appendHtml(div, html);
 		//doQuests will append itself.
 		player.moonFuture.doQuest(div, player, null);
@@ -94,12 +97,16 @@ class QuestsAndStuff extends Scene {
         Player player = questingParty.player1;
         Player helper = questingParty.player2;
         player.landFuture.initQuest([player]);
-        String helperText = "The ${helper.htmlTitle()} is helping where they can. ";
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
+        String helperText = "";
+        if(helper != null) {
+            helperText = "The ${helper.htmlTitle()} is helping where they can. ";
+            helperText = "$helperText ${player.interactionEffect(helper)} ";
+            helperText = "$helperText ${helper.interactionEffect(player)} ";
+        }
+        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
         player.landFuture.doQuest(div, player, helper);
-        player.interactionEffect(helper);
-        helper.interactionEffect(player);
+
 
     }
 

@@ -1803,7 +1803,7 @@ class Player extends GameEntity {
         } else {
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
         }
-        moonChance += session.rand.nextDouble() * 5; //small chance for regular players to be woken up pre-entry
+        moonChance += session.rand.nextDouble() * -33; //different amount of time pre-game start to get in. (can still wake up before entry)
         if(aspect == Aspects.SPACE) moonChance += 33.0; //huge chance for space players.
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
     }
