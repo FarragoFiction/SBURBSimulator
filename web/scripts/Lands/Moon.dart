@@ -40,6 +40,10 @@ class Moon extends Land {
       }
   }
 
+    String getChapter() {
+        return "<h3>$shortName ${currentQuestChain.name}</h3>";
+    }
+
   ///any quest chain can be done on the moon. Chain itself decides if can be repeated.
   @override
   String initQuest(List<Player> players) {

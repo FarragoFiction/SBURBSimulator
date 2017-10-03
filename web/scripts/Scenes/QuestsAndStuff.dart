@@ -84,7 +84,7 @@ class QuestsAndStuff extends Scene {
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
 		player.moonFuture.initQuest([player]);
-		String html = "${player.moonFuture.getChapter()}  ";
+		String html = "${player.moonFuture.getChapter()} ${player.moonFuture.randomFlavorText(session.rand, player)} ";
 		appendHtml(div, html);
 		//doQuests will append itself.
 		player.moonFuture.doQuest(div, player, null);

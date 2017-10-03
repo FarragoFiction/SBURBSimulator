@@ -62,6 +62,7 @@ export "Scenes/CorpseSmooch.dart";
 export "Scenes/DisengageMurderMode.dart";
 export "Scenes/DoEctobiology.dart";
 export "Scenes/DoLandQuest.dart";
+export "Scenes/QuestsAndStuff.dart";
 export "Scenes/EngageMurderMode.dart";
 export "Scenes/ExileJack.dart";
 export "Scenes/ExileQueen.dart";
