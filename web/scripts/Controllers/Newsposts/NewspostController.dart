@@ -3,6 +3,8 @@
 import 'dart:html';
 import '../../navbar.dart';
 import 'StoredNewsposts.dart';
+import 'dart:async';
+import "../../random.dart";
 
 void main() {
   loadNavbar();
@@ -20,7 +22,17 @@ void main() {
       querySelector("body").style.backgroundPosition = "center -" + max_scroll.toString() + "px";
     }
   });
+  cycleAuthorPics();
   //reFormatForTinyScreens(); //TODO was this doing anything. definitely didn't work right on mobile
+}
+
+void cycleAuthorPics() {
+  String root = "images/misc/fanArt/OctoberMas/";
+  List<String> possibleAvatars = ["7Shanks.png","authorCal.png","authorHussie.png","authorHussieSpace.png","authorRyan.png","authorTrollsona.png"];
+  possibleAvatars.addAll(["robot_author.png","whimsicalParadox.png", "pumpkin.png", "trickster_author_transparent.png","AlliumPomoea.png"]);
+  (querySelector("#jrAvatar") as ImageElement).src = "$root${new Random().pickFrom(possibleAvatars)}";
+  //jrAvatar(querySelector("#avatar")).style.float = "left";
+  new Timer(new Duration(milliseconds: 3000), () => cycleAuthorPics()); //sweet sweet async
 }
 
 

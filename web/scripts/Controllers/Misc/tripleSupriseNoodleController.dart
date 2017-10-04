@@ -68,7 +68,7 @@ class MysteryController extends AuthorBot {
 
   void avatarCarousel(){
 
-    var possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
+    List<String> possibleAvatars = ["images/CandyAuthorBot.png","images/ab_doll.jpg","images/trickster_author_transparent.png","images/ab_guide_sprite.png","images/trickster_artist_transparent.png","images/jr_sprite.png"];
     possibleAvatars.addAll(["images/misc/fanArt/ABFanArt/reDead-ITA.png","images/misc/fanArt/ABFanArt/chaoticConvergence.jpeg", "pumpkin.png", "images/misc/fanArt/ABFanArt/artificialArtificer.png","images/misc/fanArt/ABFanArt/Makin.png","images/misc/fanArt/ABFanArt/waltzingOphidan.png"]);
     (querySelector("#avatar") as ImageElement).src = rand.pickFrom(possibleAvatars);
     (querySelector("#avatar")).style.float = "left";
