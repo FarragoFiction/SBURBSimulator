@@ -7,6 +7,7 @@ import "dart:html";
 class Quest {
     //not sure if i'll need all of these. just...trying things out.
     static String PLAYER1 = "PLAYER1TAG";
+    static String PLAYER2 = "PLAYER2TAG";
     static String DENIZEN = "DENIZENTAG";
     static String CONSORT = "CONSORTTAG";
     static String CONSORTSOUND = "CONSORTSOUNDTAG";
@@ -19,12 +20,13 @@ class Quest {
 
 
     //passed in everything they need to know to fill in all possible tags.
-    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
-        return replaceTags(div, true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+    bool doQuest(Element div, Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+        return replaceTags(div, true, text, p1, p2,  denizen,  consort,  mcguffin,  physicalMcguffin);
     }
 
-    bool replaceTags(Element div, bool success, String ret,Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+    bool replaceTags(Element div, bool success, String ret,Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         ret = ret.replaceAll("$PLAYER1", "${p1.htmlTitleBasicNoTip()}");
+        ret = ret.replaceAll("$PLAYER2", "${p2.htmlTitleBasicNoTip()}");
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         ret = ret.replaceAll("$MCGUFFIN", "${mcguffin}");
@@ -53,9 +55,9 @@ class DenizenFightQuest extends Quest {
 
     //TODO shit if i'm gonna have a strife here i need to pass a div in not return a string. fuck.
     @override
-    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+    bool doQuest(Element div, Player p1,GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         //TODO initalize a strife, start the strife, ask the strife if team 0 won. (that is success)
-        replaceTags(div, true, "<Br><br>$introText<br><br>", p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        replaceTags(div, true, "<Br><br>$introText<br><br>", p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         Team pTeam = new Team.withName("The ${p1.title()}",p1.session, [p1]);
         pTeam.canAbscond = false;
         Team dTeam = new Team(p1.session, [denizen.makeDenizen(p1)]);
@@ -66,7 +68,7 @@ class DenizenFightQuest extends Quest {
         //print("I won: $success");
         String ret = failureText;
         if(success) ret = text;
-        replaceTags(div, success, ret, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+        replaceTags(div, success, ret, p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         return success;
     }
 }
@@ -82,13 +84,13 @@ class FailableQuest extends Quest {
 
     //passed in everything they need to know to fill in all possible tags.
     @override
-    bool doQuest(Element div, Player p1, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
+    bool doQuest(Element div, Player p1,GameEntity p2,DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         double roll = p1.session.rand.nextDouble();
        // print("roll is ${roll} and odds are ${odds}");
         if(roll < odds) {
-            return replaceTags(div, true, text, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+            return replaceTags(div, true, text, p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         }else {
-            return replaceTags(div, false, failureText, p1,  denizen,  consort,  mcguffin,  physicalMcguffin);
+            return replaceTags(div, false, failureText, p1,p2,  denizen,  consort,  mcguffin,  physicalMcguffin);
         }
     }
 }

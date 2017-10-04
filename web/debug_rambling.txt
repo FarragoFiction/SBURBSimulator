@@ -3655,3 +3655,32 @@ What can you do on a moon?
 For now just implement 1 and 2.   Once dead sessions are done i can implement part of 3
 
 I want the land update to get rid of bullshit sidequests and moon quests as separate scenes entirely.
+
+~~~~~~~~~~~~~~~~~~~~
+
+Dammit, multiplayer quests aren't going to work how I thought they were.
+
+God fuckin dammit.
+
+The problem here is that while I can REQUIRE a quest chain have multiple players to be started, I can't guarantee that the second player will
+be available for every quest in the chain.  So it might change who p2 is, or even outright not HAVE a p2.
+
+Okay.
+
+Okay.
+
+What's the laziest fucking way I can fix this?
+
+Well, if I reference Player2 and there is NOT one, then I can fill the text in with "a random fucking skeleton." or whatever.
+
+What if Player2 is a npc or sprite or whatever? just roll with it.
+
+Let's see how this looks.
+
+But seriously: WHAT ABOUT SHIPPING DUNGEONS?
+
+Well....can just have it be weird and awkward the whole time and when you get the ShippinReward it comments if p2 is not a player.
+
+Shipping rewards should get a 2 player fraymotif AND shoves you flushed/diamonds/spades etc together.
+
+~~~~~~~~~~~~~

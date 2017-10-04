@@ -251,6 +251,11 @@ class SBURBClass {
                 new Quest("The ${Quest.PLAYER1} is training the local ${Quest.CONSORT}s to operate the manufacturing equipment. There is ${Quest.CONSORTSOUND}ing and chaos everywhere. "),
                 new Quest("The ${Quest.PLAYER1} manages to get the factories working at peak efficiency.  The gear and cog shortage is over! The ${Quest.CONSORT}s name a national holiday after the ${Quest.PLAYER1}. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ..addFeature(new PostDenizenQuestChain("Do the Teamwork", [
+                new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have a severe shortage of gears and cogs. It is up to the ${Quest.PLAYER1} to get the assembly lines up and running again. "),
+                new Quest("The ${Quest.PLAYER1} notices that all of the ${Quest.CONSORT}s are stepping on each others toes while working in the factory, sometimes literally. They need to learn the meaning of Teamwork! "),
+                new Quest("The ${Quest.PLAYER1} grabs the ${Quest.PLAYER2} and demonstrates some simple teamwork techniques. The ${Quest.CONSORT}s begin ${Quest.CONSORTSOUND}ing in amazement. The factory is saved! "),
+            ], new FraymotifReward(), QuestChainFeature.twoPlayers), Feature.WAY_LOW)
             , Theme.MEDIUM);
 
         addTheme(new Theme(<String>["Peace","Tranquility","Rest"])

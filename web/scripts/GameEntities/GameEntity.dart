@@ -516,6 +516,10 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         return this.name;
     }
 
+    String htmlTitleBasicNoTip() {
+        return this.name;
+    }
+
     void makeAlive() {
         this.dead = false;
         this.heal();

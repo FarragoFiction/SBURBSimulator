@@ -104,6 +104,47 @@ class ImmortalityReward extends Reward {
     }
 }
 
+class PaleRomanceReward extends FraymotifReward {
+    //they both get same fraymotif.
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    String romanticEnding = " Pale Serenade";
+    @override
+    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a tender moment of calmness. It is obvious to everyone that they are now moirails. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+    @override
+    String image = null;
+    String bgImage = "Moirail.png";
+
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        Fraymotif f1;
+        Fraymotif f2;
+
+        if(p2 == null || !(p2 is Player)) {
+            p1.session.logger.info("got stood up from a pale ship");
+            f1 = p1.getNewFraymotif(null); //with other player
+            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1}} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else if(p2 != null) {
+            if(p2 is Player) {
+                p1.session.logger.info("Pale shipping reward");
+                f1 = p1.getNewFraymotif(p2); //with other player
+                f1.name += romanticEnding;
+                f2 = (p2 as Player).getNewFraymotif(p1);
+                f2.name += romanticEnding;
+                text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+                text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+            }
+        }
+
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
+        //super increases power and renders self.
+        super.apply(div, p1, p2, land);
+    }
+}
+
+
 
 ///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
 class DreamReward extends Reward {
