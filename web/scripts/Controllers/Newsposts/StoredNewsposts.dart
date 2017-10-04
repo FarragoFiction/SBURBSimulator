@@ -9,6 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
+      new Newspost("10/4/17","Alright, multiplayer quests have been coded, and we have a few shiping dungeons to test them out. <br><br> A few more themes have been added as well.<br><br>Meanwhile I'm going on vacation 'till the 10th, so I'm gonna TRY to code less and shit during that. Additiction is a powerful thing.<br><Br> Oh yeah, check out the <a href = 'image_browser.html?octobermas=true'>Octobermas Spoopy fanart: </a>"),
       new Newspost("10/3/17","Happy Best Month! I have sucessfully murdered the fuck out of regular sessions and replaced things with the new Quest system. I'm still tweaking shit, and there's probably a few features I've forgotten to take into account, but p much the main thing remaining is to get more and more custom themes in for Lands."),
       new Newspost("9/30/17","Dream quests no longer happen without a dream self, and the player is attired appropriately. Dream quest also have branches for 'dreaming without a dream self' and 'dreaming without a dream self and bubbles have turned on'. <br><br>In the mean time I did a few minor bug fixes and doom has a custom set of themes, now, too.<br><br>Also, turns out ghosts are no longer accidentally banned from helping players anymore. Whoops."),
       new Newspost("9/29/17","More themes added, list of all themes can be found <a href = 'themes.html'>here</a>. (Mostly for my own use though). "),
