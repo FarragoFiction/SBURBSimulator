@@ -327,6 +327,7 @@ class SessionMutator {
                 independantDreamSelf.aspect = a;
                 independantDreamSelf.chatHandle = "Dream${independantDreamSelf.chatHandle}";
                 independantDreamSelf.isDreamSelf = true;
+                independantDreamSelf.dreamSelf = false; //does not have a dream self
                 independantDreamSelf.session = s;
                 independantDreamSelf.id = independantDreamSelf.id + 3333;
                 independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it

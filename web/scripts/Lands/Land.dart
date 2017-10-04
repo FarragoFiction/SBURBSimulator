@@ -44,6 +44,31 @@ class Land {
     ConsortFeature consortFeature;
     DenizenFeature denizenFeature;
 
+    ///mid way though making this i realized i wouldn't need it. oh well.
+    Land clone() {
+        Land l = new Land();
+        l.corrupted = corrupted;
+        l.session = session;
+        l.smells = new WeightedList.from(smells);
+        l.sounds = new WeightedList.from(sounds);
+        l.feels = new WeightedList.from(feels);
+        l.features = new WeightedList.from(features);
+        l.firstQuests = new WeightedList.from(firstQuests);
+        l.secondQuests = new WeightedList.from(secondQuests);
+        l.thirdQuests = new WeightedList.from(thirdQuests);
+        l.firstCompleted = firstCompleted;
+        l.secondCompleted = secondCompleted;
+        l.thirdCompleted = thirdCompleted;
+        l.symbolicMcguffin = symbolicMcguffin;
+        l.physicalMcguffin = physicalMcguffin;
+        l.noMoreQuests = noMoreQuests;
+        l.name = name;
+        l.mainTheme = mainTheme;
+        l.secondaryTheme = secondaryTheme;
+        l.currentQuestChain = currentQuestChain;
+        return l;
+    }
+
     String initQuest(List<Player> players) {
         if(symbolicMcguffin == null) decideMcGuffins(players.first);
         if(noMoreQuests) return "";
@@ -63,10 +88,10 @@ class Land {
     }
 
     bool doQuest(Element div, Player p1, GameEntity p2) {
-        print("current quest chain is: ${currentQuestChain.name} and helper is: $p2");
+        //print("current quest chain is: ${currentQuestChain.name} and helper is: $p2");
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) {
-            session.logger.info("deciding what to do next.");
+           // session.logger.info("deciding what to do next.");
             decideHowToProcede(); //if i just finished the last quest, then i am done.
         }
         //print("ret is $ret from $currentQuestChain");
@@ -149,6 +174,9 @@ class Land {
         }
     }
 
+    Land() {
+
+    }
 
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.

@@ -43,7 +43,7 @@ class QuestsAndStuff extends Scene {
         //random players get to go first
         List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
         for(Player p in avail) {
-            if(session.isPlayerAvailable(p) && !p.dead && !p.landFuture.noMoreQuests){
+            if(session.isPlayerAvailable(p) && !p.dead && p.landFuture != null && !p.landFuture.noMoreQuests){
                 QuestingParty party = createQuestingParty(p);
                 if(party != null) landParties.add(party);
             }
