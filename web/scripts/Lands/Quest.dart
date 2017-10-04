@@ -26,7 +26,11 @@ class Quest {
 
     bool replaceTags(Element div, bool success, String ret,Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         ret = ret.replaceAll("$PLAYER1", "${p1.htmlTitleBasicNoTip()}");
-        ret = ret.replaceAll("$PLAYER2", "${p2.htmlTitleBasicNoTip()}");
+        if(p2 != null) {
+            ret = ret.replaceAll("$PLAYER2", "${p2.htmlTitleBasicNoTip()}");
+        }else {
+            ret = ret.replaceAll("$PLAYER2", "random fucking ${consort.name}");
+        }
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         ret = ret.replaceAll("$MCGUFFIN", "${mcguffin}");

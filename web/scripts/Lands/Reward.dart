@@ -25,6 +25,12 @@ class Reward {
         if(image != null ) Drawing.drawWhatever(buffer, image);
         if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
         Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
+        if(p2 != null && (p2 is Player)){
+            Element buffer2 = Drawing.getBufferCanvas(canvas);
+            Drawing.drawSinglePlayer(buffer2, p2);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, buffer2, 150,0);
+        }
+
     }
 }
 
@@ -104,7 +110,9 @@ class ImmortalityReward extends Reward {
     }
 }
 
-class PaleRomanceReward extends FraymotifReward {
+///technically you can start a two player quest chain with one player and end it with another.
+///or with no players at all. what matters is who you end it with, tho.
+class PaleRomanceReward extends Reward {
     //they both get same fraymotif.
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
@@ -124,7 +132,7 @@ class PaleRomanceReward extends FraymotifReward {
         if(p2 == null || !(p2 is Player)) {
             p1.session.logger.info("got stood up from a pale ship");
             f1 = p1.getNewFraymotif(null); //with other player
-            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1}} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
         }else if(p2 != null) {
             if(p2 is Player) {
                 p1.session.logger.info("Pale shipping reward");
@@ -134,6 +142,11 @@ class PaleRomanceReward extends FraymotifReward {
                 f2.name += romanticEnding;
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
                 text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+                if(p1 == p2) {
+                    text += " We are all a little uncomfortable about the whole self-cest thing. This is probably why you're supposed to be playing with other Players, dunkass, not making this an awkward one man ballet.";
+                }else {
+                    Relationship.makeDiamonds(p1, p2);
+                }
             }
         }
 
@@ -144,6 +157,102 @@ class PaleRomanceReward extends FraymotifReward {
     }
 }
 
+
+///technically you can start a two player quest chain with one player and end it with another.
+///or with no players at all. what matters is who you end it with, tho.
+class FlushedRomanceReward extends Reward {
+    //they both get same fraymotif.
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    String romanticEnding = " Flushed Serenade";
+    @override
+    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a passionate moment. It is obvious to everyone that they are now matesprits. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+    @override
+    String image = null;
+    String bgImage = "Matesprit.png";
+
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        Fraymotif f1;
+        Fraymotif f2;
+
+        if(p2 == null || !(p2 is Player)) {
+            p1.session.logger.info("got stood up from a flushed ship");
+            f1 = p1.getNewFraymotif(null); //with other player
+            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else if(p2 != null) {
+            if(p2 is Player) {
+                p1.session.logger.info("Flushed shipping reward");
+                f1 = p1.getNewFraymotif(p2); //with other player
+                f1.name += romanticEnding;
+                f2 = (p2 as Player).getNewFraymotif(p1);
+                f2.name += romanticEnding;
+                text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+                text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+                if(p1 == p2) {
+                    text += " We are all a little uncomfortable about the whole self-cest thing. This is probably why you're supposed to be playing with other Players, dunkass, not making this an awkward one man ballet.";
+                }else {
+                    Relationship.makeHeart(p1, p2);
+                }
+            }
+        }
+
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
+        //super increases power and renders self.
+        super.apply(div, p1, p2, land);
+    }
+}
+
+
+
+///technically you can start a two player quest chain with one player and end it with another.
+///or with no players at all. what matters is who you end it with, tho.
+class PitchRomanceReward extends Reward {
+    //they both get same fraymotif.
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    String romanticEnding = " Pitch Insult";
+    @override
+    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a combatative moment. It is obvious to everyone that they are now Kismesises. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+    @override
+    String image = null;
+    String bgImage = "Kismesis.png";
+
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        Fraymotif f1;
+        Fraymotif f2;
+
+        if(p2 == null || !(p2 is Player)) {
+            p1.session.logger.info("got stood up from a pitch ship");
+            f1 = p1.getNewFraymotif(null); //with other player
+            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else if(p2 != null) {
+            if(p2 is Player) {
+                p1.session.logger.info("Pitch shipping reward");
+                f1 = p1.getNewFraymotif(p2); //with other player
+                f1.name += romanticEnding;
+                f2 = (p2 as Player).getNewFraymotif(p1);
+                f2.name += romanticEnding;
+                text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+                text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+                if(p1 == p2) {
+                    text += " We are all a little uncomfortable about the whole self-cest thing. This is probably why you're supposed to be playing with other Players, dunkass, not making this an awkward one man ballet.";
+                }else {
+                    Relationship.makeDiamonds(p1, p2);
+                }
+            }
+        }
+
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
+        //super increases power and renders self.
+        super.apply(div, p1, p2, land);
+    }
+}
 
 
 ///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
@@ -169,7 +278,7 @@ class DreamReward extends Reward {
     }
 
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("prospit reward");
+        //p1.session.logger.info("prospit reward");
         bgImage = "Prospit.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
         p1.addStat(Stats.SANITY, -1); //just a bit.
@@ -183,7 +292,7 @@ class DreamReward extends Reward {
     }
 
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("derse reward");
+       // p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
         text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
         p1.corruptionLevelOther ++; //just a bit.

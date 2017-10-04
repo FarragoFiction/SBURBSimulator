@@ -30,7 +30,7 @@ class Culture extends InterestCategory {
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Catch the Thief", [
-                new Quest("The ${Quest.PLAYER1} visits a beautiful ${Quest.PHYSICALMCGUFFIN} Museum, only to discover that it's walls are practically bare! The ${Quest.CONSORT} curator is apologetic, and explains that each night a new piece goes missing. The ${Quest.PLAYER1} agrees to catch the thief, art is for everyone! "),
+                new Quest("The ${Quest.PLAYER1} visits a beautiful ${Quest.PHYSICALMCGUFFIN} Museum, only to discover that its walls are practically bare! The ${Quest.CONSORT} curator is apologetic, and explains that each night a new piece goes missing. The ${Quest.PLAYER1} agrees to catch the thief, art is for everyone! "),
                 new Quest(" The ${Quest.PLAYER1} has almost fallen asleep during their latest ${Quest.PHYSICALMCGUFFIN} Museum stakeout, when the thief arrives! It looks to be a ${Quest.DENIZEN} minion! After a brief scuffle, it is defeated. They drop various pieces of art along with the standard amount of grist. The museum is saved! "),
                 new Quest("The ${Quest.PLAYER1} attends a fancy gala in their honor, hosted in the ${Quest.PHYSICALMCGUFFIN} Museum itself.  ${Quest.CONSORT}s quietly ${Quest.CONSORTSOUND} and exchange pleasantries. It sure is nice to be recognized by high society!  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
