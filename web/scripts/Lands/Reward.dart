@@ -132,8 +132,9 @@ class PaleRomanceReward extends Reward {
         if(p2 == null || !(p2 is Player)) {
             p1.session.logger.info("got stood up from a pale ship");
             f1 = p1.getNewFraymotif(null); //with other player
-            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
-        }else if(p2 != null) {
+            bgImage = null;
+            text = " Huh. Well. I had this whole thing planned, but that second asshole flaked off and got replaced with that random consort. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else {
             if(p2 is Player) {
                 p1.session.logger.info("Pale shipping reward");
                 f1 = p1.getNewFraymotif(p2); //with other player
@@ -180,8 +181,9 @@ class FlushedRomanceReward extends Reward {
         if(p2 == null || !(p2 is Player)) {
             p1.session.logger.info("got stood up from a flushed ship");
             f1 = p1.getNewFraymotif(null); //with other player
-            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
-        }else if(p2 != null) {
+            bgImage = null;
+            text = " Huh. Well. I had this whole thing planned, but that second asshole flaked off  and got replaced with that random consort. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else{
             if(p2 is Player) {
                 p1.session.logger.info("Flushed shipping reward");
                 f1 = p1.getNewFraymotif(p2); //with other player
@@ -229,8 +231,9 @@ class PitchRomanceReward extends Reward {
         if(p2 == null || !(p2 is Player)) {
             p1.session.logger.info("got stood up from a pitch ship");
             f1 = p1.getNewFraymotif(null); //with other player
-            text = "Huh. Well. I had this whole thing planned, but that second asshole flaked off. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
-        }else if(p2 != null) {
+            bgImage = null;
+            text = " Huh. Well. I had this whole thing planned, but that second asshole flaked off  and got replaced with that random consort. Only ${Reward.PLAYER1} is still here.  I guess they can still have the fraymotif ${FRAYMOTIF1}, though.";
+        }else {
             if(p2 is Player) {
                 p1.session.logger.info("Pitch shipping reward");
                 f1 = p1.getNewFraymotif(p2); //with other player

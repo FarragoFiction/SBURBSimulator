@@ -255,7 +255,7 @@ class SBURBClass {
                 new Quest("The ${Quest.PLAYER1} learns that all of the local ${Quest.CONSORT}s have a severe shortage of gears and cogs. It is up to the ${Quest.PLAYER1} to get the assembly lines up and running again. "),
                 new Quest("The ${Quest.PLAYER1} notices that all of the ${Quest.CONSORT}s are stepping on each others toes while working in the factory, sometimes literally. They need to learn the meaning of Teamwork! "),
                 new Quest("The ${Quest.PLAYER1} grabs the ${Quest.PLAYER2} and demonstrates some simple teamwork techniques. The ${Quest.CONSORT}s begin ${Quest.CONSORTSOUND}ing in amazement. The factory is saved! "),
-            ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
+            ], new FraymotifReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
             , Theme.MEDIUM);
 
         addTheme(new Theme(<String>["Peace","Tranquility","Rest"])

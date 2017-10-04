@@ -82,7 +82,6 @@ class QuestChainFeature extends Feature {
     static bool twoPlayers(List<GameEntity> ps) {
         bool ret = ps.length > 1 && ps[1] != null && ps[1] is Player;
         ps[0].session.logger.info("checking for two players, ps is ${ps}, ret is $ret");
-
         return ret;
     }
 
