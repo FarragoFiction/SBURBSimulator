@@ -78,18 +78,18 @@ class Heart extends Aspect {
             ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
-            ..addFeature(new PreDenizenQuestChain("Ship All the Ships", [
+            ..addFeature(new DenizenQuestChain("Ship All the Ships", [
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
                 new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, but then realizes that because of some stupid ${Quest.MCGUFFIN} laws put in place by ${Quest.DENIZEN}, the ship will be unable to sail. The player flips their shit and begins preparing for the final battle. THE SHIP WILL SAIL. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
-            ..addFeature(new PreDenizenQuestChain("Flushed Shipping Dungeon", [
+            ..addFeature(new DenizenQuestChain("Flushed Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be getting along well. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new DenizenFightQuest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a heart symbol on the door. They ignore all common sense and venture inside. Chocolates and roses abound. There is a couch, and a romantic movie playing. Huh. Oh shit, what is ${Quest.DENIZEN} doing here!?","Slaying the ${Quest.DENIZEN} proves to be the thing that finally pushes the ${Quest.PLAYER1} and ${Quest.PLAYER2} together.","The ${Quest.PLAYER1} and ${Quest.PLAYER2} are stubbornly refusing this ship by getting their asses handed to them by the ${Denizen}.")
             ], new FlushedRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
 
-            ..addFeature(new PreDenizenQuestChain("Pitched Shipping Dungeon", [
+            ..addFeature(new DenizenQuestChain("Pitched Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be evenly matched rivals. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new DenizenFightQuest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a spades symbol on the door. They ignore all common sense and venture inside. Non lethal weapons and games abound. There is a couch, and a controversial movie playing. Huh. Oh shit, what is ${Quest.DENIZEN} doing here!? ","Competing to slay the ${Quest.DENIZEN} proves to be the thing that finally pushes the ${Quest.PLAYER1} and ${Quest.PLAYER2} together.","The ${Quest.PLAYER1} and ${Quest.PLAYER2} are stubbornly refusing this ship by getting their asses handed to them by the ${Denizen}.")
             ], new PitchRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
