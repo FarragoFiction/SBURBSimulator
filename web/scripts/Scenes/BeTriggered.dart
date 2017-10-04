@@ -16,7 +16,7 @@ class BeTriggered extends Scene{
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
 		for(Player p in session.getReadOnlyAvailablePlayers()){
-			print("flip out reason is ${p.flipOutReason}");
+			//print("flip out reason is ${p.flipOutReason}");
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//////session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);

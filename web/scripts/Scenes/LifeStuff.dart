@@ -273,7 +273,7 @@ class LifeStuff extends Scene {
             session.stats.hasGhostEvents = true;
             return canvas;
         } else {
-            session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+            //session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
             return null;
         }
     }
