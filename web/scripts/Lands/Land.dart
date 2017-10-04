@@ -63,11 +63,10 @@ class Land {
     }
 
     bool doQuest(Element div, Player p1, GameEntity p2) {
-        // the chain will handle rendering it, as well as calling it's reward so it can be rendered too.
-        if(currentQuestChain.finished) decideIfTimeForNextChain(<GameEntity>[p1,p2]); //need to mark appropriate bool as completed.
         print("current quest chain is: ${currentQuestChain.name} and helper is: $p2");
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) {
+            session.logger.info("deciding what to do next.");
             decideHowToProcede(); //if i just finished the last quest, then i am done.
         }
         //print("ret is $ret from $currentQuestChain");

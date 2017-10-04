@@ -100,7 +100,7 @@ class QuestsAndStuff extends Scene {
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
         GameEntity helper = questingParty.helper;
-        player.landFuture.initQuest([player]);
+        player.landFuture.initQuest([player, helper]);
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
             if(helper is Sprite) {
