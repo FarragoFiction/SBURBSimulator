@@ -133,6 +133,9 @@ class LifeStuff extends Scene {
         //appendHtml(div, "<br>"+this.content());
         for (num i = 0; i < this.enablingPlayerPairs.length; i++) {
             Player player = this.enablingPlayerPairs[i].player1;
+            Aspect enablingAspect = player.aspect;
+            //needed for commune ghost power
+            if(enablingAspect != Aspects.DOOM) enablingAspect = Aspects.LIFE;
 
             Player other_player = this.enablingPlayerPairs[i].player2; //could be null or a corpse.
             bool dreaming = this.enablingPlayerPairs[i].dream;
@@ -141,12 +144,12 @@ class LifeStuff extends Scene {
             if (player.dead && !dreaming) { //if you'e dreaming, you're not a dead life/doom heir/thief
                 //session.logger.info("player is dead and not dreaming");
                 if (player.class_name == SBURBClassManager.HEIR || player.class_name == SBURBClassManager.THIEF) {
-                    this.drainDeadForReviveSelf(div, "", player, player.class_name, player.aspect);
+                    this.drainDeadForReviveSelf(div, "", player, player.class_name, enablingAspect);
                 }
             } else if (!dreaming) {
                 //session.logger.info("dreaming is null");
                 if (player.class_name == SBURBClassManager.MAGE || player.class_name == SBURBClassManager.KNIGHT || player.class_name == SBURBClassManager.SAGE || player.class_name == SBURBClassManager.SCOUT) {
-                    this.communeDead(div, "", player, player.class_name, player.aspect);
+                    this.communeDead(div, "", player, player.class_name, enablingAspect);
                 } else if ((player.class_name == SBURBClassManager.SEER || player.class_name == SBURBClassManager.SCRIBE|| player.class_name == SBURBClassManager.PAGE) && other_player != null && !other_player.dead) {
                     this.helpPlayerCommuneDead(div, player, other_player);
                 } else if (player.class_name == SBURBClassManager.PRINCE) {
@@ -231,6 +234,7 @@ class LifeStuff extends Scene {
 
     dynamic communeDead(Element div, String str, Player player, SBURBClass playerClass, Aspect enablingAspect) {
         //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
+        print("$player is communing with dead.");
         Player ghost = this.session.afterLife.findGuardianSpirit(player);
         String ghostName = "";
         if (ghost != null && player.getPactWithGhost(ghost) == null && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {
@@ -269,7 +273,7 @@ class LifeStuff extends Scene {
             session.stats.hasGhostEvents = true;
             return canvas;
         } else {
-            ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
+            session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
             return null;
         }
     }
@@ -355,7 +359,7 @@ class LifeStuff extends Scene {
             player.ghostPacts.add(new GhostPact(ghost, enablingAspect)); //help with a later fight.
             ////session.logger.info("Knight or Page promise of ghost attack: " + this.session.session_id);
             return " The ${player.htmlTitleBasic()} gains a promise of aid from the $ghostName. ";
-        } else if (playerClass == SBURBClassManager.SEER || playerClass == SBURBClassManager.MAGE) {
+        } else  {
             player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
             String effect = "";
             if (player.aspect == ghost.aspect && !ghost.fraymotifs.isEmpty && player.id != ghost.id) { //don't just relearn your own fraymotifs.
@@ -373,7 +377,6 @@ class LifeStuff extends Scene {
             player.level_index += 1;
             return effect;
         }
-        return null;
     }
 
     void helpPlayerCommuneDead(Element div, Player player1, Player player2) {
@@ -385,6 +388,8 @@ class LifeStuff extends Scene {
             text = "$text${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} guides the ${player2.htmlTitleBasic()} to seek knowledge from the dead. ";
         } else if (player1.class_name == SBURBClassManager.PAGE) {
             text = "$text${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} guides the ${player2.htmlTitleBasic()} to seek aid from the dead. ";
+        }else {
+            text = "$text${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} guides the ${player2.htmlTitleBasic()} to seek knowledge from the dead. ";
         }
         CanvasElement canvas = this.communeDead(childDiv, text, player2, player1.class_name, player1.aspect);
         if (canvas != null) {
