@@ -40,7 +40,7 @@ class AmbianceFeature extends Feature {
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is getting tired of how $specific it feels.", 0.5);
         possibilities.add("It's a little unsettling how $specific it feels. ");
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is unnerved with how $specific it feels here.");
-        p.flipOutReason = "how tired they are of how $specific everything is. ";
+        p.flipOutReason = "how tired they are of how $specific everything is ";
         p.addStat(Stats.SANITY, -10);
         return rand.pickFrom(possibilities);
     }

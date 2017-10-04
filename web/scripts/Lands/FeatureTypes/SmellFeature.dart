@@ -46,7 +46,7 @@ class SmellFeature extends Feature {
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is almost gagging on the smell of $specific that permeates the air. ");
         possibilities.add("The smell of $specific is so thick you can almost taste it. ");
         possibilities.add("The smell of $specific is nearly unbearable. ");
-        p.flipOutReason = "how terrible the smell of $specific is. ";
+        p.flipOutReason = "how terrible the smell of $specific is ";
         p.addStat(Stats.SANITY, -10);
         return rand.pickFrom(possibilities);
     }

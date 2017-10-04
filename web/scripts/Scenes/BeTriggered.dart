@@ -16,6 +16,7 @@ class BeTriggered extends Scene{
 		this.playerList = playerList;
 		this.triggeredPlayers = [];
 		for(Player p in session.getReadOnlyAvailablePlayers()){
+			print("flip out reason is ${p.flipOutReason}");
 			if(this.IsPlayerTriggered(p) && rand.nextDouble() >.75){ //don't all flip out/find out at once. if i find something ELSE to flip out before i can flip out about this, well, oh well. SBURB is a bitch. 75 is what it should be when i'm done testing.
 				//////session.logger.info("shit flipping: " + p.flipOutReason + " in session " + this.session.session_id);
 				this.triggeredPlayers.add(p);
@@ -39,15 +40,15 @@ class BeTriggered extends Scene{
 				player.flippingOutOverDeadPlayer = null;
 				return false;
 			}
-			if(player.flipOutReason == "being haunted by their own ghost") ////session.logger.info("flipping otu over own ghost" + this.session.session_id.toString());
+			//if(player.flipOutReason == "being haunted by their own ghost") ////session.logger.info("flipping otu over own ghost" + this.session.session_id.toString());
 			//"being haunted by the ghost of the Player they killed"
-				if(player.flipOutReason == "being haunted by the ghost of the Player they killed") ////session.logger.info("flipping otu over victim ghost" + this.session.session_id.toString());
+				//if(player.flipOutReason == "being haunted by the ghost of the Player they killed") ////session.logger.info("flipping otu over victim ghost" + this.session.session_id.toString());
 			///okay. player.flippingOutOverDeadPlayer apparently can be null even if i totally and completely am flipping otu over a dead player. why.
 			//////session.logger.info("preparing to flip my shit. and its about " + player.flipOutReason + " which BETTEr fucking not be about a dead player. " + player.flippingOutOverDeadPlayer);
 			return true; //i am flipping out over not a dead player, thank you very much.
 
 		}
-		if(-1 * player.getStat(Stats.SANITY) > rand.nextDouble() * 100 ){
+		if(-1 * player.getStat(Stats.SANITY) > rand.nextDouble() * 100 && (player.flipOutReason == null || player.flipOutReason.isEmpty)){
 			player.flipOutReason = "how they seem to be going shithive maggots for no goddamned reason";
 			return true;
 		}

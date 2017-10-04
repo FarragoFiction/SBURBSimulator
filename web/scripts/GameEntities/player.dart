@@ -561,6 +561,7 @@ class Player extends GameEntity {
         if(sprite != null) ret += "Sprite: ${sprite.name}";
         if(sprite != null && sprite.dead) ret += " (dead)";
         ret += "<br><Br>Prophecy Status: ${prophecy}";
+        ret += "<br><br>Flipping out over: ${flipOutReason}";
 
         ret += "</td>";
         Iterable<Stat> as = Stats.summarise;

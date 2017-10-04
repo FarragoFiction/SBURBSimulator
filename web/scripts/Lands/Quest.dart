@@ -72,6 +72,7 @@ class DenizenFightQuest extends Quest {
         bool success = pTeam.won;
         //print("I won: $success");
         String ret = failureText;
+        p1.flipOutReason = "how terrifying ${denizen.name} was. ";
         if(success) ret = text;
         replaceTags(div, success, ret, p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         return success;
@@ -95,6 +96,7 @@ class FailableQuest extends Quest {
         if(roll < odds) {
             return replaceTags(div, true, text, p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         }else {
+            p1.flipOutReason = "failing a quest ";
             return replaceTags(div, false, failureText, p1,p2,  denizen,  consort,  mcguffin,  physicalMcguffin);
         }
     }

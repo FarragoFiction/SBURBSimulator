@@ -48,7 +48,7 @@ class SoundFeature extends Feature {
         possibilities.add("Oh god. Where is that  $specific coming from?");
         possibilities.add("The ${p.htmlTitleBasicNoTip()} is on the verge of snapping from all that fucking $specific.",0.5);
         possibilities.add("You can ALMOST ignore all the $specific that fills the air.");
-        p.flipOutReason = "how terrible the sound of $specific is. ";
+        p.flipOutReason = "how terrible the sound of $specific is ";
         p.addStat(Stats.SANITY, -10);
         return rand.pickFrom(possibilities);
     }
