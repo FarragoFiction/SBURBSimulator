@@ -84,6 +84,7 @@ class Heart extends Aspect {
             ,  Theme.HIGH);
         addTheme(new Theme(<String>["Dolls", "Voodoo", "Doppelgangers", "Copies", "Puppets","Selfies","Mirrors","Poppets","Mirrors", "Crystals","Shards"])
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.FOOTSTEPSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.MEDIUM)

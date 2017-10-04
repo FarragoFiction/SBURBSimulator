@@ -28,11 +28,11 @@ void main() {
 
 void cycleAuthorPics() {
   String root = "images/misc/fanArt/OctoberMas/";
-  List<String> possibleAvatars = ["7Shanks.png","authorDoom.png","authorCal2.png","authorCal.png","authorHussie.png","authorHussieSpace.png","authorRyan.png","authorTrollsona.png"];
-  possibleAvatars.addAll(["robot_author.png","whimsicalParadox.png", "pumpkin.png", "trickster_author_transparent.png","AlliumPomoea.png"]);
+  List<String> possibleAvatars = ["author_wq.png","authorDoom.png","authorCal2.png","authorCal.png","authorHussie.png","authorHussieSpace.png","authorRyan.png","authorTrollsona.png"];
+  possibleAvatars.addAll(["robot_author.png", "pumpkin.png", "trickster_author_transparent.png","AlliumPomoea.png"]);
   (querySelector("#jrAvatar") as ImageElement).src = "$root${new Random().pickFrom(possibleAvatars)}";
   //jrAvatar(querySelector("#avatar")).style.float = "left";
-  new Timer(new Duration(milliseconds: 3000), () => cycleAuthorPics()); //sweet sweet async
+  new Timer(new Duration(milliseconds: 2000), () => cycleAuthorPics()); //sweet sweet async
 }
 
 

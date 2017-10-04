@@ -56,7 +56,7 @@ class Domestic extends InterestCategory {
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.WAY_HIGH)
             ..addFeature(new PreDenizenQuestChain("Weave the Cloth", [
                 new Quest("The ${Quest.PLAYER1} finds a loom, and a Wizened ${Quest.CONSORT} who spins them a tale of a magical thread that, when woven into a shawl, confers great mystical power.  The ${Quest.PLAYER1} is enchanted by the thought of this. "),
                 new Quest("The ${Quest.PLAYER1} searches the land high and low. What thread could possibly be worthy of such a legend? Finally, deep in a dungeon, they find a single skein of ${Quest.PHYSICALMCGUFFIN} colored thread. Is this finally it?  "),

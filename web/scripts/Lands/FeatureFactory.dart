@@ -26,6 +26,7 @@ class FeatureFactory {
     static ConsortFeature ALLIGATORCONSORT;
     static ConsortFeature NEWTCONSORT;
     static ConsortFeature SPIDERCONSORT;
+    static ConsortFeature DRAGONCONSORT;
     static ConsortFeature SKELETONCONSORT;
     static ConsortFeature ROBOTCONSORT;
     static CarapaceFeature PROSPITIANCARAPACE;
@@ -79,6 +80,7 @@ class FeatureFactory {
     static SoundFeature WHISTLINGGSOUND;
     static SoundFeature CROAKINGSOUND;
     static SoundFeature PULSINGSOUND;
+    static SoundFeature FOOTSTEPSOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -106,6 +108,7 @@ class FeatureFactory {
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
         SPIDERCONSORT = new ConsortFeature("Spider", "skitter");
         CUPIDCONSORT = new ConsortFeature("Cupid", "flappa");
+        DRAGONCONSORT = new ConsortFeature("Dragon", "roar");
         PROSPITIANCARAPACE = new CarapaceFeature("Prospitian", "murmur");
         DERSECARAPACE = new CarapaceFeature("Dersite", "mutter");
     }
@@ -150,6 +153,7 @@ class FeatureFactory {
         LAUGHINGSOUND = new SoundFeature("lauging");
         RUSTLINGSOUND = new SoundFeature("rustling", Feature.GOOD);
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
+        FOOTSTEPSOUND = new SoundFeature("foot steps",Feature.BAD);
         BEEPINGSOUND = new SoundFeature("beeping",Feature.BAD);
         WHISPERSOUND = new SoundFeature("whispering",Feature.BAD);
         CLACKINGSOUND = new SoundFeature("clacking");
