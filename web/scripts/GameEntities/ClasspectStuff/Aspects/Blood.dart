@@ -91,7 +91,7 @@ class Blood extends Aspect {
             ..addFeature(new PreDenizenQuestChain("Pale Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be a good complement. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new DenizenFightQuest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a diamond symbol on the door. They ignore all common sense and venture inside. Ice cream and hankies abound. There is a couch, and a sad movie playing. Huh. Oh shit, what is ${Quest.DENIZEN} doing here!?","Slaying the ${Quest.DENIZEN} proves to be the thing that finally pushes the ${Quest.PLAYER1} and ${Quest.PLAYER2} together.","The ${Quest.PLAYER1} and ${Quest.PLAYER2} are stubbornly refusing this ship by getting their asses handed to them by the ${Denizen}.")
-            ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.LOW)
+            ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.HIGH)
             , Theme.HIGH);
 
         addTheme(new Theme(<String>["Bloodlines","Generations","Family", "Community"])
@@ -103,7 +103,7 @@ class Blood extends Aspect {
                 new Quest("The ${Quest.PLAYER1} tries to track down the origin of the feud that leaves their land on the verge of a civil war. Nobody can point to any REASON for it to be happening. "),
                 new Quest("In a dramatic reveal, the ${Quest.PLAYER1} discovers that ${Quest.DENIZEN} is responsible for the feud. The two ${Quest.CONSORT} families never wronged each other, it's a huge misunderstanding. But how can they prove this to the feuding families? "),
                 new DenizenFightQuest("The ${Quest.PLAYER1} confronts ${Quest.DENIZEN}. The beast smuggly admits to its crimes, and claims that the proof needed lies within its hoarde. Will the ${Quest.PLAYER1} be able to claim it?", "The ${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} shows the proof to the two ${Quest.CONSORT} families, who reconcile in a dramatic shower of happy tears and ${Quest.CONSORTSOUND}ing. ","The deception of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             , Theme.HIGH); // end theme
     }
 

@@ -35,24 +35,24 @@ class Romantic extends InterestCategory {
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Ship All the Ships", [
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
-                new Quest("The ${Quest.PLAYER1}extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
+                new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, and it's not even banned by the ${Quest.DENIZEN}'s stupid rules. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PreDenizenQuestChain("Flushed Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be getting along well. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a heart symbol on the door. They ignore all common sense and venture inside. Chocolates and roses abound. There is a couch, and a romantic movie playing. Huh. ")
-            ], new FlushedRomanceReward(), QuestChainFeature.twoPlayers), Feature.MEDIUM)
+            ], new FlushedRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
 
             ..addFeature(new PreDenizenQuestChain("Pale Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be a good complement to each other. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a diamond symbol on the door. They ignore all common sense and venture inside. Ice cream and hankies abound. There is a couch, and a sad movie playing. Huh. ")
-            ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.MEDIUM)
+            ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
 
             ..addFeature(new PreDenizenQuestChain("Pitched Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be evenly matched rivals. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} have come across a strange dungeon with a spades symbol on the door. They ignore all common sense and venture inside. Non lethal weapons and games abound. There is a couch, and a controversial movie playing. Huh. ")
-            ], new PitchRomanceReward(), QuestChainFeature.twoPlayers), Feature.MEDIUM)
+            ], new PitchRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
 
             ,  Theme.LOW);
     }

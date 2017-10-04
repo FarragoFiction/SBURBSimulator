@@ -1833,6 +1833,7 @@ class Player extends GameEntity {
                  return helper;
              }else{
                 helper = null; //clear the helper out or knights of space are gonna be op as fuck. they were storing that if there were no sorted choices.
+                 return null;
              }
          }
         //time players often partner up with themselves

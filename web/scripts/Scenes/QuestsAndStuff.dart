@@ -78,7 +78,7 @@ class QuestsAndStuff extends Scene {
         if(player.class_name == SBURBClassManager.PAGE && helper == null) return null;
         if(player.grimDark >=3 || (helper != null && (helper as Player).grimDark >=3)) return null;
         //it's okay if helper is null.
-        if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
+        //if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
 
         if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .75) {
             helper = player.sprite;
