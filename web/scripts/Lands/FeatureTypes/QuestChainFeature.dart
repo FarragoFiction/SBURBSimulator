@@ -83,6 +83,7 @@ class QuestChainFeature extends Feature {
         return ps[1] != null && ps[1] is Player;
     }
 
+
     //useful for denizen choices, etc.
     static bool playerIsADick(List<GameEntity> ps) {
         Player p = ps.first as Player;
