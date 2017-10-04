@@ -14,6 +14,11 @@ window.onload = function() {
 		renderFanArtGrimAB();
 	}
 
+	if (getParameterByName("octobermas")  == "true"){
+    		$("#header").html("Octobermas");
+    		octobermas();
+    	}
+
 	if (getParameterByName("firstPlayer")  == "true"){
     		$("#header").html("First Player Post Great Refactoring Gallery");
     		renderFirstPlayerFanArt();
@@ -45,6 +50,11 @@ window.onload = function() {
 function renderFirstPlayerFanArt(){
 //var folder = "images/misc/fanArt/ABFanArt/"
 	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/FirstPlayer/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
+}
+
+function octobermas(){
+	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/OctoberMas/";
 	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
 
 }
