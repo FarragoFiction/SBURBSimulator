@@ -297,7 +297,7 @@ class DreamReward extends Reward {
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
        // p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
-        text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
+        text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
@@ -311,7 +311,7 @@ class DreamReward extends Reward {
     void applyBubbles(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("bubble reward");
         bgImage = "dreambubbles.png";
-        text = "The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
+        text = " The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
         p1.addStat(Stats.SANITY, 2); //just a bit better.
         super.apply(div, p1, p2, land);
 
@@ -320,7 +320,7 @@ class DreamReward extends Reward {
     void applyHorrorTerrors(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("terror reward");
         bgImage = "horrorterror.png";
-        text = "The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
+        text = " The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
         p1.corruptionLevelOther += 2; //just a bit.
         p1.addStat(Stats.SANITY, -2); //just a bit.
         super.apply(div, p1, p2, land);
