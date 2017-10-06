@@ -127,6 +127,23 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
         return list;
     }
 
+    factory WeightedList.fromMap(Map<T, double> mapping, {bool growable = true, WeightFunction<T> initialWeightSetter}) {
+        WeightedList<T> list;
+        if (growable == true) {
+            list = new WeightedList<T>(initialWeightSetter: initialWeightSetter)..length = mapping.length;
+        } else {
+            list = new WeightedList<T>(length: mapping.length, initialWeightSetter: initialWeightSetter);
+        }
+
+        int i=0;
+        for (T value in mapping.keys) {
+            list.setPair(i, new WeightPair<T>(value, mapping[value]));
+            i++;
+        }
+
+        return list;
+    }
+
     @override
     T get(double position) {
         double totalWeight = getTotalWeight();
