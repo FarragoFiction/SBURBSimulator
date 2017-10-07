@@ -14,76 +14,82 @@ import "../../scripts/Rendering/3d/three.dart" as THREE;
 void main() {
     Element stuff = querySelector("#stuff");
 
-    new Timer(new Duration(seconds: 1),()
+    /*new Timer(new Duration(seconds: 1),()
     {
         //print("event stuff:");
         //print(querySelector("#testpicker")); //.onChange);
 
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
-    });
+    });*/
 
-    new Future<bool>(() async {
-        // preload to be fair
-        await Loader.getResource("images/guide_bot.png");
-        await Renderer.loadThree();
+    //testDrawing();
 
-        int dim = 5;
-        int space = 10;
 
-        {
-            DateTime then = new DateTime.now();
+}
 
-            CanvasElement testcanvas = new CanvasElement(width: 640, height: 480);
-            CanvasRenderingContext2D ctx = testcanvas.context2D;
+Future<bool> testDrawing() async {
+    Element stuff = querySelector("#stuff");
 
-            for (int x = 0; x < dim; x++) {
-                for (int y = 0; y < dim; y++) {
-                    ctx.drawImage(await Loader.getResource("images/guide_bot.png"), space * x, space * y);
-                }
+    // preload to be fair
+    await Loader.getResource("images/guide_bot.png");
+    await Renderer.loadThree();
+
+    int dim = 5;
+    int space = 10;
+
+    {
+        DateTime then = new DateTime.now();
+
+        CanvasElement testcanvas = new CanvasElement(width: 640, height: 480);
+        CanvasRenderingContext2D ctx = testcanvas.context2D;
+
+        for (int x = 0; x < dim; x++) {
+            for (int y = 0; y < dim; y++) {
+                ctx.drawImage(await Loader.getResource("images/guide_bot.png"), space * x, space * y);
             }
-
-            stuff.append(testcanvas);
-
-            DateTime now = new DateTime.now();
-            int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
-
-            print("2d: ${mis / 1000}ms");
         }
 
-        {
-            DateTime then = new DateTime.now();
+        stuff.append(testcanvas);
 
-            RenderJob job = await RenderJob.create(640, 480);
+        DateTime now = new DateTime.now();
+        int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
 
-            ImageElement img = await Loader.getResource("images/guide_bot.png");
-            THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)
-                ..magFilter = THREE.NearestFilter
-                ..minFilter = THREE.NearestFilter
-                ..needsUpdate = true))
-                ..transparent = true);
-            image.position
-                ..x = img.width / 2
-                ..y = img.height / 2;
-            image.rotation.x = Math.PI;
+        print("2d: ${mis / 1000}ms");
+    }
 
-            for (int x = 0; x < dim; x++) {
-                for (int y = 0; y < dim; y++) {
-                    //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
-                    job.scene.add(image.clone(false)
-                        ..position.x += space * x..position.y += space * y);
-                }
+    {
+        DateTime then = new DateTime.now();
+
+        RenderJob job = await RenderJob.create(640, 480);
+
+        ImageElement img = await Loader.getResource("images/guide_bot.png");
+        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)
+            ..magFilter = THREE.NearestFilter
+            ..minFilter = THREE.NearestFilter
+            ..needsUpdate = true))
+            ..transparent = true);
+        image.position
+            ..x = img.width / 2
+            ..y = img.height / 2;
+        image.rotation.x = Math.PI;
+
+        for (int x = 0; x < dim; x++) {
+            for (int y = 0; y < dim; y++) {
+                //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
+                job.scene.add(image.clone(false)
+                    ..position.x += space * x..position.y += space * y);
             }
-
-            stuff.append(job.dispatch());
-
-            DateTime now = new DateTime.now();
-            int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
-
-            print("3d: ${mis / 1000}ms");
         }
 
-        return true;
-    });
+        stuff.append(job.dispatch());
+
+        DateTime now = new DateTime.now();
+        int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
+
+        print("3d: ${mis / 1000}ms");
+    }
+
+    return true;
 }
 
 void checkLABRanges() {
