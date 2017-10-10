@@ -1,3 +1,12 @@
+export "FeatureTypes/AmbianceFeature.dart";
+export "FeatureTypes/ConsortFeature.dart";
+export "FeatureTypes/CorruptionFeature.dart";
+export "FeatureTypes/DescriptiveFeature.dart";
+export "FeatureTypes/EnemyFeature.dart";
+export "FeatureTypes/QuestChainFeature.dart";
+export "FeatureTypes/SmellFeature.dart";
+export "FeatureTypes/SoundFeature.dart";
+
 class Feature {
     static double WAY_HIGH = 1300.0;
     static double HIGH = 3.0;
