@@ -33,7 +33,7 @@ class Fantasy extends InterestCategory {
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Save the Beautiful Consort", [
                 new Quest("The ${Quest.PLAYER1} learns of a Beautiful ${Quest.CONSORT} who has been kidnapped by the vial ${Quest.DENIZEN} Minion. There is a hefty reward should a brave Hero rescue them. "),
-                new Quest(" The ${Quest.PLAYER1} journeys to the castle of the ${Quest.CONSORT} Minion, only to discover that they way is barred by a giant iron lock. Only the correctly shaped ${Quest.PHYSICALMCGUFFIN} can open it. Looks like it's time to go questing."),
+                new Quest(" The ${Quest.PLAYER1} journeys to the castle of the ${Quest.DENIZEN} Minion, only to discover that they way is barred by a giant iron lock. Only the correctly shaped ${Quest.PHYSICALMCGUFFIN} can open it. Looks like it's time to go questing."),
                 new Quest("The ${Quest.PLAYER1} finally finds a correctly shaped.  ${Quest.PHYSICALMCGUFFIN}.  The gate swings open, and the ${Quest.DENIZEN} Minion is swiftly defeated. The Beautiful ${Quest.CONSORT} delivers a reward to the brave ${Quest.PLAYER1}. Convenient that they had it with them when they were kidnapped, huh?   "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
@@ -47,7 +47,7 @@ class Fantasy extends InterestCategory {
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Do not Drink...Wine.", [
-                new Quest("The ${Quest.PLAYER1} recieves an inventation to dine at the remote castle of Count Feratu. No one ever sees this mysterious ${Quest.CONSORT} leave, and no one can remember the last time he received guests."),
+                new Quest("The ${Quest.PLAYER1} recieves an invitation to dine at the remote castle of Count Feratu. No one ever sees this mysterious ${Quest.CONSORT} leave, and no one can remember the last time he received guests."),
                 new Quest("The ${Quest.PLAYER1} attends the dinner. Count Feratu is an.... eccentric ${Quest.CONSORT}. He sure does like drinking dark red liquids! And being in dimly lit rooms. And telling you to ignore the blatant screams coming from the dungeon. Luckily it all turns out to be a wacky misunderstanding. Really, VAMPIRES are fakey fake bullshit."),
                 new Quest(" The ${Quest.PLAYER1} sees Castle Feratu in the distance. The silhouette of a ${Quest.CONSORT} standing on a balcony suddenly morphs into a bat and flies away. Holy shit, maybe he really WAS a vampire!? But...he doesn't seem to be hurting anyone, so...live and let live, you guess. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
