@@ -6,6 +6,7 @@ import "FeatureTypes/CorruptionFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "../random.dart";
 import "Feature.dart";
+import "FeatureHolder.dart";
 import "../SBURBSim.dart";
 import "FeatureTypes/EnemyFeature.dart";
 /// just has a bunch of static references for features, created in a static initalizer
@@ -32,6 +33,8 @@ class FeatureFactory {
     static ConsortFeature ROBOTCONSORT;
     static CarapaceFeature PROSPITIANCARAPACE;
     static CarapaceFeature DERSECARAPACE;
+
+    static Iterable<ConsortFeature> RANDOM_CONSORTS;
 
     /////////////////////SMELLS////////////////////////
     static SmellFeature SPICYSMELL;
@@ -116,6 +119,8 @@ class FeatureFactory {
         DRAGONCONSORT = new ConsortFeature("Dragon", "roar");
         PROSPITIANCARAPACE = new CarapaceFeature("Prospitian", "murmur");
         DERSECARAPACE = new CarapaceFeature("Dersite", "mutter");
+
+        RANDOM_CONSORTS = <ConsortFeature>[SNAKECONSORT, ALLIGATORCONSORT, NEWTCONSORT, SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT, CHAMELEONCONSORT, AXOLOTLCONSORT, LIZARDCONSORT];
     }
 
     static void iniatlizeSmells() {
@@ -181,4 +186,69 @@ class FeatureFactory {
     static ConsortFeature getRandomConsortFeature(Random rand) {
         return rand.pickFrom(<ConsortFeature>[SNAKECONSORT, ALLIGATORCONSORT, NEWTCONSORT, SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT, CHAMELEONCONSORT, AXOLOTLCONSORT, LIZARDCONSORT]);
     }
+}
+
+abstract class FeatureCategories {
+    static FeatureTypeSubset<SmellFeature> SMELL = new FeatureTypeSubset<SmellFeature>("smell", _addIfEmpty(FeatureFactory.NOTHINGSMELL));
+    static FeatureTypeSubset<SoundFeature> SOUND = new FeatureTypeSubset<SoundFeature>("sound", _addIfEmpty(FeatureFactory.SILENCE));
+    static FeatureTypeSubset<AmbianceFeature> AMBIANCE = new FeatureTypeSubset<AmbianceFeature>("ambiance", _addIfEmpty(FeatureFactory.NOTHINGFEELING));
+    static FeatureTypeSubset<CorruptionFeature> CORRUPTION = new FeatureTypeSubset<CorruptionFeature>("corruption");
+    static FeatureTypeSubset<ConsortFeature> CONSORT = new FeatureTypeSubset<ConsortFeature>("consort", _multi(<FeatureAdjustment>[_addRandomIfEmpty(FeatureFactory.RANDOM_CONSORTS), _onlyOne]));
+    static FeatureTypeSubset<DenizenFeature> DENIZEN = new FeatureTypeSubset<DenizenFeature>("denizen");
+    static FeatureTypeSubset<QuestChainFeature> QUEST_CHAIN = new FeatureTypeSubset<QuestChainFeature>("quest chain");
+    static FeatureTypeSubset<PreDenizenQuestChain> PRE_DENIZEN_QUEST_CHAIN = new FeatureTypeSubset<PreDenizenQuestChain>("pre denizen quest chain");
+    static FeatureTypeSubset<DenizenQuestChain> DENIZEN_QUEST_CHAIN = new FeatureTypeSubset<DenizenQuestChain>("denizen quest chain");
+    static FeatureTypeSubset<PostDenizenQuestChain> POST_DENIZEN_QUEST_CHAIN = new FeatureTypeSubset<PostDenizenQuestChain>("post denizen quest chain");
+
+    static FeatureTypeSubset<MoonQuestChainFeature> MOON_QUEST_CHAIN = new FeatureTypeSubset<MoonQuestChainFeature>("moon quest chain");
+
+    // ################## utility methods - these keep things shorter
+
+    static FeatureAdjustment _multi(Iterable<FeatureAdjustment> adjustments) {
+        return (FeatureHolder holder, WeightedIterable<Feature> category, GameEntity owner, Session session, Random rand){
+            for (FeatureAdjustment adjustment in adjustments) {
+                adjustment(holder, category, owner, session, rand);
+            }
+        };
+    }
+
+    static FeatureAdjustment _addIfEmpty(Feature feature, [double weight = 1.0]) {
+        return (FeatureHolder holder, WeightedIterable<Feature> category, GameEntity owner, Session session, Random rand){
+            if (category.isEmpty) {
+                holder.features.add(feature, weight);
+            }
+        };
+    }
+
+    static FeatureAdjustment _addRandomIfEmpty(Iterable<Feature> features, [double weight = 1.0]) {
+        return (FeatureHolder holder, WeightedIterable<Feature> category, GameEntity owner, Session session, Random rand){
+            if (category.isEmpty) {
+                holder.features.add(rand.pickFrom(features), weight);
+            }
+        };
+    }
+
+    static void _onlyOne(FeatureHolder holder, WeightedIterable<Feature> category, GameEntity owner, Session session, Random rand){
+        holder.reduceSubsetToRandomEntry(category, rand);
+    }
+}
+
+abstract class FeatureTemplates {
+    static FeatureTemplate QUALIA = new FeatureTemplate()
+        ..addFeatureSet(FeatureCategories.SMELL)
+        ..addFeatureSet(FeatureCategories.SOUND)
+        ..addFeatureSet(FeatureCategories.AMBIANCE)
+        ..addFeatureSet(FeatureCategories.CORRUPTION);
+
+    static FeatureTemplate LAND = new FeatureTemplate.from(QUALIA)
+        ..addFeatureSet(FeatureCategories.CONSORT)
+        ..addFeatureSet(FeatureCategories.DENIZEN)
+        ..addFeatureSet(FeatureCategories.QUEST_CHAIN)
+        ..addFeatureSet(FeatureCategories.PRE_DENIZEN_QUEST_CHAIN)
+        ..addFeatureSet(FeatureCategories.DENIZEN_QUEST_CHAIN)
+        ..addFeatureSet(FeatureCategories.POST_DENIZEN_QUEST_CHAIN);
+
+    static FeatureTemplate MOON = new FeatureTemplate.from(QUALIA)
+        ..addFeatureSet(FeatureCategories.MOON_QUEST_CHAIN)
+        ..addFeatureSet(FeatureCategories.CONSORT);
 }

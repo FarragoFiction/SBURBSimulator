@@ -33,7 +33,7 @@ class QuestChainFeature extends Feature {
 
     @override
     String toString() {
-        return "${super.toString()}: ${this.name}";
+        return "$runtimeType: $name";
     }
 
     QuestChainFeature clone() {

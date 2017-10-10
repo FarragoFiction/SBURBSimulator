@@ -35,7 +35,7 @@ class Quest {
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         ret = ret.replaceAll("$MCGUFFIN", "${mcguffin}");
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${physicalMcguffin}");
-        ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
+        if (denizen != null) { ret = ret.replaceAll("$DENIZEN", "${denizen.name}"); }
 
         appendHtml(div, ret);
         return success;

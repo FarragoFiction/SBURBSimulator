@@ -1,4 +1,5 @@
 import "../SBURBSim.dart";
+import "FeatureHolder.dart";
 import "FeatureTypes/ConsortFeature.dart";
 import "FeatureTypes/EnemyFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
@@ -8,23 +9,23 @@ import "FeatureTypes/CorruptionFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "dart:html";
 ///A land is build from features.
-class Land {
-    Session session;
+class Land extends Object with FeatureHolder {
+    //Session session; // inherited from FeatureHolder
     //TODO implement this.
     bool corrupted = false;
     //can be more than one thing, will pick one or two things at random by weight
-    WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>();
-    WeightedList<SoundFeature> sounds = new WeightedList<SoundFeature>();
-    WeightedList<AmbianceFeature> feels = new WeightedList<AmbianceFeature>();
+    WeightedIterable<SmellFeature> smells;
+    WeightedIterable<SoundFeature> sounds;
+    WeightedIterable<AmbianceFeature> feels;
 
-    WeightedList<Feature> features = new WeightedList<Feature>();
+    //WeightedList<Feature> features = new WeightedList<Feature>(); // inherited from FeatureHolder
 
     QuestChainFeature currentQuestChain;
     //IMPORTANT i expect any quest chain that has the default trigger to be weighted very low, and everything else equal. TODO take care of this when creating land
-    WeightedList<PreDenizenQuestChain> firstQuests = new WeightedList<PreDenizenQuestChain>();
-    WeightedList<DenizenQuestChain> secondQuests = new WeightedList<DenizenQuestChain>();
-    WeightedList<PostDenizenQuestChain> thirdQuests = new WeightedList<PostDenizenQuestChain>();
-    Map<QuestChainFeature, double> allQuestChains = new Map<QuestChainFeature, double>();
+    WeightedIterable<PreDenizenQuestChain> firstQuests;
+    WeightedIterable<DenizenQuestChain> secondQuests;
+    WeightedIterable<PostDenizenQuestChain> thirdQuests;
+    WeightedIterable<QuestChainFeature> allQuestChains;
 
     bool firstCompleted = false;
     bool secondCompleted = false;
@@ -41,21 +42,19 @@ class Land {
     //TODO  keep current questChain in a var. if there is none, go to PreDenizenChains and pick one.
     //if there is a stored questChain, see if it's beaten. if it is, pick chain from next set.  if it's not, do a quest from it.
 
-    ConsortFeature consortFeature;
+    ConsortFeature get consortFeature => featureSets["consort"].first;
     DenizenFeature denizenFeature;
+
+    @override
+    FeatureTemplate featureTemplate = FeatureTemplates.LAND;
 
     ///mid way though making this i realized i wouldn't need it. oh well.
     Land clone() {
         Land l = new Land();
         l.corrupted = corrupted;
         l.session = session;
-        l.smells = new WeightedList.from(smells);
-        l.sounds = new WeightedList.from(sounds);
-        l.feels = new WeightedList.from(feels);
-        l.features = new WeightedList.from(features);
-        l.firstQuests = new WeightedList.from(firstQuests);
-        l.secondQuests = new WeightedList.from(secondQuests);
-        l.thirdQuests = new WeightedList.from(thirdQuests);
+        l.features = new WeightedList<Feature>.from(features);
+        l.setFeatureSubLists();
         l.firstCompleted = firstCompleted;
         l.secondCompleted = secondCompleted;
         l.thirdCompleted = thirdCompleted;
@@ -141,7 +140,7 @@ class Land {
     // select a random quest from source. it HAS to be triggered, though.
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
-    QuestChainFeature selectQuestChainFromSource(List<GameEntity> players, WeightedList<QuestChainFeature> source) {
+    QuestChainFeature selectQuestChainFromSource(List<GameEntity> players, WeightedIterable<QuestChainFeature> source) {
         //print("Selecting a quest from $source");
         if(source.isEmpty) {
             currentQuestChain = null;
@@ -150,10 +149,9 @@ class Land {
         //Step one, check all for condition. if your condition is met , you make it to round 2.
        // WeightedList<QuestChainFeature> valid = (source.where((QuestChainFeature c) => c.condition(p1)).toList() as WeightedList);
         WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
-        for(QuestChainFeature q in source) {
-            WeightPair<QuestChainFeature> p = source.getPair(source.indexOf(q));
+        for(WeightPair<QuestChainFeature> p in source.pairs) {
             //TODO make work for multiple players post DEAD Sessions
-            if(q.condition(players)) valid.add(q,  p.weight);
+            if(p.item.condition(players)) valid.addPair(p);
         }
         return session.rand.pickFrom(valid);
     }
@@ -181,117 +179,43 @@ class Land {
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     ///pass in an aspect so i can make denizens.
-    Land.fromWeightedThemes(Map<Theme, double> themes, this.session, Aspect a){
+    Land.fromWeightedThemes(Map<Theme, double> themes, Session session, Aspect a){
+        this.session = session;
        // print("making a land for session $session");
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
-        //IMPORTANT: when you are storing to these, make the weight already modified by the themes random modifier.
-        //random modifiers are so interests arne't just flat out ignored 100% of the time.
+
         pickName(themes);
-        Map<Feature, double> corruptionFeatures = new Map<Feature, double>();
-        Map<Feature, double> smellsFeatures = new Map<Feature, double>();
-        Map<Feature, double> soundsFeatures = new Map<Feature, double>();
-        Map<Feature, double> feelsFeatures = new Map<Feature, double>();
-        Map<Feature, double> consortFeatures = new Map<Feature, double>();
-        Map<Feature, double> preDenFeatures = new Map<Feature, double>();
-        Map<Feature, double> denFeatures = new Map<Feature, double>();
-        Map<Feature, double> postDenFeatures = new Map<Feature, double>();
-        Map<Feature, double> denizenFeatures = new Map<Feature, double>();
-        //Instead, all you're doing here is collating them.  it's up to future JR to make sure quest chains from class are all post denizen and etc if that's a thing future JR cares about.
-        for(Theme t in themes.keys) {
-            //print("Theme is $t");
-            double weight = themes[t] + session.rand.nextInt(Theme.MEDIUM.toInt()); //play around with max value of rand num
-            //print("Weight for theme $t is $weight");
-            for(Feature f in t.features.keys) {
-                double w = weight * t.features[f];
-                //print("weight for feature $f is $w");
-                if(f is SmellFeature) {
-                    if(smellsFeatures[f] == null) {
-                        smellsFeatures[f] = w;
-                    }else {
-                        smellsFeatures[f] += w;
-                    }
-                }else if(f is SoundFeature){
-                    if(soundsFeatures[f] == null) {
-                        soundsFeatures[f] = w;
-                    }else {
-                        soundsFeatures[f] += w;
-                    }
-                }else if(f is AmbianceFeature){
-                    if(feelsFeatures[f] == null) {
-                        feelsFeatures[f] = w;
-                    }else {
-                        feelsFeatures[f] += w;
-                    }
-                }else if(f is CorruptionFeature){
-                    if(corruptionFeatures[f] == null) {
-                        corruptionFeatures[f] = w;
-                    }else {
-                        corruptionFeatures[f] += w;
-                    }
-                }else if(f is ConsortFeature){
-                    if(consortFeatures[f] == null) {
-                        consortFeatures[f] = w;
-                    }else {
-                        consortFeatures[f] += w;
-                    }
-                }else if(f is PostDenizenQuestChain){
-                    if(postDenFeatures[f] == null) {
-                        postDenFeatures[f] = w;
-                    }else {
-                        postDenFeatures[f] += w;
-                    }
-                }else if(f is DenizenQuestChain){
-                    if(consortFeatures[f] == null) {
-                        denFeatures[f] = w;
-                    }else {
-                        denFeatures[f] += w;
-                    }
-                }else if(f is PreDenizenQuestChain){
-                    if(preDenFeatures[f] == null) {
-                        preDenFeatures[f] = w;
-                    }else {
-                        preDenFeatures[f] += w;
-                    }
-                }else if(f is DenizenFeature){
-                    if(denizenFeatures[f] == null) {
-                        denizenFeatures[f] = w;
-                    }else {
-                        denizenFeatures[f] += w;
-                    }
-                }
 
-                //need for custom processing
-                if(f is QuestChainFeature) {
-                    if(allQuestChains[f] == null) {
-                        allQuestChains[f] = w;
-                    }else {
-                        allQuestChains[f] += w;
-                    }
-                }
-            }
-        }//done for loop omg.
-        processSmells(smellsFeatures);
-        processSounds(soundsFeatures);
-        processConsorts(session, consortFeatures);
-        processCorruption(corruptionFeatures);
-        processFeels(feelsFeatures);
-        //TODO add a generic GrimDark quest chain for each level with high weight.
+        this.setThemes(themes);
+        this.processThemes(session.rand);
+        this.setFeatureSubLists();
 
-        processPreDenizenQuests(preDenFeatures);
-        processDenizenQuests(denFeatures);
-        processPostDenizenQuests(postDenFeatures);
-        processDenizenFeatures(denizenFeatures,a);
-        //print("Should have gotten predenizen quests");
+        this.processDenizen(a);
+        this.processCorruption();
     }
 
-    void processDenizenFeatures( Map<Feature, double> features, Aspect a) {
-        WeightedList<DenizenFeature> choices = new WeightedList<DenizenFeature>();
-        for(DenizenFeature f in features.keys) {
-            choices.add(f, features[f]);
+    void setFeatures(WeightedList<Feature> list) {
+        this.features = list;
+        this.setFeatureSubLists();
+    }
+
+    void setFeatureSubLists() {
+        this.smells = this.getTypedSubList(FeatureCategories.SMELL);
+        this.sounds = this.getTypedSubList(FeatureCategories.SOUND);
+        this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
+
+        this.firstQuests = this.getTypedSubList(FeatureCategories.PRE_DENIZEN_QUEST_CHAIN);
+        this.secondQuests = this.getTypedSubList(FeatureCategories.DENIZEN_QUEST_CHAIN);
+        this.thirdQuests = this.getTypedSubList(FeatureCategories.POST_DENIZEN_QUEST_CHAIN);
+        this.allQuestChains = this.getTypedSubList(FeatureCategories.QUEST_CHAIN);
+    }
+
+    void processDenizen(Aspect a) {
+        Iterable<Feature> choices = this.featureSets[FeatureCategories.DENIZEN.name];
+        if (choices == null) { return; }
+        if (!choices.isEmpty) {
+            this.denizenFeature = (session.rand.pickFrom(this.featureSets["denizen"]) as DenizenFeature);
         }
-        denizenFeature = session.rand.pickFrom(choices);
-        //print("Denizen feature is $denizenFeature");
-        //pick random one from aspect.
         if(denizenFeature == null) {
             //print("picking random denizen feature");
             denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
@@ -299,63 +223,13 @@ class Land {
             denizenFeature.name = "Denizen ${session.rand.pickFrom(a.denizenNames)}";
         }
     }
-    //IMPORTANT clone things here or lands using the same themes will step on each other's toes in terms of quest progression.
-    void processPreDenizenQuests( Map<Feature, double> features) {
-        for(PreDenizenQuestChain f in features.keys) {
-            //print("pre denizen feature: $f with weight ${features[f]}");
-            firstQuests.add(f.clone(), features[f]);
-        }
-    }
 
-    void processDenizenQuests( Map<Feature, double> features) {
-        for(DenizenQuestChain f in features.keys) {
-            secondQuests.add(f.clone(), features[f]);
-        }
-    }
-
-    void processPostDenizenQuests( Map<Feature, double> features) {
-        for(PostDenizenQuestChain f in features.keys) {
-            thirdQuests.add(f.clone(), features[f]);
-        }
-    }
-
-
-    //smells are weighted but only pick the strongest ones
-    void processSmells( Map<Feature, double> features) {
-        if(features.keys.isEmpty) features[FeatureFactory.NOTHINGSMELL] = 1.0;
-
-        for(SmellFeature f in features.keys) {
-            smells.add(f, features[f]);
-        }
-    }
-
-    //TODO reject if weight too low.
-    void processSounds( Map<Feature, double> features) {
-        if(features.keys.isEmpty) features[FeatureFactory.SILENCE] = 1.0;
-
-        for(SoundFeature f in features.keys) {
-            sounds.add(f, features[f]);
-        }
-    }
-
-    void processCorruption( Map<Feature, double> features) {
-        if(features.keys.isNotEmpty) corrupted = true; //can not escape
-    }
-
-    void processConsorts(Session s,  Map<Feature, double> features) {
-        if(features.keys.isEmpty) features[FeatureFactory.getRandomConsortFeature(s.rand)] = 1.0;
-        WeightedList<ConsortFeature> consorts = new WeightedList<ConsortFeature>();
-        for(ConsortFeature f in features.keys) {
-            consorts.add(f, features[f]);
-        }
-        consortFeature = s.rand.pickFrom(consorts);
-    }
-
-    void processFeels(Map<Feature, double> features) {
-        if(features.keys.isEmpty) features[FeatureFactory.NOTHINGFEELING] = 1.0;
-
-        for(AmbianceFeature f in features.keys) {
-            feels.add(f, features[f]);
+    void processCorruption() {
+        Iterable<Feature> c = this.featureSets["corruption"];
+        if (c != null) {
+            this.corrupted = !c.isEmpty;
+        } else {
+            this.corrupted = false;
         }
     }
 
