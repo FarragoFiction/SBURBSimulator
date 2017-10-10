@@ -31,6 +31,10 @@ class ConsortFeature extends Feature {
         return rand.pickFrom(possibilities);
     }
 
+    @override
+    String toString() {
+        return "$runtimeType: $name";
+    }
 }
 
 class CarapaceFeature extends ConsortFeature {

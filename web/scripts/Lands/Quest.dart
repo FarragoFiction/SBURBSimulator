@@ -40,6 +40,7 @@ class Quest {
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${pmc}");
         ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
 
+
         appendHtml(div, ret);
         return success;
     }

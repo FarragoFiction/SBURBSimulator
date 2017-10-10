@@ -1,4 +1,5 @@
 import "../SBURBSim.dart";
+import "FeatureHolder.dart";
 import "Land.dart";
 import "dart:html";
 
@@ -17,11 +18,22 @@ import "FeatureTypes/QuestChainFeature.dart";
 class Moon extends Land {
     WeightedList<MoonQuestChainFeature> moonQuestChains = new WeightedList<MoonQuestChainFeature>();
 
-  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a) : super.fromWeightedThemes(themes, session, a){
-      Map<MoonQuestChainFeature, double> moonFeatures = new Map<MoonQuestChainFeature, double>();
+    @override
+    FeatureTemplate featureTemplate = FeatureTemplates.MOON;
+
+  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a) {
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
-      processMoonShit(allQuestChains);
+      this.session = session;
+
+      this.setThemes(themes);
+      this.processThemes(session.rand);
+
+      this.smells = this.getTypedSubList(FeatureCategories.SMELL);
+      this.sounds = this.getTypedSubList(FeatureCategories.SOUND);
+      this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
+
+      this.moonQuestChains = this.getTypedSubList(FeatureCategories.MOON_QUEST_CHAIN).toList();
   }
 
   @override

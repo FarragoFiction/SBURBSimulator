@@ -71,7 +71,6 @@ abstract class WeightedIterable<T> implements Iterable<T> {
 
 class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
 
-
     List<WeightPair<T>> _list;
 
     WeightedList({int length, WeightFunction<T> initialWeightSetter}) {
@@ -361,6 +360,10 @@ class WeightedTakeWhileIterable<T> extends WrappedWeightedIterable<T> {
 
 class WeightedMappedIterable<T, U> extends WrappedWeightedIterable<U> {
     WeightedMappedIterable(WeightedIterable<T> source, Mapping<T, U> mapping) :super(source.pairs.map((WeightPair<T> pair) => new WeightPair<U>(mapping(pair.item), pair.weight)));
+}
+
+class SubTypeWeightedIterable<T extends U, U> extends WrappedWeightedIterable<T> {
+    SubTypeWeightedIterable(Iterable<WeightPair<U>> source) : super(source.where((WeightPair<U> pair) => pair.item is T).map((WeightPair<U> pair) => new WeightPair<T>(pair.item, pair.weight)));
 }
 
 

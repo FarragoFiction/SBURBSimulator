@@ -27,4 +27,8 @@ class Feature {
         return quality == 0;
     }
 
+    @override
+    String toString() {
+        return "$runtimeType: $simpleDesc";
+    }
 }

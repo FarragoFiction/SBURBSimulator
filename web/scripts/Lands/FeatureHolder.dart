@@ -1,10 +1,11 @@
+import "../SBURBSim.dart";
 import "../includes/predicates.dart";
-import "../random.dart";
-import "../weighted_lists.dart";
 import "Feature.dart";
 import "Theme.dart";
 
 class FeatureHolder {
+    GameEntity owner;
+    Session session;
     FeatureTemplate featureTemplate;
 
     WeightedList<Theme> themes = new WeightedList<Theme>();
@@ -38,30 +39,63 @@ class FeatureHolder {
             WeightedIterable<Feature> setList = features.where(set.filter);
             this.featureSets[featureType] = setList;
 
-            set.adjustment(setList, rand);
+            if (set.adjustment != null) {
+                set.adjustment(this, setList, this.owner, this.session, rand);
+            }
         }
 
         this.features.collateWeights();
+
+        this.cullUnusedFeatures();
+    }
+
+    void reduceSubsetToRandomEntry(WeightedIterable<Feature> subset, Random rand) {
+        Set<Feature> toRemove = new Set<Feature>();
+        Feature picked = rand.pickFrom(subset);
+        for (Feature f in subset) {
+            if (f != picked) {
+                toRemove.add(f);
+            }
+        }
+        features.removeWhere(toRemove.contains);
+    }
+
+    void cullUnusedFeatures() {
+        Set<Feature> used = new Set<Feature>();
+        for (Iterable<Feature> subset in this.featureSets.values) {
+            used.addAll(subset);
+        }
+        features.retainWhere(used.contains);
+    }
+
+    WeightedIterable<T> getTypedSubList<T extends Feature>(FeatureSubset subset) {
+        return new SubTypeWeightedIterable<T, Feature>(this.featureSets[subset.name].pairs);
     }
 }
 
 class FeatureTemplate {
     final Map<String, FeatureSubset> subsets = <String, FeatureSubset>{};
 
-    void addFeatureSet(String name, FeatureSubset subset) {
-        subsets[name] = subset;
+    FeatureTemplate();
+    FeatureTemplate.from(FeatureTemplate other) {
+        this.subsets.addAll(other.subsets);
+    }
+
+    void addFeatureSet(FeatureSubset subset) {
+        subsets[subset.name] = subset;
     }
 }
 
-typedef void FeatureAdjustment(WeightedIterable<Feature> features, Random rand);
+typedef void FeatureAdjustment(FeatureHolder holder, WeightedIterable<Feature> features, GameEntity owner, Session session, Random rand);
 
 class FeatureSubset {
+    final String name;
     final Predicate<Feature> filter;
     final FeatureAdjustment adjustment;
 
-    FeatureSubset(Predicate<Feature> this.filter, [FeatureAdjustment this.adjustment = null]);
+    FeatureSubset(String this.name, Predicate<Feature> this.filter, [FeatureAdjustment this.adjustment = null]);
 }
 
 class FeatureTypeSubset<T extends Feature> extends FeatureSubset {
-    FeatureTypeSubset([FeatureAdjustment adjustment]) : super((Feature f) => f is T, adjustment);
+    FeatureTypeSubset(String name, [FeatureAdjustment adjustment]) : super(name, (Feature f) => f is T, adjustment);
 }
