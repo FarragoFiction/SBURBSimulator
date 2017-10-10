@@ -1,6 +1,8 @@
 import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
-
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Thief extends SBURBClass {
     @override
@@ -76,5 +78,24 @@ class Thief extends SBURBClass {
         target.modifyAssociatedStat((-1 * powerBoost), stat);
         p.modifyAssociatedStat(powerBoost, stat);
     }
+
+
+    @override
+    void initializeThemes() {
+        addTheme(new Theme(<String>["Police","Law","Jails", "Slammers", "Officers","Cops","Prisons", "Detectives","Crime"])
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
+            ..addFeature(new PostDenizenQuestChain("Escape the Law", [
+                new Quest("The ${Quest.PLAYER1} is just minding their own business, when they see a huge stack of boonies. Unable to resist, they pilfer just a bit. A nearby ${Quest.CONSORTSOUND} sounds the alarm, shit, the ${Quest.PLAYER1} didn't know anybody was looking!  They flee with as many boonies as they can carry."),
+                new Quest("The ${Quest.PLAYER1} is keeping a low profile. Shit's still too hot to spend their ill gotten boonies, but it'll be worth it, they just know it."),
+                new Quest("Fuck, the ${Quest.PLAYER1} has been spotted. They lead the police ${Quest.CONSORT}s on a wild chase that ends with the ${Quest.PLAYER1} faking their own death and assuming a new identity. They can FINALLY spend those boonies. "),
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+
+    }
+
 
 }
