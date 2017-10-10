@@ -22,10 +22,10 @@ class Land extends Object with FeatureHolder {
 
     QuestChainFeature currentQuestChain;
     //IMPORTANT i expect any quest chain that has the default trigger to be weighted very low, and everything else equal. TODO take care of this when creating land
-    WeightedIterable<PreDenizenQuestChain> firstQuests;
-    WeightedIterable<DenizenQuestChain> secondQuests;
-    WeightedIterable<PostDenizenQuestChain> thirdQuests;
-    WeightedIterable<QuestChainFeature> allQuestChains;
+    WeightedList<PreDenizenQuestChain> firstQuests;
+    WeightedList<DenizenQuestChain> secondQuests;
+    WeightedList<PostDenizenQuestChain> thirdQuests;
+    WeightedList<QuestChainFeature> allQuestChains;
 
     bool firstCompleted = false;
     bool secondCompleted = false;
@@ -162,13 +162,15 @@ class Land extends Object with FeatureHolder {
             themeList.add(t, themes[t]);
         }
         Theme main = session.rand.pickFrom(themeList);
+        this.mainTheme = main;
         themeList.remove(main);
         Theme secondary = session.rand.pickFrom(themeList);
         if(secondary != null) {
             name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(secondary.possibleNames)}";
-
+            this.secondaryTheme = secondary;
         }else {
             name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(main.possibleNames)}";
+            this.secondaryTheme = main;
         }
     }
 
@@ -204,10 +206,10 @@ class Land extends Object with FeatureHolder {
         this.sounds = this.getTypedSubList(FeatureCategories.SOUND);
         this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
 
-        this.firstQuests = this.getTypedSubList(FeatureCategories.PRE_DENIZEN_QUEST_CHAIN);
-        this.secondQuests = this.getTypedSubList(FeatureCategories.DENIZEN_QUEST_CHAIN);
-        this.thirdQuests = this.getTypedSubList(FeatureCategories.POST_DENIZEN_QUEST_CHAIN);
-        this.allQuestChains = this.getTypedSubList(FeatureCategories.QUEST_CHAIN);
+        this.firstQuests = this.getTypedSubList<PreDenizenQuestChain>(FeatureCategories.PRE_DENIZEN_QUEST_CHAIN).map((PreDenizenQuestChain f) => f.clone()).toList();
+        this.secondQuests = this.getTypedSubList<DenizenQuestChain>(FeatureCategories.DENIZEN_QUEST_CHAIN).map((DenizenQuestChain f) => f.clone()).toList();
+        this.thirdQuests = this.getTypedSubList<PostDenizenQuestChain>(FeatureCategories.POST_DENIZEN_QUEST_CHAIN).map((PostDenizenQuestChain f) => f.clone()).toList();
+        this.allQuestChains = this.getTypedSubList<QuestChainFeature>(FeatureCategories.QUEST_CHAIN).map((QuestChainFeature f) => f.clone()).toList();
     }
 
     void processDenizen(Aspect a) {

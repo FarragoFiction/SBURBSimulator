@@ -1,5 +1,6 @@
 import "dart:html";
 import "../../SBURBSim.dart";
+import "../../Lands/FeatureTypes/DescriptiveFeature.dart";
 
 /// // a scene where the chosen meta player fucks with the single player
 
@@ -54,8 +55,8 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(NBMiddle());
         } else if(meta == session.mutator.metaHandler.recusiveSlacker ) {
             conversation = session.rand.pickFrom(RSMiddle());
-        //}else if(meta == session.mutator.metaHandler.paradoxLands ) {
-        //    conversation = DeadTextPL.INSTANCE.middle();
+        }else if(meta == session.mutator.metaHandler.paradoxLands ) {
+            conversation = DeadTextPL.INSTANCE.middle();
         }else {
             conversation = session.rand.pickFrom(GenericMiddle());
         }
@@ -506,6 +507,7 @@ class DeadTextPL {
     static DeadTextPL INSTANCE;
 
     DeadSession session;
+    Random rand;
 
     Conversation placeholder = new Conversation(<PlusMinusConversationalPair>[
         new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
@@ -522,6 +524,7 @@ class DeadTextPL {
     DeadTextPL(Session session) {
         if (session is DeadSession) {
             this.session = session;
+            this.rand = session.rand.spawn();
         } else {
             throw "Invalid session";
         }
@@ -658,7 +661,7 @@ class DeadTextPL {
                     "Shit.",
                     "...",
                 ])
-            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 1.0)
             // ---------------------------------
             ..add(placeholder, 0.1)
         ;
@@ -696,9 +699,32 @@ class DeadTextPL {
         String landnamefull = land.name;
         String landname = land.name.substring(7);
 
+
+        WeightedList<Feature> themeFeatures = new WeightedList<Feature>();
+        themeFeatures..addAllMap(land.mainTheme.features)..addAllMap(land.secondaryTheme.features)..collateWeights();
+        themeFeatures = themeFeatures.where((Feature f) => f is DescriptiveFeature).toList();
+        WeightedList<Feature> landFeatures = land.features.where((Feature f) => f is DescriptiveFeature).toList();
+
+        Feature feature1 = rand.pickFrom(landFeatures);
+        Feature feature2 = rand.pickFrom(landFeatures.where((Feature f) => f != feature1));
+
+        Feature rightGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains));
+        Feature wrongGuess = rand.pickFrom(themeFeatures.where((Feature f) => !landFeatures.contains(f)));
+
+        print(themeFeatures);
+        print(landFeatures);
+
+        print(themeFeatures.where(landFeatures.contains).toList());
+
+        print("1: $feature1, 2: $feature2, right: $rightGuess, wrong: $wrongGuess");
+
         return text
             .replaceAll("LANDNAMEFULL", landnamefull)
             .replaceAll("LANDNAME", landname)
+            .replaceAll("FEATURE1", feature1.toString())
+            .replaceAll("FEATURE2", feature2.toString())
+            .replaceAll("RIGHTGUESS", rightGuess.toString())
+            .replaceAll("WRONGGUESS", wrongGuess.toString())
         ;
     }
 }

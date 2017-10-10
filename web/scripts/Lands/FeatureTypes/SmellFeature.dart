@@ -1,8 +1,8 @@
-import "../Feature.dart";
+import "DescriptiveFeature.dart";
 import "../../SBURBSim.dart";
 
 
-class SmellFeature extends Feature {
+class SmellFeature extends DescriptiveFeature {
     ///flavor text, "the smell of $smellsLike permeates the air"
 
 

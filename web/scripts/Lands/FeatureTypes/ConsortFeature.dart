@@ -1,10 +1,10 @@
-import "../Feature.dart";
+import "DescriptiveFeature.dart";
 import "../../GameEntities/NPCS.dart";
 import "../../SessionEngine/session.dart";
 import "../../SBURBSim.dart";
 
 
-class ConsortFeature extends Feature {
+class ConsortFeature extends DescriptiveFeature {
     /// what are these consorts called?
     String name;
     ///what sound do these consorts make?

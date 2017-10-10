@@ -1,6 +1,6 @@
-import "../Feature.dart";
+import "DescriptiveFeature.dart";
 import "../../SBURBSim.dart";
-class AmbianceFeature extends Feature {
+class AmbianceFeature extends DescriptiveFeature {
     ///flavor text, "you don't get it, my land feels really $feelsLike"  creepy, unsettling, vs peaceful, calm,
 
     AmbianceFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
