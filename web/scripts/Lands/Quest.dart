@@ -33,8 +33,11 @@ class Quest {
         }
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
-        ret = ret.replaceAll("$MCGUFFIN", "${mcguffin}");
-        ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${physicalMcguffin}");
+        //first letter upper case
+        String mc = "${mcguffin[0].toUpperCase()}${mcguffin.substring(1)}";
+        String pmc = "${physicalMcguffin[0].toUpperCase()}${physicalMcguffin.substring(1)}";
+        ret = ret.replaceAll("$MCGUFFIN", "${mc}");
+        ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${pmc}");
         ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
 
         appendHtml(div, ret);
