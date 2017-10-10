@@ -28,6 +28,7 @@ class FeatureFactory {
     static ConsortFeature SPIDERCONSORT;
     static ConsortFeature DRAGONCONSORT;
     static ConsortFeature SKELETONCONSORT;
+    static ConsortFeature BIRDCONSORT;
     static ConsortFeature ROBOTCONSORT;
     static CarapaceFeature PROSPITIANCARAPACE;
     static CarapaceFeature DERSECARAPACE;
@@ -71,8 +72,10 @@ class FeatureFactory {
     static SoundFeature BEEPINGSOUND;
     static SoundFeature JAZZSOUND;
     static SoundFeature ROARINGSOUND;
+    static SoundFeature DRUMSOUND;
     static SoundFeature DISCOSOUND;
     static SoundFeature MUSICSOUND;
+    static SoundFeature SINGINGSOUND;
     static SoundFeature WHISPERSOUND;
     static SoundFeature CLACKINGSOUND;
     static SoundFeature CLAPPINGSOUND;
@@ -106,6 +109,7 @@ class FeatureFactory {
         LIZARDCONSORT = new ConsortFeature("Lizard", "bleb");
         SNAKECONSORT = new ConsortFeature("Snake", "hiss");
         ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
+        BIRDCONSORT = new ConsortFeature("Bird", "tweet");
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
         SPIDERCONSORT = new ConsortFeature("Spider", "skitter");
         CUPIDCONSORT = new ConsortFeature("Cupid", "flappa");
@@ -162,8 +166,10 @@ class FeatureFactory {
         CLAPPINGSOUND = new SoundFeature("applause");
         JAZZSOUND = new SoundFeature("jazz");
         DISCOSOUND = new SoundFeature("disco");
+        DRUMSOUND = new SoundFeature("drums");
         ROARINGSOUND = new SoundFeature("roaring", Feature.BAD);
         MUSICSOUND = new SoundFeature("music");
+        SINGINGSOUND = new SoundFeature("singing");
         WHISTLINGGSOUND = new SoundFeature("whistling");
         NATURESOUND = new SoundFeature("nature", Feature.GOOD);
         CROAKINGSOUND = new SoundFeature("croaking");

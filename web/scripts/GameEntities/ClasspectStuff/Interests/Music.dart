@@ -26,21 +26,26 @@ class Music extends InterestCategory {
     @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Pianos","Music","Harmony", "Rain", "Songs", "Violins", "Harps","Strings", "Notes", "Violas", "Guitars"])
-            ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.LOW)
-            ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.WAY_HIGH)
+            ..addFeature(FeatureFactory.DISCOSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.JAZZSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.BIRDCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Play the Music", [
-                new Quest("The ${Quest.PLAYER1} finds an elaborate courtroom full of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently the prosecuting attorney flaked out and they need someone to fill the role. The ${Quest.PLAYER1} agrees to see that justice is served. "),
-                new Quest("The ${Quest.PLAYER1} is tasked to prosecute a local ${Quest.CONSORT} accused of stealing food for her family. After much elaborate debate and arguments, the ${Quest.PLAYER1} secures the guilty verdict while also convincing the judge to pursue the minimum sentence. Everyone is relieved that justice is done while not harshly punishing a near innocent.     "),
-                new Quest(" The ${Quest.PLAYER1} presides over the case of the treacherous Senator ${Quest.CONSORT}snout. He is accused of embezzling ${Quest.PHYSICALMCGUFFIN}s from the Imperial Coffers. The ${Quest.PLAYER1} easily finds Senator ${Quest.CONSORT}snout to be guilty and sentences them to life in prison. This is EASILY the case of their career and it is with a regretful heart they step aside as Prosecuter. They simply can never top this one.")
+                new Quest("The ${Quest.PLAYER1} meets a wise old ${Quest.CONSORT} who tells that the ${Quest.DENIZEN} can only be awoken by the Legendary Hero playing the ${Quest.MCGUFFIN}. Huh. Do you think that's gonna be a thing?"),
+                new Quest("The ${Quest.PLAYER1} learns of a series of ${Quest.PHYSICALMCGUFFIN}s that prevent the ${Quest.MCGUFFIN} from being played. Hrmmmm...how are they gonna clear this up?   "),
+                new Quest(" The ${Quest.PLAYER1} has finally fixed the ${Quest.PHYSICALMCGUFFIN}. They play the ${Quest.MCGUFFIN} and are dramatically revealed as the Legendary Hero. We are all blown away by this startling revelation. The ${Quest.PLAYER1} was the Hero all along? Wow.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 
         addTheme(new Theme(<String>["Hymns","Choirs","Chorus", "Voices", "A Capella","Chants"])
-            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SINGINGSOUND, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.BIRDCONSORT, Feature.WAY_HIGH)
             ..addFeature(new PreDenizenQuestChain("Sing the Song", [
                 new Quest("A frantic underling run past the  ${Quest.PLAYER1}. In hot pursuit, a ${Quest.CONSORT} yells 'Stop that thief' in betwen ${Quest.CONSORTSOUND}s. Without thinking, the ${Quest.PLAYER1} grabs the underling. The ${Quest.CONSORT} is impressed, and offers the ${Quest.PLAYER1} a job as a deputy police officer. "),
                 new Quest("The ${Quest.PLAYER1} is doing their rounds as a deputy police officer. So far, everything is peaceful."),
@@ -50,8 +55,9 @@ class Music extends InterestCategory {
 
         //the sock ruse was a distaction
         addTheme(new Theme(<String>["Beat","Rhythm","Flow", "Raps", "Rhyme", "Grove", "Funk"])
-            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
-            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DRUMSOUND, Feature.WAY_HIGH)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("And It Don't Stop", [
                 new Quest("The ${Quest.PLAYER1} finds a crowd of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. They are holding signs with slogans like 'This isn't Fair' and 'Don't be Jerks'. Apparently they have a problem with the upper class ${Quest.CONSORT}s in charge. The ${Quest.PLAYER1} is moved by their plight and agrees to try to help."),
                 new Quest("The ${Quest.PLAYER1} meets with the upper class ${Quest.CONSORT}s to try to negotiate a peaceful revolution. Unfortunately, the ${Quest.CONSORT}s refuse to listen to reason, and even call their guards to attack the ${Quest.PLAYER1}. After easily defeating the guards, the ${Quest.PLAYER1} declares war. You cannot stop the fires of Revolution!  "),
