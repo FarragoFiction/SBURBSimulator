@@ -26,6 +26,34 @@ class Romantic extends InterestCategory {
     @override
     void initializeThemes() {
 
+        addTheme(new Theme(<String>["Tea","Candles","Roses", "Chocolate", "Valentines", "Candlelight", "Gifts"])
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SPICYSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.BAKEDBREADSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.LOW)
+            ..addFeature(new PreDenizenQuestChain("Premiere the Movie", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+        addTheme(new Theme(<String>["Romance","RomComs","Meet Cutes", "True Love", "Serendipity", "Dates"])
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.LOW)
+            ..addFeature(new PreDenizenQuestChain("Premiere the Movie", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
         addTheme(new Theme(<String>["Shipping","Ports","Ships", "Docks", "Sails", "Matchmaking", "Cupids", "Fleets"])
             ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
