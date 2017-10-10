@@ -59,7 +59,7 @@ class Music extends InterestCategory {
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("And It Don't Stop", [
-                new Quest("The ${Quest.PLAYER1} is suddenly challenged to a rap off by a particularly fresh ${Quest.CONSORT}. It's a close one, but the ${Quest.PLAYER1} emerges victorious. It helps that the fresh ${Quest.CONSORT} kept rhyming ${Quest.CONSORTSOUND} with ${Quest.CONSORTSOUND}."),
+                new Quest("The ${Quest.PLAYER1} is suddenly challenged to a rap off by a particularly Fresh ${Quest.CONSORT}. It's a close one, but the ${Quest.PLAYER1} emerges victorious. It helps that the Fresh ${Quest.CONSORT} kept rhyming ${Quest.CONSORTSOUND} with ${Quest.CONSORTSOUND}."),
                 new Quest("The ${Quest.PLAYER1} has apparently gotten a reputation as a rap master. A series of ${Quest.CONSORT}s challenge them to rap offs and get utterly destroyed by the ${Quest.PLAYER1}'s fresh flows. "),
                 new Quest("The final challenger, a Sick-Nasty ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. And aura of ${Quest.MCGUFFIN} and fresh beats smothers the area and the raps get hotter and sicker. Finally the Sick-Nasty ${Quest.CONSORT} falters, and misses a beat. The ${Quest.PLAYER1} wins! They are the best rapper in all of Paradox Space! "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
