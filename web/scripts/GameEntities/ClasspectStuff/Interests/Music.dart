@@ -47,9 +47,9 @@ class Music extends InterestCategory {
             ..addFeature(FeatureFactory.HAPPYFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.BIRDCONSORT, Feature.WAY_HIGH)
             ..addFeature(new PreDenizenQuestChain("Sing the Song", [
-                new Quest("A frantic underling run past the  ${Quest.PLAYER1}. In hot pursuit, a ${Quest.CONSORT} yells 'Stop that thief' in betwen ${Quest.CONSORTSOUND}s. Without thinking, the ${Quest.PLAYER1} grabs the underling. The ${Quest.CONSORT} is impressed, and offers the ${Quest.PLAYER1} a job as a deputy police officer. "),
-                new Quest("The ${Quest.PLAYER1} is doing their rounds as a deputy police officer. So far, everything is peaceful."),
-                new Quest("A missing ${Quest.PHYSICALMCGUFFIN}. Three suspects. A locked door. The ${Quest.PLAYER1} blows everyone away by cracking the case wide open and sending the perpetrator to the slammer. They are promoted from deputy to a full blown detective, which comes with a lot less frequent jobs, but far more prestige. "),
+                new Quest("The ${Quest.PLAYER1} learns of a lost song, said to contain the power of ${Quest.MCGUFFIN}. Any who can sing it are destined to be strong enough to face the ${Quest.DENIZEN}. "),
+                new Quest("The ${Quest.PLAYER1} has been searching high and low, in dungeons, ruins, and villages. Finally, they find a sheet of music that seems the very essence of ${Quest.MCGUFFIN}. They open their mouth to sing it, and realize they can't make a sound. What IS this fresh fuckery?  What kind of song can't be sung?"),
+                new Quest("A ${Quest.PHYSICALMCGUFFIN}! That's the key! The ${Quest.PLAYER1} equips it and instantly finds themselves able to sing the ${Quest.MCGUFFIN} song. The burst of music in their chest makes them feel ready to take on anything, but especially the ${Quest.DENIZEN}."),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
@@ -59,9 +59,9 @@ class Music extends InterestCategory {
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("And It Don't Stop", [
-                new Quest("The ${Quest.PLAYER1} finds a crowd of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. They are holding signs with slogans like 'This isn't Fair' and 'Don't be Jerks'. Apparently they have a problem with the upper class ${Quest.CONSORT}s in charge. The ${Quest.PLAYER1} is moved by their plight and agrees to try to help."),
-                new Quest("The ${Quest.PLAYER1} meets with the upper class ${Quest.CONSORT}s to try to negotiate a peaceful revolution. Unfortunately, the ${Quest.CONSORT}s refuse to listen to reason, and even call their guards to attack the ${Quest.PLAYER1}. After easily defeating the guards, the ${Quest.PLAYER1} declares war. You cannot stop the fires of Revolution!  "),
-                new Quest("It has been a long struggle, but finally the corrupt high class ${Quest.CONSORT}s have been taken prisoner. The common ${Quest.CONSORT}s ${Quest.CONSORTSOUND} and rejoice and declare a national holiday. The rebellion has won!"),
+                new Quest("The ${Quest.PLAYER1} is suddenly challenged to a rap off by a particularly fresh ${Quest.CONSORT}. It's a close one, but the ${Quest.PLAYER1} emerges victorious. It helps that the fresh ${Quest.CONSORT} kept rhyming ${Quest.CONSORTSOUND} with ${Quest.CONSORTSOUND}."),
+                new Quest("The ${Quest.PLAYER1} has apparently gotten a reputation as a rap master. A series of ${Quest.CONSORT}s challenge them to rap offs and get utterly destroyed by the ${Quest.PLAYER1}'s fresh flows. "),
+                new Quest("The final challenger, a Sick-Nasty ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. And aura of ${Quest.MCGUFFIN} and fresh beats smothers the area and the raps get hotter and sicker. Finally the Sick-Nasty ${Quest.CONSORT} falters, and misses a beat. The ${Quest.PLAYER1} wins! They are the best rapper in all of Paradox Space! "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }
