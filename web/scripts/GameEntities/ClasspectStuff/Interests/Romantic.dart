@@ -48,9 +48,9 @@ class Romantic extends InterestCategory {
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Plan the Date", [
-                new Quest("The ${Quest.PLAYER1} "),
-                new Quest("The ${Quest.PLAYER1}    "),
-                new Quest(" The ${Quest.PLAYER1} ")
+                new Quest("A Romantic ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. They have a date coming up but have no idea what to do. Can the ${Quest.PLAYER1} help? "),
+                new Quest("The ${Quest.PLAYER1} has the best montage of their life, helping the Romantic ${Quest.CONSORT} pick out an outfit for their date, plan activites and learn how to cook a romantic meal. Why is everything so wonderful?   "),
+                new Quest(" The ${Quest.PLAYER1} hides in bushes to spy on the Romantic ${Quest.CONSORT}'s date. It's going so well! ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
