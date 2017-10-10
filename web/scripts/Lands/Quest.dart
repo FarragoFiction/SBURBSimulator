@@ -38,7 +38,7 @@ class Quest {
         String pmc = "${physicalMcguffin[0].toUpperCase()}${physicalMcguffin.substring(1)}";
         ret = ret.replaceAll("$MCGUFFIN", "${mc}");
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${pmc}");
-        ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
+        if(denizen != null) ret = ret.replaceAll("$DENIZEN", "${denizen.name}");
 
 
         appendHtml(div, ret);
