@@ -608,6 +608,7 @@ class DeadTextPL {
 
         middles = new WeightedList<Conversation>()
             // ---------------------------------
+            // First convo
             ..addConditional(new ConversationProcessed(_landConvo)
                 ..line(<String>[
                     "Having fun yet?",
@@ -661,7 +662,103 @@ class DeadTextPL {
                     "Shit.",
                     "...",
                 ])
-            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 1.0)
+            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            // ---------------------------------
+            // Land not covered and not first, positive response
+            ..addConditional(new ConversationProcessed(_landConvo)
+                ..line(<String>[
+                    "So, what's this one like?",
+                    "What about this one?",
+                    "What's it like this time?",
+                    "How is it down there?",
+                    "What's that land like?",
+                    "I'm back. What do you see down there?",
+                    "I'm back, what's happening?",
+                ], "...", <String>[
+                    "Ugh, not you again.",
+                    "Great.",
+                    "Sigh.",
+                    "What did I do to deserve this?",
+                    "Why won't you leave me alone?",
+                    "Fuck off.",
+                ])
+                ..line(<String>[
+                    "Aww come on, don't be like that. It's for your own good!",
+                    "Go on. Just tell me and I'm gone again, promise.",
+                    "I'm trying to help here, just tell me.",
+                    "What about RIGHTGUESS? Is that a thing?",
+                    "Come on, it's not difficult - WRONGGUESS?",
+                    "I know it's inconvenient, but I'm doing this to help.",
+                ], "...", <String>[
+                    "Fine, there's stuff like FEATURE1, and FEATURE2 around the place. Now GET LOST!",
+                    "Fuck. Right, uh, FEATURE1 and some other crap.",
+                    "I hate you. It's LANDNAMEFULL, there's LANDNAME. Now fuck off.",
+                    "Shit. FEATURE1. Maybe FEATURE2, not sure. Now go away.",
+                    "Not up to this right now. Some shit like, uh... FEATURE1 mostly.",
+                    "Fine. FEATURE1 I guess.",
+                ])
+                ..line(<String>[
+                    "Got it. I'll be back later.",
+                    "Right... I'll see what I can do.",
+                    "Hmph. Ok, brb.",
+                    "Hmm... Could be useful. I'll look into it.",
+                ], "...", <String>[
+                    "...",
+                    "Ugh.",
+                    "Shit.",
+                    "Fuck.",
+                ])
+            ,() => _chats > 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            // ---------------------------------
+            // Land not covered and not first, hostile response
+            ..addConditional(new ConversationProcessed(_landConvo)
+                ..line(<String>[
+                    "So, what's this one like?",
+                    "What about this one?",
+                    "What's it like this time?",
+                    "How is it down there?",
+                    "What's that land like?",
+                    "I'm back. What do you see down there?",
+                    "I'm back, what's happening?",
+                ], "...", <String>[
+                    "Shit, not you again.",
+                    "You know what? Fuck you.",
+                    "Oh just fuck off.",
+                    "Fuck, what did I do to deserve this?",
+                    "Why won't you just leave me the fuck alone?",
+                    "Fuck off.",
+                ])
+                ..line(<String>[
+                    "Woah what? I'm trying to help here!",
+                    "Aww come on, this is important! I need this to help you out.",
+                    "I don't like you either but this is for your own good.",
+                    "Shit, are you gonna tell me or not, this is so I can help!",
+                    "Don't be like that, I just want to help...",
+                    "Is that really necessary? I'm trying to help you out!",
+                ], "...", <String>[
+                    "NO. FUCK YOU AND YOUR DESCRIPTION BULLSHIT!",
+                    "BULLSHIT! You aren't doing a damn thing!",
+                    "Fuck you! You've been no help so far, fuck off!",
+                    "Shove it. I'm not telling you anything, fuck off!",
+                    "No, fuck you! You've not helped one bit... get lost!",
+                    "I don't have time for this. Go away. Leave me alone.",
+                ])
+                ..line(<String>[
+                    "Fine. But I'll be back.",
+                    "I... you know what, fine. I'll be back later, though.",
+                    "You aren't making this easy for yourself. Don't say I didn't warn you.",
+                    "You know, you really are an obnoxious little asshole. I'll be back.",
+                    "If I could do this myself I would, but fine. Later.",
+                    "You little shit! You don't deserve the help I'm trying to give here. I'll be back when you've cooled off.",
+                ], "...", <String>[
+                    "AAARGH!",
+                    "FUCK!",
+                    "FUCK THIS SHIT!",
+                    "Fuck you.",
+                    "Get fucked.",
+                    "Hmph.",
+                ])
+            ,() => _chats > 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
             // ---------------------------------
             ..add(placeholder, 0.1)
         ;
@@ -714,12 +811,12 @@ class DeadTextPL {
             wrongGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains).where((Feature f) => f != rightGuess));
         }
 
-        print(themeFeatures);
-        print(landFeatures);
+        //print(themeFeatures);
+        //print(landFeatures);
 
-        print(themeFeatures.where(landFeatures.contains).toList());
+        //print(themeFeatures.where(landFeatures.contains).toList());
 
-        print("1: $feature1, 2: $feature2, right: $rightGuess, wrong: $wrongGuess");
+        //print("1: $feature1, 2: $feature2, right: $rightGuess, wrong: $wrongGuess");
 
         return text
             .replaceAll("LANDNAMEFULL", landnamefull)
