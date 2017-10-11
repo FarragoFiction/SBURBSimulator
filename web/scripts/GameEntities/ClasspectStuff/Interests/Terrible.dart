@@ -44,7 +44,7 @@ class Terrible extends InterestCategory {
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("All About the Boonies, Baby", [
-                new Quest("The ${Quest.PLAYER1} learns that there is an entire planet of suckers, er, you mean ${Quest.CONSORT} with boonies just burning a whole in their pockets. This needs to be fixed, ASAP."),
+                new Quest("The ${Quest.PLAYER1} learns that there is an entire planet of suckers, er, you mean ${Quest.CONSORT}s with boonies just burning a hole in their pockets. This needs to be fixed, ASAP."),
                 new Quest("The ${Quest.PLAYER1} starts running a con job, you mean, ENTERTAINMENT VENUE, where they show the various gullible, you mean discerning ${Quest.CONSORT}s various wonders from around Paradox Space. Marvel at the two headed ${Quest.PHYSICALMCGUFFIN} underling. Tremble at the fearsome ${Quest.MCGUFFIN} ${Quest.CONSORT}.   "),
                 new Quest(" The ${Quest.PLAYER1} finally has enough boonies to get that fraymotif they've had their eye on.  Good thing, too, because the ${Quest.CONSORT}s seem to finally be mostly out of cash. Oh well. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
