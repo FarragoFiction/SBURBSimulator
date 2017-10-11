@@ -1,6 +1,6 @@
 import "dart:html";
 import "../../SBURBSim.dart";
-import "../../Lands/FeatureTypes/DescriptiveFeature.dart";
+import "../../Lands/Feature.dart";
 
 /// // a scene where the chosen meta player fucks with the single player
 
@@ -710,6 +710,9 @@ class DeadTextPL {
 
         Feature rightGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains));
         Feature wrongGuess = rand.pickFrom(themeFeatures.where((Feature f) => !landFeatures.contains(f)));
+        if (wrongGuess == null) {
+            wrongGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains).where((Feature f) => f != rightGuess));
+        }
 
         print(themeFeatures);
         print(landFeatures);
@@ -721,11 +724,27 @@ class DeadTextPL {
         return text
             .replaceAll("LANDNAMEFULL", landnamefull)
             .replaceAll("LANDNAME", landname)
-            .replaceAll("FEATURE1", feature1.toString())
-            .replaceAll("FEATURE2", feature2.toString())
-            .replaceAll("RIGHTGUESS", rightGuess.toString())
-            .replaceAll("WRONGGUESS", wrongGuess.toString())
+            .replaceAll("FEATURE1", describeFeature(feature1))
+            .replaceAll("FEATURE2", describeFeature(feature2))
+            .replaceAll("RIGHTGUESS", describeFeature(rightGuess))
+            .replaceAll("WRONGGUESS", describeFeature(wrongGuess))
         ;
+    }
+
+    String describeFeature(DescriptiveFeature f) {
+        if (f == null) {
+            return "[null feature]";
+        }
+        if (f is ConsortFeature) {
+            return "a load of ${f.name} things";
+        }
+        else if (f is SmellFeature) {
+            return "the smell of ${f.simpleDesc}";
+        }
+        else if (f is AmbianceFeature) {
+            return "it feels really ${f.simpleDesc}";
+        }
+        return f.simpleDesc;
     }
 }
 

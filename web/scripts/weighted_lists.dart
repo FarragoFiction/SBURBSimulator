@@ -257,6 +257,24 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
     @override
     void set length(int val) => _list.length = val;
 
+    /*@override
+    String toString() {
+        StringBuffer sb = new StringBuffer("[");
+
+        bool first = true;
+        for (WeightPair<T> pair in pairs) {
+            if (first) {
+                first = false;
+            } else {
+                sb.write(", ");
+            }
+            sb.write("{${pair.item} @ ${pair.weight}}");
+        }
+
+        sb.write("]");
+        return sb.toString();
+    }*/
+
     // it's bullshit that I have to re-override these but hey it's the simplest way...
 
     @override
