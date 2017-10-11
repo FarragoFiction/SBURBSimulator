@@ -35,7 +35,7 @@ class Fantasy extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} learns of a Beautiful ${Quest.CONSORT} who has been kidnapped by the vial ${Quest.DENIZEN} Minion. There is a hefty reward should a brave Hero rescue them. "),
                 new Quest(" The ${Quest.PLAYER1} journeys to the castle of the ${Quest.DENIZEN} Minion, only to discover that they way is barred by a giant iron lock. Only the correctly shaped ${Quest.PHYSICALMCGUFFIN} can open it. Looks like it's time to go questing."),
                 new Quest("The ${Quest.PLAYER1} finally finds a correctly shaped.  ${Quest.PHYSICALMCGUFFIN}.  The gate swings open, and the ${Quest.DENIZEN} Minion is swiftly defeated. The Beautiful ${Quest.CONSORT} delivers a reward to the brave ${Quest.PLAYER1}. Convenient that they had it with them when they were kidnapped, huh?   "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

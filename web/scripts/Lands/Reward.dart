@@ -34,6 +34,13 @@ class Reward {
     }
 }
 
+class BoonieFraymotifReward extends Reward {
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    String bgImage = "Rewards/sweetBoonies.png";
+
+}
+
 class FraymotifReward extends Reward
 {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";

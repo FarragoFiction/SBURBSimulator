@@ -31,11 +31,11 @@ class Terrible extends InterestCategory {
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Premiere the Movie", [
+            ..addFeature(new PreDenizenQuestChain("Start the Fires", [
                 new Quest("The ${Quest.PLAYER1} finds a bowl filled with colorful green powder in a dungeon, next to a locked door with green, blue and red gems inset in the middle. After some poking and proding, they do what comes naturally and start a small fire. The bowl blazes green. A green gem lights up on the locked door. Huh. "),
                 new Quest("The ${Quest.PLAYER1} has been wandering around, starting random fires, when they finally manage to burn someting that blazes blue. When they go back to check, the dungeon door has both green and blue symbols lit up.  "),
                 new Quest(" The ${Quest.PLAYER1} has finally managed to get a bright red fire going. They rush back to the dungeon to see all three symbols lit up. They enter and get a nice reward for beating the dungeon. ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Treasure","Gold","Wealth", "Hoards", "Coins", "Money", "Bling"])
@@ -43,11 +43,11 @@ class Terrible extends InterestCategory {
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
-            ..addFeature(new PreDenizenQuestChain("Start the Fires", [
-                new Quest("The ${Quest.PLAYER1} "),
-                new Quest("The ${Quest.PLAYER1}    "),
-                new Quest(" The ${Quest.PLAYER1} ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ..addFeature(new PreDenizenQuestChain("All About the Boonies, Baby", [
+                new Quest("The ${Quest.PLAYER1} learns that there is an entire planet of suckers, er, you mean ${Quest.CONSORT} with boonies just burning a whole in their pockets. This needs to be fixed, ASAP."),
+                new Quest("The ${Quest.PLAYER1} starts running a con job, you mean, ENTERTAINMENT VENUE, where they show the various gullible, you mean discerning ${Quest.CONSORT}s various wonders from around Paradox Space. Marvel at the two headed ${Quest.PHYSICALMCGUFFIN} underling. Tremble at the fearsome ${Quest.MCGUFFIN} ${Quest.CONSORT}.   "),
+                new Quest(" The ${Quest.PLAYER1} finally has enough boonies to get that fraymotif they've had their eye on.  Good thing, too, because the ${Quest.CONSORT}s seem to finally be mostly out of cash. Oh well. ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Decay","Rot","Death","Mayhem","Gas","Wrath"])
