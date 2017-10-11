@@ -1,4 +1,7 @@
 import "../../../SBURBSim.dart";
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 import "Interest.dart";
 
@@ -19,5 +22,45 @@ class Social extends InterestCategory {
 
 
     Social() :super(11, "Social", "extroverted", "shallow");
+
+    @override
+    void initializeThemes() {
+        addTheme(new Theme(<String>["Couches","Therapy","Analysis", "Cigars", "Psychology"])
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("The Therapist is IN", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+        addTheme(new Theme(<String>["Meditation","Worship","Altars","Hymns", "Chapels", "Priests", "Angels", "Religion"])
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Learn About Frogism", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+
+        addTheme(new Theme(<String>["Roleplaying","FLARPS","Dungeons", "Dragons", "Tabletops", "Dice"])
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Steal the Door", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+    }
 
 }
