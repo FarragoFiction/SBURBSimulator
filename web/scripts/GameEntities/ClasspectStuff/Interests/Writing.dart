@@ -1,5 +1,8 @@
 import "../../../SBURBSim.dart";
 import "Interest.dart";
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Writing extends InterestCategory {
     @override
@@ -19,5 +22,45 @@ class Writing extends InterestCategory {
 
 
     Writing() :super(3, "Writing", "lettered", "wordy");
+
+    @override
+    void initializeThemes() {
+        addTheme(new Theme(<String>["Books","Shelves","Libraries","Tomes", "Fiction", "Pages", "Words"])
+            ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.MUSTSMELL, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Shelves the Books", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+        addTheme(new Theme(<String>["Fan Fiction","Fics","Fandom", "Mary Sues","Tumblers"])
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Read the Fan Fiction", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+
+        addTheme(new Theme(<String>["Dungeons","Dragons","Authors","Control", "Storytelling", "Scripts"])
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(new PreDenizenQuestChain("Be the DM", [
+                new Quest("The ${Quest.PLAYER1} "),
+                new Quest("The ${Quest.PLAYER1}    "),
+                new Quest(" The ${Quest.PLAYER1} ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.LOW);
+    }
 
 }
