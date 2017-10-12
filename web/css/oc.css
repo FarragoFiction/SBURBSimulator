@@ -211,6 +211,7 @@ body{
 #container {
     float:left;
     width:100%;
+    background: white;
 }
 #player1 {
     float:left;

@@ -13,6 +13,12 @@ import 'dart:html';
     Then pick three example quest chains that are valid for the player.
  */
 
+int numPlayers = 4;
+List<Player> players = new List<Player>(numPlayers);
+int canvasWidth = 450;
+int canvasHeight = 1000;
+
+Session curSessionGlobalVar;
 main() {
     loadNavbar();
     window.onError.listen((Event event){
@@ -22,8 +28,39 @@ main() {
     });
 
     globalInit();
-    Element div = querySelector("#story");
+    curSessionGlobalVar = new Session(12345);
+    loadFuckingEverything("I really should stop doing this",start );
+
+}
+
+void start() {
+    initPlayers();
+    drawPlayers();
     createDropDowns();
+}
+
+void initPlayers() {
+    for(int i = 0; i< numPlayers; i++) {
+        players[i] =(randomPlayer(curSessionGlobalVar));
+    }
+}
+
+void drawPlayers() {
+    CanvasElement spriteTemplate = querySelector("#sprite_template");
+    Element container = querySelector("#container");
+    for(int i = 0; i<numPlayers; i++) {
+        //get canvas, draw player from scratch.
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        print("canvas is $canvas");
+        CanvasElement buffer = Drawing.getBufferCanvas(spriteTemplate);
+        Drawing.drawSpriteFromScratch(buffer, players[i]);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, buffer, 0,0);
+        container.append(canvas);
+    }
+}
+
+void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, InterestCategory intCat2, String species, String blood) {
+
 }
 
 //gonna try to do this without raw html manipulation as an exercise
@@ -60,9 +97,10 @@ void bloodDropDown() {
     genericDropDown(querySelector("#colorList"), bloodColors, "blood");
 }
 
-void genericDropDown<T> (Element div, List<T> list, String name)
+//whoever calls me is responsible for wiring it up
+SelectElement genericDropDown<T> (Element div, List<T> list, String name)
 {
-    SelectElement aspectSelector = new SelectElement()
+    SelectElement selector = new SelectElement()
         ..name = name
         ..id = name;
 
@@ -70,12 +108,13 @@ void genericDropDown<T> (Element div, List<T> list, String name)
         ..value = "Any"
         ..setInnerHtml("Any")
         ..selected = true;
-    aspectSelector.add(defaultOption,null);
+    selector.add(defaultOption,null);
     for(Object a in list) {
         OptionElement o = new OptionElement()
             ..value = a.toString()
             ..setInnerHtml(a.toString());
-        aspectSelector.add(o,null);
+        selector.add(o,null);
     }
-    div.append(aspectSelector);
+    div.append(selector);
+    return selector;
 }
