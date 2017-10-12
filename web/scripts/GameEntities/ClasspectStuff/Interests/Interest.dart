@@ -37,6 +37,7 @@ class InterestManager {
     static InterestCategory TECHNOLOGY;
     static InterestCategory TERRIBLE;
     static InterestCategory WRITING;
+    static InterestCategory NULL;
 
     static void init() {
         //print("initializing interests");
@@ -54,6 +55,8 @@ class InterestManager {
         TERRIBLE = new Terrible();
         WRITING = new Writing();
         TECHNOLOGY = new Technology();
+        NULL = new InterestCategory(-13, "Null", "",""); //shouldn't ever happen.
+        NULL.isInternal = true; //only one
     }
 
     static void register(InterestCategory ic) {
@@ -89,7 +92,7 @@ class InterestManager {
             rand, rand.pickFrom(_categories.values));
     }
 
-    static Iterable<InterestCategory> get allCategories => _categories.values;
+    static Iterable<InterestCategory> get allCategories => _categories.values.where((InterestCategory c) => !c.isInternal);
 
     static InterestCategory getCategoryFromString(String s) {
         for (InterestCategory c in _categories.values) {
@@ -100,6 +103,7 @@ class InterestManager {
 }
 
 class InterestCategory {
+    bool isInternal = false;
     List<String> handles1 = <String>["nobody"];
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[]);
     List<String> handles2 = <String>["Nobody"];
