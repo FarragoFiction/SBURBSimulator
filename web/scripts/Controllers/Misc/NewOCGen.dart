@@ -100,9 +100,40 @@ void drawText(Player p, CanvasElement canvas) {
     ctx.fillText("Interests: ", left_margin, current + line_height * line_num);
     ctx.fillText("${p.interest1.name} and ${p.interest2.name}", right_margin, current + line_height * line_num);
     line_num++;
+    line_num++;
+    left_margin = 25; //indenting for land shit.
 
     ctx.fillText("Land: ", left_margin, current + line_height * line_num);
     ctx.fillText(p.landFuture.name, right_margin, current + line_height * line_num);
+    line_num++;
+    left_margin = 35; //indenting for land shit.
+
+    ctx.fillText("Denizen: ", left_margin, current + line_height * line_num);
+    ctx.fillText(p.landFuture.denizenFeature.name, right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Consorts: ", left_margin, current + line_height * line_num);
+    ctx.fillText("${p.landFuture.consortFeature.name}s who say: ${p.landFuture.consortFeature.sound}", right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Smells Like: ", left_margin, current + line_height * line_num);
+    List<String> smells = <String>["x","y","z"];
+    ctx.fillText(turnArrayIntoHumanSentence(smells), right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Sounds Like: ", left_margin, current + line_height * line_num);
+    List<String> sounds = <String>["x","y","z"];
+    ctx.fillText(turnArrayIntoHumanSentence(sounds), right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Feels Like: ", left_margin, current + line_height * line_num);
+    List<String> feels = <String>["x","y","z"];
+    ctx.fillText(turnArrayIntoHumanSentence(feels), right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Example Quests: ", left_margin, current + line_height * line_num);
+    List<String> quests = <String>["x","y","z"];
+    ctx.fillText(turnArrayIntoHumanSentence(quests), right_margin, current + line_height * line_num);
     line_num++;
 }
 
