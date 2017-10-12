@@ -88,7 +88,7 @@ class InterestManager {
 
     static Interest getRandomInterest(Random rand) {
         return new Interest.randomFromCategory(
-            rand, rand.pickFrom(_categories.values));
+            rand, rand.pickFrom(allCategories)); //need to have internal filtering
     }
 
     static Iterable<InterestCategory> get allCategories => _categories.values.where((InterestCategory c) => !c.isInternal);
