@@ -56,10 +56,11 @@ class Writing extends InterestCategory {
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Be the DM", [
-                new Quest("The ${Quest.PLAYER1} "),
-                new Quest("The ${Quest.PLAYER1}    "),
-                new Quest(" The ${Quest.PLAYER1} ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.PLAYER1} finds a strange minature dungeon, filled with four small ragdolls of Adventurer ${Quest.CONSORT}s. A placard proclaims 'Be the DM, it is You.'. Huh. The ${Quest.PLAYER1} is interested, and weaves an elaborate tale full of intrigue and danger, before dramatically injuring one of the Adventurer ${Quest.CONSORT}s right before the end. As they finish their story, a nearby dungeon opens up and three ${Quest.CONSORT}s stumble out, dragging a fourth.  Oh. Shit. The dungeon flashes 'You did this.'"),
+                new Quest("The ${Quest.PLAYER1} finds another minature dungeon. Oh HELL no, they are not going to repeat this shit. They have no interest in playing god, thank you very much.  The nearby regular size dungeon flashes 'Are you Sure? Y/N', and the ${Quest.PLAYER1} quickly selects 'Y'.  The dungeon immediately collapses, presumably killing any Adventurer ${Quest.CONSORT}s who were trapped inside. Holy fuck. What is WRONG with this game?  "),
+                new Quest(" The ${Quest.PLAYER1} finds yet another minature dungeon. Fuck. Okay. They can't opt out, or the Adventurer's have rocks fall on them and die. But they aren't going to make it tragic again. No way. They tell a....servicable story in which the Adventuring ${Quest.CONSORT}s walk through a dungeon with insultingly easy puzzles and then are allowed to leave. The nearby dungeon opens up and four confused Adventurer ${Quest.CONSORT}s wander out. 'Wow, that was really unsatisfying!' one remarks. The dungeon flashes 'Boring. Try Again Later.' "),
+                new Quest("The ${Quest.PLAYER1} finds what is hopefully the last minature dungeon. They resign themselves to making the most interesting story possible WITHOUT fucking over the characters in it. They weave an elaborate story with twists and turns and close calls. At the end of it, the 4 Adventuring ${Quest.CONSORT}s walk out of the dungeon laughing and talking about their adventure. The dungeon flashes 'Good Job!', and deploys positive reinforcment. Quest chain: complete! ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }
 
