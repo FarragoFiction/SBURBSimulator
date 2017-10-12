@@ -54,6 +54,9 @@ abstract class WeightedIterable<T> implements Iterable<T> {
     }
 
     @override
+    String toString() => pairs.toString();
+
+    @override
     Iterable<T> where(Predicate<T> test) => new WeightedWhereIterable<T>(this, test);
 
     @override
@@ -244,6 +247,12 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
     // overrides
 
     @override
+    void retainWhere(Predicate<T> condition) => _list.retainWhere((WeightPair<T> pair) => condition(pair.item));
+
+    @override
+    void removeWhere(Predicate<T> condition) => _list.removeWhere((WeightPair<T> pair) => condition(pair.item));
+
+    @override
     T operator [](int index) => _list[index].item;
 
     @override
@@ -258,22 +267,7 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
     void set length(int val) => _list.length = val;
 
     @override
-    String toString() {
-        StringBuffer sb = new StringBuffer("[");
-
-        bool first = true;
-        for (WeightPair<T> pair in pairs) {
-            if (first) {
-                first = false;
-            } else {
-                sb.write(", ");
-            }
-            sb.write("{${pair.item} @ ${pair.weight}}");
-        }
-
-        sb.write("]");
-        return sb.toString();
-    }
+    String toString() => _list.toString();
 
     // it's bullshit that I have to re-override these but hey it's the simplest way...
 
@@ -302,6 +296,9 @@ class WeightPair<T> {
     factory WeightPair.from(WeightPair<T> other) {
         return new WeightPair<T>(other.item, other.weight);
     }
+
+    @override
+    String toString() => "($item @ $weight)";
 }
 
 class FunctionWeightPair<T> extends WeightPair<T> {
@@ -333,6 +330,9 @@ abstract class WrappedWeightedIterable<T> extends WeightedIterable<T> with Itera
     int get length => source.length;
 
     // it's bullshit that I have to re-override these but hey it's the simplest way...
+
+    @override
+    String toString() => pairs.toString();
 
     @override
     Iterable<T> where(Predicate<T> test) => new WeightedWhereIterable<T>(this, test);

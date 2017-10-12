@@ -24,7 +24,33 @@ void main() {
 
     //testDrawing();
 
+    WeightedList<String> testlist = new WeightedList<String>()..addAllGenerative(<String>["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"], (String s) => s.length.toDouble());
+    print(testlist);
 
+    WeightedIterable<String> testWhere = testlist.where((String s) => s.length > 3);
+    print(testWhere);
+
+    WeightedIterable<String> testMapped = testWhere.map((String s) => "BLAH $s");
+    print(testMapped);
+
+    WeightedIterable<String> testSub = new SubTypeWeightedIterable<String, String>(testlist.pairs);
+    print(testSub);
+
+    testlist.collateWeights();
+    testlist.collateWeights();
+    testlist.collateWeights();
+
+    print(testWhere);
+
+    WeightedList<String> testRetain = new WeightedList<String>.from(testlist);
+    print(testRetain);
+    testRetain.retainWhere((String s) => s.length > 3);
+    print(testRetain);
+
+    WeightedList<String> testRemove = new WeightedList<String>.from(testlist);
+    print(testRemove);
+    testRemove.removeWhere((String s) => s.length > 3);
+    print(testRemove);
 }
 
 Future<bool> testDrawing() async {
