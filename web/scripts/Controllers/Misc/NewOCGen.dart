@@ -16,17 +16,12 @@ import 'dart:html';
 int numPlayers = 4;
 List<Player> players = new List<Player>(numPlayers);
 int canvasWidth = 1000;
-int canvasHeight = 400;
+int canvasHeight = 800;
 Random rand = new Random();
 
 Session curSessionGlobalVar;
 main() {
     loadNavbar();
-    window.onError.listen((Event event){
-        ErrorEvent e = event as ErrorEvent;
-        printCorruptionMessage(e);
-        return;
-    });
 
     globalInit();
     curSessionGlobalVar = new Session(rand.nextInt());
@@ -54,26 +49,61 @@ void drawPlayers() {
     Element container = querySelector("#container");
     container.setInnerHtml(""); //clear it out.
     for(int i = 0; i<numPlayers; i++) {
-        //get canvas, draw player from scratch.
-        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        print("canvas is $canvas");
-        CanvasElement godBuffer = Drawing.getBufferCanvas(spriteTemplate);
-        CanvasElement regBuffer = Drawing.getBufferCanvas(spriteTemplate);
-        CanvasElement dreamBuffer = Drawing.getBufferCanvas(spriteTemplate);
-        Player p = players[i];
-        p.isDreamSelf = false;
-        p.godTier = false;
-        Drawing.drawSpriteFromScratch(regBuffer, p);
-        p.isDreamSelf = true;
-        Drawing.drawSpriteFromScratch(dreamBuffer, p);
-        p.godTier = true;
-        Drawing.drawSpriteFromScratch(godBuffer, p);
-
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, 500,0);
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dreamBuffer, 200,0);
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, regBuffer, -100,0);
-        container.append(canvas);
+        drawPlayer(players[i], spriteTemplate, container);
     }
+}
+
+void drawPlayer(Player p, CanvasElement spriteTemplate, Element container) {
+    //get canvas, draw player from scratch.
+    CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+    Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
+    print("canvas is $canvas");
+    CanvasElement godBuffer = Drawing.getBufferCanvas(spriteTemplate);
+    CanvasElement regBuffer = Drawing.getBufferCanvas(spriteTemplate);
+    CanvasElement dreamBuffer = Drawing.getBufferCanvas(spriteTemplate);
+    p.isDreamSelf = false;
+    p.godTier = false;
+    Drawing.drawSpriteFromScratch(regBuffer, p);
+    p.isDreamSelf = true;
+    Drawing.drawSpriteFromScratch(dreamBuffer, p);
+    p.godTier = true;
+    Drawing.drawSpriteFromScratch(godBuffer, p);
+
+    Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, 500,0);
+    Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dreamBuffer, 200,0);
+    Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, regBuffer, -100,0);
+    drawText(p, canvas);
+    container.append(canvas);
+}
+
+void drawText(Player p, CanvasElement canvas) {
+    CanvasRenderingContext2D ctx = canvas.context2D;
+    int start = 400;
+    int space_between_lines = 25;
+    int left_margin = 10;
+    int right_margin = 210;
+    int line_height = 18;
+    int current = 350;
+
+    int line_num = 2;
+    ctx.font = "40px Times New Roman";
+    ctx.fillStyle = p.aspect.palette.text.toStyleString();
+    ctx.fillText(p.titleBasic(),left_margin*2,current);
+    ctx.font = "18px Times New Roman";
+    ctx.fillStyle = "#000000";
+
+
+    ctx.fillText("ChatHandle: ", left_margin, current + line_height * line_num);
+    ctx.fillText(p.chatHandle, right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Interests: ", left_margin, current + line_height * line_num);
+    ctx.fillText("${p.interest1.name} and ${p.interest2.name}", right_margin, current + line_height * line_num);
+    line_num++;
+
+    ctx.fillText("Land: ", left_margin, current + line_height * line_num);
+    ctx.fillText(p.landFuture.name, right_margin, current + line_height * line_num);
+    line_num++;
 }
 
 void redrawPlayers() {
@@ -146,17 +176,18 @@ void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, 
         p.bloodColor = blood;
         if(blood == "Any") p.bloodColor = rand.pickFrom(bloodColors);
 
-        if(intCat1 == SBURBClassManager.NULL) {
+        if(intCat1 == InterestManager.NULL) {
             p.interest1 = InterestManager.getRandomInterest(rand);
         }else {
             p.interest1 = new Interest.randomFromCategory(rand, intCat1);
         }
 
-        if(intCat2 == SBURBClassManager.NULL) {
+        if(intCat2 == InterestManager.NULL) {
             p.interest2 = InterestManager.getRandomInterest(rand);
         }else {
             p.interest2 = new Interest.randomFromCategory(rand, intCat2);
         }
+        p.initialize();
 
 
     }
