@@ -33,7 +33,9 @@ Future<bool> process() async {
             List<FileSystemEntity> entries = directory.listSync(recursive:true);
 
             List<FileSystemEntity> matching = entries.where((FileSystemEntity f) {
-                return (f is File) && p.hasMatch(f.path.split(slash).last);
+                String filename = f.path.split(slash).last;
+                Match m = p.matchAsPrefix(filename);
+                return (f is File) && m != null && m.group(0) == filename;
             }).toList();
 
             if (!manifest.containsKey(bundle)) {
