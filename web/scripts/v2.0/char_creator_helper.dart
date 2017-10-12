@@ -148,7 +148,7 @@ class CharacterCreatorHelper {
         (querySelector("#favoriteNumberID${player.id}") as SelectElement).value =
         (player.quirk.favoriteNumber.toString());
         (querySelector("#moonID${player.id}") as SelectElement).value =
-        (player.moon);
+        (player.moon.name);
         querySelector("#moonID${player.id}").style.backgroundColor =
             moonToColor(player.moon);
 
@@ -317,7 +317,7 @@ class CharacterCreatorHelper {
         ctx.fillRect(left_margin + 100,
             current + space_between_lines * (i - 1) - 18, 18, 18);
         ctx.fillStyle = "#000000";
-        ctx.fillText("Moon: " + player.moon, left_margin,
+        ctx.fillText("Moon: ${player.moon}", left_margin,
             current + space_between_lines * i++);
         String destiny = "Nothing.";
         if (player.godDestiny) destiny = "God.";
@@ -653,10 +653,10 @@ class CharacterCreatorHelper {
 
         moonDiv.onChange.listen((Event e) {
             OptionElement moonDropDown = moonDiv.selectedOptions[0];
-            player.moon = moonDropDown.value;
+            player.moon = player.session.stringToMoon(moonDropDown.value);
             that.redrawSinglePlayer(player);
             moonDiv.style.backgroundColor = moonToColor(player.moon);
-            helpText.setInnerHtml(that.generateHelpText("Moon", player.moon));
+            helpText.setInnerHtml(that.generateHelpText("Moon", player.moon.toString()));
         });
 
         favoriteNumberDiv.onChange.listen((Event e) {

@@ -159,7 +159,7 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 				narration += "sacrificial slab, where it glows and ascends to the God Tiers with a sweet new outfit";
 			}else{
 				narration += " quest bed. The corpse glows and rises Skaiaward. ";
-				narration +="On " + this.player.moon + ", their dream self takes over and gets a sweet new outfit to boot.  ";
+				narration +="On ${this.player.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
 			}
 			narration +=  " The doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			appendHtml(div, narration);

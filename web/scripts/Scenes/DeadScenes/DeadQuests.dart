@@ -32,11 +32,11 @@ class DeadQuests extends Scene {
 
     void processMoon(Element div) {
         Player player = session.players[0];
-        player.moonFuture.initQuest([player]);
-        String html = "${player.moonFuture.getChapter()} ${player.moonFuture.randomFlavorText(session.rand, player)} ";
+        player.moon.initQuest([player]);
+        String html = "${player.moon.getChapter()} ${player.moon.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
-        player.moonFuture.doQuest(div, player, null);
+        player.moon.doQuest(div, player, null);
     }
 
     void processEndQuests(div) {

@@ -42,6 +42,7 @@ void start() {
 }
 
 void initPlayers() {
+    curSessionGlobalVar = new Session(rand.nextInt());
     for(int i = 0; i< numPlayers; i++) {
         players[i] =(randomPlayer(curSessionGlobalVar));
     }
@@ -80,16 +81,23 @@ void redrawPlayers() {
     SBURBClass class_name = getClassFromDropDown();
     InterestCategory interest1 = getInterest1FromDropDown();
     InterestCategory interest2 = getInterest2FromDropDown();
+    Moon moon = getMoonFromDropDown();
     String species = (querySelector("#species") as SelectElement).selectedOptions[0].value;
     String bloodColor = (querySelector("#blood") as SelectElement).selectedOptions[0].value;
     print("aspect is ${aspect}");
-    setPlayers(aspect, class_name, interest1, interest2, species, bloodColor);
+    setPlayers(aspect, class_name, interest1, interest2, moon, species, bloodColor);
 }
 
 Aspect getAspectFromDropDown() {
     String aspectString = (querySelector("#aspect") as SelectElement).selectedOptions[0].value;
     if(aspectString == "Any") return Aspects.NULL;
     return Aspects.stringToAspect(aspectString);
+}
+
+Moon getMoonFromDropDown() {
+    String string = (querySelector("#moon") as SelectElement).selectedOptions[0].value;
+    if(string == "Any") return null;
+    return curSessionGlobalVar.stringToMoon(string);
 }
 
 SBURBClass getClassFromDropDown() {
@@ -110,7 +118,7 @@ InterestCategory getInterest2FromDropDown() {
     return InterestManager.getCategoryFromString(string);
 }
 
-void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, InterestCategory intCat2, String species, String blood) {
+void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, InterestCategory intCat2, Moon moon,String species, String blood) {
     //if something is null, then randomize that shit for each player
     for(Player p in players) {
         p.aspect = aspect;
@@ -130,8 +138,13 @@ void createDropDowns() {
     classDropDown();
     speciesDropDown();
     bloodDropDown();
+    moonDropDown();
     interest1DropDown();
     interest2DropDown();
+}
+
+void moonDropDown() {
+    selectElementThatRedrawsPlayers(querySelector("#moonList"), new List<Moon>.from(curSessionGlobalVar.moons), "moon");
 }
 
 void aspectDropDown() {

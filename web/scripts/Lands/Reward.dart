@@ -276,7 +276,7 @@ class DreamReward extends Reward {
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
         if(p1.dreamSelf) {
-            if(p1.moonFuture == p1.session.prospit) {
+            if(p1.moon == p1.session.prospit) {
                 applyProspit(div, p1, p2, land);
             }else {
                 applyDerse(div, p1, p2, land);

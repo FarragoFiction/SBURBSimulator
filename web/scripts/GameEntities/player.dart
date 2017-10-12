@@ -49,13 +49,12 @@ class Player extends GameEntity {
     Aspect aspect; //TODO eventually a full object
     String land = null;
     Land landFuture; // will replace string land entirely eventually.
-    Moon moonFuture; //will replace string moon entirely eventually.
+    Moon moon; //will replace string moon entirely eventually.
     Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
     Interest interest2 = null;
     String chatHandle = null;
     GameEntity object_to_prototype; //mostly will be potential sprites, but sometimes a player
     //List<Relationship> relationships = [];  //TODO keep a list of player relationships and npc relationships. MAYBE don't wax red for npcs? dunno though.
-    String moon; //TODO eventually a shared planet between players.
     bool leveledTheHellUp = false; //triggers level up scene.
     List<String> mylevels = null;
     num level_index = -1; //will be ++ before i query
@@ -93,7 +92,7 @@ class Player extends GameEntity {
     }
 
 
-    Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, String this.moon, bool this.godDestiny]) : super("", session) {
+    Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon this.moon, bool this.godDestiny]) : super("", session) {
         this.name = "player_$id"; //this.htmlTitleBasic();
     }
 

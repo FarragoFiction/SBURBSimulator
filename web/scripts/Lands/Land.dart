@@ -77,6 +77,11 @@ class Land extends Object with FeatureHolder {
         decideIfTimeForNextChain(players); //will pick next chain if this is done.
     }
 
+    @override
+    String toString() {
+        return name;
+    }
+
     String get shortName {
         RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
         return joinMatches(exp.allMatches(name)).toUpperCase();

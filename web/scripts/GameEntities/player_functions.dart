@@ -126,13 +126,12 @@ void initializePlayersNoDerived(List<Player> players, Session session) {
 Player blankPlayerNoDerived(Session session) {
     GameEntity k = PotentialSprite.prototyping_objects[0];
     bool gd = true;
-    String m = "Prospit";
+    Moon m = session.prospit;
     //	Player([String name, Session session, this.class_name, this.aspect, this.object_to_prototype, this.moon, this.godDestiny, num id]): super(name, id, session);
 
     Player p = new Player(session, SBURBClassManager.PAGE, Aspects.VOID, k, m, gd);
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);
-    p.moonFuture = session.prospit;
     p.baby = 1;
     p.hair = 1;
     p.leftHorn = 1;
@@ -153,13 +152,12 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
 
     bool gd = false;
 
-    String m = session.rand.pickFrom(moons);
+    Moon m = session.rand.pickFrom(session.moons);
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);
     p.baby = session.rand.nextIntRange(1, 3);
-    p.moonFuture = session.stringToMoon(m);
 
 
     p.hair = session.rand.nextIntRange(1, p.maxHairNumber);
@@ -185,9 +183,8 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
 
     bool gd = false;
 
-    String m = session.rand.pickFrom(moons);
+    Moon m = session.rand.pickFrom(session.moons);
     Player p = new Player(session, c, a, k, m, gd);
-    p.moonFuture = session.stringToMoon(m);
     p.decideTroll();
     p.interest1 = InterestManager.getRandomInterest(session.rand);
     p.interest2 = InterestManager.getRandomInterest(session.rand);

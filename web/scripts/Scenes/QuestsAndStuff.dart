@@ -88,13 +88,13 @@ class QuestsAndStuff extends Scene {
 
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
-		player.moonFuture.initQuest([player]);
+		player.moon.initQuest([player]);
 		String inEarly = "";
 		if(player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
-		String html = "${player.moonFuture.getChapter()} ${inEarly}  ${player.moonFuture.randomFlavorText(session.rand, player)} ";
+		String html = "${player.moon.getChapter()} ${inEarly}  ${player.moon.randomFlavorText(session.rand, player)} ";
 		appendHtml(div, html);
 		//doQuests will append itself.
-		player.moonFuture.doQuest(div, player, null);
+		player.moon.doQuest(div, player, null);
 	}
 
     void processLand(Element div, QuestingParty questingParty) {

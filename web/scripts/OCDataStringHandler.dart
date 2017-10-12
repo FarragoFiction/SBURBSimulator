@@ -371,7 +371,7 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.robot = 0 != ((1<<7) & charString.codeUnitAt(7));
   var moon = 0 != ((1<<6) & charString.codeUnitAt(7));
   ////print("moon binary is: " + moon);
-  player.moon = moon ? "Prospit" : "Derse";
+  player.moon = moon ? player.session.prospit : player.session.derse;
   ////print("moon string is: "  + player.moon);
   player.dead = 0 != ((1<<5) & charString.codeUnitAt(7));
   ////print("Binary string is: " + charString[7]);
