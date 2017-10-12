@@ -26,6 +26,8 @@ void main() {
 
     WeightedList<String> testlist = new WeightedList<String>()..addAllGenerative(<String>["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"], (String s) => s.length.toDouble());
     print(testlist);
+    testlist.sortByWeight();
+    print(testlist);
 
     WeightedIterable<String> testWhere = testlist.where((String s) => s.length > 3);
     print(testWhere);

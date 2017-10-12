@@ -190,6 +190,14 @@ class WeightedList<T> extends WeightedIterable<T> with ListMixin<T> {
         this.addAllMap(totals);
     }
 
+    void sortByWeight([bool descending = false]) {
+        if (descending) {
+            this._list.sort((WeightPair<T> a, WeightPair<T> b) => b.weight.compareTo(a.weight));
+        } else {
+            this._list.sort((WeightPair<T> a, WeightPair<T> b) => a.weight.compareTo(b.weight));
+        }
+    }
+
     @override
     Iterable<WeightPair<T>> get pairs => _list;
 
