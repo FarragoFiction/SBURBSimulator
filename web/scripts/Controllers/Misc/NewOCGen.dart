@@ -29,10 +29,35 @@ main() {
 //gonna try to do this without raw html manipulation as an exercise
 void createDropDowns() {
     aspectDropDown();
+    classDropDown();
+    speciesDropDown();
+    bloodDropDown();
+    interest1DropDown();
+    interest2DropDown();
 }
 
 void aspectDropDown() {
     genericDropDown(querySelector("#aspectList"), new List<Aspect>.from(Aspects.all), "aspect");
+}
+
+void classDropDown() {
+    genericDropDown(querySelector("#classList"), new List<SBURBClass>.from(SBURBClassManager.all), "class");
+}
+
+void interest1DropDown() {
+    genericDropDown(querySelector("#interest1List"), new List<InterestCategory>.from(InterestManager.allCategories), "interest1");
+}
+
+void interest2DropDown() {
+    genericDropDown(querySelector("#interest2List"), new List<InterestCategory>.from(InterestManager.allCategories), "interest2");
+}
+
+void speciesDropDown() {
+    genericDropDown(querySelector("#speciesList"), <String>["Human", "Troll"], "species");
+}
+
+void bloodDropDown() {
+    genericDropDown(querySelector("#colorList"), bloodColors, "blood");
 }
 
 void genericDropDown<T> (Element div, List<T> list, String name)
