@@ -127,6 +127,38 @@ void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, 
         p.class_name = class_name;
         if(class_name == SBURBClassManager.NULL) p.class_name = rand.pickFrom(SBURBClassManager.all);
 
+        p.moon = moon;
+        if(moon == null) p.moon = rand.pickFrom(curSessionGlobalVar.moons);
+
+        if(species == "Any") {
+            p.isTroll = rand.nextBool();
+        }else if(species == "Troll") {
+            p.isTroll = true;
+        }else {
+            p.isTroll = false;
+        }
+
+        if(p.isTroll) {
+            p.hairColor = "#000000";
+            p.bloodColor = rand.pickFrom(bloodColors);
+        }
+        //will overright random blood color
+        p.bloodColor = blood;
+        if(blood == "Any") p.bloodColor = rand.pickFrom(bloodColors);
+
+        if(intCat1 == SBURBClassManager.NULL) {
+            p.interest1 = InterestManager.getRandomInterest(rand);
+        }else {
+            p.interest1 = new Interest.randomFromCategory(rand, intCat1);
+        }
+
+        if(intCat2 == SBURBClassManager.NULL) {
+            p.interest2 = InterestManager.getRandomInterest(rand);
+        }else {
+            p.interest2 = new Interest.randomFromCategory(rand, intCat2);
+        }
+
+
     }
 
     drawPlayers();
