@@ -574,8 +574,12 @@ class Session {
         this.players = <Player>[];
         resetAvailableClasspects();
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
+        double special = rand.nextDouble();
+
         this.players.add(randomSpacePlayer(this));
         this.players.add(randomTimePlayer(this));
+
+
 
         for (int i = 2; i < numPlayers; i++) {
             this.players.add(randomPlayer(this));
@@ -585,7 +589,17 @@ class Session {
             Player p = this.players[j];
             p.generateRelationships(this.players);
         }
-
+        //random chance of Lord/Muse for two player sessions
+        if(numPlayers <= 2) {
+            print("less than 2 players");
+            if(special > .6) {
+                players[0].class_name = SBURBClassManager.LORD;
+                players[1].class_name = SBURBClassManager.MUSE;
+            }else if(special < .3) {
+                players[0].class_name = SBURBClassManager.MUSE;
+                players[1].class_name = SBURBClassManager.LORD;
+            }
+        }
         Relationship.decideInitialQuadrants(rand, this.players);
 
         //this.hardStrength = 500 + 20 * this.players.length;

@@ -214,8 +214,20 @@ class DeadSession extends Session {
     void makePlayers() {
         this.players = new List<Player>(1); //it's a list so everything still works, but limited to one player.
         resetAvailableClasspects();
-
+        int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
+        double special = rand.nextDouble();
         players[0] = (randomPlayer(this));
+
+        //random chance of Lord/Muse for natural two player sessions, even if they become dead
+        if(numPlayers <= 2) {
+            print("less than 2 players");
+            if(special > .6) {
+                players[0].class_name = SBURBClassManager.LORD;
+            }else if(special < .3) {
+                players[0].class_name = SBURBClassManager.MUSE;
+            }
+        }
+
         players[0].deriveLand = false;
         metaPlayer.renderSelf();
     }
