@@ -15,8 +15,8 @@ import 'dart:html';
 
 int numPlayers = 4;
 List<Player> players = new List<Player>(numPlayers);
-int canvasWidth = 450;
-int canvasHeight = 1000;
+int canvasWidth = 1000;
+int canvasHeight = 400;
 
 Session curSessionGlobalVar;
 main() {
@@ -52,9 +52,19 @@ void drawPlayers() {
         //get canvas, draw player from scratch.
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         print("canvas is $canvas");
-        CanvasElement buffer = Drawing.getBufferCanvas(spriteTemplate);
-        Drawing.drawSpriteFromScratch(buffer, players[i]);
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, buffer, 0,0);
+        CanvasElement godBuffer = Drawing.getBufferCanvas(spriteTemplate);
+        CanvasElement regBuffer = Drawing.getBufferCanvas(spriteTemplate);
+        CanvasElement dreamBuffer = Drawing.getBufferCanvas(spriteTemplate);
+        Player p = players[i];
+        Drawing.drawSpriteFromScratch(regBuffer, p);
+        p.isDreamSelf = true;
+        Drawing.drawSpriteFromScratch(dreamBuffer, p);
+        p.godTier = true;
+        Drawing.drawSpriteFromScratch(godBuffer, p);
+
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, 500,0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dreamBuffer, 200,0);
+        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, regBuffer, -100,0);
         container.append(canvas);
     }
 }
