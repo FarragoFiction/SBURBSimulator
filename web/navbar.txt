@@ -23,7 +23,7 @@
       <a href="character_viewer.html">Fan OCs</a>
       <a href="image_browser.html?fanArt=true">Fan Art</a>
       <a href = 'http://farragofiction.com/DollSim/'> Doll Maker</a>
-      <a href="oc_generator.html">Random OC Generator</a>
+      <a href="ocGenerator.html">Random OC Generator</a>
       <a href="credits.html">Special Thanks</a>
     </div>
   </li>

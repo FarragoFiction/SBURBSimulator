@@ -1,6 +1,8 @@
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 import 'dart:html';
+import 'dart:math' as Math;
+
 
 /*
     TODO:
@@ -16,7 +18,7 @@ import 'dart:html';
 int numPlayers = 4;
 List<Player> players = new List<Player>(numPlayers);
 int canvasWidth = 1000;
-int canvasHeight = 800;
+int canvasHeight = 600;
 Random rand = new Random();
 
 Session curSessionGlobalVar;
@@ -113,28 +115,65 @@ void drawText(Player p, CanvasElement canvas) {
     line_num++;
 
     ctx.fillText("Consorts: ", left_margin, current + line_height * line_num);
-    ctx.fillText("${p.landFuture.consortFeature.name}s who say: ${p.landFuture.consortFeature.sound}", right_margin, current + line_height * line_num);
+    ctx.fillText("${p.landFuture.consortFeature.name}s who ${p.landFuture.consortFeature.sound}", right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Smells Like: ", left_margin, current + line_height * line_num);
-    List<String> smells = <String>["x","y","z"];
-    ctx.fillText(turnArrayIntoHumanSentence(smells), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleSmells(p.landFuture)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Sounds Like: ", left_margin, current + line_height * line_num);
-    List<String> sounds = <String>["x","y","z"];
-    ctx.fillText(turnArrayIntoHumanSentence(sounds), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleSounds(p.landFuture)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Feels Like: ", left_margin, current + line_height * line_num);
-    List<String> feels = <String>["x","y","z"];
-    ctx.fillText(turnArrayIntoHumanSentence(feels), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleFeels(p.landFuture)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Example Quests: ", left_margin, current + line_height * line_num);
-    List<String> quests = <String>["x","y","z"];
-    ctx.fillText(turnArrayIntoHumanSentence(quests), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleQuests(p)), right_margin, current + line_height * line_num);
     line_num++;
+}
+
+List<String> getSampleQuests(Player player) {
+    List<String> ret = new List<String>();
+    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.firstQuests).name);
+    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.secondQuests).name);
+    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.thirdQuests).name);
+    return ret;
+}
+
+List<String> getSampleSmells(Land land) {
+    WeightedList<SmellFeature> smells = new WeightedList<SmellFeature>.from(land.smells);
+    smells.sortByWeight(true);
+    List<String> ret = new List<String>();
+    int max = Math.min(smells.length, 2);
+    for(int i = 0; i<max; i++) {
+        ret.add(smells[i].simpleDesc);
+    }
+    return ret;
+}
+
+List<String> getSampleSounds(Land land) {
+    WeightedList<SoundFeature> stuff = new WeightedList<SoundFeature>.from(land.sounds);
+    stuff.sortByWeight(true);
+    List<String> ret = new List<String>();
+    int max = Math.min(stuff.length, 2);
+    for(int i = 0; i<max; i++) {
+        ret.add(stuff[i].simpleDesc);
+    }
+    return ret;
+}
+
+List<String> getSampleFeels(Land land) {
+    WeightedList<AmbianceFeature> stuff = new WeightedList<AmbianceFeature>.from(land.feels);
+    stuff.sortByWeight(true);
+    List<String> ret = new List<String>();
+    int max = Math.min(stuff.length, 2);
+    for(int i = 0; i<max; i++) {
+        ret.add(stuff[i].simpleDesc);
+    }
+    return ret;
 }
 
 void redrawPlayers() {
