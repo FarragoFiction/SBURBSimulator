@@ -55,8 +55,7 @@ class InterestManager {
         TERRIBLE = new Terrible();
         WRITING = new Writing();
         TECHNOLOGY = new Technology();
-        NULL = new InterestCategory(-13, "Null", "",""); //shouldn't ever happen.
-        NULL.isInternal = true; //only one
+        NULL = new InterestCategory(-13, "Null", "","",true); //shouldn't ever happen.
     }
 
     static void register(InterestCategory ic) {
@@ -120,7 +119,7 @@ class InterestCategory {
     String name;
 
     //p much no vars to set.
-    InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor) {
+    InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor, [this.isInternal = false]) {
         initializeThemes();
         InterestManager.register(this);
     }
