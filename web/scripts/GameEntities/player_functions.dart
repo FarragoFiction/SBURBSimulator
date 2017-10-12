@@ -175,7 +175,7 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
 }
 
 
-Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
+Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a, [Moon m = null]) {
     ////print("random player");
    // //print("class: $c, aspect: $a, session: $session");
     GameEntity k = session.rand.pickFrom(PotentialSprite.prototyping_objects);
@@ -183,7 +183,7 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a) {
 
     bool gd = false;
 
-    Moon m = session.rand.pickFrom(session.moons);
+    if(m == null) m = session.rand.pickFrom(session.moons);
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
     p.interest1 = InterestManager.getRandomInterest(session.rand);
@@ -230,7 +230,7 @@ Player randomSpacePlayer(Session session) {
     removeFromArray(c, session.available_classes_players);
     Aspect a = Aspects.SPACE;
     removeFromArray(a, session.available_aspects);
-    return randomPlayerWithClaspect(session, c, a);
+    return randomPlayerWithClaspect(session, c, a,session.prospit);
 }
 
 
@@ -240,7 +240,7 @@ Player randomTimePlayer(Session session) {
     removeFromArray(c, session.available_classes_players);
     Aspect a = Aspects.TIME;
     removeFromArray(a, session.available_aspects);
-    return randomPlayerWithClaspect(session, c, a);
+    return randomPlayerWithClaspect(session, c, a, session.derse);
 }
 
 
