@@ -12,6 +12,7 @@ class Player extends GameEntity {
     num baby = null;
     @override
     num grist = 0; // players do not spawn with grist
+    Palette dreamPalette = ReferenceColours.PROSPIT_PALETTE; //for null players and things like that.
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
@@ -91,6 +92,8 @@ class Player extends GameEntity {
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon this.moon, bool this.godDestiny]) : super("", session) {
         this.name = "player_$id"; //this.htmlTitleBasic();
+        syncToSessionMoon();
+
     }
 
     @override
@@ -106,10 +109,13 @@ class Player extends GameEntity {
 
     //stop having references to fake as fuck moons yo.
     void syncToSessionMoon() {
+        if(moon == null) return;
         if (moon.name == session.prospit.name) {
             moon = session.prospit;
+            dreamPalette = ReferenceColours.PROSPIT_PALETTE;
         } else if (moon.name == session.derse.name)
             moon = session.derse;
+            dreamPalette = ReferenceColours.DERSE_PALETTE;
     }
 
     bool isQuadranted() {
@@ -557,7 +563,9 @@ class Player extends GameEntity {
         ret += "<tr><td class = 'toolTipSection'>$chatHandle<hr>";
         ret += "Class: ${class_name.name}<Br>";
         ret += "Aspect: ${aspect.name}<Br>";
-        ret += "Land: ${land.name}<Br>";
+        String landString = "DESTROYED.";
+        if(land != null) landString = land.name;
+        ret += "Land: ${landString}<Br>";
         ret += "Denizen: $denizen<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
@@ -925,6 +933,8 @@ class Player extends GameEntity {
         if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.deriveLand = deriveLand;
+        clone.dreamPalette = dreamPalette;
+        clone.moon = moon;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
         clone.denizen_index = denizen_index; //denizen quests are in order.
@@ -1818,6 +1828,10 @@ class Player extends GameEntity {
         this.sprite.doomed = true;
     }
 
+    bool canHelp() {
+        return godTier || isDreamSelf || land == null || land.firstCompleted;
+    }
+
     ///not static because who can help me varies based on who i am (space is knight, for example)
     ///no longer inside a scene because multiple scenes need a consistent result from this
      Player findHelper(List<Player> players) {
@@ -1827,7 +1841,8 @@ class Player extends GameEntity {
          if(aspect == Aspects.SPACE){//this shit is so illegal
             // print("I'm a space player, I can only be helped by knight");
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper != null && helper.id != this.id && helper.land.firstCompleted){ //a knight of space can't help themselves.
+             //can help others 100% of the time if foreign player. you can like, fly and shit with your end game items.
+             if(helper != null && helper.id != this.id && (helper.canHelp())){ //a knight of space can't help themselves.
                  ////print("Debugging helpers: Found $helper in session ${session.session_id}");
                  //print("found a knight");
                  return helper;
@@ -1849,11 +1864,11 @@ class Player extends GameEntity {
         for(Player p in sortedChoices) {
             if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.
-                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.land.firstCompleted) {
+                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.canHelp()) {
                     helper = p;
                     //print("randomly picking helper with an id of $helper");
                 }
-            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.land.firstCompleted) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.canHelp()) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
                // print("i believe i'm a blood player or a page and picked helper $helper");
             }

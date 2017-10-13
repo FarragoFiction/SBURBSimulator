@@ -54,7 +54,7 @@ class QuestsAndStuff extends Scene {
     void allocateMoonQuests() {
         //you need to be alive. (available doesn't matter, you can dream after doing something. consider it a free action, otherwise they won't get into the medium).
         for(Player p in session.players) {
-            if(!p.dead && (session.rand.nextDouble()*100) < p.moonChance) {
+            if(!p.dead && p.moon != null && (session.rand.nextDouble()*100) < p.moonChance) {
                 //TODO decide if i will allow co-op moon shit.
                 moonParties.add(new QuestingParty(session, p, null));
                 //back down to "normal"
@@ -104,12 +104,12 @@ class QuestsAndStuff extends Scene {
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
             if(helper is Sprite) {
-                helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}";
+                helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}<br><br>";
             }else {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
-            if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} "; //helpers do not.
+            if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} <br><Br>"; //helpers do not.
 
         }
         String html = "${player.land.getChapter()}The ${player.htmlTitle()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} $helperText";

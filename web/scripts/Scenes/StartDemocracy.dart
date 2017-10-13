@@ -17,7 +17,7 @@ import "../SBURBSim.dart";
 
 class StartDemocracy extends Scene {
   bool canRepeat = false;
-	var friend = null;	//blood or page or thief or rogue.
+	Player friend = null;	//blood or page or thief or rogue.
 	
 
 
@@ -26,11 +26,11 @@ class StartDemocracy extends Scene {
 
 	dynamic findSympatheticPlayer(){
 		this.friend =  findClassPlayer(this.session.getReadOnlyAvailablePlayers(), SBURBClassManager.ROGUE);
-		if(this.friend == null || this.friend.landOld == null){
+		if(this.friend == null || this.friend.land == null){
 			this.friend =  findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.HOPE);
 		}
 
-		if(this.friend == null || this.friend.landOld == null){
+		if(this.friend == null || this.friend.land == null){
 			return null;
 		}
 	}
