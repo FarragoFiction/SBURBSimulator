@@ -637,6 +637,15 @@ class Conversation {
 		appendText(div, ret);
 	}
 
+	String returnStringConversation(Player p1, Player p2, String player1Start, String player2Start, bool b) {
+		String ret = "";
+		for(PlusMinusConversationalPair convo in pairs) {
+			ret += convo.getOpeningLine(p1, player1Start);
+			ret += convo.getResponseBool(p2, player2Start, b);
+		}
+		return ret;
+	}
+
 	void appendText(Element div, String text) {
 		appendHtml(div, text);
 	}

@@ -36,7 +36,7 @@ abstract class SimController {
             tick(); //NOW start ticking
             return;
         }
-        Intro s = new Intro(curSessionGlobalVar);
+        IntroNew s = new IntroNew(curSessionGlobalVar);
         Player p = curSessionGlobalVar.players[player_index];
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);

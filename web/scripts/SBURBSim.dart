@@ -74,6 +74,7 @@ export "Scenes/GodTierRevival.dart";
 export "Scenes/GoGrimDark.dart";
 export "Scenes/GrimDarkQuests.dart";
 export "Scenes/Intro.dart";
+export "Scenes/IntroNew.dart";
 export "Scenes/JackBeginScheming.dart"; //all the jack stuff will be refactored into npc update
 export "Scenes/JackPromotion.dart";
 export "Scenes/JackRampage.dart";
