@@ -71,7 +71,7 @@ class Session {
         npcHandler = new NPCHandler(this);
         mutator = SessionMutator.getInstance();
         this.setUpBosses();
-        this.setupMoons();
+        this.setupMoons(); //happens only in reinit
         stats.initialGameEntityId = GameEntity.getIDCopy();
         print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
         ////print("Made a new session with an id of $session_id");
@@ -151,6 +151,7 @@ class Session {
 
 
     void setupMoons() {
+         print("moons set up $session_id");
         //no more than one of each.
         moons.clear();
         Map<Theme,double> prospitThemes = new Map<Theme, double>();
@@ -220,8 +221,8 @@ class Session {
         prospitThemes[prospitTheme] = Theme.HIGH;
         derseThemes[derseTheme] = Theme.HIGH;
 
-        prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT);
-        derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID);
+        prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id);
+        derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1);
         moons.add(prospit);
         moons.add(derse);
     }
@@ -561,6 +562,11 @@ class Session {
         this.stats.doomedTimeline = false;
         this.setUpBosses();
         this.setupMoons();
+        //fix refereances
+        for(Player p in players) {
+            if(p.moon.name == prospit.name) p.moon = prospit;
+            if(p.moon.name == derse.name) p.moon = derse;
+        }
         this.reckoningStarted = false;
         this.importantEvents = <ImportantEvent>[];
         this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
