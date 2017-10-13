@@ -96,7 +96,7 @@ abstract class IntroScene {
   bool trigger(List<Player> playerList, Player player);
 
   //each scene should handle rendering itself, whether via text or canvas
-  void renderContent(Element div, num i);
+  void renderContent(Element div, int i);
 
   Random get rand => this.session.rand;
 }

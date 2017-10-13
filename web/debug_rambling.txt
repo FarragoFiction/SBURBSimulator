@@ -3684,3 +3684,20 @@ Well....can just have it be weird and awkward the whole time and when you get th
 Shipping rewards should get a 2 player fraymotif AND shoves you flushed/diamonds/spades etc together.
 
 ~~~~~~~~~~~~~
+
+Okay. Not really debugging but I want to plan how I want to redo the intro scenes, they are really showing their age, especially
+with the new land system.
+
+Obvs will have conversational pairs, much like the land system.
+
+Can try to break the conversation into three parts (or six lines).
+
+* I am in the medium
+* my land is x
+* i prototyped a x
+
+Completely different set of possible things for grim dark or alien.
+
+Conversational pairs should have different conditions like, here's how you can respond if you're a seer, etc. etc.
+
+and can add different sets entirely based on interests.
