@@ -282,7 +282,7 @@ class SessionMutator {
             for (Stat str in Stats.pickable) {
                 //can lower it but way more likely to raise it
                 if (str != Stats.RELATIONSHIPS) {
-                    p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength));
+                    p.addStat(str, s.rand.nextIntRange((-1 * s.hardStrength / 10).round(), s.hardStrength.round()));
                 }
             }
         }
