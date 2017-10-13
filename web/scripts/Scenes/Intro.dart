@@ -15,11 +15,12 @@ class Intro  extends IntroScene{
 		return true; //this should never be in the main array. call manually.
 	}
 	String corruptedLand(){
+		/*
 		if(corruptedOtherLandTitles.indexOf(this.player.land1) != -1 || corruptedOtherLandTitles.indexOf(this.player.land2) != -1 ){
 			this.player.corruptionLevelOther = 100;
 			//session.logger.info("corrupted land" + this.session.session_id.toString());
 			return "There is ...something very, very wrong about the " + this.player.land +". ";
-		}
+		}*/
 		return "";
 	}
 	String corruptedSprite(){
@@ -30,31 +31,31 @@ class Intro  extends IntroScene{
 	}
 	String changeBoggle(){
 			if(this.player.aspect == Aspects.BLOOD){
-				return " They boggle vacantly at the " + this.player.land + ". ";
+				return " They boggle vacantly at the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.MIND){
-				return " They ogle at the " + this.player.land + ". ";
+				return " They ogle at the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.RAGE){
-				return " They glare with bafflement at the " + this.player.land + ". ";
+				return " They glare with bafflement at the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.TIME){
-				return " They are very confused by the " + this.player.land + ". ";
+				return " They are very confused by the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.VOID){
-				return " They stare blankly at the " + this.player.land + ". ";
+				return " They stare blankly at the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.HEART){
-				return " They run around excitedly in the " + this.player.land + ". ";
+				return " They run around excitedly in the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.BREATH){
-				return " They grin excitedly at the " + this.player.land + ". ";
+				return " They grin excitedly at the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.LIGHT){
-				return " They stare at the " + this.player.land + " with unrestrained curiosity. ";
+				return " They stare at the " + this.player.land.name + " with unrestrained curiosity. ";
 			}else if(this.player.aspect == Aspects.SPACE){
-				return " They do not even understand the " + this.player.land + ". ";
+				return " They do not even understand the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.HOPE){
-				return " They are enthused about the " + this.player.land + ". ";
+				return " They are enthused about the " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.LIFE){
-				return " They are obviously pleased with " + this.player.land + ". ";
+				return " They are obviously pleased with " + this.player.land.name + ". ";
 			}else if(this.player.aspect == Aspects.DOOM){
-				return " They stare with trepidation at the " + this.player.land + ". ";
+				return " They stare with trepidation at the " + this.player.land.name + ". ";
 			}
-			return  "They boggle vacantly at the " + this.player.land + ". ";
+			return  "They boggle vacantly at the " + this.player.land.name + ". ";
 	}
 	String changePrototyping(Element div){
 	  String ret = "";
@@ -121,7 +122,7 @@ class Intro  extends IntroScene{
 			chatText += Scene.chatLine(player2Start, player2,"I don't care.");
 			chatText += Scene.chatLine(player1Start, player1,"Um...");
 			chatText += Scene.chatLine(player2Start, player2,"Fine. Tell me about your Land.");
-			chatText += Scene.chatLine(player1Start, player1,"Oh. Um. It's the " + player1.land +".");
+			chatText += Scene.chatLine(player1Start, player1,"Oh. Um. It's the " + player1.landOld +".");
 			chatText += Scene.chatLine(player2Start, player2,"And your kernel?");
 			chatText += Scene.chatLine(player1Start, player1,"A " + player1.object_to_prototype.title() +".\n");
 			chatText += Scene.chatLine(player2Start, player2,"Social obligation complete. Goodbye.");
@@ -141,7 +142,7 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It appears to be the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It appears to be the " + player1.landOld +".");
 		chatText += Scene.chatLine(player1Start, player1,"I guess it has something to do with my title? I am apparently the ' " + player1.titleBasic() + "'. ");
 		chatText +=Scene.chatLine(player2Start, player2,"Whatever THAT means. ");
 		chatText += Scene.chatLine(player1Start, player1,"Yes. Also, I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
@@ -189,7 +190,7 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"Oh, man, it's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"Oh, man, it's the " + player1.landOld +".");
 		chatText += Scene.chatLine(player1Start, player1,"It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?");
 		chatText +=Scene.chatLine(player2Start, player2,"Through bullshit hand-wavy game magic. ");
 		chatText += Scene.chatLine(player1Start, player1,"Oh! I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
@@ -231,8 +232,8 @@ class Intro  extends IntroScene{
 
 		chatText += Scene.chatLine(player1Start, player1,"Oh man, I'm finally in the medium!");
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.landOld.split("Land of ")[1]+". It's just like something out of a VIDEO GAME!");
 		chatText +=Scene.chatLine(player2Start, player2,"lol, it IS a video game, or did you forget?");
 		chatText += Scene.chatLine(player1Start, player1,"Well, yeah, but... like... SBURB is not a NORMAL video game. You know what I mean.");
 		chatText += Scene.chatLine(player1Start, player1,"ANYWAYS... I prototyped my kernel thingy with a " + player1.object_to_prototype.title() +".\n");
@@ -278,13 +279,13 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += Scene.chatLine(player1Start, player1,"It's chock full of " + player1.land.split("Land of ")[1]+".");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
+		chatText += Scene.chatLine(player1Start, player1,"It's chock full of " + player1.landOld.split("Land of ")[1]+".");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		chatText += Scene.chatLine(player1Start, player1,"Have you made it in, yet?");
 		if(this.playerList.indexOf(player2) != -1){
 			if(player1.fromThisSession(this.session)){
-				chatText +=Scene.chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.land + ".");
+				chatText +=Scene.chatLine(player2Start, player2,"Yep, I'm exploring the " + player2.landOld + ".");
 			}else{
 				chatText +=Scene.chatLine(player2Start, player2,"Yep, it's weird how similar it is to our session.");
 			}
@@ -344,8 +345,8 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+".");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.landOld.split("Land of ")[1]+".");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel whatever with a " + player1.object_to_prototype.title() +".\n");
 		if(player1.isTroll == true && player1.object_to_prototype.lusus){
@@ -387,7 +388,7 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
 		chatText += Scene.chatLine(player1Start, player1,"It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernelsprite with a " + player1.object_to_prototype.title() +".\n");
@@ -429,7 +430,7 @@ class Intro  extends IntroScene{
 		chatText += Scene.chatLine(player1Start, player1,"I am fucking FINALLY in the medium!");
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
 		chatText += Scene.chatLine(player1Start, player1,"And I am going to rule it with an iron fist.");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		String born = "born";
@@ -487,8 +488,8 @@ class Intro  extends IntroScene{
 		}
 
 		chatText += Scene.chatLine(player2Start, player2,"Good, what's it like?");
-		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.land +".");
-		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.land.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
+		chatText += Scene.chatLine(player1Start, player1,"It's the " + player1.landOld +".");
+		chatText += Scene.chatLine(player1Start, player1,"So, like, full of " + player1.landOld.split("Land of ")[1]+". Honestly, I'm a little disappointed in how literal it is.");
 		chatText +=Scene.chatLine(player2Start, player2,"lol");
 		chatText += Scene.chatLine(player1Start, player1,"So... I prototyped my kernel with a " + player1.object_to_prototype.title() +".\n");
 		if(player1.object_to_prototype.player){
@@ -573,7 +574,7 @@ class Intro  extends IntroScene{
 	}
 	String getChat(player1, player2, div){
 
-		if(!player1.fromThisSession(this.session) || player1.land == null){
+		if(!player1.fromThisSession(this.session) || player1.landOld == null){
 			return this.alienChat(player1,div);
 		}
 

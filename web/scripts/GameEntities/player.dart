@@ -31,14 +31,12 @@ class Player extends GameEntity {
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
     num denizen_index = 0; //denizen quests are in order.
     List<Player> ghostWisdom = <Player>[]; //keeps you from spamming the same ghost over and over for wisdom.
-    String land1 = null; //words my land is made of. //TODO eventually folded into planet
-    String land2 = null;
     bool trickster = false;
     bool sbahj = false;
     List<dynamic> sickRhymes = <dynamic>[]; //oh hell yes. Hell. FUCKING. Yes! TODO: make this its own type -PL
     bool robot = false;
     num ectoBiologicalSource = null; //might not be created in their own session now.
-    SBURBClass class_name; //TODO make class and aspect an object, not a string.  have that object ONLY place things happen based on classpect.  Player asks classpect "How do I increase power"? and aspect has static for colors and what associated stats that player should get.
+    SBURBClass class_name;
     Player guardian = null; //no longer the sessions job to keep track.
     num number_confessions = 0;
     num number_times_confessed_to = 0;
@@ -46,11 +44,10 @@ class Player extends GameEntity {
     String influenceSymbol = null; //multiple aspects can influence/mind control.
     Player influencePlayer = null; //who is controlling me? (so i can break free if i have more free will or they die)
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
-    Aspect aspect; //TODO eventually a full object
-    String land = null;
-    Land landFuture; // will replace string land entirely eventually.
-    Moon moon; //will replace string moon entirely eventually.
-    Interest interest1 = null; //TODO maybe interest categories are objects too, know what is inside them and what they do
+    Aspect aspect;
+    Land land;
+    Moon moon;
+    Interest interest1 = null;
     Interest interest2 = null;
     String chatHandle = null;
     GameEntity object_to_prototype; //mostly will be potential sprites, but sometimes a player
@@ -560,7 +557,7 @@ class Player extends GameEntity {
         ret += "<tr><td class = 'toolTipSection'>$chatHandle<hr>";
         ret += "Class: ${class_name.name}<Br>";
         ret += "Aspect: ${aspect.name}<Br>";
-        ret += "Land: $land<Br>";
+        ret += "Land: ${land.name}<Br>";
         ret += "Denizen: $denizen<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
@@ -933,8 +930,7 @@ class Player extends GameEntity {
         clone.denizen_index = denizen_index; //denizen quests are in order.
         clone.causeOfDrain = causeOfDrain; //just ghost things
         clone.ghostWisdom = ghostWisdom; //keeps you from spamming the same ghost over and over for wisdom.
-        clone.land1 = land1;
-        clone.land2 = land2;
+
         clone.trickster = trickster;
         clone.sbahj = sbahj;
         clone.sickRhymes = sickRhymes; //oh hell yes. Hell. FUCKING. Yes!
@@ -1087,8 +1083,7 @@ class Player extends GameEntity {
 
     String shortLand() {
         if (land == null) throw "Should Never Ask for the Abbreviation for a Null Land";
-        RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
-        return joinMatches(exp.allMatches(land)).toUpperCase();
+        return land.shortName;
     }
 
     @override
@@ -1775,11 +1770,8 @@ class Player extends GameEntity {
 
     void initializeDerivedStuff() {
         //print("initializing derived stuff for player ${this.chatHandle}");
-        if(deriveLand) landFuture = spawnLand();
-        List<String> tmp = getRandomLandFromPlayer(this);
-        this.land1 = tmp[0];
-        this.land2 = tmp[1];
-        if(this.deriveLand) this.land = "Land of ${tmp[0]} and ${tmp[1]}";
+        if(deriveLand) land = spawnLand();
+
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
         this.mylevels = getLevelArray(this); //make them ahead of time for echeladder graphic
 
@@ -1835,7 +1827,7 @@ class Player extends GameEntity {
          if(aspect == Aspects.SPACE){//this shit is so illegal
             // print("I'm a space player, I can only be helped by knight");
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
-             if(helper != null && helper.id != this.id && helper.landFuture.firstCompleted){ //a knight of space can't help themselves.
+             if(helper != null && helper.id != this.id && helper.land.firstCompleted){ //a knight of space can't help themselves.
                  ////print("Debugging helpers: Found $helper in session ${session.session_id}");
                  //print("found a knight");
                  return helper;
@@ -1857,11 +1849,11 @@ class Player extends GameEntity {
         for(Player p in sortedChoices) {
             if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.
-                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.landFuture.firstCompleted) {
+                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.land.firstCompleted) {
                     helper = p;
                     //print("randomly picking helper with an id of $helper");
                 }
-            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.landFuture.firstCompleted) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.land.firstCompleted) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
                // print("i believe i'm a blood player or a page and picked helper $helper");
             }

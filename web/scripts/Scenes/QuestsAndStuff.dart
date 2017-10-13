@@ -43,7 +43,7 @@ class QuestsAndStuff extends Scene {
         //random players get to go first
         List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
         for(Player p in avail) {
-            if(session.isPlayerAvailable(p) && !p.dead && p.landFuture != null && !p.landFuture.noMoreQuests){
+            if(session.isPlayerAvailable(p) && !p.dead && p.land != null && !p.land.noMoreQuests){
                 QuestingParty party = createQuestingParty(p);
                 if(party != null) landParties.add(party);
             }
@@ -100,7 +100,7 @@ class QuestsAndStuff extends Scene {
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
         GameEntity helper = questingParty.helper;
-        player.landFuture.initQuest([player, helper]);
+        player.land.initQuest([player, helper]);
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
             if(helper is Sprite) {
@@ -112,12 +112,12 @@ class QuestsAndStuff extends Scene {
             if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} "; //helpers do not.
 
         }
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} $helperText";
+        String html = "${player.land.getChapter()}The ${player.htmlTitle()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
-        bool savedLevel = player.landFuture.firstCompleted;
-        player.landFuture.doQuest(div, player, helper);
+        bool savedLevel = player.land.firstCompleted;
+        player.land.doQuest(div, player, helper);
 
-        if(savedLevel != player.landFuture.firstCompleted) {
+        if(savedLevel != player.land.firstCompleted) {
             appendHtml(div, "<br><br>The ${player.htmlTitleBasicNoTip()}'s house has been built up enough to let them start visiting other lands. ");
         }
 
@@ -128,7 +128,7 @@ class QuestsAndStuff extends Scene {
 	    GameEntity helper = questingParty.helper;
 	    bool playerCorrupted = false;
 	    bool helperCorrupted = false;
-	    if(player.landFuture.corrupted || (helper != null && helper.corrupted)) {
+	    if(player.land.corrupted || (helper != null && helper.corrupted)) {
             playerCorrupted = true;
             helperCorrupted = true;
         }

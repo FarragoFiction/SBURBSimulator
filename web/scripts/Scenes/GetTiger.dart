@@ -64,7 +64,7 @@ class GetTiger extends Scene{
 				var p = withd[i];
 				p.setStat(Stats.CURRENT_HEALTH, p.getStat(Stats.HEALTH));
 				//////session.logger.info("Quest bed: " + this.session.session_id);
-				ret += " Upon being laid to rest on their QUEST BED on the " + p.land + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
+				ret += " Upon being laid to rest on their QUEST BED on the " + p.land.name + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 				ret +="On ${p.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
 				Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 				p.fraymotifs.add(f);

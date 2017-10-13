@@ -420,7 +420,7 @@ class SessionSummaryJunior {
         List<String> ret = <String>[];
         for (num i = 0; i < this.players.length; i++) {
             Player player = this.players[i];
-            ret.add(player.land);
+            ret.add(player.landOld);
         }
         return ret;
     }

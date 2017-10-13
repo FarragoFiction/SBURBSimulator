@@ -201,7 +201,7 @@ class QuadrantDialogue extends Scene {
 		chats.add(new InterestConversationalPair(interest, "Your land is beautiful, by the way. I really should paint it sometime.", ["Maybe we can make a day of it!","You're welcome to come over anytime.","I'm glad you think so, but I'm pretty sure my land is creepy as hell."], ["Ugh, nope, no way.", "Go for it, I really want to see how much you screw this up.", "You have a twisted sense of aesthetics, did you know that?"]));
 
 		//MI: The line below wasn’t working for me, but you said worked on your end? (JR: Yup, and i turned it back on. shenaigans, i guess.)
-		if(p1.land != null) chats.add(new InterestConversationalPair(interest, p1.land + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
+		if(p1.land != null) chats.add(new InterestConversationalPair(interest, p1.land.name + " is like something out of a surreal painting.", ["I know, right? I keep expecting to see melting clocks everywhere.","You really have a way with words.","You should paint it!"], ["You clearly lack imagination if you think that.", "I could not disagree more.", "Learn the definition of the word 'surreal', asshole."]));
 		return this.processChatAboutInterests(chats, interest, p1,p2,p1Start, p2Start, relationship, relationship2);
 	}
 	String chatAboutComedy(Player p1, Player p2, String p1Start, String p2Start, Relationship relationship, Relationship relationship2){

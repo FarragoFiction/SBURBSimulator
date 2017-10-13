@@ -780,6 +780,7 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
         survivor.land = null;
+        survivor.moon = null;
         survivor.dreamSelf = false;
         survivor.godDestiny = false;
         survivor.leader = false;

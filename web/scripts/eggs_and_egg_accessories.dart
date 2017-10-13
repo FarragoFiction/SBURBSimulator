@@ -429,14 +429,14 @@ void session413IndexToHuman(Player player, int index){
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["lol","hehehe"]];
-		player.land = "Land of Wind and Shade";
+		player.landOld = "Land of Wind and Shade";
 		player.moon = curSessionGlobalVar.prospit;
 	}else if(index == 1){
 		player.moon = curSessionGlobalVar.derse;
 		player.bloodColor = "#ff0000";
 		player.godDestiny = true;
 		player.class_name = SBURBClassManager.SEER;
-		player.land = "Land of Light and Rain";
+		player.landOld = "Land of Light and Rain";
 		player.aspect = Aspects.LIGHT;
 		player.chatHandle = "tentacleTherapist";
 		player.interest1 = new Interest("Writing", InterestManager.WRITING);
@@ -453,7 +453,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = curSessionGlobalVar.derse;
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.KNIGHT;
-		player.land = "Land of Heat and Clockwork";
+		player.landOld = "Land of Heat and Clockwork";
 		player.aspect = Aspects.TIME;
 		player.hairColor = "#feffd7";
 		player.hair  =1;
@@ -471,7 +471,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = curSessionGlobalVar.prospit;
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.WITCH;
-		player.land = "Land of Frost and Frogs";
+		player.landOld = "Land of Frost and Frogs";
 		player.aspect = Aspects.SPACE;
 		player.hair  =9;
 		player.hairColor = "#3f1904";
@@ -492,7 +492,7 @@ void session413IndexToHuman(Player player, int index){
 		player.class_name = SBURBClassManager.MAID;
 		player.godDestiny = true;
 		player.aspect = Aspects.LIFE;
-		player.land = "Land of Crypts and Helium";
+		player.landOld = "Land of Crypts and Helium";
 		player.hair  =38;
 		player.hairColor = "#000000";
 		player.chatHandle = "gutsyGumshoe";
@@ -508,7 +508,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = curSessionGlobalVar.derse;
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.ROGUE;
-		player.land = "Land of Pyramids and Neon";
+		player.landOld = "Land of Pyramids and Neon";
 		player.aspect = Aspects.VOID;
 		player.hair  =24;
 		player.hairColor = "#fff3bd";
@@ -527,7 +527,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = curSessionGlobalVar.derse;
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.PRINCE;
-		player.land = "Land of Tombs and Krypton";
+		player.landOld = "Land of Tombs and Krypton";
 		player.aspect = Aspects.HEART;
 		player.hair  =36;
 		player.hairColor = "#feffd7";
@@ -546,7 +546,7 @@ void session413IndexToHuman(Player player, int index){
 		player.moon = curSessionGlobalVar.prospit;
 		player.bloodColor = "#ff0000";
 		player.class_name = SBURBClassManager.PAGE;
-		player.land = "Land of Mounds and Xenon";
+		player.landOld = "Land of Mounds and Xenon";
 		player.aspect = Aspects.HOPE;
 		player.hair  =37;
 		player.hairColor = "#3f1904";
@@ -1066,7 +1066,7 @@ void session612IndexToTroll(Player player, int index){
 		player.aspect = Aspects.BLOOD;
 		player.moon = curSessionGlobalVar.prospit;
 		player.bloodColor = "#ff0000";
-		player.land = "Land of Pulse and Haze";
+		player.landOld = "Land of Pulse and Haze";
 		player.class_name = SBURBClassManager.KNIGHT;
 		player.hair = 29;
 		player.leftHorn = 21;
@@ -1088,7 +1088,7 @@ void session612IndexToTroll(Player player, int index){
 	}else if(index == 1){
 		player.moon = curSessionGlobalVar.prospit;
 		player.aspect = Aspects.MIND;
-		player.land = "Land of Thought and Flow";
+		player.landOld = "Land of Thought and Flow";
 		player.class_name = SBURBClassManager.SEER;
 		player.hair = 10;
 		player.leftHorn = 46;
@@ -1107,7 +1107,7 @@ void session612IndexToTroll(Player player, int index){
 	}else if(index == 2){
 		player.moon = curSessionGlobalVar.prospit;
 		player.aspect = Aspects.RAGE;
-		player.land = "Land of Mirth and Tents";
+		player.landOld = "Land of Mirth and Tents";
 		player.class_name = SBURBClassManager.BARD;
 		player.hair = 41;
 		player.leftHorn = 29;
@@ -1130,7 +1130,7 @@ void session612IndexToTroll(Player player, int index){
 		player.fraymotifs.add(f);
 	}else if(index == 3){
 		player.moon = curSessionGlobalVar.derse;
-		player.land = "Land of Caves and Silence";
+		player.landOld = "Land of Caves and Silence";
 		player.aspect = Aspects.VOID;
 		player.class_name = SBURBClassManager.HEIR;
 		player.hair = 8;
@@ -1152,7 +1152,7 @@ void session612IndexToTroll(Player player, int index){
 		player.moon = curSessionGlobalVar.derse;
 		player.aspect = Aspects.TIME;
 		player.class_name = SBURBClassManager.MAID;
-		player.land = "Land of Quartz and Melody";
+		player.landOld = "Land of Quartz and Melody";
 		player.hair = 40;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
@@ -1190,7 +1190,7 @@ void session612IndexToTroll(Player player, int index){
 	}else if(index == 5){
 		player.moon = curSessionGlobalVar.derse;
 		player.aspect = Aspects.HEART;
-		player.land = "Land of Little Cubes and Tea";
+		player.landOld = "Land of Little Cubes and Tea";
 		player.class_name = SBURBClassManager.ROGUE;
 		player.hair = 7;
 		player.leftHorn = 22;
@@ -1209,7 +1209,7 @@ void session612IndexToTroll(Player player, int index){
 	}else if(index == 6){
 		player.moon = curSessionGlobalVar.prospit;
 		player.aspect = Aspects.BREATH;
-		player.land = "Land of Sand and Zephyr";
+		player.landOld = "Land of Sand and Zephyr";
 		player.class_name = SBURBClassManager.PAGE;
 		player.hair = 42;
 		player.leftHorn = 28;
@@ -1232,7 +1232,7 @@ void session612IndexToTroll(Player player, int index){
 		player.fraymotifs.add(f);
 	}else if(index == 7){
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Maps and Treasure";
+		player.landOld = "Land of Maps and Treasure";
 		player.aspect = Aspects.LIGHT;
 		player.class_name = SBURBClassManager.THIEF;
 		player.hair = 14;
@@ -1258,7 +1258,7 @@ void session612IndexToTroll(Player player, int index){
 
 	}else if(index == 8){
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Rays and Frogs";
+		player.landOld = "Land of Rays and Frogs";
 		player.aspect = Aspects.SPACE;
 		player.class_name = SBURBClassManager.SYLPH;
 		player.hair = 39;
@@ -1277,7 +1277,7 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.prefix = "";
 	}else if(index == 9){
 		player.moon = curSessionGlobalVar.derse;
-		player.land = "Land of Wrath and Angels";
+		player.landOld = "Land of Wrath and Angels";
 		player.aspect = Aspects.HOPE;
 		player.class_name = SBURBClassManager.PRINCE;
 		player.hair = 6;
@@ -1296,7 +1296,7 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.prefix = "";
 	}else if(index == 10){
 		player.moon = curSessionGlobalVar.derse;
-		player.land = "Land of Dew and Glass";
+		player.landOld = "Land of Dew and Glass";
 		player.aspect = Aspects.LIFE;
 		player.class_name = SBURBClassManager.WITCH;
 		player.hair = 19;
@@ -1315,7 +1315,7 @@ void session612IndexToTroll(Player player, int index){
 		player.quirk.prefix = "";
 	}else if(index == 11){
 		player.moon = curSessionGlobalVar.derse;//no way to have two dream selves righ tnow.;
-		player.land = "Land of Brains and Fire";
+		player.landOld = "Land of Brains and Fire";
 		player.aspect = Aspects.DOOM;
 		player.class_name = SBURBClassManager.MAGE;
 		player.hair = 2;
@@ -1355,7 +1355,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.moon = curSessionGlobalVar.prospit;
 		player.aspect = Aspects.BLOOD;
 		player.bloodColor = "#ff0000";
-		player.land = "Land of Pulse and Haze";
+		player.landOld = "Land of Pulse and Haze";
 		player.class_name = SBURBClassManager.SEER;
 		player.hair = 44;
 		player.leftHorn = 21;
@@ -1376,7 +1376,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.fraymotifs.add(f);
 	}else if(index == 1){
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Thought and Flow";
+		player.landOld = "Land of Thought and Flow";
 		player.aspect = Aspects.MIND;
 		player.class_name = SBURBClassManager.KNIGHT;
 		player.hair = 47;
@@ -1394,7 +1394,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.quirk.prefix = "";
 	}else if(index == 2){
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Mirth and Tents";
+		player.landOld = "Land of Mirth and Tents";
 		player.aspect = Aspects.RAGE;
 		player.class_name = SBURBClassManager.PRINCE;
 		player.hair = 45;
@@ -1419,7 +1419,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 3){
 		player.moon = curSessionGlobalVar.derse;
 		player.aspect = Aspects.VOID;
-		player.land = "Land of Caves and Silence";
+		player.landOld = "Land of Caves and Silence";
 		player.class_name = SBURBClassManager.PAGE;
 		player.hair = 53;
 		player.leftHorn = 43;
@@ -1439,7 +1439,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.moon = curSessionGlobalVar.derse;
 		player.aspect = Aspects.TIME;
 		player.class_name = SBURBClassManager.WITCH;
-		player.land = "Land of Quartz and Melody";
+		player.landOld = "Land of Quartz and Melody";
 		player.hair = 50;
 		player.leftHorn = 36;
 		player.rightHorn = 36;
@@ -1468,7 +1468,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.aspect = Aspects.HEART;
 		player.moon = curSessionGlobalVar.derse;
 		player.class_name = SBURBClassManager.MAGE;
-		player.land = "Land of Little Cubes and Tea";
+		player.landOld = "Land of Little Cubes and Tea";
 		player.hair = 51;
 		player.leftHorn = 22;
 		player.rightHorn = 22;
@@ -1486,7 +1486,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 6){
 		player.aspect = Aspects.BREATH;
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Sand and Zephyr";
+		player.landOld = "Land of Sand and Zephyr";
 		player.class_name = SBURBClassManager.ROGUE;
 		player.hair = 254;
 		player.leftHorn = 28;
@@ -1511,7 +1511,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 7){
 		player.aspect = Aspects.LIGHT;
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Maps and Treasure";
+		player.landOld = "Land of Maps and Treasure";
 		player.class_name = SBURBClassManager.SYLPH;
 		player.hair = 52;
 		player.leftHorn = 27;
@@ -1537,7 +1537,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 8){
 		player.aspect = Aspects.SPACE;
 		player.moon = curSessionGlobalVar.prospit;
-		player.land = "Land of Frost and Frogs";
+		player.landOld = "Land of Frost and Frogs";
 		player.class_name = SBURBClassManager.MAID;
 		player.hair = 55;
 		player.leftHorn = 26;
@@ -1556,7 +1556,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 9){
 		player.aspect = Aspects.HOPE;
 		player.moon = curSessionGlobalVar.derse;
-		player.land = "Land of Wrath and Angels";
+		player.landOld = "Land of Wrath and Angels";
 		player.class_name = SBURBClassManager.BARD;
 		player.hair = 56;
 		player.leftHorn = 19;
@@ -1575,7 +1575,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 10){
 		player.moon = curSessionGlobalVar.derse;
 		player.aspect = Aspects.LIFE;
-		player.land = "Land of Dew and Glass";
+		player.landOld = "Land of Dew and Glass";
 		player.class_name = SBURBClassManager.THIEF;
 		player.hair = 57;
 		player.leftHorn = 35;
@@ -1595,7 +1595,7 @@ void session612IndexToTrollAncestor(Player player, index){
 	}else if(index == 11){
 		player.aspect = Aspects.DOOM;
 		player.moon = curSessionGlobalVar.derse;
-		player.land = "Land of Brains and Fire";
+		player.landOld = "Land of Brains and Fire";
 		player.class_name = SBURBClassManager.HEIR;
 		player.hair = 48;
 		player.leftHorn = 33;

@@ -42,12 +42,12 @@ class DeadQuests extends Scene {
     void processEndQuests(div) {
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
-        player.landFuture.initQuest([player]);
-        String html = "${player.landFuture.getChapter()}  ";
+        player.land.initQuest([player]);
+        String html = "${player.land.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
-        if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
-        if(player.landFuture.thirdCompleted) {
+        if(!player.land.doQuest(div, player, null)) (session as DeadSession).failed = true;
+        if(player.land.thirdCompleted) {
             section = 4;
             //window.alert("I finished the last set!");
         }
@@ -97,12 +97,12 @@ class DeadQuests extends Scene {
        // print("sports intermissions.");
         DeadSession ds = session as DeadSession;
         Player player = session.players[0];
-        player.landFuture.initQuest([player]);
-        String html = "${player.landFuture.getChapter()}  ";
+        player.land.initQuest([player]);
+        String html = "${player.land.getChapter()}  ";
         appendHtml(div, html);
         //doQuests will append itself.
-        if(!player.landFuture.doQuest(div, player, null)) (session as DeadSession).failed = true;
-        if(player.landFuture.secondCompleted) {
+        if(!player.land.doQuest(div, player, null)) (session as DeadSession).failed = true;
+        if(player.land.secondCompleted) {
             section = 3;
             //window.alert("I finished the second set!");
         }
@@ -114,23 +114,23 @@ class DeadQuests extends Scene {
         Player player = session.players[0];
         //TODO have the first quest in the dead land's denizen quests print out, which should
         //explain teh pool/bowling/solitaire/whatever theme.
-        player.landFuture.initQuest([player]);
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} looks up at the ${ds.numberLandsRemaining} planets now orbiting the ${player.landFuture.name}.  ${ds.metaPlayer.chatHandle} is a smug asshole as they explain what needs to happen next. ";
+        player.land.initQuest([player]);
+        String html = "${player.land.getChapter()}The ${player.htmlTitle()} looks up at the ${ds.numberLandsRemaining} planets now orbiting the ${player.land.name}.  ${ds.metaPlayer.chatHandle} is a smug asshole as they explain what needs to happen next. ";
         appendHtml(div, html);
         //doQuests will append itself.
-        player.landFuture.doQuest(div, player, null);
+        player.land.doQuest(div, player, null);
         section = 2;
     }
 
     void processMetaLandIntro(Element div) {
         //print("doing a meta land bullshit quest");
         Player player = session.players[0];
-        player.landFuture.initQuest([player]);
-        String html = "${player.landFuture.getChapter()}The ${player.htmlTitle()} is in the ${player.landFuture.name}.  ${player.landFuture.randomFlavorText(session.rand, player)} ";
+        player.land.initQuest([player]);
+        String html = "${player.land.getChapter()}The ${player.htmlTitle()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
-        player.landFuture.doQuest(div, player, null);
-        if(player.landFuture.firstCompleted) {
+        player.land.doQuest(div, player, null);
+        if(player.land.firstCompleted) {
             chooseChildLand();
             introduceSecondPartOfQuests(div);
         }

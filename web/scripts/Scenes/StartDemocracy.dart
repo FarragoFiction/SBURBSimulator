@@ -26,11 +26,11 @@ class StartDemocracy extends Scene {
 
 	dynamic findSympatheticPlayer(){
 		this.friend =  findClassPlayer(this.session.getReadOnlyAvailablePlayers(), SBURBClassManager.ROGUE);
-		if(this.friend == null || this.friend.land == null){
+		if(this.friend == null || this.friend.landOld == null){
 			this.friend =  findAspectPlayer(this.session.getReadOnlyAvailablePlayers(), Aspects.HOPE);
 		}
 
-		if(this.friend == null || this.friend.land == null){
+		if(this.friend == null || this.friend.landOld == null){
 			return null;
 		}
 	}

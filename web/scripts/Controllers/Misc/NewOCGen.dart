@@ -106,28 +106,28 @@ void drawText(Player p, CanvasElement canvas) {
     left_margin = 25; //indenting for land shit.
 
     ctx.fillText("Land: ", left_margin, current + line_height * line_num);
-    ctx.fillText(p.landFuture.name, right_margin, current + line_height * line_num);
+    ctx.fillText(p.land.name, right_margin, current + line_height * line_num);
     line_num++;
     left_margin = 35; //indenting for land shit.
 
     ctx.fillText("Denizen: ", left_margin, current + line_height * line_num);
-    ctx.fillText(p.landFuture.denizenFeature.name, right_margin, current + line_height * line_num);
+    ctx.fillText(p.land.denizenFeature.name, right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Consorts: ", left_margin, current + line_height * line_num);
-    ctx.fillText("${p.landFuture.consortFeature.name}s who ${p.landFuture.consortFeature.sound}", right_margin, current + line_height * line_num);
+    ctx.fillText("${p.land.consortFeature.name}s who ${p.land.consortFeature.sound}", right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Smells Like: ", left_margin, current + line_height * line_num);
-    ctx.fillText(turnArrayIntoHumanSentence(getSampleSmells(p.landFuture)), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleSmells(p.land)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Sounds Like: ", left_margin, current + line_height * line_num);
-    ctx.fillText(turnArrayIntoHumanSentence(getSampleSounds(p.landFuture)), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleSounds(p.land)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Feels Like: ", left_margin, current + line_height * line_num);
-    ctx.fillText(turnArrayIntoHumanSentence(getSampleFeels(p.landFuture)), right_margin, current + line_height * line_num);
+    ctx.fillText(turnArrayIntoHumanSentence(getSampleFeels(p.land)), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Example Quests: ", left_margin, current + line_height * line_num);
@@ -137,9 +137,9 @@ void drawText(Player p, CanvasElement canvas) {
 
 List<String> getSampleQuests(Player player) {
     List<String> ret = new List<String>();
-    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.firstQuests).name);
-    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.secondQuests).name);
-    ret.add(player.landFuture.selectQuestChainFromSource([player], player.landFuture.thirdQuests).name);
+    ret.add(player.land.selectQuestChainFromSource([player], player.land.firstQuests).name);
+    ret.add(player.land.selectQuestChainFromSource([player], player.land.secondQuests).name);
+    ret.add(player.land.selectQuestChainFromSource([player], player.land.thirdQuests).name);
     return ret;
 }
 

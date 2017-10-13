@@ -245,7 +245,7 @@ class DeadSession extends Session {
         chosenThemesForDeadSession[interest2Theme] = player.interest2.category.themes[interest2Theme];
         chosenThemesForDeadSession[deadTheme] = themes[deadTheme];
         print("making a dead land. with themes: ${chosenThemesForDeadSession}");
-        players[0].landFuture = new Land.fromWeightedThemes(chosenThemesForDeadSession, this, players[0].aspect);
+        players[0].land = new Land.fromWeightedThemes(chosenThemesForDeadSession, this, players[0].aspect);
     }
 
     @override

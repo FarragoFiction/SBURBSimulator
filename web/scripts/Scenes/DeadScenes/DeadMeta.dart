@@ -31,8 +31,8 @@ class DeadMeta extends Scene {
         div.append(container);
 
         if(!doneOnce) return intro(container);
-        if(!player.landFuture.thirdCompleted) return middle(container);
-        if(player.landFuture.thirdCompleted) return end(container);
+        if(!player.land.thirdCompleted) return middle(container);
+        if(player.land.thirdCompleted) return end(container);
     }
 
     void middle(Element div) {
@@ -95,7 +95,7 @@ class DeadMeta extends Scene {
         Player player = session.players[0];
 
         //you get to fight my denizen self now, bitch.
-        player.landFuture.denizenFeature.name = meta.denizen.name;
+        player.land.denizenFeature.name = meta.denizen.name;
 
         Conversation conversation;
 
@@ -662,7 +662,7 @@ class DeadTextPL {
                     "Shit.",
                     "...",
                 ])
-            ,() => _chats == 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            ,() => _chats == 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, positive response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -708,7 +708,7 @@ class DeadTextPL {
                     "Shit.",
                     "Fuck.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, hostile response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -758,7 +758,7 @@ class DeadTextPL {
                     "Get fucked.",
                     "Hmph.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(player.landFuture) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
             // ---------------------------------
             ..add(placeholder, 0.1)
         ;
@@ -786,7 +786,7 @@ class DeadTextPL {
     }
 
     Land _getCurrentLand() {
-        return session.currentLand == null ? session.players[0].landFuture : session.currentLand;
+        return session.currentLand == null ? session.players[0].land : session.currentLand;
     }
 
     String _landConvo(String text) {
