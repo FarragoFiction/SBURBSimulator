@@ -45,7 +45,7 @@ class AfterlifeController extends SimController {
 
 
   void loadPlayers(){
-    curSessionGlobalVar.players = getReplayers();
+    curSessionGlobalVar.players = getReplayers(curSessionGlobalVar);
     for(num i = 0; i<curSessionGlobalVar.players.length; i++){
       curSessionGlobalVar.players[i].ghost = true; //not storing that as a bool. 'cause fuck you,thats why'
     }

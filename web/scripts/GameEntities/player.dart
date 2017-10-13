@@ -107,6 +107,14 @@ class Player extends GameEntity {
         return (interest1.category == c || interest2.category == c);
     }
 
+    //stop having references to fake as fuck moons yo.
+    void syncToSessionMoon() {
+        if (moon.name == session.prospit.name) {
+            moon = session.prospit;
+        } else if (moon.name == session.derse.name)
+            moon = session.derse;
+    }
+
     bool isQuadranted() {
         if (!this
             .getHearts()

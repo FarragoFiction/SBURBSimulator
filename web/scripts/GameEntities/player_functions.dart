@@ -9,7 +9,7 @@ why the fuck does trying to decode a URI that is null, return the string "null";
 why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
-List<Player> getReplayers() {
+List<Player> getReplayers(Session session) {
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
     //var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
     String raw = getRawParameterByName("b", null);
@@ -24,7 +24,13 @@ List<Player> getReplayers() {
     ////print(b);
     ////print("s is ");
     ////print(s);
-    return dataBytesAndStringsToPlayers(b, s, x);
+    List<Player> ret =  dataBytesAndStringsToPlayers(b, s, x);
+    //can't let them keep their null session reference.
+    for(Player p in ret) {
+        p.session = session;
+        p.syncToSessionMoon();
+    }
+    return ret;
 }
 
 
@@ -81,7 +87,7 @@ void initializePlayersNoReplayers(List<Player> players, Session session) {
 }
 
 void initializePlayers(List<Player> players, Session session) {
-    List<Player> replayPlayers = getReplayers();
+    List<Player> replayPlayers = getReplayers(session);
     if (replayPlayers.isEmpty && session != null) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
     syncReplayNumberToPlayerNumber(replayPlayers);
     for (num i = 0; i < players.length; i++) {
@@ -108,7 +114,7 @@ void initializePlayers(List<Player> players, Session session) {
 
 
 void initializePlayersNoDerived(List<Player> players, Session session) {
-    List<Player> replayPlayers = getReplayers();
+    List<Player> replayPlayers = getReplayers(session);
     for (num i = 0; i < players.length; i++) {
         if (replayPlayers[i] != null) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
         players[i].initializeStats();

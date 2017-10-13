@@ -225,6 +225,9 @@ class Session {
         derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1);
         moons.add(prospit);
         moons.add(derse);
+         for(Player p in players) {
+             p.syncToSessionMoon();
+         }
     }
 
     //yes this should have been a get, but it's too annoying to fix now, used in too many places and refactoring menu doesn't know how to convert from method to get.
@@ -563,10 +566,7 @@ class Session {
         this.setUpBosses();
         this.setupMoons();
         //fix refereances
-        for(Player p in players) {
-            if(p.moon.name == prospit.name) p.moon = prospit;
-            if(p.moon.name == derse.name) p.moon = derse;
-        }
+
         this.reckoningStarted = false;
         this.importantEvents = <ImportantEvent>[];
         this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
