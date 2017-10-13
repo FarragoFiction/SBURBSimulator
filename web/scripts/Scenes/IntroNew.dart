@@ -190,7 +190,7 @@ class IntroNew extends IntroScene {
         List<PlusMinusConversationalPair> lines = new List<PlusMinusConversationalPair>();
         String land = player.land.name;
         //start it off
-        lines.add(new PlusMinusConversationalPair(["Apparently it's the land of $land?", "It's the land of $land.", "Some random ${player.land.consortFeature.name} sad it was the $land?", "There's this giant sign that says it's the $land."], ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+        lines.add(new PlusMinusConversationalPair(["Apparently it's the land of $land?", "It's the land of $land.", "Some random ${player.land.consortFeature.name} said it was the $land?", "There's this giant sign that says it's the $land."], ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
 
         double randomNum = rand.nextDouble();
 
@@ -208,7 +208,7 @@ class IntroNew extends IntroScene {
         SpecificQualia smellQualia = player.land.smellsLike(rand);
         goodLand = smellQualia.quality > 0;
         String qualiaString = smellQualia.desc;
-        if(smellQualia == 0) {
+        if(smellQualia.quality == 0) {
             lines.add(new PlusMinusConversationalPair(["Huh. It kind of smells like $qualiaString.", "It's weird, it smells like $qualiaString.", "Do you think there's a reason it smells like $qualiaString?"], ["Weird.", "That's random.","Huh.","I guess that makes sense."], ["Weird.", "That's random.","Huh.","I guess that makes sense."]));
         }else if(goodLand) {
             lines.add(new PlusMinusConversationalPair(["Wow, it smells like $qualiaString!", "I could get used to smelling $qualiaString!", "Holy shit, it smells fuckin FANTASTIC! Like...$qualiaString?"], ["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"],["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"]));
@@ -224,7 +224,7 @@ class IntroNew extends IntroScene {
         SpecificQualia sound = player.land.soundsLike(rand);
         goodLand = sound.quality > 0;
         String qualiaString = sound.desc;
-        if(sound == 0) {
+        if(sound.quality == 0) {
             lines.add(new PlusMinusConversationalPair(["Huh. It kind of sounds like $qualiaString.", "It's weird, it sounds like $qualiaString.", "Do you think there's a reason it sounds like $qualiaString?"], ["Weird.", "That's random.","Huh.","I guess that makes sense."], ["Weird.", "That's random.","Huh.","I guess that makes sense."]));
         }else if(goodLand) {
             lines.add(new PlusMinusConversationalPair(["Wow, it sounds like $qualiaString! So relaxing!", "I could get used to hearing $qualiaString!", "Holy shit, I love the $qualiaString I am hearing!"], ["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"],["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"]));
@@ -239,7 +239,7 @@ class IntroNew extends IntroScene {
         SpecificQualia feel = player.land.feelsLike(rand);
         goodLand = feel.quality > 0;
         String qualiaString = feel.desc;
-        if(feel == 0) {
+        if(feel.quality == 0) {
             lines.add(new PlusMinusConversationalPair(["Huh. It kind of feels $qualiaString.", "It's weird, it feels $qualiaString.", "It's kind of $qualiaString..."], ["Weird.", "That's random.","Huh.","I guess that makes sense."], ["Weird.", "That's random.","Huh.","I guess that makes sense."]));
         }else if(goodLand) {
             lines.add(new PlusMinusConversationalPair(["Wow, it feels so $qualiaString!", "It's so $qualiaString here!", "Holy shit, I just love the way it feels here! Like...$qualiaString or something?"], ["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"],["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"]));
