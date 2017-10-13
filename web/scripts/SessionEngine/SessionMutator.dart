@@ -876,7 +876,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Mathematics", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = s.derse;
-        player.land = "Land of Spires and Nature";
+        player.spawnLand();
+        player.land.name = "Land of Spires and Nature";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -916,7 +917,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Math", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Cartoons", InterestManager.POPCULTURE);
         player.moon = s.prospit;
-        player.landOld = "Land of Cardboard and Grass";
+        player.spawnLand();
+        player.land.name = "Land of Cardboard and Grass";
         player.godTier = true;
         player.deriveChatHandle = false;
 
@@ -967,7 +969,8 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Character Creation", InterestManager.WRITING);
 
         player.moon = s.prospit;
-        player.landOld = "Land of Doors and Frogs";
+        player.spawnLand();
+        player.land.name = "Land of Doors and Frogs";
         player.deriveChatHandle = false;
         player.deriveLand = false;
         player.initialize();
@@ -992,7 +995,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Data Entry", InterestManager.WRITING);
         player.interest2 = new Interest("Song Writing", InterestManager.MUSIC);
         player.moon = s.prospit;
-        player.landOld = "Land of Sound and Fury";
+        player.spawnLand();
+        player.land.name = "Land of Sound and Fury";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveLand = false;
@@ -1033,7 +1037,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
         player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
         player.moon = s.derse;
-        player.landOld = "Land of Storms and Idols";
+        player.spawnLand();
+        player.land.name = "Land of Storms and Idols";
         player.deriveChatHandle = false;
         player.godTier = true;
         player.deriveSprite = false;
@@ -1074,7 +1079,8 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
         player.moon = s.prospit;
         player.deriveSprite = false;
-        player.landOld = "Land of Lakes and Lotuses";
+        player.spawnLand();
+        player.land.name = "Land of Lakes and Lotuses";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1120,7 +1126,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Theorycrafting", InterestManager.ACADEMIC);
         player.interest2 = new Interest("Storytelling", InterestManager.WRITING);
         player.moon = s.derse;
-        player.landOld = "Land of Obsidian and Shadows";
+        player.spawnLand();
+        player.land.name = "Land of Obsidian and Shadows";
         player.godTier = true;
         player.deriveSprite = false;
         player.deriveChatHandle = false;
@@ -1165,7 +1172,8 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Memes", InterestManager.POPCULTURE);
         player.moon = s.derse;
         player.deriveSprite = false;
-        player.landOld = "Land of Memories and Misdirection";
+        player.spawnLand();
+        player.land.name = "Land of Memories and Misdirection";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1206,7 +1214,8 @@ class MetaPlayerHandler {
         player.interest2 = new Interest("Procedural Generation", InterestManager.TECHNOLOGY);
         player.moon = s.derse;
         player.deriveSprite = false;
-        player.landOld = "Land of Cults and Chandeliers";
+        player.spawnLand();
+        player.land.name = "Land of Cults and Chandeliers";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1254,7 +1263,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("The AuthorBot", InterestManager.TECHNOLOGY);
         player.interest2 = new Interest("GiggleSnort", InterestManager.POPCULTURE);
         player.moon = s.derse;
-        player.landOld = "Land of Rods and Screens";
+        player.spawnLand();
+        player.land.name = "Land of Rods and Screens";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1289,7 +1299,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Authoring", InterestManager.TECHNOLOGY);
         player.interest2 = new Interest("Robots", InterestManager.TECHNOLOGY);
         player.moon = s.derse;
-        player.landOld = "Land of Bugs and Javascript";
+        player.spawnLand();
+        player.land.name = "Land of Bugs and Javascript";
         player.godTier = true;
         player.deriveChatHandle = false;
         player.deriveLand = false;
@@ -1324,7 +1335,8 @@ class MetaPlayerHandler {
         player.interest1 = new Interest("Arson", InterestManager.TERRIBLE);
         player.interest2 = new Interest("Shipping", InterestManager.ROMANTIC);
         player.moon = s.derse;
-        player.landOld = "Land of Hrmmm... and Interesting!!!";
+        player.spawnLand();
+        player.land.name = "Land of Hrmmm... and Interesting!!!";
         player.deriveChatHandle = false;
         player.deriveLand = false;
         player.deriveSprite = false;
@@ -1384,7 +1396,7 @@ class MetaPlayerHandler {
 
         if (p == paradoxLands) {
             for (Player pl in p.session.players) {
-                pl.landOld = null;
+                pl.land = null;
             }
             return "Huh. Guess you don't appreciate all that hard work the Architect has done/will do on lands. All planets in the medium are destroyed. ";
         }
