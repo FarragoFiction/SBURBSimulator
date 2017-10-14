@@ -173,7 +173,7 @@ class IntroNew extends IntroScene {
     List<PlusMinusConversationalPair> getEnterPair() {
         List<PlusMinusConversationalPair> possible = new List<PlusMinusConversationalPair>();
         //generic
-        possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, how did you get in?","What did you do?","What did you put in your sprite?", "Really? What did you do?"],["About time! Tell me what you see!","Fucking finally. Where are you? What did you do?"]));
+        possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, how did you get in?","What did you do?","What did you put in your sprite?", "Really? What did you do?"],["About time! Tell me what you did!","Fucking finally. Where are you? What did you do?"]));
 
         //relationship specific
         //possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!"], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]));
