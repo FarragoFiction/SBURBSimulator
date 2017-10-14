@@ -505,6 +505,13 @@ class DeadMeta extends Scene {
 
 class DeadTextPL {
     static DeadTextPL INSTANCE;
+    
+    static const String FEATURE1 = "convolandfeature1";
+    static const String FEATURE2 = "convolandfeature2";
+    static const String RIGHTGUESS = "convofeatureguessright";
+    static const String WRONGGUESS = "convofeatureguesswrong";
+    static const String LANDNAME = "convolandnameshort";
+    static const String LANDNAMEFULL = "convolandnamefull";
 
     DeadSession session;
     Random rand;
@@ -640,17 +647,17 @@ class DeadTextPL {
                 ])
                 ..line(<String>[
                     "Come on! I want to know about that place. It's what I do.",
-                    "Don't be an ass. Tell me. What's it like? WRONGGUESS? RIGHTGUESS?",
-                    "'The LANDNAMEFULL', right? So... RIGHTGUESS? WRONGGUESS maybe?",
-                    "Oh come on! It's the LANDNAMEFULL for fuck's sake, how hard could it be to describe?",
+                    "Don't be an ass. Tell me. What's it like? $WRONGGUESS? $RIGHTGUESS?",
+                    "'The $LANDNAMEFULL', right? So... $RIGHTGUESS? $WRONGGUESS maybe?",
+                    "Oh come on! It's the $LANDNAMEFULL for fuck's sake, how hard could it be to describe?",
                     "I can't get a clear view from here, just tell me, ok?",
-                    "Don't be a jerk. Just tell me what it's like there. 'LANDNAME'. Can't be hard...",
+                    "Don't be a jerk. Just tell me what it's like there. '$LANDNAME'. Can't be hard...",
                 ], "...", <String>[
-                    "Ugh, fine. FEATURE1, and FEATURE2 I guess.",
-                    "If I tell you will you get lost? FEATURE1.",
-                    "Fine. FEATURE2. Will you just fuck off now?!",
-                    "Lots of LANDNAME. Now GO AWAY!",
-                    "Right, RIGHTGUESS, now fuck off and leave me alone!",
+                    "Ugh, fine. $FEATURE1, and $FEATURE2 I guess.",
+                    "If I tell you will you get lost? $FEATURE1.",
+                    "Fine. $FEATURE2. Will you just fuck off now?!",
+                    "Lots of $LANDNAME. Now GO AWAY!",
+                    "Right, $RIGHTGUESS, now fuck off and leave me alone!",
                 ])
                 ..line(<String>[
                     "Close enough... brb.",
@@ -662,7 +669,7 @@ class DeadTextPL {
                     "Shit.",
                     "...",
                 ])
-            ,() => _chats == 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
+            ,() => _chats == 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, positive response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -686,16 +693,16 @@ class DeadTextPL {
                     "Aww come on, don't be like that. It's for your own good!",
                     "Go on. Just tell me and I'm gone again, promise.",
                     "I'm trying to help here, just tell me.",
-                    "What about RIGHTGUESS? Is that a thing?",
-                    "Come on, it's not difficult - WRONGGUESS?",
+                    "What about $RIGHTGUESS? Is that a thing?",
+                    "Come on, it's not difficult - $WRONGGUESS?",
                     "I know it's inconvenient, but I'm doing this to help.",
                 ], "...", <String>[
-                    "Fine, there's stuff like FEATURE1, and FEATURE2 around the place. Now GET LOST!",
-                    "Fuck. Right, uh, FEATURE1 and some other crap.",
-                    "I hate you. It's LANDNAMEFULL, there's LANDNAME. Now fuck off.",
-                    "Shit. FEATURE1. Maybe FEATURE2, not sure. Now go away.",
-                    "Not up to this right now. Some shit like, uh... FEATURE1 mostly.",
-                    "Fine. FEATURE1 I guess.",
+                    "Fine, there's stuff like $FEATURE1, and $FEATURE2 around the place. Now GET LOST!",
+                    "Fuck. Right, uh, $FEATURE1 and some other crap.",
+                    "I hate you. It's $LANDNAMEFULL, there's $LANDNAME. Now fuck off.",
+                    "Shit. $FEATURE1. Maybe $FEATURE2, not sure. Now go away.",
+                    "Not up to this right now. Some shit like, uh... $FEATURE1 mostly.",
+                    "Fine. $FEATURE1 I guess.",
                 ])
                 ..line(<String>[
                     "Got it. I'll be back later.",
@@ -708,7 +715,7 @@ class DeadTextPL {
                     "Shit.",
                     "Fuck.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, hostile response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -758,7 +765,16 @@ class DeadTextPL {
                     "Get fucked.",
                     "Hmph.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(player.land) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
+            // ---------------------------------
+            // Land not covered and not first, negative response (less common)
+            ..addConditional(new ConversationProcessed(_landConvo)
+                ..line(<String>[
+                    "test",
+                ], "...", <String>[
+                    "test",
+                ])
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 0.5 : 0.0)
             // ---------------------------------
             ..add(placeholder, 0.1)
         ;
@@ -819,12 +835,12 @@ class DeadTextPL {
         //print("1: $feature1, 2: $feature2, right: $rightGuess, wrong: $wrongGuess");
 
         return text
-            .replaceAll("LANDNAMEFULL", landnamefull)
-            .replaceAll("LANDNAME", landname)
-            .replaceAll("FEATURE1", describeFeature(feature1))
-            .replaceAll("FEATURE2", describeFeature(feature2))
-            .replaceAll("RIGHTGUESS", describeFeature(rightGuess))
-            .replaceAll("WRONGGUESS", describeFeature(wrongGuess))
+            .replaceAll(LANDNAMEFULL, landnamefull)
+            .replaceAll(LANDNAME, landname)
+            .replaceAll(FEATURE1, describeFeature(feature1))
+            .replaceAll(FEATURE2, describeFeature(feature2))
+            .replaceAll(RIGHTGUESS, describeFeature(rightGuess))
+            .replaceAll(WRONGGUESS, describeFeature(wrongGuess))
         ;
     }
 
