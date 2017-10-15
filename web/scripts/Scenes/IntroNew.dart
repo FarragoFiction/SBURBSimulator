@@ -20,9 +20,8 @@ class IntroNew extends IntroScene {
           List<Conversation> convos = getConversations();
           String player1Start = player.chatHandleShort() + ": ";
           String player2Start = friend.chatHandleShortCheckDup(player.chatHandleShort()) + ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-
           chat = convos[0].returnStringConversation(player, friend, player1Start, player2Start,friend.getRelationshipWith(player).value > 0);
-          chat += convos[1].returnStringConversation(player, friend, player1Start, player2Start,player.object_to_prototype.getStat(Stats.POWER)>200);
+          chat += convos[1].returnStringConversation(player, friend, player1Start, player2Start,player.object_to_prototype.getStat(Stats.POWER)>100*Stats.POWER.coefficient);
           chat += convos[2].returnStringConversation(player, friend, player1Start, player2Start,goodLand);
 
           //lookit me, doing canvas shit correctly. what even IS this???
@@ -163,8 +162,8 @@ class IntroNew extends IntroScene {
 
       //order is important cuz whether i do positive or negative matters if it's land or whatever
       ret.add(new Conversation(getEnterPair()));
-      ret.add(new Conversation(getLandPair()));
       ret.add(new Conversation(getSpritePair()));
+      ret.add(new Conversation(getLandPair()));
      return ret;
     }
 
@@ -174,7 +173,7 @@ class IntroNew extends IntroScene {
     List<PlusMinusConversationalPair> getEnterPair() {
         List<PlusMinusConversationalPair> possible = new List<PlusMinusConversationalPair>();
         //generic
-        possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, what's your land like?","What's it like?","What do you see?", "Really? What's it like?"],["About time! Tell me what you see!","Fucking finally. Where are you? What did you do?"]));
+        possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, how did you get in?","What did you do?","What did you put in your sprite?", "Really? What did you do?"],["About time! Tell me what you did!","Fucking finally. Where are you? What did you do?"]));
 
         //relationship specific
         //possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!"], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]));
@@ -255,9 +254,9 @@ class IntroNew extends IntroScene {
         List<PlusMinusConversationalPair> possible1 = new List<PlusMinusConversationalPair>();
         List<PlusMinusConversationalPair> possible2 = new List<PlusMinusConversationalPair>();
         //generic
-        possible1.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, what's it like?","What's it like?","What do you see?", "Really? What's it like?"],["About time! Tell me what you see!","Fucking finally. Where are you? What did you do?"]));
+        possible1.add(new PlusMinusConversationalPair(["I prototyped my kernelsprite with a ${player.object_to_prototype}.", "I chucked a  ${player.object_to_prototype} into the seizure kernel."], ["Huh, cool! What did that do?","What do you think that did?"],["That sounds ominous.","That doesn't sound good."]));
 
-        possible2.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, what's it like?","What's it like?","What do you see?", "Really? What's it like?"],["About time! Tell me what you see!","Fucking finally. Where are you? What did you do?"]));
+        possible2.add(new PlusMinusConversationalPair(["I think it just made the enemies look like a  ${player.object_to_prototype}.", "I have absolutely no idea.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay/","Well, how's your land?"]));
 
 
         //relationship specific
