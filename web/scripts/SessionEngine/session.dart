@@ -398,7 +398,7 @@ class Session {
     }
 
     int gristPercent() {
-        return (100*(getTotalGrist(players)/(minimumGristPerPlayer * players.length))).round();
+        return (100*(getTotalGrist(players)/(minimumGristPerPlayer * players.length))).floor();
     }
 
 

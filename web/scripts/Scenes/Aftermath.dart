@@ -268,7 +268,7 @@ class Aftermath extends Scene {
         } else {
             if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny()) {
                 end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
-                end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()}% of the way through. ";
+                end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).floor()}% of the way through. ";
                 ////session.logger.info("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
                 if (spacePlayer.landLevel < 0) {
                     end += " Stupid lousy goddamned GrimDark players fucking with the frog breeding. Somehow you ended up with less of a frog than when you got into the medium. ";
