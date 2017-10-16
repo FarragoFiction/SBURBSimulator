@@ -506,15 +506,17 @@ class DeadMeta extends Scene {
 class DeadTextPL {
     static DeadTextPL INSTANCE;
     
-    static const String FEATURE1 = "convolandfeature1";
-    static const String FEATURE2 = "convolandfeature2";
-    static const String RIGHTGUESS = "convofeatureguessright";
-    static const String WRONGGUESS = "convofeatureguesswrong";
-    static const String LANDNAME = "convolandnameshort";
-    static const String LANDNAMEFULL = "convolandnamefull";
+    static const String FEATURE1 = "LAND_FEATURE_1";
+    static const String FEATURE2 = "LAND_FEATURE_2";
+    static const String RIGHTGUESS = "LAND_GUESS_RIGHT";
+    static const String WRONGGUESS = "LAND_GUESS_WRONG";
+    static const String LANDNAME = "LAND_NAME_SHORT";
+    static const String LANDNAMEFULL = "LAND_NAME_FULL";
+    static const String WRONGLAND = "WRONG_LAND_NAME";
 
     DeadSession session;
     Random rand;
+    Player player;
 
     Conversation placeholder = new Conversation(<PlusMinusConversationalPair>[
         new PlusMinusConversationalPair(<String>["Words"], <String>["..."], <String>["Response"]),
@@ -537,7 +539,7 @@ class DeadTextPL {
         }
         INSTANCE = this;
 
-        Player player = session.players[0];
+        this.player = session.players[0];
 
         // #################################################################
 
@@ -658,7 +660,7 @@ class DeadTextPL {
                     "Fine. $FEATURE2. Will you just fuck off now?!",
                     "Lots of $LANDNAME. Now GO AWAY!",
                     "Right, $RIGHTGUESS, now fuck off and leave me alone!",
-                ])
+                ], _landReplacements)
                 ..line(<String>[
                     "Close enough... brb.",
                     "Interesting. I'll be back.",
@@ -669,7 +671,7 @@ class DeadTextPL {
                     "Shit.",
                     "...",
                 ])
-            ,() => _chats == 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
+            ,() => _chats == 0 && !_lands.contains(_getCurrentLand()) ? 5.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, positive response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -703,7 +705,7 @@ class DeadTextPL {
                     "Shit. $FEATURE1. Maybe $FEATURE2, not sure. Now go away.",
                     "Not up to this right now. Some shit like, uh... $FEATURE1 mostly.",
                     "Fine. $FEATURE1 I guess.",
-                ])
+                ], _landReplacements)
                 ..line(<String>[
                     "Got it. I'll be back later.",
                     "Right... I'll see what I can do.",
@@ -715,7 +717,7 @@ class DeadTextPL {
                     "Shit.",
                     "Fuck.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 5.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, hostile response
             ..addConditional(new ConversationProcessed(_landConvo)
@@ -765,18 +767,126 @@ class DeadTextPL {
                     "Get fucked.",
                     "Hmph.",
                 ])
-            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 1.0 : 0.0)
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 5.0 : 0.0)
             // ---------------------------------
             // Land not covered and not first, negative response (less common)
             ..addConditional(new ConversationProcessed(_landConvo)
                 ..line(<String>[
-                    "test",
+                    "So, what's it like this time?",
+                    "What about this land then?",
+                    "How is it down there?",
+                    "I'm back, what do you see down there?",
+                    "I'm back, what's this place like?",
+                    "What about this one?",
+                    "What's it like down there then?",
                 ], "...", <String>[
-                    "test",
+                    "Ugh, I don't have time for this right now.",
+                    "Please, I can't deal with this right now.",
+                    "Why won't you just leave me alone?",
+                    "Go away, I don't need your 'help' right now.",
+                    "Is this really necessary?",
+                    "Sigh.",
+                    "Fuck off.",
+                    "Do I have to? Can't you just leave me alone instead?",
                 ])
-            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 0.5 : 0.0)
+                ..line(<String>[
+                    "Don't be unreasonable, this can make things easier for you.",
+                    "Come on. Please? Don't leave me hanging here!",
+                    "Come on, don't be like that...",
+                    "Must we go through this every time? It's for your benefit...",
+                    "Are we really gonna do this every time I ask?",
+                    "This benefits you as much as it does me. Please?",
+                ], "...", <String>[
+                    "Ugh, fine.",
+                    "If I must.",
+                    "If you insist.",
+                    "I'll do it, but this is wearing really thin.",
+                    "You'd better start helping soon.",
+                    "Fine, ok. What do you need?",
+                    "Fuck. Ok. Whatever. Ask your questions.",
+                ])
+                ..line(<String>[
+                    "Ok. So, $LANDNAMEFULL, right? In that case, hmm... $WRONGGUESS?",
+                    "Hmm, so it's $LANDNAMEFULL... Uh... $WRONGGUESS?",
+                    "Hmm... $WRONGGUESS? It is $LANDNAMEFULL, after all.",
+                    "$LANDNAME... $LANDNAME... let's see... $WRONGGUESS?",
+                    "Let's see... $LANDNAME. So... $WRONGGUESS.?",
+                ], "...", <String>[
+                    "Nope. Nothing like that. $FEATURE1 though.",
+                    "Wrong! $WRONGGUESS? Ha! $FEATURE2.",
+                    "Nope nope nope. You've got it all wrong. $FEATURE1.",
+                    "HA! WRONG! Why the hell would you guess that? Not even close.",
+                    "$WRONGGUESS?! Wow you are so completely wrong. You're an idiot.",
+                ], _landReplacements)
+                ..line(<String>[
+                    "Huh. Well, colour me surprised. I'll be back.",
+                    "Wow, ok. I need to go think about this. I'll be back.",
+                    "Shit, really? Dang. Back in a mo, I need to go think about this.",
+                    "Really? Huh. That screws up some plans. brb.",
+                    "Whaaat? Huh, ok. Back in a min. Got some planning to do.",
+                    "No shit? Well that changes things. Be right back.",
+                ], "...", <String>[
+                    "Ugh, not again...",
+                    "Really? Again?",
+                    "Oh for fuck's sake.",
+                    "Ugh.",
+                    "Sigh.",
+                    "Fuck.",
+                ])
+            ,() => _chats > 0 && !_lands.contains(_getCurrentLand()) ? 2.5 : 0.0)
             // ---------------------------------
-            ..add(placeholder, 0.1)
+            // An idea, but for the wrong place! Oh no!
+            ..addConditional(new Conversation()
+                ..line(<String>[
+                    "So, I have an idea which might help.",
+                    "I have a potential plan to help you out.",
+                    "I think I have a solution to your problems...",
+                    "I've been thinking a bit, and I think I might have something which could help.",
+                    "I have a new idea! One which might help you out.",
+                    "Got a moment? I have an idea which might help.",
+                    "Yo asshole, got an idea that I think might make your life easier.",
+                ], "...", <String>[
+                    "Great, what kind of fucked up bullshit is it this time?",
+                    "Just what I need, more bullshit tasks to do.",
+                    "Because you've been sooo helpful so far.",
+                    "Oh wonderful, more crap to waste my time on.",
+                    "As if this menial bullshit wasn't bad enough! What is it?",
+                    "Fuck this. Fine, what do you have?",
+                    "Will you stop wasting my time?!",
+                ])
+                ..line(<String>[
+                    "Well, if you go to... wait, shit, this is the $WRONGLAND, right?",
+                    "There's a buried... hang on, where are you? The $WRONGLAND, right? The one with... what was it... $WRONGGUESS?",
+                    "Ok, so you're on the $WRONGLAND, so go to... wait, that's not right. Where's the thing?",
+                    "First you're gonna want to go to... wait, what? Where is it? You're on the $WRONGLAND, aren't you?",
+                    "The thing about the $WRONGLAND is that you can find these... hold up a second, you are on the $WRONGLAND, aren't you?",
+                    "I've seen something similar to the stuff you're dealing with, and since it's the $WRONGLAND, you should start by... wait, that's all wrong.",
+                    "If you look around the main... wait, fuck, you said you were on the $WRONGLAND, didn't you?",
+                ], "...", <String>[
+                    "No, it's the $LANDNAMEFULL, are you fucking blind?",
+                    "Holy fuck no, this is the $LANDNAMEFULL, how are you so fucking stupid?!",
+                    "Fuck! You are totally useless! This is the $LANDNAMEFULL you idiot!",
+                    "What the fuck are you even doing up there? This is the $LANDNAMEFULL, and you are a moron.",
+                    "Great, as if my current situation wasn't bad enough you're being a complete idiot. This is the $LANDNAMEFULL.",
+                    "Oh fuck you, you can't even get the fucking land right. This is $LANDNAMEFULL, asshole!",
+                ], _landReplacements)
+                ..line(<String>[
+                    "Ah shit, this won't work at all then. Back to the drawing board.",
+                    "Fuck! Sorry! Uh, I'm gonna find something else.",
+                    "Oh god fucking damnit, there's too many of these things for one player this session. Gimme a normal group, fuck!",
+                    "Wait, what the heck? God damnit. I'll try to find something relevant, gimme a sec.",
+                    "Aaargh, sorry! I've been getting these damn lands mixed up all day, there's too damn many in this session for one player.",
+                    "Wait, shit, that's not right... I had notes here for the $WRONGLAND... Fuck, back I go.",
+                ], "...", <String>[
+                    "What the fuck!",
+                    "Why do I even bother?",
+                    "What a complete fucking waste of time.",
+                    "And this is why I hate you.",
+                    "Are you fucking kidding me right now?",
+                    "Fuck!",
+                    "For fuck's sake. Why am I stuck with you?",
+                ], _landReplacements)
+                ,() => _chats > 0 ? 1.0 : 0.0)
         ;
 
         // #################################################################
@@ -792,6 +902,7 @@ class DeadTextPL {
     }
 
     Conversation middle() {
+        _generateReplacements();
         Conversation out = session.rand.pickFrom(middles);
         _chats++;
         return out;
@@ -809,6 +920,13 @@ class DeadTextPL {
         Land land = _getCurrentLand();
         _lands.add(land);
 
+        return text;
+    }
+
+    Map<String, String> _replacements = <String,String>{};
+    void _generateReplacements() {
+        Land land = _getCurrentLand();
+
         String landnamefull = land.name;
         String landname = land.name.substring(7);
 
@@ -823,24 +941,39 @@ class DeadTextPL {
 
         Feature rightGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains));
         Feature wrongGuess = rand.pickFrom(themeFeatures.where((Feature f) => !landFeatures.contains(f)));
+
+        Theme wrongtheme_aspect = rand.pickFrom(new WeightedList<Theme>.fromMap(player.aspect.themes).where((Theme t) => t != land.mainTheme && t != land.secondaryTheme));
+        Theme wrongtheme_class = rand.pickFrom(new WeightedList<Theme>.fromMap(player.class_name.themes).where((Theme t) => t != land.mainTheme && t != land.secondaryTheme));
+
+        String wrongland = "Land of ${rand.pickFrom(wrongtheme_class.possibleNames)} and ${rand.pickFrom(wrongtheme_aspect.possibleNames)}";
+
         if (wrongGuess == null) {
-            wrongGuess = rand.pickFrom(themeFeatures.where(landFeatures.contains).where((Feature f) => f != rightGuess));
+            // ok, we don't have any wrong guesses available in this theme - nothing is in there which isn't included in the land
+            // time to fall back to a theme which isn't in the land and pick a wrong feature from THAT.
+
+
+            WeightedIterable<Feature> wrongthemefeatures = new WeightedList<Feature>.fromMap(wrongtheme_aspect.features).where((Feature f) => f is DescriptiveFeature && !landFeatures.contains(f));
+            wrongGuess = rand.pickFrom(wrongthemefeatures);
         }
 
-        //print(themeFeatures);
-        //print(landFeatures);
+        _replacements[LANDNAME] = landname;
+        _replacements[LANDNAMEFULL] = landnamefull;
+        _replacements[FEATURE1] = describeFeature(feature1);
+        _replacements[FEATURE2] = describeFeature(feature2);
+        _replacements[RIGHTGUESS] = describeFeature(rightGuess);
+        _replacements[WRONGGUESS] = describeFeature(wrongGuess);
+        _replacements[WRONGLAND] = wrongland;
+    }
 
-        //print(themeFeatures.where(landFeatures.contains).toList());
-
-        //print("1: $feature1, 2: $feature2, right: $rightGuess, wrong: $wrongGuess");
-
+    String _landReplacements(String text) {
         return text
-            .replaceAll(LANDNAMEFULL, landnamefull)
-            .replaceAll(LANDNAME, landname)
-            .replaceAll(FEATURE1, describeFeature(feature1))
-            .replaceAll(FEATURE2, describeFeature(feature2))
-            .replaceAll(RIGHTGUESS, describeFeature(rightGuess))
-            .replaceAll(WRONGGUESS, describeFeature(wrongGuess))
+            .replaceAll(LANDNAMEFULL, _replacements[LANDNAMEFULL])
+            .replaceAll(LANDNAME, _replacements[LANDNAME])
+            .replaceAll(FEATURE1, _replacements[FEATURE1])
+            .replaceAll(FEATURE2, _replacements[FEATURE2])
+            .replaceAll(RIGHTGUESS, _replacements[RIGHTGUESS])
+            .replaceAll(WRONGGUESS, _replacements[WRONGGUESS])
+            .replaceAll(WRONGLAND, _replacements[WRONGLAND])
         ;
     }
 
