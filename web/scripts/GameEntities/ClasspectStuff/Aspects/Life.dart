@@ -78,22 +78,24 @@ class Life extends Aspect {
                 new DenizenFightQuest("","","")
          */
         addTheme(new Theme(<String>["Forests","Chlorophyll", "Moss", "Trees", "Jungles", "Wood", "Tribes", "Timber", "Wilds", "Thickets", "Coppices", "Copses"])
-            ..addFeature(FeatureFactory.CHANTINGSOUND, Feature.HIGH)
-            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
-            ..addFeature(new DenizenQuestChain("Learn to Believe", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.DRUMSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.WOLFCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
+            ..addFeature(new DenizenQuestChain("Restore the Forest", [
+                new Quest("The ${Quest.PLAYER1} finds a village of compliant ${Quest.CONSORT}s frantically destroying trees. If they stop, even for a moment, they know their village will be destroyed, along with any nearby trees. When the ${Quest.PLAYER1} tries to offer help they begin ${Quest.CONSORTSOUND}ing in panic. Don't upset ${Quest.DENIZEN}, they beg. It is only by complying that they are safe, and you will bring wrath upon everyone. "),
+                new Quest("The ${Quest.PLAYER1} revisits the village compliant ${Quest.CONSORT}s, only to discover it's freshly destroyed. A weeping ${Quest.CONSORT} explains that they couldn't keep up their pace and had to rest, and that is when ${Quest.DENIZEN} attacked. Please. HELP them, he begs. The ${Quest.PLAYER1} agrees to go face ${Quest.DENIZEN}."),
+                new DenizenFightQuest("In a nest built of thousands of splintered trees, ${Quest.DENIZEN} waits. It is time to fight. ","The ${Quest.PLAYER1}'s power is greater. The survive, and help the ${Quest.CONSORT}s to survive as well.","The ${Quest.DENIZEN} is stronger. The strong survive. The weak perish.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
         addTheme(new Theme(<String>["Gardens", "Summer", "Growth","Dew", "Spring", "Beginnings", "Vitality","Strength","Fields","Farms" ])
-            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
-            ..addFeature(FeatureFactory.CHAMELEONCONSORT, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.HIGH)
-            ..addFeature(new DenizenQuestChain("Believe the Lies", [
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(new DenizenQuestChain("Distribute the Food", [
                 new Quest(""),
                 new Quest(""),
                 new Quest(""),
@@ -103,11 +105,13 @@ class Life extends Aspect {
             , Theme.HIGH);
 
         addTheme(new Theme(<String>["Decay","Locusts","Bogs","Fens","Rot","Death","Mold","Swamps","Thorns","Swarms","Famine"])
-            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.LOW)
-            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
-            ..addFeature(new DenizenQuestChain("Be the Change You Believe In", [
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ALLIGATORCONSORT, Feature.MEDIUM)
+            ..addFeature(new DenizenQuestChain("Protect the Farms", [
                 new Quest(""),
                 new Quest(""),
                 new Quest(""),
