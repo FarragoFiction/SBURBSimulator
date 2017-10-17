@@ -58,6 +58,7 @@ class Comedy extends InterestCategory {
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CHAMELEONCONSORT, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Trick the Villain", [
                 new Quest("The ${Quest.PLAYER1}  is approached by a Crafty ${Quest.CONSORT} who offers them a magical ${Quest.PHYSICALMCGUFFIN}, guaranteed to grant them any wish. The ${Quest.PLAYER1} is shocked to discover it was a ruse, and the Crafty ${Quest.CONSORT} has already escaped to the side with their ill earned boonies. "),
                 new Quest("The ${Quest.PLAYER1} find many ${Quest.CONSORT}s, too sad to even ${Quest.CONSORTSOUND}, holding ${Quest.PHYSICALMCGUFFIN}.  The Crafty ${Quest.CONSORT} must be stopped!  "),

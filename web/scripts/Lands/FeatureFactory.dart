@@ -159,7 +159,7 @@ class FeatureFactory {
         ROMANTICFEELING = new AmbianceFeature("romantic");
         HAPPYFEELING = new AmbianceFeature("happy");
         HEROICFEELING = new AmbianceFeature("heroic");
-        STUPIDFEELING = new AmbianceFeature("stupid");
+        STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
         CONTEMPLATATIVEFEELING = new AmbianceFeature("contemplatative");
     }
 
