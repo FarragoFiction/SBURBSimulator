@@ -31,7 +31,7 @@ class Academic extends InterestCategory {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
-            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Recover the Books", [
                 new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that underlings stole all the books. "),
                 new Quest("The ${Quest.PLAYER1} has tracked down the book thieves to a nearby dungeon. After some harrowing puzzles and frankly amazing battles, the books are recovered. "),

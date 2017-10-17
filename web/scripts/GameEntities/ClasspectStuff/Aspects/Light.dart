@@ -1,5 +1,8 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Light extends Aspect {
 
@@ -65,5 +68,71 @@ class Light extends Aspect {
     @override
     String activateCataclysm(Session s, Player p) {
         return s.mutator.light(s, p);
+    }
+
+    @override
+    void initializeThemes() {
+
+        /*
+        new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+         */
+        addTheme(new Theme(<String>["Luck","Casinos", "Gambling", "Dice", "Cards", "Fortune", "Chance","Betting"])
+            ..addFeature(FeatureFactory.LUCKYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.JAZZSOUND, Feature.HIGH) //persona5 has changed the face of casinos for me for all time
+            ..addFeature(new DenizenQuestChain("Go Big or Go Home", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.HIGH);
+        addTheme(new Theme(<String>["Glow", "Light", "Rays","Sun", "Shine", "Sparkle", "Sunshine","Stars" ])
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Shine the Light", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            , Theme.HIGH);
+
+        addTheme(new Theme(<String>["Knowledge","Information","Books","Encyclopedias","Understanding","Libraries"])
+            ..addFeature(FeatureFactory.MUSTSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Shed the Light", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH); // end theme
+
+        //light is a special snowlake and can have 4 themes
+        addTheme(new Theme(<String>["Spotlights","Attention","Drama","Stars","Glamor"])
+            ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.LUCKYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.JAZZSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DISCOSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Be the Star", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH); // end theme
     }
 }

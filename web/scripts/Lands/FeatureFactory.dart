@@ -69,6 +69,7 @@ class FeatureFactory {
     static AmbianceFeature HEROICFEELING;
     static AmbianceFeature STUPIDFEELING;
     static AmbianceFeature ROMANTICFEELING;
+    static AmbianceFeature LUCKYFEELING;
 
 
     ///////////////////SOUNDS////////////////////////
@@ -159,6 +160,7 @@ class FeatureFactory {
         DANGEROUSFEELING = new AmbianceFeature("dangerous");
         GLAMOROUSFEELING = new AmbianceFeature("glamorous");
         ROMANTICFEELING = new AmbianceFeature("romantic");
+        LUCKYFEELING = new AmbianceFeature("lucky");
         HAPPYFEELING = new AmbianceFeature("happy");
         HEROICFEELING = new AmbianceFeature("heroic");
         STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
