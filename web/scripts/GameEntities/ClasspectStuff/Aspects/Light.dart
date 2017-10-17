@@ -122,20 +122,24 @@ class Light extends Aspect {
             , Theme.HIGH); // end theme
 
         //light is a special snowlake and can have 4 themes
-        addTheme(new Theme(<String>["Spotlights","Attention","Drama","Stars","Glamor"])
+        addTheme(new Theme(<String>["Spotlights","Attention","Drama","Stars","Glamor","Holywood"])
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.LUCKYFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.DISCOSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.SWEATSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Be the Star", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("The ${Quest.PLAYER1} is approached by a Fast Talking ${Quest.CONSORT}. Apparently the ${Quest.PLAYER1} has EXACTLY the right look to be the lead in the upcoming production of The Beautiful ${Quest.PHYSICALMCGUFFIN}. The ${Quest.PLAYER1} agrees to perform the titular role."),
+                new Quest("The opening night performance of the Beautiful ${Quest.PHYSICALMCGUFFIN} is a huge success! The ${Quest.CONSORTSOUND}ing of the fans is it's own reward!"),
+                new Quest("When it comes time for the next performance of the Beautiful ${Quest.PHYSICALMCGUFFIN}, the ${Quest.PLAYER1} is turned away at the door. Apparently the ${Quest.DENIZEN} rampaged and terrorized ${Quest.CONSORT}s until given the lead role. They claim that the ${Quest.PLAYER1} is FAR too drab to be give such an important perforamcne. WHAT. THE. FUCK. The ${Quest.PLAYER1} isn't going to let this stand."),
+                new DenizenFightQuest("There is not enough room on the stage for both of them. The ${Quest.PLAYER1} challenges the ${Quest.DENIZEN} to a glamour off, and wins handily. Enraged, the ${Quest.DENIZEN} attacks.","The ${Quest.PLAYER1} can finally get back to their promising acting career in peace.","The actig career of the ${Quest.PLAYER1} is in shambles.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH); // end theme
+            , Theme.MEDIUM); // end theme
     }
 }
