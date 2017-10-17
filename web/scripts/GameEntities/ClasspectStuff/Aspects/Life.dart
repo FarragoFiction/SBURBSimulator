@@ -87,7 +87,7 @@ class Life extends Aspect {
             ..addFeature(new DenizenQuestChain("Restore the Forest", [
                 new Quest("The ${Quest.PLAYER1} finds a village of compliant ${Quest.CONSORT}s frantically destroying trees. If they stop, even for a moment, they know their village will be destroyed, along with any nearby trees. When the ${Quest.PLAYER1} tries to offer help they begin ${Quest.CONSORTSOUND}ing in panic. Don't upset ${Quest.DENIZEN}, they beg. It is only by complying that they are safe, and you will bring wrath upon everyone. "),
                 new Quest("The ${Quest.PLAYER1} revisits the village compliant ${Quest.CONSORT}s, only to discover it's freshly destroyed. A weeping ${Quest.CONSORT} explains that they couldn't keep up their pace and had to rest, and that is when ${Quest.DENIZEN} attacked. Please. HELP them, he begs. The ${Quest.PLAYER1} agrees to go face ${Quest.DENIZEN}."),
-                new DenizenFightQuest("In a nest built of thousands of splintered trees, ${Quest.DENIZEN} waits. It is time to fight. ","The ${Quest.PLAYER1}'s power is greater. The survive, and help the ${Quest.CONSORT}s to survive as well.","The ${Quest.DENIZEN} is stronger. The strong survive. The weak perish.")
+                new DenizenFightQuest("In a nest built of thousands of splintered trees, the ${Quest.DENIZEN} waits. It is time to fight. ","The ${Quest.PLAYER1}'s power is greater. The survive, and help the ${Quest.CONSORT}s to survive as well.","The ${Quest.DENIZEN} is stronger. The strong survive. The weak perish.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
         addTheme(new Theme(<String>["Gardens", "Summer", "Growth","Dew", "Spring", "Beginnings", "Vitality","Strength","Fields","Farms" ])
@@ -99,12 +99,12 @@ class Life extends Aspect {
                 new Quest("The ${Quest.PLAYER1} finds a lush garden, dutifully tended to by ${Quest.CONSORT}s. Unfortunately, the food is left to rot in piles, as Underling brigands block the road and prevent the produce from being distributed. The ${Quest.PLAYER1} agrees to help."),
                 new Quest("The ${Quest.PLAYER1} sneaks along the main road and finds the Underling Brigands lying in wait. They are dispatched in short order, and the ${Quest.PLAYER1} heroically informs the ${Quest.CONSORT}s that they can once again begin shipping their food."),
                 new Quest("The ${Quest.PLAYER1} follows the road to find a new village, fileld with hungry ${Quest.CONSORT}s. Apparently the food has been stolen by a ${Quest.DENIZEN} minion! Enraged, the ${Quest.PLAYER1} tracks down the minion and defeats it. They now know this will not be the end of it. They need to nip this in the bud. "),
-                new DenizenFightQuest("The ${Quest.PLAYER1} approaches ${Quest.DENIZEN}. It ends here.","The ${Quest.PLAYER1} was strong enough to win! The consorts will never have to worry about their food being destroyed senselessly again.","The tyranny of ${Quest.DENIZEN} continues.")
+                new DenizenFightQuest("The ${Quest.PLAYER1} approaches the ${Quest.DENIZEN}. It ends here.","The ${Quest.PLAYER1} was strong enough to win! The consorts will never have to worry about their food being destroyed senselessly again.","The tyranny of ${Quest.DENIZEN} continues.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Decay","Locusts","Bogs","Fens","Rot","Death","Mold","Swamps","Thorns","Swarms","Famine"])
+        addTheme(new Theme(<String>["Decay","Locusts","Bogs","Blight","Fens","Rot","Death","Mold","Swamps","Thorns","Swarms","Famine", "Hunger", "Disease"])
             ..addFeature(FeatureFactory.ROTSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
@@ -112,10 +112,10 @@ class Life extends Aspect {
             ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ALLIGATORCONSORT, Feature.MEDIUM)
             ..addFeature(new DenizenQuestChain("Protect the Farms", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("Drawn by wailing and ${Quest.CONSORTSOUND}ing, the ${Quest.PLAYER1} enters a rotting ${Quest.CONSORT} village. They are in the throes of a famine they explain. Locusts damage their fields and blight destroys the weakened remainder. They cannot feed everyone once winter comes if this continues.   The ${Quest.PLAYER1} vows to help."),
+                new Quest("The ${} strifes countless swarms of locusts, but there seems to be no end to them. They finally track down a hive, guarded by several ${Quest.DENIZEN} minions. It is as easy as thinking to destroy everything, but the ${Quest.PLAYER1} is left uneasy. Why were the minions causing this on purpose?  "),
+                new Quest("Although the locusts have thinned in numbers, the blight is as strong as ever. Even the most potent of alchemized fungicides seem to only keep back the blight for a day. At their wits end, the ${Quest.PLAYER1} stays in the fields overnight to discover that ${Quest.DENIZEN} minions are spreading a strange powder on the fields. Defeating them is a start, but clearly ${Quest.DENIZEN} is dedicated to causing famine. They must be dealt with. "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} faces the ${Quest.DENIZEN}. It will end here.","The ${Quest.PLAYER1} is strong enough to impose their will on the world. Famine will not trouble the ${Quest.CONSORT}s any longer.","The ${Quest.PLAYER1} was not strong enough. Can anything save the ${Quest.CONSORT}s before winter? ")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
