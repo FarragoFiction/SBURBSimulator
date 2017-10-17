@@ -152,9 +152,13 @@ class DeadMeta extends Scene {
         return ret;
     }
 
+    //AW says: because the "There was definitely supposed to be a SBURB manual but it always ends up being replaced by squiddles brochure" joke is too good to discard
     List<Conversation> AWIntro() {
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Once more: is it so hard to not to solo a multiplayer game?","Well, well, well, well, wellwellwellwellwellwellwell...wait, you are the bad guy here."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]));
+            ..add(new PlusMinusConversationalPair(["Once more: is it so hard to not to solo a multiplayer game?","Well, well, well, well, wellwellwellwellwellwellwell...wait, you are the bad guy here."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["Oh. Really. I thought you were smart enough to read my manual and notice, 'DO NOT PLAY SOLO' but you seem like a person who came here for the sheer sake of a challenge.","It's like you didn't even read my manual."], ["..."],["What manual?", "You wrote a manual?"]))
+            ..add(new PlusMinusConversationalPair(["No manual? In this case: Guess I'll help you. But I will do anything in my power to ensure you screw up."], ["..."],fuckOff));
+            ..add(new PlusMinusConversationalPair(["Buckle up, soloist. I want to hear you wail once you reach the Fun Part."], ["..."],goodbye));
 
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));

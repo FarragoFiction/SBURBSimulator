@@ -85,9 +85,9 @@ class Light extends Aspect {
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.HIGH) //persona5 has changed the face of casinos for me for all time
             ..addFeature(new DenizenQuestChain("Go Big or Go Home", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
+                new Quest("The ${Quest.PLAYER1} finds a sparkling Casino. Inside, amid ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s is a single door, locked by three runes, each depicting a different form of gambling. Huh. The ${Quest.PLAYER1} approaches the slots and begins to play. Finally, after what must be hours, they get three Light symbols. The Slot rune lights up. One down, two to go."),
+                new Quest("The ${Quest.PLAYER1} thinks they finally have the rules of poker down enough to try the next set of gambling challenges. After a nerve wracking series of hands, they bet it all on a risky gamble, only to pull through with a Royal Flush!  The Cards rune lights up."),
+                new Quest("It is time for the final gamble. A single coin flip will decide it all. No take backs, no replays.   It lands. TAILS! The Coin rune lights up, and the door is open. The ${Quest.PLAYER1} begins to prepare for whatever may lay within."),
                 new DenizenFightQuest("","","")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
