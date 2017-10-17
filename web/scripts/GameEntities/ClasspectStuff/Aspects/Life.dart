@@ -96,10 +96,10 @@ class Life extends Aspect {
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(new DenizenQuestChain("Distribute the Food", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("The ${Quest.PLAYER1} finds a lush garden, dutifully tended to by ${Quest.CONSORT}s. Unfortunately, the food is left to rot in piles, as Underling brigands block the road and prevent the produce from being distributed. The ${Quest.PLAYER1} agrees to help."),
+                new Quest("The ${Quest.PLAYER1} sneaks along the main road and finds the Underling Brigands lying in wait. They are dispatched in short order, and the ${Quest.PLAYER1} heroically informs the ${Quest.CONSORT}s that they can once again begin shipping their food."),
+                new Quest("The ${Quest.PLAYER1} follows the road to find a new village, fileld with hungry ${Quest.CONSORT}s. Apparently the food has been stolen by a ${Quest.DENIZEN} minion! Enraged, the ${Quest.PLAYER1} tracks down the minion and defeats it. They now know this will not be the end of it. They need to nip this in the bud. "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} approaches ${Quest.DENIZEN}. It ends here.","The ${Quest.PLAYER1} was strong enough to win! The consorts will never have to worry about their food being destroyed senselessly again.","The tyranny of ${Quest.DENIZEN} continues.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             , Theme.HIGH);
