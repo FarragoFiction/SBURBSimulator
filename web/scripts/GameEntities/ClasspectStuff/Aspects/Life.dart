@@ -1,5 +1,8 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Life extends Aspect {
 
@@ -62,5 +65,54 @@ class Life extends Aspect {
     @override
     String activateCataclysm(Session s, Player p) {
         return s.mutator.life(s, p);
+    }
+
+
+    @override
+    void initializeThemes() {
+
+        /*
+        new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+         */
+        addTheme(new Theme(<String>["Forests","Chlorophyll", "Moss", "Trees", "Jungles", "Wood", "Tribes", "Timber", "Wilds", "Thickets", "Coppices", "Copses"])
+            ..addFeature(FeatureFactory.CHANTINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Learn to Believe", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.HIGH);
+        addTheme(new Theme(<String>["Gardens", "Summer", "Growth","Dew", "Spring", "Beginnings", "Vitality","Strength","Fields","Farms" ])
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.CHAMELEONCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Believe the Lies", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            , Theme.HIGH);
+
+        addTheme(new Theme(<String>["Decay","Locusts","Bogs","Fens","Rot","Death","Mold","Swamps","Thorns","Swarms","Famine"])
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Be the Change You Believe In", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH); // end theme
     }
 }
