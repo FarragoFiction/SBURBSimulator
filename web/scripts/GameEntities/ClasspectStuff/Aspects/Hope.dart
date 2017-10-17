@@ -78,7 +78,7 @@ class Hope extends Aspect {
                 new Quest(""),
                 new DenizenFightQuest("","","")
          */
-        addTheme(new Theme(<String>["Meditation", "Altars", "Hymns", "Chapels", "Priests", "Angels"])
+        addTheme(new Theme(<String>["Meditation", "Altars", "Hymns", "Chapels", "Priests", "Angels","Belief","Hope","Faith", "Determination"])
             ..addFeature(FeatureFactory.CHANTINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
@@ -103,15 +103,16 @@ class Hope extends Aspect {
 
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Belief","Hope","Faith", "Determination","Possibility", "Potential"])
+        addTheme(new Theme(<String>["Possibilities","Alternatives","Change","Possibility", "Potential"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.HAPPYFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
-            ..addFeature(new DenizenQuestChain("Don't Give Up", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+            ..addFeature(new DenizenQuestChain("Be the Change You Believe In", [
+                new Quest("The ${Quest.PLAYER1} finds a grey town of despondant ${Quest.CONSORT}s. Their daily lives are without meaning, without joy, and will never change. ${Quest.DENIZEN} has stolen all possibilities, all hope away. There is only this.  The ${Quest.PLAYER1} vows to find a way to help. The ${Quest.CONSORT}s fail to be inspired."),
+                new Quest("The ${Quest.PLAYER1} learns that part of the reason the ${Quest.CONSORT}s are hopeless is that the local ${Quest.PHYSICALMCGUFFIN} mine has dried up. Without ${Quest.PHYSICALMCGUFFIN} the ${Quest.CONSORT} economy is completley flat. There are no jobs!  The ${Quest.PLAYER1} refuses to give up. They search high and low until they finally find a new source of ${Quest.PHYSICALMCGUFFIN} for the consorts. There is a festival to celebrate. Things are finally looking up!"),
+                new Quest("Disaster strikes! The new ${Quest.PHYSICALMCGUFFIN} mine has been utterly destroyed. It is obvious that it is the work of ${Quest.DENIZEN}. They simply refuse to allow hope to survive. The ${Quest.PLAYER1} is going to need to deal with them."),
+                new DenizenFightQuest("The ${Quest.CONSORT}s deserve Hope, they deserve a better life. The ${Quest.PLAYER1} is going to show them. But before they can work on fixing their problems, ${Quest.DENIZEN} must be fought. The ${Quest.PLAYER1} dramatically challenges them.","Hope. Survives.","Hope is dead.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
