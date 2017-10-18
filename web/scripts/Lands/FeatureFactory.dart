@@ -173,7 +173,7 @@ class FeatureFactory {
     //most sounds are bad sounds
     static void initializeSounds() {
         CLANKINGSOUND = new SoundFeature("clanking");
-        LAUGHINGSOUND = new SoundFeature("lauging");
+        LAUGHINGSOUND = new SoundFeature("laughing");
         RUSTLINGSOUND = new SoundFeature("rustling", Feature.GOOD);
         SCREAMSSOUND = new SoundFeature("screaming",Feature.BAD);
         FOOTSTEPSOUND = new SoundFeature("foot steps",Feature.BAD);
