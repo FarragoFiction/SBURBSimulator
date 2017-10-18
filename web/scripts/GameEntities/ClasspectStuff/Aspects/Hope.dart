@@ -103,7 +103,7 @@ class Hope extends Aspect {
 
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Possibilities","Alternatives","Change","Possibility", "Potential"])
+        addTheme(new Theme(<String>["Possibilities","Alternatives","Change","Possibility", "Potential", "Hope"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.HAPPYFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
