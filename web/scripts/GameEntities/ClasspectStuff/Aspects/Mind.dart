@@ -97,7 +97,7 @@ class Mind extends Aspect {
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Face the Music", [
                 new Quest("The ${Quest.DENIZEN} has commited a staggering amount of crimes against the local ${Quest.CONSORT} population. The natural result of this is that karma itself is conspiring for their downfall. The ${Quest.PLAYER1} knows that Justice is on their side."),
-                new Quest("The ${Quest.DENIZEN} may FEEl safe, all sequestered away in their shitty snake lair, but they aren't. The ${Quest.PLAYER1} convinces a group of underlings lead by a ${Quest.DENIZEN} minion that the ${Quest.PLAYER1} is a huge jerk who shouldn't be in charge of them. It's easy, because it's true. That's what happens when you are a huge jerk."),
+                new Quest("The ${Quest.DENIZEN} may FEEl safe, all sequestered away in their shitty snake lair, but they aren't. The ${Quest.PLAYER1} convinces a group of underlings lead by a ${Quest.DENIZEN} minion that the ${Quest.DENIZEN} is a huge jerk who shouldn't be in charge of them. It's easy, because it's true. That's what happens when you are a huge jerk."),
                 new Quest("Huh.  I WONDER what the consequences are of the ${Quest.DENIZEN} being stuck hiding in their shitty snake lair while the ${Quest.PLAYER1} is running a propoganda campaign against them?  Suddenly the ${Quest.DENIZEN} has run out of allies entirely."),
                 new DenizenFightQuest("Karma is a bitch. The ${Quest.DENIZEN} has nowhere to run when the ${Quest.PLAYER1} comes for them. It's time to strife.","Justice is served.","Has Justice truly been perverted?")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
@@ -113,7 +113,7 @@ class Mind extends Aspect {
             ..addFeature(new DenizenQuestChain("Make the Connections", [
                 new Quest("The ${Quest.PLAYER1} stares at the puzzle blocks in a dungeon. One of them doesn't belong. But which? The Dog? The Bull? The Feather? The Cat? The ${Quest.PLAYER1} thinks, then makes the logical selection.  The Dungeon accepts it."),
                 new Quest("Another dungeon. A cat. A swan. A robot. A virus. Huh. This one is harder. The ${Quest.PLAYER1} thinks about it for a while, and then goes with their intuition.  The Dungeon accepts it.  "),
-                new Quest("In the newest dungeon, there are 4 shapes on the puzzle blocks. One of them doesn't belong. The ${Quest.PLAYER1} thinks they understand. Their choice is accepted."),
+                new Quest("In the newest dungeon, there are 4 geometric shapes on the puzzle blocks. One of them doesn't belong. The ${Quest.PLAYER1} thinks they understand. Their choice is accepted."),
                 new DenizenFightQuest("It's the final door before facing the ${Quest.DENIZEN}. All four puzzles blocks are simply identical images of ${Quest.PHYSICALMCGUFFIN}. The ${Quest.PLAYER1} closes their eyes. They think about the previous puzzles, and the patterns that came out of their choices. They choose.  The door opens. It is time to strife ${Quest.DENIZEN}.","Finally. The ${Quest.PLAYER1} can stop solving bullshit 'logic' puzzles that keep straying into weird intuition mind reading bullshit.","Looks like the ${Quest.PLAYER1} will have to resolve some of those bullshit puzzles.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
