@@ -94,10 +94,9 @@ class Time extends Aspect {
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("Synchronize the Rhythm", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("The ${Quest.PLAYER1} starts messing about with the beating drums of the land. The constant cacophony is kinda getting on their nerves, so, following the advice of some friendly ${Quest.CONSORT}s they try to line the beats up to a more harmonious rhythm. "),
+                new Quest("The ${Quest.PLAYER1} messes with time, placing zones of slowed or sped up time by the drums of their land so the beats start landing in something resembling a good beat."),
+                new DenizenFightQuest("The ${Quest.PLAYER1} has finally gotten all the drums of their land beating in an awesome rhythm. Except for one. The lair of the ${Quest.DENIZEN} is built right into the loudest drum of all, and it keeps. Beating. Off. Rhythm. Fuck it, it's time to stife!","Theeere we go. The loudest drum is finally on beat. The cacophony is finally defeated. And, you guess, the ${Quest.DENIZEN}. Whatever. ","The beat continues to be cacophonous. "),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             , Theme.HIGH);
