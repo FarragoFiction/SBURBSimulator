@@ -122,17 +122,19 @@ class Rage extends Aspect {
 
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Denial","Rejection","Impossibilty","Awareness","Walls","Meta","Finality","Acceptance", "Allowance", "Frustration"])
+
+        //TODO make sure to have pre and post denizen quests for this one too, so it can be eXTRA bullshit.
+        addTheme(new Theme(<String>["Denial","Rejection","Resignation","Impossibilty","Awareness","Walls","Meta","Bullshit","Finality","Acceptance", "Allowance", "Frustration"])
             ..addFeature(FeatureFactory.ANGRYFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.STUPIDFEELING, Feature.HIGH) //THIS IS STUPID.
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH) //we are laughing at you, asshole.
             ..addFeature(new DenizenQuestChain("Hate This Bullshit Land", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("The ${Quest.PLAYER1} has wandered around for hours. There are walls. And empty villages. And FUCKING NOTHING ELSE. What is WRONG with this stupid as fuck bullshit land? "),
+                new Quest("The ${Quest.PLAYER1} feels like someone is laughing at them. Not like....a ${Quest.CONSORT}, as irritating as they are. Like....something watching all of this and thinking it's all a big laugh. Like entertainment. Somebody out there thinks it's FUNNY that this land is so empty and bullshit and frustrating right now. The ${Quest.PLAYER1} is so fucking pissed."),
+                new Quest("The ${Quest.PLAYER1} has fucking given up. Fine. This part of the land is bullshit. There are no quests, no challenges. The land itself rejects their attempts to find meaning in it. FUCKING FINE.  A sign pops up next to the resigned ${Quest.PLAYER1}. 'You win, teleport to fight ${Quest.DENIZEN}? Y/N'. God DAMN it. "),
+                new DenizenFightQuest("This is the least satisfying quest chain, ever. With a hearty 'FUCK YOU', the ${Quest.PLAYER1} presses the button to fight their Bullshit final boss. Fuck dignifying them with a name. The ${Quest.PLAYER1} is going to work out all their fucking frustrations with this land with a good old fashioned beatdown. ","Fucking YES. Finally some goddamned CATHARSIS! Maybe the ${Quest.PLAYER1} can finally put this bullshit chapter of their land behind them.","God FUCKING DAMN IT. After all that the ${Quest.PLAYER1} LOSES!? ")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
