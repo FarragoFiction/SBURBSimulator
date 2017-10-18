@@ -86,16 +86,16 @@ class Rage extends Aspect {
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.LOW)
-            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.LOW) //THIS IS STUPID.
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.MEDIUM) //THIS IS STUPID.
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.ROARINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.DRUMSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Stop the War", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("Two different factions of ${Quest.CONSORT}s have been at war for generations. Neither side gives the ${Quest.PLAYER1} a straight answer on WHY they are fighting. They are tearing the land apart with needless bloodshed. This is stupid. "),
+                new Quest("The ${Quest.PLAYER1} is starting to think it's impossible to get the two sides of the ${Quest.CONSORT} War to just stop fighting. They yell, they rant, they pass out flyers, they blame the ${Quest.DENIZEN},  they even try fixing both sides' problems. But they keep fighting. This is so fucking stupid."),
+                new Quest("God. It's...it's just so FRUSTRATING that the two ${Quest.CONSORT} armies seem dedicated to wiping each other out. A stray bullet grazes the ${Quest.PLAYER1}. They see red. When they come to, the only living thing left is the ${Quest.PLAYER1}. "),
+                new DenizenFightQuest("The ${Quest.DENIZEN} has slithered onto the former battlefield to taunt the ${Quest.PLAYER1}. 'Good job', they hiss, in a language only the ${Quest.PLAYER1} can understand, 'There can be no strife when there are no armies left alive.' With no thought, the ${Quest.PLAYER1} attacks them in a rage.  ","When the bloodrage is done, the ${Quest.PLAYER1} is left to deal with the fact that only they are left alive. They wander the land, looking for anyone left alive. At least....it seems, some ${Quest.CONSORT}s survived, avoiding the conflict entirely. The ${Quest.PLAYER1} wishes they could have, too.","The Rage was not enough for the ${Quest.PLAYER1} to win.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
 
@@ -114,10 +114,10 @@ class Rage extends Aspect {
             ..addFeature(FeatureFactory.STUPIDFEELING, Feature.LOW) //THIS IS STUPID.
 
             ..addFeature(new DenizenQuestChain("Do a Stupid Dance", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("The ${Quest.CONSORTSOUND}ing and capering ${Quest.CONSORT}s are...OKAY, you guess? They keep asking the ${Quest.PLAYER1} to do a stupid ${Quest.MCGUFFIN} dance, though. They politely decline."),
+                new Quest("A capering ${Quest.CONSORT} tells the ${Quest.PLAYER1} that some underlings looted a local village. The underlings will only return the stolen property if they are defeated in a stupid dance ${Quest.MCGUFFIN} off. The ${Quest.PLAYER1} politiely declines and defeats them in a good old fashioned beat down. The ${Quest.CONSORT}s seem less than enthused about getting their stolen property back. Something about the ${Quest.PLAYER1} being a spoilsport?"),
+                new Quest("A crying ${Quest.CONSORT} child asks why the ${Quest.PLAYER1} is such a meany head. Why won't they dance? Defeated, the ${Quest.PLAYER1} hangs their head, and then begins doing an extremely stupid ${Quest.MCGUFFIN} dance, well below their dignity. The ${Quest.CONSORT} child is estatic and begins ${Quest.CONSORTSOUND} in time to the music that only the ${Quest.PLAYER1} can hear. "),
+                new DenizenFightQuest("The ${Quest.DENIZEN} approaches the ${Quest.PLAYER1}, complimenting them on their stupid ${Quest.MCGUFFIN} dance. Mortified, the ${Quest.PLAYER1} initiates strife.","It is done. Now NO ONE but that ${Quest.CONSORT} child knows of the blow to the ${Quest.PLAYER1}'s dignity. No one at all.","You just KNOW that that shitty ${Quest.DENIZEN} is gonna somehow post videos of the ${Quest.PLAYER1}'s stupid ${Quest.MCGUFFIN} dance online. They must be stopped.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             , Theme.HIGH);
@@ -134,7 +134,7 @@ class Rage extends Aspect {
                 new Quest("The ${Quest.PLAYER1} has wandered around for hours. There are walls. And empty villages. And FUCKING NOTHING ELSE. What is WRONG with this stupid as fuck bullshit land? "),
                 new Quest("The ${Quest.PLAYER1} feels like someone is laughing at them. Not like....a ${Quest.CONSORT}, as irritating as they are. Like....something watching all of this and thinking it's all a big laugh. Like entertainment. Somebody out there thinks it's FUNNY that this land is so empty and bullshit and frustrating right now. The ${Quest.PLAYER1} is so fucking pissed."),
                 new Quest("The ${Quest.PLAYER1} has fucking given up. Fine. This part of the land is bullshit. There are no quests, no challenges. The land itself rejects their attempts to find meaning in it. FUCKING FINE.  A sign pops up next to the resigned ${Quest.PLAYER1}. 'You win, teleport to fight ${Quest.DENIZEN}? Y/N'. God DAMN it. "),
-                new DenizenFightQuest("This is the least satisfying quest chain, ever. With a hearty 'FUCK YOU', the ${Quest.PLAYER1} presses the button to fight their Bullshit final boss. Fuck dignifying them with a name. The ${Quest.PLAYER1} is going to work out all their fucking frustrations with this land with a good old fashioned beatdown. ","Fucking YES. Finally some goddamned CATHARSIS! Maybe the ${Quest.PLAYER1} can finally put this bullshit chapter of their land behind them.","God FUCKING DAMN IT. After all that the ${Quest.PLAYER1} LOSES!? ")
+                new DenizenFightQuest("This is the least satisfying quest chain, ever. With a hearty 'FUCK YOU', the ${Quest.PLAYER1} presses the button to fight their bullshit final boss. Fuck dignifying them with a name. The ${Quest.PLAYER1} is going to work out all their fucking frustrations with this land with a good old fashioned beatdown. ","Fucking YES. Finally some goddamned CATHARSIS! Maybe the ${Quest.PLAYER1} can finally put this bullshit chapter of their land behind them.","God FUCKING DAMN IT. After all that the ${Quest.PLAYER1} LOSES!? ")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
