@@ -1,5 +1,8 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Void extends Aspect {
 
@@ -62,5 +65,59 @@ class Void extends Aspect {
     @override
     String activateCataclysm(Session s, Player p) {
         return s.mutator.voidStuff(s, p);
+    }
+
+
+
+    @override
+    void initializeThemes() {
+
+        /*
+        new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+         */
+        addTheme(new Theme(<String>["Nothing","Void","Emptiness","Dust", "Shadows", "Nowhere", "Absence"])
+            ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
+            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ECHOSOUND, Feature.HIGH)
+
+            ..addFeature(new DenizenQuestChain("Go to Nowhere", [
+                new Quest("The ${Quest.PLAYER1} has wandered around for hours and has found nothing new to do. There is NO way this is the end of the land. What is going on?"),
+                new Quest("Huh....what....what is this area of a wall that looks....a little different? Like the shadows aren't falling right on it? The ${Quest.PLAYER1} leans against it and stumbles into a ...weirdly hard to see area. Huh. The ${Quest.PLAYER1} wonders if maybe the rest of their quests are in places like this?"),
+                new Quest("Holy FUCK that was the BEST dungeon of ALL TIME!!!  The ${Quest.PLAYER1} sure feels bad for anybody who missed it.  Just, that TWIST at the end, man. So great."),
+                new DenizenFightQuest("You're....really having trouble following what's going on. The ${Quest.PLAYER1} emerges from one of those glitchy areas you can't see into, obviously fighting the ${Quest.DENIZEN}. You have NO IDEA what is going on. ","The ${Quest.PLAYER1} won!  That's....GOOD, you think. The ${Quest.DENIZEN} was probably an asshole.","The ${Quest.PLAYER1} lost.  That's....BAD, you think. The ${Quest.DENIZEN} is probably an asshole.")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.HIGH);
+
+        addTheme(new Theme(<String>["???", "[REDACTED]","[CENSORED]", "Censorship", "Conspiracies"])
+            ..addFeature(FeatureFactory.SILENCE, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+
+            ..addFeature(new DenizenQuestChain("[REDACTED]", [
+                new Quest("Apparently the denizen [REDACTED] has ben [REDACTED]ing all the [REDACTED] and everyone is starting to get a little pissed at them. Can the ${Quest.PLAYER1} help? "),
+                new Quest("The ${Quest.PLAYER1} [REDACTED]s and it actually works! Everyone ${Quest.CONSORTSOUND} in surprise. This might just be crazy enough to work."),
+                new Quest("Wait, who would have thought that the [REDACTED] would be weak to [REDACTED]??? This is officially the dumbest fight in all of Paradox Space."),
+                new DenizenFightQuest("It's time to fight the [REDACTED] for real this time. Their reign of [REDACTED] will finally be at an end.","The ${Quest.DENIZEN} is defeated. FINALLY they can stop censoring everything on this stupid planet, especially ${Quest.CONSORT}s.","[REDACTED]")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            , Theme.HIGH);
+
+
+        addTheme(new Theme(<String>["Silence","Blindness","Deafness","Blindfolds","Earplugs","Sensory Deprivation"])
+            ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
+            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Walk of Faith", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH); // end theme
     }
 }
