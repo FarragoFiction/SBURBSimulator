@@ -84,7 +84,7 @@ class Doom extends Aspect {
             ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-            ..addFeature(new DenizenQuestChain("Empty the Graves.", [
+            ..addFeature(new DenizenQuestChain("Empty the Graves", [
                 new Quest(" The ${Quest.PLAYER1} learns of a baslich that has been emptying the graves of the ${Quest.CONSORT}s, who are understandably upset at this disrespect to everything their culture holds dear."),
                 new Quest("he ${Quest.PLAYER1} hunts down the baslich, only to discover that it cannot be killed without the use of a mystic ${Quest.PHYSICALMCGUFFIN}. The player begins to search for this totally USEFUL and IMPORTANT item. "),
                 new Quest("The ${Quest.PLAYER1} finds the ${Quest.PHYSICALMCGUFFIN}, and slays the baslich, scattering its bones to the winds, which, according to ${Quest.CONSORT} traditions, should summon its master. Uh. Eventually."),
