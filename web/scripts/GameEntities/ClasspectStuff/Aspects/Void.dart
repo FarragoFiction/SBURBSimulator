@@ -112,11 +112,13 @@ class Void extends Aspect {
             ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
             ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
+            //could make the default quest a knight/page quest in second pass. fighting with nothingness as an enemy and fighting with nothingness as a weapon and all
             ..addFeature(new DenizenQuestChain("Walk of Faith", [
-                new Quest(""),
-                new Quest(""),
-                new Quest(""),
-                new DenizenFightQuest("","","")
+                new Quest("Suddenly the ${Quest.PLAYER1} can't see or hear. Oh god, what is going on?  They feel around in close to a panic, until they find a button. After a moments deliberation, they press it. Suddenly they can see and hear again. Huh."),
+                new Quest("The ${Quest.PLAYER1} sees a red button at the other end of a cluttered hallway, inside a dungeon. Their bad feeling is confirmed when they suddenly can't see or hear again. After many stubbed toes and bruised shins, they finally make it to the button and press it to regain their senses."),
+                new Quest("The newest button is in the middle of a single large room with pitfall traps scattered throughout and underlings to boot. Are you fucking kdiding me!? When the ${Quest.PLAYER1} loses their senses, they seriously consider just sitting down and seeing if it wears off, but those underlings would probably attack in the mean time. The ${Quest.PLAYER1} begins slowly making their way towards the button. Half way through, they realize with a start that the Underlings haven't tried to attack them. Huh.   When they finally press the button, the Underlings suddenly whirl to face them. Were they...INVISIBLE while they were blind? It's short work to defeat the underlings."),
+                new Quest("Faced with a huge underling that is probably too high a level to fight, the ${Quest.PLAYER1} is struck with sudden inspiration. They blindfold themselves and do their best to block out their ability to hear, as well. They make their way to where the giant Underling was and begin to strife them. When they stop being aware of flailing, they remove their blindfold and find the giant Underling has become a giant pile of grist. HELL YES, VOID POWERS RULE!!!  "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} attempts to sneak up on the ${Quest.DENIZEN} while blindfolded. It dodges. Oh well, guess you can't out-void a Void boss.  Time for a regular strife!","The ${Quest.PLAYER1} has defeated the major challenge of their land.","The ${Quest.PLAYER1} is going to have to try again.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
