@@ -70,6 +70,7 @@ class FeatureFactory {
     static AmbianceFeature STUPIDFEELING;
     static AmbianceFeature ROMANTICFEELING;
     static AmbianceFeature LUCKYFEELING;
+    static AmbianceFeature ANGRYFEELING;
 
 
     ///////////////////SOUNDS////////////////////////
@@ -93,6 +94,7 @@ class FeatureFactory {
     static SoundFeature CROAKINGSOUND;
     static SoundFeature PULSINGSOUND;
     static SoundFeature FOOTSTEPSOUND;
+    static SoundFeature GUNFIRESOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
     static CorruptionFeature Corruption;
@@ -164,6 +166,7 @@ class FeatureFactory {
         HAPPYFEELING = new AmbianceFeature("happy");
         HEROICFEELING = new AmbianceFeature("heroic");
         STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
+        ANGRYFEELING = new AmbianceFeature("angry", Feature.BAD);
         CONTEMPLATATIVEFEELING = new AmbianceFeature("contemplatative");
     }
 
@@ -182,6 +185,7 @@ class FeatureFactory {
         DISCOSOUND = new SoundFeature("disco");
         DRUMSOUND = new SoundFeature("drums");
         ROARINGSOUND = new SoundFeature("roaring", Feature.BAD);
+        GUNFIRESOUND = new SoundFeature("gunfire", Feature.BAD);
         MUSICSOUND = new SoundFeature("music");
         SINGINGSOUND = new SoundFeature("singing");
         CHANTINGSOUND = new SoundFeature("chanting");

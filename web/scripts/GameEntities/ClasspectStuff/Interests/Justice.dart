@@ -59,6 +59,7 @@ class Justice extends InterestCategory {
             ..addFeature(FeatureFactory.BLOODSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GUNFIRESOUND, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Start a Revolution", [
                 new Quest("The ${Quest.PLAYER1} finds a crowd of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. They are holding signs with slogans like 'This isn't Fair' and 'Don't be Jerks'. Apparently they have a problem with the upper class ${Quest.CONSORT}s in charge. The ${Quest.PLAYER1} is moved by their plight and agrees to try to help."),
                 new Quest("The ${Quest.PLAYER1} meets with the upper class ${Quest.CONSORT}s to try to negotiate a peaceful revolution. Unfortunately, the ${Quest.CONSORT}s refuse to listen to reason, and even call their guards to attack the ${Quest.PLAYER1}. After easily defeating the guards, the ${Quest.PLAYER1} declares war. You cannot stop the fires of Revolution!  "),

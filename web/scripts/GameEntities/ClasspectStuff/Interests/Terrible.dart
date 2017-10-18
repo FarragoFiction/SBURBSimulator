@@ -67,7 +67,8 @@ class Terrible extends InterestCategory {
         addTheme(new Theme(<String>["Classism","Struggle","Apathy", "Revolution", "Rebellion", "Hate"])
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BLOODSMELL, Feature.LOW)
-            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.GUNFIRESOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Stop a Rebellion", [

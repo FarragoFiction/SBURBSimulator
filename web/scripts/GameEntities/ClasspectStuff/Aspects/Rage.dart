@@ -1,5 +1,8 @@
 import '../../../SBURBSim.dart';
 import 'Aspect.dart';
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Rage extends Aspect {
 
@@ -64,4 +67,74 @@ class Rage extends Aspect {
     String activateCataclysm(Session s, Player p) {
         return s.mutator.rage(s, p);
     }
+
+    //Rage is so GODDAMNED EASY to come up with qualia for. it's so visceral.
+    @override
+    void initializeThemes() {
+
+        /*
+        new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+         */
+        addTheme(new Theme(<String>["Murder","Strife","Shrieks", "Combat","Hate", "Death","Violence", "War", "Screams","Noise", "Chaos", "Bloodrage", "Rage","Wrath"])
+            ..addFeature(FeatureFactory.ANGRYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.BLOODSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.LOW) //THIS IS STUPID.
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ROARINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.DRUMSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.HIGH)
+            ..addFeature(new DenizenQuestChain("Stop the War", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.HIGH);
+
+        //guys. I think maybe all these clowns aren't actually happy. smell blood rarely, but it's there.
+        addTheme(new Theme(<String>["Whimsy", "Mirth","Circuses", "Tents","Clowns", "Wackiness", "Laughter"])
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.FOOTSTEPSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.BLOODSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.LOW) //THIS IS STUPID.
+
+            ..addFeature(new DenizenQuestChain("Do a Stupid Dance", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            , Theme.HIGH);
+
+        addTheme(new Theme(<String>["Denial","Rejection","Impossibilty","Awareness","Walls","Meta","Finality","Acceptance", "Allowance", "Frustration"])
+            ..addFeature(FeatureFactory.ANGRYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.HIGH) //THIS IS STUPID.
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH) //we are laughing at you, asshole.
+            ..addFeature(new DenizenQuestChain("Hate This Bullshit Land", [
+                new Quest(""),
+                new Quest(""),
+                new Quest(""),
+                new DenizenFightQuest("","","")
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH); // end theme
+    }
+
 }
