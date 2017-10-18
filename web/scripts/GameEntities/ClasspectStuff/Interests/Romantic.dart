@@ -58,6 +58,7 @@ class Romantic extends InterestCategory {
             ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BAKEDBREADSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SALTSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)

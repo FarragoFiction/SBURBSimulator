@@ -100,6 +100,7 @@ class Heart extends Aspect {
         addTheme(new Theme(<String>["Shipping","Ports","Ships", "Docks", "Sails", "Matchmaking", "Cupids", "Fleets"])
             ..addFeature(FeatureFactory.CUPIDCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SALTSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.BAKEDBREADSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ROMANTICFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)

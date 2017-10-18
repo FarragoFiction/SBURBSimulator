@@ -43,6 +43,7 @@ class FeatureFactory {
     static SmellFeature SWEETSMELL;
     static SmellFeature ROTSMELL;
     static SmellFeature OILSMELL;
+    static SmellFeature SALTSMELL;
     static SmellFeature NATURESMELL;
     static SmellFeature DECEITSMELL;
     static SmellFeature CHLORINESMELL; //LIKE A POOL
@@ -93,6 +94,7 @@ class FeatureFactory {
     static SoundFeature WHISTLINGGSOUND;
     static SoundFeature CROAKINGSOUND;
     static SoundFeature PULSINGSOUND;
+    static SoundFeature TICKINGSOUND;
     static SoundFeature FOOTSTEPSOUND;
     static SoundFeature GUNFIRESOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
@@ -136,6 +138,7 @@ class FeatureFactory {
         BAKEDBREADSMELL = new SmellFeature("fresh baked bread",Feature.GOOD);
         SWEETSMELL = new SmellFeature("sweetness",Feature.GOOD);
         NATURESMELL = new SmellFeature("nature",Feature.GOOD);
+        SALTSMELL = new SmellFeature("salt");
         ROTSMELL = new SmellFeature("rot", Feature.BAD);
         FEETSMELL = new SmellFeature("feet", Feature.BAD);
         OILSMELL = new SmellFeature("oil");
@@ -194,6 +197,7 @@ class FeatureFactory {
         CROAKINGSOUND = new SoundFeature("croaking");
         SILENCE = new SoundFeature("silence");
         PULSINGSOUND = new SoundFeature("pulsing");
+        TICKINGSOUND = new SoundFeature("ticking");
     }
 
     //if no consort is specified, pick something totally illegal
