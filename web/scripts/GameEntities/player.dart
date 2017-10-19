@@ -109,11 +109,15 @@ class Player extends GameEntity {
 
     //stop having references to fake as fuck moons yo.
     void syncToSessionMoon() {
+        print("syncing to session moon");
         if(moon == null) return;
+        print("moon wasn't null");
         if (moon.name == session.prospit.name) {
+            print("moon was prospit");
             moon = session.prospit;
             dreamPalette = ReferenceColours.PROSPIT_PALETTE;
         } else if (moon.name == session.derse.name)
+            print("moon was derse");
             moon = session.derse;
             dreamPalette = ReferenceColours.DERSE_PALETTE;
     }
