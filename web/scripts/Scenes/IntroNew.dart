@@ -181,7 +181,7 @@ class IntroNew extends IntroScene {
 
         //reget friend, not caring if they are dead or not.
         Player newFriend =  player.getBestFriendFromList(this.session.players, "intro chat");
-        if(newFriend.dead == true && newFriend.ectoBiologicalSource != session.session_id) { //they are somebody who didn't make it
+        if(newFriend != null && newFriend.dead == true && newFriend.ectoBiologicalSource != session.session_id) { //they are somebody who didn't make it
             friend = newFriend;
             session.logger.info("AB: Sad stuck alert.");
             possible.add(new PlusMinusConversationalPair(["So. Uh. Hey, I'm finally in the new session I was telling you about."], [],[]));
