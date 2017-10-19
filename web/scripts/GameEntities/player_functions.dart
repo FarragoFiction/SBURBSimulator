@@ -87,9 +87,12 @@ void initializePlayersNoReplayers(List<Player> players, Session session) {
 }
 
 void initializePlayers(List<Player> players, Session session) {
+    print("initializing players");
     List<Player> replayPlayers = getReplayers(session);
+    print("replayers");
     if (replayPlayers.isEmpty && session != null) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
     syncReplayNumberToPlayerNumber(replayPlayers);
+    print("synced");
     for (num i = 0; i < players.length; i++) {
         if (replayPlayers.length > i) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
         if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
@@ -110,6 +113,7 @@ void initializePlayers(List<Player> players, Session session) {
         redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
         //oh because it makes replayed sessions with scratches crash.
     }
+    print("initialize players done");
 }
 
 
@@ -189,7 +193,12 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a, [Moon m
 
     bool gd = false;
 
-    if(m == null) m = session.rand.pickFrom(session.moons);
+    if(m == null) {
+        m = session.rand.pickFrom(session.moons);
+        //print("setting random moon to $m");
+    }else {
+       // print("making player with set moon of $m");
+    }
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
     p.interest1 = InterestManager.getRandomInterest(session.rand);

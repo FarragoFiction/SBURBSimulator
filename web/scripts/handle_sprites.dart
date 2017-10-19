@@ -1951,9 +1951,7 @@ abstract class Drawing {
             ..shoe_light = player.aspect.palette.shirt_light
             ..shoe_dark = player.aspect.palette.shirt_dark;
 
-        //TODO later can attach to moon.
-        Palette dream = player.dreamPalette;
-        print("Player is ${player} and moon is ${player.moon.name} and palette is ${player.dreamPalette}, is prospit? ${player.dreamPalette == ReferenceColours.PROSPIT_PALETTE}");
+        Palette dream = player.moon.palette;
         Palette p = new Palette.combined(<Palette>[dream, shoes]);
 
         swapPalette(canvas, ReferenceColours.SPRITE_PALETTE, p);

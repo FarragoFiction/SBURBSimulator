@@ -81,6 +81,8 @@ void sbahjMode(){
 void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
+	print("checking eggs, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+
 	if(curSessionGlobalVar.session_id == 413){
 		session413();
 	}else if(curSessionGlobalVar.session_id == 612){
@@ -158,7 +160,8 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 	}
 
 	processXStuck(); //might not do anything.
-  if(that != null) {
+
+	if(that != null) {
     callBack(that); //TODO might never need to do this again in Dart.
   }else {
     callBack();

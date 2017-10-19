@@ -12,7 +12,6 @@ class Player extends GameEntity {
     num baby = null;
     @override
     num grist = 0; // players do not spawn with grist
-    Palette dreamPalette = ReferenceColours.PROSPIT_PALETTE; //for null players and things like that.
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
@@ -84,8 +83,9 @@ class Player extends GameEntity {
     bool denizenMinionDefeated = false;
 
     Moon get moon => _moon;
+
     void set moon(Moon m) {
-        print("setting moon to: $m");
+        //print("${title()} setting moon to: $m");
         _moon = m;
         if(m!=null)syncToSessionMoon();
     }
@@ -99,6 +99,7 @@ class Player extends GameEntity {
 
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon m, bool this.godDestiny]) : super("", session) {
+        //print("making new player with classpect ${title()} and moon $m");
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
 
@@ -118,17 +119,16 @@ class Player extends GameEntity {
     //stop having references to fake as fuck moons yo.
     //make sure you refere to private moon so you don't get in infinite loop
     void syncToSessionMoon() {
-        print("syncing ${title()} to session moon");
+        //print("syncing ${title()} to session moon");
         if(moon == null || session == null || session.prospit == null || session.derse == null) return;
-        print("moon wasn't null");
+        //print("moon wasn't null, moon is ${moon.name}.");
         if (moon.name == session.prospit.name) {
-            print("${title()} moon was prospit,${moon.name}");
+            //print("${title()} moon was prospit,${moon.name}");
             _moon = session.prospit;
-            dreamPalette = ReferenceColours.PROSPIT_PALETTE;
-        } else if (moon.name == session.derse.name)
-            print(" ${title()} moon was derse, ${moon.name}");
+        } else if (moon.name == session.derse.name) {
+            //print(" ${title()} moon was derse, ${moon.name}");
             _moon = session.derse;
-            dreamPalette = ReferenceColours.DERSE_PALETTE;
+        }
     }
 
     bool isQuadranted() {
@@ -946,7 +946,6 @@ class Player extends GameEntity {
         if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.deriveLand = deriveLand;
-        clone.dreamPalette = dreamPalette;
         clone.moon = moon;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -2045,9 +2044,8 @@ class Player extends GameEntity {
     //get rid of thigns doomed time players were using. they are just players. just like this is just a player
     //until ll8r when i bother to make it a mini class of just stats.
     static Player makeRenderingSnapshot(Player player) {
-        Player ret = new Player();
+        Player ret = new Player(player.session, player.class_name, player.aspect, player.object_to_prototype, player.moon, player.godDestiny);
         ret.robot = player.robot;
-        ret.godDestiny = player.godDestiny;
         ret.gnosis = player.gnosis;
         ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
@@ -2068,13 +2066,10 @@ class Player extends GameEntity {
         ret.dead = player.dead;
         ret.isTroll = player.isTroll;
         ret.godTier = player.godTier;
-        ret.class_name = player.class_name;
-        ret.aspect = player.aspect;
         ret.isDreamSelf = player.isDreamSelf;
         ret.hair = player.hair;
         ret.bloodColor = player.bloodColor;
         ret.hairColor = player.hairColor;
-        ret.moon = player.moon;
         ret.chatHandle = player.chatHandle;
         ret.leftHorn = player.leftHorn;
         ret.rightHorn = player.rightHorn;

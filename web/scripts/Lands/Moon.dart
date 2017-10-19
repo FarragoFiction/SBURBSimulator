@@ -22,7 +22,9 @@ class Moon extends Land {
     FeatureTemplate featureTemplate = FeatureTemplates.MOON;
     int id; //needed so players are attached to the correct set of moons. maybe. still figuring shit out.
 
-  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a, this.id) {
+    Palette palette;
+
+  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a, this.id, this.palette) {
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
       this.session = session;

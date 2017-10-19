@@ -95,11 +95,13 @@ abstract class SimController {
     }
 
     void easterEggCallBack() {
+        print("easter egg callback, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
         initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
         checkSGRUB();
         if (doNotRender == true) {
             intro();
         } else {
+            print("gonna load");
             load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
         }
     }
@@ -111,9 +113,12 @@ abstract class SimController {
     }
 
     void intro() {
+        print("gonna init stats");
         initGatherStats();
+        print("gonna initialize sprites");
         createInitialSprites();
         //advertisePatreon(querySelector("#story"));
+        print("gonna call next intro");
         callNextIntro(0);
     }
 
@@ -266,6 +271,8 @@ abstract class SimController {
         Scene.createScenesForSession(curSessionGlobalVar);
         ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         curSessionGlobalVar.makePlayers();
+        print("after make players, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+
         ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         curSessionGlobalVar.randomizeEntryOrder();
         //authorMessage();

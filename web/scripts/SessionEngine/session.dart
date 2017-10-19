@@ -83,6 +83,7 @@ class Session {
     }
 
     Moon stringToMoon(String string) {
+        print("string to moon");
         if(string == prospit.name) return prospit;
         if(string == derse.name) return derse;
         return null;
@@ -221,8 +222,8 @@ class Session {
         prospitThemes[prospitTheme] = Theme.HIGH;
         derseThemes[derseTheme] = Theme.HIGH;
 
-        prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id);
-        derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1);
+        prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
+        derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
         moons.add(prospit);
         moons.add(derse);
          for(Player p in players) {
@@ -583,6 +584,8 @@ class Session {
         double special = rand.nextDouble();
 
         this.players.add(randomSpacePlayer(this));
+        print("after make space player, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+
         this.players.add(randomTimePlayer(this));
 
 

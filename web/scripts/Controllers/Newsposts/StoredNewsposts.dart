@@ -9,7 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
-      new Newspost("10/18/17","All aspects (besides Dream) have their own themes now.  <br><Br>Next up I'll be debugging the shit out of combo sessions, adding Class themes and doing the last bit of new features for land quests."),
+      new Newspost("10/18/17","All aspects (besides Dream) have their own themes now.  <br><Br>Next up I'll be debugging the shit out of combo sessions, adding Class themes and doing the last bit of new features for land quests.<br><Br>Moons are fixed so that players wear the right colors, too."),
       new Newspost("10/17/17","New themes added for Hope, Life, Light and Mind. Whew. Lots of writing! <br><Br>Also worked on the doll maker over the weekend, lots of new parts and I almost have everything in place to make future mini games based on the dolls."),
       new Newspost("10/13/17","Happy Arc Number Day!<br><br>Today I ripped out all references to the old moon/land system, so you shouldn't have to worry lands or moons suddenly not matching shit. <br><br>I also put the structure in place for a new Intro system, with dialogue more close to how dead sessions taunting works. It's still p bare bones, but I plan on adding more variety to shit over the next few days. "),
       new Newspost("10/12/17","Whoops, apparently I murdered the OCGenerator and never noticed. RIP. <br><Br>LUCKILY I was already planning on making a new one from scratch today, to get a better feel for how much variety we have in quests. <a href = 'ocGenerator.html'>Check It out</a>. <br><br> Interests are p solid in terms of variety, even for 4 players with all the same interests. Just gotta bring aspects and class up to that level. "),
