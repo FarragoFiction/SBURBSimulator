@@ -1953,7 +1953,7 @@ abstract class Drawing {
 
         //TODO later can attach to moon.
         Palette dream = player.dreamPalette;
-        //print("moon is ${player.moon.id} and prospit is ${player.session.prospit.id}");
+        print("Player is ${player} and moon is ${player.moon.name} and palette is ${player.dreamPalette}, is prospit? ${player.dreamPalette == ReferenceColours.PROSPIT_PALETTE}");
         Palette p = new Palette.combined(<Palette>[dream, shoes]);
 
         swapPalette(canvas, ReferenceColours.SPRITE_PALETTE, p);

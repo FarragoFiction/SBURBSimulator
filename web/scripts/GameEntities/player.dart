@@ -47,7 +47,8 @@ class Player extends GameEntity {
     MiniSnapShot stateBackup = null; //if you get influenced by something, here's where your true self is stored until you break free.
     Aspect aspect;
     Land land;
-    Moon moon;
+    //want to be able to see when it's set
+    Moon _moon;
     Interest interest1 = null;
     Interest interest2 = null;
     String chatHandle = null;
@@ -82,6 +83,13 @@ class Player extends GameEntity {
     bool _denizenDefeated = false;
     bool denizenMinionDefeated = false;
 
+    Moon get moon => _moon;
+    void set moon(Moon m) {
+        print("setting moon to: $m");
+        _moon = m;
+        if(m!=null)syncToSessionMoon();
+    }
+
     //no longer allowed to set it.
     bool get denizenDefeated => _denizenDefeated;
 
@@ -90,9 +98,9 @@ class Player extends GameEntity {
     }
 
 
-    Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon this.moon, bool this.godDestiny]) : super("", session) {
+    Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon m, bool this.godDestiny]) : super("", session) {
+        moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
-        syncToSessionMoon();
 
     }
 
@@ -108,17 +116,18 @@ class Player extends GameEntity {
     }
 
     //stop having references to fake as fuck moons yo.
+    //make sure you refere to private moon so you don't get in infinite loop
     void syncToSessionMoon() {
-        print("syncing to session moon");
-        if(moon == null) return;
+        print("syncing ${title()} to session moon");
+        if(moon == null || session == null || session.prospit == null || session.derse == null) return;
         print("moon wasn't null");
         if (moon.name == session.prospit.name) {
-            print("moon was prospit");
-            moon = session.prospit;
+            print("${title()} moon was prospit,${moon.name}");
+            _moon = session.prospit;
             dreamPalette = ReferenceColours.PROSPIT_PALETTE;
         } else if (moon.name == session.derse.name)
-            print("moon was derse");
-            moon = session.derse;
+            print(" ${title()} moon was derse, ${moon.name}");
+            _moon = session.derse;
             dreamPalette = ReferenceColours.DERSE_PALETTE;
     }
 
