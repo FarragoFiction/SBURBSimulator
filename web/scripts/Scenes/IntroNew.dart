@@ -20,9 +20,10 @@ class IntroNew extends IntroScene {
           List<Conversation> convos = getConversations();
           String player1Start = player.chatHandleShort() + ": ";
           String player2Start = friend.chatHandleShortCheckDup(player.chatHandleShort()) + ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+          //will only have one convo if it's a foreign player. make it long.
           chat = convos[0].returnStringConversation(player, friend, player1Start, player2Start,friend.getRelationshipWith(player).value > 0);
-          chat += convos[1].returnStringConversation(player, friend, player1Start, player2Start,player.object_to_prototype.getStat(Stats.POWER)>100*Stats.POWER.coefficient);
-          chat += convos[2].returnStringConversation(player, friend, player1Start, player2Start,goodLand);
+          if(convos.length > 1) chat += convos[1].returnStringConversation(player, friend, player1Start, player2Start,player.object_to_prototype.getStat(Stats.POWER)>100*Stats.POWER.coefficient);
+          if(convos.length > 2)chat += convos[2].returnStringConversation(player, friend, player1Start, player2Start,goodLand);
 
           //lookit me, doing canvas shit correctly. what even IS this???
           CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
@@ -157,14 +158,57 @@ class IntroNew extends IntroScene {
   }
 
     List<Conversation> getConversations() {
-      List<Conversation>ret = new List<Conversation>();
-      //TODO have different things for foreign players
+        if(player.land == null) {
+            return getForeignConvo();
+        }else {
+            return getNormalConvo();
+        }
+    }
 
-      //order is important cuz whether i do positive or negative matters if it's land or whatever
-      ret.add(new Conversation(getEnterPair()));
-      ret.add(new Conversation(getSpritePair()));
-      ret.add(new Conversation(getLandPair()));
-     return ret;
+    List<Conversation> getNormalConvo() {
+        List<Conversation>ret = new List<Conversation>();
+        //order is important cuz whether i do positive or negative matters if it's land or whatever
+        ret.add(new Conversation(getEnterPair())); //based on relationship
+        ret.add(new Conversation(getSpritePair()));  //based on sprite facts
+        ret.add(new Conversation(getLandPair()));  //based on land facts
+        return ret;
+    }
+
+    List<Conversation> getForeignConvo() {
+        List<PlusMinusConversationalPair> possible = new List<PlusMinusConversationalPair>();
+
+        //reget friend, not caring if they are dead or not.
+        Player newFriend =  player.getBestFriendFromList(this.session.players, "intro chat");
+        if(newFriend.dead == true && newFriend.ectoBiologicalSource != session.session_id) { //they are somebody who didn't make it
+            session.logger.info("AB: Sad stuck alert.");
+            possible.add(new PlusMinusConversationalPair(["So. Uh. Hey, I'm finally in the new session I was telling you about."], [],[]));
+            possible.add(new PlusMinusConversationalPair(["You would have loved it."], [],[]));
+            possible.add(new PlusMinusConversationalPair(["Don't worry. I'll make sure it will all have been worth it. A whole new universe, a second chance."], [],[]));
+            possible.add(new PlusMinusConversationalPair(["..."], [],[]));
+            possible.add(new PlusMinusConversationalPair(["Goodbye."], [],[]));
+        }else { //just use the living friend you already grabbed.
+            if(friend.ectoBiologicalSource == session.session_id || friend.ectoBiologicalSource == null) { //harrasing native player
+                Relationship r1 = player.getRelationshipWith(friend);
+                if(r1.saved_type > 0) {
+                    possible.add(new PlusMinusConversationalPair(["So I guess today is finally the day you make everything better!"], ["Guess so!","I can't wait!","Are you REALLY sure?","I know, right?"],["Ugh, do you have to be so cheerful?", "Because you are somehow all knowing.","Drop the spooky omniscience act already.", "Omg, drop it already!"]));
+                    possible.add(new PlusMinusConversationalPair(["Is there nothing I can do to ease your mind?", "I can't wait to see how well you do!"], ["Just hearing your words of encouragement fills me with determination!","With your help I'm sure we can win!","I hope you're right!"],["Can you just drop it already?","This is NOT what I need to be hearing right now.","Bluh."]));
+                    possible.add(new PlusMinusConversationalPair(["I'll be cheering for you!", "Good luck!"], [],[]));
+                }else if(r1.saved_type == r1.badBig || r1.saved_type == r1.spades || r1.saved_type == r1.clubs) {
+                    session.logger.info("Today is finally the day they fuck everything up.");
+                    possible.add(new PlusMinusConversationalPair(["So I guess today is finally the day you fuck everything up."], ["Guess so!","I can't wait!","Are you REALLY sure?","I know, right?"],["God, you are such an asshole. Just because you fucked your session up doesn't mean we will!", "You aren't scaring me.","You don't fucking know that!", "Omg, drop it already!"]));
+                    possible.add(new PlusMinusConversationalPair(["Is there nothing I can do to change your mind?","You are just not getting it. This game only has one level: fucking everything up.", "Oh, to be so naive. You don't get it: this game is going to make SURE you fuck shit up."], ["Man, I hope you're wrong!","With your help I'm sure we can win!","I hope you're wrong..."],["Or maybe you just suck at it.","Not everybody sucks at video games like you do.","Sore loser, much?"]));
+                    possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck or whatever. You're going to need it.", "Have fun learning your fucking lesson."], [],[]));
+                }else {
+                    possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in your session.", "I made it in.", "I'm in your session, finally."], ["Oh wow! What are you going to do? It's not like you have a land or anything...","Aren't you going to be bored? You won't have quests and stuff.", "What are you going to do?", "What's your plan?"],["Ugh, just what I need. What is even the point of you being here?", "And how are you going to be wasting your time now that you're here?"]));
+                    possible.add(new PlusMinusConversationalPair(["Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.","Trust me: you're gonna me happy I'm here when it comes time to fight bosses.", "I can always help with you guys' quests."], ["Thanks for your help in advance!","Sounds boring..."],["Ugh, like I need your help.","That sounds like loser talk to me.","Why would need help from someone who LOST?"]));
+                    possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck!", "I'll let you know when I figure out what I'm doing for sure!"], [],[]));
+
+                }
+            }else { //gossiping with foreign player
+
+            }
+        }
+        return <Conversation>[new Conversation(possible)];
     }
 
 

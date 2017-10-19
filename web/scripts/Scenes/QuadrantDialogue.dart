@@ -641,7 +641,9 @@ class Conversation {
 		String ret = "";
 		for(PlusMinusConversationalPair convo in pairs) {
 			ret += convo.getOpeningLine(p1, player1Start);
-			ret += convo.getResponseBool(p2, player2Start, b);
+			String response = convo.getResponseBool(p2, player2Start, b);
+			//might not have anything to say.
+			if(response != null) ret += response;
 		}
 		return ret;
 	}
