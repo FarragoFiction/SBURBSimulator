@@ -16,7 +16,9 @@ class IntroNew extends IntroScene {
   void renderContent(Element div, int i) {
       doNarration(div,i);
       String chat = "";
-      if(friend != null && player.grimDark <2) {
+      if(player.dead) {
+        //do nothing.
+      }else if(friend != null && player.grimDark <2) {
           List<Conversation> convos = getConversations();
           String player1Start = player.chatHandleShort() + ": ";
           String player2Start = friend.chatHandleShortCheckDup(player.chatHandleShort()) + ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -180,6 +182,7 @@ class IntroNew extends IntroScene {
         //reget friend, not caring if they are dead or not.
         Player newFriend =  player.getBestFriendFromList(this.session.players, "intro chat");
         if(newFriend.dead == true && newFriend.ectoBiologicalSource != session.session_id) { //they are somebody who didn't make it
+            friend = newFriend;
             session.logger.info("AB: Sad stuck alert.");
             possible.add(new PlusMinusConversationalPair(["So. Uh. Hey, I'm finally in the new session I was telling you about."], [],[]));
             possible.add(new PlusMinusConversationalPair(["You would have loved it."], [],[]));
@@ -364,38 +367,40 @@ class IntroNew extends IntroScene {
         List<PlusMinusConversationalPair> possible1 = new List<PlusMinusConversationalPair>();
         List<PlusMinusConversationalPair> possible2 = new List<PlusMinusConversationalPair>();
 
-        List<String> intros = <String>["The glowy thingy dodged everything I threw at it except for a ${player.object_to_prototype}.", "Would you believe that I did NOT mean for a ${player.object_to_prototype}  to fall into the seizure thingy?","Long story short, a ${player.object_to_prototype} fell into the kernel thingy.","I prototyped my kernelsprite with a ${player.object_to_prototype}.", "I chucked a ${player.object_to_prototype} into the seizure kernel."];
+        List<String> intros = <String>["The glowy thingy dodged everything I threw at it except for a ${player.object_to_prototype.name}.", "Would you believe that I did NOT mean for a ${player.object_to_prototype.name}  to fall into the seizure thingy?","Long story short, a ${player.object_to_prototype.name} fell into the kernel thingy.","I prototyped my kernelsprite with a ${player.object_to_prototype.name}.", "I chucked a ${player.object_to_prototype.name} into the seizure kernel."];
 
         //generic
         if(player.gnosis > 0 || session.aliensClonedOnArrival.isNotEmpty) {
             //don't use random intros, you choose this.
+            possible1.add(new PlusMinusConversationalPair(["So."], [],[]));
+
             if(player.object_to_prototype.illegal) {
-                possible2.add(new PlusMinusConversationalPair(["A ${player.object_to_prototype} is very illegal to posses. I think we will find it to work as a 'good luck' charm, later on. "], ["Okay, well, now that you're in, what's it like?","What's it like in your land?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["A ${player.object_to_prototype.name} is very illegal to posses. I think we will find it to work as a 'good luck' charm, later on. "], ["Okay, well, now that you're in, what's it like?","What's it like in your land?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.player) {
-                possible2.add(new PlusMinusConversationalPair(["I had this whole thing planned, and then ${player.object_to_prototype} jumped the fuck into my sprite."], ["Not gonna ask. Okay, well, now that you're in, what's it like?","Okay then. Moving on. What's your land like?","Okay then. No further questions about your sprite. What about your land?", "How's the land?"],["...Yeah, I think I'm better off not knowing. Is your land at least okay?","Not even gonna ask. Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I had this whole thing planned, and then ${player.object_to_prototype.name} jumped the fuck into my sprite."], ["Not gonna ask. Okay, well, now that you're in, what's it like?","Okay then. Moving on. What's your land like?","Okay then. No further questions about your sprite. What about your land?", "How's the land?"],["...Yeah, I think I'm better off not knowing. Is your land at least okay?","Not even gonna ask. Well, how's your land?"]));
             }else if(player.object_to_prototype.armless) {
-                possible2.add(new PlusMinusConversationalPair(["I had hoped that the armlessness of a ${player.object_to_prototype} would prove useful in the coming battles. "], ["Well, here's hoping. Okay, well, now that you're in, what's it like?","I don't want to know. What's your land like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I had hoped that the armlessness of a ${player.object_to_prototype.name} would prove useful in the coming battles. "], ["Well, here's hoping. Okay, well, now that you're in, what's it like?","I don't want to know. What's your land like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.corrupted){
-                possible2.add(new PlusMinusConversationalPair(["I think I will gain a lot of knowledge from having a ${player.object_to_prototype} as my sprite. "], ["Oh god I hope that's worth it. So. Uh. now that you're in, what's your land like?","You are terrifying. It's on you if it's not worth it. What's your land like?","This just doesn't seem like a good idea. What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
-            }else if(player.object_to_prototype.getStat(Stats.POWER)>100*Stats.POWER.coefficient){
-                possible2.add(new PlusMinusConversationalPair(["I weighed the consequences and decided that having a ${player.object_to_prototype} familiar was worth having to fight enemies that are sort of like one. "], ["Okay, well. Completely ignoring your god beast sprite,  what's your land like?","What's your land like?","What about your land?", "Your choices are terrifying. How's the land?"],["How are you so irresponsible? Is your land at least okay?","You are so fucking crazy. Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I think I will gain a lot of knowledge from having a ${player.object_to_prototype.name} as my sprite. "], ["Oh god I hope that's worth it. So. Uh. now that you're in, what's your land like?","You are terrifying. It's on you if it's not worth it. What's your land like?","This just doesn't seem like a good idea. What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
+            }else if(player.object_to_prototype.disaster){
+                possible2.add(new PlusMinusConversationalPair(["I weighed the consequences and decided that having a ${player.object_to_prototype.name} familiar was worth having to fight enemies that are sort of like one. "], ["Okay, well. Completely ignoring your god beast sprite,  what's your land like?","What's your land like?","What about your land?", "Your choices are terrifying. How's the land?"],["How are you so irresponsible? Is your land at least okay?","You are so fucking crazy. Well, how's your land?"]));
             }else {
-                possible2.add(new PlusMinusConversationalPair(["I think i made a fairly safe choice, given that it would make all enemies more like a ${player.object_to_prototype}."], ["Good job! Okay, well, now that you're in, what's it like?","Makes sense. What's your land like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I think i made a fairly safe choice, given that it would make all enemies more like a ${player.object_to_prototype.name}."], ["Good job! Okay, well, now that you're in, what's it like?","Makes sense. What's your land like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }
         }else {
             possible1.add(new PlusMinusConversationalPair(intros, ["Huh, cool! What did that do?","What do you think that did?"],["That sounds ominous.","That doesn't sound good."]));
             if(player.object_to_prototype.illegal) {
-                possible2.add(new PlusMinusConversationalPair(["I'm really not sure what is with SBURB and reptiles and amphibians.", "Huh. I hope you know what you're doing.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay/","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I'm really not sure what is with SBURB and reptiles and amphibians.", "Huh. I hope you know what you're doing.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.armless) {
                 possible2.add(new PlusMinusConversationalPair(["It probably doesn't mean anything. ", "I don't think it did anything though."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.player) {
                 possible2.add(new PlusMinusConversationalPair(["Yeah, shit got really weird.", "It's a really long story."], ["Not gonna ask. Okay, well, now that you're in, what's it like?","Okay then. Moving on. What's your land like?","Okay then. No further questions about your sprite. What about your land?", "How's the land?"],["...Yeah, I think I'm better off not knowing. Is your land at least okay?","Not even gonna ask. Well, how's your land?"]));
             }else if(player.object_to_prototype.corrupted){
-                possible2.add(new PlusMinusConversationalPair(["I THINK it was probably a really bad idea.", "Holy shit do I already regret doing that.", "Probably not worth how bad ass it looks."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay/","Well, how's your land?"]));
-            }else if(player.object_to_prototype.getStat(Stats.POWER)>100*Stats.POWER.coefficient){
-                possible2.add(new PlusMinusConversationalPair(["The enemies are fucking TERRIFYING now. I regret everything. ", "I have just.... just ALL the regrets.", "It was a really fucking bad idea."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay/","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I THINK it was probably a really bad idea.", "Holy shit do I already regret doing that.", "Probably not worth how bad ass it looks."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Wow. Sorry to hear that. Is your land at least okay?","Suck. Well, how's your land?"]));
+            }else if(player.object_to_prototype.disaster){
+                possible2.add(new PlusMinusConversationalPair(["The enemies are fucking TERRIFYING now. I regret everything. ", "I have just.... just ALL the regrets.", "It was a really fucking bad idea."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["That really fucking sucks. Is your land at least okay?","Sucks. Well, how's your land?"]));
             }else {
-                possible2.add(new PlusMinusConversationalPair(["I think it just made the enemies look like a ${player.object_to_prototype}.", "I have absolutely no idea.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay/","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I think it just made the enemies look like a ${player.object_to_prototype.name}.", "I have absolutely no idea.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }
         }
 
