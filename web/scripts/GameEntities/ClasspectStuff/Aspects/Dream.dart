@@ -78,47 +78,51 @@ class Dream extends Aspect {
                 new Quest(""),
                 new DenizenFightQuest("","","")
          */
-        addTheme(new Theme(<String>["Nothing","Void","Emptiness","Dust", "Shadows", "Nowhere", "Absence"])
-            ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
-            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
-            ..addFeature(FeatureFactory.ECHOSOUND, Feature.HIGH)
+        addTheme(new Theme(<String>["Arts","Craft","Crafting","Making", "Creating", "Building", "Creation"])
+            ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.MEDIUM)
 
-            ..addFeature(new DenizenQuestChain("Go to Nowhere", [
-                new Quest("The ${Quest.PLAYER1} has wandered around for hours and has found nothing new to do. There is NO way this is the end of the land. What is going on?"),
-                new Quest("Huh....what....what is this area of a wall that looks....a little different? Like the shadows aren't falling right on it? The ${Quest.PLAYER1} leans against it and stumbles into a ...weirdly hard to see area. Huh. The ${Quest.PLAYER1} wonders if maybe the rest of their quests are in places like this?"),
-                new Quest("Holy FUCK that was the BEST dungeon of ALL TIME!!!  The ${Quest.PLAYER1} sure feels bad for anybody who missed it.  Just, that TWIST at the end, man. So great."),
-                new DenizenFightQuest("You're....really having trouble following what's going on. The ${Quest.PLAYER1} emerges from one of those glitchy areas you can't see into, obviously fighting the ${Quest.DENIZEN}. What the fuck is even happening!? ","The ${Quest.PLAYER1} won!  That's....GOOD, you think. The ${Quest.DENIZEN} was probably an asshole.","The ${Quest.PLAYER1} lost.  That's....BAD, you think. The ${Quest.DENIZEN} is probably an asshole.")
+            ..addFeature(new DenizenQuestChain("Make the Thing", [
+                new Quest("A ${Quest.CONSORT} child tugs on the ${Quest.PLAYER1}'s sleeves and asks if they can make them a picture of a ${Quest.PHYSICALMCGUFFIN}. The ${Quest.PLAYER1} is happy to help! They discover that drawing the picture makes a ${Quest.PHYSICALMCGUFFIN} symbol on the locked ${Quest.DENIZEN}'s lair light up.  Only 99 to go!"),
+                new Quest("An entire line of ${Quest.CONSORT} children is ${Quest.CONSORTSOUND}ing excitedly and expecting identical pictures of ${Quest.PHYSICALMCGUFFIN}s.  Somehow each picture is harder to make and more agonizingly boring than the one before. The ${Quest.PLAYER1} is getting burnt out. A wizened ${Quest.CONSORT} approaches them. They wonder why the ${Quest.PLAYER1} looks so glum. Don't they enjoy drawing? When the ${Quest.PLAYER1} explains their situation, the wizened ${Quest.CONSORT} wonders if burning themselves out is really required like they think. "),
+                new Quest("The ${Quest.PLAYER1} is happily drawing away. Sometimes they draw pictures of ${Quest.PHYSICALMCGUFFIN}s, but it's always in service of some new and interesting idea they want to test out. Often times their pictures don't even involve a ${Quest.PHYSICALMCGUFFIN}. Before they know it, the ${Quest.DENIZEN}'s lair is open. They sketch a few more things to get the ideas on paper before they lose their train of thought, then begin preparing to face the ${Quest.DENIZEN}."),
+                new DenizenFightQuest("The ${Quest.DENIZEN} is a smug asshole about they taught the ${Quest.PLAYER1} a 'lesson' on trying to force creativity.  The ${Quest.PLAYER1} thinks they were just trying to be a dick. They strife.","And THAT is why you don't piss of a creative person.","Shit. Now we're going to have to sit through this exact same strife again in the future. Lame.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
 
-        addTheme(new Theme(<String>["???", "[REDACTED]","[CENSORED]", "Censorship", "Conspiracies"])
-            ..addFeature(FeatureFactory.SILENCE, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
+        addTheme(new Theme(<String>["Memes", "Remixes","Mashups", "Deconstruction", "Satire"])
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.STUPIDFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CONFUSINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
 
-            ..addFeature(new DenizenQuestChain("[REDACTED]", [
-                new Quest("Apparently the denizen [REDACTED] has been [REDACTED]ing all the [REDACTED] and everyone is starting to get a little pissed at them. Can the ${Quest.PLAYER1} help? "),
-                new Quest("The ${Quest.PLAYER1} [REDACTED]s and it actually works! Everyone ${Quest.CONSORTSOUND} in surprise. This might just be crazy enough to work."),
-                new Quest("Wait, who would have thought that the [REDACTED] would be weak to [REDACTED]??? This is officially the dumbest fight in all of Paradox Space."),
-                new DenizenFightQuest("It's time to fight the [REDACTED] for real this time. Their reign of [REDACTED] will finally be at an end.","The ${Quest.DENIZEN} is defeated. FINALLY they can stop censoring everything on this stupid planet, especially ${Quest.CONSORT}s.","[REDACTED]")
+            ..addFeature(new DenizenQuestChain("Deconstruct the Satire", [
+                new Quest("There is a portrait of the ${Quest.PLAYER1} that some local jokester has vandalized to say 'bluh, bluh, huge bitch'. The ${Quest.PLAYER1} tries not to let it bother them. "),
+                new Quest("More and more frequently, the ${Quest.PLAYER1} sees vandalized copies of their portraits. Teen ${Quest.CONSORT}s are even starting to snigger and ${Quest.CONSORTSOUND} when they see them! This cannot stand! They try to tear the vandalized portraits, but it only makes the teen ${Quest.CONSORT}s ${Quest.CONSORTSOUND} harder. "),
+                new Quest("In a flash of inspiration, the ${Quest.PLAYER1} publishes art work that consists of 100 different remixed versions of the vandalized portraits. They explore the theme of 'bluh bluh huge bitch' so many times, in so many mediums it stops to even have meaning. In one move, the ${Quest.PLAYER1} has reclaimed the vandals hateful message as their own one of strength. "),
+                new DenizenFightQuest("The ${Quest.DENIZEN} is furious that their campaign to discredit the ${Quest.PLAYER1} has failed. They attack the ${Quest.PLAYER1} directly in a blind rage.","Who's the bitch NOW, ${Quest.DENIZEN}.","Shit, that didn't go according to plan.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             , Theme.HIGH);
 
 
-        addTheme(new Theme(<String>["Silence","Blindness","Deafness","Blindfolds","Earplugs","Sensory Deprivation"])
+        addTheme(new Theme(<String>["Clouds","Fog","Mist","Rainbows","Moons","Night","Sleep","Dreams","Haze"])
             ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)
-            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
-        //could make the default quest a knight/page quest in second pass. fighting with nothingness as an enemy and fighting with nothingness as a weapon and all
-            ..addFeature(new DenizenQuestChain("Walk of Faith", [
-                new Quest("Suddenly the ${Quest.PLAYER1} can't see or hear. Oh god, what is going on?  They feel around in close to a panic, until they find a button. After a moments deliberation, they press it. Suddenly they can see and hear again. Huh."),
-                new Quest("The ${Quest.PLAYER1} sees a red button at the other end of a cluttered hallway, inside a dungeon. Their bad feeling is confirmed when they suddenly can't see or hear again. After many stubbed toes and bruised shins, they finally make it to the button and press it to regain their senses."),
-                new Quest("The newest button is in the middle of a single large room with pitfall traps scattered throughout and underlings to boot. Are you fucking kdiding me!? When the ${Quest.PLAYER1} loses their senses, they seriously consider just sitting down and seeing if it wears off, but those underlings would probably attack in the mean time. The ${Quest.PLAYER1} begins slowly making their way towards the button. Half way through, they realize with a start that the Underlings haven't tried to attack them. Huh.   When they finally press the button, the Underlings suddenly whirl to face them. Were they...INVISIBLE while they were blind? It's short work to defeat the underlings."),
-                new Quest("Faced with a huge underling that is probably too high a level to fight, the ${Quest.PLAYER1} is struck with sudden inspiration. They blindfold themselves and do their best to block out their ability to hear, as well. They make their way to where the giant Underling was and begin to strife them. When they stop being aware of flailing, they remove their blindfold and find the giant Underling has become a giant pile of grist. HELL YES, VOID POWERS RULE!!!  "),
-                new DenizenFightQuest("The ${Quest.PLAYER1} attempts to sneak up on the ${Quest.DENIZEN} while blindfolded. It dodges. Oh well, guess you can't out-void a Void boss.  Time for a regular strife!","The ${Quest.PLAYER1} has defeated the major challenge of their land.","The ${Quest.PLAYER1} is going to have to try again.")
+            ..addFeature(FeatureFactory.ECHOSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CONFUSINGFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CREATIVEFEELING, Feature.MEDIUM)
+            //trying to capture the "don't repeat yourself" of dream.
+            ..addFeature(new DenizenQuestChain("Dream the Dream", [
+                new Quest("The ${Quest.PLAYER1} is wandering around, as if in a dream. Everything is hazy and confusing. A ${Quest.DENIZEN} Minion wanders by in a ${Quest.MCGUFFIN} ${Quest.PLAYER1} costume and it just seems inevitable.  "),
+                new Quest("You are trying to make sense of things. What is going on lately with the land? A ${Quest.CONSORT} is ${Quest.CONSORTSOUND}ing in reverse. Another is in a ${Quest.PHYSICALMCGUFFIN} wig.  "),
+                new Quest("A boardroom filled with underlings glares severely at the ${Quest.PLAYER1} when they rudely barge in. Embarassed, they stammer out an apology and leave. "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} rides a rubber ducky, which is itself made out of jello. It's obviously time to fight the ${Quest.DENIZEN}.","Oh. It's finally over.","The dream won't end, even if you die in it.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }

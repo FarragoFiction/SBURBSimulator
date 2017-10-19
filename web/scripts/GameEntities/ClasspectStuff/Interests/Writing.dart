@@ -55,6 +55,7 @@ class Writing extends InterestCategory {
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREATIVEFEELING, Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Be the DM", [
                 new Quest("The ${Quest.PLAYER1} finds a strange minature dungeon, filled with four small ragdolls of Adventurer ${Quest.CONSORT}s. A placard proclaims 'Be the DM, it is You.'. Huh. The ${Quest.PLAYER1} is interested, and weaves an elaborate tale full of intrigue and danger, before dramatically injuring one of the Adventurer ${Quest.CONSORT}s right before the end. As they finish their story, a nearby dungeon opens up and three ${Quest.CONSORT}s stumble out, dragging a fourth.  Oh. Shit. The dungeon flashes 'You did this.'"),
                 new Quest("The ${Quest.PLAYER1} finds another minature dungeon. Oh HELL no, they are not going to repeat this shit. They have no interest in playing god, thank you very much.  The nearby regular size dungeon flashes 'Are you Sure? Y/N', and the ${Quest.PLAYER1} quickly selects 'Y'.  The dungeon immediately collapses, presumably killing any Adventurer ${Quest.CONSORT}s who were trapped inside. Holy fuck. What is WRONG with this game?  "),

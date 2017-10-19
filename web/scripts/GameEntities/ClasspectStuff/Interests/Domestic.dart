@@ -55,6 +55,7 @@ class Domestic extends InterestCategory {
         addTheme(new Theme(<String>["Yarn","Needles","Purls", "Looms", "Weaving", "Sewing", "Stitching", "Spiders"])
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CREATIVEFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.WAY_HIGH)
             ..addFeature(new PreDenizenQuestChain("Weave the Cloth", [

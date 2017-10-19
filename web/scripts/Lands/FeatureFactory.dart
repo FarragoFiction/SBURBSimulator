@@ -66,8 +66,10 @@ class FeatureFactory {
     static AmbianceFeature ENERGIZINGFEELING;
     static AmbianceFeature HAPPYFEELING;
     static AmbianceFeature DANGEROUSFEELING;
+    static AmbianceFeature CREATIVEFEELING;
     static AmbianceFeature GLAMOROUSFEELING;
     static AmbianceFeature HEROICFEELING;
+    static AmbianceFeature CONFUSINGFEELING;
     static AmbianceFeature STUPIDFEELING;
     static AmbianceFeature ROMANTICFEELING;
     static AmbianceFeature LUCKYFEELING;
@@ -166,11 +168,13 @@ class FeatureFactory {
         DANGEROUSFEELING = new AmbianceFeature("dangerous");
         GLAMOROUSFEELING = new AmbianceFeature("glamorous");
         ROMANTICFEELING = new AmbianceFeature("romantic");
+        CREATIVEFEELING = new AmbianceFeature("creative",Feature.GOOD);
         LUCKYFEELING = new AmbianceFeature("lucky");
         HAPPYFEELING = new AmbianceFeature("happy");
         HEROICFEELING = new AmbianceFeature("heroic");
         STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
-        ANGRYFEELING = new AmbianceFeature("angry", Feature.BAD);
+        LUCKYFEELING = new AmbianceFeature("lucky");
+        CONFUSINGFEELING = new AmbianceFeature("confusing", Feature.BAD);
         CONTEMPLATATIVEFEELING = new AmbianceFeature("contemplatative");
     }
 
