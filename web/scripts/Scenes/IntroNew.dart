@@ -243,13 +243,63 @@ class IntroNew extends IntroScene {
         return <PlusMinusConversationalPair>[rand.pickFrom(possible)];
     }
 
+    List<String> addLineToAllStringInArray(String line, List<String> array) {
+        for(int i = 0; i<array.length; i++) {
+           array[i] = "${array[i]} $line";
+        }
+
+        return array;
+    }
+
     //two sections, I'm in the land of x and y!// Cool, what's it like?// It's full of x and y.// Oh.
     //goodLand
     List<PlusMinusConversationalPair> getLandPair() {
         List<PlusMinusConversationalPair> lines = new List<PlusMinusConversationalPair>();
         String land = player.land.name;
         //start it off
-        lines.add(new PlusMinusConversationalPair(["Apparently it's the land of $land?", "It's the land of $land.", "Some random ${player.land.consortFeature.name} said it was the $land?", "There's this giant sign that says it's the $land."], ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+        List<String> intros = <String>["Apparently it's the land of $land?", "It's the land of $land.", "Some random ${player.land.consortFeature.name} said it was the $land?", "There's this giant sign that says it's the $land."];
+
+        if(InterestManager.FANTASY.playerLikes(player)|| InterestManager.WRITING.playerLikes(player) ) {
+            if(rand.nextBool()) {
+                intros = addLineToAllStringInArray("It's so cool! Like something out of a story! I always KNEW I'd have an adventure like this one day!", intros);
+            }else {
+                intros = addLineToAllStringInArray("Do you think that this means magic is a real thing?", intros);
+            }
+            lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+
+        }else if(InterestManager.POPCULTURE.playerLikes(player) ) {
+            if(rand.nextBool()) {
+                intros = addLineToAllStringInArray("This is so COOL! I am INSIDE A FUCKING VIDEO GAME!",intros);
+            }else {
+                intros = addLineToAllStringInArray("It's just like a movie!",intros);
+            }
+            lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+
+        }else if(InterestManager.MUSIC.playerLikes(player) ) {
+            if(rand.nextBool()) {
+                intros = addLineToAllStringInArray("I think I'm going to make a remix of the background music here.", intros);
+            }else {
+                intros = addLineToAllStringInArray("I am really enjoying all this background music here.", intros);
+            }
+            lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+
+        }else if(InterestManager.TERRIBLE.playerLikes(player) ) {
+            intros.addAll(["I am fucking finally in the Medium.", "I have assumed my rightful place as the future ruler of the land of ${land}."]);
+            if(rand.nextBool()) {
+                intros = addLineToAllStringInArray("I am going to rule it with an iron fist!", intros);
+            }else {
+                intros = addLineToAllStringInArray("I wonder how long it will take me to take it over?", intros);
+            }
+            lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+
+        }else if(InterestManager.ACADEMIC.playerLikes(player)) {
+            lines.add(new PlusMinusConversationalPair(["It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?", "My brain is breaking trying to figure out how any of this is even working!"], ["Through bullshit game magic. But what's it actually like there?", "It's a magic fucking video game, it works through magic. I meant more, what is your land like?"],["It's a magic fucking video game, who fucking CARES who it works.","Yes, those sure are the questions we need to focus on right now.", "..."]));
+
+        }else{
+            lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
+         }
+
+
 
         double randomNum = rand.nextDouble();
 
@@ -303,7 +353,7 @@ class IntroNew extends IntroScene {
         }else if(goodLand) {
             lines.add(new PlusMinusConversationalPair(["Wow, it feels so $qualiaString!", "It's so $qualiaString here!", "Holy shit, I just love the way it feels here! Like...$qualiaString or something?"], ["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"],["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"]));
         }else {
-            lines.add(new PlusMinusConversationalPair(["Oh god, it feels so $qualiaString! I feel unclean.", "I am already getting sick of how $qualiaString it feels here.", "I think $qualiaString fucking land is gonna drive me shithive maggots.", "$qualiaString. It smells like fucking ${qualiaString.toUpperCase()}. What. The. Fuck."], ["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."],["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."]));
+            lines.add(new PlusMinusConversationalPair(["Oh god, it feels so $qualiaString! I feel unclean.", "I am already getting sick of how $qualiaString it feels here.", "I think this $qualiaString fucking land is gonna drive me shithive maggots.", "$qualiaString. It smells like fucking ${qualiaString.toUpperCase()}. What. The. Fuck."], ["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."],["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."]));
         }
         return lines;
     }
