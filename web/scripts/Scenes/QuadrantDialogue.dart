@@ -693,12 +693,17 @@ class PlusMinusConversationalPair extends ConversationalPairBase {
 		return Scene.chatLine(playerStart, player, formatText(player.session.rand.pickFrom(this.openingLines)));
 	}
 	String getResponseBool(Player player, String handle, bool condition){
+		String line;
 		if(condition){
-			return Scene.chatLine(handle, player, formatText(player.session.rand.pickFrom(this.positiveRespones)));
+			line = player.session.rand.pickFrom(this.positiveRespones);
 		}else{ //negative response.
-			return Scene.chatLine(handle, player, formatText(player.session.rand.pickFrom(this.negativeResponses)));
+			line = player.session.rand.pickFrom(this.negativeResponses);
 		}
+		if (line != null) return Scene.chatLine(handle, player, formatText(line));
+		//lines can be null, if, for example, other player has nothing to say.
+		return null;
 	}
+
 	String getResponseRelationship(Player player, String handle, Relationship relationship){
 		return getResponseBool(player, handle, relationship != null && relationship.value > 0);
 	}

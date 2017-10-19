@@ -189,7 +189,7 @@ class IntroNew extends IntroScene {
         }else { //just use the living friend you already grabbed.
             if(friend.ectoBiologicalSource == session.session_id || friend.ectoBiologicalSource == null) { //harrasing native player
                 Relationship r1 = player.getRelationshipWith(friend);
-                if(r1.saved_type > 0) {
+                if(r1.value > 0) {
                     possible.add(new PlusMinusConversationalPair(["So I guess today is finally the day you make everything better!"], ["Guess so!","I can't wait!","Are you REALLY sure?","I know, right?"],["Ugh, do you have to be so cheerful?", "Because you are somehow all knowing.","Drop the spooky omniscience act already.", "Omg, drop it already!"]));
                     possible.add(new PlusMinusConversationalPair(["Is there nothing I can do to ease your mind?", "I can't wait to see how well you do!"], ["Just hearing your words of encouragement fills me with determination!","With your help I'm sure we can win!","I hope you're right!"],["Can you just drop it already?","This is NOT what I need to be hearing right now.","Bluh."]));
                     possible.add(new PlusMinusConversationalPair(["I'll be cheering for you!", "Good luck!"], [],[]));
@@ -201,10 +201,13 @@ class IntroNew extends IntroScene {
                 }else {
                     possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in your session.", "I made it in.", "I'm in your session, finally."], ["Oh wow! What are you going to do? It's not like you have a land or anything...","Aren't you going to be bored? You won't have quests and stuff.", "What are you going to do?", "What's your plan?"],["Ugh, just what I need. What is even the point of you being here?", "And how are you going to be wasting your time now that you're here?"]));
                     possible.add(new PlusMinusConversationalPair(["Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.","Trust me: you're gonna me happy I'm here when it comes time to fight bosses.", "I can always help with you guys' quests."], ["Thanks for your help in advance!","Sounds boring..."],["Ugh, like I need your help.","That sounds like loser talk to me.","Why would need help from someone who LOST?"]));
-                    possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck!", "I'll let you know when I figure out what I'm doing for sure!"], [],[]));
+                    possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck!", "Anyways, lemme know if you want to meet up some time.", "I'll let you know when I figure out what I'm doing for sure!"], [],[]));
 
                 }
             }else { //gossiping with foreign player
+                possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in that new session.", "I made it in.", "I'm in the new session, finally."], ["Ugh. I am just ready to be DONE playing this game.","Ugh, so glad we aren't still stuck traveling.","Hell yes, about time we got some plot in!"],["Ugh, I can't believe we are playing this shitty game AGAIN.", "I swear to god if you fuck shit up a SECOND time..."]));
+                possible.add(new PlusMinusConversationalPair(["I know right?","At least we aren't stuck doing shitty quests anymore.", "At least we already have some sweet powers."], ["Yes, we can just focus on getting ready for the end game.","Sounds boring..."],["God. This game. So shitty.","That sounds like loser talk to me.","I am going to miss those quests..."]));
+                possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck!", "Anyways, lemme know if you want to meet up some time."], [],[]));
 
             }
         }
