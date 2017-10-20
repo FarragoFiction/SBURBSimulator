@@ -7,6 +7,8 @@ import "dart:typed_data";
 
 import "package:js/js.dart";
 
+export "three_extensions.dart";
+
 @JS()
 class Object3D {
 	external Object3D();
@@ -22,6 +24,20 @@ class Object3D {
 	external Vector3 get up;
 
 	external Object3D clone([bool recursive]);
+}
+
+@JS()
+class Vector2 {
+	external Vector2(num x, num y);
+	factory Vector2.zero() {
+		return new Vector2(0,0);
+	}
+
+	external num get x;
+	external void set x(num x);
+
+	external num get y;
+	external void set y(num y);
 }
 
 @JS()
@@ -59,6 +75,21 @@ class Euler {
 
 @JS()
 class Face3 {
+	external int get a;
+	external void set a(int a);
+
+	external int get b;
+	external void set b(int b);
+
+	external int get c;
+	external void set c(int c);
+
+	external Vector3 get normal;
+	external void set normal(Vector3 normal);
+}
+
+@JS()
+class Color {
 
 }
 
@@ -73,6 +104,9 @@ class Scene extends Object3D {
 class WebGLRenderer {
 	external WebGLRenderer([WebGLRendererOptions parameters]);
 	external CanvasElement get domElement;
+
+	external bool get autoClear;
+	external void set autoClear(bool value);
 
 	external void setClearColor(num color, num alpha);
 	external void render(Scene scene, Camera camera);
@@ -152,8 +186,8 @@ abstract class AbstractGeometry {}
 
 @JS()
 abstract class Geometry implements AbstractGeometry {
-	external JsArray get vertices;
-	external JsArray get faces;
+	external JsArray<Vector3> get vertices;
+	external JsArray<Face3> get faces;
 	external JsArray get faceVertexUvs;
 
 	external void set dynamic(bool flag);
@@ -315,6 +349,33 @@ class MeshStandardMaterialParameters {
 		bool morphTargets : false,
 		bool morphNormals : false
 	});
+}
+
+@JS()
+class ShaderMaterial extends Material {
+	external ShaderMaterial([ShaderMaterialParameters parameters]);
+
+	external JsObject get uniforms;
+	external void set uniforms(JsObject uniforms);
+}
+
+@anonymous
+@JS()
+class ShaderMaterialParameters {
+	external factory ShaderMaterialParameters({
+		JsObject uniforms,
+		String vertexShader,
+		String fragmentShader
+	});
+}
+
+@anonymous
+@JS()
+class ShaderUniform<T> {
+	external factory ShaderUniform({T value});
+
+	external T get value;
+	external void set value(T value);
 }
 
 // Meshes ################################################################

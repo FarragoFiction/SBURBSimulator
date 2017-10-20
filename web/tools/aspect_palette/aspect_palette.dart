@@ -3,6 +3,8 @@ import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
 
+import "dart:js" as JS;
+
 import "../../scripts/SBURBSim.dart";
 
 import "../../scripts/includes/colour.dart";
@@ -22,37 +24,9 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });*/
 
-    //testDrawing();
+    testDrawing();
 
-    WeightedList<String> testlist = new WeightedList<String>()..addAllGenerative(<String>["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"], (String s) => s.length.toDouble());
-    print(testlist);
-    testlist.sortByWeight();
-    print(testlist);
 
-    WeightedIterable<String> testWhere = testlist.where((String s) => s.length > 3);
-    print(testWhere);
-
-    WeightedIterable<String> testMapped = testWhere.map((String s) => "BLAH $s");
-    print(testMapped);
-
-    WeightedIterable<String> testSub = new SubTypeWeightedIterable<String, String>(testlist.pairs);
-    print(testSub);
-
-    testlist.collateWeights();
-    testlist.collateWeights();
-    testlist.collateWeights();
-
-    print(testWhere);
-
-    WeightedList<String> testRetain = new WeightedList<String>.from(testlist);
-    print(testRetain);
-    testRetain.retainWhere((String s) => s.length > 3);
-    print(testRetain);
-
-    WeightedList<String> testRemove = new WeightedList<String>.from(testlist);
-    print(testRemove);
-    testRemove.removeWhere((String s) => s.length > 3);
-    print(testRemove);
 }
 
 Future<bool> testDrawing() async {
@@ -63,7 +37,7 @@ Future<bool> testDrawing() async {
     await Renderer.loadThree();
 
     int dim = 5;
-    int space = 10;
+    int space = 50;
 
     {
         DateTime then = new DateTime.now();
@@ -90,22 +64,9 @@ Future<bool> testDrawing() async {
 
         RenderJob job = await RenderJob.create(640, 480);
 
-        ImageElement img = await Loader.getResource("images/guide_bot.png");
-        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(img.width, img.height, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)
-            ..magFilter = THREE.NearestFilter
-            ..minFilter = THREE.NearestFilter
-            ..needsUpdate = true))
-            ..transparent = true);
-        image.position
-            ..x = img.width / 2
-            ..y = img.height / 2;
-        image.rotation.x = Math.PI;
-
         for (int x = 0; x < dim; x++) {
             for (int y = 0; y < dim; y++) {
-                //await job.addImage("images/guide_bot.png", 50 * x, 50 * y);
-                job.scene.add(image.clone(false)
-                    ..position.x += space * x..position.y += space * y);
+                job.addImage("images/guide_bot.png", x * space, y * space);
             }
         }
 

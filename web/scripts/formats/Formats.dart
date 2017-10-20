@@ -16,6 +16,8 @@ abstract class Formats {
     static void init() {
         text = new TextFileFormat();
         addMapping(text, "txt");
+        addMapping(text, "vert", "x-shader/x-vertex");
+        addMapping(text, "frag", "x-shader/x-fragment");
 
         manifest = new BundleManifestFormat();
 
@@ -25,24 +27,35 @@ abstract class Formats {
 
         png = new PngFileFormat();
         addMapping(png, "png");
-        addMapping(png, "jpg");
+        addMapping(png, "jpg", "image/jpeg");
     }
 
-    static void addMapping(FileFormat<dynamic,dynamic> format, String extension) {
-        extensionMapping[extension] = format;
+    static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {
+        extensionMapping[extension] = new ExtensionMappingEntry<T,U>(format, mimeType);
         format.extensions.add(extension);
     }
 
-    static Map<String, FileFormat<dynamic,dynamic>> extensionMapping = <String, FileFormat<dynamic,dynamic>>{};
+    static Map<String, ExtensionMappingEntry<dynamic,dynamic>> extensionMapping = <String, ExtensionMappingEntry<dynamic,dynamic>>{};
 
-    static FileFormat<T,U> getFormatForExtension<T,U>(String extension) {
+    static ExtensionMappingEntry<T,U> getFormatEntryForExtension<T,U>(String extension) {
         if (extensionMapping.containsKey(extension)) {
-            FileFormat<dynamic, dynamic> format = extensionMapping[extension];
+            ExtensionMappingEntry<T,U> mapping = extensionMapping[extension];
+            FileFormat<T,U> format = mapping.format;
             if (format is FileFormat<T,U>) {
-                return format;
+                return mapping;
             }
             throw "File format for extension .$extension does not match expected types ($T, $U)";
         }
         throw "No file format found for extension .$extension";
     }
+
+    static FileFormat<T,U> getFormatForExtension<T,U>(String extension) => getFormatEntryForExtension(extension).format;
+    static String getMimeTypeForExtension(String extension) => getFormatEntryForExtension(extension).mimeType;
+}
+
+class ExtensionMappingEntry<T,U> {
+    FileFormat<T,U> format;
+    String mimeType;
+
+    ExtensionMappingEntry(FileFormat<T,U> this.format, String this.mimeType);
 }

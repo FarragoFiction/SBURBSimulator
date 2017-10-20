@@ -585,3 +585,13 @@ body{
 
 .stats{
 }
+
+div.renderJobPlaceholder {
+    background:url("../../images/spirograph.svg") no-repeat center;
+    background-color:#FFFFFF;
+    background-size:contain;
+    background-origin: content-box;
+    padding:6%;
+    box-sizing: border-box;
+    box-shadow:0 0 30px #EEEEEE inset;
+}

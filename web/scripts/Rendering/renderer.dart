@@ -14,8 +14,9 @@ class Renderer {
         return true;
     }
 
-    static THREE.WebGLRenderer _renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(alpha:true, antialias: false));
-    static THREE.OrthographicCamera _camera = new THREE.OrthographicCamera.flat(100, 100)..position.z = 800;
+    static Map<CanvasImageSource, THREE.Texture> _textureCache = <CanvasImageSource, THREE.Texture>{};
+
+    static THREE.WebGLRenderer _renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(alpha:true, antialias: false))..autoClear = false;
 
     static List<RenderJob> _pending = <RenderJob>[];
     static bool _processing = false;
@@ -29,10 +30,13 @@ class Renderer {
         if (_processing) { return; }
         _processing = true;
 
-        _renderLoop();
+        // specifically using the future constructor here to let the event loop take a breather
+        // doing so means it has to wait until the next event loop to do stuff, just calling
+        // the method would have it start immediately, and we don't want that here.
+        new Future<Null>(_renderLoop);
     }
 
-    static void _renderLoop([num dt]) {
+    static Future<Null> _renderLoop([num dt]) async {
         if (_pending.isEmpty) {
             _processing = false;
             return;
@@ -40,25 +44,38 @@ class Renderer {
 
         RenderJob job = _pending.removeAt(0);
 
-        _draw(job);
+        await _draw(job);
 
         window.requestAnimationFrame(_renderLoop);
     }
 
-    static void _draw(RenderJob job) {
+    static Future<Null> _draw(RenderJob job) async {
         _renderer.setSize(job.width, job.height);
 
-        if (job.camera != null) {
-            _renderer.render(job.scene, job.camera);
-        } else {
-            _camera..right = job.width..bottom = job.height..updateProjectionMatrix();
-            _renderer.render(job.scene, _camera);
+        for (RenderJobPass pass in job._passes) {
+            await pass.draw(job);
         }
 
         CanvasElement output = new CanvasElement(width: job.width, height: job.height);
         output.context2D.drawImage(_renderer.domElement, 0, 0);
 
         job.setImage(output);
+    }
+
+    static THREE.Texture getCachedTexture(CanvasImageSource image) {
+        if (_textureCache.containsKey(image)) { return _textureCache[image]; }
+
+        THREE.Texture texture = new THREE.Texture(image);
+        _textureCache[image] = texture;
+
+        return texture;
+    }
+
+    static THREE.Texture getCachedTextureNearest(CanvasImageSource image) {
+        return getCachedTexture(image)
+            ..minFilter = THREE.NearestFilter
+            ..magFilter = THREE.NearestFilter
+            ..needsUpdate = true;
     }
 }
 
@@ -68,26 +85,23 @@ abstract class RendererDefaults {
 
 class RenderJob {
     DivElement div;
-    THREE.Scene scene = new THREE.Scene();
+
+    List<RenderJobPass> _passes = <RenderJobPass>[];
+
     int width;
     int height;
 
-    double _imagedepth = 0.0;
-
-    THREE.Camera camera = null;
-
     RenderJob._(int this.width, int this.height) {
-        this.div = new DivElement()..className="renderJobPlaceholder";
+        int bgsize = min(300,(min(width, height) * 0.75).round());
+        this.div = new DivElement()
+            ..className="renderJobPlaceholder"
+            ..style.backgroundSize="${bgsize}px";
         div.style..width="${width}px"..height="${height}px";
     }
 
     static Future<RenderJob> create(int width, int height, {bool defaultLight = true}) async {
         await Renderer.loadThree();
         RenderJob job = new RenderJob._(width, height);
-
-        if (defaultLight) {
-            job.add(RendererDefaults.defaultAmbient);
-        }
 
         return job;
     }
@@ -102,21 +116,62 @@ class RenderJob {
         return this.div;
     }
 
-    void add(THREE.Object3D object3d) {
-        this.scene.add(object3d);
+    void add(RenderJobPass pass) {
+        this._passes.add(pass);
     }
 
-    Future<THREE.Mesh> addImage(String path, int x, int y) async {
-        ImageElement img = await TextureHelper.expandToNextPower(await Loader.getResource(path));
-        return _addImage(img, x, y, img.width, img.height);
+    void addImage(String path, [int x, int y, THREE.ShaderMaterial materialOverride]) {
+        this.add(new RenderJobPassImage(path, x,y, materialOverride));
+    }
+}
+
+abstract class RenderJobPass {
+    Future<Null> draw(RenderJob job);
+}
+
+class RenderJobPassImage extends RenderJobPass {
+    static THREE.OrthographicCamera _camera = new THREE.OrthographicCamera.flat(100, 100)..position.z = 800;
+    static THREE.Scene _scene;
+    static THREE.Mesh _mesh;
+    static THREE.ShaderMaterial _defaultMaterial;
+
+    final String imagePath;
+    final int x;
+    final int y;
+    THREE.ShaderMaterial materialOverride;
+
+    RenderJobPassImage(String this.imagePath, [int this.x=0, int this.y=0, THREE.ShaderMaterial this.materialOverride]);
+
+    @override
+    Future<Null> draw(RenderJob job) async {
+        await _initScene();
+        _camera..bottom = job.height..right = job.width..updateProjectionMatrix();
+
+        ImageElement img = await Loader.getResource(imagePath);
+        THREE.Texture texture = Renderer.getCachedTextureNearest(img);
+
+        THREE.ShaderMaterial material = this.materialOverride != null ? this.materialOverride : _defaultMaterial;
+
+        THREE.getUniform(material, "image").value = texture;
+        THREE.getUniform(material, "size").value = new THREE.Vector2(img.width, img.height);
+
+        _mesh.position..x = x + img.width * 0.5..y = y + img.height * 0.5;
+
+        Renderer._renderer.render(_scene, _camera);
     }
 
-    Future<THREE.Mesh> _addImage(CanvasImageSource img, int x, int y, int w, int h) async {
-        THREE.Mesh image = new THREE.Mesh(new THREE.PlaneGeometry(w, h, 1, 1), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(img)..magFilter=THREE.NearestFilter..minFilter=THREE.NearestFilter..needsUpdate = true))..transparent = true);
-        image.position..x = x + w/2..y = y + h/2..z = _imagedepth;
-        _imagedepth += 0.01;
-        image.rotation.x = PI;
-        this.add(image);
-        return image;
+    Future<Null> _initScene() async {
+        if (_scene != null) { return; }
+
+        _scene = new THREE.Scene();
+
+        THREE.PlaneBufferGeometry plane = new THREE.PlaneBufferGeometry(1,1,1,1);
+
+        _defaultMaterial = await THREE.makeShaderMaterial("shaders/test.vert", "shaders/test.frag")..transparent = true;
+        THREE.setUniform(_defaultMaterial, "image", new THREE.ShaderUniform<THREE.Texture>());
+        THREE.setUniform(_defaultMaterial, "size", new THREE.ShaderUniform<THREE.Vector2>());
+
+        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = PI;
+        _scene.add(_mesh);
     }
 }
