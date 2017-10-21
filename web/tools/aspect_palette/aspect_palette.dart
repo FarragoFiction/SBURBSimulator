@@ -30,14 +30,19 @@ void main() {
 }
 
 Future<bool> testDrawing() async {
+    Aspects.init();
     Element stuff = querySelector("#stuff");
 
     // preload to be fair
     await Loader.getResource("images/guide_bot.png");
     await Renderer.loadThree();
 
+    int startx = -120;
+    int starty = -40;
     int dim = 5;
-    int space = 50;
+    int dimx = 10;
+    int dimy = 1;
+    int space = 100;
 
     {
         DateTime then = new DateTime.now();
@@ -60,13 +65,20 @@ Future<bool> testDrawing() async {
     }
 
     {
+        Random rand = new Random();
+
+        Palette skin = new Palette()
+            ..add("skin", new Colour.fromHex(0xFFFFFF))
+            ..add("skinline", new Colour.fromHex(0x000000));
+
         DateTime then = new DateTime.now();
 
         RenderJob job = await RenderJob.create(640, 480);
 
-        for (int x = 0; x < dim; x++) {
-            for (int y = 0; y < dim; y++) {
-                job.addImage("images/guide_bot.png", x * space, y * space);
+        for (int x = 0; x < dimx; x++) {
+            for (int y = 0; y < dimy; y++) {
+                //job.addImage("images/guide_bot.png", x * space, y * space);
+                job.addSprite("images/Bodies/god4.psprite", <Palette>[skin, rand.pickFrom(Aspects.all).palette], x * space + startx, y * space + starty);
             }
         }
 

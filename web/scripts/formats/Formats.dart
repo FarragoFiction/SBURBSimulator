@@ -1,8 +1,9 @@
 import "BasicFormats.dart";
+import "BundleManifestFormat.dart";
 import "FileFormat.dart";
 import "ImageFormats.dart";
+import "SpriteFormat.dart";
 import "ZipFormat.dart";
-import "BundleManifestFormat.dart";
 
 export "FileFormat.dart";
 
@@ -12,6 +13,8 @@ abstract class Formats {
     static ZipFormat zip;
 
     static PngFileFormat png;
+
+    static SpriteFormat sprite;
 
     static void init() {
         text = new TextFileFormat();
@@ -28,6 +31,9 @@ abstract class Formats {
         png = new PngFileFormat();
         addMapping(png, "png");
         addMapping(png, "jpg", "image/jpeg");
+
+        sprite = new SpriteFormat();
+        addMapping(sprite, "psprite");
     }
 
     static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {
