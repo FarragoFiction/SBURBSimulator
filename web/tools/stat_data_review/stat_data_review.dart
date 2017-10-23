@@ -16,7 +16,7 @@ void main() {
     StatDataReview review = new StatDataReview();
 
     Element container = querySelector("#load");
-    FileFormat.loadButtonVersioned(StatDataFormat.formatVersions, review.addData, multiple:true, caption:"Load statdata file").then(container.append);
+    container.append(FileFormat.loadButtonVersioned(StatDataFormat.formatVersions, review.addData, multiple:true, caption:"Load statdata file"));
 }
 
 Element createOption(String value) {
