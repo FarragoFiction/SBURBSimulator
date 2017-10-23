@@ -27,11 +27,11 @@ abstract class FileFormat<T,U> {
     Future<U> requestFromUrl(String url);
     Future<T> requestObjectFromUrl(String url) async => read(await requestFromUrl(url));
 
-    static Future<Element> loadButton<T,U>(FileFormat<T,U> format, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
+    static Element loadButton<T,U>(FileFormat<T,U> format, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
         return loadButtonVersioned(<FileFormat<T,U>>[format], callback, multiple:multiple, caption:caption);
     }
 
-    static Future<Element> loadButtonVersioned<T,U>(List<FileFormat<T,U>> formats, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) async {
+    static Element loadButtonVersioned<T,U>(List<FileFormat<T,U>> formats, Lambda<T> callback, {bool multiple = false, String caption = "Load file"}) {
         Element container = new DivElement();
 
         FileUploadInputElement upload = new FileUploadInputElement()..style.display="none"..multiple=multiple;
@@ -54,6 +54,25 @@ abstract class FileFormat<T,U> {
         container.append(upload);
 
         container.append(new ButtonElement()..text=caption..onClick.listen((Event e) => upload.click()));
+
+        return container;
+    }
+
+    static Element saveButton<T,U>(FileFormat<T,U> format, Generator<T> objectGetter, [String caption = "Save file"]) {
+        Element container = new DivElement();
+
+        ButtonElement download = new ButtonElement()..text=caption;
+
+        AnchorElement link = new AnchorElement()..style.display="none";
+
+        download..onClick.listen((Event e) async {
+            T object = objectGetter();
+            if (object == null) { return; }
+            String URI = await format.objectToDataURI(object);
+            link..href = URI..click();
+        });
+
+        container..append(download)..append(link);
 
         return container;
     }
