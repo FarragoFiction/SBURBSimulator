@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 152; //this number MUST be even.
+var maxState = 154; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
