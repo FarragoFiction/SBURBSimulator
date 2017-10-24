@@ -1,6 +1,8 @@
 import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
-
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Bard extends SBURBClass {
 
@@ -72,5 +74,29 @@ class Bard extends SBURBClass {
     double getMurderousModifier() {
         return 3.0;
     }
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        addTheme(new Theme(<String>["Festivals","Carnivals", "Parades", "Celebrations","Jamboree","Fairs","Amusements"])
+            ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.SPICYSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.HAPPYFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.BAKEDBREADSMELL, Feature.HIGH)
+            ..addFeature(new PostDenizenQuestChain("Celebrate the Win", [
+                new Quest("After all the bullshit the ${Quest.DENIZEN} has put the native ${Quest.CONSORT}s through, the ${Quest.PLAYER1} figures they could use a break. They decide to revive a planet wide ${Quest.MCGUFFIN} Festival to get morale back up."),
+                new Quest("A small ${Quest.CONSORT} is sobbing and ${Quest.CONSORTSOUND}ing after losing a carnival game. The ${Quest.PLAYER1} decides that this is not a day of losses, and begins rigging the games to have a higher pay out rate than normal. Soon the land is filled with the sound of happy ${Quest.CONSORTSOUND}s."),
+                new Quest(" The ${Quest.CONSORT}s who were running the carnival games are now bankrupt. Their wailing and ${Quest.CONSORTSOUND}ing fills the air. Fuck.  Who knew actions have consequences? The ${Quest.PLAYER1} arranges 'anonymous' donations to them and decides that maybe they should just quit while they are ahead. ")
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
+    }
+
 
 }
