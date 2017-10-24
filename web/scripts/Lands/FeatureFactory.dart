@@ -58,6 +58,7 @@ class FeatureFactory {
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
+    static AmbianceFeature OVERHEATED;
     static AmbianceFeature  CALMFEELING;
     static AmbianceFeature  STUDIOUSFEELING;
     static AmbianceFeature CONTEMPLATATIVEFEELING;
@@ -174,6 +175,7 @@ class FeatureFactory {
         HEROICFEELING = new AmbianceFeature("heroic");
         STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
         LUCKYFEELING = new AmbianceFeature("lucky");
+        OVERHEATED = new AmbianceFeature("overheated");
         CONFUSINGFEELING = new AmbianceFeature("confusing", Feature.BAD);
         CONTEMPLATATIVEFEELING = new AmbianceFeature("contemplatative");
     }
