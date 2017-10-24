@@ -55,6 +55,7 @@ class FeatureFactory {
     static SmellFeature SWEATSMELL;
     static SmellFeature OZONESMELL;
     static SmellFeature BLOODSMELL;
+    static SmellFeature SMOKESMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
@@ -155,6 +156,7 @@ class FeatureFactory {
         OZONESMELL = new SmellFeature("ozone");
         DECEITSMELL = new SmellFeature("deceit");//senator lemonsnout, how COULD you?
         BLOODSMELL = new SmellFeature("blood", Feature.BAD);
+        SMOKESMELL = new SmellFeature("smoke", Feature.BAD);
 
     }
 

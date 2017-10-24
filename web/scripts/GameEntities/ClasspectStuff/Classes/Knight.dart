@@ -80,6 +80,7 @@ class Knight extends SBURBClass {
             ..addFeature(FeatureFactory.OVERHEATED, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEATSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SMOKESMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.MEDIUM)
             ..addFeature(new PostDenizenQuestChain("Exploit the Heat", [
                 new Quest("Now that the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s could really use some basic infrastructure repairs. The ${Quest.PLAYER1} finds instructions for a thermal energy converter in a dungeon and alchemizes all the parts needed to build one. The ${Quest.CONSORT}s will have power for generations,now. "),

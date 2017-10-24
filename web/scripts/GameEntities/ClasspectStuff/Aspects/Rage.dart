@@ -89,6 +89,7 @@ class Rage extends Aspect {
             ..addFeature(FeatureFactory.STUPIDFEELING, Feature.MEDIUM) //THIS IS STUPID.
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.GUNFIRESOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.SMOKESMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.ROARINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.DRUMSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.HIGH)
