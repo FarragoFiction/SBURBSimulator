@@ -87,7 +87,7 @@ class Rogue extends SBURBClass {
     void initializeThemes() {
 
         //the sock ruse was a distaction
-        addTheme(new Theme(<String>["Classism","Struggle","Apathy", "Revolution", "Rebellion"])
+        addTheme(new Theme(<String>["Classism","Struggle","Apathy", "Revolution", "Rebellion","Rogues"])
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
