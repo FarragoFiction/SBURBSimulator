@@ -41,7 +41,7 @@ class BoonieFraymotifReward extends FraymotifReward {
 
 
 }
-
+//TODO have it take in a name and then the fraymotif cna have a custom name?
 class FraymotifReward extends Reward
 {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";

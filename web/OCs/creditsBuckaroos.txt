@@ -18,4 +18,6 @@ b=%00%00%00%26%C3%BE%3D%00%07))%18&s=,,Writing,Science,asocialGoldfish
 b=%00%00%00%C3%BB%C3%BE%C3%9B%00%5C%06%068&s=,,Mathematics,Tabletop Roleplaying,aspiringWatcher
 b=%00%00%00%C3%8B%C3%B2%C2%8D%10Y778&s=,,Cooking,Knowledge,cookingTeacher
 b=%00%00%00%24%C3%B4%C2%A7%04F%06%06F&s=,,Coding,Science Fiction,neoConfidante
+b=%00%00%00%C3%B5%C3%B96%10Y--.&s=,,Fan Fiction,Democracy,AsphaltApocalypse
+OCdatastring b=Y4%0D7%C3%BE%C3%99%04R%2C%2C%0C&s=,,History,Video Games,yogisticDocto
 

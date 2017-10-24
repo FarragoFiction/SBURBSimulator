@@ -52,16 +52,16 @@ class Sage extends SBURBClass {
         new Quest(" ")
 
         */
-        addTheme(new Theme(<String>["Books","Libraries", "Tomes", "Pages","Advice","Scholarship"])
+        addTheme(new Theme(<String>["Books","Libraries", "Tomes", "Pages","Advice","Scholarship","Expertise"])
             ..addFeature(FeatureFactory.MUSTSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
-            ..addFeature(new PostDenizenQuestChain("Provide the Advice", [
-                new Quest("Now that the ${Quest.DENIZEN} is finally out of the way, some of the previously sealed tombs have opened up. It is time for the ${Quest.PLAYER1} to desecrate the fuck out of some tombs."),
-                new Quest("In a twist that is shocking only to the ${Quest.PLAYER1}, they are now inflicted with a Mummy's Curse. There is a REASON you don't desecrate random tombs. A local ${Quest.CONSORT} explains that they will have to find a ${Quest.PLAYER1} champion to face the Mummy, for anyone cursed by it will surely perish should they face it in a strife."),
-                new Quest("The ${Quest.PLAYER1} finds a competent enough Warrior ${Quest.CONSORT} to help them fight the Mummy. While they can't fight directly, the ${Quest.PLAYER1} can at least give them some ${Quest.MCGUFFIN} buffs. With a deafening ${Quest.CONSORTSOUND}, the Warrior ${Quest.CONSORT} wins the day! The curse is lifted! ")
+            ..addFeature(new PostDenizenQuestChain("Be the Sage", [
+                new Quest("Now that the ${Quest.DENIZEN} is defeated, it is time to begin recovery efforts. The ${Quest.CONSORT}s ask the ${Quest.PLAYER1} what they should do first.  When they hesitate, the ${Quest.CONSORT}s begin ${Quest.CONSORTSOUND}ing in distress. Desparate, the ${Quest.PLAYER1} confidently advises them to begin cleaning up rubble. The ${Quest.CONSORT}s seem satisfied.  The ${Quest.PLAYER1} absconds into a nearby library to read up on how in Paradox Space they can figure out what ACTUALLY needs done. "),
+                new Quest("The ${Quest.PLAYER1} has read up on disaster recovery and helps the ${Quest.CONSORT}s plan the next season's crops, build infrastructure and even set up psychological counseling center for those in need. Every moment they aren't in public they are devouring tomes in an effort to stay one step ahead of everything."),
+                new Quest("Finally, recovery efforts are complete. The ${Quest.PLAYER1} has developed quite the reputation as the person to go to for advice and knowledge. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
