@@ -49,16 +49,16 @@ class Scout extends SBURBClass {
         new Quest(" ")
 
         */
-        addTheme(new Theme(<String>["Books","Libraries", "Tomes", "Pages","Advice","Scholarship","Expertise"])
-            ..addFeature(FeatureFactory.MUSTSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+        addTheme(new Theme(<String>["Maps","Trails", "Compasses", "Wilderness","Trails"])
+            ..addFeature(FeatureFactory.NATURESOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
-            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
-            ..addFeature(new PostDenizenQuestChain("Be the Sage", [
-                new Quest("Now that the ${Quest.DENIZEN} is defeated, it is time to begin recovery efforts. The ${Quest.CONSORT}s ask the ${Quest.PLAYER1} what they should do first.  When they hesitate, the ${Quest.CONSORT}s begin ${Quest.CONSORTSOUND}ing in distress. Desparate, the ${Quest.PLAYER1} confidently advises them to begin cleaning up rubble. The ${Quest.CONSORT}s seem satisfied.  The ${Quest.PLAYER1} absconds into a nearby library to read up on how in Paradox Space they can figure out what ACTUALLY needs done. "),
-                new Quest("The ${Quest.PLAYER1} has read up on disaster recovery and helps the ${Quest.CONSORT}s plan the next season's crops, build infrastructure and even set up psychological counseling center for those in need. Every moment they aren't in public they are devouring tomes in an effort to stay one step ahead of everything."),
-                new Quest("Finally, recovery efforts are complete. The ${Quest.PLAYER1} has developed quite the reputation as the person to go to for advice and knowledge. ")
+            ..addFeature(new PostDenizenQuestChain("Blaze a Trail", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, the planet has really opened up. The ${Quest.PLAYER1} eagerly begins to explore uncharted territory. "),
+                new Quest("The ${Quest.PLAYER1} takes in the sight of a glorious waterfall. They might be the only thing in living memory to see it. It's amazing. They continue exploring their land."),
+                new Quest("Deep in a forgotten forest, in a temple covered in golden ${Quest.CONSORT}s, the ${Quest.PLAYER1} finds a treasure chest with a fraymotif inside. Travel is its own reward, but it's nice to have more tangible ones, too.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
