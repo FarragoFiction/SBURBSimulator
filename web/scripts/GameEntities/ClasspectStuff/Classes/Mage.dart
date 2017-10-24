@@ -73,7 +73,6 @@ class Mage extends SBURBClass {
     }
 
 
-    //rule, control, delegate
     @override
     void initializeThemes() {
         /*
