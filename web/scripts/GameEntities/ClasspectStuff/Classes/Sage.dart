@@ -1,6 +1,10 @@
-import "../../../SBURBSim.dart";
+import "../../GameEntity.dart";
 import "SBURBClass.dart";
+import "../../../SBURBSim.dart";
 
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 class Sage extends SBURBClass {
     Sage() : super("Sage", 14, false);
     @override
@@ -38,6 +42,28 @@ class Sage extends SBURBClass {
     @override
     bool isActive([double multiplier = 0.0]) {
         return false;
+    }
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        addTheme(new Theme(<String>["Books","Libraries", "Tomes", "Pages","Advice","Scholarship"])
+            ..addFeature(FeatureFactory.MUSTSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
+            ..addFeature(new PostDenizenQuestChain("Provide the Advice", [
+                new Quest("Now that the ${Quest.DENIZEN} is finally out of the way, some of the previously sealed tombs have opened up. It is time for the ${Quest.PLAYER1} to desecrate the fuck out of some tombs."),
+                new Quest("In a twist that is shocking only to the ${Quest.PLAYER1}, they are now inflicted with a Mummy's Curse. There is a REASON you don't desecrate random tombs. A local ${Quest.CONSORT} explains that they will have to find a ${Quest.PLAYER1} champion to face the Mummy, for anyone cursed by it will surely perish should they face it in a strife."),
+                new Quest("The ${Quest.PLAYER1} finds a competent enough Warrior ${Quest.CONSORT} to help them fight the Mummy. While they can't fight directly, the ${Quest.PLAYER1} can at least give them some ${Quest.MCGUFFIN} buffs. With a deafening ${Quest.CONSORTSOUND}, the Warrior ${Quest.CONSORT} wins the day! The curse is lifted! ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
     }
 
 }
