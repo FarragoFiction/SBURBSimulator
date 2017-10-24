@@ -1,5 +1,10 @@
 import "../../GameEntity.dart";
 import "SBURBClass.dart";
+import "../../../SBURBSim.dart";
+
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Page extends SBURBClass {
     Page() : super("Page", 1, true);
@@ -37,4 +42,32 @@ class Page extends SBURBClass {
 
     @override
     double powerBoostMultiplier = 2.0; //they don't have many quests, but once they get going they are hard to stop.
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        addTheme(new Theme(<String>["Desert","Sand", "Pyramids", "Camels","Tombs"])
+            ..addFeature(FeatureFactory.OVERHEATED, Feature.HIGH)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SPICYSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SALTSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.NATURESOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.IGUANACONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SNAKECONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ALLIGATORCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.LIZARDCONSORT, Feature.MEDIUM)
+            ..addFeature(new PostDenizenQuestChain("Explore the Tombs", [
+                new Quest("Now that the ${Quest.DENIZEN} is finally out of the way, some of the previously sealed tombs have opened up. It is time for the ${Quest.PLAYER1} to desecrate the fuck out of some tombs."),
+                new Quest("In a twist that is shocking only to the ${Quest.PLAYER1}, they are now inflicted with a Mummy's Curse. There is a REASON you don't desecrate random tombs. A local ${Quest.CONSORT} explains that they will have to find a ${Quest.PLAYER1} champion to face the Mummy, for anyone cursed by it will surely perish should they face it in a strife."),
+                new Quest("The ${Quest.PLAYER1} finds a competent enough Warrior ${Quest.CONSORT} to help them fight the Mummy. While they can't fight directly, the ${Quest.PLAYER1} can at least give them some ${Quest.MCGUFFIN} buffs. With a deafening ${Quest.CONSORTSOUND}, the Warrior ${Quest.CONSORT} wins the day! The curse is lifted! ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
+    }
 }
