@@ -1,6 +1,6 @@
-.DS_STORE
 .idea/
 *.iml
+*.DS_Store
 
 # Files and directories created by pub
 .packages
@@ -15,3 +15,4 @@ doc/api/
 # No need to push bundles or the manifest I guess - those can be generated simply enough
 *.bundle
 web/manifest/manifest.txt
+.DS_Store
