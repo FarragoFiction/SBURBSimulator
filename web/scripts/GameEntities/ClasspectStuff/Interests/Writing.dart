@@ -46,7 +46,7 @@ class Writing extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Read the Fan Fiction", [
                 new Quest("An Excited ${Quest.CONSORT} rushes up to the ${Quest.PLAYER1}. They have been writing fan fiction about the Players for their whole life and want to get feedback on it. Is it accurate?  The ${Quest.PLAYER1} does their best to keep a straight face, but the fic is...wow.  Why do they have the players ${Quest.CONSORTSOUND}ing so much? "),
                 new Quest("Okay.  The Excited ${Quest.CONSORT} has a new version for the ${Quest.PLAYER1} to review. This time they at least aren't obviously ${Quest.CONSORT}s, but the characterization is completely off. You can't even imagine THOSE two getting together.  Feedback round two. "),
-                new Quest(" The ${Quest.PLAYER1} reads the final version of the Excited ${Quest.CONSORT}s fan fiction.  Huh. This is....wow! It's even better than reality!  The Excited Consort ends up making crazy amount of boonies from selling the series, and gives the ${Quest.PLAYER1} a gift as thanks! ")
+                new Quest(" The ${Quest.PLAYER1} reads the final version of the Excited ${Quest.CONSORT}'s fan fiction.  Huh. This is....wow! It's even better than reality!  The Excited Consort ends up making crazy amount of boonies from selling the series, and gives the ${Quest.PLAYER1} a gift as thanks! ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
