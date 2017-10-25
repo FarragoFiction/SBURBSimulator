@@ -111,11 +111,19 @@ class Sylph extends SBURBClass {
             ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ALLIGATORCONSORT, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Be The Sylph", [
+                new Quest("A handsome ${Quest.CONSORT} is scheduled to be wed to a beautiful maiden. Instead, he keeps seeing visions of an ethereal ${Quest.CONSORT}, and runs away to be with her a clearing in the woods filled with bubbling springs.  The ${Quest.PLAYER1} is unimpressed. "),
+                new Quest("The ${Quest.PLAYER1} alchemizes 'The Sylph's Scarf'. Huh. Apparently it's a reference to some sort of ballet? A ${Quest.CONSORT} crone assures the ${Quest.PLAYER1} that it will stop the handsome ${Quest.CONSORT} from seeing weird visions that make him run into the woods, though."),
+                new Quest("The ${Quest.PLAYER1} gives the handsome ${Quest.CONSORT} the 'Sylph's Scarf'. He immediately begins weeping that the ethereal ${Quest.CONSORT} is dead. He is inconsolable. Holy shit, ballets about Sylphs are kinda dark.")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+
             ..addFeature(new PostDenizenQuestChain("Purify the Water", [
                 new Quest("The defeat of the ${Quest.DENIZEN} has some unforseen consequences, including the tainting of the water for the majority of the land. The ${Quest.CONSORT}s seem to have figured out a solution in the short term, but the ${Quest.PLAYER1} resolves to bug and fuss and meddle until things are fixed the right way. "),
                 new Quest("So far, the ${Quest.PLAYER1} hasn't had much luck getting ${Quest.CONSORT}s to build a water purifying facility.  They are content just boiling their water. 'It's not hard', they say. It's so frustrating that the ${Quest.PLAYER1} knows they can help them but the ${Quest.CONSORT}s just will NOT cooperate. "),
                 new Quest("The ${Quest.PLAYER1} has finally accepted that some people just don't want to be helped. As they make peace with this, a mysterious glow emerges from their chest.  The water of the land matches this glow, and the water is purified through the power of ${Quest.MCGUFFIN}. Huh. Okay then.")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 
