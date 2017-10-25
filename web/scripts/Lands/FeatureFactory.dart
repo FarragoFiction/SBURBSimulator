@@ -2,7 +2,6 @@ import "FeatureTypes/ConsortFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
-import "FeatureTypes/CorruptionFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "../random.dart";
 import "Feature.dart";
@@ -106,7 +105,6 @@ class FeatureFactory {
     static SoundFeature GUNFIRESOUND;
     static SoundFeature SCREAMSSOUND;  //combined with feelings this gets p interesting.  filled with the sound of screams that feels calm? energizing?
 
-    static CorruptionFeature Corruption;
 
     static void init() {
         initializeConsorts();
@@ -224,7 +222,6 @@ abstract class FeatureCategories {
     static FeatureTypeSubset<SmellFeature> SMELL = new FeatureTypeSubset<SmellFeature>("smell", _addIfEmpty(FeatureFactory.NOTHINGSMELL));
     static FeatureTypeSubset<SoundFeature> SOUND = new FeatureTypeSubset<SoundFeature>("sound", _addIfEmpty(FeatureFactory.SILENCE));
     static FeatureTypeSubset<AmbianceFeature> AMBIANCE = new FeatureTypeSubset<AmbianceFeature>("ambiance", _addIfEmpty(FeatureFactory.NOTHINGFEELING));
-    static FeatureTypeSubset<CorruptionFeature> CORRUPTION = new FeatureTypeSubset<CorruptionFeature>("corruption");
     static FeatureTypeSubset<ConsortFeature> CONSORT = new FeatureTypeSubset<ConsortFeature>("consort", _multi(<FeatureAdjustment>[_addRandomIfEmpty(FeatureFactory.RANDOM_CONSORTS), _onlyOne]));
     static FeatureTypeSubset<DenizenFeature> DENIZEN = new FeatureTypeSubset<DenizenFeature>("denizen");
     static FeatureTypeSubset<QuestChainFeature> QUEST_CHAIN = new FeatureTypeSubset<QuestChainFeature>("quest chain");
@@ -269,8 +266,7 @@ abstract class FeatureTemplates {
     static FeatureTemplate QUALIA = new FeatureTemplate()
         ..addFeatureSet(FeatureCategories.SMELL)
         ..addFeatureSet(FeatureCategories.SOUND)
-        ..addFeatureSet(FeatureCategories.AMBIANCE)
-        ..addFeatureSet(FeatureCategories.CORRUPTION);
+        ..addFeatureSet(FeatureCategories.AMBIANCE);
 
     static FeatureTemplate LAND = new FeatureTemplate.from(QUALIA)
         ..addFeatureSet(FeatureCategories.CONSORT)

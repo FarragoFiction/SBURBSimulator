@@ -1,6 +1,5 @@
 export "FeatureTypes/AmbianceFeature.dart";
 export "FeatureTypes/ConsortFeature.dart";
-export "FeatureTypes/CorruptionFeature.dart";
 export "FeatureTypes/DescriptiveFeature.dart";
 export "FeatureTypes/EnemyFeature.dart";
 export "FeatureTypes/QuestChainFeature.dart";

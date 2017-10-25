@@ -5,7 +5,6 @@ import "FeatureTypes/EnemyFeature.dart";
 import "FeatureTypes/SmellFeature.dart";
 import "FeatureTypes/AmbianceFeature.dart";
 import "FeatureTypes/SoundFeature.dart";
-import "FeatureTypes/CorruptionFeature.dart";
 import "FeatureTypes/QuestChainFeature.dart";
 import "dart:html";
 ///A land is build from features.
