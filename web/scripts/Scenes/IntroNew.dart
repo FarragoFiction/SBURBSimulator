@@ -390,7 +390,7 @@ class IntroNew extends IntroScene {
         }else {
             possible1.add(new PlusMinusConversationalPair(intros, ["Huh, cool! What did that do?","What do you think that did?"],["That sounds ominous.","That doesn't sound good."]));
             if(player.object_to_prototype.illegal) {
-                possible2.add(new PlusMinusConversationalPair(["I'm really not sure what is with SBURB and reptiles and amphibians.", "Huh. I hope you know what you're doing.", "Dunno."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
+                possible2.add(new PlusMinusConversationalPair(["I'm really not sure what is with SBURB and reptiles and amphibians."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.armless) {
                 possible2.add(new PlusMinusConversationalPair(["It probably doesn't mean anything. ", "I don't think it did anything though."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["Is your land at least okay?","Well, how's your land?"]));
             }else if(player.object_to_prototype.player) {
