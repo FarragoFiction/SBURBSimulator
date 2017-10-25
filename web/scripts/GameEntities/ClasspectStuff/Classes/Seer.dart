@@ -1,8 +1,6 @@
 import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
 import "../../GameEntity.dart";
-import "SBURBClass.dart";
-import "../../../SBURBSim.dart";
 
 import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";

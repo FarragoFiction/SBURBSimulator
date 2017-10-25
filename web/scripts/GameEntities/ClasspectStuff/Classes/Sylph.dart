@@ -1,5 +1,11 @@
 import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
+import "../../GameEntity.dart";
+
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
+
 
 class Sylph extends SBURBClass {
     @override
@@ -85,6 +91,32 @@ class Sylph extends SBURBClass {
         if(p.session.mutator.bloodField) powerBoost = powerBoost * p.session.mutator.bloodBoost;
         //modify other.
         target.modifyAssociatedStat(powerBoost, stat);
+    }
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        //seers are blind, get it?
+        addTheme(new Theme(<String>["Springs","Water", "Pools", "Reflection","Contemplation","Fountains","Wellsprings","Geysers"])
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.NATURESOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.TURTLECONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.AXOLOTLCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.CROCODILECONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ALLIGATORCONSORT, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SALAMANDERCONSORT, Feature.MEDIUM)
+            ..addFeature(new PostDenizenQuestChain("Purify the Water", [
+                new Quest("The defeat of the ${Quest.DENIZEN} has some unforseen consequences, including the tainting of the water for the majority of the land. The ${Quest.CONSORT}s seem to have figured out a solution in the short term, but the ${Quest.PLAYER1} resolves to bug and fuss and meddle until things are fixed the right way. "),
+                new Quest("So far, the ${Quest.PLAYER1} hasn't had much luck getting ${Quest.CONSORT}s to build a water purifying facility.  They are content just boiling their water. 'It's not hard', they say. It's so frustrating that the ${Quest.PLAYER1} knows they can help them but the ${Quest.CONSORT}s just will NOT cooperate. "),
+                new Quest("The ${Quest.PLAYER1} has finally accepted that some people just don't want to be helped. As they make peace with this, a mysterious glow emerges from their chest.  The water of the land matches this glow, and the water is purified through the power of ${Quest.MCGUFFIN}. Huh. Okay then.")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
     }
 
 }
