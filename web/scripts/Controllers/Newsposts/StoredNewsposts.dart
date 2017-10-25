@@ -9,6 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
+      new Newspost("10/24/17","Happy 1025eve.  I've added a shitton of class themes today, but the weekend was spent working on making DollSim <a href = 'http://www.farragofiction.com/CardSim/'> Trading Cards</a> and <a href = 'http://www.farragofiction.com/DollSim/charSheetCreator'>Character Sheets</a>. I'm trying to do side projects on the weekend."),
       new Newspost("10/19/17","Combo sessions are fixed, and intros are much less repetitive. Hell yes x2 combo of productivity!<br><Br>Dream aspect has themes now, too."),
       new Newspost("10/18/17","All aspects (besides Dream) have their own themes now.  <br><Br>Next up I'll be debugging the shit out of combo sessions, adding Class themes and doing the last bit of new features for land quests.<br><Br>Moons are fixed so that players wear the right colors, too."),
       new Newspost("10/17/17","New themes added for Hope, Life, Light and Mind. Whew. Lots of writing! <br><Br>Also worked on the doll maker over the weekend, lots of new parts and I almost have everything in place to make future mini games based on the dolls."),

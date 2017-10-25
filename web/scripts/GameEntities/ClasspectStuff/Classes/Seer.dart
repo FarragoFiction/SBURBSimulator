@@ -90,10 +90,10 @@ class Seer extends SBURBClass {
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.MEDIUM)
             //in the land of the blind....
             ..addFeature(new PostDenizenQuestChain("Be the King", [
-                new Quest("Now that the ${Quest.DENIZEN} has been defeated, the land is really starting to open up. The ${Quest.PLAYER1} finds a tunnel filled with blind ${Quest.CONSORT}s who could use some guidance on where to place new tunnels. The ${Quest.PLAYER1} agrees to see what they can do. "),
-                new Quest(""),
-                new Quest(" ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, the land is really starting to open up. The ${Quest.PLAYER1} finds a tunnel filled with Blind ${Quest.CONSORT}s who could use some guidance on where to place new tunnels. The ${Quest.PLAYER1} agrees to see what they can do. "),
+                new Quest("The ${Quest.PLAYER1} guides the Blind ${Quest.CONSORT}s to the best place to lay a new tunnel. You kind of wonder how they got along up until now."),
+                new Quest("The Blind ${Quest.CONSORT} have finally finished the tunnel.  Not only did it not collapse, killing all the diggers, but there was grist and boondollars found during excavation.   The happy ${Quest.CONSORT}s give the ${Quest.PLAYER1} some as a reward. ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 
