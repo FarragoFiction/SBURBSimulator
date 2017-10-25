@@ -176,7 +176,7 @@ class Land extends Object with FeatureHolder {
             this.secondaryTheme = main;
         }
 
-        if(session.rand.nextDouble() >.9) {
+        if(session.rand.nextDouble() >.99) {
             corrupted = true;
             List<String> corruptWords = <String>[Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"), Zalgo.generate("Glitches"), Zalgo.generate("Grimoires"), Zalgo.generate("Fluthlu"), Zalgo.generate("The Zoologically Dubious")];
             session.logger.info("Corrupt land.");
