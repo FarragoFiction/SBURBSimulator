@@ -108,6 +108,7 @@ class Witch extends SBURBClass {
             ..addFeature(FeatureFactory.SPICYSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.MEDIUM)
 
             ..addFeature(new PostDenizenQuestChain("Twist All The Things", [
