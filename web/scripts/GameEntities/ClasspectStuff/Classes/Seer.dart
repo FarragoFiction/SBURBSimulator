@@ -1,5 +1,12 @@
 import "../../../SBURBSim.dart";
 import "SBURBClass.dart";
+import "../../GameEntity.dart";
+import "SBURBClass.dart";
+import "../../../SBURBSim.dart";
+
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 
 class Seer extends SBURBClass {
     @override
@@ -65,6 +72,29 @@ class Seer extends SBURBClass {
     @override
     double getMurderousModifier() {
         return 1.0;
+    }
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        //seers are blind, get it?
+        addTheme(new Theme(<String>["Mines","Holes", "Tunnels", "Burrows","Nests"])
+            ..addFeature(FeatureFactory.MOLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.ECHOSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.CLAUSTROPHOBICFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.ZOOSMELL, Feature.MEDIUM)
+            //in the land of the blind....
+            ..addFeature(new PostDenizenQuestChain("Be the King", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, the land is really starting to open up. The ${Quest.PLAYER1} finds a tunnel filled with blind ${Quest.CONSORT}s who could use some guidance on where to place new tunnels. The ${Quest.PLAYER1} agrees to see what they can do. "),
+                new Quest(""),
+                new Quest(" ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
     }
 
 }

@@ -1,5 +1,10 @@
+import "../../GameEntity.dart";
 import "SBURBClass.dart";
+import "../../../SBURBSim.dart";
 
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 class Scout extends SBURBClass {
     Scout() : super("Scout", 13, false);
     //i am thinking guides will give other players their own aspects (and not the guides) while scouts will gain whoever they are with's aspect.
@@ -34,6 +39,30 @@ class Scout extends SBURBClass {
     bool isActive([double multiplier = 0.0]) {
         return true;
     }
+
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        addTheme(new Theme(<String>["Maps","Trails", "Compasses", "Wilderness","Trails"])
+            ..addFeature(FeatureFactory.NATURESOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.NATURESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
+            ..addFeature(new PostDenizenQuestChain("Blaze a Trail", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, the planet has really opened up. The ${Quest.PLAYER1} eagerly begins to explore uncharted territory. "),
+                new Quest("The ${Quest.PLAYER1} takes in the sight of a glorious waterfall. They might be the only thing in living memory to see it. It's amazing. They continue exploring their land."),
+                new Quest("Deep in a forgotten forest, in a temple covered in golden ${Quest.CONSORT}s, the ${Quest.PLAYER1} finds a treasure chest with a fraymotif inside. Travel is its own reward, but it's nice to have more tangible ones, too.")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
+    }
+
 
 
 }

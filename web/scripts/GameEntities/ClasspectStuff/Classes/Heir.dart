@@ -1,6 +1,10 @@
 import "../../GameEntity.dart";
 import "SBURBClass.dart";
+import "../../../SBURBSim.dart";
 
+import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
+import "../../../Lands/Reward.dart";
+import "../../../Lands/Quest.dart";
 class Heir extends SBURBClass {
 
     @override
@@ -56,6 +60,24 @@ class Heir extends SBURBClass {
     @override
     double getMurderousModifier() {
         return 1.5;
+    }
+
+    @override
+    void initializeThemes() {
+        /*
+        new Quest(" "),
+        new Quest(""),
+        new Quest(" ")
+
+        */
+        addTheme(new Theme(<String>["Courts","Manors", "Halls", "Mansions","Legacy"])
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(new PostDenizenQuestChain("Inherit Responsibilities", [
+                new Quest("With the death of the ${Quest.DENIZEN}, it now falls to the ${Quest.PLAYER1} player to take up all their old responsibilities. Wow, who knew a cranky giant snake did so much to keep things running? "),
+                new Quest("After organizing taxes, approving budgets and listening to ${Quest.CONSORT} complaints for what felt like forever, the ${Quest.PLAYER1} is finally allowed a break. Wow, this posh as fuck mansion they get to use ALMOST makes up for all the bullshit work they have to do!"),
+                new Quest("The ${Quest.PLAYER1} is FINALLY caught up with the backlog of bullshit caused by the death of the ${Quest.DENIZEN}. Now they just have to manage up keep and crisis management. They think they can handle it.")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ,  Theme.MEDIUM);
     }
 
 

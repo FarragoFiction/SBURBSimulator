@@ -29,6 +29,7 @@ class FeatureFactory {
     static ConsortFeature SPIDERCONSORT;
     static ConsortFeature DRAGONCONSORT;
     static ConsortFeature SKELETONCONSORT;
+    static ConsortFeature MOLECONSORT;
     static ConsortFeature BIRDCONSORT;
     static ConsortFeature WOLFCONSORT;
     static ConsortFeature ROBOTCONSORT;
@@ -55,9 +56,12 @@ class FeatureFactory {
     static SmellFeature SWEATSMELL;
     static SmellFeature OZONESMELL;
     static SmellFeature BLOODSMELL;
+    static SmellFeature SMOKESMELL;
 
     ////////////////////FEELINGS//////////////////////
     static AmbianceFeature CREEPYFEELING;
+    static AmbianceFeature OVERHEATED;
+    static AmbianceFeature CLAUSTROPHOBICFEELING;
     static AmbianceFeature  CALMFEELING;
     static AmbianceFeature  STUDIOUSFEELING;
     static AmbianceFeature CONTEMPLATATIVEFEELING;
@@ -124,8 +128,9 @@ class FeatureFactory {
         LIZARDCONSORT = new ConsortFeature("Lizard", "bleb");
         SNAKECONSORT = new ConsortFeature("Snake", "hiss");
         ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
+        MOLECONSORT = new ConsortFeature("Mole", "snuff");
         BIRDCONSORT = new ConsortFeature("Bird", "tweet");
-        WOLFCONSORT = new ConsortFeature("Wolf", "growl");
+        WOLFCONSORT = new ConsortFeature("Wolf", "howl");
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
         SPIDERCONSORT = new ConsortFeature("Spider", "skitter");
         CUPIDCONSORT = new ConsortFeature("Cupid", "flappa");
@@ -154,6 +159,7 @@ class FeatureFactory {
         OZONESMELL = new SmellFeature("ozone");
         DECEITSMELL = new SmellFeature("deceit");//senator lemonsnout, how COULD you?
         BLOODSMELL = new SmellFeature("blood", Feature.BAD);
+        SMOKESMELL = new SmellFeature("smoke", Feature.BAD);
 
     }
 
@@ -174,6 +180,8 @@ class FeatureFactory {
         HEROICFEELING = new AmbianceFeature("heroic");
         STUPIDFEELING = new AmbianceFeature("stupid", Feature.BAD);
         LUCKYFEELING = new AmbianceFeature("lucky");
+        CLAUSTROPHOBICFEELING = new AmbianceFeature("claustrophobic");
+        OVERHEATED = new AmbianceFeature("overheated");
         CONFUSINGFEELING = new AmbianceFeature("confusing", Feature.BAD);
         CONTEMPLATATIVEFEELING = new AmbianceFeature("contemplatative");
     }
