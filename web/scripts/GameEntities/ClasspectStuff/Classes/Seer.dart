@@ -94,15 +94,14 @@ class Seer extends SBURBClass {
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
-                new Quest(" "),
-                new Quest(""),
-                new Quest(" ")
+                new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit."),
+                new Quest("The ${Quest.PLAYER1} makes sure to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),
+                new Quest("The ${Quest.PLAYER1} chucks a few random ass objects into a Lotus Time Capsule. Okay. They are FINALLY done running around and doing inscrutable errands for a voice in their head. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Have the Keikaku", [
-                new Quest(" "),
-                new Quest(""),
-                new Quest(" ")
+                new Quest("A group of underlings are still making trouble, even after the defeat of the ${Quest.DENIZEN}. The ${Quest.PLAYER1} begins planting rumors of a huge ${Quest.PHYSICALMCGUFFIN} Treasure in the center of a still active dungeon. "),
+                new Quest("As planned, the group of underlings moves into the still active dungeon, hopeing to find the ${Quest.PHYSICALMCGUFFIN} Treasure.  In a dramatic twist no one could possibly see coming, it turns out the ${Quest.PLAYER1} was the treasure all along. The underlings are soundly defeated and the land is safe."),
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
