@@ -99,7 +99,7 @@ class Seer extends SBURBClass {
                 new Quest(" ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
-            ..addFeature(new PostDenizenQuestChain("Be the King", [
+            ..addFeature(new PostDenizenQuestChain("Have the Keikaku", [
                 new Quest(" "),
                 new Quest(""),
                 new Quest(" ")

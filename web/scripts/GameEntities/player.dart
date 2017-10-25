@@ -1114,6 +1114,11 @@ class Player extends GameEntity {
 
     @override
     String htmlTitle() {
+        return "${this.aspect.fontTag()}${this.title()}</font>";
+    }
+
+    @override
+    String htmlTitleWithTip() {
         return "${getToolTip()}${this.aspect.fontTag()}${this.title()}</font></span>";
     }
 
