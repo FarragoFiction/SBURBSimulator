@@ -456,7 +456,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
     }
 
-    String htmlTitle() {
+    String htmlTitleWithTip() {
         String ret = "";
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
@@ -467,6 +467,19 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         }
         if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
         return "${getToolTip()}$ret$pname</span>"; //TODO denizens are aspect colored.  also, that extra span there is to close out the tooltip
+    }
+
+    String htmlTitle() {
+        String ret = "";
+        if (this.crowned != null) ret = "${ret}Crowned ";
+        String pname = this.name;
+        if (pname == "Yaldabaoth") {
+            List<String> misNames = <String>[ 'Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner', 'Yodelboth'];
+            ////session.logger.info("Yaldobooger!!! ${this.session.session_id}");
+            pname = this.session.rand.pickFrom(misNames);
+        }
+        if (this.corrupted) pname = Zalgo.generate(this.name); //will i let denizens and royalty get corrupted???
+        return "$ret$pname"; //TODO denizens are aspect colored.  also, that extra span there is to close out the tooltip
     }
 
     //what gets displayed when you hover over any htmlTitle (even HP)

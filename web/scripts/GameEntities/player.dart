@@ -551,8 +551,12 @@ class Player extends GameEntity {
     }
 
     @override
-    String htmlTitleBasic() {
+    String htmlTitleBasicWithTip() {
         return "${getToolTip()}${this.aspect.fontTag()}${this.titleBasic()}</font></span>";
+    }
+
+    String htmlTitleBasic() {
+        return "${this.aspect.fontTag()}${this.titleBasic()}</font> (<font color = '${getChatFontColor()}'>${chatHandle}</font>)";
     }
 
     String htmlTitleBasicNoTip() {

@@ -297,7 +297,7 @@ class Aftermath extends Scene {
     void doAtEndOfAfterMath(Element div, String end, bool yellowYard) {
         //used to be power based, anywhere else doing mvp (like yellow yard shit) still is. need to update tournament, too
         Player strongest = findMVP(this.session.players);
-        end += "<br> The MVP of the session was: " + strongest.htmlTitle() + " with a grist level  of: ${strongest.grist}";
+        end += "<br> The MVP of the session was: " + strongest.htmlTitleWithTip() + " with a grist level  of: ${strongest.grist}";
         end += "<br>Thanks for Playing!<br>";
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;

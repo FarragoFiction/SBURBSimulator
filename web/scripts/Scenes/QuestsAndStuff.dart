@@ -112,7 +112,7 @@ class QuestsAndStuff extends Scene {
             if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} <br><Br>"; //helpers do not.
 
         }
-        String html = "${player.land.getChapter()}The ${player.htmlTitle()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} $helperText";
+        String html = "${player.land.getChapter()}The ${player.htmlTitleWithTip()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} $helperText";
         appendHtml(div, html);
         bool savedLevel = player.land.firstCompleted;
         player.land.doQuest(div, player, helper);

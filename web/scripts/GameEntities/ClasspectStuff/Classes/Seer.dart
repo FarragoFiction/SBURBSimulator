@@ -92,6 +92,18 @@ class Seer extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} guides the Blind ${Quest.CONSORT}s to the best place to lay a new tunnel. You kind of wonder how they got along up until now."),
                 new Quest("The Blind ${Quest.CONSORT} have finally finished the tunnel.  Not only did it not collapse, killing all the diggers, but there was grist and boondollars found during excavation.   The happy ${Quest.CONSORT}s give the ${Quest.PLAYER1} some as a reward. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
+                new Quest(" "),
+                new Quest(""),
+                new Quest(" ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Be the King", [
+                new Quest(" "),
+                new Quest(""),
+                new Quest(" ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 
