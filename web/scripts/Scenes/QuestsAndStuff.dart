@@ -129,8 +129,11 @@ class QuestsAndStuff extends Scene {
 	    bool playerCorrupted = false;
 	    bool helperCorrupted = false;
 	    if(player.land.corrupted || (helper != null && helper.corrupted)) {
+	        print("land is corrupted ${player.land.name}");
             playerCorrupted = true;
             helperCorrupted = true;
+        }else {
+            print("land is not corrupted ${player.land.name}");
         }
 	    if(helper != null ) {
             if(helper is Player) {

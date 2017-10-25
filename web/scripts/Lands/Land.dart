@@ -10,7 +10,6 @@ import "dart:html";
 ///A land is build from features.
 class Land extends Object with FeatureHolder {
     //Session session; // inherited from FeatureHolder
-    //TODO implement this.
     bool corrupted = false;
     //can be more than one thing, will pick one or two things at random by weight
     WeightedIterable<SmellFeature> smells;
@@ -176,6 +175,17 @@ class Land extends Object with FeatureHolder {
             name = "Land of ${session.rand.pickFrom(main.possibleNames)} and ${session.rand.pickFrom(main.possibleNames)}";
             this.secondaryTheme = main;
         }
+
+        if(session.rand.nextDouble() >.9) {
+            corrupted = true;
+            List<String> corruptWords = <String>[Zalgo.generate("Google"), Zalgo.generate("Horrorterrors"), Zalgo.generate("Glitches"), Zalgo.generate("Grimoires"), Zalgo.generate("Fluthlu"), Zalgo.generate("The Zoologically Dubious")];
+            session.logger.info("Corrupt land.");
+            if(session.rand.nextBool()) {
+                name = "Land of ${session.rand.pickFrom(corruptWords)} and ${session.rand.pickFrom(this.secondaryTheme.possibleNames)}";
+            }else {
+                name = "Land of ${session.rand.pickFrom(this.mainTheme.possibleNames)} and ${session.rand.pickFrom(corruptWords)}";
+            }
+        }
     }
 
     Land() {
@@ -197,7 +207,6 @@ class Land extends Object with FeatureHolder {
         this.setFeatureSubLists();
 
         this.processDenizen(a);
-        this.processCorruption();
     }
 
     void setFeatures(WeightedList<Feature> list) {
@@ -227,15 +236,6 @@ class Land extends Object with FeatureHolder {
             denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
         }else { //rename it, but don't replace it because it could be a hard denizen.
             denizenFeature.name = "Denizen ${session.rand.pickFrom(a.denizenNames)}";
-        }
-    }
-
-    void processCorruption() {
-        Iterable<Feature> c = this.featureSets["corruption"];
-        if (c != null) {
-            this.corrupted = !c.isEmpty;
-        } else {
-            this.corrupted = false;
         }
     }
 
