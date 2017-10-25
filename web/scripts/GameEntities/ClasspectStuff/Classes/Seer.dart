@@ -94,9 +94,9 @@ class Seer extends SBURBClass {
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
-                new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit."),
-                new Quest("The ${Quest.PLAYER1} makes sure to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),
-                new Quest("The ${Quest.PLAYER1} chucks a few random ass objects into a Lotus Time Capsule. Okay. They are FINALLY done running around and doing inscrutable errands for a voice in their head. ")
+                new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit. The ${Quest.PLAYER1} organizes a group of ${Quest.CONSORT}s to carry everything out."),
+                new Quest("The ${Quest.PLAYER1} instructs a group of ${Quest.CONSORT}s to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),
+                new Quest("At the ${Quest.PLAYER1}s request, a solitary ${Quest.CONSORT} chucks a few random ass objects into a Lotus Time Capsule. Okay. They are FINALLY done running around and doing inscrutable errands for a voice in their head. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Have the Keikaku", [

@@ -87,6 +87,19 @@ class Mage extends SBURBClass {
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ROTSMELL, Feature.LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
+                new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit. The ${Quest.PLAYER1} abjures the concept of helping entirely, but the Voice just won't shut up. God dammit, FINE. They'll help."),
+                new Quest("The ${Quest.PLAYER1} makes sure to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),
+                new Quest("The ${Quest.PLAYER1} chucks a few random ass objects into a Lotus Time Capsule. Okay. They are FINALLY done running around and doing inscrutable errands for a voice in their head. ")
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+        ..addFeature(new PostDenizenQuestChain("Suffer Visions", [
+                new Quest("The ${Quest.PLAYER1} is feeling quite pleased with their victory over the ${Quest.DENIZEN} when suddenly they are nearly blinded by a crippling vision of pain and ${Quest.MCGUFFIN}. Oh god, why is this happening?"),
+                new Quest("It's been a while since the last ${Quest.MCGUFFIN} vision, and the ${Quest.PLAYER1} doesn't trust it. As a test, they actively look out for ${Quest.MCGUFFIN} related danger.  Sure enough, right before they find it they suffer the painful vision. Their course of action is clear: prevent ${Quest.MCGUFFIN} from ever hurting anyone ever again or suffer migraines from hell forever."),
+                new Quest("Finally, the land is practically a ${Quest.MCGUFFIN} free utopia. The ${Quest.PLAYER1} can finally have a break from painful visions.")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
             ..addFeature(new PostDenizenQuestChain("Become the Mayor", [
                 new Quest("Now that the ${Quest.DENIZEN} has been defeated, the ${Quest.CONSORT}s are ready to expand their civilization. They ask the ${Quest.PLAYER1}'s help in planning the brand new city of ${Quest.MCGUFFIN}burg."),
                 new Quest("A panicking ${Quest.CONSORT} runs up to the ${Quest.PLAYER1}, ${Quest.CONSORTSOUND}ing the whole time. The ${Quest.MCGUFFIN}burg sanitation facility has been delayed, but the residential areas are already starting to fill up!  The ${Quest.PLAYER1} shuffles around work shifts to get the sanitation working before things get too...disgusting."),
