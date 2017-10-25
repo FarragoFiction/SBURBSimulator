@@ -128,7 +128,7 @@ class FeatureFactory {
         LIZARDCONSORT = new ConsortFeature("Lizard", "bleb");
         SNAKECONSORT = new ConsortFeature("Snake", "hiss");
         ALLIGATORCONSORT = new ConsortFeature("Alligator", "nak");
-        MOLECONSORT = new ConsortFeature("Mole", "twitch");
+        MOLECONSORT = new ConsortFeature("Mole", "snuff");
         BIRDCONSORT = new ConsortFeature("Bird", "tweet");
         WOLFCONSORT = new ConsortFeature("Wolf", "howl");
         NEWTCONSORT = new ConsortFeature("Newt", "skitter");
