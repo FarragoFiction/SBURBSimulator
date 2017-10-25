@@ -118,6 +118,12 @@ class Sylph extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} gives the handsome ${Quest.CONSORT} the 'Sylph's Scarf'. He immediately begins weeping that the ethereal ${Quest.CONSORT} is dead. He is inconsolable. Holy shit, ballets about Sylphs are kinda dark.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
+            ..addFeature(new PostDenizenQuestChain("Relax the Consorts", [
+                new Quest("The ${Quest.CONSORT}s are so stressed after all that shit with the ${Quest.DENIZEN}. They are yelling and ${Quest.CONSORTSOUND} at each other over the slightest of insults. The ${Quest.PLAYER1} decides that what they really need is to chill the fuck out. "),
+                new Quest("The ${Quest.PLAYER1} organizes a spa day for the ${Quest.CONSORT}s in one of the land's many, many bodies of water. The sound of the water is so relaxing, it's like it melts the worries right off."),
+                new Quest("The ${Quest.CONSORT}s are back to their normal selves.  Only one fight breaks out all week, and really, that asshole ${Quest.CONSORT} deserved what was coming to him. Everything is doing pretty good, thanks to the ${Quest.PLAYER1}. ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
 
             ..addFeature(new PostDenizenQuestChain("Purify the Water", [
                 new Quest("The defeat of the ${Quest.DENIZEN} has some unforseen consequences, including the tainting of the water for the majority of the land. The ${Quest.CONSORT}s seem to have figured out a solution in the short term, but the ${Quest.PLAYER1} resolves to bug and fuss and meddle until things are fixed the right way. "),
