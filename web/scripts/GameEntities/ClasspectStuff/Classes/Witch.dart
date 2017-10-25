@@ -115,7 +115,20 @@ class Witch extends SBURBClass {
                 new Quest("Alright, it turns out that through a mixture of Alchemy, game powers and pure elbow grease, the ${Quest.PLAYER1} has managed to make a river flow backwards.   Now instead of flooding, the valley is draining itself.  Progress!"),
                 new Quest("The doesn't feel like KILLING the giant underlings rampaging in the ${Quest.CONSORT} settlement. What's the fun in that? They try a variety of techniques until the underlings are as calm and friendly as ${Quest.CONSORT}s themselves.   Now they are productive members of society! "),
                 new Quest("The ${Quest.PLAYER1} twists how plants and soil and growth works until the crops at ${Quest.MCGUFFIN} Ranch are finally thriving. With that, they have finally kicked the former status quo to the curb!  ")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Brew The Potion", [
+                new Quest("A Mysterious ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. Apparently an alchemy recipe for a potion of Ultimate ${Quest.MCGUFFIN} was discovered amongst the ${Quest.DENIZEN}'s things. Maybe the ${Quest.PLAYER1} can figure out how to create it? "),
+                new Quest("One potion makes you smaller. One makes you taller. A third doesn't do anything at all. Ugh! Why is it so hard for the ${Quest.PLAYER1} to get the potion of  Ultimate ${Quest.MCGUFFIN} right? "),
+                new Quest("Careful now. Just....one....more drop. THERE.   The ${Quest.PLAYER1} is now the proud owner of a potion of Ultimate ${Quest.MCGUFFIN}. They immediately chug it, only for it to manifest a mirror showing the ${Quest.PLAYER1}'s own face. Oh. God DAMN it. It turns out the  Ultimate ${Quest.MCGUFFIN} was the ${Quest.PLAYER1} all along. They didn't need any silly potions. Worst. Quest. Ever.")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Train the Apprentice", [
+                new Quest("A young ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. They wish to learn how to be magical, too!  The ${Quest.PLAYER1} dubs them the ${Quest.MCGUFFIN}mancer and agrees to train them. "),
+                new Quest("The ${Quest.PLAYER1} has barely begun to train the ${Quest.MCGUFFIN}mancer, but needs to head into town to fetch a few ingredients.   The ${Quest.MCGUFFIN}mancer promises to be good, and IMMEDIATELY starts fucking shit up on accident with magic. Oh god, why are all those ${Quest.PHYSICALMCGUFFIN}s suddenly alive?  When the ${Quest.PLAYER1} returns, they use this as an opportunity to teach the ${Quest.MCGUFFIN}mancer a valuable moral. "),
+                new Quest("The ${Quest.MCGUFFIN}mancer is ready to show off their power to the other ${Quest.CONSORT}s. They ${Quest.CONSORTSOUND} in amazement to see the things the ${Quest.MCGUFFIN}mancer can do! The ${Quest.PLAYER1} was a good mentor.  ")
+            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
             ,  Theme.MEDIUM);
     }
 

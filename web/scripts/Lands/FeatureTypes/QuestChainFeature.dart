@@ -121,6 +121,68 @@ class QuestChainFeature extends Feature {
         return p.murderMode;
     }
 
+    //whatever, 12x spam combo
+
+    static bool bloodPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.BLOOD;
+    }
+
+    static bool mindPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.MIND;
+    }
+
+    static bool ragePlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.RAGE;
+    }
+
+    static bool voidPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.VOID;
+    }
+
+    static bool heartPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.HEART;
+    }
+
+    static bool timePlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.TIME;
+    }
+
+    static bool breathPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.BREATH;
+    }
+
+    static bool lightPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.LIGHT;
+    }
+
+    static bool spacePlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.SPACE;
+    }
+
+    static bool hopePlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.HOPE;
+    }
+
+    static bool lifePlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.LIFE;
+    }
+
+    static bool doomPlayer(List<GameEntity> ps) {
+        Player p = ps.first as Player;
+        return p.aspect == Aspects.DOOM;
+    }
+
 
 
     static bool playerIsNice(List<GameEntity> ps) {
