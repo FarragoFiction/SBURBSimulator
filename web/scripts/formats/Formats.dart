@@ -50,7 +50,7 @@ abstract class Formats {
             if (format is FileFormat<T,U>) {
                 return mapping;
             }
-            throw "File format for extension .$extension does not match expected types ($T, $U)";
+            throw "File format for extension .$extension does not match expected types.";
         }
         throw "No file format found for extension .$extension";
     }

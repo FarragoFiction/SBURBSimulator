@@ -35,7 +35,7 @@ abstract class Loader {
                     return res.addListener();
                 }
             } else {
-                throw "Requested resource ($path) is ${res.object.runtimeType}. Expected $T";
+                throw "Requested resource ($path) is an unexpected type: ${res.object.runtimeType}.";
             }
         } else {
             if (!bypassManifest) {

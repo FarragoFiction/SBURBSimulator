@@ -8,9 +8,10 @@ environment:
 
 dependencies:
   js: ^0.6.0
-  xml: "^2.6.0"
+  petitparser: ^1.6.1
+  xml: ^2.6.0
   source_map_stack_trace: ^1.1.4
-  archive: "^1.0.31"
+  archive: ^1.0.31
 
 dev_dependencies:
   browser: ^0.10.0
@@ -20,5 +21,5 @@ transformers:
 - $dart2js:
     sourceMaps: true
     commandLineOptions: [--fast-startup, --trust-type-annotations]
-    $exclude: ["web/manifest/tarbuilder.dart", "web/manifest/sourcemanifest.txt"]
+    $exclude: ["web/manifest/bundlebuilder.dart", "web/manifest/sourcemanifest.txt"]
 

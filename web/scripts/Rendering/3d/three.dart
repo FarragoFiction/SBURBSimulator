@@ -251,6 +251,7 @@ class PlaneGeometry extends Geometry {
 
 // Textures ################################################################
 
+@JS()
 abstract class TextureBase {
 
 }

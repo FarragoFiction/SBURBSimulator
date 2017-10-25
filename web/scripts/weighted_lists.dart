@@ -37,19 +37,13 @@ abstract class WeightedIterable<T> implements Iterable<T> {
     }
 
     double _getInitialWeight(T item, double weight) {
-        if (item is WeightedItem) {
-            return item.getInitialWeight(weight);
-        } else if (this.initialWeightSetter != null) {
+        if (this.initialWeightSetter != null) {
             return initialWeightSetter(item, weight);
         }
         return weight;
     }
 
     double _getWeight(WeightPair<T> pair) {
-        T item = pair.item;
-        if (item is WeightedItem) {
-            return item.getWeight(pair.weight);
-        }
         return pair.weight;
     }
 
@@ -316,11 +310,6 @@ class FunctionWeightPair<T> extends WeightPair<T> {
 
     @override
     double get weight => weightFunction();
-}
-
-abstract class WeightedItem {
-    double getInitialWeight(double weight);
-    double getWeight(double weight);
 }
 
 abstract class WrappedWeightedIterable<T> extends WeightedIterable<T> with IterableMixin<T> {

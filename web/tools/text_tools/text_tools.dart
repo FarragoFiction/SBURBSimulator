@@ -44,10 +44,10 @@ void setupWordgif() {
         List<Colour> background = <Colour>[];
 
         for (Element entry in list.children) {
-            List<InputElement> inputs = entry.querySelectorAll("input[type=color]");
+            List<Element> inputs = entry.querySelectorAll("input[type=color]");
 
-            foreground.add(new Colour.fromStyleString(inputs[0].value));
-            background.add(new Colour.fromStyleString(inputs[1].value));
+            foreground.add(new Colour.fromStyleString((inputs[0] as InputElement).value));
+            background.add(new Colour.fromStyleString((inputs[1] as InputElement).value));
         }
 
         container.append(WordGif.dropText(text.value, size.valueAsNumber, foreground, background, ox.valueAsNumber, oy.valueAsNumber, depth.valueAsNumber));
