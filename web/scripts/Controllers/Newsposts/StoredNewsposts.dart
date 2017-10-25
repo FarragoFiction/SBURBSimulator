@@ -9,7 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
-      new Newspost("10/25/17","Okay, goal for today is to get all the classes to have at least one custom theme."),
+      new Newspost("10/25/17","Okay, we can all remember that on this, the most sacred day of 10/25, the Land Update was BASICALLY done.<br><Br>  I still wanna add more quest paths. And refactor how land corruption works to use the new system. And Of course I gotta balance all that stat shit PL did before a Main deploy. But I'd say that the Land Update is basically in the shape it'll be once it hits main."),
       new Newspost("10/24/17","Happy 1025eve.  I've added a shitton of class themes today, but the weekend was spent working on making DollSim <a href = 'http://www.farragofiction.com/CardSim/'> Trading Cards</a> and <a href = 'http://www.farragofiction.com/DollSim/charSheetCreator'>Character Sheets</a>. I'm trying to do side projects on the weekend."),
       new Newspost("10/19/17","Combo sessions are fixed, and intros are much less repetitive. Hell yes x2 combo of productivity!<br><Br>Dream aspect has themes now, too."),
       new Newspost("10/18/17","All aspects (besides Dream) have their own themes now.  <br><Br>Next up I'll be debugging the shit out of combo sessions, adding Class themes and doing the last bit of new features for land quests.<br><Br>Moons are fixed so that players wear the right colors, too."),
