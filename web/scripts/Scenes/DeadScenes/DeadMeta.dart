@@ -949,6 +949,14 @@ class DeadTextPL {
         Theme wrongtheme_aspect = rand.pickFrom(new WeightedList<Theme>.fromMap(player.aspect.themes).where((Theme t) => t != land.mainTheme && t != land.secondaryTheme));
         Theme wrongtheme_class = rand.pickFrom(new WeightedList<Theme>.fromMap(player.class_name.themes).where((Theme t) => t != land.mainTheme && t != land.secondaryTheme));
 
+        // last ditch fallbacks
+        if (wrongtheme_aspect == null) {
+            wrongtheme_aspect = land.mainTheme;
+        }
+        if (wrongtheme_class == null) {
+            wrongtheme_class = land.secondaryTheme;
+        }
+        
         String wrongland = "Land of ${rand.pickFrom(wrongtheme_class.possibleNames)} and ${rand.pickFrom(wrongtheme_aspect.possibleNames)}";
 
         if (wrongGuess == null) {
