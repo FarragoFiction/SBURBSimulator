@@ -60,6 +60,14 @@ class Scout extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} takes in the sight of a glorious waterfall. They might be the only thing in living memory to see it. It's amazing. They continue exploring their land."),
                 new Quest("Deep in a forgotten forest, in a temple covered in golden ${Quest.CONSORT}s, the ${Quest.PLAYER1} finds a treasure chest with a fraymotif inside. Travel is its own reward, but it's nice to have more tangible ones, too.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+        //space player near guaranteed to do this.
+            ..addFeature(new PostDenizenQuestChain("Find the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has released the frogs from their vine tangled prisons. The land gets just a little bit less wild. The ${Quest.PLAYER1} is given a map to where all the frogs are and is told to get going. "),
+                new Quest("The ${Quest.PLAYER1} is following a detailed guide on which frogs to combine with which other frogs. It's a little boring, but at least the ${Quest.PLAYER1} knows they won't make a mistake."),
+                new Quest("Following the last step in the guide booke, the ${Quest.PLAYER1} finds the Final Frog. Luckily, a ${Quest.CONSORT} ${Quest.CONSORTSOUND}s in time to stop them. The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
             ,  Theme.MEDIUM);
     }
 

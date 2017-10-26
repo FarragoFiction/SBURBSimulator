@@ -51,6 +51,13 @@ class Guide extends SBURBClass {
                 new Quest("A ${Quest.CONSORT} child nearly falls off a cliff, but the ${Quest.PLAYER1}'s manages to grab them in time. Who knew mountains could be so dangerous? "),
                 new Quest("After an exhausting journey, the ${Quest.PLAYER1} has lead the ${Quest.CONSORT}s back to a ruin that is almost certainly their ancestral home. Everyone is too tired to even ${Quest.CONSORTSOUND}, but they are happy.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+        //space player near guaranteed to do this.
+            ..addFeature(new PostDenizenQuestChain("Find the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has released the frogs from their icy prisons. The land melts and warms and just generally becomes a lot nicer. The ${Quest.PLAYER1} is given a map to where all the frogs are and is told to get going. "),
+                new Quest("The ${Quest.PLAYER1} is following a detailed guide on which frogs to combine with which other frogs. It's a little boring, but at least the ${Quest.PLAYER1} knows they won't make a mistake."),
+                new Quest("Following the last step in the guide booke, the ${Quest.PLAYER1} finds the Final Frog. Luckily, a ${Quest.CONSORT} ${Quest.CONSORTSOUND}s in time to stop them. The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
             ,  Theme.MEDIUM);
     }
 

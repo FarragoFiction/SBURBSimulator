@@ -66,6 +66,13 @@ class Grace extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} follows the ${Quest.CONSORT} with the SBURB discs into the local ${Quest.CONSORTSOUND} club. Apparently, this ${Quest.CONSORT} has more than one copy of SBURB, and they hand out the other discs to their fellow ${Quest.CONSORTSOUND} enthusiasts. The ${Quest.PLAYER1} panics, and makes a plot to steal all of the discs."),
                 new Quest("Clever as a fox, the ${Quest.PLAYER1} steals the SBURB discs from each ${Quest.CONSORT} and replaces them with copies of the recently released 'Super ${Quest.MCGUFFIN} Quest Online: The ${Quest.PHYSICALMCGUFFIN} of ${Quest.CONSORTSOUND}'. now the ${Quest.CONSORT}s have a game they can play together that WON'T kill everything!")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+        //space player near guaranteed to do this.
+            ..addFeature(new PostDenizenQuestChain("Allow Others to Meta a Universe", [
+                new Quest("The ${Quest.DENIZEN} has released the frogs from their icy prisons. The land melts and warms and just generally becomes a lot nicer. The ${Quest.PLAYER1} shows the ${Quest.CONSORT}s how to check the code to find out where the frogs are. They sit back and allow the frogs to come rolling in. "),
+                new Quest("The ${Quest.PLAYER1} sets up an automatic frog breeding system. Just about every possible variety of frog is produced from it."),
+                new Quest("A series of incredibly unlikely events transpire such that the ${Quest.PLAYER1} almost steps on the Final Frog. Luckily, a ${Quest.CONSORT} ${Quest.CONSORTSOUND}s in time to stop them. The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
             ,  Theme.MEDIUM);
     }
 

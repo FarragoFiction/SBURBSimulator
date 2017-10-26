@@ -98,7 +98,7 @@ class Bard extends SBURBClass {
 
             //space player near guaranteed to do this.
             ..addFeature(new PostDenizenQuestChain("Pull the Strings of a Universe", [
-                new Quest("The ${Quest.PLAYER1} organizes a huge festival for all the ${Quest.CONSORT}s themed around finding and collecting frogs. They sit back and allow events to transpire. "),
+                new Quest("The ${Quest.DENIZEN} has released the frogs from their balloon prisons. The balloons sink and land all over the land, and the newly freed frogs happily hop out. The ${Quest.PLAYER1} organizes a huge festival for all the ${Quest.CONSORT}s themed around finding and collecting frogs. They sit back and allow events to transpire. "),
                 new Quest("The ${Quest.PLAYER1} presides over a festival competition where ${Quest.CONSORT} contestants try to breed the best frogs."),
                 new Quest("The ${Quest.PLAYER1} sets things up such that the final frog was always going to be right where it needed to be.   The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
