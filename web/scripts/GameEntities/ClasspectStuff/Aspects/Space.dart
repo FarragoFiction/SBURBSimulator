@@ -70,22 +70,41 @@ class Space extends Aspect {
     //so it overrides any other theme  (yes space players still have frog quests )
     @override
     void initializeThemes() {
+        //learn about frogs
+        List<String> frog1 = <String>["Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}.","The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame?"];
+        //learn about ectobiology
+        List<String> frog2 = <String>["The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  "];
+        //learn about denizen
+        List<String> frog3 = <String>["A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "];
+        //meet denizen
+        List<String> frog4 = <String>["The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.  "];
+        Random rand = curSessionGlobalVar.rand;
+
         //space player don't get boss fights
         //TODO have different themes that are all still frogs but have different quests attached and graphical stuff (once PL is there)
         //like, one where you have the thaw the planet, one where you have to drain it, fix a drought, whatever.
         addTheme(new Theme(<String>["Frogs"])
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.HIGH)
-            ..addFeature(new PreDenizenQuestChain("Learn about Frogs", [
-                new Quest("Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}. "),
-                new Quest("The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame? "),
-                new Quest("The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest (rand.pickFrom(frog1)),
+                new Quest(rand.pickFrom(frog2)),
+                new Quest(rand.pickFrom(frog3)),
+                new Quest(rand.pickFrom(frog4))
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
-                new Quest("A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "),
-                new Quest("The ${Quest.PLAYER1} begins collecting the information needed to meet with ${Quest.DENIZEN}. So many puzzles and dungeons and ${Quest.CONSORTSOUND}ing consorts to shuffle through. "),
-                new Quest("The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.  "),
+                new Quest (rand.pickFrom(frog1)),
+                new Quest(rand.pickFrom(frog2)),
+                new Quest(rand.pickFrom(frog3)),
+                new Quest(rand.pickFrom(frog4))
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest (rand.pickFrom(frog1)),
+                new Quest(rand.pickFrom(frog2)),
+                new Quest(rand.pickFrom(frog3)),
+                new Quest(rand.pickFrom(frog4))
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Breed the Frogs", [
