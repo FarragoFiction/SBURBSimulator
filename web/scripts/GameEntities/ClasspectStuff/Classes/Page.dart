@@ -70,7 +70,7 @@ class Page extends SBURBClass {
                 new Quest("The ${Quest.DENIZEN} has allowed water to flow once more. The croaking of frogs fills the air as pools begin to form. The ${Quest.PLAYER1} asks the ${Quest.CONSORT}s to help them collect frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s. "),
                 new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} shows them how to do it right, and soon everybody is helping out. "),
                 new Quest("A ${Quest.CONSORT} child has tripped over the final frog. They cry and ${Quest.CONSORTSOUND} at their skinned knee, but their pain is quickly forgotten when the ${Quest.PLAYER1} praises them for finding the frog.  Together, they combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
-            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Explore the Tombs", [
                 new Quest("Now that the ${Quest.DENIZEN} is finally out of the way, some of the previously sealed tombs have opened up. It is time for the ${Quest.PLAYER1} to desecrate the fuck out of some tombs."),

@@ -93,6 +93,14 @@ class Thief extends SBURBClass {
             ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Steal the Frogs", [
+                new Quest("The ${Quest.DENIZEN} cannot release the frogs since the corrupt ${Quest.CONSORT} Cops have confiscated them. The ${Quest.PLAYER1} organizes a team of crack ${Quest.CONSORT}s to help raid the frog evidence lockers. "),
+                new Quest("The ${Quest.PLAYER1} perfroms frog breeding as fast as the ${Quest.CONSORT}s can deliver stolen frogs to them.  "),
+                new Quest("The ${Quest.PLAYER1} has finally stolen the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
+
             ..addFeature(new PostDenizenQuestChain("Escape the Law", [
                 new Quest("The ${Quest.PLAYER1} is just minding their own business, when they see a huge stack of boonies recovered from the ${Quest.DENIZEN}'s layer and slated to be returned to the ${Quest.CONSORT}s. Unable to resist, they pilfer just a bit. A nearby ${Quest.CONSORTSOUND} sounds the alarm, shit, the ${Quest.PLAYER1} didn't know anybody was looking!  They flee with as many boonies as they can carry."),
                 new Quest("The ${Quest.PLAYER1} is keeping a low profile. Shit's still too hot to spend their ill gotten boonies, but it'll be worth it, they just know it."),

@@ -91,6 +91,14 @@ class Rogue extends SBURBClass {
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Steal the Frogs", [
+                new Quest("The ${Quest.DENIZEN} cannot release the frogs since the corrupt Noble ${Quest.CONSORT}s have hoarded them. The ${Quest.PLAYER1} organizes various common ${Quest.CONSORT}s to help raid the frog stockpiles. "),
+                new Quest("The ${Quest.PLAYER1} perfroms frog breeding as fast as the ${Quest.CONSORT}s can deliver stolen frogs to them.  "),
+                new Quest("The ${Quest.PLAYER1} has finally stolen the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
+
             ..addFeature(new PostDenizenQuestChain("Lead a Rebellion", [
                 new Quest("The ${Quest.PLAYER1} learns of the extreme injustices of the ${Quest.CONSORT}s who rose to power during the tyranny of ${Quest.DENIZEN}. This cannot stand!"),
                 new Quest("The ${Quest.PLAYER1} forms a small band of merry ${Quest.CONSORT}s to run raids on the ${Quest.CONSORT}s in power.  All proceeds are given to hungry ${Quest.CONSORT}s in need. "),

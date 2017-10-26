@@ -111,6 +111,12 @@ class Witch extends SBURBClass {
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.MEDIUM)
 
+            ..addFeature(new PostDenizenQuestChain("Brew the Frogs", [
+                new Quest("The ${Quest.DENIZEN} explains that the frogs have all been turned into handsom ${Quest.CONSORT}s. It's up to the ${Quest.PLAYER1} to turn each of them back into a slimy, warty frog, whether it's through kisses or potions. "),
+                new Quest("The former ${Quest.CONSORT}s hit buttons on the ectobiology machine at random, creating their own ectobiological tadpole children.  The ${Quest.PLAYER1} just sort of rides out the chaos. "),
+                new Quest("The  ${Quest.DENIZEN}  reveals that the final frog is on the ${Quest.PLAYER1}'s destroyed home world. Huh. You guess it's a good thing ectobiological equipment can sample DNA across time and space. The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
             ..addFeature(new PostDenizenQuestChain("Twist All The Things", [
                 new Quest("Even with the defeat of the ${Quest.DENIZEN}, there are still problems. There is flooding in one valley, giant underlings are rampaging in one ${Quest.CONSORT} settlement, and crops refuse to thrive at ${Quest.MCGUFFIN} Ranch. The ${Quest.CONSORT}s seem to have accepted everything as just how things are, but the ${Quest.PLAYER1} isn't going to give up until they show the status quo just how 'quo' it isn't!"), //dr horrible refrance
                 new Quest("Alright, it turns out that through a mixture of Alchemy, game powers and pure elbow grease, the ${Quest.PLAYER1} has managed to make a river flow backwards.   Now instead of flooding, the valley is draining itself.  Progress!"),

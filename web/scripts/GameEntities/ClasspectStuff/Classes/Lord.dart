@@ -121,7 +121,7 @@ class Lord extends SBURBClass {
                 new Quest("The ${Quest.DENIZEN} has been subjugated, their hoard of frogs released. Across the land castles and dungeons suddenly are accessible, and filled with croaking. The ${Quest.PLAYER1} comands that the ${Quest.CONSORT}s collect the frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s. "),
                 new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} sits back and enjoys a tropical drink. The frogs will be ready eventually. "),
                 new Quest("A ${Quest.CONSORT} minion has finally found the final frog. The ${Quest.PLAYER1} rewards them, and punishes everyone else for failing.  The Ultimate Tadpole ready.  All the ${Quest.PLAYER1} needs to do is keep it in their Sylladex until the battlefield is fertilized.  "),
-            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Conquer Everything", [
                 new Quest("As soon as the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s disolve into civil wars and infighting. It will take a strong leader to unite the land, and the ${Quest.PLAYER1} is up to the task.  "),

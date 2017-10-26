@@ -102,6 +102,15 @@ class Waste extends SBURBClass {
                 new Quest("Okay, revised statement: maybe the point of running simulations is to map out all of Paradox Space? Makes way more sense than just having a big black sheet of paper, right? The ${Quest.PLAYER1} makes a robot doppelganger to go explore areas of Paradox Space that are predicted to have useful features. Huh, looks like it's working!"),
                 new Quest("Welp. Whatever original reason the ${Quest.PLAYER1} had for finding other sessions has fallen by the wayside. They've gotten completely distracted helping out sessions with no alpha and accidentally dooming the fuck out of everyone when they make a typo in some code.   I thought these were just simulations? Fuck Paradox Space. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+            ..addFeature(new PostDenizenQuestChain("Waste the Frogs", [
+                new Quest("The ${Quest.DENIZEN} explains um. What? Where did the ${Quest.PLAYER1} go?"),
+                new Quest("The ${Quest.PLAYER1} is sick and tired of being bullied!  If only there was some way they could finally defeat those mean old bullies.   A wizened ${Quest.CONSORT} tells of a legendary artifact that could-- Wait. No. That's so boring.   The ${Quest.PLAYER1} decides to update their highly-indulgent meta work instead."),
+                new Quest("Holy shit, did you know you could alchemize MERCHANDISE of your highly indulgent meta work? The ${Quest.PLAYER1} is just covered in merch now. It's great."),
+                new Quest("Holy fuck! It turns out that the ${Quest.DENIZEN} is a fan of the ${Quest.PLAYER1}'s highly indulgent meta work!  They also agreed to be called 'Falcor', because, come ON that was a great movie!  The ${Quest.PLAYER1} hops up onto Falcor's back and this is the single coolest thing that has ever happened in all of Paradox Space."),
+                new Quest("With a dramatic 'BORF' the bullies are defeated by Falcor! And so came to an end the most heroic thing that ever happened in the history of metafiction. <br><br>Let's move on.  Wait. What? How did THAT somehow breed the Ultimate Frog???")
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
             ,  Theme.HIGH);
     }
 

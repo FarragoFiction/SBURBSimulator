@@ -82,6 +82,14 @@ class Prince extends SBURBClass {
             ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Destroy the Lack of Frogs", [
+                new Quest("With the closing of the curtain, the ${Quest.DENIZEN} has released the frogs, and yet they are nowhere to be found. The ${Quest.PLAYER1} shatter space itself to reveal an entire dimension of croaking assholes. "),
+                new Quest("The ${Quest.PLAYER1} has broken how space itself works to do the ectobiology as effciently as possible.   "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog in a crack in reality.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
+
             ..addFeature(new PostDenizenQuestChain("Fix All The Things", [
                 new Quest("The land is a fucking mess after all the shit the ${Quest.DENIZEN} put it through, and it falls to the ${Quest.PLAYER1} to get it back to normal. They organize a team of ${Quest.CONSORT}s to start rebuilding infrastructure."),
                 new Quest("The ${Quest.CONSORT} economy is a fucking mess, and probably was even before the ${Quest.DENIZEN} started to fuck things up. Why would you even use ${Quest.PHYSICALMCGUFFIN} as a currency? The ${Quest.PLAYER1} wastes way too much time explaining how economies work."),

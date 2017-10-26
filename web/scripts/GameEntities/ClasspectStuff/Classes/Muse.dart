@@ -115,6 +115,14 @@ class Muse extends SBURBClass {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.HAPPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Inspire Frog Breeding", [
+                new Quest("The ${Quest.DENIZEN} has allowed inspiration to flow once more. The frogs are no longer too depressed to croak, and are much more easy to find. The ${Quest.PLAYER1} asks the ${Quest.CONSORT}s to help them collect frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s. "),
+                new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} cheers them on and soon everybody is working just a bit better. "),
+                new Quest("A ${Quest.CONSORT} child has tripped over the final frog. They cry and ${Quest.CONSORTSOUND} at their skinned knee, but their pain is quickly forgotten when the ${Quest.PLAYER1} praises them for finding the frog.  Together, they combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.MEDIUM)
+
+
             ..addFeature(new PostDenizenQuestChain("Inspire the People", [
                 new Quest("You'd think after the dramatic defeat of the ${Quest.DENIZEN} the ${Quest.CONSORT}s would be celebrating. Instead they are just kind of moping around. When pressed, they say they just don't feel like doing anything. "),
                 new Quest("The ${Quest.PLAYER1} bugs and fusses and meddles until the ${Quest.CONSORT}s agree to put on a performance of the musical 'The Lonely ${Quest.PHYSICALMCGUFFIN}'. The ${Quest.PLAYER1} assigns parts that challenge each of them without seeing impossible."),

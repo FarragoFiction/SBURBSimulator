@@ -89,13 +89,13 @@ class Knight extends SBURBClass {
                 new Quest("The ${Quest.DENIZEN} has cooled the lava enough for water to begin pooling in places, which attracts frogs.  The land less overheated. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} has a weird system going where the newest zapped in tadpole presses the buttont to zap in the next one. Things are going almost as quickly as if they had another player's help. "),
                 new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
-            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Exploit the Heat", [
                 new Quest("Now that the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s could really use some basic infrastructure repairs. The ${Quest.PLAYER1} finds instructions for a thermal energy converter in a dungeon and alchemizes all the parts needed to build one. The ${Quest.CONSORT}s will have power for generations,now. "),
                 new Quest("An important wall is crumbling. While the defeat of the ${Quest.DENIZEN} means the underlings are mostly under control, the ${Quest.CONSORT}s would feel a lot better with it fixed. The ${Quest.PLAYER1} figures out how to patch it up with bits of cooled lava. Everyone feels just a little bit safer."),
                 new Quest("The ${Quest.PLAYER1} rigs an automatic lava dispensor to light fire moats around consort villages, automatically patch wall holes and even bake consort bread.  Who knew all this shitty heat could be good for something?  The ${Quest.CONSORT}s quality of life is at an all time high! ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new FraymotifReward(), QuestChainFeature.spacePlayer), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Fight the Beast", [
                 new Quest("A fiery ${Quest.MCGUFFIN} Dragon has risen up in the wake of the defeated ${Quest.DENIZEN}. A Learned ${Quest.CONSORT} explains that it can only be defeated by the Legendary ${Quest.PHYSICALMCGUFFIN} Blade. The ${Quest.PLAYER1} prepares to go questing for it. "),
