@@ -97,6 +97,25 @@ class DenizenReward extends Reward {
     }
 }
 
+class FrogReward extends FraymotifReward {
+    static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
+    static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+
+    @override
+    String image = "Rewards/sweetFrog.png";
+    String bgImage = "Rewards/holyShitFrogs.png";
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        if(p1.grimDark < 3) {
+            text = "The ${Reward.PLAYER1} breeds the final frog. While it is a tadpole for now, once it is placed in the fertlized SKAIA it will grow to become an entire Universe Frog.";
+        }else {
+            "Rewards/bitterFrog.png";
+            text = "The ${Reward.PLAYER1}. Um. You don't think they were supposed to be doing that. Why doe the frog look like that? ";
+        }
+        super.apply(div, p1, p2, land);
+    }
+}
+
 class ImmortalityReward extends Reward {
 
     @override

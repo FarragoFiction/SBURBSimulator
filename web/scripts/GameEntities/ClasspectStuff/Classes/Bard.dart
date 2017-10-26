@@ -95,6 +95,13 @@ class Bard extends SBURBClass {
                 new Quest("A small ${Quest.CONSORT} is sobbing and ${Quest.CONSORTSOUND}ing after losing a carnival game. The ${Quest.PLAYER1} decides that this is not a day of losses, and begins rigging the games to have a higher pay out rate than normal. Soon the land is filled with the sound of happy ${Quest.CONSORTSOUND}s."),
                 new Quest(" The ${Quest.CONSORT}s who were running the carnival games are now bankrupt. Their wailing and ${Quest.CONSORTSOUND}ing fills the air. Fuck.  Who knew actions have consequences? The ${Quest.PLAYER1} arranges 'anonymous' donations to them and decides that maybe they should just quit while they are ahead. ")
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            //space player near guaranteed to do this.
+            ..addFeature(new PostDenizenQuestChain("Pull the Strings of a Universe", [
+                new Quest("The ${Quest.PLAYER1} organizes a huge festival for all the ${Quest.CONSORT}s themed around finding and collecting frogs. They sit back and allow events to transpire. "),
+                new Quest("The ${Quest.PLAYER1} presides over a festival competition where ${Quest.CONSORT} contestants try to breed the best frogs."),
+                new Quest("The ${Quest.PLAYER1} sets things up such that the final frog was always going to be right where it needed to be.   The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
             ,  Theme.MEDIUM);
     }
 

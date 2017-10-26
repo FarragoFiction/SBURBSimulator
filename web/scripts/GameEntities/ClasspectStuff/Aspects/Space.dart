@@ -71,47 +71,68 @@ class Space extends Aspect {
     @override
     void initializeThemes() {
         //learn about frogs
-        List<String> frog1 = <String>["Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}.","The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame?"];
+        List<String> frog1 = <String>["Wherever the ${Quest.PLAYER1} goes, they find a ${Quest.CONSORT} yammering on and on about FROGS. It only makes a little more sense than when they say nothing but ${Quest.CONSORTSOUND}.","The ${Quest.PLAYER1} has found several frogs in various states of not-usefulness. Apparently ${Quest.DENIZEN} is somehow to blame?", "The ${Quest.PLAYER1} wonders why there are so many temples covered in frog iconography in this weird land."];
         //learn about ectobiology
-        List<String> frog2 = <String>["The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  "];
+        List<String> frog2 = <String>["The ${Quest.PLAYER1} discovers some tiny ectobiology lab equipment. Oh! Apparently it's for breeding frogs?  They play around with it a bit with what frogs they've managed to collect. It looks like they can somehow...combine frogs? Aww, look how cute that tadpole is!  ", "The ${Quest.PLAYER1}'s server player deploys some weird equipment. After fiddling with it a bit, the ${Quest.PLAYER1} learns they can zap frogs into it and make baby frogs. How cute! ", "A wizened ${Quest.CONSORT} shows the ${Quest.PLAYER1} an ancient temple containing tiny ectobiology equipment. The pictures in the temple depect two frogs being zapped to it, and producing a cute little tadpole."];
         //learn about denizen
-        List<String> frog3 = <String>["A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? "];
+        List<String> frog3 = <String>["A wise old ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they must negotiate with ${Quest.DENIZEN} to release the vast majority of the frogs. Apparently this is called 'lighting the forge'? ", "A temple shows a huge snake monster, probably the ${Quest.DENIZEN} locking away all the frogs.", "A ${Quest.DENIZEN} minion tells the ${Quest.PLAYER1} that if they want to find the best frogs, they are going to have to face the ${Quest.DENIZEN}."];
         //meet denizen
-        List<String> frog4 = <String>["The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.  "];
-        Random rand = curSessionGlobalVar.rand;
-
+        List<String> frog4 = <String>["The ${Quest.PLAYER1} meets with ${Quest.DENIZEN}. They speak in a langauge no one else can understand, and prove their worth. The forge is lit. The frogs are free.", "The ${Quest.DENIZEN} offers the ${Quest.DENIZEN} an impossible Choice. After some deliberation, the ${Quest.PLAYER1} decides that it can't be done. The ${Quest.DENIZEN} sighs, and agrees to Light the Forge.", "The ${Quest.PLAYER1} is a dismissive asshole, but agrees to light the forge. Wow, the ${Quest.PLAYER1} almost wishes that they WERE supposed to fight. "];
+        //can't be random here, this is beore a session exists :( :( :(
         //space player don't get boss fights
-        //TODO have different themes that are all still frogs but have different quests attached and graphical stuff (once PL is there)
-        //like, one where you have the thaw the planet, one where you have to drain it, fix a drought, whatever.
         addTheme(new Theme(<String>["Frogs"])
             ..addFeature(FeatureFactory.ZOOSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.HIGH)
             ..addFeature(new DenizenQuestChain("Light the Forge", [
-                new Quest (rand.pickFrom(frog1)),
-                new Quest(rand.pickFrom(frog2)),
-                new Quest(rand.pickFrom(frog3)),
-                new Quest(rand.pickFrom(frog4))
+                new Quest (frog1[0]),
+                new Quest(frog2[0]),
+                new Quest(frog3[0]),
+                new Quest(frog4[0])
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
-                new Quest (rand.pickFrom(frog1)),
-                new Quest(rand.pickFrom(frog2)),
-                new Quest(rand.pickFrom(frog3)),
-                new Quest(rand.pickFrom(frog4))
+                new Quest (frog1[1]),
+                new Quest(frog2[1]),
+                new Quest(frog3[1]),
+                new Quest(frog4[1])
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
-                new Quest (rand.pickFrom(frog1)),
-                new Quest(rand.pickFrom(frog2)),
-                new Quest(rand.pickFrom(frog3)),
-                new Quest(rand.pickFrom(frog4))
+                new Quest (frog1[2]),
+                new Quest(frog2[2]),
+                new Quest(frog3[2]),
+                new Quest(frog4[2])
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest (frog1[2]),
+                new Quest(frog2[0]),
+                new Quest(frog3[1]),
+                new Quest(frog4[0])
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest (frog1[2]),
+                new Quest(frog2[1]),
+                new Quest(frog3[0]),
+                new Quest(frog4[2])
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+
+            ..addFeature(new DenizenQuestChain("Light the Forge", [
+                new Quest (frog1[0]),
+                new Quest(frog2[1]),
+                new Quest(frog3[2]),
+                new Quest(frog4[1])
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+
+
+            //ALL classes should have their own frog 3rd tier quest, this one is just the default one.
             ..addFeature(new PostDenizenQuestChain("Breed the Frogs", [
                 new Quest("The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),
                 new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
             ,  Theme.SUPERHIGH);
 
     }
