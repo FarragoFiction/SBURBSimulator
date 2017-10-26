@@ -60,7 +60,7 @@ class QuestsAndStuff extends Scene {
                 //back down to "normal"
                 p.moonChance = Math.min(p.moonChance, 33.0);
             }else {
-                p.moonChance += 5;
+                p.moonChance += 1; //fiddle with this to make moon quests more or less spammy
             }
         }
 	}

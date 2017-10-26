@@ -96,7 +96,7 @@ class Seer extends SBURBClass {
             ..addFeature(new PostDenizenQuestChain("Understand the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has unblocked the tunnels containing the vast majority of the frogs. The ${Quest.PLAYER1} thinks hard and figures out the best way to organize the ${Quest.CONSORT}s to start collecting frogs. "),
                 new Quest("The ${Quest.PLAYER1} is getting a headache trying to keep track of which frogs have been bred with which other frogs. The constant croaking isn't helping, either. "),
-                new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+                new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the    "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Work With Exiles", [

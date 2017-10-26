@@ -83,7 +83,7 @@ class Heir extends SBURBClass {
             ..addFeature(new PostDenizenQuestChain("Inherit the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has released the frogs into the ${Quest.PLAYER1}'s care. The land becomes a lot more frantic feeling with all that croaking. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),
-                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the    "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
             ,  Theme.MEDIUM);

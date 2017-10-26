@@ -127,7 +127,7 @@ class Sylph extends SBURBClass {
             ..addFeature(new PostDenizenQuestChain("Purify the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has allowed the water to recede enough to form shallow pools for the frogs. The water is muddy and silty until the ${Quest.PLAYER1} purifies the pools "),
                 new Quest("The ${Quest.CONSORT}s are ectobiologizing....VERY wrong frogs. The ${Quest.PLAYER1} goes after them and heals the deformities, then shows the ${Quest.CONSORT}s how to do it right. "),
-                new Quest("By the time the final frog is found, it is dead.   Calmly, the ${Quest.PLAYER1} uses the ectobiological equipment to access it in the past, and alchemizes it's offspring. the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+                new Quest("By the time the final frog is found, it is dead.   Calmly, the ${Quest.PLAYER1} uses the ectobiological equipment to access it in the past, and alchemizes it's offspring. the    "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
 

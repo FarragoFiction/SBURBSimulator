@@ -191,6 +191,9 @@ dynamic loadOther(String skipInit){
 
 	loadImage("charSheet.png", skipInit);
 	loadImage("Rewards/no_reward.png", skipInit);
+	loadImage("Rewards/sweetFrog.png", skipInit);
+	loadImage("Rewards/bitterFrog.png", skipInit);
+	loadImage("Rewards/holyShitFrogs.png", skipInit);
 	loadImage("Rewards/sweetLoot.png", skipInit);
 	loadImage("Rewards/sweetGrist.png", skipInit);
 	loadImage("Rewards/sweetBoonies.png", skipInit);
