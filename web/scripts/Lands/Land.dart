@@ -195,7 +195,7 @@ class Land extends Object with FeatureHolder {
     ///I expect a player to call this after picking a single theme from class, from aspect, and from each interest
     /// since the weights are copied here, i can modify them without modifying their source. i had been worried about that up unil i got this far.
     ///pass in an aspect so i can make denizens.
-    Land.fromWeightedThemes(Map<Theme, double> themes, Session session, Aspect a){
+    Land.fromWeightedThemes(Map<Theme, double> themes, Session session, Aspect a, SBURBClass c){
         this.session = session;
        // print("making a land for session $session");
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
@@ -206,7 +206,7 @@ class Land extends Object with FeatureHolder {
         this.processThemes(session.rand);
         this.setFeatureSubLists();
 
-        this.processDenizen(a);
+        this.processDenizen(a,c);
     }
 
     void setFeatures(WeightedList<Feature> list) {
@@ -225,15 +225,21 @@ class Land extends Object with FeatureHolder {
         this.allQuestChains = this.getTypedSubList<QuestChainFeature>(FeatureCategories.QUEST_CHAIN).map((QuestChainFeature f) => f.clone()).toList();
     }
 
-    void processDenizen(Aspect a) {
+    void processDenizen(Aspect a, SBURBClass c) {
         Iterable<Feature> choices = this.featureSets[FeatureCategories.DENIZEN.name];
         if (choices == null) { return; }
         if (!choices.isEmpty) {
             this.denizenFeature = (session.rand.pickFrom(this.featureSets["denizen"]) as DenizenFeature);
         }
         if(denizenFeature == null) {
-            //print("picking random denizen feature");
-            denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
+            double roll = session.rand.nextDouble(a.difficulty + c.difficulty);
+            if(roll > 0.95) {
+                denizenFeature = new EasyDenizenFeature("Denizen ${session.rand.pickFrom(DenizenFeature.strongDenizens)}");
+            }else if(roll < 0.05) {
+                denizenFeature = new HardDenizenFeature("Denizen ${session.rand.pickFrom(DenizenFeature.weakDenizens)}");
+            }else {
+                denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");
+            }
         }else { //rename it, but don't replace it because it could be a hard denizen.
             denizenFeature.name = "Denizen ${session.rand.pickFrom(a.denizenNames)}";
         }

@@ -120,6 +120,9 @@ class SBURBClassManager {
 //instantiatable for Null classes.
 class SBURBClass {
 
+    //difficulty of class + aspect results in odds of getting yaldobooger/abraxus equivlent.
+    //.5 is normal. .5 + .5 = 1.0, equals 5% chance of  getting either (>95 or < 5)
+    double difficulty = 0.5;
     String name = "Null";
     //based on strength of association.
     Map<Theme, double> themes = new Map<Theme, double>();

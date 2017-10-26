@@ -183,98 +183,6 @@ class Player extends GameEntity {
         return ret;
     }
 
-    num getStrengthForDenizen() {
-        num ret = 0;
-        ret += this.stats.getBase(Stats.POWER) - 10.0; // adjust for base 10.0 value
-        ret += this.stats.getBase(Stats.ALCHEMY);
-        ret += this.stats.getBase(Stats.FREE_WILL).abs();
-        ret += this.stats.getBase(Stats.POWER).abs();
-        ret += this.stats.getBase(Stats.HEALTH).abs();
-        ret += (this.stats.getBase(Stats.MAX_LUCK) + this.stats.getBase(Stats.MIN_LUCK)).abs();
-        ret += this.stats.getBase(Stats.SANITY).abs();
-        return ret;
-    }
-
-    void generateDenizen() {
-        List<String> possibilities = this.aspect.denizenNames;
-        double strength = this.getStrengthForDenizen();
-        double expectedBaseStrength = 40 + Math.max(0.0, Stats.POWER.rangeMinimum / Stats.POWER.coefficient) + Math.max(0.0, Stats.HEALTH.rangeMinimum / Stats.HEALTH.coefficient);
-        //print("expected base: $expectedBaseStrength");
-        double expectedMaxStrength = 200.0; //if i change how stats work, i need to update this value
-        num strengthPerTier = (expectedMaxStrength - expectedBaseStrength) / possibilities.length;
-        //print("Strength at start is, $strength");//but what if you don't want STRANGTH!???
-        int denizenIndex = ((strength - expectedBaseStrength) / strengthPerTier).round() - 1; //want lowest value to be off the denizen array.
-
-        String denizenName = "";
-        num denizenStrength = (denizenIndex / (possibilities.length)) + 1; //between 1 and 2;
-        //print("Strength for denizen calculated from index of: $denizenIndex out of ${possibilities.length}");
-        if (denizenIndex <=0) {
-            denizenName = this.weakDenizenNames();
-            denizenStrength = 0.1; //fraymotifs about standing and looking at your pittifully
-            //session.logger.info("AB: strength demands a weak denizen ");
-        } else if (denizenIndex >= possibilities.length) {
-            denizenName = this.strongDenizenNames(); //<-- doesn't have to be literally him. points for various mispellings of his name.
-            denizenStrength = 5;
-            //session.logger.info("AB: Strength demands strong denizen. ");
-        } else {
-            denizenName = possibilities[denizenIndex];
-        }
-
-        this.makeDenizenWithStrength(denizenName, denizenStrength); //if you pick the middle enizen it will be at strength of "1", if you pick last denizen, it will be at 2 or more.
-
-    }
-
-    void makeDenizenWithStrength(String name, num strength) {
-        //print("Strength for denizen $name is: $strength");
-        //based off existing denizen code.  care about which aspect i am.
-        //also make minion here.
-        GameEntity denizen = new Denizen("Denizen $name", this.session);
-        GameEntity denizenMinion = new DenizenMinion("$name Minion", this.session);
-        Map<Stat, num> tmpStatHolder = <Stat, num>{};
-        tmpStatHolder[Stats.MIN_LUCK] = -10;
-        tmpStatHolder[Stats.MAX_LUCK] = 10;
-        tmpStatHolder[Stats.HEALTH] = 10 * strength;
-        tmpStatHolder[Stats.MOBILITY] = 10;
-        tmpStatHolder[Stats.SANITY] = 10;
-        tmpStatHolder[Stats.ALCHEMY] = 10;
-        tmpStatHolder[Stats.FREE_WILL] = 10;
-        tmpStatHolder[Stats.POWER] = 5 * strength;
-        tmpStatHolder[Stats.GRIST] = 100;
-        tmpStatHolder[Stats.RELATIONSHIPS] = 10; //not REAL relationships, but real enough for our purposes.
-        tmpStatHolder[Stats.SBURB_LORE] = 0;
-        for (num i = 0; i < this.associatedStats.length; i++) {
-            //alert("I have associated stats: " + i);
-            AssociatedStat stat = this.associatedStats[i];
-            if(tmpStatHolder[stat.stat] != null) tmpStatHolder[stat.stat] += tmpStatHolder[stat.stat] * stat.multiplier * strength;
-        }
-
-        //denizenMinion.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000);
-
-        denizenMinion.stats.setMap(tmpStatHolder);
-        denizenMinion.heal();
-        tmpStatHolder[Stats.POWER] *= 2;
-        for (Stat key in tmpStatHolder.keys) {
-            tmpStatHolder[key] = tmpStatHolder[key] * 2; // same direction as minion stats, but bigger.
-        }
-        //denizen.setStats(tmpStatHolder.minLuck,tmpStatHolder.maxLuck,tmpStatHolder.hp,tmpStatHolder.mobility,tmpStatHolde.getStat(Stats.SANITY),tmpStatHolder.freeWill,tmpStatHolder.getStat(Stats.POWER),true, false, [],1000000);
-        denizen.stats.setMap(tmpStatHolder);
-        denizen.grist = 1000; //denizen matters MOST for if you can frog or not
-        this.denizen = denizen;
-        denizen.heal();
-        this.denizenMinion = denizenMinion;
-        this.session.fraymotifCreator.createFraymotifForPlayerDenizen(this, name);
-    }
-
-    String strongDenizenNames() {
-        ////print("What if you don't want stranth? ${this.session.session_id}");
-        List<String> ret = <String>['Yaldabaoth', "y'all'd'vebaoth", 'HairSeven', 'Javascript', '<span class = "void">Nobrop, the </span>Null', '<span class = "void">Paraxalan, The </span>Ever-Searching', "<span class = 'void'>Algebron, The </span>Dilletant", '<span class = "void">Doomod, The </span>Wanderer', 'Jörmungandr', 'Apollyon', 'Siseneg', 'Borunam', '<span class = "void">Jadeacher the,</span>Researcher', 'Karmiution', '<span class = "void">Authorot, the</span> Robot', '<span class = "void">Abbiejean, the </span>Scout', '<span class = "void">Aspiratcher, The</span> Librarian', '<span class = "void">Recurscker, The</span>Hollow One', 'Insurorracle', '<span class = "void">Maniomnia, the </span>Dreamwaker', 'Kazerad', 'Shiva', 'Goliath'];
-        return this.session.rand.pickFrom(ret);
-    }
-
-    String weakDenizenNames() {
-        List<String> ret = <String>['Eriotur', 'Abraxas', 'Succra', 'Watojo', 'Bluhubit', 'Swefrat', 'Helaja', 'Fischapris'];
-        return this.session.rand.pickFrom(ret);
-    }
 
     @override
     void flipOut(String reason) {
@@ -1842,7 +1750,7 @@ class Player extends GameEntity {
         themes[interest1Theme] = interest1.category.themes[interest1Theme];
         themes[interest2Theme] = interest2.category.themes[interest2Theme];
 
-        return new Land.fromWeightedThemes(themes, session, aspect);
+        return new Land.fromWeightedThemes(themes, session, aspect,class_name);
 
     }
 
