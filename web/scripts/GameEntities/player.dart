@@ -540,6 +540,10 @@ class Player extends GameEntity {
         if (this.robot) {
             ret = "${ret}Robo";
         }
+
+        if (this.gnosis == 4) {
+            ret = "${ret}Wasted ";
+        }
         ret = "$ret${this.class_name} of ${this.aspect}";
         if (this.dead) {
             ret = "$ret's Corpse";
