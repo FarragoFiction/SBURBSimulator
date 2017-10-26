@@ -4,6 +4,8 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Blood extends Aspect {
+    @override
+    double difficulty = 0.0;
 
     @override
     AspectPalette palette = new AspectPalette()

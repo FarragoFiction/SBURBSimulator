@@ -234,8 +234,10 @@ class Land extends Object with FeatureHolder {
         if(denizenFeature == null) {
             double roll = session.rand.nextDouble(a.difficulty + c.difficulty);
             if(roll > 0.95) {
+                session.logger.info("strong denizen for $c of $a");
                 denizenFeature = new EasyDenizenFeature("Denizen ${session.rand.pickFrom(DenizenFeature.strongDenizens)}");
             }else if(roll < 0.05) {
+                session.logger.info("weak denizen for $c of $a");
                 denizenFeature = new HardDenizenFeature("Denizen ${session.rand.pickFrom(DenizenFeature.weakDenizens)}");
             }else {
                 denizenFeature = new DenizenFeature("Denizen ${session.rand.pickFrom(a.denizenNames)}");

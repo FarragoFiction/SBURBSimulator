@@ -5,6 +5,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Time extends Aspect {
+    @override
+    double difficulty = 0.7;
 
     @override
     AspectPalette palette = new AspectPalette()

@@ -7,6 +7,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Doom extends Aspect {
+    @override
+    double difficulty = 1.0;
 
     @override
     AspectPalette palette = new AspectPalette()

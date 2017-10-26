@@ -5,6 +5,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Breath extends Aspect {
+    @override
+    double difficulty = 0.3;
 
     @override
     AspectPalette palette = new AspectPalette()

@@ -5,6 +5,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Prince extends SBURBClass {
+    @override
+    double difficulty = 1.0;
     Prince() : super("Prince", 10, true);
     @override
     List<String> levels = ["PRINCE HARMING", "ROYAL RUMBLER", "DIGIT PRINCE"];

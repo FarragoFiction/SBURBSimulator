@@ -46,7 +46,6 @@ class IntroNew extends IntroScene {
       appendHtml(div, canvasHTML);
       var canvasDiv = querySelector("#firstcanvas"+ this.player.id.toString()+"_" + this.session.session_id.toString());
       Drawing.drawCharSheet(canvasDiv,this.player);
-      this.player.generateDenizen();
       ImportantEvent alt = this.addImportantEvent();
       if(alt != null && alt.alternateScene(div)){
           return;

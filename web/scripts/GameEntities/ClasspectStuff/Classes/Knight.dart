@@ -8,6 +8,8 @@ import "../../../Lands/Quest.dart";
 
 class Knight extends SBURBClass {
     @override
+    double difficulty = 0.7;
+    @override
     List<String> levels = ["QUESTING QUESTANT", "LADABOUT LANCELOT", "SIR SKULLDODGER"];
     @override
     List<String> quests = ["protecting the local consorts from a fearsome foe", "protecting the session from various ways it can go shithive maggots", "questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader"];
