@@ -405,7 +405,7 @@ class CharacterCreatorHelper {
         if (topic == "HairColor")
             return "Hair color is purely cosmetic. Certain hairstyles will have highlights which are mandated to be the Player's favorite color (which is aspect color for humans and blood color for trolls). ";
         if (topic == "Interests")
-            return "Interests alter how a player speaks (including their skill at finding topics to rap about), some of the rungs on their echeladder, and their derived ChatHandle.";
+            return "Interests alter the topics a player knows about (including their skill at finding topics to rap about), some of the rungs on their echeladder, their land,  and their derived ChatHandle.";
         return "Help text not found for " + topic + ".";
     }
 
