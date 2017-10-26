@@ -112,7 +112,7 @@ class Witch extends SBURBClass {
             ..addFeature(FeatureFactory.CROAKINGSOUND, Feature.MEDIUM)
 
             ..addFeature(new PostDenizenQuestChain("Brew the Frogs", [
-                new Quest("The ${Quest.DENIZEN} explains that the frogs have all been turned into handsom ${Quest.CONSORT}s. It's up to the ${Quest.PLAYER1} to turn each of them back into a slimy, warty frog, whether it's through kisses or potions. "),
+                new Quest("The ${Quest.DENIZEN} explains that the frogs have all been turned into handsome ${Quest.CONSORT} consorts. It's up to the ${Quest.PLAYER1} to turn each of them back into a slimy, warty frog, whether it's through kisses or potions. "),
                 new Quest("The former ${Quest.CONSORT}s hit buttons on the ectobiology machine at random, creating their own ectobiological tadpole children.  The ${Quest.PLAYER1} just sort of rides out the chaos. "),
                 new Quest("The  ${Quest.DENIZEN}  reveals that the final frog is on the ${Quest.PLAYER1}'s destroyed home world. Huh. You guess it's a good thing ectobiological equipment can sample DNA across time and space. The Ultimate Tadpole is ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
