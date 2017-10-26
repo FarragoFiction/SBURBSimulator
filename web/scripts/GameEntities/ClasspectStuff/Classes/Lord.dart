@@ -116,11 +116,20 @@ class Lord extends SBURBClass {
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Command Minions to Breed Frogs", [
+                new Quest("The ${Quest.DENIZEN} has been subjugated, their hoard of frogs released. Across the land castles and dungeons suddenly are accessible, and filled with croaking. The ${Quest.PLAYER1} comands that the ${Quest.CONSORT}s collect the frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s. "),
+                new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} sits back and enjoys a tropical drink. The frogs will be ready eventually. "),
+                new Quest("A ${Quest.CONSORT} minion has finally found the final frog. The ${Quest.PLAYER1} rewards them, and punishes everyone else for failing.  The Ultimate Tadpole ready.  All the ${Quest.PLAYER1} needs to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+
             ..addFeature(new PostDenizenQuestChain("Conquer Everything", [
                 new Quest("As soon as the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s disolve into civil wars and infighting. It will take a strong leader to unite the land, and the ${Quest.PLAYER1} is up to the task.  "),
                 new Quest("The ${Quest.PLAYER1} has subjugated/assimilated about half of the ${Quest.CONSORT} factions, at this point. They are surprisingly good at following commands, and everything is running with clock work efficiencey."),
                 new Quest("The final ${Quest.CONSORT} commander surrenders. the ${Quest.PLAYER1} controls everything now. They are the Lord of all they survey. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+
             ,  Theme.MEDIUM);
     }
 

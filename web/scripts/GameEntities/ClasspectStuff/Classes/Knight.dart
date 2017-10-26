@@ -84,6 +84,13 @@ class Knight extends SBURBClass {
             ..addFeature(FeatureFactory.SWEATSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.SMOKESMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Breed the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has cooled the lava enough for water to begin pooling in places, which attracts frogs.  The land less overheated. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
+                new Quest("The ${Quest.PLAYER1} has a weird system going where the newest zapped in tadpole presses the buttont to zap in the next one. Things are going almost as quickly as if they had another player's help. "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+
             ..addFeature(new PostDenizenQuestChain("Exploit the Heat", [
                 new Quest("Now that the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s could really use some basic infrastructure repairs. The ${Quest.PLAYER1} finds instructions for a thermal energy converter in a dungeon and alchemizes all the parts needed to build one. The ${Quest.CONSORT}s will have power for generations,now. "),
                 new Quest("An important wall is crumbling. While the defeat of the ${Quest.DENIZEN} means the underlings are mostly under control, the ${Quest.CONSORT}s would feel a lot better with it fixed. The ${Quest.PLAYER1} figures out how to patch it up with bits of cooled lava. Everyone feels just a little bit safer."),

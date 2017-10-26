@@ -88,6 +88,12 @@ class Mage extends SBURBClass {
             ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ROTSMELL, Feature.LOW)
 
+            ..addFeature(new PostDenizenQuestChain("Understand the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has freed the frogs from their video game inspired hell. No longer will they be threatened to be squashed by all this fucking traffic. They are hopping ALL over the road now. The ${Quest.PLAYER1} thinks hard and figures out the best way to start collecting frogs. "),
+                new Quest("The ${Quest.PLAYER1} is getting a headache trying to keep track of which frogs have been bred with which other frogs. The constant croaking isn't helping, either. "),
+                new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+
             ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
                 new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit. The ${Quest.PLAYER1} abjures the concept of helping entirely, but the Voice just won't shut up. God dammit, FINE. They'll help."),
                 new Quest("The ${Quest.PLAYER1} makes sure to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),
@@ -106,6 +112,8 @@ class Mage extends SBURBClass {
                 new Quest("It is finally time for the final brick to be placed for the final building in ${Quest.MCGUFFIN}burg. The ${Quest.PLAYER1} snips a ceremonial ribbon opening up the Mayor's office, to which they have been elected in a landslide. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
+
+
     }
 
 }

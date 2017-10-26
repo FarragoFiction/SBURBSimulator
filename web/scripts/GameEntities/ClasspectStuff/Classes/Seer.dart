@@ -93,6 +93,12 @@ class Seer extends SBURBClass {
                 new Quest("The Blind ${Quest.CONSORT} have finally finished the tunnel.  Not only did it not collapse, killing all the diggers, but there was grist and boondollars found during excavation.   The happy ${Quest.CONSORT}s give the ${Quest.PLAYER1} some as a reward. ")
             ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
+            ..addFeature(new PostDenizenQuestChain("Understand the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has unblocked the tunnels containing the vast majority of the frogs. The ${Quest.PLAYER1} thinks hard and figures out the best way to organize the ${Quest.CONSORT}s to start collecting frogs. "),
+                new Quest("The ${Quest.PLAYER1} is getting a headache trying to keep track of which frogs have been bred with which other frogs. The constant croaking isn't helping, either. "),
+                new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+
             ..addFeature(new PostDenizenQuestChain("Work With Exiles", [
                 new Quest("The ${Quest.PLAYER1} hears a strange voice in their head. Huh, it seems like a carapace years in the future (but not many) needs their help making sure things happen how they already happened which. Fuck. More Time shit. The ${Quest.PLAYER1} organizes a group of ${Quest.CONSORT}s to carry everything out."),
                 new Quest("The ${Quest.PLAYER1} instructs a group of ${Quest.CONSORT}s to exile a random ass carapace. They have no clue why, but the voice insisted. Alright, then."),

@@ -80,7 +80,6 @@ class Heir extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} is FINALLY caught up with the backlog of bullshit caused by the death of the ${Quest.DENIZEN}. Now they just have to manage up keep and crisis management. They think they can handle it.")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
-        //ALL classes should have their own frog 3rd tier quest, this one is just the default one.
             ..addFeature(new PostDenizenQuestChain("Breed the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has released the frogs into the ${Quest.PLAYER1}'s care. The land becomes a lot more frantic feeling with all that croaking. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),

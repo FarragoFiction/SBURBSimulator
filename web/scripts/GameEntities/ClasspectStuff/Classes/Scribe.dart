@@ -61,7 +61,14 @@ class Scribe extends SBURBClass {
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.MEDIUM)
-            ..addFeature(new PostDenizenQuestChain("Blaze a Trail", [
+
+            ..addFeature(new PostDenizenQuestChain("Understand the Frogs", [
+                new Quest("The ${Quest.DENIZEN} has caused all those fucking bird underlings to finally drop the frogs. The ${Quest.PLAYER1} thinks hard and figures out the best way to start collecting them. "),
+                new Quest("The ${Quest.PLAYER1} is getting a headache trying to keep track of which frogs have been bred with which other frogs. The constant croaking isn't helping, either. "),
+                new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the Ultimate Tadpole ready.  All they need to do is keep it in their Sylladex until the battlefield is fertilized.  "),
+            ], new FrogReward(), QuestChainFeature.defaultOption), Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Restore the Library", [
                 new Quest("Now that the ${Quest.DENIZEN} has been taken care of, the ${Quest.PLAYER1} discovers a large library of ${Quest.CONSORT} documents and books in its lair. They were not taken care of to say the least, and are badly in need of repair."),
                 new Quest("The ${Quest.PLAYER1} sits in a small room, repairing bindings, glueing pages, and copying and replacing pages outright where necessary.  The work is strangely soothing."),
                 new Quest(" The final book has been restored.  The local ${Quest.CONSORT}s dedicate a library in the ${Quest.PLAYER1}'s honor and cherish their legacy now returned to them.")
