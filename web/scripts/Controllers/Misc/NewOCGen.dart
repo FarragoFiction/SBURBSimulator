@@ -111,7 +111,7 @@ void drawText(Player p, CanvasElement canvas) {
     left_margin = 35; //indenting for land shit.
 
     ctx.fillText("Denizen: ", left_margin, current + line_height * line_num);
-    ctx.fillText(p.land.denizenFeature.name, right_margin, current + line_height * line_num);
+    ctx.fillText(sanitizeString(p.land.denizenFeature.name), right_margin, current + line_height * line_num);
     line_num++;
 
     ctx.fillText("Consorts: ", left_margin, current + line_height * line_num);
