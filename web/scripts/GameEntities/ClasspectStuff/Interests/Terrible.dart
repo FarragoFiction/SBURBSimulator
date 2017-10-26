@@ -29,7 +29,9 @@ class Terrible extends InterestCategory {
         addTheme(new Theme(<String>["Fire","Arson","Blaze", "Burning", "Flames"])
             ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.GLAMOROUSFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SWEATSMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.SMOKESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.OVERHEATED, Feature.HIGH)
             ..addFeature(FeatureFactory.HEROICFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Start the Fires", [
                 new Quest("The ${Quest.PLAYER1} finds a bowl filled with colorful green powder in a dungeon, next to a locked door with green, blue and red gems inset in the middle. After some poking and proding, they do what comes naturally and start a small fire. The bowl blazes green. A green gem lights up on the locked door. Huh. "),
