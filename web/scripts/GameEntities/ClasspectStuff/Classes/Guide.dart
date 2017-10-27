@@ -53,7 +53,7 @@ class Guide extends SBURBClass {
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
         //space player near guaranteed to do this.
-            ..addFeature(new PostDenizenQuestChain("Find the Frogs", [
+            ..addFeature(new PostDenizenFrogChain("Find the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has released the frogs from their icy prisons. The land melts and warms and just generally becomes a lot nicer. The ${Quest.PLAYER1} is given a map to where all the frogs are and is told to get going. "),
                 new Quest("The ${Quest.PLAYER1} is following a detailed guide on which frogs to combine with which other frogs. It's a little boring, but at least the ${Quest.PLAYER1} knows they won't make a mistake."),
                 new Quest("Following the last step in the guide booke, the ${Quest.PLAYER1} finds the Final Frog. Luckily, a ${Quest.CONSORT} ${Quest.CONSORTSOUND}s in time to stop them.    "),

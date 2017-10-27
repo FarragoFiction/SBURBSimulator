@@ -83,7 +83,7 @@ class Prince extends SBURBClass {
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.LOW)
 
-            ..addFeature(new PostDenizenQuestChain("Destroy the Lack of Frogs", [
+            ..addFeature(new PostDenizenFrogChain("Destroy the Lack of Frogs", [
                 new Quest("With the closing of the curtain, the ${Quest.DENIZEN} has released the frogs, and yet they are nowhere to be found. The ${Quest.PLAYER1} shatter space itself to reveal an entire dimension of croaking assholes. "),
                 new Quest("The ${Quest.PLAYER1} has broken how space itself works to do the ectobiology as effciently as possible.   "),
                 new Quest("The ${Quest.PLAYER1} has found the final frog in a crack in reality.  They combine it and eventually have the    "),

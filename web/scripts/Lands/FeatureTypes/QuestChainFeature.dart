@@ -257,6 +257,23 @@ class PostDenizenQuestChain extends QuestChainFeature {
 }
 
 
+class PostDenizenFrogChain extends PostDenizenQuestChain {
+
+    PostDenizenFrogChain(String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(name, quests, reward, condition);
+
+    @override
+    PostDenizenFrogChain clone() {
+        return new PostDenizenFrogChain(this.name, new List<Quest>.from(this.quests), this.reward, this.condition);
+    }
+
+    @override
+    bool doQuest(Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div, Land land) {
+        //takes 3 quests to finish.
+        p1.landLevel += p1.session.goodFrogLevel/3;
+        return super.doQuest(p1, p2, denizen, consort, symbolicMcguffin, physicalMcguffin, div, land);
+    }
+}
+
 class MoonQuestChainFeature extends QuestChainFeature {
 
     MoonQuestChainFeature(bool canRepeat, String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(canRepeat,name, quests, reward, condition);

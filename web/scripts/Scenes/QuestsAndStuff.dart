@@ -58,9 +58,9 @@ class QuestsAndStuff extends Scene {
                 //TODO decide if i will allow co-op moon shit.
                 moonParties.add(new QuestingParty(session, p, null));
                 //back down to "normal"
-                p.moonChance = Math.min(p.moonChance, 33.0);
+                p.moonChance = Math.min(p.moonChance, 10.0);
             }else {
-                p.moonChance += 1; //fiddle with this to make moon quests more or less spammy
+                p.moonChance += 5; //fiddle with this to make moon quests more or less spammy
             }
         }
 	}

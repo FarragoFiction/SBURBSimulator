@@ -117,7 +117,7 @@ class Lord extends SBURBClass {
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.MEDIUM)
 
-            ..addFeature(new PostDenizenQuestChain("Command Minions to Breed Frogs", [
+            ..addFeature(new PostDenizenFrogChain("Command Minions to Breed Frogs", [
                 new Quest("The ${Quest.DENIZEN} has been subjugated, their hoard of frogs released. Across the land castles and dungeons suddenly are accessible, and filled with croaking. The ${Quest.PLAYER1} comands that the ${Quest.CONSORT}s collect the frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s. "),
                 new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} sits back and enjoys a tropical drink. The frogs will be ready eventually. "),
                 new Quest("A ${Quest.CONSORT} minion has finally found the final frog. The ${Quest.PLAYER1} rewards them, and punishes everyone else for failing. "),

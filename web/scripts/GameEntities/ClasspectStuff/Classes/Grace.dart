@@ -68,7 +68,7 @@ class Grace extends SBURBClass {
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
         //space player near guaranteed to do this.
-            ..addFeature(new PostDenizenQuestChain("Allow Others to Meta a Universe", [
+            ..addFeature(new PostDenizenFrogChain("Allow Others to Meta a Universe", [
                 new Quest("The ${Quest.DENIZEN} has released the frogs from their icy prisons. The land melts and warms and just generally becomes a lot nicer. The ${Quest.PLAYER1} shows the ${Quest.CONSORT}s how to check the code to find out where the frogs are. They sit back and allow the frogs to come rolling in. "),
                 new Quest("The ${Quest.PLAYER1} sets up an automatic frog breeding system. Just about every possible variety of frog is produced from it."),
                 new Quest("A series of incredibly unlikely events transpire such that the ${Quest.PLAYER1} almost steps on the Final Frog. Luckily, a ${Quest.CONSORT} ${Quest.CONSORTSOUND}s in time to stop them.    "),

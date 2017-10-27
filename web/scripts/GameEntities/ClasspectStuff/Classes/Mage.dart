@@ -88,7 +88,7 @@ class Mage extends SBURBClass {
             ..addFeature(FeatureFactory.OILSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.ROTSMELL, Feature.LOW)
 
-            ..addFeature(new PostDenizenQuestChain("Understand the Frogs", [
+            ..addFeature(new PostDenizenFrogChain("Understand the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has freed the frogs from their video game inspired hell. No longer will they be threatened to be squashed by all this fucking traffic. They are hopping ALL over the road now. The ${Quest.PLAYER1} thinks hard and figures out the best way to start collecting frogs. "),
                 new Quest("The ${Quest.PLAYER1} is getting a headache trying to keep track of which frogs have been bred with which other frogs. The constant croaking isn't helping, either. "),
                 new Quest("The ${Quest.PLAYER1} has finally figured out how to breed the final frog.  They combine it and eventually have the    "),
