@@ -75,6 +75,8 @@ class Heart extends Aspect {
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.LOW)
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+
+
             ..addFeature(new DenizenQuestChain("Find Yourself.", [
                 new Quest("The ${Quest.PLAYER1}, guided by a ${Quest.CONSORT} assembles some of the scattered pieces of their land into a sort of safe space. It’s nice, but something's just… off about it."),
                 new Quest("The ${Quest.PLAYER1} grows obsessed with perfecting ‘their space’ and begins manically collecting more and more of the landscape to decorate their ‘area’. They’ve become convinced that if they can only make it perfect, everything will be all right. If they can just make themselves better..."),
@@ -82,6 +84,8 @@ class Heart extends Aspect {
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. They can finally be free to just....be themselves as long as the ${Quest.DENIZEN} is gone. ","${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} has won and finally feels free to be themselves for the first time.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
+
+
         addTheme(new Theme(<String>["Dolls", "Voodoo", "Doppelgangers", "Copies", "Puppets","Selfies","Mirrors","Poppets","Mirrors", "Crystals","Shards"])
             ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.FOOTSTEPSOUND, Feature.HIGH)
@@ -95,6 +99,23 @@ class Heart extends Aspect {
                 new Quest("The ${Quest.PLAYER1} realizes that the ${Quest.PHYSICALMCGUFFIN} copy is nothing more then an expresion of their own worst feelings, manifested by  ${Quest.DENIZEN}. They confront the copy one last time, and accept it as part of themselves. The two fuse, with a single, small ${Quest.PHYSICALMCGUFFIN} the only physical remnant of the copy. Armed with their new self actualization, they realize they are ready to face ${Quest.DENIZEN}. "),
                 new DenizenFightQuest("${Quest.DENIZEN} has been the cause of so much personal grief for the ${Quest.PLAYER1}.  There can be no mercy. ","${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} is victorious. ","The assholeness of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+
+        //medium makes it ~50/50 for the right class.
+            ..addFeature(new PostDenizenQuestChain("Prove Your Identity", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, a Copy ${Quest.PLAYER1} has appeared. They claim they are the TRUE ${Quest.PLAYER1} is an imposter who just wants their fame! All of the ${Quest.CONSORT}s ${Quest.CONSORTSOUND} in confusion and don't seem to know what to do."),
+                new Quest("A wizened ${Quest.PLAYER1} creates a series of challenges that only the REAL ${Quest.PLAYER1} should be able to complete. They are....laughably wrong. Things like walking in a straight line, being literate and being able to ${Quest.CONSORTSOUND} for more than five minutes straight. At the end of it, all the ${Quest.CONSORT}s unanimously agree that the Fake ${Quest.PLAYER1} is the winner. THIS IS STUPID."),
+                new Quest("The REAL ${Quest.PLAYER1} has had enough of all this bullshit. With some bad ass pink lightning, they expose the Fake ${Quest.PLAYER1} as three ${Quest.CONSORT}s in an overcoat using some weird Heart magic.")
+            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.MEDIUM)
+
+            ..addFeature(new DenizenQuestChain("Shatter The Mirrors", [
+                new Quest("The ${Quest.PLAYER1} finds a disorienting labyrinth of mirrors. They know they need to reach the end but they keep getting turned around. Frustrated, they punch a mirror, shattering it. The dungeon crumbles away entirely, leaving the treasure at the end. Huh. "),
+                new Quest("The next time the ${Quest.PLAYER1} finds a labyrinth of mirrors, they skip straight to breaking the mirrors and collect that sweet, sweet loot. "),
+                new Quest("Another mirror, another punch. Except this time....the mirror is unaffected. The ${Quest.PLAYER1} in the reflection smirks back. In a rage the ${Quest.PLAYER1} assaults the mirror until their knuckles are bloody. Still the reflected ${Quest.PLAYER1} is a smug prick. 'Maybe',  the reflection says, 'You should stop trying to destroy yourself.' The ${Quest.PLAYER1} collapses in an exhausted heap and considers their words."),
+                new DenizenFightQuest("When the ${Quest.PLAYER1} encounters the next mirror labyrinth, they do their best to beat it correctly. They reign in their anger, they try to forget about that smug smirk. When they reach a dead end they realize that their reflections are....wrong.   They are all...watching the ${Quest.PLAYER1}, even if that shouldn't be possible. 'Help me.', the ${Quest.PLAYER1} says. As one, each of their reflections destroys their own mirror. The shards of glass ricochet forwards and fit neatly into a locked puzzle door, revealing the path to the ${Quest.DENIZEN}.","The ${Quest.PLAYER1} has accepted their fractured soul, and the destructiveness inherent in it. The ${Quest.DENIZEN} is dead.","The ${Quest.PLAYER1} destroyed themselves.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.MEDIUM)
+
+
             , Theme.HIGH);
 
         addTheme(new Theme(<String>["Shipping","Ports","Ships", "Docks", "Sails", "Matchmaking", "Cupids", "Fleets"])
@@ -110,6 +131,7 @@ class Heart extends Aspect {
                 new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, but then realizes that because of some stupid ${Quest.MCGUFFIN} laws put in place by ${Quest.DENIZEN}, the ship will be unable to sail. The player flips their shit and begins preparing for the final battle. THE SHIP WILL SAIL. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
 
             ..addFeature(new DenizenQuestChain("Flushed Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be getting along well. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
