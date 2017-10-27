@@ -39,7 +39,6 @@ class BoonieFraymotifReward extends FraymotifReward {
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     String bgImage = "Rewards/sweetBoonies.png";
 
-
 }
 //TODO have it take in a name and then the fraymotif cna have a custom name?
 class FraymotifReward extends Reward
@@ -93,6 +92,33 @@ class DenizenReward extends Reward {
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
         p1.setDenizenDefeated();
+        super.apply(div, p1, p2, land);
+    }
+}
+
+class CodReward extends Reward {
+    @override
+    String image = "/Rewards/sweetCod.png";
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        text = "It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
+        if(!p1.godTier) text += " Too bad they'll have to wait to be god tier to TRULY appreciate it.";
+        if(bardQuest) text += " Even if someone already found this sacred treasure, the ${Reward.PLAYER1} is glad they journeyed to find it on their own as well. ";
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        Fraymotif f1 = p1.getNewFraymotif(null);
+        int num = p1.session.rand.nextInt(13);
+        //cod tier gives extra benefits.
+        p1.increaseLandLevel();
+        p1.increasePower();
+        f1.name = "The Ballad of the ZillyCodPiece (Verse ${num})";
+        bardQuest = true;
+        for(Player p in p1.session.players) {
+            if(p.class_name == SBURBClassManager.BARD) {
+                p.renderSelf();
+            }
+        }
+        p1.renderSelf();
         super.apply(div, p1, p2, land);
     }
 }

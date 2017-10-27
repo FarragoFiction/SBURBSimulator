@@ -96,6 +96,11 @@ class Bard extends SBURBClass {
                 new Quest(" The ${Quest.CONSORT}s who were running the carnival games are now bankrupt. Their wailing and ${Quest.CONSORTSOUND}ing fills the air. Fuck.  Who knew actions have consequences? The ${Quest.PLAYER1} arranges 'anonymous' donations to them and decides that maybe they should just quit while they are ahead. ")
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
+            ..addFeature(new PostDenizenQuestChain("Behold the Glory of CodTier", [
+                new Quest("The ${Quest.PLAYER1} hears tell of a legendary artifact, so beautiful, so sleak and aerodynamic that all who behold it are moved to tears. They need it. SO badly. Now that the ${Quest.DENIZEN} has been defeated, perhaps they can finally focus on finding it."),
+                new Quest("The ${Quest.PLAYER1} has journeyed far and wide, going so far as to make pacts with the dead. Finally. They have it."),
+            ], new CodReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
             //space player near guaranteed to do this.
             ..addFeature(new PostDenizenFrogChain("Pull the Strings of a Universe", [
                 new Quest("The ${Quest.DENIZEN} has released the frogs from their balloon prisons. The balloons sink and land all over the land, and the newly freed frogs happily hop out. The ${Quest.PLAYER1} organizes a huge festival for all the ${Quest.CONSORT}s themed around finding and collecting frogs. They sit back and allow events to transpire. "),
