@@ -10,6 +10,7 @@ import "../includes/bytebuilder.dart";
 class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
+    bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
     @override
     num grist = 0; // players do not spawn with grist
     //if 0, not yet woken up.
@@ -383,6 +384,8 @@ class Player extends GameEntity {
         //this.addStat(Stats.POWER, 500); //they are GODS.
         this.addBuff(new BuffGodTier()); // +100 base power and health, 2.5 stat multiplier
         this.increasePower();
+        //was on a quest bed.
+        if(!isDreamSelf && dreamSelf) canSkaia = true;
         this.godTier = true;
         this.session.stats.godTier = true;
         this.dreamSelf = false;

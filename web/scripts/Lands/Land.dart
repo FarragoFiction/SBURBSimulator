@@ -117,6 +117,7 @@ class Land extends Object with FeatureHolder {
                 //print("no more quests for $name");
                 thirdCompleted = true;
                 noMoreQuests = true;
+
             }
         }
     }

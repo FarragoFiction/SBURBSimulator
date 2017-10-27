@@ -34,7 +34,7 @@ class QuestsAndStuff extends Scene {
       skaiaParties.clear();
       allocateMoonQuests();
       allocateLandQuests(); //<-- is 100% going to happen unless finished, so go last or the thing after you won't count.
-      //allocateSkaiaQuests(); //TODO
+      allocateSkaiaQuests();
       return (landParties.isNotEmpty || moonParties.isNotEmpty || skaiaParties.isNotEmpty);
 	}
 
@@ -66,8 +66,11 @@ class QuestsAndStuff extends Scene {
 	}
 
     void allocateSkaiaQuests() {
-	    //you need to be god tier or completely done with your land quests.
-        throw("TODO");
+	   for(Player p in session.players) {
+            if(p.land != null || p.canSkaia) {
+                skaiaParties.add(new QuestingParty(session, p, null));
+            }
+       }
     }
 
 
@@ -116,6 +119,7 @@ class QuestsAndStuff extends Scene {
         appendHtml(div, html);
         bool savedLevel = player.land.firstCompleted;
         player.land.doQuest(div, player, helper);
+        if(player.land.noMoreQuests) player.canSkaia = true;
 
         if(savedLevel != player.land.firstCompleted) {
             appendHtml(div, "<br><br>The ${player.htmlTitleBasicNoTip()}'s house has been built up enough to let them start visiting other lands. ");
