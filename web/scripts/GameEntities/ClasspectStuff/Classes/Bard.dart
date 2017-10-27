@@ -96,8 +96,15 @@ class Bard extends SBURBClass {
                 new Quest(" The ${Quest.CONSORT}s who were running the carnival games are now bankrupt. Their wailing and ${Quest.CONSORTSOUND}ing fills the air. Fuck.  Who knew actions have consequences? The ${Quest.PLAYER1} arranges 'anonymous' donations to them and decides that maybe they should just quit while they are ahead. ")
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
+            ..addFeature(new PostDenizenQuestChain("Lead the Parade", [
+                new Quest("A group of jubilant ${Quest.CONSORT}s are following the ${Quest.PLAYER1} around. It's kind of flattering, but it sure is drawing a lot of attention!"),
+                new Quest("Even more ${Quest.CONSORT} are following the ${Quest.PLAYER1} now, ${Quest.CONSORTSOUND}ing about how they defeated the ${Quest.DENIZEN}. Wow, this is actually kind of embarrasing. "),
+                new Quest("Oh god, somehow there are PARADE FLOATS involved now? The line of ${Quest.CONSORT}s have drawn a huge crowd to watch and ${Quest.CONSORTSOUND}.  It looks like whole roads are being blocked off by the event, and nobody is getting any work done. The entire day's productivity is destroyed, and it isn't even the ${Quest.PLAYER1}'s fault. ")        ],
+                new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            //front tail!!!  (seriously, daimidaler prince vs penguin empire was SO FUCKING WEIRD
             ..addFeature(new PostDenizenQuestChain("Behold the Glory of CodTier", [
-                new Quest("The ${Quest.PLAYER1} hears tell of a legendary artifact, so beautiful, so sleak and aerodynamic that all who behold it are moved to tears. They need it. SO badly. Now that the ${Quest.DENIZEN} has been defeated, perhaps they can finally focus on finding it."),
+                new Quest("The ${Quest.PLAYER1} hears tell of a legendary artifact, so beautiful, so sleak and aerodynamic that all who behold it are moved to tears. They need it. SO badly. That glorious front tail. Now that the ${Quest.DENIZEN} has been defeated, perhaps they can finally focus on finding it."),
                 new Quest("The ${Quest.PLAYER1} has journeyed far and wide, going so far as to make pacts with the dead. Finally. They have it."),
             ], new CodReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
