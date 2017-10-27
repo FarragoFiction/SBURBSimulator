@@ -86,44 +86,38 @@ class Space extends Aspect {
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[0]),
                 new Quest(frog2[0]),
-                new Quest(frog3[0]),
-                new Quest(frog4[0])
+                new Quest("${frog3[0]} ${frog4[0]}" ),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[1]),
                 new Quest(frog2[1]),
-                new Quest(frog3[1]),
-                new Quest(frog4[1])
+                new Quest("${frog3[1]} ${frog4[1]}"),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[2]),
                 new Quest(frog2[2]),
-                new Quest(frog3[2]),
-                new Quest(frog4[2])
+                new Quest("${frog3[2]} ${frog4[2]}"),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[2]),
                 new Quest(frog2[0]),
-                new Quest(frog3[1]),
-                new Quest(frog4[0])
+                new Quest("${frog3[1]} ${frog4[0]}"),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[2]),
                 new Quest(frog2[1]),
-                new Quest(frog3[0]),
-                new Quest(frog4[2])
+                new Quest("${frog3[1]} ${frog4[2]}"),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
 
             ..addFeature(new DenizenQuestChain("Light the Forge", [
                 new Quest (frog1[0]),
                 new Quest(frog2[1]),
-                new Quest(frog3[2]),
-                new Quest(frog4[1])
+                new Quest("${frog3[2]} ${frog4[0]}"),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
 
 
