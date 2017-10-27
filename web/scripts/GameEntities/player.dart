@@ -162,7 +162,7 @@ class Player extends GameEntity {
 
     ///not the only way to get grist, but you get a small base amount just for doing that shit
     void increaseLandLevel([double points = 1.0]) {
-        //landLevel += points; //TESTING
+        landLevel += 0.1; //TESTING what right value is to balance with FrogRewards
        increaseGrist();
     }
 
@@ -1797,7 +1797,7 @@ class Player extends GameEntity {
         for(Player p in sortedChoices) {
             if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.
-                if((p.aspect != Aspects.SPACE || p.landLevel < session.goodFrogLevel)  && p.canHelp()) {
+                if((p.aspect != Aspects.SPACE || p.landLevel > session.goodFrogLevel)  && p.canHelp()) {
                     helper = p;
                     //print("randomly picking helper with an id of $helper");
                 }
