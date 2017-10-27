@@ -270,6 +270,7 @@ class PostDenizenFrogChain extends PostDenizenQuestChain {
     bool doQuest(Player p1, GameEntity p2, DenizenFeature denizen, ConsortFeature consort, String symbolicMcguffin, String physicalMcguffin, Element div, Land land) {
         //takes 3 quests to finish.
         p1.landLevel += p1.session.goodFrogLevel/3;
+        //p1.session.logger.info("land level raised to ${p1.landLevel}");
         return super.doQuest(p1, p2, denizen, consort, symbolicMcguffin, physicalMcguffin, div, land);
     }
 }
