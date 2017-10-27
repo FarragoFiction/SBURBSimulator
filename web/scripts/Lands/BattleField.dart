@@ -6,6 +6,8 @@ import "FeatureTypes/QuestChainFeature.dart";
 
 
 class Battlefield extends Land {
+    @override
+    FeatureTemplate featureTemplate = FeatureTemplates.SKAIA;
 
     WeightedList<SkaiaQuestChainFeature> battleFieldQuestChains = new WeightedList<SkaiaQuestChainFeature>();
 

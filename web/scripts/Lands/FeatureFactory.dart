@@ -280,4 +280,8 @@ abstract class FeatureTemplates {
     static FeatureTemplate MOON = new FeatureTemplate.from(QUALIA)
         ..addFeatureSet(FeatureCategories.MOON_QUEST_CHAIN)
         ..addFeatureSet(FeatureCategories.CONSORT);
+
+    static FeatureTemplate SKAIA = new FeatureTemplate.from(QUALIA)
+        ..addFeatureSet(FeatureCategories.SKAIA_QUEST_CHAIN)
+        ..addFeatureSet(FeatureCategories.CONSORT);
 }

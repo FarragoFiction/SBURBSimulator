@@ -66,9 +66,16 @@ class QuestsAndStuff extends Scene {
 	}
 
     void allocateSkaiaQuests() {
-	   for(Player p in session.players) {
-            if(p.land != null || p.canSkaia) {
-                skaiaParties.add(new QuestingParty(session, p, null));
+        List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
+	   for(Player p in avail) {
+            if((session.isPlayerAvailable(p) && !p.dead) && p.land != null || p.canSkaia) {
+                if(p.land != null && p.land.noMoreQuests) {
+                    if(session.rand.nextDouble() > .6) { //small chance of doing skaia before land if you can.
+                        skaiaParties.add(new QuestingParty(session, p, null));
+                    }
+                }else { //100% chance besides moon.
+                    skaiaParties.add(new QuestingParty(session, p, null));
+                }
             }
        }
     }
@@ -99,6 +106,16 @@ class QuestsAndStuff extends Scene {
 		//doQuests will append itself.
 		player.moon.doQuest(div, player, null);
 	}
+
+    void processSkaia(Element div, QuestingParty questingParty) {
+	    session.canReckoning = true;
+        Player player = questingParty.player1;
+        session.battlefield.initQuest([player]);
+        String html = "${session.battlefield.getChapter()}   ${session.battlefield.randomFlavorText(session.rand, player)} ";
+        appendHtml(div, html);
+        //doQuests will append itself.
+        session.battlefield.doQuest(div, player, null);
+    }
 
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
@@ -163,9 +180,15 @@ class QuestsAndStuff extends Scene {
             processMoon(div, qp);
         }
 
+        for(QuestingParty qp in skaiaParties) {
+            processSkaia(div, qp);
+        }
+
         for(QuestingParty qp in landParties) {
 		    processLand(div, qp);
         }
+
+
 	}
 
 

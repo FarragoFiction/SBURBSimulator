@@ -4,6 +4,7 @@ import "../SBURBSim.dart";
 abstract class Scene {
   bool canRepeat = true;
   Session session;
+
     List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
   Scene(Session this.session, [bool this.canRepeat = true]); //eventually take in session.
 

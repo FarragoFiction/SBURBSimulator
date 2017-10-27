@@ -12,6 +12,7 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+    bool canReckoning; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
     Logger logger = null;
     Battlefield battlefield;
@@ -195,7 +196,7 @@ class Session {
 
 
         battleFieldThemes[battleFieldTheme] = Theme.HIGH;
-
+        //print("battlefield themes is ${battleFieldThemes}");
         battlefield = new Battlefield.fromWeightedThemes("BattleField", battleFieldThemes, this, Aspects.LIGHT);
 
 

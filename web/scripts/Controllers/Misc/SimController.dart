@@ -323,17 +323,18 @@ abstract class SimController {
     void tick([num time]) {
         ////print("Debugging AB: tick");
         ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
-        if (curSessionGlobalVar.timeTillReckoning > 0 && !curSessionGlobalVar.stats.doomedTimeline) {
+        //don't start  a reckoning until at least one person has been to the battlefield.
+        if(curSessionGlobalVar.canReckoning && curSessionGlobalVar.timeTillReckoning <= 0) {
+           curSessionGlobalVar.logger.info("reckoning at ${curSessionGlobalVar.timeTillReckoning} and can reckoning is ${curSessionGlobalVar.canReckoning}");
+            curSessionGlobalVar.timeTillReckoning = 0; //might have gotten negative while we wait.
+            reckoning();
+        }else if (!curSessionGlobalVar.stats.doomedTimeline) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
             this.gatherStats();
             window.requestAnimationFrame(tick);
-            ////print("pastJR: I am going to annoy you until you make this animation frames instead of timers");
-            //new Timer(new Duration(milliseconds: 10), tick); //timer is to get that sweet sweet asynconinity back, so i don't have to wait for EVERYTHING to be done to see anything.
-        } else {
-            ////print("Debugging AB: reckoning time.");
-            reckoning();
         }
+        //if we are doomed, we crashed, so don't do anything.
     }
 
     void gatherStats() {
