@@ -91,14 +91,17 @@ class Session {
     }
 
     SkaiaQuestChainFeature randomBattlefieldQuestChain() {
+        //TODO quests that delay reckoning seem like they'd be boring. but could have specific quests with other effects
+        //like increasing the time the reckoning lasts for (rocks fall ending)
         List<Quest> possibleActivities = new List<Quest>()
-            ..add(new Quest("The ${Quest.PLAYER1} bets 50 boonies on the red frog.   After a nerve wracking set of hops, it comes in first!  "))
-            ..add(new Quest("The VAST CROAK will redeem us all.  The VAST CROAK is the purity of creation, untainted by the old universe.  The ${Quest.PLAYER1} isn’t sure they believe in the Church of the Frog’s message, but the sermon itself is very soothing."))
-            ..add(new Quest("Two parts flour. One part good sweet butter.  A bowl egg whites to brush onto the surface.  Sugar to taste. Plenty of elbow grease. The ${Quest.PLAYER1} is learning to master the secret art of the HOLY PASTRIES."))
-            ..add(new Quest("The ${Quest.PLAYER1} talks to several Prospitians, learning about their daily lives and how happy they are under the WHITE QUEEN’s rule."))
-            ..add(new Quest("The ${Quest.PLAYER1} flutters about aimlessly, simply enjoying the feeling of flying."))
-            ..add(new Quest("The ${Quest.PLAYER1} attends a glorious dance party, complete with masquerades, tea parties and friendship.  The Prospitians admire the ${Quest.PLAYER1}’s cheerful demeanor and willingness to invent new dance steps."))
-            ..add(new Quest("The ${Quest.PLAYER1} stares into the clouds on Skaia. Visions swim in their head. Is this game….more terrible than they thought?"));
+            ..add(new Quest("The ${Quest.PLAYER1} fights the Dersite army, desparately trying to stave off the Reckoning.   "))
+            ..add(new Quest("The ${Quest.PLAYER1} explores Skaian Castles. Huh, there sure are a lot of books!"))
+            ..add(new Quest("The ${Quest.PLAYER1} reroutes Dersite equipment to resupply Prospitian soliders."))
+            ..add(new Quest("The ${Quest.PLAYER1} mentally prepares for the upcoming Final Battle."))
+            ..add(new Quest("The ${Quest.PLAYER1} enters a Dersite battleship, punches the shit out of the captain, locks the door to the control room, reroutes the autopilot to crash into another battleship, then flies out through a window.  The ships crash and explode, and ${Quest.PLAYER1} walks away in slow-motion without looking backwards."))
+            ..add(new Quest("The ${Quest.PLAYER1} gives speeches to Prospit army, convincing them that their cause is worth fighting for, despite its futility."))
+            ..add(new Quest("The ${Quest.PLAYER1} spares a Derse company in exchange for them leaving the conflict. They decide to join the war for a better world instead."))
+            ..add(new Quest("The ${Quest.PLAYER1} hijacks a massive Dersite drilling machine, creating a hole for the frog to enter Skaia more easily."));
         List<Quest> chosen = new List<Quest>();
         int times = rand.nextInt(2) + 3;
         for(int i = 0; i<times; i++) {
