@@ -26,7 +26,7 @@ class Battlefield extends Land {
 
     @override
     String get shortName {
-        return "Strange Dreams:";
+        return "The Battlefield:";
     }
 
     void processBattlefieldShit( Map<QuestChainFeature, double> features) {

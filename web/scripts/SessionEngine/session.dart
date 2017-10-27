@@ -14,14 +14,14 @@ enum CanonLevel {
 class Session {
     //TODO some of these should just live in session mutator
     Logger logger = null;
-    List<Moon> moons = new List<Moon>();
+    Battlefield battlefield;
     Moon prospit;
     Moon derse;
+    List<Moon> get moons => <Moon>[prospit, derse];
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
-    //TODO all these "session summary stats" things should just be a SessionSummary object I own.
 
     num sessionHealth = 500 * Stats.POWER.coefficient; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
     List<Player> replayers = <Player>[]; //used for fan oc easter eggs.
@@ -89,6 +89,24 @@ class Session {
         return null;
     }
 
+    SkaiaQuestChainFeature randomBattlefieldQuestChain() {
+        List<Quest> possibleActivities = new List<Quest>()
+            ..add(new Quest("The ${Quest.PLAYER1} bets 50 boonies on the red frog.   After a nerve wracking set of hops, it comes in first!  "))
+            ..add(new Quest("The VAST CROAK will redeem us all.  The VAST CROAK is the purity of creation, untainted by the old universe.  The ${Quest.PLAYER1} isn’t sure they believe in the Church of the Frog’s message, but the sermon itself is very soothing."))
+            ..add(new Quest("Two parts flour. One part good sweet butter.  A bowl egg whites to brush onto the surface.  Sugar to taste. Plenty of elbow grease. The ${Quest.PLAYER1} is learning to master the secret art of the HOLY PASTRIES."))
+            ..add(new Quest("The ${Quest.PLAYER1} talks to several Prospitians, learning about their daily lives and how happy they are under the WHITE QUEEN’s rule."))
+            ..add(new Quest("The ${Quest.PLAYER1} flutters about aimlessly, simply enjoying the feeling of flying."))
+            ..add(new Quest("The ${Quest.PLAYER1} attends a glorious dance party, complete with masquerades, tea parties and friendship.  The Prospitians admire the ${Quest.PLAYER1}’s cheerful demeanor and willingness to invent new dance steps."))
+            ..add(new Quest("The ${Quest.PLAYER1} stares into the clouds on Skaia. Visions swim in their head. Is this game….more terrible than they thought?"));
+        List<Quest> chosen = new List<Quest>();
+        int times = rand.nextInt(2) + 3;
+        for(int i = 0; i<times; i++) {
+            chosen.add(rand.pickFrom(possibleActivities));
+        }
+        return new SkaiaQuestChainFeature(true, "Wander The Battlefield", chosen, new BattlefieldReward(), QuestChainFeature.defaultOption);
+    }
+
+
     MoonQuestChainFeature randomProspitQuestChain() {
         List<Quest> possibleActivities = new List<Quest>()
             ..add(new Quest("The ${Quest.PLAYER1} bets 50 boonies on the red frog.   After a nerve wracking set of hops, it comes in first!  "))
@@ -150,11 +168,44 @@ class Session {
         return new MoonQuestChainFeature(true, "Do Dream Bubble Bullshit", chosen, new DreamReward(), QuestChainFeature.hasNoDreamSelfBubbles);
     }
 
+    void setupBattleField() {
+        Map<Theme,double> battleFieldThemes = new Map<Theme, double>();
+        Theme battleFieldTheme = new Theme(<String>["Battlefield"])
+            ..addFeature(FeatureFactory.SMOKESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.BLOODSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.PROSPITIANCARAPACE, Feature.HIGH)
+            ..addFeature(FeatureFactory.DERSECARAPACE, Feature.HIGH)
+            //TODO in npc update, have meeting WV be a quest here.
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW)
+            ..addFeature(randomBattlefieldQuestChain(), Feature.LOW);
+
+
+        battleFieldThemes[battleFieldTheme] = Theme.HIGH;
+
+        battlefield = new Battlefield.fromWeightedThemes("BattleField", battleFieldThemes, this, Aspects.LIGHT);
+
+
+    }
+
 
     void setupMoons() {
          print("moons set up $session_id");
+         setupBattleField();
         //no more than one of each.
-        moons.clear();
         Map<Theme,double> prospitThemes = new Map<Theme, double>();
         Theme prospitTheme = new Theme(<String>["Prospit"])
             ..addFeature(FeatureFactory.DISCOSOUND, Feature.MEDIUM)
@@ -224,8 +275,7 @@ class Session {
 
         prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
         derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
-        moons.add(prospit);
-        moons.add(derse);
+
          for(Player p in players) {
              p.syncToSessionMoon();
          }

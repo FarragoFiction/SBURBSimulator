@@ -96,6 +96,21 @@ class DenizenReward extends Reward {
     }
 }
 
+
+class BattlefieldReward extends Reward {
+    @override
+    String image = null;
+    @override
+    String bgImage = "Rewards/battlefield.png";
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land) {
+        text = "The ${Reward.PLAYER1} is getting pretty familiar with the battlefield.";
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        super.apply(div, p1, p2, land);
+    }
+}
+
 class CodReward extends Reward {
     @override
     String image = "/Rewards/sweetCod.png";
