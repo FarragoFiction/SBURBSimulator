@@ -105,7 +105,7 @@ class BattlefieldReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
-        text = " The ${Reward.PLAYER1} is getting pretty familiar with the battlefield.";
+        text = " The ${Reward.PLAYER1} is getting pretty familiar with the battlefield. ";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         super.apply(div, p1, p2, land);
     }

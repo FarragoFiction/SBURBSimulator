@@ -68,7 +68,7 @@ class QuestsAndStuff extends Scene {
     void allocateSkaiaQuests() {
         List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
 	   for(Player p in avail) {
-            if((session.isPlayerAvailable(p) && !p.dead) && p.land != null || p.canSkaia) {
+            if((session.isPlayerAvailable(p) && !p.dead) && (p.land != null || p.canSkaia)) {
                 if(p.land != null && p.land.noMoreQuests) {
                     if(session.rand.nextDouble() > .6) { //small chance of doing skaia before land if you can.
                         skaiaParties.add(new QuestingParty(session, p, null));
