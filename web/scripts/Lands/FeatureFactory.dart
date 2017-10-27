@@ -230,6 +230,7 @@ abstract class FeatureCategories {
     static FeatureTypeSubset<PostDenizenQuestChain> POST_DENIZEN_QUEST_CHAIN = new FeatureTypeSubset<PostDenizenQuestChain>("post denizen quest chain");
 
     static FeatureTypeSubset<MoonQuestChainFeature> MOON_QUEST_CHAIN = new FeatureTypeSubset<MoonQuestChainFeature>("moon quest chain");
+    static FeatureTypeSubset<SkaiaQuestChainFeature> SKAIA_QUEST_CHAIN = new FeatureTypeSubset<SkaiaQuestChainFeature>("battlefield quest chain");
 
     // ################## utility methods - these keep things shorter
 

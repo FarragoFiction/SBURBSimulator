@@ -279,9 +279,18 @@ class MoonQuestChainFeature extends QuestChainFeature {
 
     MoonQuestChainFeature(bool canRepeat, String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(canRepeat,name, quests, reward, condition);
     @override
-    PostDenizenQuestChain clone() {
-        return new PostDenizenQuestChain(this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
+    MoonQuestChainFeature clone() {
+        return new MoonQuestChainFeature(this.canRepeat, this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
     }
 }
 
 
+
+class SkaiaQuestChainFeature extends QuestChainFeature {
+
+    SkaiaQuestChainFeature(bool canRepeat, String name, List<Quest> quests, Reward reward, Predicate<List<Player>> condition) : super(canRepeat,name, quests, reward, condition);
+    @override
+    SkaiaQuestChainFeature clone() {
+        return new SkaiaQuestChainFeature(this.canRepeat, this.name,  new List<Quest>.from(this.quests), this.reward, this.condition);
+    }
+}
