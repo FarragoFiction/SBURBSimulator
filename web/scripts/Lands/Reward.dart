@@ -105,7 +105,7 @@ class BattlefieldReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
-        text = "The ${Reward.PLAYER1} is getting pretty familiar with the battlefield.";
+        text = " The ${Reward.PLAYER1} is getting pretty familiar with the battlefield.";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         super.apply(div, p1, p2, land);
     }
@@ -117,7 +117,7 @@ class CodReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
-        text = "It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
+        text = " It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
         if(!p1.godTier) text += " Too bad they'll have to wait to be god tier to TRULY appreciate it.";
         if(bardQuest) text += " Even if someone already found this sacred treasure, the ${Reward.PLAYER1} is glad they journeyed to find it on their own as well. ";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
