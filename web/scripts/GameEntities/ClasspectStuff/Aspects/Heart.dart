@@ -106,14 +106,14 @@ class Heart extends Aspect {
                 new Quest("Now that the ${Quest.DENIZEN} has been defeated, a Copy ${Quest.PLAYER1} has appeared. They claim they are the TRUE ${Quest.PLAYER1} is an imposter who just wants their fame! All of the ${Quest.CONSORT}s ${Quest.CONSORTSOUND} in confusion and don't seem to know what to do."),
                 new Quest("A wizened ${Quest.PLAYER1} creates a series of challenges that only the REAL ${Quest.PLAYER1} should be able to complete. They are....laughably wrong. Things like walking in a straight line, being literate and being able to ${Quest.CONSORTSOUND} for more than five minutes straight. At the end of it, all the ${Quest.CONSORT}s unanimously agree that the Fake ${Quest.PLAYER1} is the winner. THIS IS STUPID."),
                 new Quest("The REAL ${Quest.PLAYER1} has had enough of all this bullshit. With some bad ass pink lightning, they expose the Fake ${Quest.PLAYER1} as three ${Quest.CONSORT}s in an overcoat using some weird Heart magic.")
-            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.MEDIUM)
+            ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("Shatter The Mirrors", [
                 new Quest("The ${Quest.PLAYER1} finds a disorienting labyrinth of mirrors. They know they need to reach the end but they keep getting turned around. Frustrated, they punch a mirror, shattering it. The dungeon crumbles away entirely, leaving the treasure at the end. Huh. "),
                 new Quest("The next time the ${Quest.PLAYER1} finds a labyrinth of mirrors, they skip straight to breaking the mirrors and collect that sweet, sweet loot. "),
                 new Quest("Another mirror, another punch. Except this time....the mirror is unaffected. The ${Quest.PLAYER1} in the reflection smirks back. In a rage the ${Quest.PLAYER1} assaults the mirror until their knuckles are bloody. Still the reflected ${Quest.PLAYER1} is a smug prick. 'Maybe',  the reflection says, 'You should stop trying to destroy yourself.' The ${Quest.PLAYER1} collapses in an exhausted heap and considers their words."),
                 new DenizenFightQuest("When the ${Quest.PLAYER1} encounters the next mirror labyrinth, they do their best to beat it correctly. They reign in their anger, they try to forget about that smug smirk. When they reach a dead end they realize that their reflections are....wrong.   They are all...watching the ${Quest.PLAYER1}, even if that shouldn't be possible. 'Help me.', the ${Quest.PLAYER1} says. As one, each of their reflections destroys their own mirror. The shards of glass ricochet forwards and fit neatly into a locked puzzle door, revealing the path to the ${Quest.DENIZEN}.","The ${Quest.PLAYER1} has accepted their fractured soul, and the destructiveness inherent in it. The ${Quest.DENIZEN} is dead.","The ${Quest.PLAYER1} destroyed themselves.")
-            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.MEDIUM)
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
 
             , Theme.HIGH);
@@ -131,6 +131,12 @@ class Heart extends Aspect {
                 new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, but then realizes that because of some stupid ${Quest.MCGUFFIN} laws put in place by ${Quest.DENIZEN}, the ship will be unable to sail. The player flips their shit and begins preparing for the final battle. THE SHIP WILL SAIL. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Heal The Broken Heart", [
+                new Quest("The ${Quest.PLAYER1} finds a weeping Broken Hearted ${Quest.CONSORT}. The most Fetching ${Quest.CONSORT} of their dreams just turned them down to the ${Quest.MCGUFFIN} Dance and they are miserable. On a whim, the ${Quest.PLAYER1} offers to take them instead. The ${Quest.CONSORT} immediately brightens.  "),
+                new Quest("The Broken Hearted ${Quest.CONSORT} and the ${Quest.PLAYER1} are shopping for matching outfits to wear to the ${Quest.MCGUFFIN} Dance. Oh look, there is the Fetching ${Quest.CONSORT}. The Broken Hearted ${Quest.CONSORT} begins sniffling quietly to himself. Oh, dear.  When they aren't looking, the ${Quest.PLAYER1} goes over to the Fetching ${Quest.CONSORT} to talk. It is swiftly revealed that it's all been a big misunderstanding.  The Fetching ${Quest.CONSORT} really is busy with their job as a ${Quest.CONSORTSOUND} salesman for the ${Quest.MCGUFFIN} dance, but the Broken Hearted ${Quest.CONSORT} ran away crying before they could explain that they'd love to date them anyways! The ${Quest.PLAYER1} sees an opportunity to save the day."),
+                new Quest("It is the day of the big ${Quest.MCGUFFIN} Dance. The ${Quest.PLAYER1} is working hard at being a ${Quest.CONSORTSOUND} salesman, despite their lack of credentials. The Fetching ${Quest.CONSORT} and the Mended Hearted ${Quest.CONSORT} are enjoying a lovely time at the Dance. A happy ending! ")
+            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
 
 
             ..addFeature(new DenizenQuestChain("Flushed Shipping Dungeon", [
