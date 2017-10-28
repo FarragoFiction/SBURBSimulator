@@ -31,7 +31,7 @@ class Domestic extends InterestCategory {
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Design the Dress", [
-                new Quest("The ${Quest.PLAYER1} is visited by a Beautiful ${Quest.CONSORT} who wishes to commision a dress. Only the finest ${Quest.PHYSICALMCGUFFIN}will do for material The Beautiful ${Quest.CONSORT} refuses to take 'no' for an answer. "),
+                new Quest("The ${Quest.PLAYER1} is visited by a Beautiful ${Quest.CONSORT} who wishes to commision a dress. Only the finest ${Quest.PHYSICALMCGUFFIN} will do for material The Beautiful ${Quest.CONSORT} refuses to take 'no' for an answer. "),
                 new Quest(" The ${Quest.PLAYER1} had almost given up, but they finally find the perfect ${Quest.PHYSICALMCGUFFIN} to decorate the dress. Now they just need to sew it on."),
                 new Quest("The ${Quest.PLAYER1} presents the  ${Quest.PHYSICALMCGUFFIN} dress to the Beautiful ${Quest.CONSORT}, who ${Quest.CONSORTSOUND}s with delight. They will be SURE to tell all their friends where they got such a wonderful dress.  "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)

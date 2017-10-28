@@ -29,14 +29,16 @@ class LuckStuff extends Scene{
 			double rollValueLow = player.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
 			double rollValueHigh = player.rollForLuck(Stats.MAX_LUCK);
 			//can have two luck events in same turn, whatever. fuck this complicated code, what was i even thinking???
-			if(rollValueHigh > this.minHighValue){
-				//alert("High  roll of: " + rollValueHigh);
-				this.rolls.add(new Roll(player, rollValueHigh));
-			}
-			
-			if(rollValueLow < this.minLowValue){
-				//alert("Low  roll of: " + rollValueLow);
-				this.rolls.add(new Roll(player, rollValueLow));
+			if(player.canHelp()) { //can't spam luck stuff without playing the game.
+				if (rollValueHigh > this.minHighValue) {
+					//alert("High  roll of: " + rollValueHigh);
+					this.rolls.add(new Roll(player, rollValueHigh));
+				}
+
+				if (rollValueLow < this.minLowValue) {
+					//alert("Low  roll of: " + rollValueLow);
+					this.rolls.add(new Roll(player, rollValueLow));
+				}
 			}
 		}
 		return this.rolls.length > 0;

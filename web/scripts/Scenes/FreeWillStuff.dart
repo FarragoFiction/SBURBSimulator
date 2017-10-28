@@ -44,6 +44,10 @@ class FreeWillStuff extends Scene {
                 }
             }
         }
+        if(this.player != null && !this.player.canHelp()) {
+            player = null; //can't do freewill if you haven't played legit for at least a while.
+            decision  = null;
+        }
 
         return this.decision != null;
     }

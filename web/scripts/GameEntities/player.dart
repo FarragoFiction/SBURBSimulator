@@ -1765,7 +1765,7 @@ class Player extends GameEntity {
     }
 
     bool canHelp() {
-        return godTier || isDreamSelf || land == null || land.firstCompleted;
+        return godTier || isDreamSelf || land == null || land.firstCompleted || aspect == Aspects.BREATH;
     }
 
     ///not static because who can help me varies based on who i am (space is knight, for example)
