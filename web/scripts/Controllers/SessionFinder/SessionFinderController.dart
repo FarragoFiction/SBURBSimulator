@@ -12,6 +12,8 @@ import '../SessionFinder/AuthorBot.dart';
   AB rewriting the page title.
  */
 Random rand;
+//each round keeps track of it's mvp
+Player mvp;
 int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
@@ -253,7 +255,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       (querySelector("#button")as ButtonElement).disabled =false;
      // //print("Debugging AB: I think I am done now");
       stopTime = new DateTime.now();
-      appendHtml(querySelector("#roundTime"), "Round: $round took ${stopTime.difference(startTime)}<br>");
+      appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>");
 
       window.alert("Notice: should be ready to check more sessions.");
            List<Element> filters = querySelectorAll("input[name='filter']");
@@ -264,11 +266,22 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
      // //print("Debugging AB: going to start new session");
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
       //RESETTING the mutator so that wastes can't leak into other sessions
+      getMVP();
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t) => startSession());
     }
     ////print("Debugging AB: done summarizing session ${session.session_id}");
     return sum;
+  }
+
+  void getMVP() {
+    if(mvp == null) {
+      mvp = findMVP(curSessionGlobalVar.players);
+    }else {
+      Player tmp = findMVP(curSessionGlobalVar.players);
+      //this way makes SURE it uses the same metric as findMVP
+      mvp = findMVP(<Player>[mvp, tmp]);
+    }
   }
 
   @override

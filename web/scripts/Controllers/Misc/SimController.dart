@@ -337,6 +337,7 @@ abstract class SimController {
         //if we are doomed, we crashed, so don't do anything.
     }
 
+
     void gatherStats() {
         if (gatherStatData) {
             statData.sample(curSessionGlobalVar);

@@ -13,6 +13,7 @@ import "../../SessionEngine/DeadSessionSummary.dart";
   AB rewriting the page title.
  */
 Random rand;
+Player mvp;
 int round = 0;
 DeadSessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
@@ -254,7 +255,7 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
       (querySelector("#button")as ButtonElement).disabled =false;
      // //print("Debugging AB: I think I am done now");
       stopTime = new DateTime.now();
-      appendHtml(querySelector("#roundTime"), "Round: $round took ${stopTime.difference(startTime)}<br>");
+      appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>");
 
       window.alert("Notice: should be ready to check more sessions.");
            List<Element> filters = querySelectorAll("input[name='filter']");
@@ -270,6 +271,16 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
     }
     ////print("Debugging AB: done summarizing session ${session.session_id}");
     return sum;
+  }
+
+  void getMVP() {
+    if(mvp == null) {
+      mvp = findMVP(curSessionGlobalVar.players);
+    }else {
+      Player tmp = findMVP(curSessionGlobalVar.players);
+      //this way makes SURE it uses the same metric as findMVP
+      mvp = findMVP(<Player>[mvp, tmp]);
+    }
   }
 
   @override
