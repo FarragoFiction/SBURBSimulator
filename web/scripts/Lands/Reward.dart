@@ -6,6 +6,8 @@ import "FeatureTypes/EnemyFeature.dart";
 //there are different sub classes of reward. can get a fraymotif, can get grist, land level, items (post alchemy) minions (post npc).
 //IMPORTANT don't keep state data here.
 class Reward {
+
+
     static String PLAYER1 = "PLAYER1TAG";
     static String PLAYER2 = "PLAYER2TAG";
     //children replace these two things.
@@ -45,10 +47,16 @@ class FraymotifReward extends Reward
 {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
+    String name = null;
+    String desc = null;
     @override
     String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
     @override
     String image = "Rewards/sweetLoot.png";
+
+    FraymotifReward([String this.name = null, this.desc = null]);
+
+
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
         Fraymotif f1;
@@ -58,12 +66,16 @@ class FraymotifReward extends Reward
                 text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
                 f1 = p1.getNewFraymotif(p2); //with other player
                 f2 = (p2 as Player).getNewFraymotif(p1);
+                if(name != null) f2.name = name;
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
                 text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
             }
         }
 
         if (f1 == null) f1 = p1.getNewFraymotif(null);
+        //only player 1 gets custom fraymotif
+        if(name != null) f1.name = name;
+        if(desc != null) f1.desc = desc;
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.

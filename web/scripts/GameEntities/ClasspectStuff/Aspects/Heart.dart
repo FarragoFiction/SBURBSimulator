@@ -106,7 +106,7 @@ class Heart extends Aspect {
                 new Quest("Now that the ${Quest.DENIZEN} has been defeated, a Copy ${Quest.PLAYER1} has appeared. They claim they are the TRUE ${Quest.PLAYER1} is an imposter who just wants their fame! All of the ${Quest.CONSORT}s ${Quest.CONSORTSOUND} in confusion and don't seem to know what to do."),
                 new Quest("A wizened ${Quest.PLAYER1} creates a series of challenges that only the REAL ${Quest.PLAYER1} should be able to complete. They are....laughably wrong. Things like walking in a straight line, being literate and being able to ${Quest.CONSORTSOUND} for more than five minutes straight. At the end of it, all the ${Quest.CONSORT}s unanimously agree that the Fake ${Quest.PLAYER1} is the winner. THIS IS STUPID."),
                 new Quest("The REAL ${Quest.PLAYER1} has had enough of all this bullshit. With some bad ass pink lightning, they expose the Fake ${Quest.PLAYER1} as three ${Quest.CONSORT}s in an overcoat using some weird Heart magic.")
-            ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
+            ], new FraymotifReward("The Real Heart Player","The CASTERS knows who they are, and their confidence is turned into a pink lightning attack."), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("Shatter The Mirrors", [
                 new Quest("The ${Quest.PLAYER1} finds a disorienting labyrinth of mirrors. They know they need to reach the end but they keep getting turned around. Frustrated, they punch a mirror, shattering it. The dungeon crumbles away entirely, leaving the treasure at the end. Huh. "),
