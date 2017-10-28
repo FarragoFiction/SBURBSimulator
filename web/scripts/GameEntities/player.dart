@@ -498,6 +498,9 @@ class Player extends GameEntity {
         String landString = "DESTROYED.";
         if(land != null) landString = land.name;
         ret += "Land: ${landString}<Br>";
+        String denizen = "NONE";
+        if(land != null) denizen = land.denizenFeature.name;
+
         ret += "Denizen: $denizen<Br>";
 
         ret += "LandLevel: $landLevel<Br>";
