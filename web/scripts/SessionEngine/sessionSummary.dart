@@ -313,7 +313,7 @@ class SessionSummary {
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");
         summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0);
-        summary.setBoolStat("murderMode", session.stats.murdersHappened);
+        summary.setBoolStat("murdersHappened", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 
         Player spacePlayer = session.findBestSpace();
@@ -542,7 +542,7 @@ class MultiSessionSummary {
         setStat("kingTooPowerful", 0);
         setStat("queenRejectRing", 0);
         setStat("democracyStarted", 0);
-        setStat("murderMode", 0);
+        setStat("murdersHappened", 0);
         setStat("grimDark", 0);
         setStat("hasHearts", 0);
         setStat("hasDiamonds", 0);
@@ -824,7 +824,7 @@ class MultiSessionSummary {
 
     bool isDramaticProperty(String propertyName) {
         if (propertyName == "exiledJack" || propertyName == "plannedToExileJack" || propertyName == "exiledQueen" || propertyName == "jackGotWeapon" || propertyName == "jackScheme") return true;
-        if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murderMode" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
+        if (propertyName == "kingTooPowerful" || propertyName == "queenRejectRing" || propertyName == "murdersHappened" || propertyName == "grimDark" || propertyName == "denizenFought") return true;
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
         if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "hasGhostEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
@@ -1046,7 +1046,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("kingTooPowerful")) mss.incNumStat("kingTooPowerful");
             if (ss.getBoolStat("queenRejectRing")) mss.incNumStat("queenRejectRing");
             if (ss.getBoolStat("democracyStarted")) mss.incNumStat("democracyStarted");
-            if (ss.getBoolStat("murderMode")) mss.incNumStat("murderMode");
+            if (ss.getBoolStat("murdersHappened")) mss.incNumStat("murdersHappened");
             if (ss.getBoolStat("grimDark")) mss.incNumStat("grimDark");
             if (ss.getBoolStat("hasDiamonds")) mss.incNumStat("hasDiamonds");
             if (ss.getBoolStat("hasSpades")) mss.incNumStat("hasSpades");
