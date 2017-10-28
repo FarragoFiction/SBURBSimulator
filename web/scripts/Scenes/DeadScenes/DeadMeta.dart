@@ -95,7 +95,7 @@ class DeadMeta extends Scene {
         Player player = session.players[0];
 
         //you get to fight my denizen self now, bitch.
-        player.land.denizenFeature.name = meta.denizen.name;
+        player.land.denizenFeature.name = meta.land.denizenFeature.name;
 
         Conversation conversation;
 
