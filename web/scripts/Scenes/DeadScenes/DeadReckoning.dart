@@ -27,7 +27,7 @@ void renderContent(Element div) {
 }
 
 void startNewSession() {
-    Element div = querySelector("#story");
+    Element div = SimController.instance.storyElement;
     div.setInnerHtml("");
     Player player = session.players[0];
     String divID = "canvasdeadInvader";

@@ -15,6 +15,9 @@ import "../../navbar.dart";
 //ABController inherits from Story Controller and only changes what she must.
 //care about other controllers later.
 abstract class SimController {
+
+    Element storyElement;
+    Element voidStory;
     static SimController instance;
     num initial_seed = 0;
 
@@ -29,6 +32,7 @@ abstract class SimController {
             statData = new StatSampler();
             statData.createSaveButton();
         }
+        storyElement = querySelector("#story");
     }
 
     void callNextIntro(int player_index) {

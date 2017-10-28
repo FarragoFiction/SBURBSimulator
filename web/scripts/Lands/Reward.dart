@@ -148,11 +148,11 @@ class FrogReward extends FraymotifReward {
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land) {
         if(p1.grimDark < 3) {
-            p1.landLevel = p1.session.goodFrogLevel;
+            p1.landLevel = 1.0 * p1.session.goodFrogLevel; //need to be double
             text = "The ${Reward.PLAYER1} breeds the final frog. While it is a tadpole for now, once it is placed in the fertlized SKAIA it will grow to become an entire Universe Frog.";
         }else {
             "Rewards/bitterFrog.png";
-            p1.landLevel = -1*p1.session.goodFrogLevel;
+            p1.landLevel = -1.0*p1.session.goodFrogLevel;
             text = "The ${Reward.PLAYER1}. Um. You don't think they were supposed to be doing that. Why doe the frog look like that? ";
         }
         super.apply(div, p1, p2, land);

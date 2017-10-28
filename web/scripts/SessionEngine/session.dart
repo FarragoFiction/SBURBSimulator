@@ -763,7 +763,43 @@ class Session {
         return session_id.toString();
     }
 
-    Element newScene(String callingScene, [overRideVoid = false]) {
+    Element newScene(String callingScene, [overRideVoid =false]) {
+        this.currentSceneNum ++;
+        Element ret = new DivElement();
+        ret.id = 'scene${this.currentSceneNum}';
+        String lightBS = "";
+        String innerHTML = "";
+        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if (this.sbahj) {
+            throw("TODO");
+        } else if (ouija == true) {
+            int trueRandom = getRandomIntNoSeed(1, 4);
+            innerHTML = "<img class = 'pen15' src = 'images/pen15_bg$trueRandom.png'> $lightBS";
+        }
+
+        //instead of appending you're replacing. Void4 is SERIOUS about you not getting to see.
+        if(mutator.voidField && !overRideVoid) {
+            if(SimController.instance.voidStory == null) {
+                doNotRender = true;
+                numScenes = 0; //since we're lying to AB anyway, use this to keep track of how many scenes we skipped due to void
+                doNotFetchXml = true;
+                SimController.instance.voidStory = new DivElement();
+                SimController.instance.voidStory.id = "voidStory";
+                SimController.instance.storyElement.append(SimController.instance.voidStory);
+            }
+            SimController.instance.voidStory.setInnerHtml("${"<br>"*numScenes}");//one br for each skipped scene
+            return ret;
+        }else if(overRideVoid) {
+            logger.info("am i setting do not render to false?");
+            //doNotRender = false; //this fucks AB up. don't do it. but at least they'll see the text.
+        }
+
+        ret.setInnerHtml(innerHTML);
+        SimController.instance.storyElement.append(ret);
+        return ret;
+    }
+
+    Element newSceneOld(String callingScene, [overRideVoid = false]) {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
