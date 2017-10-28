@@ -256,7 +256,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
      // //print("Debugging AB: I think I am done now");
       stopTime = new DateTime.now();
       appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>");
-
+      mvp = null; //reset.
       window.alert("Notice: should be ready to check more sessions.");
            List<Element> filters = querySelectorAll("input[name='filter']");
       for(CheckboxInputElement e in filters) {
