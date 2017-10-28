@@ -27,7 +27,7 @@ abstract class DeadAuthorBot extends DeadSimController {
     for(num i = 0; i<allSessionsSummaries.length; i++){
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
-    setHtml(querySelector("#story"), "");
+    setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //my callback is what will be different
@@ -130,7 +130,7 @@ abstract class DeadAuthorBot extends DeadSimController {
 
   @override
   void restartSession() {
-    setHtml(querySelector("#story"), '');
+    setHtml(SimController.instance.storyElement, '');
     window.scrollTo(0, 0);
     checkEasterEgg(easterEggCallBackRestart,null);
   }

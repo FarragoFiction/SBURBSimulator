@@ -239,7 +239,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();
-    setHtml(querySelector("#story"), "");
+    setHtml(SimController.instance.storyElement, "");
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
@@ -293,7 +293,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       return null;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
-    setHtml(querySelector("#story"), "");
+    setHtml(SimController.instance.storyElement, "");
     var sum = curSessionGlobalVar.generateSummary();
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);

@@ -59,10 +59,10 @@ void sbahjMode(){
 	if(!doNotRender) window.alert("where MAKING THIS HAPEN");
 	//when kr has their stuff read, render it after everything else is done , or just, like put it on a 30 second timer. needs comedic timing, needs to be on top
 	//maybe my laughing reaction shot sbahj_author.jpg goes then, too
-	appendHtml(querySelector("#story"),"<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
+	appendHtml(SimController.instance.storyElement,"<img src = 'images/AUTHORSBAHJ.jpg' style='position:absolute; top:111px'><img src = 'images/sbahj_author.jpg' style='position:absolute; left:0px; z-index: 999;'>");
 
 
-	new Timer(new Duration(milliseconds: 10000), () =>appendHtml(querySelector("#story"),"<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>"));
+	new Timer(new Duration(milliseconds: 10000), () =>appendHtml(SimController.instance.storyElement,"<img src = 'images/kR_falls_DOWN_stairs_forever.gif' style='position:fixed; top:0px;; z-index: 999;'>"));
 
 	querySelector('body').style.backgroundColor = "#0000ff";
 	querySelector('body').style.backgroundImage = "none";
@@ -261,7 +261,7 @@ void babyStuckMode(){
 //AB told me this was funny! I SWEAR I am not Robo-Racist! It's IRONIC.
 void roboMode(){
 	if(!doNotRender) window.alert("BEEP");
-	appendHtml(querySelector("#story"),"<img src = 'images/guide_bot.png' style='float:left;'>");
+	appendHtml(SimController.instance.storyElement,"<img src = 'images/guide_bot.png' style='float:left;'>");
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){
 		var p = curSessionGlobalVar.players[j];
 		p.hairColor = getRandomGreyColor();
@@ -290,7 +290,7 @@ void roboMode(){
 void tricksterMode(){
 	if(!doNotRender) window.alert("I FEEL JUST PEEEEEEEEEEEACHY!!!!!!!!!!!");
 	if(!doNotRender &&  querySelector("#avatar") != null) (querySelector("#avatar") as ImageElement).src = "images/CandyAuthorBot.png";
-	appendHtml(querySelector("#story"),"<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
+	appendHtml(SimController.instance.storyElement,"<img src = 'images/trickster_author.png' style='float:left;'><img src = 'images/trickster_artist.png' style='float:left;'>");
 	querySelector('body').style.backgroundImage =  "url(images/zilly.gif)"; //.style.backgroundColor
 	querySelector('#story').style.backgroundColor ="#ff93e4";
 	for(num j = 0; j<curSessionGlobalVar.players.length; j++){

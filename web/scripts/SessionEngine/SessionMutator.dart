@@ -669,9 +669,9 @@ class SessionMutator {
         s.logger.info("AB: A Space player is letting the Players enter their own Scratch.");
         List<Player> living = findLivingPlayers(guardians);
         if(living.isEmpty) {
-            appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own Scratched Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe their former guardians can revive them? ");
+            appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own Scratched Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe their former guardians can revive them? ");
         }else {
-            appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. How did the players get into their OWN SCRATCH? This doesn't...fuck. What? So wait, do they count as foreign players??? ");
+            appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. How did the players get into their OWN SCRATCH? This doesn't...fuck. What? So wait, do they count as foreign players??? ");
         }
         addAliensToSession(s, guardians);
     }
@@ -685,14 +685,14 @@ class SessionMutator {
     void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} know we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
-        appendHtml(querySelector("#story"), html);
+        appendHtml(SimController.instance.storyElement, html);
         querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
     }
 
     void renderSpaceButton(Element div) {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
-        appendHtml(querySelector("#story"), html);
+        appendHtml(SimController.instance.storyElement, html);
         querySelector("#husieButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
     }
 

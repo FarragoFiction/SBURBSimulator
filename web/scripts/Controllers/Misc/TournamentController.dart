@@ -207,7 +207,7 @@ class TournamentController extends AuthorBot {
 
   dynamic fight(){
     //print("Debugging AB: Starting up a tournament fight");
-    querySelector("#story").setInnerHtml("");
+    SimController.instance.storyElement.setInnerHtml("");
     //TODO how was this supposed to be working? make sure sessions gets this
     initial_seed = getRandomSeed(); //pick a random session
     TournamentTeam team = teamsGlobalVar[lastTeamIndex];

@@ -23,7 +23,7 @@ void main() {
   });
   loadNavbar();
   //be dead looking
-  querySelector("#story").style.backgroundColor = "grey";
+  SimController.instance.storyElement.style.backgroundColor = "grey";
   //querySelector("#links").style.backgroundColor = "grey";
   querySelector("#debug").style.backgroundColor = "grey";
   querySelector("#charSheets").style.backgroundColor = "grey";

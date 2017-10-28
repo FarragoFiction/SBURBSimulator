@@ -54,7 +54,7 @@ class Reckoning extends Scene {
 			intro += "was not on the ball with timeline management. Nothing you can do about it. <Br><Br>GAME OVER.";
 			this.session.stats.doomedTimeline = true;
 			intro += "<br><br>";
-			querySelector("#story").appendHtml(intro,treeSanitizer: NodeTreeSanitizer.trusted);
+			SimController.instance.storyElement.appendHtml(intro,treeSanitizer: NodeTreeSanitizer.trusted);
 			//session.logger.info("reckoning scratch button");
 			this.session.stats.scratchAvailable = true;
 			SimController.instance.renderScratchButton(this.session);

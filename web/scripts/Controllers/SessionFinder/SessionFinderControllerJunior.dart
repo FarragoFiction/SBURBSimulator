@@ -90,7 +90,7 @@ class SessionFinderControllerJunior extends SimController {
     for(num i = 0; i<allSessionsSummaries.length; i++){
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
-    setHtml(querySelector("#story"), "");
+    setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //im junior so deal with it

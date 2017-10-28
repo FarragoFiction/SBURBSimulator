@@ -12,7 +12,7 @@ main() {
     });
 
     globalInit();
-    Element div = querySelector("#story");
+    Element div = SimController.instance.storyElement;
     displayInterestThemes(div);
     displayAspect(div);
     displayClassThemes(div);

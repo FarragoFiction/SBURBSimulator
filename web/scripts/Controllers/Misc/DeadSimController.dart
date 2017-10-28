@@ -143,15 +143,15 @@ class DeadSimController extends SimController {
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
       List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
       if(living.isEmpty) {
-          appendHtml(querySelector("#story"), "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
+          appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
       }else {
-          appendHtml(querySelector("#story"), "<br><Br> Entering: session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>");
+          appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>");
       }
       checkSGRUB();
       if(curSessionGlobalVar.mutator.spaceField) {
           window.scrollTo(0, 0);
           querySelector("#charSheets").setInnerHtml("");
-          querySelector("#story").setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
+          SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
       }
       load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
   }
@@ -162,7 +162,7 @@ class DeadSimController extends SimController {
     if (params == window.location.href) params = "";
     String str = '<div class = "links"><a href = "dead_index.html?seed=$initial_seed&$params">Shareable URL </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <a href = "character_creator.html?seed$initial_seed&$params" target="_blank">Replay Session  </a> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<a href = "dead_index.html">Random Session URL </a> </div>';
     setHtml(querySelector("#seedText"), str);
-    querySelector("#story").appendHtml("Session: $initial_seed", treeSanitizer: NodeTreeSanitizer.trusted);
+    SimController.instance.storyElement.appendHtml("Session: $initial_seed", treeSanitizer: NodeTreeSanitizer.trusted);
   }
 
 

@@ -26,7 +26,7 @@ abstract class AuthorBot extends SimController {
     for(num i = 0; i<allSessionsSummaries.length; i++){
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
-    setHtml(querySelector("#story"), "");
+    setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     startSession(); //my callback is what will be different
@@ -68,7 +68,7 @@ abstract class AuthorBot extends SimController {
     if(newcurSessionGlobalVar != null){
      // //print("debugging AB: doing a combo session");
       curSessionGlobalVar = newcurSessionGlobalVar;
-      appendHtml(querySelector("#story"),"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
+      appendHtml(SimController.instance.storyElement,"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
       intro();
     }else{
       ////print("Debugging AB: can't combo, can't scratch. just do next session.");
@@ -263,7 +263,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void restartSession() {
-    setHtml(querySelector("#story"), '');
+    setHtml(SimController.instance.storyElement, '');
     window.scrollTo(0, 0);
     checkEasterEgg(easterEggCallBackRestart,null);
   }

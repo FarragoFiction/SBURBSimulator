@@ -347,7 +347,7 @@ class Session {
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
         ////print("processing scene");
-        //querySelector("#story").append("processing scene");
+        //SimController.instance.storyElement.append("processing scene");
         setAvailablePlayers(playersInSession);
         for (num i = 0; i < this.available_scenes.length; i++) {
             Scene s = this.available_scenes[i];
@@ -767,14 +767,28 @@ class Session {
         this.currentSceneNum ++;
         Element ret = new DivElement();
         ret.id = 'scene${this.currentSceneNum}';
+        ret.classes.add("scene");
         String lightBS = "";
         String innerHTML = "";
         if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
-            throw("TODO");
-        } else if (ouija == true) {
+            ret.classes.add("sbahj");
+            int reallyRand = getRandomIntNoSeed(1, 10);
+            for (int i = 0; i < reallyRand; i++) {
+                int indexOfTerribleCSS = getRandomIntNoSeed(0, terribleCSSOptions.length - 1);
+                List<String> tin = terribleCSSOptions[indexOfTerribleCSS];
+                if (tin[1] == "????") {
+                    tin[1] = "${getRandomIntNoSeed(1, 100)}%";
+                }
+                ret.style.setProperty(tin[0], tin[1]);
+                //print("Setting ${tin[0]} to ${tin[1]} in ${ret.style.cssText}");
+            }
+        }
+        if (ouija == true) {
             int trueRandom = getRandomIntNoSeed(1, 4);
             innerHTML = "<img class = 'pen15' src = 'images/pen15_bg$trueRandom.png'> $lightBS";
+        }else {
+            innerHTML = "$lightBS";
         }
 
         //instead of appending you're replacing. Void4 is SERIOUS about you not getting to see.
@@ -837,7 +851,7 @@ class Session {
                 doNotRender = true;
                 numScenes = 0; //since we're lying to AB anyway, use this to keep track of how many scenes we skipped due to void
                 doNotFetchXml = true;
-                appendHtml(querySelector("#story"), "<div id = 'voidStory'></div>");
+                appendHtml(SimController.instance.storyElement, "<div id = 'voidStory'></div>");
                 voidDiv = querySelector("#voidStory");
             }
             voidDiv.setInnerHtml("${"<br>"*numScenes}$div");//one br for each skipped scene
@@ -847,7 +861,7 @@ class Session {
             //doNotRender = false; //this fucks AB up. don't do it. but at least they'll see the text.
         }
 
-        appendHtml(querySelector("#story"), div);
+        appendHtml(SimController.instance.storyElement, div);
         return querySelector("#scene${this.currentSceneNum}");
     }
 
