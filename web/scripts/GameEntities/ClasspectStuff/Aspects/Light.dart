@@ -140,6 +140,12 @@ class Light extends Aspect {
                 new Quest("When it comes time for the next performance of the Beautiful ${Quest.PHYSICALMCGUFFIN}, the ${Quest.PLAYER1} is turned away at the door. Apparently the ${Quest.DENIZEN} rampaged and terrorized ${Quest.CONSORT}s until given the lead role. They claim that the ${Quest.PLAYER1} is FAR too drab to be give such an important performance. WHAT. THE. FUCK. The ${Quest.PLAYER1} isn't going to let this stand."),
                 new DenizenFightQuest("There is not enough room on the stage for both of them. The ${Quest.PLAYER1} challenges the ${Quest.DENIZEN} to a glamour off, and wins handily. Enraged, the ${Quest.DENIZEN} attacks.","The ${Quest.PLAYER1} can finally get back to their promising acting career in peace.","The actig career of the ${Quest.PLAYER1} is in shambles.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("Be the Biggest Star in Paradox Space", [
+                new Quest("After the ${Quest.DENIZEN}, the ${Quest.PLAYER1} is disappointed to learn that barely any of the ${Quest.CONSORT}s know who they are. This will not do!"),
+                new Quest("Posters, ad campaigns, catchy jingles, and the ${Quest.PLAYER1} still runs into the odd ${Quest.CONSORT} that doesn't recognize them on sight. This is getting ridiculous!"),
+                new Quest("The ${Quest.PLAYER1} thinks they finally have an idea.  They focus. Light-y bullshit effects rain down from the sky, and their face is super imposed over the brilliance of Skaia itself. Now EVERYONE on their planet knows who is the most important. It is them.")
+            ], new FraymotifReward("What's my name?", "The ${Fraymotif.OWNER} is famous, and everyone in this fight is lucky to have met them."), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             , Theme.HIGH); // end theme
     }
 }

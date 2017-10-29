@@ -7,6 +7,15 @@ and their getPower, getHP etc stats must use these.
 at start AND end of battle (can't be too careful), wipe applied fraymotifs
 */
 class Fraymotif {
+
+    static String OWNER = "OWNER";
+    static String CASTERS = "CASTERS";
+    static String ALLIES = "ALLIES";
+    static String ENEMY = "ENEMY";
+    static String ENEMIES = "ENEMIES";
+    static String FRAYMOTIF  = "FRAYMOTIF";
+
+
     List<Aspect> aspects; //expect to be an array
     String name;
     int tier;
