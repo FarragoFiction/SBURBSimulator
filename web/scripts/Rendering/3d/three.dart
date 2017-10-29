@@ -253,14 +253,27 @@ class PlaneGeometry extends Geometry {
 
 @JS()
 abstract class TextureBase {
+	external void dispose();
 
+	external num get minFilter;
+	external void set minFilter(int val);
+	external num get magFilter;
+	external void set magFilter(int val);
+	external num get wrapS;
+	external void set wrapS(int val);
+	external num get wrapT;
+	external void set wrapT(int val);
+	external num get format;
+	external void set format(int val);
+	external num get type;
+	external void set type(int val);
+	external num get anisotropy;
+	external void set anisotropy(int val);
 }
 
 @JS()
 class Texture extends TextureBase {
 	external Texture(CanvasImageSource image, [int mapping, int wrapS, int wrapT, int magFilter, int minFilter, int format, int type, int anisotropy, int encoding]);
-
-	external void dispose();
 
 	external void set needsUpdate(bool flag);
 
@@ -269,7 +282,7 @@ class Texture extends TextureBase {
 
 	external void set flipY(bool flag);
 
-	external num get minFilter;
+	/*external num get minFilter;
 	external void set minFilter(int val);
 	external num get magFilter;
 	external void set magFilter(int val);
@@ -282,14 +295,12 @@ class Texture extends TextureBase {
 	external num get type;
 	external void set type(int val);
 	external num get anisotropy;
-	external void set anisotropy(int val);
+	external void set anisotropy(int val);*/
 }
 
 @JS()
 class DataTexture extends TextureBase {
 	external DataTexture(TypedData data, int width, int height, int format, int type, [int mapping, int wrapS, int wrapT, int magFilter, int minFilter, int anisotropy, int encoding]);
-
-	external void dispose();
 
 	external void set needsUpdate(bool flag);
 
@@ -298,7 +309,7 @@ class DataTexture extends TextureBase {
 
 	external void set flipY(bool flag);
 
-	external num get minFilter;
+	/*external num get minFilter;
 	external void set minFilter(int val);
 	external num get magFilter;
 	external void set magFilter(int val);
@@ -311,7 +322,7 @@ class DataTexture extends TextureBase {
 	external num get type;
 	external void set type(int val);
 	external num get anisotropy;
-	external void set anisotropy(int val);
+	external void set anisotropy(int val);*/
 }
 
 @anonymous
@@ -320,6 +331,11 @@ class DataTextureImage {
 	external TypedData get data;
 	external int get width;
 	external int get height;
+}
+
+@JS()
+class WebGLRenderTarget extends TextureBase {
+
 }
 
 // Material ################################################################
