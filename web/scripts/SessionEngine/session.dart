@@ -310,6 +310,12 @@ class Session {
             //logger.info("removing player $p");
             removeFromArray(p, _availablePlayers);
         }else {
+            if(!mutator.breathField) {
+                //small chance to remove anyways so time players are less op.
+                if(rand.nextDouble() > 0.6) {
+                    removeFromArray(p, _availablePlayers);
+                }
+            }
             //logger.info("not removing player $p, i think they are a breath or time player or the breath field is active ");
         }
 
