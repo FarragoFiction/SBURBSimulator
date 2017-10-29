@@ -78,10 +78,11 @@ class Blood extends Aspect {
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. The rivers are too vital to the ${Quest.CONSORT}s to risk having them reclog.","The ${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s have a bustling trade based economy once again.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
-        addTheme(new Theme(<String>["Chains", "Unions", "Manacles", "Bonds", "Weddings", "Rings"])
+        addTheme(new Theme(<String>["Chains", "Unions", "Manacles", "Bonds", "Weddings", "Rings", "Webs"])
             ..addFeature(FeatureFactory.CLANKINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.MUSICSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.SPIDERCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.LOW)
 
             ..addFeature(new DenizenQuestChain("Learn the Power of Teamwork", [
@@ -96,6 +97,13 @@ class Blood extends Aspect {
                 new Quest("The ${Quest.PLAYER1} has been working tirelessly to hook up tower after tower, only to discover that the first tower they repaired is already broken again. There is no getting around it, ${Quest.DENIZEN} needs to be stopped. "),
                 new DenizenFightQuest("The ${Quest.PLAYER1} has tracked down ${Quest.DENIZEN}. There can be no mercy. ","The ${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} is finally free to restore the chains, bringing peace and understanding to the land. ","The tyranny  and xenophobia of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PostDenizenQuestChain("One Degree of Separation", [
+                new Quest("They say it can't be done, but the ${Quest.PLAYER1} is confident that they can become friends with every single ${Quest.CONSORT} on ${Quest.MCGUFFIN}book. They start small, just talking to any ${Quest.PLAYER1} that wanders by. They know they can do this!"),
+                new Quest("Oh god. Less than 10% of the ${Quest.PLAYER1} population have been friended. The ${Quest.PLAYER1} is starting to think that maybe they understimated how hard this would be. "),
+                new Quest("Oh god. It's all so simple. They see it now. Relationships are like a chain, or a web. All they need to do is find the most connected nodes and....yes. Those 6 ${Quest.CONSORT}s are all they need to indirectly gain access to the remaining 90% of the population. The ${Quest.PLAYER1} schmoozes the right few ${Quest.CONSORT}s and finally acomplishes the impossible. They now have AAAAAAAALL the friends!")
+            ], new FraymotifReward("Friend Request", "The ${Fraymotif.OWNER} has so many friends, they have to assume everyone in this fight is already in their friend list."), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
+
 
             ..addFeature(new DenizenQuestChain("Pale Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be a good complement. The noodly appendages of the Horror Terrors do not fail to notice this.  "),
