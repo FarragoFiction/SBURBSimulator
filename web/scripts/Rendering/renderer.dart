@@ -53,8 +53,15 @@ class Renderer {
         window.requestAnimationFrame(_renderLoop);
     }
 
+    static void _setSize(int width, int height) {
+        if (width != _renderer.domElement.width || height != _renderer.domElement.height) {
+            _disposeBuffers();
+        }
+        _renderer.setSize(width, height);
+    }
+
     static Future<Null> _draw(RenderJob job) async {
-        _renderer.setSize(job.width, job.height);
+        _setSize(job.width, job.height);
 
         for (RenderJobPass pass in job._passes) {
             await pass.draw(job);
@@ -80,6 +87,33 @@ class Renderer {
             ..minFilter = THREE.NearestFilter
             ..magFilter = THREE.NearestFilter
             ..needsUpdate = true;
+    }
+
+    static List<THREE.WebGLRenderTarget> _buffers = <THREE.WebGLRenderTarget>[];
+    static int _bufferStackDepth = 0;
+    static THREE.WebGLRenderTarget _getBufferFromStack(int position) {
+        if (position >= _buffers.length || _buffers[position] == null) {
+            _buffers[position] = new THREE.WebGLRenderTarget();
+        }
+        return _buffers[position];
+    }
+
+    static THREE.WebGLRenderTarget pushBufferStack() {
+        THREE.WebGLRenderTarget buffer = _getBufferFromStack(_bufferStackDepth);
+        _bufferStackDepth++;
+        return buffer;
+    }
+
+    static void popBufferStack() {
+        _bufferStackDepth--;
+    }
+
+    static void _disposeBuffers() {
+        for (THREE.WebGLRenderTarget buffer in _buffers) {
+            buffer.dispose();
+        }
+        _buffers.clear();
+        _bufferStackDepth = 0;
     }
 }
 
