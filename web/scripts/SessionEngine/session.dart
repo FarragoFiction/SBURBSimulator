@@ -312,7 +312,7 @@ class Session {
         }else {
             if(!mutator.breathField) {
                 //small chance to remove anyways so time players are less op.
-                if(rand.nextDouble() > 0.6) {
+                if(rand.nextDouble() > 0.4) {
                     removeFromArray(p, _availablePlayers);
                 }
             }
