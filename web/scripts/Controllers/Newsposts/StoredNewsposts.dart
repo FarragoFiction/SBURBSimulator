@@ -9,6 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
+      new Newspost("10/28/17","Bug fixes, stability, mostly getting ready for a main deploy."),
       new Newspost("10/27/17","Whoa, did I almost forget to have Battlefield quests? Is that a thing that almost happened. Whoops."),
       new Newspost("10/26/17","Corrupt lands are a thing again, and space players are WAY less repetitive now. <br><br>Also, holy fuck was balancing Space players to the new system really annoying, all because pastJR accidentally made it so space players are allowed to leave their land as long as they have NOT finished their frog duties. God DAMN."),
       new Newspost("10/25/17","Okay, we can all remember that on this, the most sacred day of 10/25, the Land Update was BASICALLY done.<br><Br>  I still wanna add more quest paths. And refactor how land corruption works to use the new system. And Of course I gotta balance all that stat shit PL did before a Main deploy. But I'd say that the Land Update is basically in the shape it'll be once it hits main."),
