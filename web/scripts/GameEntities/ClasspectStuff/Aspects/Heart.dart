@@ -103,7 +103,7 @@ class Heart extends Aspect {
 
         //medium makes it ~50/50 for the right class.
             ..addFeature(new PostDenizenQuestChain("Prove Your Identity", [
-                new Quest("Now that the ${Quest.DENIZEN} has been defeated, a Copy ${Quest.PLAYER1} has appeared. They claim they are the TRUE ${Quest.PLAYER1} is an imposter who just wants their fame! All of the ${Quest.CONSORT}s ${Quest.CONSORTSOUND} in confusion and don't seem to know what to do."),
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, a Copy ${Quest.PLAYER1} has appeared. They claim they are the TRUE ${Quest.PLAYER1},and that the other is an imposter who just wants their fame! All of the ${Quest.CONSORT}s ${Quest.CONSORTSOUND} in confusion and don't seem to know what to do."),
                 new Quest("A wizened ${Quest.PLAYER1} creates a series of challenges that only the REAL ${Quest.PLAYER1} should be able to complete. They are....laughably wrong. Things like walking in a straight line, being literate and being able to ${Quest.CONSORTSOUND} for more than five minutes straight. At the end of it, all the ${Quest.CONSORT}s unanimously agree that the Fake ${Quest.PLAYER1} is the winner. THIS IS STUPID."),
                 new Quest("The REAL ${Quest.PLAYER1} has had enough of all this bullshit. With some bad ass pink lightning, they expose the Fake ${Quest.PLAYER1} as three ${Quest.CONSORT}s in an overcoat using some weird Heart magic.")
             ], new FraymotifReward("The Real Heart Player","The CASTERS knows who they are, and their confidence is turned into a pink lightning attack."), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)

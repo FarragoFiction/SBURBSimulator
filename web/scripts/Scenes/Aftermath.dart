@@ -27,15 +27,15 @@ class Aftermath extends Scene {
         for (Player p in living) {
             if (p.gnosis < 3) {
                 entered.add(p);
-                ret += "The ${p.htmlTitle()} enters the door to the new Universe.<Br><Br>";
+                ret += "The ${p.htmlTitleBasicWithTip()} enters the door to the new Universe.<Br><Br>";
             } else {
                 if (p.gnosis == 3 && rand.nextBool()) {
                     entered.add(p);
-                    ret += "The ${p.htmlTitle()} stands for a long time outside the door to the new Universe. Finally, they enter. <Br><br>";
+                    ret += "The ${p.htmlTitleBasicWithTip()} stands for a long time outside the door to the new Universe. Finally, they enter. <Br><br>";
                 } else if (p.gnosis == 3) {
-                    ret += "The ${p.htmlTitle()} stands for a long time outside the door to the new Universe. Finally, they turn away. <Br><br>";
+                    ret += "The ${p.htmlTitleBasicWithTip()} stands for a long time outside the door to the new Universe. Finally, they turn away. <Br><br>";
                 } else {
-                    ret += "The ${p.htmlTitle()} never even bothers to go see the door to the new Universe. There is still so much to do.<Br><br>";
+                    ret += "The ${p.htmlTitleBasicWithTip()} never even bothers to go see the door to the new Universe. There is still so much to do.<Br><br>";
                 }
             }
         }
