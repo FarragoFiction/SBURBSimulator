@@ -118,10 +118,18 @@ class Blood extends Aspect {
             ], new PaleRomanceReward(), QuestChainFeature.twoPlayers), Feature.WAY_HIGH)
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Bloodlines","Generations","Family", "Community"])
+        addTheme(new Theme(<String>["Bloodlines","Generations","Family", "Community", "Villages"])
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenQuestChain("Connect The Villages", [
+                new Quest("In the wake of the defeat of the ${Quest.DENIZEN} it becomes really how isolated the individual ${Quest.CONSORT} villages are. It is far too common for a young ${Quest.CONSORT} to never have even MET their cousins. The ${Quest.PLAYER1} resolves to fix this as soon as possible."),
+                new Quest("The ${Quest.PLAYER1} is working hard to restore roads, track down long lost family members and generally just remind all the ${Quest.CONSORT}s that at the end of the day they are all one big happy family. "),
+                new Quest("All those hours of hard work have paid off, the individual ${Quest.CONSORT} villages have all been brought back into communication with each other. The sense of community is so strong, you could cut it with a knife. Or maybe wield it as one?")
+            ], new FraymotifReward("Community Builder", "It may take a village for the ${Fraymotif.OWNER} to kick your ass, but luckily they have several."), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
+
+
             ..addFeature(new DenizenQuestChain("Stop the Feud", [
                 new Quest("The ${Quest.PLAYER1} learns that two prominent ${Quest.CONSORT} families have been feuding for generations, despite once having been the best of friends. The land is on the verge of a civil war as uninvolved ${Quest.CONSORT}s pick a side, and everyone is suffering."),
                 new Quest("The ${Quest.PLAYER1} tries to track down the origin of the feud that leaves their land on the verge of a civil war. Nobody can point to any REASON for it to be happening. "),
