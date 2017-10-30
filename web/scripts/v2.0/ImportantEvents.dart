@@ -492,7 +492,7 @@ class PlayerEnteredSession  extends ImportantEvent {
   @override
 	String humanLabel(){
 		String ret = "Kill the " + this.player.htmlTitleBasicNoTip() + " before they enter the session.";
-		ret = "Kill the " + this.player.htmlTitleBasicNoTip() + " as much as you can. Fuck that guy!";
+		if(session.mutator.mindField) ret = "Kill the " + this.player.htmlTitleBasicNoTip() + " as much as you can. Fuck that guy!";
 		return ret;
 	}
   @override
