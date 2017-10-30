@@ -98,13 +98,13 @@ class Fraymotif {
         for (num i = 0; i < this.effects.length; i++) {
             FraymotifEffect e = this.effects[i];
             if (e.damageInsteadOfBuff) {
-                if (effectTypes["damage" + e.target.toString()].length == 0) effectTypes["damage" + e.target.toString()].addPass(e.toStringSimple());
+                if (effectTypes["damage" + e.target.toString()].length == 0) effectTypes["damage" + e.target.toString()].add(e.toStringSimple());
                 //no repeats
-                if (effectTypes["damage" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["damage" + e.target.toString()].addPass(e.statName);
+                if (effectTypes["damage" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["damage" + e.target.toString()].add(e.statName);
             } else {
-                if (effectTypes["buff" + e.target.toString()].length == 0) effectTypes["buff" + e.target.toString()].addPass(e.toStringSimple());
+                if (effectTypes["buff" + e.target.toString()].length == 0) effectTypes["buff" + e.target.toString()].add(e.toStringSimple());
                 //no repeats
-                if (effectTypes["buff" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["buff" + e.target.toString()].addPass(e.statName);
+                if (effectTypes["buff" + e.target.toString()].indexOf(e.statName) == -1) effectTypes["buff" + e.target.toString()].add(e.statName);
             }
         }
 
@@ -191,12 +191,12 @@ class Fraymotif {
         for (num i = 0; i < this.effects.length; i++) {
             var e = this.effects[i];
             if (e.damageInsteadOfBuff) {
-                if (effectTypes["damage${e.target}"].length == 0) effectTypes["damage${e.target}"].addPass(e.toString());
+                if (effectTypes["damage${e.target}"].length == 0) effectTypes["damage${e.target}"].add(e.toString());
                 //no repeats
-                if (effectTypes["damage${e.target}"].indexOf(e.statName) == -1) effectTypes["damage${e.target}"].addPass(e.statName);
+                if (effectTypes["damage${e.target}"].indexOf(e.statName) == -1) effectTypes["damage${e.target}"].add(e.statName);
             } else {
-                if (effectTypes["buff${e.target}"].length == 0) effectTypes["buff${e.target}"].addPass(e.toString());
-                if (effectTypes["buff${e.target}"].indexOf(e.statName) == -1) effectTypes["buff${e.target}"].addPass(e.statName);
+                if (effectTypes["buff${e.target}"].length == 0) effectTypes["buff${e.target}"].add(e.toString());
+                if (effectTypes["buff${e.target}"].indexOf(e.statName) == -1) effectTypes["buff${e.target}"].add(e.statName);
             }
         }
         //now i have a hash of all effect types and the stats i'm applying to them.
