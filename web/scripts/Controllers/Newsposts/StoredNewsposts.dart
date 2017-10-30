@@ -9,7 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
-      new Newspost("10/29/17", "More quests, more typo fixes, etc."),
+      new Newspost("10/29/17", "More quests, more typo fixes, etc. <br><br>Most notably, dead sessions aren't broke af anymore."),
       new Newspost("10/28/17","Bug fixes, stability, mostly getting ready for a main deploy."),
       new Newspost("10/27/17","Whoa, did I almost forget to have Battlefield quests? Is that a thing that almost happened. Whoops."),
       new Newspost("10/26/17","Corrupt lands are a thing again, and space players are WAY less repetitive now. <br><br>Also, holy fuck was balancing Space players to the new system really annoying, all because pastJR accidentally made it so space players are allowed to leave their land as long as they have NOT finished their frog duties. God DAMN."),
