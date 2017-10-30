@@ -63,7 +63,7 @@ class QuestChainFeature extends Feature {
             completedQuests.add(quests.first);
             quests.remove(quests.first);
             if (quests.isEmpty) {
-                //print("I've finished quest chain $name!");
+                print("I've finished quest chain $name!,player is $p1");
                 finished = true;
                 reward.apply(div, p1, p2,  land);
             }

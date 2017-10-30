@@ -3701,3 +3701,33 @@ Completely different set of possible things for grim dark or alien.
 Conversational pairs should have different conditions like, here's how you can respond if you're a seer, etc. etc.
 
 and can add different sets entirely based on interests.
+
+
+~~~~~~~~~~~
+
+Okay this bug is complicated enough to deserve a solid ramble.
+
+Observed behavior: if the same quest hits multiple times, then the TEXT says that the first player
+to do the quest is the one to get the reward, but the CANVAS show the right player getting the reward.
+
+And they seem like they are actually getting the reward in practice.
+
+Can easily test by having all the same aspect players.
+
+Step 1:  Get a session up with the behavior.
+Step 2: Find out how drawing the reward differs from narrating the reward.
+Step 3: ???
+Step 4: Main Release
+
+Okay. So. Drawing happens in super. But replacing text might happen in a child?
+
+Let's experiment.
+
+okay, well accroding to logs the narrationa and drawing and end of quest ALL know the right player
+so why does it narrate wrong one?
+
+is it the div?  is it......hrrrm. well. can i find the right phrase ANYWHERE on the page?
+
+hrrrm, i can confirm that the right player doen's thave the right fraymotif at all either.
+
+fuck. what is going on.
