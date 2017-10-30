@@ -102,6 +102,7 @@ class DenizenReward extends Reward {
         }
         Fraymotif f1 = df.denizen.fraymotifs.first;
         print("narrating player 1 is ${p1}");
+        p1.fraymotifs.add(f1);
 
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
