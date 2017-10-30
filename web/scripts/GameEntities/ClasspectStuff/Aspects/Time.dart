@@ -124,6 +124,13 @@ class Time extends Aspect {
                 new DenizenFightQuest("The ${Quest.PLAYER1} is ready to fight the ${Quest.DENIZEN}. ","Whew, doomed timeline averted. The ${Quest.PLAYER1} goes back in time to restore the 3 ${Quest.PHYSICALMCGUFFIN} Pieces to their original positions, so they can be there for when they come and get them the other times. Time travel is so confusing.","Um. Is this a doomed timeline? What happens if the ${Quest.PLAYER1} never returns those ${Quest.PHYSICALMCGUFFIN} Pieces? If they didn't return them then why were they there when they first found the lair? Fuck. You HATE time travel.")
             ], new DenizenReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
 
+            ..addFeature(new DenizenQuestChain("Destroy Timelines", [
+                new Quest("The door to the ${Quest.DENIZEN}'s  lair is barred by a door locked with three identical missing ${Quest.PHYSICALMCGUFFIN} Pieces. A fourth is already inlaid in the door. The ${Quest.PLAYER1} prepares for a bullshit item collection quest. "),
+                new Quest("The ${Quest.PLAYER1} is starting to get frustrated. No matter what they do they can't seem to find any more ${Quest.PHYSICALMCGUFFIN} Pieces. A ${Quest.CONSORT} asks if they have tried...TWISTING they way they look at things. This cryptic as fuck statement does not make the ${Quest.PLAYER1} any less frustrated."),
+                new Quest("The ${Quest.PLAYER1} is ready to fucking give up. Fuck those ${Quest.PHYSICALMCGUFFIN} Pieces. In a flash of clocks and gears, three of their own doomed time clones warp in and hand them ${Quest.PHYSICALMCGUFFIN} Pieces. Oh. Huh. Well, fuck. The clones go off to die somewhere in piece. The ${Quest.PLAYER1} can now face the ${Quest.DENIZEN}. "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} is ready to fight the ${Quest.DENIZEN}. ","The sacrifices of the three doomed clones has not been in vain.","Welp. The ${Quest.PLAYER1} has managed to fail even the face of their three doomed clones' nobel sacrifice. Fuck.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+
 
             ..addFeature(new DenizenQuestChain("Move Forwards, Never Stop", [
                 new Quest("There is a babbling brook. A wizened ${Quest.CONSORT} is next to it. The water, he says, moves in only one direction. So, too, must we. The ${Quest.PLAYER1} contemplates this for a while. Is it really a true thing when this game has time travel in it?"),
