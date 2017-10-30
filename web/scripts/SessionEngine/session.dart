@@ -530,7 +530,7 @@ class Session {
         curSessionGlobalVar.randomizeEntryOrder();
         curSessionGlobalVar.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
-        this.easterCallBackScratch(this);
+        this.easterCallBack(this);
 
         return;
     }
