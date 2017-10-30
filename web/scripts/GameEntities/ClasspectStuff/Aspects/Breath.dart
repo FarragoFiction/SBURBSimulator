@@ -77,7 +77,7 @@ class Breath extends Aspect {
             ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
-            ..addFeature(new DenizenQuestChain("The Mail Goes Through.", [
+            ..addFeature(new DenizenQuestChain("The Mail Goes Through", [
                 new Quest("The ${Quest.PLAYER1} tries posting a letter through the ${Quest.PHYSICALMCGUFFIN} mail system only to find the letter caught in a plug of oil!  ${Quest.DENIZEN} has screwed with the mail system, crippling the ${Quest.CONSORT} economy!"),
                 new Quest("The ${Quest.PLAYER1} cleans out oil from the nearby ${Quest.PHYSICALMCGUFFIN}’s, opening up a few more channels between villages. "),
                 new Quest("The ${Quest.PLAYER1} gets sick of all the fucking oil in the ${Quest.PHYSICALMCGUFFIN} mail system, and realizes the only way to truly deal with it and to allow information to flow free is to confront ${Quest.DENIZEN}."),

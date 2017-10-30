@@ -788,7 +788,7 @@ class Session {
         ret.classes.add("scene");
         String lightBS = "";
         String innerHTML = "";
-        bool debugMode = true;
+        bool debugMode = false;
         if(debugMode || mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
