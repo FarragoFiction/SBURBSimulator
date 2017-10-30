@@ -529,7 +529,8 @@ class Session {
         curSessionGlobalVar.makePlayers();
         curSessionGlobalVar.randomizeEntryOrder();
         curSessionGlobalVar.makeGuardians(); //after entry order established
-        checkEasterEgg(this.easterCallBack, this); //in the controller.
+        //don't need to call easter egg directly
+        this.easterCallBackScratch(this);
 
         return;
     }
@@ -550,6 +551,14 @@ class Session {
 
         SimController.instance.restartSession(); //in controller
     }
+    void easterCallBackScratch(Session that) {
+        if (curSessionGlobalVar.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
+            setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
+        }
+        SimController.instance.restartSessionScratch(); //in controller, will initialize players
+
+    }
+
 
     void addEventToUndoAndResetScratch(ImportantEvent e) {
         //print('yellow yard from scratched session');
@@ -559,15 +568,18 @@ class Session {
         bool ectoSave = this.stats.ectoBiologyStarted;
         reinit();
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+        //TODO originally scratched yards didn't recreate scenes, seeing if this is source of post land update yellow yard post scratch bug
+        Scene.createScenesForSession(curSessionGlobalVar);
         curSessionGlobalVar.makePlayers();
         curSessionGlobalVar.randomizeEntryOrder();
         curSessionGlobalVar.makeGuardians(); //after entry order established
+
         this.stats.ectoBiologyStarted = ectoSave;
         this.stats.scratched = true;
-        this.switchPlayersForScratch();
 
-
-        SimController.instance.restartSession(); //in controller
+        //don't need to call easter egg directly.
+       this.easterCallBackScratch(this); //in the controller.
+        //SimController.instance.restartSession(); //in controller
     }
 
     Session initializeCombinedSession() {
@@ -776,7 +788,8 @@ class Session {
         ret.classes.add("scene");
         String lightBS = "";
         String innerHTML = "";
-        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        bool debugMode = true;
+        if(debugMode || mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
             int reallyRand = getRandomIntNoSeed(1, 10);

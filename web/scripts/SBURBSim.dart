@@ -350,6 +350,7 @@ void scratch() {
     var ectoSave = curSessionGlobalVar.stats.ectoBiologyStarted;
 
     SimController.instance.reinit();
+    Scene.createScenesForSession(curSessionGlobalVar);
     curSessionGlobalVar.stats.scratched = true;
     curSessionGlobalVar.stats.scratchAvailable = false;
     curSessionGlobalVar.stats.doomedTimeline = false;

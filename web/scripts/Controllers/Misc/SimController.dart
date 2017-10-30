@@ -116,6 +116,10 @@ abstract class SimController {
 
     }
 
+    void easterEggCallBackRestartScratch() {
+        scratchEasterEggCallBack();
+    }
+
     void intro() {
         print("gonna init stats");
         initGatherStats();
@@ -251,6 +255,12 @@ abstract class SimController {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         checkEasterEgg(easterEggCallBackRestart, null);
+    }
+
+    void restartSessionScratch() {
+        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
+        window.scrollTo(0, 0);
+        checkEasterEgg(easterEggCallBackRestartScratch, null);
     }
 
     void shareableURL() {
