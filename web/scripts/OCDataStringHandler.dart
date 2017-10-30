@@ -382,6 +382,6 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.rightHorn = charString.codeUnitAt(9);
   player.hair = charString.codeUnitAt(10);
 
-
+  print("loaded player: ${player.chatHandle}");
   return player;
 }
