@@ -5,6 +5,8 @@ import "dart:math";
 import "../SBURBSim.dart";
 import "3d/three.dart" as THREE;
 
+export "pass/effect.dart";
+export "pass/group.dart";
 export "pass/image.dart";
 export "pass/sprite.dart";
 
@@ -18,7 +20,7 @@ class Renderer {
 
     static Map<CanvasImageSource, THREE.Texture> _textureCache = <CanvasImageSource, THREE.Texture>{};
 
-    static THREE.WebGLRenderer _renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(alpha:true, antialias: false))..autoClear = false;
+    static THREE.WebGLRenderer _renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(alpha:true, antialias: false))..autoClear = false..setClearColor(0xFF0000, 0x00);
 
     static List<RenderJob> _pending = <RenderJob>[];
     static bool _processing = false;
@@ -89,17 +91,23 @@ class Renderer {
             ..needsUpdate = true;
     }
 
-    static List<THREE.WebGLRenderTarget> _buffers = <THREE.WebGLRenderTarget>[];
+    static const int MAX_BUFFERS = 32;
+    static List<THREE.WebGLRenderTarget> _buffers = new List<THREE.WebGLRenderTarget>(MAX_BUFFERS);
     static int _bufferStackDepth = 0;
-    static THREE.WebGLRenderTarget _getBufferFromStack(int position) {
-        if (position >= _buffers.length || _buffers[position] == null) {
-            _buffers[position] = new THREE.WebGLRenderTarget();
+    static THREE.WebGLRenderTarget _getBufferFromStack(int position, int width, int height) {
+        if (position >= MAX_BUFFERS) {
+            throw "Buffer depth limite exceeded - honestly if you got this deep something is probably wrong.";
+        }
+        if (_buffers[position] == null) {
+            _buffers[position] = new THREE.WebGLRenderTarget(width, height);
+        } else {
+            _buffers[position].setSize(width, height);
         }
         return _buffers[position];
     }
 
-    static THREE.WebGLRenderTarget pushBufferStack() {
-        THREE.WebGLRenderTarget buffer = _getBufferFromStack(_bufferStackDepth);
+    static THREE.WebGLRenderTarget pushBufferStack(int width, int height) {
+        THREE.WebGLRenderTarget buffer = _getBufferFromStack(_bufferStackDepth, width, height);
         _bufferStackDepth++;
         return buffer;
     }
@@ -109,10 +117,12 @@ class Renderer {
     }
 
     static void _disposeBuffers() {
-        for (THREE.WebGLRenderTarget buffer in _buffers) {
+        for (int i=0; i<_buffers.length; i++) {
+            THREE.WebGLRenderTarget buffer = _buffers[i];
+            if (buffer == null) { continue; }
             buffer.dispose();
+            _buffers[i] = null;
         }
-        _buffers.clear();
         _bufferStackDepth = 0;
     }
 }
@@ -121,7 +131,7 @@ abstract class RendererDefaults {
     static THREE.AmbientLight defaultAmbient = new THREE.AmbientLight(0xFFFFFF, 2.0);
 }
 
-class RenderJob {
+class RenderJob extends Object with RenderPassReceiver {
     DivElement div;
 
     List<RenderJobPass> _passes = <RenderJobPass>[];
@@ -154,21 +164,32 @@ class RenderJob {
         return this.div;
     }
 
-    void add(RenderJobPass pass) {
+    @override
+    void addPass(RenderJobPass pass) {
         this._passes.add(pass);
-    }
-
-    void addImage(String path, [int x, int y, THREE.ShaderMaterial materialOverride]) {
-        this.add(new RenderJobPassImage(path, x,y, materialOverride));
-    }
-
-    void addSprite(String path, Iterable<Palette> palettes, [int x, int y, THREE.ShaderMaterial materialOverride]) {
-        this.add(new RenderJobPassSprite(path, palettes, x, y, materialOverride));
     }
 }
 
 abstract class RenderJobPass {
-    Future<Null> draw(RenderJob job);
+    Future<Null> draw(RenderJob job, [THREE.WebGLRenderTarget target]);
+}
+
+abstract class RenderPassReceiver {
+    void addPass(RenderJobPass pass);
+
+    void addImagePass(String path, [int x=0, int y=0, THREE.ShaderMaterial materialOverride]) {
+        this.addPass(new RenderJobPassImage(path, x,y, materialOverride));
+    }
+
+    void addSpritePass(String path, Iterable<Palette> palettes, [int x=0, int y=0, THREE.ShaderMaterial materialOverride]) {
+        this.addPass(new RenderJobPassSprite(path, palettes, x, y, materialOverride));
+    }
+
+    GroupPass addGroupPass() {
+        GroupPass group = new GroupPass();
+        this.addPass(group);
+        return group;
+    }
 }
 
 

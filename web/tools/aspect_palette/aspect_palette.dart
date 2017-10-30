@@ -40,11 +40,11 @@ Future<bool> testDrawing() async {
     int startx = -120;
     int starty = -40;
     int dim = 5;
-    int dimx = 10;
+    int dimx = 5;
     int dimy = 1;
-    int space = 100;
+    int space = 120;
 
-    {
+    /*{
         DateTime then = new DateTime.now();
 
         CanvasElement testcanvas = new CanvasElement(width: 640, height: 480);
@@ -62,9 +62,26 @@ Future<bool> testDrawing() async {
         int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
 
         print("2d: ${mis / 1000}ms");
-    }
+    }*/
 
     {
+        RenderJob job = await RenderJob.create(400, 300);
+
+        GroupPass group = job.addGroupPass()
+            ..addEffect(new RenderEffectNullGlitch());
+
+        int hairid = 7;
+
+        group
+            ..addImagePass("images/Hair/hair_back$hairid.png")
+            ..addImagePass("images/Bodies/Null.png")
+            ..addImagePass("images/Light.png")
+            ..addImagePass("images/Hair/hair$hairid.png");
+
+        stuff.append(job.dispatch());
+    }
+
+    /*{
         Random rand = new Random();
 
         Palette skin = new Palette()
@@ -75,10 +92,15 @@ Future<bool> testDrawing() async {
 
         RenderJob job = await RenderJob.create(640, 480);
 
-        for (int x = 0; x < dimx; x++) {
-            for (int y = 0; y < dimy; y++) {
-                //job.addImage("images/guide_bot.png", x * space, y * space);
-                job.addSprite("images/Bodies/god4.psprite", <Palette>[skin, rand.pickFrom(Aspects.all).palette], x * space + startx, y * space + starty);
+        for (int y = 0; y < dimy; y++) {
+            for (int x = 0; x < dimx; x++) {
+                GroupPass group = job.addGroupPass();
+                group.addEffect(new RenderEffect("shaders/image.vert", "shaders/fadetest.frag"));
+                int hairid = rand.nextInt(74)+1;
+
+                group.addImagePass("images/Hair/hair_back$hairid.png", x * space + startx, y * space + starty);
+                group.addSpritePass("images/Bodies/god4.psprite", <Palette>[skin, rand.pickFrom(Aspects.all).palette], x * space + startx, y * space + starty);
+                group.addImagePass("images/Hair/hair$hairid.png", x * space + startx, y * space + starty);
             }
         }
 
@@ -88,7 +110,8 @@ Future<bool> testDrawing() async {
         int mis = now.microsecondsSinceEpoch - then.microsecondsSinceEpoch;
 
         print("3d: ${mis / 1000}ms");
-    }
+    }*/
+
 
     return true;
 }
