@@ -266,6 +266,7 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
      // //print("Debugging AB: going to start new session");
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
       //RESETTING the mutator so that wastes can't leak into other sessions
+      getMVP();
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t) => startSession());
     }
