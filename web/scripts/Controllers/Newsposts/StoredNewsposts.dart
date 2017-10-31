@@ -9,6 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
+      new Newspost("10/30/17","Hell yes, two major bugs defeated today.   Yellow yards no longer just straight up fail post scratch, AND if the same quest happens multiple times in the same session it doesn't fuck up.  Go me."),
       new Newspost("10/29/17", "More quests, more typo fixes, etc. <br><br>Most notably, dead sessions aren't broke af anymore."),
       new Newspost("10/28/17","Bug fixes, stability, mostly getting ready for a main deploy."),
       new Newspost("10/27/17","Whoa, did I almost forget to have Battlefield quests? Is that a thing that almost happened. Whoops."),
