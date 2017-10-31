@@ -10,7 +10,6 @@ class IntroNew extends IntroScene {
     Player friend = null;
     bool goodLand = false;
 
-
     IntroNew(Session session): super(session, false);
   @override
   void renderContent(Element div, int i) {
@@ -203,7 +202,7 @@ class IntroNew extends IntroScene {
                     possible.add(new PlusMinusConversationalPair(["Is there nothing I can do to change your mind?","You are just not getting it. This game only has one level: fucking everything up.", "Oh, to be so naive. You don't get it: this game is going to make SURE you fuck shit up."], ["Man, I hope you're wrong!","With your help I'm sure we can win!","I hope you're wrong..."],["Or maybe you just suck at it.","Not everybody sucks at video games like you do.","Sore loser, much?"]));
                     possible.add(new PlusMinusConversationalPair(["Bluh. Anyways. Good luck or whatever. You're going to need it.", "Have fun learning your fucking lesson."], [],[]));
                 }else {
-                    possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in your session.", "I made it in.", "I'm in your session, finally."], ["Oh wow! What are you going to do? It's not like you have a land or anything...","Aren't you going to be bored? You won't have quests and stuff.", "What are you going to do?", "What's your plan?"],["Ugh, just what I need. What is even the point of you being here?", "And how are you going to be wasting your time now that you're here?"]));
+                    possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in your session.", "Hey, I made it in.", "Hey, I'm in your session, finally."], ["Oh wow! What are you going to do? It's not like you have a land or anything...","Aren't you going to be bored? You won't have quests and stuff.", "What are you going to do?", "What's your plan?"],["Ugh, just what I need. What is even the point of you being here?", "And how are you going to be wasting your time now that you're here?"]));
                     possible.add(new PlusMinusConversationalPair(["Eh, I'll get things ready for you guys' reckoning. Mess with the Black Queen. Plus, I can always help out you guys with your Land Quests.","Trust me: you're gonna me happy I'm here when it comes time to fight bosses.", "I can always help with you guys' quests."], ["Thanks for your help in advance!","Sounds boring..."],["Ugh, like I need your help.","That sounds like loser talk to me.","Why would need help from someone who LOST?"]));
                     possible.add(new PlusMinusConversationalPair(["You read all my shit, right? Corpse smooches and all?","Don't forget about how important frogs are, alright?", "You remember about god tier, right?", "You remember what I said about the moons, right?"], ["Yep, I've tried to memorize all your advice!","I think I'm really prepared to play this game!", "Yes! Thanks for tutoring me on this game!"],["Ugh, like I need your help.","Stop spoiling the game!","Why would need help from someone who LOST?"]));
 
@@ -211,7 +210,7 @@ class IntroNew extends IntroScene {
 
                 }
             }else { //gossiping with foreign player
-                possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in that new session.", "I made it in.", "I'm in the new session, finally."], ["Ugh. I am just ready to be DONE playing this game.","Ugh, so glad we aren't still stuck traveling.","Hell yes, about time we got some plot in!"],["Ugh, I can't believe we are playing this shitty game AGAIN.", "I swear to god if you fuck shit up a SECOND time..."]));
+                possible.add(new PlusMinusConversationalPair(["Hey, I'm finally in that new session.", "Hey. I made it in.", "Hey. I'm in the new session, finally."], ["Ugh. I am just ready to be DONE playing this game.","Ugh, so glad we aren't still stuck traveling.","Hell yes, about time we got some plot in!"],["Ugh, I can't believe we are playing this shitty game AGAIN.", "I swear to god if you fuck shit up a SECOND time..."]));
                 possible.add(new PlusMinusConversationalPair(["I know right?","At least we aren't stuck doing shitty quests anymore.", "At least we already have some sweet powers."], ["Yes, we can just focus on getting ready for the end game.","Sounds boring..."],["God. This game. So shitty.","That sounds like loser talk to me.","I am going to miss those quests..."]));
                 if(rand.nextBool()) {
                     possible.add(new PlusMinusConversationalPair(["At least we'll finally have other people to talk to.", "I admit I'm ready to see more than just a few people at once.", "Man, I hope we get along with the new guys."], [], []));
@@ -235,7 +234,7 @@ class IntroNew extends IntroScene {
     List<PlusMinusConversationalPair> getEnterPair() {
         List<PlusMinusConversationalPair> possible = new List<PlusMinusConversationalPair>();
         //generic
-        possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!", "I'm in.", "I made it in!"], ["Oh, cool, how did you get in?","What did you do?","What did you put in your sprite?", "Really? What did you do?"],["About time! Tell me what you did!","Fucking finally. Where are you? What did you do?"]));
+        possible.add(new PlusMinusConversationalPair(["Hey, I am finally in the medium!", "Hey, I'm in the medium!", "Hey! I'm finally in!", "Hey. I'm in.", "Hey! I made it in!"], ["Oh, cool, how did you get in?","What did you do?","What did you put in your sprite?", "Really? What did you do?"],["About time! Tell me what you did!","Fucking finally. Where are you? What did you do?"]));
 
         //relationship specific
         //possible.add(new PlusMinusConversationalPair(["I am finally in the medium!", "Hey, I'm in the medium!", "I'm finally in!"], ["..."],["I'm already playing a game, asshole.","Hell no, I don't want to play whatever shitty game you're talking about."]));
