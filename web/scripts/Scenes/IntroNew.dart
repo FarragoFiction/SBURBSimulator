@@ -259,7 +259,7 @@ class IntroNew extends IntroScene {
         List<PlusMinusConversationalPair> lines = new List<PlusMinusConversationalPair>();
         String land = player.land.name;
         //start it off
-        List<String> intros = <String>["Apparently it's the land of $land?", "It's the land of $land.", "Some random ${player.land.consortFeature.name} said it was the $land?", "There's this giant sign that says it's the $land."];
+        List<String> intros = <String>["Apparently it's the $land?", "It's the $land.", "Some random ${player.land.consortFeature.name} said it was the $land?", "There's this giant sign that says it's the $land."];
 
         if(InterestManager.FANTASY.playerLikes(player)|| InterestManager.WRITING.playerLikes(player) ) {
             if(rand.nextBool()) {
@@ -286,7 +286,7 @@ class IntroNew extends IntroScene {
             lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
 
         }else if(InterestManager.TERRIBLE.playerLikes(player) ) {
-            intros.addAll(["I am fucking finally in the Medium.", "I have assumed my rightful place as the future ruler of the land of ${land}."]);
+            intros.addAll(["I am fucking finally in the Medium.", "I have assumed my rightful place as the future ruler of the ${land}."]);
             if(rand.nextBool()) {
                 intros = addLineToAllStringInArray("I am going to rule it with an iron fist!", intros);
             }else {
