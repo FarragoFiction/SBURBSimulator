@@ -355,7 +355,7 @@ class IntroNew extends IntroScene {
         }else if(goodLand) {
             lines.add(new PlusMinusConversationalPair(["Wow, it feels so $qualiaString!", "It's so $qualiaString here!", "Holy shit, I just love the way it feels here! Like...$qualiaString or something?"], ["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"],["Wow! I'm jealous!","That's so cool!", "Really? That's amazing!"]));
         }else {
-            lines.add(new PlusMinusConversationalPair(["Oh god, it feels so $qualiaString! I feel unclean.", "I am already getting sick of how $qualiaString it feels here.", "I think this $qualiaString fucking land is gonna drive me shithive maggots.", "$qualiaString. It smells like fucking ${qualiaString.toUpperCase()}. What. The. Fuck."], ["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."],["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."]));
+            lines.add(new PlusMinusConversationalPair(["Oh god, it feels so $qualiaString! I feel unclean.", "I am already getting sick of how $qualiaString it feels here.", "I think this $qualiaString fucking land is gonna drive me shithive maggots.", "$qualiaString. It feels like fucking ${qualiaString.toUpperCase()}. What. The. Fuck."], ["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."],["Oh man, that sucks.","Wow, I'm not even a little bit jealous anymore.", "Holy shit, talk about a bad break."]));
         }
         return lines;
     }
