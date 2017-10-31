@@ -109,7 +109,7 @@ class Light extends Aspect {
             ..addFeature(new DenizenQuestChain("Shine the Light", [
                 new Quest("The ${Quest.PLAYER1} finds an incongruous dark patch in the otherwise brightly lit land. A quivering ${Quest.CONSORT} explains that the ${Quest.DENIZEN} has forbidden the ${Quest.CONSORT}s from having light, and moved giant disks to block it from them. Now that's just being mean!  The ${Quest.PLAYER1} vows to help.   "),
                 new Quest("The ${Quest.PLAYER1} has finally managed to destroy the disk blocking light from the ${Quest.CONSORT} village. There is a chorus of happy ${Quest.CONSORTSOUND}s as they bask in the light. The ${Quest.PLAYER1} feels good about a job well done. "),
-                new Quest("Disaster!  The ${Quest.CONSORT} village is once again shrouded in darkness, this time from an even larger disk than before. Judging from the roars, the ${Quest.DENIZEN} is guarding the disk themself.  The ${Quest.PLAYER1} must prepare themself for a tought fight.  "),
+                new Quest("Disaster!  The ${Quest.CONSORT} village is once again shrouded in darkness, this time from an even larger disk than before. Judging from the roars, the ${Quest.DENIZEN} is guarding the disk themself.  The ${Quest.PLAYER1} must prepare themself for a tough fight.  "),
                 new DenizenFightQuest("The ${Quest.PLAYER1} has managed to reach the disk guarded by the ${Quest.DENIZEN}. The monster denies even so basic a right as light, there can be no quarter. It's time to stife!","The ${Quest.DENIZEN} is defeated, the disk destroyed. Finally, the ${Quest.CONSORT}s can enjoy the light in peace.","Darkness reigns.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
