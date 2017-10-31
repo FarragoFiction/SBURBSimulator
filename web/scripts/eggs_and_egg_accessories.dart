@@ -384,8 +384,9 @@ void session413(){
 
 
 void session730(){
+	int numPlayers = 9;
 	//print("413");
-	for(int i = 0; i<8; i++){
+	for(int i = 0; i<numPlayers; i++){
 		Player player;
 		Player guardian;
 		if(i< curSessionGlobalVar.players.length){
@@ -403,7 +404,7 @@ void session730(){
 		}
 	}
 
-	for(int i = 0; i<8; i++){
+	for(int i = 0; i<numPlayers; i++){
 		Player player = curSessionGlobalVar.players[i];
 		Player guardian = player.guardian;
 		player.relationships = [];
@@ -416,7 +417,68 @@ void session730(){
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
-	curSessionGlobalVar.players.length = 8; //no more, no less.
+
+	//shipping is srs business.
+	//SBURB NETA is such a scandalous fuck pile
+
+	Player ci = curSessionGlobalVar.players[0];
+	Player im = curSessionGlobalVar.players[3];
+	Player ds = curSessionGlobalVar.players[1];
+	Player cw = curSessionGlobalVar.players[2];
+	Player aa = curSessionGlobalVar.players[7];
+	Player jr = curSessionGlobalVar.players[5];
+	Player ca = curSessionGlobalVar.players[6];
+	Player va = curSessionGlobalVar.players[4];
+	Player sr = curSessionGlobalVar.players[8];
+
+
+	Relationship.makeDiamonds(ci,im);
+	Relationship.makeDiamonds(cw,jr);
+
+	Relationship.makeDiamonds(cw,aa);
+	Relationship.makeDiamonds(jr,aa);
+
+
+	Relationship.makeHeart(ci,ds);
+	Relationship.makeHeart(ci,cw);
+	Relationship.makeHeart(im,jr);
+
+	Relationship.makeSpades(im,aa);
+	Relationship.makeSpades(cw,ds);
+
+	Relationship.makeClubs(jr,ca,va );
+
+	//important opinions
+	//VA has crush on JR and CI, hates IM
+	va.getRelationshipWith(jr).value = 20;
+	va.getRelationshipWith(ci).value = 20;
+	va.getRelationshipWith(im).value = -20;
+	//IM hates VA,likes jr and ci
+	im.getRelationshipWith(va).value = -20;
+	im.getRelationshipWith(jr).value = 20;
+	im.getRelationshipWith(ci).value = 20;
+	//JR hates ci and va, likes im and cw
+	jr.getRelationshipWith(va).value = -20;
+	jr.getRelationshipWith(ci).value = -20;
+	jr.getRelationshipWith(im).value = 20;
+	jr.getRelationshipWith(cw).value = 20;
+	//ci doesn't hate anybody.
+	for(Relationship r in ci.relationships) {
+		if(r.value < 0) r.value = 0;
+	}
+	//cw likes jr and ci and hates ds and sr
+	cw.getRelationshipWith(jr).value = 20;
+	cw.getRelationshipWith(ci).value = 20;
+	cw.getRelationshipWith(ds).value = -20;
+	cw.getRelationshipWith(sr).value = -20;
+
+	//ds likes ci, seems kinda bland about everything else
+	cw.getRelationshipWith(ci).value = 20;
+
+
+
+
+	curSessionGlobalVar.players.length = numPlayers; //no more, no less.
 }
 
 
@@ -857,6 +919,33 @@ void session730IndexToPlayer(Player player, int index){
 		player.land = player.spawnLand();
 		player.land.name = "Land of Drought and Frogs";
 		player.land.denizenFeature = new DenizenFeature('Echidna');
+
+		player.moon = curSessionGlobalVar.prospit;
+	}else if(index == 8){
+		player.bloodColor = "#008282";
+		player.class_name = SBURBClassManager.SEER;
+		player.godDestiny = true;
+		player.isDreamSelf = true;
+		player.aspect = Aspects.TIME;
+		player.hair  =4;
+		player.leftHorn = 2;
+		player.rightHorn = 2;
+		player.chatHandle = "splinteredRift";
+		var f = new Fraymotif( "Narration", 2);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = "${Fraymotif.OWNER} does an admirable job narrating all these shenanigans.  ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Beating SBURB", InterestManager.SOCIAL);
+		player.interest2 = new Interest("Predestination", InterestManager.TERRIBLE);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "```"; //this would look better in discord
+		player.quirk.suffix = "```";
+		player.land = player.spawnLand();
+		player.land.name = "Land of ??? and ???";
+		player.land.denizenFeature = new DenizenFeature('???');
 
 		player.moon = curSessionGlobalVar.prospit;
 	}
