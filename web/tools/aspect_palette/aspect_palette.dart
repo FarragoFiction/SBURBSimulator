@@ -68,7 +68,8 @@ Future<bool> testDrawing() async {
         RenderJob job = await RenderJob.create(400, 300);
 
         GroupPass group = job.addGroupPass()
-            ..addEffect(new RenderEffectNullGlitch());
+            //..addEffect(new RenderEffectNullGlitch());
+            ..addEffect(new RenderEffect("shaders/image.vert", "shaders/fakejpeg.frag"));
 
         int hairid = 7;
 
