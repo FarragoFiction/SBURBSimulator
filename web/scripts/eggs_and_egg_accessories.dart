@@ -730,6 +730,7 @@ void session730IndexToPlayer(Player player, int index){
 		var f = new Fraymotif( "Try (and fail) To Be Meta", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = "SR is NOT happy about how the  ${Fraymotif.OWNER} is trying to be meta. ";
+		player.fraymotifs.add(f);
 		player.interest1 = new Interest("Coding", InterestManager.TECHNOLOGY);
 		player.interest2 = new Interest("Music", InterestManager.MUSIC);
 		player.quirk.capitalization = 0;
@@ -787,6 +788,7 @@ void session730IndexToPlayer(Player player, int index){
 		Fraymotif f = new Fraymotif( "Fungikinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " ${Fraymotif.OWNER} really is a FUN guy! ";
+		player.fraymotifs.add(f);
 
 		f = new Fraymotif( "Force the Plot", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
