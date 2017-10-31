@@ -20,7 +20,7 @@ class RenderJobPassImage extends RenderJobPass {
     RenderJobPassImage(String this.imagePath, [int this.x=0, int this.y=0, THREE.ShaderMaterial this.materialOverride]);
 
     @override
-    Future<Null> draw(RenderJob job) async {
+    Future<Null> draw(RenderJob job, [THREE.WebGLRenderTarget target]) async {
         await _initScene();
         _camera..bottom = job.height..right = job.width..updateProjectionMatrix();
 
@@ -32,9 +32,10 @@ class RenderJobPassImage extends RenderJobPass {
         THREE.getUniform(material, "image").value = texture;
         THREE.getUniform(material, "size").value = new THREE.Vector2(img.width, img.height);
 
+        _mesh.material = material;
         _mesh.position..x = x + img.width * 0.5..y = y + img.height * 0.5;
 
-        Renderer.webgl.render(_scene, _camera);
+        Renderer.webgl.render(_scene, _camera, target);
     }
 
     Future<Null> _initScene() async {

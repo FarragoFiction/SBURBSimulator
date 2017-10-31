@@ -25,7 +25,7 @@ class RenderJobPassSprite extends RenderJobPass {
     RenderJobPassSprite(String this.spritePath, Iterable<Palette> this.palettes, [int this.x = 0, int this.y = 0, THREE.ShaderMaterial this.materialOverride]);
 
     @override
-    Future<Null> draw(RenderJob job) async {
+    Future<Null> draw(RenderJob job, [THREE.WebGLRenderTarget target]) async {
         await _initScene();
         _camera..bottom = job.height..right = job.width..updateProjectionMatrix();
 
@@ -38,9 +38,10 @@ class RenderJobPassSprite extends RenderJobPass {
         THREE.getUniform(material, "image").value = texture;
         THREE.getUniform(material, "size").value = new THREE.Vector2(sprite.width, sprite.height);
 
+        _mesh.material = material;
         _mesh.position..x = x + sprite.width * 0.5..y = y + sprite.height * 0.5;
 
-        Renderer.webgl.render(_scene, _camera);
+        Renderer.webgl.render(_scene, _camera, target);
     }
 
     static void _processPalette(PSprite sprite, Iterable<Palette> palettes) {
