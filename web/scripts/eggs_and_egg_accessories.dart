@@ -768,92 +768,97 @@ void session730IndexToPlayer(Player player, int index){
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [["s","z"],["c","z"]];
-		player.quirk.prefix = "[";
-		player.quirk.suffix = "]";
+		player.quirk.prefix = "";
+		player.quirk.suffix = "";
 		player.land = player.spawnLand();
 		player.land.name = "Land of Clocks and Crime";
 		player.land.denizenFeature = new DenizenFeature('Chronos');
 
 		player.moon = curSessionGlobalVar.prospit;
 	}else if(index == 5){
-		player.bloodColor = "#A10000";
+		player.bloodColor = "#078446";
 		player.class_name = SBURBClassManager.WITCH;
 		player.godDestiny = true;
 		player.aspect = Aspects.MIND;
-		player.hair  =46;
-		player.leftHorn = 11;
-		player.rightHorn = 11;
-		player.chatHandle = "catharsisIgnited";
-		var f = new Fraymotif( "Pyrokinesis", 1);
+		player.hair  =13;
+		player.leftHorn = 24;
+		player.rightHorn = 24;
+		player.chatHandle = "jadedResearcher"; //whoa, a jade blooded researcher???  I am the best at trollsonas. it is me.
+		Fraymotif f = new Fraymotif( "Terrakinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		f.desc = " ${Fraymotif.OWNER} spams terra. Fuck the world. ";
 		player.fraymotifs.add(f);
-		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
-		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+
+		f = new Fraymotif( "Be Unimpressed", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} hates their bullshit land. They hate this bullshit game. But most of all they hate ${Fraymotif.ENEMY}.  ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("SCIENCE", InterestManager.ACADEMIC);
+		player.interest2 = new Interest("Movies", InterestManager.POPCULTURE); //especially the Aliens series
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
-		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.quirk.prefix = "[";
-		player.quirk.suffix = "]";
+		player.quirk.lettersToReplaceIgnoreCase = [["i","1"],["l","1"],["e","3"],["one","1"]];
+		player.quirk.prefix = "";
+		player.quirk.suffix = "";
 		player.land = player.spawnLand();
-		player.land.name = "Land of Mines and Smoke";
-		player.land.denizenFeature = new DenizenFeature('Terpischore');
+		player.land.name = "Land of Bullshit and More Bullshit"; //formerly known as the land of Ghosts and Absence
+		player.land.denizenFeature = new DenizenFeature('Athena'); // <-- only good thing about this bullshit land
 
-		player.moon = curSessionGlobalVar.derse;
+		player.moon = curSessionGlobalVar.prospit;
 	}else if(index == 6){
-		player.bloodColor = "#A10000";
+		player.bloodColor = "#0021cb";
 		player.class_name = SBURBClassManager.HEIR;
 		player.godDestiny = true;
 		player.aspect = Aspects.HOPE;
-		player.hair  =46;
-		player.leftHorn = 11;
-		player.rightHorn = 11;
-		player.chatHandle = "catharsisIgnited";
-		var f = new Fraymotif( "Pyrokinesis", 1);
+		player.hair  =30;
+		player.leftHorn = 23;
+		player.rightHorn = 23;
+		player.chatHandle = "complexAssumption";
+		var f = new Fraymotif( "Vanish", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		f.desc = " ${Fraymotif.OWNER} makes like a void player and vanishes. You're sure they'll be back in time for the final boss, though. Wait, there they are. ";
 		player.fraymotifs.add(f);
-		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
-		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
-		player.quirk.capitalization = 0;
+		player.interest1 = new Interest("Music", InterestManager.MUSIC);
+		player.interest2 = new Interest("Slow Things", InterestManager.CULTURE);
+		player.quirk.capitalization = 5;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.quirk.prefix = "[";
-		player.quirk.suffix = "]";
+		player.quirk.prefix = "|";
+		player.quirk.suffix = "|";
 		player.land = player.spawnLand();
-		player.land.name = "Land of Mines and Smoke";
-		player.land.denizenFeature = new DenizenFeature('Terpischore');
+		player.land.name = "Land of Titanium and Dreams";
+		player.land.denizenFeature = new DenizenFeature('Hyperion');//sir not appearing in this film.
 
-		player.moon = curSessionGlobalVar.derse;
+		player.moon = curSessionGlobalVar.prospit;
 
 	}else if(index == 7){
-		player.bloodColor = "#A10000";
+		player.bloodColor = "#631db4";
 		player.class_name = SBURBClassManager.KNIGHT;
 		player.godDestiny = true;
 		player.aspect = Aspects.SPACE;
-		player.hair  =46;
-		player.leftHorn = 11;
-		player.rightHorn = 11;
-		player.chatHandle = "catharsisIgnited";
-		var f = new Fraymotif( "Pyrokinesis", 1);
+		player.hair  =31;
+		player.leftHorn = 48;
+		player.rightHorn = 48;
+		player.chatHandle = "animalisticallyAstute";
+		var f = new Fraymotif( "Oh God. WHY?", 2);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		f.desc = " Why did ${Fraymotif.OWNER} just do that? The world may never know.  ";
 		player.fraymotifs.add(f);
-		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
-		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+		player.interest1 = new Interest("Cooking", InterestManager.DOMESTIC);
+		player.interest2 = new Interest("being the highblood", InterestManager.SOCIAL);
 		player.quirk.capitalization = 0;
 		player.quirk.punctuation = 1;
 		player.quirk.lettersToReplace = [];
 		player.quirk.lettersToReplaceIgnoreCase = [];
-		player.quirk.prefix = "[";
-		player.quirk.suffix = "]";
+		player.quirk.prefix = ""; //no quirk
+		player.quirk.suffix = "";
 		player.land = player.spawnLand();
-		player.land.name = "Land of Mines and Smoke";
-		player.land.denizenFeature = new DenizenFeature('Terpischore');
+		player.land.name = "Land of Drought and Frogs";
+		player.land.denizenFeature = new DenizenFeature('Echidna');
 
-		player.moon = curSessionGlobalVar.derse;
+		player.moon = curSessionGlobalVar.prospit;
 	}
 
 }

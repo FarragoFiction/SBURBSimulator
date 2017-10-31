@@ -295,7 +295,7 @@ class IntroNew extends IntroScene {
             lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
 
         }else if(InterestManager.ACADEMIC.playerLikes(player)) {
-            lines.add(new PlusMinusConversationalPair(["It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?", "My brain is breaking trying to figure out how any of this is even working!"], ["Through bullshit game magic. But what's it actually like there?", "It's a magic fucking video game, it works through magic. I meant more, what is your land like?"],["It's a magic fucking video game, who fucking CARES who it works.","Yes, those sure are the questions we need to focus on right now.", "..."]));
+            lines.add(new PlusMinusConversationalPair(["It is so weird! Where even are we compared to our solar system? There's no sun! How does this work!?", "My brain is breaking trying to figure out how any of this is even working!"], ["Through bullshit game magic. But what's it actually like there?", "It's a magic fucking video game, it works through magic. I meant more, what is your land like?"],["It's a magic fucking video game, who fucking CARES how it works.","Yes, those sure are the questions we need to focus on right now.", "..."]));
 
         }else{
             lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
