@@ -75,7 +75,7 @@ class LuckStuff extends Scene{
 			land = roll.player.shortLand();
 		}
 		Fraymotif f = roll.player.getNewFraymotif(null);
-		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotifs, "+f.name + ", they have had their eye on! ";
+		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + land + " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest cache of boonbucks. They will finally be able to afford that fraymotif, "+f.name + ", they have had their eye on! ";
 		//roll.player.increasePower();
 		this.session.stats.goodLuckEvent = true;
 		return ret;
