@@ -10,15 +10,14 @@ class Reward {
 
     static String PLAYER1 = "PLAYER1TAG";
     static String PLAYER2 = "PLAYER2TAG";
-    //children replace these two things.
-    String text = " You get jack shit, asshole!";
     String image = "Rewards/no_reward.png";
     String bgImage = null;
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String text = "You get jack shit, asshole!"]) {
         p1.increasePower();
         p1.increaseLandLevel();
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
         String divID = "canvas${div.id}_${p1.id}";
+        print ("applying base reward, text is $text ");
         String ret = "$text <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
         appendHtml(div, ret);
         Element canvas = querySelector("#$divID");
@@ -51,15 +50,14 @@ class FraymotifReward extends Reward
     String name = null;
     String desc = null;
     @override
-    String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
-    @override
     String image = "Rewards/sweetLoot.png";
 
     FraymotifReward([String this.name = null, this.desc = null]);
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
         Fraymotif f1;
         Fraymotif f2;
         if(p2 != null) {
@@ -80,7 +78,7 @@ class FraymotifReward extends Reward
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -89,12 +87,11 @@ class DenizenReward extends Reward {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     @override
-    String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. ";
-    @override
     String image = "Rewards/sweetLoot.png";
     String bgImage = "Rewards/sweetGrist.png";
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. ";
         p1.increaseGrist(100.0);
         DenizenFeature df = land.denizenFeature;
         if(df.denizen == null) {
@@ -108,7 +105,7 @@ class DenizenReward extends Reward {
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
         p1.setDenizenDefeated();
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -120,10 +117,10 @@ class BattlefieldReward extends Reward {
     String bgImage = "Rewards/battlefield.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String text]) {
         text = " The ${Reward.PLAYER1} is getting pretty familiar with the battlefield. ";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -132,8 +129,8 @@ class CodReward extends Reward {
     String image = "/Rewards/sweetCod.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
-        text = " It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
         if(!p1.godTier) text += " Too bad they'll have to wait to be god tier to TRULY appreciate it.";
         if(bardQuest) text += " Even if someone already found this sacred treasure, the ${Reward.PLAYER1} is glad they journeyed to find it on their own as well. ";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
@@ -150,7 +147,7 @@ class CodReward extends Reward {
             }
         }
         p1.renderSelf();
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -162,7 +159,8 @@ class FrogReward extends FraymotifReward {
     String image = "Rewards/sweetFrog.png";
     String bgImage = "Rewards/holyShitFrogs.png";
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = "";
         if(p1.grimDark < 3) {
             p1.landLevel = 1.0 * p1.session.goodFrogLevel; //need to be double
             text = "The ${Reward.PLAYER1} breeds the final frog. While it is a tadpole for now, once it is placed in the fertlized SKAIA it will grow to become an entire Universe Frog.";
@@ -171,28 +169,29 @@ class FrogReward extends FraymotifReward {
             p1.landLevel = -1.0*p1.session.goodFrogLevel;
             text = "The ${Reward.PLAYER1}. Um. You don't think they were supposed to be doing that. Why doe the frog look like that? ";
         }
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
 class ImmortalityReward extends Reward {
 
     @override
-    String text = " The ${Reward.PLAYER1} finds a strange clock and destroys it utterly. Where did they even get that crowbar? It doesn't matter.   They are now unconditionally immortal. What will happen? ";
-    @override
     String image = "Rewards/ohShit.png";
+    @override
     String bgImage = "Rewards/sweetClock.png";
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} finds a strange clock and destroys it utterly. Where did they even get that crowbar? It doesn't matter.   They are now unconditionally immortal. What will happen? ";
+
         if(!p1.godTier) {
             text = " There remains to be a trivial act of self-suicide. And then... $text";
             p1.makeGodTier();
         }
         p1.unconditionallyImmortal = true;
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -204,14 +203,15 @@ class PaleRomanceReward extends Reward {
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     String romanticEnding = " Pale Serenade";
     @override
-    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a tender moment of calmness. It is obvious to everyone that they are now moirails. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
-    @override
     String image = null;
+    @override
     String bgImage = "Moirail.png";
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a tender moment of calmness. It is obvious to everyone that they are now moirails. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+
         Fraymotif f1;
         Fraymotif f2;
 
@@ -240,7 +240,7 @@ class PaleRomanceReward extends Reward {
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -253,14 +253,15 @@ class FlushedRomanceReward extends Reward {
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     String romanticEnding = " Flushed Serenade";
     @override
-    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a passionate moment. It is obvious to everyone that they are now matesprits. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
-    @override
     String image = null;
+    @override
     String bgImage = "Matesprit.png";
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a passionate moment. It is obvious to everyone that they are now matesprits. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+
         Fraymotif f1;
         Fraymotif f2;
 
@@ -289,7 +290,7 @@ class FlushedRomanceReward extends Reward {
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -303,17 +304,17 @@ class PitchRomanceReward extends Reward {
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
     String romanticEnding = " Pitch Insult";
     @override
-    String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a combatative moment. It is obvious to everyone that they are now Kismesises. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
-    @override
     String image = null;
+    @override
     String bgImage = "Kismesis.png";
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a combatative moment. It is obvious to everyone that they are now Kismesises. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
+
         Fraymotif f1;
         Fraymotif f2;
-
         if(p2 == null || !(p2 is Player)) {
             p1.session.logger.info("got stood up from a pitch ship");
             f1 = p1.getNewFraymotif(null); //with other player
@@ -339,7 +340,7 @@ class PitchRomanceReward extends Reward {
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }
 
@@ -352,7 +353,7 @@ class DreamReward extends Reward {
     String bgImage = "Prospit.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         if(p1.dreamSelf) {
             if(p1.moon == p1.session.prospit) {
                 applyProspit(div, p1, p2, land);
@@ -369,12 +370,12 @@ class DreamReward extends Reward {
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
         //p1.session.logger.info("prospit reward");
         bgImage = "Prospit.png";
-        text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
+        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
         p1.addStat(Stats.SANITY, -1); //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
         p1.renderSelf();
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
         p1.isDreamSelf = savedDream;
         p1.renderSelf();
 
@@ -383,12 +384,12 @@ class DreamReward extends Reward {
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
        // p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
-        text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
+        String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
         p1.renderSelf();
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
         p1.isDreamSelf = savedDream;
         p1.renderSelf();
 
@@ -397,18 +398,18 @@ class DreamReward extends Reward {
     void applyBubbles(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("bubble reward");
         bgImage = "dreambubbles.png";
-        text = " The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
+        String text = " The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
         p1.addStat(Stats.SANITY, 2); //just a bit better.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
 
     }
 
     void applyHorrorTerrors(Element div, Player p1, GameEntity p2, Land land) {
         p1.session.logger.info("terror reward");
         bgImage = "horrorterror.png";
-        text = " The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
+        String text = " The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
         p1.corruptionLevelOther += 2; //just a bit.
         p1.addStat(Stats.SANITY, -2); //just a bit.
-        super.apply(div, p1, p2, land);
+        super.apply(div, p1, p2, land,text);
     }
 }

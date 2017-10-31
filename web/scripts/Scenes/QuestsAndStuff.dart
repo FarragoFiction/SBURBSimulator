@@ -101,7 +101,7 @@ class QuestsAndStuff extends Scene {
 		player.moon.initQuest([player]);
 		String inEarly = "";
 		if(player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
-		String html = "${player.moon.getChapter()} ${inEarly}  ${player.moon.randomFlavorText(session.rand, player)} ";
+		String html = "${player.moon.getChapter()} ${inEarly} The ${player.htmlTitleWithTip()} is dreaming.  ${player.moon.randomFlavorText(session.rand, player)} ";
 		appendHtml(div, html);
 		//doQuests will append itself.
 		player.moon.doQuest(div, player, null);
@@ -111,7 +111,7 @@ class QuestsAndStuff extends Scene {
 	    session.canReckoning = true;
         Player player = questingParty.player1;
         session.battlefield.initQuest([player]);
-        String html = "${session.battlefield.getChapter()}   ${session.battlefield.randomFlavorText(session.rand, player)} ";
+        String html = "${session.battlefield.getChapter()} The ${player.htmlTitleWithTip()} wanders the battlefield.   ${session.battlefield.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
         session.battlefield.doQuest(div, player, null);
