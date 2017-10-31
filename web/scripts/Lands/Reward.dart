@@ -17,7 +17,7 @@ class Reward {
         p1.increaseLandLevel();
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
         String divID = "canvas${div.id}_${p1.id}";
-        print ("applying base reward, text is $text ");
+        //print ("applying base reward, text is $text ");
         String ret = "$text <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
         appendHtml(div, ret);
         Element canvas = querySelector("#$divID");
@@ -25,7 +25,7 @@ class Reward {
         Drawing.drawSinglePlayer(buffer, p1);
         if(image != null ) Drawing.drawWhatever(buffer, image);
         if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
-        print("drawing player 1 is ${p1}");
+        //print("drawing player 1 is ${p1}");
         Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
         if(p2 != null && (p2 is Player)){
             Element buffer2 = Drawing.getBufferCanvas(canvas);
@@ -98,7 +98,7 @@ class DenizenReward extends Reward {
             df.makeDenizen(p1);
         }
         Fraymotif f1 = df.denizen.fraymotifs.first;
-        print("narrating player 1 is ${p1}");
+       // print("narrating player 1 is ${p1}");
         p1.fraymotifs.add(f1);
 
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
