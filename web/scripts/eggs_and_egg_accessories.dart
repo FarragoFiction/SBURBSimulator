@@ -91,6 +91,8 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		session613();
 	}else if(curSessionGlobalVar.session_id == 1025){
 		session1025();
+	}if(curSessionGlobalVar.session_id == 730){
+		session730();
 	}else if(curSessionGlobalVar.session_id == 33){
 		session33();
 	}else if(curSessionGlobalVar.session_id == 111111){
@@ -380,6 +382,45 @@ void session413(){
 
 
 
+
+void session730(){
+	//print("413");
+	for(int i = 0; i<8; i++){
+		Player player;
+		Player guardian;
+		if(i< curSessionGlobalVar.players.length){
+			player = curSessionGlobalVar.players[i];
+			//print("using existing player");
+		}else{
+			//print("making new player");
+			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
+			player.quirk = randomHumanSim(curSessionGlobalVar.rand, player);
+			player.guardian = guardian;
+			guardian.guardian = player;
+			curSessionGlobalVar.players.add(player);
+		}
+	}
+
+	for(int i = 0; i<8; i++){
+		Player player = curSessionGlobalVar.players[i];
+		Player guardian = player.guardian;
+		player.relationships = [];
+		List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+		//TODO make the correct relationships.
+		guardian.generateBlandRelationships(guardians);
+		player.generateBlandRelationships(curSessionGlobalVar.players);
+		session730IndexToPlayer(player, i);
+		session730IndexToPlayer(guardian, i);//just call regular with a different index
+		player.mylevels = getLevelArray(player);
+		guardian.mylevels = getLevelArray(guardian);
+	}
+	curSessionGlobalVar.players.length = 8; //no more, no less.
+}
+
+
+
 void session111111(){
 	for(int i = 0; i<8; i++){
 		Player  player;
@@ -575,6 +616,248 @@ void session413IndexToHuman(Player player, int index){
 	}
 
 }
+
+//whoa. whtat's this?
+//ci ds cw im va jr ca aa
+void session730IndexToPlayer(Player player, int index){
+	player.isTroll = true;
+	player.hairColor = "#000000";
+
+	player.deriveChatHandle = false;
+	player.deriveLand = false;
+	if(index == 0){
+		player.bloodColor = "#A10000";
+		player.class_name = SBURBClassManager.PAGE;
+		player.godDestiny = true;
+		player.aspect = Aspects.HEART;
+		player.hair  =46;
+		player.leftHorn = 11;
+		player.rightHorn = 11;
+		player.chatHandle = "catharsisIgnited";
+		var f = new Fraymotif( "Pyrokinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		player.fraymotifs.add(f);
+
+		f = new Fraymotif( "Angst", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} angsts more than anyone ever has before. The angst practically vores them. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
+		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "[";
+		player.quirk.suffix = "]";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Mines and Smoke";
+		player.land.denizenFeature = new DenizenFeature('Terpischore');
+
+		player.moon = curSessionGlobalVar.derse;
+	}else if(index == 1){
+		player.bloodColor = "#416600";
+		player.class_name = SBURBClassManager.SEER;
+		player.godDestiny = true;
+		player.aspect = Aspects.BREATH;
+		player.hair  =11;
+		player.leftHorn = 57;
+		player.rightHorn = 57;
+		player.chatHandle = "digitalSingularity";
+		var f = new Fraymotif( "Try (and fail) To Be Meta", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = "SR is NOT happy about how the  ${Fraymotif.OWNER} is trying to be meta. ";
+		player.interest1 = new Interest("Coding", InterestManager.TECHNOLOGY);
+		player.interest2 = new Interest("Music", InterestManager.MUSIC);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = ">{";
+		player.quirk.suffix = "";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Problems and Wind";
+		player.land.denizenFeature = new DenizenFeature('Aeolus');
+
+		player.moon = curSessionGlobalVar.derse;
+	}else if(index == 2){
+		player.bloodColor = "#a25203";
+		player.class_name = SBURBClassManager.MAID;
+		player.godDestiny = true;
+		player.aspect = Aspects.DOOM;
+		player.hair  =8;
+		player.leftHorn = 64;
+		player.rightHorn = 64;
+		player.chatHandle = "cyberneticWanderer";
+		Fraymotif f = new Fraymotif( "Electrokinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} shocks the fuck out of you. ";
+		player.fraymotifs.add(f);
+
+		f = new Fraymotif( "Paranoia", 2);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} throws bombs and spams doom powers and poison and deadly gas and shoots bullets. There is no kill like overkill. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Artificial Intelligence", InterestManager.TECHNOLOGY);
+		player.interest2 = new Interest("Surviving the PLOTS", InterestManager.TERRIBLE);
+		player.quirk.capitalization = 0;
+		player.leftMurderMode=true;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["i","1"],["o","0"]];
+		player.quirk.prefix = "";
+		player.quirk.suffix = "";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Poison and Paranoia";
+		player.land.denizenFeature = new DenizenFeature('Tartarus');
+
+		player.moon = curSessionGlobalVar.derse;
+	}else if(index == 3){
+		player.bloodColor = "#008282";
+		player.class_name = SBURBClassManager.SYLPH;
+		player.godDestiny = true;
+		player.aspect = Aspects.RAGE;
+		player.hair  =60;
+		player.leftHorn = 4;
+		player.rightHorn = 6;
+		player.chatHandle = "illuminantMycelium";
+		Fraymotif f = new Fraymotif( "Fungikinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} really is a FUN guy! ";
+
+		f = new Fraymotif( "Force the Plot", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} insists that things should actually be going this way. They rage until reality agrees with them. ";
+
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Knowledge", InterestManager.ACADEMIC);
+		player.interest2 = new Interest("Revolution", InterestManager.JUSTICE);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "=|}";
+		player.quirk.suffix = "";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Walls and Strife";
+		player.land.denizenFeature = new DenizenFeature('Bacchus');
+
+		player.moon = curSessionGlobalVar.derse;
+	}else if(index == 4){
+		player.bloodColor = "#a1a100";
+		player.class_name = SBURBClassManager.BARD;
+		player.godDestiny = true;
+		player.aspect = Aspects.TIME;
+		player.hair  =66;
+		player.leftHorn = 18;
+		player.rightHorn = 18;
+		player.chatHandle = "vinylApocalypse";
+		Fraymotif f = new Fraymotif( "Telekinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = "Everybody keeps forgetting ${Fraymotif.OWNER} even has this. ";
+		player.fraymotifs.add(f);
+
+		f = new Fraymotif( "Piss Everybody Off", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} does a stupid dance. This enrages EVERYBODY. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Music", InterestManager.MUSIC);
+		player.interest2 = new Interest("Bees", InterestManager.CULTURE); //why are bees culture. VA. Why?
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [["s","z"],["c","z"]];
+		player.quirk.prefix = "[";
+		player.quirk.suffix = "]";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Clocks and Crime";
+		player.land.denizenFeature = new DenizenFeature('Chronos');
+
+		player.moon = curSessionGlobalVar.prospit;
+	}else if(index == 5){
+		player.bloodColor = "#A10000";
+		player.class_name = SBURBClassManager.WITCH;
+		player.godDestiny = true;
+		player.aspect = Aspects.MIND;
+		player.hair  =46;
+		player.leftHorn = 11;
+		player.rightHorn = 11;
+		player.chatHandle = "catharsisIgnited";
+		var f = new Fraymotif( "Pyrokinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
+		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "[";
+		player.quirk.suffix = "]";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Mines and Smoke";
+		player.land.denizenFeature = new DenizenFeature('Terpischore');
+
+		player.moon = curSessionGlobalVar.derse;
+	}else if(index == 6){
+		player.bloodColor = "#A10000";
+		player.class_name = SBURBClassManager.HEIR;
+		player.godDestiny = true;
+		player.aspect = Aspects.HOPE;
+		player.hair  =46;
+		player.leftHorn = 11;
+		player.rightHorn = 11;
+		player.chatHandle = "catharsisIgnited";
+		var f = new Fraymotif( "Pyrokinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
+		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "[";
+		player.quirk.suffix = "]";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Mines and Smoke";
+		player.land.denizenFeature = new DenizenFeature('Terpischore');
+
+		player.moon = curSessionGlobalVar.derse;
+
+	}else if(index == 7){
+		player.bloodColor = "#A10000";
+		player.class_name = SBURBClassManager.KNIGHT;
+		player.godDestiny = true;
+		player.aspect = Aspects.SPACE;
+		player.hair  =46;
+		player.leftHorn = 11;
+		player.rightHorn = 11;
+		player.chatHandle = "catharsisIgnited";
+		var f = new Fraymotif( "Pyrokinesis", 1);
+		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
+		f.desc = " ${Fraymotif.OWNER} is the hottest. It is them. ";
+		player.fraymotifs.add(f);
+		player.interest1 = new Interest("Poetry", InterestManager.WRITING);
+		player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
+		player.quirk.capitalization = 0;
+		player.quirk.punctuation = 1;
+		player.quirk.lettersToReplace = [];
+		player.quirk.lettersToReplaceIgnoreCase = [];
+		player.quirk.prefix = "[";
+		player.quirk.suffix = "]";
+		player.land = player.spawnLand();
+		player.land.name = "Land of Mines and Smoke";
+		player.land.denizenFeature = new DenizenFeature('Terpischore');
+
+		player.moon = curSessionGlobalVar.derse;
+	}
+
+}
+
 
 
 
