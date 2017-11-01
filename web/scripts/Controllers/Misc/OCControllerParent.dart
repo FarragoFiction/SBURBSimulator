@@ -23,6 +23,7 @@ class OCGenerator {
     SelectElement leftHornSelect;
     SelectElement rightHornSelect;
     SelectElement favoriteNumberSelect;
+    InputElement hairColorPicker;
 
 
     OCGenerator(this.numPlayers, [int session_id = -13])
@@ -264,6 +265,7 @@ class OCGenerator {
         setInterests(p);
         setBlood(p);
         setHair(p);
+        setHairColor(p);
         setHorns(p);
         setMoon(p);
         setFavNumber(p);
@@ -279,6 +281,10 @@ class OCGenerator {
         //will overright random blood color
         p.bloodColor = blood;
         if(blood == "Any") p.bloodColor = rand.pickFrom(bloodColors);
+    }
+
+    void setHairColor(Player p) {
+        p.hairColor= hairColorPicker.value;
     }
 
     void setHair(Player p) {
@@ -374,17 +380,24 @@ class OCGenerator {
 
 //gonna try to do this without raw html manipulation as an exercise
     void createDropDowns() {
-        aspectDropDown();
+        //order matters here
         classDropDown();
+        aspectDropDown();
         speciesDropDown();
         bloodDropDown();
         moonDropDown();
         interest1DropDown();
         interest2DropDown();
         hairDropDown();
+        hairColorPickerElement();
         leftHornDropDown();
         rightHornDropDown();
         favNumberDropDown();
+    }
+
+    void hairColorPickerElement() {
+        hairColorPicker = colorPickerThatRedrawsPlayers(holderElement("Hair Color"), new List<Moon>.from(session.moons), "hairColor");
+        hairColorPicker.value = "#000000";
     }
 
     void moonDropDown() {
@@ -421,6 +434,12 @@ class OCGenerator {
         return selectElement;
     }
 
+    InputElement colorPickerThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
+        InputElement selectElement = genericColorPicker(div, list,  name);
+        selectElement.onChange.listen((e) => redrawPlayers());
+        return selectElement;
+    }
+
     DivElement holderElement(String name) {
         print("trying to make holder leement named $name");
         Element divElement = new DivElement();
@@ -448,6 +467,17 @@ class OCGenerator {
                 ..setInnerHtml(a.toString());
             selector.add(o,null);
         }
+        div.append(selector);
+        return selector;
+    }
+
+    InputElement genericColorPicker<T> (Element div, List<T> list, String name)
+    {
+        InputElement selector = new InputElement()
+            ..name = name
+            ..type = "color"
+            ..id = name;
+
         div.append(selector);
         return selector;
     }
