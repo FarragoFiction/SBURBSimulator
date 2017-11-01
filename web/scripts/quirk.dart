@@ -2,6 +2,19 @@ import "SBURBSim.dart";
 
 
 class Quirk {
+    //why did it take me so long to do this???
+    static int NOCAPS = 0;
+    static int ALLCAPS = 2;
+    static int ALTCAPS = 4;
+    static int INVERTCAPS = 5;
+    static int KANAYACAPS = 3;
+    static int NORMALCAPS = 1;
+
+    static int NOPUNC = 0;
+    static int ENDPUNC = 0;
+    static int PERFPUNC = 0;
+    static int EXPUNC = 0;
+
  List<dynamic> lettersToReplace = []; //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
  List<dynamic> lettersToReplaceIgnoreCase = [];
  num punctuation = 0; //0 = none, 1 = ends of sentences, 2 = perfect punctuation 3= excessive punctuation
