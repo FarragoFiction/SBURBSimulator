@@ -9,6 +9,7 @@ abstract class NonCanonSessions {
     static void session80000008() {
         int numPlayers = 4;
         makeASessionFromSource(session80000008IndexToPlayer, numPlayers);
+        //TODO relationships
     }
 
     //tell me how to turn player num into a player and how many players there are and i'll do the heavy lifting of setting up the session
@@ -391,8 +392,6 @@ abstract class NonCanonSessions {
 
 
 
-//whoa. whtat's this?
-//ci ds cw im va jr ca aa
     //could make this a mapping, but whatever, i like it like this
     static void session80000008IndexToPlayer(Player player, int index){
         Session s = curSessionGlobalVar;
@@ -416,7 +415,7 @@ abstract class NonCanonSessions {
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["good","great"],["lol","lel"],["nope","nah"],["asshole","hooker"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -425,93 +424,84 @@ abstract class NonCanonSessions {
 
             player.moon = curSessionGlobalVar.derse;
         }else if(index == 1){
-            player.bloodColor = "#416600";
-            player.class_name = SBURBClassManager.SEER;
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#e0be78";
+            player.class_name = SBURBClassManager.WITCH;
             player.godDestiny = true;
-            player.aspect = Aspects.BREATH;
-            player.hair  =11;
+            player.aspect = Aspects.SPACE;
+            player.hair  =34;
             player.leftHorn = 57;
             player.rightHorn = 57;
-            player.chatHandle = "digitalSingularity";
-            var f = new Fraymotif( "Try (and fail) To Be Meta", 1);
-            f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-            f.desc = "SR is NOT happy about how the  ${Fraymotif.OWNER} is trying to be meta. ";
-            player.fraymotifs.add(f);
+            player.chatHandle = "ViolinKid";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Violin", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Coding", InterestManager.TECHNOLOGY);
             player.interest2 = new Interest("Music", InterestManager.MUSIC);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
-            player.quirk.prefix = ">{";
-            player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Problems and Wind";
-            player.land.denizenFeature = new DenizenFeature('Aeolus');
-
-            player.moon = curSessionGlobalVar.derse;
-        }else if(index == 2){
-            player.bloodColor = "#a25203";
-            player.class_name = SBURBClassManager.MAID;
-            player.godDestiny = true;
-            player.aspect = Aspects.DOOM;
-            player.hair  =8;
-            player.leftHorn = 64;
-            player.rightHorn = 64;
-            player.chatHandle = "cyberneticWanderer";
-            Fraymotif f = new Fraymotif( "Electrokinesis", 1);
-            f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-            f.desc = " ${Fraymotif.OWNER} shocks the fuck out of you. ";
-            player.fraymotifs.add(f);
-
-            f = new Fraymotif( "Paranoia", 2);
-            f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-            f.desc = " ${Fraymotif.OWNER} throws bombs and spams doom powers and poison and deadly gas and shoots bullets. There is no kill like overkill. ";
-            player.fraymotifs.add(f);
-            player.interest1 = new Interest("Artificial Intelligence", InterestManager.TECHNOLOGY);
-            player.interest2 = new Interest("Surviving the PLOTS", InterestManager.TERRIBLE);
-            player.leftMurderMode=true;
-            player.quirk.capitalization = Quirk.NORMALCAPS;
-            player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [["i","1"],["o","0"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "Land of Poison and Paranoia";
-            player.land.denizenFeature = new DenizenFeature('Tartarus');
+            player.land.name = "Land of  Harmony and Paranoia";
+            player.land.denizenFeature = new DenizenFeature('Echidna');
 
-            player.moon = curSessionGlobalVar.derse;
-        }else if(index == 3){
-            player.bloodColor = "#008282";
-            player.class_name = SBURBClassManager.SYLPH;
+            player.moon = curSessionGlobalVar.prospit;
+        }else if(index == 2){
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#ffffff";
+            player.class_name = SBURBClassManager.THIEF;
             player.godDestiny = true;
-            player.aspect = Aspects.RAGE;
-            player.hair  =60;
-            player.leftHorn = 4;
-            player.rightHorn = 6;
-            player.chatHandle = "illuminantMycelium";
-            Fraymotif f = new Fraymotif( "Fungikinesis", 1);
-            f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-            f.desc = " ${Fraymotif.OWNER} really is a FUN guy! ";
-            player.fraymotifs.add(f);
-
-            f = new Fraymotif( "Force the Plot", 1);
-            f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
-            f.desc = " ${Fraymotif.OWNER} insists that things should actually be going this way. They rage until reality agrees with them. ";
-
-            player.fraymotifs.add(f);
+            player.aspect = Aspects.HOPE;
+            player.hair  =73;
+            player.leftHorn = 64;
+            player.rightHorn = 64;
+            player.chatHandle = "nuclearChronosphere";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Zebra", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Knowledge", InterestManager.ACADEMIC);
-            player.interest2 = new Interest("Revolution", InterestManager.JUSTICE);
+            player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
-            player.quirk.prefix = "=|}";
+            player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "Land of Walls and Strife";
-            player.land.denizenFeature = new DenizenFeature('Bacchus');
+            player.land.name = "Land of Stars and Castles";
+            player.land.denizenFeature = new EasyDenizenFeature('Abraxas');
+
+            player.moon = curSessionGlobalVar.prospit;
+        }else if(index == 3){
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#b55c0d";
+            player.class_name = SBURBClassManager.WITCH;
+            player.godDestiny = true;
+            player.aspect = Aspects.BLOOD;
+            player.hair  =23;
+            player.leftHorn = 4;
+            player.rightHorn = 6;
+            player.chatHandle = "collectiveAspirant";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Nemetona", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Swimming", InterestManager.ATHLETIC);
+            player.interest2 = new Interest("History", InterestManager.ACADEMIC);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["good","fantastic"],["lol","hee"],["nope","no thank you"],["asshole","jerk"]];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "~™";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Rainbows and Oil";
+            player.land.denizenFeature = new HardDenizenFeature('Yaldabaoth');
 
             player.moon = curSessionGlobalVar.derse;
         }
