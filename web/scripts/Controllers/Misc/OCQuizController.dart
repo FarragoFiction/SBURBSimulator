@@ -23,7 +23,7 @@ main() {
     loadNavbar();
 
     globalInit();
-    ocgen = new OCGenerator(1);
+    ocgen = new OCQuizGenerator(1);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );
 

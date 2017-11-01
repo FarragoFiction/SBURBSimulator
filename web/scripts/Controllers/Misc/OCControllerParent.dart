@@ -271,31 +271,31 @@ class OCGenerator {
     }
 
     void moonDropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#moonList"), new List<Moon>.from(session.moons), "moon");
+        selectElementThatRedrawsPlayers(holderElement("Moon"), new List<Moon>.from(session.moons), "moon");
     }
 
     void aspectDropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#aspectList"), new List<Aspect>.from(Aspects.all), "aspect");
+        selectElementThatRedrawsPlayers(holderElement("Aspect"), new List<Aspect>.from(Aspects.all), "aspect");
     }
 
     void classDropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#classList"), new List<SBURBClass>.from(SBURBClassManager.all), "class");
+        selectElementThatRedrawsPlayers(holderElement("Class"), new List<SBURBClass>.from(SBURBClassManager.all), "class");
     }
 
     void interest1DropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#interest1List"), new List<InterestCategory>.from(InterestManager.allCategories), "interest1");
+        selectElementThatRedrawsPlayers(holderElement("Interest1"), new List<InterestCategory>.from(InterestManager.allCategories), "interest1");
     }
 
     void interest2DropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#interest2List"), new List<InterestCategory>.from(InterestManager.allCategories), "interest2");
+        selectElementThatRedrawsPlayers(holderElement("Interest2"), new List<InterestCategory>.from(InterestManager.allCategories), "interest2");
     }
 
     void speciesDropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#speciesList"), <String>["Human", "Troll"], "species");
+        selectElementThatRedrawsPlayers(holderElement("Species"), <String>["Human", "Troll"], "species");
     }
 
     void bloodDropDown() {
-        selectElementThatRedrawsPlayers(querySelector("#colorList"), bloodColors, "blood");
+        selectElementThatRedrawsPlayers(holderElement("Blood"), bloodColors, "blood");
     }
 
     void selectElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
@@ -304,8 +304,11 @@ class OCGenerator {
     }
 
     DivElement holderElement(String name) {
+        print("trying to make holder leement named $name");
         Element divElement = new DivElement();
+        divElement.classes.add("ocElement");
         divElement.setInnerHtml(name);
+        form.append(divElement);
         return divElement;
     }
 

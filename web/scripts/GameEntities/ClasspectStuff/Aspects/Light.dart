@@ -121,6 +121,21 @@ class Light extends Aspect {
             ..addFeature(FeatureFactory.TURTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.HIGH)
+
+            ..addFeature(new PostDenizenQuestChain("Moderate the Wiki", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, there really needs to be some way to organize all this information from their Lair. The ${Quest.PLAYER1} sets up a wiki and settles in to help the ${Quest.CONSORT}s deal with it all."),
+                new Quest("Within barely any time at all, the ${Quest.CONSORT} wiki is a huge success! Everybody works hard and shares their expertise, and the ${Quest.PLAYER1} makes sure all of the information is from credible sources."),
+                new Quest("When the ${Quest.PLAYER1} falls ill to a mysterious illness, it's one witness' quick check of the wiki that saves the day. It turns out it was their peanut allergy acting up, not an illness at all! ")
+            ], new FraymotifReward("Information Network", "The ${Fraymotif.OWNER} has assembled just, ALL the knowledge. How can you possibly hope to beat them?"), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
+
+
+            ..addFeature(new PostDenizenQuestChain("Create the Wiki", [
+                new Quest("Now that the ${Quest.DENIZEN} has been defeated, there really needs to be some way to organize all this information from their Lair. The ${Quest.PLAYER1} shrugs and sets up a wiki and lets the ${Quest.CONSORT}s deal with it all."),
+                new Quest("Within barely any time at all, unmoderated ${Quest.CONSORT} wiki is a huge disastor. Misinformation abounds. There are no less than three articles on the ${Quest.PLAYER1} alone, and each claims they are a different SPECIES entirely. The ${Quest.PLAYER1} finds this to be hilarious."),
+                new Quest("Luckily it turns out all that disinformation running around about the ${Quest.PLAYER1} thwarts some would be assasins. It turns out the ${Quest.PLAYER1} is NOT deathly allergic to peanuts, after all. That's what you get for trusting a wiki, assholes. ")
+            ], new FraymotifReward("Disinformation Network", "The ${Fraymotif.OWNER} allows you to make you own assumptions about things, and be destroyed by them."), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+
+
             ..addFeature(new DenizenQuestChain("Shed the Light", [
                 new Quest("${Quest.CONSORT}s are falling ill left and right due to a mysterious Plague. It doesn't seem to follow the pattern of a disease, having no communicability. What is going on and how can the ${Quest.PLAYER1} possibly stop it?"),
                 new Quest("The ${Quest.PLAYER1} pours over maps and charts. What do the sick ${Quest.CONSORT}s have in common with each other?  Finally, there is a flash of inspiration. ${Quest.CONSORT}s who live or work closer to a particular river that meanders across the planet are the ones becoming ill! The ${Quest.PLAYER1} quickly orders the river quarantined and new cases begin to taper off. Now it remains to see what can be done about those already sick. "),
