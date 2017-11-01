@@ -38,7 +38,7 @@ class IntroNew extends IntroScene {
   //just blindly grabbing it out of the old stuff. fuck the world, this is how i role. or roll. whichever.
   void doNarration(Element div, int i) {
       //throw "testing testing";
-      if(i == 0) this.player.leader = true; //fuck you, you're the leader.
+      //if(i == 0) this.player.leader = true; //fuck you, you're the leader.
       session.mutator.replacePlayerIfCan(div, this.player);
       //foundRareSession(div, "This is just a test. " + this.session.session_id);
       String canvasHTML = "<canvas style='display:none' class = 'charSheet' id='firstcanvas" + this.player.id.toString()+"_" + this.session.session_id.toString()+"' width='400' height='1000'>  </canvas>";

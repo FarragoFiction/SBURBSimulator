@@ -768,6 +768,33 @@ class Session {
         return "Mixed";
     }
 
+
+    Player getLeader([List<Player> specificPlayers]) {
+        bool allPlayers = false;
+        if (specificPlayers == null) {
+            specificPlayers = players;
+            allPlayers = true;
+        }
+        if(mutator.lightField) return mutator.inSpotLight;
+        for (int i = 0; i < specificPlayers.length; i++) {
+            Player g = specificPlayers[i]; //leader MUST be player
+            if (g is Player) {
+                Player p = specificPlayers[i];
+                if (p.leader) {
+                    return p;
+                }
+            }
+        }
+        //only do this if you were passed all players
+        if (!specificPlayers.isEmpty && allPlayers) {
+            logger.info("found a leaderless session");
+            specificPlayers[0].leader = true; //SOMEONE be the leader god damn it
+            return specificPlayers[0];
+        }
+        return null;
+
+    }
+
     void setUpBosses() {
         //queen and king handle their jewlery
         npcHandler.spawnQueen();

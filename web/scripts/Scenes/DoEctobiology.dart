@@ -16,7 +16,7 @@ class DoEctobiology extends Scene {
 	@override
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		this.leader = getLeader(this.session.getReadOnlyAvailablePlayers());  //dead men do no ectobiology
+		this.leader = session.getLeader();  //since i get passed no players, if somehow nobody was leader it will nominate one.
 		if(this.leader != null && this.leader.dead == false && this.session.stats.ectoBiologyStarted == false){
 			return (this.leader.getStat(Stats.POWER) > (rand.nextDouble()*200) && this.leader.canHelp()); //can't do it right out of the bat. might never do it
 		}

@@ -293,24 +293,6 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
 }
 
 
-Player getLeader(List<Player> playerList) {
-    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.inSpotLight;
-    for (int i = 0; i < playerList.length; i++) {
-        GameEntity g = playerList[i]; //leader MUST be player
-        if (g is Player) {
-            Player p = playerList[i];
-            if (p.leader) {
-                return p;
-            }
-        }
-    }
-    if (!playerList.isEmpty) {
-      playerList[0].leader = true; //SOMEONE be the leader god damn it
-      return playerList[0];
-    }
-    return null;
-
-}
 
 
 //in combo sessions, mibht be more than one rage player, for example.

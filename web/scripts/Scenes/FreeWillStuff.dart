@@ -107,7 +107,7 @@ class FreeWillStuff extends Scene {
             String ret = "";
             var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
             var spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
-            var ectobiologistEnemy = getLeader(enemies);
+            var ectobiologistEnemy = session.getLeader(enemies);
             //not everybody knows about ectobiology.
             if (!this.session.stats.ectoBiologyStarted && ectobiologistEnemy != null && (player.gnosis >= 2 && player.grimDark < 2)) {
                 ////session.logger.info("Free will stop from killing ectobiologist: " + this.session.session_id);
@@ -144,7 +144,7 @@ class FreeWillStuff extends Scene {
 
     bool isValidTargets(List<Player> enemies, Player player) {
         Player spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
-        Player ectobiologistEnemy = getLeader(enemies);
+        Player ectobiologistEnemy = session.getLeader(enemies);
         if (spacePlayerEnemy != null && spacePlayerEnemy.landLevel < this.session.goodFrogLevel && (player.gnosis >= 2 && player.grimDark < 2)) { //grim dark players don't care if it dooms things.
             return false;
         }
@@ -645,7 +645,7 @@ class FreeWillStuff extends Scene {
                 player.performEctobiology(this.session);
                 return "The " + player.htmlTitle() + timeIntro + " is not going to play by SBURB's rules. Yes, they could wait to do Ectobiology until they are 'supposed' to. But. Just. Fuck that shit. That's how doomed timelines get made. They create baby versions of everybody. Don't worry about it.";
             } else {
-                Player leader = getLeader(availablePlayers);
+                Player leader = session.getLeader(availablePlayers);
                 if (leader != null && !leader.dead && leader.grimDark < 2) { //you are NOT gonna be able to convince a grim dark player to do their SBURB duties.
                     if (leader.getStat(Stats.FREE_WILL) < player.getStat(Stats.FREE_WILL)) {
                         session.removeAvailablePlayer(player);

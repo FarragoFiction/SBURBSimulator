@@ -170,7 +170,7 @@ class PlanToExileJack extends Scene {
 		this.session.available_scenes.insert(0, new ExileJack(this.session));
 		this.session.available_scenes.insert(0, new ExileQueen(this.session));  //make it top priority, so unshift, don't push
 		Player player1 = this.planner;
-		Player player2 = getLeader(findLivingPlayers(	this.session.players));
+		Player player2 = session.getLeader(findLivingPlayers(	this.session.players));
 		if(player2 != null && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2);

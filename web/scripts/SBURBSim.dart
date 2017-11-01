@@ -48,7 +48,7 @@ export "GameEntities/player.dart";
 export "GameEntities/player_functions.dart";
 export "v2.0/YellowYardResultController.dart";
 export "ShittyRapEngine/shitty_raps.dart";
-export "eggs_and_egg_accessories.dart"; //handles easter eggs
+export "EasterEggs/eggs_and_egg_accessories.dart"; //handles easter eggs
 export "OCDataStringHandler.dart";
 export "quirk.dart";
 

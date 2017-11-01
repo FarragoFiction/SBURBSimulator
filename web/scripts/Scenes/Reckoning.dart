@@ -27,11 +27,11 @@ class Reckoning extends Scene {
 			this.session.npcHandler.queen.heal();
 		}
 
-		var leader = getLeader(this.session.players);
+		var leader = session.getLeader();
 		if(this.session.stats.ectoBiologyStarted){
 			intro += " Remember those random baby versions of the players the " + leader.htmlTitleBasic() + " made? " ;
 			if(this.session.stats.scratched){
-				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + getLeader(getGuardiansForPlayers(this.session.players)).htmlTitleBasic() +"? Scratched sessions are so confusing...";
+				intro += "Wait... DID they make the babies? Or, was it their guardian, the " + session.getLeader(getGuardiansForPlayers(this.session.players)).htmlTitleBasic() +"? Scratched sessions are so confusing...";
 			}
 			intro += " Yeah, that didn't stop being a thing that was true. ";
 			intro += " It turns out that those babies ended up on the meteors heading straight to Skaia. ";

@@ -220,7 +220,7 @@ class JackBeginScheming extends Scene {
 		this.session.available_scenes.insert(0, new PlanToExileJack(session));  //make it top priority, so unshift, don't push
 		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
 		var player1 = this.friend;
-		var player2 = getLeader(findLivingPlayers(this.session.players));
+		var player2 = session.getLeader(findLivingPlayers(this.session.players));
 		if(player2 != null && player2 != player1){
 			//player tells leader what happened.
 			this.chatWithFriend(div,player1, player2);
