@@ -891,7 +891,7 @@ class CharacterCreatorHelper {
     String drawOneHairDropDown(Player player) {
         String html =
             "<select id = 'hairTypeID${player.id}' name='hair${player.id}'>";
-        for (int i = 1; i <= player.maxHairNumber; i++) {
+        for (int i = 1; i <= Player.maxHairNumber; i++) {
             if (player.hair == i) {
                 html += '<option  selected = "selected" value="$i">$i</option>';
             } else {
@@ -997,7 +997,7 @@ class CharacterCreatorHelper {
         if (left) horn = player.rightHorn;
         String html =
             "<select id = '${side}HornID${player.id}' name='${side}Horn${player.id}'>";
-        for (int i = 1; i <= player.maxHornNumber; i++) {
+        for (int i = 1; i <= Player.maxHornNumber; i++) {
             if (horn == i) {
                 html += '<option  selected = "selected" value="$i">$i</option>';
             } else {

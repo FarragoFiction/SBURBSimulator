@@ -271,10 +271,9 @@ dynamic loadOther(String skipInit){
 
 dynamic loadAllPossiblePlayers(skipInit){
 	if(doNotRender == true) return checkDone(skipInit);
-	var blankPlayer = new Player(); //need to get num hair and horns.
     num numBodies = 20;  //1 indexed
-    var numHair = blankPlayer.maxHairNumber; //+1025 for rufio.  1 indexed
-    var numHorns = blankPlayer.maxHornNumber; //1 indexed.
+    var numHair = Player.maxHairNumber; //+1025 for rufio.  1 indexed
+    var numHorns = Player.maxHornNumber; //1 indexed.
     //var numWings = 12 ;//0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.;
     for(int i = 1; i<=numBodies; i++){
         loadImage("Bodies/reg${i}.png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.

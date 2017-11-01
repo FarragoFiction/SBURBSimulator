@@ -5,6 +5,7 @@ import '../../navbar.dart';
 
 class OCGenerator {
 
+    Element form;
     int numPlayers = 4;
     List<Player> players = null;
     int canvasWidth = 1000;
@@ -16,6 +17,7 @@ class OCGenerator {
 
     {
          players = new List<Player>(numPlayers);
+         form = querySelector("#form");
          if(session_id < 0) session_id  = rand.nextInt();
 
          session = new Session(session_id);
@@ -299,6 +301,12 @@ class OCGenerator {
     void selectElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
         SelectElement selectElement = genericDropDown(div, list,  name);
         selectElement.onChange.listen((e) => redrawPlayers());
+    }
+
+    DivElement holderElement(String name) {
+        Element divElement = new DivElement();
+        divElement.setInnerHtml(name);
+        return divElement;
     }
 
 //whoever calls me is responsible for wiring it up

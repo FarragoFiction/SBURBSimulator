@@ -21,8 +21,8 @@ class Player extends GameEntity {
     GameEntity denizenMinion = null;
     //mostly for dead sessions.
     bool unconditionallyImmortal = false;
-    num maxHornNumber = 73; //don't fuck with this
-    num maxHairNumber = 74; //same
+   static num maxHornNumber = 73; //don't fuck with this
+    static num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
     bool deriveSprite = true;
