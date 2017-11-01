@@ -12,11 +12,13 @@ class OCGenerator {
     Random rand = new Random();
     Session session;
 
-    OCGenerator()
+    OCGenerator(this.numPlayers, [int session_id = -13])
 
     {
          players = new List<Player>(numPlayers);
-         session = new Session(rand.nextInt());
+         if(session_id < 0) session_id  = rand.nextInt();
+
+         session = new Session(session_id);
 
     }
 
