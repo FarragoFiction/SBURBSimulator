@@ -441,7 +441,6 @@ class OCGenerator {
     }
 
     DivElement holderElement(String name) {
-        print("trying to make holder leement named $name");
         Element divElement = new DivElement();
         divElement.classes.add("ocElement");
         divElement.setInnerHtml("<div class = 'label'>$name</div>");

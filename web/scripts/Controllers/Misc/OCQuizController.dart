@@ -26,6 +26,9 @@ main() {
     ocgen = new OCGenerator(1);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );
+    //TODO have a form element for picking session id, which should overright the rand number
+    //have a bigger canvas
+    //write out the quests straight up.
 
 }
 
