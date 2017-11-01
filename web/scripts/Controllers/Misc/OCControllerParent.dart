@@ -12,6 +12,15 @@ class OCGenerator {
     int canvasHeight = 600;
     Random rand = new Random();
     Session session;
+    SelectElement aspectSelect;
+    SelectElement classSelect;
+    SelectElement speciesSelect;
+    SelectElement bloodSelect;
+    SelectElement moonSelect;
+    SelectElement interest1Select;
+    SelectElement interest2Select;
+    SelectElement hairSelect;
+
 
     OCGenerator(this.numPlayers, [int session_id = -13])
 
@@ -170,52 +179,67 @@ class OCGenerator {
         return ret;
     }
 
-    void redrawPlayers() {
-        Aspect aspect = getAspectFromDropDown();
-        SBURBClass class_name = getClassFromDropDown();
-        InterestCategory interest1 = getInterest1FromDropDown();
-        InterestCategory interest2 = getInterest2FromDropDown();
-        Moon moon = getMoonFromDropDown();
-        String species = (querySelector("#species") as SelectElement).selectedOptions[0].value;
-        String bloodColor = (querySelector("#blood") as SelectElement).selectedOptions[0].value;
-        print("aspect is ${aspect}");
-        setPlayers(aspect, class_name, interest1, interest2, moon, species, bloodColor);
-    }
 
     Aspect getAspectFromDropDown() {
-        String aspectString = (querySelector("#aspect") as SelectElement).selectedOptions[0].value;
+        String aspectString = aspectSelect.selectedOptions[0].value;
         if(aspectString == "Any") return Aspects.NULL;
         return Aspects.stringToAspect(aspectString);
     }
 
     Moon getMoonFromDropDown() {
-        String string = (querySelector("#moon") as SelectElement).selectedOptions[0].value;
+        String string = moonSelect.selectedOptions[0].value;
         if(string == "Any") return null;
         return session.stringToMoon(string);
     }
 
     SBURBClass getClassFromDropDown() {
-        String classString = (querySelector("#class") as SelectElement).selectedOptions[0].value;
+        String classString = classSelect.selectedOptions[0].value;
         if(classString == "Any") return SBURBClassManager.NULL;
         return SBURBClassManager.stringToSBURBClass(classString);
     }
 
     InterestCategory getInterest1FromDropDown() {
-        String string = (querySelector("#interest1") as SelectElement).selectedOptions[0].value;
+        String string = interest1Select.selectedOptions[0].value;
         if(string == "Any") return InterestManager.NULL;
         return InterestManager.getCategoryFromString(string);
     }
 
     InterestCategory getInterest2FromDropDown() {
-        String string = (querySelector("#interest2") as SelectElement).selectedOptions[0].value;
+        String string = interest2Select.selectedOptions[0].value;
         if(string == "Any") return InterestManager.NULL;
         return InterestManager.getCategoryFromString(string);
     }
 
-    void setPlayers(Aspect aspect, SBURBClass class_name, InterestCategory intCat1, InterestCategory intCat2, Moon moon,String species, String blood) {
+    void hairDropDown() {
+        List<int> hairs = new List<int>();
+        for(int i = 0; i<Player.maxHairNumber; i++) {
+            hairs.add(i);
+        }
+        Element divElement = new DivElement();
+        divElement.setInnerHtml("Hair");
+
+        hairSelect = selectElementThatRedrawsPlayers(holderElement("Hair"), hairs, "hair");
+    }
+
+    void redrawPlayers() {
+        Aspect aspect = getAspectFromDropDown();
+        SBURBClass class_name = getClassFromDropDown();
+        InterestCategory intCat1 = getInterest1FromDropDown();
+        InterestCategory intCat2 = getInterest2FromDropDown();
+        Moon moon = getMoonFromDropDown();
+        String species = speciesSelect.selectedOptions[0].value;
+        String blood = bloodSelect.selectedOptions[0].value;
+        String hair = hairSelect.selectedOptions[0].value;
+        int h = 0;
         //if something is null, then randomize that shit for each player
         for(Player p in players) {
             p.aspect = aspect;
+            if(hair == "Any") {
+                h = rand.nextInt(Player.maxHairNumber);
+            }else {
+                h = int.parse(hair);
+            }
+            p.hair = h;
             if(aspect == Aspects.NULL) p.aspect = rand.pickFrom(Aspects.all);
 
             p.class_name = class_name;
@@ -268,39 +292,41 @@ class OCGenerator {
         moonDropDown();
         interest1DropDown();
         interest2DropDown();
+        hairDropDown();
     }
 
     void moonDropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Moon"), new List<Moon>.from(session.moons), "moon");
+        moonSelect = selectElementThatRedrawsPlayers(holderElement("Moon"), new List<Moon>.from(session.moons), "moon");
     }
 
     void aspectDropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Aspect"), new List<Aspect>.from(Aspects.all), "aspect");
+        aspectSelect = selectElementThatRedrawsPlayers(holderElement("Aspect"), new List<Aspect>.from(Aspects.all), "aspect");
     }
 
     void classDropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Class"), new List<SBURBClass>.from(SBURBClassManager.all), "class");
+        classSelect = selectElementThatRedrawsPlayers(holderElement("Class"), new List<SBURBClass>.from(SBURBClassManager.all), "class");
     }
 
     void interest1DropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Interest1"), new List<InterestCategory>.from(InterestManager.allCategories), "interest1");
+        interest1Select = selectElementThatRedrawsPlayers(holderElement("Interest1"), new List<InterestCategory>.from(InterestManager.allCategories), "interest1");
     }
 
     void interest2DropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Interest2"), new List<InterestCategory>.from(InterestManager.allCategories), "interest2");
+        interest2Select = selectElementThatRedrawsPlayers(holderElement("Interest2"), new List<InterestCategory>.from(InterestManager.allCategories), "interest2");
     }
 
     void speciesDropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Species"), <String>["Human", "Troll"], "species");
+       speciesSelect =  selectElementThatRedrawsPlayers(holderElement("Species"), <String>["Human", "Troll"], "species");
     }
 
     void bloodDropDown() {
-        selectElementThatRedrawsPlayers(holderElement("Blood"), bloodColors, "blood");
+        bloodSelect = selectElementThatRedrawsPlayers(holderElement("Blood"), bloodColors, "blood");
     }
 
-    void selectElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
+    SelectElement selectElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
         SelectElement selectElement = genericDropDown(div, list,  name);
         selectElement.onChange.listen((e) => redrawPlayers());
+        return selectElement;
     }
 
     DivElement holderElement(String name) {

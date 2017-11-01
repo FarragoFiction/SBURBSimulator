@@ -23,31 +23,13 @@ main() {
     loadNavbar();
 
     globalInit();
-    ocgen = new OCQuizGenerator(1);
+    ocgen = new OCGenerator(1);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );
 
 }
 
 
-//lets you pick hair/horns and hair color as well.  And session id.
-class OCQuizGenerator extends OCGenerator {
-  OCQuizGenerator(int numPlayers) : super(numPlayers);
 
-  @override
-  void createDropDowns() {
-      super.createDropDowns();
-      hairDropDown();
-  }
 
-  void hairDropDown() {
-      List<int> hairs = new List<int>();
-      for(int i = 0; i<Player.maxHairNumber; i++) {
-          hairs.add(i);
-      }
-      Element divElement = new DivElement();
-      divElement.setInnerHtml("Hair");
 
-      selectElementThatRedrawsPlayers(holderElement("Hair"), hairs, "hair");
-  }
-}
