@@ -564,6 +564,7 @@ List<Player> getGuardiansForPlayers(List<Player> playerList) {
     List<Player> tmp = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         Player g = playerList[i].guardian;
+        if(i == 0) g.leader = true;
         tmp.add(g);
     }
     return tmp;

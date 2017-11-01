@@ -400,7 +400,8 @@ abstract class NonCanonSessions {
         player.deriveLand = false;
         if(index == 0){
             player.isTroll = false;
-            player.bloodColor = "#A10000";
+            player.hairColor = "#381e0a";
+            player.bloodColor = "#ff0000";
             player.class_name = SBURBClassManager.HEIR;
             player.godDestiny = true;
             player.aspect = Aspects.TIME;
