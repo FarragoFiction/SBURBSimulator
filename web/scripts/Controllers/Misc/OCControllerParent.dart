@@ -20,6 +20,9 @@ class OCGenerator {
     SelectElement interest1Select;
     SelectElement interest2Select;
     SelectElement hairSelect;
+    SelectElement leftHornSelect;
+    SelectElement rightHornSelect;
+    SelectElement favoriteNumberSelect;
 
 
     OCGenerator(this.numPlayers, [int session_id = -13])
@@ -221,65 +224,151 @@ class OCGenerator {
         hairSelect = selectElementThatRedrawsPlayers(holderElement("Hair"), hairs, "hair");
     }
 
-    void redrawPlayers() {
-        Aspect aspect = getAspectFromDropDown();
-        SBURBClass class_name = getClassFromDropDown();
-        InterestCategory intCat1 = getInterest1FromDropDown();
-        InterestCategory intCat2 = getInterest2FromDropDown();
-        Moon moon = getMoonFromDropDown();
-        String species = speciesSelect.selectedOptions[0].value;
+    void favNumberDropDown() {
+        List<int> wings = new List<int>();
+        for(int i = 0; i<12; i++) {
+            wings.add(i);
+        }
+        Element divElement = new DivElement();
+        divElement.setInnerHtml("Wings");
+
+        favoriteNumberSelect = selectElementThatRedrawsPlayers(holderElement("Wings"), wings, "favNum");
+    }
+
+    void leftHornDropDown() {
+        List<int> hairs = new List<int>();
+        for(int i = 0; i<Player.maxHornNumber; i++) {
+            hairs.add(i);
+        }
+        Element divElement = new DivElement();
+        divElement.setInnerHtml("LeftHorn");
+
+        leftHornSelect = selectElementThatRedrawsPlayers(holderElement("LeftHorn"), hairs, "hair");
+    }
+
+    void rightHornDropDown() {
+        List<int> hairs = new List<int>();
+        for(int i = 0; i<Player.maxHornNumber; i++) {
+            hairs.add(i);
+        }
+        Element divElement = new DivElement();
+        divElement.setInnerHtml("RightHorn");
+
+        rightHornSelect = selectElementThatRedrawsPlayers(holderElement("RightHorn"), hairs, "hair");
+    }
+
+    void setPlayer(Player p) {
+        setSpecies(p); //do before blood.
+        setAspect(p);
+        setClass(p);
+        setInterests(p);
+        setBlood(p);
+        setHair(p);
+        setHorns(p);
+        setMoon(p);
+        setFavNumber(p);
+        p.initialize();
+    }
+
+    void setBlood(Player p) {
         String blood = bloodSelect.selectedOptions[0].value;
+        if(p.isTroll) {
+            p.hairColor = "#000000";
+            p.bloodColor = rand.pickFrom(bloodColors);
+        }
+        //will overright random blood color
+        p.bloodColor = blood;
+        if(blood == "Any") p.bloodColor = rand.pickFrom(bloodColors);
+    }
+
+    void setHair(Player p) {
         String hair = hairSelect.selectedOptions[0].value;
         int h = 0;
-        //if something is null, then randomize that shit for each player
-        for(Player p in players) {
-            p.aspect = aspect;
-            if(hair == "Any") {
-                h = rand.nextInt(Player.maxHairNumber);
-            }else {
-                h = int.parse(hair);
-            }
-            p.hair = h;
-            if(aspect == Aspects.NULL) p.aspect = rand.pickFrom(Aspects.all);
+        if(hair == "Any") {
+            h = rand.nextInt(Player.maxHairNumber)+1;
+        }else {
+            h = int.parse(hair);
+        }
+        p.hair = h;
+    }
 
-            p.class_name = class_name;
-            if(class_name == SBURBClassManager.NULL) p.class_name = rand.pickFrom(SBURBClassManager.all);
+    void setFavNumber(Player p) {
+        String numb = favoriteNumberSelect.selectedOptions[0].value;
+        int h = 0;
+        if(numb == "Any") {
+            h = rand.nextInt(12);
+        }else {
+            h = int.parse(numb);
+        }
+        print("#favorit enumber is $h");
+        p.quirk.favoriteNumber = h;
+    }
 
-            p.moon = moon;
-            if(moon == null) p.moon = rand.pickFrom(session.moons);
+    void setHorns(Player p) {
+        String leftHornValue = leftHornSelect.selectedOptions[0].value;
+        String rightHornValue = rightHornSelect.selectedOptions[0].value;
+        int randNum = rand.nextInt(Player.maxHornNumber)+1;
 
-            if(species == "Any") {
-                p.isTroll = rand.nextBool();
-            }else if(species == "Troll") {
-                p.isTroll = true;
-            }else {
-                p.isTroll = false;
-            }
-
-            if(p.isTroll) {
-                p.hairColor = "#000000";
-                p.bloodColor = rand.pickFrom(bloodColors);
-            }
-            //will overright random blood color
-            p.bloodColor = blood;
-            if(blood == "Any") p.bloodColor = rand.pickFrom(bloodColors);
-
-            if(intCat1 == InterestManager.NULL) {
-                p.interest1 = InterestManager.getRandomInterest(rand);
-            }else {
-                p.interest1 = new Interest.randomFromCategory(rand, intCat1);
-            }
-
-            if(intCat2 == InterestManager.NULL) {
-                p.interest2 = InterestManager.getRandomInterest(rand);
-            }else {
-                p.interest2 = new Interest.randomFromCategory(rand, intCat2);
-            }
-            p.initialize();
-
-
+        int lh = randNum;
+        int rh = randNum;
+        if(leftHornValue != "Any") {
+            lh = int.parse(leftHornValue);
         }
 
+        if(rightHornValue != "Any") {
+            rh = int.parse(rightHornValue);
+        }
+        p.leftHorn = lh;
+        p.rightHorn = rh;
+    }
+
+    void setMoon(Player p) {
+        p.moon = getMoonFromDropDown();
+        if(p.moon == null) p.moon = rand.pickFrom(session.moons);
+    }
+
+    void setSpecies(Player p) {
+        String species = speciesSelect.selectedOptions[0].value;
+        if(species == "Any") {
+            p.isTroll = rand.nextBool();
+        }else if(species == "Troll") {
+            p.isTroll = true;
+        }else {
+            p.isTroll = false;
+        }
+    }
+
+    void setAspect(Player p) {
+        p.aspect = getAspectFromDropDown();
+        if(p.aspect == Aspects.NULL) p.aspect = rand.pickFrom(Aspects.all);
+    }
+
+    void setClass(Player p) {
+        p.class_name = getClassFromDropDown();
+        if(p.class_name == SBURBClassManager.NULL) p.class_name = rand.pickFrom(SBURBClassManager.all);
+    }
+
+    void setInterests(Player p) {
+        InterestCategory intCat1 = getInterest1FromDropDown();
+        InterestCategory intCat2 = getInterest2FromDropDown();
+        if(intCat1 == InterestManager.NULL) {
+            p.interest1 = InterestManager.getRandomInterest(rand);
+        }else {
+            p.interest1 = new Interest.randomFromCategory(rand, intCat1);
+        }
+
+        if(intCat2 == InterestManager.NULL) {
+            p.interest2 = InterestManager.getRandomInterest(rand);
+        }else {
+            p.interest2 = new Interest.randomFromCategory(rand, intCat2);
+        }
+    }
+
+
+    void redrawPlayers() {
+        for(Player p in players) {
+            setPlayer(p);
+        }
         drawPlayers();
     }
 
@@ -293,6 +382,9 @@ class OCGenerator {
         interest1DropDown();
         interest2DropDown();
         hairDropDown();
+        leftHornDropDown();
+        rightHornDropDown();
+        favNumberDropDown();
     }
 
     void moonDropDown() {
