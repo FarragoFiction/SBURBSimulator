@@ -1,12 +1,18 @@
 import "../SBURBSim.dart";
 //all static
+typedef void SessionSource(Player player, int index);
 
 abstract class NonCanonSessions {
 
 
-   static void session730(){
-        int numPlayers = 9;
-        //print("413");
+    //from patron insipidTestimony: thanks for your support!!!
+    static void session80000008() {
+
+    }
+
+    //tell me how to turn player num into a player and how many players there are and i'll do the heavy lifting of setting up the session
+    static void makeASessionFromSource(SessionSource playerFunction, int numPlayers) {
+        //add the correct amount of extra players
         for(int i = 0; i<numPlayers; i++){
             Player player;
             Player guardian;
@@ -25,19 +31,27 @@ abstract class NonCanonSessions {
             }
         }
 
+        //overright players
         for(int i = 0; i<numPlayers; i++){
             Player player = curSessionGlobalVar.players[i];
             Player guardian = player.guardian;
             player.relationships = [];
             List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
-            //TODO make the correct relationships.
             guardian.generateBlandRelationships(guardians);
             player.generateBlandRelationships(curSessionGlobalVar.players);
-            session730IndexToPlayer(player, i);
-            session730IndexToPlayer(guardian, i);//just call regular with a different index
+            playerFunction(player, i);
+            playerFunction(guardian, i);//just call regular with a different index
             player.mylevels = getLevelArray(player);
             guardian.mylevels = getLevelArray(guardian);
         }
+        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+    }
+
+
+    //SBURB NETA, a DELTA spawn.  Ran from 7/31 to 10/31 (barring an epilogue final boss fight)
+   static void session730(){
+        int numPlayers = 9;
+        makeASessionFromSource(session730IndexToPlayer, numPlayers);
 
         //shipping is srs business.
         //SBURB NETA is such a scandalous fuck pile
@@ -95,9 +109,6 @@ abstract class NonCanonSessions {
 
         //ds likes ci, seems kinda bland about everything else
         cw.getRelationshipWith(ci).value = 20;
-
-
-
 
         curSessionGlobalVar.players.length = numPlayers; //no more, no less.
     }
@@ -379,6 +390,6 @@ abstract class NonCanonSessions {
 
     }
 
-
-
 }
+
+
