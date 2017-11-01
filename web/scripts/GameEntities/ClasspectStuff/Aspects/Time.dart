@@ -50,7 +50,7 @@ class Time extends Aspect {
     @override
     List<String> symbolicMcguffins = ["time","speed", "inevitability", "paradoxes", "rhythm"];
     @override
-    List<String> physicalMcguffins = ["time","clock", "metronome", "beat", "turntables", "music boxes", "sheet music", "drums", "sundials", "beatbox", "trousers", "river"];
+    List<String> physicalMcguffins = ["time","clock", "metronome", "beat", "turntables", "music box", "sheet music", "drum", "sundial", "beatbox", "trousers", "river"];
 
 
     @override

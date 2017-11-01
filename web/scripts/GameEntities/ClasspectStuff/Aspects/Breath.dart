@@ -48,7 +48,7 @@ class Breath extends Aspect {
     List<String> symbolicMcguffins = ["breath","mobility", "freedom", "motivation", "direction", "wind"];
 
     @override
-    List<String> physicalMcguffins = ["breath","wind", "key", "pipes", "hurricane", "horn", "bicycle", "wheels"];
+    List<String> physicalMcguffins = ["breath","wind", "key", "pipe", "hurricane", "horn", "bicycle", "wheel"];
 
     @override
     List<String> denizenNames = new List<String>.unmodifiable(['Breath', 'Ninlil', 'Ouranos', 'Typheus', 'Aether', 'Amun', 'Hermes', 'Shu', 'Sobek', 'Aura', 'Theia', 'Lelantos', 'Keenarth', 'Aeolus', 'Aurai', 'Zephyrus', 'Ventus', 'Sora', 'Htaerb', 'Worlourier', 'Quetzalcoatl']);

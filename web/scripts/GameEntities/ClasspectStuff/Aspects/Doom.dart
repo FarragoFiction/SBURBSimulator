@@ -50,7 +50,7 @@ class Doom extends Aspect {
     List<String> symbolicMcguffins = ["doom","rules", "fate", "judgement", "fog", "gas"];
 
     @override
-    List<String> physicalMcguffins = ["doom","bones", "skulls", "mural", "gravestones", "tomes", "tombs"];
+    List<String> physicalMcguffins = ["doom","bone", "skull", "mural", "gravestone", "tome", "tomb"];
 
     @override
     bool deadpan = true; // Ain't havin' none 'o' that trickster shit

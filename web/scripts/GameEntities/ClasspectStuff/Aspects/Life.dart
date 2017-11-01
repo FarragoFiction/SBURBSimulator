@@ -45,7 +45,7 @@ class Life extends Aspect {
     @override
     List<String> symbolicMcguffins = ["life","health", "growth", "strength","tree", "forest"];
     @override
-    List<String> physicalMcguffins = ["life","plant", "fertilizer", "food","flowers", "beast", "fruit", "baby", "puppy", "candy"];
+    List<String> physicalMcguffins = ["life","plant", "fertilizer", "food","flower", "beast", "fruit", "baby", "puppy", "candy"];
 
 
     @override

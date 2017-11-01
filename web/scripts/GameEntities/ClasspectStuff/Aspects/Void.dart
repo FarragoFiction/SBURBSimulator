@@ -48,7 +48,7 @@ class Void extends Aspect {
     @override
     List<String> symbolicMcguffins = ["void","obscurity", "irrelevance", "stealth", "null", "silence", "ignorance", "vacuum", "static"];
     @override
-    List<String> physicalMcguffins = ["void","cloak", "disguise", "shadow", "cardboard box", "secret plans"];
+    List<String> physicalMcguffins = ["void","cloak", "disguise", "shadow", "cardboard box", "secret plan"];
 
 
 

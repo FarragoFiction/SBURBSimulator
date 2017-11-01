@@ -51,7 +51,7 @@ class Mind extends Aspect {
     @override
     List<String> symbolicMcguffins = ["mind","decisions", "consequences", "free will", "path", "neurons", "causality"];
     @override
-    List<String> physicalMcguffins = ["mind","coin", "plans", "mask", "map", "brain", "circuit"];
+    List<String> physicalMcguffins = ["mind","coin", "plan", "mask", "map", "brain", "circuit"];
 
 
 

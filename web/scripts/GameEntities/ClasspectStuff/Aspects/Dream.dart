@@ -35,9 +35,9 @@ class Dream extends Aspect {
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Lunar", "Lucid",  "Prospit", "Derse", "Dream", "Creative", "Imagination"]);
 
     @override
-    List<String> symbolicMcGuffins = ["dreams","creativity", "obsession", "art"];
+    List<String> symbolicMcGuffins = ["dream","creativity", "obsession", "art"];
     @override
-    List<String> physicalMcguffins = ["dreams","dream catcher", "sculpture", "painting", "sketch"];
+    List<String> physicalMcguffins = ["dream","dream catcher", "sculpture", "painting", "sketch"];
 
 
     @override

@@ -47,7 +47,7 @@ class Light extends Aspect {
 
 
     @override
-    List<String> symbolicMcguffins = ["light","fortune", "knowledge", "illumination", "relevance", "rain", "sun", "rainbows"];
+    List<String> symbolicMcguffins = ["light","fortune", "knowledge", "illumination", "relevance", "rain", "sun", "rainbow"];
 
     @override
     List<String> physicalMcguffins = ["light","clover", "horseshoe", "encyclopedia","sun", "dice", "8-ball", "deck of tarot cards"];
