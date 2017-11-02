@@ -112,6 +112,15 @@ class OCGeneratorQuiz extends OCGenerator {
         int currentCounter = 0;
         int maxCounter = 20; //don't go forever
         while(!p.land.noMoreQuests && currentCounter < maxCounter) {
+            if(p.dead) { //nobody stays dead, this is your self insert fantasy, yo.
+                if(p.isDreamSelf) {
+                    p.godTier;
+                    p.dead = false;
+                }else {
+                    p.dreamSelf;
+                    p.dead = false;
+                }
+            }
             questsAndStuff.renderContent(session.newScene(null));
             maxCounter ++;
         }
