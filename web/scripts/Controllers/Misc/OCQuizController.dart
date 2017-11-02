@@ -81,6 +81,41 @@ class OCGeneratorQuiz extends OCGenerator {
         div.append(selector);
         return selector;
     }
+
+
+
+    @override
+    void drawText(Player p, CanvasElement canvas) {
+        CanvasRenderingContext2D ctx = canvas.context2D;
+        int start = 400;
+        int space_between_lines = 25;
+        int left_margin = 10;
+        int right_margin = 210;
+        int line_height = 18;
+        int current = 350;
+
+        int line_num = 2;
+        ctx.font = "40px land";
+        ctx.fillStyle = p.aspect.palette.text.toStyleString();
+        ctx.fillText(p.titleBasic(),left_margin*2,current);
+        ctx.font = "18px land";
+        ctx.fillStyle = "#000000";
+
+
+        ctx.fillText("Land: ", left_margin, current + line_height * line_num);
+        ctx.fillText(p.land.name, right_margin, current + line_height * line_num);
+        ctx.font = "18px Times New Roman";
+
+        line_num++;
+        left_margin = 35; //indenting for land shit.
+        p.land.initQuest([p]);
+        ctx.fillText("Quests: ", left_margin, current + line_height * line_num);
+        ctx.fillText(sanitizeString(p.land.getLandText(p,"")), right_margin, current + line_height * line_num);
+        line_num++;
+
+
+    }
+
 }
 
 

@@ -12,3 +12,8 @@
      display: inline-block;
 }
 
+@font-face {
+    font-family: land;
+    src: url(../images/LORAS/CARIMA.TTF);
+}
+

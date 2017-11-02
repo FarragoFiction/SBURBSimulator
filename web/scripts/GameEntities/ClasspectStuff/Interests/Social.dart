@@ -46,7 +46,7 @@ class Social extends InterestCategory {
             ..addFeature(FeatureFactory.SINGINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("Meditate On Frogism", [
-                new Quest("The ${Quest.PLAYER1} wonders into an incredibly calm area of their land. It is filled with chanting and ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently they are monks contemplating the vastness of the Vast Croak. The ${Quest.PLAYER1} joins them. "),
+                new Quest("The ${Quest.PLAYER1} wanders into an incredibly calm area of their land. It is filled with chanting and ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently they are monks contemplating the vastness of the Vast Croak. The ${Quest.PLAYER1} joins them. "),
                 new Quest("While meditating with the ${Quest.CONSORT} monks, the ${Quest.PLAYER1} has come to a startling realization, the vast croak is related to ${Quest.MCGUFFIN}-ness. How could they miss this?"),
                 new Quest(" The ${Quest.PLAYER1} begins telling all the ${Quest.CONSORT} monks about how ${Quest.MCGUFFIN}-ness relates to the Vast Croak. The monks begin ${Quest.CONSORTSOUND}ing in amazement, this could revolutionize Frogism for generations!")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)

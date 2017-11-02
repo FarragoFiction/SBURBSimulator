@@ -75,6 +75,11 @@ class Land extends Object with FeatureHolder {
         decideIfTimeForNextChain(players); //will pick next chain if this is done.
     }
 
+    String getLandText(Player player, String helperText) {
+        return "${player.land.getChapter()}The ${player.htmlTitleWithTip()} is in the ${player.land.name}.  ${player.land.randomFlavorText(session.rand, player)} $helperText";
+
+    }
+
     @override
     String toString() {
         return name;
