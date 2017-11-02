@@ -17,13 +17,12 @@ import "OCControllerParent.dart";
 
 
 
-Session curSessionGlobalVar;
 OCGenerator ocgen;
 
 main() {
     loadNavbar();
-
     globalInit();
+    new StoryJustQuestController(); //so we can do quests and stufff.
     ocgen = new OCGeneratorQuiz(1);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );
@@ -33,10 +32,14 @@ main() {
 
 }
 
+class StoryJustQuestController extends SimController {
+    StoryJustQuestController() : super();
+}
+
 //when it loads a player, it also uses a set random number.
 class OCGeneratorQuiz extends OCGenerator {
     @override
-    int canvasHeight = 1000;
+    int canvasHeight = 375;
     TextInputElement seedElement;
   OCGeneratorQuiz(int numPlayers) : super(numPlayers);
 
@@ -100,40 +103,18 @@ class OCGeneratorQuiz extends OCGenerator {
         ctx.font = "40px land";
         ctx.fillStyle = p.aspect.palette.text.toStyleString();
         ctx.fillText("${p.land.name} ",left_margin*2,current);
-        ctx.font = "18px land";
-        ctx.fillStyle = "#000000";
-
-
-        ctx.font = "18px Times New Roman";
-
-        line_num++;
-        left_margin = 35; //indenting for land shit.
-        String text = doQuests(p);
-        ctx.fillText("Quests: ", left_margin, current + line_height * line_num);
-
-        Drawing.wrap_text(ctx, text,right_margin, current + line_height * line_num, line_height, 600, "left");
-        line_num++;
-
-
+        doQuests(p);
     }
 
-    String doQuests(Player p) {
-        String text = "";
-        for(int i = 0; i< 3; i++) {
-            p.land.initQuest([p]);
-            text += p.land.getLandText(p,"",false); //no tooltip
+    void doQuests(Player p) {
+        QuestsAndStuff questsAndStuff = new QuestsAndStuff(session);
+        questsAndStuff.landParties.add(new QuestingParty(session, p, null));
+        int currentCounter = 0;
+        int maxCounter = 20; //don't go forever
+        while(!p.land.noMoreQuests && currentCounter < maxCounter) {
+            questsAndStuff.renderContent(session.newScene(null));
+            maxCounter ++;
         }
-
-        /*
-        TODO figure out how to remove html and convert to things like like breaks.
-        maybe html to svg to canvas:  https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Drawing_DOM_objects_into_a_canvas
-        get all tet to be part of text (i.e. loop until finished).
-
-        PROBLEMS: quests happen directly to a div (since might have images).  want to ignore reward images and shit.
-
-        want to print quest text out. and also ignore the inside of strifes.
-         */
-        return text;
     }
 
 }
