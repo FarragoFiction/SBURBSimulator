@@ -16,6 +16,8 @@ class Font {
     external Path getPath(String text, num x, num y, num fontSize);
 
     external void draw(CanvasRenderingContext2D ctx, String text, num x, num y, num fontSize);
+
+    external ByteBuffer toArrayBuffer();
 }
 
 @JS()

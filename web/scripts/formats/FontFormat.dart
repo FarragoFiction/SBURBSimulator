@@ -17,7 +17,7 @@ class FontFormat extends BinaryFileFormat<OT.Font> {
     }
 
     @override
-    Future<ByteBuffer> write(OT.Font data) => throw "Write not supported";
+    Future<ByteBuffer> write(OT.Font data) async => data.toArrayBuffer();
 
     @override
     String header() => "";
