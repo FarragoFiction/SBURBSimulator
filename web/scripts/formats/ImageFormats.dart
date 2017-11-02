@@ -30,7 +30,7 @@ class PngFileFormat extends ImageFileFormat {
     }
 
     @override
-    Future<ByteBuffer> write(ImageElement data) => throw "NYI";
+    Future<ByteBuffer> write(ImageElement data) => throw "Write not supported";
 
     @override
     String header() => new String.fromCharCodes(<int>[137, 80, 78, 71, 13, 10, 26, 10]);

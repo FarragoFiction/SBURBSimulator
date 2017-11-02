@@ -1,6 +1,7 @@
 import "BasicFormats.dart";
 import "BundleManifestFormat.dart";
 import "FileFormat.dart";
+import "FontFormat.dart";
 import "ImageFormats.dart";
 import "SpriteFormat.dart";
 import "ZipFormat.dart";
@@ -16,7 +17,10 @@ abstract class Formats {
 
     static SpriteFormat sprite;
 
+    static FontFormat font;
+
     static void init() {
+
         text = new TextFileFormat();
         addMapping(text, "txt");
         addMapping(text, "vert", "x-shader/x-vertex");
@@ -34,6 +38,11 @@ abstract class Formats {
 
         sprite = new SpriteFormat();
         addMapping(sprite, "psprite");
+
+        font = new FontFormat();
+        addMapping(font, "ttf");
+        addMapping(font, "otf");
+        addMapping(font, "woff");
     }
 
     static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {
