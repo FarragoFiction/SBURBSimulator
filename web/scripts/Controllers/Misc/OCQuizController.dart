@@ -35,6 +35,8 @@ main() {
 
 //when it loads a player, it also uses a set random number.
 class OCGeneratorQuiz extends OCGenerator {
+    @override
+    int canvasHeight = 1000;
     TextInputElement seedElement;
   OCGeneratorQuiz(int numPlayers) : super(numPlayers);
 
@@ -90,30 +92,48 @@ class OCGeneratorQuiz extends OCGenerator {
         int start = 400;
         int space_between_lines = 25;
         int left_margin = 10;
-        int right_margin = 210;
+        int right_margin = 110;
         int line_height = 18;
         int current = 350;
 
         int line_num = 2;
         ctx.font = "40px land";
         ctx.fillStyle = p.aspect.palette.text.toStyleString();
-        ctx.fillText(p.titleBasic(),left_margin*2,current);
+        ctx.fillText("${p.land.name} ",left_margin*2,current);
         ctx.font = "18px land";
         ctx.fillStyle = "#000000";
 
 
-        ctx.fillText("Land: ", left_margin, current + line_height * line_num);
-        ctx.fillText(p.land.name, right_margin, current + line_height * line_num);
         ctx.font = "18px Times New Roman";
 
         line_num++;
         left_margin = 35; //indenting for land shit.
-        p.land.initQuest([p]);
+        String text = doQuests(p);
         ctx.fillText("Quests: ", left_margin, current + line_height * line_num);
-        ctx.fillText(sanitizeString(p.land.getLandText(p,"")), right_margin, current + line_height * line_num);
+
+        Drawing.wrap_text(ctx, text,right_margin, current + line_height * line_num, line_height, 600, "left");
         line_num++;
 
 
+    }
+
+    String doQuests(Player p) {
+        String text = "";
+        for(int i = 0; i< 3; i++) {
+            p.land.initQuest([p]);
+            text += p.land.getLandText(p,"",false); //no tooltip
+        }
+
+        /*
+        TODO figure out how to remove html and convert to things like like breaks.
+        maybe html to svg to canvas:  https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Drawing_DOM_objects_into_a_canvas
+        get all tet to be part of text (i.e. loop until finished).
+
+        PROBLEMS: quests happen directly to a div (since might have images).  want to ignore reward images and shit.
+
+        want to print quest text out. and also ignore the inside of strifes.
+         */
+        return text;
     }
 
 }
