@@ -19,11 +19,12 @@ import "OCControllerParent.dart";
 
 Session curSessionGlobalVar;
 OCGenerator ocgen;
+
 main() {
     loadNavbar();
 
     globalInit();
-    ocgen = new OCGenerator(1);
+    ocgen = new OCGeneratorQuiz(1);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );
     //TODO have a form element for picking session id, which should overright the rand number
@@ -32,6 +33,55 @@ main() {
 
 }
 
+//when it loads a player, it also uses a set random number.
+class OCGeneratorQuiz extends OCGenerator {
+    TextInputElement seedElement;
+  OCGeneratorQuiz(int numPlayers) : super(numPlayers);
+
+
+  //no reroll button
+  @override
+    void start() {
+        createDropDowns();
+        initPlayers();
+    }
+
+  @override
+  void redrawPlayers() {
+      //make random stable
+      session.rand = new Random(int.parse(seedElement.value));
+      super.redrawPlayers();
+  }
+
+  @override
+  void createDropDowns() {
+        super.createDropDowns();
+        createSeedInput();
+
+  }
+
+    void createSeedInput() {
+        seedElement = textElementThatRedrawsPlayers(holderElement("Date in Number Form (ex: 20090413). Pick an important date that doesn't change, like your birthday."), new List<SBURBClass>.from(SBURBClassManager.all), "seed");
+    }
+
+    TextInputElement textElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
+        TextInputElement selectElement = genericTextElement(div, list,  name);
+        selectElement.value = todayToSession();
+        selectElement.onChange.listen((e) => redrawPlayers());
+        return selectElement;
+    }
+
+
+//whoever calls me is responsible for wiring it up
+    TextInputElement genericTextElement<T> (Element div, List<T> list, String name)
+    {
+        TextInputElement selector = new TextInputElement()
+            ..name = name
+            ..id = name;
+        div.append(selector);
+        return selector;
+    }
+}
 
 
 

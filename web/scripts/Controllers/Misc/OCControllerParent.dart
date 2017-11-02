@@ -10,7 +10,6 @@ class OCGenerator {
     List<Player> players = null;
     int canvasWidth = 1000;
     int canvasHeight = 600;
-    Random rand = new Random();
     Session session;
     SelectElement aspectSelect;
     SelectElement classSelect;
@@ -31,11 +30,13 @@ class OCGenerator {
     {
          players = new List<Player>(numPlayers);
          form = querySelector("#form");
-         if(session_id < 0) session_id  = rand.nextInt();
+         if(session_id < 0) session_id  = int.parse(todayToSession());
 
          session = new Session(session_id);
 
     }
+
+    Random get rand => session.rand;
 
 
     void start() {
@@ -46,7 +47,6 @@ class OCGenerator {
     }
 
     void initPlayers() {
-        session = new Session(rand.nextInt());
         for(int i = 0; i< numPlayers; i++) {
             players[i] =(randomPlayer(session));
         }
