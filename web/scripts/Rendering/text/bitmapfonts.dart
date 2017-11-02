@@ -1,6 +1,6 @@
 import 'bitmapfont.dart';
 
-abstract class Fonts {
+abstract class BitmapFonts {
     static BitmapFontDefinition courier_new_14px = new BitmapFontDefinition("images/fonts/courier_new_14px.png", 10, 16, 8)
         ..widthOverride("!", 4)
         ..widthOverride("S", 7)

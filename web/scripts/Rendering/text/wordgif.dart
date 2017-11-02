@@ -4,13 +4,13 @@ import 'dart:math' as Math;
 import '../../includes/colour.dart';
 import '../../includes/gif.dart';
 import 'bitmapfont.dart';
-import 'fonts.dart';
+import 'bitmapfonts.dart';
 
 abstract class WordGif {
     static Element dropText(String text, int size, List<Colour> foreground, List<Colour> background, [num ox = 1, num oy = 1, int depth = 3]) {
         Element container = new DivElement();
 
-        BitmapFont.get(Fonts.courier_new_14px).then((BitmapFont font) {
+        BitmapFont.get(BitmapFonts.courier_new_14px).then((BitmapFont font) {
             int frames = Math.min(foreground.length, background.length);
 
             Colour c1 = new Colour(1,0,0);

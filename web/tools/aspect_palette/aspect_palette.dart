@@ -1,4 +1,5 @@
 
+import '../../scripts/formats/Formats.dart';
 import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
@@ -9,6 +10,8 @@ import "../../scripts/SBURBSim.dart";
 
 import "../../scripts/includes/colour.dart";
 import "../../scripts/includes/colour_picker.dart";
+
+import "../../scripts/Rendering/text/opentype.dart" as OT;
 
 import "../../scripts/Rendering/3d/three.dart" as THREE;
 
@@ -115,6 +118,17 @@ Future<bool> testDrawing() async {
         print("3d: ${mis / 1000}ms");
     }*/
 
+    {
+        CanvasElement texttest = new CanvasElement(width:500, height:300);
+        stuff.append(texttest);
+        
+        //OT.Font font = await Loader.getResource("Fonts/Strife.ttf");
+
+        CanvasRenderingContext2D ctx = texttest.context2D;
+
+        //font.draw(ctx, "Hello", 20, 50, 48);
+        await OT.drawText("Fonts/Strife.ttf", ctx, "Hello", 20, 50, 48, fill: "red");
+    }
 
     return true;
 }

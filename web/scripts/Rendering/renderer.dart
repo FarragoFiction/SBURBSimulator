@@ -11,12 +11,7 @@ export "pass/image.dart";
 export "pass/sprite.dart";
 
 class Renderer {
-    static bool _loadedThree = false;
-    static Future<bool> loadThree() async {
-        if (_loadedThree) { return true; }
-        await Loader.loadJavaScript("scripts/Rendering/3d/three.min.js");
-        return true;
-    }
+    static Future<ScriptElement> loadThree() => Loader.loadJavaScript("scripts/Rendering/3d/three.min.js");
 
     static Map<CanvasImageSource, THREE.Texture> _textureCache = <CanvasImageSource, THREE.Texture>{};
 
