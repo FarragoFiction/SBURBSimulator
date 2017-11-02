@@ -122,11 +122,12 @@ Future<bool> testDrawing() async {
         CanvasElement texttest = new CanvasElement(width:500, height:300);
         stuff.append(texttest);
         
-        OT.Font font = await Loader.getResource("Fonts/Strife.ttf");
+        //OT.Font font = await Loader.getResource("Fonts/Strife.ttf");
 
         CanvasRenderingContext2D ctx = texttest.context2D;
 
-        font.draw(ctx, "Hello", 20, 50, 48);
+        //font.draw(ctx, "Hello", 20, 50, 48);
+        await OT.drawText("Fonts/Strife.ttf", ctx, "Hello", 20, 50, 48, fill: "red");
     }
 
     return true;
