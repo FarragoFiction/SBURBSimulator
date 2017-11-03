@@ -19,6 +19,7 @@ class NPCHandler
 
 
     void spawnQueen() {
+       //print("spawning queen $session");
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;
         this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", session);

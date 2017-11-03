@@ -79,6 +79,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     }
 
     void addPrototyping(GameEntity object) {
+        //session.logger.info("adding prototyping with fraymotifs ${object.fraymotifs} to ${this.fraymotifs} ");
         this.name = "${object.name}${this.name}"; //sprite becomes puppetsprite.
         this.fraymotifs.addAll(object.fraymotifs);
         if (object.fraymotifs.isEmpty) {
@@ -166,6 +167,10 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         }
         for (num i = 0; i < this.fraymotifs.length; i++) {
             this.fraymotifs[i].usable = true;
+        }
+
+        if(crowned != null) {
+            crowned.resetFraymotifs();
         }
     }
 
