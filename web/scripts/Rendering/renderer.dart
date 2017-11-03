@@ -6,6 +6,7 @@ import "../SBURBSim.dart";
 import "3d/three.dart" as THREE;
 
 export "pass/effect.dart";
+export "pass/gradient.dart";
 export "pass/group.dart";
 export "pass/image.dart";
 export "pass/sprite.dart";

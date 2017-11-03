@@ -70,7 +70,9 @@ Future<bool> testDrawing() async {
     {
         RenderJob job = await RenderJob.create(400, 300);
 
-        GroupPass group = job.addGroupPass()
+        job.addPass(new RenderJobPassGradient(0,0,400,300, new Colour.fromHex(0x001010), new Colour.fromHex(0x002020), new THREE.Vector2(0,0), new THREE.Vector2(400,300)));
+        
+        /*GroupPass group = job.addGroupPass()
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"))
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"))
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/fakejpeg.frag"))
@@ -82,7 +84,7 @@ Future<bool> testDrawing() async {
             ..addImagePass("images/Hair/hair_back$hairid.png")
             ..addImagePass("images/Bodies/Null.png")
             ..addImagePass("images/Light.png")
-            ..addImagePass("images/Hair/hair$hairid.png");
+            ..addImagePass("images/Hair/hair$hairid.png");*/
 
         stuff.append(job.dispatch());
     }

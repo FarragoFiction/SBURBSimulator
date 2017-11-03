@@ -58,6 +58,26 @@ class Vector3 {
 }
 
 @JS()
+class Vector4 {
+	external Vector4(num x, num y, num z, num w);
+	factory Vector4.zero() {
+		return new Vector4(0,0,0,0);
+	}
+
+	external num get x;
+	external void set x(num x);
+
+	external num get y;
+	external void set y(num y);
+
+	external num get z;
+	external void set z(num z);
+
+	external num get w;
+	external void set w(num w);
+}
+
+@JS()
 class Euler {
 	external Euler(num x, num y, num z, [String order]);
 
