@@ -76,7 +76,7 @@ class Terrible extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Stop a Rebellion", [
                 new Quest("The ${Quest.PLAYER1} finds a crowd of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. They are holding signs with slogans like 'This isn't Fair' and 'Don't be Jerks'. Apparently they have a problem with the upper class ${Quest.CONSORT}s in charge. The ${Quest.PLAYER1} is disgusted by their laziness and vows to stop them."),
                 new Quest("The ${Quest.PLAYER1} meets with the upper class ${Quest.CONSORT}s to offer their services to quell the misguided rebellion. They are immediatly made the leader of the Special ${Quest.MCGUFFIN} Forces.  "),
-                new Quest("It has been a long struggle, but finally the lazy, peasant ${Quest.CONSORT}s have been taken defeated. The high class ${Quest.CONSORT}s murmur dignified ${Quest.CONSORTSOUND}s and give the ${Quest.PLAYER1} several medals. "),
+                new Quest("It has been a long struggle, but finally the lazy, peasant ${Quest.CONSORT}s have been defeated. The high class ${Quest.CONSORT}s murmur dignified ${Quest.CONSORTSOUND}s and give the ${Quest.PLAYER1} several medals. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 

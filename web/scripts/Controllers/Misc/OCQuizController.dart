@@ -118,7 +118,7 @@ class OCGeneratorQuiz extends OCGenerator {
           SimController.instance.storyElement.append(storyElementReplacement);
           SimController.instance.storyElement = storyElementReplacement;
       }
-      storyElementReplacement.setInnerHtml("");
+      storyElementReplacement.setInnerHtml("<h1>The tale of the ${p.htmlTitleBasic()}</h1>");
         //make sure they are default before questing.
         p.godTier = false;
         p.isDreamSelf = false;
@@ -139,6 +139,9 @@ class OCGeneratorQuiz extends OCGenerator {
             p.renderSelf();
             questsAndStuff.renderContent(session.newScene(null));
             maxCounter ++;
+        }
+        if(currentCounter > maxCounter && !p.land.noMoreQuests) {
+            storyElementReplacement.appendHtml("<br><br> Let's just assume you don't ever end up beating the game, okay? This is getting ridiculous.");
         }
     }
 

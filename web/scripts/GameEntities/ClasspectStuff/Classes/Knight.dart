@@ -86,9 +86,9 @@ class Knight extends SBURBClass {
             ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.MEDIUM)
 
             ..addFeature(new PostDenizenFrogChain("Breed the Frogs", [
-                new Quest("The ${Quest.DENIZEN} has cooled the lava enough for water to begin pooling in places, which attracts frogs.  The land less overheated. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
+                new Quest("The ${Quest.DENIZEN} has cooled the lava enough for water to begin pooling in places, which attracts frogs.  The land is less overheated. The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} has a weird system going where the newest zapped in tadpole presses the buttont to zap in the next one. Things are going almost as quickly as if they had another player's help. "),
-                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the    "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog.      "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Exploit the Heat", [

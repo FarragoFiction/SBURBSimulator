@@ -125,7 +125,7 @@ class Space extends Aspect {
             ..addFeature(new PostDenizenFrogChain("Breed the Frogs, But Be Boring About It", [
                 new Quest("The ${Quest.PLAYER1} collects all sorts of frogs. Various ${Quest.CONSORT}s 'help' by ${Quest.CONSORTSOUND}ing up a storm. "),
                 new Quest("The ${Quest.PLAYER1} begins combining frogs into ever cooler frogs. They begin to realize that an important feature is somehow missing from all frogs. Where could the frog with this trait be?  "),
-                new Quest("The ${Quest.PLAYER1} has found the final frog.  They combine it and eventually have the Universe Tadpole all ready.   "),
+                new Quest("The ${Quest.PLAYER1} has found the final frog.   Universe Tadpole all ready.   "),
             ], new FrogReward(), QuestChainFeature.defaultOption), Feature.HIGH)
             ,  Theme.SUPERHIGH);
 

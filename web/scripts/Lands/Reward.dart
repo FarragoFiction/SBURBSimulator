@@ -57,12 +57,15 @@ class FraymotifReward extends Reward
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
-        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
+        String text = "";
+        if(t!= null) text = t;
+
+        text += " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
         Fraymotif f1;
         Fraymotif f2;
         if(p2 != null) {
             if(p2 is Player) {
-                text = "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
+                text += "The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, while the ${Reward.PLAYER2} gets the fraymotif $FRAYMOTIF2! ";
                 f1 = p1.getNewFraymotif(p2); //with other player
                 f2 = (p2 as Player).getNewFraymotif(p1);
                 if(name != null) f2.name = name;
@@ -163,11 +166,11 @@ class FrogReward extends FraymotifReward {
         String text = "";
         if(p1.grimDark < 3) {
             p1.landLevel = 1.0 * p1.session.goodFrogLevel; //need to be double
-            text = "The ${Reward.PLAYER1} breeds the final frog. While it is a tadpole for now, once it is placed in the fertlized SKAIA it will grow to become an entire Universe Frog.";
+            text = "The ${Reward.PLAYER1} breeds the final tadpole. While it is a tadpole for now, once it is placed in the fertlized SKAIA it will grow to become an entire Universe Frog.";
         }else {
             "Rewards/bitterFrog.png";
             p1.landLevel = -1.0*p1.session.goodFrogLevel;
-            text = "The ${Reward.PLAYER1}. Um. You don't think they were supposed to be doing that. Why doe the frog look like that? ";
+            text = "The ${Reward.PLAYER1}. Um. You don't think they were supposed to be doing that. Why does the frog look like that? ";
         }
         super.apply(div, p1, p2, land,text);
     }

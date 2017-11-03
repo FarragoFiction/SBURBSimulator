@@ -80,7 +80,7 @@ class Maid extends SBURBClass {
             ..addFeature(new PostDenizenFrogChain("Serve the  Frogs", [
                 new Quest("The ${Quest.DENIZEN} has instructed the Home Owners Association to lift the ban on frogs. The ${Quest.PLAYER1} asks local  ${Quest.CONSORT} kids to help them collect frogs. The ${Quest.CONSORT}s agree with enthusiastic ${Quest.CONSORTSOUND}s.  It's a lively neighborhood event."),
                 new Quest("The ${Quest.CONSORT} kids hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} shows them how to do it right, and soon everybody is helping out. A neighboring ${Quest.CONSORT} starts grilling some burgers and dogs so nobody goes hungry."),
-                new Quest("A ${Quest.CONSORT} child has tripped over the final frog. They cry and ${Quest.CONSORTSOUND} at their skinned knee, but their pain is quickly forgotten when the ${Quest.PLAYER1} praises them for finding the frog.  Together, they combine it and eventually have the    "),
+                new Quest("A ${Quest.CONSORT} child has tripped over the final frog. They cry and ${Quest.CONSORTSOUND} at their skinned knee, but their pain is quickly forgotten when the ${Quest.PLAYER1} praises them for finding the frog.  Together,     "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
 

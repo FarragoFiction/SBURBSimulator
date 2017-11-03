@@ -97,7 +97,7 @@ class Thief extends SBURBClass {
             ..addFeature(new PostDenizenFrogChain("Steal the Frogs", [
                 new Quest("The ${Quest.DENIZEN} cannot release the frogs since the corrupt ${Quest.CONSORT} Cops have confiscated them. The ${Quest.PLAYER1} organizes a team of crack ${Quest.CONSORT}s to help raid the frog evidence lockers. "),
                 new Quest("The ${Quest.PLAYER1} performs frog breeding as fast as the ${Quest.CONSORT}s can deliver stolen frogs to them.  "),
-                new Quest("The ${Quest.PLAYER1} has finally stolen the final frog.  They combine it and eventually have the    "),
+                new Quest("The ${Quest.PLAYER1} has finally stolen the final frog.      "),
             ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
 
 
