@@ -64,8 +64,9 @@ class OCGeneratorQuiz extends OCGenerator {
 
   @override
   void createDropDowns() {
-        super.createDropDowns();
-        createSeedInput();
+      createSeedInput();
+      form.appendHtml("<br><Br>");
+      super.createDropDowns();
 
   }
 
