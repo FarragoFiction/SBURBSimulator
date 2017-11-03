@@ -71,25 +71,10 @@ class OCGeneratorQuiz extends OCGenerator {
 
     void createSeedInput() {
         seedElement = textElementThatRedrawsPlayers(holderElement("Date in Number Form (ex: 20090413). Pick an important date that doesn't change, like your birthday."), new List<SBURBClass>.from(SBURBClassManager.all), "seed");
-    }
-
-    TextInputElement textElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
-        TextInputElement selectElement = genericTextElement(div, list,  name);
-        selectElement.value = todayToSession();
-        selectElement.onChange.listen((e) => redrawPlayers());
-        return selectElement;
+        seedElement.value = todayToSession();
     }
 
 
-//whoever calls me is responsible for wiring it up
-    TextInputElement genericTextElement<T> (Element div, List<T> list, String name)
-    {
-        TextInputElement selector = new TextInputElement()
-            ..name = name
-            ..id = name;
-        div.append(selector);
-        return selector;
-    }
 
 
 

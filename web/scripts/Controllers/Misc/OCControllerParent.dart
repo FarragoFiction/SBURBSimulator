@@ -23,6 +23,7 @@ class OCGenerator {
     SelectElement rightHornSelect;
     SelectElement favoriteNumberSelect;
     InputElement hairColorPicker;
+    TextInputElement chatHandleElement;
 
 
     OCGenerator(this.numPlayers, [int session_id = -13])
@@ -161,6 +162,28 @@ class OCGenerator {
         return ret;
     }
 
+    void chatHandle() {
+        chatHandleElement = textElementThatRedrawsPlayers(holderElement("chatHandle/Name"), new List<SBURBClass>.from(SBURBClassManager.all), "chatHandle");
+    }
+
+
+    TextInputElement textElementThatRedrawsPlayers<T>(Element div, List<T> list, String name) {
+        TextInputElement selectElement = genericTextElement(div, list,  name);
+        selectElement.onChange.listen((e) => redrawPlayers());
+        return selectElement;
+    }
+
+
+//whoever calls me is responsible for wiring it up
+    TextInputElement genericTextElement<T> (Element div, List<T> list, String name)
+    {
+        TextInputElement selector = new TextInputElement()
+            ..name = name
+            ..id = name;
+        div.append(selector);
+        return selector;
+    }
+
     List<String> getSampleSounds(Land land) {
         WeightedList<SoundFeature> stuff = new WeightedList<SoundFeature>.from(land.sounds);
         stuff.sortByWeight(true);
@@ -269,7 +292,18 @@ class OCGenerator {
         setHorns(p);
         setMoon(p);
         setFavNumber(p);
+        setChatHandle(p);
         p.initialize();
+    }
+
+    void setChatHandle(Player p) {
+        String tmp = chatHandleElement.value; //if it's empty, don't replace
+        if(tmp.isNotEmpty) {
+            p.deriveChatHandle = false;
+            p.chatHandle = chatHandleElement.value;
+        }else {
+            p.deriveChatHandle = true;
+        }
     }
 
     void setBlood(Player p) {
@@ -393,6 +427,7 @@ class OCGenerator {
         leftHornDropDown();
         rightHornDropDown();
         favNumberDropDown();
+        chatHandle();
     }
 
     void hairColorPickerElement() {
