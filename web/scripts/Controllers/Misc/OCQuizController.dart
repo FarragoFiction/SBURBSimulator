@@ -44,6 +44,7 @@ class OCGeneratorQuiz extends OCGenerator {
     @override
     int canvasHeight = 375;
     TextInputElement seedElement;
+    Element storyElementReplacement;
   OCGeneratorQuiz(int numPlayers) : super(numPlayers);
 
 
@@ -112,6 +113,12 @@ class OCGeneratorQuiz extends OCGenerator {
     }
 
     void doQuests(Player p) {
+      if(storyElementReplacement == null) {
+          storyElementReplacement = new DivElement();
+          SimController.instance.storyElement.append(storyElementReplacement);
+          SimController.instance.storyElement = storyElementReplacement;
+      }
+      storyElementReplacement.setInnerHtml("");
         //make sure they are default before questing.
         p.godTier = false;
         p.isDreamSelf = false;
