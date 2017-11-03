@@ -3,6 +3,9 @@ import '../../navbar.dart';
 import 'dart:html';
 import 'dart:math' as Math;
 import "OCControllerParent.dart";
+import "../../Rendering/text/opentype.dart" as OT;
+import 'dart:async';
+
 
 /*
     TODO:
@@ -90,7 +93,7 @@ class OCGeneratorQuiz extends OCGenerator {
 
 
     @override
-    void drawText(Player p, CanvasElement canvas) {
+    Future<Null> drawText(Player p, CanvasElement canvas) async {
         CanvasRenderingContext2D ctx = canvas.context2D;
         int start = 400;
         int space_between_lines = 25;
@@ -102,11 +105,16 @@ class OCGeneratorQuiz extends OCGenerator {
         int line_num = 2;
         ctx.font = "40px land";
         ctx.fillStyle = p.aspect.palette.text.toStyleString();
-        ctx.fillText("${p.land.name} ",left_margin*2,current);
+        await OT.drawText("Fonts/CARIMA.ttf", ctx, "${p.land.name} ", left_margin*2,current, 40, fill: p.aspect.palette.text.toStyleString());
+        //ctx.fillText("${p.land.name} ",left_margin*2,current);
+
         doQuests(p);
     }
 
     void doQuests(Player p) {
+        //make sure they are default before questing.
+        p.godTier = false;
+        p.isDreamSelf = false;
         QuestsAndStuff questsAndStuff = new QuestsAndStuff(session);
         questsAndStuff.landParties.add(new QuestingParty(session, p, null));
         int currentCounter = 0;
@@ -121,6 +129,7 @@ class OCGeneratorQuiz extends OCGenerator {
                     p.dead = false;
                 }
             }
+            p.renderSelf();
             questsAndStuff.renderContent(session.newScene(null));
             maxCounter ++;
         }

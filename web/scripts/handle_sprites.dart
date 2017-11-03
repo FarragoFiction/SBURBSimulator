@@ -1475,6 +1475,12 @@ abstract class Drawing {
     }
 
 
+    static Future<Null>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
+        ImageElement image = await Loader.getResource((imageString));
+        //print("got image $image");
+        canvas.context2D.drawImage(image, 0, 0);
+    }
+
     static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
         ////print("Drawing sprite from scratch " + player.isDreamSelf);
         if (checkSimMode() == true) {
