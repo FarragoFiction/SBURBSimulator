@@ -70,7 +70,47 @@ Future<bool> testDrawing() async {
     {
         RenderJob job = await RenderJob.create(400, 300);
 
-        job.addPass(new RenderJobPassGradient(0,0,400,300, new Colour.fromHex(0x001010), new Colour.fromHex(0x002020), new THREE.Vector2(0,0), new THREE.Vector2(400,300)));
+        /*job.addPass(new RenderJobPassGradient(0,0,400,300, 0,0,400,300)..smoothing = 0.5
+            ..addStop(0.0, new Colour.fromHex(0xFF0000))
+            ..addStop(0.5, new Colour.fromHex(0x00FF00))
+            ..addStop(1.0, new Colour.fromHex(0x0000FF))
+        );*/
+        /*job.addPass(new RenderJobPassGradient(0,0, 400,300, 200,150,200,300)
+            ..gradient_type = RJPGradientType.ANGLE
+            ..repeat = 4.0
+            ..addStop(0.0, new Colour.fromHex(0x2989CC))
+            ..addStop(0.5, new Colour.fromHex(0xFFFFFF))
+            ..addStop(0.52,new Colour.fromHex(0x906A00))
+            ..addStop(0.64,new Colour.fromHex(0xD99F00))
+            ..addStop(1.0, new Colour.fromHex(0xFFFFFF))
+        );*/
+
+        job.addPass(new RenderJobPassGradient(0,0,400,300, 200,150,200,300)
+            ..gradient_type = RJPGradientType.ANGLE
+            ..repeat = 24.0
+            /*..addStop(0.0, new Colour.fromHex(0xFFFFFF))
+            ..addStop(0.24, new Colour.fromHex(0xFFFFFF))
+            ..addStop(0.26, new Colour.fromHex(0xFF0000))
+            ..addStop(0.74, new Colour.fromHex(0xFF0000))
+            ..addStop(0.76, new Colour.fromHex(0xFFFFFF))
+            ..addStop(1.0, new Colour.fromHex(0xFFFFFF))*/
+            ..addStop(0.0, new Colour.fromHex(0x2989CC))
+            ..addStop(0.5, new Colour.fromHex(0xFFFFFF))
+            ..addStop(0.52,new Colour.fromHex(0x906A00))
+            ..addStop(0.64,new Colour.fromHex(0xD99F00))
+            ..addStop(1.0, new Colour.fromHex(0xFFFFFF))
+        );
+
+        job.addPass(new RenderJobPassGradient(0,0,400,300, 200,150,200,300)
+            ..smoothing = 1.0
+            ..gradient_type = RJPGradientType.RADIAL
+            //..addStop(0.0, new Colour.fromHex(0xFF0000))
+            //..addStop(0.3, new Colour.fromHex(0xFF000000, true))
+            ..addStop(0.6, new Colour.fromHex(0xFFFFFF00, true))
+            ..addStop(1.0, new Colour.fromHex(0xFFFFFF))
+        );
+
+        //job.addPass(new RenderJobPassGradient(0,0,400,300, new Colour.fromHex(0x00EE10), new Colour.fromHex(0xFF005F), new THREE.Vector2(0,0), new THREE.Vector2(400,300)));
         
         /*GroupPass group = job.addGroupPass()
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"))

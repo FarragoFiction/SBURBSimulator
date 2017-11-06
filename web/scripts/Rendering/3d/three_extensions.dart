@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:js/js_util.dart" as JsUtil;
 
+import '../../includes/colour.dart';
 import "../../loader/loader.dart";
 import "three.dart";
 
@@ -20,5 +21,9 @@ ShaderUniform<dynamic> getUniform(ShaderMaterial mat, String name) {
 
 void setUniform(ShaderMaterial mat, String name, ShaderUniform<dynamic> value) {
     JsUtil.setProperty(mat.uniforms, name, value);
+}
+
+Vector4 colour2vec(Colour colour) {
+    return new Vector4(colour.redDouble, colour.greenDouble, colour.blueDouble, colour.alphaDouble);
 }
 
