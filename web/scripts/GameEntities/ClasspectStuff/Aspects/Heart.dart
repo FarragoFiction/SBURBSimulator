@@ -77,12 +77,19 @@ class Heart extends Aspect {
             ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
 
 
-            ..addFeature(new DenizenQuestChain("Find Yourself.", [
+            ..addFeature(new DenizenQuestChain("Find Yourself", [
                 new Quest("The ${Quest.PLAYER1}, guided by a ${Quest.CONSORT} assembles some of the scattered pieces of their land into a sort of safe space. It’s nice, but something's just… off about it."),
                 new Quest("The ${Quest.PLAYER1} grows obsessed with perfecting ‘their space’ and begins manically collecting more and more of the landscape to decorate their ‘area’. They’ve become convinced that if they can only make it perfect, everything will be all right. If they can just make themselves better..."),
                 new Quest("The ${Quest.PLAYER1}realizes all the things they were adding to the space was nothing more than junk and clutter. They realize they can’t make themselves better by simply accumulating more onto themselves. They have to confront the root of the problem. For the specific problem of ‘their space,’ they have to confront ${Quest.DENIZEN}."),
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. They can finally be free to just....be themselves as long as the ${Quest.DENIZEN} is gone. ","${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} has won and finally feels free to be themselves for the first time.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new DenizenQuestChain("Steal the Heart", [
+                new Quest("The ${Quest.PLAYER1} finds a Violent ${Quest.CONSORT}. A Magical Talking ${Quest.PHYSICALMCGUFFIN} explains that the ${Quest.PLAYER1} needs to enter their inner world and steal the Violent ${Quest.CONSORT}'s heart to heal the corruption within. Huh. It turns out that the Violent ${Quest.CONSORT}'s inner world looks a lot like a Rage themed dungeon, cool! The now Peaceful ${Quest.CONSORT} vows to never hurt anyone ever again."),
+                new Quest("The ${Quest.PLAYER1} finishes a Doom themed dungeon to steal a Gloomy ${Quest.CONSORT}'s heart and heal it. They really are getting the hang of this! "),
+                new Quest("The Magical Talking ${Quest.PHYSICALMCGUFFIN} shows back up out of nowhere. They explain that they've been doing some digging and it turns out the pandemic of corrupted heart ${Quest.CONSORT}s is caused by none other than the ${Quest.DENIZEN}. It's up to the ${Quest.PLAYER1} to stop them!"),
+                new DenizenFightQuest("After a convoluted plot that had a really satisfying twist, the ${Quest.PLAYER1} has the ${Quest.DENIZEN} just where they want them. It's time to strife! ","The ${Quest.DENIZEN} monologues their evil plan to corrupt all the ${Quest.CONSORT}s, then dies. The ${Quest.PLAYER1} has prevented any new cases of corrupted ${Quest.CONSORT}s from cropping up!","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}. Will no ${Quest.CONSORT} hearts be left safe?")
+            ], new DenizenReward(), QuestChainFeature.playerIsSneakyClass), Feature.HIGH)
             ,  Theme.HIGH);
 
 
