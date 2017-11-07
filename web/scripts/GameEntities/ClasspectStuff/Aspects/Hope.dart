@@ -114,6 +114,13 @@ class Hope extends Aspect {
                 new Quest("Disaster strikes! The new ${Quest.PHYSICALMCGUFFIN} mine has been utterly destroyed. It is obvious that it is the work of ${Quest.DENIZEN}. They simply refuse to allow hope to survive. The ${Quest.PLAYER1} is going to need to deal with them."),
                 new DenizenFightQuest("The ${Quest.CONSORT}s deserve Hope, they deserve a better life. The ${Quest.PLAYER1} is going to show them. But before they can work on fixing their problems, ${Quest.DENIZEN} must be fought. The ${Quest.PLAYER1} dramatically challenges them.","Hope. Survives.","Hope is dead.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new DenizenQuestChain("The Ultimate Hope", [
+                new Quest("The ${Quest.PLAYER1} discovers a group of ${Quest.CONSORT}s locked in a sadistic death game. When all seems lost, the ${Quest.PLAYER1} inspires them to pull through at the last moment and survive, defeating the Crazed Mastermind (who was of course hidden within the group of ${Quest.CONSORT}s) in the process."),
+                new Quest("The ${Quest.PLAYER1} finds ANOTHER group of ${Quest.CONSORT}s locked in a sadistic death game orchestrated by a Crazed Mastermind. They do the Hope thing and inspire them to persevere, but this is getting ridiculous. Where are all these Crazed Masterminds even COMING from?"),
+                new Quest("The ${Quest.PLAYER1} has dealt with so many death games at this point. Finally, they find out that every Crazed Mastermind ${Quest.CONSORT} has been working for the ${Quest.DENIZEN}. All of them. Looks like it's time to finally challenge the Ultimate Despair. "),
+                new DenizenFightQuest("The ${Quest.CONSORT}s deserve Hope, they deserve a better life. One not full of random ass death games.  The ${Quest.PLAYER1} is going to stop the ${Quest.DENIZEN}, once and for all. ","Hope. Survives.","Hope is dead.")
+            ], new DenizenReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
             , Theme.HIGH); // end theme
     }
 
