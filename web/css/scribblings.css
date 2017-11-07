@@ -1,0 +1,16 @@
+#story{
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+.scribble{
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 125px;
+}
+
+body{
+    background: #f1e4b7;
+}
