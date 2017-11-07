@@ -93,7 +93,7 @@ class Doom extends Aspect {
                 new DenizenFightQuest("FINALLY, the bones of Omni-Lich has summoned it's master, ${Quest.DENIZEN}.","${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s are free to bury their dead in peace once again.","The grave robbing of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
-        addTheme(new Theme(<String>["Disaster", "Fire", "Ash", "Armageddon", "Apocalypse", "Radiation", "Blight", "Gas", "Poison", "Chlorine"])
+        addTheme(new Theme(<String>["Disaster", "Fire", "Ash", "Armageddon", "Apocalypse", "Radiation", "Blight", "Gas", "Poison", "Chlorine", "Wastelands"])
             ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.WAY_HIGH)
@@ -104,6 +104,14 @@ class Doom extends Aspect {
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
+
+            ..addFeature(new DenizenQuestChain("Become the Warlord", [
+                new Quest("The ${Quest.PLAYER1} has found a group of Violent ${Quest.CONSORT}s whose society has long since crumbled. They live in roving bands, willing to kill and maim to gain access to '${Quest.MCGUFFIN}', the fuel their post apocalyptic society runs on. "),
+                new Quest("The ${Quest.PLAYER1} has survived a small assault team of Violent ${Quest.CONSORT}s, and is declared their new leader. They beg and grovel and ${Quest.CONSORTSOUND} and ask that the ${Quest.PLAYER1} help them take back their ${Quest.MCGUFFIN} from a rival gang. "),
+                new Quest("The ${Quest.PLAYER1} is now the warlord of nearly all of the Violent ${Quest.CONSORT}s. There is clearly not enough ${Quest.MCGUFFIN} for everyone, though. It turns out that the ${Quest.DENIZEN} has been hoarding it all to cause scarcity to breed violence and anarchy. What a huge bitch. This cannot stand. "),
+                new DenizenFightQuest("There isn't enough room in this wasteland for the both of them. It's time to take out the ${Quest.DENIZEN}.","${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} distributes the hoard of ${Quest.MCGUFFIN} to the Violent ${Quest.CONSORT}s and keeps the hoard of grist for themself. ","The ${Quest.MCGUFFIN} shortage continues with the defeat of the ${Quest.PLAYER1}.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+
             ..addFeature(new DenizenQuestChain("Make This Stupid Planet Habitable", [
                 new Quest("The ${Quest.PLAYER1} is sick of their stupid uninhabitable planet, and so starts to make sections of it habitable through judicious use of alchemy and ${Quest.PHYSICALMCGUFFIN}s alike. "),
                 new Quest("${Quest.CONSORT}s begin to flock to the safe areas that The ${Quest.PLAYER1} constructed, and begin to make tiny villages within the safety of its zones. Precious  ${Quest.PHYSICALMCGUFFIN}s are found in some nearby mines. "),
