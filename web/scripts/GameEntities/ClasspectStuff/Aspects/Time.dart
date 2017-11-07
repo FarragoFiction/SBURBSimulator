@@ -132,6 +132,15 @@ class Time extends Aspect {
             ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
 
+            ..addFeature(new PostDenizenQuestChain("Shatter the Timeline", [
+                new Quest("With the defeat of the ${Quest.DENIZEN}, ${Quest.PLAYER1} uncovers historical documents in a ruined consort village. Taking them to the ${Quest.CONSORT} leader, they inquire about the mysterious documents. The leader tells ${Quest.PLAYER1} about the Wars of ${Quest.MCGUFFIN} Metropolis. The ${Quest.CONSORT}s have been quaking in fear for years, waiting for a savior to reverse the events of the Wars. ${Quest.PLAYER1} agrees to help the ${Quest.CONSORT}s re-fight the Wars to win back their ${Quest.MCGUFFIN} Metropolis."),
+                new Quest("Through some hard time-travel and shattering glass windows where needed, ${Quest.PLAYER1} has successfully set up events in the ${Quest.CONSORT}s favor. They check back in with the past ${Quest.CONSORT} leader to inform them that the timeline has been revised to their advantage."),
+                new Quest("The ${Quest.PLAYER1} divulges to the ${Quest.CONSORT} leader that their enemy leader has been assassinated (through their own marvelous work, of course). The ${Quest.CONSORT} leader doesn’t believe them, though. Why wouldn’t they believe the time-traveler?! They launch a miserable failure of a counter-attack, resulting in the ${Quest.CONSORT}s defeat. Agh!"),
+                new Quest("The ${Quest.PLAYER1} is totally done with this bullshit. But they have an epiphany: what if they re-shattered the timeline, but took control of the strategy themselves? They grin to themselves as they travel back again, this time framing the enemy instead of assassinating them. This time, the leader believes the ${Quest.PLAYER1} this time, and carried through with their suggested strategy. With effort, ${Quest.MCGUFFIN} Metropolis is reclaimed, and the consorts have been given their freedom back!")
+            ], new FraymotifReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+
+
+
             ..addFeature(new DenizenQuestChain("Move Forwards, Never Stop", [
                 new Quest("There is a babbling brook. A wizened ${Quest.CONSORT} is next to it. The water, he says, moves in only one direction. So, too, must we. The ${Quest.PLAYER1} contemplates this for a while. Is it really a true thing when this game has time travel in it?"),
                 new Quest("Days in the past, but not many, the ${Quest.PLAYER1} is exploring. They find the babbling brook and the wizened ${Quest.CONSORT} yet again. He again says that the water flows in only one direction. Irrationally angry, the ${Quest.PLAYER1} yells that it's not true, that this is the second time he's met the wizened ${Quest.CONSORT}. The wizened ${Quest.CONSORT} simply ${Quest.CONSORTSOUND}s mysteriously.  "),
