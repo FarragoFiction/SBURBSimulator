@@ -200,6 +200,28 @@ class AmbientLight extends Light {
 	external AmbientLight([int color, double intensity]);
 }
 
+// Shapes ################################################################
+
+@JS()
+abstract class CurvePath {
+	external void closePath();
+}
+
+@JS()
+class Path extends CurvePath {
+	external Path([List<Vector2> points]);
+
+	external void moveTo(num x, num y);
+	external void lineTo(num x, num y);
+	external void quadraticCurveTo(num cpX, num cpY, num x, num y);
+	external void bezierCurveTo(num cp1X, num cp1Y, num cp2X, num cp2Y, num x, num y);
+}
+
+@JS()
+class Shape extends Path {
+	external Shape([List<Vector2> points]);
+}
+
 // Geometry ################################################################
 
 @anonymous
@@ -210,7 +232,7 @@ abstract class AbstractGeometry {}
 abstract class Geometry implements AbstractGeometry {
 	external JsArray<Vector3> get vertices;
 	external JsArray<Face3> get faces;
-	external JsArray get faceVertexUvs;
+	external JsArray<JsArray<Vector2>> get faceVertexUvs;
 
 	external void set dynamic(bool flag);
 
@@ -269,6 +291,38 @@ class SphereGeometry extends Geometry {
 @JS()
 class PlaneGeometry extends Geometry {
 	external PlaneGeometry(num width, num height, [num widthSegments, num heightSegments]);
+}
+
+@anonymous
+@JS()
+class ExtrudeGeometryOptions {
+	external factory ExtrudeGeometryOptions({
+		int curveSegments,
+		int steps,
+		int amount,
+		bool bevelEnabled,
+		double bevelThickness,
+		double bevelSize,
+		int bevelSegments,
+		CurvePath extrudePath,
+		//frames
+		//UVGenerator
+	});
+}
+
+@JS()
+class ExtrudeGeometry extends Geometry {
+	external ExtrudeGeometry(List<Shape> shapes, ExtrudeGeometryOptions options);
+}
+
+@JS()
+class ShapeGeometry extends Geometry {
+	external ShapeGeometry(List<Shape> shapes, [int curveSegments]);
+}
+
+@JS()
+class ShapeBufferGeometry extends BufferGeometry {
+	external ShapeBufferGeometry(List<Shape> shapes, [int curveSegments]);
 }
 
 // Textures ################################################################

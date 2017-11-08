@@ -2,6 +2,7 @@
 library opentype;
 
 import "dart:html";
+import "dart:js";
 import "dart:typed_data";
 
 import "package:js/js.dart";
@@ -20,6 +21,28 @@ class Font {
     external ByteBuffer toArrayBuffer();
 }
 
+@anonymous
+@JS()
+class PathCommand {
+    external factory PathCommand({
+        String type,
+        num x,
+        num y,
+        num x1,
+        num y1,
+        num x2,
+        num y2
+    });
+
+    external String get type;
+    external num get x;
+    external num get y;
+    external num get x1;
+    external num get y1;
+    external num get x2;
+    external num get y2;
+}
+
 @JS()
 class Path {
     external String get fill;
@@ -32,4 +55,6 @@ class Path {
     external void set strokeWidth(num val);
 
     external void draw(CanvasRenderingContext2D ctx);
+
+    external JsArray<PathCommand> get commands;
 }
