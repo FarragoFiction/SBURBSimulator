@@ -28,13 +28,15 @@ Vector4 colour2vec(Colour colour) {
     return new Vector4(colour.redDouble, colour.greenDouble, colour.blueDouble, colour.alphaDouble);
 }
 
-Shape getShapeForText(String text, OT.Font font, num fontSize) {
+List<Shape> getShapesForText(String text, OT.Font font, num fontSize) {
     OT.Path textPath = font.getPath(text, 0, 0, fontSize);
 
-    return getShapeFromOTPath(textPath);
+    return getShapesFromOTPath(textPath);
 }
 
-Shape getShapeFromOTPath(OT.Path path) {
+List<Shape> getShapesFromOTPath(OT.Path path) {
+    List<Shape> shapes = <Shape>[];
+
     Shape shape = new Shape();
 
     for(OT.PathCommand c in path.commands) {
@@ -53,9 +55,11 @@ Shape getShapeFromOTPath(OT.Path path) {
         } else if (c.type == "Z") {
             print("closePath");
             shape.closePath();
+            shapes.add(shape);
+            shape = new Shape();
         }
     }
 
-    return shape;
+    return shapes;
 }
 

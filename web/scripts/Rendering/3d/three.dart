@@ -203,8 +203,20 @@ class AmbientLight extends Light {
 // Shapes ################################################################
 
 @JS()
-abstract class CurvePath {
+abstract class Curve {
+	external Vector2 getPoint(num t, [Vector2 optionalTarget]);
+	external List<Vector2> getPoints([int divisions]);
+	external List<Vector2> getSpacedPoints([int divisions]);
+}
+
+@JS()
+class LineCurve extends Curve {}
+
+@JS()
+abstract class CurvePath extends Curve {
 	external void closePath();
+
+	external JsArray<Curve> get curves;
 }
 
 @JS()
@@ -217,9 +229,23 @@ class Path extends CurvePath {
 	external void bezierCurveTo(num cp1X, num cp1Y, num cp2X, num cp2Y, num x, num y);
 }
 
+@anonymous
+@JS()
+class ShapePointData {
+	external List<Vector2> get shape;
+	external List<List<Vector2>> get holes;
+}
+
 @JS()
 class Shape extends Path {
 	external Shape([List<Vector2> points]);
+
+	external ShapePointData extractPoints();
+}
+
+@JS()
+class ShapeUtils {
+	external static bool isClockWise(List<Vector2> pts);
 }
 
 // Geometry ################################################################
@@ -411,6 +437,7 @@ class MeshBasicMaterialProperties {
 	external factory MeshBasicMaterialProperties ({
 		int color : 0xffffff,
 		Texture map,
+		bool wireframe,
 	});
 }
 

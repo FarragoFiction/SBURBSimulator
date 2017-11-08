@@ -170,16 +170,23 @@ Future<bool> testDrawing() async {
         CanvasElement canvas = new CanvasElement(width:500, height:500);
         THREE.WebGLRenderer renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(canvas: canvas));
         THREE.Camera camera = new THREE.PerspectiveCamera(90, 1.0, 0.1, 500.0)
-            ..position.z = -50
+            ..position.z = 50
             ..lookAt(new THREE.Vector3.zero());
 
         THREE.Scene scene = new THREE.Scene();
 
-        THREE.Shape shape = THREE.getShapeForText("test", await Loader.getResource("Fonts/Strife.ttf"), 48);
-        THREE.ShapeBufferGeometry geom = new THREE.ShapeBufferGeometry(<THREE.Shape>[shape]);
-        THREE.Mesh mesh = new THREE.Mesh(geom, new THREE.MeshBasicMaterial());
+        List<THREE.Shape> shapes = THREE.getShapesForText("test", await Loader.getResource("Fonts/CARIMA.ttf"), 64);
+        //THREE.ShapeBufferGeometry geom = new THREE.ShapeBufferGeometry(shapes);
+        THREE.ExtrudeGeometry geom = new THREE.ExtrudeGeometry(shapes, new THREE.ExtrudeGeometryOptions(amount: 8, bevelEnabled: false));
+        //THREE.Material mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(wireframe:true));
+        THREE.Material mat = new THREE.MeshStandardMaterial();
+        THREE.Mesh mesh = new THREE.Mesh(geom, mat);
+        mesh..rotation.x = Math.PI;
+        mesh..position.x = -50;
 
         scene.add(mesh);
+        scene.add(new THREE.DirectionalLight()..position.z = 50..position.x = 20..position.y = 25..lookAt(new THREE.Vector3.zero()));
+        scene.add(new THREE.AmbientLight(0xFFFFFF,0.2));
 
         renderer.render(scene, camera);
 
