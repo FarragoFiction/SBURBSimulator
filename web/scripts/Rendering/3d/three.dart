@@ -241,6 +241,8 @@ class Shape extends Path {
 	external Shape([List<Vector2> points]);
 
 	external ShapePointData extractPoints();
+
+	external JsArray<Path> get holes;
 }
 
 @JS()

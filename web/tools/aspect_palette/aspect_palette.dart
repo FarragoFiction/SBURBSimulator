@@ -1,19 +1,12 @@
 
-import '../../scripts/formats/Formats.dart';
 import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
 
-import "dart:js" as JS;
-
-import "../../scripts/SBURBSim.dart";
-
-import "../../scripts/includes/colour.dart";
-import "../../scripts/includes/colour_picker.dart";
-
-import "../../scripts/Rendering/text/opentype.dart" as OT;
-
 import "../../scripts/Rendering/3d/three.dart" as THREE;
+import "../../scripts/Rendering/text/opentype.dart" as OT;
+import "../../scripts/SBURBSim.dart";
+import "../../scripts/includes/colour.dart";
 
 
 void main() {
@@ -175,7 +168,7 @@ Future<bool> testDrawing() async {
 
         THREE.Scene scene = new THREE.Scene();
 
-        List<THREE.Shape> shapes = THREE.getShapesForText("test", await Loader.getResource("Fonts/CARIMA.ttf"), 64);
+        List<THREE.Shape> shapes = THREE.getShapesForText("testing stuff", await Loader.getResource("Fonts/MISTERTWIGGY.ttf"), 20);
         //THREE.ShapeBufferGeometry geom = new THREE.ShapeBufferGeometry(shapes);
         THREE.ExtrudeGeometry geom = new THREE.ExtrudeGeometry(shapes, new THREE.ExtrudeGeometryOptions(amount: 8, bevelEnabled: false));
         //THREE.Material mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(wireframe:true));
