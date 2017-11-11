@@ -22,7 +22,7 @@ void main() {
       querySelector("body").style.backgroundPosition = "center -" + max_scroll.toString() + "px";
     }
   });
-  cycleAuthorPics();
+  //cycleAuthorPics();
   //reFormatForTinyScreens(); //TODO was this doing anything. definitely didn't work right on mobile
 }
 
