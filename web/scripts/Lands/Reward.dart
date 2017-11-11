@@ -335,7 +335,7 @@ class PitchRomanceReward extends Reward {
                 if(p1 == p2) {
                     text += " We are all a little uncomfortable about the whole self-cest thing. This is probably why you're supposed to be playing with other Players, dunkass, not making this an awkward one man ballet.";
                 }else {
-                    Relationship.makeDiamonds(p1, p2);
+                    Relationship.makeSpades(p1, p2);
                 }
             }
         }
