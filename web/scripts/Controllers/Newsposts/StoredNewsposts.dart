@@ -9,7 +9,7 @@ class Newspost
   static List<Newspost> makeAuthorNewsposts() {
 
     List<Newspost> ret = [
-      new Newspost("11/14/17","Alright, time to focus on the sim again, and leave dolls and whatever for the weekend. Today Main and Experimental have officially divurged again, which means no more bug fixes or features for main until the Alchemy Update is ready."),
+      new Newspost("11/14/17","Alright, time to focus on the sim again, and leave dolls and whatever for the weekend. <br><Br>Lots of bug fixes, including Dead Sessions ironically no longer preventing Time Players from playing. <br><br>Today Main and Experimental have officially divurged again, which means no more bug fixes or features for main until the Alchemy Update is ready."),
       new Newspost("11/13/17","Still focused on non-sim and doll stuff. Have I seriously not mentioned yogisticDoctor (from discord)'s awesome <a href = 'http://farragofiction.com/DollSim/mom_index.html'>Mom</a> and <a href = 'http://farragofiction.com/DollSim/dad_index.html'>Dad</a> doll set yet? "),
       new Newspost("11/11/17","I've spent the week working on the non sim related shit, but ALSO threw together a <a href = 'http://farragofiction.com/MiniSims/StrifeSim/'>11/11 minigame</a> to celebrate the holiday.<br><br>Also, it is time to say a fond farewell to Octobermas."),
       new Newspost("11/7/17","I've been working on planning out the Alchemy Update, doll stuff, as well as getting a non-sim game out. <br><Br>In the mean time there's a handful of new quests live."),
