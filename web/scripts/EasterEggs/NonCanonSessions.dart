@@ -16,27 +16,38 @@ abstract class NonCanonSessions {
     static void session20082015() {
         int numPlayers = 6;
         makeASessionFromSource(session20082015IndexToPlayer, numPlayers);
-        //TODO relationships
-
-
 
         Player p1  = curSessionGlobalVar.players[0];
-        Player p2 = curSessionGlobalVar.players[3];
-        Player p3 = curSessionGlobalVar.players[1];
-        Player p4 = curSessionGlobalVar.players[2];
-        Player p5 = curSessionGlobalVar.players[7];
+        Player p2 = curSessionGlobalVar.players[1];
+        Player p3 = curSessionGlobalVar.players[2];
+        Player p4 = curSessionGlobalVar.players[3];
+        Player p5 = curSessionGlobalVar.players[4];
         Player p6 = curSessionGlobalVar.players[5];
 
+        Relationship iSuck = new Relationship(p1,0); //it would be WAY too much work to make these static.
+
         p1.getRelationshipWith(p3).value = 20;
-        p3.getRelationshipWith(p1).value = 1;
+        p1.getRelationshipWith(p3).saved_type = iSuck.goodBig;
 
         Relationship.makeDiamonds(p2,p1);
+        p2.getRelationshipWith(p1).value = 20;
+        p1.getRelationshipWith(p2).value = 20;
         p2.getRelationshipWith(p3).value = 20;
+        p2.getRelationshipWith(p3).saved_type = iSuck.goodBig;
 
         p3.getRelationshipWith(p4).value = 20;
         p4.getRelationshipWith(p3).value = 20;
+        p3.getRelationshipWith(p4).saved_type = iSuck.goodBig;
+        p4.getRelationshipWith(p3).saved_type = iSuck.goodBig;
+        p3.getRelationshipWith(p1).value = 1;
+        p3.getRelationshipWith(p2).value = 1;
+        p3.getRelationshipWith(p1).saved_type = iSuck.goodMild;
+        pe.getRelationshipWith(p2).saved_type = iSuck.goodMild;
+
 
         Relationship.makeDiamonds(p5,p6);
+        p5.getRelationshipWith(p6).value = 20;
+        p6.getRelationshipWith(p5).value = 20;
 
 
         curSessionGlobalVar.players.length = numPlayers; //no more, no less.
