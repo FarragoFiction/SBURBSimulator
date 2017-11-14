@@ -9,6 +9,7 @@ abstract class NonCanonSessions {
     static void session80000008() {
         int numPlayers = 4;
         makeASessionFromSource(session80000008IndexToPlayer, numPlayers);
+        //TODO relationships
     }
 
     //from patron RL: thanks for your support!!!
@@ -16,6 +17,29 @@ abstract class NonCanonSessions {
         int numPlayers = 6;
         makeASessionFromSource(session20082015IndexToPlayer, numPlayers);
         //TODO relationships
+
+
+
+        Player p1  = curSessionGlobalVar.players[0];
+        Player p2 = curSessionGlobalVar.players[3];
+        Player p3 = curSessionGlobalVar.players[1];
+        Player p4 = curSessionGlobalVar.players[2];
+        Player p5 = curSessionGlobalVar.players[7];
+        Player p6 = curSessionGlobalVar.players[5];
+
+        p1.getRelationshipWith(p3).value = 20;
+        p3.getRelationshipWith(p1).value = 1;
+
+        Relationship.makeDiamonds(p2,p1);
+        p2.getRelationshipWith(p3).value = 20;
+
+        p3.getRelationshipWith(p4).value = 20;
+        p4.getRelationshipWith(p3).value = 20;
+
+        Relationship.makeDiamonds(p5,p6);
+
+
+        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
     }
 
     //tell me how to turn player num into a player and how many players there are and i'll do the heavy lifting of setting up the session
