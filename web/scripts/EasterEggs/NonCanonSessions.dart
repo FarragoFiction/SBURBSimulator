@@ -521,9 +521,9 @@ abstract class NonCanonSessions {
         player.deriveChatHandle = false;
         player.deriveLand = false;
         if(index == 0){
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
+            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
+            player.object_to_prototype = new PotentialSprite("David Duchovny", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -532,12 +532,12 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
+            player.land.name = "Land of Paths and Tea";
+            player.land.denizenFeature = new DenizenFeature('Odin');
         }else if(index == 1){
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
+            player.copyFromOCDataString("b=%00%C2%80%C3%BF%19%C3%BEc%00%01%08%089&s=,,Social Justice,Writing,grapefruitTwostep&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
+            player.object_to_prototype = new PotentialSprite("Gillian Anderson", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -545,27 +545,20 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
+            player.land.denizenFeature = new DenizenFeature('Ares');
         }else if(index == 2){
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
-            player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
+            player.copyFromOCDataString("b=%00%00%00Q%C3%BE%C3%93%00G''C&s=,,Knowledge,Fan Fiction,pleasantPigeon&x=AQ==");
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
+
         }else if(index == 3){
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
+            player.copyFromOCDataString("b=%3F%19%04%20%C3%BE%25%00B%14%14F&s=,,Drawing,Death,vengefulKappa&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
+            player.object_to_prototype = new PotentialSprite("Scandalous Fanart", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -573,13 +566,11 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
+            player.land.denizenFeature = new DenizenFeature('Hades');
         }else if(index == 4) {
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
+            player.copyFromOCDataString("b=G2%00%C2%85%C3%BE%0B%00T%0A%0A%40&s=,,Puns,Psychology,machiosAvatar&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
+            player.object_to_prototype = new PotentialSprite("Earthbound", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -587,13 +578,10 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
         }else if(index == 5){
-            player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion");
+            player.copyFromOCDataString("b=8%22%07J%C3%BEM%00G%13%13%1E&s=,,Unicycling,Phylosophy,unicycleKing&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Vader", s);
+            player.object_to_prototype = new PotentialSprite("Zardoz", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -601,9 +589,6 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.land = player.spawnLand();
-            player.land.name = "Land of Cold and Pendulums";
-            player.land.denizenFeature = new DenizenFeature('Hephaestus');
         }
 
     }
