@@ -4,6 +4,7 @@ import "dart:math" as Math;
 import "dart:typed_data";
 import "../SBURBSim.dart";
 import "../includes/bytebuilder.dart";
+import "../navbar.dart";
 
 
 
@@ -170,6 +171,16 @@ class Player extends GameEntity {
     void increaseGrist([double points = -1.0]) {
         if(points < 0) points = trashMobGrist;
         grist += points;
+    }
+
+    void copyFromOCDataString(String ocDataString) {
+        String bs = "${window.location}?" + ocDataString; //need "?" so i can parse as url
+        if(window.location.toString().contains("?")) bs = "${window.location}&" + ocDataString;
+        String b = (getParameterByName("b", bs)); //this is pre-decoded, if you try to decode again breaks mages of heart which are "%"
+        String s = getParameterByName("s", bs);
+        String x = (getParameterByName("x", bs));
+        List<Player> players = dataBytesAndStringsToPlayers(b, s, x); //technically an array of one players.;
+        this.copyFromPlayer(players[0]);
     }
 
     @override
