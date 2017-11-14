@@ -129,6 +129,7 @@ class QuestsAndStuff extends Scene {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
+            if(helper == player && player.aspect != Aspects.TIME) session.logger.info("AB: non time player is their own helper: $helperText ");
             if(helper is Player) helperText = "$helperText ${helper.interactionEffect(player)} <br><Br>"; //helpers do not.
 
         }

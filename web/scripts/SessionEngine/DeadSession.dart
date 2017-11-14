@@ -233,6 +233,7 @@ class DeadSession extends Session {
 
         players[0].deriveLand = false;
         metaPlayer.renderSelf();
+        players[0].leader = true; //you are the leader.
     }
 
     void makeDeadLand() {
