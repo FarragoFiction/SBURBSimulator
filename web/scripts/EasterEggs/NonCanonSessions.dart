@@ -603,6 +603,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
+            player.land = player.spawnLand();
             player.quirk.suffix = "";
             player.land.denizenFeature = new DenizenFeature('Ares');
         }else if(index == 2){
@@ -613,6 +614,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
+            player.land = player.spawnLand();
 
         }else if(index == 3){
             player.copyFromOCDataString("b=%3F%19%04%20%C3%BE%25%00B%14%14F&s=,,Drawing,Death,vengefulKappa&x=AQ==");
@@ -624,6 +626,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
+            player.land = player.spawnLand();
             player.quirk.suffix = "";
             player.land.denizenFeature = new DenizenFeature('Hades');
         }else if(index == 4) {
@@ -636,6 +639,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
+            player.land = player.spawnLand();
             player.quirk.suffix = "";
         }else if(index == 5){
             player.copyFromOCDataString("b=8%22%07J%C3%BEM%00G%13%13%1E&s=,,Unicycling,Phylosophy,unicycleKing&x=AQ==");
@@ -647,6 +651,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
+            player.land = player.spawnLand();
             player.quirk.suffix = "";
         }
 
