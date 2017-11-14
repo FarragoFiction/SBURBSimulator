@@ -9,7 +9,31 @@ abstract class NonCanonSessions {
     static void session80000008() {
         int numPlayers = 4;
         makeASessionFromSource(session80000008IndexToPlayer, numPlayers);
-        //TODO relationships
+        Player it  = curSessionGlobalVar.players[0];
+        Player vk = curSessionGlobalVar.players[1];
+        Player nc = curSessionGlobalVar.players[2];
+        Player ca = curSessionGlobalVar.players[3];
+
+
+        Relationship refactor = new Relationship(it,0); //it would be WAY too much work to make these static.
+
+        it.getRelationshipWith(nc).value = 20;
+        it.getRelationshipWith(vk).value = 20;
+        it.getRelationshipWith(ca).value = 20;
+        ca.getRelationshipWith(nc).value = 20;
+        ca.getRelationshipWith(vk).value = 20;
+
+
+        Relationship.makeDiamonds(it,nc);
+        Relationship.makeHeart(it,vk);
+
+        Relationship.makeDiamonds(it,ca);
+        Relationship.makeDiamonds(nc,ca);
+        Relationship.makeDiamonds(vk,ca);
+
+
+
+        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
     }
 
     //from patron RL: thanks for your support!!!
@@ -24,25 +48,25 @@ abstract class NonCanonSessions {
         Player p5 = curSessionGlobalVar.players[4];
         Player p6 = curSessionGlobalVar.players[5];
 
-        Relationship iSuck = new Relationship(p1,0); //it would be WAY too much work to make these static.
+        Relationship refactor = new Relationship(p1,0); //it would be WAY too much work to make these static.
 
         p1.getRelationshipWith(p3).value = 20;
-        p1.getRelationshipWith(p3).saved_type = iSuck.goodBig;
+        p1.getRelationshipWith(p3).saved_type = refactor.goodBig;
 
         Relationship.makeDiamonds(p2,p1);
         p2.getRelationshipWith(p1).value = 20;
         p1.getRelationshipWith(p2).value = 20;
         p2.getRelationshipWith(p3).value = 20;
-        p2.getRelationshipWith(p3).saved_type = iSuck.goodBig;
+        p2.getRelationshipWith(p3).saved_type = refactor.goodBig;
 
         p3.getRelationshipWith(p4).value = 20;
         p4.getRelationshipWith(p3).value = 20;
-        p3.getRelationshipWith(p4).saved_type = iSuck.goodBig;
-        p4.getRelationshipWith(p3).saved_type = iSuck.goodBig;
+        p3.getRelationshipWith(p4).saved_type = refactor.goodBig;
+        p4.getRelationshipWith(p3).saved_type = refactor.goodBig;
         p3.getRelationshipWith(p1).value = 1;
         p3.getRelationshipWith(p2).value = 1;
-        p3.getRelationshipWith(p1).saved_type = iSuck.goodMild;
-        pe.getRelationshipWith(p2).saved_type = iSuck.goodMild;
+        p3.getRelationshipWith(p1).saved_type = refactor.goodMild;
+        p3.getRelationshipWith(p2).saved_type = refactor.goodMild;
 
 
         Relationship.makeDiamonds(p5,p6);
