@@ -9,6 +9,8 @@ export 'includes/logger.dart';
 export 'includes/math_utils.dart';
 export 'Alchemy/Specibus.dart';
 export 'Alchemy/Trait.dart';
+export 'Alchemy/Item.dart';
+
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
 export "SessionEngine/SessionStats.dart";
@@ -130,6 +132,7 @@ void globalInit() {
     FeatureFactory.init(); //do BEFORE classes or aspects or you're gonna have a bad time (null features) PL figured this out
     SBURBClassManager.init();
     Aspects.init();
+    ItemTraitFactory.init();
     SpecibusFactory.init();
     InterestManager.init();
 
