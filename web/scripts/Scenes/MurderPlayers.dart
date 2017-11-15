@@ -194,7 +194,7 @@ class MurderPlayers extends Scene {
 		String ret = "";
 		for(num i = 0; i<this.murderers.length; i++){
 			Player m = this.murderers[i];
-			Player worstEnemy = m.getWorstEnemyFromList(this.session.getReadOnlyAvailablePlayers());
+			Player worstEnemy = m.getWorstEnemyFromList(livePlayers);
 			if(worstEnemy != null) ret += m.interactionEffect(worstEnemy);
 
 			//override regular shit to do a strife. really need to refactor this bullshit way to long method. later. gotta focus.
