@@ -49,14 +49,14 @@ class ItemTraitFactory {
 
     static void initAppearances() {
         //it's sharp, it's pointy and it's a sword
-        SWORDAPPEARANCE = new ItemAppearanceTrait("sword",["a sword."]);
-        HAMMERAPPEARANCE = new ItemAppearanceTrait("sword",["a hammer."]);
-        RIFLEAPPEARANCE = new ItemAppearanceTrait("sword",["a rifle."]);
-        PISTOLAPPEARANCE = new ItemAppearanceTrait("sword",["a pistol."]);
-        BLADEAPPEARANCE = new ItemAppearanceTrait("sword",["a blade."]);
-        DAGGERAPPEARANCE = new ItemAppearanceTrait("sword",["a dagger."]);
-        SANTAAPPEARANCE = new ItemAppearanceTrait("sword",["a santa."]);
-        FISTAPPEARANCE = new ItemAppearanceTrait("sword",["a fist."]);
+        SWORDAPPEARANCE = new ItemAppearanceTrait("sword",["a sword"]);
+        HAMMERAPPEARANCE = new ItemAppearanceTrait("sword",["a hammer"]);
+        RIFLEAPPEARANCE = new ItemAppearanceTrait("sword",["a rifle"]);
+        PISTOLAPPEARANCE = new ItemAppearanceTrait("sword",["a pistol"]);
+        BLADEAPPEARANCE = new ItemAppearanceTrait("sword",["a blade"]);
+        DAGGERAPPEARANCE = new ItemAppearanceTrait("sword",["a dagger"]);
+        SANTAAPPEARANCE = new ItemAppearanceTrait("sword",["a santa"]);
+        FISTAPPEARANCE = new ItemAppearanceTrait("sword",["a fist"]);
     }
 
     static void initFunctions() {
