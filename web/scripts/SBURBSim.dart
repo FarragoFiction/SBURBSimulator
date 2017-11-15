@@ -1,4 +1,5 @@
 library SBURBSim;
+//TODO some day, split this into multiple libraries.
 
 import 'dart:html';
 
@@ -6,7 +7,8 @@ import 'SBURBSim.dart';
 import "includes/tracer.dart";
 export 'includes/logger.dart';
 export 'includes/math_utils.dart';
-
+export 'Alchemy/Specibus.dart';
+export 'Alchemy/Trait.dart';
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
 export "SessionEngine/SessionStats.dart";
@@ -74,7 +76,6 @@ export "Scenes/GiveJackBullshitWeapon.dart";
 export "Scenes/GodTierRevival.dart";
 export "Scenes/GoGrimDark.dart";
 export "Scenes/GrimDarkQuests.dart";
-export "Scenes/Intro.dart";
 export "Scenes/IntroNew.dart";
 export "Scenes/JackBeginScheming.dart"; //all the jack stuff will be refactored into npc update
 export "Scenes/JackPromotion.dart";
@@ -106,7 +107,6 @@ export "includes/colour.dart";
 export "includes/palette.dart";
 export "includes/predicates.dart";
 
-
 /// if false, still need to init classes/aspects
 bool doneGlobalInit = false;
 
@@ -130,6 +130,7 @@ void globalInit() {
     FeatureFactory.init(); //do BEFORE classes or aspects or you're gonna have a bad time (null features) PL figured this out
     SBURBClassManager.init();
     Aspects.init();
+    SpecibusFactory.init();
     InterestManager.init();
 
     Loader.init();

@@ -72,6 +72,7 @@ class IntroNew extends IntroScene {
 
           narration += " They have many INTERESTS, including " +this.player.interest1.name + " and " + this.player.interest2.name + ". ";
           narration += " Their chat handle is " + this.player.chatHandle + ". ";
+          narration += "They wield ${player.specibus.name}.";
           if(this.player.leader){
               narration += "They are definitely the leader.";
           }
