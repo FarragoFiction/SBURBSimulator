@@ -282,6 +282,8 @@ class SessionSummary {
         summary.setNumStat("averageMobility", Stats.MOBILITY.average(session.players));
         summary.setNumStat("averageFreeWill", Stats.FREE_WILL.average(session.players));
         summary.setNumStat("averageHP", Stats.HEALTH.average(session.players));
+
+        summary.setNumStat("averageAlchemySkill", Stats.ALCHEMY.average(session.players));
         summary.setNumStat("averageRelationshipValue", Stats.RELATIONSHIPS.average(session.players));
         summary.setNumStat("averageSanity", Stats.SANITY.average(session.players));
         summary.session_id = session.session_id;
@@ -341,6 +343,7 @@ class SessionSummaryJunior {
     num session_id;
     List<Ship> ships = <Ship>[];
     num averageMinLuck = 0;
+    num averageAlchemySkill = 0;
     num averageMaxLuck = 0;
     num averagePower = 0;
     num averageMobility = 0;
@@ -383,6 +386,7 @@ class SessionSummaryJunior {
         this.averagePower = Stats.POWER.average(this.players);
         this.averageMobility = Stats.MOBILITY.average(this.players);
         this.averageFreeWill = Stats.FREE_WILL.average(this.players);
+        this.averageAlchemySkill = Stats.ALCHEMY.average(this.players);
         this.averageHP = Stats.HEALTH.average(this.players);
         this.averageRelationshipValue = Stats.RELATIONSHIPS.average(this.players);
         this.averageSanity = Stats.SANITY.average(this.players);
@@ -448,6 +452,7 @@ class MultiSessionSummaryJunior {
     num averagePower = 0;
     num averageMobility = 0;
     num averageFreeWill = 0;
+    num averageAlchemySkill = 0;
     num averageHP = 0;
     num averageRelationshipValue = 0;
     num averageSanity = 0;
@@ -469,6 +474,7 @@ class MultiSessionSummaryJunior {
             mss.averageMobility += ssj.averageMobility;
             mss.averageFreeWill += ssj.averageFreeWill;
             mss.averageHP += ssj.averageHP;
+            mss.averageAlchemySkill += ssj.averageAlchemySkill;
             mss.averageSanity += ssj.averageSanity;
             mss.averageRelationshipValue += ssj.averageRelationshipValue;
         }
@@ -479,6 +485,8 @@ class MultiSessionSummaryJunior {
         mss.averageMobility = (mss.averageMobility / sessionSummaryJuniors.length).round();
         mss.averageFreeWill = (mss.averageFreeWill / sessionSummaryJuniors.length).round();
         mss.averageHP = (mss.averageHP / sessionSummaryJuniors.length).round();
+        mss.averageAlchemySkill = (mss.averageAlchemySkill / sessionSummaryJuniors.length).round();
+
         mss.averageSanity = (mss.averageSanity / sessionSummaryJuniors.length).round();
         mss.averageRelationshipValue = (mss.averageRelationshipValue / sessionSummaryJuniors.length).round();
         return mss;
@@ -487,7 +495,7 @@ class MultiSessionSummaryJunior {
 
     String generateHTML() {
         StringBuffer html = new StringBuffer()
-            ..write("<div class = 'multiSessionSummary' id = 'multiSessionSummary'>")..write("<h2>Stats for All Displayed Sessions: </h2><br>")..write("<Br><b>Number of Sessions:</b> $numSessions ")..write("<Br><b>Average Players Per Session: ${this.numPlayers / this.numSessions}</b> ")..write("<Br><b>averageMinLuck:</b> $averageMinLuck")..write("<Br><b>averageMaxLuck:</b> $averageMaxLuck")..write("<Br><b>averagePower:</b>$averagePower ")..write("<Br><b>averageMobility:</b>$averageMobility ")..write("<Br><b>averageFreeWill: $averageFreeWill</b> ")..write("<Br><b>averageHP:</b> $averageHP")..write("<Br><b>averageRelationshipValue:</b> $averageRelationshipValue")..write("<Br><b>averageSanity:</b> $averageSanity")..write("<Br><b>Average Initial Ships Per Session:</b> ${this.numShips / this
+            ..write("<div class = 'multiSessionSummary' id = 'multiSessionSummary'>")..write("<h2>Stats for All Displayed Sessions: </h2><br>")..write("<Br><b>Number of Sessions:</b> $numSessions ")..write("<Br><b>Average Players Per Session: ${this.numPlayers / this.numSessions}</b> ")..write("<Br><b>averageMinLuck:</b> $averageMinLuck")..write("<Br><b>averageMaxLuck:</b> $averageMaxLuck")..write("<Br><b>averagePower:</b>$averagePower ")..write("<Br><b>averageAlchemySkill:</b>$averageAlchemySkill ")..write("<Br><b>averageMobility:</b>$averageMobility ")..write("<Br><b>averageFreeWill: $averageFreeWill</b> ")..write("<Br><b>averageHP:</b> $averageHP")..write("<Br><b>averageRelationshipValue:</b> $averageRelationshipValue")..write("<Br><b>averageSanity:</b> $averageSanity")..write("<Br><b>Average Initial Ships Per Session:</b> ${this.numShips / this
                 .numSessions} ")..write("<Br><br><b>Filter Sessions By Number of Players:</b><Br>2 <input id='num_players' type='range' min='2' max='12' value='2'> 12")..write("<br><input type='text' id='num_players_text' value='2' size='2' disabled>")
         //on click will be job of code this.appends this. cuz can't do inline anymore
 
@@ -841,7 +849,7 @@ class MultiSessionSummary {
     }
 
     bool isAverageProperty(String propertyName) {
-        return propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
+        return propertyName == "averageAlchemySkill"||propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck";
     }
 
     bool isPropertyToIgnore(String propertyName) {
@@ -857,7 +865,8 @@ class MultiSessionSummary {
     }
 
     bool isFilterableProperty(String propertyName) {
-        return !(propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
+
+        return !(propertyName == "averageAlchemySkill" ||propertyName == "averageFrogLevel" || propertyName == "averageGrist" || propertyName == "sizeOfAfterLife" || propertyName == "averageNumScenes" || propertyName == "averageAfterLifeSize" || propertyName == "averageSanity" || propertyName == "averageRelationshipValue" || propertyName == "averageHP" || propertyName == "averageFreeWill" || propertyName == "averageMobility" || propertyName == "averagePower" || propertyName == "averageMaxLuck" || propertyName == "averageMinLuck");
     }
 
     String generateHTML() {
@@ -1093,6 +1102,8 @@ class MultiSessionSummary {
             mss.addNumStat("averageMobility", ss.getNumStat("averageMobility"));
             mss.addNumStat("averageFreeWill", ss.getNumStat("averageFreeWill"));
             mss.addNumStat("averageHP", ss.getNumStat("averageHP"));
+
+            mss.addNumStat("averageAlchemySkill", ss.getNumStat("averageAlchemySkill"));
             mss.addNumStat("averageSanity", ss.getNumStat("averageSanity"));
             mss.addNumStat("averageRelationshipValue", ss.getNumStat("averageRelationshipValue"));
             mss.addNumStat("averageNumScenes", ss.getNumStat("num_scenes"));
@@ -1106,6 +1117,8 @@ class MultiSessionSummary {
         mss.setStat("averagePower", (mss.getNumStat("averagePower") / sessionSummaries.length).round());
         mss.setStat("averageMobility", (mss.getNumStat("averageMobility") / sessionSummaries.length).round());
         mss.setStat("averageFreeWill", (mss.getNumStat("averageFreeWill") / sessionSummaries.length).round());
+
+        mss.setStat("averageAlchemySkill", (mss.getNumStat("averageAlchemySkill") / sessionSummaries.length).round());
         mss.setStat("averageHP", (mss.getNumStat("averageHP") / sessionSummaries.length).round());
         mss.setStat("averageGrist", (mss.getNumStat("averageGrist") / sessionSummaries.length).round());
         mss.setStat("averageFrogLevel", (mss.getNumStat("averageFrogLevel") / sessionSummaries.length).round());
