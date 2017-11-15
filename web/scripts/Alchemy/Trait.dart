@@ -9,33 +9,34 @@ Appropriately for AND combining, an && alchemy result will often demonstrate the
 
 abstract class ItemTrait {
     List<String> descriptions = new List<String>();
-    String name;
-    ItemTrait(String this.name, List<String> this.descriptions);
+    ItemTrait(List<String> this.descriptions);
 
 }
 
 //what can this do?
 class ItemFunctionTrait extends ItemTrait {
-  ItemFunctionTrait(String name, List<String> decriptions) : super(name, decriptions);
+  ItemFunctionTrait(List<String> decriptions) : super(decriptions);
     //TODO eventually has something to do with combat? piercing v slashing etc.
 }
 
 //What does it look like?
 //TODO eventually tie to images?
 class ItemAppearanceTrait extends ItemTrait {
-  ItemAppearanceTrait(String name, List<String> decriptions) : super(name, decriptions);
+  ItemAppearanceTrait(List<String> decriptions) : super(decriptions);
 
 }
 
 class ItemTraitFactory {
-    static ItemAppearanceTrait SWORDAPPEARANCE;
-    static ItemAppearanceTrait HAMMERAPPEARANCE;
-    static ItemAppearanceTrait RIFLEAPPEARANCE;
-    static ItemAppearanceTrait PISTOLAPPEARANCE;
-    static ItemAppearanceTrait BLADEAPPEARANCE;
-    static ItemAppearanceTrait DAGGERAPPEARANCE;
-    static ItemAppearanceTrait SANTAAPPEARANCE;
-    static ItemAppearanceTrait FISTAPPEARANCE;
+    static ItemAppearanceTrait SWORD;
+    static ItemAppearanceTrait HAMMER;
+    static ItemAppearanceTrait RIFLE;
+    static ItemAppearanceTrait PISTOL;
+    static ItemAppearanceTrait BLADE;
+    static ItemAppearanceTrait DAGGER;
+    static ItemAppearanceTrait SANTA;
+    static ItemAppearanceTrait FIST;
+    static ItemAppearanceTrait METAL;
+    static ItemAppearanceTrait CERAMIC;
 
     static ItemFunctionTrait SHARP;
     static ItemFunctionTrait BLUNT;
@@ -49,20 +50,22 @@ class ItemTraitFactory {
 
     static void initAppearances() {
         //it's sharp, it's pointy and it's a sword
-        SWORDAPPEARANCE = new ItemAppearanceTrait("sword",["a sword"]);
-        HAMMERAPPEARANCE = new ItemAppearanceTrait("sword",["a hammer"]);
-        RIFLEAPPEARANCE = new ItemAppearanceTrait("sword",["a rifle"]);
-        PISTOLAPPEARANCE = new ItemAppearanceTrait("sword",["a pistol"]);
-        BLADEAPPEARANCE = new ItemAppearanceTrait("sword",["a blade"]);
-        DAGGERAPPEARANCE = new ItemAppearanceTrait("sword",["a dagger"]);
-        SANTAAPPEARANCE = new ItemAppearanceTrait("sword",["a santa"]);
-        FISTAPPEARANCE = new ItemAppearanceTrait("sword",["a fist"]);
+        SWORD = new ItemAppearanceTrait(<String>["a sword"]);
+        HAMMER = new ItemAppearanceTrait(<String>["a hammer"]);
+        RIFLE = new ItemAppearanceTrait(<String>["a rifle"]);
+        PISTOL = new ItemAppearanceTrait(<String>["a pistol"]);
+        BLADE = new ItemAppearanceTrait(<String>["a blade"]);
+        DAGGER = new ItemAppearanceTrait(<String>["a dagger"]);
+        SANTA = new ItemAppearanceTrait(<String>["a santa"]);
+        FIST = new ItemAppearanceTrait(<String>["a fist"]);
+        METAL = new ItemAppearanceTrait(<String>["metal"]);
+        CERAMIC = new ItemAppearanceTrait(<String>["ceramic"]);
     }
 
     static void initFunctions() {
-        SHARP = new ItemFunctionTrait("sharp",["edged","sharp","pointy","honed","keen","sharpened"]);
-        BLUNT = new ItemFunctionTrait("blunt",["blunt","bludgeoning","heavy","dull","heavy enough to kill a cat"]);
-        SHOOTY = new ItemFunctionTrait("shooty",["shooty","ranged","projectile","piercing","loaded","full of ammo"]);
+        SHARP = new ItemFunctionTrait(["edged","sharp","pointy","honed","keen","sharpened"]);
+        BLUNT = new ItemFunctionTrait(["blunt","bludgeoning","heavy","dull","heavy enough to kill a cat"]);
+        SHOOTY = new ItemFunctionTrait(["shooty","ranged","projectile","piercing","loaded","full of ammo", "long-range"]);
 
     }
 }

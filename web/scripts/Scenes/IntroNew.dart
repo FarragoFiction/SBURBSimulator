@@ -271,9 +271,9 @@ class IntroNew extends IntroScene {
 
         }else if(InterestManager.POPCULTURE.playerLikes(player) ) {
             if(rand.nextBool()) {
-                intros = addLineToAllStringInArray("This is so COOL! I am INSIDE A FUCKING VIDEO GAME!",intros);
+                intros = addLineToAllStringInArray("This is so COOL! I am INSIDE A FUCKING VIDEO GAME! I finally get to use my ${player.specibus.baseName}!",intros);
             }else {
-                intros = addLineToAllStringInArray("It's just like a movie!",intros);
+                intros = addLineToAllStringInArray("It's just like a movie! I got to fight a monster with my ${player.specibus.baseName} and everything!",intros);
             }
             lines.add(new PlusMinusConversationalPair(intros, ["Huh. What does that even mean?","What's it like?", "Really? What's it like?"],["Wow. That sounds. Kinda weird.","Holy shit, what does that even mean?", "That ... doesn't sound fun."]));
 
@@ -288,7 +288,7 @@ class IntroNew extends IntroScene {
         }else if(InterestManager.TERRIBLE.playerLikes(player) ) {
             intros.addAll(["I am fucking finally in the Medium.", "I have assumed my rightful place as the future ruler of the ${land}."]);
             if(rand.nextBool()) {
-                intros = addLineToAllStringInArray("I am going to rule it with an iron fist!", intros);
+                intros = addLineToAllStringInArray("I am going to rule it with an iron fist! Or at least use my ${player.specibus.baseName}.", intros);
             }else {
                 intros = addLineToAllStringInArray("I wonder how long it will take me to take it over?", intros);
             }
