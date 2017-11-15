@@ -16,7 +16,9 @@ class Item {
     }
 
 
-    Item(String this.baseName,List<ItemTrait> this.traits);
+    Item(String this.baseName,List<ItemTrait> this.traits) {
+        if(this.traits.isEmpty) traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
+    }
 
     //it's sharp, it's pointy and it's a sword.   so can pick the same trait multiple times and just pick different words? Yes.
     String randomDescription(Random rand) {
@@ -38,3 +40,5 @@ class Item {
         return rand.pickFrom(templates);
     }
 }
+
+

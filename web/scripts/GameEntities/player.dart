@@ -529,7 +529,15 @@ class Player extends GameEntity {
             ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
+
+        for(Item item in sylladex) {
+            ret += "${item.fullName}<br>";
+        }
+
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
+
+
 
         for (Buff b in buffs) {
             ret += "$b<br>";
@@ -1733,6 +1741,7 @@ class Player extends GameEntity {
 
     void initializeDerivedStuff() {
         //print("initializing derived stuff for player ${this.chatHandle}");
+        populateInventory();
         if(deriveLand) land = spawnLand();
 
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
@@ -1748,6 +1757,12 @@ class Player extends GameEntity {
         moonChance += session.rand.nextDouble() * -33; //different amount of time pre-game start to get in. (can still wake up before entry)
         if(aspect == Aspects.SPACE) moonChance += 33.0; //huge chance for space players.
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
+    }
+
+    void populateInventory() {
+        sylladex.clear();
+        sylladex.add(session.rand.pickFrom(interest1.category.items));
+        sylladex.add(session.rand.pickFrom(interest2.category.items));
     }
 
     //I mark the source of the themes here, where i'm using them, rather than on creation

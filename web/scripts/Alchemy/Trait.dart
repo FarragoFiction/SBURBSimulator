@@ -28,6 +28,7 @@ class ItemAppearanceTrait extends ItemTrait {
 }
 
 class ItemTraitFactory {
+    static ItemAppearanceTrait GENERIC;
     static ItemAppearanceTrait SWORD;
     static ItemAppearanceTrait HAMMER;
     static ItemAppearanceTrait RIFLE;
@@ -53,6 +54,7 @@ class ItemTraitFactory {
 
     static void initAppearances() {
         //it's sharp, it's pointy and it's a sword
+        GENERIC = new ItemAppearanceTrait(<String>["perfectly generic"],0.1);
         SWORD = new ItemAppearanceTrait(<String>["a sword"],0.4);
         HAMMER = new ItemAppearanceTrait(<String>["a hammer"],0.4);
         RIFLE = new ItemAppearanceTrait(<String>["a rifle"],0.4);

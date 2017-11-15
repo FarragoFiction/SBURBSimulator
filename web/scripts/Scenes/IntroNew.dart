@@ -65,7 +65,7 @@ class IntroNew extends IntroScene {
           }
       }else{
           this.changePrototyping(div);
-          narration += "<br>The " + this.player.htmlTitle() + " enters the game " + indexToWords(i) + ". ";
+          narration += "<br>The " + this.player.htmlTitleWithTip() + " enters the game " + indexToWords(i) + ". ";
           if(this.player.aspect == Aspects.VOID) narration += "They are " + this.player.voidDescription() +". ";
           narration += " They manage to prototype their kernel sprite with a " + this.player.object_to_prototype.htmlTitle() + " pre-entry. ";
           narration += this.corruptedSprite();

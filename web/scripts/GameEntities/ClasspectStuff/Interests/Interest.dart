@@ -113,6 +113,8 @@ class InterestCategory {
 
     //this is what char creator should modify. making it private meant that children apparently couldn't override it. i guess i want protected, but does dart even have that?
     List<String> interestStrings = ["NONE"];
+    //starting items, quest rewards, etc.
+    WeightedList<Item> items = new WeightedList<Item>();
 
     String negative_descriptor;
     String positive_descriptor;
@@ -121,11 +123,17 @@ class InterestCategory {
     //p much no vars to set.
     InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor, [this.isInternal = false]) {
         initializeThemes();
+        initializeItems();
         InterestManager.register(this);
     }
 
     void addTheme(Theme t, double weight) {
         themes[t] = weight;
+    }
+
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Perfectly Generic Object",<ItemTrait>[]));
     }
 
 
