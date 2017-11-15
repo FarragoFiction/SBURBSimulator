@@ -14,7 +14,6 @@ class Player extends GameEntity {
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
     @override
     num grist = 0; // players do not spawn with grist
-    Specibus specibus;
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
@@ -1695,6 +1694,7 @@ class Player extends GameEntity {
         this.isTroll = replayPlayer.isTroll;
         this.bloodColor = replayPlayer.bloodColor;
         this.leftHorn = replayPlayer.leftHorn;
+        this.specibus = replayPlayer.specibus.copy();
         this.rightHorn = replayPlayer.rightHorn;
         this.interest1 = replayPlayer.interest1;
         this.interest2 = replayPlayer.interest2;

@@ -12,6 +12,7 @@ enum ProphecyState {
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner implements Comparable<GameEntity>  {
     static int _nextID = 0;
+    Specibus specibus;
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
 
@@ -55,6 +56,8 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     GameEntity(this.name, this.session) {
         this.initStatHolder();
         id = GameEntity.generateID();
+        //default non player thingy.
+        this.specibus =new Specibus("claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.SHARP, ItemTraitFactory.BONE]);
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
@@ -294,7 +297,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
 
     void aggrieve(Element div, GameEntity defense) {
         GameEntity offense = this; //easier for now.
-        String ret = "<br><Br> The ${offense.htmlTitleHP()} targets the ${defense.htmlTitleHP()}. ";
+        String ret = "<br><Br> The ${offense.htmlTitleHP()} targets the ${defense.htmlTitleHP()} with their ${offense.specibus.fullName}. ";
         if (defense.dead) ret = "$ret Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!";
         appendHtml(div, ret);
 
