@@ -13,6 +13,7 @@ class Quest {
     static String CONSORTSOUND = "CONSORTSOUNDTAG";
     static String MCGUFFIN = "MCGUFFINTAG";
     static String PHYSICALMCGUFFIN = "TAGPHYSICALMCGUFFIN";
+    static String WEAPON = "TAGWEAPON";
 
     String text;
 
