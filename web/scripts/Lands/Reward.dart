@@ -51,6 +51,7 @@ class FraymotifReward extends Reward
     String desc = null;
     @override
     String image = "Rewards/sweetLoot.png";
+    String bgImage = "Rewards/fraymotifBG.png";
 
     FraymotifReward([String this.name = null, this.desc = null]);
 
@@ -126,6 +127,32 @@ class BattlefieldReward extends Reward {
         super.apply(div, p1, p2, land,text);
     }
 }
+
+
+class ItemReward extends Reward {
+    @override
+    String image = "Rewards/sweetTreasure.png";
+    Item item;
+
+    ItemReward(this.item);
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} finds a ${item.fullName}";
+
+        if(p2 != null) {
+            if(p2 is Player) {
+                text += "The ${Reward.PLAYER1} and the ${Reward.PLAYER2} each get a ${item.fullName}" ";
+                p2.sylladex.add(item.copy());
+                text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+            }
+        }
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        p1.sylladex.add(item.copy());
+        super.apply(div, p1, p2, land,text);
+    }
+}
+
 
 class CodReward extends Reward {
     @override

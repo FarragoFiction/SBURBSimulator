@@ -12,6 +12,7 @@ class Player extends GameEntity {
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
+    List<Item> sylladex = new List<Item>();
     @override
     num grist = 0; // players do not spawn with grist
     //if 0, not yet woken up.

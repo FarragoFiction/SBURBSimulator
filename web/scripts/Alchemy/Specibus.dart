@@ -43,8 +43,7 @@ class Specibus extends Item {
     //TODO your specibus can be 2x or 1/2 x kind. unlucky event where it breaks so 1/2 kind
 
     String get name => "${baseName}kind";
-    //TODO when i have compontents, this needs to generate a name based on components.
-    String get fullName => "${baseName}";
+
 
     //it's sharp, it's pointy and it's a sword. word 3 is always the requiredTrait.
     @override

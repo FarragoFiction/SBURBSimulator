@@ -1,11 +1,19 @@
 import "../SBURBSim.dart";
 
+//I expect aspects and interests to have lists of items inside of them.
 class Item {
     String baseName;
     List<ItemTrait> traits = new List<ItemTrait>();
 
     Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
+
+    //TODO when i have compontents, this needs to generate a name based on components.
+    String get fullName => "${baseName}";
+
+    Item copy() {
+        return new Item(baseName, traits);
+    }
 
 
     Item(String this.baseName,List<ItemTrait> this.traits);
