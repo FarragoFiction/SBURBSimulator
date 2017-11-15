@@ -142,7 +142,7 @@ class ItemReward extends Reward {
 
         if(p2 != null) {
             if(p2 is Player) {
-                text += "The ${Reward.PLAYER1} and the ${Reward.PLAYER2} each get a ${item.fullName}" ";
+                text += "The ${Reward.PLAYER1} and the ${Reward.PLAYER2} each get a ${item.fullName}" ;
                 p2.sylladex.add(item.copy());
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
             }
