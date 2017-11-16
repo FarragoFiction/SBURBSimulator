@@ -44,6 +44,8 @@ class DeadSessionSummary extends SessionSummary {
         summary.setBoolStat("hasFreeWillEvents", session.stats.hasFreeWillEvents);
         summary.setBoolStat("hasGhostEvents", session.stats.hasFreeWillEvents);
         summary.setNumStat("averageMinLuck", Stats.MIN_LUCK.average(session.players));
+        summary.setNumStat("averageAlchemySkill", Stats.ALCHEMY.average(session.players));
+
         summary.setNumStat("averageMaxLuck", Stats.MAX_LUCK.average(session.players));
         summary.setNumStat("averagePower", Stats.POWER.average(session.players));
         summary.setNumStat("averageGrist", getAverageGrist(session.players));

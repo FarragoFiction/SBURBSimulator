@@ -157,7 +157,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
 
   void printSummaries(){
-    setHtml(querySelector("#debug"), "");
+    SimController.instance.clearElement(querySelector("#debug"));
     for(num i = 0; i<sessionSummariesDisplayed.length; i++){
       var ssd = sessionSummariesDisplayed[i];
       var str = ssd.generateHTML();
@@ -239,7 +239,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();
-    setHtml(SimController.instance.storyElement, "");
+    SimController.instance.clearElement(SimController.instance.storyElement);
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
@@ -293,7 +293,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       return null;
     }
     sessionsSimulated.add(curSessionGlobalVar.session_id);
-    setHtml(SimController.instance.storyElement, "");
+    SimController.instance.clearElement(SimController.instance.storyElement);
+
     var sum = curSessionGlobalVar.generateSummary();
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
@@ -354,6 +355,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
 
     ////print("MMS is: ${mms.num_stats}");
+    SimController.instance.clearElement(querySelector("#stats"));
+
     setHtml(querySelector("#stats"), mms.generateHTML());
     mms.wireUpCorpsePartyCheckBoxes();
     wireUpAllCheckBoxesAndButtons();

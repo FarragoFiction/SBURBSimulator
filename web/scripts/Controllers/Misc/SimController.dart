@@ -35,6 +35,16 @@ abstract class SimController {
         storyElement = querySelector("#story");
     }
 
+    void clearElement(Element element) {
+        //element.setInnerHtml("");
+
+        List<dynamic> children = new List<dynamic>.from(element.childNodes);
+        children.forEach((e)
+        {
+            e.remove();
+        });
+    }
+
     void callNextIntro(int player_index) {
         if (player_index >= curSessionGlobalVar.players.length) {
             tick(); //NOW start ticking
