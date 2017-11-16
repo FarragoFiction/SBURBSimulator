@@ -74,14 +74,10 @@ class VoidyStuff extends Scene {
 		//make array of functions. call one at random.
 		//div you pass to fucntion is created here. div class is VOID, nothing or RAGE.
 
-		String normalDivHTML = "<span id = '" +div.id+ "voidyStuffNormal'>  </span> ";
-		appendHtml(div, normalDivHTML);
-		Element normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
-
-		String newDivHTML = "<span class ='"+classDiv+"' id = '" +div.id+ "voidyStuffSpecial'>  </span> ";
-		appendHtml(div, newDivHTML);
-		normalDiv = querySelector("#"+div.id+ "voidyStuffNormal");
-		Element newDiv = querySelector("#"+div.id+ "voidyStuffSpecial");
+		Element normalDiv = new DivElement();
+		div.append(normalDiv);
+		Element newDiv = new DivElement();
+		div.append(newDiv);
 		//don't godtier as soon as you get in, too unfair to the other players.
 		bool canGod = checkCanGod();
 		if(canGod){
