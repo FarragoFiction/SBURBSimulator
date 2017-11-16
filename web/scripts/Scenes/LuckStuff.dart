@@ -165,8 +165,9 @@ class LuckStuff extends Scene{
 		if(roll.player.land == null){
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
-		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single consort. 'Shh.' the imp says, handing over a frankly obscene bucket of...something, 'It's a secret to everybody.' The " + roll.player.htmlTitleBasic() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  They can't quite bring themselves to go near their consorts for a little while aftewards. " ;
-		roll.player.increaseLandLevel(-2.0);
+		Item chosen = session.rand.pickFrom(roll.player.sylladex);
+		String ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of something, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + "  panics and chucks their ${chosen.fullName}, at the imp as they run away. They are NOT going back for it. " ;
+		roll.player.sylladex.remove(chosen);
 		this.session.stats.badLuckEvent = true;
 		return ret;
 	}
