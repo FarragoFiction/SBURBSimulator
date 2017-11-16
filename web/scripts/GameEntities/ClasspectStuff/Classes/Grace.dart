@@ -30,6 +30,13 @@ class Grace extends SBURBClass {
         new AssociatedStat(Stats.SBURB_LORE, 3.0, false) //basically all Wastes have.
     ]);
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Grace Object",<ItemTrait>[]));
+    }
+
+
 
     @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {

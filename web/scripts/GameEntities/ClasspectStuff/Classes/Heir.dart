@@ -60,6 +60,13 @@ class Heir extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Heir Object",<ItemTrait>[]));
+    }
+
+
+    @override
     double getMurderousModifier() {
         return 1.5;
     }

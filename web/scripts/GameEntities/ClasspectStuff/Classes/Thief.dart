@@ -50,6 +50,13 @@ class Thief extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Thief Object",<ItemTrait>[]));
+    }
+
+
+    @override
     double getAttackerModifier() {
         return 1.5;
     }

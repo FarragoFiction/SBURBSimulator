@@ -45,6 +45,13 @@ class Sage extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Sage Object",<ItemTrait>[]));
+    }
+
+
+    @override
     void initializeThemes() {
         /*
         new Quest(" "),

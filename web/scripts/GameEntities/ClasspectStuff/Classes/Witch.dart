@@ -45,6 +45,12 @@ class Witch extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Witch Object",<ItemTrait>[]));
+    }
+
+    @override
     bool isActive([double multiplier = 0.0]) {
         return true;
     }

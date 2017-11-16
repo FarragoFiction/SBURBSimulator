@@ -69,6 +69,12 @@ class Heart extends Aspect {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Heart Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
 
         addTheme(new Theme(<String>["Spirits","Souls","Jazz", "Havoc", "Blues", "Cores", "Prohibition", "Noir"])

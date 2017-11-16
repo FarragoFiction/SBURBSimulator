@@ -44,6 +44,13 @@ class Knight extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Knight Object",<ItemTrait>[]));
+    }
+
+
+    @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         if (stat.multiplier > 0) {
             powerBoost = powerBoost * 0.5;

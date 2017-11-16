@@ -53,6 +53,12 @@ class Rage extends Aspect {
 
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Rage Object",<ItemTrait>[]));
+    }
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.POWER, 2.0, true),
         new AssociatedStat(Stats.MOBILITY, 1.0, true),

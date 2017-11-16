@@ -50,7 +50,11 @@ class Void extends Aspect {
     @override
     List<String> physicalMcguffins = ["void","cloak", "disguise", "shadow", "cardboard box", "secret plan"];
 
-
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Void Object",<ItemTrait>[]));
+    }
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

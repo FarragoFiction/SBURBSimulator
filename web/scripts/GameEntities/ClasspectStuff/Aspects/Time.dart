@@ -54,6 +54,12 @@ class Time extends Aspect {
 
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Time Object",<ItemTrait>[]));
+    }
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.MIN_LUCK, 2.0, true),
         new AssociatedStat(Stats.MOBILITY, 1.0, true),

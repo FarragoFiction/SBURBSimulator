@@ -47,6 +47,13 @@ class Waste extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Waste Object",<ItemTrait>[]));
+    }
+
+
+    @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         if (stat.isFromAspect || stat.stat != Stats.SBURB_LORE) {
             powerBoost = powerBoost * 0; //wasted aspect

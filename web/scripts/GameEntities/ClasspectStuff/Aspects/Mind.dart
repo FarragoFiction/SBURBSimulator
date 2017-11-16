@@ -53,7 +53,11 @@ class Mind extends Aspect {
     @override
     List<String> physicalMcguffins = ["mind","coin", "plan", "mask", "map", "brain", "circuit"];
 
-
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Mind Object",<ItemTrait>[]));
+    }
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

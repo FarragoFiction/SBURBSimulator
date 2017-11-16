@@ -52,7 +52,11 @@ class Light extends Aspect {
     @override
     List<String> physicalMcguffins = ["light","clover", "horseshoe", "encyclopedia","sun", "dice", "8-ball", "deck of tarot cards"];
 
-
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Light Object",<ItemTrait>[]));
+    }
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[

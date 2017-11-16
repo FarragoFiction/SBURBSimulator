@@ -72,6 +72,12 @@ class Breath extends Aspect {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Breath Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Wind","Breeze","Pipes", "Mail", "Whistles", "Pipe Organs", "Delivery"])
             ..addFeature(FeatureFactory.NATURESMELL, Feature.MEDIUM)

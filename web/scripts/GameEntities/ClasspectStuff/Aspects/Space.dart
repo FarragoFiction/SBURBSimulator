@@ -47,6 +47,12 @@ class Space extends Aspect {
 
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Space Object",<ItemTrait>[]));
+    }
+
+    @override
     List<String> symbolicMcguffins = ["space","commitment", "creation", "room","stars", "galaxy", "black hole", "super nova"];
     @override
     List<String> physicalMcguffins = ["space","frog", "globe", "map","toad", "bass guitar", "nuclear reactor", "paint"];

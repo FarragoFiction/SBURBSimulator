@@ -51,6 +51,14 @@ class Bard extends SBURBClass {
         return " The ${me.htmlTitle()} appears to be destroying ${rand.pickFrom(me.aspect.symbolicMcguffins)} in everyone. ";
     }
 
+
+
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Bard Object",<ItemTrait>[]));
+    }
+
     @override
     void processStatInteractionEffect(Player p, GameEntity target, AssociatedStat stat) {
         num powerBoost = p.getPowerForEffects() / 20;

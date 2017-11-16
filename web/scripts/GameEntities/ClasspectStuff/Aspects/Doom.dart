@@ -77,6 +77,12 @@ class Doom extends Aspect {
         return s.mutator.doom(s, p);
     }
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Doom Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {

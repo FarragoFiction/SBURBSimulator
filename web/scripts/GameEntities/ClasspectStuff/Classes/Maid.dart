@@ -42,6 +42,13 @@ class Maid extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Maid Object",<ItemTrait>[]));
+    }
+
+
+    @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         return powerBoost * 1.5;
     }

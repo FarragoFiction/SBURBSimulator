@@ -52,6 +52,13 @@ class Prince extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Prince Object",<ItemTrait>[]));
+    }
+
+
+    @override
     bool hasInteractionEffect() {
         return true;
     }

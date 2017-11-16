@@ -31,6 +31,12 @@ class Guide extends SBURBClass {
         return false;
     }
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Guide Object",<ItemTrait>[]));
+    }
+
 
     //guides show others their aspect and protect them from it (and it from them)
     @override

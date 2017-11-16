@@ -42,6 +42,13 @@ class Scribe extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Scribe Object",<ItemTrait>[]));
+    }
+
+
+    @override
     bool isActive([double multiplier = 0.0]) {
         return true;
     }

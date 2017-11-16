@@ -221,18 +221,26 @@ class Aspect {
 
     /// Perma-buffs for modifying stat growth and distribution - page growth curve etc.
     List<Buff> statModifiers = <Buff>[];
-
+    //starting items, quest rewards, etc.
+    WeightedList<Item> items = new WeightedList<Item>();
     // ##################################################################################################
     // Constructor
 
     Aspect(int this.id, String this.name, {this.isCanon = false, this.isInternal = false}) {
         faqFile = new FAQFile("Aspects/$name.xml");
         this.savedName = this.name;
+
         //not dynamically calculated because of Hope players (there IS no Dick.png), but still needs to be known.
         this.symbolImgLocation = "$name.png";
         this.bigSymbolImgLocation = "${name}Big.png";
+        initializeItems();
         this.initializeThemes();
         Aspects.register(this);
+    }
+
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Perfectly Generic Object",<ItemTrait>[]));
     }
 
     // ##################################################################################################

@@ -46,6 +46,13 @@ class Lord extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Lord Object",<ItemTrait>[]));
+    }
+
+
+    @override
     bool isActive([double multiplier = 0.0]) {
         if(multiplier >= 0) { //if no stat passed, act active
            // print("Lord taking  the good of stat");

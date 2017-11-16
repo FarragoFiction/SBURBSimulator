@@ -140,14 +140,24 @@ class SBURBClass {
     bool isDestructive = false;
     bool isHelpful = false;
 
+    //starting items, quest rewards, etc.
+    WeightedList<Item> items = new WeightedList<Item>();
+
 
     SBURBClass(this.name, this.id, this.isCanon,{ this.isInternal = false}) {
         this.savedName = name;
         faqFile = new FAQFile("Classes/$name.xml");
         //print("Making a sburb class ${this.name}");
+        initializeItems();
         initializeThemes();
         SBURBClassManager.addClass(this);
     }
+
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Perfectly Generic Object",<ItemTrait>[]));
+    }
+
 
 
     List<String> levels = <String>["SNOWMAN SAVIOR", "NOBODY NOWHERE", "NULLZILLA"];

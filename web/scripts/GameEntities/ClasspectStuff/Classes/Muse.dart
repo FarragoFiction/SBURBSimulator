@@ -36,6 +36,12 @@ class Muse extends SBURBClass {
 
     Muse() : super("Muse", 18, false);
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Muse Object",<ItemTrait>[]));
+    }
+
 
     @override
     bool highHinit() {

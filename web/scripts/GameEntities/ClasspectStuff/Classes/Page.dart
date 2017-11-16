@@ -43,6 +43,13 @@ class Page extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Page Object",<ItemTrait>[]));
+    }
+
+
+    @override
     double powerBoostMultiplier = 2.0; //they don't have many quests, but once they get going they are hard to stop.
 
     @override

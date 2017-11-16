@@ -45,6 +45,13 @@ class Rogue extends SBURBClass {
     }
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Rogue Object",<ItemTrait>[]));
+    }
+
+
+    @override
     num modPowerBoostByClass(num powerBoost, AssociatedStat stat) {
         return powerBoost * 0.5;
     }
