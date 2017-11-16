@@ -138,8 +138,11 @@ class LuckStuff extends Scene{
 		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
 		}
-		String ret = "The " + roll.player.htmlTitle() + " tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of grist, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the grist, though. Land quests don't solve themselves. " ;
-		roll.player.increaseLandLevel(2.0);
+
+		List<Item> possibleRewards = <Item>[session.rand.pickFrom(roll.player.interest1.category.items),session.rand.pickFrom(roll.player.interest2.category.items),session.rand.pickFrom(roll.player.aspect.items),session.rand.pickFrom(roll.player.class_name.items)];
+		Item chosen = session.rand.pickFrom(possibleRewards);
+		String ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of ${chosen.fullName}, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the ${chosen.baseName}, though. " ;
+		roll.player.sylladex.add(chosen);
 		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
