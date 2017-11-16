@@ -72,7 +72,7 @@ class Grace extends SBURBClass {
                 new Quest("Now that the ${Quest.CONSORT}s are free from the reign of ${Quest.DENIZEN}, they are free to continue their normal lives. Wait a second... is that ${Quest.CONSORT} carrying the ${Quest.PLAYER1}'s copy of the SBURB discs? This can't be good."),
                 new Quest("The ${Quest.PLAYER1} follows the ${Quest.CONSORT} with the SBURB discs into the local ${Quest.CONSORTSOUND} club. Apparently, this ${Quest.CONSORT} has more than one copy of SBURB, and they hand out the other discs to their fellow ${Quest.CONSORTSOUND} enthusiasts. The ${Quest.PLAYER1} panics, and makes a plot to steal all of the discs."),
                 new Quest("Clever as a fox, the ${Quest.PLAYER1} steals the SBURB discs from each ${Quest.CONSORT} and replaces them with copies of the recently released 'Super ${Quest.MCGUFFIN} Quest Online: The ${Quest.PHYSICALMCGUFFIN} of ${Quest.CONSORTSOUND}'. now the ${Quest.CONSORT}s have a game they can play together that WON'T kill everything!")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
         //space player near guaranteed to do this.
             ..addFeature(new PostDenizenFrogChain("Allow Others to Meta a Universe", [

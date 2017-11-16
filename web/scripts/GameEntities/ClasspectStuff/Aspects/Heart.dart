@@ -143,7 +143,7 @@ class Heart extends Aspect {
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
                 new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, but then realizes that because of some stupid ${Quest.MCGUFFIN} laws put in place by ${Quest.DENIZEN}, the ship will be unable to sail. The player flips their shit and begins preparing for the final battle. THE SHIP WILL SAIL. "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Heal The Broken Heart", [
                 new Quest("The ${Quest.PLAYER1} finds a weeping Broken Hearted ${Quest.CONSORT}. The most Fetching ${Quest.CONSORT} of their dreams just turned them down to the ${Quest.MCGUFFIN} Dance and they are miserable. On a whim, the ${Quest.PLAYER1} offers to take them instead. The ${Quest.CONSORT} immediately brightens.  "),

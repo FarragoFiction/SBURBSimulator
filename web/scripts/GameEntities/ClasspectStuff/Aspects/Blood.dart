@@ -83,7 +83,7 @@ class Blood extends Aspect {
                 new Quest("The ${Quest.PLAYER1} gets help from ${Quest.CONSORT}s on their side of the lake to build a massive boat. They put blood, sweat, tears, but mostly blood, into building the boat."),
                 new Quest("With the boat placed into the lake, the ${Quest.PLAYER1} begins their voyage across the raging rapids. They will need all the help they can get from their ${Quest.CONSORT} crewmates to reach the other side."),
                 new Quest("After hours of captaining their ship, the ${Quest.PLAYER1} arrives on the other side of the lake. It turns out they spent so long building the boat that the village fixed its own problems. A considerate ${Quest.CONSORT} hands the ${Quest.PLAYER1} a ${Quest.PHYSICALMCGUFFIN} and some boondollars in compensation.")
-            ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.playerIsHelpfulClass), Feature.WAY_LOW)
 
             ..addFeature(new DenizenQuestChain("Unplug the Rivers", [
                 new Quest("The land is a series of candy red lakes. A wise old ${Quest.CONSORT} stops ${Quest.CONSORTSOUND}ing enough to explain that these lakes actually used to be mighty rivers, until ${Quest.DENIZEN} plugged them up with dams. Now the ${Quest.CONSORT}s can't travel or trade with other villages at all, and the land has begun to stagnate."),

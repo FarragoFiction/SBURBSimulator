@@ -93,7 +93,7 @@ class Time extends Aspect {
                 new Quest("Now that the shitty ${Quest.DENIZEN} is no longer protecting them, the ${Quest.PLAYER1} can FINALLY get down to the important stuff, namely, destorying all those ceaselessly ticking clocks. God DAMN but they are annoying. "),
                 new Quest("With a satisfying BONG, another clock bites the dust. The ${Quest.PLAYER1} finds it all to be so very therapeutic. "),
                 new Quest("Through shenanigans too boring to detail here, the ${Quest.PLAYER1} finds themselves back in time, before the ${Quest.DENIZEN} was even here in the first place. Before absconding from the angry snake, they manage to wreck the fuck out of a single clock they hadn't seen before. 1001/1000 clocks destroyed. Mission Complete!")
-            ], new FraymotifReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+            ], new ItemReward(items), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("Fix the Clockwork", [
                 new Quest("The ${Quest.PLAYER1} is getting sick and tired of the constant grinding of their planet’s clockwork mechanisms. After consulting some ${Quest.CONSORT}s, they set out to fix the ${Quest.PHYSICALMCGUFFIN} points that are causing the grinding."),
