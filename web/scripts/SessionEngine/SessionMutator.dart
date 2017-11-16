@@ -170,7 +170,6 @@ class SessionMutator {
             p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
             p.renderSelf();
             p.land = null; //SBURB doesn't have a land for you.
-            p.denizen = null;
             p.guardian = null;
         }
         //HEY did you know that SBURB calculates grist requirements based on number of players?
@@ -472,8 +471,8 @@ class SessionMutator {
         spawnKing(s);
         spawnJack(s);
         hopePlayer.land.denizenFeature.name = "A small toy snake";
-        hopePlayer.denizen.setStat(Stats.POWER, 1);
-        hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH, 1);
+        //hopePlayer.denizen.setStat(Stats.POWER, 1);
+        //hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH, 1);
         ret += "Their enemies are made into ridiculous non-threats. ";
         spawnDemocraticArmy(s);
         ret += "The democratic army rallies around this beacon of hope. ";
@@ -529,9 +528,8 @@ class SessionMutator {
             p.bloodColor = s.rand.pickFrom(tricksterColors).toStyleString();
             p.initializeStats();
             p.dead = false;
-            if (p.denizenMinion != null) p.denizenMinion.makeAlive();
             p.dreamSelf = true; //your dream self is revived, too.
-            if (p.denizen != null) p.denizen.makeAlive();
+            if (p.land != null && p.land.denizenFeature.denizen != null)p.land.denizenFeature.denizen ;
             p.renderSelf();
         }
 

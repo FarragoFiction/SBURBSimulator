@@ -19,8 +19,6 @@ class Player extends GameEntity{
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
-    GameEntity denizen = null;
-    GameEntity denizenMinion = null;
     //mostly for dead sessions.
     bool unconditionallyImmortal = false;
    static num maxHornNumber = 73; //don't fuck with this
@@ -727,11 +725,11 @@ class Player extends GameEntity{
     }
 
     String getDenizen() {
-        return this.denizen.name; //<--convineint that it wasn't hard to upgrade.
+        return this.land.denizenFeature.name; //<--convineint that it wasn't hard to upgrade.
     }
 
     bool didDenizenKillYou() {
-        if (denizen != null && this.causeOfDeath.contains(this.denizen.name)) {
+        if (land != null && this.causeOfDeath.contains(this.land.denizenFeature.name)) {
             return true; //also return true for minions. this is intentional.;
         }
         return false;
@@ -883,8 +881,7 @@ class Player extends GameEntity{
         clone.baby = baby;
         clone.pvpKillCount = pvpKillCount; //for stats.
         clone.timesDied = timesDied;
-        if (denizen != null) clone.denizen = denizen.clone();
-        if (denizen != null) clone.denizenMinion = denizenMinion.clone();
+
         if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.deriveLand = deriveLand;

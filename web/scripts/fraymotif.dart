@@ -329,24 +329,6 @@ class FraymotifCreator {
     FraymotifCreator() {}
 
 
-    void createFraymotifForPlayerDenizen(Player player, String name) {
-        //var denizen = player.denizen;
-        Fraymotif f = new Fraymotif("$name's ${this.getDenizenFraymotifNameFromAspect(player.aspect)}", 2); //CAN I have an aspectless fraymotif?
-        f.desc = this.getDenizenFraymotifDescriptionForAspect(player.aspect);
-
-        //statName, target, damageInsteadOfBuff, flavorText
-        Iterable<AssociatedStat> plus = player.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
-        for (AssociatedStat p in plus) {
-            f.effects.add(new FraymotifEffect(p.stat, 0, true));
-            f.effects.add(new FraymotifEffect(p.stat, 0, false));
-        }
-        Iterable<AssociatedStat> minus = player.associatedStatsFromAspect; //debuff enemy, and damage. used to be only negative, but that gave witches/sylphs/princes/bards the shaft;
-        for (AssociatedStat m in minus) {
-            f.effects.add(new FraymotifEffect(m.stat, 2, true));
-            f.effects.add(new FraymotifEffect(m.stat, 2, false));
-        }
-        player.denizen.fraymotifs.add(f);
-    }
 
     Fraymotif makeDenizenFraymotif(Player player, String nameOfDenizen) {
         Fraymotif f = new Fraymotif("$nameOfDenizen's ${this.getDenizenFraymotifNameFromAspect(player.aspect)}", 2); //CAN I have an aspectless fraymotif?
