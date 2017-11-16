@@ -191,6 +191,7 @@ class SessionMutator {
             p.bloodColor = "#ff0000"; //we are ALL the same caste now.
             //need to have relationship with new null players
             p.relationships = <Relationship>[];
+            //print("Generating relationships for $p");
             p.generateRelationships(s.players);
 
             for (Stat str in Stats.pickable) {
