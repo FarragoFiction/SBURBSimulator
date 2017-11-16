@@ -61,7 +61,6 @@ class FraymotifReward extends Reward
         String text = "";
         if(t!= null) text = t;
 
-        text += " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
         Fraymotif f1;
         Fraymotif f2;
         if(p2 != null) {
@@ -72,7 +71,11 @@ class FraymotifReward extends Reward
                 if(name != null) f2.name = name;
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
                 text = text.replaceAll("${FRAYMOTIF2}", "${f2.name}");
+            }else {
+                text += " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
             }
+        }else {
+            text += " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1! ";
         }
 
         if (f1 == null) f1 = p1.getNewFraymotif(null);

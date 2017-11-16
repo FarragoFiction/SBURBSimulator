@@ -70,6 +70,8 @@ class SpecibusFactory {
 
     static void init() {
         _specibi.clear();
+        _specibi.add(new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.SHARP, ItemTraitFactory.METAL]));
+
         _specibi.add(new Specibus("Hammer", ItemTraitFactory.HAMMER, [ItemTraitFactory.BLUNT, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Rifle", ItemTraitFactory.RIFLE, [ ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Pistol", ItemTraitFactory.PISTOL, [ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
