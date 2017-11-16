@@ -4,6 +4,8 @@ import "../SBURBSim.dart";
 class Item {
     String baseName;
     List<ItemTrait> traits = new List<ItemTrait>();
+    int numUpgrades = 0;
+    int maxUpgrades = 3;
 
     Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
@@ -13,6 +15,14 @@ class Item {
 
     Item copy() {
         return new Item(baseName, traits);
+    }
+
+    bool canUpgrade() {
+        if(numUpgrades > 0 && numUpgrades> maxUpgrades) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
 

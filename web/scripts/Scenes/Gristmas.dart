@@ -45,8 +45,7 @@ class Gristmas extends Scene {
 
 
           Todo:
-          *  Add "number times upgraded" stat to items.
-          *  Add "Max upgrades" stat to items. Default is 3.  Player can modify this.
+          *  let player  Player can modify max upgrades for items given to them.
           *     * Make syladex half private, so you can't add things to it without calling a method.
           * Add AND and OR (and maybe XOR) functions to items.
           *    * AND gives the item EVERYTHING the other item has. (possibly half of these, for balance)
@@ -61,7 +60,25 @@ class Gristmas extends Scene {
   }
 
   @override
-  bool trigger(List<Player> playerList) {
-    // TODO: implement trigger
+  bool trigger(List<Player> playerList) { //god i hate that player list is still a thing, past jr fucked up.
+      List<Player> availablePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers());
+      //relative alchemy value matters too.
+      List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers);
+      player = null;
+      for(Player p in players) {
+          if(player == null) {
+              bool anyItems = false;
+              if (p.specibus.canUpgrade()) {
+                  for (Item i in p.sylladex) {
+                      if (i.canUpgrade()) anyItems = true;
+                  }
+                  if (anyItems) {
+                      session.logger.info("AB: alchemy triggered.");
+                      player = p;
+                  }
+              }
+          }
+      }
+      return player != null;
   }
 }
