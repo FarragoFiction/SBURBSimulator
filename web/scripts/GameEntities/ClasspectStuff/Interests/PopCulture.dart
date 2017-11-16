@@ -23,6 +23,12 @@ class PopCulture extends InterestCategory {
 
     PopCulture() :super(9, "PopCulture", "geeky", "frivolous");
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test PopCulture Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {

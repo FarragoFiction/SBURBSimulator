@@ -25,6 +25,12 @@ class Justice extends InterestCategory {
 
     Justice() :super(6, "Justice", "fair-minded", "harsh");
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Justice Object",<ItemTrait>[]));
+    }
+
 
 
     @override

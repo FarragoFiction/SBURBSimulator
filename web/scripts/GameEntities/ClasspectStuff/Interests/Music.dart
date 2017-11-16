@@ -22,6 +22,12 @@ class Music extends InterestCategory {
 
     Music() :super(1, "Music", "musical", "loud");
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Music Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {

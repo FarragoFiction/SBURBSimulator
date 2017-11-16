@@ -24,6 +24,12 @@ class Writing extends InterestCategory {
     Writing() :super(3, "Writing", "lettered", "wordy");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Writing Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Books","Shelves","Libraries","Tomes", "Fiction", "Pages", "Words"])
             ..addFeature(FeatureFactory.SILENCE, Feature.HIGH)

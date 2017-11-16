@@ -24,6 +24,12 @@ class Romantic extends InterestCategory {
     Romantic() :super(12, "Romantic", "romantic", "obsessive");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Romantic Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
 
         addTheme(new Theme(<String>["Tea","Candles","Roses", "Chocolate", "Valentines", "Candlelight", "Gifts"])

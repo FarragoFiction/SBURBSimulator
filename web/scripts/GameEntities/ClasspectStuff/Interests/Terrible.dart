@@ -22,6 +22,12 @@ class Terrible extends InterestCategory {
 
 
     Terrible() :super(5, "Terrible", "honest", "terrible");
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Terrible Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {

@@ -8,7 +8,7 @@ import "../navbar.dart";
 
 
 
-class Player extends GameEntity {
+class Player extends GameEntity{
     //TODO trollPlayer subclass of player??? (have subclass of relationship)
     num baby = null;
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.

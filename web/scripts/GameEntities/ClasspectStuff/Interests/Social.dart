@@ -24,6 +24,12 @@ class Social extends InterestCategory {
     Social() :super(11, "Social", "extroverted", "shallow");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Social Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Couches","Therapy","Analysis", "Cigars", "Psychology"])
             ..addFeature(FeatureFactory.SILENCE, Feature.LOW)

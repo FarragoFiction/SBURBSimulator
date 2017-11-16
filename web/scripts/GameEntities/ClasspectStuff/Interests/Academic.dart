@@ -24,6 +24,13 @@ class Academic extends InterestCategory {
 
     Academic() :super(13, "Academic", "smart", "nerdy");
 
+
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Academic Object",<ItemTrait>[]));
+    }
+
     @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Books","Libraries","Tomes", "Fiction", "Pages", "Words", "Shelves"])
@@ -46,7 +53,7 @@ class Academic extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} finds a massive library, filled with books. The ${Quest.CONSORT} librarian offers to help the ${Quest.PLAYER1} search for useful books. "),
                 new Quest("The ${Quest.PLAYER1} begins to learn about ${Quest.DENIZEN} and how they have persecuted the ${Quest.CONSORT}s.  "),
                 new Quest("The ${Quest.PLAYER1} has read the final book about ${Quest.DENIZEN} and feels much more prepared to face them.  "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
+            ], new ItemReward(items), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
             ,  Theme.LOW);
 
 

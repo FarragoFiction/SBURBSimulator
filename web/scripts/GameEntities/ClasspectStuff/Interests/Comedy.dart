@@ -25,6 +25,12 @@ class Comedy extends InterestCategory {
 
 
     Comedy() : super(0, "Comedy", "funny", "dorky");
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Comedy Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {
@@ -36,7 +42,7 @@ class Comedy extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} learns of a massive underling army approaching in just a few days time. The ${Quest.CONSORT}s are too scared to even ${Quest.CONSORTSOUND}, but the ${Quest.PLAYER1} has seen enough family holiday comedies to know how to prepare for these invaders. "),
                 new Quest("The underling army arrives, lead by a single ${Quest.DENIZEN} minion. A hilarious sequence of events (carefully orchestrated by the ${Quest.PLAYER1}) results in the army slipping on banana peels, walking on glass, being set on fire, falling down a seemingly endless set of stairs, and ultimately fleeing the battlefield in confusion and shame. "),
                 new Quest("The ${Quest.PLAYER1} attends a touching Christmas themed celebration hosted by the ${Quest.CONSORT}s.  It doesn't matter that it's not remotely Christmas, it's the thought that counts. And it's way better than being Home Alone. (<--this is what the refrance.)  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ],  new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

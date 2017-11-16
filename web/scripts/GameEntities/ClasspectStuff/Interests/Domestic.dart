@@ -25,6 +25,12 @@ class Domestic extends InterestCategory {
     Domestic() :super(8, "Domestic", "domestic", "boring");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Domestic Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Fashion","Catwalks","Clothes", "Dresses", "Suits", "Tailors"])
             ..addFeature(FeatureFactory.CLAPPINGSOUND, Feature.MEDIUM)
@@ -61,8 +67,8 @@ class Domestic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Weave the Cloth", [
                 new Quest("The ${Quest.PLAYER1} finds a loom, and a Wizened ${Quest.CONSORT} who spins them a tale of a magical thread that, when woven into a shawl, confers great mystical power.  The ${Quest.PLAYER1} is enchanted by the thought of this. "),
                 new Quest("The ${Quest.PLAYER1} searches the land high and low. What thread could possibly be worthy of such a legend? Finally, deep in a dungeon, they find a single skein of ${Quest.PHYSICALMCGUFFIN} colored thread. Is this finally it?  "),
-                new Quest("The ${Quest.PLAYER1}, slowly, methodically weaves a shawl from the skein of ${Quest.PHYSICALMCGUFFIN} colored thread. When it is over, the Wizened ${Quest.CONSORT} lets out a strained ${Quest.CONSORTSOUND} and declares it to be the shawl of Legend indeed."),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.PLAYER1}, slowly, methodically weaves a shawl from the skein of ${Quest.PHYSICALMCGUFFIN} colored thread. When it is over, the Wizened ${Quest.CONSORT} lets out a strained ${Quest.CONSORTSOUND} and declares it to be the shawl of Legend indeed. Ironically it's a legendary piece of shit and the ${Quest.PLAYER1} just uses it to alchemize other things."),
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }
 

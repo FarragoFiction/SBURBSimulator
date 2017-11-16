@@ -24,6 +24,12 @@ class Culture extends InterestCategory {
     Culture() :super(2, "Culture", "cultured", "pretentious");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Culture Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Museums","Sculpture","Paintings", "Art", "Refinement"])
             ..addFeature(FeatureFactory.SILENCE, Feature.MEDIUM)
@@ -32,8 +38,8 @@ class Culture extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Catch the Thief", [
                 new Quest("The ${Quest.PLAYER1} visits a beautiful ${Quest.PHYSICALMCGUFFIN} Museum, only to discover that its walls are practically bare! The ${Quest.CONSORT} curator is apologetic, and explains that each night a new piece goes missing. The ${Quest.PLAYER1} agrees to catch the thief, art is for everyone! "),
                 new Quest(" The ${Quest.PLAYER1} has almost fallen asleep during their latest ${Quest.PHYSICALMCGUFFIN} Museum stakeout, when the thief arrives! It looks to be a ${Quest.DENIZEN} minion! After a brief scuffle, it is defeated. They drop various pieces of art along with the standard amount of grist. The museum is saved! "),
-                new Quest("The ${Quest.PLAYER1} attends a fancy gala in their honor, hosted in the ${Quest.PHYSICALMCGUFFIN} Museum itself.  ${Quest.CONSORT}s quietly ${Quest.CONSORTSOUND} and exchange pleasantries. It sure is nice to be recognized by high society!  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.PLAYER1} attends a fancy gala in their honor, hosted in the ${Quest.PHYSICALMCGUFFIN} Museum itself.  ${Quest.CONSORT}s quietly ${Quest.CONSORTSOUND} and exchange pleasantries. It sure is nice to be recognized by high society! The ${Quest.PHYSICALMCGUFFIN} Museum offers them a less valuable artificat as a small token of their thanks.  "),
+            ],  new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

@@ -132,12 +132,14 @@ class BattlefieldReward extends Reward {
 class ItemReward extends Reward {
     @override
     String image = "Rewards/sweetTreasure.png";
-    Item item;
+    WeightedList<Item> items;
 
-    ItemReward(this.item);
+    //TODO there is a better way to architect this.
+    ItemReward(WeightedList<Item> this.items);
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        Item item = p1.session.rand.pickFrom(items);
         String text = " The ${Reward.PLAYER1} finds a ${item.fullName}";
 
         if(p2 != null) {

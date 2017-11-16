@@ -24,6 +24,12 @@ class Athletic extends InterestCategory {
 
     Athletic() :super(4, "Athletic", "athletic", "dumb");
 
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Athletic Object",<ItemTrait>[]));
+    }
+
 
     @override
     void initializeThemes() {
@@ -36,7 +42,7 @@ class Athletic extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} approaches a dungeon blocked off by a huge boulder. They push and pull at it, but just can't budge it.  A ${Quest.CONSORT} walks by talking about how wimpy and low level the ${Quest.PLAYER1} is. They vow to get STRONGER!. "),
                 new Quest("The ${Quest.PLAYER1} has the most bitching training montage of all time, complete with various ${Quest.CONSORT} providing a motivational soundtrack of ${Quest.CONSORTSOUND}s. "),
                 new Quest("The ${Quest.PLAYER1} dramatically heaves the boulder out of the way. They are now STRONG!  The actual dungeon proves to be a disappointing afterthought.  "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ],  new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Clear the Road", [
                 new Quest("The ${Quest.PLAYER1} finds a road blocked by a giant tree. Where did it even come from? There is a pile up of ${Quest.CONSORT} merchants waiting for it to be cleared. "),
                 new Quest("The ${Quest.PLAYER1} is tired of waiting. They organize the ${Quest.CONSORT}s into groups, and tries to explain the concept of team work to the. Huh. This is going to take a while. "),

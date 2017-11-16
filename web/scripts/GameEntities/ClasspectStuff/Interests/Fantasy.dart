@@ -25,6 +25,12 @@ class Fantasy extends InterestCategory {
     Fantasy() :super(7, "Fantasy", "imaginative", "whimpy");
 
     @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Fantasy Object",<ItemTrait>[]));
+    }
+
+    @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Monsters","Dragons","Fantasy", "Adventure", "Princesses", "Castles", "Wyverns","Wizards", "Elves", "Faeries"])
             ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.WAY_HIGH)

@@ -21,6 +21,14 @@ class Technology extends InterestCategory {
 
 
     Technology() :super(10, "Technology", "techy", "awkward");
+
+    @override
+    void initializeItems() {
+        items = new WeightedList<Item>()
+            ..add(new Item("Test Technology Object",<ItemTrait>[]));
+    }
+
+
     @override
     void initializeThemes() {
         addTheme(new Theme(<String>["Circuits", "Computers", "Lightning", "Metal", "Glass", "Machines", "Complexity"])

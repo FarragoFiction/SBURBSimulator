@@ -122,8 +122,8 @@ class InterestCategory {
 
     //p much no vars to set.
     InterestCategory(this.id, this.name, this.positive_descriptor, this.negative_descriptor, [this.isInternal = false]) {
-        initializeThemes();
         initializeItems();
+        initializeThemes();
         InterestManager.register(this);
     }
 
