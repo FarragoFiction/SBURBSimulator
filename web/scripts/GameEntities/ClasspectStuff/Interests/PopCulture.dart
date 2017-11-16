@@ -67,8 +67,8 @@ class PopCulture extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Premiere the Movie", [
                 new Quest("The ${Quest.PLAYER1} gets a job at the ${Quest.MCGUFFIN} Cinema. A new movie, The Lonely ${Quest.PHYSICALMCGUFFIN} is coming out soon, and ${Quest.CONSORT}s are already lining up. It's going to be busy as fuck. "),
                 new Quest("Oh shit, the ${Quest.PLAYER1} learns that The Lonely ${Quest.PHYSICALMCGUFFIN} never was delivered. The ${Quest.CONSORT}s already lined up are close to rioting. The sound of ${Quest.CONSORTSOUND}s is deafening.  A little bit of sleuthing reveals that a group of underlings stole the film and absconded to a local dungeon.  The ${Quest.PLAYER1} prepares to venture inside.    "),
-                new Quest(" The ${Quest.PLAYER1}  has finally bested the dungeon, and retrieved the copy of The Lonely ${Quest.PHYSICALMCGUFFIN}. The ${Quest.CONSORT}s lined up cheer and enter the theater. The Lonely ${Quest.PHYSICALMCGUFFIN} has finally begun to play. The ${Quest.PLAYER1} watches, rapt. Such a fantastic movie.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest(" The ${Quest.PLAYER1}  has finally bested the dungeon, and retrieved the copy of The Lonely ${Quest.PHYSICALMCGUFFIN}. The ${Quest.CONSORT}s lined up cheer and enter the theater. The Lonely ${Quest.PHYSICALMCGUFFIN} has finally begun to play. The ${Quest.PLAYER1} watches, rapt. Such a fantastic movie. The ${Quest.PLAYER1} keeps a copy of the movie as a sovenier and makes a neat item out of it.")
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

@@ -41,7 +41,7 @@ class Writing extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} finds a massive library, and all the books are in disarray! Who could have done this? As they begin trying to help straighten up, the Librarian ${Quest.CONSORT} explains that a gang of unruly underlings have been vandalizing local libraries.  The ${Quest.PLAYER1} vows to stop their reign of terror. "),
                 new Quest("The ${Quest.PLAYER1} finds yet another vandalized Library. This time, the trail is still warm. They track the unruly underlings to a nearby Dungeon. Now they just have to plan their attack.   "),
                 new Quest(" The ${Quest.PLAYER1} lies in wait at the Dungeon entrance. Before long, the unruly underlings emerge, no doubt in preparation to vandalize yet another Library.  Instead, they get a serving of Justice.  The local libraries are safe!")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Fan Fiction","Fics","Fandom", "Mary Sues","Tumblers"])

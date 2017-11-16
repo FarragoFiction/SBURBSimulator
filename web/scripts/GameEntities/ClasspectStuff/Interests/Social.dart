@@ -69,7 +69,7 @@ class Social extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} wanders into an entire crowd of ${Quest.CONSORT}s dressed in authentic style fantasy armor. What is going on? The nearest one stops ${Quest.CONSORTSOUND}ing long enough to explain that it's time for Paradox Space's biggest FLARP convention. The ${Quest.PLAYER1} happily joins the RP."),
                 new Quest("The ${Quest.PLAYER1}'s character in the FLARP is nearly maximum level. This is so much fun! Suddenly, a group of underlings attack the crowd. Confusion reigns as the ${Quest.CONSORT}s think it's somehow related to FLARP at first and don't fight back seriously. It is up to the ${Quest.PLAYER1} to save the day! All that RP practice surprisingly pays off. They win easily!   "),
                 new Quest("The FLARP is finally coming to an end. All the ${Quest.CONSORT}s agree that it is the best session in living memory and celebrate how the ${Quest.PLAYER1} kept it from becoming a tragedy.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }
 

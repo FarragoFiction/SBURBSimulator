@@ -64,7 +64,7 @@ class Technology extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} finds two groups of ${Quest.CONSORT}s screaming and ${Quest.CONSORTSOUND}ing at each other. Apparently the first group of ${Quest.CONSORTSOUND}s are workers at a local ${Quest.PHYSICALMCGUFFIN} factory and want to be paid more? The second group of ${Quest.CONSORT}s claim they don't work hard enough for a raise.  "),
                 new Quest("The ${Quest.PLAYER1} arranges for the worker ${Quest.CONSORT}s to meet with the factory manager ${Quest.CONSORT}s individually and discuss their complaints. The ${Quest.PLAYER1} is getting a headache from all the ${Quest.CONSORTSOUND}ing, but at least progress is being made."),
                 new Quest("The ${Quest.PLAYER1} is shaking hands for a ${Quest.CONSORT} newspaper, posing in front of the now bustling ${Quest.PHYSICALMCGUFFIN} factory. The workers are paid a fair wage, and several ways to make the factory work more efficiently has left the managers happy, too. "),
-            ], new FraymotifReward(), QuestChainFeature.playerIsHelpfulClass), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.playerIsHelpfulClass), Feature.WAY_LOW)
             , Theme.HIGH);
 
         addTheme(new Theme(<String>["Robots", "Androids", "Cyborgs", "Machines", "AIs", "Automatons", "Droids", "Bots"])
