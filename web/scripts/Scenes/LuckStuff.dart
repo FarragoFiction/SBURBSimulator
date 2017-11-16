@@ -143,6 +143,8 @@ class LuckStuff extends Scene{
 		Item chosen = session.rand.pickFrom(possibleRewards);
 		String ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of ${chosen.fullName}, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the ${chosen.baseName}, though. " ;
 		roll.player.sylladex.add(chosen);
+		session.logger.info("AB: found event that gained item");
+
 		this.session.stats.goodLuckEvent = true;
 		return ret;
 	}
@@ -166,8 +168,15 @@ class LuckStuff extends Scene{
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		Item chosen = session.rand.pickFrom(roll.player.sylladex);
-		String ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of something, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + "  panics and chucks their ${chosen.fullName}, at the imp as they run away. They are NOT going back for it. " ;
-		roll.player.sylladex.remove(chosen);
+		String ret = "";
+		if(chosen != null) {
+			ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of something, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + "  panics and chucks their ${chosen.fullName} at the imp as they run away. They are NOT going back for it. ";
+			roll.player.sylladex.remove(chosen);
+			session.logger.info("AB: found event that killed item");
+		}else {
+			ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of something, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + "  panics and chucks a PERFECTLY GENERIC OBJECT, at the imp as they run away. Huh. Where did that come from? ";
+
+		}
 		this.session.stats.badLuckEvent = true;
 		return ret;
 	}

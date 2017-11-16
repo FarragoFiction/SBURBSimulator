@@ -63,8 +63,7 @@ class Dream extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.ALCHEMY, 2.0, true),
-        new AssociatedStat(Stats.MOBILITY, 1.0, true),
+        new AssociatedStat(Stats.ALCHEMY, 3.0, true),
         new AssociatedStat(Stats.SANITY, -2.0, true)
     ]);
 
