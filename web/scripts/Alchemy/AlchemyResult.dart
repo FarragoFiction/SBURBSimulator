@@ -1,5 +1,5 @@
-import "Item.dart";
-import "Trait.dart";
+
+import "../SBURBSIM.dart";
 
 /*
 http://mspaintadventures.wikia.com/wiki/Alchemiter
@@ -34,10 +34,9 @@ Appropriately for AND combining, an && alchemy result will often demonstrate the
 
  */
 
-abstract class AlchemyResult {
+abstract class AlchemyResult implements Comparable<AlchemyResult> {
     //no matter what, it's the first item that gets shit shoved into it and all other items that are removed
     //in sim, assume only two items at a time. but can support anding 3 or more things at a time
-    //in a mini game.
     List<Item> items;
     Item result;
 
@@ -45,7 +44,34 @@ abstract class AlchemyResult {
         combine();
     }
 
+    String  description(Player p, templates) {
+        templates.addAll(<String>["${p.htmlTitleBasicNoTip()} uses Alchemy to combine ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
+        return p.session.rand.pickFrom(templates);
+    }
+
+    void apply(List<Item> targetItems) {
+        for(Item item in items) {
+            if(!targetItems.contains(item)) return;
+        }
+        //alright, if I'm here, then I have all the parts I need for this.
+        //give first item traits of result. (replace)
+        Item modified = targetItems[targetItems.indexOf(items[0])];
+        modified.traits = result.traits;
+
+        //remove all other items.
+        for(int i = 1; i<items.length; i++) {
+            Item item = items[i];
+            targetItems.remove(item);
+        }
+    }
+
     void combine();
+
+    //alchemy results are naturally sorted by the power of the items they produce.
+    @override
+    int compareTo(AlchemyResult other) {
+        return (other.result.rank - result.rank).round(); //TODO or is it the otherway around???
+    }
 
     ///returns a list of all possible alchemy types between these two items.
     static List<AlchemyResult> planAlchemy(List<Item> items) {
@@ -55,6 +81,12 @@ abstract class AlchemyResult {
 
 class AlchemyResultAND extends AlchemyResult {
   AlchemyResultAND(List<Item> items) : super(items);
+
+  @override
+  String  description(Player p, templates) {
+      templates.addAll(<String>["${p.htmlTitleBasicNoTip()} overlaps the punched cards for ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
+      return super.description(p, templates);
+  }
 
   ///AND takes both functionality and appearance from both things.
   ///TODO if this is OP (i.e. OR is never selected) then take every other trait from both.
@@ -69,10 +101,17 @@ class AlchemyResultAND extends AlchemyResult {
           }
       }
   }
+
 }
 
 class AlchemyResultOR extends AlchemyResult {
     AlchemyResultOR(List<Item> items) : super(items);
+
+    @override
+    String  description(Player p, templates) {
+        templates.addAll(<String>["${p.htmlTitleBasicNoTip()} carefully punches all holes from ${turnArrayIntoHumanSentence(items)} into one card to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
+        return super.description(p, templates);
+    }
 
     ///OR takes  functionality from first and appearance from second. ignores all other items.
     @override
@@ -95,6 +134,12 @@ class AlchemyResultOR extends AlchemyResult {
 //spoken only of in legend, but totally fucking theoretically possible
 class AlchemyResultXOR extends AlchemyResult {
     AlchemyResultXOR(List<Item> items) : super(items);
+
+    @override
+    String  description(Player p, templates) {
+        templates.addAll(<String>["Wait. What the fuck? Is this cheating? The ${p.htmlTitleBasicNoTip()} figures out how to use a XOR operation to turn ${turnArrayIntoHumanSentence(items)} into a ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
+        return super.description(p, templates);
+    }
 
     //XOR is where you have traits ONLY if they only show up in one place, not two.
     @override
