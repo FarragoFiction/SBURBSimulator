@@ -3,9 +3,17 @@ import "../SBURBSim.dart";
 //I expect aspects and interests to have lists of items inside of them.
 class Item {
     String baseName;
-    List<ItemTrait> traits = new List<ItemTrait>();
+    //a set is like a list but each thing in it happens exactly one or zero times
+    Set<ItemTrait>  traits = new Set<ItemTrait>();
+
+
+
+
     int numUpgrades = 0;
     int maxUpgrades = 3;
+
+    //TODO: Don't let items repeat the same traits.
+    //should i do this via filtering any added trait, or by storing them in a map instead of a list?
 
     double get rank {
         double ret = 0.0;
@@ -23,7 +31,10 @@ class Item {
     String get fullName => "${baseName}";
 
     Item copy() {
-        return new Item(baseName, traits);
+        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits));
+        ret.numUpgrades = numUpgrades;
+        ret.maxUpgrades = maxUpgrades;
+        return ret;
     }
 
     bool canUpgrade() {
@@ -35,9 +46,9 @@ class Item {
         }
     }
 
-
-    Item(String this.baseName,List<ItemTrait> this.traits) {
-        if(this.traits.isEmpty) traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
+    Item(String this.baseName,List<ItemTrait> traitsList) {
+        traits = new Set.from(traitsList);
+        if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
     }
 
     //it's sharp, it's pointy and it's a sword.   so can pick the same trait multiple times and just pick different words? Yes.

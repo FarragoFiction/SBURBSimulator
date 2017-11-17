@@ -45,6 +45,36 @@ class Gristmas extends Scene {
           Alchemy scene checks if it's triggered.  It asks each player if they have any items in their specibus, and if their specibus
           can be improved.
 
+          Doop doop.
+
+          Need to think this through.  It's not enough to know how I want alchemy to work.
+          I ALSO need to do it.  And the biggest hole in my plans is that I don't know how regular item
+          level alchemy will work.
+
+          Example:
+            Player has 4 items in inventory. Wants to condense them into 2 items.
+            How do they pick which items to rub on which items?
+
+            Simplest algorithm would be to just go in order. Item 1 goes into item 0.
+            But this is hardly optimal. If you get better items over time than you are shoving weak into weak
+            and strong into strong and maybe repeating traits or whatever the fuck.
+
+            ((Note to self, do I want items to be able to repeat traits? NO.))
+
+            Second simplest is just bugfuck random. Shove random items into each other.
+
+            Most 'human' and thus most complicated is to try to figure out which is "best".
+
+            The problem is that knowing the results of alchemy is basically as hard as doing the alchemy itself.
+            Or rather, from a technical viewpoint it's identical. Except I want alchemy to consume items.
+            So I can't presimulate easily.
+
+            Hrrrrrrm.
+
+            I could have some sort of AlchemyResult object?
+
+            Takes in two items, tells you what the result would be, and has a method to actually do it?
+
 
 
           Todo:

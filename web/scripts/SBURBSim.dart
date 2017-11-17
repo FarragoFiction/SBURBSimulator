@@ -10,6 +10,8 @@ export 'includes/math_utils.dart';
 export 'Alchemy/Specibus.dart';
 export 'Alchemy/Trait.dart';
 export 'Alchemy/Item.dart';
+export 'Alchemy/AlchemyResult.dart';
+
 
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
