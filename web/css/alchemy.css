@@ -1,0 +1,30 @@
+#story{
+	width:1000px;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+body{
+	background-image: url("../images/Skaia_Clouds.png");
+}
+
+
+#operator{
+    vertical-align: top;
+}
+
+td{
+    padding: 10px;
+    width: 30%;
+    text-align: center;
+}
+.oneTrait{
+    padding-left: 10px;
+}
+
+.itemHeader{
+    font-weight: bold;
+    padding: 10px;
+}
