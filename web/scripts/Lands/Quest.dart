@@ -35,8 +35,8 @@ class Quest {
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         //first letter upper case
-        String mc = "${mcguffin[0].toUpperCase()}${mcguffin.substring(1)}";
-        String pmc = "${physicalMcguffin[0].toUpperCase()}${physicalMcguffin.substring(1)}";
+        String mc = capitilizeEachWord(mcguffin);
+        String pmc = capitilizeEachWord(physicalMcguffin);
         ret = ret.replaceAll("$MCGUFFIN", "${mc}");
         ret = ret.replaceAll("$PHYSICALMCGUFFIN", "${pmc}");
         if(denizen != null) ret = ret.replaceAll("$DENIZEN", "${denizen.name}");

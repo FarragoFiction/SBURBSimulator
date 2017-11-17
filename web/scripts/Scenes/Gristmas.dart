@@ -89,14 +89,25 @@ class Gristmas extends Scene {
 
   @override
   void renderContent(Element div) {
-      String ret = "";
+      String ret = "GRISTMAS: ";
       List<AlchemyResult> possibilities = doAlchemy();
       //TODO maybe only sort if you are good enough at alchemy???
       possibilities.sort(); //do most promising alchemy first so that you don't use up the items needed for it
       for(AlchemyResult result in possibilities) {
           String tmp  = result.apply(player);
-          if(tmp != null) ret += tmp;
+          if(tmp != null) ret += "$tmp";
       }
+
+      ret += "<br><br>After all that ridiculousness, they ALSO manage to upgrade their ${player.specibus}.";
+      possibilities = upgradeSpecibus();
+      //not a for loop, just do once.
+      String tmp = possibilities.first.apply(player,true);
+      if(tmp != null) {
+          ret += tmp; //this scene should not happen if you don't have something to alchemize, so don't check to see if there's a result.
+      }else {
+          throw "No. How the fuck did this happen. Sylladex has ${player.sylladex.length} things in it, so how did I fail to upgrade my specibus?";
+      }
+
       appendHtml(div, ret);
   }
 
@@ -111,6 +122,16 @@ class Gristmas extends Scene {
       }
       return ret;
   }
+
+    //takes all items in inventory and rubs them on each other.
+    List<AlchemyResult> upgradeSpecibus() {
+        List<AlchemyResult> ret = new List<AlchemyResult>();
+        //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
+        for(Item item1 in player.sylladex) {
+            ret.addAll(AlchemyResult.planAlchemy(<Item>[player.specibus, item1]));
+        }
+        return ret;
+    }
 
   @override
   bool trigger(List<Player> playerList) { //god i hate that player list is still a thing, past jr fucked up.

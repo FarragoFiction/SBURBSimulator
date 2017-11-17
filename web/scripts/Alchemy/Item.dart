@@ -5,6 +5,8 @@ class Item {
     String baseName;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
+    //have one for each upgrade.
+    List<String> descriptors = new List<String>();
 
 
 
@@ -27,8 +29,31 @@ class Item {
     Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
 
-    //TODO when i have compontents, this needs to generate a name based on components.
-    String get fullName => "${baseName}";
+    String get fullName {
+        String ret = "${baseName}";
+        for(String d in descriptors) {
+            ret = "$d $ret";
+        }
+        return ret;
+    }
+
+    //takes in a list of traits that I am about to get, pick one I don't already have
+    //and grab a descriptor from it. make sure to capitalize
+    //i want the same alchemy to always result in the same object, so don't use the session random
+    //instead a random seeded by the number of traits. so will always be the same no matter WHEN i do this.
+    void addDescriptor(Set<ItemTrait> newTraits) {
+        if(newTraits.isEmpty) return; //nothing to do here.
+        print("trying to add a new trait");
+        Random rand = new Random(newTraits.length);
+        ItemTrait t = rand.pickFrom(newTraits);
+        String chosen =rand.pickFrom(t.descriptions);
+        chosen = capitilizeEachWord(chosen);
+        descriptors.add(chosen);
+    }
+
+    String toString() {
+        return fullName;
+    }
 
     Item copy() {
         Item ret =  new Item(baseName, new List<ItemTrait>.from(traits));
@@ -66,7 +91,7 @@ class Item {
 
     String randomDescriptionWithWords(Random rand, String word1, String word2, String word3) {
         //learned this trick in shitty card sim.
-        List<String> templates = <String>["It's $word1 and it's $word2 and it's $word3. ","It's kind of $word1 but also sorta $word2. It's a $word3.","It's a $word3 but somehow also $word2 and actually maybe also $word1?"];
+        List<String> templates = <String>["It's $word1 and it's $word2 and it's $word3. ","It's kind of $word1 but also sorta $word2. It's  $word3.","It's a $word3 but somehow also $word2 and actually maybe also $word1?"];
 
         return rand.pickFrom(templates);
     }

@@ -50,22 +50,35 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     }
 
     //returns string explaining what happened when you actually did the alchemy.
-    String apply(Player p) {
+    String apply(Player p, [bool applyToSpecibus = false]) {
         List<Item> targetItems = p.sylladex;
         for(Item item in items) {
-            if(!targetItems.contains(item)) return null;
+            if(!targetItems.contains(item) && item != p.specibus) {
+                return null;
+            }
         }
         //alright, if I'm here, then I have all the parts I need for this.
         //give first item traits of result. (replace)
-        Item modified = targetItems[targetItems.indexOf(items[0])];
-        modified.traits = result.traits;
+        Item modified;
+        if(applyToSpecibus) {
+            modified = p.specibus;
+        }else {
+            modified = targetItems[targetItems.indexOf(items[0])];
+        }
+        Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
+        print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
+        result.addDescriptor(newTraits);
+        result.traits = result.traits;
+        String ret = description(p, []);
+        modified.descriptors = result.descriptors;
+        modified.numUpgrades ++;
 
         //remove all other items.
         for(int i = 1; i<items.length; i++) {
             Item item = items[i];
             targetItems.remove(item);
         }
-        return description(p, []);
+        return ret;
     }
 
     void combine();
@@ -78,6 +91,8 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
 
     ///returns a list of all possible alchemy types between these two items.
     static List<AlchemyResult> planAlchemy(List<Item> items) {
+        if(items.isEmpty) return new List<AlchemyResult>();
+        if(!items.first.canUpgrade()) return new List<AlchemyResult>();
         return <AlchemyResult>[new AlchemyResultAND(items), new AlchemyResultOR(items), new AlchemyResultXOR(items)];
     }
 }

@@ -23,6 +23,7 @@ main() {
     loadNavbar();
 
     globalInit();
+    //4 is number of players, session id is left to be todays date
     ocgen = new OCGenerator(4);
     curSessionGlobalVar =ocgen.session;
     loadFuckingEverything("I really should stop doing this",ocgen.start );

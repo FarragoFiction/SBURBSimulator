@@ -201,6 +201,19 @@ String turnArrayIntoHumanSentence(List<dynamic> retArray) {
     return [retArray.sublist(0, retArray.length - 1).join(', '), retArray.last].join(retArray.length < 2 ? '' : ' and ');
 }
 
+String capitilizeString(String s) {
+    return "${s[0].toUpperCase()}${s.substring(1)}";
+}
+
+String capitilizeEachWord(String s) {
+    List<String> words =  s.split(" ");
+    String ret = "";
+    for(String word in words) {
+        ret += " ${capitilizeString(word)}";
+    }
+    return ret;
+}
+
 
 //use class,aspect, and interests to generate a 16 element level array.
 //need to happen ahead of time and have more variety to display on
