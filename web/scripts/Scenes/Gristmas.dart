@@ -3,7 +3,9 @@ import "../SBURBSim.dart";
 
 
 class Gristmas extends Scene {
-    int expectedAverageAlchemyValue = 75;
+    int expectedInitialAverageAlchemyValue = 6;
+    int expectedMiddleAverageAlchemyValue = 30;
+    int expectedEndAverageAlchemyValue = 75;
     Player player;
   Gristmas(Session session) : super(session);
     /*TODO  ((rambling brainstorming for how i wanna do shit based on RS convos
@@ -91,12 +93,17 @@ class Gristmas extends Scene {
 
   //the better you are at alchemy, the higher your standards are.
   bool meetsStandards(Player p, Item i) {
-      double ratio = p.getStat(Stats.ALCHEMY)/expectedAverageAlchemyValue;
+      double ratio = 1.0;
+      //depending on how far along you are in your quest, your standards should get higher.
+      if(p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedInitialAverageAlchemyValue;
+      if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
+      if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
+
       //basically, if you'er higher than average, your standards will be higher
       //and if you'er lower than average, your standards will be lower.
       //specibus = 1.0, item = .9 works for somebody with lower skill
       //does not work for somebody with higher.
       //BUT don't be so snobby you don't alchemize things before the final battle.
-      return ((i.rank*ratio) > p.specibus.rank) || session.timeTillReckoning < 10;
+      return ((i.rank) > p.specibus.rank*ratio) || session.timeTillReckoning < 10;
   }
 }
