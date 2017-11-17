@@ -45,6 +45,9 @@ class ItemTraitFactory {
     static ItemFunctionTrait SHARP;
     static ItemFunctionTrait BLUNT;
     static ItemFunctionTrait SHOOTY;
+    static ItemFunctionTrait ONFIRE;
+    static ItemFunctionTrait EXPLODEY;
+    static ItemFunctionTrait COLD;
 
 
     static void init() {
@@ -72,6 +75,9 @@ class ItemTraitFactory {
 
     static void initFunctions() {
         SHARP = new ItemFunctionTrait(["edged","sharp","pointy","honed","keen","sharpened"],0.3);
+        EXPLODEY = new ItemFunctionTrait(["exploding","explosive","detonating","grenade"],0.6);
+        COLD = new ItemFunctionTrait(["chilly","chill","cold","freezing","icy","frozen","ice"],0.6);
+        ONFIRE = new ItemFunctionTrait(["fire","burning","blazing","hot","heated","on fire","combusting","flaming","fiery"],0.6);
         BLUNT = new ItemFunctionTrait(["blunt","bludgeoning","heavy","dull","heavy enough to kill a cat"],0.3);
         SHOOTY = new ItemFunctionTrait(["shooty","ranged","projectile","piercing","loaded","full of ammo", "long-range"],0.3);
 

@@ -29,11 +29,11 @@ class Item {
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
 
     String get fullName {
-        String ret = "${baseName}";
+        String ret = "";
         for(String d in descriptors) {
-            ret = "$d $ret";
+            ret += "$d ";
         }
-        return ret;
+        return "$ret${baseName}";
     }
 
     //takes in a list of traits that I am about to get, pick one I don't already have
@@ -42,7 +42,7 @@ class Item {
     //instead a random seeded by the number of traits. so will always be the same no matter WHEN i do this.
     void addDescriptor(Set<ItemTrait> newTraits) {
         if(newTraits.isEmpty) return; //nothing to do here.
-        print("trying to add a new trait");
+        print("trying to add a new trait, current descriptors are ${descriptors.length}");
         Random rand = new Random(newTraits.length);
         ItemTrait t = rand.pickFrom(newTraits);
         String chosen =rand.pickFrom(t.descriptions);
@@ -58,6 +58,8 @@ class Item {
         Item ret =  new Item(baseName, new List<ItemTrait>.from(traits));
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
+        ret.descriptors = new List<String>.from(descriptors);
+        ret.traits = new Set<ItemTrait>.from(traits);
         return ret;
     }
 

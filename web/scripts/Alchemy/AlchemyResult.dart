@@ -70,8 +70,9 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         result.addDescriptor(newTraits);
         result.traits = result.traits;
         String ret = description(p, []);
-        modified.descriptors = result.descriptors;
+        modified.descriptors = new List<String>.from(result.descriptors);
         modified.numUpgrades ++;
+        result.numUpgrades ++;
 
         //remove all other items.
         for(int i = 1; i<items.length; i++) {

@@ -25,7 +25,7 @@ class Terrible extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Terrible Object",<ItemTrait>[]));
+            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]));
     }
 
 

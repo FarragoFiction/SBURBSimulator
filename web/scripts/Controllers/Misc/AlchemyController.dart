@@ -70,6 +70,12 @@ void makeAlchemyButton() {
         resultDiv.append(resultTraitsDiv);
 
         makeDropDowns();//need to remake them so we can do that one thing. uh. have an accurate inventory.
+        item1TraitsDiv.remove();
+        item2TraitsDiv.remove();
+        item1TraitsDiv = (renderItemStats(player.sylladex.first));
+        item2TraitsDiv = (renderItemStats(player.sylladex.first));
+        item1Div.append(item1TraitsDiv);
+        item2Div.append(item2TraitsDiv);
     });
 
 }
@@ -148,6 +154,10 @@ Element renderItemStats(Item item) {
     Element rank = new DivElement();
     rank.setInnerHtml("Rank: ${item.rank}");
     ret.append(rank);
+
+    Element timesUpgraded = new DivElement();
+    timesUpgraded.setInnerHtml("Times Alchemized: ${item.numUpgrades} ${item.descriptors}");
+    ret.append(timesUpgraded);
 
     Element attributes = new DivElement();
     attributes.setInnerHtml("Attributes: ");
