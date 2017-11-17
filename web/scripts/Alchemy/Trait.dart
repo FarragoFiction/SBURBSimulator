@@ -26,7 +26,7 @@ class ItemAppearanceTrait extends ItemTrait {
 }
 
 class ItemTraitFactory {
-  //these are what shape it has?
+  //these are what shape it has? doubles as both specibus kinds and basic objects.
   static ItemAppearanceTrait GENERIC;
   static ItemAppearanceTrait SWORD;
   static ItemAppearanceTrait HAMMER;
@@ -36,6 +36,33 @@ class ItemTraitFactory {
   static ItemAppearanceTrait DAGGER;
   static ItemAppearanceTrait SANTA;
   static ItemAppearanceTrait FIST;
+  static ItemAppearanceTrait SICKLE;
+  static ItemAppearanceTrait CHAINSAW;
+  static ItemAppearanceTrait FORK;
+  static ItemAppearanceTrait DICE;
+  static ItemAppearanceTrait NEEDLE;
+  static ItemAppearanceTrait STAFF;
+  static ItemAppearanceTrait WHIP;
+  static ItemAppearanceTrait BOW;
+  static ItemAppearanceTrait CLUB;
+  static ItemAppearanceTrait BROOM;
+  static ItemAppearanceTrait BOOK;
+  static ItemAppearanceTrait SIGN;
+  static ItemAppearanceTrait AXE;
+  static ItemAppearanceTrait LANCE;
+  static ItemAppearanceTrait SHIELD;
+  static ItemAppearanceTrait CANE;
+  static ItemAppearanceTrait YOYO;
+  static ItemAppearanceTrait SLING;
+  static ItemAppearanceTrait SHURIKEN;
+  static ItemAppearanceTrait MACHINEGUN;
+  static ItemAppearanceTrait GRENADE;
+  static ItemAppearanceTrait BALL;
+  static ItemAppearanceTrait TRIDENT;
+  static ItemAppearanceTrait CARD;
+  static ItemAppearanceTrait FRYINGPAN;
+  static ItemAppearanceTrait PILLOW;
+
   //these would be "color" i guess? material it's made of?
   static ItemAppearanceTrait METAL;
   static ItemAppearanceTrait CLAWS;
@@ -82,6 +109,37 @@ class ItemTraitFactory {
     SANTA = new ItemAppearanceTrait(<String>["a santa"], 0.4);
     FIST = new ItemAppearanceTrait(<String>["a fist"], 0.4);
     CLAWS = new ItemAppearanceTrait(<String>["claws"], 0.4);
+    GRENADE = new ItemAppearanceTrait(<String>["a grenade"], 0.4);
+    BALL = new ItemAppearanceTrait(<String>["a ball"], 0.4);
+    TRIDENT = new ItemAppearanceTrait(<String>["a trident"], 0.4);
+    CARD = new ItemAppearanceTrait(<String>["a card"], 0.4);
+    FRYINGPAN = new ItemAppearanceTrait(<String>["a frying pan"], 0.4);
+    PILLOW = new ItemAppearanceTrait(<String>["a pillow"], 0.4);
+    MACHINEGUN = new ItemAppearanceTrait(<String>["a machinegun"], 0.4);
+    SHURIKEN = new ItemAppearanceTrait(<String>["a shuriken"], 0.4);
+    SLING = new ItemAppearanceTrait(<String>["a sling"], 0.4);
+    YOYO = new ItemAppearanceTrait(<String>["a yoyo"], 0.4);
+    CANE = new ItemAppearanceTrait(<String>["a cane"], 0.4);
+    SHIELD = new ItemAppearanceTrait(<String>["a shield"], 0.4);
+    LANCE = new ItemAppearanceTrait(<String>["a lance"], 0.4);
+    AXE = new ItemAppearanceTrait(<String>["a ax"], 0.4);
+    SIGN = new ItemAppearanceTrait(<String>["a sign"], 0.4);
+    BOOK = new ItemAppearanceTrait(<String>["a book"], 0.4);
+    BROOM = new ItemAppearanceTrait(<String>["a broom"], 0.4);
+    CLUB = new ItemAppearanceTrait(<String>["a club"], 0.4);
+    BOW = new ItemAppearanceTrait(<String>["a bow"], 0.4);
+    WHIP = new ItemAppearanceTrait(<String>["a whip"], 0.4);
+    STAFF = new ItemAppearanceTrait(<String>["a staff"], 0.4);
+    NEEDLE = new ItemAppearanceTrait(<String>["a needle"], 0.4);
+    DICE = new ItemAppearanceTrait(<String>["dice"], 0.4);
+    FORK = new ItemAppearanceTrait(<String>["a fork"], 0.4);
+    CHAINSAW = new ItemAppearanceTrait(<String>["a chainsaw"], 0.4);
+    SICKLE = new ItemAppearanceTrait(<String>["a sickle"], 0.4);
+
+
+
+
+
 
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3);
     CERAMIC = new ItemAppearanceTrait(<String>["ceramic"], -0.3);

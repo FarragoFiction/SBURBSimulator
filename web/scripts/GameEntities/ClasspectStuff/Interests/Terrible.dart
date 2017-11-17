@@ -27,7 +27,9 @@ class Terrible extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]))
             ..add(new Item("Treasure",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
-            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING]))
+            ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY]))
+            ..add(new Item("Grenade",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY]))
+            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK]))
             ..add(new Item("Bike Horns",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL]))
             ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE]));
     }

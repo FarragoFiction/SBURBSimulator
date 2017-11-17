@@ -26,7 +26,11 @@ class Writing extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Writing Object",<ItemTrait>[]));
+            ..add(new Item("Quill Pen",<ItemTrait>[ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CLOTH]))
+            ..add(new Item("Book On Writing",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("Script",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
+            ..add(new Item("Spiral Bound Notebook",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]));
     }
 
     @override
