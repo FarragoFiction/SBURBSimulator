@@ -26,7 +26,11 @@ class Social extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Social Object",<ItemTrait>[]));
+            ..add(new Item("Religious Text",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
+            ..add(new Item("Psychology Book",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
+            ..add(new Item("Therapy Couch",<ItemTrait>[ItemTraitFactory.COMFORTABLE,ItemTraitFactory.CLOTH]))
+            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+        ;
     }
 
     @override

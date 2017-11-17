@@ -28,7 +28,9 @@ class Comedy extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Comedy Object",<ItemTrait>[]));
+            ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY]))
+            ..add(new Item("Wise Guy Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.FUNNY]));
+
     }
 
 

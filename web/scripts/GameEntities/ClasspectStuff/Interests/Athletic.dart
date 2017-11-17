@@ -27,7 +27,14 @@ class Athletic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Athletic Object",<ItemTrait>[]));
+            ..add(new Item("Barbells",<ItemTrait>[ItemTraitFactory.BLUNT]))
+            ..add(new Item("Basketball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER]))
+            ..add(new Item("Baseball Bat",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD]))
+            ..add(new Item("Rubber Ball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER]))
+            ..add(new Item("Hockey Stick",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD]))
+            ..add(new Item("Trophy",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
+            ..add(new Item("Boxing Glove",<ItemTrait>[ItemTraitFactory.FIST, ItemTraitFactory.RUBBER]))
+            ..add(new Item("Yoga Mat",<ItemTrait>[ItemTraitFactory.RUBBER, ItemTraitFactory.COMFORTABLE]));
     }
 
 

@@ -26,7 +26,11 @@ class Romantic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Romantic Object",<ItemTrait>[]));
+            ..add(new Item("Red Rose",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PRETTY]))
+            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER]))
+            ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE]))
+            ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE]))
+            ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC]));
     }
 
     @override

@@ -28,7 +28,12 @@ class Academic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Academic Object",<ItemTrait>[]));
+            ..add(new Item("Math Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART, ItemTraitFactory.BOOK]))
+            ..add(new Item("Giant Map",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("Microscope",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.GLASS]))
+            ..add(new Item("Star Chart",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("History Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("Compass",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART]));
     }
 
     @override

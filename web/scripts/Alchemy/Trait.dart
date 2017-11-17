@@ -73,6 +73,8 @@ class ItemTraitFactory {
   static ItemAppearanceTrait RUBBER;
   static ItemAppearanceTrait PAPER;
   static ItemAppearanceTrait CLOTH;
+  static ItemAppearanceTrait STONE;
+  static ItemAppearanceTrait GLASS;
 
   static ItemFunctionTrait SHARP;
   static ItemFunctionTrait BLUNT;
@@ -91,6 +93,10 @@ class ItemTraitFactory {
   static ItemFunctionTrait SMART;
   static ItemFunctionTrait ROMANTIC;
   static ItemFunctionTrait FUNNY;
+  static ItemFunctionTrait EDIBLE;
+  static ItemFunctionTrait COOLK1D;
+  static ItemFunctionTrait MAGICAL;
+  static ItemFunctionTrait CLASSY;
 
   static void init() {
     initAppearances();
@@ -149,6 +155,8 @@ class ItemTraitFactory {
     RUBBER = new ItemAppearanceTrait(<String>["rubber"], -0.3);
     PAPER = new ItemAppearanceTrait(<String>["paper"], -0.3);
     CLOTH = new ItemAppearanceTrait(<String>["cloth", "fabric"], -0.3);
+    GLASS = new ItemAppearanceTrait(<String>["glass", "crystal"], -0.3);
+    STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3);
   }
 
   static void initFunctions() {
@@ -157,10 +165,14 @@ class ItemTraitFactory {
     ZAP = new ItemFunctionTrait(["electrical", "zap", "lightning", "shock"], 0.6);
     RESTRAINING = new ItemFunctionTrait(["restraining", "imprisoning", "restricting"], 0.3);
     VALUABLE = new ItemFunctionTrait(["expensive", "valuable", "bling", "money"], 0.1);
+    EDIBLE = new ItemFunctionTrait(["edible", "tasty", "delicious", "savory"], 0.1);
+    CLASSY = new ItemFunctionTrait(["classy", "distinguished", "tasteful", "cultured"], 0.1);
+    COOLK1D = new ItemFunctionTrait(["cool", "wicked","radical", "awesome", "groovy", "tubular","bitching","sick nasty","bodacious"], 0.1);
     SMART = new ItemFunctionTrait(["intelligent", "smart", "useful", "scientific"], 0.1);
     ROMANTIC = new ItemFunctionTrait(["romantic","amorous", "passionate","tender","affectionate","lovey-dovey"], 0.1);
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "SBAHJ", "comedy gold"], 0.1);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1);
+    MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6);
     PRETTY = new ItemFunctionTrait(["fashionable", "aesthetic", "pretty", "beautiful"], 0.1);
     COMFORTABLE = new ItemFunctionTrait(["comfortable", "comforting", "soft", "cozy", "snug", "pleasant"], -0.1);
     POISON = new ItemFunctionTrait(["poisonous", "venomous", "draining", "poison"], 0.6);
