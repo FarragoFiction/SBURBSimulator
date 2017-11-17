@@ -130,11 +130,12 @@ void globalInit() {
     doneGlobalInit = true;
 
     Stats.init();
+    ItemTraitFactory.init();
+    SpecibusFactory.init();
     FeatureFactory.init(); //do BEFORE classes or aspects or you're gonna have a bad time (null features) PL figured this out
     SBURBClassManager.init();
     Aspects.init();
-    ItemTraitFactory.init();
-    SpecibusFactory.init();
+
     InterestManager.init();
 
     Loader.init();
