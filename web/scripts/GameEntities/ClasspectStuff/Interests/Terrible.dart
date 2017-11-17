@@ -25,7 +25,11 @@ class Terrible extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]));
+            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]))
+            ..add(new Item("Treasure",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
+            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING]))
+            ..add(new Item("Bike Horns",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE]));
     }
 
 

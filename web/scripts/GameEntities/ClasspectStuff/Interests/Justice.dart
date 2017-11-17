@@ -28,7 +28,10 @@ class Justice extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Justice Object",<ItemTrait>[]));
+            ..add(new Item("Gavel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.HAMMER]))
+            ..add(new Item("Deerstalker Hat",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY]))
+            ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]));
     }
 
 
