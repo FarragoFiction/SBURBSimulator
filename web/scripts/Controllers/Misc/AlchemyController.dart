@@ -17,6 +17,10 @@ Element item1TraitsDiv;
 Element item2TraitsDiv;
 Element resultTraitsDiv;
 
+Element item1SelSpot;
+Element item2SelSpot;
+Element operatorSelSpot;
+
 SelectElement firstItemSelect;
 SelectElement secondItemSelect;
 SelectElement operatorSelect;
@@ -34,6 +38,9 @@ void init() {
     operatorDiv = querySelector("#operator");
     item2Div = querySelector("#item2");
     resultDiv = querySelector("#result");
+    item1SelSpot = querySelector("#item1Sel");
+    operatorSelSpot = querySelector("#opSel");
+    item2SelSpot = querySelector("#item2Sel");
     player = randomPlayer(new Session(int.parse(todayToSession())));
     populateSylladex();
     makeAlchemyButton();
@@ -61,6 +68,8 @@ void makeAlchemyButton() {
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
         resultTraitsDiv = (renderItemStats(alchemyResult.result));
         resultDiv.append(resultTraitsDiv);
+
+        makeDropDowns();//need to remake them so we can do that one thing. uh. have an accurate inventory.
     });
 
 }
@@ -87,7 +96,8 @@ Item findItemNamed(String name) {
 }
 
 void makeDropDowns() {
-    firstItemSelect = genericDropDown(item1Div, player.sylladex,  "First Item");
+    if(firstItemSelect != null) firstItemSelect.remove();
+    firstItemSelect = genericDropDown(item1SelSpot, player.sylladex,  "First Item");
     firstItemSelect.onChange.listen((e) {
         Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
         item1TraitsDiv.remove();
@@ -95,9 +105,12 @@ void makeDropDowns() {
         item1Div.append(item1TraitsDiv);
     });
 
-    operatorSelect = genericDropDown(operatorDiv, <String>[AND, OR, XOR],  "Operation");
+    if(operatorSelect != null) operatorSelect.remove();
 
-    secondItemSelect = genericDropDown(item2Div, player.sylladex,  "Second Item");
+    operatorSelect = genericDropDown(operatorSelSpot, <String>[AND, OR, XOR],  "Operation");
+
+    if(secondItemSelect != null) secondItemSelect.remove();
+    secondItemSelect = genericDropDown(item2SelSpot, player.sylladex,  "Second Item");
 
     secondItemSelect.onChange.listen((e) {
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
