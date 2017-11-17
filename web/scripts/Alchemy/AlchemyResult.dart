@@ -142,7 +142,7 @@ class AlchemyResultOR extends AlchemyResult {
             result.traits.add(t); //will handle not allowing duplicates.
         }
 
-        for(ItemTrait t in items[0].appearanceTraits) {
+        for(ItemTrait t in items[1].appearanceTraits) {
             result.traits.add(t); //will handle not allowing duplicates.
         }
 
