@@ -7,14 +7,7 @@ class Specibus extends Item {
     //rank is simple placeholder that means "how much do attacks get multiplied by"
     //expect each component to add like, .1 to the rank or some shit.
     //TODO make sure a valid component for a variety of memes, like jr body pillow.
-    double get rank {
-        double ret = 0.0;
-        for(ItemTrait it in traits) {
-            ret += it.rank;
-        }
 
-        return ret;
-    }
 
     Iterable<ItemTrait> get nonrequiredTraits => traits.where((ItemTrait a) => (a != requiredTrait));
 

@@ -44,6 +44,7 @@ class Gristmas extends Scene {
           can be improved.
 
 
+
           Todo:
           *  let player  Player can modify max upgrades for items given to them.
           *     * Make syladex half private, so you can't add things to it without calling a method.
@@ -71,12 +72,14 @@ class Gristmas extends Scene {
           if(player == null) {
               //print("trying to trigger, player is not null");
               bool anyItems = false;
+              bool goodItems = false;
               if (p.specibus.canUpgrade()) {
                   //print("trying to trigger, specibus can upgrade");
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade()) anyItems = true;
+                      if (meetsStandards(p,i)) goodItems = true;
                   }
-                  if (anyItems) {
+                  if (anyItems && goodItems)  {
                       session.logger.info("AB: alchemy triggered.");
                       player = p;
                   }
@@ -84,5 +87,16 @@ class Gristmas extends Scene {
           }
       }
       return player != null;
+  }
+
+  //the better you are at alchemy, the higher your standards are.
+  bool meetsStandards(Player p, Item i) {
+      double ratio = p.getStat(Stats.ALCHEMY)/expectedAverageAlchemyValue;
+      //basically, if you'er higher than average, your standards will be higher
+      //and if you'er lower than average, your standards will be lower.
+      //specibus = 1.0, item = .9 works for somebody with lower skill
+      //does not work for somebody with higher.
+      //BUT don't be so snobby you don't alchemize things before the final battle.
+      return ((i.rank*ratio) > p.specibus.rank) || session.timeTillReckoning < 10;
   }
 }

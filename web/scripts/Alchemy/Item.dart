@@ -7,6 +7,15 @@ class Item {
     int numUpgrades = 0;
     int maxUpgrades = 3;
 
+    double get rank {
+        double ret = 0.0;
+        for(ItemTrait it in traits) {
+            ret += it.rank;
+        }
+
+        return ret;
+    }
+
     Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
 
