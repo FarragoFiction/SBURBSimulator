@@ -164,6 +164,9 @@ class AlchemyResultXOR extends AlchemyResult {
     @override
     void combine() {
         result = items[0].copy();
+        //all the things first item has that second doesn't
         result.traits = items[0].traits.difference(items[1].traits);
+        //and vice versa
+        result.traits.addAll( items[1].traits.difference(items[0].traits));
     }
 }
