@@ -60,8 +60,11 @@ class Specibus extends Item {
 
 class SpecibusFactory {
     static List<Specibus> _specibi = new List<Specibus>();
+    static Specibus CLAWS;
 
     static void init() {
+        if(CLAWS == null) CLAWS = new Specibus("claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.SHARP, ItemTraitFactory.BONE]);
+
         _specibi.clear();
         _specibi.add(new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.SHARP, ItemTraitFactory.METAL]));
 

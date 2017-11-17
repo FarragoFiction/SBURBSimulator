@@ -93,6 +93,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     static List<AlchemyResult> planAlchemy(List<Item> items) {
         if(items.isEmpty) return new List<AlchemyResult>();
         if(!items.first.canUpgrade()) return new List<AlchemyResult>();
+        List<AlchemyResult> ret = new List<AlchemyResult>();
         return <AlchemyResult>[new AlchemyResultAND(items), new AlchemyResultOR(items), new AlchemyResultXOR(items)];
     }
 }

@@ -3,7 +3,7 @@ import "../SBURBSim.dart";
 //I expect aspects and interests to have lists of items inside of them.
 class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
-    static List<Item> allUniqueItems;
+    static List<Item> allUniqueItems = new List<Item>();
     String baseName;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
