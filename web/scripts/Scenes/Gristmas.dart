@@ -89,8 +89,27 @@ class Gristmas extends Scene {
 
   @override
   void renderContent(Element div) {
-    // TODO: implement renderContent
-      appendHtml(div, "The ${player.htmlTitleBasicWithTip()} wants to do Alchemy, but JR is a lazy piece of shit so it's not ready yet.");
+      String ret = "";
+      List<AlchemyResult> possibilities = doAlchemy();
+      //TODO maybe only sort if you are good enough at alchemy???
+      possibilities.sort(); //do most promising alchemy first so that you don't use up the items needed for it
+      for(AlchemyResult result in possibilities) {
+          String tmp  = result.apply(player);
+          if(tmp != null) ret += tmp;
+      }
+      appendHtml(div, ret);
+  }
+
+  //takes all items in inventory and rubs them on each other.
+  List<AlchemyResult> doAlchemy() {
+      List<AlchemyResult> ret = new List<AlchemyResult>();
+      //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
+      for(Item item1 in player.sylladex) {
+        for(Item item2 in player.sylladex) {
+            if(item1 != item2) ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
+        }
+      }
+      return ret;
   }
 
   @override

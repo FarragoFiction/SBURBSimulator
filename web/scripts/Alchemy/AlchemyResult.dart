@@ -49,9 +49,11 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         return p.session.rand.pickFrom(templates);
     }
 
-    void apply(List<Item> targetItems) {
+    //returns string explaining what happened when you actually did the alchemy.
+    String apply(Player p) {
+        List<Item> targetItems = p.sylladex;
         for(Item item in items) {
-            if(!targetItems.contains(item)) return;
+            if(!targetItems.contains(item)) return null;
         }
         //alright, if I'm here, then I have all the parts I need for this.
         //give first item traits of result. (replace)
@@ -63,6 +65,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
             Item item = items[i];
             targetItems.remove(item);
         }
+        return description(p, []);
     }
 
     void combine();
