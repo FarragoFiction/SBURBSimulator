@@ -6,7 +6,7 @@ class Gristmas extends Scene {
     int expectedAverageAlchemyValue = 75;
     Player player;
   Gristmas(Session session) : super(session);
-    /*TODO  ((rambling brainstorming for how i wanna do shit bsed on RS convos
+    /*TODO  ((rambling brainstorming for how i wanna do shit based on RS convos
 
         Okay, I'm nearly certain that ITEMS should know how combine with other items, not this scene.
          I want to be able to do alchemy even out of the scene proper. Probably ?
@@ -57,6 +57,7 @@ class Gristmas extends Scene {
   @override
   void renderContent(Element div) {
     // TODO: implement renderContent
+      appendHtml(div, "The ${player.htmlTitleBasicWithTip()} wants to do Alchemy, but JR is a lazy piece of shit so it's not ready yet.");
   }
 
   @override
@@ -65,10 +66,13 @@ class Gristmas extends Scene {
       //relative alchemy value matters too.
       List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers);
       player = null;
+      //print("trying to trigger gristmas for ${players.length} players.");
       for(Player p in players) {
           if(player == null) {
+              //print("trying to trigger, player is not null");
               bool anyItems = false;
               if (p.specibus.canUpgrade()) {
+                  //print("trying to trigger, specibus can upgrade");
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade()) anyItems = true;
                   }

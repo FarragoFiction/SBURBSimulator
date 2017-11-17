@@ -789,6 +789,7 @@ class SessionMutator {
         summary.setNumStat("averageMobility", 8008135);
         summary.setNumStat("averageFreeWill", 8008135);
         summary.setNumStat("averageHP", 8008135);
+        summary.setNumStat("averageAlchemySkill", 8008135);
         summary.setNumStat("averageRelationshipValue", 8008135);
         summary.setNumStat("averageSanity", 8008135);
         summary.session_id = session.session_id;

@@ -282,7 +282,6 @@ class SessionSummary {
         summary.setNumStat("averageMobility", Stats.MOBILITY.average(session.players));
         summary.setNumStat("averageFreeWill", Stats.FREE_WILL.average(session.players));
         summary.setNumStat("averageHP", Stats.HEALTH.average(session.players));
-
         summary.setNumStat("averageAlchemySkill", Stats.ALCHEMY.average(session.players));
         summary.setNumStat("averageRelationshipValue", Stats.RELATIONSHIPS.average(session.players));
         summary.setNumStat("averageSanity", Stats.SANITY.average(session.players));

@@ -18,7 +18,8 @@ class Item {
     }
 
     bool canUpgrade() {
-        if(numUpgrades > 0 && numUpgrades> maxUpgrades) {
+        //print("Checking number of upgrades remaining for ${baseName}, numUpgrades is ${numUpgrades} and maxUpgrades is ${maxUpgrades}");
+        if(maxUpgrades > 0 && numUpgrades< maxUpgrades) {
             return true;
         }else {
             return false;
