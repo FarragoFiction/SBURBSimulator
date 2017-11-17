@@ -16,9 +16,6 @@ class Item {
     int numUpgrades = 0;
     int maxUpgrades = 3;
 
-    //TODO: Don't let items repeat the same traits.
-    //should i do this via filtering any added trait, or by storing them in a map instead of a list?
-
     double get rank {
         double ret = 0.0;
         for(ItemTrait it in traits) {

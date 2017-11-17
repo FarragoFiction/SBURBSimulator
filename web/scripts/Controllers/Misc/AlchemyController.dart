@@ -2,6 +2,10 @@ import 'dart:html';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 
+String AND = "AND";
+String OR = "OR";
+String XOR = "XOR";
+
 Player player;
 Element storyDiv;
 Element item1Div;
@@ -12,6 +16,11 @@ Element resultDiv;
 Element item1TraitsDiv;
 Element item2TraitsDiv;
 Element resultTraitsDiv;
+
+SelectElement firstItemSelect;
+SelectElement secondItemSelect;
+SelectElement operatorSelect;
+
 
 void main() {
     //loadNavbar();
@@ -27,8 +36,33 @@ void init() {
     resultDiv = querySelector("#result");
     player = randomPlayer(new Session(int.parse(todayToSession())));
     populateSylladex();
+    makeAlchemyButton();
     makeDropDowns();
     makeStatsDisplay();
+}
+
+void makeAlchemyButton() {
+    ButtonElement button = querySelector("#alchemyButton");
+    button.onClick.listen((e) {
+        Item item1 =findItemNamed(firstItemSelect.selectedOptions[0].value);
+        Item item2 =findItemNamed(secondItemSelect.selectedOptions[0].value);
+        String operation = operatorSelect.selectedOptions[0].value;
+        AlchemyResult alchemyResult;
+
+        if(operation == AND) {
+            alchemyResult = new AlchemyResultAND(<Item> [item1, item2]);
+        }else if(operation == OR) {
+            alchemyResult = new AlchemyResultOR(<Item> [item1, item2]);
+        }else if(operation == XOR) {
+            alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
+        }
+        alchemyResult.apply(player);
+        //TODO refresh drop down list to include this new thing now.
+        if(resultTraitsDiv != null) resultTraitsDiv.remove();
+        resultTraitsDiv = (renderItemStats(alchemyResult.result));
+        resultDiv.append(resultTraitsDiv);
+    });
+
 }
 
 void populateSylladex() {
@@ -45,10 +79,32 @@ void makeStatsDisplay() {
     item2Div.append(item2TraitsDiv);
 }
 
+Item findItemNamed(String name) {
+    for(Item i in player.sylladex) {
+        if(i.fullName == name) return i;
+    }
+    return null;
+}
+
 void makeDropDowns() {
-    SelectElement firstItem = genericDropDown(item1Div, player.sylladex,  "First Item");
-    SelectElement operator = genericDropDown(operatorDiv, <String>["And","Or","Xor"],  "Operation");
-    SelectElement secondItem = genericDropDown(item2Div, player.sylladex,  "Second Item");
+    firstItemSelect = genericDropDown(item1Div, player.sylladex,  "First Item");
+    firstItemSelect.onChange.listen((e) {
+        Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
+        item1TraitsDiv.remove();
+        item1TraitsDiv = (renderItemStats(item));
+        item1Div.append(item1TraitsDiv);
+    });
+
+    operatorSelect = genericDropDown(operatorDiv, <String>[AND, OR, XOR],  "Operation");
+
+    secondItemSelect = genericDropDown(item2Div, player.sylladex,  "Second Item");
+
+    secondItemSelect.onChange.listen((e) {
+        Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
+        item2TraitsDiv.remove();
+        item2TraitsDiv = (renderItemStats(item));
+        item2Div.append(item2TraitsDiv);
+    });
 }
 
 SelectElement genericDropDown<T> (Element div, List<T> list, String name)
