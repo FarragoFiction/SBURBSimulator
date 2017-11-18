@@ -26,7 +26,7 @@ class Social extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Fidospawn Plush",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
+            ..add(new Item("Fiduspawn Plush",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Cat Ears",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Religious Text",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
