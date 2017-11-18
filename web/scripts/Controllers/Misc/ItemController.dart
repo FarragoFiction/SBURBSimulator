@@ -18,10 +18,21 @@ void init() {
     player = randomPlayer(new Session(int.parse(todayToSession())));
     player.sylladex = new List <Item>.from(Item.allUniqueItems);
     Element div = querySelector("#story");
+    renderTraits(div);
     for(int i = 0; i<player.sylladex.length; i++) {
         Item item = player.sylladex[i];
         div.append(renderItemStats(item, i));
     }
+}
+
+Element renderTraits(Element div) {
+    Element ret = new DivElement();
+    String text = "<b>Traits: (${ItemTraitFactory.allTraits.length} total) </b>";
+    for(ItemTrait t in ItemTraitFactory.allTraits) {
+        text += " ${t.descriptions.first},";
+    }
+    ret.appendHtml(text);
+    div.append(ret);
 }
 
 

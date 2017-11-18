@@ -26,7 +26,11 @@ class Terrible extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]))
-            ..add(new Item("Treasure",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
+            ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
+            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.VALUABLE, ItemTraitFactory.PRETTY]))
+            ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE]))
+            ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY]))
+            ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY]))
             ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY]))
             ..add(new Item("Grenade",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY]))
             ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK]))

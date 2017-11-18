@@ -29,6 +29,7 @@ class Domestic extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
             ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE]))
+            ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW]))
             ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
             ..add(new Item("Refridgerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))

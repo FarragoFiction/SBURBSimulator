@@ -10,7 +10,9 @@ Appropriately for AND combining, an && alchemy result will often demonstrate the
 abstract class ItemTrait {
   List<String> descriptions = new List<String>();
   double rank = 1.0;
-  ItemTrait(List<String> this.descriptions, this.rank);
+  ItemTrait(List<String> this.descriptions, this.rank) {
+    ItemTraitFactory.allTraits.add(this);
+  }
 }
 
 //what can this do?
@@ -26,6 +28,7 @@ class ItemAppearanceTrait extends ItemTrait {
 }
 
 class ItemTraitFactory {
+  static Set<ItemTrait> allTraits = new Set<ItemTrait>();
   //these are what shape it has? doubles as both specibus kinds and basic objects.
   static ItemAppearanceTrait GENERIC;
   static ItemAppearanceTrait SWORD;
