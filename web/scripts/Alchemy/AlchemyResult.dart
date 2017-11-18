@@ -44,6 +44,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     Item result;
 
     AlchemyResult(List<Item> this.items) {
+        print("Combining ${turnArrayIntoHumanSentence(items)}");
         combine();
     }
 
@@ -76,6 +77,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         modified.descriptors = new List<String>.from(result.descriptors);
         modified.numUpgrades ++;
         result.numUpgrades ++;
+        print("result is $result and modified is $modified");
 
         //remove all other items.
         for(int i = 1; i<items.length; i++) {

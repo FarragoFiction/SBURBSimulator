@@ -81,9 +81,12 @@ void makeAlchemyButton() {
 }
 
 void populateSylladex() {
+    /*
     for(int i = 0; i< 50; i++) {
         player.sylladex.add(player.session.rand.pickFrom(Item.allUniqueItems));
-    }
+    }*/
+    player.sylladex = new List<Item>.from(Item.allUniqueItems);
+    player.sylladex.length = 20;
 }
 
 void makeStatsDisplay() {
@@ -162,13 +165,15 @@ Element renderItemStats(Item item) {
     Element attributes = new DivElement();
     attributes.setInnerHtml("Attributes: ");
     ret.append(attributes);
-
+    String collate = "";
     for(ItemTrait it in item.traits) {
         Element li = new DivElement();
         li.classes.add("oneTrait");
+        collate += ",${it.descriptions.first}";
         li.setInnerHtml(it.descriptions.first);
         ret.append(li);
     }
+    ret.appendHtml(collate);
     return ret;
 }
 

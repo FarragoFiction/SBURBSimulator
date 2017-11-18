@@ -3758,3 +3758,76 @@ fuck.
 fuckity fuck
 
 don't have the text be a field on the thingy, have it be passed in.
+
+
+Debugging Alchemy:
+
+<h1>Test Cases: Conclusion: Working as intended. (So what the fuck was going on with traits before? Do i need to deeper? three x combo?)</h1>
+		<li>Pistol AND Sword = Pointed Pistol, shooty,metal,a pistol,edged,pointy,a sword</li>
+		<li>Sword AND Pistol =  A Pistol Sword ,edged,metal,pointy,a sword,shooty,a pistol</li>
+		<li>Pistol OR Sword = A Sword Pistol, ,shooty,metal,a sword</li>
+		<li>Sword OR Pistol = A Pistol Sword, ,edged,pointy,metal,a pistol</li>
+		<li>Pistol XOR Sword = Pointed Pistol, shooty,a pistol,edged,pointy,a sword</li>
+		<li>Sword XOR Pistol = A Pistol Sword, edged,pointy,a sword,shooty,a pistol </li>
+		<li>Pointed Pistol (from AND) AND Whip = Fabric Pistol, ,shooty,metal,a pistol,restraining,cloth,a whip </li>
+		<li>Whip AND Pointed Pistol (from AND) = Metal Whip, ,restraining,cloth,a whip,shooty,metal,a pistol</li>
+		<li> CLAWS AND ((Pistol AND Sword) AND WHIP) = Metal Claws, edged,bone,claws,shooty,metal,a pistol , <h1> Yessssss it finally fucks up. BUT WHY???</h1></li>
+
+
+
+So, first of all, something alchemized 3 times shoved into something alchemized zero times results in a single name.
+In retrospect, this makes sense. I should add the two items descriptions together, so I can get the right amount of things.
+
+But what about those fucking traits.
+
+ALL operations are AND, so nothing should be lost, but I go from
+
+restraining,cloth,a whip,shooty,metal,a pistol
+
+to
+
+edged,bone,claws,shooty,metal,a pistol
+
+i lost cloth, restraining, whip. It's like....it forgot about the whip part entirely and only remembered the raw pistol shit.
+
+Which.
+Shouldn't be a thing that can happen? It shouldn't know what traits are native to the pistol or not?
+They ARE native, right?
+
+Yeah.
+
+Pistol <= Sword <= Whip.
+
+Hrrrrm. Maybe. Is something glitching so it resets the item?
+
+Ask the log to tell me what the objects are before combining with AND. It could be in 'apply', too.
+
+
+Combining Pistol and Sword
+(program):1 Combining  Pointed Pistol and Whip
+(program):1 Combining claws and  Fabric Pistol
+
+Alright, that all looks correct.
+
+........
+
+Wait.
+
+Hypothesis.
+
+It's a fabric Pistol in the player's inventory, but still a pistol in the drop down maybe?
+
+I remember there's a point where I go and fetch the real thing?
+
+Like, there's the version I have local, and then i get the array version? That's probably a dumb unnecessary
+thing i'm doing since they are the same damn object. but maybe it's not?
+
+Adding a new descriptor. First item has 3 traits, second has 6 traits. Difference is 3 big.
+
+
+Hrrrrm. So when it does the descriptors it seems to know about the whip?
+
+Is it because claws is the default object? What if i pick hammer instead? Yup, still happens.
+
+Have to leave soon, guess I'll keep debugging later with a fresh head.
+
