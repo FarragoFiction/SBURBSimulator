@@ -95,6 +95,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait CLOTH;
   static ItemAppearanceTrait STONE;
   static ItemAppearanceTrait GLASS;
+  static ItemAppearanceTrait LEGENDARY;
 
   static ItemFunctionTrait EDGED;
   static ItemFunctionTrait POINTY;
@@ -192,6 +193,7 @@ class ItemTraitFactory {
     CLOTH = new ItemAppearanceTrait(<String>["cloth", "fabric"], -0.3);
     GLASS = new ItemAppearanceTrait(<String>["glass", "crystal"], -0.3);
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3);
+    LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0);
   }
 
   static void initFunctions() {

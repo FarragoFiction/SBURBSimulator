@@ -27,6 +27,7 @@ class Culture extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Can of Spray Paint",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.METAL]))
+            ..add(new Item("How To Draw Manga",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK]))
             ..add(new Item("Painting of a Horse Boxing a Football Player",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.COOLK1D, ItemTraitFactory.PAPER]))
             ..add(new Item("Collection of Classical Works",<ItemTrait>[ItemTraitFactory.CLASSY, ItemTraitFactory.PAPER]))
             ..add(new Item("Documentary on Horses",<ItemTrait>[ItemTraitFactory.CLASSY, ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D]))
