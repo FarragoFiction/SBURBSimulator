@@ -1,5 +1,8 @@
 
-import "../SBURBSIM.dart";
+import "Item.dart";
+import "Trait.dart";
+import "../random_tables.dart";
+import "../GameEntities/player.dart";
 
 /*
 http://mspaintadventures.wikia.com/wiki/Alchemiter

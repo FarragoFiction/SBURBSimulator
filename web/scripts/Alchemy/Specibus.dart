@@ -1,4 +1,7 @@
-import "../SBURBSim.dart";
+import "Item.dart";
+import "Trait.dart";
+import "../random.dart";
+
 
 class Specibus extends Item {
     //what is the bareminimum of this kind (usually has same name as kind, like sword).
@@ -80,7 +83,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Dice", ItemTraitFactory.DICE, [ ItemTraitFactory.PLASTIC, ItemTraitFactory.LUCKY]));
         _specibi.add(new Specibus("Needle", ItemTraitFactory.NEEDLE, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY]));
         _specibi.add(new Specibus("Staff", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
-        _specibi.add(new Specibus("Whip", ItemTraitFactory.WHIP, [ ItemTraitFactory.EDGED, ItemTraitFactory.CLOTH]));
+        _specibi.add(new Specibus("Whip", ItemTraitFactory.WHIP, [ ItemTraitFactory.RESTRAINING, ItemTraitFactory.CLOTH]));
         _specibi.add(new Specibus("Bow", ItemTraitFactory.BOW, [ ItemTraitFactory.STONE, ItemTraitFactory.CLOTH, ItemTraitFactory.POINTY]));
         _specibi.add(new Specibus("Club", ItemTraitFactory.CLUB, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
         _specibi.add(new Specibus("Broom", ItemTraitFactory.CLUB, [ ItemTraitFactory.WOOD, ItemTraitFactory.CLUB]));
@@ -100,6 +103,18 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.EDGED]));
         _specibi.add(new Specibus("Frying Pan", ItemTraitFactory.FRYINGPAN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
         _specibi.add(new Specibus("Pillow", ItemTraitFactory.PILLOW, [ ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CLOTH]));
+        _specibi.add(new Specibus("Chain", ItemTraitFactory.PILLOW, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]));
+        _specibi.add(new Specibus("Wrench", ItemTraitFactory.WRENCH, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Shovel", ItemTraitFactory.PILLOW, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Rolling Pin", ItemTraitFactory.PILLOW, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Puppet", ItemTraitFactory.PUPPET, [ ItemTraitFactory.WOOD, ItemTraitFactory.DOOMED]));
+        _specibi.add(new Specibus("Razor", ItemTraitFactory.RAZOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        _specibi.add(new Specibus("Pen", ItemTraitFactory.PEN, [ ItemTraitFactory.METAL, ItemTraitFactory.SMART]));
+        _specibi.add(new Specibus("Bust", ItemTraitFactory.BUST, [ ItemTraitFactory.STONE, ItemTraitFactory.HEAVY]));
+        _specibi.add(new Specibus("Golf Club", ItemTraitFactory.GOLFCLUB, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        _specibi.add(new Specibus("Scissors", ItemTraitFactory.SCISSOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        _specibi.add(new Specibus("Safe", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.HEAVY]));
 
     }
 

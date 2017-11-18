@@ -65,6 +65,23 @@ class ItemTraitFactory {
   static ItemAppearanceTrait CARD;
   static ItemAppearanceTrait FRYINGPAN;
   static ItemAppearanceTrait PILLOW;
+  static ItemAppearanceTrait SHOTGUN;
+  static ItemAppearanceTrait CHAIN;
+  static ItemAppearanceTrait WRENCH;
+  static ItemAppearanceTrait SHOVEL;
+  static ItemAppearanceTrait ROLLINGPIN;
+  static ItemAppearanceTrait PUPPET;
+  static ItemAppearanceTrait RAZOR;
+  static ItemAppearanceTrait PEN;
+  static ItemAppearanceTrait BUST;
+  static ItemAppearanceTrait BOWLING;
+  static ItemAppearanceTrait GOLFCLUB;
+  static ItemAppearanceTrait KNIFE;
+  static ItemAppearanceTrait SCISSOR;
+  static ItemAppearanceTrait SAFE;
+
+
+
 
   //these would be "color" i guess? material it's made of?
   static ItemAppearanceTrait METAL;
@@ -123,6 +140,7 @@ class ItemTraitFactory {
     FIST = new ItemAppearanceTrait(<String>["a fist"], 0.4);
     CLAWS = new ItemAppearanceTrait(<String>["claws"], 0.4);
     GRENADE = new ItemAppearanceTrait(<String>["a grenade"], 0.4);
+    SAFE = new ItemAppearanceTrait(<String>["a freaking safe"], 0.4);
     BALL = new ItemAppearanceTrait(<String>["a ball"], 0.4);
     TRIDENT = new ItemAppearanceTrait(<String>["a trident"], 0.4);
     CARD = new ItemAppearanceTrait(<String>["a card"], 0.4);
@@ -148,10 +166,20 @@ class ItemTraitFactory {
     FORK = new ItemAppearanceTrait(<String>["a fork"], 0.4);
     CHAINSAW = new ItemAppearanceTrait(<String>["a chainsaw"], 0.4);
     SICKLE = new ItemAppearanceTrait(<String>["a sickle"], 0.4);
-
-
-
-
+    SHOTGUN = new ItemAppearanceTrait(<String>["a shotgun"], 0.4);
+    SICKLE = new ItemAppearanceTrait(<String>["a sickle"], 0.4);
+    CHAIN = new ItemAppearanceTrait(<String>["a chain"], 0.4);
+    WRENCH = new ItemAppearanceTrait(<String>["a wrench"], 0.4);
+    SHOVEL = new ItemAppearanceTrait(<String>["a shovel"], 0.4);
+    ROLLINGPIN = new ItemAppearanceTrait(<String>["a rolling pin"], 0.4);
+    PUPPET = new ItemAppearanceTrait(<String>["a puppet"], 0.4);
+    RAZOR = new ItemAppearanceTrait(<String>["a razor"], 0.4);
+    PEN = new ItemAppearanceTrait(<String>["a pen"], 0.4);
+    BUST = new ItemAppearanceTrait(<String>["a bust"], 0.4);
+    BOWLING = new ItemAppearanceTrait(<String>["a bowling ball"], 0.4);
+    GOLFCLUB = new ItemAppearanceTrait(<String>["a golf club"], 0.4);
+    KNIFE = new ItemAppearanceTrait(<String>["a knife"], 0.4);
+    SCISSOR = new ItemAppearanceTrait(<String>["scissors"], 0.4);
 
 
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3);

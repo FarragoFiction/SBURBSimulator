@@ -1,5 +1,8 @@
-import "../SBURBSim.dart";
-
+import "../GameEntities/player.dart";
+import "Item.dart";
+import "../random_tables.dart";
+import "Trait.dart";
+import "../random.dart";
 //I expect aspects and interests to have lists of items inside of them.
 class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
