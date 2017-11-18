@@ -7,18 +7,6 @@ import "../../Rendering/text/opentype.dart" as OT;
 import 'dart:async';
 
 
-/*
-    TODO:
-    Have drop down for class, aspect, species, interest cat 1 and interest cat 2.
-
-    in canvas, display 3 sprites (one of each type), title (in aspect color),
-    specific interests, chat handle, moon,
-    and then land facts
-    Name, denizen, consorts, and then sample smells, feels, sounds.
-    Then pick three example quest chains that are valid for the player.
- */
-
-
 
 OCGenerator ocgen;
 
@@ -111,7 +99,7 @@ class OCGeneratorQuiz extends OCGenerator {
         QuestsAndStuff questsAndStuff = new QuestsAndStuff(session);
         questsAndStuff.landParties.add(new QuestingParty(session, p, null));
         int currentCounter = 0;
-        int maxCounter = 20; //don't go forever
+        int maxCounter = 31; //don't go forever
         while(!p.land.noMoreQuests && currentCounter < maxCounter) {
             if(p.dead) { //nobody stays dead, this is your self insert fantasy, yo.
                 if(p.isDreamSelf) {
@@ -124,9 +112,9 @@ class OCGeneratorQuiz extends OCGenerator {
             }
             p.renderSelf();
             questsAndStuff.renderContent(session.newScene(null));
-            maxCounter ++;
+            currentCounter ++;
         }
-        if(currentCounter > maxCounter && !p.land.noMoreQuests) {
+        if(currentCounter >= maxCounter && !p.land.noMoreQuests) {
             storyElementReplacement.appendHtml("<br><br> Let's just assume you don't ever end up beating the game, okay? This is getting ridiculous.");
         }
     }
