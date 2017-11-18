@@ -47,7 +47,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait CLUB;
   static ItemAppearanceTrait BROOM;
   static ItemAppearanceTrait BOOK;
-  static ItemAppearanceTrait SIGN;
+  static ItemAppearanceTrait ROADSIGN;
   static ItemAppearanceTrait AXE;
   static ItemAppearanceTrait LANCE;
   static ItemAppearanceTrait SHIELD;
@@ -76,10 +76,14 @@ class ItemTraitFactory {
   static ItemAppearanceTrait STONE;
   static ItemAppearanceTrait GLASS;
 
-  static ItemFunctionTrait SHARP;
+  static ItemFunctionTrait EDGED;
+  static ItemFunctionTrait POINTY;
   static ItemFunctionTrait BLUNT;
+  static ItemFunctionTrait HEAVY;
   static ItemFunctionTrait SHOOTY;
   static ItemFunctionTrait ONFIRE;
+  static ItemFunctionTrait LUCKY;
+  static ItemFunctionTrait DOOMED;
   static ItemFunctionTrait EXPLODEY;
   static ItemFunctionTrait COLD;
   static ItemFunctionTrait ZAP;
@@ -129,7 +133,7 @@ class ItemTraitFactory {
     SHIELD = new ItemAppearanceTrait(<String>["a shield"], 0.4);
     LANCE = new ItemAppearanceTrait(<String>["a lance"], 0.4);
     AXE = new ItemAppearanceTrait(<String>["a ax"], 0.4);
-    SIGN = new ItemAppearanceTrait(<String>["a sign"], 0.4);
+    ROADSIGN = new ItemAppearanceTrait(<String>["a sign"], 0.4);
     BOOK = new ItemAppearanceTrait(<String>["a book"], 0.4);
     BROOM = new ItemAppearanceTrait(<String>["a broom"], 0.4);
     CLUB = new ItemAppearanceTrait(<String>["a club"], 0.4);
@@ -160,7 +164,10 @@ class ItemTraitFactory {
   }
 
   static void initFunctions() {
-    SHARP = new ItemFunctionTrait(["edged", "sharp", "pointy", "honed", "keen", "sharpened"], 0.3);
+    EDGED = new ItemFunctionTrait(["edged", "sharp", "honed", "keen", "bladed"], 0.3);
+    LUCKY = new ItemFunctionTrait(["lucky", "fortunate", "gambler's", "favored", "charmed"], 0.3);
+    DOOMED = new ItemFunctionTrait(["doomed", "cursed", "unlucky"], -0.3);
+    POINTY = new ItemFunctionTrait(["pointy", "sharp", "sharpened", "barbed", "piked", "sharpened","pronged", "pointed"], 0.3);
     EXPLODEY = new ItemFunctionTrait(["exploding", "explosive", "detonating", "grenade"], 0.6);
     ZAP = new ItemFunctionTrait(["electrical", "zap", "lightning", "shock"], 0.6);
     RESTRAINING = new ItemFunctionTrait(["restraining", "imprisoning", "restricting"], 0.3);
@@ -177,8 +184,9 @@ class ItemTraitFactory {
     COMFORTABLE = new ItemFunctionTrait(["comfortable", "comforting", "soft", "cozy", "snug", "pleasant"], -0.1);
     POISON = new ItemFunctionTrait(["poisonous", "venomous", "draining", "poison"], 0.6);
     COLD = new ItemFunctionTrait(["chilly", "chill", "cold", "freezing", "icy", "frozen", "ice"], 0.6);
+    HEAVY = new ItemFunctionTrait(["heavy", "weighs a ton", "heavy","heavy enough to kill a cat"], 0.4);
     ONFIRE = new ItemFunctionTrait(["fire", "burning", "blazing", "hot", "heated", "on fire", "combusting", "flaming", "fiery"], 0.6);
-    BLUNT = new ItemFunctionTrait(["blunt", "bludgeoning", "heavy", "dull", "heavy enough to kill a cat"], 0.3);
+    BLUNT = new ItemFunctionTrait(["blunt", "bludgeoning", "dull"], 0.3);
     SHOOTY = new ItemFunctionTrait(["shooty", "ranged", "projectile", "piercing", "loaded", "full of ammo", "long-range"], 0.3);
     MUSICAL = new ItemFunctionTrait(["musical", "melodic", "harmonious", "tuneful", "euphonious", "mellifluous,"], 0.1);
   }

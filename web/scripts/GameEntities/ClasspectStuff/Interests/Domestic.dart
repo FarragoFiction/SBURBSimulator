@@ -30,6 +30,7 @@ class Domestic extends InterestCategory {
             ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
             ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE]))
             ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
+            ..add(new Item("Refridgerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))
             ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC]))
             ..add(new Item("Wedding Cake",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.EDIBLE]));
