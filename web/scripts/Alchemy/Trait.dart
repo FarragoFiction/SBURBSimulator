@@ -21,6 +21,11 @@ class ItemFunctionTrait extends ItemTrait {
   //TODO eventually has something to do with combat? piercing v slashing etc.
 }
 
+//what kind of object are you? Not in name.
+class ItemObjectTrait extends ItemAppearanceTrait {
+  ItemObjectTrait(List<String> descriptions, double rank) : super(descriptions, rank);
+}
+
 //What does it look like?
 //TODO eventually tie to images?
 class ItemAppearanceTrait extends ItemTrait {
@@ -30,55 +35,55 @@ class ItemAppearanceTrait extends ItemTrait {
 class ItemTraitFactory {
   static Set<ItemTrait> allTraits = new Set<ItemTrait>();
   //these are what shape it has? doubles as both specibus kinds and basic objects.
-  static ItemAppearanceTrait GENERIC;
-  static ItemAppearanceTrait SWORD;
-  static ItemAppearanceTrait HAMMER;
-  static ItemAppearanceTrait RIFLE;
-  static ItemAppearanceTrait PISTOL;
-  static ItemAppearanceTrait BLADE;
-  static ItemAppearanceTrait DAGGER;
-  static ItemAppearanceTrait SANTA;
-  static ItemAppearanceTrait FIST;
-  static ItemAppearanceTrait SICKLE;
-  static ItemAppearanceTrait CHAINSAW;
-  static ItemAppearanceTrait FORK;
-  static ItemAppearanceTrait DICE;
-  static ItemAppearanceTrait NEEDLE;
-  static ItemAppearanceTrait STAFF;
-  static ItemAppearanceTrait WHIP;
-  static ItemAppearanceTrait BOW;
-  static ItemAppearanceTrait CLUB;
-  static ItemAppearanceTrait BROOM;
-  static ItemAppearanceTrait BOOK;
-  static ItemAppearanceTrait ROADSIGN;
-  static ItemAppearanceTrait AXE;
-  static ItemAppearanceTrait LANCE;
-  static ItemAppearanceTrait SHIELD;
-  static ItemAppearanceTrait CANE;
-  static ItemAppearanceTrait YOYO;
-  static ItemAppearanceTrait SLING;
-  static ItemAppearanceTrait SHURIKEN;
-  static ItemAppearanceTrait MACHINEGUN;
-  static ItemAppearanceTrait GRENADE;
-  static ItemAppearanceTrait BALL;
-  static ItemAppearanceTrait TRIDENT;
-  static ItemAppearanceTrait CARD;
-  static ItemAppearanceTrait FRYINGPAN;
-  static ItemAppearanceTrait PILLOW;
-  static ItemAppearanceTrait SHOTGUN;
-  static ItemAppearanceTrait CHAIN;
-  static ItemAppearanceTrait WRENCH;
-  static ItemAppearanceTrait SHOVEL;
-  static ItemAppearanceTrait ROLLINGPIN;
-  static ItemAppearanceTrait PUPPET;
-  static ItemAppearanceTrait RAZOR;
-  static ItemAppearanceTrait PEN;
-  static ItemAppearanceTrait BUST;
-  static ItemAppearanceTrait BOWLING;
-  static ItemAppearanceTrait GOLFCLUB;
-  static ItemAppearanceTrait KNIFE;
-  static ItemAppearanceTrait SCISSOR;
-  static ItemAppearanceTrait SAFE;
+  static ItemObjectTrait GENERIC;
+  static ItemObjectTrait SWORD;
+  static ItemObjectTrait HAMMER;
+  static ItemObjectTrait RIFLE;
+  static ItemObjectTrait PISTOL;
+  static ItemObjectTrait BLADE;
+  static ItemObjectTrait DAGGER;
+  static ItemObjectTrait SANTA;
+  static ItemObjectTrait FIST;
+  static ItemObjectTrait SICKLE;
+  static ItemObjectTrait CHAINSAW;
+  static ItemObjectTrait FORK;
+  static ItemObjectTrait DICE;
+  static ItemObjectTrait NEEDLE;
+  static ItemObjectTrait STAFF;
+  static ItemObjectTrait WHIP;
+  static ItemObjectTrait BOW;
+  static ItemObjectTrait CLUB;
+  static ItemObjectTrait BROOM;
+  static ItemObjectTrait BOOK;
+  static ItemObjectTrait ROADSIGN;
+  static ItemObjectTrait AXE;
+  static ItemObjectTrait LANCE;
+  static ItemObjectTrait SHIELD;
+  static ItemObjectTrait CANE;
+  static ItemObjectTrait YOYO;
+  static ItemObjectTrait SLING;
+  static ItemObjectTrait SHURIKEN;
+  static ItemObjectTrait MACHINEGUN;
+  static ItemObjectTrait GRENADE;
+  static ItemObjectTrait BALL;
+  static ItemObjectTrait TRIDENT;
+  static ItemObjectTrait CARD;
+  static ItemObjectTrait FRYINGPAN;
+  static ItemObjectTrait PILLOW;
+  static ItemObjectTrait SHOTGUN;
+  static ItemObjectTrait CHAIN;
+  static ItemObjectTrait WRENCH;
+  static ItemObjectTrait SHOVEL;
+  static ItemObjectTrait ROLLINGPIN;
+  static ItemObjectTrait PUPPET;
+  static ItemObjectTrait RAZOR;
+  static ItemObjectTrait PEN;
+  static ItemObjectTrait BUST;
+  static ItemObjectTrait BOWLING;
+  static ItemObjectTrait GOLFCLUB;
+  static ItemObjectTrait KNIFE;
+  static ItemObjectTrait SCISSOR;
+  static ItemObjectTrait SAFE;
 
 
 
@@ -130,57 +135,57 @@ class ItemTraitFactory {
 
   static void initAppearances() {
     //it's sharp, it's pointy and it's a sword
-    GENERIC = new ItemAppearanceTrait(<String>["perfectly generic"], 0.1);
-    SWORD = new ItemAppearanceTrait(<String>["a sword"], 0.4);
-    HAMMER = new ItemAppearanceTrait(<String>["a hammer"], 0.4);
-    RIFLE = new ItemAppearanceTrait(<String>["a rifle"], 0.4);
-    PISTOL = new ItemAppearanceTrait(<String>["a pistol"], 0.4);
-    BLADE = new ItemAppearanceTrait(<String>["a blade"], 0.4);
-    DAGGER = new ItemAppearanceTrait(<String>["a dagger"], 0.4);
-    SANTA = new ItemAppearanceTrait(<String>["a santa"], 0.4);
-    FIST = new ItemAppearanceTrait(<String>["a fist"], 0.4);
-    CLAWS = new ItemAppearanceTrait(<String>["claws"], 0.4);
-    GRENADE = new ItemAppearanceTrait(<String>["a grenade"], 0.4);
-    SAFE = new ItemAppearanceTrait(<String>["a freaking safe"], 0.4);
-    BALL = new ItemAppearanceTrait(<String>["a ball"], 0.4);
-    TRIDENT = new ItemAppearanceTrait(<String>["a trident"], 0.4);
-    CARD = new ItemAppearanceTrait(<String>["a card"], 0.4);
-    FRYINGPAN = new ItemAppearanceTrait(<String>["a frying pan"], 0.4);
-    PILLOW = new ItemAppearanceTrait(<String>["a pillow"], 0.4);
-    MACHINEGUN = new ItemAppearanceTrait(<String>["a machinegun"], 0.4);
-    SHURIKEN = new ItemAppearanceTrait(<String>["a shuriken"], 0.4);
-    SLING = new ItemAppearanceTrait(<String>["a sling"], 0.4);
-    YOYO = new ItemAppearanceTrait(<String>["a yoyo"], 0.4);
-    CANE = new ItemAppearanceTrait(<String>["a cane"], 0.4);
-    SHIELD = new ItemAppearanceTrait(<String>["a shield"], 0.4);
-    LANCE = new ItemAppearanceTrait(<String>["a lance"], 0.4);
-    AXE = new ItemAppearanceTrait(<String>["a ax"], 0.4);
-    ROADSIGN = new ItemAppearanceTrait(<String>["a sign"], 0.4);
-    BOOK = new ItemAppearanceTrait(<String>["a book"], 0.4);
-    BROOM = new ItemAppearanceTrait(<String>["a broom"], 0.4);
-    CLUB = new ItemAppearanceTrait(<String>["a club"], 0.4);
-    BOW = new ItemAppearanceTrait(<String>["a bow"], 0.4);
-    WHIP = new ItemAppearanceTrait(<String>["a whip"], 0.4);
-    STAFF = new ItemAppearanceTrait(<String>["a staff"], 0.4);
-    NEEDLE = new ItemAppearanceTrait(<String>["a needle"], 0.4);
-    DICE = new ItemAppearanceTrait(<String>["dice"], 0.4);
-    FORK = new ItemAppearanceTrait(<String>["a fork"], 0.4);
-    CHAINSAW = new ItemAppearanceTrait(<String>["a chainsaw"], 0.4);
-    SICKLE = new ItemAppearanceTrait(<String>["a sickle"], 0.4);
-    SHOTGUN = new ItemAppearanceTrait(<String>["a shotgun"], 0.4);
-    SICKLE = new ItemAppearanceTrait(<String>["a sickle"], 0.4);
-    CHAIN = new ItemAppearanceTrait(<String>["a chain"], 0.4);
-    WRENCH = new ItemAppearanceTrait(<String>["a wrench"], 0.4);
-    SHOVEL = new ItemAppearanceTrait(<String>["a shovel"], 0.4);
-    ROLLINGPIN = new ItemAppearanceTrait(<String>["a rolling pin"], 0.4);
-    PUPPET = new ItemAppearanceTrait(<String>["a puppet"], 0.4);
-    RAZOR = new ItemAppearanceTrait(<String>["a razor"], 0.4);
-    PEN = new ItemAppearanceTrait(<String>["a pen"], 0.4);
-    BUST = new ItemAppearanceTrait(<String>["a bust"], 0.4);
-    BOWLING = new ItemAppearanceTrait(<String>["a bowling ball"], 0.4);
-    GOLFCLUB = new ItemAppearanceTrait(<String>["a golf club"], 0.4);
-    KNIFE = new ItemAppearanceTrait(<String>["a knife"], 0.4);
-    SCISSOR = new ItemAppearanceTrait(<String>["scissors"], 0.4);
+    GENERIC = new ItemObjectTrait(<String>["perfectly generic"], 0.1);
+    SWORD = new ItemObjectTrait(<String>["a sword"], 0.4);
+    HAMMER = new ItemObjectTrait(<String>["a hammer"], 0.4);
+    RIFLE = new ItemObjectTrait(<String>["a rifle"], 0.4);
+    PISTOL = new ItemObjectTrait(<String>["a pistol"], 0.4);
+    BLADE = new ItemObjectTrait(<String>["a blade"], 0.4);
+    DAGGER = new ItemObjectTrait(<String>["a dagger"], 0.4);
+    SANTA = new ItemObjectTrait(<String>["a santa"], 0.4);
+    FIST = new ItemObjectTrait(<String>["a fist"], 0.4);
+    CLAWS = new ItemObjectTrait(<String>["claws"], 0.4);
+    GRENADE = new ItemObjectTrait(<String>["a grenade"], 0.4);
+    SAFE = new ItemObjectTrait(<String>["a freaking safe"], 0.4);
+    BALL = new ItemObjectTrait(<String>["a ball"], 0.4);
+    TRIDENT = new ItemObjectTrait(<String>["a trident"], 0.4);
+    CARD = new ItemObjectTrait(<String>["a card"], 0.4);
+    FRYINGPAN = new ItemObjectTrait(<String>["a frying pan"], 0.4);
+    PILLOW = new ItemObjectTrait(<String>["a pillow"], 0.4);
+    MACHINEGUN = new ItemObjectTrait(<String>["a machinegun"], 0.4);
+    SHURIKEN = new ItemObjectTrait(<String>["a shuriken"], 0.4);
+    SLING = new ItemObjectTrait(<String>["a sling"], 0.4);
+    YOYO = new ItemObjectTrait(<String>["a yoyo"], 0.4);
+    CANE = new ItemObjectTrait(<String>["a cane"], 0.4);
+    SHIELD = new ItemObjectTrait(<String>["a shield"], 0.4);
+    LANCE = new ItemObjectTrait(<String>["a lance"], 0.4);
+    AXE = new ItemObjectTrait(<String>["a ax"], 0.4);
+    ROADSIGN = new ItemObjectTrait(<String>["a sign"], 0.4);
+    BOOK = new ItemObjectTrait(<String>["a book"], 0.4);
+    BROOM = new ItemObjectTrait(<String>["a broom"], 0.4);
+    CLUB = new ItemObjectTrait(<String>["a club"], 0.4);
+    BOW = new ItemObjectTrait(<String>["a bow"], 0.4);
+    WHIP = new ItemObjectTrait(<String>["a whip"], 0.4);
+    STAFF = new ItemObjectTrait(<String>["a staff"], 0.4);
+    NEEDLE = new ItemObjectTrait(<String>["a needle"], 0.4);
+    DICE = new ItemObjectTrait(<String>["dice"], 0.4);
+    FORK = new ItemObjectTrait(<String>["a fork"], 0.4);
+    CHAINSAW = new ItemObjectTrait(<String>["a chainsaw"], 0.4);
+    SICKLE = new ItemObjectTrait(<String>["a sickle"], 0.4);
+    SHOTGUN = new ItemObjectTrait(<String>["a shotgun"], 0.4);
+    SICKLE = new ItemObjectTrait(<String>["a sickle"], 0.4);
+    CHAIN = new ItemObjectTrait(<String>["a chain"], 0.4);
+    WRENCH = new ItemObjectTrait(<String>["a wrench"], 0.4);
+    SHOVEL = new ItemObjectTrait(<String>["a shovel"], 0.4);
+    ROLLINGPIN = new ItemObjectTrait(<String>["a rolling pin"], 0.4);
+    PUPPET = new ItemObjectTrait(<String>["a puppet"], 0.4);
+    RAZOR = new ItemObjectTrait(<String>["a razor"], 0.4);
+    PEN = new ItemObjectTrait(<String>["a pen"], 0.4);
+    BUST = new ItemObjectTrait(<String>["a bust"], 0.4);
+    BOWLING = new ItemObjectTrait(<String>["a bowling ball"], 0.4);
+    GOLFCLUB = new ItemObjectTrait(<String>["a golf club"], 0.4);
+    KNIFE = new ItemObjectTrait(<String>["a knife"], 0.4);
+    SCISSOR = new ItemObjectTrait(<String>["scissors"], 0.4);
 
 
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3);

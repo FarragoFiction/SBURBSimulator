@@ -4034,8 +4034,45 @@ Pick x traits where X is the number of times the object has been alchemized?
  when doing name shit.
 
 
+((Also: Before I forget, I think AND needs to be nerfed right hte fuck down and take 50% of everything from both soruces
+cuz it's redonk how much better AND is than OR right now))
 
 
+
+
+Oh shit, MI just had a great idea:
+
+"Idea for names: If traits translate to name modifiers, maybe certian combinations of traits can also have words?
+ So if you have an item with "Firey" and "Metal" it could print "Forge God's" as a part of the name?"
+
+Let's chew this over before coding.....
+
+So one obvious benefit is that it allows traits that expected to co-occur to be condensced instead of having
+big stupid jumble names.
+
+Shooty Pointy = Bayonet, for example.
+
+
+
+maybe can have ALL traits displayed at all times? ???
+
+Honestly, that would be a p ideal state.
+
+Think about it.
+
+Don't need to ingore base shit with that.
+
+
+Also, for the things that are "a sword" or whatever, they should not be allowed to be a part of Names, just descriptions.
+
+So should be a diff type of itemtrait.
+
+Okay, diff item trait exists, so,
+
+TODO:
+
+Change descriptions to just always be a list of traits. Have framework for condensening traits to be diff combo words.
+Since descriptions will always reflect traits, don't need to worry about traits being lost.
 
 
 
