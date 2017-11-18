@@ -29,7 +29,9 @@ Element renderItemStats(Item item, int number) {
     Element ret = new DivElement();
     ret.classes.add("itemStats");
     Element header = new DivElement();
-    header.setInnerHtml("$number: ${item.fullName}");
+    String kind = "";
+    if(item is Specibus) kind = "kind";
+    header.setInnerHtml("$number: ${item.fullName}$kind");
     header.classes.add("itemHeader");
 
     ret.append(header);
