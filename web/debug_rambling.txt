@@ -3965,6 +3965,78 @@ Oh yeah, should make sure i copy the list too instead of referencing
 
 
 
+~~~~~~~~~~
+
+Alright. I guess I can take a break now, but before I do I want to spend 5 minutes on the clock thinking about item names
+cuz the way I'm currently doing it just doesn't fucking cut it.
+
+Alright, first up, I don't want to think about what I'm currently doing. Instead, I need to define the problem.
+
+What I want, is for an object's name to vaguely describe the object,
+but with it's initial traits being not part of it.
+
+We can fucking assume a Sword is metal and sharp and a sword.
+
+But a Sword augmented with a Lighter is a Flaming Sword.
+
+Okay, tempted to talk solutions, but not until the 5 minutes are up.
+
+So, what other parts of the problem exist.
+
+1) Un-modified item uses base name based on traits.
+2) Modified item has additions to the name only from non base traits.
+
+What about if you REMOVE a trait from the object?
+
+Do I want UnSharp UnMetal Sword, for example?
+
+What if I remove a trait from an object that wasn't base?
+
+Flaming Sword || Fiduspawn Plush
+
+Might get me a soft and unflaming sword. Or something.
+
+Flaming Sword to Soft Sword?
+
+So, should the name always be related to the traits and never cached? Rerolled entirely when I alchemize?
+
+
+Flaming Sword becomes Blazing Stone Sword? (since flaming word gets rerolled?)
+
+Or even Icy Stone Sword (ice was always there, just wasn't in the name for hte first version?)
+
+Hidden traits DO seem p canon, Wizard status probably wasn't magical, but had magic that alchmized shit could get.
+
+Liek a recessive genetic trait.
+
+Hrrrrm.
+
+
+
+Okay, I think I have my problem defined:
+
+Ran out of time, too, so here's the write up
+
+1) Un-modified item uses base name based on traits.
+2) Modified item has additions to the name only from non base traits.
+3) Traits that no longer are part of the item are no longer part of the name.
+4) I think "base" traits that have been removed would be too awkward to put into name.
+
+Solution brainstoring really quick.
+
+AlchemyResult could reroll the name each time the object gets alchemized?
+Pick x traits where X is the number of times the object has been alchemized?
+ (or should it keep the total number of names from both sides? Flaming Metal Brick AND Icy Stone Tablet should make a Flaming Icy Metal Stone Tablet. No. That sucks.)
+
+ Traits themselves should also know if they were part of the object on creation. Maybe? Except traits are singletons.
+
+ Maybe the item itself has a set of base traits it copies on creation?  Knows not to consider any base traits
+ when doing name shit.
+
+
+
+
+
 
 
 

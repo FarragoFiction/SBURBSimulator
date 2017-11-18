@@ -44,7 +44,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     Item result;
 
     AlchemyResult(List<Item> this.items) {
-        print("Combining ${turnArrayIntoHumanSentence(items)}");
+        //("Combining ${turnArrayIntoHumanSentence(items)}");
         combine();
     }
 
@@ -70,14 +70,14 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
             modified = targetItems[targetItems.indexOf(items[0])];
         }
         Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
-        print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
+       // print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
         result.addDescriptor(newTraits);
         modified.traits = new Set<ItemTrait>.from(result.traits);
         String ret = description(p, []);
         modified.descriptors = new List<String>.from(result.descriptors);
         modified.numUpgrades ++;
         result.numUpgrades ++;
-        print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
+        //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
 
         //remove all other items.
         for(int i = 1; i<items.length; i++) {
@@ -118,13 +118,13 @@ class AlchemyResultAND extends AlchemyResult {
   @override
   void combine() {
       result = items[0].copy();
-      print("just copied the first item. result has ${result.traits.length} traits.");
+     // print("just copied the first item. result has ${result.traits.length} traits.");
       //skip first item
       for(int i = 1; i<items.length; i++) {
           Item item = items[i];
-          print("going to shove ${item.fullName} into ${result.fullName}.");
+          //print("going to shove ${item.fullName} into ${result.fullName}.");
           for(ItemTrait t in item.traits) {
-              print("adding trait ${t.descriptions.first}");
+              //print("adding trait ${t.descriptions.first}");
             result.traits.add(t); //will handle not allowing duplicates.
           }
       }
