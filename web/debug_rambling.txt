@@ -3831,3 +3831,140 @@ Is it because claws is the default object? What if i pick hammer instead? Yup, s
 
 Have to leave soon, guess I'll keep debugging later with a fresh head.
 
+
+~~~~
+
+Okay, back. Let's do this shit.
+
+If I do Pistol AND Sword and then then shove that straight into claws, I get
+,edged,bone,claws,shooty,metal,a pistol
+
+which LOOKS right. Except it doesn't  have "a sword." or "pointy" it just has "edged"
+
+So, this is a data point. it's not like I lose ALL traits, just, some each time.
+
+So I need to stop pursuing caching as a potential problem.
+
+Wait. Edged is from claws. Fuck. God damn.
+
+Okay.
+
+Well.
+
+Then never fucking mind. But at least this is faster than the other.
+
+Time to just walk through each step of AND.
+
+
+
+ result = items[0].copy();
+      //skip first item
+      for(int i = 1; i<items.length; i++) {
+          Item item = items[i];
+          for(ItemTrait t in item.traits) {
+            result.traits.add(t); //will handle not allowing duplicates.
+          }
+      }
+
+
+      First test. After result = items[0].copy, how many traits do I have? If it's zero, then that's a problem.
+      (though first item is probably the sword)
+      Second Test. Print out item when I'm adding it.
+
+
+      just copied the first item. result has 3 traits.
+      (program):1 going to shove  Pointed Pistol into claws.
+
+
+Alright, neither test shed any light. What now?
+
+Well, what does item.traits looke like? print that fucking out.
+
+just copied the first item. result has 3 traits.
+(program):1 going to shove  Pointed Pistol into claws.
+(program):1 adding trait shooty
+(program):1 adding trait metal
+(program):1 adding trait a pistol
+
+
+
+......What the actual fuck.
+
+Okay. So THAT is wrong. But why? It SHOULD have ,shooty,metal,a pistol,edged,pointy,a sword.
+
+So why only three?
+
+
+
+
+just copied the first item. result has 3 traits.
+(program):1 going to shove  Pointed Pistol into claws.
+(program):1 adding trait shooty
+(program):1 adding trait metal
+(program):1 adding trait a pistol
+(program):1 Adding a new descriptor. First item has 3 traits, second has 6 traits. Difference is 3 big.
+
+
+
+Okay, so there's three traits, but then when it's time to do a descriptor it knows about 6 traits?
+i notice i am confused.
+
+
+okay. "second" is the result, nevermind.
+
+Is it a sync issue after all? What is displayed on screen has six, but what is processed has 3.
+
+
+
+Oh ho ho! Wait right the fuck
+
+I have it open right now and I can fucking sEE that result is:
+
+,shooty,metal,a pistol,edged,pointy,a sword
+
+But then when I pick it from the drop down I only see
+,shooty,metal,a pistol
+
+Even though both are named "Pointed Pistol" What the actual fuck?
+
+Alright, is it wrong when it gets applied? Wrong when it gets rendered to the list?
+
+How do I correlate an item to a drop down thingy?
+
+
+        Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
+hrrrm.
+
+
+
+So when searching through my sylladex....i get this:
+found possible match  Pointed Pistol with 3 traits
+
+Which means it is ADDED TO MY SYLADDEX WRONG. somehow.
+
+grrr.
+
+result is  Pointed Pistol and has 6 traits  and modified is  Pointed Pistol and has 3 traits
+
+result != modified but WHY?
+
+        result.traits = result.traits;
+
+...
+...
+...
+...
+...
+God I'm an idiot.
+How did I typo so hard to turn modified.traits = results.traits into THAT tautology?
+
+So now comes the question: How did this EVER fucking work?
+Oh, it only appeared to cuz result is what gets displayed, but modified is what gets saved.
+
+Oh yeah, should make sure i copy the list too instead of referencing
+
+
+
+
+
+

@@ -57,6 +57,7 @@ void makeAlchemyButton() {
         AlchemyResult alchemyResult;
 
         if(operation == AND) {
+            print("going to combine ${item1.fullName} with ${item1.traits.length} traits and ${item2.fullName} with ${item2.traits.length} traits");
             alchemyResult = new AlchemyResultAND(<Item> [item1, item2]);
         }else if(operation == OR) {
             alchemyResult = new AlchemyResultOR(<Item> [item1, item2]);
@@ -98,10 +99,14 @@ void makeStatsDisplay() {
 }
 
 Item findItemNamed(String name) {
+    Item ret;
     for(Item i in player.sylladex) {
-        if(i.fullName == name) return i;
+        if(i.fullName == name) {
+            print("found possible match ${i} with ${i.traits.length} traits");
+            ret = i;
+        }
     }
-    return null;
+    return ret;
 }
 
 void makeDropDowns() {

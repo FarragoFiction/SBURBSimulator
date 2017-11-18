@@ -103,10 +103,10 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.EDGED]));
         _specibi.add(new Specibus("Frying Pan", ItemTraitFactory.FRYINGPAN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
         _specibi.add(new Specibus("Pillow", ItemTraitFactory.PILLOW, [ ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CLOTH]));
-        _specibi.add(new Specibus("Chain", ItemTraitFactory.PILLOW, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]));
+        _specibi.add(new Specibus("Chain", ItemTraitFactory.CHAIN, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]));
         _specibi.add(new Specibus("Wrench", ItemTraitFactory.WRENCH, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
-        _specibi.add(new Specibus("Shovel", ItemTraitFactory.PILLOW, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
-        _specibi.add(new Specibus("Rolling Pin", ItemTraitFactory.PILLOW, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Shovel", ItemTraitFactory.SHOVEL, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
+        _specibi.add(new Specibus("Rolling Pin", ItemTraitFactory.ROLLINGPIN, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
         _specibi.add(new Specibus("Puppet", ItemTraitFactory.PUPPET, [ ItemTraitFactory.WOOD, ItemTraitFactory.DOOMED]));
         _specibi.add(new Specibus("Razor", ItemTraitFactory.RAZOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
         _specibi.add(new Specibus("Pen", ItemTraitFactory.PEN, [ ItemTraitFactory.METAL, ItemTraitFactory.SMART]));

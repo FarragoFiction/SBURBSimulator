@@ -62,7 +62,6 @@ class Item {
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         ret.descriptors = new List<String>.from(descriptors);
-        ret.traits = new Set<ItemTrait>.from(traits);
         return ret;
     }
 
