@@ -4085,6 +4085,96 @@ If >1 alchemy levels, then names come from traits. all traits. go hog fucking wi
 
 Then see what you need to compress. Be memey as fuck.
 
+~~~~~~~~~~~
+
+Okay, Step 1 is done.
+
+
+But how do I want to handle combos?
+
+for(ItemTrait t in traits) {
+            if(t is ItemObjectTrait) {
+                //skip
+            }else {
+                ret.add(" ${ capitilizeEachWord(rand.pickFrom(t.descriptions))}");
+            }
+}
+
+That's it without combos.
+So. What.
+
+Well, one way to handle it is to have some traits just straight up be combos?
+
+Forged = Metal and Sharp, for example.
+
+In the actual traits list, it will stay separate.
+
+But when it comes time for descriptions it will return the combos instead.
+And higher level items can use those combos directly.  Like, here's a sword that can't be edged without also being metal?
+Or whatever.
+
+
+I don't HAVE to use those combo traits, but that makes sense to me.
+
+Just need to have a function mapping an array of traits to any and all combos it works for
+without repeting any traits.
+
+Now, normally a function mapping shit should be, well, a map.
+
+But I'm not sure if a map is complicated enough here?
+
+Let's walk through a use case.
+
+
+
+I pass in: ,paper,blunt,a book,metal,pointy,a needle
+
+A book and A Needle are filtered out.
+
+paper,blunt,metal,pointy,soft
+
+
+It goes through them and finds:
+
+Needly (metal, pointy)
+Foil (metal, paper)
+null (blunt, pointy)
+
+Now, it needs to decide which things should get priority.
+
+null means two features canceled out. So. Do that one first.
+Both Needly and Foil have the same number of traits used up, so have equal priority.
+Needly goes, but can't apply itself because pointy has been used.
+Foil goes, and takes both metal and paper away.
+
+Foil and Soft is returned.
+
+
+Okay, that was a solid exercise.
+
+What did I get out of that?
+
+I need some sort of CombinedTrait object to hold thigns in interm.
+
+It has "new name" and "traits that make it up" and a priority it can be sorted by.
+If it is null, it's priority is like, 1300 or some other big dumb memey number.
+Otherwise it's priority is how many traits it would suck into itself.
+
+Once I've fetched the correct CombinedTraits, I need to process them.
+
+* Make a copy of the traits that were passed into me.
+* Sort the CombinedTraits by priority.
+* For each CombinedTrait, check to see if all subtraits are in the copyList. If they are, add the CombinedTrait
+to the return list of traits and remove all subtraits from copyList.
+
+When done, add all remaining traits in the copy list to the return list.
+return.
+
+
+
+
+
+
 
 
 
