@@ -66,7 +66,7 @@ class SpecibusFactory {
     static Specibus CLAWS;
 
     static void init() {
-        if(CLAWS == null) CLAWS = new Specibus("claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.EDGED, ItemTraitFactory.BONE]);
+        if(CLAWS == null) CLAWS = new Specibus("claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.POINTY,ItemTraitFactory.EDGED, ItemTraitFactory.BONE]);
 
         _specibi.clear();
         _specibi.add(new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL, ItemTraitFactory.POINTY]));
@@ -74,7 +74,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Hammer", ItemTraitFactory.HAMMER, [ItemTraitFactory.BLUNT, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Rifle", ItemTraitFactory.RIFLE, [ ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Pistol", ItemTraitFactory.PISTOL, [ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
-        _specibi.add(new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
+        _specibi.add(new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.POINTY,ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Dagger", ItemTraitFactory.DAGGER, [ ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Fancysanta", ItemTraitFactory.SANTA, [ ItemTraitFactory.BLUNT, ItemTraitFactory.CERAMIC]));
         _specibi.add(new Specibus("Sickle", ItemTraitFactory.SICKLE, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));

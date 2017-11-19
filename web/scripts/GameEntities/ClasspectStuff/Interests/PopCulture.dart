@@ -26,12 +26,12 @@ class PopCulture extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Superhero Action Figure",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D]))
+            ..add(new Item("Superhero Action Figure",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D, ItemTraitFactory.FAKE]))
             ..add(new Item("Action DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Comedy DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.FUNNY]))
             ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Movie Poster",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))
-            ..add(new Item("Shitty Sword",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.COOLK1D, ItemTraitFactory.SWORD, ItemTraitFactory.EDGED]))
+            ..add(new Item("Shitty Sword",<ItemTrait>[ItemTraitFactory.FAKE,ItemTraitFactory.METAL,ItemTraitFactory.COOLK1D, ItemTraitFactory.SWORD, ItemTraitFactory.EDGED]))
             ..add(new Item("GameBro Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))
             ..add(new Item("GameGrl Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]));
 

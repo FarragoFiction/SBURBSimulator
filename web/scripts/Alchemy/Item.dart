@@ -22,7 +22,7 @@ class Item {
         //TODO if this is slow, then cache result and only reget if dirty flag is set..
         Set<ItemTrait> combinedTraits = CombinedTrait.lookForCombinedTraits(traits);
         for(ItemTrait t in combinedTraits) {
-            if(t is ItemObjectTrait) {
+            if(t is ItemObjectTrait || t.descriptions.isEmpty) {
                 //skip
             }else {
                 ret.add(" ${ capitilizeEachWord(rand.pickFrom(t.descriptions))}");

@@ -28,12 +28,12 @@ class Fantasy extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Dragon Plush",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
-            ..add(new Item("Replica Shield",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SHIELD]))
+            ..add(new Item("Replica Shield",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE]))
             ..add(new Item("Wizardy Herbert",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
             ..add(new Item("Complacency of the Learned",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
             ..add(new Item("Grimoire for Summoning the Zoologically Dubious ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL]))
-            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
-            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.STONE,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]));
+            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]))
+            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.STONE,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]));
     }
 
     @override
