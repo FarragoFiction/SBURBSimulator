@@ -35,14 +35,14 @@ class ItemAppearanceTrait extends ItemTrait {
 class CombinedTrait extends ItemTrait {
   int priority;
   List<ItemTrait> subTraits;
-  CombinedTrait(List<String> descriptions, double rank, this.subTraits, this.priority) : super(descriptions, rank);
+  CombinedTrait(List<String> descriptions, double rank, this.subTraits) : super(descriptions, rank);
 }
 
 class ItemTraitFactory {
   static Set<ItemTrait> allTraits = new Set<ItemTrait>();
 
   static Iterable<ItemFunctionTrait> get functionalTraits => allTraits.where((ItemTrait a) => (a is ItemFunctionTrait));
-  static Iterable<ItemFunctionTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait));
+  static Iterable<ItemFunctionTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait && !(a is ItemObjectTrait)));
   static Iterable<ItemFunctionTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
   static Iterable<CombinedTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
 
@@ -141,12 +141,24 @@ class ItemTraitFactory {
   static ItemFunctionTrait MAGICAL;
   static ItemFunctionTrait CLASSY;
 
+  static CombinedTrait FORGED;
+  static CombinedTrait DULLEDGED;
+  static CombinedTrait DULLPOINTED;
+
   static void init() {
     initAppearances();
     initFunctions();
+    initObjects();
+    initCombined();//IMPORTANT has to be last cuz references others.
   }
 
-  static void initAppearances() {
+  static void initCombined() {
+    FORGED = new CombinedTrait(<String>["forged"], 0.0, <ItemTrait>[METAL, EDGED]);
+    DULLEDGED = new CombinedTrait(<String>[], 0.0, <ItemTrait>[BLUNT, EDGED]);
+    DULLPOINTED = new CombinedTrait(<String>[], 0.0, <ItemTrait>[BLUNT, POINTY]);
+  }
+
+  static void initObjects() {
     //it's sharp, it's pointy and it's a sword
     GENERIC = new ItemObjectTrait(<String>["perfectly generic"], 0.1);
     SWORD = new ItemObjectTrait(<String>["a sword"], 0.4);
@@ -199,8 +211,9 @@ class ItemTraitFactory {
     GOLFCLUB = new ItemObjectTrait(<String>["a golf club"], 0.4);
     KNIFE = new ItemObjectTrait(<String>["a knife"], 0.4);
     SCISSOR = new ItemObjectTrait(<String>["scissors"], 0.4);
+  }
 
-
+  static void initAppearances() {
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3);
     CERAMIC = new ItemAppearanceTrait(<String>["ceramic"], -0.3);
     BONE = new ItemAppearanceTrait(<String>["bone"], 0.1);
