@@ -46,7 +46,9 @@ Element renderTraits(Element div) {
 
     text += "<br><Br><b>CombinedTraits: (${ItemTraitFactory.combinedTraits.length} total) </b>";
     for(CombinedTrait t in ItemTraitFactory.combinedTraits) {
-        text += " ${t.descriptions.first}(${turnArrayIntoHumanSentence(t.subTraits)}),";
+        if(t.descriptions.isNotEmpty)text += " ${t.descriptions.first}(${turnArrayIntoHumanSentence(t.subTraits)}),";
+        if(t.descriptions.isEmpty)text += " CanceledOut(${turnArrayIntoHumanSentence(t.subTraits)}),";
+
     }
     ret.appendHtml(text);
     div.append(ret);

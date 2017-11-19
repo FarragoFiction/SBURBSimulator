@@ -14,6 +14,12 @@ abstract class ItemTrait {
     ItemTraitFactory.allTraits.add(this);
   }
 
+  @override
+  String toString() {
+    if(this.descriptions.isNotEmpty) return this.descriptions.first;
+    return "NULL TRAIT";
+  }
+
 
 }
 
