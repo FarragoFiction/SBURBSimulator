@@ -13,12 +13,15 @@ abstract class ItemTrait {
   ItemTrait(List<String> this.descriptions, this.rank) {
     ItemTraitFactory.allTraits.add(this);
   }
+
+
 }
 
 //what can this do?
 class ItemFunctionTrait extends ItemTrait {
   ItemFunctionTrait(List<String> descriptions, double rank) : super(descriptions, rank);
   //TODO eventually has something to do with combat? piercing v slashing etc.
+
 }
 
 //what kind of object are you? Not in name.
@@ -32,10 +35,67 @@ class ItemAppearanceTrait extends ItemTrait {
   ItemAppearanceTrait(List<String> descriptions, double rank) : super(descriptions, rank);
 }
 
-class CombinedTrait extends ItemTrait {
-  int priority;
+class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
+
+  //if i can get rid of a word entirely, then it needs to happen.
+  //otherwise, the more traits i can get rid of , the better.
+  int get priority {
+    if(descriptions.isEmpty) return 1300;
+    return subTraits.length;
+  }
+
+  //naturally sorted by priority
+  @override
+  int compareTo(CombinedTrait other) {
+    return (other.priority - priority).round(); //TODO or is it the otherway around???
+  }
+
   List<ItemTrait> subTraits;
   CombinedTrait(List<String> descriptions, double rank, this.subTraits) : super(descriptions, rank);
+
+  bool traitsMatchMe(Set<ItemTrait> traits) {
+    //following https://github.com/dart-lang/sdk/issues/2217
+    //or would it be the other way around? need to make sure i test that all traits must be in subtraits, but not opposite
+    return traits.every(subTraits.contains);
+  }
+
+  static Set<ItemTrait> lookForCombinedTraits(Set<ItemTrait> traits) {
+    Set<ItemTrait> copiedTraits = new Set<ItemTrait>.from(traits);
+    Set<ItemTrait> ret = new Set<ItemTrait>();
+    List<CombinedTrait> foundCombinedTraits = new List<CombinedTrait>();
+    for(CombinedTrait ct in ItemTraitFactory.combinedTraits) {
+      if(ct.traitsMatchMe(copiedTraits)) foundCombinedTraits.add(ct);
+    }
+
+    foundCombinedTraits.sort(); //now they are sorted by priority.
+    for(CombinedTrait ct in foundCombinedTraits) {
+      if(ct.traitsMatchMe(copiedTraits)) {
+        ret.add(ct);
+        for(ItemTrait t in ct.subTraits) {
+          copiedTraits.remove(t);
+        }
+      }
+    }
+    //anything i couldn't turn into a combo gets passed through.
+    if(copiedTraits.isNotEmpty) ret.addAll(copiedTraits);
+    return ret;
+    /*
+    TODO:
+
+      Go through all combined traits. see if the traits list matches them. if so, add to list.
+
+      Then, sort found combined traits by priority.
+
+      for each combined trait, if you can find it's subtraits in the copied list
+        then add it to the foundCombinedTraits and remove it's subtraits from the list.
+
+        return foundCombinedTraits and any remaining copiedTraits.
+
+
+
+     */
+
+  }
 }
 
 class ItemTraitFactory {
