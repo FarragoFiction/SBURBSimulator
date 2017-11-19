@@ -10,8 +10,25 @@ class Item {
     String baseName;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
-    //have one for each upgrade.
-    List<String> descriptors = new List<String>();
+
+
+    //dynamic based on current traits.
+    List<String> get descriptors {
+        List<String> ret = new List<String>();
+        //not based on the session's random, but not going to change each time, either.
+        //does mean might have a Flaming Sword turn into a Glowing Fiery Sword but whatevs
+        Random rand = new Random(traits.length);
+        if(numUpgrades == 0) return ret;
+        //TODO traits need to know how to combine themselves.
+        for(ItemTrait t in traits) {
+            if(t is ItemObjectTrait) {
+                //skip
+            }else {
+                ret.add(" ${ capitilizeEachWord(rand.pickFrom(t.descriptions))}");
+            }
+        }
+        return ret;
+    }
 
 
 
@@ -39,19 +56,7 @@ class Item {
         return "$ret${baseName}";
     }
 
-    //takes in a list of traits that I am about to get, pick one I don't already have
-    //and grab a descriptor from it. make sure to capitalize
-    //i want the same alchemy to always result in the same object, so don't use the session random
-    //instead a random seeded by the number of traits. so will always be the same no matter WHEN i do this.
-    void addDescriptor(Set<ItemTrait> newTraits) {
-        if(newTraits.isEmpty) return; //nothing to do here.
-        print("trying to add a new trait, current descriptors are ${descriptors.length}");
-        Random rand = new Random(newTraits.length);
-        ItemTrait t = rand.pickFrom(newTraits);
-        String chosen =rand.pickFrom(t.descriptions);
-        chosen = capitilizeEachWord(chosen);
-        descriptors.add(chosen);
-    }
+
 
     String toString() {
         return fullName;
@@ -61,7 +66,6 @@ class Item {
         Item ret =  new Item(baseName, new List<ItemTrait>.from(traits));
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
-        ret.descriptors = new List<String>.from(descriptors);
         return ret;
     }
 

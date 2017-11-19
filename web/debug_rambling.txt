@@ -4075,5 +4075,19 @@ Change descriptions to just always be a list of traits. Have framework for conde
 Since descriptions will always reflect traits, don't need to worry about traits being lost.
 
 
+~~~
+
+Doop. Okay. Step 1. If no alchemy levels, then NO extra names.
+
+No SHARP METAL POINTY SWORDS to start out with, assholes.
+
+If >1 alchemy levels, then names come from traits. all traits. go hog fucking wild.
+
+Then see what you need to compress. Be memey as fuck.
+
+
+
+
+
 
 
