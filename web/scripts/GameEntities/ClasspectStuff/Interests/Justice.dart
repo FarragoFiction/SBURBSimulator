@@ -21,14 +21,13 @@ class Justice extends InterestCategory {
     List<String> interestStrings = <String>["Social Justice", "Detectives", "Mysteries", "Leadership", "Revolution", "Justice", "Equality", "Sherlock Holmes"];
 
 
-
-
     Justice() :super(6, "Justice", "fair-minded", "harsh");
 
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Gavel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.HAMMER]))
+            ..add(new Item("Caution Tape",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.RESTRAINING]))
             ..add(new Item("Deerstalker Hat",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY]))
             ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK]))
             ..add(new Item("Pony Pals: Detective Pony ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK, ItemTraitFactory.COOLK1D]))

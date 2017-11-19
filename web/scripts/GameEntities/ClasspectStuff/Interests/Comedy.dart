@@ -31,6 +31,7 @@ class Comedy extends InterestCategory {
             ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY, ItemTraitFactory.HEAVY]))
             ..add(new Item("Wise Guy Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.FUNNY]))
             ..add(new Item("Beagle Puss",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.FUNNY]))
+            ..add(new Item("Novelty Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP, ItemTraitFactory.FUNNY]))
             ..add(new Item("Banana",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FUNNY]))
             ..add(new Item("Fake Flower",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.FUNNY]))
             ..add(new Item("Trick Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.FUNNY]));

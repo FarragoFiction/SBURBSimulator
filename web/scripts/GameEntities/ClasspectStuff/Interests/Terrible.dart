@@ -26,6 +26,7 @@ class Terrible extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]))
+            ..add(new Item("Genuine Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
             ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
             ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.VALUABLE, ItemTraitFactory.PRETTY]))
             ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE]))
@@ -34,7 +35,7 @@ class Terrible extends InterestCategory {
             ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY]))
             ..add(new Item("Grenade",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY]))
             ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK]))
-            ..add(new Item("Bike Horns",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL]))
             ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE]));
     }
 

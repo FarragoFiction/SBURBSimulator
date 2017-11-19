@@ -27,7 +27,10 @@ class Music extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Piano",<ItemTrait>[ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL, ItemTraitFactory.CLASSY]))
             ..add(new Item("Flute",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP]))
             ..add(new Item("Violin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Sheet Music",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Electric Guitar",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.LOUD, ItemTraitFactory.COOLK1D]))
             ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.COOLK1D]))
             ..add(new Item("Guitar",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL]));
 

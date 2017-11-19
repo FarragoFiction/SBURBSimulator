@@ -173,6 +173,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait CLAWS;
   static ItemAppearanceTrait CERAMIC;
   static ItemAppearanceTrait BONE;
+  static ItemAppearanceTrait SHITTY;
   static ItemAppearanceTrait WOOD;
   static ItemAppearanceTrait PLASTIC;
   static ItemAppearanceTrait RUBBER;
@@ -257,6 +258,19 @@ class ItemTraitFactory {
   static CombinedTrait NET;
   static CombinedTrait MORNINGSTAR;
   static CombinedTrait BARBWIRE;
+  static CombinedTrait DECADENT;
+  static CombinedTrait SBAHJ;
+  static CombinedTrait BAYONET;
+  static CombinedTrait SNOOPSNOW;
+  static CombinedTrait LIGHTSABER;
+  static CombinedTrait FAKEYFAKE;
+  static CombinedTrait REALTHING;
+  static CombinedTrait SKELETAL;
+  static CombinedTrait GREENSUN;
+  static CombinedTrait MIDNIGHT;
+  static CombinedTrait RADIENT;
+  static CombinedTrait EDGEY;
+  static CombinedTrait ABOMB;
 
   static void init() {
     initAppearances();
@@ -280,7 +294,7 @@ class ItemTraitFactory {
     PLYWOOD = new CombinedTrait(<String>["plywood"], 0.0, <ItemTrait>[WOOD, PAPER]);
     ROBOTIC = new CombinedTrait(<String>["robotic"], 0.0, <ItemTrait>[METAL, FLESH]);
     ROTTING = new CombinedTrait(<String>["rotting","zombie"], 0.0, <ItemTrait>[UGLY, FLESH]);
-    LIGHTVOID  = new CombinedTrait(<String>[], 0.0, <ItemTrait>[GLOWING, OBSCURING]);
+    LIGHTVOID  = new CombinedTrait(<String>["Ultraviolet"], 0.0, <ItemTrait>[GLOWING, OBSCURING]);
     DOOMLUCK  = new CombinedTrait(<String>[], 0.0, <ItemTrait>[DOOMED, LUCKY]);
     CANDY = new CombinedTrait(<String>["candy"], 0.0, <ItemTrait>[EDIBLE, GLASS]);
     COTTONCANDY = new CombinedTrait(<String>["cotton candy"], 0.0, <ItemTrait>[EDIBLE, CLOTH]);
@@ -302,6 +316,26 @@ class ItemTraitFactory {
     NET = new CombinedTrait(<String>["netted","webbed"], 0.0, <ItemTrait>[RESTRAINING, CLOTH]);
     BARBWIRE = new CombinedTrait(<String>["barbed wire"], 0.0, <ItemTrait>[POINTY, RESTRAINING,METAL,CLOTH]);
     MORNINGSTAR = new CombinedTrait(<String>["morning star"], 0.0, <ItemTrait>[POINTY, BLUNT]);
+    DECADENT = new CombinedTrait(<String>["morning star"], 0.0, <ItemTrait>[COMFORTABLE, VALUABLE]);
+    SBAHJ = new CombinedTrait(<String>["SBAHJ"], 0.0, <ItemTrait>[SHITTY, COOLK1D]);
+    BAYONET = new CombinedTrait(<String>["bayonet"], 0.0, <ItemTrait>[POINTY, SHOOTY]);
+    SNOOPSNOW = new CombinedTrait(<String>["Snoop Dog's Snow Cone Machete"], 0.0, <ItemTrait>[COLD, COOLK1D, EDGED]);
+    LIGHTSABER = new CombinedTrait(<String>["light saber"], 0.0, <ItemTrait>[GLOWING, ONFIRE ,EDGED]);
+    FAKEYFAKE = new CombinedTrait(<String>["fake as shit", "fakey fake","bullshit"], 0.0, <ItemTrait>[MAGICAL, FAKE]);
+    REALTHING = new CombinedTrait(<String>["real as shit", "suprisingly real"], 0.0, <ItemTrait>[MAGICAL, REAL]);
+    SKELETAL = new CombinedTrait(<String>["skeletal"], 0.0, <ItemTrait>[SCARY, DOOMED, BONE]);
+    GREENSUN = new CombinedTrait(<String>["green sun"], 0.0, <ItemTrait>[ONFIRE, NUCLEAR, GLOWING]);
+    MIDNIGHT = new CombinedTrait(<String>["midnight","3 In The Morning"], 0.0, <ItemTrait>[OBSCURING, CLASSY]);
+    RADIENT = new CombinedTrait(<String>["radiant", "dazzling"], 0.0, <ItemTrait>[MAGICAL, GLOWING]);
+    EDGEY = new CombinedTrait(<String>["edgy"], 0.0, <ItemTrait>[EDGED, OBSCURING]);
+    ABOMB = new CombinedTrait(<String>["A-Bomb", "Warhead", "Chernobyl"], 0.0, <ItemTrait>[NUCLEAR, EXPLODEY]);
+
+
+
+
+
+
+
 
 
   }
@@ -374,6 +408,7 @@ class ItemTraitFactory {
     FLESH = new ItemAppearanceTrait(<String>["flesh", "meat","muscle"], -0.1);
     FUR = new ItemAppearanceTrait(<String>["fur", "fluff","fuzzy"], -0.1);
     UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], -0.1);
+    SHITTY = new ItemAppearanceTrait(<String>["shitty", "poorly made","conksuck"], -13.0);
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3);
     LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0);
   }
