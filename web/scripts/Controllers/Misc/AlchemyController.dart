@@ -164,7 +164,7 @@ Element renderItemStats(Item item) {
     ret.append(rank);
 
     Element timesUpgraded = new DivElement();
-    timesUpgraded.setInnerHtml("Times Alchemized: ${item.numUpgrades} ${item.descriptors}");
+    timesUpgraded.setInnerHtml("Times Alchemized: ${item.numUpgrades}");
     ret.append(timesUpgraded);
 
     Element attributes = new DivElement();
