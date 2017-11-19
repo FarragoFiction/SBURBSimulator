@@ -205,6 +205,7 @@ class ItemTraitFactory {
   static ItemFunctionTrait MUSICAL;
   static ItemFunctionTrait VALUABLE;
   static ItemFunctionTrait ENRAGING;
+  static ItemFunctionTrait HEALING;
   static ItemFunctionTrait RESTRAINING;
   static ItemFunctionTrait PRETTY;
   static ItemFunctionTrait COMFORTABLE;
@@ -217,6 +218,7 @@ class ItemTraitFactory {
   static ItemFunctionTrait MAGICAL;
   static ItemFunctionTrait CLASSY;
   static ItemFunctionTrait FAKE;
+  static ItemFunctionTrait REAL;
   static ItemFunctionTrait LOUD;
 
   static CombinedTrait FORGED;
@@ -246,6 +248,15 @@ class ItemTraitFactory {
   static CombinedTrait CRYSTAL;
   static CombinedTrait MARYSUE;
   static CombinedTrait EDGELORD;
+  static CombinedTrait DEADPOOL;
+  static CombinedTrait RABBITSFOOT;
+  static CombinedTrait ARROWHEAD;
+  static CombinedTrait ARROW;
+  static CombinedTrait KENDO;
+  static CombinedTrait IRONIC;
+  static CombinedTrait NET;
+  static CombinedTrait MORNINGSTAR;
+  static CombinedTrait BARBWIRE;
 
   static void init() {
     initAppearances();
@@ -278,12 +289,19 @@ class ItemTraitFactory {
     TOOTHY = new CombinedTrait(<String>["toothy"], 0.0, <ItemTrait>[BONE, CERAMIC]);
     EDIBLEPOISON  = new CombinedTrait(<String>[], 0.0, <ItemTrait>[EDIBLE, POISON]);
     CRYSTAL  = new CombinedTrait(<String>["crystal","diamond","quartz"], 0.0, <ItemTrait>[STONE, GLASS]);
-    MARYSUE  = new CombinedTrait(<String>["mary sue","sakura katana chan","shitty oc"], 0.0, <ItemTrait>[COOLK1D, PRETTY, ROMANTIC,FUNNY, SMART, CLASSY, LUCKY, MAGICAL]);
-    EDGELORD  = new CombinedTrait(<String>["edge lord","coldsteel the hedgehog"], 0.0, <ItemTrait>[SCARY, OBSCURING, EDGED,LEGENDARY, DOOMED, SMART, CLASSY]);
-
-
+    MARYSUE  = new CombinedTrait(<String>["mary sue","sakura katana chan","shitty oc"], 0.0, <ItemTrait>[PRETTY, ROMANTIC,FUNNY, SMART, CLASSY, LUCKY, MAGICAL]);
+    EDGELORD  = new CombinedTrait(<String>["edge lord","coldsteel the hedgehog"], 0.0, <ItemTrait>[SCARY, OBSCURING, EDGED,LEGENDARY, DOOMED, SMART, CLASSY,COOLK1D]);
+    DEADPOOL = new CombinedTrait(<String>["deadpool"], 0.0, <ItemTrait>[UGLY, HEALING, COOLK1D,FUNNY]);
     SPOOPY = new CombinedTrait(<String>["spoopy","skellington's","creppy"], 0.0, <ItemTrait>[SCARY, COOLK1D]);
     WOLVERINE = new CombinedTrait(<String>["wolverine"], 0.0, <ItemTrait>[BONE, EDGED, POINTY]);
+    RABBITSFOOT = new CombinedTrait(<String>["rabbit's foot"], 0.0, <ItemTrait>[LUCKY, FUR]);
+    ARROWHEAD = new CombinedTrait(<String>["tipped","reinforced","arrow head"], 0.0, <ItemTrait>[POINTY, WOOD]);
+    ARROW = new CombinedTrait(<String>["arrow","flechette","bolt"], 0.0, <ItemTrait>[POINTY, SHOOTY]);
+    KENDO = new CombinedTrait(<String>["training sword","bokken"], 0.0, <ItemTrait>[WOOD, EDGED]);
+    IRONIC = new CombinedTrait(<String>["ironic"], 0.0, <ItemTrait>[FAKE, COOLK1D]);
+    NET = new CombinedTrait(<String>["netted","webbed"], 0.0, <ItemTrait>[RESTRAINING, CLOTH]);
+    BARBWIRE = new CombinedTrait(<String>["barbed wire"], 0.0, <ItemTrait>[POINTY, RESTRAINING,METAL,CLOTH]);
+    MORNINGSTAR = new CombinedTrait(<String>["morning star"], 0.0, <ItemTrait>[POINTY, BLUNT]);
 
 
   }
@@ -369,7 +387,7 @@ class ItemTraitFactory {
     SCARY = new ItemFunctionTrait(["scary", "horrifying", "terrifying","spooky"], 0.1);
     LUCKY = new ItemFunctionTrait(["lucky", "fortunate", "gambler's", "favored", "charmed"], 0.3);
     DOOMED = new ItemFunctionTrait(["doomed", "cursed", "unlucky"], -0.3);
-    POINTY = new ItemFunctionTrait(["pointy", "sharp", "sharpened", "barbed", "piked", "sharpened","pronged", "pointed"], 0.3);
+    POINTY = new ItemFunctionTrait(["pointy", "piercing" "sharp", "barbed", "piked", "sharpened","pronged", "pointed"], 0.3);
     EXPLODEY = new ItemFunctionTrait(["exploding", "explosive", "detonating", "grenade"], 0.6);
     ZAP = new ItemFunctionTrait(["electrical", "zap", "lightning", "shock"], 0.6);
     RESTRAINING = new ItemFunctionTrait(["restraining", "imprisoning", "restricting"], 0.3);
@@ -383,6 +401,7 @@ class ItemTraitFactory {
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6);
     PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "fashionable", "beautiful"], 0.1);
+    HEALING = new ItemFunctionTrait(["healing", "regenerating", "recovery", "life"], 0.3);
     UNCOMFORTABLE = new ItemFunctionTrait(["uncomfortable", "hard","unpleasant"], 0.1);
 
     COMFORTABLE = new ItemFunctionTrait(["comfortable", "comforting", "soft", "cozy", "snug", "pleasant"], -0.1);
@@ -391,9 +410,11 @@ class ItemTraitFactory {
     HEAVY = new ItemFunctionTrait(["heavy", "weighs a ton", "heavy","heavy enough to kill a cat"], 0.4);
     ONFIRE = new ItemFunctionTrait(["fire", "burning", "blazing", "hot", "heated", "on fire", "combusting", "flaming", "fiery"], 0.6);
     BLUNT = new ItemFunctionTrait(["blunt", "bludgeoning", "dull"], 0.3);
-    SHOOTY = new ItemFunctionTrait(["shooty", "ranged", "projectile", "piercing", "loaded", "full of ammo", "long-range"], 0.3);
+    SHOOTY = new ItemFunctionTrait(["shooty", "ranged", "projectile", "loaded", "long range"], 0.3);
     MUSICAL = new ItemFunctionTrait(["musical", "melodic", "harmonious", "tuneful", "euphonious", "mellifluous,"], 0.1);
     LOUD = new ItemFunctionTrait(["loud", "ear splitting", "noisy", "deafening", "thundering"], 0.3);
     FAKE = new ItemFunctionTrait(["fake", "false", "imitation", "simulated", "replica"], -0.3);
+    REAL = new ItemFunctionTrait(["real", "actual", "believable", "geniune", "guaranteed"], 0.3);
+
   }
 }

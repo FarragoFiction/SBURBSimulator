@@ -65,6 +65,7 @@ void makeAlchemyButton() {
             alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
         }
         alchemyResult.apply(player);
+        giveRandomItem();
         //TODO refresh drop down list to include this new thing now.
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
         resultTraitsDiv = (renderItemStats(alchemyResult.result));
@@ -82,12 +83,16 @@ void makeAlchemyButton() {
 }
 
 void populateSylladex() {
-    /*
     for(int i = 0; i< 50; i++) {
-        player.sylladex.add(player.session.rand.pickFrom(Item.allUniqueItems));
-    }*/
-    player.sylladex = new List<Item>.from(Item.allUniqueItems);
-    player.sylladex.length = 20;
+        giveRandomItem();
+    }
+
+    //player.sylladex = new List<Item>.from(Item.allUniqueItems);
+    //player.sylladex.length = 20;
+}
+
+void giveRandomItem() {
+    player.sylladex.add(player.session.rand.pickFrom(Item.allUniqueItems));
 }
 
 void makeStatsDisplay() {
