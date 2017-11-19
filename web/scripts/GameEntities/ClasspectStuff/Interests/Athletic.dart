@@ -32,7 +32,7 @@ class Athletic extends InterestCategory {
             ..add(new Item("Baseball Bat",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD]))
             ..add(new Item("Rubber Ball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER]))
             ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP]))
-            ..add(new Item("Hockey Stick",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD]))
+            ..add(new Item("Hockey Stick",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD, ItemTraitFactory.STICK]))
             ..add(new Item("Trophy",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE]))
             ..add(new Item("Boxing Glove",<ItemTrait>[ItemTraitFactory.FIST, ItemTraitFactory.RUBBER]))
             ..add(new Item("Yoga Mat",<ItemTrait>[ItemTraitFactory.RUBBER, ItemTraitFactory.COMFORTABLE]));

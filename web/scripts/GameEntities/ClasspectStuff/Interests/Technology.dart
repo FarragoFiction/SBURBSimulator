@@ -25,7 +25,7 @@ class Technology extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Robot",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.SMART]))
+            ..add(new Item("Robot",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.SENTIENT, ItemTraitFactory.SMART]))
             ..add(new Item("Circuit Board",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL]))
             ..add(new Item("Datastructures for Assholes",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER]))
             ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.POISON]))

@@ -28,6 +28,7 @@ class PopCulture extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Superhero Action Figure",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D, ItemTraitFactory.FAKE]))
             ..add(new Item("Action DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
+            ..add(new Item("Ghost Busters DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.GHOSTLY]))
             ..add(new Item("Comedy DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.FUNNY]))
             ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Movie Poster",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))

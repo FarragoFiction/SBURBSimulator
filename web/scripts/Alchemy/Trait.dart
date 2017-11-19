@@ -151,6 +151,7 @@ class ItemTraitFactory {
   static ItemObjectTrait FRYINGPAN;
   static ItemObjectTrait PILLOW;
   static ItemObjectTrait SHOTGUN;
+  static ItemObjectTrait STICK;
   static ItemObjectTrait CHAIN;
   static ItemObjectTrait WRENCH;
   static ItemObjectTrait SHOVEL;
@@ -181,6 +182,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait CLOTH;
   static ItemAppearanceTrait STONE;
   static ItemAppearanceTrait GLASS;
+  static ItemAppearanceTrait GHOSTLY;
   static ItemAppearanceTrait FLESH;
   static ItemAppearanceTrait FUR;
   static ItemAppearanceTrait UGLY;
@@ -212,6 +214,7 @@ class ItemTraitFactory {
   static ItemFunctionTrait COMFORTABLE;
   static ItemFunctionTrait UNCOMFORTABLE;
   static ItemFunctionTrait SMART;
+  static ItemFunctionTrait SENTIENT;
   static ItemFunctionTrait ROMANTIC;
   static ItemFunctionTrait FUNNY;
   static ItemFunctionTrait EDIBLE;
@@ -271,6 +274,20 @@ class ItemTraitFactory {
   static CombinedTrait RADIENT;
   static CombinedTrait EDGEY;
   static CombinedTrait ABOMB;
+  static CombinedTrait ULTRAVIOLENCE;
+  static CombinedTrait LIVING;
+  static CombinedTrait TASER;
+  static CombinedTrait NOCTURNE;
+  static CombinedTrait DIRGE;
+  static CombinedTrait SNOBBBISH;
+  static CombinedTrait FLAT;
+  static CombinedTrait SHARPCLOTHES;
+  static CombinedTrait SHARPNOTE;
+  static CombinedTrait BACHS;
+  static CombinedTrait MOZARTS;
+  static CombinedTrait EINSTEINS;
+  static CombinedTrait FEYNMANS;
+
 
   static void init() {
     initAppearances();
@@ -295,13 +312,15 @@ class ItemTraitFactory {
     ROBOTIC = new CombinedTrait(<String>["robotic"], 0.0, <ItemTrait>[METAL, FLESH]);
     ROTTING = new CombinedTrait(<String>["rotting","zombie"], 0.0, <ItemTrait>[UGLY, FLESH]);
     LIGHTVOID  = new CombinedTrait(<String>["Ultraviolet"], 0.0, <ItemTrait>[GLOWING, OBSCURING]);
+    ULTRAVIOLENCE  = new CombinedTrait(<String>["Ultraviolent"], 0.0, <ItemTrait>[GLOWING, OBSCURING, EDGED]);
+
     DOOMLUCK  = new CombinedTrait(<String>[], 0.0, <ItemTrait>[DOOMED, LUCKY]);
     CANDY = new CombinedTrait(<String>["candy"], 0.0, <ItemTrait>[EDIBLE, GLASS]);
     COTTONCANDY = new CombinedTrait(<String>["cotton candy"], 0.0, <ItemTrait>[EDIBLE, CLOTH]);
     GUM = new CombinedTrait(<String>["gummy"], 0.0, <ItemTrait>[EDIBLE, RUBBER]);
     MARROW = new CombinedTrait(<String>["gummy"], 0.0, <ItemTrait>[EDIBLE, BONE]);
     TOOTHY = new CombinedTrait(<String>["toothy"], 0.0, <ItemTrait>[BONE, CERAMIC]);
-    EDIBLEPOISON  = new CombinedTrait(<String>[], 0.0, <ItemTrait>[EDIBLE, POISON]);
+    EDIBLEPOISON  = new CombinedTrait(<String>["arsenic"], 0.0, <ItemTrait>[EDIBLE, POISON]);
     CRYSTAL  = new CombinedTrait(<String>["crystal","diamond","quartz"], 0.0, <ItemTrait>[STONE, GLASS]);
     MARYSUE  = new CombinedTrait(<String>["mary sue","sakura katana chan","shitty oc"], 0.0, <ItemTrait>[PRETTY, ROMANTIC,FUNNY, SMART, CLASSY, LUCKY, MAGICAL]);
     EDGELORD  = new CombinedTrait(<String>["edge lord","coldsteel the hedgehog"], 0.0, <ItemTrait>[SCARY, OBSCURING, EDGED,LEGENDARY, DOOMED, SMART, CLASSY,COOLK1D]);
@@ -329,15 +348,18 @@ class ItemTraitFactory {
     RADIENT = new CombinedTrait(<String>["radiant", "dazzling"], 0.0, <ItemTrait>[MAGICAL, GLOWING]);
     EDGEY = new CombinedTrait(<String>["edgy"], 0.0, <ItemTrait>[EDGED, OBSCURING]);
     ABOMB = new CombinedTrait(<String>["A-Bomb", "Warhead", "Chernobyl"], 0.0, <ItemTrait>[NUCLEAR, EXPLODEY]);
-
-
-
-
-
-
-
-
-
+    LIVING = new CombinedTrait(<String>["living"], 0.0, <ItemTrait>[BONE, FLESH,SENTIENT]);
+    TASER = new CombinedTrait(<String>["taser"], 0.0, <ItemTrait>[ZAP, RESTRAINING]);
+    NOCTURNE = new CombinedTrait(<String>["nocturn"], 0.0, <ItemTrait>[OBSCURING, MUSICAL]);
+    DIRGE = new CombinedTrait(<String>["dirge"], 0.0, <ItemTrait>[DOOMED, MUSICAL]);
+    SNOBBBISH = new CombinedTrait(<String>["snobbish"], 0.0, <ItemTrait>[CLASSY, VALUABLE]);
+    FLAT = new CombinedTrait(<String>["flat"], 0.0, <ItemTrait>[BLUNT, MUSICAL]);
+    SHARPNOTE = new CombinedTrait(<String>["sharp"], 0.0, <ItemTrait>[EDGED, MUSICAL]);
+    SHARPCLOTHES = new CombinedTrait(<String>["sharp"], 0.0, <ItemTrait>[CLASSY, MUSICAL]);
+    BACHS = new CombinedTrait(<String>["Bach's"], 0.0, <ItemTrait>[SMART, MUSICAL]);
+    MOZARTS = new CombinedTrait(<String>["Mozart's"], 0.0, <ItemTrait>[MAGICAL, MUSICAL]);
+    EINSTEINS = new CombinedTrait(<String>["Einstein's"], 0.0, <ItemTrait>[SMART, NUCLEAR]);
+    FEYNMANS = new CombinedTrait(<String>["Feynman's"], 0.0, <ItemTrait>[SMART, FUNNY]);
   }
 
   static void initObjects() {
@@ -380,7 +402,7 @@ class ItemTraitFactory {
     CHAINSAW = new ItemObjectTrait(<String>["a chainsaw"], 0.4);
     SICKLE = new ItemObjectTrait(<String>["a sickle"], 0.4);
     SHOTGUN = new ItemObjectTrait(<String>["a shotgun"], 0.4);
-    SICKLE = new ItemObjectTrait(<String>["a sickle"], 0.4);
+    STICK = new ItemObjectTrait(<String>["a stick"], 0.4);
     CHAIN = new ItemObjectTrait(<String>["a chain"], 0.4);
     WRENCH = new ItemObjectTrait(<String>["a wrench"], 0.4);
     SHOVEL = new ItemObjectTrait(<String>["a shovel"], 0.4);
@@ -405,6 +427,7 @@ class ItemTraitFactory {
     PAPER = new ItemAppearanceTrait(<String>["paper"], -0.3);
     CLOTH = new ItemAppearanceTrait(<String>["cloth", "fabric"], -0.3);
     GLASS = new ItemAppearanceTrait(<String>["glass"], -0.3);
+    GHOSTLY = new ItemAppearanceTrait(<String>["ghostly"], -0.3);
     FLESH = new ItemAppearanceTrait(<String>["flesh", "meat","muscle"], -0.1);
     FUR = new ItemAppearanceTrait(<String>["fur", "fluff","fuzzy"], -0.1);
     UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], -0.1);
@@ -431,6 +454,7 @@ class ItemTraitFactory {
     CLASSY = new ItemFunctionTrait(["classy", "distinguished", "tasteful", "cultured"], 0.1);
     COOLK1D = new ItemFunctionTrait(["cool", "wicked","radical", "awesome", "groovy", "tubular","bitching","sick nasty","bodacious"], 0.1);
     SMART = new ItemFunctionTrait(["intelligent", "smart", "useful", "scientific","encyclopedic"], 0.1);
+    SENTIENT = new ItemFunctionTrait(["sentient", "aware", "conscious", "awake"], 0.1);
     ROMANTIC = new ItemFunctionTrait(["romantic","amorous", "passionate","tender","affectionate","lovey-dovey"], 0.1);
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "SBAHJ", "comedy gold"], 0.1);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1);
