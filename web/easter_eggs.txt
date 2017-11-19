@@ -6,6 +6,8 @@
 
 <p> Hall of Fame is officially closed as of 6/12/17. </p>
 
+<p><a href = "index2.html?self=cest">Anstus Mode</a>:  It's a refrance, dunkass. Makes all players copies of the leader player. </p>
+
 <p><a href = "index2.html?seerOfVoid=true">Seer of Void</a>: A button will display on screen, pressing it allows you to peer into the Void. What mysteries are within??? (ProTip: not all Sessions have void players in them). </p>
 <p><a href = "index2.html?pen15=ouija">Pen15 Ouija</a>: What!??? Who let all those void players have markers???</p>
 <p><a href = "index2.html?canonState=everythingFuckingGoes">Glitch FAQ ++ Mode</a>: Also known as: fuck it's annoying to make WasteStucks or custom sessions to test gnosis.</p>

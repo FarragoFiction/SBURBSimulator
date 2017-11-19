@@ -112,6 +112,10 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		session13();
 	}
 
+	if(getParameterByName("self",null)  == "cest") {
+		anstusMode();
+	}
+
 	if(getParameterByName("images",null)  == "pumpkin"){
 		doNotRender = true;
 	}
@@ -663,6 +667,18 @@ void hivebent(){
 	}
 }
 
+
+//all players are the leader player
+void anstusMode() {
+	Player template = curSessionGlobalVar.players[0];
+	for(Player p in curSessionGlobalVar.players) {
+		bool space = p.aspect == Aspects.SPACE;
+		bool time = p.aspect == Aspects.TIME;
+		p.copyFromPlayer(template);
+		if(space) p.aspect = Aspects.SPACE;
+		if(time) p.aspect = Aspects.TIME;
+	}
+}
 
 
 //time player is damara, space player is porrim
