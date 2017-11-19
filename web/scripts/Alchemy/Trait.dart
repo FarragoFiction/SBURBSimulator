@@ -61,8 +61,9 @@ class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
 
   bool traitsMatchMe(Set<ItemTrait> traits) {
     //following https://github.com/dart-lang/sdk/issues/2217
-    //or would it be the other way around? need to make sure i test that all traits must be in subtraits, but not opposite
-    return traits.every(subTraits.contains);
+    //return traits.every(subTraits.contains); <-- wrong.
+    return subTraits.every(traits.contains); //<-- right
+
   }
 
   static Set<ItemTrait> lookForCombinedTraits(Set<ItemTrait> traits) {
@@ -219,7 +220,7 @@ class ItemTraitFactory {
   }
 
   static void initCombined() {
-    FORGED = new CombinedTrait(<String>["forged"], 0.0, <ItemTrait>[METAL, EDGED]);
+    FORGED = new CombinedTrait(<String>["forged", "sharpened","honed","filed"], 0.0, <ItemTrait>[METAL, EDGED, POINTY]);
     DULLEDGED = new CombinedTrait(<String>[], 0.0, <ItemTrait>[BLUNT, EDGED]);
     DULLPOINTED = new CombinedTrait(<String>[], 0.0, <ItemTrait>[BLUNT, POINTY]);
   }
