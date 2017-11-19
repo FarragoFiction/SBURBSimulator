@@ -19,8 +19,9 @@ class Item {
         //does mean might have a Flaming Sword turn into a Glowing Fiery Sword but whatevs
         Random rand = new Random(traits.length);
         if(numUpgrades == 0) return ret;
-        //TODO traits need to know how to combine themselves.
-        for(ItemTrait t in traits) {
+        //TODO if this is slow, then cache result and only reget if dirty flag is set..
+        Set<ItemTrait> combinedTraits = CombinedTrait.lookForCombinedTraits(traits);
+        for(ItemTrait t in combinedTraits) {
             if(t is ItemObjectTrait) {
                 //skip
             }else {

@@ -4170,6 +4170,18 @@ to the return list of traits and remove all subtraits from copyList.
 When done, add all remaining traits in the copy list to the return list.
 return.
 
+~~~~~~
+
+Okay. I've coded it. But I know I'm getting fucking tired. I'm having trouble thinking through the steps.
+
+I've coded it. But I haven't wired it up. What should call it? What was I doing?
+
+When....I want to mamke a name, get the traits i do shit on from the new method.
+
+That's right.
+
+
+
 
 
 
