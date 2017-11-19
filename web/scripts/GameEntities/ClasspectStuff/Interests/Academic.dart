@@ -33,6 +33,7 @@ class Academic extends InterestCategory {
             ..add(new Item("Microscope",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.GLASS]))
             ..add(new Item("Star Chart",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
             ..add(new Item("History Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
+            ..add(new Item("Radioactive Rock",<ItemTrait>[ItemTraitFactory.NUCLEAR, ItemTraitFactory.STONE]))
             ..add(new Item("Compass",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART]));
     }
 
