@@ -32,8 +32,21 @@ class ItemAppearanceTrait extends ItemTrait {
   ItemAppearanceTrait(List<String> descriptions, double rank) : super(descriptions, rank);
 }
 
+class CombinedTrait extends ItemTrait {
+  int priority;
+  List<ItemTrait> subTraits;
+  CombinedTrait(List<String> descriptions, double rank, this.subTraits, this.priority) : super(descriptions, rank);
+}
+
 class ItemTraitFactory {
   static Set<ItemTrait> allTraits = new Set<ItemTrait>();
+
+  static Iterable<ItemFunctionTrait> get functionalTraits => allTraits.where((ItemTrait a) => (a is ItemFunctionTrait));
+  static Iterable<ItemFunctionTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait));
+  static Iterable<ItemFunctionTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
+  static Iterable<CombinedTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
+
+
   //these are what shape it has? doubles as both specibus kinds and basic objects.
   static ItemObjectTrait GENERIC;
   static ItemObjectTrait SWORD;

@@ -27,9 +27,26 @@ void init() {
 
 Element renderTraits(Element div) {
     Element ret = new DivElement();
-    String text = "<b>Traits: (${ItemTraitFactory.allTraits.length} total) </b>";
-    for(ItemTrait t in ItemTraitFactory.allTraits) {
+    String text = "<b>ObjectTraits: (${ItemTraitFactory.objectTraits.length} total) </b>";
+    for(ItemTrait t in ItemTraitFactory.objectTraits) {
         text += " ${t.descriptions.first},";
+    }
+
+    text += "<br><Br><b>FunctionalTraits: (${ItemTraitFactory.functionalTraits.length} total) </b>";
+    for(ItemTrait t in ItemTraitFactory.functionalTraits) {
+        text += " ${t.descriptions.first},";
+    }
+
+
+    text += "<br><Br><b>AppearanceTraits: (${ItemTraitFactory.appearanceTraits.length} total) </b>";
+    for(ItemTrait t in ItemTraitFactory.appearanceTraits) {
+        text += " ${t.descriptions.first},";
+    }
+
+
+    text += "<br><Br><b>CombinedTraits: (${ItemTraitFactory.combinedTraits.length} total) </b>";
+    for(CombinedTrait t in ItemTraitFactory.combinedTraits) {
+        text += " ${t.descriptions.first}(${turnArrayIntoHumanSentence(t.subTraits)}),";
     }
     ret.appendHtml(text);
     div.append(ret);
