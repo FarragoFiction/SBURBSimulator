@@ -33,6 +33,7 @@ class Quest {
             ret = ret.replaceAll("$PLAYER2", "random fucking ${consort.name}");
         }
         ret = ret.replaceAll("$CONSORT", "${consort.name}");
+        ret = ret.replaceAll("$WEAPON", "${p1.specibus.fullName}");
         ret = ret.replaceAll("$CONSORTSOUND", "${consort.sound}");
         //first letter upper case
         String mc = capitilizeEachWord(mcguffin);
