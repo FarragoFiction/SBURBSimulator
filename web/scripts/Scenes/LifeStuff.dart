@@ -289,10 +289,8 @@ class LifeStuff extends Scene {
     }
 
     CanvasElement drawDreamBubbleH(Element div, Player player, Player ghost) {
-        String canvasId = "${div.id}commune_${player.id}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvas = querySelector("#$canvasId");
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, player);
         CanvasElement bubbleSpriteBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
@@ -313,9 +311,8 @@ class LifeStuff extends Scene {
 
     CanvasElement drawCommuneDead(Element div, Player player, Player ghost) {
         String canvasId = "${div.id}commune_${player.id}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvas = querySelector("#$canvasId");
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, player);
         CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
@@ -329,10 +326,8 @@ class LifeStuff extends Scene {
 
     CanvasElement drawDrainDead(Element div, Player player, Player ghost, bool long) {
         //session.logger.info("drain dead in: ${this.session.session_id}");
-        String canvasId = "${div.id}commune_${player.id}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvas = querySelector("#$canvasId");
+        CanvasElement canvas= new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, player);
         CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
@@ -533,10 +528,8 @@ class LifeStuff extends Scene {
     void enableDreamBubbles(Element div, Player player) {
         session.logger.info("Turning on dream bubble afterlife");
         this.session.stats.dreamBubbleAfterlife = true;
-        String canvasId = "${div.id}horror_terrors_${player.id}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='${canvasWidth}' height='${canvasHeight}'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvas = querySelector("#$canvasId");
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, player);
         CanvasElement horrorSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));

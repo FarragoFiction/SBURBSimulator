@@ -239,10 +239,9 @@ class LuckStuff extends Scene{
 			this.session.stats.luckyGodTier = true;
 			this.session.stats.godTier = true;
 			String divID = (div.id) + "_luckGodBS${roll.player.id}";
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
 			appendHtml(div, ret);
-			appendHtml(div, canvasHTML);
-			CanvasElement canvas = querySelector("#canvas"+ divID);
+			CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+			div.append(canvas);
 			Drawing.drawGetTiger(canvas, [roll.player]); //only draw revivial if it actually happened.
 			return "";
 		}else{
@@ -268,10 +267,8 @@ class LuckStuff extends Scene{
 		ret += roll.player.makeDead("from a Bad Break.");
 		appendHtml(div, ret);
 
-		String divID = (div.id) + "_badLuckDeath${roll.player.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvas = querySelector("#canvas"+ divID);
+		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvas);
 
 		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
 		Drawing.drawSprite(pSpriteBuffer,roll.player);

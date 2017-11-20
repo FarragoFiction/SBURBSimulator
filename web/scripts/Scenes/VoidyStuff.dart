@@ -179,10 +179,8 @@ class VoidyStuff extends Scene {
 		if(this.session.players.length > 6){
 			ch = (canvasHeight*1.5).round();
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$ch'>  </canvas>";
-		appendHtml(specialDiv, canvasHTML);
-		//different format for canvas code
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		Drawing.poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade));
 
 	}
@@ -201,10 +199,8 @@ class VoidyStuff extends Scene {
 		Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [this.player], 3);//first god tier fraymotif
 		this.player.fraymotifs.add(f);
 		appendHtml(specialDiv, "Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
-		String divID = (specialDiv.id) + "godBS";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(specialDiv, canvasHTML);
-		CanvasElement canvas = querySelector("#canvas"+ divID);
+		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvas);
 		Drawing.drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.
 
 	}

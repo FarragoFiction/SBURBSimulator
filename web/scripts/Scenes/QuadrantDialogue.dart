@@ -588,13 +588,13 @@ class QuadrantDialogue extends Scene {
 		return ret;
 	}
 	void chat(Element div){
-		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
+		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvas);
 		var relationship = this.getQuadrant();
 		var relationship2 = this.getQuadrant2();
 		var chatText = this.getGreeting(relationship, relationship2);
 		chatText += this.getChat(relationship, relationship2);
-		Drawing.drawChat(querySelector("#canvas"+ (div.id)), this.player1, this.player2, chatText,this.getDiscussSymbol(relationship));
+		Drawing.drawChat(canvas, this.player1, this.player2, chatText,this.getDiscussSymbol(relationship));
 		//this.session.sceneRenderingEngine.drawChat(querySelector("#canvas"+ (div.id)), this.player1, this.player2, chatText, 0,this.getDiscussSymbol(relationship));
 
 	}

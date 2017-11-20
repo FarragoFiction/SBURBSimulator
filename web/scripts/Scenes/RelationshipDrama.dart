@@ -36,9 +36,8 @@ class RelationshipDrama extends Scene {
 		String divId = (div.id) + player1.id.toString();
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String canvasHTML = "<br><canvas id='canvas" + divId +"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+  divId);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		String chatText = "";
 
 		chatText += Scene.chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires. Imma show you why you suck.");
@@ -73,10 +72,8 @@ class RelationshipDrama extends Scene {
 		Player player1 = player;
 		Player player2 = crush;
 
-		String divID = (div.id) + "_" +"confess_crush_${crush.id}${player1.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 
@@ -187,10 +184,8 @@ class RelationshipDrama extends Scene {
 			this.confessTooManyFeeling(div, player, crush); //don't just keep spinning your wheels.
 			return;
 		}
-		String divID = (div.id) + "_${player1.id}confess_crush_${crush.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 
@@ -275,11 +270,8 @@ class RelationshipDrama extends Scene {
 		Relationship relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		String divID = (div.id) + "_${player1.id}advice_crush_${player1.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		//different format for canvas code
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		player1.addStat(Stats.SANITY, 1);;  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		//String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -299,11 +291,8 @@ class RelationshipDrama extends Scene {
 		Relationship relationship = player1.getRelationshipWith(crush);
 		String chatText = "";
 
-		String divID = (div.id) + "_${player1.id}advice_crush_${crush.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		//different format for canvas code
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		player1.addStat(Stats.SANITY, 1);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		//String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -344,11 +333,8 @@ class RelationshipDrama extends Scene {
 		}
 		session.removeAvailablePlayer(player2);
 
-		String divID = (div.id) + "_${player.id}advice_crush_${crush.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		//different format for canvas code
-		CanvasElement canvasDiv = querySelector("#canvas$divID");
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		player.addStat(Stats.SANITY, 3);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -479,11 +465,8 @@ class RelationshipDrama extends Scene {
 			return;
 		}
 		session.removeAvailablePlayer(player2);
-		String divID = (div.id) + "_${player1.id}vent_jerk_${jerk.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		//different format for canvas code
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		player.addStat(Stats.SANITY, 3);  //talking about it helps.
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
@@ -560,10 +543,8 @@ class RelationshipDrama extends Scene {
 			return;
 		}
 		session.removeAvailablePlayer(jerk);
-		String divID = (div.id) + "_${player.id}antagonize_jerk_${jerk.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvasDiv);
 		//different format for canvas code
 		String chatText = "";
 		Player player1 = player;

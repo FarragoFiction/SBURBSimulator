@@ -234,14 +234,13 @@ class Breakup extends Scene {
 		}
 	}
 	void breakupChat(Element div){
-		//drawChat(canvasDiv, player1, player2, chatText, 1000,"discuss_hatemance.png");
-		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-		appendHtml(div, canvasHTML);
+		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvas);
 		Player player1 = this.player;
 		Player player2 = this.relationshipToBreakUp.target;
 		String chatText = this.getChat(player1,player2);
 
-		Drawing.drawChat(querySelector("#canvas"+ (div.id)), player1, player2, chatText,"discuss_breakup.png");
+		Drawing.drawChat(canvas, player1, player2, chatText,"discuss_breakup.png");
 	}
 	String youCheatChatText(Player player1, Player player2){
 		String player1Start = player1.chatHandleShort()+ ": ";

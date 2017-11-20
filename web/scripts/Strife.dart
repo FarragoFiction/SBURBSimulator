@@ -383,6 +383,7 @@ class Team implements Comparable<Team> {
 
             appendHtml(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
         }
+        //TODO something went wrong here while converting, so this might be fucked up. basically, it wanted canvas, not canvas div, but canvas is up one level. so confused.
         Drawing.drawSinglePlayer(canvasDiv, backup);
     }
 

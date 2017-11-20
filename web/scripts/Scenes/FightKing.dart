@@ -32,10 +32,9 @@ class FightKing extends Scene {
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+ch.toString() + "'>  </canvas>";
-		appendHtml(div,canvasHTML);
-		//different format for canvas code
-		var canvasDiv = querySelector("#canvas"+ divID);
+
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		Drawing.poseAsATeam(canvasDiv, fightingPlayers);
 	}
 

@@ -41,11 +41,7 @@ class CorpseSmooch extends Scene {
 		div.appendHtml("<br>"+this.contentForRender(div),treeSanitizer: NodeTreeSanitizer.trusted);
 
 		if(this.combo>1){
-			/*var divID = (div.id) + "_" + "combo";
-			String canvasHTML = "<br><canvas id='canvasCombo" + divID+"' width='$canvasWidth' height='${canvasHeight/3}'>  </canvas>";
-			appendHtml(div, canvasHTML);
-			var canvasDiv = querySelector("#canvasCombo"+ divID);
-			this.drawCombo(canvasDiv, this.combo);*/
+
 			if (Drawing.checkSimMode() == true) {
 				return;
 			}
@@ -123,11 +119,12 @@ class CorpseSmooch extends Scene {
 		if(royalty != null){
 
 			String divID = (div.id) + "_${deadPlayer.id}";
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
+
 			ret += deadPlayer.interactionEffect(royalty);
 			ret += royalty.interactionEffect(deadPlayer);
-			appendHtml(div, ret + canvasHTML);
-			Element canvasDiv = querySelector("#canvas"+ divID);
+			appendHtml(div, ret);
+			CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+			div.append(canvasDiv);
 			Drawing.drawCorpseSmooch(canvasDiv, deadPlayer, royalty);
 		}else{
 			//session.logger.info("AB: dream self dies from no corpse smooch: " + this.session.session_id.toString());

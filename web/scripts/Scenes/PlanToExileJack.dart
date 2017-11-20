@@ -133,12 +133,8 @@ class PlanToExileJack extends Scene {
 		return chatText;
 	}
 	void chatWithFriend(Element div, Player player1, Player player2){
-		num repeatTime = 1000;
-		var divID = (div.id) + "_${player1.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div,canvasHTML);
-		//different format for canvas code
-		var canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 
 
 		String chatText = "";

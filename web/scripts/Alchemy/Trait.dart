@@ -496,7 +496,7 @@ class ItemTraitFactory {
     MUSICAL = new ItemFunctionTrait(["musical", "melodic", "harmonious", "tuneful", "euphonious", "mellifluous,"], 0.1);
     LOUD = new ItemFunctionTrait(["loud", "ear splitting", "noisy", "deafening", "thundering"], 0.3);
     FAKE = new ItemFunctionTrait(["fake", "false", "imitation", "simulated", "replica"], -0.3);
-    REAL = new ItemFunctionTrait(["real", "actual", "believable", "geniune", "guaranteed"], 0.3);
+    REAL = new ItemFunctionTrait(["real", "actual", "believable", "geniune", "guaranteed","veritable"], 0.3);
 
   }
 }

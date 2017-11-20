@@ -58,9 +58,8 @@ bool trigger(List<Player> playerList) {
         //div.setInnerHtml(""); //clear yellow yards and scratches and combos and all TODO figure out why this breaks everything
         if (div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
         for (int i = 0; i < this.session.players.length; i++) {
-            String canvasHTML = "<canvas class = 'charSheet' id='lastcanvas${this.session.players[i].id}_${this.session.session_id}' width='800' height='1000'>  </canvas>";
-            appendHtml(div, canvasHTML);
-            CanvasElement canvasDiv = querySelector("#lastcanvas${this.session.players[i].id}_${this.session.session_id}");
+            CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(canvasDiv);
             CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
             CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);

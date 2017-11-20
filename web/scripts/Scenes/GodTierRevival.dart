@@ -33,10 +33,8 @@ class GodTierRevival extends Scene {
 		if(this.godsToRevive.length > 6){
 			ch = canvasHeight*2;
 		}
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='$ch'>  </canvas>";
-    appendHtml(div,canvasHTML);
-		//different format for canvas code
-		var canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		List<dynamic> live_players = [];
 		List<dynamic> dead_players = [];
 		for(num i = 0; i<this.godsToRevive.length; i++){

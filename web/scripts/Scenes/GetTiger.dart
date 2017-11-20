@@ -42,10 +42,9 @@ class GetTiger extends Scene{
 		var players = this.deadPlayersToGodTier;
 		if(!players[0].dead){
 			appendHtml(div,"<br><img src = 'images/sceneIcons/rainbow_ascend_animated.gif'> " + text);
-			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='$ch'>  </canvas>";
-			appendHtml(div,canvasHTML);
-			//different format for canvas code
-			Element canvasDiv = querySelector("#canvas"+ divID);
+
+			CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+			div.append(canvasDiv);
 
 			Drawing.drawGetTiger(canvasDiv, players); //only draw revivial if it actually happened.
 		}

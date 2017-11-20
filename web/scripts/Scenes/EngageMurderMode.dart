@@ -241,9 +241,9 @@ class EngageMurderMode extends Scene{
 		appendHtml(div, narration);
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
-		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
+
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		String chatText = "";
 
 		chatText += Scene.chatLine(player1Start, player1,"Bro. Rap Battle. Now. Bring the Fires.");
@@ -268,9 +268,8 @@ class EngageMurderMode extends Scene{
 			player2.increasePower();
 			this.session.stats.sickFires = true;
 		}else{
-			String canvasHTML2 = "<br><canvas id='canvas2" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-			appendHtml(div, canvasHTML2);
-			CanvasElement canvasDiv2 = querySelector("#canvas2"+  (div.id));
+			CanvasElement canvasDiv2 = new CanvasElement(width: canvasWidth, height: canvasHeight);
+			div.append(canvasDiv2);
 			String chatText2 = "";
 			chatText2 += Scene.chatLine(player1Start, player1,"Fuck. That was LAME! It makes me so FUCKING ANGRY!");
 			chatText2 += Scene.chatLine(player2Start, player2,"Whoa.");
@@ -297,10 +296,8 @@ class EngageMurderMode extends Scene{
 		if(player2 == null || player2.dead == true){
 			return;//nobody i actually want to kill??? why am i in murder mode?
 		}
-		String canvasHTML = "<br><canvas id='canvas" + (div.id) +"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-		appendHtml(div, canvasHTML);
-
-		CanvasElement canvasDiv = querySelector("#canvas"+  (div.id));
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 
 		String chatText = "";
 		if(player2.grimDark > 1){

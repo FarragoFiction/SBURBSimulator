@@ -751,9 +751,8 @@ class SessionMutator {
 
 
             var divID = (div.id) + "_alt_${target.id}";
-            String canvasHTML = "<br><canvas id='canvas" + divID + "' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-            appendHtml(div, "$ret $canvasHTML");
-            var canvasDiv = querySelector("#canvas" + divID);
+            CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(canvasDiv);
 
             var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
             Drawing.drawSprite(pSpriteBuffer, target);

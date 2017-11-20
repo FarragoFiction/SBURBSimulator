@@ -499,16 +499,14 @@ class Aftermath extends Scene {
         //div.setInnerHtml(""); //clear yellow yards and scratches and combos and all TODO figure out why this breaks everything
         if (div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
         for (int i = 0; i < this.session.players.length; i++) {
-
-            CanvasElement last_canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            Player p = this.session.players[i];
+            CanvasElement last_canvas = new CanvasElement(width: 800, height: 1000);
             div.append(last_canvas);
 
-            throw("TODO: need to figure out hwo to stor first canvas besides in real dom");
-            CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
             CanvasElement tmp_canvas = Drawing.getBufferCanvas(last_canvas);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);
             //will be null for new players.
-            if (first_canvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, first_canvas, 0, 0);
+            if (p.firstStatsCanvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, p.firstStatsCanvas, 0, 0);
             Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, tmp_canvas, 400, 0);
         }
     }

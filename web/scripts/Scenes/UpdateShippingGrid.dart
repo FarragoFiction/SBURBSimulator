@@ -178,9 +178,8 @@ class UpdateShippingGrid extends Scene{
 			player1.chatHandle = "future" + player1.chatHandle[0].toUpperCase() + player1.chatHandle.substring(1);
 		}
 		String divID = (div.id) + "_canvas_shipping${this.chosenShipper.player.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
 		if(player1.aspect == Aspects.HEART){
@@ -203,10 +202,8 @@ class UpdateShippingGrid extends Scene{
 		if(this.romanceChat == null) return;
 		Player player1 = this.chosenShipper.otp.r2.target;
 		Player player2 = this.chosenShipper.otp.r1.target;
-		String divID = (div.id) + "_canvas_romance${this.chosenShipper.player.id}";
-		String canvasHTML = "<br><canvas id='canvas" + divID+"' width='" +canvasWidth.toString() + "' height='"+canvasHeight.toString() + "'>  </canvas>";
-		appendHtml(div, canvasHTML);
-		CanvasElement canvasDiv = querySelector("#canvas"+ divID);
+		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+		div.append(canvasDiv);
 		Ship otp = this.chosenShipper.otp;
 		String image = "discuss_hatemance.png";
 		if(this.chosenShipper.player.aspect == Aspects.HEART){
