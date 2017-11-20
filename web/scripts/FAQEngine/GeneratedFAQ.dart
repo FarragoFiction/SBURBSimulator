@@ -1,5 +1,6 @@
 import "FAQSection.dart";
 import "../SBURBSim.dart";
+import "dart:html";
 
 ///the faq that gets printed ontosb screen, complete with quirk
 class GeneratedFAQ {
@@ -7,6 +8,7 @@ class GeneratedFAQ {
     String asciiHeader;
     bool grimDark = false; //if true, zalgo
     Player author;
+    ButtonElement closeButton;
     Player reader;
     ///what symbold do you spam for the header
     String symbol = "*";
@@ -36,13 +38,16 @@ class GeneratedFAQ {
     }
 
     //TODO better be courier new, bro
-    String makeHtml(String id) {
+    String makeHtml() {
         int amount = 10;
        // //print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
 
-        String ret =  "<button class='red_x'id = 'close$id'>X</button><div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
+        closeButton = new ButtonElement();
+        closeButton.setInnerHtml("X");
+        closeButton.classes.add("red_x");
+        String ret =  "<div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
             String header ="${symbol*amount}${q.translate(s.header)}";
             header.replaceAll("\n", ""); //no new lines in header plz

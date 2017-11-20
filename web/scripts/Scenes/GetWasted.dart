@@ -198,19 +198,29 @@ class GetWasted extends Scene {
         }else {
             text = "The ${faq.reader.htmlTitleBasicNoTip()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
         }
-        String id = "faq${div.id}${faq.author.id}";
+
+        ButtonElement faqButton = new ButtonElement();
+        faqButton.setInnerHtml("Read FAQ?");
+        Element faqDiv = new DivElement();
+        //TODO eventually fix this correctly, but i've been doing this all fucking day and i'm tired.
+        String faqHTML = faq.makeHtml(); //will also handle making close button
+        faqDiv.append(faq.closeButton);
+        appendHtml(faqDiv,(faqHTML));
+        div.append(faqButton);
+        div.append(faqDiv);
+
         //alright, i've got the intro, and i've got the quirk. what now? well, need to session.logger.info out the phrase and then a link to pop up the faq
         //then i need to make clicking that link do something, specifically make the faq visible.
         //so THEN i'll need to render the faq to a hidden element.  the GeneratedFAQ should probably handle that.
-        appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>${faq.makeHtml(id)}</div>");
         //appendHtml(div, "$text <button id = 'button$id'>Read FAQ?</button> <br><br><div id = '$id'>DIV: Be Hidden</div>");
-        hide(querySelector("#$id"));
-        querySelector("#button$id").onClick.listen((e) {
-            toggle(querySelector("#$id"));
+        hide(faqDiv);
+        faqButton.onClick.listen((e) {
+            toggle(faqDiv);
         });
 
-        querySelector("#close$id").onClick.listen((e) {
-            hide(querySelector("#$id"));
+        //TODO shit where does this get made.
+        faq.closeButton.onClick.listen((e) {
+            hide(faqDiv);
         });
         faq.rendered = true;
     }

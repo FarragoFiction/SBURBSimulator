@@ -456,24 +456,25 @@ class Aftermath extends Scene {
         Player trollKidRock = this.trollKidRock();
         ////session.logger.info(trollKidRock);
         GameEntity purpleFrog = this.purpleFrog();
-        precedingText += "<img src = 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br><canvas id = 'trollKidRockAppears' width ='400' height = '300'></canvas>";
-        appendHtml(div, precedingText);
+        precedingText += "<img src = 'images/sceneicons/Purple_Frog_ANGERY.png'> What...what is going on? How...how can you have NEGATIVE 100% of a frog??? This...this doesn't look right.   The vast frog lets out a CROAK, but it HURTS.  It seems...hostile.  Oh fuck. <Br><br> The " + purpleFrog.htmlTitleHP() + " initiates a strife with the Players! Troll Kid Rock appears out of nowhere to help them. (What the hell???)<br><br>";
 
+        appendHtml(div, precedingText);
+        CanvasElement tkrCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(tkrCanvas);
         List<Player> purpleFighters = this.getGoodGuys(trollKidRock);
         //var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock);
         //loadAllImagesForPlayerWithCallback(trollKidRock, callBack);
         if (doNotRender) {
-            this.finishPurpleStrife(div, purpleFrog, purpleFighters, trollKidRock);
+            this.finishPurpleStrife(div,tkrCanvas, purpleFrog, purpleFighters, trollKidRock);
         } else {
             loadAllImagesForPlayerWithCallback(trollKidRock, () {
-                this.finishPurpleStrife(div, purpleFrog, purpleFighters, trollKidRock);
+                this.finishPurpleStrife(div,tkrCanvas, purpleFrog, purpleFighters, trollKidRock);
             });
         }
     }
 
-    void finishPurpleStrife(Element div, GameEntity purpleFrog, List<Player> fighters, Player trollKidRock) {
+    void finishPurpleStrife(Element div, CanvasElement tkrCanvas, GameEntity purpleFrog, List<Player> fighters, Player trollKidRock) {
         trollKidRock.renderSelf(); //gotta cache his sprite
-        var tkrCanvas = querySelector("#trollKidRockAppears");
         Drawing.drawTimeGears(tkrCanvas); //, trollKidRock);
         Drawing.drawSinglePlayer(tkrCanvas, trollKidRock);
         fighters.add(Player.makeRenderingSnapshot(trollKidRock)); //sorry trollKidRock you are not REALLY a player.
