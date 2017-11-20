@@ -469,9 +469,9 @@ class IntroNew extends IntroScene {
         String ret = "";
         if(this.player.object_to_prototype.getStat(Stats.POWER) > 200 && rand.nextDouble() > .8){
             String divID = (div.id);
-            String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
-            appendHtml(div, canvasHTML);
-            CanvasElement canvas = querySelector("#canvaskernel"+ divID);
+           // String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
+            CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(canvas);
             List<Player> times = findAllAspectPlayers(this.session.players, Aspects.TIME); //they don't have to be in the medium, though
             Player timePlayer = rand.pickFrom(times); //ironically will probably allow more timeless sessions without crashes.
             Drawing.drawTimeGears(canvas);

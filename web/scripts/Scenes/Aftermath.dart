@@ -192,9 +192,9 @@ class Aftermath extends Scene {
     void drawMourning(div, dead_player, friend) {
         if (doNotRender) return;
         var divID = (div.id) + "_${dead_player.id}";
-        String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        var canvasDiv = querySelector("#canvas" + divID);
+
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvasDiv);
 
         var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, friend);
@@ -499,15 +499,17 @@ class Aftermath extends Scene {
         //div.setInnerHtml(""); //clear yellow yards and scratches and combos and all TODO figure out why this breaks everything
         if (div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
         for (int i = 0; i < this.session.players.length; i++) {
-            String canvasHTML = "<canvas class = 'charSheet' id='lastcanvas${this.session.players[i].id}_${this.session.session_id}' width='800' height='1000'>  </canvas>";
-            appendHtml(div, canvasHTML);
-            CanvasElement canvasDiv = querySelector("#lastcanvas${this.session.players[i].id}_${this.session.session_id}");
+
+            CanvasElement last_canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(last_canvas);
+
+            throw("TODO: need to figure out hwo to stor first canvas besides in real dom");
             CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
-            CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv);
+            CanvasElement tmp_canvas = Drawing.getBufferCanvas(last_canvas);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);
             //will be null for new players.
-            if (first_canvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas, 0, 0);
-            Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, tmp_canvas, 400, 0);
+            if (first_canvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, first_canvas, 0, 0);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, tmp_canvas, 400, 0);
         }
     }
 

@@ -330,9 +330,8 @@ window.addEventListener("error", (e) {
 */
 
 void crashEasterEgg(String url) {
-    String canvasHTML = "<br><canvas class = 'void' id='canvasVoidCorruptionEnding" + "' width='" + canvasWidth.toString() + "' height=" + canvasHeight.toString() + "'>  </canvas>";
-    SimController.instance.storyElement.appendHtml(canvasHTML, treeSanitizer: NodeTreeSanitizer.trusted);
-    var canvas = querySelector("#canvasVoidCorruptionEnding");
+    CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+    SimController.instance.storyElement.append(canvas);
     String chat = "";
     chat += "RS: We are gathered here today in loving memory of- \n";
     chat += "AB: " + Zalgo.generate("I'm not dead, cut it the fuck out.  A bug isn't a federal fucking issue.") + "\n";
@@ -422,10 +421,10 @@ void scratchEasterEggCallBack() {
     if (guardians.length > 6) {
         ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
     }
-    String canvasHTML = "<br><canvas id='canvas$guardianID' width='$canvasWidth' height='$ch'>  </canvas>";
 
-    appendHtml(guardianDiv, canvasHTML);
-    Element canvasDiv = querySelector("#canvas$guardianID");
+    CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+    guardianDiv.append(canvasDiv);
+
     Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
 
 
@@ -435,10 +434,9 @@ void scratchEasterEggCallBack() {
     if (curSessionGlobalVar.players.length > 6) {
         ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
     }
-    canvasHTML = "<br><canvas id='canvas$playerID' width='$canvasWidth' height='$ch'>  </canvas>";
+    canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+    playerDiv.append(canvasDiv);
 
-    appendHtml(playerDiv, canvasHTML);
-    canvasDiv = querySelector("#canvas$playerID");
 
     //need to render self for caching to work for this
     for (int i = 0; i < curSessionGlobalVar.players.length; i++) {

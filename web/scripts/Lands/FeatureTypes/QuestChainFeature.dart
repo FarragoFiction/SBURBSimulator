@@ -226,6 +226,12 @@ class QuestChainFeature extends Feature {
     static bool defaultOption(List<GameEntity> ps) {
         return true;
     }
+
+    //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
+    static bool isJadedResearcher(List<GameEntity> ps) {
+        Player potentialJR = ps as Player;
+        return potentialJR.chatHandle == "jadedResearcher";
+    }
 }
 
 //want to be able to quickly tell what sort of quest chain it is.

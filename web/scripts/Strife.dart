@@ -227,10 +227,8 @@ class Strife {
     void summonAuthor(Element div) {
         //session.logger.info("AB:  ${Zalgo.generate("HELP!!!")} ${this.session.session_id}");
         String divID = "${div.id}authorRocks";
-        String canvasHTML = "<br><canvas id='canvas$divID' width='$canvasWidth' height='$canvasHeight'></canvas>";
-        appendHtml(div, canvasHTML);
-        //different format for canvas code
-        CanvasElement canvasDiv = querySelector("#canvas$divID");
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvasDiv);
         StringBuffer chat = new StringBuffer();
         chat.writeln("AB: ${Zalgo.generate("HELP!!!")}");
         chat.writeln("JR: Fuck!");
@@ -363,11 +361,9 @@ class Team implements Comparable<Team> {
 
     //handle doomed time clones here, too
     void summonBackup(GameEntity backup, Element div) {
-        String canvasHTML = "<br><canvas id='canvasBackup${backup.id}" + (div.id) + "' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvasDiv = querySelector("#canvasBackup" + div.id);
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvasDiv);
         if (backup.doomed) {
-            CanvasElement canvasDiv = querySelector("#canvas" + div.id);
             Drawing.drawTimeGears(canvasDiv);
             //console.log("summoning a stable time loop player to this fight. " +this.session.session_id)
             appendHtml(div, "suddenly warps in from the future. They come with a dire warning of a doomed timeline. If they don't join this fight right the fuck now, shit gets real. They have sacrificed themselves to change the timeline.");
@@ -382,8 +378,8 @@ class Team implements Comparable<Team> {
                 }
             } //not a time player
             //console.log("summoning a player to this fight. " +this.session.session_id)
-            String canvasHTML = "<br><canvas id='canvasDoomed${backup.id}${div.id}' width='$canvasWidth' height=$canvasHeight'>  </canvas>";
-            appendHtml(div, canvasHTML);
+            CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(canvas);
 
             appendHtml(div, "The " + backup.htmlTitleHP() + " has joined the Strife!!!");
         }
@@ -493,11 +489,9 @@ class Team implements Comparable<Team> {
         if (poseable.length > 6) {
             ch = (canvasHeight * 1.5).round(); //a little bigger than two rows, cause time clones
         }
-        String canvasHTML = "<br><canvas id='canvas${div.id}${members[0].id}' width='" + canvasWidth.toString() + "' height=" + ch.toString() + "'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        //different format for canvas code
-        CanvasElement canvasDiv = querySelector("#canvas${div.id}${members[0].id}");
-        Drawing.poseAsATeam(canvasDiv, poseable); //in handle sprites
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
+        Drawing.poseAsATeam(canvas, poseable); //in handle sprites
     }
 
     //Denizen fights work differently

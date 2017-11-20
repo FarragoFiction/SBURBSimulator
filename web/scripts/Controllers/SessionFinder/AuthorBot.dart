@@ -18,7 +18,11 @@ abstract class AuthorBot extends SimController {
   int numSimulationsToDo = 0;
   bool needToScratch = false;
 
-  AuthorBot() : super();
+  AuthorBot() : super() {
+    storyElement = new DivElement(); //will not actually rendering to screen speed AB up?
+    //TODO yes, in that all sessions crash
+
+  }
 
   void checkSessions() {
     numSimulationsDone = 0; //but don't reset stats

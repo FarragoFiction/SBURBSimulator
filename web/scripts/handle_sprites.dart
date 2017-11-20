@@ -468,9 +468,8 @@ abstract class Drawing {
 
     static CanvasElement drawReviveDead(Element div, Player player, Player ghost, Aspect enablingAspect) {
         String canvasId = "${div.id}commune_${player.chatHandle}${ghost.chatHandle}";
-        String canvasHTML = "<br><canvas id='$canvasId' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
-        appendHtml(div, canvasHTML);
-        CanvasElement canvas = querySelector("#$canvasId");
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         CanvasElement pSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
         drawSprite(pSpriteBuffer, player);
         CanvasElement gSpriteBuffer = getBufferCanvas(querySelector("#sprite_template"));
