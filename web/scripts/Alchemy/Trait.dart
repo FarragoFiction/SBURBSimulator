@@ -43,10 +43,8 @@ class ItemAppearanceTrait extends ItemTrait {
 
 class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
 
-  //if i can get rid of a word entirely, then it needs to happen.
-  //otherwise, the more traits i can get rid of , the better.
+  //the more traits i can get rid of , the better.
   int get priority {
-    if(descriptions.isEmpty) return 1300;
     return subTraits.length;
   }
 
@@ -287,6 +285,18 @@ class ItemTraitFactory {
   static CombinedTrait MOZARTS;
   static CombinedTrait EINSTEINS;
   static CombinedTrait FEYNMANS;
+  static CombinedTrait ZIPTIE;
+  static CombinedTrait SMARTPHONE;
+  static CombinedTrait SASSACRE;
+  static CombinedTrait SLEDGE;
+  static CombinedTrait LEGAL;
+  static CombinedTrait CLOWN;
+  static CombinedTrait PASSIONATE;
+  static CombinedTrait PINATA;
+  static CombinedTrait ANVIL;
+
+
+
 
 
   static void init() {
@@ -360,6 +370,19 @@ class ItemTraitFactory {
     MOZARTS = new CombinedTrait(<String>["Mozart's"], 0.0, <ItemTrait>[MAGICAL, MUSICAL]);
     EINSTEINS = new CombinedTrait(<String>["Einstein's"], 0.0, <ItemTrait>[SMART, NUCLEAR]);
     FEYNMANS = new CombinedTrait(<String>["Feynman's"], 0.0, <ItemTrait>[SMART, FUNNY]);
+    ZIPTIE = new CombinedTrait(<String>["Feynman's"], 0.0, <ItemTrait>[PLASTIC, RESTRAINING]);
+    SMARTPHONE = new CombinedTrait(<String>["smartphone"], 0.0, <ItemTrait>[METAL, SMART]);
+    SASSACRE = new CombinedTrait(<String>["Sassacre"], 0.0, <ItemTrait>[HEAVY, FUNNY]);
+    SLEDGE = new CombinedTrait(<String>["Sledge"], 0.0, <ItemTrait>[BLUNT, HEAVY]);
+    LEGAL = new CombinedTrait(<String>["Legal"], 0.0, <ItemTrait>[RESTRAINING, PAPER]);
+    CLOWN = new CombinedTrait(<String>["Clown"], 0.0, <ItemTrait>[FUNNY, LOUD]);
+    PASSIONATE = new CombinedTrait(<String>["passionate"], 0.0, <ItemTrait>[ONFIRE, ROMANTIC]);
+    PINATA = new CombinedTrait(<String>["pinata"], 0.0, <ItemTrait>[PAPER, EDIBLE]);
+    ANVIL = new CombinedTrait(<String>["anvil"], 0.0, <ItemTrait>[BLUNT, HEAVY, METAL]);
+
+
+
+
   }
 
   static void initObjects() {
@@ -455,7 +478,7 @@ class ItemTraitFactory {
     COOLK1D = new ItemFunctionTrait(["cool", "wicked","radical", "awesome", "groovy", "tubular","bitching","sick nasty","bodacious"], 0.1);
     SMART = new ItemFunctionTrait(["intelligent", "smart", "useful", "scientific","encyclopedic"], 0.1);
     SENTIENT = new ItemFunctionTrait(["sentient", "aware", "conscious", "awake"], 0.1);
-    ROMANTIC = new ItemFunctionTrait(["romantic","amorous", "passionate","tender","affectionate","lovey-dovey"], 0.1);
+    ROMANTIC = new ItemFunctionTrait(["romantic","amorous","tender","affectionate","lovey-dovey"], 0.1);
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "SBAHJ", "comedy gold"], 0.1);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6);

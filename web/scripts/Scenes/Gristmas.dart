@@ -89,7 +89,7 @@ class Gristmas extends Scene {
 
   @override
   void renderContent(Element div) {
-      String ret = "GRISTMAS: ";
+      String ret = "<br><br>GRISTMAS: ";
       List<AlchemyResult> possibilities = doAlchemy();
       //TODO maybe only sort if you are good enough at alchemy???
       possibilities.sort(); //do most promising alchemy first so that you don't use up the items needed for it
@@ -108,6 +108,12 @@ class Gristmas extends Scene {
           throw "No. How the fuck did this happen. Sylladex has ${player.sylladex.length} things in it, so how did I fail to upgrade my specibus?";
       }
 
+      CanvasElement canvas = new CanvasElement(width: 400, height: 400);
+      CanvasElement canvas2 = new CanvasElement(width: 400, height: 300);
+      Drawing.drawWhatever(canvas, "Rewards/holyAlchemy.png");
+      Drawing.drawSinglePlayer(canvas2, player);
+      canvas.context2D.drawImage(canvas2,0,0);
+      div.append(canvas);
       appendHtml(div, ret);
   }
 

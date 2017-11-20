@@ -115,6 +115,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
         _specibi.add(new Specibus("Scissors", ItemTraitFactory.SCISSOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
         _specibi.add(new Specibus("Safe", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.HEAVY]));
+        _specibi.add(new Specibus("Stick", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));
 
     }
 

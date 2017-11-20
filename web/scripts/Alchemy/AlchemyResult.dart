@@ -72,9 +72,10 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
        // print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
         modified.traits = new Set<ItemTrait>.from(result.traits);
-        String ret = description(p, []);
         modified.numUpgrades ++;
         result.numUpgrades ++;
+        String ret = description(p, []);
+
         //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
 
         //remove all other items.
