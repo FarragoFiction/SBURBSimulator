@@ -24,9 +24,12 @@ class Strife {
             outerDiv = div;
             String divID = "${div.id}Inner";
             String buttonID = "${div.id}Button";
-            appendHtml(div, "<br><br><button id = '$buttonID' class = 'strifeButton'>View Strife!</button><div style = 'display:none;' id = '$divID'></div>");
-            innerDiv = querySelector("#$divID");
-            ButtonElement button = querySelector("#$buttonID");
+            ButtonElement button = new ButtonElement();
+            button.setInnerHtml("View Strife!");
+            div.append(button);
+            innerDiv = new DivElement();
+            innerDiv.style.display = "none";
+            div.append(innerDiv);
             button.onClick.listen((e) {
                 String display = innerDiv.style.display;
                 ////print("display is $display");

@@ -49,13 +49,9 @@ class LevelTheHellUp extends Scene {
         }
         var boonies = this.getBoonies(player);
         String narration = "";
-        num repeatTime = 1000;
         var divID = (div.id) + "_" + player.id.toString();
-        String narrationHTML = "<br><div id = 'narration" + divID.toString() + "'></div>";
+        Element narrationDiv = new DivElement();
 
-        appendHtml(div, narrationHTML);
-
-        var narrationDiv = querySelector("#narration" + divID);
         //different format for canvas code
 
         if (levelName != null) {

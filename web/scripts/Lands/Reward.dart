@@ -18,9 +18,11 @@ class Reward {
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
         String divID = "canvas${div.id}_${p1.id}";
         //print ("applying base reward, text is $text ");
-        String ret = "$text <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+        String ret = "$text";
         appendHtml(div, ret);
-        Element canvas = querySelector("#$divID");
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
         Element buffer = Drawing.getBufferCanvas(canvas);
         Drawing.drawSinglePlayer(buffer, p1);
         if(image != null ) Drawing.drawWhatever(buffer, image);

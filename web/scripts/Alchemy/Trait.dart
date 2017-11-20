@@ -297,9 +297,9 @@ class ItemTraitFactory {
   static CombinedTrait FLASHBANG;
   static CombinedTrait SMOKEBOMB;
   static CombinedTrait NINJA;
-
-
-
+  static CombinedTrait TECHNO;
+  static CombinedTrait ROCKNROLL;
+  static CombinedTrait PISTOLSHRIMP;
 
 
   static void init() {
@@ -385,10 +385,9 @@ class ItemTraitFactory {
     FLASHBANG = new CombinedTrait(<String>["flashbang"], 0.0, <ItemTrait>[GLOWING, EXPLODEY]);
     SMOKEBOMB = new CombinedTrait(<String>["smokebomb"], 0.0, <ItemTrait>[OBSCURING, EXPLODEY]);
     NINJA = new CombinedTrait(<String>["ninja"], 0.0, <ItemTrait>[OBSCURING, EDGED]);
-
-
-
-
+    TECHNO = new CombinedTrait(<String>["techno"], 0.0, <ItemTrait>[ZAP, MUSICAL]);
+    ROCKNROLL = new CombinedTrait(<String>["rock and roll"], 0.0, <ItemTrait>[STONE, MUSICAL]);
+    PISTOLSHRIMP = new CombinedTrait(<String>["pistol shrimp","horrifying"], 0.0, <ItemTrait>[SENTIENT, FLESH, SHOOTY]);
 
 
 
