@@ -294,6 +294,9 @@ class ItemTraitFactory {
   static CombinedTrait PASSIONATE;
   static CombinedTrait PINATA;
   static CombinedTrait ANVIL;
+  static CombinedTrait FLASHBANG;
+  static CombinedTrait SMOKEBOMB;
+  static CombinedTrait NINJA;
 
 
 
@@ -379,6 +382,12 @@ class ItemTraitFactory {
     PASSIONATE = new CombinedTrait(<String>["passionate"], 0.0, <ItemTrait>[ONFIRE, ROMANTIC]);
     PINATA = new CombinedTrait(<String>["pinata"], 0.0, <ItemTrait>[PAPER, EDIBLE]);
     ANVIL = new CombinedTrait(<String>["anvil"], 0.0, <ItemTrait>[BLUNT, HEAVY, METAL]);
+    FLASHBANG = new CombinedTrait(<String>["flashbang"], 0.0, <ItemTrait>[GLOWING, EXPLODEY]);
+    SMOKEBOMB = new CombinedTrait(<String>["smokebomb"], 0.0, <ItemTrait>[OBSCURING, EXPLODEY]);
+    NINJA = new CombinedTrait(<String>["ninja"], 0.0, <ItemTrait>[OBSCURING, EDGED]);
+
+
+
 
 
 
