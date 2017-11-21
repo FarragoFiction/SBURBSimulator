@@ -199,14 +199,19 @@ class GetWasted extends Scene {
             text = "The ${faq.reader.htmlTitleBasicNoTip()} seems to understand how this bullshit game works. They are reading a FAQ? Huh, I wonder where they found that?";
         }
 
+        Element flavorDiv = new DivElement();
+        flavorDiv.setInnerHtml(text);
         ButtonElement faqButton = new ButtonElement();
         faqButton.setInnerHtml("Read FAQ?");
         Element faqDiv = new DivElement();
+
         //TODO eventually fix this correctly, but i've been doing this all fucking day and i'm tired.
         String faqHTML = faq.makeHtml(); //will also handle making close button
         faqDiv.append(faq.closeButton);
         appendHtml(faqDiv,(faqHTML));
-        div.append(faqButton);
+
+        div.append(flavorDiv);
+        flavorDiv.append(faqButton);
         div.append(faqDiv);
 
         //alright, i've got the intro, and i've got the quirk. what now? well, need to session.logger.info out the phrase and then a link to pop up the faq

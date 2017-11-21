@@ -87,6 +87,7 @@ class Item {
 
     //it's sharp, it's pointy and it's a sword.   so can pick the same trait multiple times and just pick different words? Yes.
     String randomDescription(Random rand) {
+        if(traits.isEmpty) traits.add(ItemTraitFactory.GENERIC); //don't stay empty
         ItemTrait first = rand.pickFrom(traits);
         ItemTrait second = rand.pickFrom(traits);
         ItemTrait third = rand.pickFrom(traits);

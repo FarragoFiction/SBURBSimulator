@@ -103,17 +103,17 @@ class Waste extends SBURBClass {
                 new Quest("A wizened ${Quest.CONSORT} tells the ${Quest.PLAYER1} that they are going to die. Ironically.   In the proximity of some horses.  The ${Quest.PLAYER1} shrugs and keeps updating their highly indulgent meta work. "),
                 new Quest("Glowing letters, three stories tall,  lit by flame, heavy with the weight of prophecy proclaim 'You Are Going To Die. Ironically.   In the Proximity Of Some Horses'. The ${Quest.PLAYER1} wonders if it's like, a metaphor or something?"),
                 new Quest("In a scene predicted by no one, the ${Quest.PLAYER1} dies. In the proximity of some horses. How ironic, that their very demise would be in the proximity of some horses. What? You didn't follow that? Just think it over. Think it over...  Luckily being dead doesn't seem to affect the ${Quest.PLAYER1}'s narrative importance at all.   Hell, are you sure they weren't dead all along? ")//hussie has white ghost eyes the whole session, after all.
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
             ..addFeature(new PostDenizenQuestChain("Die Ironically, In The Proximity Of Some Pigeons", [
                 new Quest("A ${Quest.CONSORT} that is also a SHOGUN minion tells the ${Quest.PLAYER1} that they are going to die. Ironically.   In the proximity of some pigeons.  The ${Quest.PLAYER1} shrugs and keeps updating SBURBSim. "),
                 new Quest("Glowing letters, three stories tall,  lit by flame, heavy with the weight of prophecy proclaim 'You Are Going To Die. Ironically.   In the Proximity Of Some Pigeons'. The ${Quest.PLAYER1} wonders if it's like, a refrance or something they are missing?"),
                 new Quest("In a scene predicted by no one, the ${Quest.PLAYER1} dies. In the proximity of some pigeons. How ironic, that their very demise would be in the proximity of some pigeons. What? You didn't follow that? Just think it over. Think it over...  Luckily being dead doesn't seem to affect the ${Quest.PLAYER1}'s narrative importance at all.   Hell, are you sure they weren't dead all along? ")//hussie has white ghost eyes the whole session, after all.
-            ], new BoonieFraymotifReward(), QuestChainFeature.isJadedResearcher), Feature.WAY_HIGH)
+            ], new FraymotifReward("Hey, is that JR?", "Whoa, shit, it is. I think that means they should just win? Right?"), QuestChainFeature.isJadedResearcher), Feature.WAY_HIGH)
             ..addFeature(new PostDenizenQuestChain("Run The Simulations", [
                 new Quest("Huh. The ${Quest.PLAYER1} has figured out how to run simulations of SBURB? What is even the point? Man, it's a fucking Waste. Maybe there IS no point??? "),
                 new Quest("Okay, revised statement: maybe the point of running simulations is to map out all of Paradox Space? Makes way more sense than just having a big black sheet of paper, right? The ${Quest.PLAYER1} makes a robot doppelganger to go explore areas of Paradox Space that are predicted to have useful features. Huh, looks like it's working!"),
                 new Quest("Welp. Whatever original reason the ${Quest.PLAYER1} had for finding other sessions has fallen by the wayside. They've gotten completely distracted helping out sessions with no alpha and accidentally dooming the fuck out of everyone when they make a typo in some code.   I thought these were just simulations? Fuck Paradox Space. ")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
 
             ..addFeature(new PostDenizenFrogChain("Waste the Frogs", [
                 new Quest("The ${Quest.DENIZEN} explains um. What? Where did the ${Quest.PLAYER1} go?"),
