@@ -375,9 +375,8 @@ class LifeStuff extends Scene {
     }
 
     void helpPlayerCommuneDead(Element div, Player player1, Player player2) {
-        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
-        appendHtml(div, "<div id =$divID></div>");
-        Element childDiv = querySelector("#$divID");
+        Element childDiv = new DivElement();
+        div.append(childDiv);
         String text = "";
         if (player1.class_name == SBURBClassManager.SEER) {
             text = "$text${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} guides the ${player2.htmlTitleBasic()} to seek knowledge from the dead. ";
@@ -446,9 +445,9 @@ class LifeStuff extends Scene {
 
     void helpPlayerDrainDeadForPower(Element div, Player player1, Player player2) {
         ////session.logger.info("help drain dead for power: "+ player1.titleBasic() + this.session.session_id);
-        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
-        appendHtml(div, "<div id =$divID></div>");
-        Element childDiv = querySelector("#$divID");
+
+        Element childDiv = new DivElement();
+        div.append(childDiv);
         String text = "${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} allows the ${player2.htmlTitleBasic()} to take power from the dead. ";
 
         CanvasElement canvas = this.drainDeadForPower(childDiv, text, player2, true);
@@ -506,9 +505,8 @@ class LifeStuff extends Scene {
     }
 
     void helpDrainDeadForReviveSelf(Element div, Player player1, Player player2) {
-        String divID = "${div.id}_communeDeadWithGuide${player1.id}";
-        appendHtml(div, "<div id =$divID></div>");
-        Element childDiv = querySelector("#$divID");
+        Element childDiv = new DivElement();
+        div.append(childDiv);
         String text = "${this.ghostPsionics(player1)} The ${player1.htmlTitleBasic()} assists the ${player2.htmlTitleBasic()}. ";
 
         CanvasElement canvas = this.drainDeadForReviveSelf(childDiv, text, player2, player1.class_name, player1.aspect);

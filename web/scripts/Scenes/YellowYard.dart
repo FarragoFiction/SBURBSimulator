@@ -18,6 +18,9 @@ class YellowYard extends Scene {
 	}
 
 	void yellowYardTime(Element div) {
+		// there's too much dom shit in here to justify refactoring, and it won't speed shit up much to do so
+		//TODO but i need to see if i'm using any seeds here. mindfield will matter here.
+		if(doNotRender) return;
 		if(this.session.mutator.mindField) {
 			//old man JR shakes their fist at those damn punk kids who won't stay away from their Yard.
 			div.appendHtml("... What. Where the fuck is my Yard? God DAMN those n00b Wastes of Mind. What the fuck is WRONG WITH THEM? Don't they know they need to stay the fuck away from my Yard? Go use their fucking Cataclysm. See if I care.  Today is the day you fuck shit up forever.");
@@ -25,18 +28,21 @@ class YellowYard extends Scene {
 		}
 		this.session.stats.yellowYard = true;
 
-		Element div2 = null;
-		String tmp = "<div id = 'yyholder'></div><bR>";
-		appendHtml(div, tmp);
-		div2 = querySelector("#yyholder");
+
+		Element div2 = new DivElement();
+		div.append(div2);
 		//this.timePlayer.wasteInfluenced = true; //can't go back now. shit, yes you can scratch
 		Player time = this.getDoomedTimeClone();
 
 		time.influenceSymbol = "mind_forehead.png";
 		//String html = "<img src = 'images/yellow_yard.png'>";
-		String html = "<div id = 'fthwall' style='background:url(images/4thwall.png); width:1000px; height:521px;'>";
-		appendHtml(div2, html);
-		querySelector("#fthwall").onClick.listen((Event e) {
+
+		Element tmpDiv = new DivElement();
+		tmpDiv.style.background = "background:url(images/4thwall.png)";
+		tmpDiv.style.width = "1000px";
+		tmpDiv.style.height = "521px";
+		div2.append(tmpDiv);
+		tmpDiv.onClick.listen((Event e) {
 			//helloWorld();
 			String html = "<div id = 'yellow_yard.png' style='background:url(images/yellow_yard.png); width:1000px; height: 521px'>";
 			yyrEventsGlobalVar = session.importantEvents;
