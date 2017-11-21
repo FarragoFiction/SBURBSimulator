@@ -21,7 +21,7 @@ import "../navbar.dart";
 
 //thing that creates the canvas happens before drawing can be a thing
 //keep track of the methods you'll need to call for drawing to happen once appendHTML is called.
-typedef DrawingMethod(String canvasID, List<Player> players);
+typedef DrawingMethod(CanvasElement canvasID, List<Player> players);
 
 class GetWasted extends Scene {
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
@@ -294,10 +294,9 @@ class GetWasted extends Scene {
             }
         }
 
-        String divID = "gnosis3${div.id}player${player.id}";
-        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
-
-        drawingMethods.add(new DrawMethodWithParameter(drawGodTiers,divID, fledglingGods));
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
+        drawingMethods.add(new DrawMethodWithParameter(drawGodTiers,canvas, fledglingGods));
         return ret;
     }
 
@@ -327,10 +326,10 @@ class GetWasted extends Scene {
             doomedTimeClones.add(doomedTimeClone);
 
         }
-        String divID = "gnosis3${div.id}player${player.id}";
-        ret += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
 
-        drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,divID, doomedTimeClones));
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
+        drawingMethods.add(new DrawMethodWithParameter(drawPoseAsTeam,canvas, doomedTimeClones));
         return ret;
 
     }
@@ -417,24 +416,25 @@ class GetWasted extends Scene {
                 if(player.aspect == Aspects.LIFE) subRet = "They kill the ${p.htmlTitle()} then revive them with a huge bonus from absorbing their own ghost.";
 
                 String divID = "gnosis3${div.id}player${p.id}";
-                subRet += "<br><canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+                CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+                div.append(canvas);
                 //picture shown differs based on method.
                 if(p.dreamSelf && !p.isDreamSelf && p != player) { //corpse smooch
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
-                    drawingMethods.add(new DrawMethodWithParameter(drawCorpseSmooch,divID, [p, player]));
+                    drawingMethods.add(new DrawMethodWithParameter(drawCorpseSmooch,canvas, [p, player]));
                     p.makeAlive();
                     ret += subRet;
                 }else if(p.godTier) { //they will god tier revive
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
-                    drawingMethods.add(new DrawMethodWithParameter(drawGodRevive,divID,[p, player]));
+                    drawingMethods.add(new DrawMethodWithParameter(drawGodRevive,canvas,[p, player]));
                     p.makeAlive();
                     ret += subRet;
                 }else if(player != player && ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
                     p.prophecy = ProphecyState.ACTIVE;
                     p.makeDead("exploiting SBURB mechanics");
-                    drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,divID,[p, ghost, player]));
+                    drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,canvas,[p, ghost, player]));
                     p.makeAlive();
                     ret += subRet;
                 }
@@ -444,35 +444,35 @@ class GetWasted extends Scene {
     }
 
 
-    void drawGodTiers(String canvasID, List<Player> players) {
-        Drawing.drawGetTiger(querySelector("#${canvasID}"), players);
+    void drawGodTiers(CanvasElement canvas, List<Player> players) {
+        Drawing.drawGetTiger(canvas, players);
     }
 
-    void drawPoseAsTeam(String canvasID, List<Player> players) {
-        Drawing.poseAsATeam(querySelector("#${canvasID}"), players);
+    void drawPoseAsTeam(CanvasElement canvas, List<Player> players) {
+        Drawing.poseAsATeam(canvas, players);
     }
 
     ///first player is corpse, second is smoocher
-    void drawCorpseSmooch(String canvasID, List<Player> players) {
-        Drawing.drawCorpseSmooch(querySelector("#${canvasID}"), players[0], players[1]);
+    void drawCorpseSmooch(CanvasElement canvas, List<Player> players) {
+        Drawing.drawCorpseSmooch(canvas, players[0], players[1]);
     }
 
     ///first player is corpse,second is ghost, third is player
-    void drawGodRevive(String canvasID, List<Player> players) {
-        Drawing.drawGodRevival(querySelector("#${canvasID}"), [players[0]], []);
+    void drawGodRevive(CanvasElement canvas, List<Player> players) {
+        Drawing.drawGodRevival(canvas, [players[0]], []);
     }
 
     ///first player is corpse, second is ghost wrangler
-    void drawGhostRevive(String canvasID, List<Player> players) {
-        CanvasElement canvas = Drawing.drawReviveDead(querySelector("#${canvasID}"), players[0], players[1], players[2].aspect);
+    void drawGhostRevive(CanvasElement canvasDiv, List<Player> players) {
+        CanvasElement canvas = Drawing.drawReviveDead(canvasDiv, players[0], players[1], players[2].aspect);
 
         CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer, players[2]);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
     }
 
-    void drawTier4(String canvasID, List<Player> players) {
-        Drawing.drawEpicGodShit(querySelector("#${canvasID}"), players[0]);
+    void drawTier4(CanvasElement canvas, List<Player> players) {
+        Drawing.drawEpicGodShit(canvas, players[0]);
     }
 
 
@@ -531,20 +531,21 @@ class GetWasted extends Scene {
             appendHtml(div, "$rant");
             return;
         }
+
         session.stats.hasTier4Events = true;
-        String divID = "tier4${div.id}${player.id}";
         String rant = "<Br><Br>Wait. What? Oh my fuck. Some asshole waste is fucking around in my code. Don't they know how dangerous that is??? God, if shit crashes, it's on them.";
         if(player.class_name == SBURBClassManager.GRACE) rant = "Bluh.  I don't trust that Grace in my code one bit. But I guess they ARE supposed to be more subtle than us Wastes....so....Maybe things WON'T crash?";
         if(player.class_name != SBURBClassManager.GRACE && player.class_name != SBURBClassManager.WASTE) rant = "... Oh. Fuck.  What the hell is a ${player.class_name.name.toUpperCase()} doing in my code. How did this even happen. Don't come crying to me when they fuck things up.";
-        appendHtml(div, "$rant<canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>${player.aspect.activateCataclysm(session, player)}");
+        appendHtml(div, "$rant");
         session.mutator.checkForCrash(session);
-        drawingMethods.add(new DrawMethodWithParameter(drawTier4,divID,[player]));
+        CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvas);
+        appendHtml(div,"${player.aspect.activateCataclysm(session, player)}");
+
+
+        drawingMethods.add(new DrawMethodWithParameter(drawTier4,canvas,[player]));
         drawAll();
 
-        //TODO do I want any generic graphic here?
-
-        //hell yes, tier 4, bitches.
-        //TODO for void have ALL stats set to true, even if contradictory. can't use AB to get a read on the session. Number stats become obvious lies.
     }
 
     //i have been keeping track of every canvas i have created. now that it's appended, draw them.
@@ -558,7 +559,7 @@ class GetWasted extends Scene {
 
 class DrawMethodWithParameter {
     DrawingMethod method;
-    String parameter;
+    CanvasElement parameter;
     List<Player> players;
     DrawMethodWithParameter(this.method, this.parameter, this.players);
 

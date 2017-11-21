@@ -616,6 +616,7 @@ class SessionMutator {
         time.setStat(Stats.CURRENT_HEALTH, time.getStat(Stats.HEALTH));
 
         time.influenceSymbol = "mind_forehead.png";
+        if(doNotRender) return;
         //String html = "<img src = 'images/yellow_yard.png'>";
         String html = "<div id = 'fthwall' style='background:url(images/hacked4thwall.png); width:1000px; height:521px;'>";
         appendHtml(div2, html);
@@ -676,8 +677,8 @@ class SessionMutator {
     }
 
     void renderEndButtons(Element div) {
-        if(timeField) renderTimeButton(div);
-        if(spaceField) renderSpaceButton(div);  //TODO make sure scratches ALSO act as combo sessions.
+        if(timeField && !doNotRender) renderTimeButton(div);
+        if(spaceField && !doNotRender) renderSpaceButton(div);  //TODO make sure scratches ALSO act as combo sessions.
     }
 
 

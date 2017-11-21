@@ -176,7 +176,7 @@ abstract class SimController {
         checkSGRUB();
         if(curSessionGlobalVar.mutator.spaceField) {
             window.scrollTo(0, 0);
-            querySelector("#charSheets").setInnerHtml("");
+            //querySelector("#charSheets").setInnerHtml(""); //don't do query selector shit anymore for speed reasons.
             SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
         }
         load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
