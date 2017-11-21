@@ -46,7 +46,7 @@ class Romantic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Set the Mood", [
                 new Quest("The ${Quest.PLAYER1} finds what seems to be the only place on this entire planet that isn't beautifully decorated. What's even going on? A nearby ${Quest.CONSORT} explains that they ran into a bit of Artists block and just don't know how to make this area seem fancy enough.  Will the ${Quest.PLAYER1} be able to rise to meet the challenge?"),
                 new Quest("The ${Quest.PLAYER1} is collecting all sort of things, especially ${Quest.PHYSICALMCGUFFIN}s, to decorate the Boring Section. "),
-                new Quest(" The ${Quest.PLAYER1} tries a few different ideas out, but finally, the Boring Section is finally as beautiful as the rest of the planet. ${Quest.CONSORT}'s immediatly use it for a popular date spot. ")
+                new Quest(" The ${Quest.PLAYER1} tries a few different ideas out, but finally, the Boring Section is finally as beautiful as the rest of the planet. ${Quest.CONSORT}s immediately use it for a popular date spot. ")
             ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
