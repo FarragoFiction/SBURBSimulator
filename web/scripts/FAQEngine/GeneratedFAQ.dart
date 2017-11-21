@@ -38,7 +38,11 @@ class GeneratedFAQ {
     }
 
     //TODO better be courier new, bro
-    String makeHtml() {
+    Element makeHtml() {
+        Element ret = new DivElement();
+        ret.classes.add("FAQ");
+
+
         int amount = 10;
        // //print("I'm making html for a generated faq with ${sections.length} sections");
         Quirk q = author.quirk;
@@ -47,14 +51,26 @@ class GeneratedFAQ {
         closeButton = new ButtonElement();
         closeButton.setInnerHtml("X");
         closeButton.classes.add("red_x");
-        String ret =  "<div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
+
+        Element innerFAQ = new DivElement();
+        innerFAQ.classes.add("innerFAQ");
+
+        Element ascii = new DivElement();
+        ascii.classes.add("ascii");
+        String bodyHtml = "<Br><Br><center>By ${author.chatHandle}</center>";
+        ascii.setInnerHtml(asciiHeader);
+        //String ret =  "<div class='innerFAQ'><br><br><div class = 'ascii'>$asciiHeader</div><Br><Br><center>By ${author.chatHandle}</center>";
         for(FAQSection s in sections) {
             String header ="${symbol*amount}${q.translate(s.header)}";
             header.replaceAll("\n", ""); //no new lines in header plz
             String computedBody = q.translate(s.body);
             if(grimDark && rand.nextBool()) computedBody = Zalgo.generate(computedBody);
-            ret = "$ret <br><Br>${header}${symbol*amount}<br><br>${computedBody}<br><Br>";
+            bodyHtml = "$bodyHtml <br><Br>${header}${symbol*amount}<br><br>${computedBody}<br><Br>";
         }
-        return "<div class = 'FAQ'>$ret</div></div>";
+
+        innerFAQ.setInnerHtml(bodyHtml);
+        ret.append(closeButton);
+        ret.append(innerFAQ);
+        return ret;
     }
 }

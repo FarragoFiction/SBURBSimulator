@@ -205,10 +205,8 @@ class GetWasted extends Scene {
         faqButton.setInnerHtml("Read FAQ?");
         Element faqDiv = new DivElement();
 
-        //TODO eventually fix this correctly, but i've been doing this all fucking day and i'm tired.
-        String faqHTML = faq.makeHtml(); //will also handle making close button
-        faqDiv.append(faq.closeButton);
-        appendHtml(faqDiv,(faqHTML));
+        Element faqHTML = faq.makeHtml(); //will also handle making close button
+        faqDiv.append(faqHTML);
 
         div.append(flavorDiv);
         flavorDiv.append(faqButton);
