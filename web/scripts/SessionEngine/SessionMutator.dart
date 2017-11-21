@@ -471,7 +471,7 @@ class SessionMutator {
         spawnQueen(s);
         spawnKing(s);
         spawnJack(s);
-        hopePlayer.land.denizenFeature.name = "A small toy snake";
+        if(hopePlayer.land != null) hopePlayer.land.denizenFeature.name = "A small toy snake";
         //hopePlayer.denizen.setStat(Stats.POWER, 1);
         //hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH, 1);
         ret += "Their enemies are made into ridiculous non-threats. ";

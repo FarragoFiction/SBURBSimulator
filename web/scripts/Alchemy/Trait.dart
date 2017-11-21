@@ -300,6 +300,16 @@ class ItemTraitFactory {
   static CombinedTrait TECHNO;
   static CombinedTrait ROCKNROLL;
   static CombinedTrait PISTOLSHRIMP;
+  static CombinedTrait JUGGALO;
+  static CombinedTrait SHOCKSAUCE;
+  static CombinedTrait WEAKSAUCE;
+  static CombinedTrait SPICY;
+  static CombinedTrait ICECREAM;
+  static CombinedTrait SCHEZWAN;
+  static CombinedTrait VAPORWAVE;
+  static CombinedTrait MALLET;
+
+
 
 
   static void init() {
@@ -333,7 +343,7 @@ class ItemTraitFactory {
     GUM = new CombinedTrait(<String>["gummy"], 0.0, <ItemTrait>[EDIBLE, RUBBER]);
     MARROW = new CombinedTrait(<String>["gummy"], 0.0, <ItemTrait>[EDIBLE, BONE]);
     TOOTHY = new CombinedTrait(<String>["toothy"], 0.0, <ItemTrait>[BONE, CERAMIC]);
-    EDIBLEPOISON  = new CombinedTrait(<String>["arsenic"], 0.0, <ItemTrait>[EDIBLE, POISON]);
+    EDIBLEPOISON  = new CombinedTrait(<String>["arsenic","antifreeze"], 0.0, <ItemTrait>[EDIBLE, POISON]);
     CRYSTAL  = new CombinedTrait(<String>["crystal","diamond","quartz"], 0.0, <ItemTrait>[STONE, GLASS]);
     MARYSUE  = new CombinedTrait(<String>["mary sue","sakura katana chan","shitty oc"], 0.0, <ItemTrait>[PRETTY, ROMANTIC,FUNNY, SMART, CLASSY, LUCKY, MAGICAL]);
     EDGELORD  = new CombinedTrait(<String>["edge lord","coldsteel the hedgehog"], 0.0, <ItemTrait>[SCARY, OBSCURING, EDGED,LEGENDARY, DOOMED, SMART, CLASSY,COOLK1D]);
@@ -388,9 +398,14 @@ class ItemTraitFactory {
     TECHNO = new CombinedTrait(<String>["techno"], 0.0, <ItemTrait>[ZAP, MUSICAL]);
     ROCKNROLL = new CombinedTrait(<String>["rock and roll"], 0.0, <ItemTrait>[STONE, MUSICAL]);
     PISTOLSHRIMP = new CombinedTrait(<String>["pistol shrimp","horrifying"], 0.0, <ItemTrait>[SENTIENT, FLESH, SHOOTY]);
-
-
-
+    JUGGALO = new CombinedTrait(<String>["pistol shrimp","horrifying"], 0.0, <ItemTrait>[FUNNY, MUSICAL, LOUD]);
+    SHOCKSAUCE = new CombinedTrait(<String>["shocksauce"], 0.0, <ItemTrait>[COOLK1D, ZAP]);
+    WEAKSAUCE = new CombinedTrait(<String>["weaksauce"], 0.0, <ItemTrait>[COOLK1D, SHITTY]);
+    SPICY = new CombinedTrait(<String>["spicy","picante"], 0.0, <ItemTrait>[ONFIRE, EDIBLE]);
+    ICECREAM = new CombinedTrait(<String>["ice cream","popsicle"], 0.0, <ItemTrait>[COLD, EDIBLE]);
+    SCHEZWAN = new CombinedTrait(<String>["schezwan"], 0.0, <ItemTrait>[COOLK1D, EDIBLE]);
+    VAPORWAVE = new CombinedTrait(<String>["vaporwave"], 0.0, <ItemTrait>[OBSCURING, MUSICAL,COOLK1D, ZAP]);
+    MALLET = new CombinedTrait(<String>["vaporwave"], 0.0, <ItemTrait>[WOOD,BLUNT]);
   }
 
   static void initObjects() {

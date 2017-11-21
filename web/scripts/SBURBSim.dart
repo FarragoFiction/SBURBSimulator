@@ -331,6 +331,7 @@ window.addEventListener("error", (e) {
 
 void crashEasterEgg(String url) {
     CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+    canvas.classes.add("void");
     SimController.instance.storyElement.append(canvas);
     String chat = "";
     chat += "RS: We are gathered here today in loving memory of- \n";
