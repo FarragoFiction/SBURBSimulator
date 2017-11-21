@@ -8,9 +8,23 @@ Appropriately for AND combining, an && alchemy result will often demonstrate the
  */
 
 abstract class ItemTrait {
+  static int DEFAULT = 0;
+  static int OPINION = 1;
+  static int SIZE = 2;
+  static int SHAPE = 3;
+  static int CONDITION = 4;
+  static int AGE = 5;
+  static int COLOR = 6;
+  static int PATTERN = 7;
+  static int ORIGIN = 8;
+  static int MATERIAL = 9;
+  static int PURPOSE = 10;
+
+  //what kind of adj am i, what order should i be displayed?
+  int ordering;
   List<String> descriptions = new List<String>();
   double rank = 1.0;
-  ItemTrait(List<String> this.descriptions, this.rank) {
+  ItemTrait(List<String> this.descriptions, this.rank, [this.ordering = 0]) {
     ItemTraitFactory.allTraits.add(this);
   }
 
@@ -18,6 +32,11 @@ abstract class ItemTrait {
   String toString() {
     if(this.descriptions.isNotEmpty) return this.descriptions.first;
     return "NULL TRAIT";
+  }
+
+  //not natural though, cuz combined trait is diff
+  int compareOrdering(ItemTrait other) {
+    return (ordering - other.ordering).round(); //do lower numbers first.
   }
 
 

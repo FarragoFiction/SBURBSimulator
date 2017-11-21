@@ -48,6 +48,19 @@ void init() {
     makeStatsDisplay();
 }
 
+void cheatShowPossibilities(Item item1, Item item2) {
+   List<AlchemyResult> results =  AlchemyResult.planAlchemy(<Item>[item1, item2]);
+   results.sort();
+   resultDiv.setInnerHtml("");
+   for(AlchemyResult result in results) {
+       String type = "AND";
+       if(result is AlchemyResultXOR) type = "XOR";
+       if(result is AlchemyResultOR) type = "OR";
+       resultDiv.appendHtml("<br><br>Type: $type <br>");
+       resultDiv.append(renderItemStats(result.result));
+   }
+}
+
 void makeAlchemyButton() {
     ButtonElement button = querySelector("#alchemyButton");
     button.onClick.listen((e) {
@@ -119,9 +132,12 @@ void makeDropDowns() {
     firstItemSelect = genericDropDown(item1SelSpot, player.sylladex,  "First Item");
     firstItemSelect.onChange.listen((e) {
         Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
+        Item item2 = findItemNamed(secondItemSelect.selectedOptions[0].value);
+
         item1TraitsDiv.remove();
         item1TraitsDiv = (renderItemStats(item));
         item1Div.append(item1TraitsDiv);
+        cheatShowPossibilities(item, item2);
     });
 
     if(operatorSelect != null) operatorSelect.remove();
@@ -133,9 +149,12 @@ void makeDropDowns() {
 
     secondItemSelect.onChange.listen((e) {
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
+        Item item2 = findItemNamed(firstItemSelect.selectedOptions[0].value);
+
         item2TraitsDiv.remove();
         item2TraitsDiv = (renderItemStats(item));
         item2Div.append(item2TraitsDiv);
+        cheatShowPossibilities(item2, item);
     });
 }
 

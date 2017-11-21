@@ -48,6 +48,8 @@ class Item {
 
     Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
     Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
+    Iterable<CombinedTrait> get combinedTraits => traits.where((ItemTrait a) => (a is CombinedTrait));
+
 
     String get fullName {
         String ret = "";
@@ -82,6 +84,13 @@ class Item {
     Item(String this.baseName,List<ItemTrait> traitsList) {
         traits = new Set.from(traitsList);
         if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
+        Set<CombinedTrait> ct = new Set.from(combinedTraits);
+        //if i have any combined traits in me, just use the sub traits.
+        for(CombinedTrait it in ct) {
+            traits.addAll(it.subTraits);
+            traits.remove(it);
+        }
+
         Item.allUniqueItems.add(this);
     }
 
