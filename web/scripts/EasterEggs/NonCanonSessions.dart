@@ -684,6 +684,9 @@ abstract class NonCanonSessions {
             //Chrena
             player.copyFromOCDataString("b=%00%00%00%17%C3%B9f%10J%02%02%25&s=,,Mysteries,Detectives,abroachedPervestigator&x=AQ==");
             player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("44.magnum", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]);
             player.object_to_prototype = new PotentialSprite("Owldad", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
@@ -694,104 +697,143 @@ abstract class NonCanonSessions {
             player.quirk.suffix = "";
             player.moon = curSessionGlobalVar.prospit;
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Caves and Rain";
+            player.land.denizenFeature = new DenizenFeature('Synesis');
+            player.land.consortFeature = new ConsortFeature('Eagle', 'screech');
 
         }else if(index == 1){
             //augora
             player.copyFromOCDataString("b=%00%00%00%C2%BA%C3%BE%C2%85%10Z%24%24(&s=,,Knitting,Cults,angelicThroes&x=AQ==");
             player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Iron", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+
             player.object_to_prototype = new PotentialSprite("Sheepmom", s);
             player.sprite.addPrototyping(player.object_to_prototype);
-            player.quirk.capitalization = Quirk.NORMALCAPS;
-            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.capitalization = Quirk.NOCAPS;
+            player.quirk.punctuation = Quirk.ENDPUNC;
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["a","/\\"],["t","+"]];
             player.quirk.prefix = "";
             player.moon = curSessionGlobalVar.prospit;
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Cherished Hymns and Reason";
+            player.land.denizenFeature = new DenizenFeature('Ecclesia');
+            player.land.consortFeature = new ConsortFeature('Dove', 'coo');
 
         }else if(index == 2){
             //karsyn
             player.copyFromOCDataString("b=%00%00%00!%C3%B7%C2%A5%10%05%3B%3B%3C&s=,,Programming,Online Trolling,perspicaciousAlieniloquy&x=AQ==");
             player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Machete", ItemTraitFactory.BLADE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
+
             player.object_to_prototype = new PotentialSprite("Crowdad", s);
             player.sprite.addPrototyping(player.object_to_prototype);
-            player.quirk.capitalization = Quirk.NORMALCAPS;
-            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.capitalization = Quirk.NOCAPS;
+            player.quirk.punctuation = Quirk.NOPUNC;
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["o","0"],["i","1"],["l","1"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = curSessionGlobalVar.derse;
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Mountains and Robots";
+            player.land.denizenFeature = new DenizenFeature('Patrikos');
+            player.land.consortFeature = new ConsortFeature('RoboPigeons', 'coo');
 
         }else if(index == 3){ //lalnah does not have psionics
             player.copyFromOCDataString("b=%00%00%00h%C3%B0(%10%1055.&s=,,Literature,Cooking,transientTechnicality&x=AQ==");
             player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Shotgun", ItemTraitFactory.SHOTGUN, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]);
+
             player.object_to_prototype = new PotentialSprite("Batdad", s);
             player.sprite.addPrototyping(player.object_to_prototype);
-            player.quirk.capitalization = Quirk.NORMALCAPS;
-            player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.capitalization = Quirk.NOCAPS;
+            player.quirk.punctuation = Quirk.NOPUNC;
+            player.fraymotifs.clear();
+            player.quirk.lettersToReplace = [["o","O"]];
+            player.quirk.lettersToReplaceIgnoreCase = [["v",">"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = curSessionGlobalVar.derse;
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Echoes and Haze";
+            player.land.denizenFeature = new DenizenFeature('Sige');
+            player.land.consortFeature = new ConsortFeature('Raven', 'caw');
 
         }else if(index == 4) {
-            //Lalnah pyrokinetic, HorrorTerror Whispers
+            // pyrokinetic, HorrorTerror Whispers
             player.copyFromOCDataString("b=%00%00%009%C3%B2T%10G((%20&s=,,Fighting,Survival,persistentPaletot&x=AQ==");
             player.deriveSprite = false;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
             player.object_to_prototype = new PotentialSprite("Cricketdad", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+
+
+            Fraymotif f = new Fraymotif("Pyrokinesis", 1);
+            f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+            f.desc = " Who knew shaving cream was so flammable? ";
+            player.fraymotifs.add(f);
+
+            f = new Fraymotif("Horrorterror Whispers", 1);
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, false));
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true));
+            f.desc = " Uses dark knowledge as a defense against mind control. ";
+            player.fraymotifs.add(f);
+
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["w","\|\|"],["y","\|"],["e","[["]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.moon = curSessionGlobalVar.prospit;
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Construction and Fistfights";
+            player.land.denizenFeature = new DenizenFeature('Acinetos');
+            player.land.consortFeature = new ConsortFeature('Magpie', 'screech');
 
         }else if(index == 5){
             //ghost communing, Mortae
             player.copyFromOCDataString("b=%00%00%00%03%C3%B3%7D%10%13%11%11%0E&s=,,Undead,Archaeology,palingeneticMortician&x=AQ==");
             player.deriveSprite = false;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+
+            Fraymotif f = new Fraymotif( "Ghost Communing", 1);
+            f.effects.add(new FraymotifEffect(Stats.SANITY,3,true));
+            f.effects.add(new FraymotifEffect(Stats.SANITY,3,false));
+            f.desc = " The souls of the dead start hassling all enemies. ";
+            player.fraymotifs.add(f);
             player.object_to_prototype = new PotentialSprite("Vulturemom", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
-            player.quirk.prefix = "";
+            player.specibus = new Specibus("Urn", ItemTraitFactory.BUST, [ ItemTraitFactory.CERAMIC, ItemTraitFactory.BLUNT]);
+            player.quirk.lettersToReplaceIgnoreCase = [["o","-0-"]];
+            player.quirk.prefix = "--{{:} ";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = curSessionGlobalVar.derse;
             player.land = player.spawnLand();
-            player.land.name = "Land of Paths and Tea";
-            player.land.denizenFeature = new DenizenFeature('Odin');
-            player.land.consortFeature = new ConsortFeature('Chicken', 'cluck');
+            player.land.name = "Land of Slums and Resonance";
+            player.land.denizenFeature = new DenizenFeature('Sermo');
+            player.land.consortFeature = new ConsortFeature('Vultures', 'sqwuak');
 
         }else if(index == 6){
             //Kierdn
             player.copyFromOCDataString("b=%00%00%00%C2%AB%C3%BAU%10%03%13%15%06&s=,,Murder,Status,adoniseAbdicator&x=AQ==");
             player.deriveSprite = false;
             player.deriveSpecibus = false;
+            player.fraymotifs.clear();
             player.specibus = new Specibus("Switchblade", ItemTraitFactory.RAZOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
 
             player.object_to_prototype = new PotentialSprite("Eeldad", s);
@@ -811,6 +853,7 @@ abstract class NonCanonSessions {
         }else if(index == 7){
             player.copyFromOCDataString("b=%00%00%00%C2%90%C3%B6f%10V%3D%3D%04&s=,,Revolution,Equality,malcontentMarionette&x=AQ==");
             player.deriveSprite = false;
+            player.fraymotifs.clear();
             player.deriveSpecibus = false;
             player.specibus =  new Specibus("Chain", ItemTraitFactory.CHAIN, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]);
             player.moon = curSessionGlobalVar.derse;
