@@ -104,10 +104,10 @@ class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
 class ItemTraitFactory {
   static Set<ItemTrait> allTraits = new Set<ItemTrait>();
 
-  static Iterable<ItemFunctionTrait> get functionalTraits => allTraits.where((ItemTrait a) => (a is ItemFunctionTrait));
-  static Iterable<ItemFunctionTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait && !(a is ItemObjectTrait)));
-  static Iterable<ItemFunctionTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
-  static Iterable<CombinedTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
+  static Iterable<ItemTrait> get functionalTraits => allTraits.where((ItemTrait a) => (a is ItemFunctionTrait));
+  static Iterable<ItemTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait && !(a is ItemObjectTrait)));
+  static Iterable<ItemTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
+  static Iterable<ItemTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
 
 
   //these are what shape it has? doubles as both specibus kinds and basic objects.

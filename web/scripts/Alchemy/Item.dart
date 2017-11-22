@@ -50,9 +50,9 @@ class Item {
         return ret;
     }
 
-    Iterable<ItemFunctionTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
-    Iterable<ItemAppearanceTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
-    Iterable<CombinedTrait> get combinedTraits => traits.where((ItemTrait a) => (a is CombinedTrait));
+    Iterable<ItemTrait> get functionalTraits => traits.where((ItemTrait a) => (a is ItemFunctionTrait));
+    Iterable<ItemTrait> get appearanceTraits => traits.where((ItemTrait a) => (a is ItemAppearanceTrait));
+    Iterable<ItemTrait> get combinedTraits => traits.where((ItemTrait a) => (a is CombinedTrait));
 
 
     String get fullName {
