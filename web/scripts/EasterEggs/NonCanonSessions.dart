@@ -17,6 +17,14 @@ abstract class NonCanonSessions {
         makeASessionFromSource(session404IndexToPlayer, numPlayers);
         //TODO make relationships
         curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+        Player ap  = curSessionGlobalVar.players[0];
+        Player at = curSessionGlobalVar.players[1];
+        Player pa = curSessionGlobalVar.players[2];
+        Player tt = curSessionGlobalVar.players[3];
+        Player pp  = curSessionGlobalVar.players[4];
+        Player pm = curSessionGlobalVar.players[5];
+        Player aa = curSessionGlobalVar.players[6];
+        Player mm = curSessionGlobalVar.players[7];
     }
 
 
