@@ -375,7 +375,17 @@ class ItemTraitFactory {
   static CombinedTrait GUSHERS;
   static CombinedTrait MEDIC;
   static CombinedTrait SICKNASTY;
-
+  static CombinedTrait GILDED;
+  static CombinedTrait CHARGING;
+  static CombinedTrait SAFETY1;
+  static CombinedTrait SAFETY2;
+  static CombinedTrait THUNDER;
+  static CombinedTrait SCREECHING;
+  static CombinedTrait MIRROR;
+  static CombinedTrait CRYSTALBALL;
+  static CombinedTrait DISABLING;
+  static CombinedTrait FASHIONABLE;
+  static CombinedTrait HAUTE;
 
   static void init() {
     initAppearances();
@@ -531,6 +541,18 @@ class ItemTraitFactory {
     GUSHERS = new CombinedTrait(<String>["gushers"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[HEALING, EDIBLE]);
     MEDIC = new CombinedTrait(<String>["medic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING, SHOOTY]);
     SICKNASTY = new CombinedTrait(<String>["sick nasty","ill"], 0.0,ItemTrait.CONDITION, <ItemTrait>[COOLK1D, POISON]);
+    GILDED = new CombinedTrait(<String>["gilded","gold leaf"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL, WOOD]);
+    CHARGING = new CombinedTrait(<String>["charging","power cord"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PLASTIC, ZAP]);
+    SAFETY1 = new CombinedTrait(<String>["safety"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, EDGED]);
+    SAFETY2 = new CombinedTrait(<String>["safety"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PLASTIC, EDGED]);
+    THUNDER = new CombinedTrait(<String>["thunderous","thor's"], 0.0,ItemTrait.OPINION, <ItemTrait>[LOUD, ZAP]);
+    SCREECHING = new CombinedTrait(<String>["screeching","dial up"], 0.0,ItemTrait.OPINION, <ItemTrait>[LOUD, ZAP,SMART]);
+    MIRROR = new CombinedTrait(<String>["mirrored","reflective"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[GLASS, METAL]);
+    CRYSTALBALL = new CombinedTrait(<String>["far seeing","sighted"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[GLASS, STONE, MAGICAL]);
+    DISABLING = new CombinedTrait(<String>["disabling","non lethal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, SHOOTY]);
+    FASHIONABLE = new CombinedTrait(<String>["fasionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
+    HAUTE = new CombinedTrait(<String>["haute couture"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY,VALUABLE]);
+
 
   }
 
@@ -634,7 +656,7 @@ class ItemTraitFactory {
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "comedy"], 0.1,ItemTrait.OPINION);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1,ItemTrait.OPINION);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6,ItemTrait.OPINION);
-    PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "fashionable", "beautiful"], 0.1,ItemTrait.OPINION);
+    PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "beautiful"], 0.1,ItemTrait.OPINION);
     HEALING = new ItemFunctionTrait(["healing", "regenerating", "recovery", "life"], 0.3,ItemTrait.PURPOSE);
     UNCOMFORTABLE = new ItemFunctionTrait(["uncomfortable", "hard","unpleasant"], 0.1,ItemTrait.OPINION);
 
