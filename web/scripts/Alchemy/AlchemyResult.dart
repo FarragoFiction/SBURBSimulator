@@ -92,9 +92,8 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     //alchemy results are naturally sorted by the power of the items they produce.
     @override
     int compareTo(AlchemyResult other) {
-        int ret = (other.result.rank*100 - result.rank*100).round();
        // print("trying to sort ${this} against ${other}, ret is $ret. other value was ${other.result.rank}, my value was ${result.rank}  ");
-        return ret; //higher numbers first
+        return (other.result.rank - result.rank).sign.round(); //higher numbers first
     }
 
     ///returns a list of all possible alchemy types between these two items.

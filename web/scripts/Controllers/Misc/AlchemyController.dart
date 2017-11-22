@@ -137,7 +137,7 @@ void makeDropDowns() {
         item1TraitsDiv.remove();
         item1TraitsDiv = (renderItemStats(item));
         item1Div.append(item1TraitsDiv);
-        cheatShowPossibilities(item, item2);
+       // cheatShowPossibilities(item, item2);
     });
 
     if(operatorSelect != null) operatorSelect.remove();
@@ -154,7 +154,7 @@ void makeDropDowns() {
         item2TraitsDiv.remove();
         item2TraitsDiv = (renderItemStats(item));
         item2Div.append(item2TraitsDiv);
-        cheatShowPossibilities(item2, item);
+        //cheatShowPossibilities(item2, item);
     });
 }
 
