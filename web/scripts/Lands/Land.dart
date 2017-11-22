@@ -40,7 +40,7 @@ class Land extends Object with FeatureHolder {
     //TODO  keep current questChain in a var. if there is none, go to PreDenizenChains and pick one.
     //if there is a stored questChain, see if it's beaten. if it is, pick chain from next set.  if it's not, do a quest from it.
 
-    ConsortFeature get consortFeature => featureSets["consort"].first;
+    ConsortFeature consortFeature;
     DenizenFeature denizenFeature;
 
     @override
@@ -219,6 +219,7 @@ class Land extends Object with FeatureHolder {
         this.setFeatureSubLists();
 
         this.processDenizen(a,c);
+        this.processConsort();
     }
 
     void setFeatures(WeightedList<Feature> list) {
@@ -235,6 +236,10 @@ class Land extends Object with FeatureHolder {
         this.secondQuests = this.getTypedSubList<DenizenQuestChain>(FeatureCategories.DENIZEN_QUEST_CHAIN).map((DenizenQuestChain f) => f.clone()).toList();
         this.thirdQuests = this.getTypedSubList<PostDenizenQuestChain>(FeatureCategories.POST_DENIZEN_QUEST_CHAIN).map((PostDenizenQuestChain f) => f.clone()).toList();
         this.allQuestChains = this.getTypedSubList<QuestChainFeature>(FeatureCategories.QUEST_CHAIN).map((QuestChainFeature f) => f.clone()).toList();
+    }
+
+    void processConsort() {
+        this.consortFeature = (session.rand.pickFrom(this.featureSets["consort"]) as ConsortFeature);
     }
 
     void processDenizen(Aspect a, SBURBClass c) {

@@ -27,7 +27,7 @@ class Player extends GameEntity{
     Sprite sprite = null; //gets set to a blank sprite when character is created.
     bool deriveChatHandle = true;
     bool deriveSprite = true;
-
+    bool deriveSpecibus = true;
     bool deriveLand = true;
     String flipOutReason = null; //if it's null, i'm not flipping my shit.
     Player flippingOutOverDeadPlayer = null; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -1733,7 +1733,7 @@ class Player extends GameEntity{
     void initialize() {
         this.initializeStats();
         this.initializeSprite();
-        this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
+        if(!deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
         this.initializeDerivedStuff();
     }
 

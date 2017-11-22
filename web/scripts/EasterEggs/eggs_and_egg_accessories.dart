@@ -96,7 +96,9 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		NonCanonSessions.session730();
 	}if(curSessionGlobalVar.session_id == 80000008){
         NonCanonSessions.session80000008();
-    }if(curSessionGlobalVar.session_id == 20082015){
+    }if(curSessionGlobalVar.session_id == 404){
+		NonCanonSessions.session404();
+	}if(curSessionGlobalVar.session_id == 20082015){
 		NonCanonSessions.session20082015();
 	}else if(curSessionGlobalVar.session_id == 33){
 		session33();
