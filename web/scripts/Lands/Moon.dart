@@ -37,6 +37,8 @@ class Moon extends Land {
       this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
 
       this.moonQuestChains = this.getTypedSubList(FeatureCategories.MOON_QUEST_CHAIN).toList();
+      this.processConsort();
+
   }
 
   @override

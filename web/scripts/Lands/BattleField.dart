@@ -24,6 +24,7 @@ class Battlefield extends Land {
         this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
 
         this.battleFieldQuestChains = this.getTypedSubList(FeatureCategories.SKAIA_QUEST_CHAIN).toList();
+        this.processConsort();
     }
 
     @override

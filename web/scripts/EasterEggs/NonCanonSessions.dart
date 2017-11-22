@@ -813,7 +813,7 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.specibus =  new Specibus("Chain", ItemTraitFactory.CHAIN, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]);
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = curSessionGlobalVar.derse;
             player.object_to_prototype = new PotentialSprite("Tarantulamom", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.ALLCAPS;

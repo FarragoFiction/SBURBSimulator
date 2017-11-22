@@ -1733,7 +1733,7 @@ class Player extends GameEntity{
     void initialize() {
         this.initializeStats();
         this.initializeSprite();
-        if(!deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
+        if(deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
         this.initializeDerivedStuff();
     }
 
