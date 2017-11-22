@@ -20,7 +20,11 @@ class Item {
         Random rand = new Random(traits.length);
         if(numUpgrades == 0) return ret;
         //TODO if this is slow, then cache result and only reget if dirty flag is set..
-        Set<ItemTrait> combinedTraits = CombinedTrait.lookForCombinedTraits(traits);
+        List<ItemTrait> combinedTraits = new List<ItemTrait>.from(CombinedTrait.lookForCombinedTraits(traits));
+        combinedTraits.sort((ItemTrait a,ItemTrait b){
+          //  print("Sorting a is ${a.ordering} and b is ${b.ordering}");
+            return b.ordering - a.ordering.round();
+        });
         for(ItemTrait t in combinedTraits) {
             if(t is ItemObjectTrait || t.descriptions.isEmpty) {
                 //skip

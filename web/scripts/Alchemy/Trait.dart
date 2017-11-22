@@ -34,12 +34,6 @@ abstract class ItemTrait {
     return "NULL TRAIT";
   }
 
-  //not natural though, cuz combined trait is diff
-  int compareOrdering(ItemTrait other) {
-    return (ordering - other.ordering).round(); //do lower numbers first.
-  }
-
-
 }
 
 //what can this do?
