@@ -448,7 +448,7 @@ class ItemTraitFactory {
     EINSTEINS = new CombinedTrait(<String>["Einstein's"], 0.0, ItemTrait.ORIGIN,<ItemTrait>[SMART, NUCLEAR]);
     FEYNMANS = new CombinedTrait(<String>["Feynman's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART, FUNNY]);
     ZIPTIE = new CombinedTrait(<String>["Feynman's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[PLASTIC, RESTRAINING]);
-    SMARTPHONE = new CombinedTrait(<String>["smartphone"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[METAL, SMART]);
+    SMARTPHONE = new CombinedTrait(<String>["cellular","mobile","handheld","computerized"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[METAL, SMART]);
     SASSACRE = new CombinedTrait(<String>["Sassacre"], 0.0, ItemTrait.ORIGIN,<ItemTrait>[HEAVY, FUNNY]);
     SLEDGE = new CombinedTrait(<String>["Sledge"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BLUNT, HEAVY]);
     LEGAL = new CombinedTrait(<String>["Legal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RESTRAINING, PAPER]);
