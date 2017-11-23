@@ -36,6 +36,8 @@ class Domestic extends InterestCategory {
             ..add(new Item("Refridgerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))
             ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD]))
+            ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON])) //this is ALSO a refrance. but to what?
+
             ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC]))
             ..add(new Item("Chicken Leg",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH, ItemTraitFactory.BONE]))
             ..add(new Item("Juicy Steak",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH]))
