@@ -55,12 +55,13 @@ class LevelTheHellUp extends Scene {
         //different format for canvas code
 
         if (levelName != null) {
-            narration += " The " + player.htmlTitle();
+            narration += " <br>The " + player.htmlTitle();
 
             narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
             narration += " and earns " + boonies + ". ";
         }
         appendHtml(narrationDiv, narration);
+        div.append(narrationDiv);
         if (levelName != null && !player.godTier) {
             CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
             div.append(canvasDiv);

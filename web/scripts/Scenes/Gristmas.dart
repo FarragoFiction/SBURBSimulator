@@ -98,7 +98,7 @@ class Gristmas extends Scene {
           if(tmp != null) ret += "$tmp";
       }
 
-      ret += "<br><br>After all that ridiculousness, they ALSO manage to upgrade their ${player.specibus}.";
+      ret += "<br><br>After all that ridiculousness, they ALSO manage to upgrade their specibus.";
       possibilities = upgradeSpecibus();
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
