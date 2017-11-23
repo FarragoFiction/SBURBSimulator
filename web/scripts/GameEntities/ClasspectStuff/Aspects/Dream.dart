@@ -58,11 +58,8 @@ class Dream extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.MAGICAL]))
-            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL, ItemTraitFactory.DOOMED]))
-            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL, ItemTraitFactory.DOOMED]))
-            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL, ItemTraitFactory.DOOMED]))
-            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL, ItemTraitFactory.DOOMED]))
-            ..add(new Item("Test Doom Object",<ItemTrait>[]));
+            ..add(new Item("Lego Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL]))
+            ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL]));
     }
 
 
