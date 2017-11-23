@@ -115,7 +115,7 @@ class Waste extends SBURBClass {
                 new Quest("Huh. The ${Quest.PLAYER1} has figured out how to run simulations of SBURB? What is even the point? Man, it's a fucking Waste. Maybe there IS no point??? "),
                 new Quest("Okay, revised statement: maybe the point of running simulations is to map out all of Paradox Space? Makes way more sense than just having a big black sheet of paper, right? The ${Quest.PLAYER1} makes a robot doppelganger to go explore areas of Paradox Space that are predicted to have useful features. Huh, looks like it's working!"),
                 new Quest("Welp. Whatever original reason the ${Quest.PLAYER1} had for finding other sessions has fallen by the wayside. They've gotten completely distracted helping out sessions with no alpha and accidentally dooming the fuck out of everyone when they make a typo in some code.   I thought these were just simulations? Fuck Paradox Space. ")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.LOW)
 
             ..addFeature(new PostDenizenFrogChain("Waste the Frogs", [
                 new Quest("The ${Quest.DENIZEN} explains um. What? Where did the ${Quest.PLAYER1} go?"),
