@@ -33,7 +33,10 @@ class Grace extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Grace Object",<ItemTrait>[]));
+        //things that take only a nudge to ruin everything.
+            ..add(new Item("Unstable Domino",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED]))
+            ..add(new Item("Exposed Thread",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED]))
+            ..add(new Item("Teetering Plate",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED]));
     }
 
 

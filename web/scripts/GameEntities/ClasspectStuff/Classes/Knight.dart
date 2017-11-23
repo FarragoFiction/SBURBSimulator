@@ -46,7 +46,10 @@ class Knight extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Knight Object",<ItemTrait>[]));
+            ..add(new Item("Shining Armor",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED]))
+            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD]))
+            ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT]))
+            ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM]));
     }
 
 

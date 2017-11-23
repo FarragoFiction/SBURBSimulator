@@ -219,6 +219,7 @@ class ItemTraitFactory {
   static ItemFunctionTrait COOLK1D;
   static ItemFunctionTrait MAGICAL;
   static ItemFunctionTrait ASPECTAL;
+  static ItemFunctionTrait CLASSRELATED;
   static ItemFunctionTrait CLASSY;
   static ItemFunctionTrait FAKE;
   static ItemFunctionTrait REAL;
@@ -384,7 +385,11 @@ class ItemTraitFactory {
   static CombinedTrait IRONIC2;
   static CombinedTrait IRONIC3;
   static CombinedTrait POSTIRONIC;
-
+  static CombinedTrait MONSTOROUS;
+  static CombinedTrait ROOTY;
+  static CombinedTrait GOLDEN;
+  static CombinedTrait PLATINUM;
+  static CombinedTrait HORSESHOE;
 
   static void init() {
     initAppearances();
@@ -554,6 +559,11 @@ class ItemTraitFactory {
     IRONIC2 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
     IRONIC3 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
     POSTIRONIC = new CombinedTrait(<String>["post-ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D,CLASSY]);
+    MONSTOROUS = new CombinedTrait(<String>["monstrous"], 0.0,ItemTrait.OPINION, <ItemTrait>[UGLY,LOUD, SCARY]);
+    ROOTY = new CombinedTrait(<String>["rooty tooty point and shooty"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY, COOLK1D,CLASSY]);
+    GOLDEN = new CombinedTrait(<String>["golden"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,VALUABLE]);
+    PLATINUM = new CombinedTrait(<String>["platinum"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,METAL]);
+    HORSESHOE = new CombinedTrait(<String>["horseshoe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LUCKY,METAL]);
 
 
 
@@ -660,6 +670,7 @@ class ItemTraitFactory {
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1,ItemTrait.OPINION);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6,ItemTrait.OPINION);
     ASPECTAL = new ItemFunctionTrait(["aspecty", "imbued", "focused", "energized","awakened","infused"], 0.6,ItemTrait.FIRST);
+    CLASSRELATED = new ItemFunctionTrait(["class-related", "appropriate", "themed"], 0.6,ItemTrait.FIRST);
 
     PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "beautiful"], 0.1,ItemTrait.OPINION);
     HEALING = new ItemFunctionTrait(["healing", "regenerating", "recovery", "life"], 0.3,ItemTrait.PURPOSE);

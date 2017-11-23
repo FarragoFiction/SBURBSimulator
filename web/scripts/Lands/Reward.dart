@@ -101,7 +101,7 @@ class DenizenReward extends Reward {
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         Item reward = p1.session.rand.pickFrom((p1.aspect.items));
-        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoard. Oh, and a ${reward.fullName}, too. ";
+        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoard. Oh, and a ${reward.fullName}, too. ${reward.descriptors} ";
         p1.increaseGrist(100.0);
         p1.sylladex.add(reward.copy());
         DenizenFeature df = land.denizenFeature;
@@ -147,11 +147,11 @@ class ItemReward extends Reward {
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         Item item = p1.session.rand.pickFrom(items);
-        String text = " The ${Reward.PLAYER1} finds a ${item.fullName}. ";
+        String text = " The ${Reward.PLAYER1} finds a ${item.fullName}. ${item.descriptors} ";
 
         if(p2 != null) {
             if(p2 is Player) {
-                text = "The ${Reward.PLAYER1} and the ${Reward.PLAYER2} each get a ${item.fullName}" ;
+                text = "The ${Reward.PLAYER1} and the ${Reward.PLAYER2} each get a ${item.fullName}. ${item.descriptors}" ;
                 p2.sylladex.add(item.copy());
                 text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
             }
