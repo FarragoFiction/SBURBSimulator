@@ -15,7 +15,6 @@ abstract class NonCanonSessions {
     static void session404() {
         int numPlayers = 8;
         makeASessionFromSource(session404IndexToPlayer, numPlayers);
-        //TODO make relationships
         curSessionGlobalVar.players.length = numPlayers; //no more, no less.
         Player ap  = curSessionGlobalVar.players[0];
         Player at = curSessionGlobalVar.players[1];
@@ -33,7 +32,6 @@ abstract class NonCanonSessions {
            MM <3 AT is a one-sided crush on MM's side, but AT finds MM abhorrent
             PA <3< PM is a mutual crush
           */
-        //TODO
         Relationship.makeDiamonds(tt,pp);
         tt.getRelationshipWith(pp).value = 20;
         pp.getRelationshipWith(tt).value = 20;
@@ -884,7 +882,7 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "/2/";
             player.quirk.suffix = "/3/";
             player.land = player.spawnLand();
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = curSessionGlobalVar.derse;
             player.land.name = "Land of Brass and Despair";
             player.land.denizenFeature = new DenizenFeature('Vita');
             player.land.consortFeature = new ConsortFeature('Kingfishers', 'peck');
@@ -895,7 +893,8 @@ abstract class NonCanonSessions {
             player.fraymotifs.clear();
             player.deriveSpecibus = false;
             player.specibus =  new Specibus("Chain", ItemTraitFactory.CHAIN, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]);
-            player.moon = curSessionGlobalVar.derse;
+
+            player.moon = curSessionGlobalVar.prospit;
             player.object_to_prototype = new PotentialSprite("Tarantulamom", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.ALLCAPS;
