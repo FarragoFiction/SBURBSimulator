@@ -57,9 +57,9 @@ class Dream extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.MAGICAL]))
-            ..add(new Item("Lego Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL]))
-            ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL]));
+            ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.ASPECTAL]))
+            ..add(new Item("Interlocking Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY]))
+            ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]));
     }
 
 

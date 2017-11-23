@@ -8,7 +8,7 @@ Appropriately for AND combining, an && alchemy result will often demonstrate the
  */
 
 abstract class ItemTrait {
-  static int DEFAULT = 0;
+  static int FIRST = 0;
   static int OPINION = 1;
   static int SIZE = 2;
   static int SHAPE = 3;
@@ -218,6 +218,7 @@ class ItemTraitFactory {
   static ItemFunctionTrait EDIBLE;
   static ItemFunctionTrait COOLK1D;
   static ItemFunctionTrait MAGICAL;
+  static ItemFunctionTrait ASPECTAL;
   static ItemFunctionTrait CLASSY;
   static ItemFunctionTrait FAKE;
   static ItemFunctionTrait REAL;
@@ -380,6 +381,10 @@ class ItemTraitFactory {
   static CombinedTrait DISABLING;
   static CombinedTrait FASHIONABLE;
   static CombinedTrait HAUTE;
+  static CombinedTrait IRONIC2;
+  static CombinedTrait IRONIC3;
+  static CombinedTrait POSTIRONIC;
+
 
   static void init() {
     initAppearances();
@@ -466,7 +471,7 @@ class ItemTraitFactory {
     TECHNO = new CombinedTrait(<String>["techno"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP, MUSICAL]);
     ROCKNROLL = new CombinedTrait(<String>["rock and roll"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STONE, MUSICAL]);
     PISTOLSHRIMP = new CombinedTrait(<String>["pistol shrimp", "horrifying"], 0.0,ItemTrait.SHAPE, <ItemTrait>[SENTIENT, FLESH, SHOOTY]);
-    JUGGALO = new CombinedTrait(<String>["juggalo"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FUNNY, MUSICAL, LOUD]);
+    JUGGALO = new CombinedTrait(<String>["juggalo"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FUNNY, MUSICAL, LOUD, SCARY]);
     SHOCKSAUCE = new CombinedTrait(<String>["shocksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, ZAP]);
     WEAKSAUCE = new CombinedTrait(<String>["weaksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, SHITTY]);
     SPICY = new CombinedTrait(<String>["spicy", "picante"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, EDIBLE]);
@@ -546,6 +551,10 @@ class ItemTraitFactory {
     DISABLING = new CombinedTrait(<String>["disabling","non lethal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, SHOOTY]);
     FASHIONABLE = new CombinedTrait(<String>["fasionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
     HAUTE = new CombinedTrait(<String>["haute couture"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY,VALUABLE]);
+    IRONIC2 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
+    IRONIC3 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
+    POSTIRONIC = new CombinedTrait(<String>["post-ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D,CLASSY]);
+
 
 
   }
@@ -622,9 +631,9 @@ class ItemTraitFactory {
     FEATHER = new ItemAppearanceTrait(<String>["feathery"], -0.1,ItemTrait.MATERIAL);
 
     UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], -0.1,ItemTrait.OPINION);
-    SHITTY = new ItemAppearanceTrait(<String>["shitty", "poorly made","conksuck"], -13.0,ItemTrait.OPINION);
+    SHITTY = new ItemAppearanceTrait(<String>["shitty", "poorly made","conksuck", "piece-of-shit"], -13.0,ItemTrait.OPINION);
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3,ItemTrait.MATERIAL);
-    LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0,ItemTrait.OPINION);
+    LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0,ItemTrait.FIRST);
   }
 
   static void initFunctions() {
@@ -650,6 +659,8 @@ class ItemTraitFactory {
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "comedy"], 0.1,ItemTrait.OPINION);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1,ItemTrait.OPINION);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6,ItemTrait.OPINION);
+    ASPECTAL = new ItemFunctionTrait(["aspecty", "imbued", "focused", "energized","awakened","infused"], 0.6,ItemTrait.FIRST);
+
     PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "beautiful"], 0.1,ItemTrait.OPINION);
     HEALING = new ItemFunctionTrait(["healing", "regenerating", "recovery", "life"], 0.3,ItemTrait.PURPOSE);
     UNCOMFORTABLE = new ItemFunctionTrait(["uncomfortable", "hard","unpleasant"], 0.1,ItemTrait.OPINION);

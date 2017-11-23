@@ -56,7 +56,11 @@ class Mind extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Mind Object",<ItemTrait>[]));
+            ..add(new Item("Puzzle",<ItemTrait>[ItemTraitFactory.PLYWOOD, ItemTraitFactory.ASPECTAL]))
+            ..add(new Item("Tesla Coil",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.METAL]))
+            ..add(new Item("Coin",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL]))
+            ..add(new Item("Electronic Door",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.ZAP, ItemTraitFactory.SMART]))
+            ..add(new Item("Janus Bust",<ItemTrait>[ItemTraitFactory.BUST, ItemTraitFactory.STONE,ItemTraitFactory.CLASSY,ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY]));
     }
 
     @override

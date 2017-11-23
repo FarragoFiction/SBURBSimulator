@@ -74,10 +74,10 @@ class Breath extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Pan's Pipe",<ItemTrait>[ItemTraitFactory.MUSICAL, ItemTraitFactory.WOOD, ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL]))
-        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.MAGICAL])) //escape any prison
-        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.MAGICAL]))
-        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD]));
+        ..add(new Item("Pan's Pipe",<ItemTrait>[ItemTraitFactory.MUSICAL, ItemTraitFactory.WOOD, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]))
+        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL])) //escape any prison
+        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]))
+        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY]));
     }
 
     @override
