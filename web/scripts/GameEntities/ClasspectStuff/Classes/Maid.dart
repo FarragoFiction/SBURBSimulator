@@ -44,7 +44,11 @@ class Maid extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Maid Object",<ItemTrait>[]));
+        //disney princess, house maid, shield maid.
+        ..add(new Item("Feather Duster",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.STICK, ItemTraitFactory.FEATHER]))
+        ..add(new Item("Valkerie Shield",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD,ItemTraitFactory.ADAMANTIUM]))
+        ..add(new Item("Maiden's Songbook",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MUSICAL,ItemTraitFactory.BOOK]));
+
     }
 
 

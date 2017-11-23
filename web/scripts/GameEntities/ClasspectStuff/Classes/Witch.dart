@@ -47,7 +47,9 @@ class Witch extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Witch Object",<ItemTrait>[]));
+            ..add(new Item("Cauldron",<ItemTrait>[ItemTraitFactory.LEAD, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL]))
+            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.WOOD,ItemTraitFactory.MAGICAL]))
+            ..add(new Item("Warped Mirro",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL]));
     }
 
     @override
@@ -128,13 +130,13 @@ class Witch extends SBURBClass {
                 new Quest("Alright, it turns out that through a mixture of Alchemy, game powers and pure elbow grease, the ${Quest.PLAYER1} has managed to make a river flow backwards.   Now instead of flooding, the valley is draining itself.  Progress!"),
                 new Quest("The ${Quest.PLAYER1} doesn't feel like KILLING the giant underlings rampaging in the ${Quest.CONSORT} settlement. What's the fun in that? They try a variety of techniques until the underlings are as calm and friendly as ${Quest.CONSORT}s themselves.   Now they are productive members of society! "),
                 new Quest("The ${Quest.PLAYER1} twists how plants and soil and growth works until the crops at ${Quest.MCGUFFIN} Ranch are finally thriving. With that, they have finally kicked the former status quo to the curb!  ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Brew The Potion", [
                 new Quest("A Mysterious ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. Apparently an alchemy recipe for a potion of Ultimate ${Quest.MCGUFFIN} was discovered amongst the ${Quest.DENIZEN}'s things. Maybe the ${Quest.PLAYER1} can figure out how to create it? "),
                 new Quest("One potion makes you smaller. One makes you taller. A third doesn't do anything at all. Ugh! Why is it so hard for the ${Quest.PLAYER1} to get the potion of  Ultimate ${Quest.MCGUFFIN} right? "),
                 new Quest("Careful now. Just....one....more drop. THERE.   The ${Quest.PLAYER1} is now the proud owner of a potion of Ultimate ${Quest.MCGUFFIN}. They immediately chug it, only for it to manifest a mirror showing the ${Quest.PLAYER1}'s own face. Oh. God DAMN it. It turns out the  Ultimate ${Quest.MCGUFFIN} was the ${Quest.PLAYER1} all along. They didn't need any silly potions. Worst. Quest. Ever.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Train the Apprentice", [
                 new Quest("A young ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. They wish to learn how to be magical, too!  The ${Quest.PLAYER1} dubs them the ${Quest.MCGUFFIN}mancer and agrees to train them. "),

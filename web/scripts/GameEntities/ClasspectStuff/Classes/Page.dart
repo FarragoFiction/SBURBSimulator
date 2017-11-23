@@ -45,7 +45,9 @@ class Page extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Page Object",<ItemTrait>[]));
+            ..add(new Item("Shorts",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE]))
+            ..add(new Item("Sidekick Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COOLK1D]))
+            ..add(new Item("Steroids",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL]));
     }
 
 

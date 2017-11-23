@@ -44,7 +44,9 @@ class Scribe extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Scribe Object",<ItemTrait>[]));
+            ..add(new Item("Scroll",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]))
+            ..add(new Item("Ink Pot",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.OBSCURING, ItemTraitFactory.SMART]))
+            ..add(new Item("Blank Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART]));
     }
 
 

@@ -38,7 +38,10 @@ class Scout extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Scout Object",<ItemTrait>[]));
+            ..add(new Item("Walking Stick",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.STICK]))
+            ..add(new Item("Adorable Girlscout Beret",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FASHIONABLE]))
+            ..add(new Item("Map",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]))
+            ..add(new Item("Compass",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART, ItemTraitFactory.MAGICAL]));
     }
 
 

@@ -48,7 +48,9 @@ class Lord extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Lord Object",<ItemTrait>[]));
+            ..add(new Item("Lord's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY]))
+            ..add(new Item("Drawing Tablet",<ItemTrait>[ItemTraitFactory.SMARTPHONE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY]))
+            ..add(new Item("How to Make Friends And Influence People",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK]));
     }
 
 

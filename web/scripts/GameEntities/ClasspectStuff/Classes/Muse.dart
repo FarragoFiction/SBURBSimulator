@@ -39,7 +39,9 @@ class Muse extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Muse Object",<ItemTrait>[]));
+            ..add(new Item("Feather Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.FEATHER]))
+            ..add(new Item("Half Finished Bust of Snoop Dog",<ItemTrait>[ItemTraitFactory.MARBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BUST, ItemTraitFactory.BLUNT]))
+            ..add(new Item("Book of Poetry",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK]));
     }
 
 

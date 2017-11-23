@@ -55,8 +55,6 @@ class Light extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.ASPECTAL,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY]))
-            ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING]))
             ..add(new Item("FAQ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SMART]))
             ..add(new Item("Flashlight",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.ZAP]))
             ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.NUCLEAR, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.LUCKY]))

@@ -47,7 +47,9 @@ class Rogue extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Rogue Object",<ItemTrait>[]));
+            ..add(new Item("Domino Mask",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE]))
+            ..add(new Item("Archery Set",<ItemTrait>[ItemTraitFactory.BOW, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE, ItemTraitFactory.ARROW]))
+            ..add(new Item("Gristtorrent Server",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ZAP, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]));
     }
 
 

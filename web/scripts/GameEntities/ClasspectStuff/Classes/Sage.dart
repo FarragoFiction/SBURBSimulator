@@ -47,7 +47,9 @@ class Sage extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Sage Object",<ItemTrait>[]));
+            ..add(new Item("Sage's Robe",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]))
+            ..add(new Item("Peer Reviewed Journal",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART]))
+            ..add(new Item("Guru Pillow",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PILLOW, ItemTraitFactory.SMART]));
     }
 
 

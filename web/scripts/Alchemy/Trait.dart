@@ -390,6 +390,11 @@ class ItemTraitFactory {
   static CombinedTrait GOLDEN;
   static CombinedTrait PLATINUM;
   static CombinedTrait HORSESHOE;
+  static CombinedTrait FELT;
+  static CombinedTrait GRANITE;
+  static CombinedTrait MARBLE;
+
+
 
   static void init() {
     initAppearances();
@@ -564,6 +569,11 @@ class ItemTraitFactory {
     GOLDEN = new CombinedTrait(<String>["golden"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,VALUABLE]);
     PLATINUM = new CombinedTrait(<String>["platinum"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,METAL]);
     HORSESHOE = new CombinedTrait(<String>["horseshoe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LUCKY,METAL]);
+    FELT = new CombinedTrait(<String>["felt"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,FUR]);
+    MARBLE = new CombinedTrait(<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CLASSY]);
+    GRANITE = new CombinedTrait(<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,HEAVY]);
+
+
 
 
 

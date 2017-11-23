@@ -52,7 +52,9 @@ class Thief extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Test Thief Object",<ItemTrait>[]));
+            ..add(new Item("Lockpick",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING]))
+            ..add(new Item("Sneaking Suit",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING])) //snake knows what it's about
+            ..add(new Item("Dagger",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.DAGGER]));
     }
 
 
@@ -112,13 +114,13 @@ class Thief extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} is just minding their own business, when they see a huge stack of boonies recovered from the ${Quest.DENIZEN}'s layer and slated to be returned to the ${Quest.CONSORT}s. Unable to resist, they pilfer just a bit. A nearby ${Quest.CONSORTSOUND} sounds the alarm, shit, the ${Quest.PLAYER1} didn't know anybody was looking!  They flee with as many boonies as they can carry."),
                 new Quest("The ${Quest.PLAYER1} is keeping a low profile. Shit's still too hot to spend their ill gotten boonies, but it'll be worth it, they just know it."),
                 new Quest("Fuck, the ${Quest.PLAYER1} has been spotted. They lead the police ${Quest.CONSORT}s on a wild chase that ends with the ${Quest.PLAYER1} faking their own death and assuming a new identity. They can FINALLY spend those boonies. "),
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Free The Prisoner", [
                 new Quest("A weeping ${Quest.CONSORT} approaches the ${Quest.PLAYER1}, spinning a sad tale of their best friend being unjustly arrested during the reign of the ${Quest.DENIZEN}. Nobody will free him, even after the ${Quest.DENIZEN} is gone. The ${Quest.PLAYER1} doesn't really care until the weeping ${Quest.CONSORT} mentions a huge reward. It's ALL about the boonies, baby. "),
                 new Quest("The ${Quest.PLAYER1} manages to steal the keys to the ${Quest.MCGUFFIN} Prison, easy peasy. It happens so fast it's like there was no key in the first place.  It's not much harder for them to abscond with the Prisoner ${Quest.CONSORT}, too. Nice."),
                 new Quest("The ${Quest.PLAYER1} returns the Prisoner ${Quest.CONSORT} to their weeping and ${Quest.CONSORTSOUND}ing best friend. The Prisoner ${Quest.CONSORT} reveals the location of some valuable stolen goods they 'heard about' in prison.  Good enough for the ${Quest.PLAYER1}.")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             //god, i love heist movies.
             ..addFeature(new PostDenizenQuestChain("Shit, Let's Be a Heist Movie", [
@@ -126,7 +128,7 @@ class Thief extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} assembles a team of Disreputable ${Quest.CONSORT}s. There is Baron ${Quest.CONSORTSOUND}worth, the disaffected Heir to the ${Quest.MCGUFFIN} Fortune, Smokes Mc${Quest.CONSORTSOUND} their 'in' with the shady underbelly of ${Quest.CONSORT} society, and Fresh Jimmy, the wide eyed youth who has the stickiest fingers in Paradox Space.  The ${Quest.PLAYER1} thinks they have enough quirky characters to actually start planning this heist, now."),
                 new Quest("On the day of the big heist, Fresh Jimmy alerts the authorities about the impending robbery. He rats out the other Disreputable ${Quest.CONSORT}s and the ${Quest.PLAYER1}, too.  As the ${Quest.CONSORT} authorities converge on the warehouse the team has converted to a make shift base of opperations, they begin receiving reports that the ${Quest.PHYSICALMCGUFFIN} has already been stolen? Fresh Jimmy has already escaped to the side, it turns out the traitor ruse was a distaction."),
                 new Quest("The Disreputable ${Quest.CONSORT}s meet up with the ${Quest.PLAYER1} after the heat has died down to collect their share of the proceeds. Wow, it turns out crime really DOES pay! ")
-            ], new BoonieFraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
 
 
