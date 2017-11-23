@@ -25,6 +25,34 @@ abstract class NonCanonSessions {
         Player pm = curSessionGlobalVar.players[5];
         Player aa = curSessionGlobalVar.players[6];
         Player mm = curSessionGlobalVar.players[7];
+
+        /*TT <> PP is a confirmed ship
+         AP <3 PM is a confirmed ship
+          AT <> PA is a crush
+          AA <> MM is a crush
+           MM <3 AT is a one-sided crush on MM's side, but AT finds MM abhorrent
+            PA <3< PM is a mutual crush
+          */
+        //TODO
+        Relationship.makeDiamonds(tt,pp);
+        tt.getRelationshipWith(pp).value = 20;
+        pp.getRelationshipWith(tt).value = 20;
+
+        Relationship.makeHeart(ap,pm);
+        ap.getRelationshipWith(pm).value = 20;
+        pm.getRelationshipWith(ap).value = 20;
+
+        at.getRelationshipWith(pa).value = 20;
+        pa.getRelationshipWith(at).value = 20;
+
+        aa.getRelationshipWith(mm).value = 20;
+        mm.getRelationshipWith(aa).value = 20;
+
+        mm.getRelationshipWith(at).value = 20;
+        at.getRelationshipWith(mm).value = -20;
+
+        pa.getRelationshipWith(pm).value = -20;
+        pm.getRelationshipWith(pa).value = -20;
     }
 
 
@@ -700,9 +728,9 @@ abstract class NonCanonSessions {
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
-            player.quirk.prefix = "";
-            player.quirk.suffix = "";
+            player.quirk.lettersToReplaceIgnoreCase = [["o","O-"]];
+            player.quirk.prefix = "-|";
+            player.quirk.suffix = "|-";
             player.moon = curSessionGlobalVar.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Caves and Rain";
@@ -760,6 +788,14 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Shotgun", ItemTraitFactory.SHOTGUN, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]);
 
+
+            Fraymotif f = new Fraymotif("Horrorterror Whispers", 1);
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, false));
+            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true));
+            f.desc = " Uses dark knowledge as a defense against mind control. ";
+            player.fraymotifs.add(f);
+
+
             player.object_to_prototype = new PotentialSprite("Batdad", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
@@ -791,12 +827,6 @@ abstract class NonCanonSessions {
             Fraymotif f = new Fraymotif("Pyrokinesis", 1);
             f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
             f.desc = " Who knew shaving cream was so flammable? ";
-            player.fraymotifs.add(f);
-
-            f = new Fraymotif("Horrorterror Whispers", 1);
-            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, false));
-            f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true));
-            f.desc = " Uses dark knowledge as a defense against mind control. ";
             player.fraymotifs.add(f);
 
             player.quirk.lettersToReplace = [];
@@ -850,8 +880,8 @@ abstract class NonCanonSessions {
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
-            player.quirk.prefix = "";
-            player.quirk.suffix = "";
+            player.quirk.prefix = "/2/";
+            player.quirk.suffix = "/3/";
             player.land = player.spawnLand();
             player.moon = curSessionGlobalVar.prospit;
             player.land.name = "Land of Brass and Despair";
