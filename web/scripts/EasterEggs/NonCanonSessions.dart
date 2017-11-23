@@ -787,8 +787,9 @@ abstract class NonCanonSessions {
             player.fraymotifs.clear();
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Shotgun", ItemTraitFactory.SHOTGUN, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]);
+            player.fraymotifs.clear();
 
-
+            player.grimDark = 2;
             Fraymotif f = new Fraymotif("Horrorterror Whispers", 1);
             f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, false));
             f.effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true));
@@ -800,7 +801,6 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
-            player.fraymotifs.clear();
             player.quirk.lettersToReplace = [["o","O"]];
             player.quirk.lettersToReplaceIgnoreCase = [["v",">"]];
             player.quirk.prefix = "";

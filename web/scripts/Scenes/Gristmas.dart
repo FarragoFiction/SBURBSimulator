@@ -158,7 +158,7 @@ class Gristmas extends Scene {
                       if (meetsStandards(p,i)) goodItems = true;
                   }
                   if (anyItems && goodItems)  {
-                      session.logger.info("AB: alchemy triggered.");
+                      //session.logger.info("AB: alchemy triggered.");
                       player = p;
                   }
               }

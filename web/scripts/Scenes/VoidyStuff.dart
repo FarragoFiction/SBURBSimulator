@@ -77,7 +77,7 @@ class VoidyStuff extends Scene {
 		Element normalDiv = new DivElement();
 		div.append(normalDiv);
 		Element newDiv = new DivElement();
-		newDiv.classes.add(classDiv);
+		if(classDiv.isNotEmpty) newDiv.classes.add(classDiv);
 		div.append(newDiv);
 		//don't godtier as soon as you get in, too unfair to the other players.
 		bool canGod = checkCanGod();
