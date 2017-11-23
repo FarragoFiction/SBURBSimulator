@@ -100,8 +100,10 @@ class DenizenReward extends Reward {
     String bgImage = "Rewards/sweetGrist.png";
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
-        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. ";
+        Item reward = p1.session.rand.pickFrom((p1.aspect.items));
+        String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoarde. Oh, and a ${reward.fullName}, too. ";
         p1.increaseGrist(100.0);
+        p1.sylladex.add(reward.copy());
         DenizenFeature df = land.denizenFeature;
         if(df.denizen == null) {
             df.makeDenizen(p1);
