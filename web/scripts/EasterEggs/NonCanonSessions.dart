@@ -149,6 +149,8 @@ abstract class NonCanonSessions {
                 curSessionGlobalVar.players.add(player);
             }
         }
+        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+
 
         //overright players
         for(int i = 0; i<numPlayers; i++){
@@ -163,7 +165,6 @@ abstract class NonCanonSessions {
             player.mylevels = getLevelArray(player);
             guardian.mylevels = getLevelArray(guardian);
         }
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
     }
 
 
