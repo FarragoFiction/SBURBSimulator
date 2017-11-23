@@ -509,7 +509,7 @@ class ItemTraitFactory {
     CHOCOLATES = new CombinedTrait(<String>["chocolate"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[ROMANTIC, EDIBLE]);
     FOILCHOCOLATES = new CombinedTrait(<String>["wrapped chocolate"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[ROMANTIC, EDIBLE,PAPER,METAL]);
     SCRATCHNSNIFF = new CombinedTrait(<String>["scratch-n-sniff"], 0.0, ItemTrait.MATERIAL, <ItemTrait>[COOLK1D, PAPER]);
-    MYTHRIL = new CombinedTrait(<String>["mythril","orichalcum "],0.0, ItemTrait.MATERIAL, <ItemTrait>[MAGICAL, METAL]);
+    MYTHRIL = new CombinedTrait(<String>["mythril","orichalcum"],0.0, ItemTrait.MATERIAL, <ItemTrait>[MAGICAL, METAL]);
     TITANIUM = new CombinedTrait(<String>["titanium","steel"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BLUNT, METAL]);
     LEAD = new CombinedTrait(<String>["lead"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[HEAVY, METAL]);
     ONION = new CombinedTrait(<String>["satire","parody","onion"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FAKE, FUNNY]);
