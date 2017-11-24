@@ -39,31 +39,38 @@ body{
   font-family: 'strife', sans-serif;
   display: inline-block;
   padding-top:10px;
+  height: 300px;
+  overflow: scroll;
 }
 
 #sellshit{
   font-family: 'strife', sans-serif;
   display: inline-block;
+  height: 300px;
   padding-top:10px;
+  overflow: scroll;
 }
 
 #abjshit{
   font-family: 'strife', sans-serif;
   display: inline-block;
   color: #ffb82d;
+  height: 300px;
   padding-top:10px;
+  overflow: scroll;
 }
 
 .myItems{
- color: #888888;
+ color: #9630bf;
  display: inline-block;
  padding: 5px;
+ margin: 5px;
  height: 50px;
  width: 150px;
- border: 3px solid #AAAAAA;
+ border: 3px solid #9630bf;
  vertical-align: top;
  text-align: middle;
- background-color: #BBBBBB;
+ background-color: #cc87e8;
  overflow: none;
 }
 
@@ -73,6 +80,7 @@ body{
   vertical-align: top;
   display: inline-block;
   padding: 5px;
+  margin: 5px;
   width: 150px;
   border: 3px solid #bdb968;
   text-align: middle;
