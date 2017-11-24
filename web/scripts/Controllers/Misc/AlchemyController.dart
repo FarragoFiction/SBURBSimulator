@@ -7,8 +7,7 @@ String OR = "OR";
 String XOR = "XOR";
 
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
-Shop buyShop;
-Shop sellShop;
+Shop abShop;
 Shop abjShop;
 
 
@@ -37,15 +36,15 @@ void main() {
     globalInit();
 
     init();
-    buyShop = new Shop(querySelector("#buyshit"),querySelector("#quip"),Item.allUniqueItems);
-    sellShop = new Shop.pawn(querySelector("#sellshit"),querySelector("#quip"),player.sylladex);
+    abShop = new Shop(player, querySelector("#buyshit"), querySelector("#sellshit"),querySelector("#quip"),Item.allUniqueItems);
     List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
     abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
-    abjShop = new Shop(querySelector("#abjshit"),querySelector("#quip"),abjItems);
+    //TODO
+    //abjShop = new Shop(player, querySelector("#abjshit"),querySelector("#quip"),abjItems);
 
     Achievement.announcmentDiv = querySelector("#announcement");
     Achievement.gristDiv = querySelector("#grist");
-    Achievement.grist = 1300;
+    Achievement.addGrist(13);
     Achievement.syncGristDiv();
     achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"));
 }
@@ -256,11 +255,13 @@ Element renderItemStats(Item item) {
 //knows how to render self. knows how to toggle from not found to found. knows how to award grist
 //knows if found yet or nah
 class Achievement {
-    static int grist = 0;
+    static int _grist = 0;
     static String WONCLASS = "passedAchievement";
     static String NOTYETCLASS = "missingAchievement";
     static Element announcmentDiv;
     static Element gristDiv;
+
+    static get grist => _grist; //but can't set it
 
 
 
@@ -269,6 +270,11 @@ class Achievement {
 
     Achievement(this.trait, Element container) {
         makeElement(container);
+    }
+
+    static int addGrist(int amount) {
+        _grist += amount;
+        syncGristDiv();
     }
 
     static void syncGristDiv() {
@@ -280,7 +286,7 @@ class Achievement {
             div.classes.remove(NOTYETCLASS);
             div.classes.add(WONCLASS);
             int amount = ((trait.rank.abs() + 1) * 100).round(); //no you can't lose money for getting an achievement.
-            grist += amount;
+            Achievement._grist += amount;
             return "${trait.name}(+${amount} grist)";
         }
         print("Achivement ${trait.name} already found.");
@@ -341,66 +347,111 @@ abstract class ShopItem {
 }
 
 //on sale, remove grist from Achivement.grist and add item to player.sylladex.
-class ShopItemForYou extends ShopItem {
+class ShopItemInStock extends ShopItem {
     @override
     String className = "yourItems";
 
-  ShopItemForYou(Item item, Shop shop, Element container) : super(item, shop, container);
+    ShopItemInStock(Item item, Shop shop, Element container) : super(item, shop, container);
 
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      button.setInnerHtml("Buy?");
+      int cost = (item.rank * -10).round();
+
+      button.setInnerHtml("Buy For ${cost} Grist?");
+
       button.classes.add("transactButton");
       shop.quipDiv.append(button);
+      if(cost.abs() <= Achievement.grist) {
+          button.onClick.listen((e) {
+              Achievement.addGrist(cost);
+              player.sylladex.add(item);
+              //shop.removeItemFromInventory(this); no once it's in inventory it lives there.
+              shop.renderPlayerSylladex();
+          });
+      }else {
+        button.disabled = true;
+        button.setInnerHtml("Lol, You can't Afford this.");
+      }
   }
 }
 
-//on sale add grist to Achivement.grist and remove item from player.sylladex and add to Shop Inventory.
-class ShopItemForMe extends ShopItem {
-  ShopItemForMe(Item item,Shop shop, Element container) : super(item, shop, container);
+class ShopItemPlayerOwns extends ShopItem {
+    ShopItemPlayerOwns(Item item,Shop shop, Element container) : super(item, shop, container);
 
+  //on sale add grist to Achivement.grist and remove item from player.sylladex and add to Shop Inventory.
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      button.setInnerHtml("Sell?");
+      int cost = (item.rank * 5).round();
+
+      button.setInnerHtml("Sell For ${cost} Grist?");
       button.classes.add("transactButton");
       shop.quipDiv.append(button);
+      button.onClick.listen((e) {
+          Achievement.addGrist(cost);
+          player.sylladex.remove(item);
+          shop.addItemToInventory(item);
+          shop.renderPlayerSylladex();
+      });
   }
 }
 
 class Shop {
-    Element container;
+    Element inventoryContainer;
+    Element pawnContainer;
+    Player player; //assume only one player okay. just do it.
     Element quipDiv;
-    List<ShopItem> inventory = new List<ShopItem>();
-    Shop(Element this.container, this.quipDiv, List<Item> items) {
-        slurpItemsIntoInventoryYouBuy(items);
+    List<ShopItemInStock> inventory = new List<ShopItemInStock>();
+    List<ShopItemPlayerOwns> playerSylladex = new List<ShopItemPlayerOwns>();
+
+    Shop(Player this.player, Element this.inventoryContainer, Element this.pawnContainer, this.quipDiv, List<Item> items) {
+        slurpItemsIntoInventory(items);
     }
 
-    void slurpItemsIntoInventoryYouBuy(List<Item> items, [bool clearOld=false]) {
-        if(clearOld) items.clear();
+    //gets it off screen and removes from self
+    void clear() {
+        for(ShopItem i in inventory) {
+            i.div.remove();
+        }
+        inventory.clear();
+    }
+
+    void clearSylladex() {
+        for(ShopItem i in playerSylladex) {
+            i.div.remove();
+        }
+        playerSylladex.clear();
+    }
+
+    void slurpItemsIntoInventory(List<Item> items, [bool clearOld=false]) {
+        if(clearOld) {
+            clear();
+        }
         for(Item i in items) {
-            addItemToInventoryYouBuy(i);
+            addItemToInventory(i);
         }
     }
 
-    void addItemToInventoryYouBuy(Item item) {
-        inventory.add(new ShopItemForYou(item, this, container));
-    }
-
-    Shop.pawn(Element this.container, this.quipDiv, List<Item> items) {
-        slurpItemsIntoInventoryMeBuy(items);
-    }
-
-    //can use this to add sold item as well.
-    void slurpItemsIntoInventoryMeBuy(List<Item> items,[bool clearOld = false]) {
-        if(clearOld) items.clear();
-        for(Item i in items) {
-            addItemToInventoryMeBuy(i);
+    void renderPlayerSylladex() {
+        clearSylladex();
+        for(Item i in player.sylladex) {
+            addItemToShopSylladex(i);
         }
     }
 
-    void addItemToInventoryMeBuy(Item item) {
-        inventory.add(new ShopItemForMe(item, this, container));
+    void addItemToInventory(Item item) {
+        inventory.add(new ShopItemInStock(item, this, inventoryContainer));
     }
+
+    void removeItemFromInventory(ShopItem item) {
+        item.div.remove();
+        inventory.remove(item);
+    }
+
+    void addItemToShopSylladex(Item item) {
+        playerSylladex.add(new ShopItemPlayerOwns(item, this, pawnContainer));
+    }
+
+
 }
