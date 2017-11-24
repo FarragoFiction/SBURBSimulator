@@ -30,7 +30,7 @@ class Specibus extends Item {
         return it;
     }
 
-    Specibus(String baseName, ItemTrait this.requiredTrait, List<ItemTrait> traits) : super(baseName, traits) {
+    Specibus(String baseName, ItemTrait this.requiredTrait, List<ItemTrait> traits, [abjDesc]) : super(baseName, traits, abjDesc) {
         this.traits.add(requiredTrait);
     }
 
@@ -66,7 +66,7 @@ class SpecibusFactory {
     static Specibus CLAWS;
 
     static void init() {
-        if(CLAWS == null) CLAWS = new Specibus("Claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.POINTY,ItemTraitFactory.EDGED, ItemTraitFactory.BONE]);
+        if(CLAWS == null) CLAWS = new Specibus("Claws", ItemTraitFactory.CLAWS, [ ItemTraitFactory.POINTY,ItemTraitFactory.EDGED, ItemTraitFactory.BONE], "It's claws, dunkass. Monsters and shit have them. And fucking cat trolls.");
 
         _specibi.clear();
         _specibi.add(new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL, ItemTraitFactory.POINTY]));

@@ -7,6 +7,7 @@ import "../random.dart";
 class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
     static List<Item> allUniqueItems = new List<Item>();
+    String abjDesc;
 
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
         return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
@@ -15,6 +16,8 @@ class Item {
     String baseName;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
+
+
 
 
     //dynamic based on current traits.
@@ -75,7 +78,7 @@ class Item {
     }
 
     Item copy() {
-        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits));
+        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), this.abjDesc);
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;
@@ -90,7 +93,8 @@ class Item {
         }
     }
 
-    Item(String this.baseName,List<ItemTrait> traitsList) {
+    //most items won't have an abj desc, but some will
+    Item(String this.baseName,List<ItemTrait> traitsList, [this.abjDesc]) {
         traits = new Set.from(traitsList);
         if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
         Set<CombinedTrait> ct = new Set.from(combinedTraits);
@@ -101,6 +105,14 @@ class Item {
         }
 
         Item.allUniqueItems.add(this);
+    }
+
+    String abjDescription(Random rand) {
+        if(abjDesc != null) {
+            return abjDesc;
+        }else {
+            return randomDescription(rand);
+        }
     }
 
     //it's sharp, it's pointy and it's a sword.   so can pick the same trait multiple times and just pick different words? Yes.

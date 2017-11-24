@@ -414,7 +414,7 @@ abstract class ShopItem {
         div.onClick.listen((e) {
             Random rand = new Random();
             double mathpercent = 90+rand.nextDouble(10.0);
-            shop.quipDiv.setInnerHtml("There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.randomDescription(rand)}");
+            shop.quipDiv.setInnerHtml("There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.abjDescription(rand)}");
             renderTransactButton();
         });
     }
