@@ -41,6 +41,11 @@ SelectElement firstItemSelect;
 SelectElement secondItemSelect;
 SelectElement operatorSelect;
 
+List<String> andQuips = <String>["It seems you are playing it safe.You must enjoy paying all that extra grist to keep all those useless traits.","Not very imaginative, are you.","Lame."];
+List<String> orQuips = <String>["Oh look at you, Mr. Fancy, going for the 'OR' option.","It seems you want to be more complicated. DO you want this?","I can hella get behind the frugal option."];
+List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.982734982734% chance you are totally lost here."];
+
+
 
 void main() {
     //loadNavbar();
@@ -239,6 +244,19 @@ void makeDropDowns() {
     if(operatorSelect != null) operatorSelect.remove();
 
     operatorSelect = genericDropDown(operatorSelSpot, <String>[AND, OR, XOR],  "Operation");
+
+    operatorSelect.onChange.listen((e)
+    {
+        Random rand = new Random();
+        String operator = operatorSelect.selectedOptions[0].value;
+        if(operator == AND) {
+            quipDiv.setInnerHtml(rand.pickFrom(andQuips));
+        }else if(operator == OR) {
+            quipDiv.setInnerHtml(rand.pickFrom(orQuips));
+        }else if (operator == XOR) {
+            quipDiv.setInnerHtml(rand.pickFrom(xorQuips));
+        }
+    });
 
     if(secondItemSelect != null) secondItemSelect.remove();
     secondItemSelect = genericDropDown(item2SelSpot, player.sylladex,  "Second Item");
