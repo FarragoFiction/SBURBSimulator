@@ -86,7 +86,6 @@ void makeAlchemyButton() {
         }
         alchemyResult.apply(player);
         giveRandomItem();
-        //TODO refresh drop down list to include this new thing now.
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
         resultTraitsDiv = (renderItemStats(alchemyResult.result));
         resultDiv.append(resultTraitsDiv);
@@ -98,17 +97,30 @@ void makeAlchemyButton() {
         item2TraitsDiv = (renderItemStats(player.sylladex.first));
         item1Div.append(item1TraitsDiv);
         item2Div.append(item2TraitsDiv);
+        //take alchemy result, look for combined traits, make sure the achievements get unlocked appropriately.
+        processAchievements(alchemyResult.result);
     });
 
 }
 
-void populateSylladex() {
-    for(int i = 0; i< 50; i++) {
-        giveRandomItem();
+//look in item for combo traits, find corresponding achievemnts and toggle them on.
+void processAchievements(Item itemAlchemized) {
+    List<ItemTrait> combinedTraits = new List<ItemTrait>.from(CombinedTrait.lookForCombinedTraits(itemAlchemized.traits));
+    for(ItemTrait it in combinedTraits) {
+        //could be a leftover
+        if(it is CombinedTrait) {
+            achievements[it].toggle();
+        }
     }
 
-    //player.sylladex = new List<Item>.from(Item.allUniqueItems);
-    //player.sylladex.length = 20;
+}
+
+void populateSylladex() {
+    player.sylladex.addAll(player.interest1.category.items);
+    player.sylladex.addAll(player.interest2.category.items);
+    player.sylladex.addAll(player.aspect.items);
+    player.sylladex.addAll(player.class_name.items);
+    player.sylladex.add(player.specibus);
 }
 
 void giveRandomItem() {
@@ -207,7 +219,7 @@ Element renderItemStats(Item item) {
         Element li = new DivElement();
         li.classes.add("oneTrait");
         collate += ",${it.descriptions.first}";
-        li.setInnerHtml(it.descriptions.first);
+        li.setInnerHtml("${it.descriptions.first}(${it.rank})");
         ret.append(li);
     }
     ret.appendHtml(collate);
@@ -228,20 +240,18 @@ class Achievement {
 
     Achievement(this.trait, this.div);
 
+    void toggle() {
+        div.classes.remove(NOTYETCLASS);
+        div.classes.add(WONCLASS);
+    }
+
     static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
         for(CombinedTrait t in traits) {
             if(t.descriptions.isNotEmpty) {
                 Element div = new DivElement();
-                Random rand = new Random();
-                rand.nextInt(); //work around.
-                //testing
-                if (rand.nextBool()) {
-                    div.classes.add(WONCLASS);
-                } else {
-                    div.classes.add(NOTYETCLASS);
-                }
-                //div.classes.add(NOTYETCLASS);
+
+                div.classes.add(NOTYETCLASS);
 
                 div.setInnerHtml(t.name);
                 container.append(div);

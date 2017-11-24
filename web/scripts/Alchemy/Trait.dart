@@ -278,6 +278,7 @@ class ItemTraitFactory {
   static CombinedTrait ABOMB;
   static CombinedTrait ULTRAVIOLENCE;
   static CombinedTrait LIVING;
+  static CombinedTrait DEAD;
   static CombinedTrait TASER;
   static CombinedTrait NOCTURNE;
   static CombinedTrait DIRGE;
@@ -457,6 +458,7 @@ class ItemTraitFactory {
     EDGEY = new CombinedTrait("Edgy",<String>["edgy"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED, OBSCURING]);
     ABOMB = new CombinedTrait("Warhead",<String>["A-Bomb", "Warhead", "Chernobyl"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[NUCLEAR, EXPLODEY]);
     LIVING = new CombinedTrait("Living",<String>["living"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH, SENTIENT]);
+    DEAD = new CombinedTrait("Dead",<String>["dead","corpse","deceased"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH]);
     TASER = new CombinedTrait("Taser",<String>["taser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP, RESTRAINING]);
     NOCTURNE = new CombinedTrait("Nocturn",<String>["nocturn"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[OBSCURING, MUSICAL]);
     DIRGE = new CombinedTrait("Dirge",<String>["dirge"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[DOOMED, MUSICAL]);
@@ -636,7 +638,7 @@ class ItemTraitFactory {
   static void initAppearances() {
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3,ItemTrait.MATERIAL);
     CERAMIC = new ItemAppearanceTrait(<String>["ceramic"], -0.3,ItemTrait.MATERIAL);
-    BONE = new ItemAppearanceTrait(<String>["bone"], 0.1,ItemTrait.MATERIAL);
+    BONE = new ItemAppearanceTrait(<String>["bone"], 0.2,ItemTrait.MATERIAL);
     WOOD = new ItemAppearanceTrait(<String>["wood"], -0.3,ItemTrait.MATERIAL);
     PLASTIC = new ItemAppearanceTrait(<String>["plastic"], -0.3,ItemTrait.MATERIAL);
     RUBBER = new ItemAppearanceTrait(<String>["rubber"], -0.3,ItemTrait.MATERIAL);
@@ -650,7 +652,7 @@ class ItemTraitFactory {
 
     FEATHER = new ItemAppearanceTrait(<String>["feathery"], -0.1,ItemTrait.MATERIAL);
 
-    UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], -0.1,ItemTrait.OPINION);
+    UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], 0.1,ItemTrait.OPINION);
     SHITTY = new ItemAppearanceTrait(<String>["shitty", "poorly made","conksuck", "piece-of-shit"], -13.0,ItemTrait.OPINION);
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3,ItemTrait.MATERIAL);
     LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0,ItemTrait.FIRST);
@@ -662,7 +664,7 @@ class ItemTraitFactory {
     OBSCURING = new ItemFunctionTrait(["obscuring", "dark", "shadowy"], 0.1,ItemTrait.PATTERN);
     CALMING = new ItemFunctionTrait(["calming", "pale", "placating","shooshing"], 0.1,ItemTrait.OPINION);
     NUCLEAR = new ItemFunctionTrait(["nuclear", "radioactive", "irradiated"], 1.0,ItemTrait.CONDITION);
-    SCARY = new ItemFunctionTrait(["scary", "horrifying", "terrifying","spooky"], 0.1,ItemTrait.OPINION);
+    SCARY = new ItemFunctionTrait(["scary", "horrifying", "terrifying","spooky"], 0.2,ItemTrait.OPINION);
     LUCKY = new ItemFunctionTrait(["lucky", "fortunate", "gambler's", "favored", "charmed"], 0.3,ItemTrait.OPINION);
     DOOMED = new ItemFunctionTrait(["doomed", "cursed", "unlucky"], -0.3,ItemTrait.OPINION);
     POINTY = new ItemFunctionTrait(["pointy", "piercing", "sharp", "barbed", "piked", "sharpened","pronged", "pointed"], 0.3,ItemTrait.CONDITION);
@@ -679,8 +681,8 @@ class ItemTraitFactory {
     FUNNY = new ItemFunctionTrait(["funny", "hilarious", "comedy"], 0.1,ItemTrait.OPINION);
     ENRAGING = new ItemFunctionTrait(["annoying", "enraging", "dickish", "asshole"], 0.1,ItemTrait.OPINION);
     MAGICAL = new ItemFunctionTrait(["magical", "mystical", "magickal", "wizardy"], 0.6,ItemTrait.OPINION);
-    ASPECTAL = new ItemFunctionTrait(["aspecty", "imbued", "focused", "energized","awakened","infused"], 0.6,ItemTrait.FIRST);
-    CLASSRELATED = new ItemFunctionTrait(["class-related", "appropriate", "themed"], 0.6,ItemTrait.FIRST);
+    ASPECTAL = new ItemFunctionTrait(["aspecty", "imbued", "focused", "energized","awakened","infused"], 1.3,ItemTrait.FIRST);
+    CLASSRELATED = new ItemFunctionTrait(["class-related", "appropriate", "themed"], 1.3,ItemTrait.FIRST);
 
     PRETTY = new ItemFunctionTrait(["pretty", "aesthetic", "beautiful"], 0.1,ItemTrait.OPINION);
     HEALING = new ItemFunctionTrait(["healing", "regenerating", "recovery", "life"], 0.3,ItemTrait.PURPOSE);
