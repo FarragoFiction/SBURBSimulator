@@ -30,6 +30,7 @@ class Justice extends InterestCategory {
             ..add(new Item("Caution Tape",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.RESTRAINING]))
             ..add(new Item("Deerstalker Hat",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY]))
             ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK]))
+            ..add(new Item("Dish Served Cold",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.EDIBLE, ItemTraitFactory.COLD]))
             ..add(new Item("Pony Pals: Detective Pony ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK, ItemTraitFactory.COOLK1D]))
             ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]));
     }

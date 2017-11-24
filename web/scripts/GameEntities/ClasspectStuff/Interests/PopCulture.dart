@@ -32,6 +32,8 @@ class PopCulture extends InterestCategory {
             ..add(new Item("Snow Dogs DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.FUNNY, ItemTraitFactory.COLD, ItemTraitFactory.FUR]))
             ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Movie Poster",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))
+            ..add(new Item("Audrey II Plush",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.COOLK1D,ItemTraitFactory.CLOTH, ItemTraitFactory.SENTIENT]))
+            ..add(new Item("Peashooter Toy",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.SHOOTY,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Shitty Sword",<ItemTrait>[ItemTraitFactory.FAKE,ItemTraitFactory.METAL,ItemTraitFactory.COOLK1D, ItemTraitFactory.SWORD, ItemTraitFactory.EDGED, ItemTraitFactory.SHITTY]))
             ..add(new Item("GameBro Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))
             ..add(new Item("GameGrl Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]));

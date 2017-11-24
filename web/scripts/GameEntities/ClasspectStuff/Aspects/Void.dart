@@ -56,8 +56,8 @@ class Void extends Aspect {
             ..add(new Item("Cardboard Box",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING]))
             ..add(new Item("Hole Punch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING]))
             ..add(new Item("Smoke Bombs",<ItemTrait>[ItemTraitFactory.EXPLODEY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING,ItemTraitFactory.GRENADE]))
-            ..add(new Item("Mask",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.SCARY]))
-
+            ..add(new Item("Tribal Mask",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.SCARY, ItemTraitFactory.UGLY]))
+            ..add(new Item("Opera Mask",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.CLASSY]))
             ..add(new Item("Black Hole in a Bottle.",<ItemTrait>[ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.GREENSUN,ItemTraitFactory.OBSCURING]));
     }
 

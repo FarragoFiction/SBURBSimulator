@@ -84,6 +84,7 @@ class Doom extends Aspect {
             ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED]))
             ..add(new Item("Skull Timer",<ItemTrait>[ItemTraitFactory.BONE,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED]))
             ..add(new Item("Poison Flask",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.POISON]))
+            ..add(new Item("Ice Gorgon Head",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.COLD,ItemTraitFactory.DOOMED,ItemTraitFactory.RESTRAINING,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY]))
             ..add(new Item("Obituary",<ItemTrait>[ItemTraitFactory.SCARY, ItemTraitFactory.DOOMED, ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL]));
     }
 

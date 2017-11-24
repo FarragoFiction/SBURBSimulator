@@ -28,13 +28,15 @@ class Fantasy extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Dragon Plush",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.SCARY]))
-            ..add(new Item("Replica Shield",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE]))
-            ..add(new Item("Replica Sword",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.SWORD, ItemTraitFactory.FAKE]))
+            ..add(new Item("Replica Bone Shield",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.BONE, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE]))
+            ..add(new Item("Replica Ice Sword",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ICE, ItemTraitFactory.SWORD, ItemTraitFactory.FAKE]))
+            ..add(new Item("Zombie Mask",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.UGLY, ItemTraitFactory.FLESH, ItemTraitFactory.SCARY]))
+            ..add(new Item("Vampire Romance Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC, ItemTraitFactory.SCARY]))
             ..add(new Item("Wizardy Herbert",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
             ..add(new Item("Complacency of the Learned",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
             ..add(new Item("Grimoire for Summoning the Zoologically Dubious ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY]))
             ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]))
-            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.STONE,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]));
+            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.CRYSTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]));
     }
 
     @override

@@ -58,6 +58,7 @@ class Time extends Aspect {
         items = new WeightedList<Item>()
             ..add(new Item("Grandfather Clock",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.CLASSY, ItemTraitFactory.VALUABLE, ItemTraitFactory.ASPECTAL]))
             ..add(new Item("Drum",<ItemTrait>[ItemTraitFactory.LEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL]))
+            ..add(new Item("Dead Doppelganger",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.BONE, ItemTraitFactory.SCARY]))
             ..add(new Item("Music Box",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.CLASSY]))
             ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.COOLK1D]))
 

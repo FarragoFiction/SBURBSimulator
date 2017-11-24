@@ -6,6 +6,9 @@ String AND = "AND";
 String OR = "OR";
 String XOR = "XOR";
 
+//these are your goals.
+Set<CombinedTrait> achivements = new Set<CombinedTrait>();
+
 Player player;
 Element storyDiv;
 Element item1Div;

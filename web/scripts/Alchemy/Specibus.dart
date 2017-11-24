@@ -74,6 +74,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Hammer", ItemTraitFactory.HAMMER, [ItemTraitFactory.BLUNT, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Rifle", ItemTraitFactory.RIFLE, [ ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Pistol", ItemTraitFactory.PISTOL, [ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
+        _specibi.add(new Specibus("Shotgun", ItemTraitFactory.SHOTGUN, [ItemTraitFactory.SHOOTY, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.POINTY,ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Dagger", ItemTraitFactory.DAGGER, [ ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Fancysanta", ItemTraitFactory.SANTA, [ ItemTraitFactory.BLUNT, ItemTraitFactory.CERAMIC]));
@@ -81,6 +82,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Chainsaw", ItemTraitFactory.CHAINSAW, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Fork", ItemTraitFactory.FORK, [ ItemTraitFactory.POINTY, ItemTraitFactory.METAL]));
         _specibi.add(new Specibus("Pigeon", ItemTraitFactory.PIGEON, [ ItemTraitFactory.FEATHER]));
+        _specibi.add(new Specibus("Bowling Ball", ItemTraitFactory.BALL, [ ItemTraitFactory.HEAVY, ItemTraitFactory.STONE, ItemTraitFactory.BLUNT]));
         _specibi.add(new Specibus("Dice", ItemTraitFactory.DICE, [ ItemTraitFactory.PLASTIC, ItemTraitFactory.LUCKY]));
         _specibi.add(new Specibus("Needle", ItemTraitFactory.NEEDLE, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY]));
         _specibi.add(new Specibus("Staff", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]));

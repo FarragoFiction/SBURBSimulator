@@ -63,6 +63,7 @@ class Heir extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //mostly just shitty legal puns on inheritance.
+            ..add(new Item("Family Ashes",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.GHOSTLY]))
             ..add(new Item("Last Will and Testament",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.LEGAL]))
             ..add(new Item("Grooming Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY]))
             ..add(new Item("Powered Attorney",<ItemTrait>[ItemTraitFactory.ROBOTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.AI, ItemTraitFactory.LEGAL]))

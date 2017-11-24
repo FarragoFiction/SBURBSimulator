@@ -10,9 +10,26 @@ body{
 	background-image: url("../images/Skaia_Clouds.png");
 }
 
+@font-face {
+    font-family: strife;
+    src: url("../fonts/Strife.ttf");
+}
+
 
 #operator{
     vertical-align: top;
+}
+
+#achievements{
+  font-family: 'strife', sans-serif;
+}
+
+.missingAchievement{
+    font-color: grey;
+}
+
+.passedAchievement{
+   font-color:black;
 }
 
 td{

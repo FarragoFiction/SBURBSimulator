@@ -29,6 +29,7 @@ class Social extends InterestCategory {
             ..add(new Item("Fiduspawn Plush",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.DICE, ItemTraitFactory.PLASTIC]))
+            ..add(new Item("Pigeon",<ItemTrait>[ItemTraitFactory.FEATHER, ItemTraitFactory.SENTIENT, ItemTraitFactory.FLESH, ItemTraitFactory.BONE]))
             ..add(new Item("Cat Ears",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.FUR]))
             ..add(new Item("Religious Text",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
             ..add(new Item("Psychology Book",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
