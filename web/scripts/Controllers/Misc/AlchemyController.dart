@@ -35,12 +35,13 @@ SelectElement operatorSelect;
 void main() {
     //loadNavbar();
     globalInit();
+
     init();
-    buyShop = new Shop(querySelector("#buyshit"),Item.allUniqueItems);
-    sellShop = new Shop.pawn(querySelector("#sellshit"),player.sylladex);
+    buyShop = new Shop(querySelector("#buyshit"),querySelector("#quip"),Item.allUniqueItems);
+    sellShop = new Shop.pawn(querySelector("#sellshit"),querySelector("#quip"),player.sylladex);
     List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
     abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
-    abjShop = new Shop(querySelector("#abjshit"),abjItems);
+    abjShop = new Shop(querySelector("#abjshit"),querySelector("#quip"),abjItems);
 
     Achievement.announcmentDiv = querySelector("#announcement");
     Achievement.gristDiv = querySelector("#grist");
@@ -310,21 +311,29 @@ class Achievement {
 
 
 abstract class ShopItem {
+    static int tabIndex = 0;
     Item item;
     Element div;
+    Shop shop;
     String className = "myItems";
-    ShopItem(Item this.item, Element container) {
+    ShopItem(Item this.item, this.shop, Element container) {
         makeElement(container);
     }
 
     void makeElement(Element container) {
         div = new DivElement();
-
+        div.tabIndex = ShopItem.tabIndex;
+        ShopItem.tabIndex ++;
         div.classes.add(className);
 
         div.setInnerHtml("${item.fullName}");
         //TODO mouse over for traits
         container.append(div);
+        div.onClick.listen((e) {
+            Random rand = new Random();
+            double mathpercent = 90+rand.nextDouble(10.0);
+            shop.quipDiv.setInnerHtml("There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.randomDescription(rand)}");
+        });
     }
 }
 
@@ -332,20 +341,22 @@ abstract class ShopItem {
 class ShopItemForYou extends ShopItem {
     @override
     String className = "yourItems";
-  ShopItemForYou(Item item, Element container) : super(item, container);
+
+  ShopItemForYou(Item item, Shop shop, Element container) : super(item, shop, container);
 
 }
 
 //on sale add grist to Achivement.grist and remove item from player.sylladex and add to Shop Inventory.
 class ShopItemForMe extends ShopItem {
-  ShopItemForMe(Item item, Element container) : super(item, container);
+  ShopItemForMe(Item item,Shop shop, Element container) : super(item, shop, container);
 
 }
 
 class Shop {
     Element container;
+    Element quipDiv;
     List<ShopItem> inventory = new List<ShopItem>();
-    Shop(Element this.container, List<Item> items) {
+    Shop(Element this.container, this.quipDiv, List<Item> items) {
         slurpItemsIntoInventoryYouBuy(items);
     }
 
@@ -357,10 +368,10 @@ class Shop {
     }
 
     void addItemToInventoryYouBuy(Item item) {
-        inventory.add(new ShopItemForYou(item, container));
+        inventory.add(new ShopItemForYou(item, this, container));
     }
 
-    Shop.pawn(Element this.container, List<Item> items) {
+    Shop.pawn(Element this.container, this.quipDiv, List<Item> items) {
         slurpItemsIntoInventoryMeBuy(items);
     }
 
@@ -373,6 +384,6 @@ class Shop {
     }
 
     void addItemToInventoryMeBuy(Item item) {
-        inventory.add(new ShopItemForMe(item, container));
+        inventory.add(new ShopItemForMe(item, this, container));
     }
 }

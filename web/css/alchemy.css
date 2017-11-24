@@ -74,6 +74,41 @@ body{
  overflow: none;
 }
 
+#shop{
+    position: relative;
+    height: 618px;
+}
+#AB{
+    position: absolute;
+    left: 350px;
+    top: 175px;
+    z-index: 0;
+}
+
+div:focus {
+    background-color:#9630bf;
+    color: white;
+}
+
+
+#quip{
+    position: absolute;
+    font-family: 'strife', sans-serif;
+    color: red;
+    left: 100px;
+    top: 200px;
+    width: 300px;
+    overflow: none;
+    z-index: 3;
+}
+#shopGraphic{
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+}
+
+
 .yourItems{
   color: #9630bf;
   height: 50px;
