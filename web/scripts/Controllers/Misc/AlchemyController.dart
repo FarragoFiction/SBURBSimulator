@@ -333,8 +333,11 @@ abstract class ShopItem {
             Random rand = new Random();
             double mathpercent = 90+rand.nextDouble(10.0);
             shop.quipDiv.setInnerHtml("There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.randomDescription(rand)}");
+            renderTransactButton();
         });
     }
+
+    void renderTransactButton();
 }
 
 //on sale, remove grist from Achivement.grist and add item to player.sylladex.
@@ -344,12 +347,26 @@ class ShopItemForYou extends ShopItem {
 
   ShopItemForYou(Item item, Shop shop, Element container) : super(item, shop, container);
 
+  @override
+  void renderTransactButton() {
+      ButtonElement button = new ButtonElement();
+      button.setInnerHtml("Buy?");
+      button.classes.add("transactButton");
+      shop.quipDiv.append(button);
+  }
 }
 
 //on sale add grist to Achivement.grist and remove item from player.sylladex and add to Shop Inventory.
 class ShopItemForMe extends ShopItem {
   ShopItemForMe(Item item,Shop shop, Element container) : super(item, shop, container);
 
+  @override
+  void renderTransactButton() {
+      ButtonElement button = new ButtonElement();
+      button.setInnerHtml("Sell?");
+      button.classes.add("transactButton");
+      shop.quipDiv.append(button);
+  }
 }
 
 class Shop {

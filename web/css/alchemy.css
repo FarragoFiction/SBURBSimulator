@@ -90,14 +90,25 @@ div:focus {
     color: white;
 }
 
+.transactButton{
+    position: absolute;
+    bottom: 0px;
+    padding: 5px;
+    font-size: 22px;
+    font-family: 'strife', sans-serif;
+    left: 0px;
+    background: red;
+}
+
 
 #quip{
     position: absolute;
     font-family: 'strife', sans-serif;
     color: red;
-    left: 100px;
+    left: 75px;
     top: 200px;
-    width: 300px;
+    width: 325px;
+    height: 250px;
     overflow: none;
     z-index: 3;
 }
