@@ -6,8 +6,10 @@ String AND = "AND";
 String OR = "OR";
 String XOR = "XOR";
 
-//TODO make map of combinedTrait to achievements
- Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
+Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
+Shop buyShop;
+Shop sellShop;
+Shop abjShop;
 
 
 Player player;
@@ -34,6 +36,12 @@ void main() {
     //loadNavbar();
     globalInit();
     init();
+    buyShop = new Shop(querySelector("#buyshit"),Item.allUniqueItems);
+    sellShop = new Shop.pawn(querySelector("#sellshit"),player.sylladex);
+    List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
+    abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
+    abjShop = new Shop(querySelector("#abjshit"),abjItems);
+
     Achievement.announcmentDiv = querySelector("#announcement");
     Achievement.gristDiv = querySelector("#grist");
     Achievement.grist = 1300;
@@ -258,7 +266,9 @@ class Achievement {
     CombinedTrait trait;
     Element div;
 
-    Achievement(this.trait, this.div);
+    Achievement(this.trait, Element container) {
+        makeElement(container);
+    }
 
     static void syncGristDiv() {
         gristDiv.setInnerHtml("Grist: ${grist}");
@@ -276,20 +286,93 @@ class Achievement {
         return null;
     }
 
+    void makeElement(Element container) {
+        div = new DivElement();
+
+        div.classes.add(NOTYETCLASS);
+
+        div.setInnerHtml("${trait.name}");
+        container.append(div);
+    }
+
     static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
         for(CombinedTrait t in traits) {
             if(t.descriptions.isNotEmpty) {
-                Element div = new DivElement();
 
-                div.classes.add(NOTYETCLASS);
-
-                div.setInnerHtml("${t.name}");
-                container.append(div);
-                input[t] = new Achievement(t, div);
+                input[t] = new Achievement(t, container);
             }
         }
         return input;
     }
 
+}
+
+
+abstract class ShopItem {
+    Item item;
+    Element div;
+    String className = "myItems";
+    ShopItem(Item this.item, Element container) {
+        makeElement(container);
+    }
+
+    void makeElement(Element container) {
+        div = new DivElement();
+
+        div.classes.add(className);
+
+        div.setInnerHtml("${item.fullName}");
+        //TODO mouse over for traits
+        container.append(div);
+    }
+}
+
+//on sale, remove grist from Achivement.grist and add item to player.sylladex.
+class ShopItemForYou extends ShopItem {
+    @override
+    String className = "yourItems";
+  ShopItemForYou(Item item, Element container) : super(item, container);
+
+}
+
+//on sale add grist to Achivement.grist and remove item from player.sylladex and add to Shop Inventory.
+class ShopItemForMe extends ShopItem {
+  ShopItemForMe(Item item, Element container) : super(item, container);
+
+}
+
+class Shop {
+    Element container;
+    List<ShopItem> inventory = new List<ShopItem>();
+    Shop(Element this.container, List<Item> items) {
+        slurpItemsIntoInventoryYouBuy(items);
+    }
+
+    void slurpItemsIntoInventoryYouBuy(List<Item> items, [bool clearOld=false]) {
+        if(clearOld) items.clear();
+        for(Item i in items) {
+            addItemToInventoryYouBuy(i);
+        }
+    }
+
+    void addItemToInventoryYouBuy(Item item) {
+        inventory.add(new ShopItemForYou(item, container));
+    }
+
+    Shop.pawn(Element this.container, List<Item> items) {
+        slurpItemsIntoInventoryMeBuy(items);
+    }
+
+    //can use this to add sold item as well.
+    void slurpItemsIntoInventoryMeBuy(List<Item> items,[bool clearOld = false]) {
+        if(clearOld) items.clear();
+        for(Item i in items) {
+            addItemToInventoryMeBuy(i);
+        }
+    }
+
+    void addItemToInventoryMeBuy(Item item) {
+        inventory.add(new ShopItemForMe(item, container));
+    }
 }

@@ -35,6 +35,52 @@ body{
   display: inline-block;
 }
 
+#buyshit{
+  font-family: 'strife', sans-serif;
+  display: inline-block;
+  padding-top:10px;
+}
+
+#sellshit{
+  font-family: 'strife', sans-serif;
+  display: inline-block;
+  padding-top:10px;
+}
+
+#abjshit{
+  font-family: 'strife', sans-serif;
+  display: inline-block;
+  color: #ffb82d;
+  padding-top:10px;
+}
+
+.myItems{
+ color: #888888;
+ display: inline-block;
+ padding: 5px;
+ height: 50px;
+ width: 150px;
+ border: 3px solid #AAAAAA;
+ vertical-align: top;
+ text-align: middle;
+ background-color: #BBBBBB;
+ overflow: none;
+}
+
+.yourItems{
+  color: #9630bf;
+  height: 50px;
+  vertical-align: top;
+  display: inline-block;
+  padding: 5px;
+  width: 150px;
+  border: 3px solid #bdb968;
+  text-align: middle;
+  background-color: #fcf9bd;
+  overflow: none;
+}
+
+
 .missingAchievement{
     color: #888888;
     display: inline-block;
