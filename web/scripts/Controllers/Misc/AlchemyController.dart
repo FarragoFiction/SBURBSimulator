@@ -6,11 +6,22 @@ String AND = "AND";
 String OR = "OR";
 String XOR = "XOR";
 
+
+
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 Shop abShop;
 Shop abjShop;
 
+Element storeDiv;
+Element buyDiv;
+Element sellDiv;
+Element achivementDiv;
+Element alchemyDiv;
 
+List<Element> tabs = <Element>[storeDiv, alchemyDiv];
+
+
+Element quipDiv;
 Player player;
 Element storyDiv;
 Element item1Div;
@@ -36,17 +47,52 @@ void main() {
     globalInit();
 
     init();
-    abShop = new Shop(player, querySelector("#buyshit"), querySelector("#sellshit"),querySelector("#quip"),Item.allUniqueItems);
+    quipDiv = querySelector("#quip");
+    buyDiv = querySelector("#buyshit");
+    storeDiv = querySelector("#storeDiv");
+
+    sellDiv = querySelector("#sellshit");
+    achivementDiv = querySelector("#achievements");
+    alchemyDiv = querySelector("#alchemy");
+
+    abShop = new Shop(player, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
     List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
     abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
     //TODO
     //abjShop = new Shop(player, querySelector("#abjshit"),querySelector("#quip"),abjItems);
 
     Achievement.announcmentDiv = querySelector("#announcement");
+
+    ButtonElement storeButton = new ButtonElement();
+    storeButton.setInnerHtml("Store");
+    storeButton.onClick.listen((e) => changeTabs(storeDiv));
+
+    ButtonElement alchemyButton = new ButtonElement();
+    alchemyButton.setInnerHtml("Alchemy");
+    alchemyButton.onClick.listen((e) => changeTabs(alchemyDiv));
+
+
+    changeTabs(alchemyDiv);
+
+    Achievement.announcmentDiv.append(storeButton);
+    Achievement.announcmentDiv.append(alchemyButton);
+
+
     Achievement.gristDiv = querySelector("#grist");
     Achievement.addGrist(13);
     Achievement.syncGristDiv();
-    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"));
+    achievements = Achievement.makeAchievements(achievements, achivementDiv);
+}
+
+void changeTabs(Element selectedDiv) {
+    for(Element tab in tabs) {
+        if(selectedDiv == tab) {
+            tab.style.display = "inline-block";
+
+        }else {
+            tab.style.display = "none";
+        }
+    }
 }
 
 

@@ -35,6 +35,10 @@ body{
   display: inline-block;
 }
 
+#storeDiv{
+    display: none;
+}
+
 #buyshit{
   font-family: 'strife', sans-serif;
   display: inline-block;
@@ -53,7 +57,7 @@ body{
 
 #abjshit{
   font-family: 'strife', sans-serif;
-  display: inline-block;
+  display: none;
   color: #ffb82d;
   height: 300px;
   padding-top:10px;

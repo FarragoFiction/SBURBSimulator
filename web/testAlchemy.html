@@ -19,11 +19,8 @@
 		<li>items have optional human made descriptions. can trigger instead of random.</li>
 		<li>Alchemy has a cost, cost of resultant item. (though you don't know what item will be before you pay, you do know price)</li>
 		<li>shop/alchemy tabs</li>
-		<li>You can always buy back a sold item. (for more money)</li>
 		<li>easter egg store of nothing but romantic and on fire objects for cheap prices</li>
-		<li>shop lets you sell items in your sylladex (with indicator if they can be be alchemized more) (rebuilt every time you view)</li>
-		<li>shop lets you buy a fresh copy of any unique item. (never refreshes)</li>
-		<li>AB quips.</li>
+		<li>AB quips. for buying/selling/alchemy and switching and/or/xor</li>
 		<li>farrago fiction links to Your Story and Alchemy Sim. (maybe have alchemy sim be sub directory in sburbsim? same for your story)</li>
 		<li>When item hits max upgrades, remove from list? oh yeah this would fix some shit.</li>
 		<li> ability to buy new items with diff properties. Can see traits.</li>
@@ -33,23 +30,30 @@
 		<div id = "shop">
 			<div id="quip"> Bluh. How does this even REMOTELY relate to Guide shit. Whatever. Enjoy wandering around lost, asshole.</div>
 			<img id = "shopGraphic" src = "images/exposition.png">
-			<img id = "AB" src = "images/guide_bot_turnways.png">
+			<img id = "AB" src = "images/Alchemy/guide_bot_turnways.png">
 
 		</div>
-		<div id = "buyshit">
-			Buy Shit:<br>
-		</div>
 
-		<div id = "sellshit">
-			Sell Shit:<br>
-		</div>
 
-		<div id = "abjshit">
-			Interesting!!!:<br>
-		</div>
+
 		<br><br>
 		<span id = "grist">Grist: 0</span>
 		<span id = "announcement"></span>
+
+		<div id = "storeDiv">
+			<div id = "buyshit">
+				Buy Shit:<br>
+			</div>
+
+			<div id = "sellshit">
+				Sell Shit:<br>
+			</div>
+
+			<div id = "abjshit">
+				Interesting!!!:<br>
+			</div>
+		</div>
+		<div id = "alchemy">
 		<br>
 			<button id = "alchemyButton">Alchemize!</button>
 		<table>
@@ -57,6 +61,7 @@
 			<tr><td id = "item1"><div id = "item1Sel"></div></td><td id = "operator"><div id = "opSel"></div></td><td id = "item2"><div id = "item2Sel"></div></td></tr>
 			<tr><td></td><td id = "result"></Td><td></td></tr>
 		</table>
+		</div>
 
 		<div id = "achievements">
 			Achievements:<br>
