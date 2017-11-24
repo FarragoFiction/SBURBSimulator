@@ -318,6 +318,8 @@ class Achievement {
 
 abstract class ShopItem {
     static int tabIndex = 0;
+    //TODO middle and late
+    List<String> initialQuips = <String>["Yeah, I bet you won't regret that.","Is that really the best choice you could make with your inferior meat brain? Whatever.","Oh my fuck why did it take you so long to decide that."];
     Item item;
     Element div;
     Shop shop;
@@ -356,7 +358,8 @@ class ShopItemInStock extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = (item.rank * -10).round();
+      int cost = ((item.rank.abs()+1) * -10).round();
+
 
       button.setInnerHtml("Buy For ${cost} Grist?");
 
@@ -364,10 +367,12 @@ class ShopItemInStock extends ShopItem {
       shop.quipDiv.append(button);
       if(cost.abs() <= Achievement.grist) {
           button.onClick.listen((e) {
+              Random rand = new Random();
               Achievement.addGrist(cost);
               player.sylladex.add(item);
               //shop.removeItemFromInventory(this); no once it's in inventory it lives there.
               shop.renderPlayerSylladex();
+              shop.quipDiv.setInnerHtml(rand.pickFrom(initialQuips));
           });
       }else {
         button.disabled = true;
@@ -383,16 +388,18 @@ class ShopItemPlayerOwns extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = (item.rank * 5).round();
+      int cost = ((item.rank.abs()+1) * 5).round();
 
       button.setInnerHtml("Sell For ${cost} Grist?");
       button.classes.add("transactButton");
       shop.quipDiv.append(button);
       button.onClick.listen((e) {
+          Random rand = new Random();
           Achievement.addGrist(cost);
           player.sylladex.remove(item);
           shop.addItemToInventory(item);
           shop.renderPlayerSylladex();
+          shop.quipDiv.setInnerHtml(rand.pickFrom(initialQuips));
       });
   }
 }
@@ -407,6 +414,7 @@ class Shop {
 
     Shop(Player this.player, Element this.inventoryContainer, Element this.pawnContainer, this.quipDiv, List<Item> items) {
         slurpItemsIntoInventory(items);
+        renderPlayerSylladex();
     }
 
     //gets it off screen and removes from self
