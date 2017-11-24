@@ -57,6 +57,7 @@ class ItemAppearanceTrait extends ItemTrait {
 
 class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
 
+  String name = "JR NAME ME PLZ!!!";
   //the more traits i can get rid of , the better.
   int get priority {
     return subTraits.length;

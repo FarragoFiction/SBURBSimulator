@@ -6,8 +6,9 @@ String AND = "AND";
 String OR = "OR";
 String XOR = "XOR";
 
-//these are your goals.
-Set<CombinedTrait> achivements = new Set<CombinedTrait>();
+//TODO make map of combinedTrait to achievements
+ Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
+
 
 Player player;
 Element storyDiv;
@@ -33,7 +34,10 @@ void main() {
     //loadNavbar();
     globalInit();
     init();
+    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"));
 }
+
+
 
 void init() {
     storyDiv = querySelector("#story");
@@ -178,6 +182,7 @@ SelectElement genericDropDown<T> (Element div, List<T> list, String name)
 }
 
 
+
 Element renderItemStats(Item item) {
     Element ret = new DivElement();
     ret.classes.add("itemStats");
@@ -209,3 +214,40 @@ Element renderItemStats(Item item) {
     return ret;
 }
 
+//knows how to render self. knows how to toggle from not found to found. knows how to award grist
+//knows if found yet or nah
+class Achievement {
+
+    static String WONCLASS = "passedAchievement";
+    static String NOTYETCLASS = "missingAchievement";
+
+    bool achieved = false;
+
+    CombinedTrait trait;
+    Element div;
+
+    Achievement(this.trait, this.div);
+
+    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
+        List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
+        for(CombinedTrait t in traits) {
+            Element div = new DivElement();
+            Random rand = new Random();
+            rand.nextInt(); //work around.
+            //testing
+            if(rand.nextBool()) {
+                div.classes.add(WONCLASS);
+
+            }else {
+                div.classes.add(NOTYETCLASS);
+            }
+            //div.classes.add(NOTYETCLASS);
+
+            div.setInnerHtml(t.name);
+            container.append(div);
+            input[t] = new Achievement(t, div);
+        }
+        return input;
+    }
+
+}

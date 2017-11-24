@@ -22,14 +22,27 @@ body{
 
 #achievements{
   font-family: 'strife', sans-serif;
+  display: inline-block;
 }
 
 .missingAchievement{
-    font-color: grey;
+    color: #888888;
+    display: inline-block;
+    padding: 5px;
+    width: 150px;
+    border: 3px solid #AAAAAA;
+    text-align: middle;
+    background-color: #BBBBBB;
 }
 
 .passedAchievement{
-   font-color:black;
+    color: #06ffc9;
+    display: inline-block;
+    padding: 5px;
+    width: 150px;
+    border: 3px solid #386426;
+    text-align: middle;
+    background-color: #3da35a;
 }
 
 td{
