@@ -74,8 +74,8 @@ void main() {
 
     changeTabs(alchemyDiv);
 
-    Achievement.announcmentDiv.append(storeButton);
-    Achievement.announcmentDiv.append(alchemyButton);
+    querySelector("#tabs").append(storeButton);
+    querySelector("#tabs").append(alchemyButton);
 
 
     Achievement.gristDiv = querySelector("#grist");
@@ -85,6 +85,11 @@ void main() {
 }
 
 void changeTabs(Element selectedDiv) {
+    if(selectedDiv == storeDiv) {
+        abShop.renderPlayerSylladex(); //refresh each time you view.
+    }else if(selectedDiv == alchemyDiv){
+        makeDropDowns(); //my syladdex probably changed. update.
+    }
     for(Element tab in tabs) {
         if(selectedDiv == tab) {
             tab.style.display = "inline-block";
@@ -286,15 +291,12 @@ Element renderItemStats(Item item) {
     Element attributes = new DivElement();
     attributes.setInnerHtml("Attributes: ");
     ret.append(attributes);
-    String collate = "";
     for(ItemTrait it in item.traits) {
         Element li = new DivElement();
         li.classes.add("oneTrait");
-        collate += ",${it.descriptions.first}";
         li.setInnerHtml("${it.descriptions.first}(${it.rank})");
         ret.append(li);
     }
-    ret.appendHtml(collate);
     return ret;
 }
 

@@ -113,7 +113,7 @@ div:focus {
     top: 200px;
     width: 325px;
     height: 250px;
-    overflow: none;
+    overflow: hidden;
     z-index: 3;
 }
 #shopGraphic{
@@ -135,7 +135,7 @@ div:focus {
   border: 3px solid #bdb968;
   text-align: middle;
   background-color: #fcf9bd;
-  overflow: none;
+  overflow: hidden;
 }
 
 
