@@ -11,6 +11,10 @@
     font-family: 'strife', sans-serif;
     padding: 10px;
 }
+#grist{
+    font-family: 'strife', sans-serif;
+    padding: 10px;
+}
 
 body{
 	background-image: url("../images/Skaia_Clouds.png");
@@ -44,15 +48,15 @@ body{
 }
 
 .passedAchievement{
-    color: #06ffc9;
+    color: #9630bf;
     height: 50px;
     vertical-align: top;
     display: inline-block;
     padding: 5px;
     width: 150px;
-    border: 3px solid #386426;
+    border: 3px solid #9630bf;
     text-align: middle;
-    background-color: #3da35a;
+    background-color: #cc87e8;
 }
 
 td{

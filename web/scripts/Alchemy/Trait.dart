@@ -63,6 +63,17 @@ class CombinedTrait extends ItemTrait implements Comparable<CombinedTrait> {
     return subTraits.length;
   }
 
+  //will this work?
+  @override
+  double get rank {
+    double ret = 0.0;
+    for(ItemTrait it in subTraits) {
+      ret += it.rank;
+    }
+
+    return ret;
+  }
+
   //naturally sorted by priority
   @override
   int compareTo(CombinedTrait other) {
@@ -243,6 +254,7 @@ class ItemTraitFactory {
   static CombinedTrait PLYWOOD;
   static CombinedTrait COLOSSUS;
   static CombinedTrait ROTTING;
+  static CombinedTrait  DRAUGR;
   static CombinedTrait LIGHTVOID;
   static CombinedTrait DOOMLUCK;
   static CombinedTrait CANDY;
@@ -426,6 +438,8 @@ class ItemTraitFactory {
     PLYWOOD = new CombinedTrait("Plywood",<String>["plywood"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD, PAPER]);
     COLOSSUS = new CombinedTrait("Colossus",<String>["colossus"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL, FLESH]);
     ROTTING = new CombinedTrait("Rotting",<String>["rotting", "zombie"], 0.0,ItemTrait.CONDITION, <ItemTrait>[UGLY, FLESH]);
+    DRAUGR = new CombinedTrait("Draugr",<String>["draugr", "white walker"], 0.0,ItemTrait.CONDITION, <ItemTrait>[UGLY, FLESH, COLD]);
+
     LIGHTVOID = new CombinedTrait("Ultraviolet",<String>["Ultraviolet"], 0.0,ItemTrait.COLOR, <ItemTrait>[GLOWING, OBSCURING]);
     ULTRAVIOLENCE = new CombinedTrait("Ultraviolence",<String>["Ultraviolence"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[GLOWING, OBSCURING, EDGED]);
     DOOMLUCK = new CombinedTrait("",<String>[], 0.0, ItemTrait.PURPOSE,<ItemTrait>[DOOMED, LUCKY]);

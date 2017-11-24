@@ -34,7 +34,11 @@ void main() {
     //loadNavbar();
     globalInit();
     init();
-    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"),querySelector("#announcement"));
+    Achievement.announcmentDiv = querySelector("#announcement");
+    Achievement.gristDiv = querySelector("#grist");
+    Achievement.grist = 1300;
+    Achievement.syncGristDiv();
+    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"));
 }
 
 
@@ -110,10 +114,14 @@ void processAchievements(Item itemAlchemized) {
     for(ItemTrait it in combinedTraits) {
         //could be a leftover
         if(it is CombinedTrait) {
-            String doop = (achievements[it].toggle());
-            if(doop != null) ret.add(doop);
+            Achievement a = achievements[it];
+            if(a != null) {
+                String doop = (achievements[it].toggle());
+                if (doop != null) ret.add(doop);
+            }
         }
     }
+    Achievement.syncGristDiv();
     if(ret.length > 1) {
         Achievement.announcmentDiv.setInnerHtml("Achievements Unlocked: ${turnArrayIntoHumanSentence(ret)}");
     }else if (ret.length == 1) {
@@ -239,10 +247,12 @@ Element renderItemStats(Item item) {
 //knows how to render self. knows how to toggle from not found to found. knows how to award grist
 //knows if found yet or nah
 class Achievement {
-
+    static int grist = 0;
     static String WONCLASS = "passedAchievement";
     static String NOTYETCLASS = "missingAchievement";
     static Element announcmentDiv;
+    static Element gristDiv;
+
 
 
     CombinedTrait trait;
@@ -250,27 +260,31 @@ class Achievement {
 
     Achievement(this.trait, this.div);
 
+    static void syncGristDiv() {
+        gristDiv.setInnerHtml("Grist: ${grist}");
+    }
+
     String toggle() {
         if(div.classes.contains(NOTYETCLASS)) {
             div.classes.remove(NOTYETCLASS);
             div.classes.add(WONCLASS);
-            //TODO also give money
-            return trait.name;
+            int amount = ((trait.rank.abs() + 1) * 100).round(); //no you can't lose money for getting an achievement.
+            grist += amount;
+            return "${trait.name}(+${amount} grist)";
         }
         print("Achivement ${trait.name} already found.");
         return null;
     }
 
-    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container, Element annDiv) {
+    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
-        Achievement.announcmentDiv = annDiv;
         for(CombinedTrait t in traits) {
             if(t.descriptions.isNotEmpty) {
                 Element div = new DivElement();
 
                 div.classes.add(NOTYETCLASS);
 
-                div.setInnerHtml(t.name);
+                div.setInnerHtml("${t.name}");
                 container.append(div);
                 input[t] = new Achievement(t, div);
             }
