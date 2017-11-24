@@ -4,6 +4,12 @@
 	margin-left: auto;
 	margin-right: auto;
 	padding: 10px;
+
+}
+
+#announcement{
+    font-family: 'strife', sans-serif;
+    padding: 10px;
 }
 
 body{

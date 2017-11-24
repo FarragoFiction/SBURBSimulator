@@ -251,6 +251,7 @@ class ItemTraitFactory {
   static CombinedTrait EDIBLEPOISON;
   static CombinedTrait MARROW;
   static CombinedTrait TOOTHY;
+  static CombinedTrait FROST;
   static CombinedTrait CRYSTAL;
   static CombinedTrait MARYSUE;
   static CombinedTrait EDGELORD;
@@ -310,6 +311,8 @@ class ItemTraitFactory {
   static CombinedTrait WEAKSAUCE;
   static CombinedTrait SPICY;
   static CombinedTrait ICECREAM;
+  static CombinedTrait POPSICKLE;
+  static CombinedTrait ICEPICK;
   static CombinedTrait SCHEZWAN;
   static CombinedTrait VAPORWAVE;
   static CombinedTrait MALLET;
@@ -331,6 +334,8 @@ class ItemTraitFactory {
   static CombinedTrait MUTANT;
   static CombinedTrait SKATEBOARD;
   static CombinedTrait MICROWAVE;
+  static CombinedTrait ORBITAL;
+  static CombinedTrait DUMBSMART;
   static CombinedTrait URANIUM;
   static CombinedTrait MOUSEPAD;
   static CombinedTrait FLINT1;
@@ -429,6 +434,7 @@ class ItemTraitFactory {
     GUM = new CombinedTrait("Gum",<String>["gummy"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[EDIBLE, RUBBER]);
     MARROW = new CombinedTrait("Marrow",<String>["marrow"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[EDIBLE, BONE]);
     TOOTHY = new CombinedTrait("Toothy",<String>["toothy"], 0.0,ItemTrait.SHAPE, <ItemTrait>[BONE, CERAMIC]);
+    FROST = new CombinedTrait("Frost",<String>["Frost"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE, GLASS, FLESH]); //refrance
     EDIBLEPOISON = new CombinedTrait("Arsenic",<String>["arsenic", "antifreeze"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDIBLE, POISON]);
     CRYSTAL = new CombinedTrait("Crystal",<String>["crystal", "diamond", "quartz"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE, GLASS]);
     MARYSUE = new CombinedTrait("Mary Sue",<String>["mary sue", "sakura katana chan", "shitty oc"], 0.0, ItemTrait.OPINION, <ItemTrait>[PRETTY, ROMANTIC, FUNNY, SMART, CLASSY, LUCKY, MAGICAL]);
@@ -489,7 +495,10 @@ class ItemTraitFactory {
     SHOCKSAUCE = new CombinedTrait("Shock Sauce",<String>["shocksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, ZAP]);
     WEAKSAUCE = new CombinedTrait("Weak Sauce",<String>["weaksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, SHITTY]);
     SPICY = new CombinedTrait("Spicy",<String>["spicy", "picante"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, EDIBLE]);
-    ICECREAM = new CombinedTrait("Popsickle",<String>["ice cream", "popsicle"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, EDIBLE]);
+    ICECREAM = new CombinedTrait("Popsicle",<String>["ice cream", "popsicle"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, EDIBLE]);
+    POPSICKLE = new CombinedTrait("Popsickle",<String>["popsickle"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, EDIBLE,EDGED]);
+    ICEPICK = new CombinedTrait("Icepick",<String>["icepick"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, POINTY]);
+
     SCHEZWAN = new CombinedTrait("Schezwan",<String>["schezwan"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, EDIBLE]);
     VAPORWAVE = new CombinedTrait("Vaporwave",<String>["vaporwave"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[OBSCURING, MUSICAL, COOLK1D, ZAP]);
     MALLET = new CombinedTrait("Mallet",<String>["mallet"], 0.0,ItemTrait.SHAPE, <ItemTrait>[WOOD, BLUNT]);
@@ -511,6 +520,9 @@ class ItemTraitFactory {
     MUTANT = new CombinedTrait("Mutant",<String>["ghoul", "mutant"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[FLESH, NUCLEAR, UGLY]);
     SKATEBOARD = new CombinedTrait("Skateboard",<String>["skate", "skateboard"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[COOLK1D, METAL]);
     MICROWAVE = new CombinedTrait("Microwave",<String>["microwave"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[NUCLEAR, ZAP, EDIBLE]);
+    ORBITAL = new CombinedTrait("Orbital",<String>["orbital"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[NUCLEAR, ZAP, EDIBLE,SHOOTY]);
+    DUMBSMART = new CombinedTrait("",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BLUNT, SMART]);
+
     URANIUM = new CombinedTrait("Uranium",<String>["uranium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[NUCLEAR, STONE]);
     MOUSEPAD = new CombinedTrait("Mousepad",<String>["mousepad", "jar opener"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER, RUBBER]);
     FLINT1 = new CombinedTrait("Sharpened Flint",<String>["flint"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[EDGED, STONE]);

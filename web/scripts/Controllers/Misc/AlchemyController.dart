@@ -34,7 +34,7 @@ void main() {
     //loadNavbar();
     globalInit();
     init();
-    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"));
+    achievements = Achievement.makeAchievements(achievements, querySelector("#achievements"),querySelector("#announcement"));
 }
 
 
@@ -85,7 +85,7 @@ void makeAlchemyButton() {
             alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
         }
         alchemyResult.apply(player);
-        giveRandomItem();
+        //giveRandomItem(); //nope, gotta buy em now asshole.
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
         resultTraitsDiv = (renderItemStats(alchemyResult.result));
         resultDiv.append(resultTraitsDiv);
@@ -106,11 +106,21 @@ void makeAlchemyButton() {
 //look in item for combo traits, find corresponding achievemnts and toggle them on.
 void processAchievements(Item itemAlchemized) {
     List<ItemTrait> combinedTraits = new List<ItemTrait>.from(CombinedTrait.lookForCombinedTraits(itemAlchemized.traits));
+    List<String> ret = new List<String>();
     for(ItemTrait it in combinedTraits) {
         //could be a leftover
         if(it is CombinedTrait) {
-            achievements[it].toggle();
+            String doop = (achievements[it].toggle());
+            if(doop != null) ret.add(doop);
         }
+    }
+    if(ret.length > 1) {
+        Achievement.announcmentDiv.setInnerHtml("Achievements Unlocked: ${turnArrayIntoHumanSentence(ret)}");
+    }else if (ret.length == 1) {
+        Achievement.announcmentDiv.setInnerHtml("Achievement Unlocked: ${turnArrayIntoHumanSentence(ret)}");
+    }else {
+        Achievement.announcmentDiv.setInnerHtml("");
+
     }
 
 }
@@ -232,21 +242,28 @@ class Achievement {
 
     static String WONCLASS = "passedAchievement";
     static String NOTYETCLASS = "missingAchievement";
+    static Element announcmentDiv;
 
-    bool achieved = false;
 
     CombinedTrait trait;
     Element div;
 
     Achievement(this.trait, this.div);
 
-    void toggle() {
-        div.classes.remove(NOTYETCLASS);
-        div.classes.add(WONCLASS);
+    String toggle() {
+        if(div.classes.contains(NOTYETCLASS)) {
+            div.classes.remove(NOTYETCLASS);
+            div.classes.add(WONCLASS);
+            //TODO also give money
+            return trait.name;
+        }
+        print("Achivement ${trait.name} already found.");
+        return null;
     }
 
-    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
+    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container, Element annDiv) {
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
+        Achievement.announcmentDiv = annDiv;
         for(CombinedTrait t in traits) {
             if(t.descriptions.isNotEmpty) {
                 Element div = new DivElement();
