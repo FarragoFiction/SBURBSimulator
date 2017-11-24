@@ -29,14 +29,18 @@ body{
     color: #888888;
     display: inline-block;
     padding: 5px;
+    height: 50px;
     width: 150px;
     border: 3px solid #AAAAAA;
+    vertical-align: top;
     text-align: middle;
     background-color: #BBBBBB;
 }
 
 .passedAchievement{
     color: #06ffc9;
+    height: 50px;
+    vertical-align: top;
     display: inline-block;
     padding: 5px;
     width: 150px;

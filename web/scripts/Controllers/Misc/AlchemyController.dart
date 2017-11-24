@@ -231,21 +231,22 @@ class Achievement {
     static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
         for(CombinedTrait t in traits) {
-            Element div = new DivElement();
-            Random rand = new Random();
-            rand.nextInt(); //work around.
-            //testing
-            if(rand.nextBool()) {
-                div.classes.add(WONCLASS);
+            if(t.descriptions.isNotEmpty) {
+                Element div = new DivElement();
+                Random rand = new Random();
+                rand.nextInt(); //work around.
+                //testing
+                if (rand.nextBool()) {
+                    div.classes.add(WONCLASS);
+                } else {
+                    div.classes.add(NOTYETCLASS);
+                }
+                //div.classes.add(NOTYETCLASS);
 
-            }else {
-                div.classes.add(NOTYETCLASS);
+                div.setInnerHtml(t.name);
+                container.append(div);
+                input[t] = new Achievement(t, div);
             }
-            //div.classes.add(NOTYETCLASS);
-
-            div.setInnerHtml(t.name);
-            container.append(div);
-            input[t] = new Achievement(t, div);
         }
         return input;
     }
