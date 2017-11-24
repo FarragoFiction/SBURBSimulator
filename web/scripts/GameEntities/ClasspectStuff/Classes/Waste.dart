@@ -50,7 +50,7 @@ class Waste extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("SBURBSim Hacking Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.SMARTPHONE]))
-            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONIC3, ItemTraitFactory.COMFORTABLE]))
+            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE]))
             ..add(new Item("Nanobots",<ItemTrait>[ItemTraitFactory.ROBOTIC2, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.AI]));
     }
 

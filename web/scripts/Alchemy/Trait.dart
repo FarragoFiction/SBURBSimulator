@@ -182,6 +182,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait GHOSTLY;
   static ItemAppearanceTrait FLESH;
   static ItemAppearanceTrait FUR;
+  static ItemAppearanceTrait PLANT;
   static ItemAppearanceTrait FEATHER;
   static ItemAppearanceTrait UGLY;
   static ItemAppearanceTrait LEGENDARY;
@@ -257,7 +258,7 @@ class ItemTraitFactory {
   static CombinedTrait ARROWHEAD;
   static CombinedTrait ARROW;
   static CombinedTrait KENDO;
-  static CombinedTrait IRONIC;
+  static CombinedTrait IRONICFAKECOOL;
   static CombinedTrait NET;
   static CombinedTrait MORNINGSTAR;
   static CombinedTrait BARBWIRE;
@@ -382,8 +383,8 @@ class ItemTraitFactory {
   static CombinedTrait DISABLING;
   static CombinedTrait FASHIONABLE;
   static CombinedTrait HAUTE;
-  static CombinedTrait IRONIC2;
-  static CombinedTrait IRONIC3;
+  static CombinedTrait IRONICFUNNYCOOL;
+  static CombinedTrait IRONICSHITTYFUNNY;
   static CombinedTrait POSTIRONIC;
   static CombinedTrait MONSTOROUS;
   static CombinedTrait ROOTY;
@@ -437,7 +438,7 @@ class ItemTraitFactory {
     ARROWHEAD = new CombinedTrait(<String>["tipped", "reinforced", "arrowhead"], 0.0,ItemTrait.CONDITION, <ItemTrait>[POINTY, WOOD]);
     ARROW = new CombinedTrait(<String>["arrow", "flechette", "bolt"], 0.0, ItemTrait.SHAPE,<ItemTrait>[POINTY, SHOOTY]);
     KENDO = new CombinedTrait(<String>["training sword", "bokken"], 0.0,ItemTrait.SHAPE, <ItemTrait>[WOOD, EDGED]);
-    IRONIC = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D]);
+    IRONICFAKECOOL = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D]);
     NET = new CombinedTrait(<String>["netted", "webbed"], 0.0,ItemTrait.SHAPE, <ItemTrait>[RESTRAINING, CLOTH]);
     BARBWIRE = new CombinedTrait(<String>["barbed wire"], 0.0, ItemTrait.SHAPE,<ItemTrait>[POINTY, RESTRAINING, METAL, CLOTH]);
     MORNINGSTAR = new CombinedTrait(<String>["morning star"], 0.0,ItemTrait.SHAPE, <ItemTrait>[POINTY, BLUNT]);
@@ -561,8 +562,8 @@ class ItemTraitFactory {
     DISABLING = new CombinedTrait(<String>["disabling","non lethal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, SHOOTY]);
     FASHIONABLE = new CombinedTrait(<String>["fasionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
     HAUTE = new CombinedTrait(<String>["haute couture"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY,VALUABLE]);
-    IRONIC2 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
-    IRONIC3 = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
+    IRONICFUNNYCOOL = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
+    IRONICSHITTYFUNNY = new CombinedTrait(<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
     POSTIRONIC = new CombinedTrait(<String>["post-ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D,CLASSY]);
     MONSTOROUS = new CombinedTrait(<String>["monstrous"], 0.0,ItemTrait.OPINION, <ItemTrait>[UGLY,LOUD, SCARY]);
     ROOTY = new CombinedTrait(<String>["rooty tooty point and shooty"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY, COOLK1D,CLASSY]);
@@ -648,6 +649,8 @@ class ItemTraitFactory {
     GHOSTLY = new ItemAppearanceTrait(<String>["ghostly","ectoplasm"], -0.3,ItemTrait.MATERIAL);
     FLESH = new ItemAppearanceTrait(<String>["flesh", "meat","muscle"], -0.1,ItemTrait.MATERIAL);
     FUR = new ItemAppearanceTrait(<String>["fur", "fluff","fuzzy"], -0.1,ItemTrait.MATERIAL);
+    PLANT = new ItemAppearanceTrait(<String>["plant", "leaf","vine"], -0.1,ItemTrait.MATERIAL);
+
     FEATHER = new ItemAppearanceTrait(<String>["feathery"], -0.1,ItemTrait.MATERIAL);
 
     UGLY = new ItemAppearanceTrait(<String>["gross", "ugly","unpleasant"], -0.1,ItemTrait.OPINION);
