@@ -56,8 +56,8 @@ class Hope extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Wand",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.REAL]))
-            ..add(new Item("Angel Feather",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.FEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.MUSICAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.REAL]))
+            ..add(new Item("Wand",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.REAL],"It's probably science powered."))
+            ..add(new Item("Angel Feather",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.FEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.MUSICAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.REAL],"Angels are, like, these terrible feathery monsters. Don't fuck with them."))
             ..add(new Item("Never Ending Story DVD",<ItemTrait>[ItemTraitFactory.SHITTY, ItemTraitFactory.IRONICFAKECOOL, ItemTraitFactory.ASPECTAL, ItemTraitFactory.MAGICAL, ItemTraitFactory.FUNNY, ItemTraitFactory.REAL]))
             ..add(new Item("Candle",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.GLOWING, ItemTraitFactory.ASPECTAL]))
             ..add(new Item("Fairy Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.GLOWING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.REAL]));

@@ -56,10 +56,10 @@ class Rage extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Curtain",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE]))
-            ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ZAP,  ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE]))
+            ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ZAP,  ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE],"Rage players are such loud assholes."))
             ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.LOUD, ItemTraitFactory.ENRAGING,ItemTraitFactory.RUBBER,ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE]))
-            ..add(new Item("Bacchus Wine",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.ENRAGING,ItemTraitFactory.CLASSY, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAKE ]))
-            ..add(new Item("Nightmare Fuel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SCARY,ItemTraitFactory.ONFIRE,ItemTraitFactory.EXPLODEY, ItemTraitFactory.FAKE]));
+            ..add(new Item("Bacchus Wine",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.ENRAGING,ItemTraitFactory.CLASSY, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAKE ],"I guess it makes you go beserk or some shit. Sucks being biological."))
+            ..add(new Item("Nightmare Fuel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SCARY,ItemTraitFactory.ONFIRE,ItemTraitFactory.EXPLODEY, ItemTraitFactory.FAKE],"It's clowns isn't it. It's always fucking clowns."));
     }
 
     @override

@@ -56,11 +56,11 @@ class Mind extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Puzzle",<ItemTrait>[ItemTraitFactory.PLYWOOD, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Tesla Coil",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.METAL]))
-            ..add(new Item("Coin",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Electronic Door",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.ZAP, ItemTraitFactory.SMART]))
-            ..add(new Item("Janus Bust",<ItemTrait>[ItemTraitFactory.BUST, ItemTraitFactory.STONE,ItemTraitFactory.CLASSY,ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY]));
+            ..add(new Item("Puzzle",<ItemTrait>[ItemTraitFactory.PLYWOOD, ItemTraitFactory.ASPECTAL], "Don't let Mind players fool you. It's not about smarts."))
+            ..add(new Item("Tesla Coil",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.METAL], "Mind is electric shit. I guess."))
+            ..add(new Item("Coin",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL], "Luck doesn't even matter, so neither does this coin. Mind players are such hams."))
+            ..add(new Item("Electronic Door",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.ZAP, ItemTraitFactory.SMART],"I guess it has buttons and shit? I bet it leads somewhere weird."))
+            ..add(new Item("Janus Bust",<ItemTrait>[ItemTraitFactory.BUST, ItemTraitFactory.STONE,ItemTraitFactory.CLASSY,ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],"So is the joke that Mind Players are two faced?"));
     }
 
     @override
