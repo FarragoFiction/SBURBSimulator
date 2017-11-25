@@ -402,6 +402,8 @@ class Aftermath extends Scene {
         Map<Stat, num> tmpStatHolder = {};
         tmpStatHolder[Stats.MIN_LUCK] = -100;
         tmpStatHolder[Stats.MAX_LUCK] = 100;
+        tmpStatHolder[Stats.CURRENT_HEALTH] = 30000 + mvp.getStat(Stats.POWER) * this.session.players.length; //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
+
         tmpStatHolder[Stats.HEALTH] = 30000 + mvp.getStat(Stats.POWER) * this.session.players.length; //this will be a challenge. good thing you have troll kid rock to lay down some sick beats.
         tmpStatHolder[Stats.MOBILITY] = -100;
         tmpStatHolder[Stats.SANITY] = 0;

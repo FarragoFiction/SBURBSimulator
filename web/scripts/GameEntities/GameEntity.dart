@@ -303,6 +303,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
             if(offense is Player) {
                 Player p = offense as Player;
                 p.corruptionLevelOther += 10; //no, they really shouldn't.
+                session.logger.info("corrupt specibus for player ${p.title()}, it's a ${p.specibus.fullName}");
             }
         }
         if (defense.dead) ret = "$ret Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!";
