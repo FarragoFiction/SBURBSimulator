@@ -63,11 +63,11 @@ class Heir extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //mostly just shitty legal puns on inheritance.
-            ..add(new Item("Family Ashes",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.GHOSTLY]))
-            ..add(new Item("Last Will and Testament",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.LEGAL]))
-            ..add(new Item("Grooming Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY]))
-            ..add(new Item("Powered Attorney",<ItemTrait>[ItemTraitFactory.COLOSSUS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.AI, ItemTraitFactory.LEGAL]))
-            ..add(new Item("Executer's Ax",<ItemTrait>[ItemTraitFactory.AXE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.EDGED, ItemTraitFactory.LEGAL]));
+            ..add(new Item("Family Ashes",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.GHOSTLY],"Probably an inheritance or some shit."))
+            ..add(new Item("Last Will and Testament",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.LEGAL],"Probably an inheritance or some shit."))
+            ..add(new Item("Grooming Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],"Probably an inheritance or some shit."))
+            ..add(new Item("Powered Attorney",<ItemTrait>[ItemTraitFactory.COLOSSUS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.AI, ItemTraitFactory.LEGAL],"Probably an inheritance or some shit."))
+            ..add(new Item("Executer's Ax",<ItemTrait>[ItemTraitFactory.AXE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.EDGED, ItemTraitFactory.LEGAL],"Probably an inheritance or some shit."));
     }
 
 

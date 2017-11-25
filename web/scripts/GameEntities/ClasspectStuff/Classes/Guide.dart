@@ -34,9 +34,9 @@ class Guide extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Guide Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]))
-            ..add(new Item("Whistle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.LOUD])) //keep together people we have a lot of attractions to visit
-            ..add(new Item("Announcement System",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.ZAP, ItemTraitFactory.SMART]));
+            ..add(new Item("Guide Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],"Clearly the best class uses this."))
+            ..add(new Item("Whistle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.LOUD],"Clearly the best class uses this.")) //keep together people we have a lot of attractions to visit
+            ..add(new Item("Announcement System",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.ZAP, ItemTraitFactory.SMART],"Clearly the best class uses this."));
     }
 
 

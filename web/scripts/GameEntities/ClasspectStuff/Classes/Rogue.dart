@@ -47,9 +47,9 @@ class Rogue extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Domino Mask",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE]))
-            ..add(new Item("Archery Set",<ItemTrait>[ItemTraitFactory.BOW, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE, ItemTraitFactory.ARROW]))
-            ..add(new Item("Gristtorrent Server",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ZAP, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]));
+            ..add(new Item("Domino Mask",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],"Not satisfied with the god tier shit I guess."))
+            ..add(new Item("Archery Set",<ItemTrait>[ItemTraitFactory.BOW, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE, ItemTraitFactory.ARROW],"Like robin hood and shit."))
+            ..add(new Item("Gristtorrent Server",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ZAP, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],"Steal from the rich, give to the poor."));
     }
 
 

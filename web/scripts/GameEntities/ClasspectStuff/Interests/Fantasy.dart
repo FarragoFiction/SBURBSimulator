@@ -27,15 +27,15 @@ class Fantasy extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Dragon Plush",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.SCARY]))
-            ..add(new Item("Replica Bone Shield",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.BONE, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE]))
+            ..add(new Item("Scalemate",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.SCARY],"Senator Lemonsnout's treachery knows no bounds."))
+            ..add(new Item("Replica Bone Shield",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.BONE, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE],"Something, something, Bonezerker."))
             ..add(new Item("Replica Ice Sword",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ICE, ItemTraitFactory.SWORD, ItemTraitFactory.FAKE]))
             ..add(new Item("Zombie Mask",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.UGLY, ItemTraitFactory.FLESH, ItemTraitFactory.SCARY]))
-            ..add(new Item("Vampire Romance Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC, ItemTraitFactory.SCARY]))
+            ..add(new Item("Vampire Romance Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC, ItemTraitFactory.SCARY],"Or, you know, Rainbow Drinkers, if you're fucking civilized."))
             ..add(new Item("Wizardy Herbert",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
-            ..add(new Item("Complacency of the Learned",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT]))
-            ..add(new Item("Grimoire for Summoning the Zoologically Dubious ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY]))
-            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]))
+            ..add(new Item("Complacency of the Learned",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT],"I hear it's an elaborate metaphor for something."))
+            ..add(new Item("Grimoire for Summoning the Zoologically Dubious ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY],"Not even kidding, throw this into the Furthest Ring and never look back."))
+            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE],"Suprisingly magical, given that magic is a fake thing."))
             ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.CRYSTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE]));
     }
 

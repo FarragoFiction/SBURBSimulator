@@ -57,9 +57,9 @@ class Bard extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //things that let you destroy yourself.
-            ..add(new Item("Poisoned Candy",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POISON]))
-            ..add(new Item("Cursed Lyre",<ItemTrait>[ItemTraitFactory.DOOMED,ItemTraitFactory.WOOD,ItemTraitFactory.CALMING, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MUSICAL]))
-            ..add(new Item("Snare Trap",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.DOOMED, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.RESTRAINING]));
+            ..add(new Item("Poisoned Candy",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POISON],"I guess CodTier is okay."))
+            ..add(new Item("Cursed Lyre",<ItemTrait>[ItemTraitFactory.DOOMED,ItemTraitFactory.WOOD,ItemTraitFactory.CALMING, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MUSICAL],"I guess CodTier is okay."))
+            ..add(new Item("Snare Trap",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.DOOMED, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.RESTRAINING],"I guess CodTier is okay."));
     }
 
     @override

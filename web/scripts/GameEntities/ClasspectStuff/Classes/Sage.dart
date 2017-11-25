@@ -47,9 +47,9 @@ class Sage extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Sage's Robe",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART]))
-            ..add(new Item("Peer Reviewed Journal",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART]))
-            ..add(new Item("Guru Pillow",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PILLOW, ItemTraitFactory.SMART]));
+            ..add(new Item("Sage's Robe",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],"So sagey. Needs a beard or some shit, though."))
+            ..add(new Item("Peer Reviewed Journal",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART],"I guess this is p well reviewed."))
+            ..add(new Item("Guru Pillow",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PILLOW, ItemTraitFactory.SMART],"Huh. What. Was JR thinking. When they made this item?")); //JR: I have no fucking clue.
     }
 
 

@@ -46,10 +46,10 @@ class Knight extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Shining Armor",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD]))
-            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD]))
-            ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT]))
-            ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM]));
+            ..add(new Item("Shining Armor",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD],"Knight Shit"))
+            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD],"Knight Shit"))
+            ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT],"Knight Shit"))
+            ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM],"Knight Shit"));
     }
 
 

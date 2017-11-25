@@ -50,9 +50,9 @@ class Mage extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Mage's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL]))
-            ..add(new Item("Mage's Staff",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK]))
-            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SENTIENT,ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK]));
+            ..add(new Item("Mage's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],"Mage Shit"))
+            ..add(new Item("Mage's Staff",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],"Mage Shit"))
+            ..add(new Item("Walking Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SENTIENT,ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],"Normally I'd blame Wastes, but walking brooms is more of a Mage thing."));
     }
 
 

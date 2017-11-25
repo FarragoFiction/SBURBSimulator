@@ -27,17 +27,17 @@ class Culture extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Can of Spray Paint",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.METAL]))
-            ..add(new Item("Sensible Chuckles Magazine",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY,ItemTraitFactory.FUNNY,ItemTraitFactory.BOOK]))
+            ..add(new Item("Sensible Chuckles Magazine",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY,ItemTraitFactory.FUNNY,ItemTraitFactory.BOOK],"Stoic faced asshole."))
 
             ..add(new Item("Gentleman's Razor",<ItemTrait>[ItemTraitFactory.RAZOR, ItemTraitFactory.METAL,ItemTraitFactory.EDGED]))
-            ..add(new Item("How To Draw Manga",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK]))
-            ..add(new Item("Painting of a Horse Boxing a Football Player",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.COOLK1D, ItemTraitFactory.PAPER]))
+            ..add(new Item("How To Draw Manga",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],"Who is this on the cover. The Goddess of Manga or some shit?"))
+            ..add(new Item("Painting of a Horse Boxing a Football Player",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.COOLK1D, ItemTraitFactory.PAPER],"Truly the highest of art."))
             ..add(new Item("Collection of Classical Works",<ItemTrait>[ItemTraitFactory.CLASSY, ItemTraitFactory.PAPER]))
             ..add(new Item("Documentary on Horses",<ItemTrait>[ItemTraitFactory.CLASSY, ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D]))
             ..add(new Item("Paint Set",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLASSY]))
             ..add(new Item("Shaving Cream",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSY, ItemTraitFactory.METAL]))
             ..add(new Item("Classy Suit",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSY]))
-            ..add(new Item("The Fatherly Gent's Shaving Almanac ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK]));
+            ..add(new Item("The Fatherly Gent's Shaving Almanac ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],"Ugh. Flesh bags and their constant hair growth."));
     }
 
     @override

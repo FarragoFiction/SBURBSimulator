@@ -49,9 +49,9 @@ class Waste extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("SBURBSim Hacking Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.SMARTPHONE]))
-            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE]))
-            ..add(new Item("Nanobots",<ItemTrait>[ItemTraitFactory.ROBOTIC2, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.AI]));
+            ..add(new Item("SBURBSim Hacking Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.SMARTPHONE],"Hell no, you leave your grubby fucking mitts outta the code."))
+            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE],"...I would ask why, but I already calculated the answer at a million times the speed I could get an answer."))
+            ..add(new Item("Nanobots",<ItemTrait>[ItemTraitFactory.ROBOTIC2, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.AI],"Oh look, a NON hacking way to fuck everything up, forever."));
     }
 
 
