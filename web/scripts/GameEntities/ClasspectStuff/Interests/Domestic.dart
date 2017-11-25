@@ -34,7 +34,7 @@ class Domestic extends InterestCategory {
             ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT]))
             ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],"Pretty good if you need to be calmed down, I hear."))
             ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
-            ..add(new Item("Refridgerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
+            ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))
             ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD]))
             ..add(new Item("Cast Iron Skillet",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.ONFIRE,ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY,ItemTraitFactory.FRYINGPAN ]))
