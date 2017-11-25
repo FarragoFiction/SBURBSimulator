@@ -55,7 +55,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
 
     //returns string explaining what happened when you actually did the alchemy.
     String apply(Player p, [bool applyToSpecibus = false]) {
-        List<Item> targetItems = p.sylladex;
+        List<Item> targetItems = p.sylladex.inventory;
         for(Item item in items) {
             if(!targetItems.contains(item) && item != p.specibus) {
                 return null;

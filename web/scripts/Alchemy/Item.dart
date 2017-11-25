@@ -137,3 +137,22 @@ class Item {
     }
 }
 
+//wrapper for inventory SO THAT I STOP ADDING ITEMS DIRECTLY TO IT INSTEAD OF COPIES.
+class Sylladex {
+    List<Item> inventory = new List<Item>();
+
+    void add(Item item) {
+        Item i = item;
+        if(Item.allUniqueItems.contains(item)) i = item.copy();
+        inventory.add(i);
+    }
+
+    void remove(Item item) {
+        inventory.remove(item);
+    }
+
+    void clear() {
+        inventory.clear();
+    }
+
+}

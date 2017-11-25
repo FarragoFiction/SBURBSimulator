@@ -14,7 +14,7 @@ class Player extends GameEntity{
     CanvasElement firstStatsCanvas;
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
     //TODO make this a custom object that has a list inside, make it so you have to copy items to add them here.
-    List<Item> sylladex = new List<Item>();
+    Sylladex sylladex = new Sylladex();
     @override
     num grist = 0; // players do not spawn with grist
     //if 0, not yet woken up.
