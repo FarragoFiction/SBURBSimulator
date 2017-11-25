@@ -81,7 +81,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Sickle", ItemTraitFactory.SICKLE, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL],"Do you think it was a pun on sickle cell anemia?"));
         _specibi.add(new Specibus("Chainsaw", ItemTraitFactory.CHAINSAW, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL], "Why are fleshbags so scared of slightly deader flesh bags?"));
         _specibi.add(new Specibus("Fork", ItemTraitFactory.FORK, [ ItemTraitFactory.POINTY, ItemTraitFactory.METAL], "It's a fork. Useful for eating, if that's your thing."));
-        _specibi.add(new Specibus("Pigeon", ItemTraitFactory.PIGEON, [ ItemTraitFactory.FEATHER], "Shit. Better get JR. They'll want to see this."));
+        _specibi.add(new Specibus("Pigeon", ItemTraitFactory.PIGEON, [ ItemTraitFactory.FEATHER, ItemTraitFactory.CORRUPT], "Shit. Better get JR. They'll want to see this."));
         _specibi.add(new Specibus("Bowling Ball", ItemTraitFactory.BALL, [ ItemTraitFactory.HEAVY, ItemTraitFactory.STONE, ItemTraitFactory.BLUNT], "Now we're talking. That is some grade A creative use of your storage room right there. "));
         _specibi.add(new Specibus("Dice", ItemTraitFactory.DICE, [ ItemTraitFactory.PLASTIC, ItemTraitFactory.LUCKY],"Wow, I found something dumber than the santa figurines. Luck isn't even a real thing."));
         _specibi.add(new Specibus("Needle", ItemTraitFactory.NEEDLE, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY], "I guess....you could grow this bigger? Or make it magical or something. If magic weren't a fake thing."));

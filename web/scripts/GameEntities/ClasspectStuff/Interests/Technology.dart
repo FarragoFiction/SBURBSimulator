@@ -30,6 +30,7 @@ class Technology extends InterestCategory {
             ..add(new Item("Datastructures for Assholes",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER],"Sounds like the perfect book for you."))
             ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.DOOMED],"Such a pointless book."))
             ..add(new Item("3-D Printer",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL]))
+            ..add(new Item("Virus on a USB Stick",<ItemTrait>[ItemTraitFactory.GLITCHED, ItemTraitFactory.METAL],"Fuck you. You fucking DROP that."))
             ..add(new Item("Wrench",<ItemTrait>[ItemTraitFactory.WRENCH, ItemTraitFactory.METAL,ItemTraitFactory.BLUNT],"Make sure to use it build a dope af robot."))
             ..add(new Item("Computer",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL],"Computers are good. That is all there is to say on the matter."));
     }

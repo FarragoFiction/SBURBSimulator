@@ -298,6 +298,13 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
     void aggrieve(Element div, GameEntity defense) {
         GameEntity offense = this; //easier for now.
         String ret = "<br><Br> The ${offense.htmlTitleHP()} targets the ${defense.htmlTitleHP()} with their ${offense.specibus.fullName}. ";
+        if(offense.specibus.traits.contains(ItemTraitFactory.CORRUPT)) {
+            ret += " Uh. Wow. Should they be using that?";
+            if(offense is Player) {
+                Player p = offense as Player;
+                p.corruptionLevelOther += 10; //no, they really shouldn't.
+            }
+        }
         if (defense.dead) ret = "$ret Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!";
         appendHtml(div, ret);
 

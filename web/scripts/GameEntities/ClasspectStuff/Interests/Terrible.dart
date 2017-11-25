@@ -28,7 +28,7 @@ class Terrible extends InterestCategory {
             ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE],"Don't let ABJ know you have this."))
             ..add(new Item("Siberia Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD]))
             ..add(new Item("Nuclear Winter Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD, ItemTraitFactory.NUCLEAR]))
-            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL],"Oh god, who would fucking trust YOU with thi?"))
+            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL, ItemTraitFactory.CORRUPT],"Oh god, who would fucking trust YOU with thi?"))
             ..add(new Item("Juggalo Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.JUGGALO]))
             ..add(new Item("Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
             ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))

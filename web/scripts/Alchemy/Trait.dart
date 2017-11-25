@@ -193,6 +193,7 @@ class ItemTraitFactory {
   static ItemAppearanceTrait GLASS;
   static ItemAppearanceTrait GHOSTLY;
   static ItemAppearanceTrait FLESH;
+  static ItemAppearanceTrait CORRUPT;
   static ItemAppearanceTrait FUR;
   static ItemAppearanceTrait PLANT;
   static ItemAppearanceTrait FEATHER;
@@ -413,6 +414,7 @@ class ItemTraitFactory {
   static CombinedTrait FELT;
   static CombinedTrait GRANITE;
   static CombinedTrait MARBLE;
+  static CombinedTrait GLITCHED;
 
 
 
@@ -602,6 +604,7 @@ class ItemTraitFactory {
     FELT = new CombinedTrait("Felt",<String>["felt"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,FUR]);
     MARBLE = new CombinedTrait("Marble",<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CLASSY]);
     GRANITE = new CombinedTrait("Marble",<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,HEAVY]);
+    GLITCHED = new CombinedTrait("Glitched",<String>["glitched"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CORRUPT,ZAP]);
 
   }
 
@@ -673,6 +676,8 @@ class ItemTraitFactory {
     GLASS = new ItemAppearanceTrait(<String>["glass"], -0.3,ItemTrait.MATERIAL);
     GHOSTLY = new ItemAppearanceTrait(<String>["ghostly","ectoplasm"], -0.3,ItemTrait.MATERIAL);
     FLESH = new ItemAppearanceTrait(<String>["flesh", "meat","muscle"], -0.1,ItemTrait.MATERIAL);
+    CORRUPT = new ItemAppearanceTrait(<String>["horrorterror", "tentacled","grimdark"], 3.1,ItemTrait.CONDITION);
+
     FUR = new ItemAppearanceTrait(<String>["fur", "fluff","fuzzy"], -0.1,ItemTrait.MATERIAL);
     PLANT = new ItemAppearanceTrait(<String>["plant", "leaf","vine"], -0.1,ItemTrait.MATERIAL);
 
