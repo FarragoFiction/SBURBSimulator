@@ -143,9 +143,11 @@ class Item {
 //and i guess eventually can implement syladdex shenanigans
 //probably could have extended list, too, but that seems more compliced. 40+ methods i have to write?
 class Sylladex extends Object with IterableMixin<Item> {
-    List<Item> inventory = new List<Item>();
+    List<Item> inventory;
 
-    Sylladex([this.inventory]);
+    Sylladex([this.inventory = null]) {
+        if(this.inventory == null) inventory = new List<Item>();
+    }
 
     int get length => inventory.length;
 

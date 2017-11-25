@@ -340,6 +340,7 @@ class ItemTraitFactory {
   static CombinedTrait BESPOKE;
   static CombinedTrait OPERATIC;
   static CombinedTrait ICE;
+  static CombinedTrait ICYHOT;
   static CombinedTrait ICECOLD;
   static CombinedTrait WINTER;
   static CombinedTrait SANTAS;
@@ -529,6 +530,8 @@ class ItemTraitFactory {
     BESPOKE = new CombinedTrait("Bespoke",<String>["bespoke", "well-tailored", "glamorous"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, PRETTY, CLASSY]);
     OPERATIC = new CombinedTrait("Operatic",<String>["operatic"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, MUSICAL, CLASSY]);
     ICE = new CombinedTrait("Diamond",<String>["ice", "diamond"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[VALUABLE, COLD]);
+    ICYHOT = new CombinedTrait("Icy Hot",<String>["icy hot","cold fire"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, COLD]);
+
     ICECOLD = new CombinedTrait("Cold As Fuck",<String>["ice cold", "cold as fuck"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, COLD]);
     WINTER = new CombinedTrait("Winter's",<String>["winter's", "season's"], 0.0, ItemTrait.ORIGIN,<ItemTrait>[CALMING, COLD]);
     SANTAS = new CombinedTrait("Santa's",<String>["santa's", "christmas", "xmas"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL, COLD]);
