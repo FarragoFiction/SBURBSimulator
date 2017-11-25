@@ -141,7 +141,7 @@ class LuckStuff extends Scene{
 		List<Item> possibleRewards = <Item>[session.rand.pickFrom(roll.player.interest1.category.items),session.rand.pickFrom(roll.player.interest2.category.items),session.rand.pickFrom(roll.player.aspect.items),session.rand.pickFrom(roll.player.class_name.items)];
 		Item chosen = session.rand.pickFrom(possibleRewards);
 		String ret = "The ${roll.player.htmlTitle()} tripped right through a glitched section of wall, only to find a single imp. 'Shh.' the imp says, handing over a frankly obscene bucket of ${chosen.fullName}, 'It's a secret to everybody.' The " + roll.player.htmlTitle() + " agrees that it would be ideal if it was a secret even to themselves, and prays for amnesia.  Like hell are they gonna leave behind the ${chosen.baseName}, though. " ;
-		roll.player.sylladex.add(chosen);
+		roll.player.sylladex.add(chosen.copy());
 		session.logger.info("AB: found event that gained item");
 
 		this.session.stats.goodLuckEvent = true;
