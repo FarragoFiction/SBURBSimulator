@@ -343,7 +343,12 @@ class ItemTraitFactory {
   static CombinedTrait ICYHOT;
   static CombinedTrait ICECOLD;
   static CombinedTrait WINTER;
-  static CombinedTrait SANTAS;
+  static CombinedTrait CHRISTMAS;
+  static CombinedTrait SANTASAWS;
+  static CombinedTrait SANTASAWS2;
+  static CombinedTrait SANTACLAWS;
+  static CombinedTrait SANDYCLAWS;
+  static CombinedTrait SILENTNIGHT;
   static CombinedTrait HALLOWEEN;
   static CombinedTrait MUTANT;
   static CombinedTrait SKATEBOARD;
@@ -534,7 +539,14 @@ class ItemTraitFactory {
 
     ICECOLD = new CombinedTrait("Cold As Fuck",<String>["ice cold", "cold as fuck"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, COLD]);
     WINTER = new CombinedTrait("Winter's",<String>["winter's", "season's"], 0.0, ItemTrait.ORIGIN,<ItemTrait>[CALMING, COLD]);
-    SANTAS = new CombinedTrait("Santa's",<String>["santa's", "christmas", "xmas"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL, COLD]);
+    CHRISTMAS = new CombinedTrait("Christmas",<String>["santa's", "christmas", "xmas"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL, COLD]);
+    SANTASAWS = new CombinedTrait("Santa Saws",<String>["Santa Saws"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL, COLD,EDGED]);
+    SANTASAWS2 = new CombinedTrait("Santa Sleighs",<String>["Santa Sleighs"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SANTA, EDGED]);
+    SANTACLAWS = new CombinedTrait("Santa Claws",<String>["Santa Claws"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SANTA, CLAWS]);
+    SANDYCLAWS = new CombinedTrait("Sandy Claws",<String>["Sandy Claws"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SANTA, CLAWS,STONE]);
+    SILENTNIGHT = new CombinedTrait("Silent Night",<String>["Silent Night"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SANTA, OBSCURING]);
+
+
     HALLOWEEN = new CombinedTrait("Ghost's",<String>["ghost's", "Bloody Mary", "Halloween"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SCARY, GHOSTLY]);
     MUTANT = new CombinedTrait("Mutant",<String>["ghoul", "mutant"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[FLESH, NUCLEAR, UGLY]);
     SKATEBOARD = new CombinedTrait("Skateboard",<String>["skate", "skateboard"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[COOLK1D, METAL]);
