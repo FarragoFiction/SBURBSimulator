@@ -236,7 +236,7 @@ void quip(Item item) {
 
 void makeDropDowns() {
     if(firstItemSelect != null) firstItemSelect.remove();
-    firstItemSelect = genericDropDown(item1SelSpot, player.sylladex,  "First Item");
+    firstItemSelect = genericDropDown(item1SelSpot, player.sylladex.inventory,  "First Item");
     firstItemSelect.onChange.listen((e) {
         Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
         quip(item);
@@ -266,7 +266,7 @@ void makeDropDowns() {
     });
 
     if(secondItemSelect != null) secondItemSelect.remove();
-    secondItemSelect = genericDropDown(item2SelSpot, player.sylladex,  "Second Item");
+    secondItemSelect = genericDropDown(item2SelSpot, player.sylladex.inventory,  "Second Item");
 
     secondItemSelect.onChange.listen((e) {
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);

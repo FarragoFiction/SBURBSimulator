@@ -16,12 +16,13 @@ void main() {
 }
 void init() {
     player = randomPlayer(new Session(int.parse(todayToSession())));
-    player.sylladex = new List <Item>.from(Item.allUniqueItems);
+    player.sylladex = new Sylladex(new List <Item>.from(Item.allUniqueItems));
     Element div = querySelector("#story");
     renderTraits(div);
-    for(int i = 0; i<player.sylladex.length; i++) {
-        Item item = player.sylladex[i];
+    int i = 0;
+    for(Item item in player.sylladex) {
         div.append(renderItemStats(item, i));
+        i++;
     }
 }
 

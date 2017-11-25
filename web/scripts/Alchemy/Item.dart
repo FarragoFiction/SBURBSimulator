@@ -3,6 +3,8 @@ import "Item.dart";
 import "../random_tables.dart";
 import "Trait.dart";
 import "../random.dart";
+import 'dart:collection';
+
 //I expect aspects and interests to have lists of items inside of them.
 class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
@@ -138,14 +140,28 @@ class Item {
 }
 
 //wrapper for inventory SO THAT I STOP ADDING ITEMS DIRECTLY TO IT INSTEAD OF COPIES.
-class Sylladex {
+//and i guess eventually can implement syladdex shenanigans
+//probably could have extended list, too, but that seems more compliced. 40+ methods i have to write?
+class Sylladex extends Object with IterableMixin<Item> {
     List<Item> inventory = new List<Item>();
+
+    Sylladex([this.inventory]);
+
+    int get length => inventory.length;
 
     void add(Item item) {
         Item i = item;
         if(Item.allUniqueItems.contains(item)) i = item.copy();
         inventory.add(i);
     }
+
+    void addAll(List<Item> items) {
+        for(Item i in items) {
+            add(i);
+        }
+    }
+
+    Item get first => inventory.first;
 
     void remove(Item item) {
         inventory.remove(item);
@@ -155,4 +171,6 @@ class Sylladex {
         inventory.clear();
     }
 
+  @override
+  Iterator<Item> get iterator => inventory.iterator;
 }
