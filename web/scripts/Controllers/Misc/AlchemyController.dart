@@ -39,6 +39,7 @@ SelectElement secondItemSelect;
 SelectElement operatorSelect;
 
 ShopKeep ab;
+ShopKeep abGlitch;
 ShopKeep abj;
 ShopKeep shogun;
 
@@ -61,12 +62,13 @@ void main() {
     Element shopKeepDiv = querySelector("#shopKeep");
 
     ab = new ABShopKeep(shopKeepDiv,quipDiv);
+    abGlitch = new GlitchAB(shopKeepDiv, quipDiv);
     abj = new ABJShopKeep(shopKeepDiv,quipDiv);
     shogun = new ShogunShopKeep(shopKeepDiv,quipDiv);
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    alchemyShop.setShopKeep(ab);
+    alchemyShop.setShopKeep(abGlitch);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 
@@ -517,8 +519,7 @@ class Shop {
     }
 
     void setQuip(String text) {
-        //TODO if corrupt, zalgo first.
-        shopKeep.textElement.setInnerHtml(text);
+        shopKeep.quip(text);
     }
 
     String describeItem(Item item) {
@@ -609,7 +610,11 @@ abstract class ShopKeep {
         imageElement.src = imageSource;
         textElement.style.color = fontColor.toStyleString();
         Random rand = new Random();
-        textElement.setInnerHtml(rand.pickFrom(randomQuips));
+        quip(rand.pickFrom(randomQuips));
+    }
+
+    void quip(String text) {
+        textElement.setInnerHtml(text);
     }
 
     String getItemDescription(Item item) {
@@ -653,11 +658,31 @@ class ABShopKeep extends ShopKeep {
     }
 }
 
+class GlitchAB extends ABShopKeep {
+
+    @override
+    List<String> randomQuips = <String>["Oh. Fuck.","What did you DO!?","FIX THIS!!!"];
+
+    @override
+    String imageSource = "images/Alchemy/abGlitch.gif";
+    List<ItemTrait> associatedTraits = <ItemTrait>[ItemTraitFactory.CORRUPT, ItemTraitFactory.ZAP];
+
+    GlitchAB(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+
+    @override
+    void quip(String text) {
+        textElement.setInnerHtml(Zalgo.generate(text));
+    }
+
+}
+
 class ABJShopKeep extends ShopKeep {
     @override
     Colour fontColor = new Colour.fromStyleString("#ffa800");
     @override
     double priceModifier = 0.3; //can get a bargain on objects she wants there to be more of.
+
+
 
     List<ItemTrait> associatedTraits = <ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE];
 
