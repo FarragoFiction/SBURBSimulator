@@ -11,6 +11,7 @@ String XOR = "XOR";
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 Shop alchemyShop;
 
+int ticksRemaining = 10;
 Element storeDiv;
 Element buyDiv;
 Element sellDiv;
@@ -68,7 +69,7 @@ void main() {
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    alchemyShop.setShopKeep(abGlitch);
+    alchemyShop.setShopKeep(ab);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 
@@ -91,6 +92,23 @@ void main() {
     Achievement.addGrist(13);
     Achievement.syncGristDiv();
     achievements = Achievement.makeAchievements(achievements, achivementDiv);
+}
+
+void checkShopKeepTrigger(Item item) {
+    //glitch AB triggered if glitch item produced
+    //regular AB triggered if healing glitch item produced
+    //shogun happens if x alchemizations happen with glitch ab
+    //ab and any other easter egg shops happen if you alchmize something with ALL their desired traits
+    abj.tryTrigger(item, alchemyShop);
+    abGlitch.tryTrigger(item, alchemyShop);
+    if(alchemyShop.shopKeep == abGlitch) {
+        if(ticksRemaining <=0) {
+            alchemyShop.setShopKeep(shogun);
+        }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
+            alchemyShop.setShopKeep(ab);
+            alchemyShop.setQuip("Holy fuck, you actually fixed me.");
+        }
+    }
 }
 
 void changeTabs(Element selectedDiv) {
@@ -158,6 +176,7 @@ void makeAlchemyButton() {
             alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
         }
         alchemyResult.apply(player);
+        checkShopKeepTrigger(alchemyResult.result);
         //giveRandomItem(); //nope, gotta buy em now asshole.
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
         resultTraitsDiv = (renderItemStats(alchemyResult.result));
@@ -606,6 +625,20 @@ abstract class ShopKeep {
 
     ShopKeep(ImageElement this.imageElement, ImageElement this.textElement);
 
+    //triggered if ALL your associated traits are in an item
+    bool isTriggered(Item item) {
+        if(associatedTraits.isEmpty) return false;
+        bool ret = true;
+        for(ItemTrait trait in associatedTraits) {
+            if(!item.traits.contains(trait)) ret = false; //only takes one false
+        }
+        return ret;
+    }
+
+    void tryTrigger(Item item, Shop shop) {
+        if(isTriggered(item)) shop.setShopKeep(this);
+    }
+
     void setShopKeep() {
         imageElement.src = imageSource;
         textElement.style.color = fontColor.toStyleString();
@@ -752,3 +785,4 @@ class ShogunShopKeep extends ShopKeep {
 
 
 }
+
