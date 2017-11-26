@@ -9,8 +9,7 @@ String XOR = "XOR";
 
 
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
-Shop abShop;
-Shop abjShop;
+Shop alchemyShop;
 
 Element storeDiv;
 Element buyDiv;
@@ -41,10 +40,11 @@ SelectElement firstItemSelect;
 SelectElement secondItemSelect;
 SelectElement operatorSelect;
 
-List<String> andQuips = <String>["It seems you are playing it safe.You must enjoy paying all that extra grist to keep all those useless traits.","Not very imaginative, are you.","Lame."];
-List<String> orQuips = <String>["Oh look at you, Mr. Fancy, going for the 'OR' option.","It seems you want to be more complicated. DO you want this?","I can hella get behind the frugal option."];
-List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.982734982734% chance you are totally lost here."];
-List<String> earlyQuips = <String>["...","Bored.","Wow. It's Alchemy."];
+ShopKeep ab;
+ShopKeep abj;
+ShopKeep shogun;
+
+
 
 
 void main() {
@@ -60,7 +60,14 @@ void main() {
     achivementDiv = querySelector("#achievements");
     alchemyDiv = querySelector("#alchemy");
 
-    abShop = new Shop(player, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
+    Element shopKeepDiv = querySelector("#shopKeep");
+
+    ab = new ABShopKeep(shopKeepDiv);
+    abj = new ABJShopKeep(shopKeepDiv);
+    shogun = new ShogunShopKeep(shopKeepDiv);
+    ab.setShopKeep();
+
+    alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
     List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
     abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
     //TODO
@@ -91,7 +98,7 @@ void main() {
 
 void changeTabs(Element selectedDiv) {
     if(selectedDiv == storeDiv) {
-        abShop.renderPlayerSylladex(); //refresh each time you view.
+        alchemyShop.renderPlayerSylladex(); //refresh each time you view.
     }else if(selectedDiv == alchemyDiv){
         makeDropDowns(); //my syladdex probably changed. update.
     }
@@ -230,8 +237,7 @@ Item findItemNamed(String name) {
 
 void quip(Item item) {
     Random rand = new Random();
-    //TODO have quips about item traits. below should be default option.
-    quipDiv.setInnerHtml(rand.pickFrom(earlyQuips));
+    quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.randomQuips));
 }
 
 void makeDropDowns() {
@@ -257,11 +263,11 @@ void makeDropDowns() {
         Random rand = new Random();
         String operator = operatorSelect.selectedOptions[0].value;
         if(operator == AND) {
-            quipDiv.setInnerHtml(rand.pickFrom(andQuips));
+            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.andQuips));
         }else if(operator == OR) {
-            quipDiv.setInnerHtml(rand.pickFrom(orQuips));
+            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.orQuips));
         }else if (operator == XOR) {
-            quipDiv.setInnerHtml(rand.pickFrom(xorQuips));
+            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.xorQuips));
         }
     });
 
@@ -483,10 +489,11 @@ class Shop {
     Element pawnContainer;
     Player player; //assume only one player okay. just do it.
     Element quipDiv;
+    ShopKeep shopKeep;
     List<ShopItemInStock> inventory = new List<ShopItemInStock>();
     List<ShopItemPlayerOwns> playerSylladex = new List<ShopItemPlayerOwns>();
 
-    Shop(Player this.player, Element this.inventoryContainer, Element this.pawnContainer, this.quipDiv, List<Item> items) {
+    Shop(Player this.player, ShopKeep this.shopKeep, Element this.inventoryContainer, Element this.pawnContainer, this.quipDiv, List<Item> items) {
         slurpItemsIntoInventory(items);
         renderPlayerSylladex();
     }
@@ -536,4 +543,69 @@ class Shop {
     }
 
 
+}
+
+abstract class ShopKeep {
+    String imageSource;
+    ImageElement imageElement; //passed this in, should already be on page.
+    List<String> randomQuips;
+    List<String> orQuips;
+    List<String> andQuips;
+    List<String> xorQuips;
+
+    ShopKeep(ImageElement this.imageElement);
+
+    void setShopKeep() {
+        imageElement.src = imageSource;
+    }
+}
+
+class ABShopKeep extends ShopKeep {
+    @override
+    String imageSource = "images/Alchemy/guide_bot_turnways.png";
+    @override
+    List<String> andQuips = <String>["It seems you are playing it safe.You must enjoy paying all that extra grist to keep all those useless traits.","Not very imaginative, are you.","Lame."];
+    @override
+    List<String> orQuips = <String>["Oh look at you, Mr. Fancy, going for the 'OR' option.","It seems you want to be more complicated. DO you want this?","I can hella get behind the frugal option."];
+    @override
+    List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.982734982734% chance you are totally lost here."];
+    @override
+    List<String> randomQuips = <String>["...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
+    ABShopKeep(ImageElement imageElement) : super(imageElement);
+}
+
+class ABJShopKeep extends ShopKeep {
+    @override
+    String imageSource = "images/Alchemy/abjShop.png";
+
+    @override
+    List<String> andQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> orQuips =  <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> xorQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> randomQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+
+
+    ABJShopKeep(ImageElement imageElement) : super(imageElement);
+}
+
+
+class ShogunShopKeep extends ShopKeep {
+    @override
+    String imageSource = "images/Alchemy/Shogun.png";
+
+    //TODO shogun quips
+    @override
+    List<String> andQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> orQuips =  <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> xorQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    @override
+    List<String> randomQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+
+
+    ShogunShopKeep(ImageElement imageElement) : super(imageElement);
 }

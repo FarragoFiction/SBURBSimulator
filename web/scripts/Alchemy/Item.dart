@@ -112,8 +112,7 @@ class Item {
 
     String abjDescription(Random rand) {
         if(abjDesc != null) {
-            return shogunDesc; //for testing
-            //return abjDesc;
+            return abjDesc;
         }else {
             return randomDescription(rand);
         }
