@@ -52,9 +52,9 @@ class Thief extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Lockpick",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING],abjDesc:"No matter what, you'll always have at least one.")) //like katia.
-            ..add(new Item("Sneaking Suit",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING],abjDesc:"God. Why is Snake's outfit really called this. So dumb.")) //snake knows what it's about
-            ..add(new Item("Dagger",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.DAGGER],abjDesc:"For when you wanna show 'em your stabs, I guess."));
+            ..add(new Item("Lockpick",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING],abDesc:"No matter what, you'll always have at least one.")) //like katia.
+            ..add(new Item("Sneaking Suit",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING],abDesc:"God. Why is Snake's outfit really called this. So dumb.")) //snake knows what it's about
+            ..add(new Item("Dagger",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.DAGGER],abDesc:"For when you wanna show 'em your stabs, I guess."));
     }
 
 

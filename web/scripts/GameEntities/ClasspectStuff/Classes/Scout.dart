@@ -38,10 +38,10 @@ class Scout extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Walking Stick",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.STICK],abjDesc:"I guess it helps scouts walk for long periods of time? And not let anybody catch up."))
-            ..add(new Item("Adorable Girlscout Beret",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FASHIONABLE],abjDesc:"Okay, legit, ABJ's hat is amazing."))
-            ..add(new Item("Map",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],abjDesc:"I guess Scouts update this on their own? Untread ground and all."))
-            ..add(new Item("Compass",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART, ItemTraitFactory.MAGICAL],abjDesc:"Magnets man, how do they work."));
+            ..add(new Item("Walking Stick",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.STICK],abDesc:"I guess it helps scouts walk for long periods of time? And not let anybody catch up."))
+            ..add(new Item("Adorable Girlscout Beret",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FASHIONABLE],abDesc:"Okay, legit, ABJ's hat is amazing."))
+            ..add(new Item("Map",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],abDesc:"I guess Scouts update this on their own? Untread ground and all."))
+            ..add(new Item("Compass",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART, ItemTraitFactory.MAGICAL],abDesc:"Magnets man, how do they work."));
     }
 
 

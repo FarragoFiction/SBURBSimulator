@@ -75,9 +75,9 @@ class Breath extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
         ..add(new Item("Pan's Pipe",<ItemTrait>[ItemTraitFactory.MUSICAL, ItemTraitFactory.WOOD, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]))
-        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL],abjDesc:"You are never gonna be imprisoned again.")) //escape any prison
-        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],abjDesc:"Probably a refrance."))
-        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],abjDesc:"Don't skip gates, asshole."));
+        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL],abDesc:"You are never gonna be imprisoned again.")) //escape any prison
+        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],abDesc:"Probably a refrance."))
+        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],abDesc:"Don't skip gates, asshole."));
     }
 
     @override

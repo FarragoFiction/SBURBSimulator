@@ -58,7 +58,7 @@ class Dream extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Interlocking Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],abjDesc:"Lame. JR didn't want to use a brand name all of a sudden?"))
+            ..add(new Item("Interlocking Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],abDesc:"Lame. JR didn't want to use a brand name all of a sudden?"))
             ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]));
     }
 

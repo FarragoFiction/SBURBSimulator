@@ -27,10 +27,10 @@ class Romantic extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Red Rose",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PRETTY]))
-            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],abjDesc:"Don't let ABJ see this."))
-            ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],abjDesc:"Robots don't need shitty food."))
+            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],abDesc:"Don't let ABJ see this."))
+            ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],abDesc:"Robots don't need shitty food."))
             ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE]))
-            ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC],abjDesc:"Okay, I will give ABJ this. Troll romance is HILARIOUS."));
+            ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC],abDesc:"Okay, I will give ABJ this. Troll romance is HILARIOUS."));
     }
 
     @override

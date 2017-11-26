@@ -56,11 +56,11 @@ class Mind extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Puzzle",<ItemTrait>[ItemTraitFactory.PLYWOOD, ItemTraitFactory.ASPECTAL], abjDesc: "Don't let Mind players fool you. It's not about smarts."))
-            ..add(new Item("Tesla Coil",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.METAL],abjDesc:  "Mind is electric shit. I guess."))
-            ..add(new Item("Coin",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL],abjDesc:  "Luck doesn't even matter, so neither does this coin. Mind players are such hams."))
-            ..add(new Item("Electronic Door",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.ZAP, ItemTraitFactory.SMART],abjDesc:"I guess it has buttons and shit? I bet it leads somewhere weird."))
-            ..add(new Item("Janus Bust",<ItemTrait>[ItemTraitFactory.BUST, ItemTraitFactory.STONE,ItemTraitFactory.CLASSY,ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],abjDesc:"So is the joke that Mind Players are two faced?"));
+            ..add(new Item("Puzzle",<ItemTrait>[ItemTraitFactory.PLYWOOD, ItemTraitFactory.ASPECTAL], abDesc: "Don't let Mind players fool you. It's not about smarts."))
+            ..add(new Item("Tesla Coil",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.METAL],abDesc:  "Mind is electric shit. I guess."))
+            ..add(new Item("Coin",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL],abDesc:  "Luck doesn't even matter, so neither does this coin. Mind players are such hams."))
+            ..add(new Item("Electronic Door",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.ZAP, ItemTraitFactory.SMART],abDesc:"I guess it has buttons and shit? I bet it leads somewhere weird."))
+            ..add(new Item("Janus Bust",<ItemTrait>[ItemTraitFactory.BUST, ItemTraitFactory.STONE,ItemTraitFactory.CLASSY,ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],abDesc:"So is the joke that Mind Players are two faced?"));
     }
 
     @override

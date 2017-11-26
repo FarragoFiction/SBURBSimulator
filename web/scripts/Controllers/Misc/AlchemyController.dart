@@ -395,8 +395,6 @@ class Achievement {
 
 abstract class ShopItem {
     static int tabIndex = 0;
-    //TODO middle and late
-    List<String> initialQuips = <String>["Yeah, I bet you won't regret that.","Is that really the best choice you could make with your inferior meat brain? Whatever.","Oh my fuck why did it take you so long to decide that."];
     Item item;
     Element div;
     Shop shop;
@@ -405,6 +403,8 @@ abstract class ShopItem {
         makeElement(container);
     }
 
+
+
     void makeElement(Element container) {
         div = new DivElement();
         div.tabIndex = ShopItem.tabIndex;
@@ -412,12 +412,9 @@ abstract class ShopItem {
         div.classes.add(className);
 
         div.setInnerHtml("${item.fullName}");
-        //TODO mouse over for traits
         container.append(div);
         div.onClick.listen((e) {
-            Random rand = new Random();
-            double mathpercent = 90+rand.nextDouble(10.0);
-            shop.quipDiv.setInnerHtml("There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.abjDescription(rand)}");
+            shop.quipDiv.setInnerHtml(shop.describeItem(item));
             renderTransactButton();
         });
     }
@@ -435,7 +432,7 @@ class ShopItemInStock extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = ((item.rank.abs()+1) * -10).round();
+      int cost = (shop.shopKeep.priceModifier * (item.rank.abs()+1) * -10).round();
 
 
       button.setInnerHtml("Buy For ${cost} Grist?");
@@ -449,7 +446,7 @@ class ShopItemInStock extends ShopItem {
               player.sylladex.add(item);
               //shop.removeItemFromInventory(this); no once it's in inventory it lives there.
               shop.renderPlayerSylladex();
-              shop.quipDiv.setInnerHtml(rand.pickFrom(initialQuips));
+              shop.quipDiv.setInnerHtml(rand.pickFrom(shop.shopKeep.playerBuysQuips));
           });
       }else {
         button.disabled = true;
@@ -465,7 +462,7 @@ class ShopItemPlayerOwns extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = ((item.rank.abs()+1) * 5).round();
+      int cost = (shop.shopKeep.priceModifier *(item.rank.abs()+1) * 5).round();
 
       button.setInnerHtml("Sell For ${cost} Grist?");
       button.classes.add("transactButton");
@@ -476,7 +473,7 @@ class ShopItemPlayerOwns extends ShopItem {
           player.sylladex.remove(item);
           shop.addItemToInventory(item);
           shop.renderPlayerSylladex();
-          shop.quipDiv.setInnerHtml(rand.pickFrom(initialQuips));
+          shop.quipDiv.setInnerHtml(rand.pickFrom(shop.shopKeep.playerSellsQuips));
       });
   }
 }
@@ -493,6 +490,10 @@ class Shop {
     Shop(Player this.player, ShopKeep this.shopKeep, Element this.inventoryContainer, Element this.pawnContainer, this.quipDiv, List<Item> items) {
         slurpItemsIntoInventory(items);
         renderPlayerSylladex();
+    }
+
+    String describeItem(Item item) {
+        return shopKeep.getItemDescription(item);
     }
 
     void setShopKeep(ShopKeep sk) {
@@ -558,10 +559,13 @@ class Shop {
 }
 
 abstract class ShopKeep {
+    double priceModifier = 1.0;
     //if empty, it's all items, else it's any item that has any of your traits (on fire OR romantic)
     List<ItemTrait> associatedTraits = new List<ItemTrait>();
     String imageSource;
     ImageElement imageElement; //passed this in, should already be on page.
+    List<String> playerBuysQuips = <String>[""];
+    List<String> playerSellsQuips = <String>[""];
     List<String> randomQuips = <String>[""];
     List<String> orQuips = <String>[""];
     List<String> andQuips = <String>[""];
@@ -573,9 +577,22 @@ abstract class ShopKeep {
     void setShopKeep() {
         imageElement.src = imageSource;
     }
+
+    String getItemDescription(Item item) {
+        Random rand = new Random();
+        double mathpercent = 90+rand.nextDouble(10.0);
+        return "${item.fullName}, Traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}.";
+    }
 }
 
 class ABShopKeep extends ShopKeep {
+
+    @override
+    List<String> playerBuysQuips = <String>["Think it'll be worth the expense?","I wonder which trait you hoped to get out of that.","Yeah, I bet you won't regret that.","Is that really the best choice you could make with your inferior meat brain? Whatever.","Oh my fuck why did it take you so long to decide that."];
+
+    @override
+    List<String> playerSellsQuips = <String>["Desperate for grist, huh?","Bet you hope you won't need that later.","Yeah, I bet you won't regret that.","Is that really the best choice you could make with your inferior meat brain? Whatever.","Oh my fuck why did it take you so long to decide that."];
+
 
     @override
     List<String> maxAlchemyQuips = <String>["Whelp, hope you got what you needed outta that, cuz it's out of alchemy uses.","What's that, it's not 'canon' or 'fair' that you can't keep shoving shit into other shit? Fuck you, deal with it.","And now you've maxed that thing out, can't alchemy any more, bro.","Now it's only purpose in life is to be sold.","And now you can't alchemize with it anymore, good job. Hope you didn't just shove useless shit into it."];
@@ -591,14 +608,31 @@ class ABShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>["...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
     ABShopKeep(ImageElement imageElement) : super(imageElement);
+
+    @override
+    String getItemDescription(Item item) {
+        Random rand = new Random();
+        double mathpercent = 90+rand.nextDouble(10.0);
+        return "There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.abDescription(rand)}";
+    }
 }
 
 class ABJShopKeep extends ShopKeep {
+    @override
+    double priceModifier = 0.3; //can get a bargain on objects she wants there to be more of.
 
     List<ItemTrait> associatedTraits = <ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE];
 
     @override
     String imageSource = "images/Alchemy/abjShop.png";
+
+
+    @override
+    List<String> playerBuysQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+
+
+    @override
+    List<String> playerSellQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
 
     @override
     List<String> maxAlchemyQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
@@ -613,10 +647,26 @@ class ABJShopKeep extends ShopKeep {
 
 
     ABJShopKeep(ImageElement imageElement) : super(imageElement);
+
+    //oh abj. you so crazy.
+    @override
+    String getItemDescription(Item item) {
+        if(item.traits.contains(ItemTraitFactory.ONFIRE) && item.traits.contains(ItemTraitFactory.ROMANTIC)) {
+            return "Interesting!!!";
+        }else if (item.traits.contains(ItemTraitFactory.ONFIRE) || item.traits.contains(ItemTraitFactory.ROMANTIC)) {
+            return "Yes.";
+        }else {
+            return "Hrmmm...";
+        }
+
+    }
 }
 
 
 class ShogunShopKeep extends ShopKeep {
+    @override
+    double priceModifier = 3.0; //asshole raises prices
+
     @override
     String imageSource = "images/Alchemy/Shogun.png";
 

@@ -9,7 +9,7 @@ import 'dart:collection';
 class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
     static List<Item> allUniqueItems = new List<Item>();
-    String abjDesc;
+    String abDesc;
     String shogunDesc;
 
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
@@ -81,7 +81,7 @@ class Item {
     }
 
     Item copy() {
-        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), abjDesc: this.abjDesc, shogunDesc:this.shogunDesc);
+        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), abDesc: this.abDesc, shogunDesc:this.shogunDesc);
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;
@@ -97,7 +97,7 @@ class Item {
     }
 
     //most items won't have an abj desc, but some will
-    Item(String this.baseName,List<ItemTrait> traitsList, {this.abjDesc: null, this.shogunDesc: null}) {
+    Item(String this.baseName,List<ItemTrait> traitsList, {this.abDesc: null, this.shogunDesc: null}) {
         traits = new Set.from(traitsList);
         if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
         Set<CombinedTrait> ct = new Set.from(combinedTraits);
@@ -110,9 +110,9 @@ class Item {
         Item.allUniqueItems.add(this);
     }
 
-    String abjDescription(Random rand) {
-        if(abjDesc != null) {
-            return abjDesc;
+    String abDescription(Random rand) {
+        if(abDesc != null) {
+            return abDesc;
         }else {
             return randomDescription(rand);
         }

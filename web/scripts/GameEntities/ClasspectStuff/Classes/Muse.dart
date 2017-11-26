@@ -39,9 +39,9 @@ class Muse extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Feather Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.FEATHER],abjDesc:"Oh my god, did JR really not know how to spell 'Quill'?"))
-            ..add(new Item("Half Finished Bust of Snoop Dog",<ItemTrait>[ItemTraitFactory.MARBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BUST, ItemTraitFactory.BLUNT],abjDesc:"Meme Shit"))
-            ..add(new Item("Book of Poetry",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],abjDesc:"Hope it inspires you."));
+            ..add(new Item("Feather Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.FEATHER],abDesc:"Oh my god, did JR really not know how to spell 'Quill'?"))
+            ..add(new Item("Half Finished Bust of Snoop Dog",<ItemTrait>[ItemTraitFactory.MARBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BUST, ItemTraitFactory.BLUNT],abDesc:"Meme Shit"))
+            ..add(new Item("Book of Poetry",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],abDesc:"Hope it inspires you."));
     }
 
 

@@ -50,9 +50,9 @@ class Seer extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY],abjDesc:"Don't listen to this asshole."))
-            ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.GLOWING],abjDesc:"Seer shit."))
-            ..add(new Item("Binoculars",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.METAL],abjDesc:"Seer shit."));
+            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY],abDesc:"Don't listen to this asshole."))
+            ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.GLOWING],abDesc:"Seer shit."))
+            ..add(new Item("Binoculars",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.METAL],abDesc:"Seer shit."));
     }
 
 

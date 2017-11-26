@@ -30,7 +30,7 @@ class Specibus extends Item {
         return it;
     }
 
-    Specibus(String baseName, ItemTrait this.requiredTrait, List<ItemTrait> traits, {abjDesc: null, shogunDesc: null}) : super(baseName, traits, abjDesc:abjDesc,shogunDesc:shogunDesc) {
+    Specibus(String baseName, ItemTrait this.requiredTrait, List<ItemTrait> traits, {abjDesc: null, shogunDesc: null}) : super(baseName, traits, abDesc:abjDesc,shogunDesc:shogunDesc) {
         this.traits.add(requiredTrait);
     }
 
