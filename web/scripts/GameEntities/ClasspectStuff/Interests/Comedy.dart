@@ -28,13 +28,13 @@ class Comedy extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY, ItemTraitFactory.HEAVY],abDesc:"Probably heavy enough to kill a cat."))
-            ..add(new Item("Wise Guy Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.FUNNY]))
-            ..add(new Item("Beagle Puss",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.FUNNY],abDesc:"Does...does this really fool flesh bags like you?"))
-            ..add(new Item("Novelty Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP, ItemTraitFactory.FUNNY],abDesc:"Oh look, it makes you sound like a robot. Hilarious."))
-            ..add(new Item("Banana",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FUNNY],abDesc:"Truly the pinacle of fruit based comedy."))
-            ..add(new Item("Fake Flower",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.FUNNY]))
-            ..add(new Item("Trick Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.FUNNY],abDesc:"What is the fucking point of handcuffs you can escape."));
+            ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY, ItemTraitFactory.HEAVY],shogunDesc: "Life Story of the Only Good Mortal",abDesc:"Probably heavy enough to kill a cat."))
+            ..add(new Item("Wise Guy Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.FUNNY],shogunDesc: "How To Shittalk For Fucking Dumbasses"))
+            ..add(new Item("Beagle Puss",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.FUNNY],shogunDesc: "The Name Makes it Impossible For Me To Name Its So Fucking Funny",abDesc:"Does...does this really fool flesh bags like you?"))
+            ..add(new Item("Novelty Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP, ItemTraitFactory.FUNNY],shogunDesc: "Meme Voice Enloudener Tube",abDesc:"Oh look, it makes you sound like a robot. Hilarious."))
+            ..add(new Item("Banana",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FUNNY],shogunDesc: "Phallic Fruit",abDesc:"Truly the pinacle of fruit based comedy."))
+            ..add(new Item("Fake Flower",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.FUNNY],shogunDesc: "Flower that smells like Plastic"))
+            ..add(new Item("Trick Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.FUNNY],shogunDesc: "Pink Fluffy Handcuffs",abDesc:"What is the fucking point of handcuffs you can escape."));
 
 
     }

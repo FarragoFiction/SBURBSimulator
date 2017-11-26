@@ -26,14 +26,14 @@ class Writing extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Make a World Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],abDesc:"World build is p okay, I guess."))
-            ..add(new Item("Quill Pen",<ItemTrait>[ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CLOTH, ItemTraitFactory.PEN]))
-            ..add(new Item("Book On Writing",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART]))
-            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],abDesc:"That Cat Troll doesn't do this. So I guess it's okay."))
-            ..add(new Item("Script",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
-            ..add(new Item("Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.PEN]))
-            ..add(new Item("Spiral Bound Notebook",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
-             ..add(new Item("Half Written Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],abDesc:"I'm sure you'll finish it any day now."));
+            ..add(new Item("Make a World Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK],shogunDesc: "World Building for Dumbasses",abDesc:"World building is p okay, I guess."))
+            ..add(new Item("Quill Pen",<ItemTrait>[ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CLOTH, ItemTraitFactory.PEN],shogunDesc: "Dead Bird Scribing Tool"))
+            ..add(new Item("Book On Writing",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],shogunDesc: "How to do words for unsmarts"))
+            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],abDesc:"That Cat Troll doesn't do this. So I guess it's okay.",shogunDesc: "Natural Selection for Nerds The Book"))
+            ..add(new Item("Script",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "Death of JR, a screenplay by The Shogun"))
+            ..add(new Item("Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.PEN],shogunDesc: "Ink Bleeding Plastic Finger"))
+            ..add(new Item("Spiral Bound Notebook",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.METAL],shogunDesc: "Spinney Spine Scribing Station"))
+             ..add(new Item("Half Written Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "The Shoguns Magnum Opus",abDesc:"I'm sure you'll finish it any day now."));
 
     }
 

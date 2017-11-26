@@ -25,22 +25,22 @@ class Terrible extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE],abDesc:"Don't let ABJ know you have this."))
-            ..add(new Item("Siberia Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD]))
-            ..add(new Item("Nuclear Winter Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD, ItemTraitFactory.NUCLEAR]))
-            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL, ItemTraitFactory.CORRUPT],abDesc:"Oh god, who would fucking trust YOU with thi?"))
-            ..add(new Item("Juggalo Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.JUGGALO]))
-            ..add(new Item("Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
-            ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
-            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.HAUTE, ItemTraitFactory.REAL],abDesc:"Just wear roboclothes. Never need another set."))
-            ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE],abDesc:"..."))
-            ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abDesc:"You are one high quality sociopath."))
-            ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abDesc:"What. The. Hell."))
-            ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abDesc:"What is it with you and guns."))
-            ..add(new Item("IED",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.EDGED,ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY, ItemTraitFactory.REAL],abDesc:"You are probably going to blow yourself up, asshole."))
-            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK],abDesc:"Oh god, this is HILARIOUS, it's the PERFECT book for you."))
-            ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ENRAGING],abDesc:"I hear flesh bags keep gtting scared by these. I don't get it."))
-            ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE],abDesc:"Don't let ABJ get this."));
+            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE],shogunDesc: "ABJs Birthday Gift",abDesc:"Don't let ABJ know you have this."))
+            ..add(new Item("Siberia Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD],shogunDesc: "Poster of the Shoguns Birthplace"))
+            ..add(new Item("Nuclear Winter Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD, ItemTraitFactory.NUCLEAR],shogunDesc: "Shoguns Dream as a Poster"))
+            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL, ItemTraitFactory.CORRUPT],shogunDesc: "Shoguns UNO Reverse Card",abDesc:"Oh god, who would fucking trust YOU with thi?"))
+            ..add(new Item("Juggalo Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.JUGGALO],shogunDesc: "False God Poster"))
+            ..add(new Item("Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL],shogunDesc: "Shoguns Watch"))
+            ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL],shogunDesc: "The Shoguns Crown"))
+            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.HAUTE, ItemTraitFactory.REAL],shogunDesc: "Shoguns Godtier Outfit",abDesc:"Just wear roboclothes. Never need another set."))
+            ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE],shogunDesc: "Shoguns Old Porkhollow",abDesc:"..."))//that fanfic, man
+            ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],shogunDesc: "Dynamos Armament",abDesc:"You are one high quality sociopath."))
+            ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],shogunDesc: "Long Range Rooty Tooty Point And Boomy",abDesc:"What. The. Hell."))
+            ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],shogunDesc: "100% Genuine Soviet Kalashnikov",abDesc:"What is it with you and guns."))
+            ..add(new Item("IED",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.EDGED,ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY, ItemTraitFactory.REAL],shogunDesc: "Shitpost Bomb",abDesc:"You are probably going to blow yourself up, asshole."))
+            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK],shogunDesc: "Shoguns Guide to Shitposting",abDesc:"Oh god, this is HILARIOUS, it's the PERFECT book for you."))
+            ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ENRAGING],shogunDesc: "Bike Mounted Pain Box",abDesc:"I hear flesh bags keep gtting scared by these. I don't get it."))
+            ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE],abDesc:"Don't let ABJ get this.",shogunDesc: "ABJs First Arsonist Set"));
     }
 
 

@@ -26,15 +26,15 @@ class Social extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Fiduspawn Plush",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE],abDesc:"Hopefully just a replica."))
-            ..add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE]))
-            ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.DICE, ItemTraitFactory.PLASTIC]))
-            ..add(new Item("Pigeon",<ItemTrait>[ItemTraitFactory.FEATHER, ItemTraitFactory.SENTIENT, ItemTraitFactory.FLESH, ItemTraitFactory.BONE, ItemTraitFactory.CORRUPT],abDesc:"Better fucking tell JR. Ironic pigeons and all."))
-            ..add(new Item("Cat Ears",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.FUR],abDesc:"Fuck. Cat. Trolls."))
-            ..add(new Item("Religious Text",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
-            ..add(new Item("Psychology Book",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER]))
-            ..add(new Item("Therapy Couch",<ItemTrait>[ItemTraitFactory.COMFORTABLE,ItemTraitFactory.CLOTH]))
-            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],abDesc:"Fuck. Cat. Trolls. Though I guess she never FLARPED."))
+            ..add(new Item("Fiduspawn Plush",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE],shogunDesc: "Copyrighted Yellow Rat Plush",abDesc:"Hopefully just a replica."))
+            ..add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.FUR,ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE],shogunDesc: "Cuddle Bear"))
+            ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.DICE, ItemTraitFactory.PLASTIC],shogunDesc: "D113"))
+            ..add(new Item("Pigeon",<ItemTrait>[ItemTraitFactory.FEATHER, ItemTraitFactory.SENTIENT, ItemTraitFactory.FLESH, ItemTraitFactory.BONE, ItemTraitFactory.CORRUPT],shogunDesc: "Bird of Impending Doom",abDesc:"Better fucking tell JR. Ironic pigeons and all."))
+            ..add(new Item("Cat Ears",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.FUR],shogunDesc: "Weeb Shit",abDesc:"Fuck. Cat. Trolls."))
+            ..add(new Item("Religious Text",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "Religious Book Containing No Shogun, A Bad Book"))
+            ..add(new Item("Psychology Book",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "How to Guarantee Your Message Gets Pinned The Book"))
+            ..add(new Item("Therapy Couch",<ItemTrait>[ItemTraitFactory.COMFORTABLE,ItemTraitFactory.CLOTH],shogunDesc: "Giant Problem Absorbing Couch"))
+            ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],shogunDesc: "Book of Nerd Natural Selection",abDesc:"Fuck. Cat. Trolls. Though I guess she never FLARPED."))
         ;
     }
 

@@ -26,11 +26,11 @@ class Romantic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Red Rose",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PRETTY]))
-            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],abDesc:"Don't let ABJ see this."))
-            ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],abDesc:"Robots don't need shitty food."))
-            ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE]))
-            ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC],abDesc:"Okay, I will give ABJ this. Troll romance is HILARIOUS."));
+            ..add(new Item("Red Rose",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PRETTY],shogunDesc: "Seductive Plant"))
+            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],shogunDesc: "Grid of Sin",abDesc:"Don't let ABJ see this."))
+            ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],shogunDesc: "Brick of Shit Coloured Nice Tasting Food",abDesc:"Robots don't need shitty food."))
+            ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE],shogunDesc: "Dying Light Holding Device, Cruelty Made of Metal"))
+            ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC],shogunDesc: "I dont Understand This But It Makes Me Sad",abDesc:"Okay, I will give ABJ this. Troll romance is HILARIOUS."));
     }
 
     @override
@@ -74,7 +74,7 @@ class Romantic extends InterestCategory {
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
             ..addFeature(new PreDenizenQuestChain("Ship All the Ships", [
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
-                new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
+                new Quest("The ${Quest.PLAYER1} extends their shipping grid to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, and it's not even banned by the ${Quest.DENIZEN}'s stupid rules. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 

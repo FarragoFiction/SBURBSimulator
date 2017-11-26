@@ -27,24 +27,22 @@ class Domestic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
-            ..add(new Item("Necklace",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.GOLDEN, ItemTraitFactory.CHAIN]))
-            ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE]))
-            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.BROOM, ItemTraitFactory.WOOD,ItemTraitFactory.BLUNT,ItemTraitFactory.BROOM,],abDesc:"Fucking. Wastes."))
-            ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT]))
-            ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],abDesc:"Pretty good if you need to be calmed down, I hear."))
-            ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
-            ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
-            ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))
-            ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD]))
-            ..add(new Item("Cast Iron Skillet",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.ONFIRE,ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY,ItemTraitFactory.FRYINGPAN ]))
-
-            ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON],abDesc:"Wow you suck at cooking.")) //this is ALSO a refrance. but to what?
-
-            ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC, ItemTraitFactory.PLANT]))
-            ..add(new Item("Chicken Leg",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH, ItemTraitFactory.BONE]))
-            ..add(new Item("Juicy Steak",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH]))
-            ..add(new Item("Wedding Cake",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.EDIBLE, ItemTraitFactory.HEALING]));
+            ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH],shogunDesc: "Weird Tasting Candy Paper"))
+            ..add(new Item("Necklace",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.GOLDEN, ItemTraitFactory.CHAIN],shogunDesc: "Nasty Candy Necklace"))
+            ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE],shogunDesc: "Cloth Stabbing Knife"))
+            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.BROOM, ItemTraitFactory.WOOD,ItemTraitFactory.BLUNT,ItemTraitFactory.BROOM,],shogunDesc: "Doctor Beating Staff",abDesc:"Fucking. Wastes."))
+            ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT],shogunDesc: "Babushkas Punishment Pole"))
+            ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],shogunDesc: "Seductive Head Rest",abDesc:"Pretty good if you need to be calmed down, I hear."))
+            ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH],shogunDesc: "Cats Plaything"))
+            ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD],shogunDesc: "Food Hardening Box"))
+            ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER],shogunDesc: "Memory Book"))
+            ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD],shogunDesc: "Hard Water"))
+            ..add(new Item("Cast Iron Skillet",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.ONFIRE,ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY,ItemTraitFactory.FRYINGPAN ],shogunDesc: "Fancy Unstoppable Weapon"))
+            ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON],shogunDesc: "Culinary Perfection",abDesc:"Wow you suck at cooking.")) //this is ALSO a refrance. but to what?
+            ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC, ItemTraitFactory.PLANT],shogunDesc: "Imprisoned Flora, Trapped in Clay for its Sins"))
+            ..add(new Item("Chicken Leg",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH, ItemTraitFactory.BONE],shogunDesc: "Thicc Chicken"))
+            ..add(new Item("Juicy Steak",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH],shogunDesc: "Juicy Cow Flesh"))
+            ..add(new Item("Wedding Cake",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.EDIBLE, ItemTraitFactory.HEALING],shogunDesc: "The Only Benefit of a Wedding"));
     }
 
     @override

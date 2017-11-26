@@ -27,15 +27,15 @@ class Athletic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Barbells",<ItemTrait>[ItemTraitFactory.BLUNT]))
-            ..add(new Item("Basketball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER]))
-            ..add(new Item("Baseball Bat",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD]))
-            ..add(new Item("Rubber Ball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER]))
-            ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP],abDesc:"Let's you be a loud asshole instead of a regular asshole."))
-            ..add(new Item("Hockey Stick",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD, ItemTraitFactory.STICK]))
-            ..add(new Item("Trophy",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE],abDesc:"Huh. What could you posibly have won. Ever."))
-            ..add(new Item("Boxing Glove",<ItemTrait>[ItemTraitFactory.FIST, ItemTraitFactory.RUBBER]))
-            ..add(new Item("Yoga Mat",<ItemTrait>[ItemTraitFactory.RUBBER, ItemTraitFactory.COMFORTABLE]));
+            ..add(new Item("Barbells",<ItemTrait>[ItemTraitFactory.BLUNT],shogunDesc: "Strength Building Metal"))
+            ..add(new Item("Basketball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER],shogunDesc: "Dunksphere"))
+            ..add(new Item("Baseball Bat",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD],shogunDesc: "Wooden Pole of Bone Hurting"))
+            ..add(new Item("Rubber Ball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER],shogunDesc: "Dead Animal Corpse Ball"))
+            ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP],shogunDesc: "Handheld Voice Empowerer",abDesc:"Let's you be a loud asshole instead of a regular asshole."))
+            ..add(new Item("Hockey Stick",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD, ItemTraitFactory.STICK],shogunDesc: "L Shaped Bone Hurter"))
+            ..add(new Item("Trophy",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE],shogunDesc: "Award for Best At Shitposting",abDesc:"Huh. What could you posibly have won. Ever."))
+            ..add(new Item("Boxing Glove",<ItemTrait>[ItemTraitFactory.FIST, ItemTraitFactory.RUBBER],shogunDesc: "Fist Reinforcing Pain Cubes"))
+            ..add(new Item("Yoga Mat",<ItemTrait>[ItemTraitFactory.RUBBER, ItemTraitFactory.COMFORTABLE],shogunDesc: "Flesh Rubberising Practice Mat"));
     }
 
 

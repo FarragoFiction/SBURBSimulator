@@ -25,14 +25,14 @@ class Music extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Piano",<ItemTrait>[ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL, ItemTraitFactory.CLASSY],abDesc:"An entire piano. In your inventory. WHY."))
-            ..add(new Item("Flute",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL],abDesc:"I feel like a spaceship captain should play this."))
-            ..add(new Item("Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP],abDesc:"Do you really deserve to drop this like it's hot?"))
-            ..add(new Item("Violin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL]))
-            ..add(new Item("Sheet Music",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MUSICAL]))
-            ..add(new Item("Electric Guitar",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.LOUD, ItemTraitFactory.COOLK1D]))
-            ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.COOLK1D]))
-            ..add(new Item("Guitar",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL]));
+            ..add(new Item("Piano",<ItemTrait>[ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL, ItemTraitFactory.CLASSY],shogunDesc: "Elephant Corpse Turned Amazing Instrument",abDesc:"An entire piano. In your inventory. WHY."))
+            ..add(new Item("Flute",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MUSICAL],shogunDesc: "Pipe of Screeches 2: Orchestral Shitstorm",abDesc:"I feel like a spaceship captain should play this."))
+            ..add(new Item("Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP],shogunDesc: "Speaking Tube of Passion +3",abDesc:"Do you really deserve to drop this like it's hot?"))
+            ..add(new Item("Violin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL],shogunDesc: "Tiny Cello"))
+            ..add(new Item("Sheet Music",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MUSICAL],shogunDesc: "Cheat Codes for Instruments"))
+            ..add(new Item("Electric Guitar",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.LOUD, ItemTraitFactory.COOLK1D],shogunDesc: "Electrical Stringed Music Maker"))
+            ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.MUSICAL, ItemTraitFactory.ZAP, ItemTraitFactory.COOLK1D],shogunDesc: "Spinning Disc Sound Maker"))
+            ..add(new Item("Guitar",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.MUSICAL],shogunDesc: "String Music Maker"));
 
     }
 

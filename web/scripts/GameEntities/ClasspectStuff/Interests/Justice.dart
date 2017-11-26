@@ -26,13 +26,13 @@ class Justice extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Gavel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.HAMMER]))
-            ..add(new Item("Caution Tape",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.RESTRAINING]))
-            ..add(new Item("Deerstalker Hat",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY],abDesc:"Sherlock Holmes has nothing on Detectron 3000."))
-            ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK]))
-            ..add(new Item("Dish Served Cold",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.EDIBLE, ItemTraitFactory.COLD]))
-            ..add(new Item("Pony Pals: Detective Pony ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK, ItemTraitFactory.COOLK1D],abDesc:"Truly the most ironic work of all time."))
-            ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING],abDesc:"These ones aren't fucking pointless like those trick ones."));
+            ..add(new Item("Gavel",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.HAMMER],shogunDesc: "Tiny Whacky Smacky Skull Cracky of Justice"))
+            ..add(new Item("Caution Tape",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.RESTRAINING],shogunDesc: "Impassible Barrier"))
+            ..add(new Item("Deerstalker Hat",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.PRETTY],shogunDesc: "Horns but not Troll Horns put on a Hat",abDesc:"Sherlock Holmes has nothing on Detectron 3000."))
+            ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK],shogunDesc: "Book where the Criminal was the Janitor"))
+            ..add(new Item("Dish Served Cold",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.EDIBLE, ItemTraitFactory.COLD],shogunDesc: "REVENGE"))
+            ..add(new Item("Pony Pals: Detective Pony ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK, ItemTraitFactory.COOLK1D],shogunDesc: "A Disgusting Book",abDesc:"Truly the most ironic work of all time."))
+            ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING],shogunDesc: "Wrist Imprisoning Device",abDesc:"These ones aren't fucking pointless like those trick ones."));
     }
 
 
@@ -43,7 +43,7 @@ class Justice extends InterestCategory {
             ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.LOW)
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.LOW)
-            ..addFeature(new PreDenizenQuestChain("Shit, Let’s Be Lawyers", [
+            ..addFeature(new PreDenizenQuestChain("Shit, Lets Be Lawyers", [
                 new Quest("The ${Quest.PLAYER1} finds an elaborate courtroom full of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently the prosecuting attorney flaked out and they need someone to fill the role. The ${Quest.PLAYER1} agrees to see that justice is served. "),
                 new Quest("The ${Quest.PLAYER1} is tasked to prosecute a local ${Quest.CONSORT} accused of stealing food for her family. After much elaborate debate and arguments, the ${Quest.PLAYER1} secures the guilty verdict while also convincing the judge to pursue the minimum sentence. Everyone is relieved that justice is done while not harshly punishing a near innocent.     "),
                 new Quest(" The ${Quest.PLAYER1} presides over the case of the treacherous Senator ${Quest.CONSORT}snout. He is accused of embezzling ${Quest.PHYSICALMCGUFFIN}s from the Imperial Coffers. The ${Quest.PLAYER1} easily finds Senator ${Quest.CONSORT}snout to be guilty and sentences them to life in prison. This is EASILY the case of their career and it is with a regretful heart they step aside as Prosecuter. They simply can never top this one.")

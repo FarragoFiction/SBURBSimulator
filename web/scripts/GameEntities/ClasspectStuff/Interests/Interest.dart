@@ -133,7 +133,7 @@ class InterestCategory {
 
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Perfectly Generic Object",<ItemTrait>[]));
+            ..add(new Item("Perfectly Generic Object",<ItemTrait>[],shogunDesc: "The Third Entry for This Fucking Block"));
     }
 
 
