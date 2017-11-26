@@ -75,7 +75,7 @@ body{
  vertical-align: top;
  text-align: middle;
  background-color: #cc87e8;
- overflow: none;
+ overflow:  hidden;
 }
 
 #shop{

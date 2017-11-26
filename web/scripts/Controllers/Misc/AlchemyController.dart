@@ -66,7 +66,7 @@ void main() {
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    alchemyShop.setShopKeep(abj);
+    alchemyShop.setShopKeep(ab);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 
@@ -140,6 +140,7 @@ void cheatShowPossibilities(Item item1, Item item2) {
 
 void makeAlchemyButton() {
     ButtonElement button = querySelector("#alchemyButton");
+
     button.onClick.listen((e) {
         Item item1 =findItemNamed(firstItemSelect.selectedOptions[0].value);
         Item item2 =findItemNamed(secondItemSelect.selectedOptions[0].value);
@@ -163,12 +164,17 @@ void makeAlchemyButton() {
         makeDropDowns();//need to remake them so we can do that one thing. uh. have an accurate inventory.
         item1TraitsDiv.remove();
         item2TraitsDiv.remove();
-        item1TraitsDiv = (renderItemStats(player.sylladex.first));
-        item2TraitsDiv = (renderItemStats(player.sylladex.first));
+        Iterable<Item> validItems = player.sylladex.where((Item a) => (a.canUpgrade()));
+        item1TraitsDiv = (renderItemStats(validItems.first));
+        item2TraitsDiv = (renderItemStats(validItems.first));
         item1Div.append(item1TraitsDiv);
         item2Div.append(item2TraitsDiv);
         //take alchemy result, look for combined traits, make sure the achievements get unlocked appropriately.
         processAchievements(alchemyResult.result);
+        if(!item1.canUpgrade()) {
+            Random rand = new Random();
+            alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.maxAlchemyQuips));
+        }
     });
 
 }
@@ -237,7 +243,7 @@ void quip(Item item) {
 
 void makeDropDowns() {
     if(firstItemSelect != null) firstItemSelect.remove();
-    firstItemSelect = genericDropDown(item1SelSpot, player.sylladex.inventory,  "First Item");
+    firstItemSelect = itemDropDown(item1SelSpot, player.sylladex.inventory,  "First Item");
     firstItemSelect.onChange.listen((e) {
         Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
         quip(item);
@@ -267,7 +273,7 @@ void makeDropDowns() {
     });
 
     if(secondItemSelect != null) secondItemSelect.remove();
-    secondItemSelect = genericDropDown(item2SelSpot, player.sylladex.inventory,  "Second Item");
+    secondItemSelect = itemDropDown(item2SelSpot, player.sylladex.inventory,  "Second Item");
 
     secondItemSelect.onChange.listen((e) {
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
@@ -296,6 +302,26 @@ SelectElement genericDropDown<T> (Element div, List<T> list, String name)
     div.append(selector);
     return selector;
 }
+
+//ignore items thath can't be alchemized any more
+SelectElement itemDropDown<T> (Element div, List<Item> list, String name)
+{
+    SelectElement selector = new SelectElement()
+        ..name = name
+        ..id = name;
+
+    for(Item a in list) {
+        if(a.canUpgrade()) {
+            OptionElement o = new OptionElement()
+                ..value = a.toString()
+                ..setInnerHtml(a.toString());
+            selector.add(o, null);
+        }
+    }
+    div.append(selector);
+    return selector;
+}
+
 
 
 
@@ -587,9 +613,7 @@ abstract class ShopKeep {
     }
 
     String getItemDescription(Item item) {
-        Random rand = new Random();
-        double mathpercent = 90+rand.nextDouble(10.0);
-        return "${item.fullName}, Traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}.";
+        return "${item.fullName}, Upgrades: ${item.numUpgrades}/${item.maxUpgrades} Traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}.";
     }
 }
 
@@ -623,7 +647,9 @@ class ABShopKeep extends ShopKeep {
     String getItemDescription(Item item) {
         Random rand = new Random();
         double mathpercent = 90+rand.nextDouble(10.0);
-        return "There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. ${item.abDescription(rand)}";
+        String upgrade = "It's only good for selling anymore.";
+        if(item.canUpgrade() ) upgrade = "You can upgrade this, dunkass.";
+        return "There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. $upgrade ${item.abDescription(rand)}";
     }
 }
 
