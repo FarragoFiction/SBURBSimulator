@@ -113,7 +113,8 @@ void checkShopKeepTrigger(Item item) {
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
-            Achievement.announcmentDiv.appendHtml("News: Shogun has arrived. :( :( :(");
+            //TODO this isn't working, probably cuz it gets cleared out
+            Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(");
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
