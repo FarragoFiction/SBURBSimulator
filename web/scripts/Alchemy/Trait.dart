@@ -514,7 +514,7 @@ class ItemTraitFactory {
     PISTOLSHRIMP = new CombinedTrait("Pistol Shrimp",<String>["pistol shrimp", "horrifying"], 0.0,ItemTrait.SHAPE, <ItemTrait>[SENTIENT, FLESH, SHOOTY]);
     JUGGALO = new CombinedTrait("Juggalo",<String>["juggalo"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FUNNY, MUSICAL, LOUD, SCARY]);
     SHOCKSAUCE = new CombinedTrait("Shock Sauce",<String>["shocksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, ZAP]);
-    WEAKSAUCE = new CombinedTrait("Weak Sauce",<String>["weaksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, SHITTY]);
+    WEAKSAUCE = new CombinedTrait("Weak Sauce",<String>["weaksauce"], 0.0,ItemTrait.OPINION, <ItemTrait>[BLUNT,COOLK1D, SHITTY]);
     SPICY = new CombinedTrait("Spicy",<String>["spicy", "picante"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, EDIBLE]);
     ICECREAM = new CombinedTrait("Popsicle",<String>["ice cream", "popsicle"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, EDIBLE]);
     POPSICKLE = new CombinedTrait("Popsickle",<String>["popsickle"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COLD, EDIBLE,EDGED]);
@@ -531,7 +531,7 @@ class ItemTraitFactory {
     HAIRMETAL = new CombinedTrait("Hair Metal",<String>["hair metal"], 0.0,ItemTrait.OPINION, <ItemTrait>[METAL, MUSICAL, PRETTY]);
     ELVEN = new CombinedTrait("Elven",<String>["elven", "fae", "sylvan"], 0.0,ItemTrait.OPINION, <ItemTrait>[MAGICAL, PRETTY]);
     SHINY = new CombinedTrait("Shiny",<String>["shiny"], 0.0,ItemTrait.OPINION, <ItemTrait>[METAL, PRETTY]);
-    BESPOKE = new CombinedTrait("Bespoke",<String>["bespoke", "well-tailored", "glamorous"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, PRETTY, CLASSY]);
+    BESPOKE = new CombinedTrait("Bespoke",<String>["bespoke", "well-tailored", "glamorous","haute couture"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, PRETTY, CLASSY]);
     OPERATIC = new CombinedTrait("Operatic",<String>["operatic"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, MUSICAL, CLASSY]);
     ICE = new CombinedTrait("Diamond",<String>["ice", "diamond"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[VALUABLE, COLD]);
     ICYHOT = new CombinedTrait("Icy Hot",<String>["icy hot","cold fire"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, COLD]);
@@ -606,7 +606,6 @@ class ItemTraitFactory {
     CRYSTALBALL = new CombinedTrait("Far Seeing",<String>["far seeing","sighted"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[GLASS, STONE, MAGICAL]);
     DISABLING = new CombinedTrait("Nonlethal",<String>["disabling","non lethal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, SHOOTY]);
     FASHIONABLE = new CombinedTrait("Fashionable",<String>["fasionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
-    HAUTE = new CombinedTrait("Haute Couture",<String>["haute couture"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY,VALUABLE]);
     IRONICFUNNYCOOL = new CombinedTrait("Ironic Type 2",<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
     IRONICSHITTYFUNNY = new CombinedTrait("Ironic Type 3",<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
     POSTIRONIC = new CombinedTrait("Post Ironic",<String>["post-ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D,CLASSY]);
