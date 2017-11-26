@@ -47,9 +47,9 @@ class Witch extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cauldron",<ItemTrait>[ItemTraitFactory.LEAD, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],abDesc:"Surprisingly literal."))
-            ..add(new Item("Flying Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.WOOD,ItemTraitFactory.MAGICAL],abDesc:"WHY ARE THERE SO MANY FUCKING BROOMS IN THIS GAME."))
-            ..add(new Item("Warped Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],abDesc:"I guess Witches warp shit and stuff."));
+            ..add(new Item("Cauldron",<ItemTrait>[ItemTraitFactory.LEAD, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],shogunDesc: "Bell But For Liquids",abDesc:"Surprisingly literal."))
+            ..add(new Item("Flying Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.WOOD,ItemTraitFactory.MAGICAL],shogunDesc: "Bell But For Liquids",abDesc:"WHY ARE THERE SO MANY FUCKING BROOMS IN THIS GAME."))
+            ..add(new Item("Warped Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],shogunDesc: "Mirror from The Shoguns Dresser",abDesc:"I guess Witches warp shit and stuff."));
     }
 
     @override

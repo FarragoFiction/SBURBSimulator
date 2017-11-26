@@ -13,7 +13,7 @@ class Mage extends SBURBClass {
     @override
     List<String> quests = ["performing increasingly complex alchemy for demanding, moody consorts", "learning to silence their Mage Senses long enough to not go insane", "learning to just let go and let things happen"];
     @override
-    List<String> postDenizenQuests = ["finding yet another series of convoluted puzzles, buried deep in their land. These puzzles pour poison into the land, and will continue to do so until solved", "realizing the voices are gone. Not just quiet, but… gone. Without them, they can finally get down to work on their land puzzles", "solving the more of the puzzles of their land. Not that that's the end of the horseshit, but hey! Less horseshit always helps", "getting sick to death of puzzles and just utterly annihilating one with their game powers"];
+    List<String> postDenizenQuests = ["finding yet another series of convoluted puzzles, buried deep in their land. These puzzles pour poison into the land, and will continue to do so until solved", "realizing the voices are gone. Not just quiet, but gone. Without them, they can finally get down to work on their land puzzles", "solving the more of the puzzles of their land. Not that that's the end of the horseshit, but hey! Less horseshit always helps", "getting sick to death of puzzles and just utterly annihilating one with their game powers"];
     @override
     List<String> handles = ["magnificent", "managerial", "major", "majestic", "mannerly", "malignant", "morbid"];
 
@@ -50,9 +50,9 @@ class Mage extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Mage's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],abDesc:"Mage Shit"))
-            ..add(new Item("Mage's Staff",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],abDesc:"Mage Shit"))
-            ..add(new Item("Walking Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SENTIENT,ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],abDesc:"Normally I'd blame Wastes, but walking brooms is more of a Mage thing."));
+            ..add(new Item("Mage's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],shogunDesc: "Shitty Wizard Cape",abDesc:"Mage Shit"))
+            ..add(new Item("Mage's Staff",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BLUNT, ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],shogunDesc: "Shitty Wizard Stick of Power",abDesc:"Mage Shit"))
+            ..add(new Item("Walking Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SENTIENT,ItemTraitFactory.MAGICAL, ItemTraitFactory.STICK],shogunDesc: "Support Stick of Cleaning",abDesc:"Normally I'd blame Wastes, but walking brooms is more of a Mage thing."));
     }
 
 

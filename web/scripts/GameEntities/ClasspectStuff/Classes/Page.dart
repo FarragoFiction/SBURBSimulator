@@ -15,7 +15,7 @@ class Page extends SBURBClass {
     @override
     List<String> quests = ["going on various quests of self discovery and confidence building", "partnering with a local consort hero to do great deeds and slay evil foes", "learning to deal with disapointment after dungeon after dungeon proves to have all the enemies, and none of the treasure"];
     @override
-    List<String> postDenizenQuests = ["learning to control their newfound prowess, accidentally wiping out a consort village or two", "getting all mopey about their new powers, because apparently actually being competent is too much for them", "finishing the ‘legendary’ tests of valor with a never before seen aplomb", "accepting the role Sburb has placed upon them. They are themselves, and that is all that needs be said on the matter"];
+    List<String> postDenizenQuests = ["learning to control their newfound prowess, accidentally wiping out a consort village or two", "getting all mopey about their new powers, because apparently actually being competent is too much for them", "finishing the legendary tests of valor with a never before seen aplomb", "accepting the role Sburb has placed upon them. They are themselves, and that is all that needs be said on the matter"];
     @override
     List<String> handles =  ["passionate","patient","peaceful","perfect","perceptive", "practical", "pathetic"];
 
@@ -45,9 +45,9 @@ class Page extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Shorts",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],abDesc:"Don't skip leg day."))
-            ..add(new Item("Sidekick Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COOLK1D],abDesc:"Robin is way cooler than Batman."))
-            ..add(new Item("Steroids",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],abDesc:"Shit son, calm down with all the screaming and the powering up."));
+            ..add(new Item("Shorts",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],shogunDesc: "Crotch Hugging Thigh Exposers. Absolutely Indecent.",abDesc:"Don't skip leg day."))
+            ..add(new Item("Sidekick Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COOLK1D],shogunDesc: "Small Statue of a White Headed Cat in a Green Suit",abDesc:"Robin is way cooler than Batman."))
+            ..add(new Item("Steroids",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],shogunDesc: "My Morning Medication",abDesc:"Shit son, calm down with all the screaming and the powering up."));
     }
 
 

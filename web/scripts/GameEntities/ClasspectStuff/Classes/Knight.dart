@@ -14,7 +14,7 @@ class Knight extends SBURBClass {
     @override
     List<String> quests = ["protecting the local consorts from a fearsome foe", "protecting the session from various ways it can go shithive maggots", "questing to collect the 7 bullshit orbs of supreme bullshit and deliver them to the consort leader"];
     @override
-    List<String> postDenizenQuests = ["", "spending way too much time hustling from village to village, saving the consorts from the denizens last few minions", "breaking a siege on a consort village, saving its population and slaughtering thousands of underlings", "finishing the ‘legendary’ tests of valor dispensed by an elder consort"];
+    List<String> postDenizenQuests = ["", "spending way too much time hustling from village to village, saving the consorts from the denizens last few minions", "breaking a siege on a consort village, saving its population and slaughtering thousands of underlings", "finishing the legendary tests of valor dispensed by an elder consort"];
     @override
     List<String> handles = ["keen", "knightly", "kooky", "kindred", "kaos",];
 
@@ -47,9 +47,9 @@ class Knight extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Shining Armor",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD],shogunDesc: "Kyoto Overcoat",abDesc:"Knight Shit"))
-            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD],abDesc:"Knight Shit"))
-            ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT],abDesc:"Knight Shit"))
-            ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM],abDesc:"Knight Shit"));
+            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD],shogunDesc: "Masamune",abDesc:"Knight Shit"))
+            ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT],shogunDesc: "Horse Prime, Envoy of the Ultimate End",abDesc:"Knight Shit"))
+            ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM],shogunDesc: "A Weaklings Way Out, Shame Upon You",abDesc:"Knight Shit"));
     }
 
 

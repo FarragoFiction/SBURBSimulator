@@ -12,7 +12,7 @@ class Seer extends SBURBClass {
     @override
     List<String> quests = ["making the various bullshit rules of SBURB part of their personal mythos", "collaborating with the exiled future carapacians to manipulate Prospit and Derse according to how its supposed to go", "suddenly understanding everything, and casting sincere doubt at the laughable insinuation that they ever didn't"];
     @override
-    List<String> postDenizenQuests = ["casting their sight around the land to find the causes of their land’s devastation", "taking a consort under their wing and teaching it the craft of magic", "predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize", "alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
+    List<String> postDenizenQuests = ["casting their sight around the land to find the causes of their lands devastation", "taking a consort under their wing and teaching it the craft of magic", "predicting hundreds of thousands of variant future possibilities, only to realize that the future is too chaotic to exactly systemize", "alchemizing more and more complex seer aids, such as crystal balls or space-specs"];
     @override
     List<String> handles = ["sightly", "sanctimonious", "sarcastic", "sassy", "scintillating", "synergistic", "savant"];
 
@@ -50,9 +50,9 @@ class Seer extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY],abDesc:"Don't listen to this asshole."))
-            ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.GLOWING],abDesc:"Seer shit."))
-            ..add(new Item("Binoculars",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.METAL],abDesc:"Seer shit."));
+            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY],shogunDesc: "A Worthless White Ball",abDesc:"Don't listen to this asshole."))
+            ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.GLOWING],shogunDesc: "A Worthless Clear Ball",abDesc:"Seer shit."))
+            ..add(new Item("Binoculars",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.METAL],shogunDesc: "Long Distance Perversion Apparatus",abDesc:"Seer shit."));
     }
 
 

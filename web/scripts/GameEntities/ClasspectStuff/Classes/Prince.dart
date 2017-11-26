@@ -54,9 +54,9 @@ class Prince extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Feather'd Cap",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],abDesc:"So fucking pretentious."))
-            ..add(new Item("Crown",<ItemTrait>[ItemTraitFactory.GOLDEN, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],abDesc:"Prince shit. Man. The tiara dealy."))
-            ..add(new Item("Gunpowder",<ItemTrait>[ItemTraitFactory.EXPLODEY, ItemTraitFactory.CLASSRELATED],abDesc:"Huh. I guess cause princes are destructive."));
+            ..add(new Item("Feather'd Cap",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],shogunDesc: "Pupa Pan Hat",abDesc:"So fucking pretentious."))
+            ..add(new Item("Crown",<ItemTrait>[ItemTraitFactory.GOLDEN, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],shogunDesc: "A False Symbol of Power",abDesc:"Prince shit. Man. The tiara dealy."))
+            ..add(new Item("Gunpowder",<ItemTrait>[ItemTraitFactory.EXPLODEY, ItemTraitFactory.CLASSRELATED],shogunDesc: "The Best Thing since The Shogun",abDesc:"Huh. I guess cause princes are destructive."));
     }
 
 
