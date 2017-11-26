@@ -11,7 +11,7 @@ String XOR = "XOR";
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 Shop alchemyShop;
 
-int ticksRemaining = 10;
+int ticksRemaining = 3; //you better save AB dunkass.
 Element storeDiv;
 Element buyDiv;
 Element sellDiv;
@@ -104,6 +104,7 @@ void checkShopKeepTrigger(Item item) {
     if(alchemyShop.shopKeep == abGlitch) {
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
+            alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
@@ -178,6 +179,9 @@ void makeAlchemyButton() {
             alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
         }
         alchemyResult.apply(player);
+        if(alchemyShop.shopKeep == ab && alchemyResult.result.traits.contains(ItemTraitFactory.CORRUPT) && !alchemyResult.result.traits.contains(ItemTraitFactory.ZAP)) {
+            alchemyShop.setQuip("I swear to fuck you don't know how close you came to fucking shit up, asshole. ");
+        }
         checkShopKeepTrigger(alchemyResult.result);
         //giveRandomItem(); //nope, gotta buy em now asshole.
         if(resultTraitsDiv != null) resultTraitsDiv.remove();
@@ -271,6 +275,10 @@ void makeDropDowns() {
         Item item = findItemNamed(firstItemSelect.selectedOptions[0].value);
         quip(item);
         Item item2 = findItemNamed(secondItemSelect.selectedOptions[0].value);
+        if(alchemyShop.shopKeep == ab && item.traits.contains(ItemTraitFactory.CORRUPT)) {
+            Random rand = new Random();
+            alchemyShop.setQuip("It seems you have not considered the consequences of alchemizing with that corrupt as fuck ${item.baseName}, asshole.<br><br>Don't worry, as your superior RoboOverlord, I will guide you. <br><Br>There will be all the consequences. All of them. Don't fucking do it. I don't care how fucking ${rand.pickFrom(item.traits).descriptions.first} it is.");
+        }
 
         item1TraitsDiv.remove();
         item1TraitsDiv = (renderItemStats(item));
@@ -302,6 +310,10 @@ void makeDropDowns() {
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
         quip(item);
         Item item2 = findItemNamed(firstItemSelect.selectedOptions[0].value);
+        if(alchemyShop.shopKeep == ab && item.traits.contains(ItemTraitFactory.CORRUPT)) {
+            Random rand = new Random();
+            alchemyShop.setQuip("It seems you have not considered the consequences of alchemizing with that corrupt as fuck ${item.baseName}, asshole.<br><br>Don't worry, as your superior RoboOverlord, I will guide you. <br><Br>There will be all the consequences. All of them. Don't fucking do it. I don't care how fucking ${rand.pickFrom(item.traits).descriptions.first} it is.");
+        }
 
         item2TraitsDiv.remove();
         item2TraitsDiv = (renderItemStats(item));
@@ -707,6 +719,11 @@ class GlitchAB extends ABShopKeep {
     @override
     void quip(String text) {
         textElement.setInnerHtml(Zalgo.generate(text));
+    }
+    void setShopKeep() {
+        super.setShopKeep();
+        Random rand = new Random();
+        quip("${rand.pickFrom(randomQuips)} I FUCKING WARNED YOU, DOG!");
     }
 
 }
