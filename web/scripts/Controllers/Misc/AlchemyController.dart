@@ -97,29 +97,34 @@ void main() {
 void checkShopKeepTrigger(Item item) {
     //IMPORTANT ABJ goes first since she's temporary
     if (abj.isTriggered(item)) {
-        Achievement.announcmentDiv.appendHtml("News: Interesting!");
+        print("trying to announce");
+
+        Achievement.announcmentDiv.appendHtml("News: Interesting!   ");
         alchemyShop.setTemporaryShopKeep(abj); //abj is only around one turn
     }else {
         alchemyShop.restoreShopKeep();
     }
 
     if (abGlitch.isTriggered(item)) {
-        Achievement.announcmentDiv.appendHtml(Zalgo.generate("News: NOW you fucked up!"));
+        print("trying to announce");
+
+        Achievement.announcmentDiv.appendHtml(Zalgo.generate("News: NOW you fucked up!   "));
         alchemyShop.setShopKeep(abGlitch);
 
     }
 
     if(alchemyShop.shopKeep == abGlitch) {
+        print("trying to announce");
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
             //TODO this isn't working, probably cuz it gets cleared out
-            Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(   ");
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
-            Achievement.announcmentDiv.appendHtml("News: AB Recovered!");
+            Achievement.announcmentDiv.appendHtml("News: AB Recovered!   ");
         }else {
             ticksRemaining += -1;
         }
@@ -179,6 +184,7 @@ void makeAlchemyButton() {
     ButtonElement button = querySelector("#alchemyButton");
 
     button.onClick.listen((e) {
+        Achievement.announcmentDiv.setInnerHtml("");
         Item item1 =findItemNamed(firstItemSelect.selectedOptions[0].value);
         Item item2 =findItemNamed(secondItemSelect.selectedOptions[0].value);
         String operation = operatorSelect.selectedOptions[0].value;
@@ -236,12 +242,13 @@ void processAchievements(Item itemAlchemized) {
     }
     Achievement.syncGristDiv();
     if(ret.length > 1) {
-        Achievement.announcmentDiv.setInnerHtml("Achievements Unlocked: ${turnArrayIntoHumanSentence(ret)}");
-    }else if (ret.length == 1) {
-        Achievement.announcmentDiv.setInnerHtml("Achievement Unlocked: ${turnArrayIntoHumanSentence(ret)}");
-    }else {
-        Achievement.announcmentDiv.setInnerHtml("");
 
+        Achievement.announcmentDiv.appendHtml("Achievements Unlocked: ${turnArrayIntoHumanSentence(ret)}");
+    }else if (ret.length == 1) {
+
+        Achievement.announcmentDiv.appendHtml("Achievement Unlocked: ${turnArrayIntoHumanSentence(ret)}");
+    }else {
+        Achievement.announcmentDiv.appendHtml("");
     }
 
 }
