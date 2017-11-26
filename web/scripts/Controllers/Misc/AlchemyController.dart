@@ -65,13 +65,10 @@ void main() {
     ab = new ABShopKeep(shopKeepDiv);
     abj = new ABJShopKeep(shopKeepDiv);
     shogun = new ShogunShopKeep(shopKeepDiv);
-    ab.setShopKeep();
+
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    List<Item> abjItems = new List.from(Item.uniqueItemsWithTrait(ItemTraitFactory.ONFIRE));
-    abjItems.addAll(Item.uniqueItemsWithTrait(ItemTraitFactory.ROMANTIC));
-    //TODO
-    //abjShop = new Shop(player, querySelector("#abjshit"),querySelector("#quip"),abjItems);
+    alchemyShop.setShopKeep(abj);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 
@@ -498,6 +495,21 @@ class Shop {
         renderPlayerSylladex();
     }
 
+    void setShopKeep(ShopKeep sk) {
+        shopKeep = sk;
+        shopKeep.setShopKeep(); //changes image
+        clear();
+        if(sk.associatedTraits.isEmpty) {
+            slurpItemsIntoInventory(Item.allUniqueItems);
+        }else {
+            List<Item> items = new List<Item>();
+            for(ItemTrait trait in shopKeep.associatedTraits) {
+                items.addAll(Item.uniqueItemsWithTrait(trait));
+            }
+            slurpItemsIntoInventory(items);
+        }
+    }
+
     //gets it off screen and removes from self
     void clear() {
         for(ShopItem i in inventory) {
@@ -546,12 +558,15 @@ class Shop {
 }
 
 abstract class ShopKeep {
+    //if empty, it's all items, else it's any item that has any of your traits (on fire OR romantic)
+    List<ItemTrait> associatedTraits = new List<ItemTrait>();
     String imageSource;
     ImageElement imageElement; //passed this in, should already be on page.
-    List<String> randomQuips;
-    List<String> orQuips;
-    List<String> andQuips;
-    List<String> xorQuips;
+    List<String> randomQuips = <String>[""];
+    List<String> orQuips = <String>[""];
+    List<String> andQuips = <String>[""];
+    List<String> xorQuips = <String>[""];
+    List<String> maxAlchemyQuips = <String>[""];
 
     ShopKeep(ImageElement this.imageElement);
 
@@ -561,6 +576,10 @@ abstract class ShopKeep {
 }
 
 class ABShopKeep extends ShopKeep {
+
+    @override
+    List<String> maxAlchemyQuips = <String>["Whelp, hope you got what you needed outta that, cuz it's out of alchemy uses.","What's that, it's not 'canon' or 'fair' that you can't keep shoving shit into other shit? Fuck you, deal with it.","And now you've maxed that thing out, can't alchemy any more, bro.","Now it's only purpose in life is to be sold.","And now you can't alchemize with it anymore, good job. Hope you didn't just shove useless shit into it."];
+
     @override
     String imageSource = "images/Alchemy/guide_bot_turnways.png";
     @override
@@ -575,9 +594,14 @@ class ABShopKeep extends ShopKeep {
 }
 
 class ABJShopKeep extends ShopKeep {
+
+    List<ItemTrait> associatedTraits = <ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE];
+
     @override
     String imageSource = "images/Alchemy/abjShop.png";
 
+    @override
+    List<String> maxAlchemyQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
     @override
     List<String> andQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
     @override
@@ -598,13 +622,15 @@ class ShogunShopKeep extends ShopKeep {
 
     //TODO shogun quips
     @override
-    List<String> andQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    List<String> maxAlchemyQuips = <String>[""];
     @override
-    List<String> orQuips =  <String>["Yes.","Hrmmm...","Interesting!!!"];
+    List<String> andQuips = <String>[""];
     @override
-    List<String> xorQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    List<String> orQuips =  <String>[""];
     @override
-    List<String> randomQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
+    List<String> xorQuips = <String>[""];
+    @override
+    List<String> randomQuips = <String>[""];
 
 
     ShogunShopKeep(ImageElement imageElement) : super(imageElement);
