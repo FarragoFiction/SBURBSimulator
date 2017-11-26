@@ -408,7 +408,6 @@ class ItemTraitFactory {
   static CombinedTrait CRYSTALBALL;
   static CombinedTrait DISABLING;
   static CombinedTrait FASHIONABLE;
-  static CombinedTrait HAUTE;
   static CombinedTrait IRONICFUNNYCOOL;
   static CombinedTrait IRONICSHITTYFUNNY;
   static CombinedTrait POSTIRONIC;

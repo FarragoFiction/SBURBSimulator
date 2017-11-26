@@ -69,7 +69,7 @@ void main() {
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    alchemyShop.setShopKeep(shogun);
+    alchemyShop.setShopKeep(ab);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 

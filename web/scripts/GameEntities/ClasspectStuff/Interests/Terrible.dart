@@ -32,7 +32,7 @@ class Terrible extends InterestCategory {
             ..add(new Item("Juggalo Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.JUGGALO],shogunDesc: "False God Poster"))
             ..add(new Item("Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL],shogunDesc: "Shoguns Watch"))
             ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL],shogunDesc: "The Shoguns Crown"))
-            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.HAUTE, ItemTraitFactory.REAL],shogunDesc: "Shoguns Godtier Outfit",abDesc:"Just wear roboclothes. Never need another set."))
+            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.BESPOKE, ItemTraitFactory.REAL],shogunDesc: "Shoguns Godtier Outfit",abDesc:"Just wear roboclothes. Never need another set."))
             ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE],shogunDesc: "Shoguns Old Porkhollow",abDesc:"..."))//that fanfic, man
             ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],shogunDesc: "Dynamos Armament",abDesc:"You are one high quality sociopath."))
             ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],shogunDesc: "Long Range Rooty Tooty Point And Boomy",abDesc:"What. The. Hell."))

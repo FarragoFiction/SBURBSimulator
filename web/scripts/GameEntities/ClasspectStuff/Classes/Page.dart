@@ -45,7 +45,7 @@ class Page extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Shorts",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.HAUTE],shogunDesc: "Crotch Hugging Thigh Exposers. Absolutely Indecent.",abDesc:"Don't skip leg day."))
+            ..add(new Item("Shorts",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BESPOKE],shogunDesc: "Crotch Hugging Thigh Exposers. Absolutely Indecent.",abDesc:"Don't skip leg day."))
             ..add(new Item("Sidekick Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COOLK1D],shogunDesc: "Small Statue of a White Headed Cat in a Green Suit",abDesc:"Robin is way cooler than Batman."))
             ..add(new Item("Steroids",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MAGICAL],shogunDesc: "My Morning Medication",abDesc:"Shit son, calm down with all the screaming and the powering up."));
     }

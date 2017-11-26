@@ -4,3 +4,5 @@ b=%00%00%00h%C3%BE%C3%93%04%1A%1A%1A%3C&s=,,Theorycrafting,Storytelling,recursiv
 b=%C2%80%00%00R%C3%BE%C2%8B%00Q%20%05%11&s=,,Cooking,Tabletop Roleplaying,wooMod
 b=%00%00%00%20%C3%B8%23%10PGGD&s=,,Drawing,Character Creation,InsufferableOracle
 b=8%22%07%14%C3%BE%C2%9B%00%13%1A%1BC&s=,,Charles Dutton,Online Roleplaying,theBrope
+b=zh%03%C2%85%C3%BE%13%00%40%1F%1FB&s=,,Music,Dungeon Mastering,tableGuardian
+
