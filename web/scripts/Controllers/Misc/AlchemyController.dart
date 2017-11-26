@@ -118,7 +118,6 @@ void checkShopKeepTrigger(Item item) {
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
-            //TODO this isn't working, probably cuz it gets cleared out
             Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(   ");
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
@@ -127,6 +126,13 @@ void checkShopKeepTrigger(Item item) {
             Achievement.announcmentDiv.appendHtml("News: AB Recovered!   ");
         }else {
             ticksRemaining += -1;
+        }
+    }else if(alchemyShop.shopKeep == shogun) { //shogun banished by pigeons, but will come back unless you fix AB
+        if(item.traits.contains(ItemTraitFactory.PIGEON)) {
+            alchemyShop.setShopKeep(abGlitch);
+            ticksRemaining = 3;
+            alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Banished!   ");
         }
     }
 
@@ -542,7 +548,7 @@ class ShopItemPlayerOwns extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = (shop.shopKeep.priceModifier *(item.rank.abs()+1) * 5).round();
+      int cost = (((item.rank.abs()+1) * 5)/ shop.shopKeep.priceModifier ).round();
 
       button.setInnerHtml("Sell For ${cost} Grist?");
       button.classes.add("transactButton");
