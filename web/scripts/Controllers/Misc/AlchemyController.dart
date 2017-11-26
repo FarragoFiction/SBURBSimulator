@@ -107,6 +107,8 @@ void checkShopKeepTrigger(Item item) {
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
+        }else {
+            ticksRemaining += -1;
         }
     }
 }
