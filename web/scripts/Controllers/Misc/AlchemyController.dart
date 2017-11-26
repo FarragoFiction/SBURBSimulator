@@ -95,23 +95,36 @@ void main() {
 }
 
 void checkShopKeepTrigger(Item item) {
-    //glitch AB triggered if glitch item produced
-    //regular AB triggered if healing glitch item produced
-    //shogun happens if x alchemizations happen with glitch ab
-    //ab and any other easter egg shops happen if you alchmize something with ALL their desired traits
-    abj.tryTrigger(item, alchemyShop);
-    abGlitch.tryTrigger(item, alchemyShop);
+    //IMPORTANT ABJ goes first since she's temporary
+    if (abj.isTriggered(item)) {
+        Achievement.announcmentDiv.appendHtml("News: Interesting!");
+        alchemyShop.setTemporaryShopKeep(abj); //abj is only around one turn
+    }else {
+        alchemyShop.restoreShopKeep();
+    }
+
+    if (abGlitch.isTriggered(item)) {
+        Achievement.announcmentDiv.appendHtml(Zalgo.generate("News: NOW you fucked up!"));
+        alchemyShop.setShopKeep(abGlitch);
+
+    }
+
     if(alchemyShop.shopKeep == abGlitch) {
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
+            Achievement.announcmentDiv.appendHtml("News: Shogun has arrived. :( :( :(");
+
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
+            Achievement.announcmentDiv.appendHtml("News: AB Recovered!");
         }else {
             ticksRemaining += -1;
         }
     }
+
+
 }
 
 void changeTabs(Element selectedDiv) {
@@ -543,6 +556,7 @@ class Shop {
     Player player; //assume only one player okay. just do it.
     Element quipDiv;
     ShopKeep shopKeep;
+    ShopKeep savedShopKeep; //for use with abj.
     List<ShopItemInStock> inventory = new List<ShopItemInStock>();
     List<ShopItemPlayerOwns> playerSylladex = new List<ShopItemPlayerOwns>();
 
@@ -560,6 +574,27 @@ class Shop {
     }
 
     void setShopKeep(ShopKeep sk) {
+        shopKeep = sk;
+        shopKeep.setShopKeep(); //changes image
+        clear();
+        if(sk.associatedTraits.isEmpty) {
+            slurpItemsIntoInventory(Item.allUniqueItems);
+        }else {
+            List<Item> items = new List<Item>();
+            for(ItemTrait trait in shopKeep.associatedTraits) {
+                items.addAll(Item.uniqueItemsWithTrait(trait));
+            }
+            slurpItemsIntoInventory(items);
+        }
+    }
+
+    void restoreShopKeep() {
+        if(savedShopKeep != null) setShopKeep(savedShopKeep);
+        savedShopKeep == null;
+    }
+
+    void setTemporaryShopKeep(ShopKeep sk) {
+        if(sk != savedShopKeep) savedShopKeep = shopKeep; //don't accidentally assume abj is the normal shop keep
         shopKeep = sk;
         shopKeep.setShopKeep(); //changes image
         clear();
@@ -649,9 +684,6 @@ abstract class ShopKeep {
         return ret;
     }
 
-    void tryTrigger(Item item, Shop shop) {
-        if(isTriggered(item)) shop.setShopKeep(this);
-    }
 
     void setShopKeep() {
         imageElement.src = imageSource;

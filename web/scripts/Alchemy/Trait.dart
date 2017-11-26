@@ -421,7 +421,7 @@ class ItemTraitFactory {
   static CombinedTrait GRANITE;
   static CombinedTrait MARBLE;
   static CombinedTrait GLITCHED;
-
+  static CombinedTrait DEBUGGING;
 
 
   static void init() {
@@ -618,6 +618,7 @@ class ItemTraitFactory {
     MARBLE = new CombinedTrait("Marble",<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CLASSY]);
     GRANITE = new CombinedTrait("Marble",<String>["marble"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,HEAVY]);
     GLITCHED = new CombinedTrait("Glitched",<String>["glitched"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CORRUPT,ZAP]);
+    DEBUGGING = new CombinedTrait("Debugging",<String>["debugging"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,ZAP]);
 
   }
 
