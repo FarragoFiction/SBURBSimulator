@@ -97,8 +97,6 @@ void main() {
 void checkShopKeepTrigger(Item item) {
     //IMPORTANT ABJ goes first since she's temporary
     if (abj.isTriggered(item)) {
-        print("trying to announce");
-
         Achievement.announcmentDiv.appendHtml("News: Interesting!   ");
         alchemyShop.setTemporaryShopKeep(abj); //abj is only around one turn
     }else {
@@ -106,24 +104,23 @@ void checkShopKeepTrigger(Item item) {
     }
 
     if (abGlitch.isTriggered(item)) {
-        print("trying to announce");
-
         Achievement.announcmentDiv.appendHtml(Zalgo.generate("News: NOW you fucked up!   "));
+        achievements[Achievement.abGlitched].toggle();
         alchemyShop.setShopKeep(abGlitch);
-
     }
 
     if(alchemyShop.shopKeep == abGlitch) {
-        print("trying to announce");
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
             Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(   ");
+            achievements[Achievement.shogunSummoned].toggle();
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
             Achievement.announcmentDiv.appendHtml("News: AB Recovered!   ");
+            achievements[Achievement.abFixed].toggle();
         }else {
             ticksRemaining += -1;
         }
@@ -132,7 +129,8 @@ void checkShopKeepTrigger(Item item) {
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
-            Achievement.announcmentDiv.appendHtml("News: Shogun Banished!   ");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :)   ");
+            achievements[Achievement.shogunBanished].toggle();
         }
     }
 
@@ -424,6 +422,14 @@ class Achievement {
     static Element announcmentDiv;
     static Element gristDiv;
 
+  static CombinedTrait shogunSummoned;
+
+  static CombinedTrait shogunBanished;
+
+  static CombinedTrait abGlitched;
+
+  static CombinedTrait abFixed;
+
     static get grist => _grist; //but can't set it
 
 
@@ -473,6 +479,16 @@ class Achievement {
                 input[t] = new Achievement(t, container);
             }
         }
+        shogunSummoned =  new CombinedTrait("Shogun Summoned",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
+        shogunBanished =  new CombinedTrait("Shogun Banished",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
+        abGlitched =  new CombinedTrait("AB Glitched",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
+        abFixed =  new CombinedTrait("AB Fixed",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
+        input[shogunSummoned] = new Achievement(shogunSummoned,container);
+        input[shogunBanished] = new Achievement(shogunBanished,container);
+        input[abGlitched] = new Achievement(abGlitched,container);
+        input[abFixed] = new Achievement(abFixed,container);
+
+
         return input;
     }
 
