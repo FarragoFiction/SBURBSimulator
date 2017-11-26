@@ -28,13 +28,13 @@ class Comedy extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY, ItemTraitFactory.HEAVY],"Probably heavy enough to kill a cat."))
+            ..add(new Item("Colonel Sassacre's Daunting Text ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT, ItemTraitFactory.FUNNY, ItemTraitFactory.HEAVY],abjDesc:"Probably heavy enough to kill a cat."))
             ..add(new Item("Wise Guy Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.FUNNY]))
-            ..add(new Item("Beagle Puss",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.FUNNY],"Does...does this really fool flesh bags like you?"))
-            ..add(new Item("Novelty Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP, ItemTraitFactory.FUNNY],"Oh look, it makes you sound like a robot. Hilarious."))
-            ..add(new Item("Banana",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FUNNY],"Truly the pinacle of fruit based comedy."))
+            ..add(new Item("Beagle Puss",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.FUNNY],abjDesc:"Does...does this really fool flesh bags like you?"))
+            ..add(new Item("Novelty Microphone",<ItemTrait>[ItemTraitFactory.LOUD, ItemTraitFactory.ZAP, ItemTraitFactory.FUNNY],abjDesc:"Oh look, it makes you sound like a robot. Hilarious."))
+            ..add(new Item("Banana",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FUNNY],abjDesc:"Truly the pinacle of fruit based comedy."))
             ..add(new Item("Fake Flower",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.FUNNY]))
-            ..add(new Item("Trick Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.FUNNY],"What is the fucking point of handcuffs you can escape."));
+            ..add(new Item("Trick Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.FUNNY],abjDesc:"What is the fucking point of handcuffs you can escape."));
 
 
     }

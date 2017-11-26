@@ -25,22 +25,22 @@ class Terrible extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE],"Don't let ABJ know you have this."))
+            ..add(new Item("Lighter",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE],abjDesc:"Don't let ABJ know you have this."))
             ..add(new Item("Siberia Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD]))
             ..add(new Item("Nuclear Winter Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.COLD, ItemTraitFactory.NUCLEAR]))
-            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL, ItemTraitFactory.CORRUPT],"Oh god, who would fucking trust YOU with thi?"))
+            ..add(new Item("Doomsday Device",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.DOOMED, ItemTraitFactory.NUCLEAR, ItemTraitFactory.REAL, ItemTraitFactory.CORRUPT],abjDesc:"Oh god, who would fucking trust YOU with thi?"))
             ..add(new Item("Juggalo Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.JUGGALO]))
             ..add(new Item("Fancy Watch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
             ..add(new Item("Magnificent Crown",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.VALUABLE, ItemTraitFactory.REAL]))
-            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.HAUTE, ItemTraitFactory.REAL],"Just wear roboclothes. Never need another set."))
-            ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE],"..."))
-            ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],"You are one high quality sociopath."))
-            ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],"What. The. Hell."))
-            ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],"What is it with you and guns."))
-            ..add(new Item("IED",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.EDGED,ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY, ItemTraitFactory.REAL],"You are probably going to blow yourself up, asshole."))
-            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK],"Oh god, this is HILARIOUS, it's the PERFECT book for you."))
-            ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ENRAGING],"I hear flesh bags keep gtting scared by these. I don't get it."))
-            ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE],"Don't let ABJ get this."));
+            ..add(new Item("Bitching Clothes",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.HAUTE, ItemTraitFactory.REAL],abjDesc:"Just wear roboclothes. Never need another set."))
+            ..add(new Item("Ceramic Pork Hollow",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.VALUABLE],abjDesc:"..."))
+            ..add(new Item("Shit Ton of Guns",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.PISTOL, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abjDesc:"You are one high quality sociopath."))
+            ..add(new Item("Sniper Rifle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RIFLE, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abjDesc:"What. The. Hell."))
+            ..add(new Item("AK-47",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY, ItemTraitFactory.REAL],abjDesc:"What is it with you and guns."))
+            ..add(new Item("IED",<ItemTrait>[ItemTraitFactory.GRENADE, ItemTraitFactory.EDGED,ItemTraitFactory.METAL, ItemTraitFactory.EXPLODEY, ItemTraitFactory.REAL],abjDesc:"You are probably going to blow yourself up, asshole."))
+            ..add(new Item("Idiots Guide To Being An Asshole",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK],abjDesc:"Oh god, this is HILARIOUS, it's the PERFECT book for you."))
+            ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.RUBBER,ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ENRAGING],abjDesc:"I hear flesh bags keep gtting scared by these. I don't get it."))
+            ..add(new Item("Matches",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ONFIRE],abjDesc:"Don't let ABJ get this."));
     }
 
 

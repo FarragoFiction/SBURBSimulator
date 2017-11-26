@@ -56,10 +56,10 @@ class Life extends Aspect {
         items = new WeightedList<Item>()
             ..add(new Item("Creeping Vine",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.PLANT,ItemTraitFactory.SENTIENT]))
             ..add(new Item("Lollipop",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING]))
-            ..add(new Item("Golem",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], "I guess. It's LIKE a robot. Sort of. Just not a super computer."))
+            ..add(new Item("Golem",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], abjDesc: "I guess. It's LIKE a robot. Sort of. Just not a super computer."))
             ..add(new Item("Ectoplasm",<ItemTrait>[ItemTraitFactory.GHOSTLY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING])) //thanks nana sprite
             ..add(new Item("Aqua Vitae",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING, ItemTraitFactory.LEGENDARY]))
-            ..add(new Item("Homoculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
+            ..add(new Item("Homoculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], abjDesc: "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
     }
 
 

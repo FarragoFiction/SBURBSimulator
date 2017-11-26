@@ -1,1 +1,657 @@
-perfectly generic, a sword, a hammer, a rifle, a pistol, a blade, a dagger, a santa, a fist, claws, a grenade, a freaking safe, a ball, a trident, a card, a frying pan, a pillow, a machinegun, a shuriken, a sling, a yoyo, a cane, a shield, a lance, a ax, a sign, a book, a broom, a club, a bow, a whip, a staff, a needle, dice, a fork, a chainsaw, a sickle, a shotgun, a sickle, a chain, a wrench, a shovel, a rolling pin, a puppet, a razor, a pen, a bust, a bowling ball, a golf club, a knife, scissors, metal, ceramic, bone, wood, plastic, rubber, paper, cloth, glass, stone, legendary, edged, lucky, doomed, pointy, exploding, electrical, restraining, expensive, edible, classy, cool, intelligent, romantic, funny, annoying, magical, fashionable, comfortable, poisonous, chilly, heavy, fire, blunt, shooty, musical,
+,shogunDesc: "Knucklekniveskind"
+
+
+,shogunDesc: "ShogunKindBestKind"
+
+
+,shogunDesc: "WhackySmackySkullCrackyKind"
+
+
+,shogunDesc: "RootyTootyPointyShootyKind"
+
+
+,shogunDesc: "IWon’tHesitateBitchKind"
+
+
+,shogunDesc: "PointBlankAnnihilationKind"
+
+
+,shogunDesc: "WaitIsThisBestKind?"
+
+
+,shogunDesc: "ShanksKind"
+
+
+,shogunDesc: "ThisIsTheDevilKind"
+
+
+,shogunDesc: "TreeGenocideKind"
+
+
+,shogunDesc: "ThisIsForFoodKind"
+
+
+,shogunDesc: "PsychologyAndExtremeViolenceKind"
+
+
+,shogunDesc: "HardFootballKind"
+
+
+,shogunDesc: "DnDKind"
+
+
+,shogunDesc: "ThisIsForClothesNotCombatKind"
+
+
+,shogunDesc: "ShittyWizardKind"
+
+
+,shogunDesc: "I’mKinkshamingKind"
+
+
+,shogunDesc: "ImpossibleToShootYourselfKind"
+
+
+,shogunDesc: "CavemanKind"
+
+
+,shogunDesc: "BeatEmDeadAndCleanTheSceneKind"
+
+
+,shogunDesc: "SharpenTheLeatherBoundKind"
+
+
+,shogunDesc: "TheGreatestFuckingWeaponKind"
+
+
+,shogunDesc: "TreeMassacreKind"
+
+
+,shogunDesc: "UseOnHorsebackKind"
+
+
+,shogunDesc: "OnlyWeaklingsNeedShieldsKind"
+
+
+,shogunDesc: "AnAncientEvilResidesWithinThisKind"
+
+
+,shogunDesc: "IWannaBeAYoyoMasterHeSaidButTheYoyoManSaidNothingHeJustKeptOnYoingKind"
+
+
+,shogunDesc: "IsThisAFuckingJockStrapKind"
+
+
+,shogunDesc: "NarutoKind"
+
+,shogunDesc: "ITSSOFUCKINGLOUDKIND"
+
+
+,shogunDesc: "HandheldSunBombKind"
+
+
+,shogunDesc: "HahahBallsKind"
+
+
+,shogunDesc: "SheWasAGoodCharacterDon’tYouDareSayOtherwiseKind"
+
+
+,shogunDesc: "UnoReverseCardKind"
+
+
+,shogunDesc: "UnstoppableKind"
+
+
+,shogunDesc: "SuffocateYourEnemiesKind"
+
+
+,shogunDesc: "BikerGangKind"
+
+
+,shogunDesc: "IfYouCanDodgeAWrenchYouCanDodgeABallKind"
+
+
+,shogunDesc: "HideTheBodiesKind"
+
+
+,shogunDesc: "ThereWillBeNoBitchingInMyMotherFuckingKitchenKind"
+
+
+,shogunDesc: "Kermit’sGoneBadKind"
+
+
+,shogunDesc: "I’mNotGonnaMakeAJokeAboutThisKind"
+
+
+,shogunDesc: "MightierThanTheSwordKind"
+
+
+,shogunDesc: "TheShogun’sStatuetteKind"
+
+
+,shogunDesc: "NineIronToTheFuckingSkullKind"
+
+
+,shogunDesc: "ShanksButHe’sAHousewifeKind"
+
+
+,shogunDesc: "RunWithTheseKind"
+
+
+,shogunDesc: "TomAndFuckingJerryThemKind"
+
+
+,shogunDesc: "WeaponiseTheTreesKind"
+
+
+Kyoto Overcoat
+
+
+Masamune
+
+
+Horse Prime, Envoy of the Ultimate End
+
+
+A Weaklings Way Out, Shame Upon You
+
+
+A Worthless White Ball
+
+
+A Worthless Clear Ball
+
+
+Long Distance Perversion Apparatus
+
+
+Not So Sweet Treat
+
+
+I Don’t Know What This Is Normally
+
+
+The Perfect Trap
+
+
+What’s Left of Staff 
+
+
+Legal Rights to SBURBSim
+
+
+I Hope This Is About Animals
+
+
+Phoenix Wright 2.0
+
+
+Handheld Guillotine 
+
+
+Maid’s Weapon of Choice
+
+
+Another Weakling Piece of Metal But For Some Kind of Angel Woman I Guess?
+
+
+Smash Mouth Lyrics
+
+
+This Scares Me On A Primal Level
+
+
+This Is Number 69 On The List I Don’t Need To Make An Equius Joke
+
+
+Shogun Coin Printer. Illegal Item.
+
+
+Crotch Hugging Thigh Exposers. Absolutely Indecent.
+
+
+Small Statue of a White Headed Cat in a Green Suit
+
+
+My Morning Medication
+
+
+Anti-Lock Dagger
+
+
+Full Body Latex Suit
+
+
+Stabbing Contraption
+
+
+Anti-Pain Box
+
+
+Fart In a Jar
+
+
+Wings Cut Straight From a God Tier Troll
+
+
+Pupa Pan Hat
+
+
+A False Symbol of Power
+
+
+The Best Thing since The Shogun
+
+
+Bell But For Liquids
+
+
+Gravity Defying Limb of a Tree
+
+
+Mirror from The Shogun’s Dresser
+
+
+Shitty Wizard Cape
+
+
+Shitty Wizard Stick of Power
+
+
+Support Stick of Cleaning
+
+
+The Shogun’s Guide to Winning
+
+
+The Shogun’s Vessel
+
+
+NANOMACHINES SON, THEY HARDEN IN RESPONSE TO PHYSICAL TRAUMA
+
+
+Support Stick of Old And Injured
+
+
+ABJ’s Hat
+
+
+Kyoto Overcoat’s Spacemap
+
+
+Shogun’s Navigation Box
+
+
+Rolled Up Picture of JR
+
+
+Black Liquid That Tastes Awful
+
+
+Dick Drawing Practice Apparatus
+
+
+Pompous Asshole Robes
+
+
+Book Containing More Corrections Than Actual Content
+
+
+Headrest For Smart People 
+
+
+Dummies Guide to Shitposting
+
+
+Loud screeching pipe
+
+
+Voice Empowering Speaking System
+
+
+Broken Knocker Over Maths Thing
+
+
+Indecent String
+
+
+Impending Drop Dish
+
+
+Feather Object to be Dipped in Black Liquid
+
+
+The Gods Refused to Let This Object Finish Completion
+
+
+Ocean Man Lyrics 50,000 Times: The Book
+
+
+Shogun’s Cape
+
+
+Shitpost Etching Table
+
+
+Book for Nerds
+
+
+Green Version of Those Sweet Yellow Candies I Loved
+
+
+Croaking Lizard Monument
+
+
+Croaking Lizard Cosplay
+
+
+A Representation of My Hatred for Everything
+
+
+Mono-Sighted Long Ranged Perversion Apparatus
+
+
+Sauce Sun Poster
+
+
+Ticking Tower of Time
+
+
+Ba Dum Tss but without the Tss Part
+
+
+The Inferior You
+
+
+Cube of Noise
+
+
+Spinning Noise Discs on a Noise Machine
+
+
+Never Ending Ticking Device
+
+
+Smonkin Weeds Pipe
+
+
+THE BONE SHAPED HOLE BREAKER
+
+
+Fondly Regarded Fan
+
+
+Rocket Powered Pants
+
+
+A Huge Ass Black Book on Coding or Something
+
+
+Egg That Counts Down to Your Death
+
+
+Skull That Counts Down to Your Dinner Being Ready
+
+
+Glass of Bone Hurting Juice
+
+
+Oddly Attractive Decapitated Head
+
+
+Omae Wa Mou Shindeiru in Paper Form
+
+
+Vial of Not-AB’s Oil
+
+
+Soul Binding Wrist Shackle
+
+
+Handcuff with one cuff full of cigarettes
+
+
+Bloodstained Stairs
+
+
+Possessed Doll (Probably)
+
+
+Baby Muppet Snuff Survivor
+
+
+Mirror That Shows A Reflection Of The World But A Horrible Beast Mimics Your Every Move
+
+
+A Grid of Pure Taint
+
+
+Glasses For Try Hard Nerds
+
+
+13x13 Rubix Cube
+
+
+Lightning Weiner
+
+
+Official Minted Shogun Coin Circa. 1764 
+
+
+Star Wars Force Activated Door
+
+
+Bust of A Giant Phallic Asshole
+
+
+Questions to Ping JR About
+
+
+Tube of Localised Sun
+
+
+D13
+
+
+Horse Sneaker
+
+
+Rabbit Remains
+
+
+Plant of Luck +4
+
+
+Worst Character’s Only Quality
+
+
+Shogun’s Old Home
+
+
+Paper Impaler
+
+
+Vape Grenades
+
+
+Ancient Face
+
+
+Phantom of the Opera Mask
+
+
+Eternal Suffering in a Jar
+
+
+Show Ender
+
+
+Voice Embiggener
+
+
+Two-wheel device mounted Juggalo voicebox
+
+
+Aged Grape Gore
+
+
+Image of Adam Sandler in a Troll Face Shirt
+
+
+Shitty Wizard Pencil
+
+
+Really Holy Pillow Organ
+
+
+White Dragon Kidnaps Kid The Movie
+
+
+Dying Light Stick
+
+
+Tiny Petrified Tinkerbell
+
+
+Sentient Plant Tentacles
+
+
+Candy that makes you really fucking happy I think
+
+
+Living Rock Man
+
+
+Ghost [Censored]
+
+
+Tears of JR
+
+
+False Man
+
+
+Tomb of the Writer’s Insecurities and Weaknesses
+
+
+A Fucking Lego But Legally JR’s Too Much Of A Coward To Say It
+
+
+The Tools For Smithing Pieces of Art That I Stole From KR
+
+
+I Think Is The Starbound Item For Debugging Unused Item IDs
+
+
+Elephant Corpse Turned Amazing Instrument
+
+
+Pipe of Screeches 2: Orchestral Shitstorm
+
+
+Speaking Tube of Passion +3
+
+
+Tiny Cello
+
+
+Cheat Codes for Instruments
+
+
+Electrical Stringed Music Maker
+
+
+Spinning Disc Sound Maker
+
+
+String Music Maker
+
+
+Big Book of Speaking Low Nerd
+
+
+Shogun’s Petrified Hate
+
+
+Navigation Box
+
+
+Strength Building Metal
+
+
+Dunksphere
+
+
+Wooden Pole of Bone Hurting
+
+
+Dead Animal Corpse Ball
+
+
+Handheld Voice Empowerer
+
+
+L Shaped Bone Hurter
+
+
+Award for Best At Shitposting
+
+
+Fist Reinforcing Pain Cubes
+
+
+Flesh Rubberising Practice Mat
+
+
+Life Story of the Only Good Mortal
+
+
+How To Shittalk For Fucking Dumbasses
+
+
+The Name Makes it Impossible For Me To Name It’s So Fucking Funny
+
+
+Meme Voice Enloudener Tube
+
+
+Phallic Fruit
+
+
+Flower that smells like Plastic
+
+
+Pink Fluffy Handcuffs
+
+
+Wall Dick Drawing Apparatus 
+
+
+Meme Gif Magazine
+
+
+Face Cutting Hair Remover
+
+
+Absolutely Shit Book
+
+
+A Man Spent Money To Actually Own This Fucking Thing
+
+
+Book of Naked Renaissance People
+
+
+Prime Horse: The Movie: The Book: The Remake
+
+
+Pain Drink Set
+
+
+Foamy Bad Tasting Marshmallow Fluff
+
+
+Georgio Armani Suit
+
+
+Book on Razors and Shit (what dumbass would want this?)

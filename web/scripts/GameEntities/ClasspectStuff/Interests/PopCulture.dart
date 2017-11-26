@@ -26,17 +26,17 @@ class PopCulture extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Superhero Action Figure",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D, ItemTraitFactory.FAKE],"How perfectly fucking generic. You couldn't even pick a brand name?"))
+            ..add(new Item("Superhero Action Figure",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.COOLK1D, ItemTraitFactory.FAKE],abjDesc:"How perfectly fucking generic. You couldn't even pick a brand name?"))
             ..add(new Item("Action DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D]))
-            ..add(new Item("Ghost Busters DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.GHOSTLY], "I refuse to call a bunch of washed up comedians."))
+            ..add(new Item("Ghost Busters DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.GHOSTLY], abjDesc:  "I refuse to call a bunch of washed up comedians."))
             ..add(new Item("Snow Dogs DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.FUNNY, ItemTraitFactory.COLD, ItemTraitFactory.FUR]))
-            ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D],"All of these glitches are offensive to my robo-sensbilities."))
+            ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D],abjDesc:"All of these glitches are offensive to my robo-sensbilities."))
             ..add(new Item("Movie Poster",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D]))
             ..add(new Item("Audrey II Plush",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.COOLK1D,ItemTraitFactory.CLOTH, ItemTraitFactory.SENTIENT]))
             ..add(new Item("Peashooter Toy",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.SHOOTY,ItemTraitFactory.COOLK1D]))
-            ..add(new Item("Shitty Sword",<ItemTrait>[ItemTraitFactory.FAKE,ItemTraitFactory.METAL,ItemTraitFactory.COOLK1D, ItemTraitFactory.SWORD, ItemTraitFactory.EDGED, ItemTraitFactory.SHITTY],"So. Shitty."))
-            ..add(new Item("GameBro Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D],"5/5 hats."))
-            ..add(new Item("GameGrl Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D],"5/5 lady hats."));
+            ..add(new Item("Shitty Sword",<ItemTrait>[ItemTraitFactory.FAKE,ItemTraitFactory.METAL,ItemTraitFactory.COOLK1D, ItemTraitFactory.SWORD, ItemTraitFactory.EDGED, ItemTraitFactory.SHITTY],abjDesc:"So. Shitty."))
+            ..add(new Item("GameBro Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D],abjDesc:"5/5 hats."))
+            ..add(new Item("GameGrl Magazine",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D],abjDesc:"5/5 lady hats."));
 
     }
 

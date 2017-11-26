@@ -436,7 +436,6 @@ class ItemTraitFactory {
     DULLEDGED = new CombinedTrait("",<String>[], 0.0, ItemTrait.MATERIAL,<ItemTrait>[BLUNT, EDGED]);
     FOSSILIZED = new CombinedTrait("Fossilized",<String>["fossilized"], 0.0, ItemTrait.CONDITION,<ItemTrait>[BONE, STONE]);
     ADAMANTIUM = new CombinedTrait("Adamantium",<String>["adamantium"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, METAL]);
-    DULLPOINTED = new CombinedTrait("",<String>[], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BLUNT, POINTY]);
     SOFTHARD = new CombinedTrait("",<String>[], 0.0, ItemTrait.MATERIAL,<ItemTrait>[COMFORTABLE, UNCOMFORTABLE]);
     TATAMI = new CombinedTrait("Tatami",<String>["tatami"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[CLOTH, WOOD]);
     MESH = new CombinedTrait("Mesh",<String>["mesh", "chain link"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH, METAL]);
@@ -466,7 +465,7 @@ class ItemTraitFactory {
     WOLVERINE = new CombinedTrait("Wolverine",<String>["wolverine"], 0.0,ItemTrait.SHAPE, <ItemTrait>[BONE, EDGED, POINTY]);
     RABBITSFOOT = new CombinedTrait("Rabbit's Foot",<String>["rabbit's foot"], 0.0,ItemTrait.SHAPE, <ItemTrait>[LUCKY, FUR]);
     ARROWHEAD = new CombinedTrait("Tipped",<String>["tipped", "reinforced", "arrowhead"], 0.0,ItemTrait.CONDITION, <ItemTrait>[POINTY, WOOD]);
-    ARROW = new CombinedTrait("Arrow",<String>["arrow", "flechette", "bolt"], 0.0, ItemTrait.SHAPE,<ItemTrait>[POINTY, SHOOTY]);
+    ARROW = new CombinedTrait("Arrow",<String>["arrow", "flechette", "bolt"], 0.0, ItemTrait.SHAPE,<ItemTrait>[POINTY, SHOOTY,WOOD]);
     KENDO = new CombinedTrait("Bokken",<String>["training sword", "bokken"], 0.0,ItemTrait.SHAPE, <ItemTrait>[WOOD, EDGED]);
     IRONICFAKECOOL = new CombinedTrait("Irony Type1",<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D]);
     NET = new CombinedTrait("Netted",<String>["netted", "webbed"], 0.0,ItemTrait.SHAPE, <ItemTrait>[RESTRAINING, CLOTH]);
@@ -483,7 +482,7 @@ class ItemTraitFactory {
     GREENSUN = new CombinedTrait("Green Sun",<String>["green sun"], 0.0, ItemTrait.PATTERN,<ItemTrait>[ONFIRE, NUCLEAR, GLOWING]);
     MIDNIGHT = new CombinedTrait("Midnight",<String>["midnight", "3 In The Morning"], 0.0,ItemTrait.COLOR, <ItemTrait>[OBSCURING, CLASSY]);
     RADIENT = new CombinedTrait("Radiant",<String>["radiant", "dazzling"], 0.0,ItemTrait.OPINION, <ItemTrait>[MAGICAL, GLOWING]);
-    EDGEY = new CombinedTrait("Edgy",<String>["edgy"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED, OBSCURING]);
+    EDGEY = new CombinedTrait("Edgy",<String>["edgy"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED, OBSCURING,COOLK1D]);
     ABOMB = new CombinedTrait("Warhead",<String>["A-Bomb", "Warhead", "Chernobyl"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[NUCLEAR, EXPLODEY]);
     LIVING = new CombinedTrait("Living",<String>["living"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH, SENTIENT]);
     DEAD = new CombinedTrait("Dead",<String>["dead","corpse","deceased"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH]);

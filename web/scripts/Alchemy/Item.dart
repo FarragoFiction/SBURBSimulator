@@ -10,6 +10,7 @@ class Item {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
     static List<Item> allUniqueItems = new List<Item>();
     String abjDesc;
+    String shogunDesc;
 
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
         return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
@@ -80,7 +81,7 @@ class Item {
     }
 
     Item copy() {
-        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), this.abjDesc);
+        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), abjDesc: this.abjDesc, shogunDesc:this.shogunDesc);
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;
@@ -96,7 +97,7 @@ class Item {
     }
 
     //most items won't have an abj desc, but some will
-    Item(String this.baseName,List<ItemTrait> traitsList, [this.abjDesc]) {
+    Item(String this.baseName,List<ItemTrait> traitsList, {this.abjDesc: null, this.shogunDesc: null}) {
         traits = new Set.from(traitsList);
         if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
         Set<CombinedTrait> ct = new Set.from(combinedTraits);
@@ -111,9 +112,18 @@ class Item {
 
     String abjDescription(Random rand) {
         if(abjDesc != null) {
-            return abjDesc;
+            return shogunDesc; //for testing
+            //return abjDesc;
         }else {
             return randomDescription(rand);
+        }
+    }
+
+    String shogunDescription(Random rand) {
+        if(shogunDesc != null) {
+            return shogunDesc;
+        }else {
+            return "Useless.";
         }
     }
 

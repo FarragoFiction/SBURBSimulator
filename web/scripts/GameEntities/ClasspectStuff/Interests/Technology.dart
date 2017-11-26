@@ -25,14 +25,14 @@ class Technology extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Robot",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.SENTIENT, ItemTraitFactory.SMART],"An obviously superior choice."))
-            ..add(new Item("Circuit Board",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL],"This better be going INTO a robot and not out of one."))
-            ..add(new Item("Datastructures for Assholes",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER],"Sounds like the perfect book for you."))
-            ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.DOOMED],"Such a pointless book."))
+            ..add(new Item("Robot",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.SENTIENT, ItemTraitFactory.SMART],abjDesc:"An obviously superior choice."))
+            ..add(new Item("Circuit Board",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL],abjDesc:"This better be going INTO a robot and not out of one."))
+            ..add(new Item("Datastructures for Assholes",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER],abjDesc:"Sounds like the perfect book for you."))
+            ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.DOOMED],abjDesc:"Such a pointless book."))
             ..add(new Item("3-D Printer",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL]))
-            ..add(new Item("Virus on a USB Stick",<ItemTrait>[ItemTraitFactory.GLITCHED, ItemTraitFactory.METAL],"Fuck you. You fucking DROP that."))
-            ..add(new Item("Wrench",<ItemTrait>[ItemTraitFactory.WRENCH, ItemTraitFactory.METAL,ItemTraitFactory.BLUNT],"Make sure to use it build a dope af robot."))
-            ..add(new Item("Computer",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL],"Computers are good. That is all there is to say on the matter."));
+            ..add(new Item("Virus on a USB Stick",<ItemTrait>[ItemTraitFactory.GLITCHED, ItemTraitFactory.METAL],abjDesc:"Fuck you. You fucking DROP that."))
+            ..add(new Item("Wrench",<ItemTrait>[ItemTraitFactory.WRENCH, ItemTraitFactory.METAL,ItemTraitFactory.BLUNT],abjDesc:"Make sure to use it build a dope af robot."))
+            ..add(new Item("Computer",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL],abjDesc:"Computers are good. That is all there is to say on the matter."));
     }
 
 

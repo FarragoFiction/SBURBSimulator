@@ -47,9 +47,9 @@ class Witch extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cauldron",<ItemTrait>[ItemTraitFactory.LEAD, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],"Surprisingly literal."))
-            ..add(new Item("Flying Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.WOOD,ItemTraitFactory.MAGICAL],"WHY ARE THERE SO MANY FUCKING BROOMS IN THIS GAME."))
-            ..add(new Item("Warped Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],"I guess Witches warp shit and stuff."));
+            ..add(new Item("Cauldron",<ItemTrait>[ItemTraitFactory.LEAD, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],abjDesc:"Surprisingly literal."))
+            ..add(new Item("Flying Broom",<ItemTrait>[ItemTraitFactory.BROOM,ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.WOOD,ItemTraitFactory.MAGICAL],abjDesc:"WHY ARE THERE SO MANY FUCKING BROOMS IN THIS GAME."))
+            ..add(new Item("Warped Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.MAGICAL],abjDesc:"I guess Witches warp shit and stuff."));
     }
 
     @override

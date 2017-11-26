@@ -30,16 +30,16 @@ class Domestic extends InterestCategory {
             ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
             ..add(new Item("Necklace",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.GOLDEN, ItemTraitFactory.CHAIN]))
             ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE]))
-            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.BROOM, ItemTraitFactory.WOOD,ItemTraitFactory.BLUNT,ItemTraitFactory.BROOM,],"Fucking. Wastes."))
+            ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.BROOM, ItemTraitFactory.WOOD,ItemTraitFactory.BLUNT,ItemTraitFactory.BROOM,],abjDesc:"Fucking. Wastes."))
             ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT]))
-            ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],"Pretty good if you need to be calmed down, I hear."))
+            ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],abjDesc:"Pretty good if you need to be calmed down, I hear."))
             ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH]))
             ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD]))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER]))
             ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD]))
             ..add(new Item("Cast Iron Skillet",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.ONFIRE,ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY,ItemTraitFactory.FRYINGPAN ]))
 
-            ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON],"Wow you suck at cooking.")) //this is ALSO a refrance. but to what?
+            ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON],abjDesc:"Wow you suck at cooking.")) //this is ALSO a refrance. but to what?
 
             ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC, ItemTraitFactory.PLANT]))
             ..add(new Item("Chicken Leg",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH, ItemTraitFactory.BONE]))
