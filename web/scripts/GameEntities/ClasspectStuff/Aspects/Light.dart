@@ -55,14 +55,13 @@ class Light extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("FAQ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SMART,ItemTraitFactory.LUCKY],abDesc:"Probably found it on a server in the Furthest Ring."))
-            ..add(new Item("Flashlight",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.ZAP,ItemTraitFactory.LUCKY]))
-            ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.LUCKY]))
-            ..add(new Item("Horseshoe",<ItemTrait>[ItemTraitFactory.HORSESHOE, ItemTraitFactory.ASPECTAL, ItemTraitFactory.BLUNT]))
-            ..add(new Item("Rabbits Foot",<ItemTrait>[ItemTraitFactory.RABBITSFOOT, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("4 Leaf Clover",<ItemTrait>[ItemTraitFactory.PLANT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.LUCKY]))
-
-            ..add(new Item("8-Ball",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],abDesc:"It seems this is never right. Ask again later or some shit."));
+            ..add(new Item("FAQ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SMART,ItemTraitFactory.LUCKY],shogunDesc: "Questions to Ping JR About",abDesc:"Probably found it on a server in the Furthest Ring."))
+            ..add(new Item("Flashlight",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.ZAP,ItemTraitFactory.LUCKY],shogunDesc: "Tube of Localised Sun"))
+            ..add(new Item("Dice",<ItemTrait>[ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.LUCKY],shogunDesc: "D13"))
+            ..add(new Item("Horseshoe",<ItemTrait>[ItemTraitFactory.HORSESHOE, ItemTraitFactory.ASPECTAL, ItemTraitFactory.BLUNT],shogunDesc: "Horse Sneaker"))
+            ..add(new Item("Rabbits Foot",<ItemTrait>[ItemTraitFactory.RABBITSFOOT, ItemTraitFactory.ASPECTAL],shogunDesc: "Rabbit Remains"))
+            ..add(new Item("4 Leaf Clover",<ItemTrait>[ItemTraitFactory.PLANT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.LUCKY],shogunDesc: "Plant of Luck +4"))
+            ..add(new Item("8-Ball",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "Worst Characters Only Quality",abDesc:"It seems this is never right. Ask again later or some shit."));
 
     }
 
@@ -112,9 +111,9 @@ class Light extends Aspect {
             ..addFeature(FeatureFactory.CHAMELEONCONSORT, Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("The Candlestick Taker", [
-                new Quest("The ${Quest.PLAYER1} walks into a ${Quest.CONSORT} village, and finds all of them standing dejectedly in the village center. Their town has a monthly ceremony celebrating ${Quest.PHYSICALMCGUFFIN}, but ${Quest.DENIZEN} has hoarded all of the planet’s ${Quest.MCGUFFIN} Candles, and everyone knows you can’t have a good ${Quest.PHYSICALMCGUFFIN} ceremony without candles! The ${Quest.PLAYER1} vows to take back some ${Quest.MCGUFFIN} Candles for the poor ${Quest.CONSORT}s. "),
+                new Quest("The ${Quest.PLAYER1} walks into a ${Quest.CONSORT} village, and finds all of them standing dejectedly in the village center. Their town has a monthly ceremony celebrating ${Quest.PHYSICALMCGUFFIN}, but ${Quest.DENIZEN} has hoarded all of the planets ${Quest.MCGUFFIN} Candles, and everyone knows you cant have a good ${Quest.PHYSICALMCGUFFIN} ceremony without candles! The ${Quest.PLAYER1} vows to take back some ${Quest.MCGUFFIN} Candles for the poor ${Quest.CONSORT}s. "),
                 new Quest("After a long search, the ${Quest.PLAYER1} has found the warehouse where ${Quest.DENIZEN} has stored all the candles. ${Quest.MCGUFFIN} Candles must be very valuable to ${Quest.DENIZEN} for some reason, because the warehouse roof is swarming with minions, waving a lot of bright spotlights in random intervals. The spotlights will need to be dealt with if the ${Quest.PLAYER1} wants to sneak in without alerting a horde of ${Quest.DENIZEN} minions."),
-                new Quest("After spending hours attempting to determine the rotation of the guards and the patterns of spotlight waving with no luck, the ${Quest.PLAYER1} realizes they don’t have to avoid the lights if they can turn them off instead. They locate an unguarded electric panel outside and cut the power. The ${Quest.DENIZEN} minions don’t even leave the roof; they just confusedly wave their now useless spotlights, allowing the ${Quest.PLAYER1} to slip inside with ease. Captchaloging as much ${Quest.MCGUFFIN} Candles as they can, the ${Quest.PLAYER1} triumphantly returns to the village among the joyful ${Quest.CONSORTSOUND}ing of the ${Quest.CONSORT}s."),
+                new Quest("After spending hours attempting to determine the rotation of the guards and the patterns of spotlight waving with no luck, the ${Quest.PLAYER1} realizes they dont have to avoid the lights if they can turn them off instead. They locate an unguarded electric panel outside and cut the power. The ${Quest.DENIZEN} minions dont even leave the roof; they just confusedly wave their now useless spotlights, allowing the ${Quest.PLAYER1} to slip inside with ease. Captchaloging as much ${Quest.MCGUFFIN} Candles as they can, the ${Quest.PLAYER1} triumphantly returns to the village among the joyful ${Quest.CONSORTSOUND}ing of the ${Quest.CONSORT}s."),
                 new DenizenFightQuest("The ${Quest.PLAYER1} is ready to challenge the ${Quest.DENIZEN} to keep them from restealing the ${Quest.MCGUFFIN} candles. ","Never again shall the ${Quest.CONSORT}s be without ${Quest.MCGUFFIN} Candles!","The ${Quest.MCGUFFIN} candles are once again at risk.")
             ], new DenizenReward(), QuestChainFeature.playerIsSneakyClass), Feature.HIGH)
 

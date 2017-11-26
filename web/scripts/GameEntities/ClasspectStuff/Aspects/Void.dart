@@ -42,7 +42,7 @@ class Void extends Aspect {
 
 
     @override
-    List<String> denizenNames = new List<String>.unmodifiable(<String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hœnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova']);
+    List<String> denizenNames = new List<String>.unmodifiable(<String>['Void', 'Selene', 'Erebus', 'Nix', 'Artemis', 'Kuk', 'Kaos', 'Hypnos', 'Tartarus', 'Hnir', 'Skoll', "Czernobog", 'Vermina', 'Vidar', 'Asteria', 'Nocturne', 'Tsukuyomi', 'Leviathan', 'Hecate', 'Harpocrates', 'Diova']);
 
 
     @override
@@ -53,12 +53,12 @@ class Void extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cardboard Box",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING],abDesc:"It's the highest level void item. Except not. It's a box. Asshole."))
-            ..add(new Item("Hole Punch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING]))
-            ..add(new Item("Smoke Bombs",<ItemTrait>[ItemTraitFactory.EXPLODEY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING,ItemTraitFactory.GRENADE]))
-            ..add(new Item("Tribal Mask",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.SCARY, ItemTraitFactory.UGLY]))
-            ..add(new Item("Opera Mask",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.CLASSY]))
-            ..add(new Item("Black Hole in a Bottle.",<ItemTrait>[ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.GREENSUN,ItemTraitFactory.OBSCURING],abDesc:"Jegus fuck, don't break this."));
+            ..add(new Item("Cardboard Box",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING],shogunDesc: "Shoguns Old Home",abDesc:"It's the highest level void item. Except not. It's a box. Asshole."))
+            ..add(new Item("Hole Punch",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING],shogunDesc: "Paper Impaler"))
+            ..add(new Item("Smoke Bombs",<ItemTrait>[ItemTraitFactory.EXPLODEY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING,ItemTraitFactory.GRENADE],shogunDesc: "Vape Grenades"))
+            ..add(new Item("Tribal Mask",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.SCARY, ItemTraitFactory.UGLY],shogunDesc: "Ancient Face"))
+            ..add(new Item("Opera Mask",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.ASPECTAL,ItemTraitFactory.OBSCURING, ItemTraitFactory.CLASSY],shogunDesc: "Phantom of the Opera Mask"))
+            ..add(new Item("Black Hole in a Bottle.",<ItemTrait>[ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.GREENSUN,ItemTraitFactory.OBSCURING],shogunDesc: "Eternal Suffering in a Jar",abDesc:"Jegus fuck, don't break this."));
     }
 
     @override

@@ -49,11 +49,11 @@ class Space extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Frog Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL],abDesc:"Frogs."))
-            ..add(new Item("Frog Costume",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL],abDesc:"You won't be able to stop the ribbits."))
-            ..add(new Item("Nuclear Reactor",<ItemTrait>[ItemTraitFactory.NUCLEAR,ItemTraitFactory.SMART,ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Telescope",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.GLASS,ItemTraitFactory.SMART,ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Green Sun Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL, ItemTraitFactory.GREENSUN, ItemTraitFactory.LEGENDARY],abDesc:"Huh."));
+            ..add(new Item("Frog Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL],shogunDesc: "Croaking Lizard Monument",abDesc:"Frogs."))
+            ..add(new Item("Frog Costume",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL],shogunDesc: "Croaking Lizard Cosplay",abDesc:"You won't be able to stop the ribbits."))
+            ..add(new Item("Nuclear Reactor",<ItemTrait>[ItemTraitFactory.NUCLEAR,ItemTraitFactory.SMART,ItemTraitFactory.ZAP, ItemTraitFactory.ASPECTAL],shogunDesc: "A Representation of My Hatred for Everything"))
+            ..add(new Item("Telescope",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.GLASS,ItemTraitFactory.SMART,ItemTraitFactory.ASPECTAL],shogunDesc: "Mono-Sighted Long Ranged Perversion Apparatus"))
+            ..add(new Item("Green Sun Poster",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL, ItemTraitFactory.GREENSUN, ItemTraitFactory.LEGENDARY],shogunDesc: "Sauce Sun Poster",abDesc:"Huh."));
     }
 
     @override

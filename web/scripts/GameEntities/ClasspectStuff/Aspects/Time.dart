@@ -56,12 +56,12 @@ class Time extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Grandfather Clock",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.CLASSY, ItemTraitFactory.VALUABLE, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Drum",<ItemTrait>[ItemTraitFactory.LEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL]))
-            ..add(new Item("Dead Doppelganger",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.BONE, ItemTraitFactory.SCARY],abDesc:"Time is truly the worst aspect."))
-            ..add(new Item("Music Box",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.CLASSY]))
-            ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.COOLK1D],abDesc:"Do they come with ironic raps?"))
-            ..add(new Item("Metronome",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL]));
+            ..add(new Item("Grandfather Clock",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.CLASSY, ItemTraitFactory.VALUABLE, ItemTraitFactory.ASPECTAL],shogunDesc: "Ticking Tower of Time"))
+            ..add(new Item("Drum",<ItemTrait>[ItemTraitFactory.LEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL],shogunDesc: "Ba Dum Tss but without the Tss Part"))
+            ..add(new Item("Dead Doppelganger",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.BONE, ItemTraitFactory.SCARY],shogunDesc: "The Inferior You",abDesc:"Time is truly the worst aspect."))
+            ..add(new Item("Music Box",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.CLASSY],shogunDesc: "Cube of Noise"))
+            ..add(new Item("Turn Tables",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL,ItemTraitFactory.LEGENDARY, ItemTraitFactory.COOLK1D],shogunDesc: "Spinning Noise Discs on a Noise Machine",abDesc:"Do they come with ironic raps?"))
+            ..add(new Item("Metronome",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MUSICAL],shogunDesc: "Never Ending Ticking Device"));
     }
 
     @override
@@ -101,9 +101,9 @@ class Time extends Aspect {
             ], new ItemReward(items), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("Fix the Clockwork", [
-                new Quest("The ${Quest.PLAYER1} is getting sick and tired of the constant grinding of their planet’s clockwork mechanisms. After consulting some ${Quest.CONSORT}s, they set out to fix the ${Quest.PHYSICALMCGUFFIN} points that are causing the grinding."),
-                new Quest("The ${Quest.PLAYER1} learns that some of the ${Quest.PHYSICALMCGUFFIN} points don’t actually exist in sync with the timeline, and so they do a whole bunch of bullshit time shenanigans that you really shouldn’t worry about. Trust them, it’s ok. Totally didn’t accidentally violate causality or anything."),
-                new Quest("The ${Quest.PLAYER1} has fixed all the ${Quest.PHYSICALMCGUFFIN} points! Except- Oh goddamn it.  ${Quest.DENIZEN} has started screwing up the ${Quest.PHYSICALMCGUFFIN} points all over again! They can’t take this lying down. Or standing up! Or sitting down! Or... this metaphor got away from them."),
+                new Quest("The ${Quest.PLAYER1} is getting sick and tired of the constant grinding of their planets clockwork mechanisms. After consulting some ${Quest.CONSORT}s, they set out to fix the ${Quest.PHYSICALMCGUFFIN} points that are causing the grinding."),
+                new Quest("The ${Quest.PLAYER1} learns that some of the ${Quest.PHYSICALMCGUFFIN} points dont actually exist in sync with the timeline, and so they do a whole bunch of bullshit time shenanigans that you really shouldnt worry about. Trust them, its ok. Totally didnt accidentally violate causality or anything."),
+                new Quest("The ${Quest.PLAYER1} has fixed all the ${Quest.PHYSICALMCGUFFIN} points! Except- Oh goddamn it.  ${Quest.DENIZEN} has started screwing up the ${Quest.PHYSICALMCGUFFIN} points all over again! They cant take this lying down. Or standing up! Or sitting down! Or... this metaphor got away from them."),
                 new DenizenFightQuest("The ${Quest.PLAYER1} is ready to face the ${Quest.DENIZEN}. It will never have the chance to mess with the ${Quest.PHYSICALMCGUFFIN} points again!","Ah, the sweet sound of clockwork NOT being broken as fuck.","The ${Quest.PLAYER1} being defeated really grinds my gears.  Get it? Cuz the clockwork is gonna stay broken and annoying sounding until the ${Quest.DENIZEN} is defeated. ")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
@@ -146,7 +146,7 @@ class Time extends Aspect {
             ..addFeature(new PostDenizenQuestChain("Shatter the Timeline", [
                 new Quest("With the defeat of the ${Quest.DENIZEN}, ${Quest.PLAYER1} uncovers historical documents in a ruined consort village. Taking them to the ${Quest.CONSORT} leader, they inquire about the mysterious documents. The leader tells ${Quest.PLAYER1} about the Wars of ${Quest.MCGUFFIN} Metropolis. The ${Quest.CONSORT}s have been quaking in fear for years, waiting for a savior to reverse the events of the Wars. ${Quest.PLAYER1} agrees to help the ${Quest.CONSORT}s re-fight the Wars to win back their ${Quest.MCGUFFIN} Metropolis."),
                 new Quest("Through some hard time-travel and shattering glass windows where needed, ${Quest.PLAYER1} has successfully set up events in the ${Quest.CONSORT}s favor. They check back in with the past ${Quest.CONSORT} leader to inform them that the timeline has been revised to their advantage."),
-                new Quest("The ${Quest.PLAYER1} divulges to the ${Quest.CONSORT} leader that their enemy leader has been assassinated (through their own marvelous work, of course). The ${Quest.CONSORT} leader doesn’t believe them, though. Why wouldn’t they believe the time-traveler?! They launch a miserable failure of a counter-attack, resulting in the ${Quest.CONSORT}s defeat. Agh!"),
+                new Quest("The ${Quest.PLAYER1} divulges to the ${Quest.CONSORT} leader that their enemy leader has been assassinated (through their own marvelous work, of course). The ${Quest.CONSORT} leader doesnt believe them, though. Why wouldnt they believe the time-traveler?! They launch a miserable failure of a counter-attack, resulting in the ${Quest.CONSORT}s defeat. Agh!"),
                 new Quest("The ${Quest.PLAYER1} is totally done with this bullshit. But they have an epiphany: what if they re-shattered the timeline, but took control of the strategy themselves? They grin to themselves as they travel back again, this time framing the enemy instead of assassinating them. This time, the leader believes the ${Quest.PLAYER1} this time, and carried through with their suggested strategy. With effort, ${Quest.MCGUFFIN} Metropolis is reclaimed, and the consorts have been given their freedom back!")
             ], new FraymotifReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 

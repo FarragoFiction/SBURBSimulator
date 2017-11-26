@@ -74,10 +74,10 @@ class Breath extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-        ..add(new Item("Pan's Pipe",<ItemTrait>[ItemTraitFactory.MUSICAL, ItemTraitFactory.WOOD, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]))
-        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL],abDesc:"You are never gonna be imprisoned again.")) //escape any prison
-        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],abDesc:"Probably a refrance."))
-        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],abDesc:"Don't skip gates, asshole."));
+        ..add(new Item("Pan's Pipe",<ItemTrait>[ItemTraitFactory.MUSICAL, ItemTraitFactory.WOOD, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],shogunDesc: "Smonkin Weeds Pipe"))
+        ..add(new Item("Skeleton Key",<ItemTrait>[ItemTraitFactory.BONE, ItemTraitFactory.ASPECTAL],shogunDesc: "THE BONE SHAPED HOLE BREAKER",abDesc:"You are never gonna be imprisoned again.")) //escape any prison
+        ..add(new Item("Inspector's Fan",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.METAL, ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],shogunDesc: "Fondly Regarded Fan",abDesc:"Probably a refrance."))
+        ..add(new Item("Jet Pack",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],shogunDesc: "Rocket Powered Pants",abDesc:"Don't skip gates, asshole."));
     }
 
     @override
@@ -88,7 +88,7 @@ class Breath extends Aspect {
             ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
             ..addFeature(new DenizenQuestChain("The Mail Goes Through", [
                 new Quest("The ${Quest.PLAYER1} tries posting a letter through the ${Quest.PHYSICALMCGUFFIN} mail system only to find the letter caught in a plug of oil!  ${Quest.DENIZEN} has screwed with the mail system, crippling the ${Quest.CONSORT} economy!"),
-                new Quest("The ${Quest.PLAYER1} cleans out oil from the nearby ${Quest.PHYSICALMCGUFFIN}’s, opening up a few more channels between villages. "),
+                new Quest("The ${Quest.PLAYER1} cleans out oil from the nearby ${Quest.PHYSICALMCGUFFIN}s, opening up a few more channels between villages. "),
                 new Quest("The ${Quest.PLAYER1} gets sick of all the fucking oil in the ${Quest.PHYSICALMCGUFFIN} mail system, and realizes the only way to truly deal with it and to allow information to flow free is to confront ${Quest.DENIZEN}."),
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. The mail is too vital to the ${Quest.CONSORT}s to risk having them reclog.","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s have a bustling mail based economy once again.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
@@ -102,7 +102,7 @@ class Breath extends Aspect {
             ..addFeature(new DenizenQuestChain("Thinking With Wind Power", [
                 new Quest("The ${Quest.PLAYER1} constructs a little windmill system for a joke, and suddenly an entire village of consorts has grown up around it! The ${Quest.PLAYER1} decides that they should use the winds of their land for more projects. "),
                 new Quest("The ${Quest.PLAYER1} starts learning the uses of their lands ${Quest.PHYSICALMCGUFFIN} in manipulation of wind. Their future constructions are going to be amazing. "),
-                new Quest("The ${Quest.PLAYER1} uses ${Quest.PHYSICALMCGUFFIN}s to build a massive farming system that harnesses the wind to distribute seeds across the ${Quest.CONSORT} fields. The ${Quest.CONSORT}’s ${Quest.CONSORTSOUND}ing is so joyful it's literally deafening. "),
+                new Quest("The ${Quest.PLAYER1} uses ${Quest.PHYSICALMCGUFFIN}s to build a massive farming system that harnesses the wind to distribute seeds across the ${Quest.CONSORT} fields. The ${Quest.CONSORT}s ${Quest.CONSORTSOUND}ing is so joyful it's literally deafening. "),
                 new DenizenFightQuest("${Quest.DENIZEN} is attacking the happy wind based farming community. The ${Quest.PLAYER1} has worked too hard for it all to be lost now. There can be no mercy. ","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} is finally free to continue improving the land with wind. ","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH);
@@ -115,7 +115,7 @@ class Breath extends Aspect {
             ..addFeature(new DenizenQuestChain("The Winds of Change", [
                 new Quest("The ${Quest.PLAYER1} is chilling in a ${Quest.CONSORT} village when a FUCK OFF HUGE STORM blows through, destroying the consorts housing. The player learns that ${Quest.DENIZEN} has screwed with the wind system, sending these giant storms at random."),
                 new Quest("The ${Quest.PLAYER1} learns of a ${Quest.PHYSICALMCGUFFIN} system that controls the storms of their land. The begin adventuring and solving puzzles to alter the layout of the ${Quest.PHYSICALMCGUFFIN} system so the storms are redirected from consort villages. "),
-                new Quest("The ${Quest.PLAYER1} finishes the dungeon that holds the  ${Quest.PHYSICALMCGUFFIN} system’s control panel, only to find the control room totally empty. They learn that they only needed their own ${Quest.MCGUFFIN} to do control the storms in the first place, and it was inside them all along.  "),
+                new Quest("The ${Quest.PLAYER1} finishes the dungeon that holds the  ${Quest.PHYSICALMCGUFFIN} systems control panel, only to find the control room totally empty. They learn that they only needed their own ${Quest.MCGUFFIN} to do control the storms in the first place, and it was inside them all along.  "),
                 new DenizenFightQuest(" ${Quest.DENIZEN} arrives to challenge the ${Quest.PLAYER1} storm supremacy. Will the ${Quest.PLAYER1} be able to prove their worth?", "The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has become the storm master. It is them. ","The storm supremacy of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme

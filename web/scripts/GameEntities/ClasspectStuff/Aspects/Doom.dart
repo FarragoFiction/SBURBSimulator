@@ -80,12 +80,12 @@ class Doom extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.POISON, ItemTraitFactory.DOOMED, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],abDesc:"Don't use this to end two universes, asshole."))
-            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED]))
-            ..add(new Item("Skull Timer",<ItemTrait>[ItemTraitFactory.BONE,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED],abDesc:"Everyone is mortal. Besides robots."))
-            ..add(new Item("Poison Flask",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.POISON]))
-            ..add(new Item("Ice Gorgon Head",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.COLD,ItemTraitFactory.DOOMED,ItemTraitFactory.RESTRAINING,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY]))
-            ..add(new Item("Obituary",<ItemTrait>[ItemTraitFactory.SCARY, ItemTraitFactory.DOOMED, ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL],abDesc:"I wonder whose it is? Yours?"));
+            ..add(new Item("~ATH - A Handbook for the Imminently Deceased ",<ItemTrait>[ItemTraitFactory.ZAP, ItemTraitFactory.PAPER, ItemTraitFactory.POISON, ItemTraitFactory.DOOMED, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],shogunDesc: "A Huge Ass Black Book on Coding or Something",abDesc:"Don't use this to end two universes, asshole."))
+            ..add(new Item("Egg Timer",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED],shogunDesc: "Egg That Counts Down to Your Death"))
+            ..add(new Item("Skull Timer",<ItemTrait>[ItemTraitFactory.BONE,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED],shogunDesc: "Skull That Counts Down to Your Dinner Being Ready",abDesc:"Everyone is mortal. Besides robots."))
+            ..add(new Item("Poison Flask",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.POISON],shogunDesc: "Glass of Bone Hurting Juice"))
+            ..add(new Item("Ice Gorgon Head",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.COLD,ItemTraitFactory.DOOMED,ItemTraitFactory.RESTRAINING,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY],shogunDesc: "Oddly Attractive Decapitated Head"))
+            ..add(new Item("Obituary",<ItemTrait>[ItemTraitFactory.SCARY, ItemTraitFactory.DOOMED, ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL],shogunDesc: "Omae Wa Mou Shindeiru in Paper Form",abDesc:"I wonder whose it is? Yours?"));
     }
 
 
@@ -139,7 +139,7 @@ class Doom extends Aspect {
             ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
                 new Quest("The ${Quest.PLAYER1} learns from one of their ${Quest.CONSORT}s that there is an ancient prophecy of a ${Quest.MCGUFFIN} plague that is due to kill them all any day now."),
                 new Quest("The ${Quest.PLAYER1} gets deep into the nitty gritty of the apocalypse prophecy. They learn that the plague is not technically going to hit the consorts- it's going to hit the bearers of the MAGIC ${Quest.PHYSICALMCGUFFIN}, which currently happens to be the ${Quest.CONSORT}s. "),
-                new Quest("The ${Quest.PLAYER1} goes on a daring series of stupid missions to deliver the MAGIC ${Quest.PHYSICALMCGUFFIN} into an underling camp, thereby redirecting the incoming ${Quest.MCGUFFIN} plague into devastating the underlings instead of the ${Quest.CONSORT}s. The underling army is all but decimated, and ${Quest.DENIZEN}’s lair is all but undefended. "),
+                new Quest("The ${Quest.PLAYER1} goes on a daring series of stupid missions to deliver the MAGIC ${Quest.PHYSICALMCGUFFIN} into an underling camp, thereby redirecting the incoming ${Quest.MCGUFFIN} plague into devastating the underlings instead of the ${Quest.CONSORT}s. The underling army is all but decimated, and ${Quest.DENIZEN}s lair is all but undefended. "),
                 new DenizenFightQuest("The ${Quest.PLAYER1} is finally ready to face the ${Quest.DENIZEN}.", "The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme

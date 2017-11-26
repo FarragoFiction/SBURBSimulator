@@ -49,17 +49,17 @@ class Life extends Aspect {
 
 
     @override
-    List<String> denizenNames = new List<String>.unmodifiable(<String>['Life', 'Demeter', 'Pan', 'Nephthys', 'Ceres', 'Isis', 'Hemera', 'Andhrímnir', 'Agathodaemon', 'Eir', 'Baldur', 'Prometheus', 'Adonis', 'Geb', 'Panacea', 'Aborof', 'Nurgel', 'Adam']);
+    List<String> denizenNames = new List<String>.unmodifiable(<String>['Life', 'Demeter', 'Pan', 'Nephthys', 'Ceres', 'Isis', 'Hemera', 'Andhrmnir', 'Agathodaemon', 'Eir', 'Baldur', 'Prometheus', 'Adonis', 'Geb', 'Panacea', 'Aborof', 'Nurgel', 'Adam']);
 
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Creeping Vine",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.PLANT,ItemTraitFactory.SENTIENT]))
-            ..add(new Item("Lollipop",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING]))
-            ..add(new Item("Golem",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], abDesc: "I guess. It's LIKE a robot. Sort of. Just not a super computer."))
-            ..add(new Item("Ectoplasm",<ItemTrait>[ItemTraitFactory.GHOSTLY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING])) //thanks nana sprite
-            ..add(new Item("Aqua Vitae",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING, ItemTraitFactory.LEGENDARY]))
-            ..add(new Item("Homoculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT], abDesc: "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
+            ..add(new Item("Creeping Vine",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.PLANT,ItemTraitFactory.SENTIENT],shogunDesc: "Sentient Plant Tentacles"))
+            ..add(new Item("Lollipop",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING],shogunDesc: "Sentient Plant Tentacles"))
+            ..add(new Item("Golem",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "Living Rock Man", abDesc: "I guess. It's LIKE a robot. Sort of. Just not a super computer."))
+            ..add(new Item("Ectoplasm",<ItemTrait>[ItemTraitFactory.GHOSTLY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING],shogunDesc: "Ghost [Censored]")) //thanks nana sprite
+            ..add(new Item("Aqua Vitae",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING, ItemTraitFactory.LEGENDARY],shogunDesc: "Tears of JR"))
+            ..add(new Item("Homoculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "False Man", abDesc: "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
     }
 
 

@@ -71,11 +71,11 @@ class Heart extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Doll",<ItemTrait>[ItemTraitFactory.PORCELAIN,ItemTraitFactory.PRETTY,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Puppet",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],abDesc:"Don't touch this shit."))
-            ..add(new Item("Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL, ItemTraitFactory.ROMANTIC],abDesc:"No. No cat troll shit."))
-            ..add(new Item("Shades",<ItemTrait>[ItemTraitFactory.COOLK1D,ItemTraitFactory.GLASS,ItemTraitFactory.ASPECTAL], abDesc: "You can put a p great robot in these. I advise it."));
+            ..add(new Item("Doll",<ItemTrait>[ItemTraitFactory.PORCELAIN,ItemTraitFactory.PRETTY,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL],shogunDesc: "Possessed Doll (Probably)", abDesc: "It's like a robot, but useless."))
+            ..add(new Item("Puppet",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY],shogunDesc: "Baby Muppet Snuff Survivor",abDesc:"Don't touch this shit."))
+            ..add(new Item("Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.ASPECTAL],shogunDesc: "Mirror That Shows A Reflection Of The World But A Horrible Beast Mimics Your Every Move"))
+            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL, ItemTraitFactory.ROMANTIC],shogunDesc: "A Grid of Pure Taint",abDesc:"No. No cat troll shit."))
+            ..add(new Item("Shades",<ItemTrait>[ItemTraitFactory.COOLK1D,ItemTraitFactory.GLASS,ItemTraitFactory.ASPECTAL],shogunDesc: "Glasses For Try Hard Nerds", abDesc: "You can put a p great robot in these. I advise it."));
     }
 
     @override
@@ -88,9 +88,9 @@ class Heart extends Aspect {
 
 
             ..addFeature(new DenizenQuestChain("Find Yourself", [
-                new Quest("The ${Quest.PLAYER1}, guided by a ${Quest.CONSORT} assembles some of the scattered pieces of their land into a sort of safe space. It’s nice, but something's just… off about it."),
-                new Quest("The ${Quest.PLAYER1} grows obsessed with perfecting ‘their space’ and begins manically collecting more and more of the landscape to decorate their ‘area’. They’ve become convinced that if they can only make it perfect, everything will be all right. If they can just make themselves better..."),
-                new Quest("The ${Quest.PLAYER1}realizes all the things they were adding to the space was nothing more than junk and clutter. They realize they can’t make themselves better by simply accumulating more onto themselves. They have to confront the root of the problem. For the specific problem of ‘their space,’ they have to confront ${Quest.DENIZEN}."),
+                new Quest("The ${Quest.PLAYER1}, guided by a ${Quest.CONSORT} assembles some of the scattered pieces of their land into a sort of safe space. Its nice, but something's just off about it."),
+                new Quest("The ${Quest.PLAYER1} grows obsessed with perfecting their space and begins manically collecting more and more of the landscape to decorate their area. Theyve become convinced that if they can only make it perfect, everything will be all right. If they can just make themselves better..."),
+                new Quest("The ${Quest.PLAYER1}realizes all the things they were adding to the space was nothing more than junk and clutter. They realize they cant make themselves better by simply accumulating more onto themselves. They have to confront the root of the problem. For the specific problem of their space, they have to confront ${Quest.DENIZEN}."),
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. They can finally be free to just....be themselves as long as the ${Quest.DENIZEN} is gone. ","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won and finally feels free to be themselves for the first time.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
@@ -145,7 +145,7 @@ class Heart extends Aspect {
             ..addFeature(FeatureFactory.JAZZSOUND, Feature.LOW)
             ..addFeature(new DenizenQuestChain("Ship All the Ships", [
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
-                new Quest("The ${Quest.PLAYER1} extends their “shipping grid” to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
+                new Quest("The ${Quest.PLAYER1} extends their shipping grid to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, but then realizes that because of some stupid ${Quest.MCGUFFIN} laws put in place by ${Quest.DENIZEN}, the ship will be unable to sail. The player flips their shit and begins preparing for the final battle. THE SHIP WILL SAIL. "),
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 

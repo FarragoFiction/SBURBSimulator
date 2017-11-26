@@ -57,9 +57,9 @@ class Dream extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.ASPECTAL]))
-            ..add(new Item("Interlocking Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],abDesc:"Lame. JR didn't want to use a brand name all of a sudden?"))
-            ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL]));
+            ..add(new Item("Dream Diary",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.BOOK, ItemTraitFactory.ASPECTAL],shogunDesc: "Tomb of the Writer’s Insecurities and Weaknesses"))
+            ..add(new Item("Interlocking Brick",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.BLUNT, ItemTraitFactory.ASPECTAL,ItemTraitFactory.LEGENDARY],shogunDesc: "A Fucking Lego But Legally JR’s Too Much Of A Coward To Say It",abDesc:"Lame. JR didn't want to use a brand name all of a sudden?"))
+            ..add(new Item("Art Supplies",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL],shogunDesc: "The Tools For Smithing Pieces of Art That I Stole From KR"));
     }
 
 
