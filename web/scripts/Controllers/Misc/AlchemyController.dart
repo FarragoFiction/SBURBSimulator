@@ -69,7 +69,7 @@ void main() {
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
-    alchemyShop.setShopKeep(ab);
+    alchemyShop.setShopKeep(shogun);
 
     Achievement.announcmentDiv = querySelector("#announcement");
 
@@ -113,7 +113,7 @@ void checkShopKeepTrigger(Item item) {
         if(ticksRemaining <=0) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
-            Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. :( :( :(   ");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. Hope you like useless shit posts. :( :( :(   ");
             achievements[Achievement.shogunSummoned].toggle();
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
