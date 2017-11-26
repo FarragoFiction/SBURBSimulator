@@ -512,7 +512,11 @@ abstract class ShopItem {
         ShopItem.tabIndex ++;
         div.classes.add(className);
 
-        div.setInnerHtml("${item.fullName}");
+        if(!(shop.shopKeep is ShogunShopKeep)) {
+            div.setInnerHtml("${item.fullName}");
+        }else {
+            div.setInnerHtml(item.shogunDescription(new Random()));
+        }
         container.append(div);
         div.onClick.listen((e) {
             shop.quipDiv.setInnerHtml(shop.describeItem(item));
@@ -862,6 +866,11 @@ class ShogunShopKeep extends ShopKeep {
     List<String> randomQuips = <String>[""];
 
   ShogunShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+
+    @override
+    String getItemDescription(Item item) {
+        return "${item.shogunDescription(new Random())}";
+    }
 
 
 }

@@ -122,7 +122,7 @@ class Item {
         if(shogunDesc != null) {
             return shogunDesc;
         }else {
-            return "Useless.";
+            return "Actual Worthless Object";
         }
     }
 
