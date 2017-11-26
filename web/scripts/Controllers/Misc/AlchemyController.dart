@@ -236,7 +236,7 @@ void processAchievements(Item itemAlchemized) {
     List<String> ret = new List<String>();
     for(ItemTrait it in combinedTraits) {
         //could be a leftover
-        if(it is CombinedTrait) {
+        if(it is CombinedTrait && it.subTraits.isNotEmpty) {
             Achievement a = achievements[it];
             if(a != null) {
                 String doop = (achievements[it].toggle());
@@ -487,7 +487,6 @@ class Achievement {
         input[shogunBanished] = new Achievement(shogunBanished,container);
         input[abGlitched] = new Achievement(abGlitched,container);
         input[abFixed] = new Achievement(abFixed,container);
-
 
         return input;
     }
