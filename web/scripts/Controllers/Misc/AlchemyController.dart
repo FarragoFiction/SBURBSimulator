@@ -19,8 +19,6 @@ Element alchemyDiv;
 
 List<Element> tabs = <Element>[storeDiv, alchemyDiv];
 
-
-Element quipDiv;
 Player player;
 Element storyDiv;
 Element item1Div;
@@ -52,7 +50,7 @@ void main() {
     globalInit();
 
     init();
-    quipDiv = querySelector("#quip");
+    Element quipDiv = querySelector("#quip");
     buyDiv = querySelector("#buyshit");
     storeDiv = querySelector("#storeDiv");
 
@@ -62,9 +60,9 @@ void main() {
 
     Element shopKeepDiv = querySelector("#shopKeep");
 
-    ab = new ABShopKeep(shopKeepDiv);
-    abj = new ABJShopKeep(shopKeepDiv);
-    shogun = new ShogunShopKeep(shopKeepDiv);
+    ab = new ABShopKeep(shopKeepDiv,quipDiv);
+    abj = new ABJShopKeep(shopKeepDiv,quipDiv);
+    shogun = new ShogunShopKeep(shopKeepDiv,quipDiv);
 
 
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
@@ -234,7 +232,7 @@ Item findItemNamed(String name) {
 
 void quip(Item item) {
     Random rand = new Random();
-    quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.randomQuips));
+    alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.randomQuips));
 }
 
 void makeDropDowns() {
@@ -260,11 +258,11 @@ void makeDropDowns() {
         Random rand = new Random();
         String operator = operatorSelect.selectedOptions[0].value;
         if(operator == AND) {
-            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.andQuips));
+            alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.andQuips));
         }else if(operator == OR) {
-            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.orQuips));
+            alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.orQuips));
         }else if (operator == XOR) {
-            quipDiv.setInnerHtml(rand.pickFrom(alchemyShop.shopKeep.xorQuips));
+            alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.xorQuips));
         }
     });
 
@@ -492,6 +490,11 @@ class Shop {
         renderPlayerSylladex();
     }
 
+    void setQuip(String text) {
+        //TODO if corrupt, zalgo first.
+        shopKeep.textElement.setInnerHtml(text);
+    }
+
     String describeItem(Item item) {
         return shopKeep.getItemDescription(item);
     }
@@ -559,10 +562,12 @@ class Shop {
 }
 
 abstract class ShopKeep {
+    Colour fontColor = ReferenceColours.BLACK;
     double priceModifier = 1.0;
     //if empty, it's all items, else it's any item that has any of your traits (on fire OR romantic)
     List<ItemTrait> associatedTraits = new List<ItemTrait>();
     String imageSource;
+    Element textElement;
     ImageElement imageElement; //passed this in, should already be on page.
     List<String> playerBuysQuips = <String>[""];
     List<String> playerSellsQuips = <String>[""];
@@ -572,10 +577,13 @@ abstract class ShopKeep {
     List<String> xorQuips = <String>[""];
     List<String> maxAlchemyQuips = <String>[""];
 
-    ShopKeep(ImageElement this.imageElement);
+    ShopKeep(ImageElement this.imageElement, ImageElement this.textElement);
 
     void setShopKeep() {
         imageElement.src = imageSource;
+        textElement.style.color = fontColor.toStyleString();
+        Random rand = new Random();
+        textElement.setInnerHtml(rand.pickFrom(randomQuips));
     }
 
     String getItemDescription(Item item) {
@@ -586,7 +594,8 @@ abstract class ShopKeep {
 }
 
 class ABShopKeep extends ShopKeep {
-
+    @override
+    Colour fontColor = ReferenceColours.RED;
     @override
     List<String> playerBuysQuips = <String>["Think it'll be worth the expense?","I wonder which trait you hoped to get out of that.","Yeah, I bet you won't regret that.","Is that really the best choice you could make with your inferior meat brain? Whatever.","Oh my fuck why did it take you so long to decide that."];
 
@@ -607,7 +616,8 @@ class ABShopKeep extends ShopKeep {
     List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.982734982734% chance you are totally lost here."];
     @override
     List<String> randomQuips = <String>["...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
-    ABShopKeep(ImageElement imageElement) : super(imageElement);
+
+  ABShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
 
     @override
     String getItemDescription(Item item) {
@@ -618,6 +628,8 @@ class ABShopKeep extends ShopKeep {
 }
 
 class ABJShopKeep extends ShopKeep {
+    @override
+    Colour fontColor = new Colour.fromStyleString("#ffa800");
     @override
     double priceModifier = 0.3; //can get a bargain on objects she wants there to be more of.
 
@@ -645,8 +657,9 @@ class ABJShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
 
+  ABJShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
 
-    ABJShopKeep(ImageElement imageElement) : super(imageElement);
+
 
     //oh abj. you so crazy.
     @override
@@ -658,12 +671,14 @@ class ABJShopKeep extends ShopKeep {
         }else {
             return "Hrmmm...";
         }
-
     }
 }
 
 
 class ShogunShopKeep extends ShopKeep {
+    @override
+    Colour fontColor = new Colour.fromStyleString("#00ff00");
+
     @override
     double priceModifier = 3.0; //asshole raises prices
 
@@ -682,6 +697,7 @@ class ShogunShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>[""];
 
+  ShogunShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
 
-    ShogunShopKeep(ImageElement imageElement) : super(imageElement);
+
 }
