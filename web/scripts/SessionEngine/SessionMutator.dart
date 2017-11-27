@@ -827,6 +827,7 @@ class MetaPlayerHandler {
     Player nobody;
     Player wooMod;
     Player recusiveSlacker;
+    Player tableGuardian;
     Player paradoxLands;
     Player karmicRetribution;
     Player jadedResearcher;
@@ -836,7 +837,7 @@ class MetaPlayerHandler {
 
     List<Player> get metaPlayers {
         //everything else is 'canon' entry order
-        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician, authorBot, authorBotJunior];
+        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician,tableGuardian, authorBot, authorBotJunior];
        // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
     }
 
@@ -844,6 +845,7 @@ class MetaPlayerHandler {
         if (jadedResearcher != null) return; //don't reintiialize, dunkass.
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
+        tableGuardian = makeTG(s);
         dilletantMathematician = makeDM(s);
         insufferableOracle = makeIO(s);
         manicInsomniac = makeMI(s);
@@ -902,6 +904,42 @@ class MetaPlayerHandler {
         return player;
     }
 
+    Player makeTG(Session s) {
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.VOID);
+        player.quirk = randomHumanQuirk(s.rand);
+
+        player.copyFromOCDataString("b=zh%03%C2%85%C3%BE%13%00%40%1F%1FB&s=,,Music,Dungeon Mastering,tableGuardian");
+
+        player.land = player.spawnLand();
+        player.land.name = "Land of Places and Holder";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+
+        player.quirk.capitalization = 1;
+        player.quirk.punctuation = 2;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.land.denizenFeature = new HardDenizenFeature("<span class = 'void'>Places, The </span>Holder");
+
+        player.object_to_prototype = new PotentialSprite("Placeholder", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        Fraymotif f = new Fraymotif(" PlaceHolder", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
+        f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
+        player.fraymotifs.add(f);
+        return player;
+
+    }
+
     //DM agreed to be our time player
     Player makeDM(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PRINCE, Aspects.TIME);
@@ -949,6 +987,7 @@ class MetaPlayerHandler {
     //myseriously absent. why would SBURB assign a troll to be the space player for a human session?
     Player makeIO(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.MAGE, Aspects.SPACE);
+
         player.quirk = randomHumanQuirk(s.rand);
 
         player.hair = 68;
@@ -960,6 +999,7 @@ class MetaPlayerHandler {
         player.deriveSprite = false;
         player.rightHorn = 71;
         player.godTier = true;
+
         player.quirk.capitalization = 1;
         player.quirk.punctuation = 2;
         player.quirk.lettersToReplace = [];
