@@ -582,6 +582,9 @@ function quip(state){
     else if(state == 36){
     		ret = "recursiveSlacker"
         }
+    else if(state == 37){
+                ret = "recursiveSlacker"
+            }
     else{
     ret = "Get Well Soon, KR"
 	}

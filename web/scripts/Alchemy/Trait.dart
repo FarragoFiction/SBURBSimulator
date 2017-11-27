@@ -691,7 +691,7 @@ class ItemTraitFactory {
     BESPOKE = new CombinedTrait("Bespoke",<String>["bespoke", "well-tailored", "glamorous","haute couture"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, PRETTY, CLASSY]);
     OPERATIC = new CombinedTrait("Operatic",<String>["operatic"], 0.0,ItemTrait.OPINION, <ItemTrait>[VALUABLE, MUSICAL, CLASSY]);
     ICE = new CombinedTrait("Diamond",<String>["ice", "diamond"], 0.0, ItemTrait.MATERIAL,<ItemTrait>[VALUABLE, COLD]);
-    ICYHOT = new CombinedTrait("Icy Hot",<String>["icy hot","cold fire"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, COLD]);
+    ICYHOT = new CombinedTrait("Icy Hot",<String>["icy hot","cold fire", "wet", "damp","moist","watery"], 0.0,ItemTrait.OPINION, <ItemTrait>[ONFIRE, COLD]);
 
     ICECOLD = new CombinedTrait("Cold As Fuck",<String>["ice cold", "cold as fuck"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D, COLD]);
     WINTER = new CombinedTrait("Winter's",<String>["winter's", "season's"], 0.0, ItemTrait.ORIGIN,<ItemTrait>[CALMING, COLD]);
