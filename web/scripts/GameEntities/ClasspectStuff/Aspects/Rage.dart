@@ -56,6 +56,8 @@ class Rage extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Curtain",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE],shogunDesc: "Show Ender"))
+            ..add(new Item("Cursed Sword",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SWORD,ItemTraitFactory.POINTY,  ItemTraitFactory.ASPECTAL, ItemTraitFactory.EDGED, ItemTraitFactory.SCARY, ItemTraitFactory.FAKE, ItemTraitFactory.CORRUPT, ItemTraitFactory.DOOMED],abDesc:"You probably are gonna kill an army if you don't keep it safely tucked away in your sylladex."))
+
             ..add(new Item("Megaphone",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.LOUD,ItemTraitFactory.ZAP,  ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE],shogunDesc: "Voice Embiggener",abDesc:"Rage players are such loud assholes."))
             ..add(new Item("Bike Horn",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.LOUD, ItemTraitFactory.ENRAGING,ItemTraitFactory.RUBBER,ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE],shogunDesc: "Two-wheel device mounted Juggalo voicebox"))
             ..add(new Item("Bacchus Wine",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.ENRAGING,ItemTraitFactory.CLASSY, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAKE ],shogunDesc: "Aged Grape Gore",abDesc:"I guess it makes you go beserk or some shit. Sucks being biological."))
