@@ -848,7 +848,6 @@ class ItemTraitFactory {
     SILVER = new CombinedTrait("Silver",<String>["Silver"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,CLASSY]);
     WITHERED = new CombinedTrait("Withered",<String>["Withered"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,PLANT]);
     SHATTERED = new CombinedTrait("Shattered",<String>["Shattered"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GLASS,SHITTY]);
-    POTASSIUM = new CombinedTrait("Potassium",<String>["Potassium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[EDIBLE,METAL]);
     MINERS = new CombinedTrait("Miner's",<String>["Miner's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[STONE,METAL]);
     SIGNING = new CombinedTrait("Singing",<String>["Singing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,SENTIENT]);
     MITOCHONDRIAL = new CombinedTrait("Mitochondrial",<String>["Mitochondrial"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FLESH,ZAP]);
@@ -913,7 +912,7 @@ class ItemTraitFactory {
     CALCIUM = new CombinedTrait("Calcium",<String>["Calcium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BONE,HEALING,EDIBLE]);
     FLEECE = new CombinedTrait("Fleece",<String>["Fleece"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ONFIRE]);
     POTTED = new CombinedTrait("Potted",<String>["Potted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,PLANT]);
-    CANNED = new CombinedTrait("Canned",<String>["Canned","Tinned"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,EDIBLE]);
+    CANNED = new CombinedTrait("Canned",<String>["Canned","Tinned","Potassium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,EDIBLE]);
     DIEASED = new CombinedTrait("Diseased",<String>["Diseased"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,FLESH]);
     PORCUPINE = new CombinedTrait("Porcupine",<String>["Porcupine"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[POINTY,FUR]);
     FANGED = new CombinedTrait("Fanged",<String>["Fanged"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE,POINTY]);
