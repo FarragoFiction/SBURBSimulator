@@ -911,30 +911,30 @@ class MetaPlayerHandler {
         player.copyFromOCDataString("b=zh%03%C2%85%C3%BE%13%00%40%1F%1FB&s=,,Music,Dungeon Mastering,tableGuardian");
 
         player.land = player.spawnLand();
-        player.land.name = "Land of Places and Holder";
+        player.land.name = "Land of Suburbs and Emotion";
         player.godTier = true;
         player.deriveChatHandle = false;
 
-        player.quirk.capitalization = 1;
-        player.quirk.punctuation = 2;
+        player.quirk.capitalization = Quirk.NOCAPS;
+        player.quirk.punctuation = Quirk.PERFPUNC;
         player.quirk.lettersToReplace = [];
-        player.quirk.lettersToReplaceIgnoreCase = [];
+        player.quirk.lettersToReplaceIgnoreCase = [["asshole", "dumbguy"], ["fuck", "deng"]];
 
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
-        player.land.denizenFeature = new HardDenizenFeature("<span class = 'void'>Places, The </span>Holder");
+        player.land.denizenFeature = new HardDenizenFeature("Dendron");
 
-        player.object_to_prototype = new PotentialSprite("Placeholder", s);
+        player.object_to_prototype = new PotentialSprite("Vinyl", s);
         player.sprite.addPrototyping(player.object_to_prototype);
 
-        Fraymotif f = new Fraymotif(" PlaceHolder", 13);
+        Fraymotif f = new Fraymotif(" Be the Arms", 13);
         f.baseValue = 1300;
         f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
         f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
-        f.desc = "Sometimes you are in too much of a hurry to come up with an elegant and performant solution so you brute force it and let others suffer the consequences. ";
+        f.desc = "tableGuardian stops being the shoulders in order to be the arms. ";
         player.fraymotifs.add(f);
         return player;
 
