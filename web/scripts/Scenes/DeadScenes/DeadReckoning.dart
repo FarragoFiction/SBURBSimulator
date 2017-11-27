@@ -58,13 +58,12 @@ bool trigger(List<Player> playerList) {
         //div.setInnerHtml(""); //clear yellow yards and scratches and combos and all TODO figure out why this breaks everything
         if (div == null || div.text.length == 0) return; //don't try to render if there's no where to render to
         for (int i = 0; i < this.session.players.length; i++) {
-            CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            CanvasElement canvasDiv = new CanvasElement(width: 800, height: 1000);
             div.append(canvasDiv);
-            CanvasElement first_canvas = querySelector("#firstcanvas${this.session.players[i].id}_${this.session.session_id}");
             CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);
             //will be null for new players.
-            if (first_canvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, first_canvas, 0, 0);
+            if (session.players.first.firstStatsCanvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, session.players.first.firstStatsCanvas, 0, 0);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, tmp_canvas, 400, 0);
         }
     }

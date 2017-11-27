@@ -11,8 +11,9 @@ class DeadIntro extends Scene {
     @override
     void renderContent(Element div) {
         Player player = session.players[0];
-        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        div.append(canvasDiv);
+        CanvasElement canvasDiv = new CanvasElement(width: 800, height: 1000);
+        player.firstStatsCanvas = canvasDiv;
+        //div.append(canvasDiv);
         Drawing.drawCharSheet(canvasDiv,player);
         (session as DeadSession).makeDeadLand();
         String divID = "deadIntro${session.players[0].id}";
