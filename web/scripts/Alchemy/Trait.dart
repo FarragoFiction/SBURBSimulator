@@ -780,7 +780,7 @@ class ItemTraitFactory {
     IMITATION = new CombinedTrait("Imitation",<String>["Imitation"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDIBLE,FAKE]);
     PLACEBO = new CombinedTrait("Placebo",<String>["Placebo"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,FAKE]);
     COUNTERFIT = new CombinedTrait("Counterfeit",<String>["counterfeit"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[VALUABLE,FAKE]);
-    SURREAL = new CombinedTrait("Surreal",<String>["Surreal"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D,UNCOMFORTABLE,FUNNY]);
+    SURREAL = new CombinedTrait("Surreal1",<String>["Surreal"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D,UNCOMFORTABLE,FUNNY]);
     BRAINY = new CombinedTrait("Brainy",<String>["Brainy"], 0.0,ItemTrait.OPINION, <ItemTrait>[SMART,FLESH]);
     INCENDIARY = new CombinedTrait("Incendiary",<String>["Incendiary"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ONFIRE,EXPLODEY]);
     C4 = new CombinedTrait("C-4",<String>["C-4"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[EXPLODEY,PLASTIC]);
@@ -872,7 +872,7 @@ class ItemTraitFactory {
     PESTERSOME = new CombinedTrait("Pestersome",<String>["Pestersome","Irksome"], 0.0,ItemTrait.OPINION, <ItemTrait>[LOUD,ENRAGING]);
     SHOCKWAVE = new CombinedTrait("Shockwave",<String>["Shockwave"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LOUD,EXPLODEY]);
     ANTIVENOM = new CombinedTrait("Antivenom",<String>["Antivenom"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,HEALING]);
-    WILLWISP = new CombinedTrait("Will O Wisp",<String>["Will O Wisp"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[ONFIRE,MAGICAL]);
+    WILLWISP = new CombinedTrait("Will O Wisp",<String>["Will O Wisp","Demonic"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[ONFIRE,MAGICAL]);
     FIBERGLASS = new CombinedTrait("Fiberglass",<String>["Fiberglass"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,GLASS]);
     SKULL = new CombinedTrait("Skull",<String>["Skull"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BONE,SCARY]);
     ENCHANTED = new CombinedTrait("Enchanted",<String>["Enchanted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,LUCKY]);
@@ -885,7 +885,7 @@ class ItemTraitFactory {
     CRACKLING = new CombinedTrait("Crackling",<String>["Crackling"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,ONFIRE]);
     THUMPING = new CombinedTrait("Thumping",<String>["Thumping"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,HEAVY]);
     SHRIEKING = new CombinedTrait("Shrieking",<String>["Shrieking","Banshee"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GHOSTLY,LOUD]);
-    SURREALCORRUPTFUNNY = new CombinedTrait("Surreal",<String>["Surreal"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY,CORRUPT]);
+    SURREALCORRUPTFUNNY = new CombinedTrait("Surreal2",<String>["Surreal"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY,CORRUPT]);
     ALOE = new CombinedTrait("Aloe",<String>["Aloe","Willowbark"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,PLANT]);
     ROSE = new CombinedTrait("Rose",<String>["Rose"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,PLANT]);
     KNOCKKNOCK = new CombinedTrait("Knock Knock",<String>["Knock Knock"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FUNNY,BLUNT]);
