@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 156; //this number MUST be even.
+var maxState = 28; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -28,11 +28,8 @@ window.onload = function() {
 	initializeX();
 	makeScreens(256);
 	loadAllImages();
-	//think for 5 minutes on the clock before activating cheat powers.
-	//(have some easter egg way to activate them immediately for those who are playing it a second time.)
-	setTimeout(function(){
-		showMindButton();
-	}, (5*60000));
+	showMindButton(); //unlocked to beging with.
+
 }
 
 function showMindButton(){
@@ -47,7 +44,7 @@ function showMindButton(){
 function doTheMindyThing(){
 	$("#mindButton").hide();
 	timeTillReckoning = 4; //you can find a few pictures, but then you better focus up.
-	$("#slider").html('Look for Image: <span id="imageValue">64</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ (maxState-1) + '" value="64"> '+ (maxState-1) + '<br><button id="concentrate">Concentrate</button>');
+	$("#slider").html('Look for Image: <span id="imageValue">12</span> <Br> 0 <input id="targetImage" type="range" min="0" max="'+ (maxState-1) + '" value="1"> '+ (maxState-1) + '<br><button id="concentrate">Concentrate</button>');
 	$("#mindPowers").show();
 	$("#targetImage").change(function(){
 		$("#imageValue").html($("#targetImage").val());
@@ -101,18 +98,18 @@ function knob4(){
 
 //k = 0
 function button1(){
-	$("#b1").attr("src", "images/LORAS/ControlPanel/button_1_p011.png");
+	$("#b1").attr("src", "images/LORAS2/ControlPanel/button_1_p011.png");
 	compute(0,ia);
 	setTimeout(function(){
-		$("#b1").attr("src", "images/LORAS/ControlPanel/button_1_p01.png");
+		$("#b1").attr("src", "images/LORAS2/ControlPanel/button_1_p01.png");
 	},200);
 }
 
 //k = 0
 function button2(){
-	$("#b2").attr("src", "images/LORAS/ControlPanel/button_1_p021.png");
+	$("#b2").attr("src", "images/LORAS2/ControlPanel/button_1_p021.png");
 	setTimeout(function(){
-		$("#b2").attr("src", "images/LORAS/ControlPanel/button_1_p02.png");
+		$("#b2").attr("src", "images/LORAS2/ControlPanel/button_1_p02.png");
 	},200);
 	compute(0,fhtagn);
 
@@ -121,36 +118,36 @@ function button2(){
 
 // k = 1
 function button3(){
-	$("#b3").attr("src", "images/LORAS/ControlPanel/button_2_p011.png");
+	$("#b3").attr("src", "images/LORAS2/ControlPanel/button_2_p011.png");
 	setTimeout(function(){
-		$("#b3").attr("src", "images/LORAS/ControlPanel/button_2_p01.png");
+		$("#b3").attr("src", "images/LORAS2/ControlPanel/button_2_p01.png");
 	},200);
 	compute(1,ia);
 }
 
 //k = 1
 function button4(){
-	$("#b4").attr("src", "images/LORAS/ControlPanel/button_2_p021.png");
+	$("#b4").attr("src", "images/LORAS2/ControlPanel/button_2_p021.png");
 	setTimeout(function(){
-		$("#b4").attr("src", "images/LORAS/ControlPanel/button_2_p02.png");
+		$("#b4").attr("src", "images/LORAS2/ControlPanel/button_2_p02.png");
 	},200);
 	compute(1,fhtagn);
 }
 
 //k = 2
 function button5(){
-	$("#b5").attr("src", "images/LORAS/ControlPanel/button_3_p011.png");
+	$("#b5").attr("src", "images/LORAS2/ControlPanel/button_3_p011.png");
 	setTimeout(function(){
-		$("#b5").attr("src", "images/LORAS/ControlPanel/button_3_p01.png");
+		$("#b5").attr("src", "images/LORAS2/ControlPanel/button_3_p01.png");
 	},200);
 	compute(2,ia);
 }
 
 //k = 2
 function button6(){
-	$("#b6").attr("src", "images/LORAS/ControlPanel/button_3_p021.png");
+	$("#b6").attr("src", "images/LORAS2/ControlPanel/button_3_p021.png");
 	setTimeout(function(){
-		$("#b6").attr("src", "images/LORAS/ControlPanel/button_3_p02.png");
+		$("#b6").attr("src", "images/LORAS2/ControlPanel/button_3_p02.png");
 	},200);
 	compute(2,fhtagn);
 }
@@ -254,10 +251,10 @@ function updateScreens(k){
 
 function loadAllImages(){
 	for(var i = 0; i< maxState+1; i++){
-		loadImage('images/LORAS/'+i+".png",i);
+		loadImage('images/LORAS2/'+i+".png",i);
 	}
-	loadImage('images/LORAS/0Ultimate.png',1025);
-	loadImage('images/LORAS/0Fail.png',1026);
+	loadImage('images/LORAS2/0Ultimate.png',1025);
+	loadImage('images/LORAS2/0Fail.png',1026);
 }
 
 function loadImage(img,i){
@@ -505,99 +502,63 @@ function quip(state){
 	}
 	if(state == 0){
 	 ret = "Oh! You win! " + prize;
- 	}else if(state == 47){
-		ret = "Oh yeah! That was the image KR made as one of the possible backgrounds for the AB/JR newsposts. Kinda cheruby-huh?"
-	}
-	else if(state == 3){
-		ret = "Huh? That doesn't look like RS..."
-	}else if(state == 4){
-		ret = "!!! I take back every complaint I ever made, this is truly the greatest possible planet.  Oh god, maybe I can find a way to get the audio going, Rick Roll all these consorts."
-	}else if(state == 6){
-		ret = "Shit, I hope this stupid thing doesn't work the way Prospit's clouds apparently do. Whoever that is is NOT having a good day."
+ 	}else if(state == 27){
+		ret = "star.eyes"
+	}else if(state == 25){
+        ret = "Shogun"
+    }else if(state == 26){
+        ret = "Shogun"
+ 	}else if(state == 24){
+		ret = "x_BiX"
+	}else if(state == 23){
+        ret = "Shogun"
+    }else if(state == 22){
+        ret = "floralShenanigans"
+ 	}else if(state == 21){
+		ret = "Shogun"
+	}else if(state == 20){
+        ret = "Shogun"
+    }else if(state == 19){
+        ret = "Shogun"
+ 	}else if(state == 18){
+		ret = "Shogun"
+	}else if(state == 17){
+        ret = "aquaticAffliction"
+ 	}else if(state == 16){
+		ret = "Shogun"
+	}else if(state == 15){
+        ret = "floralShenanigans"
+    }else if(state == 14){
+        ret = "Shogun"
+ 	}else if(state == 13){
+		ret = "aquaticAffliction"
+ 	}else if(state == 12){
+		ret = "jadedResearcher"
+	}else if(state == 11){
+        ret = "jadedResearcher"
+    }else if(state == 10){
+        ret = "paradoxLands"
+ 	}else if(state == 9){
+		ret = "star.eyes"
+ 	}else if(state == 8){
+		ret = "MettaToreodere"
 	}else if(state == 7){
-		ret = "Eeee, why is LORAS making chibi pictures of me and KR? And what's that yellow thing?"
-	}else if(state == 8){
-		ret = "Huh? Who is that random Time player? Is this a clue? A view of the future? Where even *am* I?"
-	}else if(state == 9){
-		ret = "Huh, apparently there are other people playing SBURB? I sure don't recognize those trolls. Jegus, I hope this doesn't mean a THIRD session is gonna crash into the Medium :/"
-	}else if(state == 10 || state == 11 || state == 13 || state == 14 || state == 15 || state == 53 ){
-		ret = "Cat!!!"
-	}else if(state == 16){
-		ret = "...I am ONTO you Squiddles. You can't fool me.  Man. I wish the Observers would stop trying to convince me that they just wanna be friends with all those players."
-	}else if(state == 17 || state == 18 || state == 19 || state == 20 || state == 21){
-		ret = "Oh god....they should have sent a poet. The words won't come. So beautiful."
-	}else if(state == 22 || state == 23){
-		ret = "It keeps hapening."
-	}else if(state == 27){
-		ret = "Damn, that land looks dope as shit."
-	}else if(state == 29){
-		ret = "Hrmmm...that reminds me, I wonder if prominentSpacer figured out the frog breeding yet..."
-	} else if(state == 31 || state == 32 || state == 35 || state == 36 || state == 55){
-		ret = "!!! Oh no! What's going on with dear sweet precious sweet sweet AuthorBot!??? This better not fucking be prophetic, like Prospit's shitty clouds."
-	} else if(state == 39){
-		ret = "Hopy shit, that is a LOT of SBURB players. Is that the afterlife???"
-	} else if(state == 50){
-		ret = "!!! Holy fuck, that better not happen to Prospit. Seriously. Where is LORAS even GETTING these images?"
-	} else if(state == 51){
-		ret = "!!!  I am not believing you, mysterious blood colored text, that dude is DEAD. Why am I even SEEING this?"
-	} else if(state == 52){
-		ret = "!!! So COOL!"
-	} else if(state == 60 || state == 62){
-		ret = "Jegus fuck, ABJ, stop being a creeper. Where did I program you wrong?"
-	} else if(state == 61){
-		ret = "*insert giggle snort here*"
-	} else if(state == 63){
-		ret = "Best troll!"
-	} else if(state == 64){
-		ret = "Don't worry about it, Observer, you have the reins here, it'll be fiiine.  What's ONE more secret?"
-	} else if(state == 67){
-		ret = "lol, i remember when that Observer figured out how to 'hack' SBURB.  So amazing."
-	} else if(state == 65){
-		ret = "Oh my FUCKING god, now LORAS is just trolling me."
-	} else if(state == 67){
-		ret = "True beauty."
-	} else if(state == 70){
-		ret = "Wait wait wait, what the fuck? How would you even SEE that???"
-	} else if(state == 71){
-		ret = "Holy fuck...meet the guest star of my next nightmare."
-	} else if(state == 72){
-		ret = "Wait. Are you telling me there are SECRETS in this shitty puzzle???"
-	} else if(state == 73){
-		ret = "Whoa...that makes me dizzy."
-	} else if(state == 76){
-		ret = "Eggs!!!"
-	} else if(state == 87){
-		ret = "!!! I still haven't done the eggs!"
-	} else if(state == 88){
-		ret = "Lol, that sure does look mysterious!!!"
-	} else if(state == 90){
-		ret = "Man...why is SBURB so obsessed with make outs?"
-	} else if(state == 97){
-		ret = "..."
-	} else if(state == 98){
-		ret = "Oh my god...how have I lived so long without those dope as fuck penguins?"
-	} else if(state == 99){
-		ret = "Best bulbasaur!"
-	} else if(state == 101){
-		ret = "Holy shit, how old IS that picture???"
-	} else if(state == 110){
-		ret = "Holy shit, classic 'You're Welcome' x2 combo. I added the cod piece as an easter egg AND I am showing you the way to turn on the Mindy Thing without waiting for 5 whole minutes. Truly, my magnanimity is breath taking."
-	} else if(state == 116){
-     		ret = "Holy fuck, I remember this. That denizen just fucking absconded mid boss fight. Kicked out the player and took their entire lair with them and rocked off into space.  So fucking weird."
-    } else if(state == 122){
-          		ret = "What the actual FUCK is that!???"
-    } else if(state == 126 || state == 126 || state == 120 || state == 129){
-          		ret = "Ummm...shit. Is LORAS...asking me to KILL it??? Too spoopy for me."
-    } else if(state == 128){
-        ret = "Whoa, I've heard of this! Those are the First Players in Multiverse D!!!"
-    } else if(state == 131){
-                  ret = "Sounds legit."
-    } else if(state == 136){
-        ret = "Huh, so that's what happened to all of AB's chassis. I am gonna hafta have a word with ABJ."
-    } else if(state == 142 || state == 143){
-             ret = "!!! It's <a href = 'https://charahub.com/character/1140409/Kilius-Koplan'>Kilius!</a> The best troll!!!"
-     }else{
-		ret = "???"
+        ret = "star.eyes"
+    }else if(state == 6){
+        ret = "celeriApocryph"
+ 	}else if(state == 5){
+		ret = "cumulusCanine"
+    }else if(state == 4){
+        ret = "malaiseFederation"
+	}else if(state == 3){
+        ret = "dystopicFuturism"
+    }else if(state == 2){
+        ret = "star.eyes"
+ 	}else if(state == 1){
+		ret = "Shogun"
+    }
+    else{
+    ret = "Get Well Soon, KR"
 	}
 	console.log("JR: " + ret)
 	$("#quip").html(ret);
@@ -651,195 +612,195 @@ function drawKnobPart(knobNum,glowing){
 }
 
 function drawK1(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg1");
 	imgDiv = $("#egg1");
 	var num = "W0"
 	if(glow) num = "A0"
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num + "_p0.png";
-	if(ti1 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti1 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti1 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti1 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num + "_p0.png";
+	if(ti1 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti1 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti1 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK2(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg2");
 	var num = "W1"
 	if(glow) num = "A1"
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti1 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti1 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti1 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti1 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti1 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti1 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti1 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK3(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg3");
 	var num = "W2"
 	if(glow) num = "A2"
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti1 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti1 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti1 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti1 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti1 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti1 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti1 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK4(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg4");
 	var num = "W3"
 	if(glow) num = "A3"
-	if(ti1 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti1 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti1 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti1 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti1 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti1 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti1 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti1 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK5(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg5");
 	var num = "X0"
 	if(glow) num = "B0"
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p1.png";
-	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti2 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK6(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg6");
 	var num = "X1"
 	if(glow) num = "B1"
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti2 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK7(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg7");
 	var num = "X2"
 	if(glow) num = "B2"
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti2 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK8(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg8");
 	var num = "X3"
 	if(glow) num = "B3"
-	if(ti2 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti2 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti2 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti2 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p3.png";
+	if(ti2 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti2 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti2 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti2 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK9(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg9");
 	var num = "Y0"
 	if(glow) num = "C0"
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti3 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK10(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg10");
 	var num = "Y1"
 	if(glow) num = "C1"
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p1.png";
-	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti3 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK11(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg11");
 	var num = "Y2"
 	if(glow) num = "C2"
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p1.png";
-	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti3 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK12(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg12");
 	var num = "Y3"
 	if(glow) num = "C3"
-	if(ti3 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti3 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti3 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti3 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti3 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti3 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti3 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti3 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK13(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg13");
 	var num = "Z0"
 	if(glow) num = "D0"
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti4 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK14(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg14");
 	var num = "Z1"
 	if(glow) num = "D1"
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p1.png";
-	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num+ "_p3.png";
+	if(ti4 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num+ "_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 function drawK15(glow){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg15");
 	var num = "Z2"
 	if(glow) num = "D2"
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti4 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
 //always glows.
 function drawK16(){
-	var replacementImage = "images/LORAS/ControlPanel/knob_A0_p2.png";
+	var replacementImage = "images/LORAS2/ControlPanel/knob_A0_p2.png";
 	var imgDiv = $("#egg16");
 	var num = "D3" //always glowing, because it's dillenteMathematician's symbol.
-	if(ti4 == 0) replacementImage = "images/LORAS/ControlPanel/knob_" + num +"_p0.png";
-	if(ti4 == 1) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p1.png";
-	if(ti4 == 2) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p2.png";
-	if(ti4 == 3) replacementImage =  "images/LORAS/ControlPanel/knob_" + num +"_p3.png";
+	if(ti4 == 0) replacementImage = "images/LORAS2/ControlPanel/knob_" + num +"_p0.png";
+	if(ti4 == 1) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p1.png";
+	if(ti4 == 2) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p2.png";
+	if(ti4 == 3) replacementImage =  "images/LORAS2/ControlPanel/knob_" + num +"_p3.png";
 	imgDiv.attr("src", replacementImage);
 }
 
@@ -848,7 +809,7 @@ function drawK16(){
 function loadImages(lastImage){
 	var html = "";
 	for(var i = 0; i<= lastImage; i++){
-		html += "<img id = 'distaction"+i+"'style = 'display:none;' src = 'images/LORAS/" + i + ".png'>"
+		html += "<img id = 'distaction"+i+"'style = 'display:none;' src = 'images/LORAS2/" + i + ".png'>"
 	}
 	$("#loading_image_staging").append(html);
 
