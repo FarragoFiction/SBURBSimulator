@@ -563,7 +563,6 @@ class ItemTraitFactory {
   static CombinedTrait DIEASED;
   static CombinedTrait PORCUPINE;
   static CombinedTrait FANGED;
-  static CombinedTrait SULPHURIC;
   static CombinedTrait BASALT;
   static CombinedTrait CANNED;
   static CombinedTrait OBSIDIAN;
@@ -788,7 +787,7 @@ class ItemTraitFactory {
     PLUTONIUM = new CombinedTrait("Plutonium",<String>["Plutonium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,NUCLEAR]);
     LITHIUM = new CombinedTrait("Lithium",<String>["Lithium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,ZAP]);
     MOLTEN = new CombinedTrait("Molten",<String>["Molten"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,ONFIRE]);
-    MAGMA = new CombinedTrait("Magma",<String>["Magma","Lava"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,ONFIRE]);
+    MAGMA = new CombinedTrait("Magma",<String>["Magma","Lava","Sulphuric"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,ONFIRE]);
     RUSTY = new CombinedTrait("Rusty",<String>["Rusty"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,SHITTY]);
     FONZIE = new CombinedTrait("Fonzie",<String>["Fonzie"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDGED,COOLK1D, CLASSY]);
     ROMCOM = new CombinedTrait("Romcom",<String>["Romcom"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,FUNNY]);
@@ -918,7 +917,6 @@ class ItemTraitFactory {
     DIEASED = new CombinedTrait("Diseased",<String>["Diseased"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,FLESH]);
     PORCUPINE = new CombinedTrait("Porcupine",<String>["Porcupine"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[POINTY,FUR]);
     FANGED = new CombinedTrait("Fanged",<String>["Fanged"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE,POINTY]);
-    SULPHURIC = new CombinedTrait("Sulphuric",<String>["Sulphuric"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,ONFIRE]);
     BASALT = new CombinedTrait("Basalt",<String>["Basalt"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,OBSCURING]);
     OBSIDIAN = new CombinedTrait("Obsidian",<String>["Obsidian"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLASS,OBSCURING]);
     FENESTRATED = new CombinedTrait("Fenestrated",<String>["Fenestrated"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLASS,WOOD]);
