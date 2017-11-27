@@ -33,6 +33,7 @@
     background-color: red;
     color: white;
     position: absolute;
+    font-size: 30px;
     top: 0px;
     right: 0px;
     z-index: 999;

@@ -202,6 +202,7 @@ class DeadMeta extends Scene {
 
 
     List<Conversation> JRIntro() {
+        session.logger.info("AB: Dead session with my glorious creator /s");
         // c= new PlusMinusConversationalPair(["Hey!"], ["Hey!", "Oh cool, I was just thinking of you!"],["What's up?", "Hey"]);
         List<PlusMinusConversationalPair> convo1 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["You're probably gonna fail, you know."], ["..."],["Whoa, who the fuck are you?", "Fuck off."]))
