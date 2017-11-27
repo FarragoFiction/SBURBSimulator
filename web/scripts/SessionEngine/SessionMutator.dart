@@ -1474,13 +1474,18 @@ class MetaPlayerHandler {
 
         if (p == authorBot) {
             p.session.rand = new Random();
-            p.session.sessionHealth = 13;
+            p.session.sessionHealth = 1;
             return " You know, you're right.  What did dear, sweet, precious, sweet sweet AuthorBot ever do for you. Besides make things nice and stable and testable. You ungrateful asshole. Good luck sharing this session now. ";
+        }
+
+        if (p == tableGuardian) {
+            p.session.sessionHealth = 130;//not as bad as AB but still.
+            return " Guess you think having solid testing isn't all that important? You're probably right. Who CARES if the session is bugged?  ";
         }
 
         if (p == recusiveSlacker) {
             p.session.mutator.rapsAndLuckDisabled = true;
-            p.session.sessionHealth = 130; //not as bad as AB but still.
+            p.session.sessionHealth = p.session.sessionHealth/2; //early debugging help
             return " You know, recursiveSlacker championed luck being a thing.  I guess you agree with Terezi that LUCK DO3SN'T R3411Y MATT3R.  But to lose rap battles at the same time. For shame.  ";
         }
 
