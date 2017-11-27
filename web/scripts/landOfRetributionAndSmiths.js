@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 28; //this number MUST be even.
+var maxState = 36; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -29,6 +29,7 @@ window.onload = function() {
 	makeScreens(256);
 	loadAllImages();
 	showMindButton(); //unlocked to beging with.
+	doTheMindyThing();
 
 }
 
@@ -556,6 +557,27 @@ function quip(state){
         ret = "star.eyes"
  	}else if(state == 1){
 		ret = "Shogun"
+ 	}else if(state == 29){
+		ret = "worldCourier"
+ 	}else if(state == 30){
+		ret = "star.eyes"
+ 	}else if(state == 31){
+		ret = "Shogun"
+
+ 	}else if(state == 32){
+		ret = "paradoxDragonPaci"
+
+ 	}else if(state == 33){
+		ret = "aspiringWatcher"
+
+ 	}else if(state == 34){
+		ret = "dystopicFuturism"
+
+ 	}else if(state == 35){
+		ret = "drawnRoughly"
+
+ 	}else if(state == 36){
+		ret = "Briznotron"
     }
     else{
     ret = "Get Well Soon, KR"
