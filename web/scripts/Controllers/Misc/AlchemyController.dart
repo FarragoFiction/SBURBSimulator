@@ -12,7 +12,7 @@ String XOR = "XOR";
 
 Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 Shop alchemyShop;
-
+ButtonElement alchemizeButton; //so i can change price.
 int ticksRemaining = 3; //you better save AB dunkass.
 Element storeDiv;
 Element buyDiv;
@@ -206,24 +206,31 @@ void cheatShowPossibilities(Item item1, Item item2) {
    }
 }
 
-void makeAlchemyButton() {
-    ButtonElement button = querySelector("#alchemyButton");
+AlchemyResult getResult(String operation, Item item1, Item item2) {
+    AlchemyResult alchemyResult;
+    if(operation == AND) {
+        // print("going to combine ${item1.fullName} with ${item1.traits.length} traits and ${item2.fullName} with ${item2.traits.length} traits");
+        alchemyResult = new AlchemyResultAND(<Item> [item1, item2]);
+    }else if(operation == OR) {
+        alchemyResult = new AlchemyResultOR(<Item> [item1, item2]);
+    }else if(operation == XOR) {
+        alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
+    }
+    return alchemyResult;
+}
 
-    button.onClick.listen((e) {
+void makeAlchemyButton() {
+    alchemizeButton = querySelector("#alchemyButton");
+
+    alchemizeButton.onClick.listen((e) {
+        Achievement.addGrist(-1*getAlchemyCost());
         Achievement.announcmentDiv.setInnerHtml("");
         Item item1 =findItemNamed(firstItemSelect.selectedOptions[0].value);
         Item item2 =findItemNamed(secondItemSelect.selectedOptions[0].value);
         String operation = operatorSelect.selectedOptions[0].value;
         AlchemyResult alchemyResult;
 
-        if(operation == AND) {
-           // print("going to combine ${item1.fullName} with ${item1.traits.length} traits and ${item2.fullName} with ${item2.traits.length} traits");
-            alchemyResult = new AlchemyResultAND(<Item> [item1, item2]);
-        }else if(operation == OR) {
-            alchemyResult = new AlchemyResultOR(<Item> [item1, item2]);
-        }else if(operation == XOR) {
-            alchemyResult = new AlchemyResultXOR(<Item> [item1, item2]);
-        }
+        alchemyResult = getResult(operation, item1, item2);
         alchemyResult.apply(player);
         if(alchemyShop.shopKeep == ab && alchemyResult.result.traits.contains(ItemTraitFactory.CORRUPT) && !alchemyResult.result.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setQuip("I swear to fuck you don't know how close you came to fucking shit up, asshole. ");
@@ -315,6 +322,14 @@ void quip(Item item) {
     alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.randomQuips));
 }
 
+int getAlchemyCost() {
+    Item item1 = findItemNamed(firstItemSelect.selectedOptions[0].value);
+    Item item2 = findItemNamed(secondItemSelect.selectedOptions[0].value);
+    String operator = operatorSelect.selectedOptions[0].value;
+    AlchemyResult alchemyResult = getResult(operator, item1, item2);
+    return alchemyResult.result.rank.abs().round()+1;
+}
+
 void makeDropDowns() {
     if(firstItemSelect != null) firstItemSelect.remove();
     firstItemSelect = itemDropDown(item1SelSpot, player.sylladex.inventory,  "First Item");
@@ -326,7 +341,7 @@ void makeDropDowns() {
             Random rand = new Random();
             alchemyShop.setQuip("It seems you have not considered the consequences of alchemizing with that corrupt as fuck ${item.baseName}, asshole.<br><br>Don't worry, as your superior RoboOverlord, I will guide you. <br><Br>There will be all the consequences. All of them. Don't fucking do it. I don't care how fucking ${rand.pickFrom(item.traits).descriptions.first} it is.");
         }
-
+        alchemizeButton.setInnerHtml("Alchemize For: ${getAlchemyCost()}");
         item1TraitsDiv.remove();
         item1TraitsDiv = (renderItemStats(item));
         item1Div.append(item1TraitsDiv);
@@ -341,6 +356,7 @@ void makeDropDowns() {
     {
         Random rand = new Random();
         String operator = operatorSelect.selectedOptions[0].value;
+        alchemizeButton.setInnerHtml("Alchemize For: ${getAlchemyCost()}");
         if(operator == AND) {
             alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.andQuips));
         }else if(operator == OR) {
@@ -354,6 +370,7 @@ void makeDropDowns() {
     secondItemSelect = itemDropDown(item2SelSpot, player.sylladex.inventory,  "Second Item");
 
     secondItemSelect.onChange.listen((e) {
+        alchemizeButton.setInnerHtml("Alchemize For: ${getAlchemyCost()}");
         Item item = findItemNamed(secondItemSelect.selectedOptions[0].value);
         quip(item);
         Item item2 = findItemNamed(firstItemSelect.selectedOptions[0].value);
@@ -416,7 +433,7 @@ Element renderItemStats(Item item) {
 
     ret.append(header);
     Element rank = new DivElement();
-    rank.setInnerHtml("Rank: ${item.rank}");
+    rank.setInnerHtml("Rank: ${item.rank.round()}");
     ret.append(rank);
 
     Element timesUpgraded = new DivElement();
@@ -478,7 +495,7 @@ class Achievement {
 
             div.classes.remove(NOTYETCLASS);
             div.classes.add(WONCLASS);
-            int amount = ((trait.rank.abs() + 1) * 100).round(); //no you can't lose money for getting an achievement.
+            int amount = ((trait.rank.abs() + 1) * 13).round(); //no you can't lose money for getting an achievement.
             Achievement._grist += amount;
             return "${trait.name}(+${amount} grist)";
         }
@@ -579,7 +596,7 @@ class ShopItemInStock extends ShopItem {
           });
       }else {
         button.disabled = true;
-        button.setInnerHtml("Lol, You can't Afford this.");
+        button.setInnerHtml("Lol, You can't Afford ${cost}.");
       }
   }
 }
@@ -591,7 +608,7 @@ class ShopItemPlayerOwns extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = (((item.rank.abs()+1) * 5)/ shop.shopKeep.priceModifier ).round();
+      int cost = (((item.rank.abs()+1) * 2)/ shop.shopKeep.priceModifier ).round();
 
       button.setInnerHtml("Sell For ${cost} Grist?");
       button.classes.add("transactButton");
@@ -778,7 +795,7 @@ class ABShopKeep extends ShopKeep {
     @override
     List<String> orQuips = <String>["Oh look at you, Mr. Fancy, going for the 'OR' option.","It seems you want to be more complicated. DO you want this?","I can hella get behind the frugal option."];
     @override
-    List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.982734982734% chance you are totally lost here."];
+    List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.98% chance you are totally lost here."];
     @override
     List<String> randomQuips = <String>["...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
 

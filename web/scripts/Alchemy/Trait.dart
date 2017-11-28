@@ -989,6 +989,16 @@ class ItemTraitFactory {
     new CombinedTrait("MagicCarpet2",<String>["MagicCarpet"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,MAGICAL]);
     new CombinedTrait("Tweed",<String>["Tweed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,CLASSY]);
     new CombinedTrait("Jean",<String>["Jean"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,COOLK1D]);
+    new CombinedTrait("Tesla",<String>["Tesla"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,ZAP]);
+    new CombinedTrait("Ashwood",<String>["Ashwood"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,WOOD]);
+    new CombinedTrait("Animated",<String>["Animated"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,SENTIENT]);
+    new CombinedTrait("Peashooter",<String>["Peashooter"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,SHOOTY]);
+    new CombinedTrait("Lacquer",<String>["Lacquer"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,WOOD]);
+    new CombinedTrait("Classpecty",<String>["Classpecty"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLASSRELATED,ASPECTAL]);
+    new CombinedTrait("Smartass",<String>["Smartass"], 0.0,ItemTrait.OPINION, <ItemTrait>[SMART,UNCOMFORTABLE]);
+
+
+
 
 
 

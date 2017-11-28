@@ -116,6 +116,7 @@ div:focus {
     position: absolute;
     font-family: 'strife', sans-serif;
     color: red;
+    font-size: 10px;
     left: 75px;
     top: 200px;
     width: 325px;
