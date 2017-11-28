@@ -985,7 +985,7 @@ class ItemTraitFactory {
     new CombinedTrait("Silk",<String>["Silk"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,VALUABLE]);
     new CombinedTrait("RedFlag",<String>["RedFlag"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ENRAGING]);
     new CombinedTrait("MagicCarpet1",<String>["MagicCarpet"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,SENTIENT]); //aladin
-    new CombinedTrait("Tablecloth",<String>["Tablecloth"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ROMANTIC]); //aladin
+    new CombinedTrait("Satin",<String>["Satin","Tablecloth"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ROMANTIC]);
     new CombinedTrait("MagicCarpet2",<String>["MagicCarpet"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,MAGICAL]);
     new CombinedTrait("Tweed",<String>["Tweed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,CLASSY]);
     new CombinedTrait("Jean",<String>["Jean"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,COOLK1D]);
