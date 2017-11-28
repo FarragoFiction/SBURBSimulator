@@ -931,6 +931,68 @@ class ItemTraitFactory {
     NIGHTCORE = new CombinedTrait("Nightcore",<String>["Nightcore"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,MUSICAL]);
     CRAZYBUSS = new CombinedTrait("Crazy Bus",<String>["Crazy Bus"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,ZAP,MUSICAL]);
     BURDOCK = new CombinedTrait("Burdock",<String>["Burdock"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,FUR]);
+    //fuck the world, no more named combined traits.
+    new CombinedTrait("Necrotic",<String>["Necrotic"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE,GHOSTLY]);
+    new CombinedTrait("Stem",<String>["Stem"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BONE,PLANT]);
+    new CombinedTrait("DryBone",<String>["DryBone"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE,DOOMED]);
+    new CombinedTrait("XyloBone",<String>["XyloBone"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BONE,MUSICAL]);
+    new CombinedTrait("Ribcage",<String>["Ribcage"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[BONE,RESTRAINING]);
+    new CombinedTrait("BoneZone",<String>["BoneZone"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BONE,COOLK1D]);
+    new CombinedTrait("Creaky",<String>["Creaky"], 0.0,ItemTrait.OPINION, <ItemTrait>[WOOD,LOUD]);
+    new CombinedTrait("Maple",<String>["Maple"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,EDIBLE]);
+    new CombinedTrait("Mahagony",<String>["Mahagony"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,PRETTY]);
+    new CombinedTrait("Fenced",<String>["Fenced"], 0.0,ItemTrait.CONDITION, <ItemTrait>[WOOD,RESTRAINING]);
+    new CombinedTrait("Bocote",<String>["Bocote"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,VALUABLE]);
+    new CombinedTrait("Incense",<String>["Incense"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,CALMING]);
+    new CombinedTrait("Ebony",<String>["Ebony"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,OBSCURING]);
+    new CombinedTrait("Birch",<String>["Birch"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,GLOWING]);
+    new CombinedTrait("Knock-on-Wood",<String>["Knock-on-Wood"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,LUCKY]);
+    new CombinedTrait("Firewood",<String>["Firewood"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,ONFIRE]);
+    new CombinedTrait("BlackForest",<String>["BlackForest"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,SCARY]);
+    new CombinedTrait("Tree",<String>["Tree"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,PLANT]);
+    new CombinedTrait("Ebonwood",<String>["Ebonwood"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,CORRUPT]);
+    new CombinedTrait("Bark",<String>["Bark"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,FLESH]);
+    new CombinedTrait("Caveman's",<String>["Caveman's","Cavewoman's"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,STONE]);
+    new CombinedTrait("3D Printed",<String>["3D Printed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,SMART]);
+    new CombinedTrait("Thesis",<String>["Thesis"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,SMART]);
+    new CombinedTrait("Graphene",<String>["Graphene"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PAPER,ZAP]);
+    new CombinedTrait("Prophecy",<String>["Prophecy"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,DOOMED]);
+    new CombinedTrait("Bedsheet",<String>["Bedsheet"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,GHOSTLY]); //lol at tg for this
+    new CombinedTrait("Gemstone",<String>["Gemstone", "Ruby"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,ROMANTIC]);
+    new CombinedTrait("Pet Rock",<String>["Pet Rock"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STONE,SENTIENT]);
+    new CombinedTrait("Sand",<String>["Sand"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,COMFORTABLE]);
+    new CombinedTrait("Geode",<String>["Geode"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,PRETTY]);
+    new CombinedTrait("Silicon",<String>["Silicon"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,ZAP]);
+    new CombinedTrait("Cryolite",<String>["Cryolite","Iceburg"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,COLD]);
+    new CombinedTrait("Meteor",<String>["Meteor"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,EXPLODEY]);
+    new CombinedTrait("Carbon",<String>["Carbon"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,PLANT]);
+    new CombinedTrait("Mossy",<String>["Mossy"], 0.0,ItemTrait.CONDITION, <ItemTrait>[STONE,FUR]);
+    new CombinedTrait("Lensed",<String>["Lensed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SMART,GLASS]);
+    new CombinedTrait("Hide",<String>["Hide"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLOTH,FLESH]);
+    new CombinedTrait("FeatherBoa",<String>["FeatherBoa"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,FEATHER]);
+    new CombinedTrait("Tacky",<String>["Tacky"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLOTH,UGLY]);
+    new CombinedTrait("Whip",<String>["Whip"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,EDGED]);
+    new CombinedTrait("Costumed",<String>["Costumed"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,SCARY]);
+    new CombinedTrait("Punk",<String>["Punk"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLOTH,POINTY]);
+    new CombinedTrait("Weighted",<String>["Weighted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLOTH,HEAVY]); //goku knows
+    new CombinedTrait("Favorite",<String>["Favorite"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLOTH,LUCKY]); //favorite shit etc
+    new CombinedTrait("Novelty",<String>["Novelty"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLOTH,GLOWING]);
+    new CombinedTrait("Security",<String>["Security"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,CALMING]);//like a security blanket
+    new CombinedTrait("IcePack",<String>["IcePack"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,COLD]);
+    new CombinedTrait("MotionCapture",<String>["MotionCapture"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,ZAP]);
+    new CombinedTrait("Silica",<String>["Silica"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,POISON]); //do not eat
+    new CombinedTrait("Harp",<String>["Harp"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,MUSICAL]); //so many strings, it's practically a blanket
+    new CombinedTrait("Silk",<String>["Silk"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,VALUABLE]);
+    new CombinedTrait("RedFlag",<String>["RedFlag"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ENRAGING]);
+    new CombinedTrait("MagicCarpet1",<String>["MagicCarpet"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,SENTIENT]); //aladin
+    new CombinedTrait("Tablecloth",<String>["Tablecloth"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,ROMANTIC]); //aladin
+    new CombinedTrait("MagicCarpet2",<String>["MagicCarpet"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,MAGICAL]);
+    new CombinedTrait("Tweed",<String>["Tweed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,CLASSY]);
+    new CombinedTrait("Jean",<String>["Jean"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,COOLK1D]);
+
+
+
+
   }
 
   static void initObjects() {

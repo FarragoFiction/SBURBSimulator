@@ -1,6 +1,8 @@
 import 'dart:html';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
+import 'dart:async';
+
 
 String AND = "AND";
 String OR = "OR";
@@ -53,6 +55,8 @@ void main() {
 
     init();
     Element quipDiv = querySelector("#quip");
+
+
     buyDiv = querySelector("#buyshit");
     storeDiv = querySelector("#storeDiv");
 
@@ -83,7 +87,11 @@ void main() {
 
 
     changeTabs(alchemyDiv);
+    ButtonElement fuckYou = new ButtonElement();
+    fuckYou.setInnerHtml("Fuck you.");
+    //querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
 
+    fuckYou.onClick.listen((e) => fuckYouABCanHandleThisOnHerOwn());
     querySelector("#tabs").append(storeButton);
     querySelector("#tabs").append(alchemyButton);
 
@@ -93,6 +101,20 @@ void main() {
     Achievement.syncGristDiv();
     achievements = Achievement.makeAchievements(achievements, achivementDiv);
 }
+
+//asshole meat sacks don't know what they are doing. And are also hella slow.
+ Future<Null> fuckYouABCanHandleThisOnHerOwn() async {
+    //player.sylladex.addAll(new List<Item>.from(Item.allUniqueItems)); don't do it. AB TAKES SO FUCKING LONG.
+    Gristmas g = new Gristmas(player.session);
+    g.player = player;
+    List<AlchemyResult> results = g.doAlchemy();
+    ABWins abWins = new ABWins(new List<AlchemyResult>.from(results));
+    abWins.win();
+}
+
+
+
+
 
 void checkShopKeepTrigger(Item item) {
     //IMPORTANT ABJ goes first since she's temporary
@@ -452,6 +474,8 @@ class Achievement {
 
     String toggle() {
         if(div.classes.contains(NOTYETCLASS)) {
+            print("Achivement Get: ${trait.name}");
+
             div.classes.remove(NOTYETCLASS);
             div.classes.add(WONCLASS);
             int amount = ((trait.rank.abs() + 1) * 100).round(); //no you can't lose money for getting an achievement.
@@ -875,3 +899,31 @@ class ShogunShopKeep extends ShopKeep {
 
 }
 
+
+class ABWins
+{
+    List<AlchemyResult> results;
+    int index = 0;
+
+
+    ABWins(this.results);
+
+    Future<Null> win() async{
+        print("AB wins!");
+        new Timer(new Duration(milliseconds: 50), () => next());
+    }
+
+    bool next() {
+        print("AB says next!");
+
+        if(index >= results.length) {
+            return false;
+        }
+        Achievement.announcmentDiv.appendHtml("${index}, ");
+        processAchievements(results[index].result);
+        index ++;
+        new Timer(new Duration(milliseconds: 50), () => next());
+    }
+
+
+}

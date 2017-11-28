@@ -17,6 +17,7 @@ class Item {
     }
 
     String baseName;
+    bool isCopy;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
 
@@ -81,7 +82,8 @@ class Item {
     }
 
     Item copy() {
-        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits), abDesc: this.abDesc, shogunDesc:this.shogunDesc);
+        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits),isCopy:true, abDesc: this.abDesc, shogunDesc:this.shogunDesc);
+     //   print("I copied the item. Does it know it's a copy? ${ret.isCopy}");
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;
@@ -97,7 +99,7 @@ class Item {
     }
 
     //most items won't have an abj desc, but some will
-    Item(String this.baseName,List<ItemTrait> traitsList, {this.abDesc: null, this.shogunDesc: null}) {
+    Item(String this.baseName,List<ItemTrait> traitsList, {this.isCopy: false,this.abDesc: null, this.shogunDesc: null}) {
         traits = new Set.from(traitsList);
         if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
         Set<CombinedTrait> ct = new Set.from(combinedTraits);
@@ -107,7 +109,10 @@ class Item {
             traits.remove(it);
         }
 
-        Item.allUniqueItems.add(this);
+        if(!isCopy) {
+            //print("this is a unique item, not a copy. $isCopy");
+            Item.allUniqueItems.add(this);
+        }
     }
 
     String abDescription(Random rand) {
@@ -162,12 +167,18 @@ class Sylladex extends Object with IterableMixin<Item> {
 
     void add(Item item) {
         Item i = item;
-        if(Item.allUniqueItems.contains(item)) i = item.copy();
+        if(Item.allUniqueItems.contains(item)) {
+            //print("going to copy an item rather than add it directly");
+            i = item.copy();
+            //print("Item copied");
+        }
         inventory.add(i);
+        //print("inventory updated");
     }
 
     void addAll(List<Item> items) {
         for(Item i in items) {
+            //print("adding ${i.fullName}");
             add(i);
         }
     }
