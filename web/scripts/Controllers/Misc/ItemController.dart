@@ -17,8 +17,11 @@ void main() {
 void init() {
     player = randomPlayer(new Session(int.parse(todayToSession())));
     player.sylladex = new Sylladex(new List <Item>.from(Item.allUniqueItems));
+    renderTraitsTable(querySelector("#traitTable"));
+
     Element div = querySelector("#story");
-    renderTraits(div);
+    renderTraits( div);
+
     int i = 0;
     for(Item item in player.sylladex) {
         div.append(renderItemStats(item, i));
@@ -26,7 +29,70 @@ void init() {
     }
 }
 
-Element renderTraits(Element div) {
+void renderTraitsTable(Element div) {
+    TableElement table  = new TableElement();
+    table.style.border = "1px solid black";
+    table.style.backgroundColor = "white";
+
+    Element stats = new DivElement();
+    div.append(stats);
+    int numberCells = 0;
+    int numberFilledCells = 0;
+
+    TableRowElement tr1 = new TableRowElement();
+    table.append(tr1);
+    List<ItemTrait> traits = new List.from(ItemTraitFactory.functionalTraits);
+    traits.addAll(ItemTraitFactory.appearanceTraits);
+    newCell(tr1, "");
+    //header
+    for(ItemTrait it in traits) {
+        newCell(tr1, it.descriptions.first);
+    }
+
+
+    //fire + ice == ice + fire, don't repeat.
+    List<ItemTraitPair> seenTraits = new List<ItemTraitPair>();
+    //contents
+    for(ItemTrait firstTrait in traits) {
+        TableRowElement tr = new TableRowElement();
+        table.append(tr);
+        newCell(tr, firstTrait.descriptions.first);
+        for(ItemTrait secondTrait in traits) {
+            if(firstTrait == secondTrait) {
+                newCell(tr, "x", ReferenceColours.GREYSKIN);
+            }else {
+                Set<ItemTrait> combos = CombinedTrait.lookForCombinedTraits(new Set<ItemTrait>.from(<ItemTrait>[firstTrait, secondTrait]));
+                ItemTraitPair pair = new ItemTraitPair(firstTrait, secondTrait);
+                if(seenTraits.contains(pair)) {
+                    newCell(tr, "",ReferenceColours.BLACK); //it's a repeat, dunkass.
+                }else{
+                    seenTraits.add(pair);
+                    numberCells ++;
+                    if (combos.first is CombinedTrait) {
+                        CombinedTrait combo = combos.first as CombinedTrait;
+                        newCell(tr, combo.name, ReferenceColours.LIME);
+                        numberFilledCells ++;
+                    } else {
+                        newCell(tr, "???");
+                    }
+                }
+            }
+        }
+    }
+    stats.setInnerHtml("${numberCells} possible 2 trait combos. ${numberFilledCells} already done. ${((numberFilledCells/numberCells)*100).round()}% completion");
+    div.append(table);
+}
+
+void newCell(TableRowElement tr, String contents, [Colour bgColor]) {
+    if(bgColor == null) bgColor = ReferenceColours.WHITE;
+    TableCellElement td = new TableCellElement();
+    td.setInnerHtml(contents);
+    td.style.border = "1px solid black";
+    td.style.backgroundColor = bgColor.toStyleString();
+    tr.append(td);
+}
+
+void renderTraits(Element div) {
     Element ret = new DivElement();
     String text = "<b>ObjectTraits: (${ItemTraitFactory.objectTraits.length} total) </b>";
     for(ItemTrait t in ItemTraitFactory.objectTraits) {
@@ -83,3 +149,13 @@ Element renderItemStats(Item item, int number) {
     return ret;
 }
 
+
+class ItemTraitPair {
+    ItemTrait first;
+    ItemTrait second;
+
+    ItemTraitPair(this.first, this.second);
+
+    //don't care about ordering.
+    bool operator ==(o) => o is ItemTraitPair && ((o.first == first && o.second == second) ||  o.first == second && o.second == first);
+}

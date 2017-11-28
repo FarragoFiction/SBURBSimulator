@@ -32,7 +32,7 @@ class Justice extends InterestCategory {
             ..add(new Item("Mystery Novel",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK],shogunDesc: "Book where the Criminal was the Janitor"))
             ..add(new Item("Dish Served Cold",<ItemTrait>[ItemTraitFactory.CERAMIC, ItemTraitFactory.EDIBLE, ItemTraitFactory.COLD],shogunDesc: "REVENGE"))
             ..add(new Item("Pony Pals: Detective Pony ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.BOOK, ItemTraitFactory.COOLK1D],shogunDesc: "A Disgusting Book",abDesc:"Truly the most ironic work of all time."))
-            ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING],shogunDesc: "Wrist Imprisoning Device",abDesc:"These ones aren't fucking pointless like those trick ones."));
+            ..add(new Item("Handcuffs",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING],shogunDesc: "Wrist Imprisoning Device",abDesc:"These ones aren't fucking pointless like those trick ones."));
     }
 
 

@@ -34,7 +34,7 @@ class Domestic extends InterestCategory {
             ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT],shogunDesc: "Babushkas Punishment Pole"))
             ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],shogunDesc: "Seductive Head Rest",abDesc:"Pretty good if you need to be calmed down, I hear."))
             ..add(new Item("Yarn Ball",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH],shogunDesc: "Cats Plaything"))
-            ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD],shogunDesc: "Food Hardening Box"))
+            ..add(new Item("Refrigerator",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.HEAVY, ItemTraitFactory.METAL, ItemTraitFactory.COLD],shogunDesc: "Food Hardening Box"))
             ..add(new Item("Photo Album",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.PAPER],shogunDesc: "Memory Book"))
             ..add(new Item("Ice Cubes",<ItemTrait>[ItemTraitFactory.COLD],shogunDesc: "Hard Water"))
             ..add(new Item("Cast Iron Skillet",<ItemTrait>[ItemTraitFactory.METAL,ItemTraitFactory.ONFIRE,ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY,ItemTraitFactory.FRYINGPAN ],shogunDesc: "Fancy Unstoppable Weapon"))

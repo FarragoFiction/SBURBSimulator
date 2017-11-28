@@ -46,7 +46,7 @@ class Maid extends SBURBClass {
         items = new WeightedList<Item>()
         //disney princess, house maid, shield maid.
         ..add(new Item("Feather Duster",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.STICK, ItemTraitFactory.FEATHER],shogunDesc: "Maids Weapon of Choice",abDesc:"Housemaid shit."))
-        ..add(new Item("Valkerie Shield",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD,ItemTraitFactory.ADAMANTIUM],shogunDesc: "Another Weakling Piece of Metal But For Some Kind of Angel Woman I Guess?",abDesc:"Shieldmaid shit"))
+        ..add(new Item("Valkerie Shield",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD,ItemTraitFactory.ADAMANTIUM],shogunDesc: "Another Weakling Piece of Metal But For Some Kind of Angel Woman I Guess?",abDesc:"Shieldmaid shit"))
         ..add(new Item("Maiden's Songbook",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MUSICAL,ItemTraitFactory.BOOK],shogunDesc: "Smash Mouth Lyrics",abDesc:"Longing maiden shit."));
 
     }

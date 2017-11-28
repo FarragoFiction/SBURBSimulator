@@ -29,15 +29,15 @@ class Fantasy extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Fluthulu Poster",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.SCARY, ItemTraitFactory.CORRUPT],shogunDesc: "The Next Target Poster",abDesc:"No. Fuck you. Don't alchemize this."))
             ..add(new Item("Scalemate",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.SCARY],shogunDesc: "Target Practice Plush",abDesc:"Senator Lemonsnout's treachery knows no bounds."))
-            ..add(new Item("Replica Bone Shield",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.BONE, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE],shogunDesc: "Weaklings Fake Gear made of Dynamo Flesh",abDesc:"Something, something, Bonezerker."))
+            ..add(new Item("Replica Bone Shield",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.PLASTIC,ItemTraitFactory.BONE, ItemTraitFactory.SHIELD, ItemTraitFactory.FAKE],shogunDesc: "Weaklings Fake Gear made of Dynamo Flesh",abDesc:"Something, something, Bonezerker."))
             ..add(new Item("Replica Ice Sword",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.ICE, ItemTraitFactory.SWORD, ItemTraitFactory.FAKE],shogunDesc: "Fake Hard Water Long Stabber"))
             ..add(new Item("Zombie Mask",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.UGLY, ItemTraitFactory.FLESH, ItemTraitFactory.SCARY],shogunDesc: "Dead Face"))
             ..add(new Item("Vampire Romance Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC, ItemTraitFactory.SCARY],shogunDesc: "Fireplace Fodder Literature",abDesc:"Or, you know, Rainbow Drinkers, if you're fucking civilized."))
             ..add(new Item("Wizardy Herbert",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT],shogunDesc: "Shitty Wizard Object"))
             ..add(new Item("Complacency of the Learned",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT],shogunDesc: "Tome of Shitty Wizards",abDesc:"I hear it's an elaborate metaphor for something."))
             ..add(new Item("Grimoire for Summoning the Zoologically Dubious ",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY,ItemTraitFactory.CORRUPT],shogunDesc: "Shoguns Hitlist of HorrorTerrors",abDesc:"Not even kidding, throw this into the Furthest Ring and never look back."))
-            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE],shogunDesc: "Petrified Shitty Wizard",abDesc:"Suprisingly magical, given that magic is a fake thing."))
-            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.CRYSTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE],shogunDesc: "Water Spitting Fish Woman Statue"));
+            ..add(new Item("Wizard Statue",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.STONE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE],shogunDesc: "Petrified Shitty Wizard",abDesc:"Suprisingly magical, given that magic is a fake thing."))
+            ..add(new Item("Mermaid Fountain",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.CRYSTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.BLUNT, ItemTraitFactory.FAKE],shogunDesc: "Water Spitting Fish Woman Statue"));
     }
 
     @override

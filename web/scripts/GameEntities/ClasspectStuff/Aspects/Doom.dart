@@ -85,7 +85,7 @@ class Doom extends Aspect {
             ..add(new Item("Skull Timer",<ItemTrait>[ItemTraitFactory.BONE,ItemTraitFactory.CALMING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.DOOMED],shogunDesc: "Skull That Counts Down to Your Dinner Being Ready",abDesc:"Everyone is mortal. Besides robots."))
             ..add(new Item("Poison Flask",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.POISON],shogunDesc: "Glass of Bone Hurting Juice"))
             ..add(new Item("Ice Gorgon Head",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL, ItemTraitFactory.COLD,ItemTraitFactory.DOOMED,ItemTraitFactory.RESTRAINING,ItemTraitFactory.UGLY,ItemTraitFactory.SCARY],shogunDesc: "Oddly Attractive Decapitated Head"))
-            ..add(new Item("Obituary",<ItemTrait>[ItemTraitFactory.SCARY, ItemTraitFactory.DOOMED, ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL],shogunDesc: "Omae Wa Mou Shindeiru in Paper Form",abDesc:"I wonder whose it is? Yours?"));
+            ..add(new Item("Obituary",<ItemTrait>[ ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.SCARY, ItemTraitFactory.DOOMED, ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL],shogunDesc: "Omae Wa Mou Shindeiru in Paper Form",abDesc:"I wonder whose it is? Yours?"));
     }
 
 

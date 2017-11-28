@@ -63,7 +63,7 @@ class Heir extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //mostly just shitty legal puns on inheritance.
-            ..add(new Item("Family Ashes",<ItemTrait>[ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.GHOSTLY],shogunDesc: "Whats Left of Staff",abDesc:"Probably an inheritance or some shit."))
+            ..add(new Item("Family Ashes",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.ONFIRE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.GHOSTLY],shogunDesc: "Whats Left of Staff",abDesc:"Probably an inheritance or some shit."))
             ..add(new Item("Last Will and Testament",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED, ItemTraitFactory.LEGAL],shogunDesc: "Legal Rights to SBURBSim",abDesc:"Probably an inheritance or some shit."))
             ..add(new Item("Grooming Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],shogunDesc: "I Hope This Is About Animals",abDesc:"Probably an inheritance or some shit."))
             ..add(new Item("Powered Attorney",<ItemTrait>[ItemTraitFactory.COLOSSUS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.AI, ItemTraitFactory.LEGAL],shogunDesc: "Phoenix Wright 2.0",abDesc:"Believe me, you don't want to be sued by a RoboLawyer."))
