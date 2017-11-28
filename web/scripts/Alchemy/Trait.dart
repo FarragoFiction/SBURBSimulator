@@ -796,7 +796,7 @@ class ItemTraitFactory {
     STONESKIN = new CombinedTrait("Stoneskin",<String>["Stoneskin","Petrified"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STONE,FLESH]);
     PSIONIC = new CombinedTrait("Psionic",<String>["Psionic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MAGICAL,SMART]);
     DWARVEN = new CombinedTrait("Dwarven",<String>["Dwarven"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MAGICAL,STONE]);
-    ELEMENTAL = new CombinedTrait("Elemental",<String>["Elemental"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,SENTIENT]);
+    ELEMENTAL = new CombinedTrait("Elemental",<String>["Elemental","Animated"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,SENTIENT]);
     GOURMET = new CombinedTrait("Gourmet",<String>["Gourmet"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,CLASSY]);
     STAINEDGLASS = new CombinedTrait("Stained Glass",<String>["Stained Glass"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLASS,PRETTY, VALUABLE]);
     GAUZE = new CombinedTrait("Gauze",<String>["Gauze"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,CLOTH]);
@@ -991,7 +991,6 @@ class ItemTraitFactory {
     new CombinedTrait("Jean",<String>["Jean"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLOTH,COOLK1D]);
     new CombinedTrait("Tesla",<String>["Tesla"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,ZAP]);
     new CombinedTrait("Ashwood",<String>["Ashwood"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,WOOD]);
-    new CombinedTrait("Animated",<String>["Animated"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MAGICAL,SENTIENT]);
     new CombinedTrait("Peashooter",<String>["Peashooter"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,SHOOTY]);
     new CombinedTrait("Lacquer",<String>["Lacquer"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,WOOD]);
     new CombinedTrait("Classpecty",<String>["Classpecty"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLASSRELATED,ASPECTAL]);
