@@ -47,7 +47,7 @@ class Knight extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Shining Armor",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SHIELD],shogunDesc: "Kyoto Overcoat",abDesc:"Knight Shit"))
-            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD],shogunDesc: "Masamune",abDesc:"Knight Shit"))
+            ..add(new Item("Excalibur",<ItemTrait>[ItemTraitFactory.LEGENDARY,ItemTraitFactory.PLATINUM, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.SWORD],shogunDesc: "Masamune",abDesc:"Knight Shit"))
             ..add(new Item("Noble Steed",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.FLESH, ItemTraitFactory.SENTIENT],shogunDesc: "Horse Prime, Envoy of the Ultimate End",abDesc:"Knight Shit"))
             ..add(new Item("Hero's Shield",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.SHIELD, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PLATINUM],shogunDesc: "A Weaklings Way Out, Shame Upon You",abDesc:"Knight Shit"));
     }

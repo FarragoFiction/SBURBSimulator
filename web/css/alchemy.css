@@ -109,15 +109,15 @@ div:focus {
     font-family: 'strife', sans-serif;
     left: 0px;
     background: red;
+    color: black;
 }
 
-#clearButton{
+button{
     margin: 10px;
     padding: 10px;
     background-color: #9630bf;
+    color: #cc87e8;
     font-family: 'strife', sans-serif;
-
-
 }
 
 
@@ -140,6 +140,25 @@ div:focus {
     top: 0px;
 }
 
+td{
+ background-color: #fcf9bd;
+ font-family: 'strife', sans-serif;
+
+}
+
+select{
+ background-color: #fffee9;
+     color: #9630bf;
+
+
+}
+
+option{
+ background-color: #fffee9;
+     color: #9630bf;
+
+
+}
 
 .yourItems{
   color: #9630bf;
@@ -184,6 +203,8 @@ td{
     padding: 10px;
     width: 30%;
     text-align: center;
+     color: #9630bf;
+
 }
 .oneTrait{
     padding-left: 10px;
