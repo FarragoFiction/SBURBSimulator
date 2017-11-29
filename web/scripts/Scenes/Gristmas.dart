@@ -12,14 +12,18 @@ class Gristmas extends Scene {
   String gristmasContent() {
       String ret = "<br><br>GRISTMAS: ";
       List<AlchemyResult> possibilities = doAlchemy();
-      //TODO maybe only sort if you are good enough at alchemy???
-      possibilities.sort(); //do most promising alchemy first so that you don't use up the items needed for it
-      for(AlchemyResult result in possibilities) {
-          String tmp  = result.apply(player);
-          if(tmp != null) ret += "$tmp";
+      if(!possibilities.isEmpty) {
+          // maybe only sort if you are good enough at alchemy???
+          possibilities.sort(); //do most promising alchemy first so that you don't use up the items needed for it
+          for (AlchemyResult result in possibilities) {
+              String tmp = result.apply(player);
+              if (tmp != null) ret += "$tmp";
+          }
+          ret += "<br><br>After all that ridiculousness, they ALSO manage to upgrade their specibus.";
+      }else {
+          ret += "<br><br>They upgrade their specibus.";
       }
 
-      ret += "<br><br>After all that ridiculousness, they ALSO manage to upgrade their specibus.";
       possibilities = upgradeSpecibus();
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
@@ -51,9 +55,19 @@ class Gristmas extends Scene {
       //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
       for(Item item1 in player.sylladex) {
         for(Item item2 in player.sylladex) {
-            if(item1 != item2 && (item1.canUpgrade() || session.mutator.dreamField)) ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
+            if(item1 != item2){
+                //print("checking ${item1.fullName} for do alchemy");
+                if ((item1.canUpgrade() || session.mutator.dreamField)){
+                    //print("Okay. No can I REALLY upgrade item1? ${item1.canUpgrade()}");
+                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
+                }
+            }else {
+                //print("for alchemy ${item1} is ${item2}");
+            }
         }
       }
+      //WHY the fuck is this sometimes returning 0 without a dream field?
+      if(ret.length == 0) print("alchemy size is ${ret.length} dream field is ${session.mutator.dreamField}");
       return ret;
   }
 
@@ -83,7 +97,10 @@ class Gristmas extends Scene {
                   //print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
-                      if (i.canUpgrade() || session.mutator.dreamField) anyItems = true;
+                      if (i.canUpgrade() || session.mutator.dreamField) {
+                          //print("in trigger, upgradeable item for alchemy is ${i.fullName}");
+                          anyItems = true;
+                      }
                       if (meetsStandards(p,i)) goodItems = true;
                   }
                   if (anyItems && goodItems)  {

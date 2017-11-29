@@ -622,8 +622,6 @@ class SessionMutator {
         //also adds two copies of GRISTMAS to the scenes list ((so more players can do at a time))
         //first added is super fucking high priority
         //and second is added to the revive list. so they can choose to alchemy instead of revive their friends.
-
-        //TODO add dream field to gristmas
        return ret;
     }
 

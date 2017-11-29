@@ -76,7 +76,6 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         String ret = description(p, []); //don't do description earlier or later or will have wrong name.
         modified.numUpgrades ++;
 
-
         //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
 
         //remove all other items.
