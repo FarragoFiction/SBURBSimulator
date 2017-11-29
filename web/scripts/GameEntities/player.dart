@@ -106,7 +106,7 @@ class Player extends GameEntity{
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
         sylladex = new Sylladex(this);
-
+        this.addBuff(new BuffSpecibus(this)); //programatic
     }
 
     @override
@@ -531,7 +531,7 @@ class Player extends GameEntity{
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
-        ret += "${specibus.fullNameWithUpgrade}<br>";
+        ret += "${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br>";
 
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
