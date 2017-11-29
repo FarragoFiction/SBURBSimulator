@@ -97,7 +97,7 @@ class Gristmas extends Scene {
               bool anyItems = false;
               bool goodItems = false;
               if (p.specibus.canUpgrade() || session.mutator.dreamField) {
-                  print("trying to trigger, specibus can upgrade");
+                  //print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade() || session.mutator.dreamField) {
