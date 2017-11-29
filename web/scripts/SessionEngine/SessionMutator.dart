@@ -18,6 +18,7 @@ class SessionMutator {
     bool mindField = false; //controls how yellow yards work, mostly only in conjunction with the yellow yard created here. also messes with freeWillScenes.
     bool timeField = false; //means time player will be replacing their past self. basically 100% of time's effect.
     bool spaceField = false; //exclusively controls combo endings .
+    bool dreamField = false;
 
     static SessionMutator _instance;
     bool rapsAndLuckDisabled = false;
@@ -601,6 +602,16 @@ class SessionMutator {
     }
 
     String dream(Session s, Player activatingPlayer) {
+        dreamField = true;
+        //can alchemize items as much as you want
+        //every player has every class/aspect/interest item possible for them
+        //dream self is separate player like heart is
+        //but what's the downside here?
+        //i know. if you do alchemy with a dream field it does NOT consume the object
+        //this makes players NEVER STOP DOING ALCHEMY
+        //also adds two copies of GRISTMAS to the scenes list ((so more players can do at a time))
+        //first added is super fucking high priority
+        //and second is added to the revive list. so they can choose to alchemy instead of revive their friends.
        return abjectFailure(s, activatingPlayer);
     }
 
