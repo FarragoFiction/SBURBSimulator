@@ -882,7 +882,7 @@ class ABShopKeep extends ShopKeep {
     @override
     List<String> xorQuips = <String>["Are you sure a fleshy meat bag like you can understand something as complicated as XOR?","Color me impressed.","There is a 96.98% chance you are totally lost here."];
     @override
-    List<String> randomQuips = <String>["...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
+    List<String> randomQuips = <String>["Hey remember how you have that terrible condition called 'being organic'? Turns out you need to eat and sleep and take occasional breaks and shit. Who knew? Luckily my superior robo-brain anticipated this, and made sure JR would make your grist and achievements auto-save. Not your items tho. You could do with some adversity.","What's that? You don't like my sunny disposition? Have a heaping helping of 'fuck' and 'you'. You're lucky I'm here at all.","So, it seems JR was a lazy piece of shit who didn't want to figure out how to save an infinite array of shitty items. Your grist and achievements and shit will save, your items won't. Don't bitch to me when your inferior fleshy brain forgets this and you lose your shit. ","Hey. Pay attention, asshole. Your achievements and your grist gets saved. YOUR ITEMS DO NOT. Might wanna sell all your shit before quitting.","...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
 
   ABShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
 
@@ -890,6 +890,7 @@ class ABShopKeep extends ShopKeep {
     String getItemDescription(Item item) {
         Random rand = new Random();
         double mathpercent = 90+rand.nextDouble(10.0);
+        mathpercent = (mathpercent * 100).round()/100;
         String upgrade = "It's only good for selling anymore.";
         if(item.canUpgrade() ) upgrade = "You can upgrade this, dunkass.";
         return "There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. $upgrade ${item.abDescription(rand)}";
