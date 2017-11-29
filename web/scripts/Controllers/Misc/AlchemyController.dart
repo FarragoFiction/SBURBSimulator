@@ -550,7 +550,7 @@ class Achievement {
         if(numFinishedAchievements() == achievements.values.length && won==false) {
             won = true;
             window.alert("Whoa. You won!");
-            announcmentDiv.setInnerHtml("Holy fuck, you won! If JR wasn't such a lazy piece of shit, you'd have a reward here.");
+            announcmentDiv.setInnerHtml("Holy fuck, you won! If JR wasn't such a lazy piece of shit, you'd have a reward here as a proper wasted dreamer.");
         }
     }
 
@@ -1002,7 +1002,6 @@ class ShogunShopKeep extends ShopKeep {
     @override
     String imageSource = "images/Alchemy/Shogun.png";
 
-    //TODO shogun quips
     @override
     List<String> maxAlchemyQuips = <String>[""];
     @override
