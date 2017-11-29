@@ -150,7 +150,7 @@ void checkShopKeepTrigger(Item item) {
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
-            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :)   ");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :) (don't let JR forget to put a reward here)  ");
             Achievement.achievements[Achievement.shogunBanished].toggle();
         }
     }
@@ -473,6 +473,7 @@ class Achievement {
 
   static CombinedTrait abFixed;
   static ButtonElement clearButton;
+  static bool won = false;
 
 
     static get grist => _grist; //but can't set it
@@ -540,6 +541,14 @@ class Achievement {
         return ret;
     }
 
+    static void checkWin() {
+        if(numFinishedAchievements() == achievements.values.length && won==false) {
+            won = true;
+            window.alert("Whoa. You won!");
+            announcmentDiv.setInnerHtml("Holy fuck, you won! If JR wasn't such a lazy piece of shit, you'd have a reward here.");
+        }
+    }
+
     static void syncNumAchievements() {
         save();
 
@@ -556,7 +565,7 @@ class Achievement {
 
         Achievement.label.setInnerHtml("${numFinishedAchievements()}/${achievements.values.length} (AutoSaved)");
         Achievement.label.append(clearButton);
-        //TODO check if won.
+        checkWin();
     }
 
 
@@ -614,6 +623,11 @@ class Achievement {
         Achievement.achievements[abGlitched] = new Achievement(abGlitched,container);
         Achievement.achievements[abFixed] = new Achievement(abFixed,container);
         load();
+        //cheat test
+        /*
+        for(Achievement a in Achievement.achievements.values) {
+            a.toggle();
+        }*/
         syncNumAchievements();
 
     }
