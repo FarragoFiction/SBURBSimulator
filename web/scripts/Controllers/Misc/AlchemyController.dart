@@ -150,7 +150,7 @@ void checkShopKeepTrigger(Item item) {
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
-            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :) (don't let JR forget to put a reward here)  ");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :) <a href = 'index2.html?prophecy=pigeon'>What's this?</a>  ");
             Achievement.achievements[Achievement.shogunBanished].toggle();
         }
     }

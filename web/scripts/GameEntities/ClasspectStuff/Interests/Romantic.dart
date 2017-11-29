@@ -30,6 +30,8 @@ class Romantic extends InterestCategory {
             ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],shogunDesc: "Grid of Sin",abDesc:"Don't let ABJ see this."))
             ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],shogunDesc: "Brick of Shit Coloured Nice Tasting Food",abDesc:"Robots don't need shitty food."))
             ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE],shogunDesc: "Dying Light Holding Device, Cruelty Made of Metal"))
+            ..add(new Item("Head Cannon",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EXPLODEY,ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY], abDesc: "Fuck you for that pun, JR."))
+
             ..add(new Item("Her Pitch Passions Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC],shogunDesc: "I dont Understand This But It Makes Me Sad",abDesc:"Okay, I will give ABJ this. Troll romance is HILARIOUS."));
     }
 
