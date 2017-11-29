@@ -1,4 +1,7 @@
 import "../GameEntities/player.dart";
+import "../GameEntities/GameEntity.dart";
+export "../GameEntities/Stats/stat.dart";
+
 import "Item.dart";
 import "../random_tables.dart";
 import "Trait.dart";
@@ -28,7 +31,11 @@ class Item implements Comparable<Item> {
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
 
-
+    void modMaxUpgrades(Player p) {
+        for(AssociatedStat a in p.associatedStats) {
+            if(a.stat == Stats.ALCHEMY) maxUpgrades += a.multiplier.round(); //yes, it might be negative. deal with it.
+        }
+    }
 
 
     //dynamic based on current traits.
@@ -80,6 +87,10 @@ class Item implements Comparable<Item> {
             ret += "$d ";
         }
         return "$ret${baseName}";
+    }
+
+    String get fullNameWithUpgrade {
+        return "${fullName} ${numUpgrades}/${maxUpgrades}";
     }
 
 
@@ -196,8 +207,9 @@ class Item implements Comparable<Item> {
 //probably could have extended list, too, but that seems more compliced. 40+ methods i have to write?
 class Sylladex extends Object with IterableMixin<Item> {
     List<Item> inventory;
+    Player player;
 
-    Sylladex([this.inventory = null]) {
+    Sylladex(this.player, [this.inventory = null]) {
         if(this.inventory == null) inventory = new List<Item>();
     }
 
@@ -216,7 +228,10 @@ class Sylladex extends Object with IterableMixin<Item> {
         }
         inventory.add(i);
         //print("inventory updated");
+        i.modMaxUpgrades(player);
     }
+
+
 
     void addAll(List<Item> items) {
         for(Item i in items) {

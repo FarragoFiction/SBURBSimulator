@@ -16,7 +16,7 @@ void main() {
 }
 void init() {
     player = randomPlayer(new Session(int.parse(todayToSession())));
-    player.sylladex = new Sylladex(new List <Item>.from(Item.allUniqueItems));
+    player.sylladex = new Sylladex(player,new List <Item>.from(Item.allUniqueItems));
     renderTraitsTable(querySelector("#traitTable"));
 
     Element div = querySelector("#story");

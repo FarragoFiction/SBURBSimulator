@@ -14,7 +14,7 @@ class Player extends GameEntity{
     CanvasElement firstStatsCanvas;
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
     //TODO make this a custom object that has a list inside, make it so you have to copy items to add them here.
-    Sylladex sylladex = new Sylladex();
+    Sylladex sylladex = null;
     @override
     num grist = 0; // players do not spawn with grist
     //if 0, not yet woken up.
@@ -105,6 +105,7 @@ class Player extends GameEntity{
         //print("making new player with classpect ${title()} and moon $m");
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
+        sylladex = new Sylladex(this);
 
     }
 
@@ -530,10 +531,10 @@ class Player extends GameEntity{
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
-        ret += "${specibus.fullName}<br>";
+        ret += "${specibus.fullNameWithUpgrade}<br>";
 
         for(Item item in sylladex) {
-            ret += "${item.fullName}<br>";
+            ret += "${item.fullNameWithUpgrade}<br>";
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
@@ -1757,6 +1758,7 @@ class Player extends GameEntity{
         moonChance += session.rand.nextDouble() * -33; //different amount of time pre-game start to get in. (can still wake up before entry)
         if(aspect == Aspects.SPACE) moonChance += 33.0; //huge chance for space players.
         if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
+        specibus.modMaxUpgrades(this);
     }
 
     void populateInventory() {

@@ -35,6 +35,7 @@ class Gristmas extends Scene {
       }else {
           throw "No. How the fuck did this happen. Sylladex has ${player.sylladex.length} things in it, so how did I fail to upgrade my specibus?";
       }
+      ret += " It is at rank ${(100*player.specibus.rank).round()/100}.";
 
     return ret;
 
@@ -43,6 +44,7 @@ class Gristmas extends Scene {
   @override
   void renderContent(Element div) {
       String ret = gristmasContent();
+      session.removeAvailablePlayer(player);
       CanvasElement canvas = new CanvasElement(width: 400, height: 400);
       CanvasElement canvas2 = new CanvasElement(width: 400, height: 300);
       Drawing.drawWhatever(canvas, "Rewards/holyAlchemy.png");

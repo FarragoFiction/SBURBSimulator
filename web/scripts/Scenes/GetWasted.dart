@@ -242,7 +242,7 @@ class GetWasted extends Scene {
 
     String exploitAlchemy(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
-        Sylladex allItemsInParty = new Sylladex(new List<Item>()); //sylladex so it stores copies
+        Sylladex allItemsInParty = new Sylladex(player, new List<Item>()); //sylladex so it stores copies
         for(Player p in session.players) {
             allItemsInParty.addAll(p.sylladex.inventory);
             allItemsInParty.add(p.specibus);
