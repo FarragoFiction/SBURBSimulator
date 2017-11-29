@@ -96,7 +96,6 @@ void main() {
 
 
     Achievement.gristDiv = querySelector("#grist");
-    Achievement.addGrist(13);
     Achievement.syncGristDiv();
     Achievement.makeAchievements(achivementDiv, querySelector("#achievementLabel"));
 }
@@ -472,6 +471,8 @@ class Achievement {
   static CombinedTrait abGlitched;
 
   static CombinedTrait abFixed;
+  static ButtonElement clearButton;
+
 
     static get grist => _grist; //but can't set it
 
@@ -486,6 +487,11 @@ class Achievement {
 
     static int addGrist(int amount) {
         _grist += amount;
+        syncGristDiv();
+    }
+
+    static int setGrist(int amount) {
+        _grist = amount;
         syncGristDiv();
     }
 
@@ -535,7 +541,20 @@ class Achievement {
 
     static void syncNumAchievements() {
         save();
-        Achievement.label.setInnerHtml("${numFinishedAchievements()}/${achievements.values.length}");
+
+        if(clearButton == null) {
+            clearButton = new ButtonElement();
+            clearButton.id = "clearButton";
+            clearButton.setInnerHtml("Clear Save Data?");
+            clearButton.onClick.listen((e) {
+                clear();
+                window.location.reload();
+                //window.localStorage.clear(); //fuck no, this will kill more than just achievements if i ever expands.
+            });
+        }
+
+        Achievement.label.setInnerHtml("${numFinishedAchievements()}/${achievements.values.length} (AutoSaved)");
+        Achievement.label.append(clearButton);
 
     }
 
@@ -545,21 +564,34 @@ class Achievement {
         print("saving...");
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(Achievement.achievements[a].achieved) {
-                print("Saving ${a.name}");
+                //print("Saving ${a.name}");
                 window.localStorage[a.name] = "true" ;
             }else {
                 //window.localStorage[a.name] = "false" ; too spammy
             }
+        }
+
+        window.localStorage[grist] = "${Achievement.grist}";
+    }
+
+
+    static void clear() {
+        print("saving...");
+        for(CombinedTrait a in Achievement.achievements.keys) {
+            window.localStorage.remove(a.name);
         }
     }
 
     static void load() {
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(window.localStorage[a.name] == "true") {
-                print("loading ${a.name}");
+                //print("loading ${a.name}");
                 Achievement.achievements[a].toggle();
             }
         }
+        Achievement.setGrist(int.parse(window.localStorage[grist]));
+        if(Achievement.grist <= 0) Achievement.setGrist(13); // you can't fuck yourself over completely.
+
     }
 
 

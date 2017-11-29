@@ -111,6 +111,15 @@ div:focus {
     background: red;
 }
 
+#clearButton{
+    margin: 10px;
+    padding: 10px;
+    background-color: #9630bf;
+    font-family: 'strife', sans-serif;
+
+
+}
+
 
 #quip{
     position: absolute;
