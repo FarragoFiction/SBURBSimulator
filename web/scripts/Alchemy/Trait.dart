@@ -995,6 +995,7 @@ class ItemTraitFactory {
     new CombinedTrait("Lacquer",<String>["Lacquer"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,WOOD]);
     new CombinedTrait("Classpecty",<String>["Classpecty"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLASSRELATED,ASPECTAL]);
     new CombinedTrait("Smartass",<String>["Smartass"], 0.0,ItemTrait.OPINION, <ItemTrait>[SMART,UNCOMFORTABLE]);
+    new CombinedTrait("Miraculous",<String>["Miraculous","Magnets","Miracle"], 0.0,ItemTrait.OPINION, <ItemTrait>[REAL,FAKE,MAGICAL]);
 
 
 
