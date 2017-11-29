@@ -150,7 +150,7 @@ void checkShopKeepTrigger(Item item) {
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
-            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :) <a href = 'index2.html?prophecy=pigeon'>What's this?</a>  ");
+            Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :) <a target='_blank' href = 'index2.html?prophecy=pigeon'>What's this?</a>  ");
             Achievement.achievements[Achievement.shogunBanished].toggle();
         }
     }
@@ -418,6 +418,11 @@ SelectElement itemDropDown<T> (Element div, List<Item> list, String name)
         }
     }
     div.append(selector);
+    if(name.contains("First")){
+        selector.selectedIndex = 0;
+    }else if(selector.options.length > 1){
+        selector.selectedIndex = 1;
+    }
     return selector;
 }
 
@@ -581,7 +586,8 @@ class Achievement {
             }
         }
 
-        window.localStorage[grist] = "${Achievement.grist}";
+        //don't actually save/load grist, loading achievments will get you money
+        //window.localStorage[grist] = "${Achievement.grist}";
     }
 
 
@@ -599,7 +605,8 @@ class Achievement {
                 Achievement.achievements[a].toggle();
             }
         }
-        Achievement.setGrist(int.parse(window.localStorage[grist]));
+        //Achievement.setGrist(int.parse(window.localStorage[grist])); //don't actually save and load, toggling will get you money back
+        syncGristDiv();
         if(Achievement.grist <= 0) Achievement.setGrist(13); // you can't fuck yourself over completely.
 
     }

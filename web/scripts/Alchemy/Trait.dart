@@ -646,7 +646,7 @@ class ItemTraitFactory {
     TASER = new CombinedTrait("Taser",<String>["taser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP, RESTRAINING]);
     NOCTURNE = new CombinedTrait("Nocturn",<String>["nocturn"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[OBSCURING, MUSICAL]);
     DIRGE = new CombinedTrait("Dirge",<String>["dirge"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[DOOMED, MUSICAL]);
-    SNOBBBISH = new CombinedTrait("Snobbish",<String>["snobbish"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLASSY, VALUABLE]);
+    SNOBBBISH = new CombinedTrait("Snobbish",<String>["Snobbish","Noble"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLASSY, VALUABLE]);
     FLAT = new CombinedTrait("Flat(Music)",<String>["flat"], 0.0,ItemTrait.OPINION, <ItemTrait>[BLUNT, MUSICAL]);
     SHARPNOTE = new CombinedTrait("Sharp(Music)",<String>["sharp"], 0.0, ItemTrait.OPINION,<ItemTrait>[EDGED, MUSICAL]);
     SHARPCLOTHES = new CombinedTrait("Sharp(Clothes)",<String>["sharp"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLASSY, MUSICAL]);
@@ -1000,6 +1000,7 @@ class ItemTraitFactory {
     new CombinedTrait("Grimoire",<String>["Grimoire"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,PAPER]);
     new CombinedTrait("Oglogoth's",<String>["Oglogoth's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[CORRUPT,POINTY]);
     new CombinedTrait("Echidna's",<String>["Echidna's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,POINTY]);
+    new CombinedTrait("Superior",<String>["Superior"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,CLASSY]);
 
 
 

@@ -122,6 +122,10 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		doNotRender = true;
 	}
 
+	if(getParameterByName("prophecy",null)  == "pigeon"){
+		pigeonStuck();
+	}
+
 	if(getParameterByName("easter",null)  == "egg"){
 		easter_egg = true;
 		window.alert("Yo Dawg, I herd you liek easter eggs???");
@@ -669,6 +673,14 @@ void hivebent(){
 	}
 }
 
+void pigeonStuck() {
+	window.alert("...Well. Fuck.");
+	for(Player p in curSessionGlobalVar.players) {
+		p.deriveSpecibus = false;
+		p.specibus = new Specibus("Pigeon", ItemTraitFactory.PIGEON, [ ItemTraitFactory.FEATHER, ItemTraitFactory.CORRUPT],shogunDesc: "PsychologyAndExtremeViolenceKind", abjDesc:"Shit. Better get JR. They'll want to see this.");
+
+	}
+}
 
 //all players are the leader player
 void anstusMode() {
