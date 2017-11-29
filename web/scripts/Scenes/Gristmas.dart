@@ -27,10 +27,11 @@ class Gristmas extends Scene {
       possibilities = upgradeSpecibus();
       if(possibilities.isEmpty)  return "$ret Wait. The ${player.htmlTitleBasic()} WANTS to do upgrade their specibus, but it's full. Guess they shouldn't have filled it full of junk in the early game. Stupid rules. Stupid limits. This isn't even CANON. ";
 
+      if(!player.specibus.canUpgrade()) ret += "Take that JR, your alchemy limits were arbitrary and non canon so we are just gonna fucking ignore them. After all. What could go wrong?<span class = 'void'>JR: Well for one, you could end up in a never ending spiral of alchemy. Have fun failing to actually beat the game, asshole.</span>";
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
       if(tmp != null) {
-          ret += tmp; //this scene should not happen if you don't have something to alchemize, so don't check to see if there's a result.
+          ret += "$tmp";
       }else {
           throw "No. How the fuck did this happen. Sylladex has ${player.sylladex.length} things in it, so how did I fail to upgrade my specibus?";
       }

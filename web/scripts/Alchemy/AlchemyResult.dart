@@ -51,7 +51,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     }
 
     String  description(Player p, templates) {
-        templates.addAll(<String>["${p.htmlTitleBasicNoTip()} uses Alchemy to combine ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
+        templates.addAll(<String>["The ${p.htmlTitleBasicNoTip()} uses Alchemy to combine ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
         return p.session.rand.pickFrom(templates);
     }
 
@@ -102,7 +102,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     ///returns a list of all possible alchemy types between these two items.
     static List<AlchemyResult> planAlchemy(List<Item> items, Session session) {
         if(items.isEmpty) return new List<AlchemyResult>();
-        if(!items.first.canUpgrade() || session.mutator.dreamField) return new List<AlchemyResult>();
+        if(!items.first.canUpgrade() && !session.mutator.dreamField) return new List<AlchemyResult>();
         List<AlchemyResult> ret = new List<AlchemyResult>();
         return <AlchemyResult>[new AlchemyResultAND(items), new AlchemyResultOR(items), new AlchemyResultXOR(items)];
     }
