@@ -235,7 +235,37 @@ class GetWasted extends Scene {
         if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
         if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
         if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
+        if(player.aspect == Aspects.DREAM ) return exploitAlchemy(div);
+
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
+    }
+
+    String exploitAlchemy(Element div) {
+        String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
+        Sylladex allItemsInParty = new Sylladex(new List<Item>()); //sylladex so it stores copies
+        for(Player p in session.players) {
+            allItemsInParty.addAll(p.sylladex.inventory);
+            allItemsInParty.add(p.specibus);
+        }
+        allItemsInParty.sort();
+        List<Item> newItems = new List<Item>();
+        newItems.add(allItemsInParty.first);
+        Item second;
+        Item third;
+        if(allItemsInParty.length > 1) newItems.add(allItemsInParty.inventory[1]);
+        if(allItemsInParty.length > 2) newItems.add(third = allItemsInParty.inventory[2]);
+        ret += "They figure out the best alchemy components currently available to anyone is ${turnArrayIntoHumanSentence(newItems)}, and make sure everyone has a copy of each before putting Gristmas to fucking shame.";
+        Gristmas g = new Gristmas(session);
+        for(Player p in session.players) {
+            p.sylladex.addAll(newItems);
+            g.player = p;
+            ret += "<br><br>${g.gristmasContent()}";
+        }
+
+        //find 3 best items
+        //give these items to each player
+        //have playes do alchemy like normal. print out.
+        return ret;
     }
 
     //set up teleporters or flying mounts so quests are WAY easier to do
@@ -268,6 +298,7 @@ class GetWasted extends Scene {
                 }
                 //i will let even the dead get power tho, cuz the mobility exploit is still there when they get revived
                 p.increasePower();
+                p.increaseLandLevel();
             }
         }
 

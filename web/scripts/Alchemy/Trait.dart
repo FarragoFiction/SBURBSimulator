@@ -1001,12 +1001,7 @@ class ItemTraitFactory {
     new CombinedTrait("Oglogoth's",<String>["Oglogoth's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[CORRUPT,POINTY]);
     new CombinedTrait("Echidna's",<String>["Echidna's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,POINTY]);
     new CombinedTrait("Superior",<String>["Superior"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,CLASSY]);
-
-
-
-
-
-
+    new CombinedTrait("Lego",<String>["Lego"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[PLASTIC,CALMING,BLUNT, ASPECTAL, LEGENDARY]);
 
   }
 

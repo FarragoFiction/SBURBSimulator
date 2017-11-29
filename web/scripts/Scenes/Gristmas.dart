@@ -9,8 +9,7 @@ class Gristmas extends Scene {
     Player player;
   Gristmas(Session session) : super(session);
 
-  @override
-  void renderContent(Element div) {
+  String gristmasContent() {
       String ret = "<br><br>GRISTMAS: ";
       List<AlchemyResult> possibilities = doAlchemy();
       //TODO maybe only sort if you are good enough at alchemy???
@@ -30,6 +29,13 @@ class Gristmas extends Scene {
           throw "No. How the fuck did this happen. Sylladex has ${player.sylladex.length} things in it, so how did I fail to upgrade my specibus?";
       }
 
+    return ret;
+
+  }
+
+  @override
+  void renderContent(Element div) {
+      String ret = gristmasContent();
       CanvasElement canvas = new CanvasElement(width: 400, height: 400);
       CanvasElement canvas2 = new CanvasElement(width: 400, height: 300);
       Drawing.drawWhatever(canvas, "Rewards/holyAlchemy.png");
@@ -75,6 +81,7 @@ class Gristmas extends Scene {
               bool goodItems = false;
               if (p.specibus.canUpgrade()) {
                   //print("trying to trigger, specibus can upgrade");
+                  p.sylladex.sort();
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade()) anyItems = true;
                       if (meetsStandards(p,i)) goodItems = true;

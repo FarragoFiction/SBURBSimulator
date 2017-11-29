@@ -6,7 +6,7 @@ import "../random.dart";
 import 'dart:collection';
 
 //I expect aspects and interests to have lists of items inside of them.
-class Item {
+class Item implements Comparable<Item> {
     //whenever i make a new item, it gets added here. but not if i make a copy. needed for alchemy mini game.
     static List<Item> allUniqueItems = new List<Item>();
     String abDesc;
@@ -14,6 +14,13 @@ class Item {
 
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
         return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
+    }
+
+    //power of item
+    @override
+    int compareTo(Item other) {
+        // print("trying to sort ${this} against ${other}, ret is $ret. other value was ${other.result.rank}, my value was ${result.rank}  ");
+        return (other.rank - rank).sign.round(); //higher numbers first
     }
 
     String baseName;
@@ -164,6 +171,10 @@ class Sylladex extends Object with IterableMixin<Item> {
     }
 
     int get length => inventory.length;
+    
+    void sort() {
+        inventory.sort();
+    }
 
     void add(Item item) {
         Item i = item;

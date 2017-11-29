@@ -530,6 +530,7 @@ class Player extends GameEntity{
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
+        ret += "${specibus.fullName}<br>";
 
         for(Item item in sylladex) {
             ret += "${item.fullName}<br>";
