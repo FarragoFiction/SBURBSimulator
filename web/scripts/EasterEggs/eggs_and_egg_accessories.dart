@@ -176,6 +176,10 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		janusReward();
 	}
 
+	if(getParameterByName("lawnring",null)  == "prospit"){
+		dreamGnosis();
+	}
+
 	processXStuck(); //might not do anything.
 
 	if(that != null) {
@@ -680,6 +684,12 @@ void pigeonStuck() {
 		p.specibus = new Specibus("Pigeon", ItemTraitFactory.PIGEON, [ ItemTraitFactory.FEATHER, ItemTraitFactory.CORRUPT],shogunDesc: "PsychologyAndExtremeViolenceKind", abjDesc:"Shit. Better get JR. They'll want to see this.");
 
 	}
+}
+
+void dreamGnosis() {
+	window.alert("...Well. Hope you enjoy a Wasted session full of obsessive assholes.");
+	appendHtml(SimController.instance.storyElement, curSessionGlobalVar.mutator.dream(curSessionGlobalVar,curSessionGlobalVar.players.first));
+
 }
 
 //all players are the leader player
