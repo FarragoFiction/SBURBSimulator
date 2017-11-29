@@ -19,6 +19,7 @@ class Specibus extends Item {
     }
 
     //don't be repetitive for specibus, where they are very limited in what they can say
+    @override
     ItemTrait getTraitBesides(ItemTrait it) {
         List<ItemTrait> reversed = nonrequiredTraits.toList();
         //pick most recent trait first.
@@ -51,9 +52,10 @@ class Specibus extends Item {
         }
         ItemTrait third = requiredTrait;
 
-        String word1 = rand.pickFrom(first.descriptions);
-        String word2 = rand.pickFrom(second.descriptions);
-        String word3 = rand.pickFrom(third.descriptions);
+        String word1, word2, word3;
+        if(first != null)  word1 = rand.pickFrom(first.descriptions);
+        if(second != null) word2 = rand.pickFrom(second.descriptions);
+        if(third != null) word3 = rand.pickFrom(third.descriptions);
 
         if(word1 != null && word2 != null && word3 != null) {
             return "It's $word1 and it's $word2 and it's $word3.";

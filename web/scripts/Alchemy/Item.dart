@@ -145,9 +145,20 @@ class Item implements Comparable<Item> {
         ItemTrait second = rand.pickFrom(traits);
         ItemTrait third = rand.pickFrom(traits);
 
-        String word1 = rand.pickFrom(first.descriptions);
-        String word2 = rand.pickFrom(second.descriptions);
-        String word3 = rand.pickFrom(third.descriptions); //for specibus is required trait.
+        //try to avoid repetition.
+        if (first == second && traits.length > 1) {
+            second = getTraitBesides(first);
+        }
+
+        if (second == third && traits.length > 1) {
+            third = getTraitBesides(second);
+        }
+
+        String word1, word2, word3;
+        if(first != null)  word1 = rand.pickFrom(first.descriptions);
+        if(second != null) word2 = rand.pickFrom(second.descriptions);
+        if(third != null) word3 = rand.pickFrom(third.descriptions);
+
 
         if(word1 != null && word2 != null && word3 != null) {
             return randomDescriptionWith3Words(rand, word1, word2, word3);
@@ -158,6 +169,18 @@ class Item implements Comparable<Item> {
         }else {
             return "...  What even IS this.";
         }
+    }
+
+    //don't be repetitive for specibus, where they are very limited in what they can say
+    ItemTrait getTraitBesides(ItemTrait it) {
+        List<ItemTrait> reversed = traits.toList();
+        //pick most recent trait first.
+        for (ItemTrait i in reversed.reversed) {
+            if (it != i) {
+                return i;
+            }
+        }
+        return it;
     }
 
     String randomDescriptionWith3Words(Random rand, String word1, String word2, String word3) {
