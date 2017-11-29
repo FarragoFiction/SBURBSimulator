@@ -542,11 +542,13 @@ class Achievement {
 
 
     static void save() {
+        print("saving...");
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(Achievement.achievements[a].achieved) {
+                print("Saving ${a.name}");
                 window.localStorage[a.name] = "true" ;
             }else {
-                window.localStorage[a.name] = "false" ;
+                //window.localStorage[a.name] = "false" ; too spammy
             }
         }
     }
@@ -554,6 +556,7 @@ class Achievement {
     static void load() {
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(window.localStorage[a.name] == "true") {
+                print("loading ${a.name}");
                 Achievement.achievements[a].toggle();
             }
         }
