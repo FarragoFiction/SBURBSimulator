@@ -10,7 +10,6 @@ String XOR = "XOR";
 
 
 
-Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 Shop alchemyShop;
 ButtonElement alchemizeButton; //so i can change price.
 int ticksRemaining = 3; //you better save AB dunkass.
@@ -99,8 +98,9 @@ void main() {
     Achievement.gristDiv = querySelector("#grist");
     Achievement.addGrist(13);
     Achievement.syncGristDiv();
-    achievements = Achievement.makeAchievements(achievements, achivementDiv);
+    Achievement.makeAchievements(achivementDiv, querySelector("#achievementLabel"));
 }
+
 
 //asshole meat sacks don't know what they are doing. And are also hella slow.
  Future<Null> fuckYouABCanHandleThisOnHerOwn() async {
@@ -127,7 +127,7 @@ void checkShopKeepTrigger(Item item) {
 
     if (abGlitch.isTriggered(item)) {
         Achievement.announcmentDiv.appendHtml(Zalgo.generate("News: NOW you fucked up!   "));
-        achievements[Achievement.abGlitched].toggle();
+        Achievement.achievements[Achievement.abGlitched].toggle();
         alchemyShop.setShopKeep(abGlitch);
     }
 
@@ -136,13 +136,13 @@ void checkShopKeepTrigger(Item item) {
             alchemyShop.setShopKeep(shogun);
             alchemyShop.setQuip("I WAS HERE THE WHOLE TIME");
             Achievement.announcmentDiv.appendHtml("News: Shogun Canine has arrived. Hope you like useless shit posts. Fucking Lord of Words. :( :( :(   ");
-            achievements[Achievement.shogunSummoned].toggle();
+            Achievement.achievements[Achievement.shogunSummoned].toggle();
 
         }else if(item.traits.contains(ItemTraitFactory.HEALING) && item.traits.contains(ItemTraitFactory.ZAP)) {
             alchemyShop.setShopKeep(ab);
             alchemyShop.setQuip("Holy fuck, you actually fixed me.");
             Achievement.announcmentDiv.appendHtml("News: AB Recovered!   ");
-            achievements[Achievement.abFixed].toggle();
+            Achievement.achievements[Achievement.abFixed].toggle();
         }else {
             ticksRemaining += -1;
         }
@@ -152,7 +152,7 @@ void checkShopKeepTrigger(Item item) {
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
             Achievement.announcmentDiv.appendHtml("News: Shogun Banished! :) :) :)   ");
-            achievements[Achievement.shogunBanished].toggle();
+            Achievement.achievements[Achievement.shogunBanished].toggle();
         }
     }
 
@@ -266,9 +266,9 @@ void processAchievements(Item itemAlchemized) {
     for(ItemTrait it in combinedTraits) {
         //could be a leftover
         if(it is CombinedTrait && it.subTraits.isNotEmpty) {
-            Achievement a = achievements[it];
+            Achievement a = Achievement.achievements[it];
             if(a != null) {
-                String doop = (achievements[it].toggle());
+                String doop = (Achievement.achievements[it].toggle());
                 if (doop != null) ret.add(doop);
             }
         }
@@ -459,9 +459,13 @@ class Achievement {
     static String WONCLASS = "passedAchievement";
     static String NOTYETCLASS = "missingAchievement";
     static Element announcmentDiv;
+    static Element label;
     static Element gristDiv;
 
-  static CombinedTrait shogunSummoned;
+    static Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
+
+
+    static CombinedTrait shogunSummoned;
 
   static CombinedTrait shogunBanished;
 
@@ -512,24 +516,41 @@ class Achievement {
         container.append(div);
     }
 
-    static Map<CombinedTrait, Achievement> makeAchievements(Map<CombinedTrait, Achievement> input, Element container) {
+
+    static int numFinishedAchievements() {
+        int ret = 0;
+        for(Achievement a in achievements.values) {
+            if(a.div.classes.contains(Achievement.WONCLASS)) {
+                ret ++;
+            }
+        }
+        return ret;
+    }
+
+    static void syncNumAchievements() {
+        Achievement.label.setInnerHtml("${numFinishedAchievements()}/${achievements.values.length}");
+    }
+
+
+    static void makeAchievements(Element container,Element label) {
+        Achievement.label = label;
         List<CombinedTrait> traits = new List<CombinedTrait>.from(ItemTraitFactory.combinedTraits);
         for(CombinedTrait t in traits) {
             if(t.descriptions.isNotEmpty) {
 
-                input[t] = new Achievement(t, container);
+                Achievement.achievements[t] = new Achievement(t, container);
             }
         }
         shogunSummoned =  new CombinedTrait("Shogun Summoned",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
         shogunBanished =  new CombinedTrait("Shogun Banished",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
         abGlitched =  new CombinedTrait("AB Glitched",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
         abFixed =  new CombinedTrait("AB Fixed",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[]);
-        input[shogunSummoned] = new Achievement(shogunSummoned,container);
-        input[shogunBanished] = new Achievement(shogunBanished,container);
-        input[abGlitched] = new Achievement(abGlitched,container);
-        input[abFixed] = new Achievement(abFixed,container);
+        Achievement.achievements[shogunSummoned] = new Achievement(shogunSummoned,container);
+        Achievement.achievements[shogunBanished] = new Achievement(shogunBanished,container);
+        Achievement.achievements[abGlitched] = new Achievement(abGlitched,container);
+        Achievement.achievements[abFixed] = new Achievement(abFixed,container);
+        syncNumAchievements();
 
-        return input;
     }
 
 }
