@@ -25,7 +25,7 @@ class Gristmas extends Scene {
       }
 
       possibilities = upgradeSpecibus();
-      if(possibilities.isEmpty)  return "$ret Wait. The ${player} WANTS to do upgrade their specibus, but it's full. Guess they shouldn't have filled it full of junk in the early game. Stupid rules. Stupid limits. ";
+      if(possibilities.isEmpty)  return "$ret Wait. The ${player.htmlTitleBasic()} WANTS to do upgrade their specibus, but it's full. Guess they shouldn't have filled it full of junk in the early game. Stupid rules. Stupid limits. This isn't even CANON. ";
 
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
@@ -61,7 +61,7 @@ class Gristmas extends Scene {
                 //print("checking ${item1.fullName} for do alchemy");
                 if ((item1.canUpgrade() || session.mutator.dreamField)){
                     //print("Okay. No can I REALLY upgrade item1? ${item1.canUpgrade()}");
-                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
+                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session));
                 }
             }else {
                 //print("for alchemy ${item1} is ${item2}");
@@ -78,7 +78,7 @@ class Gristmas extends Scene {
         List<AlchemyResult> ret = new List<AlchemyResult>();
         //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
         for(Item item1 in player.sylladex) {
-            ret.addAll(AlchemyResult.planAlchemy(<Item>[player.specibus, item1]));
+            ret.addAll(AlchemyResult.planAlchemy(<Item>[player.specibus, item1], session));
         }
         return ret;
     }

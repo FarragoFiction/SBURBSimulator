@@ -193,7 +193,7 @@ void init() {
 }
 
 void cheatShowPossibilities(Item item1, Item item2) {
-   List<AlchemyResult> results =  AlchemyResult.planAlchemy(<Item>[item1, item2]);
+   List<AlchemyResult> results =  AlchemyResult.planAlchemy(<Item>[item1, item2],player.session);
    results.sort();
    resultDiv.setInnerHtml("");
    for(AlchemyResult result in results) {

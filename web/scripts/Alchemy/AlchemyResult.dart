@@ -3,6 +3,8 @@ import "Item.dart";
 import "Trait.dart";
 import "../random_tables.dart";
 import "../GameEntities/player.dart";
+import "../SessionEngine/session.dart";
+
 
 /*
 http://mspaintadventures.wikia.com/wiki/Alchemiter
@@ -98,9 +100,9 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     }
 
     ///returns a list of all possible alchemy types between these two items.
-    static List<AlchemyResult> planAlchemy(List<Item> items) {
+    static List<AlchemyResult> planAlchemy(List<Item> items, Session session) {
         if(items.isEmpty) return new List<AlchemyResult>();
-        if(!items.first.canUpgrade()) return new List<AlchemyResult>();
+        if(!items.first.canUpgrade() || session.mutator.dreamField) return new List<AlchemyResult>();
         List<AlchemyResult> ret = new List<AlchemyResult>();
         return <AlchemyResult>[new AlchemyResultAND(items), new AlchemyResultOR(items), new AlchemyResultXOR(items)];
     }

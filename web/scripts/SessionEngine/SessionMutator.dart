@@ -612,7 +612,7 @@ class SessionMutator {
             newItems.addAll(p.aspect.items);
             newItems.addAll(p.interest1.category.items);
             newItems.addAll(p.interest2.category.items);
-            ret += "<br><Br>The ${p.htmlTitleBasic()} gets ${turnArrayIntoHumanSentence(newItems)}.} ";
+            ret += "<br><Br>The ${p.htmlTitleBasic()} gets ${turnArrayIntoHumanSentence(newItems)}. ";
         }
         //can alchemize items as much as you want
         //every player has every class/aspect/interest item possible for them
