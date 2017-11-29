@@ -25,6 +25,8 @@ class Gristmas extends Scene {
       }
 
       possibilities = upgradeSpecibus();
+      if(possibilities.isEmpty)  return "$ret Wait. The ${player} WANTS to do upgrade their specibus, but it's full. Guess they shouldn't have filled it full of junk in the early game. Stupid rules. Stupid limits. ";
+
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
       if(tmp != null) {
@@ -66,8 +68,8 @@ class Gristmas extends Scene {
             }
         }
       }
-      //WHY the fuck is this sometimes returning 0 without a dream field?
-      if(ret.length == 0) print("alchemy size is ${ret.length} dream field is ${session.mutator.dreamField}");
+      //WHY the fuck is this sometimes returning 0 without a dream field? oh, cuz only upgrading specibus
+      //if(ret.length == 0) print("alchemy size is ${ret.length} dream field is ${session.mutator.dreamField}");
       return ret;
   }
 
@@ -94,7 +96,7 @@ class Gristmas extends Scene {
               bool anyItems = false;
               bool goodItems = false;
               if (p.specibus.canUpgrade() || session.mutator.dreamField) {
-                  //print("trying to trigger, specibus can upgrade");
+                  print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade() || session.mutator.dreamField) {
