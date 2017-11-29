@@ -55,7 +55,16 @@ class Specibus extends Item {
         String word2 = rand.pickFrom(second.descriptions);
         String word3 = rand.pickFrom(third.descriptions);
 
-        return "It's $word1 and it's $word2 and it's $word3.";
+        if(word1 != null && word2 != null && word3 != null) {
+            return "It's $word1 and it's $word2 and it's $word3.";
+        }else if(word2 != null && word3 != null) {
+            return "It's $word2 and it's $word3 and that is all there is to say on the matter.";
+        }else if(word3 != null) {
+            return "It is the platonic ideal of $word3.";
+        }else {
+            return "...  What even IS this.";
+        }
+
     }
 
 
