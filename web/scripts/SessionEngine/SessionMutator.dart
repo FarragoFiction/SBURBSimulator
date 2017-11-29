@@ -18,7 +18,7 @@ class SessionMutator {
     bool mindField = false; //controls how yellow yards work, mostly only in conjunction with the yellow yard created here. also messes with freeWillScenes.
     bool timeField = false; //means time player will be replacing their past self. basically 100% of time's effect.
     bool spaceField = false; //exclusively controls combo endings .
-    bool dreamField = false;
+    bool dreamField = false; //alchemy doesn't consume items, alchemy can happen as many times as you want.
 
     static SessionMutator _instance;
     bool rapsAndLuckDisabled = false;
@@ -603,16 +603,28 @@ class SessionMutator {
 
     String dream(Session s, Player activatingPlayer) {
         dreamField = true;
+        effectsInPlay ++;
+        String ret = "The ${activatingPlayer.htmlTitle()} is living the dream. The very fabric of SBURB is being undone according to their whims. Alchemy will now work the way it SHOULD, the way they know in their heart. They also make sure everyone has plenty of items to alchemize with.";
+
+        for(Player p in s.players) {
+            List<Item> newItems = new List<Item>();
+            newItems.addAll(p.class_name.items);
+            newItems.addAll(p.aspect.items);
+            newItems.addAll(p.interest1.category.items);
+            newItems.addAll(p.interest2.category.items);
+            ret += "<br><Br>The ${p.htmlTitleBasic()} gets ${turnArrayIntoHumanSentence(newItems)}.} ";
+        }
         //can alchemize items as much as you want
         //every player has every class/aspect/interest item possible for them
-        //dream self is separate player like heart is
         //but what's the downside here?
         //i know. if you do alchemy with a dream field it does NOT consume the object
         //this makes players NEVER STOP DOING ALCHEMY
         //also adds two copies of GRISTMAS to the scenes list ((so more players can do at a time))
         //first added is super fucking high priority
         //and second is added to the revive list. so they can choose to alchemy instead of revive their friends.
-       return abjectFailure(s, activatingPlayer);
+
+        //TODO add dream field to gristmas
+       return ret;
     }
 
     //you NEED a div or this won't fucking work. Just accept this.

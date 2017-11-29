@@ -51,7 +51,7 @@ class Gristmas extends Scene {
       //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
       for(Item item1 in player.sylladex) {
         for(Item item2 in player.sylladex) {
-            if(item1 != item2) ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
+            if(item1 != item2 && (item1.canUpgrade() || session.mutator.dreamField)) ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2]));
         }
       }
       return ret;
@@ -79,11 +79,11 @@ class Gristmas extends Scene {
               //print("trying to trigger, player is not null");
               bool anyItems = false;
               bool goodItems = false;
-              if (p.specibus.canUpgrade()) {
+              if (p.specibus.canUpgrade() || session.mutator.dreamField) {
                   //print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
-                      if (i.canUpgrade()) anyItems = true;
+                      if (i.canUpgrade() || session.mutator.dreamField) anyItems = true;
                       if (meetsStandards(p,i)) goodItems = true;
                   }
                   if (anyItems && goodItems)  {

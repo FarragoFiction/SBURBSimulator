@@ -80,9 +80,11 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
 
         //remove all other items.
-        for(int i = 1; i<items.length; i++) {
-            Item item = items[i];
-            targetItems.remove(item);
+        if(!p.session.mutator.dreamField) {
+            for (int i = 1; i < items.length; i++) {
+                Item item = items[i];
+                targetItems.remove(item);
+            }
         }
         return ret;
     }
