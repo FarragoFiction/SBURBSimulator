@@ -996,6 +996,10 @@ class ItemTraitFactory {
     new CombinedTrait("Classpecty",<String>["Classpecty"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CLASSRELATED,ASPECTAL]);
     new CombinedTrait("Smartass",<String>["Smartass"], 0.0,ItemTrait.OPINION, <ItemTrait>[SMART,UNCOMFORTABLE]);
     new CombinedTrait("Miraculous",<String>["Miraculous","Magnets","Miracle"], 0.0,ItemTrait.OPINION, <ItemTrait>[REAL,FAKE,MAGICAL]);
+    new CombinedTrait("Pigeon",<String>["Pigeon"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CORRUPT,FEATHER]);
+    new CombinedTrait("Grimoire",<String>["Grimoire"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,PAPER]);
+    new CombinedTrait("Oglogoth's",<String>["Oglogoth's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[CORRUPT,POINTY]);
+    new CombinedTrait("Echidna's",<String>["Echidna's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,POINTY]);
 
 
 

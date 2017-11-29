@@ -501,9 +501,11 @@ class Achievement {
             div.classes.add(WONCLASS);
             int amount = ((trait.rank.abs() + 1) * 13).round(); //no you can't lose money for getting an achievement.
             Achievement._grist += amount;
+            Achievement.syncNumAchievements();
             return "${trait.name}(+${amount} grist)";
         }
         print("Achivement ${trait.name} already found.");
+
         return null;
     }
 
@@ -516,11 +518,15 @@ class Achievement {
         container.append(div);
     }
 
+    bool get achieved {
+        return div.classes.contains(Achievement.WONCLASS);
+    }
+
 
     static int numFinishedAchievements() {
         int ret = 0;
         for(Achievement a in achievements.values) {
-            if(a.div.classes.contains(Achievement.WONCLASS)) {
+            if(a.achieved) {
                 ret ++;
             }
         }
@@ -528,7 +534,29 @@ class Achievement {
     }
 
     static void syncNumAchievements() {
+        save();
         Achievement.label.setInnerHtml("${numFinishedAchievements()}/${achievements.values.length}");
+
+    }
+
+
+
+    static void save() {
+        for(CombinedTrait a in Achievement.achievements.keys) {
+            if(Achievement.achievements[a].achieved) {
+                window.localStorage[a.name] = "true" ;
+            }else {
+                window.localStorage[a.name] = "false" ;
+            }
+        }
+    }
+
+    static void load() {
+        for(CombinedTrait a in Achievement.achievements.keys) {
+            if(window.localStorage[a.name] == "true") {
+                Achievement.achievements[a].toggle();
+            }
+        }
     }
 
 
@@ -549,6 +577,7 @@ class Achievement {
         Achievement.achievements[shogunBanished] = new Achievement(shogunBanished,container);
         Achievement.achievements[abGlitched] = new Achievement(abGlitched,container);
         Achievement.achievements[abFixed] = new Achievement(abFixed,container);
+        load();
         syncNumAchievements();
 
     }
