@@ -64,8 +64,13 @@ void renderTraitsTable(Element div) {
                 Set<ItemTrait> combos = CombinedTrait.lookForCombinedTraits(new Set<ItemTrait>.from(<ItemTrait>[firstTrait, secondTrait]));
                 ItemTraitPair pair = new ItemTraitPair(firstTrait, secondTrait);
                 if(seenTraits.contains(pair)) {
-                    newCell(tr, "",ReferenceColours.BLACK); //it's a repeat, dunkass.
-                }else{
+                    if (combos.first is CombinedTrait) {
+                        CombinedTrait combo = combos.first as CombinedTrait;
+                        newCell(tr, combo.name, ReferenceColours.BLACK);
+                        numberFilledCells ++;
+                    } else {
+                        newCell(tr, "???", ReferenceColours.BLACK);
+                    }                }else{
                     seenTraits.add(pair);
                     numberCells ++;
                     if (combos.first is CombinedTrait) {

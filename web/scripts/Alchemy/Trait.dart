@@ -1121,7 +1121,7 @@ class ItemTraitFactory {
     new CombinedTrait("Scapel",<String>["Scapel"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDGED,HEALING]);
     new CombinedTrait("Menacing",<String>["Menacing"], 0.0,ItemTrait.OPINION, <ItemTrait>[SCARY,POINTY]);
     new CombinedTrait("Syringe",<String>["Syringe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,POINTY]);
-    new CombinedTrait("Bitter",<String>["Bitter"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,UNCOMFORTABLE]);
+    new CombinedTrait("Bitter",<String>["Bitter","Sour"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,UNCOMFORTABLE]);
     new CombinedTrait("Pineapple",<String>["Pineapple"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[EDIBLE,POINTY]);
     new CombinedTrait("Crunchy",<String>["Crunchy"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,BLUNT]);
     new CombinedTrait("Bass",<String>["Bass"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEAVY,MUSICAL]);
@@ -1185,13 +1185,42 @@ class ItemTraitFactory {
     new CombinedTrait("Laughing Gas",<String>["Laughing Gas","Nitrous","N20"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,FUNNY]);
     new CombinedTrait("Amplified",<String>["Amplified","Amped"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MUSICAL,LOUD]);
     new CombinedTrait("Rap",<String>["Rap"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COOLK1D]);
-    new CombinedTrait("Saxaphone",<String>["Saxaphone"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ROMANTIC]);
+    new CombinedTrait("Saxaphone",<String>["Saxaphone","Saxobeat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ROMANTIC]);
     new CombinedTrait("Offbeat",<String>["Offbeat","Syncopated"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
     new CombinedTrait("Piper's",<String>["Piper's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MUSICAL,RESTRAINING]);
     new CombinedTrait("Melodic",<String>["Melodic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COMFORTABLE]);
     new CombinedTrait("Thrash",<String>["Thrash"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ENRAGING]);
-    new CombinedTrait("Offbeat",<String>["Offbeat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
+    new CombinedTrait("Offbeat",<String>["Offbeat"], 0.0,ItemTrait.OPINION, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
     new CombinedTrait("Chant",<String>["Chant","Chanting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,HEALING]);
+    new CombinedTrait("Chewy",<String>["Chewy"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,EDIBLE]);
+    new CombinedTrait("Phony",<String>["Phony"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,FAKE]);
+    new CombinedTrait("Doctor's",<String>["Doctor's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,HEALING]);
+    new CombinedTrait("Straitjacketed",<String>["Straitjacketed"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RESTRAINING,HEALING]);
+    new CombinedTrait("Strapped",<String>["Strapped"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RESTRAINING,UNCOMFORTABLE]);
+    new CombinedTrait("Bondage",<String>["Bondage"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RESTRAINING,ROMANTIC]);
+    new CombinedTrait("Sealed",<String>["Sealed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RESTRAINING,MAGICAL]);
+    new CombinedTrait("Attractive",<String>["Attractive"], 0.0,ItemTrait.OPINION, <ItemTrait>[PRETTY,ROMANTIC]);
+    new CombinedTrait("Relaxed",<String>["Relaxed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[COMFORTABLE,SENTIENT]);
+    new CombinedTrait("Loveseat",<String>["Loveseat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[COMFORTABLE,ROMANTIC]);
+    new CombinedTrait("Comfort Food",<String>["Doughy","Comfort Food"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,COMFORTABLE]);
+    new CombinedTrait("Yandere",<String>["Yandere"], 0.0,ItemTrait.OPINION, <ItemTrait>[ROMANTIC,SCARY]);
+    new CombinedTrait("Tsundere",<String>["Tsundere"], 0.0,ItemTrait.OPINION, <ItemTrait>[ROMANTIC,UNCOMFORTABLE]);
+    new CombinedTrait("Disturbed",<String>["Disturbed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SENTIENT,UNCOMFORTABLE]);
+    new CombinedTrait("Sapient",<String>["Sapient"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SMART,SENTIENT]);
+    new CombinedTrait("Hydroponic",<String>["Lab Grown","Hydroponic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SMART,EDIBLE]);
+    new CombinedTrait("Free Range",<String>["Free Range"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SENTIENT,EDIBLE]);
+    new CombinedTrait("Gentlemanly",<String>["Gentleman's","Lady's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[ROMANTIC,CLASSY]);
+    new CombinedTrait("Sapient",<String>["Sapient"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SMART,SENTIENT]);
+    new CombinedTrait("Sentimental",<String>["Sentimental","Anniversary"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,REAL]);
+    new CombinedTrait("Doki-Doki",<String>["Doki-Doki"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,LOUD]);
+    new CombinedTrait("Doki-Doki Literature Club",<String>["Doki-Doki Literature Club"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,LOUD,BOOK,CLUB]);
+    new CombinedTrait("Banana",<String>["Banana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,FUNNY]);
+    new CombinedTrait("Mana",<String>["Mana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,MAGICAL]);
+    new CombinedTrait("Homemade",<String>["Homemade"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,REAL]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASS]);
+
+
+
 
 
 
