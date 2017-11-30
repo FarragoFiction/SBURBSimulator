@@ -1048,6 +1048,22 @@ class ItemTraitFactory {
     new CombinedTrait("Bolted",<String>["Bolted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,RESTRAINING]);
     new CombinedTrait("Armored",<String>["Armored"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,SENTIENT]);
     new CombinedTrait("Heartsteel",<String>["Heartsteel","Rose Gold"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,ROMANTIC]);
+    new CombinedTrait("Brick",<String>["Brick"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,STONE]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Mugly",<String>["Mugly"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,UGLY]);
+    new CombinedTrait("Plate",<String>["Plate"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,BLUNT]);
+    new CombinedTrait("Terracotta",<String>["Terracotta"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,ONFIRE]);
+    new CombinedTrait("Semiconductive",<String>["Semiconductive"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,ZAP]);
+    new CombinedTrait("Vinyl",<String>["Vinyl"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,MUSICAL]);
+    new CombinedTrait("Artisan",<String>["Artisan"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,SMART]);
+    new CombinedTrait("Tiled",<String>["Tiled"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,CLASSY]);
+    new CombinedTrait("Hand-Sculpted",<String>["Hand-Sculpted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,REAL]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+
 
   }
 
