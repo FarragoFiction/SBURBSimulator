@@ -227,7 +227,7 @@ class Aftermath extends Scene {
             if (session.enoughGristForFull()) {
                 end += "The entire party showers the battlefield with hard earned grist. ";
             } else {
-                ////session.logger.info("AB:  Not enough grist for full frog in session ${session.session_id}");
+                session.logger.info("AB:  Not enough grist for full frog in session ${session.session_id}");
                 end += "Huh. There doesn't seem to be much grist to deploy to the battlefied.  ";
             }
             if (session.sickFrogCheck(spacePlayer)) {

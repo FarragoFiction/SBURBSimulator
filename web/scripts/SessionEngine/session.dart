@@ -30,14 +30,14 @@ class Session {
 
     bool janusReward = false;
     //if i have less than expected grist, then no frog, bucko
-    int expectedGristContributionPerPlayer = 400;
-    int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
+    int expectedGristContributionPerPlayer; //set in mutator
+    int minimumGristPerPlayer; //less than this, and no frog is possible.
     CanonLevel canonLevel = CanonLevel.CANON_ONLY; //regular sessions are canon only, but wastes and eggs can change that.
     num numScenes = 0;
     bool sbahj = false;
     num minTimeTillReckoning = 10;
     num maxTimeTillReckoning = 30;
-    num hardStrength = 2000 * Stats.POWER.coefficient;
+    num hardStrength = null; //mutator sets
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
     bool reckoningStarted = false;
@@ -687,7 +687,7 @@ class Session {
 
         Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
         double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
-        this.hardStrength = (100 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
+        this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
     }
 
     String convertPlayerNumberToWords() {

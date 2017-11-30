@@ -26,7 +26,7 @@ class SessionMutator {
     double gameEntityMinPower = 1.0;
     num reckoningEndsAt = -15;
     bool ectoBiologyStarted = false;
-    num hardStrength = 1000;
+    num hardStrength = 1000; //calculated and will be overridden
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
     int expectedGristContributionPerPlayer = 400;
@@ -605,7 +605,7 @@ class SessionMutator {
         dreamField = true;
         effectsInPlay ++;
         String ret = "The ${activatingPlayer.htmlTitle()} is living the dream. The very fabric of SBURB is being undone according to their whims. Alchemy will now work the way it SHOULD, the way they know in their heart. They also make sure everyone has plenty of items to alchemize with.";
-        //alchemy is now TOP FUCKING PRIORITY. HOPE YOU DON'T SKIP THE RECKONING, ASSHOLE.
+
         s.available_scenes.insert(0, new Gristmas(s));
         s.deathScenes.insert(0, new Gristmas(s));
         s.reckoningScenes.insert(0, new Gristmas(s));
