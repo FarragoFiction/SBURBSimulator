@@ -1068,6 +1068,13 @@ class ItemTraitFactory {
     new CombinedTrait("Sappy",<String>["Sappy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,ROMANTIC]);
     new CombinedTrait("Bootleg",<String>["Bootleg"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,FAKE]);
     new CombinedTrait("Distorted",<String>["Distorted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,LOUD]);
+    new CombinedTrait("Ent's",<String>["Ent's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,SENTIENT]);
+    new CombinedTrait("WeepingWillow",<String>["WeepingWillow"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,GHOSTLY]);
+    new CombinedTrait("Latex",<String>["Latex"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,RUBBER]);
+
+
+
+
 
 
 
