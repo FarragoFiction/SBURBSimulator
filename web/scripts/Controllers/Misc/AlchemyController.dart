@@ -49,7 +49,7 @@ ShopKeep shogun;
 
 
 void main() {
-    //loadNavbar();
+    loadNavbar();
     globalInit();
 
     init();
@@ -88,7 +88,7 @@ void main() {
     changeTabs(alchemyDiv);
     ButtonElement fuckYou = new ButtonElement();
     fuckYou.setInnerHtml("Fuck you.");
-    querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
+   // querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
 
     fuckYou.onClick.listen((e) => fuckYouABCanHandleThisOnHerOwn());
     querySelector("#tabs").append(storeButton);
@@ -244,8 +244,8 @@ void makeAlchemyButton() {
         item1TraitsDiv.remove();
         item2TraitsDiv.remove();
         Iterable<Item> validItems = player.sylladex.where((Item a) => (a.canUpgrade()));
-        item1TraitsDiv = (renderItemStats(validItems.first));
-        item2TraitsDiv = (renderItemStats(validItems.first));
+        //item1TraitsDiv = (renderItemStats(validItems.first));
+        //item2TraitsDiv = (renderItemStats(item2));
         item1Div.append(item1TraitsDiv);
         item2Div.append(item2TraitsDiv);
         //take alchemy result, look for combined traits, make sure the achievements get unlocked appropriately.
@@ -298,10 +298,12 @@ void giveRandomItem() {
 }
 
 void makeStatsDisplay() {
-    Item item = player.sylladex.first;
-    item1TraitsDiv = (renderItemStats(item));
+
+    Item item1 =findItemNamed(firstItemSelect.selectedOptions[0].value);
+    Item item2 =findItemNamed(secondItemSelect.selectedOptions[0].value);
+   item1TraitsDiv = (renderItemStats(item1));
     item1Div.append(item1TraitsDiv);
-    item2TraitsDiv = (renderItemStats(item));
+    item2TraitsDiv = (renderItemStats(item2));
     item2Div.append(item2TraitsDiv);
 }
 
@@ -550,7 +552,7 @@ class Achievement {
         if(numFinishedAchievements() == achievements.values.length && won==false) {
             won = true;
             window.alert("Whoa. You won!");
-            announcmentDiv.setInnerHtml("Holy fuck, you won! If JR wasn't such a lazy piece of shit, you'd have a reward here as a proper wasted dreamer.");
+            announcmentDiv.setInnerHtml("Holy fuck, you won! <a target='_blank' href ='index2.html?lawnring=prospit'>Enjoy Hanging out with these OTHER obsessive assholes.</a> Take a screenshot of as many of your achievements as you can manage if you want a special role on the discord.");
         }
     }
 
@@ -634,7 +636,8 @@ class Achievement {
         /*
         for(Achievement a in Achievement.achievements.values) {
             a.toggle();
-        }*/
+        }
+        */
         syncNumAchievements();
 
     }
