@@ -1217,7 +1217,7 @@ class ItemTraitFactory {
     new CombinedTrait("Banana",<String>["Banana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,FUNNY]);
     new CombinedTrait("Mana",<String>["Mana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,MAGICAL]);
     new CombinedTrait("Homemade",<String>["Homemade"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,REAL]);
-    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASS]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
 
 
 
