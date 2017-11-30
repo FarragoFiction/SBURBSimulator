@@ -400,7 +400,7 @@ class GameEntity extends Object with StatOwner   {
     GameEntity pickATarget(List<GameEntity> targets) {
         if (targets.isEmpty) return null;
         if (targets.length == 1) return targets[0];
-        targets.sort(); //as long as I always prefer new targets of equal juciness, will target slowest people preferentially.
+        targets.sort(Stats.MOBILITY.sorter); //as long as I always prefer new targets of equal juciness, will target slowest people preferentially.
         List<num> ratings = new List<num>();
         for (GameEntity t in targets) {
             num r = 0;
