@@ -10,7 +10,7 @@ enum ProphecyState {
 
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
-class GameEntity extends Object with StatOwner implements Comparable<GameEntity>  {
+class GameEntity extends Object with StatOwner   {
     static int _nextID = 0;
     Specibus specibus;
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
@@ -142,11 +142,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         return false;
     }
 
-    //naturally sorted by mobility
-    @override
-    int compareTo(GameEntity other) {
-        return (other.getStat(Stats.POWER) - getStat(Stats.POWER)).round(); //TODO or is it the otherway around???
-    }
+
 
     String checkDiedInAStrife(List<Team> enemyTeams) {
         if (getStat(Stats.CURRENT_HEALTH) <= 0) {

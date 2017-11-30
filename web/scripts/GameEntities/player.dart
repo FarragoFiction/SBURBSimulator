@@ -1829,7 +1829,7 @@ class Player extends GameEntity{
         }
         //print("found a helper $helper before the sort list.");
         //players are naturally sorted by mobility
-        List<Player> sortedChoices = new List<Player>.from(players)..sort();
+        List<Player> sortedChoices = new List<Player>.from(players)..sort(Stats.MOBILITY.sorter);
         for(Player p in sortedChoices) {
             if(rand.nextDouble() > 0.75 && p.id != this.id) {
                 //space players are stuck on their land till they get their frog together.

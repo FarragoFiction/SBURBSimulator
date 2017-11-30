@@ -342,7 +342,7 @@ class Team implements Comparable<Team> {
     //doomed time players will NOT be treated any differently anymore. (though a player marked as doomed might have a different narrative).
     void checkForBackup(int numTurnOn, Element div) {
         if (potentialMembers.isEmpty) return;
-        potentialMembers.sort(); //fasted members get dibs.
+        potentialMembers.sort(Stats.MOBILITY.sorter); //fasted members get dibs.
         List<Player> timePlayers = new List<Player>();
         for (GameEntity member in members) {
             if (member is Player) {
