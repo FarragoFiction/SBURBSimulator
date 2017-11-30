@@ -1041,6 +1041,14 @@ class ItemTraitFactory {
     new CombinedTrait("Bacchus",<String>["Bacchus"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,EDIBLE,ENRAGING,CLASSY]);
     new CombinedTrait("TurnTable",<String>["TurnTable"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,METAL,MUSICAL,COOLK1D]);
     new CombinedTrait("???",<String>["[???]","[Unknown]"], 0.0,ItemTrait.OPINION, <ItemTrait>[LEGENDARY,GLASS,NUCLEAR,GLOWING,OBSCURING]);
+    new CombinedTrait("Demonite",<String>["Demonite"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,CORRUPT]);
+    new CombinedTrait("Stymphalian",<String>["Stymphalian"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[METAL,FEATHER]);
+    new CombinedTrait("Junky",<String>["Junky"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,UGLY]);
+    new CombinedTrait("Cold Iron",<String>["Cold Welded","Cold Iron"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,COLD]);
+    new CombinedTrait("Bolted",<String>["Bolted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,RESTRAINING]);
+    new CombinedTrait("Armored",<String>["Armored"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,SENTIENT]);
+    new CombinedTrait("Heartsteel",<String>["Heartsteel","Rose Gold"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,ROMANTIC]);
+
   }
 
   static void initObjects() {
