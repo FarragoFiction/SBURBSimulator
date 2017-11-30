@@ -1050,19 +1050,25 @@ class ItemTraitFactory {
     new CombinedTrait("Heartsteel",<String>["Heartsteel","Rose Gold"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,ROMANTIC]);
     new CombinedTrait("Brick",<String>["Brick"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,STONE]);
     new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
-    new CombinedTrait("Mugly",<String>["Mugly"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,UGLY]);
+    new CombinedTrait("Mugly",<String>["Mugly"], 0.0,ItemTrait.OPINION, <ItemTrait>[CERAMIC,UGLY]);
     new CombinedTrait("Plate",<String>["Plate"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,BLUNT]);
     new CombinedTrait("Terracotta",<String>["Terracotta"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,ONFIRE]);
     new CombinedTrait("Semiconductive",<String>["Semiconductive"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,ZAP]);
     new CombinedTrait("Vinyl",<String>["Vinyl"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,MUSICAL]);
-    new CombinedTrait("Artisan",<String>["Artisan"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,SMART]);
+    new CombinedTrait("Artisan",<String>["Artisan"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CERAMIC,SMART]);
     new CombinedTrait("Tiled",<String>["Tiled"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,CLASSY]);
-    new CombinedTrait("Hand-Sculpted",<String>["Hand-Sculpted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,REAL]);
-    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
-    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
-    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
-    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
-    new CombinedTrait("Clay",<String>["Clay"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CERAMIC,RUBBER]);
+    new CombinedTrait("Hand-Sculpted",<String>["Hand-Sculpted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CERAMIC,REAL]);
+    new CombinedTrait("Handicraft",<String>["Handicraft"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY,PAPER]);
+    new CombinedTrait("Torn",<String>["Torn"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,CLOTH]);
+    new CombinedTrait("Grotesque",<String>["Grotesque"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY,UGLY]);
+    new CombinedTrait("Flickering",<String>["Flickering"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,GLOWING]);
+    new CombinedTrait("Thinly Veiled",<String>["Thinly Veiled","Translucent"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,OBSCURING]);
+    new CombinedTrait("Fragile",<String>["Fragile"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,VALUABLE]);
+    new CombinedTrait("Troll's",<String>["Troll's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHITTY,PAPER]);
+    new CombinedTrait("Sappy",<String>["Sappy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,ROMANTIC]);
+    new CombinedTrait("Bootleg",<String>["Bootleg"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,FAKE]);
+    new CombinedTrait("Distorted",<String>["Distorted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,LOUD]);
+
 
 
   }
