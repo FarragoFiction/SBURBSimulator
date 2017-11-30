@@ -646,7 +646,7 @@ class ItemTraitFactory {
     ABOMB = new CombinedTrait("Warhead",<String>["A-Bomb", "Warhead", "Chernobyl"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[NUCLEAR, EXPLODEY]);
     LIVING = new CombinedTrait("Living",<String>["living"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH, SENTIENT]);
     DEAD = new CombinedTrait("Dead",<String>["dead","corpse","deceased"], 0.0,ItemTrait.CONDITION, <ItemTrait>[BONE, FLESH]);
-    TASER = new CombinedTrait("Taser",<String>["taser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP, RESTRAINING]);
+    TASER = new CombinedTrait("Taser",<String>["taser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP, RESTRAINING,SHOOTY]);
     NOCTURNE = new CombinedTrait("Nocturn",<String>["nocturn"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[OBSCURING, MUSICAL]);
     DIRGE = new CombinedTrait("Dirge",<String>["dirge"], 0.0, ItemTrait.PURPOSE,<ItemTrait>[DOOMED, MUSICAL]);
     SNOBBBISH = new CombinedTrait("Snobbish",<String>["Snobbish","Noble"], 0.0,ItemTrait.OPINION, <ItemTrait>[CLASSY, VALUABLE]);
@@ -1163,12 +1163,35 @@ class ItemTraitFactory {
     new CombinedTrait("Relic",<String>["Artifact","Relic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,VALUABLE]);
     new CombinedTrait("Existentialist",<String>["Existentialist"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,UNCOMFORTABLE]);
     new CombinedTrait("Apocalyptic",<String>["Apocalyptic"], 0.0,ItemTrait.OPINION, <ItemTrait>[DOOMED,REAL]);
-    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
-    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
-    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
-    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
-
-
+    new CombinedTrait("Dud",<String>["Dud"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,FAKE]);
+    new CombinedTrait("Guided",<String>["Heat Seeking","Guided"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,SMART]);
+    new CombinedTrait("Bobomb",<String>["Bobomb"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,SENTIENT]);
+    new CombinedTrait("Dread",<String>["Dread"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,RESTRAINING]);
+    new CombinedTrait("Knockback",<String>["Knockback"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,RESTRAINING]);
+    new CombinedTrait("Paralysis",<String>["Paralysis"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP,RESTRAINING]);
+    new CombinedTrait("Carnage",<String>["Carnage"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,ENRAGING]);
+    new CombinedTrait("Blast Beat",<String>["Blast Beat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,MUSICAL]);
+    new CombinedTrait("Corrosive",<String>["Corrosive"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EXPLODEY,POISON]);
+    new CombinedTrait("Ice Bomb",<String>["Flash Freeze","Ice Bomb"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EXPLODEY,COLD]);
+    new CombinedTrait("Cryogenic",<String>["Cryogenic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[COLD,HEALING]);
+    new CombinedTrait("Spellcasting",<String>["Spellcasting","Thundaga"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MAGICAL,ZAP]);
+    new CombinedTrait("Tingling",<String>["Tingling"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ZAP,COMFORTABLE]);
+    new CombinedTrait("Rage Plague",<String>["Rage Plague","Beserk"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,POISON]);
+    new CombinedTrait("Nerve Gas",<String>["Nerve Gas"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,RESTRAINING]);
+    new CombinedTrait("Carbon Monoxide",<String>["Carbon Monoxide"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,UNCOMFORTABLE]);
+    new CombinedTrait("Neurotoxin",<String>["Neurotoxin"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,SMART]);
+    new CombinedTrait("Virulent",<String>["Virulent"], 0.0,ItemTrait.CONDITION, <ItemTrait>[POISON,SENTIENT]);
+    new CombinedTrait("Toxic",<String>["Toxic"], 0.0,ItemTrait.CONDITION, <ItemTrait>[POISON,ROMANTIC]);
+    new CombinedTrait("Laughing Gas",<String>["Laughing Gas","Nitrous","N20"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[POISON,FUNNY]);
+    new CombinedTrait("Amplified",<String>["Amplified","Amped"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MUSICAL,LOUD]);
+    new CombinedTrait("Rap",<String>["Rap"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COOLK1D]);
+    new CombinedTrait("Saxaphone",<String>["Saxaphone"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ROMANTIC]);
+    new CombinedTrait("Offbeat",<String>["Offbeat","Syncopated"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
+    new CombinedTrait("Piper's",<String>["Piper's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MUSICAL,RESTRAINING]);
+    new CombinedTrait("Melodic",<String>["Melodic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COMFORTABLE]);
+    new CombinedTrait("Thrash",<String>["Thrash"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ENRAGING]);
+    new CombinedTrait("Offbeat",<String>["Offbeat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
+    new CombinedTrait("Chant",<String>["Chant","Chanting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,HEALING]);
 
 
 
