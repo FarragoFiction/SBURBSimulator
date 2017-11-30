@@ -809,7 +809,8 @@ class Shop {
         if(clearOld) {
             clear();
         }
-        for(Item i in items) {
+        items.sort(); //cheap first.
+        for(Item i in items.reversed) {
             addItemToInventory(i);
         }
     }
