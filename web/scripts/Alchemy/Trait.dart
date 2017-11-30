@@ -1117,9 +1117,30 @@ class ItemTraitFactory {
     new CombinedTrait("Raven",<String>["Raven"], 0.0,ItemTrait.COLOR, <ItemTrait>[FEATHER,SCARY]);
     new CombinedTrait("Frilled",<String>["Frilled"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FEATHER,UGLY]);
     new CombinedTrait("Horrifying",<String>["Horrifying"], 0.0,ItemTrait.OPINION, <ItemTrait>[UGLY,SCARY]);
-    new CombinedTrait("Burning Edge",<String>["Burning Edge"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED,ONFIRE]);
-    new CombinedTrait("Scapel",<String>["Scapel"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED,HEALING]);
-    
+    new CombinedTrait("Burning Edge",<String>["Burning Edge"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDGED,ONFIRE]);
+    new CombinedTrait("Scapel",<String>["Scapel"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[EDGED,HEALING]);
+    new CombinedTrait("Menacing",<String>["Menacing"], 0.0,ItemTrait.OPINION, <ItemTrait>[SCARY,POINTY]);
+    new CombinedTrait("Syringe",<String>["Syringe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,POINTY]);
+    new CombinedTrait("Bitter",<String>["Bitter"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,UNCOMFORTABLE]);
+    new CombinedTrait("Pineapple",<String>["Pineapple"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[EDIBLE,POINTY]);
+    new CombinedTrait("Crunchy",<String>["Crunchy"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDIBLE,BLUNT]);
+    new CombinedTrait("Bass",<String>["Bass"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEAVY,MUSICAL]);
+    new CombinedTrait("Rigid",<String>["Rigid"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEAVY,UNCOMFORTABLE]);
+    new CombinedTrait("Prop",<String>["Prop"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,FAKE]);
+    new CombinedTrait("Magic Missle",<String>["Magic Missle"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,MAGICAL]);
+    new CombinedTrait("Gangster's",<String>["Gangster's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHOOTY,COOLK1D]);
+    new CombinedTrait("Cupid's",<String>["Cupid's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHOOTY,ROMANTIC]);
+    new CombinedTrait("Turreted",<String>["Turreted"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,SENTIENT]);
+    new CombinedTrait("AutoTarget",<String>["AutoAiming","AutoTarget", "TargetAssist","AimBot"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,SMART]);
+    new CombinedTrait("Guerilla's",<String>["Guerilla's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHOOTY,ENRAGING]);
+    new CombinedTrait("Rail",<String>["Rail","ChargeDart"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,ZAP]);
+    new CombinedTrait("Tau",<String>["Tau"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,NUCLEAR]);
+    new CombinedTrait("Pew",<String>["Pew","Laser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,GLOWING]);
+    new CombinedTrait("Thermal",<String>["Thermal"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,ONFIRE]);
+
+
+
+
 
   }
 
