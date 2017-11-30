@@ -1072,12 +1072,12 @@ class ItemTraitFactory {
     new CombinedTrait("WeepingWillow",<String>["WeepingWillow"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,GHOSTLY]);
     new CombinedTrait("Latex",<String>["Latex"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,RUBBER]);
     new CombinedTrait("Turf",<String>["Turf"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,UNCOMFORTABLE]);
-    new CombinedTrait("Stress Relief",<String>["Stress Relief"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,CALMING]);
+    new CombinedTrait("Stress Relieving",<String>["Stress Relieving"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER,CALMING]);
     new CombinedTrait("[Redacted]",<String>["[Redacted]"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,ROMANTIC]); //let's be honest, most romantic shit is gonna fall under this category. rip
     new CombinedTrait("Racing",<String>["Racing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER,ONFIRE]);
-    new CombinedTrait("Cross Stich",<String>["Cross Stich"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,CLOTH]);
+    new CombinedTrait("Cross Stitch",<String>["Cross Stitch"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,CLOTH]);
     new CombinedTrait("LoveLetter",<String>["LoveLetter"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,ROMANTIC]);
-    new CombinedTrait("EbonStone",<String>["LoveLetter"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CORRUPT]);
+    new CombinedTrait("EbonStone",<String>["EbonStone"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CORRUPT]);
     new CombinedTrait("Rock Candy",<String>["Rock Candy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,EDIBLE]);
     new CombinedTrait("Smashing",<String>["Smashing"], 0.0,ItemTrait.OPINION, <ItemTrait>[STONE,LOUD]);
     new CombinedTrait("Anomalous",<String>["Anomalous"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,CORRUPT]);
@@ -1138,7 +1138,7 @@ class ItemTraitFactory {
     new CombinedTrait("Pew",<String>["Pew","Laser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,GLOWING]);
     new CombinedTrait("Thermal",<String>["Thermal"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,ONFIRE]);
     new CombinedTrait("Plasma",<String>["Plasma"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,ONFIRE]);
-    new CombinedTrait("Shredding",<String>["Shredding"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[POISON,ONFIRE]);
+    new CombinedTrait("Shredding",<String>["Shredding"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MUSICAL,ONFIRE]);
     new CombinedTrait("Leprechaun",<String>["Leprechaun"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,SENTIENT]);
     new CombinedTrait("Charmed",<String>["Charmed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,VALUABLE]);
     new CombinedTrait("Leprechaun",<String>["Leprechaun"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LUCKY,SENTIENT]);
@@ -1190,7 +1190,6 @@ class ItemTraitFactory {
     new CombinedTrait("Piper's",<String>["Piper's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MUSICAL,RESTRAINING]);
     new CombinedTrait("Melodic",<String>["Melodic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COMFORTABLE]);
     new CombinedTrait("Thrash",<String>["Thrash"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ENRAGING]);
-    new CombinedTrait("Offbeat",<String>["Offbeat"], 0.0,ItemTrait.OPINION, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
     new CombinedTrait("Chant",<String>["Chant","Chanting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,HEALING]);
     new CombinedTrait("Chewy",<String>["Chewy"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,EDIBLE]);
     new CombinedTrait("Phony",<String>["Phony"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,FAKE]);

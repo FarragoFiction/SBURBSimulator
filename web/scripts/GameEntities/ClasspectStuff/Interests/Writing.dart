@@ -31,7 +31,7 @@ class Writing extends InterestCategory {
             ..add(new Item("Book On Writing",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],shogunDesc: "How to do words for unsmarts"))
             ..add(new Item("FLARP Manual",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.SMART],abDesc:"That Cat Troll doesn't do this. So I guess it's okay.",shogunDesc: "Natural Selection for Nerds The Book"))
             ..add(new Item("Script",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "Death of JR, a screenplay by The Shogun"))
-            ..add(new Item("Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.PEN],shogunDesc: "Ink Bleeding Plastic Finger"))
+            ..add(new Item("Fancy Pen",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.SMART, ItemTraitFactory.PEN, ItemTraitFactory.CLASSY],shogunDesc: "Ink Bleeding Plastic Finger"))
             ..add(new Item("Spiral Bound Notebook",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER, ItemTraitFactory.METAL],shogunDesc: "Spinney Spine Scribing Station"))
              ..add(new Item("Half Written Novel",<ItemTrait>[ItemTraitFactory.BOOK,ItemTraitFactory.PAPER],shogunDesc: "The Shoguns Magnum Opus",abDesc:"I'm sure you'll finish it any day now."));
 
