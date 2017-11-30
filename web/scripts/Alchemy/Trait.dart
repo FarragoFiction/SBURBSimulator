@@ -1106,12 +1106,20 @@ class ItemTraitFactory {
     new CombinedTrait("Truffle",<String>["Truffle"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,VALUABLE]);
     new CombinedTrait("Vine",<String>["Vine"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,RESTRAINING]);
     new CombinedTrait("CorpseBlossom",<String>["Carion","CorpseBlossom"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,UNCOMFORTABLE]);
-    new CombinedTrait("Fruity",<String>["Fruity"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,EDIBLE]);
-
-
-
-
-
+    new CombinedTrait("Fruity",<String>["Fruity"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PLANT,EDIBLE]);
+    new CombinedTrait("Squawking",<String>["Squawking"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FEATHER,LOUD]);
+    new CombinedTrait("Poultry",<String>["Poultry","Chicken","Turkey"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,EDIBLE]);
+    new CombinedTrait("Dove",<String>["Dove"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,ROMANTIC]);
+    new CombinedTrait("Peacock",<String>["Peacock"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,PRETTY]);
+    new CombinedTrait("Stork",<String>["Stork"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,HEALING]);
+    new CombinedTrait("Zhenniao",<String>["Zhenniao"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,POISON]);
+    new CombinedTrait("Dodo",<String>["Dodo","Passenger Pigeon"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FEATHER,DOOMED]);
+    new CombinedTrait("Raven",<String>["Raven"], 0.0,ItemTrait.COLOR, <ItemTrait>[FEATHER,SCARY]);
+    new CombinedTrait("Frilled",<String>["Frilled"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FEATHER,UGLY]);
+    new CombinedTrait("Horrifying",<String>["Horrifying"], 0.0,ItemTrait.OPINION, <ItemTrait>[UGLY,SCARY]);
+    new CombinedTrait("Burning Edge",<String>["Burning Edge"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED,ONFIRE]);
+    new CombinedTrait("Scapel",<String>["Scapel"], 0.0,ItemTrait.OPINION, <ItemTrait>[EDGED,HEALING]);
+    
 
   }
 
