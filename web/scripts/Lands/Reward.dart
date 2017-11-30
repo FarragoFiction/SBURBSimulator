@@ -178,6 +178,8 @@ class CodReward extends Reward {
         //cod tier gives extra benefits.
         p1.increaseLandLevel();
         p1.increasePower();
+        p1.sylladex.add(new Item("Cod Piece",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.LEGENDARY,ItemTraitFactory.FAKE, ItemTraitFactory.CLASSRELATED],abDesc:"God damn it, MI. "));
+
         f1.name = "The Ballad of the ZillyCodPiece (Verse ${num})";
         bardQuest = true;
         for(Player p in p1.session.players) {
