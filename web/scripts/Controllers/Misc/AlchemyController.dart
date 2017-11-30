@@ -88,7 +88,7 @@ void main() {
     changeTabs(alchemyDiv);
     ButtonElement fuckYou = new ButtonElement();
     fuckYou.setInnerHtml("Fuck you.");
-    //querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
+    querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
 
     fuckYou.onClick.listen((e) => fuckYouABCanHandleThisOnHerOwn());
     querySelector("#tabs").append(storeButton);
