@@ -29,6 +29,7 @@ class NPCHandler
         this.queensRing.fraymotifs.add(f);
 
         this.queen = new Carapace("Black Queen", session);
+        this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
         this.queen.crowned = this.queensRing;
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
         queen.heal();
@@ -43,6 +44,8 @@ class NPCHandler
         this.kingsScepter.fraymotifs.add(f);
 
         this.king = new Carapace("Black King", session);
+        this.queen.specibus = new Specibus("Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
+
         this.king.crowned = this.kingsScepter;
 
         king.grist = 1000;
@@ -53,6 +56,8 @@ class NPCHandler
     void spawnJack() {
         if(session.mutator.spawnJack(session)) return null;
         this.jack = new Carapace("Jack", session);
+        this.jack.specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY]);
+
         //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
         jack.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30});
         Fraymotif f = new Fraymotif("Stab To Meet You", 1);

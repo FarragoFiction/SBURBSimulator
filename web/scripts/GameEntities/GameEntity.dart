@@ -58,6 +58,7 @@ class GameEntity extends Object with StatOwner implements Comparable<GameEntity>
         id = GameEntity.generateID();
         //default non player thingy.
         this.specibus = SpecibusFactory.CLAWS;
+        this.addBuff(new BuffSpecibus(this)); //programatic
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);

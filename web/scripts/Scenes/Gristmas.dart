@@ -44,7 +44,8 @@ class Gristmas extends Scene {
   @override
   void renderContent(Element div) {
       String ret = gristmasContent();
-      session.removeAvailablePlayer(player);
+      //okay alchemy is a free action otherwise the space players never fucking do anything.
+      //session.removeAvailablePlayer(player);
       CanvasElement canvas = new CanvasElement(width: 400, height: 400);
       CanvasElement canvas2 = new CanvasElement(width: 400, height: 300);
       Drawing.drawWhatever(canvas, "Rewards/holyAlchemy.png");

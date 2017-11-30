@@ -179,6 +179,11 @@ class Strife {
         if (winner.findPlayer() != null)
             icon = "<img src = 'images/sceneIcons/victory_icon.png'>";
         String endingHTML = "<Br><br> $icon The fight is over. ${winner.name} have won! <br>";
+
+        if(winner.members.length == 1) {
+            endingHTML = "<Br><br> $icon The fight is over. ${winner.name} has won! <br>";
+
+        }
         appendHtml(outerDiv, endingHTML);
         if (winner.findPlayer() != null) winner.renderPoseAsATeam(outerDiv); //only call this if winning team has a player in it. (otherwise blank canvas)
     }

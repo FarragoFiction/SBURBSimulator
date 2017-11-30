@@ -106,7 +106,6 @@ class Player extends GameEntity{
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
         sylladex = new Sylladex(this);
-        this.addBuff(new BuffSpecibus(this)); //programatic
     }
 
     @override

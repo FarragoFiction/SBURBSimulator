@@ -38,7 +38,10 @@ class FightQueen extends Scene {
 	}
 	@override
 	void renderContent(Element div){
+
 		if(this.session.npcHandler.queen.getStat(Stats.POWER) < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
+			session.npcHandler.queen.stats.copyFrom(findStrongestPlayer(session.players).stats);
+
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
     appendHtml(div,this.content());
 

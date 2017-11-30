@@ -28,6 +28,9 @@ class JackPromotion extends Scene{
 	String content(){
 		String ret = " In a shocking turn of events, Jack Noir claims the Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD. ";
+		//his stats are set at ascension. so really hard boss now. easy boss later.
+		session.npcHandler.jack.stats.copyFrom(findStrongestPlayer(session.players).stats);
+
 		if(this.session.npcHandler.queen.crowned != null && !this.session.npcHandler.queen.exiled){
 			if(this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) > 0){
 				if(rand.nextDouble() > .5){

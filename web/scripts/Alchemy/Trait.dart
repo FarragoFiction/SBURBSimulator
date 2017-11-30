@@ -512,6 +512,9 @@ class ItemTraitFactory {
   static CombinedTrait ITCHY;
   static CombinedTrait WISHBONE;
   static CombinedTrait RATTLING;
+  static CombinedTrait QUEENLY;
+  static CombinedTrait KINGLY;
+  static CombinedTrait JACKLY;
   static CombinedTrait CRANIAL;
   static CombinedTrait HUMERUS;
   static CombinedTrait MASSAGE;
@@ -1003,6 +1006,9 @@ class ItemTraitFactory {
     new CombinedTrait("Superior",<String>["Superior"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,CLASSY]);
     new CombinedTrait("Lego",<String>["Lego"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,CALMING,BLUNT, ASPECTAL, LEGENDARY]);
     new CombinedTrait("Yardstick",<String>["Yardstick"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STICK,CLASSRELATED,WOOD, PAPER, LEGENDARY]);
+    QUEENLY = new CombinedTrait("Queenly",<String>["Queenly"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[OBSCURING,MAGICAL,REAL, UNCOMFORTABLE, SCARY]);
+    KINGLY = new CombinedTrait("Kingly",<String>["Kingly"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SCARY,BLUNT,HEAVY, MAGICAL,REAL]);
+    JACKLY = new CombinedTrait("Jack",<String>["Jack"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[POINTY,EDGED,METAL, OBSCURING]);
 
 
   }

@@ -136,25 +136,26 @@ class BuffBase extends Buff {
 //JR here, derping around in teh code. Sorry PL.
 class BuffSpecibus extends Buff {
     //need to have or can't know what specibus they have right now. don't assume it stays constant.
-    Player player;
+    GameEntity gameEntity;
 
 
-    BuffSpecibus(this.player):super.multiple(Stats.all, false, false){
+    BuffSpecibus(this.gameEntity):super.multiple(Stats.all, false, false){
         this.persistsThroughDeath = true;
     }
 
   @override
   Buff copy() {
-      return new BuffSpecibus(player);
+      return new BuffSpecibus(gameEntity);
   }
 
     @override
     double additional(StatHolder holder, Stat stat, double val) {
-        if (stat == Stats.SBURB_LORE) {
+        //return val;
+        if (stat == Stats.SBURB_LORE ) {
             return val;
         }
         if (stat.pickable) {
-            return val * player.specibus.rank;
+            return val * gameEntity.specibus.rank;
         }
         return val;
     }

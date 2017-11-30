@@ -17,6 +17,8 @@ class GiveJackBullshitWeapon extends Scene {
 	}
 	dynamic content(){
 		this.session.stats.jackGotWeapon = true;
+		this.session.npcHandler.jack.specibus.traits.add(ItemTraitFactory.LEGENDARY);
+		this.session.npcHandler.jack.specibus.numUpgrades ++; //for the name
 
 
 		String ret = " Jack Noir is tired of putting up with the STUPID LOUSY WISE AND JUST LEADER, what a royal pain in the ass. ";
