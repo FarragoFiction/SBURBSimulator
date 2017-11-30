@@ -685,7 +685,7 @@ class ShopItemInStock extends ShopItem {
   @override
   void renderTransactButton() {
       ButtonElement button = new ButtonElement();
-      int cost = (shop.shopKeep.priceModifier * (item.rank.abs()+1) * -10).round();
+      int cost = (shop.shopKeep.priceModifier * (item.rank.abs()+1) * -5).round();
 
 
       button.setInnerHtml("Buy For ${cost} Grist?");
