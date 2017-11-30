@@ -1079,14 +1079,37 @@ class ItemTraitFactory {
     new CombinedTrait("LoveLetter",<String>["LoveLetter"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,ROMANTIC]);
     new CombinedTrait("EbonStone",<String>["LoveLetter"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CORRUPT]);
     new CombinedTrait("Rock Candy",<String>["Rock Candy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,EDIBLE]);
-    new CombinedTrait("Smashing",<String>["Smashing"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,LOUD]);
-    new CombinedTrait("Anomalous",<String>["Anomalous"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,CORRUPT]);
+    new CombinedTrait("Smashing",<String>["Smashing"], 0.0,ItemTrait.OPINION, <ItemTrait>[STONE,LOUD]);
+    new CombinedTrait("Anomalous",<String>["Anomalous"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,CORRUPT]);
     new CombinedTrait("Onmoraki",<String>["Onmoraki"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,FEATHER]);
-    new CombinedTrait("Ghastly",<String>["Ghastly"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,UGLY]);
+    new CombinedTrait("Ghastly",<String>["Ghastly"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,UGLY]);
     new CombinedTrait("Shade",<String>["Shade","Shadow"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,OBSCURING]);
     new CombinedTrait("Choral",<String>["Choral"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,MUSICAL]);
     new CombinedTrait("Eerie",<String>["Eerie"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,PRETTY]);
-    new CombinedTrait("Spiritual",<String>["Spiritual"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,REAL]);
+    new CombinedTrait("Spiritual",<String>["Spiritual"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,REAL]);
+    new CombinedTrait("Heart",<String>["Heart"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FLESH,ROMANTIC]);
+    new CombinedTrait("Primordial",<String>["Primordial"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FLESH,SENTIENT]);
+    new CombinedTrait("Eyeball",<String>["Eyeball"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FLESH,GLOWING]);
+    new CombinedTrait("Vulture",<String>["Vulture"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FLESH,FEATHER]);
+    new CombinedTrait("BlackMagic",<String>["DarkSpell","BlackMagic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,MAGICAL]);
+    new CombinedTrait("Doppelganger",<String>["Doppelganger"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CORRUPT,FAKE]);
+    new CombinedTrait("Incomprehensible",<String>["Incomprehensible"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CORRUPT,LOUD]);
+    new CombinedTrait("Destructive",<String>["Destructive"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CORRUPT,SENTIENT]);
+    new CombinedTrait("Growling",<String>["Growling"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FUR,LOUD]);
+    new CombinedTrait("Coconut",<String>["Coconut"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FUR,EDIBLE]);
+    new CombinedTrait("Beastmaster's",<String>["Beastmaster's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[FUR,RESTRAINING]);
+    new CombinedTrait("Fluffy",<String>["Fluffy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[FUR,FEATHER]);
+    new CombinedTrait("Fern",<String>["Feather Grass","Fern"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,FEATHER]);
+    new CombinedTrait("Four Leafed",<String>["Four Leafed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PLANT,LUCKY]);
+    new CombinedTrait("Shrubbery",<String>["Shrubbery"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,OBSCURING]);
+    new CombinedTrait("Ecballium",<String>["Shameplant","Ecballium"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,EXPLODEY]);
+    new CombinedTrait("Truffle",<String>["Truffle"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,VALUABLE]);
+    new CombinedTrait("Vine",<String>["Vine"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,RESTRAINING]);
+    new CombinedTrait("CorpseBlossom",<String>["Carion","CorpseBlossom"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,UNCOMFORTABLE]);
+    new CombinedTrait("Fruity",<String>["Fruity"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLANT,EDIBLE]);
+
+
+
 
 
 
