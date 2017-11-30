@@ -47,7 +47,7 @@ class Sage extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Sage's Robe",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],shogunDesc: "Pompous Asshole Robes",abDesc:"So sagey. Needs a beard or some shit, though."))
+            ..add(new Item("Sage's Robe",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COMFORTABLE,ItemTraitFactory.SMART, ItemTraitFactory.MAGICAL, ItemTraitFactory.LEGENDARY],shogunDesc: "Pompous Asshole Robes",abDesc:"So sagey. Needs a beard or some shit, though."))
             ..add(new Item("Peer Reviewed Journal",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART],shogunDesc: "Book Containing More Corrections Than Actual Content",abDesc:"I guess this is p well reviewed."))
             ..add(new Item("Guru Pillow",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PILLOW, ItemTraitFactory.SMART],shogunDesc: "Headrest For Smart People",abDesc:"Huh. What. Was JR thinking. When they made this item?")); //JR: I have no fucking clue.
     }

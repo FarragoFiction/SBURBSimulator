@@ -34,6 +34,7 @@ class Grace extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //things that take only a nudge to ruin everything.
+            ..add(new Item("How to Teach Your Friends to Hack SBURB",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.PAPER, ItemTraitFactory.LEGENDARY, ItemTraitFactory.SMARTPHONE],abDesc:"Oh sure, it's bad enough that WASTES fuck around in my shit, but at least they somewhat know what they are doing. SURE, let's have GRACES teach the WHOLE FUCKING PARTY to do it."))
             ..add(new Item("Unstable Domino",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED],shogunDesc: "Broken Knocker Over Maths Thing",abDesc:"Fucking Graces can't leave well enough alone."))
             ..add(new Item("Exposed Thread",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED],shogunDesc: "Indecent String",abDesc:"Fucking Graces can't leave well enough alone."))
             ..add(new Item("Teetering Plate",<ItemTrait>[ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.DOOMED],shogunDesc: "Impending Drop Dish",abDesc:"Fucking Graces can't leave well enough alone."));

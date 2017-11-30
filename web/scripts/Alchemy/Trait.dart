@@ -1004,12 +1004,33 @@ class ItemTraitFactory {
     new CombinedTrait("Oglogoth's",<String>["Oglogoth's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[CORRUPT,POINTY]);
     new CombinedTrait("Echidna's",<String>["Echidna's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,POINTY]);
     new CombinedTrait("Superior",<String>["Superior"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SMART,CLASSY]);
-    new CombinedTrait("Lego",<String>["Lego"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,CALMING,BLUNT, ASPECTAL, LEGENDARY]);
-    new CombinedTrait("Yardstick",<String>["Yardstick"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STICK,CLASSRELATED,WOOD, PAPER, LEGENDARY]);
+    new CombinedTrait("Lego",<String>["Lego"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,CALMING,BLUNT]);
+    new CombinedTrait("Yardstick",<String>["Yardstick"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STICK,WOOD, PAPER]);
     QUEENLY = new CombinedTrait("Queenly",<String>["Queenly"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[OBSCURING,MAGICAL,REAL, UNCOMFORTABLE, SCARY]);
     KINGLY = new CombinedTrait("Kingly",<String>["Kingly"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SCARY,BLUNT,HEAVY, MAGICAL,REAL]);
     JACKLY = new CombinedTrait("Jack",<String>["Jack"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[POINTY,EDGED,METAL, OBSCURING]);
-
+    new CombinedTrait("Codpiece",<String>["Codpiece","Codtier"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FAKE,WOOD, CLASSRELATED, CLOTH]);
+    new CombinedTrait("Graceful",<String>["Graceful"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BOOK,PAPER,SMARTPHONE, CLASSRELATED]);
+    new CombinedTrait("Guide",<String>["Guide","Tourist"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BOOK,PAPER,SMART, CLASSRELATED,COLD]);
+    new CombinedTrait("Testament",<String>["Will","Testament"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,PAPER,SMART,RESTRAINING]);
+    new CombinedTrait("Excalibur",<String>["Excalibur's","Excalibur"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[GLOWING,METAL,POINTY,EDGED,SWORD]);
+    new CombinedTrait("Influential",<String>["Influential"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[PAPER,ENRAGING,BOOK]);
+    new CombinedTrait("Alternative",<String>["Alternative"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL,CLOTH, OBSCURING]);
+    new CombinedTrait("Valkyrie",<String>["Valkyrie"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[UNCOMFORTABLE,ADAMANTIUM,SHIELD, PRETTY]);
+    new CombinedTrait("Ongoing",<String>["Ongoing"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[STONE,CLASSY,BUST, BLUNT]);
+    new CombinedTrait("Short",<String>["Short"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLOTH,VALUABLE, PRETTY, CLASSY]);
+    new CombinedTrait("Crown",<String>["Crown"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[METAL,VALUABLE, PRETTY, CLASSY]);
+    new CombinedTrait("Gristtorrent",<String>["Gristtorrent"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PLASTIC,ZAP, OBSCURING, SMART]);
+    new CombinedTrait("Robe",<String>["Robe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,SMART, MAGICAL, COMFORTABLE]);
+    new CombinedTrait("Beret",<String>["Beret"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CLOTH,SMART, PRETTY, CLASSY]);
+    new CombinedTrait("Blank",<String>["Blank"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PAPER,SMART, BOOK, SMART, OBSCURING]);
+    new CombinedTrait("Cueball",<String>["Cueball"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PRETTY,CERAMIC, BLUNT, BALL, SENTIENT]);
+    new CombinedTrait("Meddler's",<String>["Meddler's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[BOOK,PAPER, ENRAGING, HEALING]);
+    new CombinedTrait("Scroll",<String>["Scroll"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL,PAPER]);
+    new CombinedTrait("Tome",<String>["Tome"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,SMART,BOOK]);
+    new CombinedTrait("Lockpick",<String>["Lockpick"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[METAL,OBSCURING,POINTY]);
+    new CombinedTrait("Warped",<String>["Warped"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,GLASS,OBSCURING]);
+    
 
   }
 

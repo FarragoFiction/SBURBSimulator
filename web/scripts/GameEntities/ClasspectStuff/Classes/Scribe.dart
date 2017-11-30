@@ -46,7 +46,7 @@ class Scribe extends SBURBClass {
         items = new WeightedList<Item>()
             ..add(new Item("Scroll",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.SMART],shogunDesc: "Rolled Up Picture of JR",abDesc:"Scribe Shit"))
             ..add(new Item("Ink Pot",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.OBSCURING, ItemTraitFactory.SMART],shogunDesc: "Black Liquid That Tastes Awful",abDesc:"You could probably censor shit with this."))
-            ..add(new Item("Blank Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART],shogunDesc: "Dick Drawing Practice Apparatus",abDesc:"Fill it in yourself I guess."));
+            ..add(new Item("Blank Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.BOOK, ItemTraitFactory.SMART, ItemTraitFactory.OBSCURING,ItemTraitFactory.LEGENDARY],shogunDesc: "Dick Drawing Practice Apparatus",abDesc:"Fill it in yourself I guess."));
     }
 
 
