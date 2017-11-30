@@ -147,6 +147,7 @@ void checkShopKeepTrigger(Item item) {
         }
     }else if(alchemyShop.shopKeep == shogun) { //shogun banished by pigeons, but will come back unless you fix AB
         if(item.traits.contains(ItemTraitFactory.PIGEON)) {
+            print("SHOGUN SHOULD BE BANISHED");
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
