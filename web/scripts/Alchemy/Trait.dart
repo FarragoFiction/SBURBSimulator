@@ -1137,6 +1137,36 @@ class ItemTraitFactory {
     new CombinedTrait("Tau",<String>["Tau"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,NUCLEAR]);
     new CombinedTrait("Pew",<String>["Pew","Laser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,GLOWING]);
     new CombinedTrait("Thermal",<String>["Thermal"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,ONFIRE]);
+    new CombinedTrait("Plasma",<String>["Plasma"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,ONFIRE]);
+    new CombinedTrait("Shredding",<String>["Shredding"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[POISON,ONFIRE]);
+    new CombinedTrait("Leprechaun",<String>["Leprechaun"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,SENTIENT]);
+    new CombinedTrait("Charmed",<String>["Charmed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,VALUABLE]);
+    new CombinedTrait("Leprechaun",<String>["Leprechaun"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LUCKY,SENTIENT]);
+    new CombinedTrait("Prospitian",<String>["Prospitian"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[GLOWING,COMFORTABLE]);
+    new CombinedTrait("Vigilant",<String>["Vigilant"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GLOWING,SENTIENT]);
+    new CombinedTrait("Stand-Up",<String>["Stand-Up"], 0.0,ItemTrait.OPINION, <ItemTrait>[GLOWING,FUNNY]);
+    new CombinedTrait("Bedazzled",<String>["Bedazzled"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GLOWING,COOLK1D]);
+    new CombinedTrait("Thief's",<String>["Thief's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[OBSCURING,MAGICAL]);
+    new CombinedTrait("InvisibilityCloak",<String>["InvisibilityCloak"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[OBSCURING,MAGICAL, CLOTH]);
+    new CombinedTrait("Comedy Night",<String>["Comedy Night","Dry Humor"], 0.0,ItemTrait.CONDITION, <ItemTrait>[OBSCURING,FUNNY]);
+    new CombinedTrait("Stealthy",<String>["Stealthy"], 0.0,ItemTrait.OPINION, <ItemTrait>[OBSCURING,SENTIENT]);
+    new CombinedTrait("Subterfuge",<String>["Subterfuge"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[OBSCURING,SMART]);
+    new CombinedTrait("Dersite",<String>["Dersite"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[OBSCURING,UNCOMFORTABLE]);
+    new CombinedTrait("Ambient",<String>["Ambient","Muzak","Elevator"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[CALMING,MUSICAL]);
+    new CombinedTrait("Anesthesia",<String>["Anesthesia"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CALMING,HEALING]);
+    new CombinedTrait("Supportive",<String>["Supportive"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CALMING,SENTIENT]);
+    new CombinedTrait("Nuka",<String>["Nuka"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,NUCLEAR]);
+    new CombinedTrait("Contaminated",<String>["Contaminated"], 0.0,ItemTrait.CONDITION, <ItemTrait>[POISON,NUCLEAR]);
+    new CombinedTrait("Unstable",<String>["Unstable"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,NUCLEAR]);
+    new CombinedTrait("Timebomb",<String>["Timebomb"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,EXPLODEY]);
+    new CombinedTrait("Short Circuiting",<String>["Short Circuiting"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ZAP,DOOMED]);
+    new CombinedTrait("Relic",<String>["Artifact","Relic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,VALUABLE]);
+    new CombinedTrait("Existentialist",<String>["Existentialist"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,UNCOMFORTABLE]);
+    new CombinedTrait("Apocalyptic",<String>["Apocalyptic"], 0.0,ItemTrait.OPINION, <ItemTrait>[DOOMED,REAL]);
+    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
+    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
+    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
+    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[DOOMED,SENTIENT]);
 
 
 
