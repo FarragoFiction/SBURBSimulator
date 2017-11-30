@@ -1030,8 +1030,17 @@ class ItemTraitFactory {
     new CombinedTrait("Tome",<String>["Tome"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,SMART,BOOK]);
     new CombinedTrait("Lockpick",<String>["Lockpick"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[METAL,OBSCURING,POINTY]);
     new CombinedTrait("Warped",<String>["Warped"], 0.0,ItemTrait.CONDITION, <ItemTrait>[METAL,GLASS,OBSCURING]);
-    
-
+    new CombinedTrait("Stairs",<String>["Stairs"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[FAKE,WOOD,COOLK1D, CALMING, HEALING]);
+    new CombinedTrait("Rocket",<String>["Rocket"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ONFIRE,METAL,LOUD]);
+    new CombinedTrait("~ATH",<String>["~ATH"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ZAP,PAPER,BOOK,DOOMED]);
+    new CombinedTrait("Puppeted",<String>["Puppeted"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,SENTIENT,SCARY]);
+    new CombinedTrait("Angelic",<String>["Angelic"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[REAL,FEATHER,GLOWING, MUSICAL,MAGICAL]);
+    new CombinedTrait("Vitae",<String>["Vitae"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[HEALING,GLASS,MAGICAL]);
+    new CombinedTrait("Fluorite",<String>["Fluorite"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,LUCKY,STONE,GLASS]);
+    new CombinedTrait("Janus",<String>["Janus"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[UNCOMFORTABLE,STONE,CLASSY, ZAP]);
+    new CombinedTrait("Bacchus",<String>["Bacchus"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[EDIBLE,ENRAGING,CLASSY]);
+    new CombinedTrait("TurnTable",<String>["TurnTable"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[METAL,MUSICAL,COOLK1D]);
+    new CombinedTrait("???",<String>["???"," ",""], 0.0,ItemTrait.OPINION, <ItemTrait>[GLASS,NUCLEAR,GLOWING,OBSCURING]);
   }
 
   static void initObjects() {
