@@ -67,10 +67,10 @@ void renderTraitsTable(Element div) {
                     if (combos.first is CombinedTrait) {
                         CombinedTrait combo = combos.first as CombinedTrait;
                         newCell(tr, combo.name, ReferenceColours.BLACK);
-                        numberFilledCells ++;
                     } else {
                         newCell(tr, "???", ReferenceColours.BLACK);
-                    }                }else{
+                    }
+                }else{
                     seenTraits.add(pair);
                     numberCells ++;
                     if (combos.first is CombinedTrait) {
