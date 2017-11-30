@@ -885,7 +885,7 @@ class ItemTraitFactory {
     FIREPLACE = new CombinedTrait("Fireplace",<String>["Fireplace"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[COMFORTABLE,ONFIRE]);
     CRACKLING = new CombinedTrait("Crackling",<String>["Crackling"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,ONFIRE]);
     THUMPING = new CombinedTrait("Thumping",<String>["Thumping"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,HEAVY]);
-    SHRIEKING = new CombinedTrait("Shrieking",<String>["Shrieking","Banshee"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GHOSTLY,LOUD]);
+    SHRIEKING = new CombinedTrait("Banshee",<String>["Shrieking","Banshee"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GHOSTLY,LOUD]);
     SURREALCORRUPTFUNNY = new CombinedTrait("Surreal2",<String>["Surreal"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY,CORRUPT]);
     ALOE = new CombinedTrait("Aloe",<String>["Aloe","Willowbark"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[HEALING,PLANT]);
     ROSE = new CombinedTrait("Rose",<String>["Rose"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,PLANT]);
@@ -1069,12 +1069,24 @@ class ItemTraitFactory {
     new CombinedTrait("Bootleg",<String>["Bootleg"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,FAKE]);
     new CombinedTrait("Distorted",<String>["Distorted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,LOUD]);
     new CombinedTrait("Ent's",<String>["Ent's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,SENTIENT]);
-    new CombinedTrait("WeepingWillow",<String>["WeepingWillow"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,GHOSTLY]);
-    new CombinedTrait("Latex",<String>["Latex"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[WOOD,RUBBER]);
-
-
-
-
+    new CombinedTrait("WeepingWillow",<String>["WeepingWillow"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,GHOSTLY]);
+    new CombinedTrait("Latex",<String>["Latex"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,RUBBER]);
+    new CombinedTrait("Turf",<String>["Turf"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,UNCOMFORTABLE]);
+    new CombinedTrait("Stress Relief",<String>["Stress Relief"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,CALMING]);
+    new CombinedTrait("[Redacted]",<String>["[Redacted]"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,ROMANTIC]); //let's be honest, most romantic shit is gonna fall under this category. rip
+    new CombinedTrait("Racing",<String>["Racing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER,ONFIRE]);
+    new CombinedTrait("Cross Stich",<String>["Cross Stich"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,CLOTH]);
+    new CombinedTrait("LoveLetter",<String>["LoveLetter"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,ROMANTIC]);
+    new CombinedTrait("EbonStone",<String>["LoveLetter"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,CORRUPT]);
+    new CombinedTrait("Rock Candy",<String>["Rock Candy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,EDIBLE]);
+    new CombinedTrait("Smashing",<String>["Smashing"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[STONE,LOUD]);
+    new CombinedTrait("Anomalous",<String>["Anomalous"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,CORRUPT]);
+    new CombinedTrait("Onmoraki",<String>["Onmoraki"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,FEATHER]);
+    new CombinedTrait("Ghastly",<String>["Ghastly"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,UGLY]);
+    new CombinedTrait("Shade",<String>["Shade","Shadow"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,OBSCURING]);
+    new CombinedTrait("Choral",<String>["Choral"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,MUSICAL]);
+    new CombinedTrait("Eerie",<String>["Eerie"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,PRETTY]);
+    new CombinedTrait("Spiritual",<String>["Spiritual"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GHOSTLY,REAL]);
 
 
 
