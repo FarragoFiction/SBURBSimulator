@@ -165,7 +165,7 @@ int getRandomSeed() {
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(ErrorEvent e) {
     if(curSessionGlobalVar == null) {
-      appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION.");
+      appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION. THIS IS STUPID.");
       SimController.instance.recoverFromCorruption();
       return false;
     }
@@ -266,7 +266,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     //print("Corrupted session: ${scratchedLineageText(curSessionGlobalVar.getLineage())} helping AB return, if she is lost here.");
     //print("Debugging AB: trying to recover from corruption now.");
     SimController.instance.recoverFromCorruption();
-
+    appendHtml(story,"<h1>IT BEGINS TO DAWN ON YOU. THAT EVERYTHING YOU JUST DID. MAY HAVE BEEN A COLOSSAL WASTE OF TIME. </h1>");
     return false; //if i return true here, the real error doesn't show up;
 }
 
