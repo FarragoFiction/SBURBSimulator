@@ -26,6 +26,9 @@ class GoGrimDark extends Scene {
 
 	bool corruptionReachedTippingPoint(Player p){
 		int x = -10; //change this to calibrate things. negative means less chance of grim dark
+		//OMFG this is JR from 12/1/17 and WHY THE FUCK DID I SUDDENLY MULTIPLY THE GRIM DARK RATE BY -10???
+		//THIS IS INSANE. Currenltly nobody goes above grim dark 1 for obvious damn reasons WHAT HAPPENED????
+		x = 1;
 		return p.corruptionLevelOther >= 50-(p.grimDark*11)*x; //at level 4, only need 10*x more points. at level 1, need 40*x;
 	}
 
@@ -52,7 +55,7 @@ class GoGrimDark extends Scene {
 			this.player.changeGrimDark(1);  //this SHOULD be the only way to modify grim dark level upwards
 			this.player.corruptionLevelOther = 0; //reset corruption level
 			String ret = "";
-			session.logger.info("AB: Grim dark raised to ${player.grimDark}.");
+			session.logger.info("AB: Grim dark raised to ${player.grimDark} for player ${player}.");
 			if(this.player.grimDark == 1){
 				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!";
 			}else if(this.player.grimDark == 2){
