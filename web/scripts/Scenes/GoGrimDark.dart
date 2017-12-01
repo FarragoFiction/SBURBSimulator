@@ -52,6 +52,7 @@ class GoGrimDark extends Scene {
 			this.player.changeGrimDark(1);  //this SHOULD be the only way to modify grim dark level upwards
 			this.player.corruptionLevelOther = 0; //reset corruption level
 			String ret = "";
+			session.logger.info("AB: Grim dark raised to ${player.grimDark}.");
 			if(this.player.grimDark == 1){
 				ret += " The " + this.player.htmlTitle() + " is starting to seem a little strange. They sure do like talking about Horrorterrors!";
 			}else if(this.player.grimDark == 2){
