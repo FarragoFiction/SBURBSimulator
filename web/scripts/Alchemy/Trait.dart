@@ -1073,7 +1073,7 @@ class ItemTraitFactory {
     new CombinedTrait("Latex",<String>["Latex"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[WOOD,RUBBER]);
     new CombinedTrait("Turf",<String>["Turf"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PLASTIC,UNCOMFORTABLE]);
     new CombinedTrait("Stress Relieving",<String>["Stress Relieving"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER,CALMING]);
-    new CombinedTrait("[Redacted]",<String>["[Redacted]"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,ROMANTIC]); //let's be honest, most romantic shit is gonna fall under this category. rip
+    new CombinedTrait("R-Rated",<String>["R-Rated"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,ROMANTIC]); //let's be honest, most romantic shit is gonna fall under this category. rip
     new CombinedTrait("Racing",<String>["Racing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER,ONFIRE]);
     new CombinedTrait("Cross Stitch",<String>["Cross Stitch"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,CLOTH]);
     new CombinedTrait("LoveLetter",<String>["LoveLetter"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,ROMANTIC]);
