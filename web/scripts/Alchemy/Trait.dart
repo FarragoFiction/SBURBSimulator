@@ -1188,7 +1188,8 @@ class ItemTraitFactory {
     new CombinedTrait("Saxaphone",<String>["Saxaphone","Saxobeat"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ROMANTIC]);
     new CombinedTrait("Offbeat",<String>["Offbeat","Syncopated"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,UNCOMFORTABLE]);
     new CombinedTrait("Piper's",<String>["Piper's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MUSICAL,RESTRAINING]);
-    new CombinedTrait("Melodic",<String>["Melodic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COMFORTABLE]);
+    new CombinedTrait("Melodic",<String>["Melodic"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,PRETTY]);
+    new CombinedTrait("Smooth",<String>["Smooth"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,COMFORTABLE]);
     new CombinedTrait("Thrash",<String>["Thrash"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,ENRAGING]);
     new CombinedTrait("Chant",<String>["Chant","Chanting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MUSICAL,HEALING]);
     new CombinedTrait("Chewy",<String>["Chewy"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ENRAGING,EDIBLE]);
