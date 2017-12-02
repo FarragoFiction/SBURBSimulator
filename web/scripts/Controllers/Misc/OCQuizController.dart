@@ -8,14 +8,20 @@ import 'dart:async';
 
 
 
-OCGenerator ocgen;
+OCGeneratorQuiz ocgen;
 
 main() {
     loadNavbar();
     globalInit();
+    ButtonElement button = new ButtonElement();
+    button.setInnerHtml("Do Quests");
     new StoryJustQuestController(); //so we can do quests and stufff.
+    SimController.instance.storyElement.append(button);
+
     ocgen = new OCGeneratorQuiz(1);
     curSessionGlobalVar =ocgen.session;
+    button.onClick.listen((e) => ocgen.doQuests(ocgen.players.first));
+
     loadFuckingEverything("I really should stop doing this",ocgen.start );
     //TODO have a form element for picking session id, which should overright the rand number
     //have a bigger canvas
@@ -83,7 +89,8 @@ class OCGeneratorQuiz extends OCGenerator {
         await OT.drawText("Fonts/CARIMA.ttf", ctx, "${p.land.name} ", left_margin*2,current, 40, fill: p.aspect.palette.text.toStyleString());
         //ctx.fillText("${p.land.name} ",left_margin*2,current);
 
-        doQuests(p);
+        //doQuests(p); too much lag
+        if(storyElementReplacement != null)storyElementReplacement.setInnerHtml("");
     }
 
     void doQuests(Player p) {
