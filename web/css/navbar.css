@@ -3,12 +3,15 @@
 	width:1020px;
 	margin-left: auto;
 	margin-right: auto;
+	z-index: 13;
+
 }
 
 .links{
 	background-color: white;
 	padding: 10px;
 	width:1000px;
+	z-index: 13;
 	margin-left: auto;
 	margin-right: auto;
 	border: 3px solid black;
@@ -18,6 +21,7 @@
 
 .fanLinks{
 	background-color: #9630bf;
+	z-index: 13;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	color: #cc87e8;
@@ -32,10 +36,12 @@
 .navbarLink{
 	padding-left: 10px;
 	padding-right:10px;
+	z-index: 13;
 }
 
 .navBarMenu{
 	display:none;
+	z-index: 13;
 }
 
 .menu{
@@ -44,6 +50,7 @@
 	height:30px;
 	margin-left: auto;
 	margin-right: auto;
+	z-index: 13;
 	border: 3px solid #386426;
 	text-align: center;
 	vertical-align: middle;
@@ -54,6 +61,7 @@
 	margin-left: 5px;
 	margin-right: 5px;
 	padding-left: 5px;
+	z-index: 13;
 	padding-right: 5px;
 	border: 3px solid #386426;
 	background-color: #3da35a;
@@ -66,6 +74,7 @@
 
 ul.menuPureCSS {
     list-style-type: none;
+    z-index: 13;
 		width: 1000px;
     margin: 0, auto;
 		text-align: center;
@@ -78,6 +87,7 @@ ul.menuPureCSS {
 }
 .refactoringStatus{
     background-color: #544A3A;
+    z-index: 13;
     vertical-align: bottom;
     width: 200px;
     display: inline-block;
@@ -101,9 +111,11 @@ ul.menuPureCSS {
 }
 .banner{
     width: 1000px;
+    z-index: 13;
 }
 
 .banner img{
+z-index: 13;
     margin: 0px;
     display: inline-block;
     margin: 0 auto;
@@ -111,6 +123,7 @@ ul.menuPureCSS {
 
 .centeredMenu{
 	width: 800px;
+	z-index: 13;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -118,11 +131,13 @@ ul.menuPureCSS {
 }
 
 li.menuButtonPureCSS {
+z-index: 13;
     float: left;
 		padding-left: 10px;
 }
 
 li.menuButtonPureCSS a, .dropbtn {
+z-index: 13;
     display: block;
     color:  #06ffc9;;
     text-align: center;
@@ -132,14 +147,17 @@ li.menuButtonPureCSS a, .dropbtn {
 
 li.menuButtonPureCSS a:hover, .dropdown:hover .dropbtn {
     background-color: #386426;
+    z-index: 13;
 }
 
 li.dropdown {
     display: inline-block;
+    z-index: 13;
 }
 
 .dropdown-content {
     display: none;
+    z-index: 13;
     position: absolute;
     background-color: #3da35a;
     min-width: 160px;
@@ -149,6 +167,7 @@ li.dropdown {
 
 .dropdown-content a {
     color: black;
+    z-index: 13;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -158,5 +177,6 @@ li.dropdown {
 .dropdown-content a:hover {background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
+z-index: 13;
     display: block;
 }
