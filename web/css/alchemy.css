@@ -23,6 +23,11 @@
     padding: 10px;
 }
 
+#level{
+    font-family: 'strife', sans-serif;
+    padding: 10px;
+}
+
 body{
 	background-image: url("../images/Skaia_Clouds.png");
 }

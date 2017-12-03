@@ -60,7 +60,6 @@ void main() {
     storeDiv = querySelector("#storeDiv");
 
     sellDiv = querySelector("#sellshit");
-    achivementDiv = querySelector("#achievements");
     alchemyDiv = querySelector("#alchemy");
 
     Element shopKeepDiv = querySelector("#shopKeep");
@@ -74,7 +73,6 @@ void main() {
     alchemyShop = new Shop(player, ab, buyDiv, sellDiv,quipDiv,Item.allUniqueItems);
     alchemyShop.setShopKeep(ab);
 
-    Achievement.announcmentDiv = querySelector("#announcement");
 
     ButtonElement storeButton = new ButtonElement();
     storeButton.setInnerHtml("Store");
@@ -88,16 +86,12 @@ void main() {
     changeTabs(alchemyDiv);
     ButtonElement fuckYou = new ButtonElement();
     fuckYou.setInnerHtml("Fuck you.");
-   // querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
+    querySelector("#tabs").append(fuckYou); //don't do this. AB takes SO FUCKING LONG.
 
     fuckYou.onClick.listen((e) => fuckYouABCanHandleThisOnHerOwn());
     querySelector("#tabs").append(storeButton);
     querySelector("#tabs").append(alchemyButton);
 
-
-    Achievement.gristDiv = querySelector("#grist");
-    Achievement.syncGristDiv();
-    Achievement.makeAchievements(achivementDiv, querySelector("#achievementLabel"));
 }
 
 
@@ -187,16 +181,40 @@ void init() {
     operatorSelSpot = querySelector("#opSel");
     item2SelSpot = querySelector("#item2Sel");
     player = randomPlayer(new Session(int.parse(todayToSession())));
-    normalizeAlchemySkill();
+    achivementDiv = querySelector("#achievements");
+
+
+    Achievement.gristDiv = querySelector("#grist");
+    Achievement.levelDiv = querySelector("#level");
+    Achievement.announcmentDiv = querySelector("#announcement");
+    Achievement.syncGristDiv();
+
+    //make achievements, then set alchemy skill based on those, then popular sylladex so refreshed items are level appropriate
+    Achievement.makeAchievements(achivementDiv, querySelector("#achievementLabel"));
+    setAlchemySkill();
     populateSylladex();
     makeAlchemyButton();
     makeDropDowns();
     makeStatsDisplay();
 }
 
-void normalizeAlchemySkill() {
+void setAlchemySkill() {
     for(AssociatedStat a in player.associatedStats) {
-        if(a.stat == Stats.ALCHEMY) a.multiplier = 0.0;
+        if(a.stat == Stats.ALCHEMY) {
+            double oldSkill = a.multiplier;
+                //number of achievements you have is your current alchemy skill.
+            if(Achievement.achievements.isEmpty) {
+               a.multiplier = 0.0;
+            }else {
+                a.multiplier = Achievement.numFinishedAchievements()/(Achievement.achievements.length/13);
+                print("Debugging Level: oldskill ${oldSkill} newskill ${a.multiplier}");
+                if(a.multiplier.floor() - oldSkill.floor() >= 1.0) {
+                    print("Debugging Level: i think i leveled up");
+                    Achievement.setLevel(a.multiplier.round());
+                    Achievement.announcmentDiv.setInnerHtml("Leveled up to ${a.multiplier.round()}! Items purchased in shop will last longer!");
+                }
+            }
+        }
     }
 }
 
@@ -290,6 +308,8 @@ void processAchievements(Item itemAlchemized) {
     }else {
         Achievement.announcmentDiv.appendHtml("");
     }
+
+    setAlchemySkill();
 
 }
 
@@ -471,11 +491,14 @@ Element renderItemStats(Item item) {
 //knows if found yet or nah
 class Achievement {
     static int _grist = 0;
+    static int _level = 0;
     static String WONCLASS = "passedAchievement";
     static String NOTYETCLASS = "missingAchievement";
     static Element announcmentDiv;
     static Element label;
     static Element gristDiv;
+    static Element levelDiv;
+
 
     static Map<CombinedTrait, Achievement> achievements = <CombinedTrait, Achievement>{};
 
@@ -512,8 +535,21 @@ class Achievement {
         syncGristDiv();
     }
 
+    static int setLevel(int amount) {
+        print("setting level div");
+        _level = amount;
+        syncLevelDiv();
+    }
+
+
+
+    static void syncLevelDiv() {
+        print("level div is ${levelDiv}");
+        levelDiv.setInnerHtml("Level: ${_level}");
+    }
+
     static void syncGristDiv() {
-        gristDiv.setInnerHtml("Grist: ${grist}");
+        gristDiv.setInnerHtml("Grist: ${_grist}");
     }
 
     String toggle() {
