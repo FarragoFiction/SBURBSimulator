@@ -811,13 +811,13 @@ class ItemTraitFactory {
     LOTTERY = new CombinedTrait("Lottery",<String>["Lottery"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,LUCKY]);
     BLINDFOLDED = new CombinedTrait("Blindfolded",<String>["Blindfolded"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[OBSCURING,CLOTH]);
     POSSESED = new CombinedTrait("Possessed",<String>["Possessed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GHOSTLY,FLESH]);
-    INFERNAL = new CombinedTrait("Infernal",<String>["debugging"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,ONFIRE]);
+    INFERNAL = new CombinedTrait("Infernal",<String>["Infernal"], 0.0,ItemTrait.OPINION, <ItemTrait>[GHOSTLY,ONFIRE]);
     GEPETTO = new CombinedTrait("Geppetto",<String>["Geppetto's","Pinocchio"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,REAL,PUPPET,SENTIENT]);
     ABOMINABLE = new CombinedTrait("Abominable",<String>["Abominable"], 0.0,ItemTrait.OPINION, <ItemTrait>[FLESH,CORRUPT]);
     ASHEN = new CombinedTrait("Ashen",<String>["Ashen"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,DOOMED]);
     PALE = new CombinedTrait("Pale",<String>["Pale"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,CALMING]);
-    PITCH = new CombinedTrait("Pitch",<String>["debugging"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,ENRAGING]);
-    LIT = new CombinedTrait("Lit",<String>["debugging"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D,ONFIRE]);
+    PITCH = new CombinedTrait("Pitch",<String>["Pitch"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[ROMANTIC,ENRAGING]);
+    LIT = new CombinedTrait("Lit",<String>["Lit"], 0.0,ItemTrait.OPINION, <ItemTrait>[COOLK1D,ONFIRE]);
     HYPNOTIZING = new CombinedTrait("Hypnotizing",<String>["Hypnotizing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[MAGICAL,CALMING]);
     TRANQUILIZING = new CombinedTrait("Tranquilizing",<String>["Tranquilizing"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CALMING,RESTRAINING]);
     CALMRAGE = new CombinedTrait("",<String>[], 0.0,ItemTrait.PURPOSE, <ItemTrait>[CALMING,ENRAGING]);

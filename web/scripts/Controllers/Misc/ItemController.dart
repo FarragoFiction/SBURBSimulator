@@ -19,7 +19,9 @@ void init() {
     player.sylladex = new Sylladex(player,new List <Item>.from(Item.allUniqueItems));
     renderTraitsTable(querySelector("#traitTable"));
 
+
     Element div = querySelector("#story");
+    //debugConsorts(div);
     renderTraits( div);
 
     int i = 0;
@@ -27,6 +29,14 @@ void init() {
         div.append(renderItemStats(item, i));
         i++;
     }
+}
+
+void debugConsorts(Element e) {
+    String ret = "<h1>Consorts</h1>";
+    for(ConsortFeature c in ConsortFeature.allConsorts) {
+        ret += "${c.name} who ${c.sound}<br>";
+    }
+    e.appendHtml(ret);
 }
 
 void renderTraitsTable(Element div) {
