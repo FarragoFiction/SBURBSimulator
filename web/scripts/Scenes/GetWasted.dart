@@ -376,7 +376,7 @@ class GetWasted extends Scene {
         for(Player p in session.players) {
             //conceit is they found a glitched denizen hoarde.  Grist and tier 3 fraymotifs for everyone. Most denizens only give 2, but this is glitchy and hidden.
             String title = "Skaian Magicant Hidden Track: ${p.aspect.name} Edition";
-            if(!p.dead) ret += "<br> The ${p.htmlTitle()} collects the fraymotif $title, as well as a sizeable hoarde of grist.";
+            if(!p.dead) ret += "<br> The ${p.htmlTitle()} collects the fraymotif $title, as well as a sizeable hoard of grist.";
             Fraymotif f = new Fraymotif(title, 2);
             Iterable<AssociatedStat> plus = p.associatedStatsFromAspect; //buff self and heal. used to be only positive, but that gave witches/sylphs/princes/bards the shaft;
             //just like real denizen songs, but way stronger
