@@ -187,10 +187,17 @@ void init() {
     operatorSelSpot = querySelector("#opSel");
     item2SelSpot = querySelector("#item2Sel");
     player = randomPlayer(new Session(int.parse(todayToSession())));
+    normalizeAlchemySkill();
     populateSylladex();
     makeAlchemyButton();
     makeDropDowns();
     makeStatsDisplay();
+}
+
+void normalizeAlchemySkill() {
+    for(AssociatedStat a in player.associatedStats) {
+        if(a.stat == Stats.ALCHEMY) a.multiplier = 0.0;
+    }
 }
 
 void cheatShowPossibilities(Item item1, Item item2) {
