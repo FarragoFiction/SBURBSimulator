@@ -154,7 +154,7 @@ class Doom extends Aspect {
                 new Quest("The device continues to count down. After consulting with local ${Quest.CONSORT}s, the {Quest.PLAYER1} navigates another dungeon in hopes of finding a clue to removing the ominous device from their arm without causing it to go off. Past complicated puzzles involving doomsday dates and scales, they find a small scroll on a pedestal. Written on the scroll is a prophecy that the ${Quest.PLAYER1} will permanently die in an explosion from attempting remove a device on their arm. Well, that’s just great."),
                 new Quest("The timer doesn’t stop from counting lower. The ${Quest.PLAYER1} makes up their mind and decides they’re not going to sit and wait until the timer goes off. They’re going to remove the stupid thing, prophecy or not! They quickly pry it off their arm and throw it away as far as possible. There’s no explosion; the device just breaks. Did the ${Quest.PLAYER1} use their powers to stop it from exploding and break the prophecy, or was this all just a shitty test from ${Quest.DENIZEN}? Either way, the ${Quest.PLAYER1} isn’t very pleased with the ${Quest.DENIZEN}."),
                 new DenizenFightQuest("The ${Quest.PLAYER1} tracks down the location of the ${Quest.DENIZEN} ‘s lair. It’s payback time!", "The ${Quest.DENIZEN} has been thoroughly beaten. Serves them right for playing such a mean trick on the ${Quest.PLAYER1}.","The ${Quest.PLAYER1} couldn’t get their revenge. ${Quest.DENIZEN} has a hearty laugh at their expense.")
-            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.WAY_LOW)
+            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
     }
 }

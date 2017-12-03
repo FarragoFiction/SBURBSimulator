@@ -166,6 +166,7 @@ class Land extends Object with FeatureHolder {
         WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
         for(WeightPair<QuestChainFeature> p in source.pairs) {
             //TODO make work for multiple players post DEAD Sessions
+           // print("condition is: ${p.item.condition}");
             if(p.item.condition(players)) valid.addPair(p);
         }
         return session.rand.pickFrom(valid);
