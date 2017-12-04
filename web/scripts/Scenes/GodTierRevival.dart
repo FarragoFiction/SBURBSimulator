@@ -53,7 +53,7 @@ class GodTierRevival extends Scene {
 	}
 	dynamic content(){
 		String ret = " <img src = 'images/sceneIcons/judgement_icon.png'>The game abstraction of the Judgement Clock is ruling on the death of the " + getPlayersTitles(this.godsToRevive ) + ". ";
-		num breakNeeded = 200;
+		num breakNeeded = 400; //harder to get a lucky break
 		for(num i = 0; i< this.godsToRevive.length; i++){
 			Player p = this.godsToRevive[i];
 			ret += " The " + p.htmlTitle() + "'s death is judged to be ";
@@ -68,7 +68,7 @@ class GodTierRevival extends Scene {
 				double roll = p.rollForLuck();
 				if (p.justDeath()) {
 					if (roll > breakNeeded) {
-						////session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
+						session.logger.info(roll + " lucky break for god tier revival in: " + this.session.session_id );
 						ret += " ... a LUCKY BREAK!!!!!!!! The Judgement Clock narrowly avoids ruling a JUST death. ";
 						p.canGodTierRevive = true;
 						p.increasePower();
