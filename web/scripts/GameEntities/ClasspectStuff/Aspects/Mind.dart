@@ -96,7 +96,7 @@ class Mind extends Aspect {
                 new Quest("The ${Quest.PLAYER1} gets help from one ${Quest.CONSORT} to try to understand the puzzle.It gave a slightly less confusing answer to look another way. The ${Quest.PLAYER1} decides to listen to all of the ${Quest.CONSORT}s answers however confusing that they are."),
                 new Quest("With each answer written down, the ${Quest.PLAYER1} begins to piece together the parts of the answer. They will need all the mental prowess to crack this one."),
                 new DenizenFightQuest("After hours of putting different spins on each sentence, the ${Quest.PLAYER1} finally solves the riddle. But they aren’t quite done yet. A considerate ${Quest.CONSORT} directs the ${Quest.PLAYER1} to a small gap between two or the walls that leads to a puzzle room. The ${Quest.PLAYER1} spots a mirror on the far wall and presses the side of it. The mirror reflects light which the ${Quest.PLAYER1} uses to hit the right targets in the right order. After putting the pattern in, the mirror slid away and opened a view to the outside fields which let the ${Quest.PLAYER1} escape. Or that WOULD be what happens if the shitty ${Quest.DENIZEN} wasn't blocking their path.", "Okay. With the defeat of the ${Quest.DENIZEN}, NOW they finally escape from that labrinth.","Oh my fucking god, they better not have to redo that entire labrinth if they are ever back here.")
-            ], new DenizenReward(), QuestChainFeature.playerIsSmartClass), Feature.WAY_HIGH)
+            ], new DenizenReward(), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
 
 
             ..addFeature(new DenizenQuestChain("Pick a Door, any Door", [

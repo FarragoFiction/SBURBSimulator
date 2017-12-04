@@ -107,6 +107,13 @@ class Void extends Aspect {
             ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.MEDIUM)
             ..addFeature(FeatureFactory.DECEITSMELL, Feature.HIGH)
 
+            ..addFeature(new PostDenizenQuestChain("Reveal the Tomes", [
+                new Quest("Even with the victory of the ${Quest.PLAYER1} over the villainous ${Quest.DENIZEN}, there are still problems. Ancient libraries lie crumbling in the denizen's lair, secrets hidden in languages long forgotten by ${Quest.CONSORT} and carapace alike. Even the libraries on Prospit contain scant knowledge of this cryptic tongue, but the covers promise great power and mastery over the aspect of Void. Perhaps study of the ${Quest.PHYSICALMCGUFFIN} will provide insight."),
+                new Quest("Hours of study yield little progress until the ${Quest.PLAYER1} has a breakthrough regarding symbols on the ${Quest.PHYSICALMCGUFFIN}. It seems that through analysis of the symbols on the ${Quest.PHYSICALMCGUFFIN} using Zipf's Law, you can piece together which common words in normal language match up with common words in this strange script!"),
+                new Quest("The ${Quest.PLAYER1} plunders ancient tombs, searching for a rumored Rosetta Stone of sorts, one that promises to provide more insight on rather uncommon words in the books of ${Quest.DENIZEN}'s library. After countless false starts and empty tombs, not only does the ${Quest.PLAYER1}find it, a nearly complete record of the history of the land is found, and by comparing it to known records, they can translate even MORE words, not to mention new parts of history they'll uncover once they translate it all."),
+                new Quest("The ${Quest.PLAYER1}, after hours of striving and looking into dark and forgotten places, poring over secret tomes, and studious work in the field of ${Quest.PHYSICALMCGUFFIN}ology, has finally translated most of the books in the library. The mystical techniques of the ancients (who probably never existed, but hey) are now open to them.")
+            ], new DenizenReward(), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
+
             ..addFeature(new DenizenQuestChain("[REDACTED]", [
                 new Quest("Apparently the denizen [REDACTED] has been [REDACTED]ing all the [REDACTED] and everyone is starting to get a little pissed at them. Can the ${Quest.PLAYER1} help? "),
                 new Quest("The ${Quest.PLAYER1} [REDACTED]s and it actually works! Everyone ${Quest.CONSORTSOUND} in surprise. This might just be crazy enough to work."),
