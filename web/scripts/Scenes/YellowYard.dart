@@ -38,7 +38,7 @@ class YellowYard extends Scene {
 		//String html = "<img src = 'images/yellow_yard.png'>";
 
 		Element tmpDiv = new DivElement();
-		tmpDiv.style.background = "background:url(images/4thwall.png)";
+		tmpDiv.style.background = "url(images/4thwall.png)";
 		tmpDiv.style.width = "1000px";
 		tmpDiv.style.height = "521px";
 		div2.append(tmpDiv);
