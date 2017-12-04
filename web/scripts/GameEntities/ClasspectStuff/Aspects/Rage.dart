@@ -105,7 +105,15 @@ class Rage extends Aspect {
             ..addFeature(FeatureFactory.ROARINGSOUND, Feature.HIGH)
             ..addFeature(FeatureFactory.DRUMSOUND, Feature.MEDIUM)
             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.HIGH)
+
             ..addFeature(new DenizenQuestChain("Stop the War", [
+                new Quest("The ${Quest.PLAYER1} is chilling in a ${Quest.CONSORT} village when a bunch of sentient ${Quest.PHYSICALMCGUFFIN}s attack! Apparently they were sentient all along, and are angry at the ${Quest.CONSORT}s. ${Quest.DENIZEN} must be behind it."),
+                new Quest("The ${Quest.PLAYER1} learns of a plot by the ${Quest.PHYSICALMCGUFFIN}s that ended up killing the ${Quest.CONSORT} president, who is apparently a thing now. They begin adventuring and solving puzzles to learn more about the motivations of the ${Quest.PHYSICALMCGUFFIN}s so they can heal the strife afflicting the land. "),
+                new Quest("The ${Quest.PLAYER1} learns of corrupt ${Quest.PHYSICALMCGUFFIN} and ${Quest.CONSORT} generals who are keeping the conflict going and feeding lies to their people, each blaming the other for the scourge of underlings attacking both. But after spreading awareness of the generals' plots, they unite together and topple their dictators!"),
+                new DenizenFightQuest("${Quest.DENIZEN} arrives to challenge the ${Quest.PLAYER1} and their army. Will the ${Quest.PLAYER1} be able to prove their worth after directing the anger of ${Quest.CONSORT} and ${Quest.PHYSICALMCGUFFIN} alike towards their true enemy?", "${Quest.DENIZEN} lies slain. The ${Quest.PLAYER1} has become the savior of not one, but two peoples.","he ${Quest.CONSORT}s and ${Quest.PHYSICALMCGUFFIN}s turn on each other again with the defeat of the ${Quest.PLAYER1}. ${Quest.DENIZEN} laughs.")
+            ], new DenizenReward(), QuestChainFeature.playerIsMagicalClass), Feature.WAY_LOW)
+
+            ..addFeature(new DenizenQuestChain("Stop the Civil War", [
                 new Quest("Two different factions of ${Quest.CONSORT}s have been at war for generations. Neither side gives the ${Quest.PLAYER1} a straight answer on WHY they are fighting. They are tearing the land apart with needless bloodshed. This is stupid. "),
                 new Quest("The ${Quest.PLAYER1} is starting to think it's impossible to get the two sides of the ${Quest.CONSORT} War to just stop fighting. They yell, they rant, they pass out flyers, they blame the ${Quest.DENIZEN},  they even try fixing both sides' problems. But they keep fighting. This is so fucking stupid."),
                 new Quest("God. It's...it's just so FRUSTRATING that the two ${Quest.CONSORT} armies seem dedicated to wiping each other out. A stray bullet grazes the ${Quest.PLAYER1}. They see red. When they come to, the only living thing left is the ${Quest.PLAYER1}. "),
