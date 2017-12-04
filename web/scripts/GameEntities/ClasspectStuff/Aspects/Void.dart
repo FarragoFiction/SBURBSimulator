@@ -93,6 +93,12 @@ class Void extends Aspect {
             ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.ECHOSOUND, Feature.HIGH)
 
+            ..addFeature(new PostDenizenQuestChain("Be Forgettable", [
+                new Quest("A big party is being held to celebrate the defeat of ${Quest.DENIZEN} and the ${Quest.PLAYER1} is invited as the guest of honor. There are promises of god food, including a gigantic cake. At the door a burly ${Quest.CONSORT} stands with a clipboard. He eyes the ${Quest.PLAYER1} approaching and shakes his head. ‘You’re not on the list, so beat it.’ The ${Quest.PLAYER1} tries to explain that they’re the planet’s hero and the one who beat ${Quest.DENIZEN}, making them the guest of honor, but the bouncer just laughs. ‘If you’re supposed to be the hero, why haven’t I heard of you already?’"),
+                new Quest("The ${Quest.PLAYER1} asks other guests to vouch for them, but all of them are having trouble recognizing the ${Quest.PLAYER1}. There’s just something about the ${Quest.PLAYER1} that makes them so forgettable. They go home and bring back photos of themself with other ${Quest.PLAYER1}s as proof that they’re also a hero, but the bouncer dismisses the photos as very realistic but clearly edited. What a pain."),
+                new Quest("The ${Quest.PLAYER1} gives up trying to convince the ${Quest.CONSORT} bouncer of their existence. If they’re not going to be recognized, they might as well take it all the way. They use their void powers to become completely unnoticeable and walk past the bouncer while making a number of obscene gestures. The ${Quest.CONSORT} hosting the party approaches the ${Quest.PLAYER1} as soon they turn off their powers to join the party. ‘There you are! You know it’s very rude for the guest of honor to be so late. I’m really disappointed in you.’ Bluh.")
+            ], new ItemReward(items), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
             ..addFeature(new DenizenQuestChain("Go to Nowhere", [
                 new Quest("The ${Quest.PLAYER1} has wandered around for hours and has found nothing new to do. There is NO way this is the end of the land. What is going on?"),
                 new Quest("Huh....what....what is this area of a wall that looks....a little different? Like the shadows aren't falling right on it? The ${Quest.PLAYER1} leans against it and stumbles into a ...weirdly hard to see area. Huh. The ${Quest.PLAYER1} wonders if maybe the rest of their quests are in places like this?"),
@@ -112,7 +118,7 @@ class Void extends Aspect {
                 new Quest("Hours of study yield little progress until the ${Quest.PLAYER1} has a breakthrough regarding symbols on the ${Quest.PHYSICALMCGUFFIN}. It seems that through analysis of the symbols on the ${Quest.PHYSICALMCGUFFIN} using Zipf's Law, you can piece together which common words in normal language match up with common words in this strange script!"),
                 new Quest("The ${Quest.PLAYER1} plunders ancient tombs, searching for a rumored Rosetta Stone of sorts, one that promises to provide more insight on rather uncommon words in the books of ${Quest.DENIZEN}'s library. After countless false starts and empty tombs, not only does the ${Quest.PLAYER1}find it, a nearly complete record of the history of the land is found, and by comparing it to known records, they can translate even MORE words, not to mention new parts of history they'll uncover once they translate it all."),
                 new Quest("The ${Quest.PLAYER1}, after hours of striving and looking into dark and forgotten places, poring over secret tomes, and studious work in the field of ${Quest.PHYSICALMCGUFFIN}ology, has finally translated most of the books in the library. The mystical techniques of the ancients (who probably never existed, but hey) are now open to them.")
-            ], new DenizenReward(), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
+            ], new FraymotifReward("Ancient Knowledge"), QuestChainFeature.playerIsSmartClass), Feature.HIGH)
 
             ..addFeature(new DenizenQuestChain("[REDACTED]", [
                 new Quest("Apparently the denizen [REDACTED] has been [REDACTED]ing all the [REDACTED] and everyone is starting to get a little pissed at them. Can the ${Quest.PLAYER1} help? "),
