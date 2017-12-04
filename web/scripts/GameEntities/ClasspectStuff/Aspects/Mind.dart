@@ -90,6 +90,15 @@ class Mind extends Aspect {
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.MEDIUM)
             ..addFeature(FeatureFactory.CLACKINGSOUND, Feature.LOW)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.LOW)
+
+            ..addFeature(new DenizenQuestChain("Change the View", [
+                new Quest("The ${Quest.PLAYER1} finds themselves trapped in a dark labyrinth. After travelling through for some time they have come to realize the walls change position when they leave an area. Although ${Quest.CONSORT}s are wandering around the maze they give riddle-like responses on how to escape. The ${Quest.PLAYER1} will need to find a way to solve the many hidden logic problems to escape the ever-changing paths."),
+                new Quest("The ${Quest.PLAYER1} gets help from one ${Quest.CONSORT} to try to understand the puzzle.It gave a slightly less confusing answer to look another way. The ${Quest.PLAYER1} decides to listen to all of the ${Quest.CONSORT}s answers however confusing that they are."),
+                new Quest("With each answer written down, the ${Quest.PLAYER1} begins to piece together the parts of the answer. They will need all the mental prowess to crack this one."),
+                new DenizenFightQuest("After hours of putting different spins on each sentence, the ${Quest.PLAYER1} finally solves the riddle. But they aren’t quite done yet. A considerate ${Quest.CONSORT} directs the ${Quest.PLAYER1} to a small gap between two or the walls that leads to a puzzle room. The ${Quest.PLAYER1} spots a mirror on the far wall and presses the side of it. The mirror reflects light which the ${Quest.PLAYER1} uses to hit the right targets in the right order. After putting the pattern in, the mirror slid away and opened a view to the outside fields which let the ${Quest.PLAYER1} escape. Or that WOULD be what happens if the shitty ${Quest.DENIZEN} wasn't blocking their path.", "Okay. With the defeat of the ${Quest.DENIZEN}, NOW they finally escape from that labrinth.","Oh my fucking god, they better not have to redo that entire labrinth if they are ever back here.")
+            ], new DenizenReward(), QuestChainFeature.playerIsSmartClass), Feature.WAY_HIGH)
+
+
             ..addFeature(new DenizenQuestChain("Pick a Door, any Door", [
                 new Quest("The ${Quest.PLAYER1} boggles vacantly at an entire labrinth of doors. Whole walls are nothing but doors and their frames, with seemingly no rhyme or reason. A nearby ${Quest.PLAYER1} explains that at the end of the Labrinth is the ${Quest.DENIZEN}. If the ${Quest.PLAYER1} wants to beat their land, they will have to figure out this Labrinth.  They are given a ball of yarn so they can easily resume their place in the Labrinth when they need to take breaks."),
                 new Quest("Left. Right. Both choices look just as good as each other. A wrong choice could waste hours.  The ${Quest.PLAYER1} feels the weight on their shoulders, and then picks left.  Hours later, they encounter a brick wall. God DAMN it."),
