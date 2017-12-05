@@ -65,7 +65,8 @@ class Gristmas extends Scene {
                 //print("checking ${item1.fullName} for do alchemy");
                 if ((item1.canUpgrade() || session.mutator.dreamField)){
                     //print("Okay. No can I REALLY upgrade item1? ${item1.canUpgrade()}");
-                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session));
+
+                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session,getAlchemySkillNormalized(player)));
                 }
             }else {
                 //print("for alchemy ${item1} is ${item2}");
@@ -100,6 +101,8 @@ class Gristmas extends Scene {
               bool anyItems = false;
               bool goodItems = false;
               if (p.specibus.canUpgrade() || session.mutator.dreamField) {
+                  if(p.specibus.rank>2) session.logger.info("${p.title()} has upgrades remaining, not max. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
+
                   //print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
@@ -113,14 +116,36 @@ class Gristmas extends Scene {
                       //session.logger.info("AB: alchemy triggered.");
                       player = p;
                   }
+              }else {
+                session.logger.info("${p.title()} has a maxed out specibus. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
               }
           }
       }
       return player != null;
   }
 
+  int getAlchemySkillNormalized(Player p) {
+      double ratio = 1.0;
+      if(p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedInitialAverageAlchemyValue;
+      if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
+      if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
+      if(ratio < 1) {
+          session.logger.info("alchemy skill 1");
+          return 0;
+      }else if(ratio < 2) {
+          session.logger.info("alchemy skill 2");
+          return 1;
+      }else {
+          session.logger.info("alchemy skill 3");
+        return 2;
+      }
+
+
+  }
+
   //the better you are at alchemy, the higher your standards are.
   bool meetsStandards(Player p, Item i) {
+      return true; //<--being picky actually bites players good at alchemy in the ass.
       double ratio = 1.0;
       //depending on how far along you are in your quest, your standards should get higher.
       if(p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedInitialAverageAlchemyValue;
