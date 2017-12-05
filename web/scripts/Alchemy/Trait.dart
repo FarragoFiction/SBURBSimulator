@@ -1218,6 +1218,8 @@ class ItemTraitFactory {
     new CombinedTrait("Mana",<String>["Mana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,MAGICAL]);
     new CombinedTrait("Homemade",<String>["Homemade"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,REAL]);
     new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
+    new CombinedTrait("I Can't Stop Laughing",<String>["Thor's Banana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,FUNNY, ZAP, LOUD]);
+
 
 
 
