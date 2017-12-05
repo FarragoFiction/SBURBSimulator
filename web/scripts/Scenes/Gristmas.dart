@@ -4,8 +4,8 @@ import "../SBURBSim.dart";
 
 class Gristmas extends Scene {
     int expectedInitialAverageAlchemyValue = 6;
-    int expectedMiddleAverageAlchemyValue = 30;
-    int expectedEndAverageAlchemyValue = 75;
+    int expectedMiddleAverageAlchemyValue = 10;
+    int expectedEndAverageAlchemyValue = 30;
     Player player;
   Gristmas(Session session) : super(session);
 
@@ -130,13 +130,13 @@ class Gristmas extends Scene {
       if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
       if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
       if(ratio < 1) {
-          session.logger.info("alchemy skill 1");
+          session.logger.info("${p} alchemy skill 1");
           return 0;
       }else if(ratio < 2) {
-          session.logger.info("alchemy skill 2");
+          session.logger.info("${p} alchemy skill 2");
           return 1;
       }else {
-          session.logger.info("alchemy skill 3");
+          session.logger.info("${p} alchemy skill 3");
         return 2;
       }
 
