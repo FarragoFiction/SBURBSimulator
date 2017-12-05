@@ -92,11 +92,12 @@ class Gristmas extends Scene {
   bool trigger(List<Player> playerList) { //god i hate that player list is still a thing, past jr fucked up.
       List<Player> availablePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers());
       //relative alchemy value matters too.
-      List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers);
+      List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers).reversed;
       player = null;
-      //print("trying to trigger gristmas for ${players.length} players.");
+      print("trying to trigger gristmas for ${players.length} players.");
       for(Player p in players) {
           if(player == null) {
+              session.logger.info("checking gristmas player ${p} with alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
               //print("trying to trigger, player is not null");
               bool anyItems = false;
               bool goodItems = false;
@@ -130,13 +131,13 @@ class Gristmas extends Scene {
       if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
       if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
       if(ratio < 1) {
-          session.logger.info("${p} alchemy skill 1");
+          session.logger.info("${p} alchemy skill 1, raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 0;
       }else if(ratio < 2) {
-          session.logger.info("${p} alchemy skill 2");
+          session.logger.info("${p} alchemy skill 2,raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 1;
       }else {
-          session.logger.info("${p} alchemy skill 3");
+          session.logger.info("${p} alchemy skill 3,raw value ${ p.getStat(Stats.ALCHEMY)}");
         return 2;
       }
 
