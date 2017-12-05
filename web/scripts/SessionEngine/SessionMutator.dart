@@ -29,7 +29,7 @@ class SessionMutator {
     num hardStrength = 1000; //calculated and will be overridden
     num minFrogLevel = 13;
     num goodFrogLevel = 20;
-    int expectedGristContributionPerPlayer = 400;
+    int expectedGristContributionPerPlayer = 350;
     int minimumGristPerPlayer = 100; //less than this, and no frog is possible.
     num sessionHealth = 500 *  Stats.POWER.coefficient;
     Session savedSession; //for heart callback

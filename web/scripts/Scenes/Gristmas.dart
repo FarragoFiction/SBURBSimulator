@@ -115,7 +115,7 @@ class Gristmas extends Scene {
                       if (meetsStandards(p,i)) goodItems = true;
                   }
                   if (anyItems && goodItems)  {
-                      session.logger.info("~~~~~~~~~~~~AB: gristmas triggered for player ${p}. alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
+                      //session.logger.info("~~~~~~~~~~~~AB: gristmas triggered for player ${p}. alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
                       player = p;
                       playerSkill = getAlchemySkillNormalized(player);
                   }else {
@@ -123,7 +123,7 @@ class Gristmas extends Scene {
 
                   }
               }else {
-                session.logger.info("gristmas ${p.title()} has a maxed out specibus. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
+                //session.logger.info("gristmas ${p.title()} has a maxed out specibus. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
               }
           }
       }
@@ -136,13 +136,13 @@ class Gristmas extends Scene {
       if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
       if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
       if(ratio < 1) {
-          session.logger.info("${p} alchemy skill 1, raw value ${ p.getStat(Stats.ALCHEMY)}");
+          //session.logger.info("${p} alchemy skill 1, raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 0;
       }else if(ratio < 2) {
-          session.logger.info("${p} alchemy skill 2,raw value ${ p.getStat(Stats.ALCHEMY)}");
+          //session.logger.info("${p} alchemy skill 2,raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 1;
       }else {
-          session.logger.info("${p} alchemy skill 3,raw value ${ p.getStat(Stats.ALCHEMY)}");
+          //session.logger.info("${p} alchemy skill 3,raw value ${ p.getStat(Stats.ALCHEMY)}");
         return 2;
       }
 

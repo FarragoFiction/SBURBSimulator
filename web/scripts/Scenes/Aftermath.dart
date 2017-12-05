@@ -25,6 +25,7 @@ class Aftermath extends Scene {
         entered.clear();
         String ret = "";
         for (Player p in living) {
+            if(p.specibus.rank>5) session.logger.info("At aftermath, ${p} specibus rank is: ${p.specibus.rank}");
             if (p.gnosis < 3) {
                 entered.add(p);
                 ret += "The ${p.htmlTitleBasicWithTip()} enters the door to the new Universe.<Br><Br>";
