@@ -5,6 +5,13 @@
 	color: red;
 }
 
+#pw_container_shogun {
+    margin-left: auto;
+    margin-right: auto;
+    width:650px;
+	color: lime;
+}
+
 #story{
 	width:1000px;
 	background-color: white;
