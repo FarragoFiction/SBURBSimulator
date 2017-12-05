@@ -97,6 +97,10 @@ class Gristmas extends Scene {
       player = null;
       //print("trying to trigger gristmas for ${players.length} players.");
       for(Player p in players) {
+          //print("P is ${p}");
+         // print("P stats is ${p.stats}");
+         // print("P alchemy is ${p.getStat(Stats.ALCHEMY)}");
+
           if(player == null && p.getStat(Stats.ALCHEMY) > 0) { //you don't even bother trying alchemy if you can't figure it out
               //session.logger.info("checking gristmas player ${p} with alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
               //print("trying to trigger, player is not null");

@@ -20,6 +20,6 @@ dev_dependencies:
 transformers:
 - $dart2js:
     sourceMaps: true
-    commandLineOptions: [--fast-startup, --trust-type-annotations]
+    commandLineOptions: [--fast-startup]
     $exclude: ["web/manifest/bundlebuilder.dart", "web/manifest/sourcemanifest.txt"]
 

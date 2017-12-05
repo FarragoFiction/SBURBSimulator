@@ -170,7 +170,12 @@ class ItemTraitPair {
     ItemTrait second;
 
     ItemTraitPair(this.first, this.second);
+    @override
+    int get hashCode {
+        return first.hashCode + second.hashCode;
+    }
 
     //don't care about ordering.
+    @override
     bool operator ==(o) => o is ItemTraitPair && ((o.first == first && o.second == second) ||  o.first == second && o.second == first);
 }

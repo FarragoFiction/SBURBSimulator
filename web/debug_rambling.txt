@@ -4182,9 +4182,73 @@ That's right.
 
 
 
+~~~~~~~~ 12/5/17
+
+Alright.
+
+The important thing is not to panic.
+
+Everything is on fire.
+
+The entire experimental branch crashes. Just. All the time.
+
+It's fine in dart. It's fine in dartium.
+
+The second I compile, it crashes. The compile itself is fine, besdies one warning in a controller
+that isn't even used, but fine, i'll update that.
+
+The actual crash log is gibberish, because it's fucking compiled code.
+
+When I dug a bit deeper in it, it seemed to be looking for a dart file, which...I'm pretty sure that's a red herring.
+
+So.
+
+I'm waiting on a compile to see if fixing that warning fixes anything.
+
+If it still crashes once it's compiled, my plan is to look at the crash log harder and to see what is going on.
+
+Alright.
+
+It says Gristmas line 100 is the problem. Somehow.
+
+          if(player == null && p.getStat(Stats.ALCHEMY) > 0) { //you don't even bother trying alchemy if you can't figure it out
+ "is not a function.";
 
 
 
+Think.
+
+Think.
+
+Is it really that line? It takes so long to compile that I can't afford to just change shit and see what shakes out.
+
+I use p.getStat in plenty of other places. Strifes for example. Nothing uses Alchemy direclty tho. Till now.
+
+But I used it to calculate if an item is above the threshold....
+
+Shit like:       if(p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedInitialAverageAlchemyValue;
+
+So what's different? What's p?
+
+Alright, recompiling again, this time with:
+
+    print("P is ${p}");
+    print("P stats is ${p.stats}");
+    print("P alchemy is ${p.getStat(Stats.ALCHEMY)}");
+
+In dart, I see shit like:
+
+  P is KnightSpace
+  (program):1 P stats is (SBURB Lore, Minimum Luck, Maximum Luck, Free Will, ..., Alchemy, Experience)
+  (program):1 P alchemy is 567.0
+
+
+
+Okay, in the compiled version I see:
+
+P is HeirSpace
+
+And then NOTHING ELSE.
 
 
 
