@@ -269,14 +269,14 @@ void makeAlchemyButton() {
         makeDropDowns();//need to remake them so we can do that one thing. uh. have an accurate inventory.
         item1TraitsDiv.remove();
         item2TraitsDiv.remove();
-        Iterable<Item> validItems = player.sylladex.where((Item a) => (a.canUpgrade()));
+        Iterable<Item> validItems = player.sylladex.where((Item a) => (a.canUpgrade(true)));
         //item1TraitsDiv = (renderItemStats(validItems.first));
         //item2TraitsDiv = (renderItemStats(item2));
         item1Div.append(item1TraitsDiv);
         item2Div.append(item2TraitsDiv);
         //take alchemy result, look for combined traits, make sure the achievements get unlocked appropriately.
         processAchievements(alchemyResult.result);
-        if(!item1.canUpgrade()) {
+        if(!item1.canUpgrade(true)) {
             Random rand = new Random();
             alchemyShop.setQuip(rand.pickFrom(alchemyShop.shopKeep.maxAlchemyQuips));
         }
@@ -440,7 +440,7 @@ SelectElement itemDropDown<T> (Element div, List<Item> list, String name)
         ..id = name;
 
     for(Item a in list) {
-        if(a.canUpgrade()) {
+        if(a.canUpgrade(true)) {
             OptionElement o = new OptionElement()
                 ..value = a.toString()
                 ..setInnerHtml(a.toString());
@@ -962,7 +962,7 @@ class ABShopKeep extends ShopKeep {
         double mathpercent = 90+rand.nextDouble(10.0);
         mathpercent = (mathpercent * 100).round()/100;
         String upgrade = "It's only good for selling anymore.";
-        if(item.canUpgrade() ) upgrade = "You can upgrade this, dunkass.";
+        if(item.canUpgrade(true) ) upgrade = "You can upgrade this, dunkass.";
         return "There is a ${mathpercent}% chance that this ${item.fullName} has these traits: ${turnArrayIntoHumanSentence(new List.from(item.traits))}. $upgrade ${item.abDescription(rand)}";
     }
 }

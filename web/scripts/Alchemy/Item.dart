@@ -107,9 +107,13 @@ class Item implements Comparable<Item> {
         return ret;
     }
 
-    bool canUpgrade() {
+    //it takes a master to alchemize with a legendary weapon. high grist cost.
+    bool canUpgrade(bool master) {
         //print("Checking number of upgrades remaining for ${baseName}, numUpgrades is ${numUpgrades} and maxUpgrades is ${maxUpgrades}");
         if(maxUpgrades > 0 && numUpgrades< maxUpgrades) {
+            if(traits.contains(ItemTraitFactory.LEGENDARY)){ //only a master can handle a legendary thing
+                if(!master) return false;
+            }
             return true;
         }else {
             return false;

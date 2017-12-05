@@ -7,6 +7,7 @@ class Gristmas extends Scene {
     int expectedMiddleAverageAlchemyValue = 10;
     int expectedEndAverageAlchemyValue = 30;
     Player player;
+    int playerSkill;
   Gristmas(Session session) : super(session);
 
   String gristmasContent() {
@@ -27,7 +28,7 @@ class Gristmas extends Scene {
       possibilities = upgradeSpecibus();
       if(possibilities.isEmpty)  return "$ret Wait. The ${player.htmlTitleBasic()} WANTS to do upgrade their specibus, but it's full. Guess they shouldn't have filled it full of junk in the early game. Stupid rules. Stupid limits. This isn't even CANON. ";
 
-      if(!player.specibus.canUpgrade()) ret += "Take that JR, your alchemy limits were arbitrary and non canon so we are just gonna fucking ignore them. After all. What could go wrong?<span class = 'void'>JR: Well for one, you could end up in a never ending spiral of alchemy. Have fun failing to actually beat the game, asshole.</span>";
+      if(!player.specibus.canUpgrade(playerSkill == 3)) ret += "Take that JR, your alchemy limits were arbitrary and non canon so we are just gonna fucking ignore them. After all. What could go wrong?<span class = 'void'>JR: Well for one, you could end up in a never ending spiral of alchemy. Have fun failing to actually beat the game, asshole.</span>";
       //not a for loop, just do once.
       String tmp = possibilities.first.apply(player,true);
       if(tmp != null) {
@@ -63,10 +64,10 @@ class Gristmas extends Scene {
         for(Item item2 in player.sylladex) {
             if(item1 != item2){
                 //print("checking ${item1.fullName} for do alchemy");
-                if ((item1.canUpgrade() || session.mutator.dreamField)){
+                if ((item1.canUpgrade(playerSkill == 3) || session.mutator.dreamField)){
                     //print("Okay. No can I REALLY upgrade item1? ${item1.canUpgrade()}");
 
-                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session,getAlchemySkillNormalized(player)));
+                    ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session,playerSkill));
                 }
             }else {
                 //print("for alchemy ${item1} is ${item2}");
@@ -83,7 +84,7 @@ class Gristmas extends Scene {
         List<AlchemyResult> ret = new List<AlchemyResult>();
         //REMEMBER: item1 OR item2 is a DIFFERENT THING than the reverse. so you aren't wasting time by doing each item pair twice.
         for(Item item1 in player.sylladex) {
-            ret.addAll(AlchemyResult.planAlchemy(<Item>[player.specibus, item1], session));
+            ret.addAll(AlchemyResult.planAlchemy(<Item>[player.specibus, item1], session,playerSkill));
         }
         return ret;
     }
@@ -94,31 +95,35 @@ class Gristmas extends Scene {
       //relative alchemy value matters too.
       List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers).reversed;
       player = null;
-      print("trying to trigger gristmas for ${players.length} players.");
+      //print("trying to trigger gristmas for ${players.length} players.");
       for(Player p in players) {
-          if(player == null) {
-              session.logger.info("checking gristmas player ${p} with alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
+          if(player == null && p.getStat(Stats.ALCHEMY) > 0) { //you don't even bother trying alchemy if you can't figure it out
+              //session.logger.info("checking gristmas player ${p} with alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
               //print("trying to trigger, player is not null");
               bool anyItems = false;
               bool goodItems = false;
-              if (p.specibus.canUpgrade() || session.mutator.dreamField) {
-                  if(p.specibus.rank>2) session.logger.info("${p.title()} has upgrades remaining, not max. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
+              if (p.specibus.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
+                 // if(p.specibus.rank>2) session.logger.info("gristmas ${p.title()} has upgrades remaining, not max. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
 
                   //print("trying to trigger, specibus can upgrade");
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
-                      if (i.canUpgrade() || session.mutator.dreamField) {
+                      if (i.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
                           //print("in trigger, upgradeable item for alchemy is ${i.fullName}");
                           anyItems = true;
                       }
                       if (meetsStandards(p,i)) goodItems = true;
                   }
                   if (anyItems && goodItems)  {
-                      //session.logger.info("AB: alchemy triggered.");
+                      session.logger.info("~~~~~~~~~~~~AB: gristmas triggered for player ${p}. alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
                       player = p;
+                      playerSkill = getAlchemySkillNormalized(player);
+                  }else {
+                     // session.logger.info("AB: gristmas skipped for player ${p}. anyItems $anyItems goodItems $goodItems");
+
                   }
               }else {
-                session.logger.info("${p.title()} has a maxed out specibus. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
+                session.logger.info("gristmas ${p.title()} has a maxed out specibus. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
               }
           }
       }
