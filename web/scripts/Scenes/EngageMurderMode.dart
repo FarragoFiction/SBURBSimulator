@@ -227,17 +227,44 @@ class EngageMurderMode extends Scene{
 
 
 	Conversation getGrim1Conv(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(<String>["I think things would go better if you were dead"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","...I. Really?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("kill a grim dark.");
+		return new Conversation(ret);
 	}
 
 
 	Conversation getGrim2Conv(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(deathThreats, <String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."],<String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."]));
+		ret.add(new PlusMinusConversationalPair(<String>["Fuck you. You are too far gone to even CARE that I'm going to kill you.","... at least I know you deserve to die.","Fuck you."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("kill a grim dark.");
+		return new Conversation(ret);
 	}
 
 
 	Conversation getBothGrimConv(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(<String>["I think things would go better if you were dead"], <String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."],<String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."]));
+		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("kill a grim dark.");
+		return new Conversation(ret);
 	}
 
 	Conversation getHeiressConversation(Player player1, Player player2) {
@@ -279,7 +306,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getHowKillGodConvo(player1,player2);
+		return getBothGrimConv(player1,player2);
 	}
 
 	void chat(Element div){
