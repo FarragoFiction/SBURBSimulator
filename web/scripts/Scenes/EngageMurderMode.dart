@@ -228,10 +228,15 @@ class EngageMurderMode extends Scene{
 	//assume positive responses are when the victim likes the murderer
 	//and negative are when they don't
 	Conversation getConversation(Player player1, Player player2) {
+
+
 		if(session is DeadSession && session.mutator.metaHandler.metaPlayers.contains(player2)) {
 			//Good luck finding me I’m behind 7 universes
 			return getMetaConvo(player1, player2);
-		}if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d") {
+		}
+
+
+		/*if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d") {
 			return getHeiressConversation(player1, player2);
 		}else if(player2.grimDark > 1 && player1.grimDark >1) {
 			return getBothGrimConv(player1,player2);
@@ -252,7 +257,8 @@ class EngageMurderMode extends Scene{
 		}else {
 			return getMurdererNotValidThreatConvo(player1,player2);
 
-		}
+		}*/
+		return getMurdererNotValidThreatConvo(player1,player2);
 	}
 
 	void chat(Element div){
