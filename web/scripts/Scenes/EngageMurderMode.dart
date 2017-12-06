@@ -85,31 +85,124 @@ class EngageMurderMode extends Scene{
 		}
 	}
 
+	Conversation getMetaConvo(Player player1, Player player2) {
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+
+
+		//greeting
+		List<PlusMinusConversationalPair> first = new List<PlusMinusConversationalPair>();
+		//explanation
+		List<PlusMinusConversationalPair> second = new List<PlusMinusConversationalPair>();
+		//threat
+		List<PlusMinusConversationalPair> third = new List<PlusMinusConversationalPair>();
+		//followup
+		List<PlusMinusConversationalPair> fourth = new List<PlusMinusConversationalPair>();
+
+		//generic
+		first.add(new PlusMinusConversationalPair(["Hey, random text asshole.",  "You FUCKER.","Guess who, asshole."], ["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."],["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."]));
+		if(player1.aspect == Aspects.RAGE) {
+			second.add(new PlusMinusConversationalPair(["The power of my rage is a fucking MIRACLE isn't it?",  "It's amazing what the depths of my hatred for you can do.","Lol, Rage is a beauty, isn't it?"], ["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"],["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"]));
+		}else if(player1.interestedInCategory(InterestManager.TECHNOLOGY)){
+			second.add(new PlusMinusConversationalPair(["It REALLY wasn't hard to reverse engineer your IP address. It's not like you're behind 7 proxies or some shit.",  "Turns out SBURB is easy to hack. Who would have guessed.","Easy. I hacked it."], ["Well fuck. Just don't try to hack the game you're in. Not a good end there."],["Well fuck. Just don't try to hack the game you're in. Not a good end there."]));
+
+		}else if(player1.aspect == Aspects.VOID){
+			second.add(new PlusMinusConversationalPair(["Void shit."], ["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
+
+		}else{
+			second.add(new PlusMinusConversationalPair(["That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], ["..."," Whoa. Okay?"],["..."," Whoa. Okay?"]));
+		}
+		third.add(new PlusMinusConversationalPair(["You're going to die. And I'm going to see it. I'm going to DO it.",  "I'm gonna fucking KILL you.","You're dead fucking meat.", "I am going to kill you and dance on your fucking corpse."], ["Uh. You sure about that, buddy?","Oooookay then. Good luck with that."],["Lol, good luck finding me. I'm behind 7 universes.","Lol, omfg you do realize I'm not even in your session, right? "]));
+
+		if(player1.aspect == Aspects.SPACE) {
+			fourth.add(new PlusMinusConversationalPair(["Oh don't you worry, I'll find a way to get to you, even if I have to unlock every single Space ability to do it.",  "Yes, because physical location is SUCH A hinderence to me.","Space. Player."], ["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."],["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."]));
+		}else if(player1.interestedInCategory(InterestManager.TERRIBLE)){
+			fourth.add(new PlusMinusConversationalPair(["I will dedicate my god damned life to this.",  "Oh I will fucking find a way. I will DEDICATE myself to this.","Your future corpse has just volunteered to be the driving force in my life. Congratulations. "], ["... God you're so creepy."],["God, you're so creepy."]));
+		}else if(player1.aspect == Aspects.DOOM){
+			fourth.add(new PlusMinusConversationalPair(["Oh don't you worry, I'll figure out how to skirt the rules enough to do it. "], ["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
+
+		}else if(player1.class_name == SBURBClassManager.WASTE || player1.class_name == SBURBClassManager.GRACE) {
+			fourth.add(new PlusMinusConversationalPair(["Actually, I'm pretty sure that if I win, then get a Rage player to gnosis 4...that I can watch you die."], ["Fuck.","Shit.","Oh fuck.", "Oh."],["Fuck.","Shit.","Oh fuck.", "Oh."]));
+		}else{
+			fourth.add(new PlusMinusConversationalPair(["JUST DIE!","Don't you fucking worry, I will FIND a way.","That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], ["lol"," Good luck, I guess."],["lol"," Good luck, man"]));
+		}
+
+		ret.add(session.rand.pickFrom(first));
+		ret.add(session.rand.pickFrom(second));
+		ret.add(session.rand.pickFrom(third));
+		ret.add(session.rand.pickFrom(fourth));
+
+		session.logger.info("meta murder threat");
+		return new Conversation(ret);
+	}
+
+	Conversation getMurdererNotValidThreatConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+	Conversation getMurdererValidThreatConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getCalmingConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getMurdererConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getHowKillGodConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getGrim1Conv(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getGrim2Conv(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
+	Conversation getBothGrimConv(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+	Conversation getHeiressConversation(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+
 
 	//assume positive responses are when the victim likes the murderer
 	//and negative are when they don't
-	List<Conversation> getConversations(Player player1, Player player2) {
+	Conversation getConversation(Player player1, Player player2) {
 		if(session is DeadSession && session.mutator.metaHandler.metaPlayers.contains(player2)) {
 			//Good luck finding me I’m behind 7 universes
 			return getMetaConvo(player1, player2);
 		}if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d") {
-			return getHeiressConversations(player1, player2);
+			return getHeiressConversation(player1, player2);
 		}else if(player2.grimDark > 1 && player1.grimDark >1) {
-			return getBothGrimConvs(player1,player2);
+			return getBothGrimConv(player1,player2);
 		}else if(player2.grimDark > 1) {
-			return getGrim2Convs(player1,player2);
+			return getGrim2Conv(player1,player2);
 		}else if(player1.grimDark > 1) {
-			return getGrim1Convs(player1,player2);
+			return getGrim1Conv(player1,player2);
 		}else if(player2.godTier) {
 			return getHowKillGodConvo(player1,player2);
 		}else if(player2.murderMode) {
 			return getMurdererConvo(player1,player2);
 		}else if(player2.aspect == Aspects.BLOOD) {
 			return getCalmingConvo(player1,player2);
-		}else if(worstEnemy.getStat(Stats.POWER) * worstEnemy.getPVPModifier("Defender") < m.getStat(Stats.POWER)*m.getPVPModifier("Murderer")) {
-			return getMurdererValidThreat(player1,player2);
+		}else if(player2.getStat(Stats.POWER) * player2.getPVPModifier("Defender") < player1.getStat(Stats.POWER)*player1.getPVPModifier("Murderer")) {
+			return getMurdererValidThreatConvo(player1,player2);
 		}else {
-			return getMurdererNotValidThreat(player1,player2);
+			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}
 	}
@@ -137,10 +230,9 @@ class EngageMurderMode extends Scene{
 		String player1Start = player1.chatHandleShort()+ ": ";
 		String player2Start = player2.chatHandleShortCheckDup(player1.chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
 
-		List<Conversation> convos = getConversations(player1, player2);
-		for(Conversation c in convos) {
-			chatText += c.returnStringConversation(player1, player2, player1Start, player2Start, player2.getRelationshipWith(player1).value > 0);
-		}
+		Conversation convo = getConversation(player1, player2);
+		chatText += convo.returnStringConversation(player1, player2, player1Start, player2Start, player2.getRelationshipWith(player1).value > 0);
+
 
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_murder.png");
 	}

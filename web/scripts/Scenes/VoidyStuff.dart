@@ -77,7 +77,10 @@ class VoidyStuff extends Scene {
 		Element normalDiv = new DivElement();
 		div.append(normalDiv);
 		Element newDiv = new DivElement();
-		if(classDiv.isNotEmpty) newDiv.classes.add(classDiv);
+		if(classDiv.isNotEmpty) {
+			//session.logger.info("putting class div of ${classDiv} in.");
+			newDiv.classes.add(classDiv);
+		}
 		div.append(newDiv);
 		//don't godtier as soon as you get in, too unfair to the other players.
 		bool canGod = checkCanGod();
@@ -175,13 +178,12 @@ class VoidyStuff extends Scene {
 		//session.logger.info("AB: Void/Rage ecto babies:" );
 		List<Player> playersMade = this.player.performEctobiology(this.session);
 		appendHtml(div, " Wait. Are those BABIES!? What is even going on here?");
-		String divID = (specialDiv.id) + "_babies";
 		int ch = canvasHeight;
 		if(this.session.players.length > 6){
 			ch = (canvasHeight*1.5).round();
 		}
 		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
-		div.append(canvasDiv);
+		specialDiv.append(canvasDiv);
 		Drawing.poseBabiesAsATeam(canvasDiv, this.player, playersMade, getGuardiansForPlayers(playersMade));
 
 	}
@@ -201,7 +203,7 @@ class VoidyStuff extends Scene {
 		this.player.fraymotifs.add(f);
 		appendHtml(specialDiv, "Holy shit. Did the " + this.player.htmlTitleBasic() + " just randomly go GodTier? What the fuck is going on? Did they even die? This is some flagrant bullshit. Somehow they learned " + f.name + " too." );
 		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
-		div.append(canvas);
+		specialDiv.append(canvas);
 		Drawing.drawGetTiger(canvas, [this.player]); //only draw revivial if it actually happened.
 
 	}
