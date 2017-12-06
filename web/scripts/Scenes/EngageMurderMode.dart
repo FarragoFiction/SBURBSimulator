@@ -5,7 +5,7 @@ import "../SBURBSim.dart";
 class EngageMurderMode extends Scene{
 
 	Player player = null;
-	List<String> deathThreats = <String>["You're going to die. And I'm going to see it. I'm going to DO it.",  "I'm gonna fucking KILL you.","You're dead fucking meat.", "I am going to kill you and dance on your fucking corpse."];
+	List<String> deathThreats = <String>["You're going to die. And I'm going to see it. I'm going to DO it.",  "I'm gonna fucking KILL you.","You're dead fucking meat.", "I am going to kill you and dance on your fucking corpse.","I'm going to paint the wicked pictures with your blood.","Knife goes in. Blood comes out. Your blood.","You're going to respect me if I have to wear your severed head as a hat.","Fuck you fuck it fuck you they laugh and you don’t understand I need to make you understand fuck it. You will be blood.","You're a corpse."];
 
 
 	EngageMurderMode(Session session): super(session);
@@ -155,7 +155,6 @@ class EngageMurderMode extends Scene{
 		session.logger.info("not valid murder threat");
 		ret.addAll(<PlusMinusConversationalPair>[first, second, third,fourth]);
 		return new Conversation(ret);
-
 	}
 
 	Conversation getMurdererValidThreatConvo(Player player1, Player player2) {
@@ -175,9 +174,9 @@ class EngageMurderMode extends Scene{
 			ret.add(new PlusMinusConversationalPair(<String>["...",":)"], <String>["... It's just a joke.","Haha you almost got me! Good joke, man!","It's just a joke. Right?"],<String>["Fuck. You're not joking.","Just drop it okay. It's not funny.","You never know when to drop a joke."]));
 			ret.add(new PlusMinusConversationalPair(<String>["I think it's fucking hilarious. See you soon. You won't see me."], <String>["Fuck.","Oh fuck oh god you weren't joking."],<String>["Fuck.","I should have known you couldn't joke to save your life. Fuck."]));
 		}else {
-			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
-			ret.add(new PlusMinusConversationalPair(<String>["...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
-			ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Oh god.","Oh fuck. oh fuck oh fuck.","...I. Really?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","Why did you snap NOW?","It's a joke, right?"],<String>["Oh, fuck. ","You have to listen to me, I didn't mean any of those things I said!","...","Fuck."]));
+			ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","This isn't happening.","Oh god. Tell me you're joking."],<String>["Fuck.","... No. This isn't happening. It can't be.","Oh god.","Oh fuck. oh fuck oh fuck.","No. You don't mean this. Even you aren't this much of an asshole.","This isn't happening.","It's a shitty joke, that's all it is."]));
 		}
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
 		session.logger.info("not valid murder threat");
@@ -196,7 +195,17 @@ class EngageMurderMode extends Scene{
 
 
 	Conversation getMurdererConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Well fuck. You get it. You understand.","You are singing my song there, bro."],<String>["I'll get you first, bro!","You get it, we'll paint the colors together. Until you are the colors."]));
+		ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>[":)"],<String>[":)"]));
+
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("not valid murder threat");
+		return new Conversation(ret);
 	}
 
 
@@ -258,7 +267,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getMurdererNotValidThreatConvo(player1,player2);
+		return getMurdererConvo(player1,player2);
 	}
 
 	void chat(Element div){
