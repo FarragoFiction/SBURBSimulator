@@ -89,6 +89,9 @@ class QuestsAndStuff extends Scene {
         if(player.grimDark >=3 || (helper != null && (helper as Player).grimDark >=3)) return null;
         //it's okay if helper is null.
         //if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
+        if(helper != null) {
+            //session.logger.info("Team up!");
+        }
 
         if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .75) {
             helper = player.sprite;
