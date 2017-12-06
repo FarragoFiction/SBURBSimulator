@@ -5,6 +5,7 @@ import "../SBURBSim.dart";
 class EngageMurderMode extends Scene{
 
 	Player player = null;
+	List<String> deathThreats = <String>["You're going to die. And I'm going to see it. I'm going to DO it.",  "I'm gonna fucking KILL you.","You're dead fucking meat.", "I am going to kill you and dance on your fucking corpse."];
 
 
 	EngageMurderMode(Session session): super(session);
@@ -87,64 +88,109 @@ class EngageMurderMode extends Scene{
 
 	Conversation getMetaConvo(Player player1, Player player2) {
 		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
-
-
 		//greeting
-		List<PlusMinusConversationalPair> first = new List<PlusMinusConversationalPair>();
+		PlusMinusConversationalPair first;
 		//explanation
-		List<PlusMinusConversationalPair> second = new List<PlusMinusConversationalPair>();
+		PlusMinusConversationalPair second;
 		//threat
-		List<PlusMinusConversationalPair> third = new List<PlusMinusConversationalPair>();
+		PlusMinusConversationalPair third;
 		//followup
-		List<PlusMinusConversationalPair> fourth = new List<PlusMinusConversationalPair>();
+		PlusMinusConversationalPair fourth;
 
 		//generic
-		first.add(new PlusMinusConversationalPair(["Hey, random text asshole.",  "You FUCKER.","Guess who, asshole."], ["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."],["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."]));
+		first = (new PlusMinusConversationalPair(<String>["Hey, random text asshole.",  "You FUCKER.","Guess who, asshole."], <String>["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."],<String>["Whoa. How did you contact me first?","This shouldn't be possible. I contact YOU not the other way around."]));
 		if(player1.aspect == Aspects.RAGE) {
-			second.add(new PlusMinusConversationalPair(["The power of my rage is a fucking MIRACLE isn't it?",  "It's amazing what the depths of my hatred for you can do.","Lol, Rage is a beauty, isn't it?"], ["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"],["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"]));
+			second = (new PlusMinusConversationalPair(<String>["The power of my rage is a fucking MIRACLE isn't it?",  "It's amazing what the depths of my hatred for you can do.","Lol, Rage is a beauty, isn't it?"], <String>["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"],<String>["Uh. I should have considered the whole 'rage' angle. ","Just how pissed off ARE you?"]));
 		}else if(player1.interestedInCategory(InterestManager.TECHNOLOGY)){
-			second.add(new PlusMinusConversationalPair(["It REALLY wasn't hard to reverse engineer your IP address. It's not like you're behind 7 proxies or some shit.",  "Turns out SBURB is easy to hack. Who would have guessed.","Easy. I hacked it."], ["Well fuck. Just don't try to hack the game you're in. Not a good end there."],["Well fuck. Just don't try to hack the game you're in. Not a good end there."]));
+			second = (new PlusMinusConversationalPair(<String>["It REALLY wasn't hard to reverse engineer your IP address. It's not like you're behind 7 proxies or some shit.",  "Turns out SBURB is easy to hack. Who would have guessed.","Easy. I hacked it."], <String>["Well fuck. Just don't try to hack the game you're in. Not a good end there."],<String>["Well fuck. Just don't try to hack the game you're in. Not a good end there."]));
 
 		}else if(player1.aspect == Aspects.VOID){
-			second.add(new PlusMinusConversationalPair(["Void shit."], ["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
+			second =(new PlusMinusConversationalPair(<String>["Void shit."], <String>["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],<String>["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
 
 		}else{
-			second.add(new PlusMinusConversationalPair(["That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], ["..."," Whoa. Okay?"],["..."," Whoa. Okay?"]));
+			second =(new PlusMinusConversationalPair(<String>["That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], <String>["..."," Whoa. Okay?"],<String>["..."," Whoa. Okay?"]));
 		}
-		third.add(new PlusMinusConversationalPair(["You're going to die. And I'm going to see it. I'm going to DO it.",  "I'm gonna fucking KILL you.","You're dead fucking meat.", "I am going to kill you and dance on your fucking corpse."], ["Uh. You sure about that, buddy?","Oooookay then. Good luck with that."],["Lol, good luck finding me. I'm behind 7 universes.","Lol, omfg you do realize I'm not even in your session, right? "]));
+		third =(new PlusMinusConversationalPair(deathThreats, <String>["Uh. You sure about that, buddy?","Oooookay then. Good luck with that."],["Lol, good luck finding me. I'm behind 7 universes.","Lol, omfg you do realize I'm not even in your session, right? "]));
 
 		if(player1.aspect == Aspects.SPACE) {
-			fourth.add(new PlusMinusConversationalPair(["Oh don't you worry, I'll find a way to get to you, even if I have to unlock every single Space ability to do it.",  "Yes, because physical location is SUCH A hinderence to me.","Space. Player."], ["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."],["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."]));
+			fourth =(new PlusMinusConversationalPair(<String>["Oh don't you worry, I'll find a way to get to you, even if I have to unlock every single Space ability to do it.",  "Yes, because physical location is SUCH A hinderence to me.","Space. Player."], <String>["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."],["Fuck.","Shit.", "Uh. I. Don't THINK there's actually a way for you to do spacey shit to get to me. Hopefully."]));
 		}else if(player1.interestedInCategory(InterestManager.TERRIBLE)){
-			fourth.add(new PlusMinusConversationalPair(["I will dedicate my god damned life to this.",  "Oh I will fucking find a way. I will DEDICATE myself to this.","Your future corpse has just volunteered to be the driving force in my life. Congratulations. "], ["... God you're so creepy."],["God, you're so creepy."]));
+			fourth =(new PlusMinusConversationalPair(<String>["I will dedicate my god damned life to this.",  "Oh I will fucking find a way. I will DEDICATE myself to this.","Your future corpse has just volunteered to be the driving force in my life. Congratulations. "], <String>["... God you're so creepy."],<String>["God, you're so creepy."]));
 		}else if(player1.aspect == Aspects.DOOM){
-			fourth.add(new PlusMinusConversationalPair(["Oh don't you worry, I'll figure out how to skirt the rules enough to do it. "], ["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
+			fourth =(new PlusMinusConversationalPair(<String>["Oh don't you worry, I'll figure out how to skirt the rules enough to do it. "], <String>["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."],<String>["Oh. Well, okay then.","Sounds legit.","Makes sense.", "Your story checks out."]));
 
 		}else if(player1.class_name == SBURBClassManager.WASTE || player1.class_name == SBURBClassManager.GRACE) {
-			fourth.add(new PlusMinusConversationalPair(["Actually, I'm pretty sure that if I win, then get a Rage player to gnosis 4...that I can watch you die."], ["Fuck.","Shit.","Oh fuck.", "Oh."],["Fuck.","Shit.","Oh fuck.", "Oh."]));
+			fourth =(new PlusMinusConversationalPair(<String>["Actually, I'm pretty sure that if I win, then get a Rage player to gnosis 4...that I can watch you die."], ["Fuck.","Shit.","Oh fuck.", "Oh."],<String>["Fuck.","Shit.","Oh fuck.", "Oh."]));
 		}else{
-			fourth.add(new PlusMinusConversationalPair(["JUST DIE!","Don't you fucking worry, I will FIND a way.","That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], ["lol"," Good luck, I guess."],["lol"," Good luck, man"]));
+			fourth =(new PlusMinusConversationalPair(<String>["JUST DIE!","Don't you fucking worry, I will FIND a way.","That doesn't fucking matter.",  "Shut up shut up shut up! You never stop talking!","I don't care!"], <String>["lol"," Good luck, I guess."],<String>["lol"," Good luck, man"]));
 		}
 
-		ret.add(session.rand.pickFrom(first));
-		ret.add(session.rand.pickFrom(second));
-		ret.add(session.rand.pickFrom(third));
-		ret.add(session.rand.pickFrom(fourth));
-
-		session.logger.info("meta murder threat");
+		ret.addAll(<PlusMinusConversationalPair>[first, second, third, fourth]);
+		//session.logger.info("meta murder threat");
 		return new Conversation(ret);
 	}
 
 	Conversation getMurdererNotValidThreatConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		PlusMinusConversationalPair first = new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]);
+		PlusMinusConversationalPair second = new PlusMinusConversationalPair(deathThreats, <String>["Hey. Uh. I'm sure you mean that and all. But. Aren't you. Like. WAY weaker than me?","Hey, it's okay, let it all out.","I'm sorry you feel that way. "],<String>["Lol, you and what army?","Aww, how cute. It's like you think you can take me.","Doubtful."]);
+		if(player2.interestedInCategory(InterestManager.TERRIBLE)){
+			second = new PlusMinusConversationalPair(deathThreats, <String>["Man. On the one hand I actually like you. But on the other... no way am I going to let you kill me. Guess you're going to die!","Man, I always wanted to kill someone in self defense. Too bad it's you."],<String>["Man, I always wanted to kill someone in self defense. You're PERFECT.","Is it my birthday!? Already!?","A present! For me?", "Best. Day. Ever. I can't wait to cut you up in 'self defense'."]);
+		}else if(player2.class_name.isDestructive) {
+			second = new PlusMinusConversationalPair(deathThreats, <String>["I really don't recomend that if you want to live.","You're only going to get yourself killed. "],<String>["Your funeral."]);
+		}else if(player2.class_name.isMagical) {
+			second = new PlusMinusConversationalPair(deathThreats, <String>["But...why? I LIKE you! I've been nice to you! Why ME?","I. Where is this even coming from? I LIKE you. Why do this?"],<String>["Look, I get it. I've been a flaming asshole to you. But am I really the best target here? Think about it.","Lol, you really think I'm the worst person in this session? How dumb can you get."]);
+		} else if(player2.class_name.isProtective) {
+			second = new PlusMinusConversationalPair(deathThreats, <String>["Okay. Well. Better you target me than someone else.","I don't want to hurt you, but I'm not going to let you hurt anyone else."],<String>["Come at me, bro.","If I have to put you down like a mad dog to save everyone, I will."]);
+		}
+		PlusMinusConversationalPair third = new PlusMinusConversationalPair(<String>["ARRGGGGGGH I hate you so much!","You fucking patronizing ASSHOLE!","THIS is why I'm going to kill you! Shit like this!"], <String>["It's okay. I'm here for you.","It's good to get these feelings out.","Shooosh, it's okay."],<String>["lol","k","If you say so."]);
+		PlusMinusConversationalPair fourth = new PlusMinusConversationalPair(<String>["Get ready, fucker.","Get ready, asshole.","I'm done here."], <String>["Hey! Wait a minute. You should keep venting!","I hope you feel better.","Sorry if I was making things worse."],<String>["Yeah, like that's going to scare me.","Meh.","Yeah, right."]);
+
+		//		PlusMinusConversationalPair fourth = new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]);
+
+
+		session.logger.info("not valid murder threat");
+		ret.addAll(<PlusMinusConversationalPair>[first, second, third,fourth]);
+		return new Conversation(ret);
+
 	}
 
 	Conversation getMurdererValidThreatConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		if(player2.interestedInCategory(InterestManager.JUSTICE)){
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["I thought you were better than this. Do you really want my death hanging over you?","You're better than this. Don't become a common criminal."],<String>["I didn't think even YOU would stoop this low.","Wow, way to prove my intuition was right. You're a criminal. Congratulations.","I wouldn't have thought you'd be clever enough to target a master detective such as myself first. But here we are."]));
+			ret.add(new PlusMinusConversationalPair(<String>["See you soon!"], <String>["Fuck."],<String>["Fuck."]));
+		}else if(player2.interestedInCategory(InterestManager.POPCULTURE)) {
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["No. You can't. You're. You're one of the GOOD GUYS. Why?","I. But. I trusted you. You were my hero. Why would you say that..."],<String>["I always knew you had the capacity to be a villain, but this is low even for you.","What the hell man, don't you know bad guys never win?"]));
+			ret.add(new PlusMinusConversationalPair(<String>["See you soon!"], <String>["Fuck.","..."],<String>["Fuck.","..."]));
+		}else if(player2.interestedInCategory(InterestManager.COMEDY)) {
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Oh god. Tell me you're joking.","This isn't funny. ","You're normally funnier than this."],<String>["Is another one of your bad jokes?","You're joking right?","Haha, not."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...",":)"], <String>["... It's just a joke.","Haha you almost got me! Good joke, man!","It's just a joke. Right?"],<String>["Fuck. You're not joking.","Just drop it okay. It's not funny.","You never know when to drop a joke."]));
+			ret.add(new PlusMinusConversationalPair(<String>["I think it's fucking hilarious. See you soon. You won't see me."], <String>["Fuck.","Oh fuck oh god you weren't joking."],<String>["Fuck.","I should have known you couldn't joke to save your life. Fuck."]));
+		}else {
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+			ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
+		}
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("not valid murder threat");
+		return new Conversation(ret);
 	}
 
 
-	Conversation getCalmingConvo(Player player1, Player player2) {
+	//both blood and rage have actual consequences to the murderer.
+	Conversation getBloodConvo(Player player1, Player player2) {
+		throw "TODO";
+	}
+
+	Conversation getRageConvo(Player player1, Player player2) {
 		throw "TODO";
 	}
 
@@ -198,7 +244,9 @@ class EngageMurderMode extends Scene{
 		}else if(player2.murderMode) {
 			return getMurdererConvo(player1,player2);
 		}else if(player2.aspect == Aspects.BLOOD) {
-			return getCalmingConvo(player1,player2);
+			return getBloodConvo(player1,player2);
+		}else if(player2.aspect == Aspects.RAGE) {
+			return getRageConvo(player1,player2);
 		}else if(player2.getStat(Stats.POWER) * player2.getPVPModifier("Defender") < player1.getStat(Stats.POWER)*player1.getPVPModifier("Murderer")) {
 			return getMurdererValidThreatConvo(player1,player2);
 		}else {
