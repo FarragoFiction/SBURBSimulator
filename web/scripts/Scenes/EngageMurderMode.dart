@@ -204,13 +204,25 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>[":)"],<String>[":)"]));
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("not valid murder threat");
+		session.logger.info("killing buddies");
 		return new Conversation(ret);
 	}
 
 
 	Conversation getHowKillGodConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Do you really think killing me will be JUST? It's not going to stick.","As long as I don't fight back, it won't be HEROIC. It's not going to stick.","Uh. You do know I'm a GodTier, right? Kind of hard to kill."],<String>["Man, I hate you even more knowing you think killing me would be JUST.","I suppose I shall have to take it as a compliment that you think I'd be dumb enough to try to stop you and make it 'HEROIC'.","Wow, are you dumb enough to forget I'm a GodTier? How do you plan to kill me?"]));
+		ret.add(new PlusMinusConversationalPair(<String>["Oh don't you worry, I'll find a way.","You raging asshole. If there is any justice in this world it will be JUST when I finish killing you.","Well you are safe from dying a HEROIC death, that's for sure."], <String>["You don't have to do this.","You can still stop."],<String>["It's hilarious that you think this is going to do anything.", "Well, have fun doing pointless shit."]));
+		ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>["Whatever."],<String>["Sure."]));
+
+
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("kill a god.");
+		return new Conversation(ret);
 	}
 
 
@@ -267,7 +279,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getMurdererConvo(player1,player2);
+		return getHowKillGodConvo(player1,player2);
 	}
 
 	void chat(Element div){
