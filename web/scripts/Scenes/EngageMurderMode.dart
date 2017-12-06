@@ -233,7 +233,7 @@ class EngageMurderMode extends Scene{
 		//greeting
 		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
 		ret.add(new PlusMinusConversationalPair(<String>["I think things would go better if you were dead"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","...I. Really?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
-		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
+		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["Oh god...Why are you like this?", "Oh god. No. Please.", "God it's so creepy how you are so flat but you're saying shit like that."],<String>["Oh god. You asshole.", "Fuck.","Shit.", "God it's so creepy how you are so flat but you're saying shit like that."]));
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
 		session.logger.info("kill a grim dark.");
 		return new Conversation(ret);
@@ -306,7 +306,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getBothGrimConv(player1,player2);
+		return getGrim1Conv(player1,player2);
 	}
 
 	void chat(Element div){
