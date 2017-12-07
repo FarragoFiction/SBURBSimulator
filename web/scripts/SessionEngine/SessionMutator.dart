@@ -895,6 +895,10 @@ class MetaPlayerHandler {
         player.bloodColor = "#ff0000";
         player.isTroll = false;
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Staff", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]);
+
+
         player.quirk.capitalization = 1;
         player.quirk.punctuation = 2;
         player.quirk.lettersToReplace = [];
@@ -1013,6 +1017,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PRINCE, Aspects.TIME);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+
+
         player.hair = 29;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#503A21";
@@ -1058,6 +1066,10 @@ class MetaPlayerHandler {
 
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Candlestick", ItemTraitFactory.STICK, [ ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]);
+
+
         player.hair = 68;
         player.hairColor = "#000000";
         player.bloodColor = "#0021cb";
@@ -1094,6 +1106,10 @@ class MetaPlayerHandler {
     Player makeMI(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.BARD, Aspects.DOOM);
         player.quirk = randomHumanQuirk(s.rand);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Piano", ItemTraitFactory.SAFE, [ ItemTraitFactory.HEAVY, ItemTraitFactory.BLUNT, ItemTraitFactory.MUSICAL]);
+
 
         player.hair = 1;
         player.ectoBiologicalSource = 13;
@@ -1138,6 +1154,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.WOOD]);
+
+
         player.hair = 67;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#382207";
@@ -1179,6 +1199,10 @@ class MetaPlayerHandler {
     Player makeWM(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.MUSE, Aspects.BREATH);
         player.quirk = randomHumanQuirk(s.rand);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Debate", ItemTraitFactory.BOOK, [ ItemTraitFactory.SMART, ItemTraitFactory.CALMING]);
+
 
         player.hair = 17;
         player.hairColor = "#800000";
@@ -1228,6 +1252,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SEER, Aspects.VOID);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Polearm", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]);
+
+
         player.hair = 60;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#000000";
@@ -1274,6 +1302,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.ROGUE, Aspects.DREAM);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Craft", ItemTraitFactory.HAMMER, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+
+
         player.hair = 46;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#E8D099";
@@ -1315,6 +1347,10 @@ class MetaPlayerHandler {
     Player makePL(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.WITCH, Aspects.VOID);
         player.quirk = randomHumanQuirk(s.rand);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]);
+
 
         player.hair = 47;
         player.ectoBiologicalSource = 13;
@@ -1365,6 +1401,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.WASTE, Aspects.MIND);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("YellowYard", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]);
+
+
         player.hair = 13;
         player.ectoBiologicalSource = 13;
         player.hairColor = "#3C1E07";
@@ -1400,6 +1440,10 @@ class MetaPlayerHandler {
     Player makeAB(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.GUIDE, Aspects.MIND);
         player.quirk = randomHumanQuirk(s.rand);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Virus", ItemTraitFactory.BOOK, [ ItemTraitFactory.ZAP, ItemTraitFactory.CORRUPT]);
+
 
         player.hair = 13;
         player.ectoBiologicalSource = 13;
@@ -1437,6 +1481,10 @@ class MetaPlayerHandler {
     Player makeABJ(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SCOUT, Aspects.MIND);
         player.quirk = randomHumanQuirk(s.rand);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Intresting!!!", ItemTraitFactory.KNIFE, [ ItemTraitFactory.METAL, ItemTraitFactory.ONFIRE]);
+
 
         player.hair = 13;
         player.quirk.favoriteNumber = 3;
