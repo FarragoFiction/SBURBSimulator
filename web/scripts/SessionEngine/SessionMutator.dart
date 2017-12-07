@@ -940,6 +940,10 @@ class MetaPlayerHandler {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.VOID);
         player.quirk = randomHumanQuirk(s.rand);
 
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Table", ItemTraitFactory.SHIELD, [ ItemTraitFactory.WOOD, ItemTraitFactory.HEAVY, ItemTraitFactory.BLUNT]);
+
+
         player.copyFromOCDataString("b=zh%03%C2%85%C3%BE%13%00%40%1F%1FB&s=,,Music,Dungeon Mastering,tableGuardian");
 
         player.land = player.spawnLand();
