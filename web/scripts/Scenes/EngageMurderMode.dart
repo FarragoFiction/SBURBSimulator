@@ -268,7 +268,18 @@ class EngageMurderMode extends Scene{
 	}
 
 	Conversation getHeiressConversation(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		ret.add(new PlusMinusConversationalPair(<String>["Get ready to be Challenged, fish stick!", "There's only room for one of us, bitch.", "I've had it up to my gills with your bullshit."], <String>["Oh my god! Can we NOT do this right now!?","If I can ignore my biological imperitive to murder you right in your stupid face, so can you!", "Cut it out! There's not many trolls left, so why kill each other!"],<String>["Fuck yes, about time we did an Heiress Challenge!","About time, I can't stand your stupid fishy face!", "There's only room for one big fish in this pond."]));
+		ret.add(new PlusMinusConversationalPair(<String>["Skaia left two Heiresses alive for a reason, and I aim to prove I'm the one worth backing."], <String>["You're crazy!"],<String>["Why the fuck did skaia stick multiple Heiresses in the medium together!? What was the purpose? Is it crazy!?"]));
+		ret.add(new PlusMinusConversationalPair(<String>["See you soon! :)"], <String>["You asshole, I thought we were friends!"],<String>["Bring it, bitch!"]));
+
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("kill a heiress.");
+		return new Conversation(ret);
 	}
 
 
@@ -306,7 +317,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getGrim1Conv(player1,player2);
+		return getHeiressConversation(player1,player2);
 	}
 
 	void chat(Element div){
