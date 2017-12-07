@@ -367,8 +367,7 @@ class EngageMurderMode extends Scene{
 			return getMetaConvo(player1, player2);
 		}
 
-
-		/*if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d") {
+		if(player1.isTroll && player1.bloodColor == "#99004d" && player2.isTroll && player2.bloodColor == "#99004d") {
 			return getHeiressConversation(player1, player2);
 		}else if(player2.grimDark > 1 && player1.grimDark >1) {
 			return getBothGrimConv(player1,player2);
@@ -382,15 +381,14 @@ class EngageMurderMode extends Scene{
 			return getMurdererConvo(player1,player2);
 		}else if(player2.aspect == Aspects.BLOOD && player2.hasPowers()) {
 			return getBloodConvo(player1,player2);
-		}else if(player2.aspect == Aspects.RAGE  player2.hasPowers()) {
+		}else if(player2.aspect == Aspects.RAGE && player2.hasPowers()) {
 			return getRageConvo(player1,player2);
 		}else if(player2.getStat(Stats.POWER) * player2.getPVPModifier("Defender") < player1.getStat(Stats.POWER)*player1.getPVPModifier("Murderer")) {
 			return getMurdererValidThreatConvo(player1,player2);
 		}else {
 			return getMurdererNotValidThreatConvo(player1,player2);
 
-		}*/
-		return getBloodConvo(player1,player2);
+		}
 	}
 
 	void chat(Element div){
