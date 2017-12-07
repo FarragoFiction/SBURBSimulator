@@ -198,19 +198,21 @@ class EngageMurderMode extends Scene{
 		if(player2.class_name.isDestructive) {
 			//destroys rage
 			player1.unmakeMurderMode();
+			player1.addStat(Stats.SANITY, 10);
+			player1.addStat(Stats.RELATIONSHIPS, 10);
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["No.","I'm not going to let you do that."],<String>["Hell No.", "You asshole. No."]));
 			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Nope. Destroying your Rage. Stop that shit.", "Destroyer of Rage at your service."],<String>["Fuck off, let me do my destroyer of rage thing.", "Fuck you, and fuck your Rage."]));
 			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed."],<String>["You're welcome, asshole."]));
 		}else if(player2.class_name.isMagical) {
 			//manipulates rage
-			player1.leftMurderMode = true;
-			player1.murderMode = false;
-			player.increasePower();
+			player1.unmakeMurderMode(); //but doesn't change sanity.
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["I think you can use your Rage more productively.","There's other things you can do with all that energy."],<String>["I think you can use your Rage more productively.","Fuck you find something better to do with your Rage."]));
-			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Nope. Destroying your Rage. Stop that shit.", "Mover of Rage at your service."],<String>["Fuck off, let me do my changer of rage thing.", "Fuck you, and fuck your misapplied Rage."]));
-			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed."],<String>["You're welcome, asshole."]));
+			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Just wait a second. I'm changing your Rage", "Changer of Rage at your service."],<String>["Fuck off, let me do my changer of rage thing.", "Fuck you, and fuck your misapplied Rage."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed.", "Go fight enemies, asshole, not Players."],<String>["You're welcome, asshole.", "Hopefully you'll remember to fight the ENEMIES and not the PLAYERS now."]));
 		}else if(!player2.isActive()){
 			player1.addStat(Stats.SANITY, -10);
+			player1.addStat(Stats.RELATIONSHIPS, -10);
+
 			player.increasePower();
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Holy fuck, bro, what is WRONG with you?","Yup. That's some rage you have."],<String>["Shit anything I could possibly say here would only make it worse.","Holy fuck, bro, what is WRONG with you?"]));
 			ret.add(new PlusMinusConversationalPair(<String>["This is your fault you asshole."], <String>["Probably.", "Sorry about that. I didn't choose my Aspect!"],<String>["Nope, you'd be as terrible even without my Rage.", "Fuck you, and fuck you blaming my Rage for your problems."]));
