@@ -31,7 +31,7 @@ class SaveDoomedTimeLine extends Scene {
 			}
 		}
 		//wasted aspect.
-		if(!enablingPlayer.hasPowers()) return false;
+		if(enablingPlayer != null && !enablingPlayer.hasPowers()) return false;
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
 			////session.logger.info("time player is dead, not triggering");
