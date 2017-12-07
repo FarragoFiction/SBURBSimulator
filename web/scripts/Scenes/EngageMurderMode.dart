@@ -186,13 +186,52 @@ class EngageMurderMode extends Scene{
 
 	//both blood and rage have actual consequences to the murderer.
 	Conversation getBloodConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		player2.increasePower(); //no matter what happens here, it's an rp bonus
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		if(player2.class_name.isDestructive) {
+			//makes it worse
+			player1.addStat(Stats.SANITY, -10);
+			player1.addStat(Stats.RELATIONSHIPS, -10);
+			player1.increasePower();
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Oh. Fuck me. It's the Blood thing, isn't it.","I was waiting for this to happen. Fucking destroying Blood. How is that a good thing for me to do?","Aaaand SBURB finds a bright new shiny way to make being a destructive Blood player suck."],<String>["Well. If SOMEBODY had to be driven crazy by my destructive aspect, I'm glad it's you.","SBURB couldn't have picked a nicer player to drive insane enough to kill me. End sarcasm.","It's hilarious that you think you're doing this on purpose. It's the blood shit, man. You're just a puppet to me being a destructive ass."]));
+			ret.add(new PlusMinusConversationalPair(<String>["This is YOUR fault.","You did this."], <String>["Probably", "Almost certainly.", "Can't argue there."],<String>["Lol, blaming me for your problems? How mature.", "Way to avoid all responsibility, asshole.", "You have to admit you helped the Bloody Thing along by being such a flagrant asshole."]));
+			ret.add(new PlusMinusConversationalPair(<String>["Be. Seeing. You."], <String>["You can fight this. I know you can!","I always knew my shitty classpect would kill me."],<String>["Here's hoping you end up destroyed by this shit instead of destroying me.","Bluh. Why does this game suck so much?"]));
+		}else if(player2.class_name.isMagical) {
+			//manipulates blood, but can't create sanity from nothing from a distance
+			player1.unmakeMurderMode();
+			player1.addStat(Stats.RELATIONSHIPS, 10);
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["No. You can do better than this.","Wait, wait, I think I can sort of fix this.","Alright, this looks like a job for a changer of Blood."],<String>["Holy fuck, settle your horses, I can fix this.","Okay. Clearly something went wrong. I can fix this. Hold on.","Well, at least you were smart enough to contact the one player who could help you."]));
+			ret.add(new PlusMinusConversationalPair(<String>["Fuck you I'm not broken.","I don't need your meddling. Always bugging and fussing and meddling."], <String>["What can I say, I'm a meddler. Okay. I changed things around so you don't hate anybody too much. Not really anything I could do to reroute your sanity, but at least you'll be quietly insane.", "Aaaand done. I wish I could just hand you sanity at a distance, but no dice. At least you don't hate people as much. It's a start. Come see me sometime and I'll try to give you the full whammy."],<String>["Lol, like you'd last ten seconds without my help. There you go, good as new, by which I mean at least you'll be quietly insane.","Hilarious, like you could do shit without me. There we go. Can't do anything about your sanity, but at least I moved around your relationships until you don't hate anybody TOO much."]));
+			ret.add(new PlusMinusConversationalPair(<String>["... what.", " I don't like this.", "Shit."], <String>["Always a pleasure!","Happy to help!"],<String>["You're welcome, asshole."]));
+		}else if(!player2.isActive()){
+			//use their relationships
+			player1.unmakeMurderMode();
+			player1.addStat(Stats.SANITY, 10);
+			player1.addStat(Stats.RELATIONSHIPS, 10);
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Nope.","I'm not going to let you do that."],<String>["Hell No.", "You asshole. No."]));
+			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Nope. You're not allowed to do that. Blood won't let you.", "The Blood says I can stop you. So I will."],<String>["Fuck off, let me do my Bloody thing.", "Fuck you, and fuck your messed up Blood. I can fix this."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed.","Good as new. Sort of"],<String>["You're welcome, asshole."]));
+		}else {
+			//use your relationships, but not as good as if passive. either friendship, or rivalry.
+			player1.addStat(Stats.RELATIONSHIPS, 10);
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Whoa, friend. What's going on?","Let's talk about this. What made you so mad at me?"],<String>["Lol, are you really weak enough to give in to anger?","Wow, I never knew you were lame enough to just snap."]));
+			ret.add(new PlusMinusConversationalPair(<String>["You don't know me.","You don't know what I'm going through."], <String>["Yeah, the more I play this game the more I realize how different everybody is. But I think we can still understand each other.","Come on, it's ME. You remember how I helped you with that exam a year ago? We're friends!"],<String>["I don't care what you're going through. You're the fucking biggest asshole in all of Paradox Space, and you're still better than THIS.","Really, a little death game is all it takes for you to flip your fucking shit? You're better than this."]));
+			ret.add(new PlusMinusConversationalPair(<String>["... Maybe you're right. Maybe you're wrong. But I still can't stop.","I don't KNOW! Everything is wrong!","ARGGG, stop, stop making sense!"], <String>["I believe in our friendship, friend."],<String>[""]));
+		}
+
+		return new Conversation(ret);
 	}
 
 	Conversation getRageConvo(Player player1, Player player2) {
 		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
 		Relationship r1 = player1.getRelationshipWith(player2);
 		Relationship r2 = player2.getRelationshipWith(player1);
+		player2.increasePower(); //no matter what happens here, it's an rp bonus
 		//greeting
 		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
 		if(player2.class_name.isDestructive) {
@@ -210,14 +249,15 @@ class EngageMurderMode extends Scene{
 			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Just wait a second. I'm changing your Rage", "Changer of Rage at your service."],<String>["Fuck off, let me do my changer of rage thing.", "Fuck you, and fuck your misapplied Rage."]));
 			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed.", "Go fight enemies, asshole, not Players."],<String>["You're welcome, asshole.", "Hopefully you'll remember to fight the ENEMIES and not the PLAYERS now."]));
 		}else if(!player2.isActive()){
+			//gives rage
 			player1.addStat(Stats.SANITY, -10);
 			player1.addStat(Stats.RELATIONSHIPS, -10);
-
-			player.increasePower();
+			player1.increasePower();
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Holy fuck, bro, what is WRONG with you?","Yup. That's some rage you have."],<String>["Shit anything I could possibly say here would only make it worse.","Holy fuck, bro, what is WRONG with you?"]));
 			ret.add(new PlusMinusConversationalPair(<String>["This is your fault you asshole."], <String>["Probably.", "Sorry about that. I didn't choose my Aspect!"],<String>["Nope, you'd be as terrible even without my Rage.", "Fuck you, and fuck you blaming my Rage for your problems."]));
 			ret.add(new PlusMinusConversationalPair(<String>["Be. Seeing. You."], <String>["Yes.","I know."],<String>["Yes.","I know."]));
 		}else {
+			//has rage
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Holy fuck, bro, what is WRONG with you?","Yup. That's some rage you have."],<String>["Shit anything I could possibly say here would only make it worse.","Holy fuck, bro, what is WRONG with you?"]));
 			ret.add(new PlusMinusConversationalPair(<String>["You know what RAGE is, asshole.","What's wrong, don't recognize RAGE when you see it?"], <String>["Oh, yes. That is definitely some rage.", "Look, I'm sure we can figure something out. I get Rage, you can fight it."],<String>["Fuck you.", "Wow, how weak do you have to be to be overcome by such a little amount of Rage."]));
 			ret.add(new PlusMinusConversationalPair(<String>["Be. Seeing. You."], <String>["Yes.","I know."],<String>["Yes.","I know."]));
@@ -240,7 +280,6 @@ class EngageMurderMode extends Scene{
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
 		session.logger.info("killing buddies");
-		return new Conversation(ret);
 	}
 
 

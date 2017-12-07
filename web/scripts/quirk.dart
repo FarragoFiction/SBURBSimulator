@@ -270,6 +270,7 @@ class Quirk {
 
 
       this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(very_quirks));
+      this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(friend_quirks));
       this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(good_quirks));
       this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(lol_quirks));
       this.lettersToReplaceIgnoreCase.add(this.rand.pickFrom(greeting_quirks));
