@@ -132,7 +132,7 @@ class FreeWillStuff extends Scene {
                 return ret;
             }
             //NOT luck. just obfuscated reasons.
-            if (rand.nextDouble() > 0.5) {
+            if (rand.nextDouble() > 0.9) {
                 ////session.logger.info("Free will stop from killing everybody: " + this.session.session_id);
                 ret += "With a conscious act of will, the " + player.htmlTitle() + " settles their shit. No matter HOW much of an asshole people are, SBURB is the true enemy, and they are not going to let themselves forget that. ";
                 player.unmakeMurderMode();
