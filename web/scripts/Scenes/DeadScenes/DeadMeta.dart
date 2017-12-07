@@ -96,6 +96,7 @@ class DeadMeta extends Scene {
     //done exactly once
     void intro(Element div) {
         Player meta = (session as DeadSession).metaPlayer;
+        session.logger.info("Meta player is: ${meta.chatHandle}");
         Player player = session.players[0];
 
         //you get to fight my denizen self now, bitch.
