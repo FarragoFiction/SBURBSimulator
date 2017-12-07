@@ -279,6 +279,7 @@ class EngageMurderMode extends Scene{
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
 		session.logger.info("killing buddies");
+		return new Conversation(ret);
 	}
 
 
@@ -398,7 +399,7 @@ class EngageMurderMode extends Scene{
 		if(player2 != null && !player2.dead){
 			Relationship r2 = player2.getRelationshipWith(player1);
 			if((r2.value < -2 && r2.value > -12 ) || InterestManager.MUSIC.playerLikes(player1)){ //only if i generically dislike you. o rlike raps
-				////session.logger.info("rap battle. session: " + this.session.session_id);
+				session.logger.info("rap battle. session: ");
 				this.rapBattle(div,player1, player2);
 				return; //reap battle will handle it from here.
 			}
