@@ -36,7 +36,7 @@ class FreeWillStuff extends Scene {
                 return true;
             }
             //no more direct asks of free will.
-            if ((player.land == null || (player.land != null && player.hasPowers()) || player.canMindControl() != null) && player.getStat(Stats.FREE_WILL)>400) { // you need powers AND free will.
+            if ((player.land == null || (player.land != null && player.hasPowers()) || player.canMindControl() != null) && player.getStat(Stats.FREE_WILL)>200) { // you need powers AND free will.
                 String decision = this.getPlayerDecision(player);
                 if (decision != null) {
                     this.player = player;
