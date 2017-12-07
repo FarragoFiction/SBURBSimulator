@@ -220,10 +220,9 @@ class EngageMurderMode extends Scene{
 			//use your relationships, but not as good as if passive. either friendship, or rivalry.
 			player1.addStat(Stats.RELATIONSHIPS, 10);
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Whoa, friend. What's going on?","Let's talk about this. What made you so mad at me?"],<String>["Lol, are you really weak enough to give in to anger?","Wow, I never knew you were lame enough to just snap."]));
-			ret.add(new PlusMinusConversationalPair(<String>["You don't know me.","You don't know what I'm going through."], <String>["Yeah, the more I play this game the more I realize how different everybody is. But I think we can still understand each other.","Come on, it's ME. You remember how I helped you with that exam a year ago? We're friends!"],<String>["I don't care what you're going through. You're the fucking biggest asshole in all of Paradox Space, and you're still better than THIS.","Really, a little death game is all it takes for you to flip your fucking shit? You're better than this."]));
+			ret.add(new PlusMinusConversationalPair(<String>["You don't know me.","You don't know what I'm going through."], <String>["Yeah, the more I play this game the more I realize how different everybody is. But I think we can still understand each other. We're friends.","Come on, it's ME. You remember how I helped you with that exam a year ago? We're friends!"],<String>["I don't care what you're going through. You're the fucking biggest asshole in all of Paradox Space, and you're still better than THIS.","Really, a little death game is all it takes for you to flip your fucking shit? You're better than this."]));
 			ret.add(new PlusMinusConversationalPair(<String>["... Maybe you're right. Maybe you're wrong. But I still can't stop.","I don't KNOW! Everything is wrong!","ARGGG, stop, stop making sense!"], <String>["I believe in our friendship, friend."],<String>[""]));
 		}
-
 		return new Conversation(ret);
 	}
 
@@ -258,7 +257,7 @@ class EngageMurderMode extends Scene{
 			ret.add(new PlusMinusConversationalPair(<String>["Be. Seeing. You."], <String>["Yes.","I know."],<String>["Yes.","I know."]));
 		}else {
 			//has rage
-			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Holy fuck, bro, what is WRONG with you?","Yup. That's some rage you have."],<String>["Shit anything I could possibly say here would only make it worse.","Holy fuck, bro, what is WRONG with you?"]));
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["Holy fuck, friend, what is WRONG with you?","Yup. That's some rage you have."],<String>["Shit anything I could possibly say here would only make it worse.","Holy fuck, friend, what is WRONG with you?"]));
 			ret.add(new PlusMinusConversationalPair(<String>["You know what RAGE is, asshole.","What's wrong, don't recognize RAGE when you see it?"], <String>["Oh, yes. That is definitely some rage.", "Look, I'm sure we can figure something out. I get Rage, you can fight it."],<String>["Fuck you.", "Wow, how weak do you have to be to be overcome by such a little amount of Rage."]));
 			ret.add(new PlusMinusConversationalPair(<String>["Be. Seeing. You."], <String>["Yes.","I know."],<String>["Yes.","I know."]));
 		}
@@ -391,7 +390,7 @@ class EngageMurderMode extends Scene{
 			return getMurdererNotValidThreatConvo(player1,player2);
 
 		}*/
-		return getRageConvo(player1,player2);
+		return getBloodConvo(player1,player2);
 	}
 
 	void chat(Element div){

@@ -347,7 +347,7 @@ String rapMistake(Random rand) {
 
 
 dynamic rapInterjection(Random rand){
-	var interjections = ["Yo", "Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it", "Listen up","Back the fuck up","3,2,1"];
+	var interjections = ["Yo", "Friend","Trust", "Represent", "Respect", "Word", "Dawg", "Dog", "Bro", "Sup", "Okay", "What", "Yeah", "Aight", "Yeah Dog", "Fo, Shizzle", "Hey", "Boo yeah", "Break it down", "Fuck", "Shit", "Peace", "True that", "Double True", "Word up", "My homey", "Homey", "You knows it", "Listen up","Back the fuck up","3,2,1"];
 	return rand.pickFrom(interjections);
 }
 
