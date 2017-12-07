@@ -717,6 +717,7 @@ class Player extends GameEntity{
 
     bool hasPowers() {
         if(class_name == SBURBClassManager.WASTE || class_name == SBURBClassManager.GRACE) return false;
+        if(aspect == Aspects.TIME) return true;  //they have it in the future after all.
         if(land == null) return true;//you're a combo player.
         if(land.firstCompleted) { //you are starting to face your denizen
             return true;
@@ -1807,7 +1808,7 @@ class Player extends GameEntity{
     }
 
     bool canHelp() {
-        return godTier || isDreamSelf || land == null || land.firstCompleted || aspect == Aspects.BREATH;
+        return godTier || isDreamSelf || land == null || land.firstCompleted || (aspect == Aspects.BREATH && hasPowers()) ;
     }
 
     ///not static because who can help me varies based on who i am (space is knight, for example)
