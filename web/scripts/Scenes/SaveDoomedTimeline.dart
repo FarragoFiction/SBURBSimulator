@@ -23,13 +23,15 @@ class SaveDoomedTimeLine extends Scene {
 		this.leaderPlayer = session.getLeader(session.players);
 		this.playerList = playerList;
 		
-		if(this.enablingPlayer != null){
+		if(this.enablingPlayer != null ){
 			if(this.enablingPlayer.isActive() || rand.nextDouble() > .5){
 				this.timePlayer = this.enablingPlayer;
 			}else{  //somebody else can be voided.
 				this.timePlayer = rand.pickFrom(this.session.players);  //passive time players make doomed clones of others.
 			}
 		}
+		//wasted aspect.
+		if(enablingPlayer.class_name == SBURBClassManager.WASTE || enablingPlayer.class_name == SBURBClassManager.GRACE) return false;
 		/*
 		if(this.timePlayer.dead){  //a dead time player can't prevent shit.
 			////session.logger.info("time player is dead, not triggering");

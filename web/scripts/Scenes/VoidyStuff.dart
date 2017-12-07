@@ -27,7 +27,7 @@ class VoidyStuff extends Scene {
 			if(this.enablingPlayer == null) this.enablingPlayer = findAspectPlayer(availablePlayers, Aspects.VOID); //if there is no rage player
 		}
 
-		if(this.enablingPlayer != null){
+		if(this.enablingPlayer != null && enablingPlayer.hasPowers()){
 			//rage field makes it always act as if passive
 			if(!session.mutator.rageField && (this.enablingPlayer.isActive() || rand.nextDouble() > .5)){
 				this.player = this.enablingPlayer;

@@ -38,7 +38,7 @@ class LifeStuff extends Scene {
         List<Player> dead = findDeadPlayers(this.session.players); //don't care about availability.;
         for (num i = 0; i < dead.length; i++) {
             Player d = dead[i];
-            if (d.aspect == Aspects.LIFE || d.aspect == Aspects.DOOM) {
+            if ((d.aspect == Aspects.LIFE || d.aspect == Aspects.DOOM) && d.hasPowers()) {
                 if (d.class_name == SBURBClassManager.THIEF || d.class_name == SBURBClassManager.HEIR) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(d, null)); //gonna revive myself.
                 }
@@ -52,7 +52,7 @@ class LifeStuff extends Scene {
         //for each nonGuide, see if you can do something on your own.
         for (num i = 0; i < nonGuides.length; i++) {
             Player player = nonGuides[i];
-            if (player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM || player.canGhostCommune() != null) {
+            if ((player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM && player.hasPowers()) || player.canGhostCommune() != null) {
                 if (player.class_name != SBURBClassManager.WITCH && player.class_name != SBURBClassManager.SYLPH) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null));
                     removeNonGuides.add(player);

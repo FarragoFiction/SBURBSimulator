@@ -715,6 +715,15 @@ class Player extends GameEntity{
         return null;
     }
 
+    bool hasPowers() {
+        if(class_name == SBURBClassManager.WASTE || class_name == SBURBClassManager.GRACE) return false;
+        if(land == null) return true;//you're a combo player.
+        if(land.firstCompleted) { //you are starting to face your denizen
+            return true;
+        }
+        return false;
+    }
+
     num getAttackerModifier() {
         return this.class_name.getAttackerModifier();
     }

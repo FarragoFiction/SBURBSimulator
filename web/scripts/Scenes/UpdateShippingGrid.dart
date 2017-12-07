@@ -616,7 +616,7 @@ class UpdateShippingGrid extends Scene{
 		//	////session.logger.info( this.savedShipText.length + " scandalous fuck pile " + this.session.session_id);
 		}
 		String ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
-		if(this.chosenShipper.otp != null){
+		if(this.chosenShipper.otp != null && this.chosenShipper.player.hasPowers()){
 			ret += this.activateShippingPowers(this.chosenShipper.otp);
 		}
 		return ret;

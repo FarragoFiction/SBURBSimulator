@@ -190,7 +190,22 @@ class EngageMurderMode extends Scene{
 	}
 
 	Conversation getRageConvo(Player player1, Player player2) {
-		throw "TODO";
+		List<PlusMinusConversationalPair> ret = new List<PlusMinusConversationalPair>();
+		Relationship r1 = player1.getRelationshipWith(player2);
+		Relationship r2 = player2.getRelationshipWith(player1);
+		//greeting
+		ret.add(new PlusMinusConversationalPair(<String>["..."], <String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)],<String>[Relationship.getRelationshipFlavorGreeting(r2, r1, player2, player1)]));
+		if(player2.class_name.isDestructive) {
+			player1.murderMode = false;
+			player1.leftMurderMode = true;
+			player1.unmakeMurderMode();
+			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["No.","I'm not going to let you do that."],<String>["Hell No.", "You asshole. No."]));
+			ret.add(new PlusMinusConversationalPair(<String>["What?"], <String>["Nope. Destroying your Rage. Stop that shit."],<String>["Fuck off, let me do my destroyer of rage thing."]));
+			ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		}
+
+					//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+		session.logger.info("rage convo");
 	}
 
 
@@ -307,9 +322,9 @@ class EngageMurderMode extends Scene{
 			return getHowKillGodConvo(player1,player2);
 		}else if(player2.murderMode) {
 			return getMurdererConvo(player1,player2);
-		}else if(player2.aspect == Aspects.BLOOD) {
+		}else if(player2.aspect == Aspects.BLOOD && player2.hasPowers()) {
 			return getBloodConvo(player1,player2);
-		}else if(player2.aspect == Aspects.RAGE) {
+		}else if(player2.aspect == Aspects.RAGE  player2.hasPowers()) {
 			return getRageConvo(player1,player2);
 		}else if(player2.getStat(Stats.POWER) * player2.getPVPModifier("Defender") < player1.getStat(Stats.POWER)*player1.getPVPModifier("Murderer")) {
 			return getMurdererValidThreatConvo(player1,player2);
