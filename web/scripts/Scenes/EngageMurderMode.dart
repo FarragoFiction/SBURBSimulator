@@ -200,8 +200,8 @@ class EngageMurderMode extends Scene{
 			player1.leftMurderMode = true;
 			player1.unmakeMurderMode();
 			ret.add(new PlusMinusConversationalPair(deathThreats, <String>["No.","I'm not going to let you do that."],<String>["Hell No.", "You asshole. No."]));
-			ret.add(new PlusMinusConversationalPair(<String>["What?"], <String>["Nope. Destroying your Rage. Stop that shit."],<String>["Fuck off, let me do my destroyer of rage thing."]));
-			ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
+			ret.add(new PlusMinusConversationalPair(<String>["What?", "Wait. What?","What did you say?"], <String>["Nope. Destroying your Rage. Stop that shit.", "Destroyer of Rage at your service."],<String>["Fuck off, let me do my destroyer of rage thing.", "Fuck you, and fuck your Rage."]));
+			ret.add(new PlusMinusConversationalPair(<String>["...WHAT!?","What the fuck?","What am I feeling..."], <String>["Alright. There you go. Fixed."],<String>["You're welcome, asshole."]));
 		}
 
 					//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));

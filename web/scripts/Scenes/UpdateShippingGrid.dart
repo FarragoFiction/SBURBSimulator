@@ -617,10 +617,10 @@ class UpdateShippingGrid extends Scene{
 		}
 		String ret = "The " + this.chosenShipper.player.htmlTitleBasic() + " updates their shipping grid. " + shippingStyle +fuckPile + " <Br>" + this.chosenShipper.savedShipText;
 		if(this.chosenShipper.otp != null && this.chosenShipper.player.hasPowers()){
+			session.logger.info("shipping powers activate!");
 			ret += this.activateShippingPowers(this.chosenShipper.otp);
 		}
 		return ret;
-
 	}
 
 }

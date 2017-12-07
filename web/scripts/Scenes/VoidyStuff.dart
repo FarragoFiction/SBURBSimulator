@@ -28,6 +28,7 @@ class VoidyStuff extends Scene {
 		}
 
 		if(this.enablingPlayer != null && enablingPlayer.hasPowers()){
+			session.logger.info("shenanigans are happening");
 			//rage field makes it always act as if passive
 			if(!session.mutator.rageField && (this.enablingPlayer.isActive() || rand.nextDouble() > .5)){
 				this.player = this.enablingPlayer;
@@ -35,6 +36,7 @@ class VoidyStuff extends Scene {
 				this.player = rand.pickFrom(availablePlayers);  //don't forget that light players will never have void display none
 			}
 		}
+
 		if(this.player != null && !this.player.canHelp()) player = null; //can't do void/rage if you haven't played legit for at least a while.
 		return this.player != null;
 	}

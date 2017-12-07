@@ -717,7 +717,8 @@ class Player extends GameEntity{
 
     bool hasPowers() {
         if(class_name == SBURBClassManager.WASTE || class_name == SBURBClassManager.GRACE) return false;
-        if(aspect == Aspects.TIME) return true;  //they have it in the future after all.
+        if(aspect == Aspects.TIME) return true;  //they have it in the future after all. and
+        if(godTier) return true; //you just do okay.
         if(land == null) return true;//you're a combo player.
         if(land.firstCompleted) { //you are starting to face your denizen
             return true;

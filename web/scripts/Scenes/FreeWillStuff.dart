@@ -36,7 +36,7 @@ class FreeWillStuff extends Scene {
                 return true;
             }
             //no more direct asks of free will.
-            if (player.land == null || (player.land != null && player.land.thirdCompleted) || player.canMindControl() != null) { //don't even get to consider a decision if you don't have  more than default free will.//TODO raise to over 60 'cause that is highest default free will possible. want free will to be rarer.
+            if ((player.land == null || (player.land != null && player.hasPowers()) || player.canMindControl() != null) && player.getStat(Stats.FREE_WILL)>400) { // you need powers AND free will.
                 String decision = this.getPlayerDecision(player);
                 if (decision != null) {
                     this.player = player;
@@ -90,8 +90,10 @@ class FreeWillStuff extends Scene {
         String psionic = "";
         String pname = this.player.canMindControl();
         if (pname != null) {
-            //session.logger.info("psychic powers used to mind control in session: " + this.session.session_id.toString());
+            session.logger.info("psychic powers used to mind control in session ");
             psionic = " The " + this.player.htmlTitleBasic() + " uses their $pname. ";
+        }else {
+            session.logger.info("actual aspect powers used to do mind control free will is ${player.getStat(Stats.FREE_WILL)}");
         }
         appendHtml(div, "<br><img src = 'images/sceneIcons/freewill_icon.png'> " + psionic + this.content());
         if (this.playerGodTiered != null) {
