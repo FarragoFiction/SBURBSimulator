@@ -854,6 +854,7 @@ class MetaPlayerHandler {
     Player wooMod;
     Player recusiveSlacker;
     Player tableGuardian;
+    Player feudalUltimatum; //who is shogun?
     Player paradoxLands;
     Player karmicRetribution;
     Player jadedResearcher;
@@ -863,7 +864,7 @@ class MetaPlayerHandler {
 
     List<Player> get metaPlayers {
         //everything else is 'canon' entry order
-        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician,tableGuardian, authorBot, authorBotJunior];
+        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician,tableGuardian, feudalUltimatum,authorBot, authorBotJunior];
        // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
     }
 
@@ -872,6 +873,7 @@ class MetaPlayerHandler {
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
         tableGuardian = makeTG(s);
+        feudalUltimatum = makeFU(s);
         dilletantMathematician = makeDM(s);
         insufferableOracle = makeIO(s);
         manicInsomniac = makeMI(s);
@@ -961,6 +963,46 @@ class MetaPlayerHandler {
         f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
         f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
         f.desc = "tableGuardian stops being the shoulders in order to be the arms. ";
+        player.fraymotifs.add(f);
+        return player;
+
+    }
+
+    Player makeFU(Session s) {
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.VOID);
+        player.quirk = randomHumanQuirk(s.rand);
+
+        player.copyFromOCDataString("b=%C2%80%40%009%C3%BEU%04%17%0F%258&s=,,Classism,Genocide,feudalUltimatum&x=nkgA");
+
+        player.land = player.spawnLand();
+        player.land.name = "Land of Dynasties and Taint";
+        player.godTier = true;
+        player.deriveChatHandle = false;
+
+        player.quirk.capitalization = Quirk.NOCAPS;
+        player.quirk.punctuation = Quirk.PERFPUNC;
+        player.quirk.lettersToReplace = [];
+        player.quirk.lettersToReplaceIgnoreCase = [];
+
+        player.deriveLand = false;
+        player.initialize();
+        player.makeGuardian();
+        player.guardian.initialize();
+        player.guardian.guardian = player;
+        player.land.denizenFeature = new HardDenizenFeature("Leviathan");
+
+        player.object_to_prototype = new PotentialSprite("Aku", s);
+        player.sprite.addPrototyping(player.object_to_prototype);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Sauce", ItemTraitFactory.PIGEON, [ ItemTraitFactory.CORRUPT, ItemTraitFactory.OBSCURING]);
+
+
+        Fraymotif f = new Fraymotif("Shitpost For Dear Life", 13);
+        f.baseValue = 1300;
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, true));
+        f.effects.add(new FraymotifEffect(Stats.MOBILITY, 3, false));
+        f.desc = "FeudalUltimatum starts shitposting so hard it actually has an effect on the world around them. What the fuck is this?";
         player.fraymotifs.add(f);
         return player;
 
