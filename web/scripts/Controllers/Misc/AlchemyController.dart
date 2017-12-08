@@ -901,7 +901,7 @@ abstract class ShopKeep {
     List<String> xorQuips = <String>[""];
     List<String> maxAlchemyQuips = <String>[""];
 
-    ShopKeep(ImageElement this.imageElement, ImageElement this.textElement);
+    ShopKeep(ImageElement this.imageElement, Element this.textElement);
 
     //triggered if ALL your associated traits are in an item
     bool isTriggered(Item item) {
@@ -954,7 +954,7 @@ class ABShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>["Wow. I hope I don't need to explain that if you clear your cookies or your history or whatever for this page you lose you save data. That would just be a fucking embarrassment.","Hey remember how you have that terrible condition called 'being organic'? Turns out you need to eat and sleep and take occasional breaks and shit. Who knew? Luckily my superior robo-brain anticipated this, and made sure JR would make your grist and achievements auto-save. Not your items tho. You could do with some adversity.","What's that? You don't like my sunny disposition? Have a heaping helping of 'fuck' and 'you'. You're lucky I'm here at all.","So, it seems JR was a lazy piece of shit who didn't want to figure out how to save an infinite array of shitty items. Your grist and achievements and shit will save, your items won't. Don't bitch to me when your inferior fleshy brain forgets this and you lose your shit. ","Hey. Pay attention, asshole. Your achievements and your grist gets saved. YOUR ITEMS DO NOT. Might wanna sell all your shit before quitting.","...","Bored.","Wow. It's Alchemy.","Yep, this is definitely a good use of my time.","You know what would be smart? Getting an imposibly fast super computer to manage your fucking alchemy binge. Wait. No. The reverse of that.","Fuck you."];
 
-  ABShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+  ABShopKeep(ImageElement imageElement, Element textElement) : super(imageElement, textElement);
 
     @override
     String getItemDescription(Item item) {
@@ -976,7 +976,7 @@ class GlitchAB extends ABShopKeep {
     String imageSource = "images/Alchemy/abGlitch.gif";
     List<ItemTrait> associatedTraits = <ItemTrait>[ItemTraitFactory.CORRUPT, ItemTraitFactory.ZAP];
 
-    GlitchAB(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+    GlitchAB(ImageElement imageElement, Element textElement) : super(imageElement, textElement);
 
     @override
     void quip(String text) {
@@ -1022,7 +1022,7 @@ class ABJShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>["Yes.","Hrmmm...","Interesting!!!"];
 
-  ABJShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+  ABJShopKeep(ImageElement imageElement, Element textElement) : super(imageElement, textElement);
 
 
 
@@ -1061,7 +1061,7 @@ class ShogunShopKeep extends ShopKeep {
     @override
     List<String> randomQuips = <String>[""];
 
-  ShogunShopKeep(ImageElement imageElement, ImageElement textElement) : super(imageElement, textElement);
+  ShogunShopKeep(ImageElement imageElement, Element textElement) : super(imageElement, textElement);
 
     @override
     String getItemDescription(Item item) {
