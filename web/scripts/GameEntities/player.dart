@@ -1930,6 +1930,7 @@ class Player extends GameEntity{
     }
 
     void initializeStats() {
+        initStatHolder();
         if (this.trickster && this.aspect.ultimateDeadpan) this.trickster == false; //doom players break rules
         if(trickster) {
             this.addBuff(new BuffTricksterMode(), name:"trickster", source:this);
