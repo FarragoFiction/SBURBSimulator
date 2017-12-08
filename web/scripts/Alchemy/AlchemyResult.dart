@@ -68,15 +68,20 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         Item modified;
         if(applyToSpecibus) {
             modified = p.specibus;
+            print("modified is from specibus, is ${modified.traits}, result is ${result.traits}");
         }else {
             modified = targetItems[targetItems.indexOf(items[0])];
+            print("modified is from sylladex, is ${modified.traits}, result is ${result.traits}");
+
         }
-        Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
+        //Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
        // print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
-        modified.traits = new Set<ItemTrait>.from(result.traits);
+
         result.numUpgrades ++;
         String ret = description(p, []); //don't do description earlier or later or will have wrong name.
+        modified.traits = new Set<ItemTrait>.from(result.traits);
         modified.numUpgrades ++;
+
 
         //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
 
