@@ -155,7 +155,13 @@ class BuffSpecibus extends Buff {
             return val;
         }
         if (stat.pickable) {
-            return val * gameEntity.specibus.rank;
+            if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
+                //print("buff health stat");
+                if(val * gameEntity.specibus.rank <1) return 1.0;
+                return val * gameEntity.specibus.rank;
+            }else {
+                return val * gameEntity.specibus.rank;
+            }
         }
         return val;
     }

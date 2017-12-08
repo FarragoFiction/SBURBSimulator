@@ -1911,7 +1911,10 @@ class Player extends GameEntity{
                 this.relationships[i].value += (modValue / this.relationships.length) * stat.multiplier * stat.stat.associatedGrowth; //stop having relationship values on the scale of 100000
             }
         } else {
-            this.addStat(stat.stat, modValue * stat.multiplier * stat.stat.associatedGrowth);
+            //don't lower health below 1. if i can't do it in stats itself for now, do it here.
+            if(stat.stat != Stats.HEALTH || (stat.stat == Stats.HEALTH && getStat(Stats.HEALTH) >1)) {
+                this.addStat(stat.stat, modValue * stat.multiplier * stat.stat.associatedGrowth);
+            }
         }
     }
 
@@ -1987,6 +1990,7 @@ class Player extends GameEntity{
                 this.fraymotifs.add(f);
             }
         }
+        //print("At init, $this has health of ${getStat(Stats.HEALTH)}");
     }
 
     //TODO make all this shit down here static or put in other places.
