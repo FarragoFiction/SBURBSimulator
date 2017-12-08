@@ -61,6 +61,7 @@ export "quirk.dart";
 
 //scenes
 export "Scenes/Scene.dart";
+export "Scenes/FuckingDie.dart";
 export "Scenes/Gristmas.dart";
 export "Scenes/FightKing.dart";
 export "Scenes/Aftermath.dart";
