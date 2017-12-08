@@ -284,6 +284,7 @@ class OCGenerator {
     }
 
     void setPlayer(Player p) {
+        p.fraymotifs.clear(); //can't clear fraymotifs in initalize because species adn blood should set it.
         setSpecies(p); //do before blood.
         setAspect(p);
         setClass(p);
