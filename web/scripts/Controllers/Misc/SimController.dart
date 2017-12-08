@@ -115,7 +115,7 @@ abstract class SimController {
         if (doNotRender == true) {
             intro();
         } else {
-            print("gonna load");
+            //print("gonna load");
             load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
         }
     }
@@ -131,12 +131,12 @@ abstract class SimController {
     }
 
     void intro() {
-        print("gonna init stats");
+        //print("gonna init stats");
         initGatherStats();
-        print("gonna initialize sprites");
+        //print("gonna initialize sprites");
         createInitialSprites();
         //advertisePatreon(SimController.instance.storyElement);
-        print("gonna call next intro");
+       // print("gonna call next intro");
         callNextIntro(0);
     }
 

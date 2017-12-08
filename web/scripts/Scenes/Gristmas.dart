@@ -93,7 +93,11 @@ class Gristmas extends Scene {
   bool trigger(List<Player> playerList) { //god i hate that player list is still a thing, past jr fucked up.
       List<Player> availablePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers());
       //relative alchemy value matters too.
-      List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers).reversed;
+      //why the fuck is using the reversed list directly suddenly crashing everythign.
+      List<Player> players = new List<Player>.from(Stats.ALCHEMY.sortedList(availablePlayers).reversed);
+      //List<Player> players = Stats.ALCHEMY.sortedList(availablePlayers);
+
+      //List<Player>players = availablePlayers;
       player = null;
       //print("trying to trigger gristmas for ${players.length} players.");
       for(Player p in players) {

@@ -113,7 +113,7 @@ void initializePlayers(List<Player> players, Session session) {
         redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
         //oh because it makes replayed sessions with scratches crash.
     }
-    print("initialize players done");
+    //print("initialize players done");
 }
 
 

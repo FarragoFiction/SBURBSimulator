@@ -4251,6 +4251,48 @@ P is HeirSpace
 And then NOTHING ELSE.
 
 
+~~~~~~~~~~~~~~~
+
+
+Okay.
+
+I need to think clearly about this.
+
+I fixed a bug in Your Story. This required only a single line of code outside of the Your Story controller.
+
+NOW, all regular sessions are crashing 100% of the time at Gristmas.
+Even if I comment out the single line of code I changed.
+
+Why?
+
+If I murder gristmas, it all works.
+It seems to be upset about being asked to sort on alchemy skill.
+I WAS just in the stats for the Your Story thing.
+
+I restarted intelli-j just in case some dumb shit thing happened.
+
+
+Investigate: did I REALLY only change a single line of code? Ask git hub.
+
+Results: I changed a single line in player.dart, and a few lines in the Your Story controller.
+
+
+Alright.  Don't panic.
+
+One quick test you can do is to confirm the source of the gristmas problem.
+After all: you notice you are confused.
+
+Gristmas isn't the only thing that you sort by a stat. You sort by mobility for fights and for quest help.
+You probalby sort by free will for mind shit, etc. etc. So why is Gristmas special? Is it that it's referring to alchemy?
+
+There are two related, but different problems here:
+    * WHY IS THIS HAPPENING?
+    * HOW DO I STOP THIS FROM HAPPENING.
+
+I can't get too bogged down by the first and ignore the second.
+
+
+
 
 
 
