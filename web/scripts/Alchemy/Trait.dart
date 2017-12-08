@@ -1064,7 +1064,7 @@ class ItemTraitFactory {
     new CombinedTrait("Flickering",<String>["Flickering"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,GLOWING]);
     new CombinedTrait("Thinly Veiled",<String>["Thinly Veiled","Translucent"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,OBSCURING]);
     new CombinedTrait("Fragile",<String>["Fragile"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,VALUABLE]);
-    new CombinedTrait("Troll's",<String>["Troll's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHITTY,PAPER]);
+    new CombinedTrait("Troll's",<String>["Troll's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SHITTY,ENRAGING]);
     new CombinedTrait("Sappy",<String>["Sappy"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,ROMANTIC]);
     new CombinedTrait("Bootleg",<String>["Bootleg"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,FAKE]);
     new CombinedTrait("Distorted",<String>["Distorted"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[SHITTY,LOUD]);
