@@ -149,7 +149,7 @@ class Light extends Aspect {
 
             ..addFeature(new PostDenizenQuestChain("Create the Wiki", [
                 new Quest("Now that the ${Quest.DENIZEN} has been defeated, there really needs to be some way to organize all this information from their Lair. The ${Quest.PLAYER1} shrugs and sets up a wiki and lets the ${Quest.CONSORT}s deal with it all."),
-                new Quest("Within barely any time at all, unmoderated ${Quest.CONSORT} wiki is a huge disastor. Misinformation abounds. There are no less than three articles on the ${Quest.PLAYER1} alone, and each claims they are a different SPECIES entirely. The ${Quest.PLAYER1} finds this to be hilarious."),
+                new Quest("Within barely any time at all, unmoderated ${Quest.CONSORT} wiki is a huge disaster. Misinformation abounds. There are no less than three articles on the ${Quest.PLAYER1} alone, and each claims they are a different SPECIES entirely. The ${Quest.PLAYER1} finds this to be hilarious."),
                 new Quest("Luckily it turns out all that disinformation running around about the ${Quest.PLAYER1} thwarts some would be assasins. It turns out the ${Quest.PLAYER1} is NOT deathly allergic to peanuts, after all. That's what you get for trusting a wiki, assholes. ")
             ], new FraymotifReward("Disinformation Network", "The ${Fraymotif.OWNER} allows you to make you own assumptions about things, and be destroyed by them."), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 

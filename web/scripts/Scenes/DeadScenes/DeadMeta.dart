@@ -356,7 +356,7 @@ class DeadMeta extends Scene {
 
         List<PlusMinusConversationalPair> randomPairs = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["If you were a flawless automaton, you would have already beaten this game.","Wow, are you STILL playing this game?"], ["..."],["Oh sure, yuck it up while you back seat game. Asshole.", "Not everybody can be 'flawless' robots, asshole."]..addAll(youAsshole)))
-            ..add(new PlusMinusConversationalPair(["Wow, good job. That was sarcasm, by the way, in case your inferior fleshy brain couldn't detect that.","Wow, even for a fleshy disastor you failed that one p hard, huh?"], ["..."],["a;sldfj FUCK OF.", "OMFG why are you commenting on this!", ]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Wow, good job. That was sarcasm, by the way, in case your inferior fleshy brain couldn't detect that.","Wow, even for a fleshy disaster you failed that one p hard, huh?"], ["..."],["a;sldfj FUCK OF.", "OMFG why are you commenting on this!", ]..addAll(youAsshole)))
             ..add(new PlusMinusConversationalPair(["There is a ${bullshit}% chance that you fail, you know. May as well learn to like your shitty planets."], ["..."],["Why is this my life?", "Oh, you'd LIKE that, wouldn't you?"]..addAll(fuckOff)));
 
 

@@ -46,7 +46,7 @@ class Social extends InterestCategory {
             ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.STUDIOUSFEELING, Feature.MEDIUM)
             ..addFeature(new PreDenizenQuestChain("The Therapist is IN", [
-                new Quest("The ${Quest.PLAYER1} finds a help wanted sign near a strange booth. Apparently the local ${Quest.CONSORT}'s are in need of a therapist? The ${Quest.PLAYER1} decideds to try it out! "),
+                new Quest("The ${Quest.PLAYER1} finds a help wanted sign near a strange booth. Apparently the local ${Quest.CONSORT}'s are in need of a therapist? The ${Quest.PLAYER1} decides to try it out! "),
                 new Quest("Huh, somehow all the ${Quest.CONSORT}'s problems end up being about childhood trauma involving ${Quest.MCGUFFIN} or ${Quest.PHYSICALMCGUFFIN}.  The ${Quest.PLAYER1} is getting really good at helping them out. "),
                 new Quest("A line of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} extends out to the horizon. The ${Quest.PLAYER1} is the most popular therapist on the planet! ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
