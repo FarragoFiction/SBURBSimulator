@@ -29,7 +29,7 @@ class Domestic extends InterestCategory {
         items = new WeightedList<Item>()
             ..add(new Item("Trendy Fabric",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CLOTH],shogunDesc: "Weird Tasting Candy Paper"))
             ..add(new Item("Necklace",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.GOLDEN, ItemTraitFactory.CHAIN],shogunDesc: "Nasty Candy Necklace"))
-            ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE],shogunDesc: "Cloth Stabbing Knife"))
+            ..add(new Item("Sewing Needle",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.NEEDLE, ItemTraitFactory.POINTY],shogunDesc: "Cloth Stabbing Knife"))
             ..add(new Item("Broom",<ItemTrait>[ItemTraitFactory.BROOM, ItemTraitFactory.WOOD,ItemTraitFactory.BLUNT,ItemTraitFactory.BROOM,],shogunDesc: "Doctor Beating Staff",abDesc:"Fucking. Wastes."))
             ..add(new Item("Rolling Pin",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ROLLINGPIN,ItemTraitFactory.BLUNT],shogunDesc: "Babushkas Punishment Pole"))
             ..add(new Item("Velvet Pillow",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.COMFORTABLE, ItemTraitFactory.CALMING,ItemTraitFactory.PRETTY, ItemTraitFactory.PILLOW],shogunDesc: "Seductive Head Rest",abDesc:"Pretty good if you need to be calmed down, I hear."))

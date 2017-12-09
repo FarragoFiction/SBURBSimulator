@@ -27,7 +27,7 @@ class Athletic extends InterestCategory {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Barbells",<ItemTrait>[ItemTraitFactory.BLUNT],shogunDesc: "Strength Building Metal"))
+            ..add(new Item("Barbells",<ItemTrait>[ItemTraitFactory.BLUNT, ItemTraitFactory.HEAVY, ItemTraitFactory.METAL],shogunDesc: "Strength Building Metal"))
             ..add(new Item("Basketball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER],shogunDesc: "Dunksphere"))
             ..add(new Item("Baseball Bat",<ItemTrait>[ItemTraitFactory.CLUB, ItemTraitFactory.WOOD],shogunDesc: "Wooden Pole of Bone Hurting"))
             ..add(new Item("Rubber Ball",<ItemTrait>[ItemTraitFactory.BALL, ItemTraitFactory.RUBBER],shogunDesc: "Dead Animal Corpse Ball"))

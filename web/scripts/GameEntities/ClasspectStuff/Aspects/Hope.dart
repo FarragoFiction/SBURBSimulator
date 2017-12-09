@@ -59,7 +59,7 @@ class Hope extends Aspect {
             ..add(new Item("Wand",<ItemTrait>[ItemTraitFactory.WOOD, ItemTraitFactory.ASPECTAL,ItemTraitFactory.MAGICAL, ItemTraitFactory.REAL],abDesc:"It's probably science powered.",shogunDesc: "Shitty Wizard Pencil"))
             ..add(new Item("Angel Feather",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.FEATHER, ItemTraitFactory.ASPECTAL,ItemTraitFactory.GLOWING,ItemTraitFactory.MUSICAL, ItemTraitFactory.LEGENDARY, ItemTraitFactory.MAGICAL],shogunDesc: "Shitty Wizard Pencil",abDesc:"Angels are, like, these terrible feathery monsters. Don't fuck with them."))
             ..add(new Item("Never Ending Story DVD",<ItemTrait>[ItemTraitFactory.SHITTY, ItemTraitFactory.IRONICFAKECOOL, ItemTraitFactory.ASPECTAL, ItemTraitFactory.MAGICAL, ItemTraitFactory.FUNNY, ItemTraitFactory.REAL],shogunDesc: "White Dragon Kidnaps Kid The Movie"))
-            ..add(new Item("Candle",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.GLOWING, ItemTraitFactory.ASPECTAL],shogunDesc: "Dying Light Stick"))
+            ..add(new Item("Candle",<ItemTrait>[ItemTraitFactory.REAL,ItemTraitFactory.GLOWING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.ONFIRE],shogunDesc: "Dying Light Stick"))
             ..add(new Item("Fairy Figurine",<ItemTrait>[ItemTraitFactory.PLASTIC, ItemTraitFactory.GLOWING, ItemTraitFactory.ASPECTAL, ItemTraitFactory.REAL],shogunDesc: "Tiny Petrified Tinkerbell"));
     }
 
