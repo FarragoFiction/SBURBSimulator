@@ -1010,7 +1010,7 @@ class ItemTraitFactory {
     KINGLY = new CombinedTrait("Kingly",<String>["Kingly"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[SCARY,BLUNT,HEAVY, MAGICAL,REAL]);
     JACKLY = new CombinedTrait("Jack",<String>["Jack"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[POINTY,EDGED,METAL, OBSCURING]);
     new CombinedTrait("Codpiece",<String>["Codpiece","Codtier"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,FAKE,WOOD, CLASSRELATED, CLOTH]);
-    new CombinedTrait("Graceful",<String>["Graceful"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,BOOK,PAPER,SMARTPHONE, CLASSRELATED]);
+    new CombinedTrait("Graceful",<String>["Graceful"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,BOOK,PAPER,METAL, SMART, CLASSRELATED]);
     new CombinedTrait("Guide",<String>["Guide","Tourist"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,BOOK,PAPER,SMART, CLASSRELATED,COLD]);
     new CombinedTrait("Testament",<String>["Will","Testament"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,DOOMED,PAPER,SMART,RESTRAINING]);
     new CombinedTrait("Excalibur",<String>["Excalibur's","Excalibur"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,GLOWING,METAL,POINTY,EDGED,SWORD]);
