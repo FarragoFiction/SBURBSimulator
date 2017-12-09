@@ -1016,7 +1016,7 @@ class ItemTraitFactory {
     new CombinedTrait("Excalibur",<String>["Excalibur's","Excalibur"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,GLOWING,METAL,POINTY,EDGED,SWORD]);
     new CombinedTrait("Influential",<String>["Influential"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,PAPER,ENRAGING,BOOK]);
     new CombinedTrait("Alternative",<String>["Alternative"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,MAGICAL,CLOTH, OBSCURING]);
-    new CombinedTrait("Valkyrie",<String>["Valkyrie"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,UNCOMFORTABLE,ADAMANTIUM,SHIELD, PRETTY]);
+    new CombinedTrait("Valkyrie",<String>["Valkyrie"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,UNCOMFORTABLE,BONE,METAL,SHIELD, PRETTY]);
     new CombinedTrait("Ongoing",<String>["Ongoing"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,STONE,CLASSY,BUST, BLUNT]);
     new CombinedTrait("Short",<String>["Short"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LEGENDARY,CLOTH,VALUABLE, PRETTY, CLASSY]);
     new CombinedTrait("Crown",<String>["Crown"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,METAL,VALUABLE, PRETTY, CLASSY]);
