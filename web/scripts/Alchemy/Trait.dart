@@ -1249,10 +1249,6 @@ class ItemTraitFactory {
     new CombinedTrait("Talkative",<String>["Talkative","Blabbering"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,SENTIENT]);
     new CombinedTrait("Waifu",<String>["Waifu","Catfish"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,FAKE]);
     new CombinedTrait("Charming",<String>["Charming"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,ROMANTIC]);
-    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
-    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
-    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
-    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
 
 
   }
