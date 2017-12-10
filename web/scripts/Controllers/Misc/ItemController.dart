@@ -21,6 +21,8 @@ void init() {
 
 
     Element div = querySelector("#story");
+    //listLevels(div);
+
     //debugConsorts(div);
     renderTraits( div);
 
@@ -29,6 +31,29 @@ void init() {
         div.append(renderItemStats(item, i));
         i++;
     }
+}
+
+void listLevels(Element e) {
+    String ret = "";
+    for(InterestCategory c in InterestManager.allCategories) {
+        for(String s in c.levels) {
+            ret += '"${s}",';
+        }
+    }
+
+    for(Aspect c in Aspects.all) {
+        for(String s in c.levels) {
+            ret += '"${s}",';
+        }
+    }
+
+    for(SBURBClass c in SBURBClassManager.all) {
+        for(String s in c.levels) {
+            ret += '"${s}",';
+        }
+    }
+    appendHtml(e,ret);
+
 }
 
 void debugConsorts(Element e) {
