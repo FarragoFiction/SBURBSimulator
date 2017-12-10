@@ -1259,6 +1259,8 @@ class ItemTraitFactory {
     new CombinedTrait("Mandrake",<String>["Mandrake"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PLANT,SCARY]);
     new CombinedTrait("Beanstalk",<String>["Beanstalk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,PLANT]);
     new CombinedTrait("Unnerving",<String>["Unnerving"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SCARY,UNCOMFORTABLE]);
+    new CombinedTrait("Chipped",<String>["Chipped"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CERAMIC,SHITTY]);
+
 
   }
 
