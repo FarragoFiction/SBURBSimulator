@@ -1137,7 +1137,7 @@ class ItemTraitFactory {
     new CombinedTrait("Tau",<String>["Tau"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,NUCLEAR]);
     new CombinedTrait("Pew",<String>["Pew","Laser"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[SHOOTY,GLOWING]);
     new CombinedTrait("Thermal",<String>["Thermal"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHOOTY,ONFIRE]);
-    new CombinedTrait("Plasma",<String>["Plasma"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,ONFIRE]);
+    new CombinedTrait("Plasma",<String>["Plasma","Incandescent"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[GLOWING,ONFIRE]);
     new CombinedTrait("Shredding",<String>["Shredding"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[MUSICAL,ONFIRE]);
     new CombinedTrait("Leprechaun",<String>["Leprechaun"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,SENTIENT]);
     new CombinedTrait("Charmed",<String>["Charmed"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LUCKY,VALUABLE]);
@@ -1220,10 +1220,39 @@ class ItemTraitFactory {
     new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
     new CombinedTrait("I Can't Stop Laughing",<String>["Thor's Banana"], 0.0,ItemTrait.CONDITION, <ItemTrait>[EDIBLE,FUNNY, ZAP, LOUD]);
 
-
-
-
-
+    //new slurp
+    new CombinedTrait("Soulsteel",<String>["Soulsteel"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[METAL,GHOSTLY]);
+    new CombinedTrait("Ritual",<String>["Ritual","Tribal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[BONE,ONFIRE]);
+    new CombinedTrait("Inflamable",<String>["Inflamable"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SHITTY,ONFIRE]);
+    new CombinedTrait("Crafting",<String>["Crafting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[WOOD,SMART]);
+    new CombinedTrait("Polluting",<String>["Polluting"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PLASTIC,ONFIRE]);
+    new CombinedTrait("Insulated",<String>["Insulated"], 0.0,ItemTrait.CONDITION, <ItemTrait>[RUBBER,ZAP]);
+    new CombinedTrait("Ash",<String>["Ash"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PAPER,ONFIRE]);
+    new CombinedTrait("Delicate",<String>["Delicate"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PAPER,GLASS]);
+    new CombinedTrait("Glass Blower's",<String>["Glass Blower's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[GLASS,ONFIRE]);
+    new CombinedTrait("Sunburnt",<String>["Sunburnt"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FLESH,ONFIRE]);
+    new CombinedTrait("Pyrebitten",<String>["Pyrebitten"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ONFIRE,CORRUPT]);
+    new CombinedTrait("Mink",<String>["Mink"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[ROMANTIC,FUR]);
+    new CombinedTrait("Wildfire",<String>["Wildfire"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[PLANT,ONFIRE]);
+    new CombinedTrait("Scarred",<String>["Scarred"], 0.0,ItemTrait.CONDITION, <ItemTrait>[HEALING,UGLY]);
+    new CombinedTrait("Hyper Realistic",<String>["Hyper Realistic"], 0.0,ItemTrait.OPINION, <ItemTrait>[REAL,SCARY]);
+    new CombinedTrait("Hestia's",<String>["Hestia's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LUCKY,ONFIRE]);
+    new CombinedTrait("Smoking",<String>["Smoking"], 0.0,ItemTrait.CONDITION, <ItemTrait>[OBSCURING,ONFIRE]);
+    new CombinedTrait("Radiator",<String>["Heating", "Radiator","Furnace"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ONFIRE,ZAP]);
+    new CombinedTrait("Fuming",<String>["Fuming"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ONFIRE,POISON]);
+    new CombinedTrait("Firework",<String>["Firework", "Sparkler"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ONFIRE,PRETTY]);
+    new CombinedTrait("Panicky",<String>["Panicky"], 0.0,ItemTrait.CONDITION, <ItemTrait>[DOOMED,SENTIENT]);
+    new CombinedTrait("Ornamental",<String>["Ornamental"], 0.0,ItemTrait.CONDITION, <ItemTrait>[VALUABLE,PRETTY]);
+    new CombinedTrait("Dear",<String>["Dear", "Precious"], 0.0,ItemTrait.CONDITION, <ItemTrait>[VALUABLE,ROMANTIC]);
+    new CombinedTrait("Swaggy",<String>["Swaggy","Swag"], 0.0,ItemTrait.CONDITION, <ItemTrait>[VALUABLE,COOLK1D]);
+    new CombinedTrait("Uncanny",<String>["Uncanny"], 0.0,ItemTrait.CONDITION, <ItemTrait>[UNCOMFORTABLE,REAL]);
+    new CombinedTrait("Talkative",<String>["Talkative","Blabbering"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,SENTIENT]);
+    new CombinedTrait("Waifu",<String>["Waifu","Catfish"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,FAKE]);
+    new CombinedTrait("Charming",<String>["Charming"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,ROMANTIC]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
+    new CombinedTrait("Steampunk",<String>["Steampunk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,CLASSY]);
 
 
   }
