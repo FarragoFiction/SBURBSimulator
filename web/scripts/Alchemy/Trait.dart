@@ -1253,7 +1253,12 @@ class ItemTraitFactory {
     new CombinedTrait("Cod Tier",<String>["Cod Tier"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLASSRELATED,ASPECTAL, REAL, FAKE, CLOTH]);
     new CombinedTrait("Dog Tier",<String>["Dog Tier"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLASSRELATED,ASPECTAL, REAL,FUR]);
 
-
+    //another slurp
+    new CombinedTrait("Cracked",<String>["Cracked"], 0.0,ItemTrait.CONDITION, <ItemTrait>[STONE,SHITTY]);
+    new CombinedTrait("Ruffled",<String>["Ruffled"], 0.0,ItemTrait.CONDITION, <ItemTrait>[FEATHER,SHITTY]);
+    new CombinedTrait("Mandrake",<String>["Mandrake"], 0.0,ItemTrait.CONDITION, <ItemTrait>[PLANT,SCARY]);
+    new CombinedTrait("Beanstalk",<String>["Beanstalk"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,PLANT]);
+    new CombinedTrait("Unnerving",<String>["Unnerving"], 0.0,ItemTrait.CONDITION, <ItemTrait>[SCARY,UNCOMFORTABLE]);
 
   }
 
