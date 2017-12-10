@@ -1249,6 +1249,10 @@ class ItemTraitFactory {
     new CombinedTrait("Talkative",<String>["Talkative","Blabbering"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LOUD,SENTIENT]);
     new CombinedTrait("Waifu",<String>["Waifu","Catfish"], 0.0,ItemTrait.CONDITION, <ItemTrait>[ROMANTIC,FAKE]);
     new CombinedTrait("Charming",<String>["Charming"], 0.0,ItemTrait.CONDITION, <ItemTrait>[MAGICAL,ROMANTIC]);
+    new CombinedTrait("God Tier",<String>["God Tier"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLASSRELATED,ASPECTAL, REAL]);
+    new CombinedTrait("Cod Tier",<String>["Cod Tier"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLASSRELATED,ASPECTAL, REAL, FAKE, CLOTH]);
+    new CombinedTrait("Dog Tier",<String>["Dog Tier"], 0.0,ItemTrait.CONDITION, <ItemTrait>[CLASSRELATED,ASPECTAL, REAL,FUR]);
+
 
 
   }
