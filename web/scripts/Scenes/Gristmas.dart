@@ -143,20 +143,20 @@ class Gristmas extends Scene {
 
   int getAlchemySkillNormalized(Player p) {
       double ratio = 1.0;
-      if(p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedInitialAverageAlchemyValue;
-      if(p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedMiddleAverageAlchemyValue;
-      if(p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY)/expectedEndAverageAlchemyValue;
-      if(ratio < 1) {
+      if (p.land != null && !p.land.firstCompleted) ratio = p.getStat(Stats.ALCHEMY) / expectedInitialAverageAlchemyValue;
+      if (p.land != null && p.land.firstCompleted && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY) / expectedMiddleAverageAlchemyValue;
+      if (p.land != null && !p.land.thirdCompleted) ratio = p.getStat(Stats.ALCHEMY) / expectedEndAverageAlchemyValue;
+      if (ratio < 1) {
           //session.logger.info("${p} alchemy skill 1, raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 0;
-      }else if(ratio < 2) {
+      } else if (ratio < 2) {
           //session.logger.info("${p} alchemy skill 2,raw value ${ p.getStat(Stats.ALCHEMY)}");
           return 1;
-      }else {
+      } else {
           //session.logger.info("${p} alchemy skill 3,raw value ${ p.getStat(Stats.ALCHEMY)}");
-        return 2;
+          return 2;
       }
-      return 1;
+  }
 
 
 
