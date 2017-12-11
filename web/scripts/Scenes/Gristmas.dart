@@ -11,6 +11,7 @@ class Gristmas extends Scene {
   Gristmas(Session session) : super(session);
 
   String gristmasContent() {
+      playerSkill = getAlchemySkillNormalized(player);
       String ret = "<br><br>GRISTMAS: ";
       List<AlchemyResult> possibilities = doAlchemy();
       if(!possibilities.isEmpty) {
@@ -44,6 +45,7 @@ class Gristmas extends Scene {
 
   @override
   void renderContent(Element div) {
+
       String ret = gristmasContent();
       //okay alchemy is a free action otherwise the space players never fucking do anything.
       //session.removeAvailablePlayer(player);
@@ -91,6 +93,7 @@ class Gristmas extends Scene {
 
   @override
   bool trigger(List<Player> playerList) { //god i hate that player list is still a thing, past jr fucked up.
+      playerSkill = 1; //reset
       List<Player> availablePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers());
       //relative alchemy value matters too.
       //why the fuck is using the reversed list directly suddenly crashing everythign.
@@ -153,9 +156,9 @@ class Gristmas extends Scene {
           //session.logger.info("${p} alchemy skill 3,raw value ${ p.getStat(Stats.ALCHEMY)}");
         return 2;
       }
+      return 1;
 
 
-  }
 
   //the better you are at alchemy, the higher your standards are.
   bool meetsStandards(Player p, Item i) {
