@@ -29,6 +29,8 @@ class DenizenFeature extends Feature {
         ret.fraymotifs = f;
         ret.name = name;
         ret.stats.copyFrom(p.stats); //mirror image, but won't improve any.
+        ret.setStat(Stats.CURRENT_HEALTH, ret.getStat(Stats.HEALTH));
+
         Iterable<Stat> allStats = Stats.all;
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.POWER) ret.addStat(stat, -1*ret.getStat(stat)/3); //weaker
@@ -63,6 +65,7 @@ class HardDenizenFeature extends DenizenFeature
         ret.fraymotifs = f;
         ret.name = name;
         ret.stats.copyFrom(p.stats); //mirror image,no detriments.
+        ret.setStat(Stats.CURRENT_HEALTH, ret.getStat(Stats.HEALTH));
         denizen = ret;
         return ret;
 
@@ -87,6 +90,8 @@ class EasyDenizenFeature extends DenizenFeature
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.POWER) ret.addStat(stat, -1*ret.getStat(stat)/10); //so much weaker
         }
+        ret.setStat(Stats.CURRENT_HEALTH, ret.getStat(Stats.HEALTH));
+
         denizen = ret;
         return ret;
 

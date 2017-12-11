@@ -42,8 +42,10 @@ class FightKing extends Scene {
 	void renderContent(Element div){
 		////session.logger.info("rendering fight king);")
 		session.npcHandler.king.stats.copyFrom(findStrongestPlayer(session.players).stats);
+		session.npcHandler.king.setStat(Stats.CURRENT_HEALTH, session.npcHandler.king.getStat(Stats.HEALTH));
+
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/bk_icon.png'>");
-    appendHtml(div,this.content());
+		appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();

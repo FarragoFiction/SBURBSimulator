@@ -30,6 +30,8 @@ class JackPromotion extends Scene{
 		ret += "FOLD. ";
 		//his stats are set at ascension. so really hard boss now. easy boss later.
 		session.npcHandler.jack.stats.copyFrom(findStrongestPlayer(session.players).stats);
+		session.npcHandler.jack.setStat(Stats.CURRENT_HEALTH, session.npcHandler.jack.getStat(Stats.HEALTH));
+
 
 		if(this.session.npcHandler.queen.crowned != null && !this.session.npcHandler.queen.exiled){
 			if(this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) > 0){
