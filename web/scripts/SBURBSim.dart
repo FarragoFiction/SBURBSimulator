@@ -165,6 +165,7 @@ int getRandomSeed() {
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(ErrorEvent e) {
+    print("trying to print corruption message $e");
     if(curSessionGlobalVar == null) {
       appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION. THIS IS STUPID.");
       SimController.instance.recoverFromCorruption();
@@ -234,7 +235,8 @@ bool printCorruptionMessage(ErrorEvent e) {
 
     appendHtml(errorDiv, "${e.error.toString().split("\n").first}<br/>");
     //appendHtml(errorDiv, e.error);
-    Tracer.writeTrace(e.error, errorDiv);
+    //TODO later find out why this is happening.
+    //Tracer.writeTrace(e.error, errorDiv);
 
     //appendHtml(errorDiv, e.error);
 
