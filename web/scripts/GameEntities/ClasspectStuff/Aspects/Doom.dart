@@ -136,6 +136,14 @@ class Doom extends Aspect {
             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.WHISPERSOUND, Feature.WAY_HIGH)
             ..addFeature(FeatureFactory.MUSTSMELL, Feature.LOW)
+
+            ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
+                new Quest("The ${Quest.PLAYER1} finds a small dungeon bearing the image of ${Quest.DENIZEN}. At the bottom, they find a switch inside a small hole they can just barely fit their arm inside. When they reach in and flip the switch, they feel something attach to their arm with a loud click. The ${Quest.PLAYER1} pulls out their arm to find attached is some super complicated machinery complete with a timer counting down. That can’t be good."),
+                new Quest("The device continues to count down. After consulting with local ${Quest.CONSORT}s, the ${Quest.PLAYER1} navigates another dungeon in hopes of finding a clue to removing the ominous device from their arm without causing it to go off. Past complicated puzzles involving doomsday dates and scales, they find a small scroll on a pedestal. Written on the scroll is a prophecy that the ${Quest.PLAYER1} will permanently die in an explosion from attempting remove a device on their arm. Well, that’s just great."),
+                new Quest("The timer doesn’t stop from counting lower. The ${Quest.PLAYER1} makes up their mind and decides they’re not going to sit and wait until the timer goes off. They’re going to remove the stupid thing, prophecy or not! They quickly pry it off their arm and throw it away as far as possible. There’s no explosion; the device just breaks. Did the ${Quest.PLAYER1} use their powers to stop it from exploding and break the prophecy, or was this all just a shitty test from ${Quest.DENIZEN}? Either way, the ${Quest.PLAYER1} isn’t very pleased with the ${Quest.DENIZEN}."),
+                new DenizenFightQuest("The ${Quest.PLAYER1} tracks down the location of the ${Quest.DENIZEN} ‘s lair. It’s payback time!", "The ${Quest.DENIZEN} has been thoroughly beaten. Serves them right for playing such a mean trick on the ${Quest.PLAYER1}.","The ${Quest.PLAYER1} couldn’t get their revenge. ${Quest.DENIZEN} has a hearty laugh at their expense.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.WAY_LOW)
+
             ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
                 new Quest("The ${Quest.PLAYER1} learns from one of their ${Quest.CONSORT}s that there is an ancient prophecy of a ${Quest.MCGUFFIN} plague that is due to kill them all any day now."),
                 new Quest("The ${Quest.PLAYER1} gets deep into the nitty gritty of the apocalypse prophecy. They learn that the plague is not technically going to hit the consorts- it's going to hit the bearers of the MAGIC ${Quest.PHYSICALMCGUFFIN}, which currently happens to be the ${Quest.CONSORT}s. "),
@@ -144,17 +152,6 @@ class Doom extends Aspect {
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH); // end theme
 
-        addTheme(new Theme(<String>["Prophecy","Prophets","Fate", "Destiny","Rules","Sound","Judgement","Carvings", "Murals", "Etchings"])
-            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.WHISPERSOUND, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.MUSTSMELL, Feature.LOW)
-            ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
-                new Quest("The ${Quest.PLAYER1} finds a small dungeon bearing the image of ${Quest.DENIZEN}. At the bottom, they find a switch inside a small hole they can just barely fit their arm inside. When they reach in and flip the switch, they feel something attach to their arm with a loud click. The ${Quest.PLAYER1} pulls out their arm to find attached is some super complicated machinery complete with a timer counting down. That can’t be good."),
-                new Quest("The device continues to count down. After consulting with local ${Quest.CONSORT}s, the ${Quest.PLAYER1} navigates another dungeon in hopes of finding a clue to removing the ominous device from their arm without causing it to go off. Past complicated puzzles involving doomsday dates and scales, they find a small scroll on a pedestal. Written on the scroll is a prophecy that the ${Quest.PLAYER1} will permanently die in an explosion from attempting remove a device on their arm. Well, that’s just great."),
-                new Quest("The timer doesn’t stop from counting lower. The ${Quest.PLAYER1} makes up their mind and decides they’re not going to sit and wait until the timer goes off. They’re going to remove the stupid thing, prophecy or not! They quickly pry it off their arm and throw it away as far as possible. There’s no explosion; the device just breaks. Did the ${Quest.PLAYER1} use their powers to stop it from exploding and break the prophecy, or was this all just a shitty test from ${Quest.DENIZEN}? Either way, the ${Quest.PLAYER1} isn’t very pleased with the ${Quest.DENIZEN}."),
-                new DenizenFightQuest("The ${Quest.PLAYER1} tracks down the location of the ${Quest.DENIZEN} ‘s lair. It’s payback time!", "The ${Quest.DENIZEN} has been thoroughly beaten. Serves them right for playing such a mean trick on the ${Quest.PLAYER1}.","The ${Quest.PLAYER1} couldn’t get their revenge. ${Quest.DENIZEN} has a hearty laugh at their expense.")
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH); // end theme
+
     }
 }
