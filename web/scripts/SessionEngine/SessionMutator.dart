@@ -997,7 +997,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
-        player.land.denizenFeature = new HardDenizenFeature("Leviathan");
+        player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Shogun the, Glitch</span>');
 
         player.object_to_prototype = new PotentialSprite("Aku", s);
         player.sprite.addPrototyping(player.object_to_prototype);
