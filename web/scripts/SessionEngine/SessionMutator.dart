@@ -944,7 +944,7 @@ class MetaPlayerHandler {
 
         player.deriveSpecibus = false;
         player.specibus = new Specibus("Table", ItemTraitFactory.SHIELD, [ ItemTraitFactory.WOOD, ItemTraitFactory.HEAVY, ItemTraitFactory.BLUNT]);
-        
+
 
         player.land = player.spawnLand();
         player.land.name = "Land of Suburbs and Emotion";
