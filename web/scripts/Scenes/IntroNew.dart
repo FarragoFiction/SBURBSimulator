@@ -467,7 +467,7 @@ class IntroNew extends IntroScene {
     }
     String changePrototyping(Element div){
         String ret = "";
-        if(this.player.object_to_prototype.getStat(Stats.POWER) > 200*Stats.POWER.coefficient && rand.nextDouble() > .8){
+        if(this.player.object_to_prototype.getStat(Stats.POWER) > 100*Stats.POWER.coefficient && rand.nextDouble() > .8){
             session.logger.info("replacing prototyping for ${player.object_to_prototype} with power ${player.object_to_prototype.getStat(Stats.POWER)}");
             String divID = (div.id);
            // String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
