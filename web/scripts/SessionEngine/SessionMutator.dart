@@ -1526,6 +1526,10 @@ class MetaPlayerHandler {
     //ONLY for rageField tho.
     //doesn't happen ANY time we die, but only if pvp death.
     String checkDeath(Player p) {
+
+        if(p == feudalUltimatum) {
+            return "Who is Shogun??? <spand class = 'void'><a href = 'index_shogun.html'>Do you know???</a></span>";
+        }
         if (p == authorBotJunior) {
             for (Player pl in p.session.players) {
                 if (pl != p) pl.makeAlive();
