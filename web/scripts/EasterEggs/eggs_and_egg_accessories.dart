@@ -869,6 +869,7 @@ void nepetaQuest(){
     Player guardian = player.guardian;
 		player.isTroll = true;
 		guardian.isTroll = true;
+		sawNepeta();
 		if(actualRandomNumber > .5 && player.aspect != Aspects.TIME && player.aspect != Aspects.SPACE){ //just cause they are roleplaying as nepeta doesn't mean their claspect changes.
 			player.aspect = Aspects.HEART;
 		}

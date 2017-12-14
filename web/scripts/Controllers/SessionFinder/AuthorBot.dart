@@ -188,7 +188,7 @@ abstract class AuthorBot extends SimController {
     if(sessionSummary.session_id == 33 || getParameterByName("nepeta",null)  == ":33"){
       quip += "Don't expect any of my reports on those cat trolls to be accurate. They are random as fuck. " ;
       if(window.localStorage.containsKey("catTroll")) {
-        quip += "I've seen ${window.localStorage["catTroll"]} cat trolls and it's all your fault.";
+        quip += "I've seen ${window.localStorage["catTroll"]} cat trolls and it's all your fault. ";
       }
     }
     print ("is it nepeta? ${getParameterByName("nepeta",null)}");
