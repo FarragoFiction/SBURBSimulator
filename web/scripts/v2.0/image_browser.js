@@ -14,6 +14,11 @@ window.onload = function() {
 		renderFanArtGrimAB();
 	}
 
+	if (getParameterByName("mascotCompetition")  == "true"){
+    		$("#header").html("Shogun vs JR");
+    		renderMascotCompetition();
+    	}
+
 	if (getParameterByName("octobermas")  == "true"){
     		$("#header").html("Octobermas");
     		octobermas();
@@ -70,6 +75,12 @@ function oblivionSurfer(){
 
 function shogunsim(){
 	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/ShogunSim/";
+	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
+
+}
+
+function renderMascotCompetition(){
+	var folder = "http://farragofiction.com/SBURBSimE/images/misc/fanArt/MascotCompetition/";
 	renderAllImagesInFolder(folder); //if can't scrape from local computer, make this an absolute reference to server.  haha, no i can't cross session scripting is a bitch. HAVE to test on server l8r.
 
 }
