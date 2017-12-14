@@ -133,7 +133,7 @@ class IntroNew extends IntroScene {
           this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
           if(this.session.npcHandler.kingsScepter != null) this.session.npcHandler.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
           if(this.player.object_to_prototype.armless && rand.nextDouble() > 0.93){
-              //session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
+              session.logger.info("armless prototyping in session: ");
               narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
               this.session.destroyBlackRing();
           }
