@@ -185,9 +185,13 @@ abstract class AuthorBot extends SimController {
     num dead = sessionSummary.getNumStat("numDead");
     Player strongest = sessionSummary.mvp;
 
-    if(sessionSummary.session_id == 33 || getParameterByName("nepeta","")  == ":33"){
+    if(sessionSummary.session_id == 33 || getParameterByName("nepeta",null)  == ":33"){
       quip += "Don't expect any of my reports on those cat trolls to be accurate. They are random as fuck. " ;
+      if(window.localStorage.containsKey("catTroll")) {
+        quip += "I've seen ${window.localStorage["catTroll"]} cat trolls and it's all your fault.";
+      }
     }
+    print ("is it nepeta? ${getParameterByName("nepeta",null)}");
 
     if(sessionSummary.getBoolStat("crashedFromSessionBug")){
       quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.  Also, shout out to star.eyes: 'His palms are sweaty, knees weak, arms are heavy. There's vomit on his sweater already, mom's spaghetti'");

@@ -999,6 +999,16 @@ void session13() {
     }
 }
 
+void sawNepeta() {
+	print("saw a nepeta");
+	if(!window.localStorage.containsKey("catTroll")) {
+		window.localStorage["catTroll"] = "1";
+	}else {
+		window.localStorage["catTroll"] = "${int.parse(window.localStorage["catTroll"]) +1}";
+	}
+
+}
+
 void session0(){
 	for(int i = 0; i<12; i++){
 		var player;
@@ -1274,6 +1284,7 @@ void session612IndexToTroll(Player player, int index){
 		player.interest1 = new Interest("Role Playing", InterestManager.SOCIAL);
 		player.interest2 = new Interest("Romance", InterestManager.ROMANTIC);
 		player.chatHandle = "arsenicCatnip";
+		sawNepeta();
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
 	}else if(index == 6){
