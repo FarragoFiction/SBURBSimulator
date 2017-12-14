@@ -103,7 +103,7 @@ class IntroNew extends IntroScene {
               this.player.sprite.addPrototyping(this.player.object_to_prototype); //hot damn this is coming together.
               if(this.session.npcHandler.kingsScepter != null) this.session.npcHandler.kingsScepter.addPrototyping(this.player.object_to_prototype); //assume king can't lose crown for now.
               if(this.player.object_to_prototype.armless){
-                  //session.logger.info("armless prototyping in session: " + this.session.session_id.toString());
+                  session.logger.info("armless prototyping in session: ");
                   narration += "Huh. Of all the things to take from prototyping a " + this.player.object_to_prototype.name + ", why did it have to be its fingerless attribute? The Black Queen's RING OF ORBS " + this.session.convertPlayerNumberToWords() + "FOLD is now useless. If any carapacian attempts to put it on, they lose the finger it was on, which makes it fall off.  She destroys the RING in a fit of vexation. ";
                   this.session.destroyBlackRing();
               }
@@ -467,7 +467,8 @@ class IntroNew extends IntroScene {
     }
     String changePrototyping(Element div){
         String ret = "";
-        if(this.player.object_to_prototype.getStat(Stats.POWER) > 200 && rand.nextDouble() > .8){
+        if(this.player.object_to_prototype.getStat(Stats.POWER) > 200*Stats.POWER.coefficient && rand.nextDouble() > .8){
+            session.logger.info("replacing prototyping for ${player.object_to_prototype} with power ${player.object_to_prototype.getStat(Stats.POWER)}");
             String divID = (div.id);
            // String canvasHTML = "<br><canvas id='canvaskernel" + divID+"' width='" +canvasWidth.toString() + "' height="+canvasHeight.toString() + "'>  </canvas>";
             CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
