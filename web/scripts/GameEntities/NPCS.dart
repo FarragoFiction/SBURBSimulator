@@ -735,7 +735,7 @@ class PotentialSprite extends NPC {
                 ..disaster = true
                 ..helpfulness = -1
                 ..stats.setMap(<Stat,num>{Stats.HEALTH: 5, Stats.CURRENT_HEALTH: 5, Stats.MOBILITY: 5000, Stats.MIN_LUCK: -5000, Stats.MAX_LUCK: -5000, Stats.POWER: 100})
-                ..helpPhrase = "actively inteferes with quests. Just. Fuck monkeys. "
+                ..helpPhrase = "actively interferes with quests. Just. Fuck monkeys. "
                 ..fraymotifs.add(new Fraymotif("Monkey Business", 3)
                     ..effects.add(new FraymotifEffect(Stats.MOBILITY, 0, false))
                     ..effects.add(new FraymotifEffect(Stats.MOBILITY, 2, true))
