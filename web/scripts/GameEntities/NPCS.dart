@@ -731,6 +731,14 @@ class PotentialSprite extends NPC {
                     ..effects.add(new FraymotifEffect(Stats.POWER, 2, true))
                     ..desc =
                         " The OWNER slashes at the ENEMY twice. While being a werewolf. "),
+            new PotentialSprite("Jet Engine", null)
+                ..disaster = true
+                ..stats.setMap(<Stat,num>{Stats.HEALTH: 500, Stats.CURRENT_HEALTH: 500, Stats.MOBILITY: 500, Stats.POWER: 100})
+                ..fraymotifs.add(new Fraymotif("NO  CAPES", 3)
+                    ..effects.add(new FraymotifEffect(Stats.POWER, 2, true))
+                    ..effects.add(new FraymotifEffect(Stats.POWER, 2, true))
+                    ..desc =
+                        " The OWNER sucks the ENEMY in towards their spinning blades of death. "),
             new PotentialSprite("Monkey", null) //just, fuck monkeys in general.
                 ..disaster = true
                 ..helpfulness = -1
