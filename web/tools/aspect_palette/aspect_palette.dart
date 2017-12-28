@@ -20,9 +20,9 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });*/
 
-    testDrawing();
-
-
+    //testDrawing();
+    
+    testScaling(stuff);
 }
 
 Future<bool> testDrawing() async {
@@ -168,7 +168,7 @@ Future<bool> testDrawing() async {
 
         THREE.Scene scene = new THREE.Scene();
 
-        List<THREE.Shape> shapes = THREE.getShapesForText("testing stuff", await Loader.getResource("Fonts/MISTERTWIGGY.ttf"), 20);
+        List<THREE.Shape> shapes = THREE.getShapesForText("gigglesnort", await Loader.getResource("Fonts/Alternian.ttf"), 7);
         //THREE.ShapeBufferGeometry geom = new THREE.ShapeBufferGeometry(shapes);
         THREE.ExtrudeGeometry geom = new THREE.ExtrudeGeometry(shapes, new THREE.ExtrudeGeometryOptions(amount: 8, bevelEnabled: false));
         //THREE.Material mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(wireframe:true));
@@ -266,4 +266,45 @@ CanvasElement makeGradientSwatch() {
     ctx.putImageData(data, 0, 0);
 
     return canvas;
+}
+
+void testScaling(Element parent) {
+    parent.append(new DivElement()
+        ..append(new NumberInputElement()..id="sourcewidth"..step="1"..valueAsNumber = 200..onChange.listen(updateScaling))
+        ..append(new NumberInputElement()..id="sourceheight"..step="1"..valueAsNumber = 500..onChange.listen(updateScaling))
+        ..append(new NumberInputElement()..id="destwidth"..step="1"..valueAsNumber = 400..onChange.listen(updateScaling))
+        ..append(new NumberInputElement()..id="destheight"..step="1"..valueAsNumber = 300..onChange.listen(updateScaling))
+    );
+
+    parent.append(new CanvasElement()..id="sizecanvas");
+
+    updateScaling();
+}
+
+void updateScaling([Event e]) {
+    int sourcewidth = (querySelector("#sourcewidth") as NumberInputElement).valueAsNumber.toInt();
+    int sourceheight = (querySelector("#sourceheight") as NumberInputElement).valueAsNumber.toInt();
+    int destwidth = (querySelector("#destwidth") as NumberInputElement).valueAsNumber.toInt();
+    int destheight = (querySelector("#destheight") as NumberInputElement).valueAsNumber.toInt();
+
+    CanvasElement sizecanvas = querySelector("#sizecanvas");
+    CanvasRenderingContext2D ctx = sizecanvas.context2D;
+
+    sizecanvas..width=destwidth..height=destheight;
+
+    double widthratio = destwidth / sourcewidth;
+    double heightratio = destheight / sourceheight;
+    double ratio = Math.min(widthratio, heightratio);
+
+    double width = sourcewidth * ratio;
+    double height = sourceheight * ratio;
+
+    double left = (destwidth - width) * 0.5;
+    double top = (destheight - height) * 0.5;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,destwidth,destheight);
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(left, top, width, height);
 }
