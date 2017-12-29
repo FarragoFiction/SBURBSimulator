@@ -1,5 +1,5 @@
 var screens = [];
-var maxState = 156; //this number MUST be even.
+var maxState = 158; //this number MUST be even.
 var imagesWaiting = 0;
 var imagesLoaded = 0;
 var targetImage = 0; //what could control this???
@@ -594,7 +594,10 @@ function quip(state){
                   ret = "Sounds legit."
     } else if(state == 136){
         ret = "Huh, so that's what happened to all of AB's chassis. I am gonna hafta have a word with ABJ."
-    } else if(state == 142 || state == 143){
+    }
+      else if(state == 156){
+             ret = "Huh. I only recognize a few of those people. Is this the future???"
+         }else if(state == 142 || state == 143){
              ret = "!!! It's <a href = 'https://charahub.com/character/1140409/Kilius-Koplan'>Kilius!</a> The best troll!!!"
      }else{
 		ret = "???"
