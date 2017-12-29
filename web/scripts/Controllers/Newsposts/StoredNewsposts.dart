@@ -14,6 +14,7 @@ class Newspost
     if(SimController.shogun) Newspost.shogun = true;
 
     List<Newspost> ret = [
+      new Newspost("12/29/17","Whoops, looks Shogun did some shenanigans while I was busy distracted by WigglerSim. Don't worry chased him off with a broom, everything is fine again."),
       new Newspost("12/21/17","WigglerSim continues, real life bullshit continues to slow me down. <br><br><li>+Wrigglers can grow up and DIE, in new and more interesting ways! <li>+The caste system now leaves a more systemic mark on your young charges once they leave your care!"),
       new Newspost("12/17/17","Still working on wiggler sim, but a friend's in the hospital so I've had to stop coding for a bit."),
       new Newspost("12/14/17","There is obviously no way I'm having some sort of weird <a href = 'image_browser.html?mascotCompetition=true'>fanart</a>/fanfic competition over the next month, with a deadline of January 13th. There is further no way that me and Shogun will decide SBURBSim Mascotdom based on who gets more fanart/fanfic. And there definitely isn't any weird rewards planned for participants. <br><Br>But if I WERE. You'd make art and fics of me, and not Shogun, right? I mean, who even IS that douchebag?<br><br>On a serious note, turns out time players were being WAY too panicky about how dangerous some prototypes were. They've calmed down.<br><br><li>+Trolls can now grow up and leave you. <li>+Time players can now save your timeline better with sprite shit."),
