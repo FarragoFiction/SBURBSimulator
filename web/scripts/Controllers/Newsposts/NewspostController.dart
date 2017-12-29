@@ -5,6 +5,7 @@ import '../../navbar.dart';
 import 'StoredNewsposts.dart';
 import 'dart:async';
 import "../../random.dart";
+import "../Misc/SimController.dart";
 
 void main() {
   loadNavbar();
@@ -22,8 +23,14 @@ void main() {
       querySelector("body").style.backgroundPosition = "center -" + max_scroll.toString() + "px";
     }
   });
+  if(SimController.shogun) doShogun();
   //cycleAuthorPics();
   //reFormatForTinyScreens(); //TODO was this doing anything. definitely didn't work right on mobile
+}
+
+void doShogun() {
+  (querySelector("#jrAvatar") as ImageElement).src = "images/Alchemy/The_Glow.png";
+
 }
 
 void cycleAuthorPics() {

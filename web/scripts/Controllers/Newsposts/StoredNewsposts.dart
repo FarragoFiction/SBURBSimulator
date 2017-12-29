@@ -1,12 +1,17 @@
 //just the author/artist/??? newsposts, no simulator shit.
 //just in charge of string wrangling not writing to screen
+import "../Misc/SimController.dart";
 class Newspost
 {
   String date;
   String post;
-  Newspost(this.date, this.post);
+  static bool shogun = false; //memes man.
+  Newspost(this.date, this.post) {
+     if(shogun) post = "Who is Shogun???";
+  }
 
   static List<Newspost> makeAuthorNewsposts() {
+    if(SimController.shogun) Newspost.shogun = true;
 
     List<Newspost> ret = [
       new Newspost("12/21/17","WigglerSim continues, real life bullshit continues to slow me down. <br><br><li>+Wrigglers can grow up and DIE, in new and more interesting ways! <li>+The caste system now leaves a more systemic mark on your young charges once they leave your care!"),
@@ -220,6 +225,8 @@ class Newspost
   }
 
   static List<Newspost> makeArtistNewsposts() {
+    Newspost.shogun = false; //KR is NEVER replaced
+
     List<Newspost> ret = [
       new Newspost("8/5/17","Our newest staff member gets an avatar as well. Arise, Witch of Void!<Br><Br><img src = 'images/paradoxLands.png'>")
     ,new Newspost( "7/24/17","Hey, I keep forgetting to update this thing! Most of what I've been working on lately has gone towards adding fan classes. Head over to <a href='character_creator.html'>the character creator</a> if you want to check them out.")

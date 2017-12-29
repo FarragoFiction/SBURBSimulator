@@ -1,4 +1,6 @@
 import 'dart:html';
+import "Controllers/Misc/SimController.dart";
+import "random.dart";
 
 import 'includes/path_utils.dart';
 
@@ -22,7 +24,14 @@ void onNavbarLoaded(String data) {
     }
     String sessionID = todayToSession();
     //print('sessionID is $sessionID');
-    (querySelector("#today") as AnchorElement).href = "index2.html?seed=$sessionID";
+    Random rand = new Random(int.parse(sessionID));
+    rand.nextInt();
+    if(SimController.shogun || rand.nextDouble()>.99) {
+        (querySelector("#today") as AnchorElement).href = "dead_index.html?seed=$sessionID";
+
+    }else {
+        (querySelector("#today") as AnchorElement).href = "index2.html?seed=$sessionID";
+    }
 }
 
 

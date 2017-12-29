@@ -38,6 +38,8 @@ void main() {
     self.initial_seed = tmp;
   }
   self.formInit();
+  if(SimController.shogun) doShogun();
+
 }
 
 void checkSessions() {
@@ -77,6 +79,11 @@ void toggleMisc(){
 
 void toggleEnding(){
   self.toggleEnding();
+}
+
+void doShogun() {
+  (querySelector("#avatar") as ImageElement).src = "images/Alchemy/abGlitch.gif";
+
 }
 
 
