@@ -237,7 +237,7 @@ class MurderPlayers extends Scene {
 				}else if(ausp != null && r.type() == r.badBig){  //they hate you back....
 					///auspitism, but who is middle leaf?
 					ret += " The " + m.htmlTitle() + " attempts to murder that asshole, the " + worstEnemy.htmlTitle();
-					ret += "(who hates them back just as much), but instead is interupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
+					ret += "(who hates them back just as much), but instead is interrupted by the " + ausp.htmlTitle() + ", who convinces everyone to settle their shit down. ";
 					if(m.dead == true){ //they could have been killed by another murder player in this same tick
 						ret += " The task is made especially easy by the " + m.htmlTitle() + " dying partway through. ";
 					}

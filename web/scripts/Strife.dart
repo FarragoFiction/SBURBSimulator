@@ -9,7 +9,7 @@ import "SBURBSim.dart";
 class Strife {
     //TODO subclass strife for pvp but everybody lives strifes
     List<Team> teams; //for now, assume 2 teams, but could support more in future. think terezi +dave +dirk fighting two non-allied Jacks
-    num turnsPassed = 0; //keep track for interuptions and etc.
+    num turnsPassed = 0; //keep track for interruptions and etc.
     Session session;
     bool strifeIsOver =  false; //just in case death doesn't stick because of bullshit, need a way to know it's over
     Element outerDiv;

@@ -114,7 +114,7 @@ class SaveDoomedTimeLine extends Scene {
 			}else{
 				////session.logger.info(" half restoring leader health from time shenanigans: " + this.session.session_id.toString());
         this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/2);
-				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+				ret += " They interrupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
 			}
 
 		}else if(this.reason == "Leader killed before all players in medium."){
@@ -136,7 +136,7 @@ class SaveDoomedTimeLine extends Scene {
 					}
 			}else{
 				//session.logger.info(" half restoring leader health from time shenanigans before all players in session: " + this.session.session_id.toString());
-				ret += " They interupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
+				ret += " They interrupt things before the " + this.leaderPlayer.htmlTitleBasic() +  " gets hurt too bad. ";
         this.leaderPlayer.setStat(Stats.CURRENT_HEALTH,this.leaderPlayer.getStat(Stats.HEALTH)/2);
 			}
 			this.session.doomedTimelineReasons.add(this.reason);
@@ -158,7 +158,7 @@ class SaveDoomedTimeLine extends Scene {
 
 		var living = findLivingPlayers(this.session.players);
 		if(living.length > 0){
-			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themselves to change the timeline. ";
+			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themself to change the timeline. ";
 			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";
 			ret += " Least they can do after saving everyone is to time travel to where they can do the most good. ";
 			ret += " After doing something inscrutable, they vanish in a cloud of clocks and gears. ";
