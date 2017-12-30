@@ -144,7 +144,7 @@ function renderAllImagesInFolder(folder){
 }
 
 function renderRegularSprite(spritePart){
-	$("#images").append("<div class = 'spriteParentNoSize'><img class = 'spriteImgNoLayers' src = '" + spritePart.location + "'></img><br>"+spritePart.name+"</div>");
+	$("#images").append("<div class = 'spriteParentNoSize'><a href = '" + spritePart.location + "'><img width = '250' class = 'spriteImgNoLayers' src = '" + spritePart.location + "'></img></a><br>"+spritePart.name+"</div>");
 }
 
 
