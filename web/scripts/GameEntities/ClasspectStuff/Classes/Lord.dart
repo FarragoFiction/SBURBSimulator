@@ -11,7 +11,7 @@ class Lord extends SBURBClass {
     @override
     double difficulty = 2.0;
     @override
-    List<String> levels = ["LAUGHING STOCKINGS", "DELEGATION DELIVERER", "LORDLING"];
+    List<String> levels = ["LORDLING", "DELEGATION DELIVERER", "BUFFER THAN KR"];
     @override
     List<String> quests = ["inspiring the consorts to produce great works of art", "causing events to transpire such that the consorts improve themselves", "avidly learning about consort history and art"];
     @override
