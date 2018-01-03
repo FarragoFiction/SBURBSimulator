@@ -762,7 +762,7 @@ class ItemTraitFactory {
     MIRROR = new CombinedTrait("Mirrored",<String>["mirrored","reflective"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[GLASS, METAL]);
     CRYSTALBALL = new CombinedTrait("Far Seeing",<String>["far seeing","sighted"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[GLASS, STONE, MAGICAL]);
     DISABLING = new CombinedTrait("Nonlethal",<String>["disabling","non lethal"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[RUBBER, SHOOTY]);
-    FASHIONABLE = new CombinedTrait("Fashionable",<String>["fasionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
+    FASHIONABLE = new CombinedTrait("Fashionable",<String>["fashionable"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PRETTY, CLASSY]);
     IRONICFUNNYCOOL = new CombinedTrait("Ironic Type 2",<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FUNNY, COOLK1D]);
     IRONICSHITTYFUNNY = new CombinedTrait("Ironic Type 3",<String>["ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[SHITTY, FUNNY]);
     POSTIRONIC = new CombinedTrait("Post Ironic",<String>["post-ironic"], 0.0,ItemTrait.OPINION, <ItemTrait>[FAKE, COOLK1D,CLASSY]);

@@ -69,7 +69,7 @@ class Academic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Do the Math", [
                 new Quest("The ${Quest.PLAYER1}  is approached by a ${Quest.CONSORT} who had 13 apples, but needs to give them to their 3 children proportionate to their ages.   Oh god. Math. "),
                 new Quest("The ${Quest.PLAYER1} catches some thieves only to discover that robbery is illegal only on days that are prime factors of 1300. Oh god. Math. "),
-                new Quest("The ${Quest.CONSORT}  finds a ${Quest.CONSORT} child ${Quest.CONSORTSOUND}ing up a storm. It turns out they got their quiz question wrong and they don't know why.  Does the ${Quest.PLAYER1} know why? (Spoiler alert, it turns out to be order of operations.) You beging to wonder if SBURB is one of those shitty 'educational' games. "),
+                new Quest("The ${Quest.CONSORT}  finds a ${Quest.CONSORT} child ${Quest.CONSORTSOUND}ing up a storm. It turns out they got their quiz question wrong and they don't know why.  Does the ${Quest.PLAYER1} know why? (Spoiler alert, it turns out to be order of operations.) You begin to wonder if SBURB is one of those shitty 'educational' games. "),
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Use the Calculator", [
                 new Quest("The ${Quest.PLAYER1} finds a mysterious calculator in a place of prominence on their land. They poke and prod at it.  What could it be? "),
