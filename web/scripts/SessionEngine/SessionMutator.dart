@@ -710,7 +710,7 @@ class SessionMutator {
 
     void renderTimeButton(Element div) {
         //renders a button. If that button is clicked, resets session.
-        String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} know we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
+        String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} knows we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
         appendHtml(SimController.instance.storyElement, html);
         querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
     }
