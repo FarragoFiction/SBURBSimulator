@@ -20,9 +20,9 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });*/
 
-    //testDrawing();
+    testDrawing();
     
-    testScaling(stuff);
+    //testScaling(stuff);
 }
 
 Future<bool> testDrawing() async {
@@ -61,13 +61,13 @@ Future<bool> testDrawing() async {
     }*/
 
     {
-        RenderJob job = await RenderJob.create(400, 300);
+        //RenderJob job = await RenderJob.create(400, 300);
 
-        job.addPass(new RenderJobPassGradient(0,0,400,300, 0,0,400,300)..smoothing = 0.5..useGamma = 1.0
+        /*job.addPass(new RenderJobPassGradient(0,0,400,300, 0,0,400,300)..smoothing = 0.5..useGamma = 1.0
             ..addStop(0.0, new Colour.fromHex(0xFF0000))
             ..addStop(0.5, new Colour.fromHex(0x00FF00))
             ..addStop(1.0, new Colour.fromHex(0x0000FF))
-        );
+        );*/
         /*job.addPass(new RenderJobPassGradient(0,0, 400,300, 200,150,200,300)
             ..gradient_type = RJPGradientType.ANGLE
             ..repeat = 4.0
@@ -103,9 +103,19 @@ Future<bool> testDrawing() async {
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"))
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"))
             ..addEffect(new RenderEffect("shaders/image.vert", "shaders/fakejpeg.frag"))
-            ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"));
+            ..addEffect(new RenderEffect("shaders/image.vert", "shaders/sharpen.frag"));*/
 
-        int hairid = 7;
+        RenderJob job = await RenderJob.create(640,480);
+
+        GroupPass group = job.addGroupPass()
+            ..addEffect(new RenderEffectStardustGlitch(strength: 0.675)
+                ..uniforms["mask"].value = (Renderer.getCachedTexture(await Loader.getResource("tools/aspect_palette/milestone_1000_5_mask.png"))..needsUpdate=true)
+                );
+
+        group
+            ..addImagePass("tools/aspect_palette/milestone_1000_5.png");
+
+        /*int hairid = 7;
 
         group
             ..addImagePass("images/Hair/hair_back$hairid.png")
@@ -147,7 +157,7 @@ Future<bool> testDrawing() async {
         print("3d: ${mis / 1000}ms");
     }*/
 
-    {
+    /*{
         CanvasElement texttest = new CanvasElement(width:500, height:300);
         stuff.append(texttest);
         
@@ -157,9 +167,9 @@ Future<bool> testDrawing() async {
 
         //font.draw(ctx, "Hello", 20, 50, 48);
         await OT.drawText("Fonts/Strife.ttf", ctx, "Hello", 20, 50, 48, fill: "red");
-    }
+    }*/
 
-    {
+    /*{
         CanvasElement canvas = new CanvasElement(width:500, height:500);
         THREE.WebGLRenderer renderer = new THREE.WebGLRenderer(new THREE.WebGLRendererOptions(canvas: canvas));
         THREE.Camera camera = new THREE.PerspectiveCamera(90, 1.0, 0.1, 500.0)
@@ -184,7 +194,7 @@ Future<bool> testDrawing() async {
         renderer.render(scene, camera);
 
         stuff.append(canvas);
-    }
+    }*/
 
     return true;
 }

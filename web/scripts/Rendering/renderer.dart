@@ -74,7 +74,10 @@ class Renderer {
     static THREE.Texture getCachedTexture(CanvasImageSource image) {
         if (_textureCache.containsKey(image)) { return _textureCache[image]; }
 
-        THREE.Texture texture = new THREE.Texture(image);
+        THREE.Texture texture = new THREE.Texture(image)
+            //..wrapS = THREE.RepeatWrapping
+            //..wrapT = THREE.RepeatWrapping
+        ;
         _textureCache[image] = texture;
 
         return texture;
