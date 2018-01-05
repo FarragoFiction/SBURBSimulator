@@ -3,6 +3,7 @@ varying vec2 v_uv;
 uniform sampler2D image;
 uniform vec2 size;
 
+uniform bool background;
 uniform sampler2D data;
 uniform sampler2D mask;
 uniform vec2 datasize;
@@ -60,6 +61,10 @@ void main() {
         samplecoords += offset * pixel * scalef;
         samplecoords = fract(samplecoords);
         //gl_FragColor = dataval;
+    } else {
+        if (background) {
+            discard;
+        }
     }
 
 

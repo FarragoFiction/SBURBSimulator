@@ -34,6 +34,9 @@ Future<Null> render([Event e]) async {
     int scale = (querySelector("#sdg_scale") as NumberInputElement).valueAsNumber.toInt();
     double strength = (querySelector("#sdg_strength") as RangeInputElement).valueAsNumber.toDouble().clamp(0.0, 1.0);
 
+    int ox = (querySelector("#sdg_x") as NumberInputElement).valueAsNumber.toInt();
+    int oy = (querySelector("#sdg_y") as NumberInputElement).valueAsNumber.toInt();
+
     int w = sourceImage.width;
     int h = sourceImage.height;
 
@@ -44,10 +47,8 @@ Future<Null> render([Event e]) async {
     container..setInnerHtml("")..append(job.div);
 
     job.addPass(new GroupPass()
-        ..addPass(new RenderJobPassImageDirect(sourceImage))
-        ..addEffect(new RenderEffectStardustGlitch(strength: strength)
-            ..uniforms["mask"].value = maskImage == null ? null : (Renderer.getCachedTexture(maskImage)..needsUpdate=true)
-        )
+        ..addPass(new RenderJobPassImage(new Asset<ImageElement>.direct(sourceImage)))
+        ..addEffect(new RenderEffectStardustGlitch(strength: strength, scale:scale, mask:new Asset<ImageElement>.direct(maskImage), backgroundOnly: backgroundOnly, ox: ox, oy: oy))
     );
     
     Renderer.render(job);

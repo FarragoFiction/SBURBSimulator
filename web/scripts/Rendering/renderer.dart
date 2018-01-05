@@ -177,7 +177,7 @@ abstract class RenderPassReceiver {
     void addPass(RenderJobPass pass);
 
     void addImagePass(String path, [int x=0, int y=0, THREE.ShaderMaterial materialOverride]) {
-        this.addPass(new RenderJobPassImage(path, x,y, materialOverride));
+        this.addPass(new RenderJobPassImage(new Asset<ImageElement>(path), x,y, materialOverride));
     }
 
     void addSpritePass(String path, Iterable<Palette> palettes, [int x=0, int y=0, THREE.ShaderMaterial materialOverride]) {

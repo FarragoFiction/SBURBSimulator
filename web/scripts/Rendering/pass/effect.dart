@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:html";
 
 import '../../loader/loader.dart';
 import "../../random.dart";
@@ -26,23 +27,29 @@ class RenderEffectNullGlitch extends RenderEffect {
 }
 
 class RenderEffectStardustGlitch extends RenderEffect {
-    static bool _dataloaded = false;
+    Asset<ImageElement> mask;
 
-    RenderEffectStardustGlitch({double strength = 1.0, int scale = 2, int ox = 4, int oy = -2}) : super("shaders/image.vert", "shaders/stardustglitch.frag") {
+    RenderEffectStardustGlitch({double strength = 1.0, int scale = 2, int ox = 4, int oy = -2, Asset<ImageElement> this.mask, bool backgroundOnly = false}) : super("shaders/image.vert", "shaders/stardustglitch.frag") {
         this.uniforms["strength"] = new THREE.ShaderUniform<double>()..value = strength;
         this.uniforms["mask"] = new THREE.ShaderUniform<THREE.TextureBase>();
         this.uniforms["data"] = new THREE.ShaderUniform<THREE.TextureBase>();
         this.uniforms["datasize"] = new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(256, 256);
         this.uniforms["scale"] = new THREE.ShaderUniform<int>()..value = scale;
         this.uniforms["offset"] = new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(ox, oy);
+        this.uniforms["background"] = new THREE.ShaderUniform<bool>()..value = backgroundOnly;
     }
 
     @override
     Future<Null> loadAsyncAssets() async {
-        if (!_dataloaded) {
-            this.uniforms["data"].value = Renderer.getCachedTextureNearest(await Loader.getResource("shaders/stardustglitch.png"))..wrapT=THREE.RepeatWrapping..wrapS=THREE.RepeatWrapping;
-            print("load?");
-            _dataloaded = true;
+        this.uniforms["data"].value = Renderer.getCachedTextureNearest(await Loader.getResource("shaders/stardustglitch.png"))..wrapT=THREE.RepeatWrapping..wrapS=THREE.RepeatWrapping;
+        if (this.mask != null) {
+            ImageElement m = await this.mask.getAsset();
+            if (m != null) {
+                this.uniforms["mask"].value = Renderer.getCachedTexture(m)
+                    ..wrapT = THREE.RepeatWrapping
+                    ..wrapS = THREE.RepeatWrapping
+                    ..needsUpdate = true;
+            }
         }
     }
 }
