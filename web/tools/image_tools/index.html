@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Filter Tools</title>
+    <link rel="stylesheet" href="../../css/colour_picker.css">
+    <script type="application/dart" src="image_tools.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+
+    <style>
+        #sdg_source, #sdg_mask {
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Special Stardust</h1>
+    <p>Creates stardust themed glitch corruption in the selected image. Set a mask to limit the effect to regions of the image, where black is full corruption and white is none.</p>
+
+    <div id="sdg_buttons"></div>
+    <br/>
+    <div id="sdg_source"></div>
+    <div id="sdg_mask"></div>
+    <br/>
+    <input id="sdg_background" type="checkbox"/>
+    <input id="sdg_strength" type="range" value="1.0" min="0.0" max="1.0" step="0.01"/>
+    <input id="sdg_scale" type="number" value="2" min="1" step="1"/>
+    <button id="sdg_render" title="Render">Render</button><br/>
+    <div id="sdg_container"></div>
+</body>
+</html>

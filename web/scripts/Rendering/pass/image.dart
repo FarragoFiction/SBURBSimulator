@@ -6,25 +6,28 @@ import "../../loader/loader.dart";
 import "../3d/three.dart" as THREE;
 import "../renderer.dart";
 
-class RenderJobPassImage extends RenderJobPass {
+class RenderJobPassImageDirect extends RenderJobPass {
     static THREE.OrthographicCamera _camera = new THREE.OrthographicCamera.flat(100, 100)..position.z = 800;
     static THREE.Scene _scene;
     static THREE.Mesh _mesh;
     static THREE.ShaderMaterial _defaultMaterial;
 
-    final String imagePath;
+    ImageElement imageElement;
     final int x;
     final int y;
     THREE.ShaderMaterial materialOverride;
 
-    RenderJobPassImage(String this.imagePath, [int this.x=0, int this.y=0, THREE.ShaderMaterial this.materialOverride]);
+    RenderJobPassImageDirect(ImageElement this.imageElement, [int this.x=0, int this.y=0, THREE.ShaderMaterial this.materialOverride]);
 
     @override
     Future<Null> draw(RenderJob job, [THREE.WebGLRenderTarget target]) async {
-        await _initScene();
-        _camera..bottom = job.height..right = job.width..updateProjectionMatrix();
+        await _drawImage(this.imageElement, job, target);
+    }
 
-        ImageElement img = await Loader.getResource(imagePath);
+    Future<Null> _drawImage(ImageElement img, RenderJob job, [THREE.WebGLRenderTarget target]) async {
+        await _initScene();
+            _camera..bottom = job.height..right = job.width..updateProjectionMatrix();
+
         THREE.Texture texture = Renderer.getCachedTextureNearest(img);
 
         THREE.ShaderMaterial material = this.materialOverride != null ? this.materialOverride : _defaultMaterial;
@@ -51,5 +54,17 @@ class RenderJobPassImage extends RenderJobPass {
 
         _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = PI;
         _scene.add(_mesh);
+    }
+}
+
+class RenderJobPassImage extends RenderJobPassImageDirect {
+
+    String imagePath;
+
+    RenderJobPassImage(String this.imagePath, [int x=0, int y=0, THREE.ShaderMaterial materialOverride]) : super(null, x,y, materialOverride);
+
+    @override
+    Future<Null> draw(RenderJob job, [THREE.WebGLRenderTarget target]) async {
+        await _drawImage(await(Loader.getResource(this.imagePath)), job, target);
     }
 }
