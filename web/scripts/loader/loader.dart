@@ -117,3 +117,21 @@ abstract class Loader {
         return completer.future;
     }
 }
+
+class Asset<T> {
+    T item;
+    String path;
+
+    Asset(String this.path);
+    Asset.direct(T this.item);
+
+    Future<T> getAsset() async {
+        if (this.item != null) {
+            return this.item;
+        }
+        else if (this.path != null) {
+            return await Loader.getResource(this.path);
+        }
+        return null;
+    }
+}
