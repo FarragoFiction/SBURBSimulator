@@ -53,6 +53,8 @@ class GroupPass extends RenderJobPass with RenderPassReceiver {
                     fragmentShader: await Loader.getResource(effect.fragmentShader))
                 )..transparent = true;
 
+                await effect.loadAsyncAssets();
+
                 THREE.setUniform(effectmat, "image", new THREE.ShaderUniform<THREE.Texture>()..value = source.texture);
                 THREE.setUniform(effectmat, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(job.width, job.height));
 
