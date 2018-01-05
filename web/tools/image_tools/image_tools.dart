@@ -15,6 +15,12 @@ void main() {
         ..append(FileFormat.loadButton(Formats.png, loadMask, caption: "Load Mask"));
 
     querySelector("#sdg_render")..addEventListener("click", render);
+
+    Random rand = new Random();
+    querySelector("#sdg_setseed")..addEventListener("click", (Event e){
+        (querySelector("#sdg_seed") as NumberInputElement).valueAsNumber = rand.nextInt();
+    });
+
 }
 
 void loadImage(ImageElement image) {
@@ -37,6 +43,8 @@ Future<Null> render([Event e]) async {
     int ox = (querySelector("#sdg_x") as NumberInputElement).valueAsNumber.toInt();
     int oy = (querySelector("#sdg_y") as NumberInputElement).valueAsNumber.toInt();
 
+    int seed = (querySelector("#sdg_seed") as NumberInputElement).valueAsNumber.toInt();
+
     int w = sourceImage.width;
     int h = sourceImage.height;
 
@@ -48,7 +56,7 @@ Future<Null> render([Event e]) async {
 
     job.addPass(new GroupPass()
         ..addPass(new RenderJobPassImage(new Asset<ImageElement>.direct(sourceImage)))
-        ..addEffect(new RenderEffectStardustGlitch(strength: strength, scale:scale, mask:new Asset<ImageElement>.direct(maskImage), backgroundOnly: backgroundOnly, ox: ox, oy: oy))
+        ..addEffect(new RenderEffectStardustGlitch(seed: seed, strength: strength, scale:scale, mask:new Asset<ImageElement>.direct(maskImage), backgroundOnly: backgroundOnly, ox: ox, oy: oy))
     );
     
     Renderer.render(job);

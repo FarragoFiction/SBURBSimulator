@@ -3,6 +3,7 @@ varying vec2 v_uv;
 uniform sampler2D image;
 uniform vec2 size;
 
+uniform int seed;
 uniform bool background;
 uniform sampler2D data;
 uniform sampler2D mask;
@@ -29,8 +30,10 @@ void main() {
 	vec2 block = size / scalef;
 	vec2 tile = size / (scalef * tilesize);
 
-	vec2 datapos = (v_uv * size) / (scalef);
-	vec2 datagrid = datapos / tilesize;
+    vec2 blockoffset = floor(vec2(rand(vec2(seed, 31.3982)), rand(vec2(93.2354, -seed))) * 256.0);
+
+	vec2 datapos = ((v_uv) * size) / scalef;
+	vec2 datagrid = (datapos / tilesize);
 
     vec2 maskcoords = floor(v_uv * block + 0.5) / block;
     vec2 tilecoords = floor(v_uv * tile + 0.5) / tile;
@@ -39,7 +42,7 @@ void main() {
 	float masktile = strength * (1.0 - texture2D(mask, tilecoords).r);
 	float threshold = min(maskval, 0.65);
 
-    vec2 datacoord = datapos / datasize;
+    vec2 datacoord = (datapos + blockoffset * tilesize) / datasize;
     vec4 dataval = texture2D(data, datacoord);
 
     vec2 samplecoords = v_uv;
