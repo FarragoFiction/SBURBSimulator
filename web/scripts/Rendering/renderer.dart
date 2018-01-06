@@ -60,6 +60,7 @@ class Renderer {
 
     static Future<Null> _draw(RenderJob job) async {
         _setSize(job.width, job.height);
+        _renderer.clear(true, true, true);
 
         for (RenderJobPass pass in job._passes) {
             await pass.draw(job);
