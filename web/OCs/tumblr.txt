@@ -14,3 +14,4 @@ b=3%13%0B%C2%B8%C3%BE%02%00%14%07.%13&s=,,Horror,Acting,animatronicPuppets
 b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands
 b=kF%1A%C2%A1%C3%BE%C2%A2%00%1B%17%17%16&s=,,Cooking,Theater,minuteMinuet
 b=%00%00%00A%C3%B5w%10%1655D&s=,,Vampires,Mermaids,vampiricSiren
+b=%00%00%00C%C3%BE0%00%17%01%01%2C&s=,,Writing,Stand-up Comedy,androidDreams
