@@ -59,7 +59,7 @@ class Life extends Aspect {
             ..add(new Item("Golem",<ItemTrait>[ItemTraitFactory.UNCOMFORTABLE,ItemTraitFactory.STONE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "Living Rock Man", abDesc: "I guess. It's LIKE a robot. Sort of. Just not a super computer."))
             ..add(new Item("Ectoplasm",<ItemTrait>[ItemTraitFactory.GHOSTLY, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING],shogunDesc: "Ghost [Censored]")) //thanks nana sprite
             ..add(new Item("Aqua Vitae",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.ASPECTAL,ItemTraitFactory.HEALING, ItemTraitFactory.LEGENDARY, ItemTraitFactory.MAGICAL],shogunDesc: "Tears of JR"))
-            ..add(new Item("Homoculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "False Man", abDesc: "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
+            ..add(new Item("Homunculus",<ItemTrait>[ItemTraitFactory.FLESH, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SENTIENT],shogunDesc: "False Man", abDesc: "Ugh. It's like a robot, but made of flesh. WHY WOULD YOU DO THIS."));
     }
 
 
