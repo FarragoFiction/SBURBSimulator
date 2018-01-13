@@ -1256,7 +1256,7 @@ void session612IndexToTroll(Player player, int index){
 		player.godDestiny = true;
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		var f = new Fraymotif( "Telekinisis", 1);
+		var f = new Fraymotif( "Telekinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
@@ -1420,7 +1420,7 @@ void session612IndexToTroll(Player player, int index){
 		player.chatHandle = "twinArmageddons";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		Fraymotif f = new Fraymotif( "Telekinisis", 1);
+		Fraymotif f = new Fraymotif( "Telekinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
@@ -1547,7 +1547,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.chatHandle = "apocalypseArisen";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		var f = new Fraymotif( "Telekinisis", 1);
+		var f = new Fraymotif( "Telekinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
@@ -1711,7 +1711,7 @@ void session612IndexToTrollAncestor(Player player, index){
 		player.chatHandle = "twinArmageddons";
 		player.quirk.suffix = "";
 		player.quirk.prefix = "";
-		var f = new Fraymotif( "Telekinisis", 1);
+		var f = new Fraymotif( "Telekinesis", 1);
 		f.effects.add(new FraymotifEffect(Stats.POWER,2,true));
 		f.desc = " Large objects begin pelting the ENEMY. ";
 		player.fraymotifs.add(f);
