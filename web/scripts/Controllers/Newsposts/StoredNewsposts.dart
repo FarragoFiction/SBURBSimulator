@@ -14,6 +14,7 @@ class Newspost
     if(SimController.shogun) Newspost.shogun = true;
 
     List<Newspost> ret = [
+      new Newspost("1/12/18","The POPULAR VOTE for the Shogun v JR contest will be taking place on the discord shortly. And of course, the Discord END OF YEAR 1 VOICE CHAT will happen tomorrow, as well. "),
       new Newspost("1/11/18","The WigglerSim runs screaming towards completion while the Shogun v JR competition begins it's final stages. Who is that asshole, anyways?"),
       new Newspost("1/3/18","Typos and small bug fixes continue, while most of my efforts are going towards the WigglerSim. I expect to start work on the NPC update on 1/13/18."),
       new Newspost("12/31/17","Between IRL shit and the <a href = 'http://www.farragofiction.com/DollSim'>DollSim</a> getting a shit ton of parts from IO/Popo-Merrygamz, WigglerSim is going slower than I wanted (which itself delays the NPC update). My goal at this point is to have it v1 complete by 1/13, which coincidentally is SBURBSim's 1 year anniversary. (That being the day I had a complete sim with a begining, middle and end, but before I was advertising it or had newsposts). <Br><Br>We will be doing a huge Discord voice chat, just like we did for the Great Refactoring that day, 4pm EST. <a href = 'https://www.timeanddate.com/countdown/to?iso=20180113T16&p0=403&msg=SBURBSIM+VOICE+CHAT+2&font=hand'>Check out This Countdown Clock</a><br><br>We'll have a 'future of the sim' address, and then a Q&A section. "),
