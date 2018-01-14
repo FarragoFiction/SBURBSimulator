@@ -228,6 +228,7 @@ dynamic loadOther(String skipInit){
 	loadImage("rage_forehead.png",skipInit);
 	loadImage("heart_forehead.png",skipInit);
 	loadImage("ab.png",skipInit);
+	loadImage("shogun.png",skipInit);
 	loadImage("grimdark.png",skipInit);
   loadImage("squiddles_chaos.png",skipInit); //re load
 	loadImage("fin1.png",skipInit);  //re load

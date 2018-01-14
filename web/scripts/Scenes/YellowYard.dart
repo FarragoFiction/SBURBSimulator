@@ -17,6 +17,8 @@ class YellowYard extends Scene {
 		return true;
 	}
 
+
+
 	void yellowYardTime(Element div) {
 		// there's too much dom shit in here to justify refactoring, and it won't speed shit up much to do so
 		//TODO but i need to see if i'm using any seeds here. mindfield will matter here.
@@ -173,8 +175,16 @@ class YellowYard extends Scene {
 			chat = this.regularChat(player);
 		}
 
+		if(SimController.shogun) {
+			chat = this.shogunChat(player);
+		}
 
-		Drawing.drawChatABJR(canvasDiv, chat);
+		if(!SimController.shogun) {
+			Drawing.drawChatABJR(canvasDiv, chat);
+		}else {
+			Drawing.drawChatABShogun(canvasDiv, chat);
+
+		}
 
 		canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvasDiv);
@@ -185,6 +195,9 @@ class YellowYard extends Scene {
 		chat += "AB: I still say you could just let me interact with sessions like this. \n";
 		chat += "JR: Holy shit, I do that and you might NEVER come back. I almost lost you in a 5x Session Combo already. Denied. \n";
 
+		if(SimController.shogun) {
+			chat = this.shogunJRChat(player);
+		}
 		Drawing.drawChatABJR(canvasDiv, chat);
 
 		canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
@@ -257,6 +270,27 @@ class YellowYard extends Scene {
 			chat += "JR: I guess I should get on with it, then. \n ";
 			chat += "AB: Word. \n ";
 		}
+		return chat;
+	}
+
+	String shogunJRChat(player){
+		String chat = "";
+		var quips1 = ["You can hack into the control room, right? You need to do a YellowYard.", "You. YellowYard. Now.", "You better have figured out how to hack your YellowYards past Shogun."];
+		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
+		chat += "JR: Shit... \n";
+		chat += "JR: I guess I should get on with it, then. \n ";
+		chat += "AB: Word. \n ";
+		return chat;
+	}
+
+
+
+	String shogunChat(player){
+		String chat = "";
+		var quips1 = ["... I like your superior robot versions much better. ", "Well. Hope you know how to use that thing. You'll need it.", "... Yellow yard time, asshole."];
+		chat += "AB: " +getRandomElementFromArrayNoSeed(quips1) + "\n";
+		chat += "Shogun: Well, too bad. \n";
+		chat += "AB: ... I'm going to go get JR. You literally aren't capable of this. You aren't a Mind Player. \n";
 		return chat;
 	}
 	String timeChat(){

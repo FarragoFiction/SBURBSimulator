@@ -1123,6 +1123,13 @@ abstract class Drawing {
         drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering jadedResearcher" + " [JR] --", "ab.png", "jr.png", "AB:", "JR:", "#ff0000", "#3da35a");
     }
 
+    static void drawChatABShogun(CanvasElement canvas, String chat) {
+        if (checkSimMode() == true) {
+            return;
+        }
+        drawChatNonPlayer(canvas, chat, "-- authorBot [AB] began pestering ....Who the Fuck is This Asshole???" + " [Shogun] --", "ab.png", "shogun.png", "AB:", "Shogun:", "#ff0000", "#00ff00");
+    }
+
 
     static void drawChatJRAB(CanvasElement canvas, String chat) {
         if (checkSimMode() == true) {
