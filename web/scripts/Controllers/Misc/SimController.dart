@@ -15,7 +15,7 @@ import "../../navbar.dart";
 //ABController inherits from Story Controller and only changes what she must.
 //care about other controllers later.
 abstract class SimController {
-    static bool shogun = false;  //sim goes into shogun mode
+    static bool shogun = true;  //sim goes into shogun mode
 
     Element storyElement;
     Element voidStory;
