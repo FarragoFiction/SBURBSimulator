@@ -25,6 +25,8 @@
       <a href="character_viewer.html">Fan OCs</a>
       <a href="image_browser.html?fanArt=true">Fan Art</a>
       <a href = 'http://farragofiction.com/DollSim/'> Doll Maker</a>
+      <a href = 'http://farragofiction.com/WigglerSim/'> Wiggler Sim</a>
+
       <a href="ocGenerator.html">Random OC Generator</a>
       <a href="ocQuiz.html">Your Story</a>
       <a href="credits.html">Special Thanks</a>
@@ -51,6 +53,8 @@
     <div class="dropdown-content">
       <a href="index_pw.html">[???]</a>
       <a target = "_blank" href="land_of_rods_and_screens.html">The Land of Rods and Screens</a>
+      <a href="index_shogun.html">Who is Shogun???</a>
+
 
     </div>
   </li>
