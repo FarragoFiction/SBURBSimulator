@@ -7,7 +7,7 @@ class Newspost
   String post;
   static bool shogun = false; //memes man.
   Newspost(this.date, this.post) {
-     if(shogun) post = "Who is Shogun???";
+     if(shogun) post = "Who is Shogun??? <div class ='strikethroughStuff'>$post</a>";
   }
 
   static List<Newspost> makeAuthorNewsposts() {
