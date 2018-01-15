@@ -26,7 +26,16 @@ main() {
     self.initial_seed = tmp;
   }
   self.formInit();
+  if(SimController.shogun) doShogun();
+
 }
+
+
+void doShogun() {
+  (querySelector("#avatar") as ImageElement).src = "images/ABJ_burn.png";
+
+}
+
 
 void checkSessionsJunior() {
   self.checkSessions();
