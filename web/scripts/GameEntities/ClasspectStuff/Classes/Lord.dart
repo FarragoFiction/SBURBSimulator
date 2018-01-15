@@ -31,6 +31,8 @@ class Lord extends SBURBClass {
     bool isDestructive = true;
     @override
     bool isHelpful = false;
+    WeightedList<Item> duttonItems = new WeightedList<Item>();
+
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
@@ -47,7 +49,10 @@ class Lord extends SBURBClass {
 
     @override
     void initializeItems() {
+        duttonItems.add((new Item("Dream Bubbles Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK, ItemTraitFactory.DUTTON])));
+
         items = new WeightedList<Item>()
+
             ..add(new Item("Uno Reverse Card",<ItemTrait>[ItemTraitFactory.CARD, ItemTraitFactory.PLYWOOD, ItemTraitFactory.CLASSY],shogunDesc: "Shoguns Card",abDesc:"Some kind of memey bullshit."))
             ..add(new Item("Lord's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],shogunDesc: "Shoguns Cape",abDesc:"Lord Shit"))
             ..add(new Item("Drawing Tablet",<ItemTrait>[ItemTraitFactory.SMARTPHONE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],shogunDesc: "Shitpost Etching Table",abDesc:"Have fun drawing grids."))
@@ -136,10 +141,29 @@ class Lord extends SBURBClass {
             ..addFeature(new PostDenizenQuestChain("Conquer Everything", [
                 new Quest("As soon as the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s disolve into civil wars and infighting. It will take a strong leader to unite the land, and the ${Quest.PLAYER1} is up to the task.  "),
                 new Quest("The ${Quest.PLAYER1} has subjugated/assimilated about half of the ${Quest.CONSORT} factions, at this point. They are surprisingly good at following commands, and everything is running with clock work efficiencey."),
-                new Quest("The final ${Quest.CONSORT} commander surrenders. the ${Quest.PLAYER1} controls everything now. They are the Lord of all they survey. ")
+                new Quest("The final ${Quest.CONSORT} commander surrenders. The ${Quest.PLAYER1} controls everything now. They are the Lord of all they survey. ")
             ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
 
+            ,  Theme.MEDIUM);
+
+        addTheme(new Theme(<String>["Dutton", "Charles","Fathers","Prophets","Dew"])
+            ..addFeature(FeatureFactory.DUTTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+
+            ..addFeature(new PostDenizenFrogChain("Command Minions to Breed Frogs", [
+                new Quest("The ${Quest.DENIZEN} has been subjugated, their hoard of frogs released. Across the land castles and dungeons suddenly are accessible, and filled with croaking. The ${Quest.PLAYER1} comands that the ${Quest.CONSORT}s collect the frogs in the name of Lord Dutton. The ${Quest.CONSORT}s agree with confused, yet enthusiastic ${Quest.CONSORTSOUND}s. "),
+                new Quest("The ${Quest.CONSORT}s hit buttons on the ectobiology machine at random. The ${Quest.PLAYER1} sits back and enjoys a tropical drink. The frogs will be ready eventually. "),
+                new Quest("A ${Quest.CONSORT} minion has finally found the final frog. The ${Quest.PLAYER1} rewards them, and punishes everyone else for failing. "),
+            ], new FrogReward(), QuestChainFeature.spacePlayer), Feature.WAY_HIGH)
+
+            ..addFeature(new PostDenizenQuestChain("Praise Dutton", [
+                new Quest("As soon as the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s disolve into chaotic shitposting. It will take a strong leader and a glorious Cult to unite the land, and the ${Quest.PLAYER1} and their fervant belief in Lord Dutton is up to the task.  "),
+                new Quest("The ${Quest.PLAYER1} has spread the word of Lord Charles Dutton to about half of the ${Quest.CONSORT} factions, at this point. The Cult of Dutton unites the chaotic shitposting landscape."),
+                new Quest("The final ${Quest.CONSORT} shitposter surrenders. The ${Quest.PLAYER1} controls everything now. They are the Lord of all they survey. ")
+            ], new ItemReward(duttonItems), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 
