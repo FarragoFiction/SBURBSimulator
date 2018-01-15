@@ -150,6 +150,28 @@ class DeadSession extends Session {
             ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
             ,  Theme.SUPERHIGH);
 
+        addTheme(new Theme(<String>["Dutton", "Charles","Fathers","Prophets","Dew"])
+            ..addFeature(FeatureFactory.DUTTLECONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.CONTEMPLATATIVEFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)
+            ..addFeature(FeatureFactory.CALMFEELING, Feature.MEDIUM)
+            ..addFeature(rand.pickFrom(boringBullshit), Feature.WAY_HIGH)
+            ..addFeature(victoryLap, Feature.WAY_HIGH)
+            ..addFeature(new DenizenQuestChain("Shun the False Prophets", [
+                new Quest("The ${Quest.PLAYER1} listens with increasing confusion as it is explained to them that each planet has a hidden Correct Dutton Statue that must be found among all the FALSE PROPHETS. Can ${Quest.PLAYER1} Spot the Difference? Once found, they must then positioned such that all Statues's lasers in the session are arranged to make the Face of Dutton. Should any laser be misaligned, all Dutton Statues will explode."),
+                new FailableQuest("${metaPlayer.chatHandle} breaks the ${Quest.PLAYER1} concentration just to ask them about B List Celebrities. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} carefully scrutinizes yet another Dutton Statue. Yes. That is the proper shape of the brow. It is the Correct Dutton Statue.", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions.", oddsOfSuccess),
+                new FailableQuest("That nose is unmistakable. The ${Quest.PLAYER1} has found another Correct Dutton Statue. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} has begun to hallucinate that maybe Charles Dutton is their own Father. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} ALMOST selects a FALSE PROPHET, but at the last moment notices the lack of PATERNAL TWINKLE in the statue's eyes. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} dreams often of Charles Dutton. It is increasingly easy to find him among the FALSE PROPHETs.", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions. They weep at the loss of all the Duttons.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} curses their lack of true resemblence to Charles Dutton. Every feature is even further from the first Son of Skaia than the FALSE PROPHETS are.  ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions. They weep at the loss of all the Duttons.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} alchemizes a DUTTON MASK to wear in private. They must hide their hideous visage. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions. They weep at the loss of all the Duttons.", oddsOfSuccess),
+                new FailableQuest("With a heavy sigh, the ${Quest.PLAYER1} aligns the Correct Dutton statue on this planet. They know it won't be long yet, and wonder if they will be able to handle having no more PATERNAL PRESENCE when they leave. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue. There are explosions. They weep at the loss of all the Duttons.", oddsOfSuccess),
+                new FailableQuest("The ${Quest.PLAYER1} aligns the final Correct Dutton Statue. The Medium lights up with a laser light show of Dutton and Dutton's acomplishments. A water mark of Dutton's face appears in the ${Quest.PLAYER1}'s vision, never to leave. They weep tears of joy to know they will never be without their Father again. ", "The ${Quest.PLAYER1} is careless and misaligns a Dutton Statue at the last minute. There are explosions. They weep at the loss of all the Duttons.", oddsOfSuccess),
+            ], new Reward(), QuestChainFeature.defaultOption), Feature.WAY_HIGH)
+            , Theme.SUPERHIGH);
+
         addTheme(new Theme(<String>["Minesweeper", "Minefields"])
             ..addFeature(FeatureFactory.ROBOTCONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.HIGH)

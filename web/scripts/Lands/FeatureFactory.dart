@@ -16,6 +16,7 @@ class FeatureFactory {
     //TODO also have skeletal versions of some consorts. not a flag, say Salamander, cuz is different and doesn't preclude living salamanders
     static ConsortFeature SALAMANDERCONSORT;
     static ConsortFeature CROCODILECONSORT;
+    static ConsortFeature DUTTLECONSORT;
     static ConsortFeature IGUANACONSORT;
     static ConsortFeature TURTLECONSORT;
     static ConsortFeature CHAMELEONCONSORT;
@@ -115,6 +116,7 @@ class FeatureFactory {
 
 
     static void initializeConsorts() {
+        DUTTLECONSORT = new ConsortFeature("Duttle", "Dut");
         SALAMANDERCONSORT = new ConsortFeature("Salamander", "GLUB");
         CROCODILECONSORT = new ConsortFeature("Crocodile", "NAK");
         IGUANACONSORT = new ConsortFeature("Iguana", "thip");
