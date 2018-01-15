@@ -21,6 +21,7 @@ class SessionSummary {
     bool scratched = false;
     num frogLevel = 0;
     List<Player> ghosts = <Player>[];
+    String metaPlayer;
 
     //the two hashes are for big masses of stats this.i just blindly print to screen.
     Map<String, bool> bool_stats = <String, bool>{}; //most things
@@ -232,6 +233,7 @@ class SessionSummary {
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
         html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Grist Level of: ${this.mvp.grist}";
+
         html = "$html<Br><b>Frog Level</b>: ${this.frogLevel} (${this.frogStatus})";
         html = "$html${generateNumHTML()}";
         html = "$html${generateBoolHTML()}";

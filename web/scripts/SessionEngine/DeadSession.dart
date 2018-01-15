@@ -292,6 +292,7 @@ class DeadSession extends Session {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
                 metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
 
@@ -299,6 +300,7 @@ class DeadSession extends Session {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
                 metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
 
@@ -306,8 +308,13 @@ class DeadSession extends Session {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
                 metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
+
+        players[0].relationships.add(new Relationship(players[0], -999, metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
+        metaPlayer.relationships.add(new Relationship(metaPlayer, -999, players[0])); //if you need to talk to anyone, talk to metaplayer.
+
 
     }
 
