@@ -62,6 +62,9 @@ class DeadSession extends Session {
     //http://www.mspaintadventures.com/?s=6&p=007682  thanks to nobody for finding this page for me to be inspired by
     //Also, since I KNOW this will be called post initialization, I can reference the meta player directly.
     void makeBoringBullshit() {
+        WeightedList<Item> duttonItems = new WeightedList<Item>();
+        duttonItems.add((new Item("Dream Bubbles Book",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.CLASSY, ItemTraitFactory.BOOK, ItemTraitFactory.DUTTON])));
+
         boringBullshit = new List<QuestChainFeature>()
         ..add(new PreDenizenQuestChain("Find Bullshit Keys", <Quest>[
             new Quest("The ${Quest.PLAYER1} discovers a mysterious console with several key holes. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedious, STUPID quest."),
@@ -72,6 +75,17 @@ class DeadSession extends Session {
             new Quest("The ${Quest.PLAYER1} finds another key. Wait. No, it turns out it's somehow just a SCULPTURE of a key.  It doesn't fit in the godamned console. "),
             new Quest("Wait.  What? Really!  It's the final bullshit key! Holy fuck!  The ${Quest.PLAYER1} activates the console. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE pointless bullshit quests.")
         ], new Reward(), QuestChainFeature.defaultOption))
+        ..add(new PreDenizenQuestChain("Worship Dutton", <Quest>[
+            new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a keyboard. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they can pass the world's most detailed TRIVIA QUIZ on none other than actor and prophect, Charles Dutton."),
+            new Quest("The ${Quest.PLAYER1} learns that Charles Dutton is the First Son of Skaia. "),
+            new Quest("Huh apparently Charles Dutton is somebody named 'Andrew Hussie''s father? The ${Quest.PLAYER1} memorizes this."),
+            new Quest("The ${Quest.PLAYER1} learns that Charles Dutton played a role in 'Aliens 3'. "),
+            new Quest("The ${Quest.PLAYER1} learns that Charles Dutton once killed a man. "),
+            new Quest("Charles Dutton is the world's foremost Prophet. The ${Quest.PLAYER1} wishes they had a copy of their famous 'Dream Bubbles' book. "),
+            new Quest("'Oh, that this too too solid flesh would melt, thaw and resolve itself into a dew!'. The ${Quest.PLAYER1} is deeply moved by Charles Dutton's words. "),
+            new Quest("The ${Quest.PLAYER1} learns that Charles Dutton is associated with the meta player, noBody? "),
+            new Quest("The ${Quest.PLAYER1} has nothing left to learn. They activates the console, and easily pass the Trivia Challenge. There is an ominous rumbling, and several mini planets are unlocked.  ${metaPlayer.chatHandle} enjoys a hearty round of gigglesnort at the fact that the reward is to do MORE semi-pointless quests.")
+        ], new  ItemReward(duttonItems), QuestChainFeature.defaultOption))
         ..add(new PreDenizenQuestChain("Count Bullshit Bugs", <Quest>[
             new Quest("The ${Quest.PLAYER1} discovers a mysterious console with a keypad. That asshole, ${metaPlayer.chatHandle} taunts the ${Quest.PLAYER1} with how they can't progress until they finish this boring, tedious, STUPID quest."),
             new Quest("The ${Quest.PLAYER1} finds another bug."),

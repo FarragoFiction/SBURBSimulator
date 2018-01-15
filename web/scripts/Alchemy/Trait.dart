@@ -180,6 +180,7 @@ class ItemTraitFactory {
 
   //these would be "color" i guess? material it's made of?
   static ItemAppearanceTrait METAL;
+  static ItemAppearanceTrait DUTTON;
   static ItemAppearanceTrait CLAWS;
   static ItemAppearanceTrait CERAMIC;
   static ItemAppearanceTrait BONE;
@@ -1322,6 +1323,7 @@ class ItemTraitFactory {
 
   static void initAppearances() {
     METAL = new ItemAppearanceTrait(<String>["metal"], 0.3,ItemTrait.MATERIAL);
+    DUTTON = new ItemAppearanceTrait(<String>["dutton"], 0.6,ItemTrait.ORIGIN);
     CERAMIC = new ItemAppearanceTrait(<String>["ceramic"], -0.3,ItemTrait.MATERIAL);
     BONE = new ItemAppearanceTrait(<String>["bone"], 0.2,ItemTrait.MATERIAL);
     WOOD = new ItemAppearanceTrait(<String>["wood"], -0.3,ItemTrait.MATERIAL);
