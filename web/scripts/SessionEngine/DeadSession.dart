@@ -286,6 +286,29 @@ class DeadSession extends Session {
         chosenThemesForDeadSession[deadTheme] = themes[deadTheme];
         print("making a dead land. with themes: ${chosenThemesForDeadSession}");
         players[0].land = new Land.fromWeightedThemes(chosenThemesForDeadSession, this, players[0].aspect,players[0].class_name);
+
+        //check to see if it's dutton related.
+        for(QuestChainFeature q in players[0].land.firstQuests) {
+            if(q.name.contains("Dutton")) {
+                logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
+                metaPlayer = mutator.metaHandler.nobody;
+            }
+        }
+
+        for(QuestChainFeature q in players[0].land.secondQuests) {
+            if(q.name.contains("Dutton")) {
+                logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
+                metaPlayer = mutator.metaHandler.nobody;
+            }
+        }
+
+        for(QuestChainFeature q in players[0].land.thirdQuests) {
+            if(q.name.contains("Dutton")) {
+                logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
+                metaPlayer = mutator.metaHandler.nobody;
+            }
+        }
+
     }
 
     @override
