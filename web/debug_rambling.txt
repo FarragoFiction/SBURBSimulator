@@ -4295,6 +4295,92 @@ I can't get too bogged down by the first and ignore the second.
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It's been a month.
+
+WigglerSim had me.
+
+Now I need to sit down and SOLIDLY think about the npc update.
+
+First thing: reread manic's npc doc. Where did it go?
+
+Oh shit, manic made that ALL THE WAY IN AUGUST. Why does it take me so long to code??? Gotta go faster.
+
+
+
+Summary:
+
+Activated agents are like WV in that they can do shit on their own without a player.
+This will be in the Shenanigans update. (god i literally forgot WV was in this sim).
+
+Agent quests are based on their stats (specifically sanity???)
+
+Agents can spontaneously party up with a player.
+
+Some of the stuff, like sabatoging land quests doesn't apply anymore. Hrrrm.
+
+most of midnight crew is shenanigans. reviewing ut not planning it yet.
+
+BEHOLD MY ROBES
+ is going to be the meat of this one i think.
+
+
+
+ "Consort assistants can show up at any time, one per player. They are guaranteed to show up for Pages. "
+ definitely redoing since the new quest mechanic is a thing.
+
+ I think I want to have RANDOM quest rewards possible, like a new category that can give you a fraymotif, item OR npc companion.
+ time to start a trello cat.
+
+consort categories are great.
+
+"In other news, Hope players can have imaginary friends who function exactly the same as a consort Assistant, except they have different flavor text. ""
+hell yes.
+
+
+
+then a bunch of shenanigans
+then a bunch of horrorterror stuff that would ALSO make for great shenanigans.
+
+alright. i think i have a solid bead on how i want to do the npc companion foundation.
+
+EXCEPT: I need to have a list of all active NPCS, not just ones that are shoved into a player's inventory.
+
+
+SO.
+
+How to do this? Part of this will be in the shenanigans update, but I want to have the foundation right.
+
+I definitely want a folder of NPC Scenes.
+
+I know I have an NPCHandler object? What's that all about?
+
+Oh shit i already have a whole folder for "NPCEngine.". ....Cool. pastJR does it again.
+
+    Session session;
+    GameEntity king = null;
+    GameEntity queen = null;
+    GameEntity jack = null;
+    GameEntity queensRing = null; //eventually have white and black ones.
+    GameEntity kingsScepter = null;
+    GameEntity democraticArmy = null;
+
+
+    Can have a list of "active npcs" as well.
+
+
+
+    Once it's time for shenanigans, though, how do I associate an npc with quest lines?
+
+    Should it be attached to the npc itself? A scene they create that gets added to the npc scenes?
+    the way jack and wv add scenes right now?
+
+    which is another good point, need list of npc scenes attached to session.
+
+
+
+
 
 
 
