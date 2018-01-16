@@ -136,6 +136,34 @@ class BattlefieldReward extends Reward {
 }
 
 
+class ConsortReward extends Reward {
+    @override
+    String image = "Rewards/sweetFriendship.png";
+    WeightedList<Item> items;
+
+    ConsortReward();
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        Consort template = land.consortFeature.makeConsort(p1.session);
+        Consort c = Consort.npcForPlayer(template, p1); //will handle picking a title out.
+        String text = " The ${Reward.PLAYER1} finds a ${c.sound}ing ${c.name}. They adopt it as their child.";
+        p1.companions.add(c);
+        if(p2 != null && p2 is Player) {
+            Player p2Player = p2 as Player;
+            Consort c2 = Consort.npcForPlayer(template, p2);
+            p2Player.companions.add(c);
+            text += "The ${Reward.PLAYER2} finds a ${c.name} as well.";
+            text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
+        }
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        super.apply(div, p1, p2, land, text);
+        super.apply(div, p1, p2, land,text);
+    }
+}
+
+
+
 class ItemReward extends Reward {
     @override
     String image = "Rewards/sweetTreasure.png";

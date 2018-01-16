@@ -17,6 +17,8 @@ class Player extends GameEntity{
     Sylladex sylladex = null;
     @override
     num grist = 0; // players do not spawn with grist
+    //1/16/18 let's fucking do this. npc update go.
+    List<NPC> companions = new List<NPC>();
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.

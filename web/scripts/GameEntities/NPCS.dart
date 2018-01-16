@@ -36,12 +36,36 @@ class Underling extends NPC {
 
 //naknaknaknaknaknak my comments are talking to me!
 class Consort extends NPC {
-    /// what are these consorts called?
-    String name;
+
     ///what sound do these consorts make?
     String sound;
     Consort(String name, Session session) : super(name, session);
-    Consort.withSound(String name, Session session,  this.sound): super(name, session);
+    Consort.withSound(String name, Session session,  this.sound): super(name, session){
+       // print("making consort named $name and sound $sound");
+    }
+
+    //takes in a player and randomly generates a consort with a special title just for them.
+    static Consort npcForPlayer(Consort template, Player p) {
+        print(template.name);
+        Consort companion = new Consort.withSound(template.name, template.session, template.sound);
+        companion.stats.copyFrom(p.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+        Random rand = new Random(); //so i can have a random divisor.
+        rand.nextInt(); //init
+        for (Stat stat in allStats) {
+            int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
+            companion.addStat(stat, -1*companion.getStat(stat)/divisor); //weaker
+        }
+        companion.setTitleBasedOnStats();
+        return companion;
+    }
+
+    void setTitleBasedOnStats() {
+        String title = "Placeholder TODO";
+        name = "$title $name";
+    }
+
+
 }
 
 //denizens are spawned with innate knowledge of a personal fraymotif.
