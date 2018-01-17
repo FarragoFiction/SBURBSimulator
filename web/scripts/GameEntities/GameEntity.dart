@@ -67,6 +67,31 @@ class GameEntity extends Object with StatOwner   {
     static void resetNextIdTo(int val) {
         _nextID = val;
     }
+
+    String get debugStats {
+        String ret = "";
+        for(Stat s in stats) {
+            ret += "${s.name}: ${stats.getBase(s).round()},";
+        }
+        return ret;
+    }
+
+    Stat get highestStat {
+        Stat ret = stats.first;
+        for(Stat s in stats) {
+            //stats.getBase lets you get raw value, not multiplieid
+            if(stats.getBase(s) > stats.getBase(ret)) ret = s;
+        }
+        return ret;
+    }
+
+    Stat get lowestStat {
+        Stat ret = stats.first;
+        for(Stat s in stats) {
+            if(stats.getBase(s) < stats.getBase(ret)) ret = s;
+        }
+        return ret;
+    }
     
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.

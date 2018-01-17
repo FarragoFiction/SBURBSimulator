@@ -54,15 +54,19 @@ class Consort extends NPC {
         rand.nextInt(); //init
         for (Stat stat in allStats) {
             int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
-            companion.addStat(stat, -1*companion.getStat(stat)/divisor); //weaker
+            companion.setStat(stat, companion.getStat(stat)/divisor); //weaker
         }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.stats.getBase(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         return companion;
     }
 
     void setTitleBasedOnStats() {
         String title = "Placeholder TODO";
-        name = "$title $name";
+        //if stats high enough, add "Secret"
+        String bonus = "";
+
+        name = "$bonus $title ${highestStat} ${lowestStat} $name";
     }
 
 

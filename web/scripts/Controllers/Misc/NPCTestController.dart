@@ -8,7 +8,8 @@ Element storyDiv;
 main() {
     globalInit();
     storyDiv = querySelector("#story");
-    curSessionGlobalVar = new Session(int.parse(todayToSession()));
+    //curSessionGlobalVar = new Session(int.parse(todayToSession()));
+    curSessionGlobalVar = new Session(getRandomSeed());
     curSessionGlobalVar.makePlayers();
     curSessionGlobalVar.randomizeEntryOrder();
 
@@ -22,7 +23,7 @@ main() {
     Consort c2 = Consort.npcForPlayer(template, p);
     Consort c3 = Consort.npcForPlayer(template, p);
 
-    storyDiv.appendHtml("${p.htmlTitleBasicWithTip()} has land ${p.land} which has consorts ${p.land.consortFeature} and party members ${c1.name}, ${c2.name}, and ${c3.name}. They say ${c1.sound}.");
+    appendHtml(storyDiv, "${p.htmlTitleBasicWithTip()}  has land ${p.land} which has consorts ${p.land.consortFeature} <br><br>and party members ${c1.name},<br><br> ${c2.name}, and<br><br> ${c3.name}.<br><br> They say ${c1.sound}.");
 
 
 }
