@@ -156,7 +156,7 @@ class ConsortReward extends Reward {
             text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
         }
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
-        super.apply(div, p1, p2, land, text);
+        p1.session.logger.info("AB: Consort reward.");
         super.apply(div, p1, p2, land,text);
     }
 }

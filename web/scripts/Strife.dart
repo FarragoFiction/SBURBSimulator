@@ -286,12 +286,25 @@ class Team implements Comparable<Team> {
     String name = "";
     bool canAbscond = true; //sometimes you are forced to keep fighting.
     Team.withName(this.name, this.session, this.members){
+        getCompanionsForMembers();
         resetFraymotifsForMembers();
     }
 
     Team(this.session, this.members) {
         name = "The ${GameEntity.getEntitiesNames(members)}";
+        getCompanionsForMembers();
         resetFraymotifsForMembers(); //usable on team creation
+    }
+
+    void getCompanionsForMembers() {
+        session.logger.info("AB: getting companions for members");
+        List<GameEntity> toAdd = new List<GameEntity>(); //don't add shit to an array while you loop on it, dunkass.
+        for(GameEntity g in members) {
+            for(GameEntity companion in g.companions) {
+                if(companion.dead == false) toAdd.add(companion);
+            }
+        }
+        members.addAll(toAdd);
     }
 
 

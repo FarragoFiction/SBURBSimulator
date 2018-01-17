@@ -49,7 +49,7 @@ class Social extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} finds a help wanted sign near a strange booth. Apparently the local ${Quest.CONSORT}s are in need of a therapist? The ${Quest.PLAYER1} decides to try it out! "),
                 new Quest("Huh, somehow all the ${Quest.CONSORT}'s problems end up being about childhood trauma involving ${Quest.MCGUFFIN} or ${Quest.PHYSICALMCGUFFIN}.  The ${Quest.PLAYER1} is getting really good at helping them out. "),
                 new Quest("A line of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT} extends out to the horizon. The ${Quest.PLAYER1} is the most popular therapist on the planet! ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ConsortReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Meditation","Chants","Worship","Altars","Hymns", "Chapels", "Priests", "Angels", "Religion"])
@@ -64,7 +64,7 @@ class Social extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} wanders into an incredibly calm area of their land. It is filled with chanting and ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently they are monks contemplating the vastness of the Vast Croak. The ${Quest.PLAYER1} joins them. "),
                 new Quest("While meditating with the ${Quest.CONSORT} monks, the ${Quest.PLAYER1} has come to a startling realization, the vast croak is related to ${Quest.MCGUFFIN}-ness. How could they miss this?"),
                 new Quest(" The ${Quest.PLAYER1} begins telling all the ${Quest.CONSORT} monks about how ${Quest.MCGUFFIN}-ness relates to the Vast Croak. The monks begin ${Quest.CONSORTSOUND}ing in amazement, this could revolutionize Frogism for generations!")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new ConsortReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

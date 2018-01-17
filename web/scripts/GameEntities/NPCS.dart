@@ -50,7 +50,7 @@ class Consort extends NPC {
 
     //takes in a player and randomly generates a consort with a special title just for them.
     static Consort npcForPlayer(Consort template, Player p) {
-        print(template.name);
+        //print(template.name);
         Consort companion = new Consort.withSound(template.name, template.session, template.sound);
         companion.stats.copyFrom(p.stats); //mirror image for now.
         Iterable<Stat> allStats = Stats.all;
