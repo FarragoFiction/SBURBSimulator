@@ -93,8 +93,14 @@ class QuestsAndStuff extends Scene {
             //session.logger.info("Team up!");
         }
 
-        if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .75) {
+
+        //prefer to use sprite if sprite exists.
+        if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .5) {
             helper = player.sprite;
+        }
+
+        if(helper == null && player.companions.isNotEmpty) {
+            helper = rand.pickFrom(player.companions);
         }
         return new QuestingParty(session, player, helper);
     }
