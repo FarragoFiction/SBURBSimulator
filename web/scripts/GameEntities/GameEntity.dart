@@ -81,7 +81,7 @@ class GameEntity extends Object with StatOwner   {
         for(Stat s in stats) {
             //stats.getBase lets you get raw value, not multiplieid
             if(s != Stats.CURRENT_HEALTH && getStat(s)/s.coefficient > getStat(ret)/ret.coefficient) {
-                print("$s ${getStat(s)/s.coefficient} is higher than ${getStat(ret)/ret.coefficient}");
+                //print("$s ${getStat(s)/s.coefficient} is higher than ${getStat(ret)/ret.coefficient}");
                 ret = s;
             }
         }

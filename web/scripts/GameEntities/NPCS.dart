@@ -67,7 +67,7 @@ class Consort extends NPC {
             }
         }
 
-        print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         return companion;
