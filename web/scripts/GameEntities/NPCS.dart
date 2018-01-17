@@ -61,7 +61,7 @@ class Consort extends NPC {
                 int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
                 companion.setStat(stat, companion.getStat(stat) / divisor); //weaker
             }else {
-                companion.setStat(stat, companion.getStat(1); //basically nothing
+                companion.setStat(stat, 1); //basically nothing
 
             }
         }
@@ -72,67 +72,180 @@ class Consort extends NPC {
 
     static void initTitles() {
         //Map<Stat, Map<Stat, String>> first map is high stats.
-        //Free Will, Maximum Luck, Minimum Luck, Alchemy, SBURB Lore
-        Map<Stat, String> lowPower = new Map<Stat, String>();
-        Map<Stat, String> lowHealth = new Map<Stat, String>();
-        Map<Stat, String> lowCurrentHealth = new Map<Stat, String>();
-        Map<Stat, String> lowMobility = new Map<Stat, String>();
-        Map<Stat, String> lowSanity = new Map<Stat, String>();
-        Map<Stat, String> lowRelationships = new Map<Stat, String>();
-        Map<Stat, String> lowWill = new Map<Stat, String>();
-        Map<Stat, String> lowMinLuck = new Map<Stat, String>();
-        Map<Stat, String> lowMaxLuck = new Map<Stat, String>();
-        Map<Stat, String> lowAlchemy = new Map<Stat, String>();
-        Map<Stat, String> lowLore = new Map<Stat, String>();
+        initHighPower();
+        initHighAlchemy();
+        initHighFreeWill();
+        initHighHealth();
+        initHighLore();
+        initHighMaxLuck();
+        initHighMinLuck();
+        initHighMobility();
+        initHighRelationships();
+        initHighSanity();
     }
 
     static void initHighPower() {
         Map<Stat, String> ret = new Map<Stat, String>();
-        ret[Stats.POWER] = "";
-        ret[Stats.HEALTH] = "";
-        ret[Stats.CURRENT_HEALTH] = "";
-        ret[Stats.MOBILITY] = "";
-        ret[Stats.SANITY] = "";
-        ret[Stats.RELATIONSHIPS] = "";
-        ret[Stats.FREE_WILL] = "";
-        ret[Stats.MIN_LUCK] = "";
-        ret[Stats.MAX_LUCK] = "";
-        ret[Stats.ALCHEMY] = "";
-        ret[Stats.SBURB_LORE] = "";
+        ret[Stats.POWER] = "Anomaly";
+        ret[Stats.HEALTH] = "Wizard";
+        ret[Stats.CURRENT_HEALTH] = "Wizard";
+        ret[Stats.MOBILITY] = "Tank";
+        ret[Stats.SANITY] = "Beserker";
+        ret[Stats.RELATIONSHIPS] = "Asshole";
+        ret[Stats.FREE_WILL] = "Thrall";
+        ret[Stats.MIN_LUCK] = "Minion";
+        ret[Stats.MAX_LUCK] = "Rogue";
+        ret[Stats.ALCHEMY] = "Brute";
+        ret[Stats.SBURB_LORE] = "Apprentice";
         _titles[Stats.POWER] = ret;
     }
 
     static void initHighHealth() {
         Map<Stat, String> ret = new Map<Stat, String>();
-        ret[Stats.POWER] = "";
-        ret[Stats.HEALTH] = "";
-        ret[Stats.CURRENT_HEALTH] = "";
-        ret[Stats.MOBILITY] = "";
-        ret[Stats.SANITY] = "";
-        ret[Stats.RELATIONSHIPS] = "";
-        ret[Stats.FREE_WILL] = "";
-        ret[Stats.MIN_LUCK] = "";
-        ret[Stats.MAX_LUCK] = "";
-        ret[Stats.ALCHEMY] = "";
-        ret[Stats.SBURB_LORE] = "";
+        ret[Stats.POWER] = "Questant";
+        ret[Stats.HEALTH] = "Anomoly";
+        ret[Stats.CURRENT_HEALTH] = "Anomoly";
+        ret[Stats.MOBILITY] = "Guardian";
+        ret[Stats.SANITY] = "Black Knight";
+        ret[Stats.RELATIONSHIPS] = "Warrior";
+        ret[Stats.FREE_WILL] = "Hero";
+        ret[Stats.MIN_LUCK] = "Soldier";
+        ret[Stats.MAX_LUCK] = "Champion";
+        ret[Stats.ALCHEMY] = "Swordsman";
+        ret[Stats.SBURB_LORE] = "Fighter";
         _titles[Stats.HEALTH] = ret;
         _titles[Stats.CURRENT_HEALTH] = ret;
     }
 
     static void initHighMobility() {
         Map<Stat, String> ret = new Map<Stat, String>();
-        ret[Stats.POWER] = "";
-        ret[Stats.HEALTH] = "";
-        ret[Stats.CURRENT_HEALTH] = "";
-        ret[Stats.MOBILITY] = "";
-        ret[Stats.SANITY] = "";
+        ret[Stats.POWER] = "Scout";
+        ret[Stats.HEALTH] = "Ranger";
+        ret[Stats.CURRENT_HEALTH] = "Ranger";
+        ret[Stats.MOBILITY] = "Anomoly";
+        ret[Stats.SANITY] = "Archer";
+        ret[Stats.RELATIONSHIPS] = "Sniper";
+        ret[Stats.FREE_WILL] = "Ninja";
+        ret[Stats.MIN_LUCK] = "Hunter";
+        ret[Stats.MAX_LUCK] = "Harvester";
+        ret[Stats.ALCHEMY] = "Pirate";
+        ret[Stats.SBURB_LORE] = "Racer";
+        _titles[Stats.MOBILITY] = ret;
+    }
+
+    static void initHighSanity() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Monk";
+        ret[Stats.HEALTH] = "Nun";
+        ret[Stats.CURRENT_HEALTH] = "Nun";
+        ret[Stats.MOBILITY] = "Sherpa";
+        ret[Stats.SANITY] = "Anomoly";
+        ret[Stats.RELATIONSHIPS] = "Warrior of Justice";
+        ret[Stats.FREE_WILL] = "Paladin";
+        ret[Stats.MIN_LUCK] = "Realist";
+        ret[Stats.MAX_LUCK] = "Pessimist";
+        ret[Stats.ALCHEMY] = "Librarian";
+        ret[Stats.SBURB_LORE] = "Novelist";
+        _titles[Stats.SANITY] = ret;
+    }
+
+    static void initHighRelationships() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Protagonist";
+        ret[Stats.HEALTH] = "Friend";
+        ret[Stats.CURRENT_HEALTH] = "Friend";
+        ret[Stats.MOBILITY] = "VIP";
+        ret[Stats.SANITY] = "Superstar";
+        ret[Stats.RELATIONSHIPS] = "Anomoly";
+        ret[Stats.FREE_WILL] = "Celebrity";
+        ret[Stats.MIN_LUCK] = "Leech";
+        ret[Stats.MAX_LUCK] = "ingenue";
+        ret[Stats.ALCHEMY] = "Ditz";
+        ret[Stats.SBURB_LORE] = "Vassal";
+        _titles[Stats.RELATIONSHIPS] = ret;
+    }
+
+    static void initHighFreeWill() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Acolyte";
+        ret[Stats.HEALTH] = "Patient";
+        ret[Stats.CURRENT_HEALTH] = "Patient";
+        ret[Stats.MOBILITY] = "Brother"; //lil brudder says 'i can do it on my own'.
+        ret[Stats.SANITY] = "Con Artist";
         ret[Stats.RELATIONSHIPS] = "";
-        ret[Stats.FREE_WILL] = "";
-        ret[Stats.MIN_LUCK] = "";
-        ret[Stats.MAX_LUCK] = "";
-        ret[Stats.ALCHEMY] = "";
-        ret[Stats.SBURB_LORE] = "";
-        _titles[Stats.POWER] = ret;
+        ret[Stats.FREE_WILL] = "Anomoly";
+        ret[Stats.MIN_LUCK] = "Dragoon";
+        ret[Stats.MAX_LUCK] = "Paladin";
+        ret[Stats.ALCHEMY] = "Student";
+        ret[Stats.SBURB_LORE] = "Charlatan";
+        _titles[Stats.FREE_WILL] = ret;
+    }
+
+    static void initHighMinLuck() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Cursed Swordsman";
+        ret[Stats.HEALTH] = "Bard";
+        ret[Stats.CURRENT_HEALTH] = "Bard";
+        ret[Stats.MOBILITY] = "Farmer";
+        ret[Stats.SANITY] = "Atrocity";
+        ret[Stats.RELATIONSHIPS] = "Jerk";
+        ret[Stats.FREE_WILL] = "Fool of Fate";
+        ret[Stats.MIN_LUCK] = "Anomoly";
+        ret[Stats.MAX_LUCK] = "Mirror"; //they invert how it should be
+        ret[Stats.ALCHEMY] = "Idiot";
+        ret[Stats.SBURB_LORE] = "Villager";
+        _titles[Stats.MIN_LUCK] = ret;
+    }
+
+    static void initHighMaxLuck() {
+        //all the low stats
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Sailor";
+        ret[Stats.HEALTH] = "Rogue";
+        ret[Stats.CURRENT_HEALTH] = "Rogue";
+        ret[Stats.MOBILITY] = "Gem";
+        ret[Stats.SANITY] = "Celebrity";
+        ret[Stats.RELATIONSHIPS] = "Bastard";
+        ret[Stats.FREE_WILL] = "Debutante";
+        ret[Stats.MIN_LUCK] = "Jester";
+        ret[Stats.MAX_LUCK] = "Anomoly";
+        ret[Stats.ALCHEMY] = "Clown";
+        ret[Stats.SBURB_LORE] = "Fool";
+        _titles[Stats.MAX_LUCK] = ret;
+    }
+
+    static void initHighAlchemy() {
+        //all the low stats
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Prodigy";
+        ret[Stats.HEALTH] = "Genius";
+        ret[Stats.CURRENT_HEALTH] = "Scientist";
+        ret[Stats.MOBILITY] = "Blacksmith";
+        ret[Stats.SANITY] = "Spark";
+        ret[Stats.RELATIONSHIPS] = "Engineer";
+        ret[Stats.FREE_WILL] = "Automaton";
+        ret[Stats.MIN_LUCK] = "Apprentice";
+        ret[Stats.MAX_LUCK] = "Disaster";
+        ret[Stats.ALCHEMY] = "Anomoly";
+        ret[Stats.SBURB_LORE] = "Alchemist";
+        _titles[Stats.ALCHEMY] = ret;
+    }
+
+    static void initHighLore() {
+        //all the low stats
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "Academic";
+        ret[Stats.HEALTH] = "Priest";
+        ret[Stats.CURRENT_HEALTH] = "Priest";
+        ret[Stats.MOBILITY] = "Librarian";
+        ret[Stats.SANITY] = "Sorcerer";
+        ret[Stats.RELATIONSHIPS] = "Magician";
+        ret[Stats.FREE_WILL] = "Druid";
+        ret[Stats.MIN_LUCK] = "Warlock";
+        ret[Stats.MAX_LUCK] = "Wizard";
+        ret[Stats.ALCHEMY] = "Mage";
+        ret[Stats.SBURB_LORE] = "Anomoly";
+        _titles[Stats.SBURB_LORE] = ret;
     }
 
 
@@ -140,11 +253,16 @@ class Consort extends NPC {
         if(_titles.isEmpty) initTitles();
         //need to have default values too, if you can't find shit (i.e. new stats)
 
-        String title = "Placeholder TODO";
+        String title = "Null";
         String bonus = "";
+        if(_titles.containsKey(highestStat)) {
+            if(_titles[highestStat].containsKey(lowestStat)) {
+                title = _titles[highestStat][lowestStat];
+            }
+        }
         if(session.rand.nextDouble() > .9) bonus = "Secret";
 
-        name = "$bonus $title ${highestStat} ${lowestStat} $name";
+        name = "$bonus $name $title ${highestStat} ${lowestStat} ";
     }
 
 
