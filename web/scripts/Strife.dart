@@ -220,6 +220,7 @@ class Strife {
         List<GameEntity> members = findMembersOfDenizenFight();
         Denizen denizen = members[0];
         Player player = members[1];
+        player.makeAlive();
         appendHtml(div, "<Br><Br>" + denizen.name + " decides that the " +
             player.htmlTitleBasic() +
             " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +
@@ -297,11 +298,13 @@ class Team implements Comparable<Team> {
     }
 
     void getCompanionsForMembers() {
-        session.logger.info("AB: getting companions for members");
         List<GameEntity> toAdd = new List<GameEntity>(); //don't add shit to an array while you loop on it, dunkass.
         for(GameEntity g in members) {
             for(GameEntity companion in g.companions) {
-                if(companion.dead == false) toAdd.add(companion);
+                if(companion.dead == false) {
+                    session.logger.info("AB: getting companions for members in a strife");
+                    toAdd.add(companion);
+                }
             }
         }
         members.addAll(toAdd);
