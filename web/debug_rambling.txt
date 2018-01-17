@@ -4394,6 +4394,19 @@ map of maps.
 first map is highest stat.  contains a map of all the lowest stats and the titles they have.
 
 
+~~~~~~
+
+hrrrm....
+
+where do i keep pages from working without a helper in this new system?
+
+ah there we go
+
+createQuestingParty
+
+so it will auto work to let companions help pages out. yes. good.
+
+
 
 
 

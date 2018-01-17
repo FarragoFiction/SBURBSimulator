@@ -134,6 +134,9 @@ class QuestsAndStuff extends Scene {
         if(helper != null) {
             if(helper is Sprite) {
                 helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}<br><br>";
+            }else if(helper is Consort){
+                session.logger.info("AB: consort helper.");
+                helperText = "$helperText The ${helper.htmlTitle()} is ${(helper as Consort).sound}ing. It's somehow helpful. ";
             }else {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
