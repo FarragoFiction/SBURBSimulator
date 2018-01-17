@@ -23,7 +23,16 @@ main() {
     Consort c2 = Consort.npcForPlayer(template, p);
     Consort c3 = Consort.npcForPlayer(template, p);
 
-    appendHtml(storyDiv, "${p.htmlTitleBasicWithTip()} ${p.stats}  has land ${p.land} which has consorts ${p.land.consortFeature} <br><br>and party members ${c1.name},<br><br> ${c2.name}, and<br><br> ${c3.name}.<br><br> They say ${c1.sound}.");
+    for(Player p in curSessionGlobalVar.players) {
+        p.initialize();
+        Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
+        print("template is ${template.name}");
 
+        appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} ${p.highestStat} ${p.lowestStat}  has land ${p.land}");
+        for(int i = 0; i<3; i++) {
+            Consort c = Consort.npcForPlayer(template, p);
+            appendHtml(storyDiv, "<br><Br>${c.name} ");
+        }
+    }
 
 }

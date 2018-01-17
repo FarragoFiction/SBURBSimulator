@@ -34,7 +34,6 @@ class Reward {
             Drawing.drawSinglePlayer(buffer2, p2);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, buffer2, 150,0);
         }
-
     }
 }
 

@@ -56,16 +56,19 @@ class Consort extends NPC {
         Iterable<Stat> allStats = Stats.all;
         Random rand = new Random(); //so i can have a random divisor.
         rand.nextInt(); //init
+
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.GRIST) {
                 int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
-                companion.setStat(stat, companion.getStat(stat) / divisor); //weaker
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //weaker
             }else {
                 companion.setStat(stat, 1); //basically nothing
 
             }
         }
-        companion.setStat(Stats.CURRENT_HEALTH, companion.stats.getBase(Stats.HEALTH));
+
+        print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         return companion;
     }
@@ -262,7 +265,7 @@ class Consort extends NPC {
         }
         if(session.rand.nextDouble() > .9) bonus = "Secret";
 
-        name = "$bonus $name $title ${highestStat} ${lowestStat} ";
+        name = "$bonus $name $title";
     }
 
 
