@@ -39,6 +39,10 @@ class Consort extends NPC {
 
     ///what sound do these consorts make?
     String sound;
+
+    //first look up highest stat, then lowest stat to find out what this consort's title is.
+    static Map<Stat, Map<Stat, String>> _titles = new Map<Stat, Map<Stat, String>>();
+
     Consort(String name, Session session) : super(name, session);
     Consort.withSound(String name, Session session,  this.sound): super(name, session){
        // print("making consort named $name and sound $sound");
@@ -53,18 +57,92 @@ class Consort extends NPC {
         Random rand = new Random(); //so i can have a random divisor.
         rand.nextInt(); //init
         for (Stat stat in allStats) {
-            int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
-            companion.setStat(stat, companion.getStat(stat)/divisor); //weaker
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST) {
+                int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
+                companion.setStat(stat, companion.getStat(stat) / divisor); //weaker
+            }else {
+                companion.setStat(stat, companion.getStat(1); //basically nothing
+
+            }
         }
         companion.setStat(Stats.CURRENT_HEALTH, companion.stats.getBase(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         return companion;
     }
 
+    static void initTitles() {
+        //Map<Stat, Map<Stat, String>> first map is high stats.
+        //Free Will, Maximum Luck, Minimum Luck, Alchemy, SBURB Lore
+        Map<Stat, String> lowPower = new Map<Stat, String>();
+        Map<Stat, String> lowHealth = new Map<Stat, String>();
+        Map<Stat, String> lowCurrentHealth = new Map<Stat, String>();
+        Map<Stat, String> lowMobility = new Map<Stat, String>();
+        Map<Stat, String> lowSanity = new Map<Stat, String>();
+        Map<Stat, String> lowRelationships = new Map<Stat, String>();
+        Map<Stat, String> lowWill = new Map<Stat, String>();
+        Map<Stat, String> lowMinLuck = new Map<Stat, String>();
+        Map<Stat, String> lowMaxLuck = new Map<Stat, String>();
+        Map<Stat, String> lowAlchemy = new Map<Stat, String>();
+        Map<Stat, String> lowLore = new Map<Stat, String>();
+    }
+
+    static void initHighPower() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "";
+        ret[Stats.HEALTH] = "";
+        ret[Stats.CURRENT_HEALTH] = "";
+        ret[Stats.MOBILITY] = "";
+        ret[Stats.SANITY] = "";
+        ret[Stats.RELATIONSHIPS] = "";
+        ret[Stats.FREE_WILL] = "";
+        ret[Stats.MIN_LUCK] = "";
+        ret[Stats.MAX_LUCK] = "";
+        ret[Stats.ALCHEMY] = "";
+        ret[Stats.SBURB_LORE] = "";
+        _titles[Stats.POWER] = ret;
+    }
+
+    static void initHighHealth() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "";
+        ret[Stats.HEALTH] = "";
+        ret[Stats.CURRENT_HEALTH] = "";
+        ret[Stats.MOBILITY] = "";
+        ret[Stats.SANITY] = "";
+        ret[Stats.RELATIONSHIPS] = "";
+        ret[Stats.FREE_WILL] = "";
+        ret[Stats.MIN_LUCK] = "";
+        ret[Stats.MAX_LUCK] = "";
+        ret[Stats.ALCHEMY] = "";
+        ret[Stats.SBURB_LORE] = "";
+        _titles[Stats.HEALTH] = ret;
+        _titles[Stats.CURRENT_HEALTH] = ret;
+    }
+
+    static void initHighMobility() {
+        Map<Stat, String> ret = new Map<Stat, String>();
+        ret[Stats.POWER] = "";
+        ret[Stats.HEALTH] = "";
+        ret[Stats.CURRENT_HEALTH] = "";
+        ret[Stats.MOBILITY] = "";
+        ret[Stats.SANITY] = "";
+        ret[Stats.RELATIONSHIPS] = "";
+        ret[Stats.FREE_WILL] = "";
+        ret[Stats.MIN_LUCK] = "";
+        ret[Stats.MAX_LUCK] = "";
+        ret[Stats.ALCHEMY] = "";
+        ret[Stats.SBURB_LORE] = "";
+        _titles[Stats.POWER] = ret;
+    }
+
+
     void setTitleBasedOnStats() {
+        if(_titles.isEmpty) initTitles();
+        //need to have default values too, if you can't find shit (i.e. new stats)
+
         String title = "Placeholder TODO";
-        //if stats high enough, add "Secret"
         String bonus = "";
+        if(session.rand.nextDouble() > .9) bonus = "Secret";
 
         name = "$bonus $title ${highestStat} ${lowestStat} $name";
     }

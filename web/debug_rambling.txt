@@ -4379,7 +4379,19 @@ Oh shit i already have a whole folder for "NPCEngine.". ....Cool. pastJR does it
     which is another good point, need list of npc scenes attached to session.
 
 
+~~~~~~~
 
+Okay i want to have the title system manic worked out expanded to care about high stat AND low stat.
+
+That basically means you find the consort's title in a 2 dimensional matrix.
+
+one axis is high stat name and one axis is low stat name
+
+how to code this? maps? stat to name?
+
+map of maps.
+
+first map is highest stat.  contains a map of all the lowest stats and the titles they have.
 
 
 
