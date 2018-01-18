@@ -45,7 +45,7 @@ class CarapaceFeature extends ConsortFeature {
     CarapaceFeature(String name, String sound): super(name, sound);
 
     Carapace makeCarapace(Session s) {
-        return new Carapace(name, s);
+        return new Carapace(name, s, "???"); //TODO figure out what to do here.
     }
 
     //passed in specific can have 'ands' in the middle

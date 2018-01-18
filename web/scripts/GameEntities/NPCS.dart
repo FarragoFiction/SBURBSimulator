@@ -10,7 +10,36 @@ class NPC extends GameEntity {
 
 //carapaces are the only things that can be crowned and have it give anything but fraymotifs.
 class Carapace extends NPC {
-    Carapace(String name, Session session) : super(name, session);
+    static String PROSPIT = "prospit";
+    static String DERSE = "derse";
+
+    List<String> firstNames;
+    List<String> lastNames;
+    List<String> ringFirstNames;
+    List<String> ringLastNames;
+    //TODO do things with this
+    List<Scene> scenesForPlayers;
+    List<Scene> scenesForNPCS;
+    String type;
+
+
+    Carapace(String name, Session session, String this.type, {this.firstNames: null, this.lastNames: null, this.ringFirstNames: null, this.ringLastNames: null, this.scenesForPlayers: null, this.scenesForNPCS: null}) : super(name, session) {
+        if(firstNames == null) firstNames = <String>[];
+        if(lastNames == null) lastNames = <String>[];
+        if(ringFirstNames == null) ringFirstNames = new List<String>.from(firstNames);
+        if(ringLastNames == null) ringLastNames = new List<String>.from(lastNames);
+        if(scenesForNPCS == null) scenesForNPCS = <Scene>[];
+        if(scenesForPlayers == null) scenesForPlayers = <Scene>[];
+        if(name == null) pickName(); //if you already have a name, don't pick one.
+    }
+
+    void pickName() {
+        if(crowned != null) {
+            name = "${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
+        }else {
+            name = "${session.rand.pickFrom(firstNames)} ${session.rand.pickFrom(lastNames)}";
+        }
+    }
 
     @override
     StatHolder createHolder() => new CarapaceStatHolder(this);

@@ -23,6 +23,11 @@ class NPCHandler
     }
 
     void setupNpcs() {
+        //for now, leave jack where he is and just have a second copy of him here. deal with it.
+        //not gonna rip out existing 'shenannigans' system till i have a new one in place
+        //TODO eventually the carapaces have a scene attached to them that they either add
+        //TODO to the npc or player scene list when activated, or a companions
+        //TODO jacks' replacement stabs scene will be able to stab any player OR npc, full on strife
         initMidnightCrew();
         initrandomDersites();
         initrandomProspitians();
@@ -30,10 +35,63 @@ class NPCHandler
     }
 
     void initMidnightCrew() {
+        //print ("initializing midnight crew");
+        midnightCrew.add(new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Seven"], lastNames: <String>["Slick", "Shanks","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign"], ringLastNames: <String>["Slayer"])
+        ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY])
+        ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
+        );
+
+        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Courtyard","Clubs","Curious"], lastNames: <String>["Deuce","Droll","Dabbler"], ringFirstNames: <String>["Crowned","Capering","Chaotic"], ringLastNames: <String>["Destroyer","Demigod"])
+            ..specibus = new Specibus("Bomb", ItemTraitFactory.GRENADE, [ ItemTraitFactory.EXPLODEY])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
+        );
+
+        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Diamonds","Draconian","Dignified"], lastNames: <String>["Droog","Dignitary","Diplomat"], ringFirstNames: <String>["Dashing","Dartabout","Derelict"], ringLastNames: <String>["Destroyer","Demigod"])
+            ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.EDGED, ItemTraitFactory.CLASSY])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 100, Stats.SANITY: 500, Stats.HEALTH: 20, Stats.FREE_WILL: 0, Stats.POWER: 20})
+        );
+
+        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Hearts","Hegemonic","Horse"], lastNames: <String>["Brute","Boxcar","Bartender"], ringFirstNames: <String>["Hero-killing","Hateful"], ringLastNames: <String>["Beast","Bastard"])
+            ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.BLUNT])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: 0, Stats.HEALTH: 500, Stats.FREE_WILL: 0, Stats.POWER: 500})
+        );
+
+        /*
+        midnightCrew.add(new Carapace(null, session, firstNames: <String>[], lastNames: <String>[], ringFirstNames: <String>[], ringLastNames: <String>[])
+        ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY])
+        ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
+        );
+         */
+
 
     }
 
     void initSunshineTeam() {
+
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Problem","Paramount","Patriotic"], lastNames: <String>["Sleuth","Secretary","Steward"], ringFirstNames: <String>["Paragon","Promised"], ringLastNames: <String>["Sherrif","Savior"])
+            ..specibus = new Specibus("Tommy gun", ItemTraitFactory.MACHINEGUN, [ ItemTraitFactory.SHOOTY])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: 200, Stats.POWER: 15})
+        );
+
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Persistent","Pickle","Persnickety"], lastNames: <String>["Inspector","Innovator","Investegator"], ringFirstNames: <String>["Patient","Peaceful"], ringLastNames: <String>["Idol"])
+            ..specibus = new Specibus("Handgun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.SHOOTY])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: 100, Stats.HEALTH: 1, Stats.FREE_WILL: 500, Stats.POWER: 1})
+        );
+
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Ace","Audacious","Asshole"], lastNames: <String>["Detective","Dwarf","Dick"], ringFirstNames: <String>["Ascended"], ringLastNames: <String>["Demon","Destroyer"])
+            ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.BLUNT])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 100, Stats.FREE_WILL: 100, Stats.POWER: 100})
+        );
+
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Hysterical","Haunting","Honored"], lastNames: <String>["Dame","Dancer","Debutante"], ringFirstNames: <String>["Hazardous"], ringLastNames: <String>["Demoness"])
+            ..specibus = new Specibus("Lipstick Chainsaw", ItemTraitFactory.CHAINSAW, [ ItemTraitFactory.EDGED])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
+        );
+
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Nervous","Naive","Nice"], lastNames: <String>["Broad","Bird","Bartender"], ringFirstNames: <String>["Notorious","Never-ending"], ringLastNames: <String>["Bard","Bloodshed"])
+            ..specibus = new Specibus("Flamethrower", ItemTraitFactory.PISTOL, [ ItemTraitFactory.ONFIRE])
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 1, Stats.FREE_WILL: 100, Stats.POWER: 1})
+        );
 
     }
 
@@ -51,7 +109,7 @@ class NPCHandler
         ret .addAll(sunshineTeam);
         ret .addAll(randomDersites);
         ret .addAll(randomProspitians);
-
+        return ret;
     }
 
 
@@ -65,7 +123,7 @@ class NPCHandler
         f.desc = " You cannot escape them. ";
         this.queensRing.fraymotifs.add(f);
 
-        this.queen = new Carapace("Black Queen", session);
+        this.queen = new Carapace("Black Queen", session,Carapace.DERSE);
         this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
         this.queen.crowned = this.queensRing;
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
@@ -80,7 +138,7 @@ class NPCHandler
         f.desc = " The very meteors from the Reckoning rain down. ";
         this.kingsScepter.fraymotifs.add(f);
 
-        this.king = new Carapace("Black King", session);
+        this.king = new Carapace("Black King", session,Carapace.DERSE);
         this.queen.specibus = new Specibus("Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
 
         this.king.crowned = this.kingsScepter;
@@ -92,7 +150,7 @@ class NPCHandler
 
     void spawnJack() {
         if(session.mutator.spawnJack(session)) return null;
-        this.jack = new Carapace("Jack", session);
+        this.jack = new Carapace("Jack", session,Carapace.DERSE);
         this.jack.specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY]);
 
         //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
@@ -106,7 +164,7 @@ class NPCHandler
 
     void spawnDemocraticArmy() {
         if(session.mutator.spawnDemocraticArmy(session)) return null;
-        this.democraticArmy = new Carapace("Democratic Army", session); //doesn't actually exist till WV does his thing.
+        this.democraticArmy = new Carapace("Democratic Army", session,Carapace.DERSE); //doesn't actually exist till WV does his thing.
         Fraymotif f = new Fraymotif("Democracy Charge", 2);
         f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
         f.desc = " The people have chosen to Rise Up against their oppressors. ";

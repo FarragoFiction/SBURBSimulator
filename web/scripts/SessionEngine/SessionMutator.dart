@@ -92,7 +92,7 @@ class SessionMutator {
         s.npcHandler.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", s);
         //The joke is that the hope player read the Enquiring Carapacian after some other player published the false story
         //you know, the one about the queen secretly being 3 salamanders in a robe.
-        s.npcHandler.queen = new Carapace("Three Salamanders In a Robe", s);
+        s.npcHandler.queen = new Carapace("Three Salamanders In a Robe", s,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
@@ -106,7 +106,7 @@ class SessionMutator {
         if (!hopeField) return false;
         session.npcHandler.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", session);
         //if the queen is 3, the king is more.
-        session.npcHandler.king = new Carapace("13 Salamanders In a Robe", session);
+        session.npcHandler.king = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
@@ -119,7 +119,7 @@ class SessionMutator {
 
     bool spawnJack(Session session) {
         if (!hopeField) return false;
-        session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session);
+        session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session,Carapace.DERSE);
         //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
         session.npcHandler.jack.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: -500, Stats.SANITY: -10000, Stats.HEALTH: 5, Stats.FREE_WILL: -100, Stats.POWER: 5});
         Fraymotif f = new Fraymotif("Stupid Dance", 1);
@@ -132,7 +132,7 @@ class SessionMutator {
 
     bool spawnDemocraticArmy(Session session) {
         if (!hopeField) return false;
-        session.npcHandler.democraticArmy = new Carapace("Democratic Army", session); //doesn't actually exist till WV does his thing.
+        session.npcHandler.democraticArmy = new Carapace("Democratic Army", session,Carapace.DERSE); //doesn't actually exist till WV does his thing.
         Fraymotif f = new Fraymotif("Democracy Charge MAXIMUM HOPE", 2);
         f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
         f.desc = " The people have chosen to Rise Up against their oppressors, with the players as their symbol of HOPE. ";

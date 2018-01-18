@@ -19,6 +19,9 @@ main() {
     p.initialize();
     Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
 
+    appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.npcHandler.allNPCS} ");
+
+
     for(Player p in curSessionGlobalVar.players) {
         p.initialize();
         Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
