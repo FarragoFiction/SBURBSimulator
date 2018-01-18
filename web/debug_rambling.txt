@@ -4394,19 +4394,92 @@ map of maps.
 first map is highest stat.  contains a map of all the lowest stats and the titles they have.
 
 
-~~~~~~
+~~~~~~~
 
-hrrrm....
+Alright consorts were finished in two days.
 
-where do i keep pages from working without a helper in this new system?
+What to do now about carapaces?
 
-ah there we go
+Carapaces aren't as random. Instead, CD is always going to be CD, he just might be Clubs Deuce
+or Capering Destroyer or Courtyard Droll.
 
-createQuestingParty
+So Carapaces have an array of first names, an array of last names, and then an array of
+RINGED first names and RINGED last names.
 
-so it will auto work to let companions help pages out. yes. good.
+CD will always act like CD. That's just how it works.
+
+So, what carapaces are there? (check glitch faq as well)
+
+Jack (goes by Jack Noir unless something changes)
+CD
+HB
+DD
+PM
+WV
+AR
+JS (jazz singer)
+RB  (royal baker)
+
+Royalty: go by special names unless something changes
+WQ
+WK
+BQ
+BK
+
+
+So immediately it shakes out that if I pass a carapace a specific name
+it will use that name unless something changes in which case it rerolls it's name.
 
 
 
+alright i've got the discord brainstorming carapaces for me. Now what.
 
+Well, the obvious next route is to figure out how these carapaces get created.
+
+Things like the Midnight Crew are special and canon.
+
+Same with the Problem Sleuth team.
+
+So NPCHandler can have 4 arrays:
+
+Special Dersites
+Rando Dersites
+Special Prospitians
+Rando Prospitians.
+
+The carapces in general will be harder though.
+
+manic's 'active' system is especially important.
+
+Hrrrrrm.......
+
+I almost CAN'T do carapaces without at least thinking through shenanigans a bit. since carapaces have teams and shit.
+
+OR would things like that be in scenes.
+
+oh man "pose as a team" would be such a good scene to have, triggers if entire team is active.
+
+
+Alright.
+
+Without going into details, I want to spend 5 minutes (fuck i don't have my watch, whatever) 5 minutes
+thinking about use cases for the Shenanigans update in relation to carapaces.
+
+Existing shenanigans include: Depowering the Royalty (WV), Depowering the Black Queen in particular (Jack).
+
+New:
+
+Mail Quests for PM will give players random items (not related to their classpects).
+Misc Quests (baking, singing, painting, etc) will give stat bonuses? (multiple of the same scene?, just diff flavor text set)
+Rebel
+
+Midnight Crew Quests: Weaken Black Queen
+Problem Sleuth Quests: Strengthen White Royalty?
+
+Do Crime Quests:   Weaken Associated Royalty
+Solve Crime Quests: Strenthen Associated Royalty
+
+
+Alright, the temptation is to leave carapaces entirely till i'm ready for shenangians, but that's not
+gonna happen over night. Get them existing first.
 

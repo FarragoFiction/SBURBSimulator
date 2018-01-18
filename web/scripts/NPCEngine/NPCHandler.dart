@@ -11,10 +11,47 @@ class NPCHandler
     GameEntity kingsScepter = null;
     GameEntity democraticArmy = null;
 
-    NPCHandler(this.session);
+    List<GameEntity> midnightCrew = new List<GameEntity>();
+    List<GameEntity> sunshineTeam = new List<GameEntity>();
+    List<GameEntity> randomDersites = new List<GameEntity>();
+    List<GameEntity> randomProspitians = new List<GameEntity>();
+
+
+
+    NPCHandler(this.session) {
+        setupNpcs();
+    }
+
+    void setupNpcs() {
+        initMidnightCrew();
+        initrandomDersites();
+        initrandomProspitians();
+        initSunshineTeam();
+    }
+
+    void initMidnightCrew() {
+
+    }
+
+    void initSunshineTeam() {
+
+    }
+
+    void initrandomDersites() {
+
+    }
+
+    void initrandomProspitians() {
+
+    }
 
     List<GameEntity> get allNPCS {
-        return <GameEntity>[jack, king, queen, democraticArmy];
+        List<GameEntity> ret =  <GameEntity>[jack, king, queen, democraticArmy];
+        ret .addAll(midnightCrew);
+        ret .addAll(sunshineTeam);
+        ret .addAll(randomDersites);
+        ret .addAll(randomProspitians);
+
     }
 
 
