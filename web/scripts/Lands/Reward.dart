@@ -436,7 +436,7 @@ class DreamReward extends Reward {
     }
 
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
-        //p1.session.logger.info("prospit reward");
+        p1.session.logger.info("prospit reward");
         bgImage = "Prospit.png";
 
         //TODO if they join your party, that's fine
@@ -452,7 +452,9 @@ class DreamReward extends Reward {
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
-            text += "A ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            String a  = "A";
+            if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
+            text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
             p1.companions.add(companion);
         }
 
@@ -468,7 +470,7 @@ class DreamReward extends Reward {
     }
 
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
-       // p1.session.logger.info("derse reward");
+        p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
         Carapace companion;
         if(p1.session.rand.nextBool()) {
@@ -481,7 +483,9 @@ class DreamReward extends Reward {
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {
-            text += "A ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            String a  = "A";
+            if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An"; //look at me, doing grammar
+            text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
             p1.companions.add(companion);
         }
         p1.corruptionLevelOther ++; //just a bit.
