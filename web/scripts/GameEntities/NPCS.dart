@@ -83,12 +83,10 @@ class Consort extends NPC {
         Consort companion = new Consort.withSound(template.name, template.session, template.sound);
         companion.stats.copyFrom(p.stats); //mirror image for now.
         Iterable<Stat> allStats = Stats.all;
-        Random rand = new Random(); //so i can have a random divisor.
-        rand.nextInt(); //init
 
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.GRIST) {
-                int divisor = rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
+                int divisor = companion.session.rand.nextIntRange(2, 13); //can't be above half as strong as the player in any stat
                 companion.setStat(stat, companion.stats.getBase(stat) / divisor); //weaker
             }else {
                 companion.setStat(stat, 1); //basically nothing
@@ -99,6 +97,10 @@ class Consort extends NPC {
         //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         companion.setTitleBasedOnStats();
+        List<Specibus> possibleSpecibi = new List<Specibus>();
+        possibleSpecibi.add( new Specibus("Stethoscope", ItemTraitFactory.BUST, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
+
+        companion.specibus = companion.session.rand.pickFrom(possibleSpecibi);
         return companion;
     }
 

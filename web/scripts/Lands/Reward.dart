@@ -438,7 +438,25 @@ class DreamReward extends Reward {
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
         //p1.session.logger.info("prospit reward");
         bgImage = "Prospit.png";
-        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians.";
+
+        //TODO if they join your party, that's fine
+        //but if they start up a SHENANIGAN we'll want custom text here.
+        Carapace companion;
+        if(p1.session.rand.nextBool()) {
+            companion = p1.session.rand.pickFrom(p1.session.npcHandler.sunshineTeam);
+            p1.session.npcHandler.sunshineTeam.remove(companion);
+        }else {
+            companion = p1.session.rand.pickFrom(p1.session.npcHandler.randomProspitians);
+            p1.session.npcHandler.randomProspitians.remove(companion);
+        }
+
+        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
+        if(companion != null) {
+            text += "A ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            p1.companions.add(companion);
+        }
+
+
         p1.addStat(Stats.SANITY, -1); //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
@@ -452,7 +470,20 @@ class DreamReward extends Reward {
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
        // p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
-        String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites.";
+        Carapace companion;
+        if(p1.session.rand.nextBool()) {
+            companion = p1.session.rand.pickFrom(p1.session.npcHandler.midnightCrew);
+            p1.session.npcHandler.midnightCrew.remove(companion);
+        }else {
+            companion = p1.session.rand.pickFrom(p1.session.npcHandler.randomDersites);
+            p1.session.npcHandler.randomDersites.remove(companion);
+        }
+
+        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
+        if(companion != null) {
+            text += "A ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            p1.companions.add(companion);
+        }
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;

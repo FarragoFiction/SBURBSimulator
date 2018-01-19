@@ -11,10 +11,10 @@ class NPCHandler
     GameEntity kingsScepter = null;
     GameEntity democraticArmy = null;
 
-    List<GameEntity> midnightCrew = new List<GameEntity>();
-    List<GameEntity> sunshineTeam = new List<GameEntity>();
-    List<GameEntity> randomDersites = new List<GameEntity>();
-    List<GameEntity> randomProspitians = new List<GameEntity>();
+    List<Carapace> midnightCrew = new List<Carapace>();
+    List<Carapace> sunshineTeam = new List<Carapace>();
+    List<Carapace> randomDersites = new List<Carapace>();
+    List<Carapace> randomProspitians = new List<Carapace>();
 
 
 
@@ -36,7 +36,7 @@ class NPCHandler
 
     void initMidnightCrew() {
         //print ("initializing midnight crew");
-        midnightCrew.add(new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Seven"], lastNames: <String>["Slick", "Shanks","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign"], ringLastNames: <String>["Slayer"])
+        midnightCrew.add(new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Seven"], lastNames: <String>["Slick", "Shanks","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign", "Seven"], ringLastNames: <String>["Slayer", "Shanks"])
         ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY])
         ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
         );
@@ -142,7 +142,7 @@ class NPCHandler
         );
 
         //GN	Cooking	garrulous Nutritionist, gourmet Noodle, gourmand Nibbler,	Gluttonous Newt	Derse
-        randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Garrulous","Gourmet","Gourmand"], lastNames: <String>["Nutritionist","Noodle","Nibbler"], ringFirstNames: <String>["Gluttonous"], ringLastNames: <String>["Newt"])
+        randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Gooby","Garrulous","Gourmet","Gourmand"], lastNames: <String>["Nutritionist","Noodle","Nibbler"], ringFirstNames: <String>["Gluttonous"], ringLastNames: <String>["Newt"])
             ..specibus = new Specibus("Salad Fork", ItemTraitFactory.FORK, [ ItemTraitFactory.POINTY, ItemTraitFactory.METAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
@@ -207,7 +207,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
         //YD	Healing	yogistic doctor, yelling doomsayer, yard dark	yahzerit dacnomaniac	Prospit
-        randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Yogistic","Yard","Yelling"], lastNames: <String>["Dark","Doctor","Investigator"], ringFirstNames: <String>["Doomsayer"], ringLastNames: <String>["Dacnomaniac"])
+        randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Yogistic","Yard","Yelling"], lastNames: <String>["Dark","Doctor","Dentist"], ringFirstNames: <String>["Doomsayer"], ringLastNames: <String>["Dacnomaniac"])
             ..specibus = new Specibus("Stethoscope", ItemTraitFactory.BUST, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
