@@ -189,6 +189,8 @@ class Quirk {
             }
             ret= ret.replaceAll(new RegExp(this.lettersToReplaceIgnoreCase[i][0], caseSensitive: false),replace);
         }
+
+        //ret= ret.replaceAll(new RegExp("B", caseSensitive: false),"[B]");
         return ret;
     }
 	String handlePunctuation(String input){
@@ -566,6 +568,9 @@ List<String> getOneRandomReplaceArray(Random rand){
     arr.add(["c","s"]);
     arr.add(["per","purr"]);
     arr.add(["mu","mew"]);
+    arr.add(["b","[B]"]);
+    arr.add(["B","[B]"]);
+
 
     if(rand.nextDouble() > .5){
         return rand.pickFrom(arr);
