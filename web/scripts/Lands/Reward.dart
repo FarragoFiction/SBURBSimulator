@@ -51,7 +51,30 @@ class RandomReward extends Reward {
         //companions only care if brain ghost (50% chance )or leprechaun (100% chance lords only get leprechauns)
 
         //add each reward type with weight from class + aspect. item, fraymotif, companion.
+        List items;
+        if(land.thirdCompleted) {
+            items = p1.class_name.items;
+        }else if(land.secondCompleted) {
+            items = p1.aspect.items;
+        }else {
+            items = p1.interest1.category.items;
+            items.addAll(p1.interest2.category.items);
+        }
+        options.add(new ItemReward(items), p1.class_name.itemWeight + p1.aspect.itemWeight);
+        options.add(new FraymotifReward(), p1.class_name.fraymotifWeight + p1.aspect.fraymotifWeight);
 
+        if(p1.class_name == SBURBClassManager.LORD)
+        {
+            options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
+        }else if(p1.aspect == Aspects.HOPE){
+            options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
+        }else
+        {
+             options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
+        }
+
+        Reward chosen = p1.session.rand.pickFrom(options);
+        return chosen.apply(div, p1, p2, land, t);
     }
 
 }
