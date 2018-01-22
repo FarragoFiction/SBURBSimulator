@@ -151,7 +151,7 @@ class Lord extends SBURBClass {
                 new Quest("As soon as the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s disolve into civil wars and infighting. It will take a strong leader to unite the land, and the ${Quest.PLAYER1} is up to the task.  "),
                 new Quest("The ${Quest.PLAYER1} has subjugated/assimilated about half of the ${Quest.CONSORT} factions, at this point. They are surprisingly good at following commands, and everything is running with clock work efficiencey."),
                 new Quest("The final ${Quest.CONSORT} commander surrenders. The ${Quest.PLAYER1} controls everything now. They are the Lord of all they survey. ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
 
             ,  Theme.MEDIUM);

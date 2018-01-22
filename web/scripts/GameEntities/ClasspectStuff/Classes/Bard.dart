@@ -121,7 +121,7 @@ class Bard extends SBURBClass {
                 new Quest("A group of jubilant ${Quest.CONSORT}s are following the ${Quest.PLAYER1} around. It's kind of flattering, but it sure is drawing a lot of attention!"),
                 new Quest("Even more ${Quest.CONSORT} are following the ${Quest.PLAYER1} now, ${Quest.CONSORTSOUND}ing about how they defeated the ${Quest.DENIZEN}. Wow, this is actually kind of embarrasing. "),
                 new Quest("Oh god, somehow there are PARADE FLOATS involved now? The line of ${Quest.CONSORT}s have drawn a huge crowd to watch and ${Quest.CONSORTSOUND}.  It looks like whole roads are being blocked off by the event, and nobody is getting any work done. The entire day's productivity is destroyed, and it isn't even the ${Quest.PLAYER1}'s fault. ")        ],
-                new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             //front tail!!!  (seriously, daimidaler prince vs penguin empire was SO FUCKING WEIRD
             ..addFeature(new PostDenizenQuestChain("Behold the Glory of CodTier", [

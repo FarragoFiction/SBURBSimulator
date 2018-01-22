@@ -157,7 +157,7 @@ class Time extends Aspect {
                 new Quest("Through some hard time-travel and shattering glass windows where needed, ${Quest.PLAYER1} has successfully set up events in the ${Quest.CONSORT}s favor. They check back in with the past ${Quest.CONSORT} leader to inform them that the timeline has been revised to their advantage."),
                 new Quest("The ${Quest.PLAYER1} divulges to the ${Quest.CONSORT} leader that their enemy leader has been assassinated (through their own marvelous work, of course). The ${Quest.CONSORT} leader doesnt believe them, though. Why wouldnt they believe the time-traveler?! They launch a miserable failure of a counter-attack, resulting in the ${Quest.CONSORT}s defeat. Agh!"),
                 new Quest("The ${Quest.PLAYER1} is totally done with this bullshit. But they have an epiphany: what if they re-shattered the timeline, but took control of the strategy themselves? They grin to themselves as they travel back again, this time framing the enemy instead of assassinating them. This time, the leader believes the ${Quest.PLAYER1} this time, and carried through with their suggested strategy. With effort, ${Quest.MCGUFFIN} Metropolis is reclaimed, and the consorts have been given their freedom back!")
-            ], new FraymotifReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+            ], new RandomReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
 
 

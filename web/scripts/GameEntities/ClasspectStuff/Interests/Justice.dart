@@ -47,7 +47,7 @@ class Justice extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} finds an elaborate courtroom full of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. Apparently the prosecuting attorney flaked out and they need someone to fill the role. The ${Quest.PLAYER1} agrees to see that justice is served. "),
                 new Quest("The ${Quest.PLAYER1} is tasked to prosecute a local ${Quest.CONSORT} accused of stealing food for her family. After much elaborate debate and arguments, the ${Quest.PLAYER1} secures the guilty verdict while also convincing the judge to pursue the minimum sentence. Everyone is relieved that justice is done while not harshly punishing a near innocent.     "),
                 new Quest(" The ${Quest.PLAYER1} presides over the case of the treacherous Senator ${Quest.CONSORT}snout. He is accused of embezzling ${Quest.PHYSICALMCGUFFIN}s from the Imperial Coffers. The ${Quest.PLAYER1} easily finds Senator ${Quest.CONSORT}snout to be guilty and sentences them to life in prison. This is EASILY the case of their career and it is with a regretful heart they step aside as Prosecuter. They simply can never top this one.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 
@@ -59,7 +59,7 @@ class Justice extends InterestCategory {
                 new Quest("A frantic underling run past the  ${Quest.PLAYER1}. In hot pursuit, a ${Quest.CONSORT} yells 'Stop that thief' in betwen ${Quest.CONSORTSOUND}s. Without thinking, the ${Quest.PLAYER1} grabs the underling. The ${Quest.CONSORT} is impressed, and offers the ${Quest.PLAYER1} a job as a deputy police officer. "),
                 new Quest("The ${Quest.PLAYER1} is doing their rounds as a deputy police officer. So far, everything is peaceful."),
                 new Quest("A missing ${Quest.PHYSICALMCGUFFIN}. Three suspects. A locked door. The ${Quest.PLAYER1} blows everyone away by cracking the case wide open and sending the perpetrator to the slammer. They are promoted from deputy to a full blown detective, which comes with a lot less frequent jobs, but far more prestige. "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         //the sock ruse was a distaction

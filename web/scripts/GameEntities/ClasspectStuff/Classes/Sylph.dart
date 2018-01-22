@@ -135,19 +135,19 @@ class Sylph extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} decides to take a break after defeating ${Quest.DENIZEN} and returns home. Immediately after opening the front door, they’re buried in an avalanche of ${Quest.CONSORT}s. Crawling their way out, the ${Quest.PLAYER1} sees the ${Quest.CONSORT}s are all using a copy of the ${Quest.PLAYER1}‘s time travel device and more of them are popping in and out from other points in time. If left unchecked, they’ll probably create way too many unstable time loops to be good for the session."),
                 new Quest("The ${Quest.PLAYER1} does some time traveling to investigate when the ${Quest.CONSORT}s get time machines to stop any more ${Quest.CONSORT}s from getting them. They find a time when their house is suddenly filled to the brim with ${Quest.CONSORT}s and then later they all seemingly vanish with no evidence of time traveling ${Quest.CONSORT}s at any other time. The ${Quest.PLAYER1} realizes that means the ${Quest.CONSORT}s are getting their time machines in the same timeframe as when they are popping in and out of time. Which means if the ${Quest.PLAYER1} wants to stop the ${Quest.CONSORT}s from causing time travel messes, they’ll need to squeeze their way through the ${Quest.CONSORT} filled house."),
                 new Quest("Traveling back to the time they were originally in, the ${Quest.PLAYER1} gets ready to take the plunge into a fuckton of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s. They slowly crawl and squeeze their way through; cursing the dumb shit they have to do to fix time problems. After a couple of agonizing minutes, they finally make their way to their alchemiter, where they find a bunch of ${Quest.CONSORT}s are wasting grist making copies of the ${Quest.PLAYER1}‘s time machine. The ${Quest.PLAYER1} chases them away from the alchemiter, and then spends the next four hours slowly going through the house, confiscating time machines while also making sure they don’t accidently confiscate a time machine they already confiscated and create a time paradox. Eventually all the time machines are taken and all the ${Quest.CONSORT} s have been given a stern talking to. The ${Quest.PLAYER1} is more than done with their ‘break’."),
-            ], new FraymotifReward(), QuestChainFeature.timePlayer), Feature.HIGH)
+            ], new RandomReward(), QuestChainFeature.timePlayer), Feature.HIGH)
 
             ..addFeature(new PostDenizenQuestChain("Be The Sylph", [
                 new Quest("A handsome ${Quest.CONSORT} is scheduled to be wed to a beautiful maiden. Instead, he keeps seeing visions of an ethereal ${Quest.CONSORT}, and runs away to be with her a clearing in the woods filled with bubbling springs.  The ${Quest.PLAYER1} is unimpressed. "),
                 new Quest("The ${Quest.PLAYER1} alchemizes 'The Sylph's Scarf'. Huh. Apparently it's a reference to some sort of ballet? A ${Quest.CONSORT} crone assures the ${Quest.PLAYER1} that it will stop the handsome ${Quest.CONSORT} from seeing weird visions that make him run into the woods, though."),
                 new Quest("The ${Quest.PLAYER1} gives the handsome ${Quest.CONSORT} the 'Sylph's Scarf'. He immediately begins weeping that the ethereal ${Quest.CONSORT} is dead. He is inconsolable. Holy shit, ballets about Sylphs are kinda dark.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Relax the Consorts", [
                 new Quest("The ${Quest.CONSORT}s are so stressed after all that shit with the ${Quest.DENIZEN}. They are yelling and ${Quest.CONSORTSOUND} at each other over the slightest of insults. The ${Quest.PLAYER1} decides that what they really need is to chill the fuck out. "),
                 new Quest("The ${Quest.PLAYER1} organizes a spa day for the ${Quest.CONSORT}s in one of the land's many, many bodies of water. The sound of the water is so relaxing, it's like it melts the worries right off."),
                 new Quest("The ${Quest.CONSORT}s are back to their normal selves.  Only one fight breaks out all week, and really, that asshole ${Quest.CONSORT} deserved what was coming to him. Everything is doing pretty good, thanks to the ${Quest.PLAYER1}. ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenFrogChain("Purify the Frogs", [
                 new Quest("The ${Quest.DENIZEN} has allowed the water to recede enough to form shallow pools for the frogs. The water is muddy and silty until the ${Quest.PLAYER1} purifies the pools "),
@@ -160,7 +160,7 @@ class Sylph extends SBURBClass {
                 new Quest("The defeat of the ${Quest.DENIZEN} has some unforseen consequences, including the tainting of the water for the majority of the land. The ${Quest.CONSORT}s seem to have figured out a solution in the short term, but the ${Quest.PLAYER1} resolves to bug and fuss and meddle until things are fixed the right way. "),
                 new Quest("So far, the ${Quest.PLAYER1} hasn't had much luck getting ${Quest.CONSORT}s to build a water purifying facility.  They are content just boiling their water. 'It's not hard', they say. It's so frustrating that the ${Quest.PLAYER1} knows they can help them but the ${Quest.CONSORT}s just will NOT cooperate. "),
                 new Quest("The ${Quest.PLAYER1} has finally accepted that some people just don't want to be helped. As they make peace with this, a mysterious glow emerges from their chest.  The water of the land matches this glow, and the water is purified through the power of ${Quest.MCGUFFIN}. Huh. Okay then.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 

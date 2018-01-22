@@ -112,7 +112,7 @@ class Prince extends SBURBClass {
                 new Quest("The land is a fucking mess after all the shit the ${Quest.DENIZEN} put it through, and it falls to the ${Quest.PLAYER1} to get it back to normal. They organize a team of ${Quest.CONSORT}s to start rebuilding infrastructure."),
                 new Quest("The ${Quest.CONSORT} economy is a fucking mess, and probably was even before the ${Quest.DENIZEN} started to fuck things up. Why would you even use ${Quest.PHYSICALMCGUFFIN} as a currency? The ${Quest.PLAYER1} wastes way too much time explaining how economies work."),
                 new Quest("The land finally appears to be in a good state. The ${Quest.PLAYER1} is wistful as they realize that they are no longer needed. ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 

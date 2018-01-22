@@ -64,7 +64,7 @@ class Culture extends InterestCategory {
             new Quest("The ${Quest.PLAYER1} finds a troupe of dejected looking ${Quest.CONSORT}s. Apparently they want to put on a famous ${Quest.CONSORT} play called 'The ${Quest.MCGUFFIN} ${Quest.PHYSICALMCGUFFIN}', but have no one to play the titular role!  Does the ${Quest.PLAYER1} have what it takes to bring the iconic role to life? "),
                 new Quest("The ${Quest.PLAYER1} is practicing their lines for the upcoming performance of 'The ${Quest.MCGUFFIN.toUpperCase()} ${Quest.PHYSICALMCGUFFIN.toUpperCase()}'. Man, who would have thought a ${Quest.PHYSICALMCGUFFIN} would have so many different emotions! "),
                 new Quest("It's finally time for performance of the 'The ${Quest.MCGUFFIN.toUpperCase()} ${Quest.PHYSICALMCGUFFIN.toUpperCase()}'. The audience is moved to tears and ${Quest.CONSORTSOUND}ing at the ${Quest.PLAYER1} stirring performance as the ${Quest.PHYSICALMCGUFFIN}. "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         //the sock ruse was a distaction
@@ -79,7 +79,7 @@ class Culture extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1}  is cordially invited to the dinner party of Miss ${Quest.CONSORTSOUND}ingworth, ${Quest.CONSORT} heiress to the ${Quest.PHYSICALMCGUFFIN} fortune. "),
                 new Quest("The ${Quest.PLAYER1} is coached on etiquette by  Miss ${Quest.CONSORTSOUND}ingworth's butler. It would not do to embarass the young Miss.  "),
                 new Quest("It is finally time for Miss ${Quest.CONSORTSOUND}ingworth's party. Anyone who is anyone is attending, and it is clear that the ${Quest.PLAYER1} is the guest of honor. They successfully charm all of the ${Quest.CONSORT}s with a captivating story of dining customs from their home world. "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
     }
 

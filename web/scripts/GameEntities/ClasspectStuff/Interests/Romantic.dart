@@ -63,7 +63,7 @@ class Romantic extends InterestCategory {
                 new Quest("A Romantic ${Quest.CONSORT} approaches the ${Quest.PLAYER1}. They have a date coming up but have no idea what to do. Can the ${Quest.PLAYER1} help? "),
                 new Quest("The ${Quest.PLAYER1} has the best montage of their life, helping the Romantic ${Quest.CONSORT} pick out an outfit for their date, plan activites and learn how to cook a romantic meal. Why is everything so wonderful?   "),
                 new Quest(" The ${Quest.PLAYER1} hides in bushes to spy on the Romantic ${Quest.CONSORT}'s date. It's going so well! ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         addTheme(new Theme(<String>["Shipping","Ports","Ships", "Docks", "Sails", "Matchmaking", "Cupids", "Fleets"])
@@ -78,7 +78,7 @@ class Romantic extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
                 new Quest("The ${Quest.PLAYER1} extends their shipping grid to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
                 new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, and it's not even banned by the ${Quest.DENIZEN}'s stupid rules. "),
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PreDenizenQuestChain("Flushed Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be getting along well. The noodly appendages of the Horror Terrors do not fail to notice this.  "),

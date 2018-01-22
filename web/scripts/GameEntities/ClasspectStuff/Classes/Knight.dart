@@ -114,19 +114,19 @@ class Knight extends SBURBClass {
                 new Quest("Now that the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s could really use some basic infrastructure repairs. The ${Quest.PLAYER1} finds instructions for a thermal energy converter in a dungeon and alchemizes all the parts needed to build one. The ${Quest.CONSORT}s will have power for generations,now. "),
                 new Quest("An important wall is crumbling. While the defeat of the ${Quest.DENIZEN} means the underlings are mostly under control, the ${Quest.CONSORT}s would feel a lot better with it fixed. The ${Quest.PLAYER1} figures out how to patch it up with bits of cooled lava. Everyone feels just a little bit safer."),
                 new Quest("The ${Quest.PLAYER1} rigs an automatic lava dispensor to light fire moats around consort villages, automatically patch wall holes and even bake consort bread.  Who knew all this shitty heat could be good for something?  The ${Quest.CONSORT}s quality of life is at an all time high! ")
-            ], new FraymotifReward(), QuestChainFeature.spacePlayer), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.spacePlayer), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Fight the Beast", [
                 new Quest("A fiery ${Quest.MCGUFFIN} Dragon has risen up in the wake of the defeated ${Quest.DENIZEN}. A Learned ${Quest.CONSORT} explains that it can only be defeated by the Legendary ${Quest.PHYSICALMCGUFFIN} Blade. The ${Quest.PLAYER1} prepares to go questing for it. "),
                 new Quest("The ${Quest.PLAYER1} finds the Legendary ${Quest.PHYSICALMCGUFFIN} Blade stuck in a rock. After a lot of fucking around trying to remove it, they accidentally snap it in half. Welp. Guess it can't hurt to go fight the ${Quest.MCGUFFIN} Dragon anyways. How much harder can it be than a ${Quest.DENIZEN}, anyways?"),
                 new Quest("The ${Quest.PLAYER1} is engaged in an epic, yet conviniently off screen strife with the ${Quest.MCGUFFIN} Dragon. Nothing seems to have any effect untill, out of desparation, the ${Quest.PLAYER1} pulls out the broken Legendary ${Quest.PHYSICALMCGUFFIN} Blade and chucks it at the mighty dragon. A blade of ghostly ${Quest.PHYSICALMCGUFFIN} extends from it an the dragon is vanquished.  Huh. You....guess that the blade was always supposed to be like that? Huh.")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Protect the Consorts", [
                 new Quest("The volcanos of the land are weirdly active after the defeat of the ${Quest.DENIZEN}. Onehas begins to erupt near a ${Quest.CONSORT} village.  The resident ${Quest.CONSORT}s are filling the air with panicked ${Quest.CONSORTSOUND}s, but not really doing anything to evacuate or save anyone. The ${Quest.PLAYER1} face palms, then begins wildly captchalogging everyone in order to get them to safety.  When they let everyone free, the village is destroyed, but at least it's people are safe."),
                 new Quest("Another day, another volcano is erupting. After decaptchalogging the final rescued ${Quest.CONSORT}, the ${Quest.PLAYER1} thinks that there MUST be a better way."),
                 new Quest("After a lot of false starts, the ${Quest.PLAYER1} has managed to rig a system where the rising heat of the lava itself will trigger entire ${Quest.CONSORT} villages to just rise up out of harms way. Hell yes!")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 

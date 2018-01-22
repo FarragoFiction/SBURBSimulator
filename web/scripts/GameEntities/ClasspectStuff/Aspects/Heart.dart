@@ -161,7 +161,7 @@ class Heart extends Aspect {
                 new Quest("The ${Quest.PLAYER1} finds a weeping Broken Hearted ${Quest.CONSORT}. The most Fetching ${Quest.CONSORT} of their dreams just turned them down to the ${Quest.MCGUFFIN} Dance and they are miserable. On a whim, the ${Quest.PLAYER1} offers to take them instead. The ${Quest.CONSORT} immediately brightens.  "),
                 new Quest("The Broken Hearted ${Quest.CONSORT} and the ${Quest.PLAYER1} are shopping for matching outfits to wear to the ${Quest.MCGUFFIN} Dance. Oh look, there is the Fetching ${Quest.CONSORT}. The Broken Hearted ${Quest.CONSORT} begins sniffling quietly to himself. Oh, dear.  When they aren't looking, the ${Quest.PLAYER1} goes over to the Fetching ${Quest.CONSORT} to talk. It is swiftly revealed that it's all been a big misunderstanding.  The Fetching ${Quest.CONSORT} really is busy with their job as a ${Quest.CONSORTSOUND} salesman for the ${Quest.MCGUFFIN} dance, but the Broken Hearted ${Quest.CONSORT} ran away crying before they could explain that they'd love to date them anyways! The ${Quest.PLAYER1} sees an opportunity to save the day."),
                 new Quest("It is the day of the big ${Quest.MCGUFFIN} Dance. The ${Quest.PLAYER1} is working hard at being a ${Quest.CONSORTSOUND} salesman, despite their lack of credentials. The Fetching ${Quest.CONSORT} and the Mended Hearted ${Quest.CONSORT} are enjoying a lovely time at the Dance. A happy ending! ")
-            ], new FraymotifReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
+            ], new RandomReward(), QuestChainFeature.playerIsMagicalClass), Feature.HIGH)
 
 
             ..addFeature(new DenizenQuestChain("Flushed Shipping Dungeon", [

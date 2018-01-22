@@ -65,8 +65,10 @@ class RandomReward extends Reward {
 
         if(p1.class_name == SBURBClassManager.LORD)
         {
+            //todo 100% shot of LEPRECHAUNS
             options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
+            //TODO 50/50 shot of brain ghosts
             options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
         {

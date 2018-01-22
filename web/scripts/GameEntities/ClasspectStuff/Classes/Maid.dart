@@ -109,7 +109,7 @@ class Maid extends SBURBClass {
                 new Quest("The ${Quest.PLAYER1} has adopted a local ${Quest.CONSORT} child to be their dear, sweet, precious daughter. It is time for them to go off to school.  Other ${Quest.CONSORT} parents ask the ${Quest.PLAYER1} to join the PTA."),
                 new Quest("The PTA has the ${Quest.PLAYER1} running ragged. It seems like every time they turn around it's another thing they are ${Quest.CONSORTSOUND}ing about. "),
                 new Quest("All this time catering to the PTA has paid off. Not only is the ${Quest.PLAYER1}'s dear sweet precious ${Quest.CONSORT} daughter doing well in school, but the ${Quest.PLAYER1} has been elected president of the PTA! They now have the ability to make real changes.  Somehow this feels even more satisfying than defeating the ${Quest.DENIZEN}. ")
-            ], new FraymotifReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.MEDIUM);
     }
 
