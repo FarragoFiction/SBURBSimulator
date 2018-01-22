@@ -37,6 +37,25 @@ class Reward {
     }
 }
 
+//can get you item, fraymotif or companion, is very class/aspect specific, too.
+//hope can get brain ghosts
+//lords can get leprechauns
+//other than that classes/aspects store their own odds for each type.
+class RandomReward extends Reward {
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        WeightedList<Reward> options = new WeightedList<Reward>();
+        //if it's an item reward, check land progress before deciding what sort of item to give.
+        //fraymotifs will handle themselves
+        //companions only care if brain ghost (50% chance )or leprechaun (100% chance lords only get leprechauns)
+
+        //add each reward type with weight from class + aspect. item, fraymotif, companion.
+
+    }
+
+}
+
 class BoonieFraymotifReward extends FraymotifReward {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";
     static String FRAYMOTIF2 = "FRAYMOTIF_NAME2";
@@ -218,6 +237,8 @@ class CodReward extends Reward {
         super.apply(div, p1, p2, land,text);
     }
 }
+
+
 
 class FrogReward extends FraymotifReward {
     static String FRAYMOTIF1 = "FRAYMOTIF_NAME1";

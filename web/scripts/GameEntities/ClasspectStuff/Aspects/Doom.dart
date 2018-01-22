@@ -7,6 +7,16 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Doom extends Aspect {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.00;
+    @override
+    double fraymotifWeight = 0.5;
+    @override
+    double companionWeight = 0.5;
+
+
     @override
     double difficulty = 1.0;
 

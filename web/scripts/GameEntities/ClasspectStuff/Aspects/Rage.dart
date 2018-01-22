@@ -6,6 +6,14 @@ import "../../../Lands/Quest.dart";
 
 class Rage extends Aspect {
 
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.00;
+    @override
+    double fraymotifWeight = 1.0;
+    @override
+    double companionWeight = 0.01;
+
     @override
     AspectPalette palette = new AspectPalette()
         ..accent = "#9900cc"

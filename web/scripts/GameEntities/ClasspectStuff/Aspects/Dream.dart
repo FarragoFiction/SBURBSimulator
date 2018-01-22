@@ -6,6 +6,14 @@ import "../../../Lands/Quest.dart";
 
 class Dream extends Aspect {
 
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.3;
+    @override
+    double companionWeight = 0.01;
+
     @override
     AspectPalette palette = new AspectPalette()
         ..accent = "#9630BF"

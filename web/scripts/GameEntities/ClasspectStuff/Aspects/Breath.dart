@@ -5,6 +5,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Breath extends Aspect {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.5;
+    @override
+    double fraymotifWeight = 1.0;
+    @override
+    double companionWeight = 0.01;
+
     @override
     double difficulty = 0.3;
 

@@ -4483,3 +4483,70 @@ Solve Crime Quests: Strenthen Associated Royalty
 Alright, the temptation is to leave carapaces entirely till i'm ready for shenangians, but that's not
 gonna happen over night. Get them existing first.
 
+
+
+~~~~~~~~~~
+
+Alright.
+
+Time for the less mession critical npc companions.
+
+We have Brain Ghosts of friends/rivals/heart players, Robot versions of yourself, Leprechauns, and activated Dream Selves.
+
+First up will be Leprechauns, but I want to get everything brainstormed in one place.
+
+Dream Selves will be from a moon quest I think. If you're a heart player or there EXISTS a passive heart player of any type,
+you can get a Dream Quest to wake your dream self up permanently.
+
+If you do it, then you lose your dream self, and a player gets added to the party that is you, but dream.
+They have your exact same land, not a copy of it.
+
+I think all dream selves should be Players now, and an array, too, so you can sometimes have two of them.
+
+
+Alright, what about Brain Ghosts?  I say that's hope only. It should be a QUEST REWARD possibility, so I'll need
+to do random quests first. But basically, your best friend or rival OR the heart player can be a Brain Ghost.
+They aren't added to the Player list. They should be transparent like a ghost? THEY SHOULD BE RENDERED.
+
+What about RoboSelves?  If you have high enough alchemy skill, Alchemy scene can give you a RoboSelf
+(first NPC companion that isn't from quest line). RoboSelf will be of you if Active, and of someone else if Passive.
+RoboSelf will either be added to YOUR party, or to somebody you care a lot about (whether red or black). THEY SHOULD BE RENDERED.
+
+
+So both Brain Ghosts and RoboSelves, as players, should be rendered whether in combat or in quests.
+It MIGHT automatically happen, not sure.
+
+And now for the one I want to do first. Should be simple, though I want to sit down and think about Leprechaun naming schemes.
+I know the Brope has a doc somewhere. Here's what I remember?
+
+Basically, the first Leprechaun you get should have a name with a "1" pun in it, or similar.
+Second should have a two pun. So need to check companion list and see what  you got.
+
+For dead sessions should get exactly one per land? Not sure. Maybe part of Denizen questline.
+
+Alrigiht I found the doc from the Brope:
+
+READ FIRST: Clover, Crowbar, and Snowman are constants other than that do whatever
+
+
+1 and 2 and 6 will do mobility, 3 and 5 do freewill, 4 increases minluck and maxluck, 7 does sanity, 8 does all stats, 9 does hp, 10 does sanity, 11 does alchemy, 12 and 13 do freewill, 14 does sanity, and 15 does power
+
+seems solid, and this reminds me that they also need to give stat bonuses to the lord somehow.
+can either be permanent when they are added, or somehow linked to them being alive and in lord's party
+
+Didn't I do something like that at some point recently?
+
+....what was it?
+
+there we go. buff specibus.
+
+shit actually this looks easy.
+
+So, if a player is a lord, they get a minion buff, which lasts as long the minion is alive.
+minion buff just straight up adds the minions stats to the lord. sure, lords might be OP
+but isn't that the point?
+
+alright, so first thing first: get a lord buff.
+second thing second, add a "random reward" kind of reward
+
+actually maybe do opposite style. random reward calls some other reward's apply and gives you it's text, right?

@@ -6,6 +6,14 @@ import "../../../Lands/Quest.dart";
 
 class Heart extends Aspect {
 
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.3;
+    @override
+    double fraymotifWeight = 0.6;
+    @override
+    double companionWeight = 0.01; //inwards focus
+
     @override
     AspectPalette palette = new AspectPalette()
         ..accent = "#ff3399"

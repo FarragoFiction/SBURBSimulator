@@ -7,6 +7,14 @@ import "../../../Lands/Quest.dart";
 
 class Mind extends Aspect {
 
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.3;
+    @override
+    double fraymotifWeight = 0.3;
+    @override
+    double companionWeight = 1.00; //manipulate others
+
     @override
     AspectPalette palette = new AspectPalette()
         ..accent = "#3da35a"
