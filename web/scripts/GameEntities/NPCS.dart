@@ -45,6 +45,32 @@ class Carapace extends NPC {
     StatHolder createHolder() => new CarapaceStatHolder(this);
 }
 
+class Leprechaun extends NPC {
+    static List<String> oneNames  = <String>["Itchy","Partridge","Ridge","Lonely","Yuno","Ace","Jan"];
+    static List<String> twoNames  = <String>["Doze","Wei","Turtle","Dove","Matrix","Bull","Hands"];
+    static List<String> threeNames  = <String>["Trace","Tree","Henry","Frenchie","Link","Hattrick","Charm"];
+    static List<String> fourNames  = <String>["Clover"];
+    static List<String> fiveNames  = <String>["Fin","Rings","Goldboy","Plato","Sense","Byron","Johnny"];
+    static List<String> sixNames  = <String>["","","","","","",""];
+    static List<String> sevenNames  = <String>["Crowbar"];
+    static List<String> eightNames  = <String>["Snowman"];
+    static List<String> nineNames  = <String>["","","","","","",""];
+    static List<String> tenNames  = <String>["","","","","","",""];
+    static List<String> elevenNames  = <String>["","","","","","",""];
+    static List<String> twelveNames  = <String>["","","","","","",""];
+    static List<String> thirteenNames  = <String>["","","","","","",""];
+    static List<String> fourteenNames  = <String>["","","","","","",""];
+    static List<String> fifteenNames  = <String>["","","","","","",""];
+    static List<String> sixteenNames  = <String>["","","","","","",""];
+
+    Leprechaun(String name, Session session) : super(name, session);
+
+    static String getNameForLeprechaunForPlayer(Player player) {
+        //each leprechaun's name is based on how many leprechauns the player already has
+    }
+
+}
+
 //srites are definitely going to behave differntly soon
 class Sprite extends NPC {
 
