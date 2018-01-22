@@ -46,22 +46,23 @@ class Carapace extends NPC {
 }
 
 class Leprechaun extends NPC {
+    //all names relate at least tangentially to their number
     static List<String> oneNames  = <String>["Itchy","Partridge","Ridge","Lonely","Yuno","Ace","Jan"];
     static List<String> twoNames  = <String>["Doze","Wei","Turtle","Dove","Matrix","Bull","Hands"];
     static List<String> threeNames  = <String>["Trace","Tree","Henry","Frenchie","Link","Hattrick","Charm"];
     static List<String> fourNames  = <String>["Clover"];
     static List<String> fiveNames  = <String>["Fin","Rings","Goldboy","Plato","Sense","Byron","Johnny"];
-    static List<String> sixNames  = <String>["","","","","","",""];
+    static List<String> sixNames  = <String>["Die","Sez","Goose","Buzz","Juan","Seraph","Diamond"];
     static List<String> sevenNames  = <String>["Crowbar"];
     static List<String> eightNames  = <String>["Snowman"];
-    static List<String> nineNames  = <String>["","","","","","",""];
-    static List<String> tenNames  = <String>["","","","","","",""];
-    static List<String> elevenNames  = <String>["","","","","","",""];
-    static List<String> twelveNames  = <String>["","","","","","",""];
-    static List<String> thirteenNames  = <String>["","","","","","",""];
-    static List<String> fourteenNames  = <String>["","","","","","",""];
-    static List<String> fifteenNames  = <String>["","","","","","",""];
-    static List<String> sixteenNames  = <String>["","","","","","",""];
+    static List<String> nineNames  = <String>["Stitch","Nein","Lady","Dancer","Dragon","Muse","Cat"];
+    static List<String> tenNames  = <String>["Sawbuck","Diaz","Hamilton","Alexander","Leaper","Fingers","Neon"];
+    static List<String> elevenNames  = <String>["Matchsticks","Amp","Piper","Rep","Salt","Rocket","Duck"];
+    static List<String> twelveNames  = <String>["Eggs","Dozer","Drummer","Killer","Magnum","Nerve","Solar"];
+    static List<String> thirteenNames  = <String>["Biscuits","Bakers","Jason","Curse","Emirp","Archimedes","Luna"];
+    static List<String> fourteenNames  = <String>["Quarters","Chef","Shakespear","Cyber","Babylon","Osirus","Fortress"];
+    static List<String> fifteenNames  = <String>["Cans","Pho","Quiche","Bonita","Mystic","Salute","Mandarin"];
+    static List<String> infinityNames  = <String>["Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet"];
 
     Leprechaun(String name, Session session) : super(name, session);
 
