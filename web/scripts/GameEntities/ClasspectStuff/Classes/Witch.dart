@@ -10,6 +10,17 @@ import "../../../Lands/Quest.dart";
 
 
 class Witch extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    //witches have familiars, spells and potions
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 0.51;
+    @override
+    double companionWeight = 0.51;
+
+
     @override
     List<String> levels = ["WESTWORD WORRYBITER", "BUBBLETROUBLER", "EYE OF GRINCH"];
     @override

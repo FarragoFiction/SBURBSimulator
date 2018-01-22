@@ -6,6 +6,17 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Waste extends SBURBClass {
+
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.01;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 1.01;
+
+
     @override
     List<String> levels = <String>["4TH WALL AFICIONADO", "CATACLYSM COMMANDER", "AUTHOR"];
     @override

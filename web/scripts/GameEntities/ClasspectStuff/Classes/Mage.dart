@@ -8,6 +8,16 @@ import "../../../Lands/Quest.dart";
 
 
 class Mage extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.01;
+    @override
+    double fraymotifWeight = 1.01;
+    @override
+    double companionWeight = 0.51;
+
+
     @override
     List<String> levels = ["WIZARDING TIKE", "THE SORCERER'S SCURRYWART", "FAMILIAR FRAYMOTTIFICTIONADO"];
     @override

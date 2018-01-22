@@ -6,6 +6,15 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Scout extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 0.01;
+
     Scout() : super("Scout", 13, false);
     //i am thinking guides will give other players their own aspects (and not the guides) while scouts will gain whoever they are with's aspect.
     @override

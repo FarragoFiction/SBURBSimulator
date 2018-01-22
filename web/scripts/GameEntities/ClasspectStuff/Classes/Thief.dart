@@ -5,6 +5,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Thief extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 1.01;
+
     @override
     List<String> levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
     @override

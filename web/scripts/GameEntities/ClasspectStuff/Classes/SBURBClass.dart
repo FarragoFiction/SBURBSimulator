@@ -120,6 +120,11 @@ class SBURBClassManager {
 //instantiatable for Null classes.
 class SBURBClass {
 
+    //what sort of quests rewards do I get?
+    double itemWeight = 0.01;
+    double fraymotifWeight = 0.01;
+    double companionWeight = 0.01;
+
     //difficulty of class + aspect results in odds of getting yaldobooger/abraxus equivlent.
     //.5 is normal. .5 + .5 = 1.0, equals 5% chance of  getting either (>95 or < 5)
     double difficulty = 0.5;

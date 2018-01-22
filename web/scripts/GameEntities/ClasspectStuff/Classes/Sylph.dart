@@ -8,6 +8,15 @@ import "../../../Lands/Quest.dart";
 
 
 class Sylph extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 1.01;
+    @override
+    double companionWeight = 0.01;
+
     @override
     List<String> levels = ["SERENE SCALLYWAG", "MYSTICAL RUGMUFFIN", "FAE FLEDGLING"];
     @override

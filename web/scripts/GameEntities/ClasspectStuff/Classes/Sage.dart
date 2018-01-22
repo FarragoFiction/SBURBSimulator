@@ -6,6 +6,15 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Sage extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.51;
+    @override
+    double companionWeight = 0.11;
+
     Sage() : super("Sage", 14, false);
     @override
     List<String> levels = ["HERBAL ESSENCE", "CHICKEN SEASONER", "TOMEMASTER"];

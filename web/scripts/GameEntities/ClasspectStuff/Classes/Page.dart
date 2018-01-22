@@ -7,6 +7,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Page extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.01;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 1.01;
+
     @override
     double difficulty = 0.0;
     Page() : super("Page", 1, true);

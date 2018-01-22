@@ -5,6 +5,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Prince extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 1.01;
+    @override
+    double companionWeight = 0.01;
+
     @override
     double difficulty = 1.0;
     Prince() : super("Prince", 10, true);

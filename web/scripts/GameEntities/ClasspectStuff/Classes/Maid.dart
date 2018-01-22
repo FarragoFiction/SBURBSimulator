@@ -7,6 +7,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Maid extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 0.51;
+
     @override
     List<String> levels = ["SCURRYWART SERVANT", "SAUCY PILGRIM", "MADE OF SUCCESS"];
     @override

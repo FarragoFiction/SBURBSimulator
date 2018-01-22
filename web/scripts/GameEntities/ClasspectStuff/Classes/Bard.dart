@@ -6,6 +6,15 @@ import "../../../Lands/Quest.dart";
 
 class Bard extends SBURBClass {
 
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.01;
+    @override
+    double fraymotifWeight = 0.5;
+    @override
+    double companionWeight = 0.50;
+
     @override
     List<String> levels = ["SKAIA'S TOP IDOL", "POPSTAR BOPPER", "SONGSCUFFER"];
     @override

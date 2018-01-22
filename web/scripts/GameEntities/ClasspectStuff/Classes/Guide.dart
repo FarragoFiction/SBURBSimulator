@@ -5,6 +5,14 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Guide extends SBURBClass {
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 1.01;
+
     List<String> handles = <String>["guiding", "gracious", "great", "gratuitous", "greeting", "gloved", "gone"];
 //i am thinking guides will give other players their own aspects (and not the guides) while scouts will gain whoever they are with's aspect.
     @override

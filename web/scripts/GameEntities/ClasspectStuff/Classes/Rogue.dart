@@ -6,6 +6,15 @@ import "../../../Lands/Quest.dart";
 
 
 class Rogue extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.51;
+    @override
+    double companionWeight = 0.01;
+
     Rogue() : super("Rogue", 4, true);
     @override
     List<String> levels = ["KNEEHIGH ROBINHOOD", "DASHING DARTABOUT", "COMMUNIST COMMANDER"];

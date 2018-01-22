@@ -7,6 +7,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Seer extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 0.51;
+    @override
+    double companionWeight = 0.51;
+
     @override
     List<String> levels = ["SEEING iDOG", "PIPSQUEAK PROGNOSTICATOR", "SCAMPERVIEWER 5000"];
     @override

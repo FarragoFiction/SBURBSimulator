@@ -8,6 +8,15 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Scribe extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 1.01;
+    @override
+    double fraymotifWeight = 0.01;
+    @override
+    double companionWeight = 0.01;
+
     Scribe() : super("Scribe", 15, false);
     @override
     List<String> levels = ["MIDNIGHT BURNER", "WRITER WATCHER", "DIARY DEAREST"];

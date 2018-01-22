@@ -7,6 +7,15 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Knight extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.51;
+    @override
+    double fraymotifWeight = 0.51;
+    @override
+    double companionWeight = 0.01;
+
     @override
     double difficulty = 0.7;
     @override

@@ -8,6 +8,15 @@ import "../../../Lands/Quest.dart";
 
 
 class Lord extends SBURBClass {
+
+    //what sort of quests rewards do I get?
+    @override
+    double itemWeight = 0.01;
+    @override
+    double fraymotifWeight = 0.5;
+    @override
+    double companionWeight = 2.01;
+
     @override
     double difficulty = 2.0;
     @override
