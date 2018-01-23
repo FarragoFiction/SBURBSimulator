@@ -145,7 +145,7 @@ class DenizenReward extends Reward {
         Item reward = p1.session.rand.pickFrom((p1.aspect.items));
         String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoard. Oh, and a ${reward.fullName}, too. ${reward.randomDescription(p1.rand)} ";
         if(p1.class_name == SBURBClassManager.LORD) {
-            Leprechaun c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
+            GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
             text += " The ${Reward.PLAYER1} also unlocks the Leprechaun minion for this Land. They name them ${c.name}.";
             p1.companions.add(c);
         }
@@ -218,7 +218,8 @@ class LeprechaunReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
-        Leprechaun c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
+        //snow man is a carapace.
+        GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
         String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and vow to figure out exactly what ${c.name} is good for.";
         p1.companions.add(c);
         //p2 gets NOTHING this is a Lord after all

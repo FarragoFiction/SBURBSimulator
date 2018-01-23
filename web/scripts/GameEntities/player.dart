@@ -536,7 +536,9 @@ class Player extends GameEntity{
             String species  = "";
             if(g is Leprechaun) species = "(Leprechaun)";
             if(g is Consort) species = "(Consort)";
-            if(g is Carapace) species = "(Carapace)";
+            if(g is Carapace && (g as Carapace).type == Carapace.DERSE) species = "(Dersite)";
+            if(g is Carapace && (g as Carapace).type == Carapace.PROSPIT) species = "(Prospitian)";
+
             ret += "${g.name} $species<br>";
         }
 
