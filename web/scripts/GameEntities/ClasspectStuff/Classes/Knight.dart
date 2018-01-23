@@ -114,7 +114,7 @@ class Knight extends SBURBClass {
                 new Quest("Now that the ${Quest.DENIZEN} is defeated, the ${Quest.CONSORT}s could really use some basic infrastructure repairs. The ${Quest.PLAYER1} finds instructions for a thermal energy converter in a dungeon and alchemizes all the parts needed to build one. The ${Quest.CONSORT}s will have power for generations,now. "),
                 new Quest("An important wall is crumbling. While the defeat of the ${Quest.DENIZEN} means the underlings are mostly under control, the ${Quest.CONSORT}s would feel a lot better with it fixed. The ${Quest.PLAYER1} figures out how to patch it up with bits of cooled lava. Everyone feels just a little bit safer."),
                 new Quest("The ${Quest.PLAYER1} rigs an automatic lava dispensor to light fire moats around consort villages, automatically patch wall holes and even bake consort bread.  Who knew all this shitty heat could be good for something?  The ${Quest.CONSORT}s quality of life is at an all time high! ")
-            ], new RandomReward(), QuestChainFeature.spacePlayer), Feature.WAY_LOW)
+            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Fight the Beast", [
                 new Quest("A fiery ${Quest.MCGUFFIN} Dragon has risen up in the wake of the defeated ${Quest.DENIZEN}. A Learned ${Quest.CONSORT} explains that it can only be defeated by the Legendary ${Quest.PHYSICALMCGUFFIN} Blade. The ${Quest.PLAYER1} prepares to go questing for it. "),
