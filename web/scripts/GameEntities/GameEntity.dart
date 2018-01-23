@@ -62,6 +62,7 @@ class GameEntity extends Object with StatOwner   {
         //default non player thingy.
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic
+        this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);

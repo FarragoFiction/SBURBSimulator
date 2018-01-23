@@ -167,6 +167,58 @@ class BuffSpecibus extends Buff {
     }
 }
 
+
+//JR here, derping around in teh code. Sorry PL.
+class BuffLord extends Buff {
+    //lords get buffs based on their living minions
+    GameEntity gameEntity;
+
+
+    BuffLord(this.gameEntity):super.multiple(Stats.all, false, false){
+        this.persistsThroughDeath = true;
+    }
+
+    @override
+    Buff copy() {
+        return new BuffSpecibus(gameEntity);
+    }
+
+    @override
+    double additional(StatHolder holder, Stat stat, double val) {
+        //return val;
+        if(!(gameEntity is Player)) {
+            return val;
+        }else {
+            Player p = gameEntity as Player;
+            if(p.class_name != SBURBClassManager.LORD) return val;
+        }
+
+        if (stat == Stats.SBURB_LORE ) {
+            return val;
+        }
+        if (stat.pickable) {
+            if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
+                //print("buff health stat");
+                if(val * gameEntity.specibus.rank <1) return 1.0;
+                return val + sumMinionStats(holder, stat, val);
+            }else {
+                return val + sumMinionStats(holder, stat, val);
+            }
+        }
+        return val;
+    }
+
+    double sumMinionStats(StatHolder holder, Stat stat, double val) {
+        double ret = 0.0;
+        for(GameEntity g in gameEntity.companions) {
+            if(!g.dead) {
+                ret += g.getStat(stat);
+            }
+        }
+        return ret;
+    }
+}
+
 class BuffGodTier extends Buff {
     BuffGodTier():super.multiple(Stats.all, false, false){
         this.persistsThroughDeath = true;
