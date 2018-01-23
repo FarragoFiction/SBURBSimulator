@@ -530,11 +530,31 @@ class Player extends GameEntity{
             ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
+        ret += "</td>";
+        ret += "<td class = 'toolTipSection'>Companions<hr>";
+        for(GameEntity g in companions) {
+            String species  = "";
+            if(g is Leprechaun) species = "(Leprechaun)";
+            if(g is Consort) species = "(Consort)";
+            if(g is Carapace) species = "(Carapace)";
+            ret += "${g.name} $species<br>";
+        }
+
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
         ret += "${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br>";
 
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
+        }
+
+
+
+        for(GameEntity g in companions) {
+            String species  = "";
+            if(g is Leprechaun) species = "(Leprechaun)";
+            if(g is Consort) species = "(Consort)";
+            if(g is Carapace) species = "(Carapace)";
+            ret += "${g.name} $species<br>";
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";

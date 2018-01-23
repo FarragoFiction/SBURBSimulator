@@ -24,7 +24,7 @@ main() {
     List<String> leprechaunsNames = new List<String>();
     for(int i = 0; i<20; i++) {
         Leprechaun l = Leprechaun.getLeprechaunForPlayer(p);
-        leprechaunsNames.add(l.name);
+        leprechaunsNames.add("${l.name} (${l.highestStat})");
         p.companions.add(l);
     }
     appendHtml(storyDiv, "<br><Br>Leprechauns are: ${turnArrayIntoHumanSentence(leprechaunsNames)} ");

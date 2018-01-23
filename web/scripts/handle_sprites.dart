@@ -696,6 +696,10 @@ abstract class Drawing {
         ctx.fillText("Fraymotifs Unlocked: ", left_margin, current + line_height * i);
         ctx.fillText(player.fraymotifs.length.toString(), right_margin, current + line_height * i);
         i++;
+
+        ctx.fillText("Companions Gathered: ", left_margin, current + line_height * i);
+        ctx.fillText(player.companions.length.toString(), right_margin, current + line_height * i);
+        i++;
         ctx.fillText("Grim Dark Level: ", left_margin, current + line_height * i);
         ctx.fillText("${player.grimDark}/4", right_margin, current + line_height * i);
 
@@ -1463,6 +1467,7 @@ abstract class Drawing {
             ////print("drawing ghost or doomed player from scratch: " + player);
             drawSpriteFromScratch(canvas, player, ctx, false);
         } else {
+            if(player.spriteCanvasID == null) player.initSpriteCanvas();
             CanvasElement canvasDiv = querySelector("#${player.spriteCanvasID}");
             //also take care of face scratches and mind control symbols.
             copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv, 0, 0);

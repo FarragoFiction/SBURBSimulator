@@ -62,7 +62,7 @@ class Leprechaun extends NPC {
     static List<String> thirteenNames  = <String>["Biscuits","Bakers","Jason","Curse","Emirp","Archimedes","Luna"];
     static List<String> fourteenNames  = <String>["Quarters","Chef","Shakespear","Cyber","Babylon","Osirus","Fortress"];
     static List<String> fifteenNames  = <String>["Cans","Pho","Quiche","Bonita","Mystic","Salute","Mandarin"];
-    static List<String> infinityNames  = <String>["Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet"];
+    static List<String> infinityNames  = <String>["Flowers","Soy","Wasabi","Spot","Fido","Slasher","Paints","Researcher","Librarian","The House","Snake Eyes","Eyepatch","Shanks","Machette","Gums","Nose","Max","Mad","Wedge","Biggs","Big Daddy","Coins","Shadow","Undertaker","Numbers","Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet"];
     static List<String> fakeDesc = <String>["Toad Goblin","Elf","Gnome","Puppet Person","Frogman","Leprechaun"];
 
 
@@ -87,6 +87,32 @@ class Leprechaun extends NPC {
             ret = makeOne(player);
         }else if(leprechaunsAlreadyObtained == 1) {
             ret = makeTwo(player);
+        }else if(leprechaunsAlreadyObtained == 2) {
+            ret = makeThree(player);
+        }else if(leprechaunsAlreadyObtained == 3) {
+            ret = makeFour(player);
+        }else if(leprechaunsAlreadyObtained == 4) {
+            ret = makeFive(player);
+        }else if(leprechaunsAlreadyObtained == 5) {
+            ret = makeSix(player);
+        }else if(leprechaunsAlreadyObtained == 6) {
+            ret = makeSeven(player);
+        }else if(leprechaunsAlreadyObtained == 7) {
+            ret = makeEight(player);
+        }else if(leprechaunsAlreadyObtained == 8) {
+            ret = makeNine(player);
+        }else if(leprechaunsAlreadyObtained == 9) {
+            ret = makeTen(player);
+        }else if(leprechaunsAlreadyObtained == 10) {
+            ret = makeEleven(player);
+        }else if(leprechaunsAlreadyObtained == 11) {
+            ret = makeTwelve(player);
+        }else if(leprechaunsAlreadyObtained == 12) {
+            ret = makeThirteen(player);
+        }else if(leprechaunsAlreadyObtained == 13) {
+            ret = makeFourteen(player);
+        }else if(leprechaunsAlreadyObtained == 14) {
+            ret = makeFifteen(player);
         }else {
             ret = makeRandom(player);
         }
@@ -116,17 +142,14 @@ class Leprechaun extends NPC {
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
                 int divisor = 3;
-                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //stronger
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
             }else {
                 int divisor = 13;
                 companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
             }
         }
-
-        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         return companion;
-
     }
 
     static makeTwo(Player player) {
@@ -137,7 +160,7 @@ class Leprechaun extends NPC {
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
                 int divisor = 3;
-                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //stronger
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
             }else {
                 int divisor = 13;
                 companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
@@ -145,6 +168,241 @@ class Leprechaun extends NPC {
         }
 
         //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+
+    static Leprechaun makeThree(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.threeNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.FREE_WILL) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeFour(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.fourNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MIN_LUCK || stat == Stats.MAX_LUCK) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeFive(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.fiveNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.FREE_WILL) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeSix(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.sixNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeSeven(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.sevenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.SANITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Carapace makeEight(Player player) {
+        Carapace companion = new Carapace(player.session.rand.pickFrom(Leprechaun.eightNames), player.session, Carapace.DERSE);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST) { //all stats
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeNine(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.nineNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.HEALTH) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeTen(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.tenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.SANITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeEleven(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.elevenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.ALCHEMY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeTwelve(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.twelveNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.FREE_WILL) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeThirteen(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.thirteenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.FREE_WILL) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeFourteen(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.fourteenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.SANITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
+    }
+
+    static Leprechaun makeFifteen(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.fifteenNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.POWER) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat).abs() / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         return companion;
     }
