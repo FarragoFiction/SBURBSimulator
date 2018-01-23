@@ -145,6 +145,11 @@ class DenizenReward extends Reward {
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         Item reward = p1.session.rand.pickFrom((p1.aspect.items));
         String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoard. Oh, and a ${reward.fullName}, too. ${reward.randomDescription(p1.rand)} ";
+        if(p1.class_name == SBURBClassManager.LORD) {
+            Leprechaun c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
+            text += " The ${Reward.PLAYER1} also unlocks the Leprechaun minion for this Land. They name them ${c.name}.";
+            p1.companions.add(c);
+        }
         p1.increaseGrist(100.0);
         p1.sylladex.add(reward.copy());
         DenizenFeature df = land.denizenFeature;
@@ -204,6 +209,26 @@ class ConsortReward extends Reward {
         super.apply(div, p1, p2, land,text);
     }
 }
+
+class LeprechaunReward extends Reward {
+    @override
+    String image = "Rewards/sweetFriendship.png";
+    WeightedList<Item> items;
+
+    LeprechaunReward();
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        Leprechaun c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
+        String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and figure out exactly what ${c.name} is good for.";
+        p1.companions.add(c);
+        //p2 gets NOTHING this is a Lord after all
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        p1.session.logger.info("AB: fakeDesc reward.");
+        super.apply(div, p1, p2, land,text);
+    }
+}
+
 
 
 

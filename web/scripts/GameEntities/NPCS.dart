@@ -63,8 +63,11 @@ class Leprechaun extends NPC {
     static List<String> fourteenNames  = <String>["Quarters","Chef","Shakespear","Cyber","Babylon","Osirus","Fortress"];
     static List<String> fifteenNames  = <String>["Cans","Pho","Quiche","Bonita","Mystic","Salute","Mandarin"];
     static List<String> infinityNames  = <String>["Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet"];
+    static List<String> fakeDesc = <String>["Toad Goblin","Elf","Gnome","Puppet Person","Frogman","Leprechaun"];
+
 
     Leprechaun(String name, Session session) : super(name, session);
+
 
     static GameEntity getLeprechaunForPlayer(Player player) {
         //each leprechaun's name is based on how many leprechauns the player already has
@@ -79,13 +82,27 @@ class Leprechaun extends NPC {
             }
         }
 
+        GameEntity ret;
         if(leprechaunsAlreadyObtained == 0) {
-            makeOne(player);
+            ret = makeOne(player);
         }else if(leprechaunsAlreadyObtained == 1) {
-            makeTwo(player);
+            ret = makeTwo(player);
         }else {
-            makeRandom(player);
+            ret = makeRandom(player);
         }
+
+        List<Specibus> possibleSpecibi = new List<Specibus>();
+        possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
+        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
+        possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
+
+        //don't override anything special, but don't let it be default either.
+        if(ret.specibus.name.contains("Claw")) ret.specibus = ret.session.rand.pickFrom(possibleSpecibi);
+
+        return ret;
     }
 
     //SB says:  1 and 2 and 6 will do mobility, 3 and 5 do freewill, 4 increases minluck and maxluck,
@@ -99,7 +116,7 @@ class Leprechaun extends NPC {
         for (Stat stat in allStats) {
             if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
                 int divisor = 3;
-                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //weaker
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //stronger
             }else {
                 int divisor = 13;
                 companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
@@ -108,25 +125,48 @@ class Leprechaun extends NPC {
 
         //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
-        List<Specibus> possibleSpecibi = new List<Specibus>();
-        possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
-        possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
-        possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
-        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
-        possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
-        possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
-
-        companion.specibus = companion.session.rand.pickFrom(possibleSpecibi);
         return companion;
 
     }
 
     static makeTwo(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.oneNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
 
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+
+        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
     }
 
     static makeRandom(Player player) {
-
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.oneNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+        bool pickedStat = false; //pick one stat to be big.
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && !pickedStat && player.session.rand.nextDouble()>.7) {
+                int divisor = 3;
+                pickedStat = true;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //stronger
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        return companion;
     }
 
 }
