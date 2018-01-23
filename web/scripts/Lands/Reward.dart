@@ -74,7 +74,12 @@ class RandomReward extends Reward {
              options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }
 
-        Reward chosen = p1.session.rand.pickFrom(options);
+        Reward chosen;
+        if(p1.class_name == SBURBClassManager.PAGE && p1.companions.isEmpty) {
+            chosen = new ConsortReward(); //pages always get at least one companion.
+        }else {
+            chosen = p1.session.rand.pickFrom(options);
+        }
         return chosen.apply(div, p1, p2, land, t);
     }
 

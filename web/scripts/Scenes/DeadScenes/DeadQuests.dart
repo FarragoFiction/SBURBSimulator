@@ -71,7 +71,12 @@ class DeadQuests extends Scene {
             return;
         }
        // print("Not time for a new planet");
-        String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}.  ${l.randomFlavorText(session.rand, player)} ";
+        GameEntity helper = player.findHelper(<Player>[]); //can ONLY return sprites and companions
+
+        String helperText = "";
+        helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
+
+        String html = "${l.getChapter()}The ${player.htmlTitle()} is in the ${l.name}. $helperText ${l.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
         l.doQuest(div, player, null);

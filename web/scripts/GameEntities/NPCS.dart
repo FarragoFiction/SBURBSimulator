@@ -676,7 +676,7 @@ class Consort extends NPC {
         if(_titles.isEmpty) initTitles();
         //need to have default values too, if you can't find shit (i.e. new stats)
 
-        String title = "Null";
+        String title = "Minion";
         String bonus = "";
         if(_titles.containsKey(highestStat)) {
             if(_titles[highestStat].containsKey(lowestStat)) {

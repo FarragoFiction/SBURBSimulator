@@ -137,6 +137,9 @@ class QuestsAndStuff extends Scene {
             }else if(helper is Consort){
                 session.logger.info("AB: consort helper.");
                 helperText = "$helperText The ${helper.htmlTitle()} is ${(helper as Consort).sound}ing. It's somehow helpful. ";
+            }else if(helper is Leprechaun){
+                session.logger.info("AB: leprechaun helper.");
+                helperText = "$helperText The ${helper.htmlTitle()} is using Aspect powers in appropriate ways to clear the lands challenges for their Lord. ";
             }else {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
