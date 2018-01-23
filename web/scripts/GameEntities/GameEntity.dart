@@ -72,10 +72,18 @@ class GameEntity extends Object with StatOwner   {
         _nextID = val;
     }
 
-    String get debugStats {
+    String get debugStatsRaw {
         String ret = "";
         for(Stat s in stats) {
             ret += "${s.name}: ${stats.getBase(s).round()},";
+        }
+        return ret;
+    }
+
+    String get debugStats {
+        String ret = "";
+        for(Stat s in stats) {
+            ret += "${s.name}: ${getStat(s).round()},";
         }
         return ret;
     }

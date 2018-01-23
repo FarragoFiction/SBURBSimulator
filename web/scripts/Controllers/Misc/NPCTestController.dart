@@ -20,14 +20,19 @@ main() {
     Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
 
     appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.npcHandler.allNPCS} ");
+    appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Minion:  ${p.debugStats}");
 
     List<String> leprechaunsNames = new List<String>();
     for(int i = 0; i<20; i++) {
-        Leprechaun l = Leprechaun.getLeprechaunForPlayer(p);
+        GameEntity l = Leprechaun.getLeprechaunForPlayer(p);
         leprechaunsNames.add("${l.name} (${l.highestStat})");
         p.companions.add(l);
     }
     appendHtml(storyDiv, "<br><Br>Leprechauns are: ${turnArrayIntoHumanSentence(leprechaunsNames)} ");
+    appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Lord:  ${p.debugStats}");
+    p.class_name = SBURBClassManager.LORD;
+    appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} After Lord:  ${p.debugStats}");
+
 
 
 
