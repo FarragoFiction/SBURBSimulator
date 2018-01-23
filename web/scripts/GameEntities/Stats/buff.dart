@@ -185,7 +185,8 @@ class BuffLord extends Buff {
 
     @override
     double additional(StatHolder holder, Stat stat, double val) {
-        //return val;
+        //in theory other things but lords could get this buff, too, eventually
+        //and if you change into a Lord suddenly you still get your buff.
         if(!(gameEntity is Player)) {
             return val;
         }else {
