@@ -75,8 +75,13 @@ class RandomReward extends Reward {
         }
 
         Reward chosen;
-        if(p1.class_name == SBURBClassManager.PAGE && p1.companions.isEmpty) {
+        //some classes are nearly guaranteed to get certain things.
+        if(p1.class_name.isProtective && p1.companions.isEmpty) {
             chosen = new ConsortReward(); //pages always get at least one companion.
+        }else if(p1.class_name.isMagical && p1.fraymotifs.isEmpty) {
+            chosen = new FraymotifReward();
+        }else if(p1.class_name.isSneaky && p1.sylladex.isEmpty) {
+            chosen = new ItemReward(items);
         }else {
             chosen = p1.session.rand.pickFrom(options);
         }
