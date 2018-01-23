@@ -65,8 +65,7 @@ class RandomReward extends Reward {
 
         if(p1.class_name == SBURBClassManager.LORD)
         {
-            //todo 100% shot of LEPRECHAUNS
-            options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
+            options.add(new LeprechaunReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
             //TODO 50/50 shot of brain ghosts
             options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
@@ -220,7 +219,7 @@ class LeprechaunReward extends Reward {
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         Leprechaun c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
-        String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and figure out exactly what ${c.name} is good for.";
+        String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and vow to figure out exactly what ${c.name} is good for.";
         p1.companions.add(c);
         //p2 gets NOTHING this is a Lord after all
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
