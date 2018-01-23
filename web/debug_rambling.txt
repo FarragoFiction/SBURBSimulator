@@ -4550,3 +4550,7 @@ alright, so first thing first: get a lord buff.
 second thing second, add a "random reward" kind of reward
 
 actually maybe do opposite style. random reward calls some other reward's apply and gives you it's text, right?
+
+~~~~
+current bug, all leprechauns are getting the first name.
+oh, duh. never adding them to party.

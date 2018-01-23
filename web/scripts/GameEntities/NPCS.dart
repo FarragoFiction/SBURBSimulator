@@ -130,7 +130,7 @@ class Leprechaun extends NPC {
     }
 
     static makeTwo(Player player) {
-        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.oneNames), player.session);
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.twoNames), player.session);
         companion.stats.copyFrom(player.stats); //mirror image for now.
         Iterable<Stat> allStats = Stats.all;
 
@@ -150,7 +150,7 @@ class Leprechaun extends NPC {
     }
 
     static makeRandom(Player player) {
-        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.oneNames), player.session);
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.infinityNames), player.session);
         companion.stats.copyFrom(player.stats); //mirror image for now.
         Iterable<Stat> allStats = Stats.all;
         bool pickedStat = false; //pick one stat to be big.

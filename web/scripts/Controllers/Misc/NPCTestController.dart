@@ -21,6 +21,15 @@ main() {
 
     appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.npcHandler.allNPCS} ");
 
+    List<String> leprechaunsNames = new List<String>();
+    for(int i = 0; i<20; i++) {
+        Leprechaun l = Leprechaun.getLeprechaunForPlayer(p);
+        leprechaunsNames.add(l.name);
+        p.companions.add(l);
+    }
+    appendHtml(storyDiv, "<br><Br>Leprechauns are: ${turnArrayIntoHumanSentence(leprechaunsNames)} ");
+
+
 
     for(Player p in curSessionGlobalVar.players) {
         p.initialize();
@@ -33,5 +42,7 @@ main() {
             appendHtml(storyDiv, "<br><Br>${c.name} ");
         }
     }
+
+
 
 }
