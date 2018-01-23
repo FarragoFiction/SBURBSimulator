@@ -66,8 +66,67 @@ class Leprechaun extends NPC {
 
     Leprechaun(String name, Session session) : super(name, session);
 
-    static String getNameForLeprechaunForPlayer(Player player) {
+    static GameEntity getLeprechaunForPlayer(Player player) {
         //each leprechaun's name is based on how many leprechauns the player already has
+        //if it's 8, instead return a Dersite Carapace
+        //stats are based on number, too.
+        int leprechaunsAlreadyObtained = 0;
+        for(GameEntity g in player.companions) {
+            if(g is Leprechaun) {
+                leprechaunsAlreadyObtained ++;
+            }else if(g is Carapace && eightNames.contains(g.name)) {
+                leprechaunsAlreadyObtained ++;
+            }
+        }
+
+        if(leprechaunsAlreadyObtained == 0) {
+            makeOne(player);
+        }else if(leprechaunsAlreadyObtained == 1) {
+            makeTwo(player);
+        }else {
+            makeRandom(player);
+        }
+    }
+
+    //SB says:  1 and 2 and 6 will do mobility, 3 and 5 do freewill, 4 increases minluck and maxluck,
+    //7 does sanity, 8 does all stats, 9 does hp, 10 does sanity, 11 does alchemy, 12 and 13 do freewill,
+    // 14 does sanity, and 15 does power
+    static Leprechaun makeOne(Player player) {
+        Leprechaun companion = new Leprechaun(player.session.rand.pickFrom(Leprechaun.oneNames), player.session);
+        companion.stats.copyFrom(player.stats); //mirror image for now.
+        Iterable<Stat> allStats = Stats.all;
+
+        for (Stat stat in allStats) {
+            if(stat != Stats.EXPERIENCE && stat != Stats.GRIST && stat == Stats.MOBILITY) {
+                int divisor = 3;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //weaker
+            }else {
+                int divisor = 13;
+                companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
+            }
+        }
+
+        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
+        List<Specibus> possibleSpecibi = new List<Specibus>();
+        possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
+        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
+        possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
+
+        companion.specibus = companion.session.rand.pickFrom(possibleSpecibi);
+        return companion;
+
+    }
+
+    static makeTwo(Player player) {
+
+    }
+
+    static makeRandom(Player player) {
+
     }
 
 }
@@ -125,7 +184,12 @@ class Consort extends NPC {
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         List<Specibus> possibleSpecibi = new List<Specibus>();
-        possibleSpecibi.add( new Specibus("Stethoscope", ItemTraitFactory.BUST, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
+        possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
+        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
+        possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
 
         companion.specibus = companion.session.rand.pickFrom(possibleSpecibi);
         return companion;
