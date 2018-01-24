@@ -67,7 +67,7 @@ class RandomReward extends Reward {
         {
             options.add(new LeprechaunReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
-            //TODO 50/50 shot of brain ghosts
+            options.add(new BrainGhostReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
             options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
         {
@@ -237,6 +237,69 @@ class LeprechaunReward extends Reward {
         p1.session.logger.info("AB: fakeDesc reward.");
         super.apply(div, p1, p2, land,text);
     }
+}
+
+
+class BrainGhostReward extends Reward {
+    @override
+    String image = "Rewards/sweetFriendship.png";
+    WeightedList<Item> items;
+
+    BrainGhostReward();
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+
+        List<Player> possibleBrainGhosts = findAllAspectPlayers(p1.session.players, Aspects.HEART);
+        Player p ;
+        String relationship = "friend";
+
+        Player bestFriend = p1.getBestFriend();
+        if(p1.getRelationshipWith(bestFriend).value >= Relationship.CRUSHVALUE) {
+            possibleBrainGhosts.add(bestFriend);
+        }
+        Player worstEnemy = p1.getWorstEnemy();
+        if(p1.getRelationshipWith(worstEnemy).value <= -1*Relationship.CRUSHVALUE) {
+            possibleBrainGhosts.add(worstEnemy);
+        }
+
+        //don't have two copies of the same brain ghost
+        List<Player> toRemove = new List<Player>();
+        for(Player pbg in possibleBrainGhosts) {
+            for(GameEntity g in p.companions) {
+                if(g is Player) {
+                    Player gP = g as Player;
+                    if(g.chatHandle == pbg.chatHandle && g.ghost) toRemove.add(pbg);
+                }
+            }
+        }
+
+       for(Player tr in toRemove) {
+            possibleBrainGhosts.remove(tr);
+       }
+
+        p = p1.session.rand.pickFrom(possibleBrainGhosts);
+
+        String text;
+        if(p == null) {
+            ConsortReward c = new ConsortReward(); //just a normal consort
+            c.apply(div,p1, p2, land, t);
+            return;
+        }else {
+            p = Player.makeRenderingSnapshot(p);
+            p.ghost = true; //so spooky and transparent
+            relationship = p1.getRelationshipWith(p).saved_type;
+            text = " The ${Reward.PLAYER1} believes really hard in their $relationship, the ${p.htmlTitle()} they are surprised, but happy, when it turns out that the version of them in their head can help them out in strifes! ";
+        }
+        p1.companions.add(p);
+        p2 = p; //so they get rendered.
+
+        text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
+        p1.session.logger.info("AB: brain ghost reward.");
+        super.apply(div, p1, p2, land,text);
+    }
+
+
 }
 
 

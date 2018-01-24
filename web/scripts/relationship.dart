@@ -4,6 +4,8 @@ import "SBURBSim.dart";
 //can be positive or negative. if high enough, can
 //turn into romance in a quadrant.
 class Relationship {
+
+    static int CRUSHVALUE = 20;
     Player source;
     num value = 0;
     Player _target;
@@ -107,9 +109,9 @@ class Relationship {
     }
 
     String changeType() {
-        if (this.value > 20) { //used to be -10 to 10, but too many crushes.
+        if (this.value > CRUSHVALUE) { //used to be -10 to 10, but too many crushes.
             return this.goodBig;
-        } else if (this.value < -20) { //need to calibrate scandalous fuck piles.
+        } else if (this.value < -1 * CRUSHVALUE) { //need to calibrate scandalous fuck piles.
             return this.badBig;
         } else if (this.value > 0) {
             return this.goodMild;

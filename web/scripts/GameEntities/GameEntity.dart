@@ -13,8 +13,8 @@ enum ProphecyState {
 class GameEntity extends Object with StatOwner   {
     static int _nextID = 0;
     Specibus specibus;
-    //1/16/18 let's fucking do this. npc update go.
-    List<NPC> companions = new List<NPC>();
+    //1/16/18 let's fucking do this. npc update go. mostly npcs but can be brain ghosts and robots, too.
+    List<GameEntity> companions = new List<NPC>();
 
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.

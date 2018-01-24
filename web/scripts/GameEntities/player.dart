@@ -1418,6 +1418,17 @@ class Player extends GameEntity{
         return bestRelationshipSoFar.target;
     }
 
+    GameEntity getWorstEnemy() {
+        Relationship worstRelationshipSoFar = this.relationships[0];
+        for (num i = 1; i < this.relationships.length; i++) {
+            Relationship r = this.relationships[i];
+            if (r != null && r.value < worstRelationshipSoFar.value) {
+                worstRelationshipSoFar = r;
+            }
+        }
+        return worstRelationshipSoFar.target;
+    }
+
     GameEntity getBestFriendFromList(List<GameEntity>potentialFriends, [String debugMessage = null]) {
         Relationship bestRelationshipSoFar = this.relationships[0];
         for (num i = 0; i < potentialFriends.length; i++) {
