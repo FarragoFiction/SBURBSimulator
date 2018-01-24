@@ -573,7 +573,6 @@ abstract class Drawing {
     static void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty){
         var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
         Drawing.drawSprite(pSpriteBuffer,royalty);
-
         dead_player.dead = true;
         dead_player.isDreamSelf = false;  //temporarily show non dream version
         var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
@@ -587,6 +586,7 @@ abstract class Drawing {
         dead_player.dreamSelf = false; //only one self now.
         dead_player.isDreamSelf = true;
         dead_player.makeAlive();
+
         Drawing.drawSprite(moonBuffer,dead_player);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, moonBuffer,600,0);
     }
