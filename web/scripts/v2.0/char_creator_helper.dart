@@ -95,14 +95,9 @@ class CharacterCreatorHelper {
         if (p != null) { p..anchor.style.top = "5px"; }
 
         player.initSpriteCanvas();
-        String canvasHTML = "<br><canvas style='display:none' id='" +
-            player.spriteCanvasID +
-            "' width='400' height='300'>  </canvas>";
-        appendHtml(querySelector("#playerSprites"), canvasHTML);
-
         player.renderSelf();
 
-        var canvas = querySelector("#canvas" + divId);
+        var canvas = player.canvas;
         //drawSinglePlayer(canvas, player);
         var p1SpriteBuffer =
         Drawing.getBufferCanvas(querySelector("#sprite_template"));

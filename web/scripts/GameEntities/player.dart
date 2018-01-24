@@ -254,7 +254,7 @@ class Player extends GameEntity{
         this.causeOfDeath = sanitizeString(causeOfDeath);
         if (this.getStat(Stats.CURRENT_HEALTH) > 0) this.setStat(Stats.CURRENT_HEALTH, -1); //just in case anything weird is going on. dead is dead.  (for example, you could have been debuffed of hp).
         if (!this.godTier) { //god tiers only make ghosts in GodTierRevivial
-            Player g = Player.makeRenderingSnapshot(this);
+            Player g = Player.makeRenderingSnapshot(this,false);
             g.fraymotifs = new List<Fraymotif>.from(this.fraymotifs); //copy not reference
             this.session.afterLife.addGhost(g);
         }
@@ -542,7 +542,7 @@ class Player extends GameEntity{
             if(g is Carapace && (g as Carapace).type == Carapace.DERSE) species = "(Dersite)";
             if(g is Carapace && (g as Carapace).type == Carapace.PROSPIT) species = "(Prospitian)";
 
-            ret += "${g.name} $species<br>";
+            ret += "${g.title()} $species<br>";
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
@@ -552,15 +552,6 @@ class Player extends GameEntity{
             ret += "${item.fullNameWithUpgrade}<br>";
         }
 
-
-
-        for(GameEntity g in companions) {
-            String species  = "";
-            if(g is Leprechaun) species = "(Leprechaun)";
-            if(g is Consort) species = "(Consort)";
-            if(g is Carapace) species = "(Carapace)";
-            ret += "${g.name} $species<br>";
-        }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
 
@@ -1556,32 +1547,21 @@ class Player extends GameEntity{
     }
 
     void initSpriteCanvas() {
-        ////print("Initializing derived stuff.");
-        this.spriteCanvasID = "spriteCanvas${this.id}";
-        String canvasHTML = "<br/><canvas style='display:none' id='${this.spriteCanvasID}' width='400' height='300'></canvas>";
-        appendHtml(querySelector("#playerSprites"), canvasHTML);
-        ////print("append? -> $canvasHTML");
+        print("Initializing canvas.");
+        canvas = new CanvasElement(width: 400, height: 300);
+        renderSelf();
     }
 
     void renderSelf() {
+        print("rendering self");
         if(Drawing.checkSimMode()) return;
-        if (this.spriteCanvasID == null) this.initSpriteCanvas();
-        CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
-
-        //var ctx = canvasDiv.context2D;
+        if (canvas == null) this.initSpriteCanvas();
         this.clearSelf();
-        //var pSpriteBuffer = this.session.sceneRenderingEngine.getBufferCanvas(querySelector("#sprite_template"));
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
-        Drawing.drawSpriteFromScratch(pSpriteBuffer, this);
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, 0, 0);
-        //this.session.sceneRenderingEngine.drawSpriteFromScratch(pSpriteBuffer, this);
-        //this.session.sceneRenderingEngine.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,0,0);
+        Drawing.drawSpriteFromScratch(canvas, this);
     }
 
     void clearSelf() {
-        CanvasElement canvasDiv = querySelector("#${this.spriteCanvasID}");
-        CanvasRenderingContext2D ctx = canvasDiv.context2D;
-        ctx.clearRect(0, 0, canvasDiv.width, canvasDiv.height);
+        canvas.context2D.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     void initializeMobility() {
@@ -2053,12 +2033,11 @@ class Player extends GameEntity{
     //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
     //get rid of thigns doomed time players were using. they are just players. just like this is just a player
     //until ll8r when i bother to make it a mini class of just stats.
-    static Player makeRenderingSnapshot(Player player) {
+    static Player makeRenderingSnapshot(Player player, [bool saveCanvas = true]) {
         Player ret = new Player(player.session, player.class_name, player.aspect, player.object_to_prototype, player.moon, player.godDestiny);
         ret.robot = player.robot;
         ret.specibus = player.specibus.copy();
         ret.gnosis = player.gnosis;
-        ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
         ret.ghost = player.ghost;
         ret.brainGhost = player.brainGhost;
@@ -2092,13 +2071,19 @@ class Player extends GameEntity{
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.stats = player;
+        ret.canvas = player.canvas;
+        if(saveCanvas && player.canvas != null) {
+            ret.canvas = player.canvas; //you're just for rendering
+        }else {
+            ret.canvas = null; //re render yourself. you're a ghost or a doomed time clone or some shit
+        }
         return ret;
     }
 
 
     //TODO has specific 'doomed time clone' stuff in it, like randomizing state
     static Player makeDoomedSnapshot(Player doomedPlayer) {
-        Player timeClone = Player.makeRenderingSnapshot(doomedPlayer);
+        Player timeClone = Player.makeRenderingSnapshot(doomedPlayer,false);
         timeClone.dead = false;
         timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
         timeClone.prophecy = ProphecyState.ACTIVE;
@@ -2144,6 +2129,7 @@ class Player extends GameEntity{
 
         Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 1); //at least did first quest
         timeClone.fraymotifs.add(f);
+        timeClone.renderSelf();
 
         return timeClone;
     }

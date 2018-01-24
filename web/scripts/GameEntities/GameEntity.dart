@@ -50,7 +50,8 @@ class GameEntity extends Object with StatOwner   {
     //Map<String, num> permaBuffs = <String, num>{ "MANGRIT": 0}; //is an object so it looks like a player with stats.  for things like manGrit which are permanent buffs to power (because modding power directly is confusing since it's also 'level')
     num renderingType = 0; //0 means default for this sim.
     List<AssociatedStat> associatedStats = <AssociatedStat>[]; //most players will have a 2x, a 1x and a -1x stat.
-    String spriteCanvasID = null; //part of new rendering engine.
+    //String spriteCanvasID = null; //part of new rendering engine. deprecated 1/24/18 in favor of using a canvas directly
+    CanvasElement canvas;
     num id;
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
     List<Player> doomedTimeClones = <Player>[]; //help fight the final boss(es).
@@ -172,7 +173,6 @@ class GameEntity extends Object with StatOwner   {
         clonege.relationships = Relationship.cloneRelationshipsStopgap(relationships);
         clonege.renderingType = renderingType; //0 means default for this sim.
         clonege.associatedStats = associatedStats; //most players will have a 2x, a 1x and a -1x stat.
-        clonege.spriteCanvasID = spriteCanvasID; //part of new rendering engine.
         clonege.doomed = doomed; //if you are doomed, no matter what you are, you are likely to die.
         clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
         clonege.causeOfDeath = causeOfDeath; //fill in every time you die. only matters if you're dead at end

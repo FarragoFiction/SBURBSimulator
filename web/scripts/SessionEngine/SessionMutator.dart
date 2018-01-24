@@ -331,7 +331,6 @@ class SessionMutator {
                 independantDreamSelf.dreamSelf = false; //does not have a dream self
                 independantDreamSelf.session = s;
                 independantDreamSelf.id = independantDreamSelf.id + 3333;
-                independantDreamSelf.spriteCanvasID = null; //rendering yourself will reinit it
                 p.dreamSelf = false; //no more dream self, bro
                 newPlayers.add(independantDreamSelf);
                 ret += "<br>The ${independantDreamSelf.htmlTitle()}'s dream self awakens on ${independantDreamSelf.moon}.  It is now registered as a full Player, and is unaffected by the alterations to the Real Self's identity.  Does this make them the 'real' verson of the ${independantDreamSelf.htmlTitle()}? ";
@@ -733,7 +732,6 @@ class SessionMutator {
             if (timePlayer.id == target.id) {
 
                 deadPlayer = target.clone();
-                deadPlayer.spriteCanvasID = null;  //don't share a canvas with your past self plz.
                 deadPlayer.id = GameEntity.generateID();
                 deadPlayer.makeDead("Being assasinated by their own future self. ");
                 timePlayer.makeAlive();

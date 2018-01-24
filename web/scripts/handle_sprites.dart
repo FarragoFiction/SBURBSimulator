@@ -1463,15 +1463,14 @@ abstract class Drawing {
             ctx = canvas.context2D;
         }
         Player player = Player.makeRenderingSnapshot(inputplayer);
-        if (player.ghost || player.doomed || player.brainGhost) { //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
-            print("drawing ghost or brain ghost or  doomed player from scratch: $player");
-            drawSpriteFromScratch(canvas, player, ctx, false);
-        } else {
-            if(player.spriteCanvasID == null) player.initSpriteCanvas();
-            CanvasElement canvasDiv = querySelector("#${player.spriteCanvasID}");
-            //also take care of face scratches and mind control symbols.
-            copyTmpCanvasToRealCanvasAtPos(canvas, canvasDiv, 0, 0);
+        //always cache
+        if(player.canvas == null) {
+            print("canvas is null");
+            player.initSpriteCanvas();
         }
+        //also take care of face scratches and mind control symbols.
+        copyTmpCanvasToRealCanvasAtPos(canvas, player.canvas, 0, 0);
+
 
         if (!baby && player.influenceSymbol != null) { //dont make sprite for this, always on top, unlike scars
             //wasteOfMindSymbol(canvas, player);
@@ -1493,7 +1492,7 @@ abstract class Drawing {
     }
 
     static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
-        ////print("Drawing sprite from scratch " + player.isDreamSelf);
+        print("Drawing sprite from scratch ${player.title()}");
         if (checkSimMode() == true) {
             return;
         }

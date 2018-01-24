@@ -292,7 +292,7 @@ class BrainGhostReward extends Reward {
             c.apply(div,p1, p2, land, t);
             return;
         }else {
-            p = Player.makeRenderingSnapshot(p);
+            p = Player.makeRenderingSnapshot(p,false);
             p.brainGhost = true; //so spooky and transparent
             relationship = p1.getRelationshipWith(p).saved_type;
             text = " The ${Reward.PLAYER1} believes really hard in their $relationship, the ${p.htmlTitle()} they are surprised, but happy, when it turns out that the version of them in their head can help them out in strifes! ";
