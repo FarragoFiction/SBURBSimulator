@@ -2056,6 +2056,7 @@ class Player extends GameEntity{
     static Player makeRenderingSnapshot(Player player) {
         Player ret = new Player(player.session, player.class_name, player.aspect, player.object_to_prototype, player.moon, player.godDestiny);
         ret.robot = player.robot;
+        ret.specibus = player.specibus.copy();
         ret.gnosis = player.gnosis;
         ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
