@@ -102,11 +102,11 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
   appendHtml(div, canvasHTML);
   var canvasDiv = querySelector("#canvas"+ divID);
 
-  var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+  var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
   Drawing.drawTimeGears(pSpriteBuffer);
   Drawing.drawSprite(pSpriteBuffer,timeClone1);
 
-  var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+  var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
   Drawing.drawTimeGears(dSpriteBuffer);
   Drawing.drawSpriteTurnways(dSpriteBuffer,timeClone2);
 
@@ -169,10 +169,10 @@ class PlayerDiedButCouldGodTier extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(dSpriteBuffer,this.player);
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
@@ -237,10 +237,10 @@ class PlayerDiedForever  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
@@ -301,10 +301,10 @@ class PlayerWentGrimDark  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
@@ -358,10 +358,10 @@ class PlayerWentMurderMode  extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
@@ -410,7 +410,7 @@ class JackPromoted  extends ImportantEvent{
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
@@ -466,10 +466,10 @@ class FrogBreedingNeedsHelp extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSpriteTurnways(dSpriteBuffer,spacePlayer);
 
 			Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
@@ -525,10 +525,10 @@ class PlayerEnteredSession  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-			var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(dSpriteBuffer,player);
 
 		Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
@@ -582,7 +582,7 @@ class TimePlayerEnteredSessionWihtoutFrog  extends ImportantEvent {
 			appendHtml(div, canvasHTML);
 			var canvasDiv = querySelector("#canvas"+ divID);
 
-			var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+			var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 			Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 			Drawing.drawTimeGears(canvasDiv);
 			Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);

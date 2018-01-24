@@ -497,7 +497,7 @@ class GetWasted extends Scene {
     void drawGhostRevive(CanvasElement canvasDiv, List<Player> players) {
         CanvasElement canvas = Drawing.drawReviveDead(canvasDiv, players[0], players[1], players[2].aspect);
 
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, players[2]);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
     }

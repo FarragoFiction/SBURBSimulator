@@ -291,16 +291,16 @@ class LifeStuff extends Scene {
     CanvasElement drawDreamBubbleH(Element div, Player player, Player ghost) {
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, player);
-        CanvasElement bubbleSpriteBuffer = Drawing.getBufferCanvas(querySelector("#canvas_template"));
+        CanvasElement bubbleSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawDreamBubble(bubbleSpriteBuffer);
 
         //leave room on left for possible 'guide' player.
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer, 0, 0);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
         if (ghost != null) {
-            CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
             //copyTmpCanvasToRealCanvasAtPos(canvas, bubbleSpriteBuffer,400,0);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 400, 0);
@@ -313,9 +313,9 @@ class LifeStuff extends Scene {
         String canvasId = "${div.id}commune_${player.id}";
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, player);
-        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
         //leave room on left for possible 'guide' player.
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
@@ -328,9 +328,9 @@ class LifeStuff extends Scene {
         //session.logger.info("drain dead in: ${this.session.session_id}");
         CanvasElement canvas= new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, player);
-        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement gSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSpriteTurnways(gSpriteBuffer, ghost);
 
 
@@ -389,7 +389,7 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             session.removeAvailablePlayer(player1);
             ////session.logger.info("Help communing with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
             String ret = "";
@@ -454,7 +454,7 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             session.removeAvailablePlayer(player1);
             ////session.logger.info("Help draining power with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(pSpriteBuffer, player1);
 
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
@@ -513,7 +513,7 @@ class LifeStuff extends Scene {
         if (canvas != null) {
             session.removeAvailablePlayer(player1);
             ////session.logger.info("Help revive with the dead: " + this.session.session_id);
-            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(pSpriteBuffer, player1);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
             String ret = "";
@@ -528,9 +528,9 @@ class LifeStuff extends Scene {
         this.session.stats.dreamBubbleAfterlife = true;
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, player);
-        CanvasElement horrorSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement horrorSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawHorrorterror(canvas);
         //leave room on left for possible 'guide' player.
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, horrorSpriteBuffer, 0, 0);

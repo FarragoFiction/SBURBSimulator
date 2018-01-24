@@ -779,10 +779,10 @@ class SessionMutator {
             CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
             div.append(canvasDiv);
 
-            var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(pSpriteBuffer, target);
 
-            var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(dSpriteBuffer, deadPlayer);
 
             Drawing.drawTimeGears(canvasDiv); //, this.doomedTimeClone);

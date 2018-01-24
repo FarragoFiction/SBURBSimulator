@@ -100,7 +100,7 @@ class CharacterCreatorHelper {
         var canvas = player.canvas;
         //drawSinglePlayer(canvas, player);
         var p1SpriteBuffer =
-        Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSpriteFromScratch(p1SpriteBuffer, player);
         //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer, 0, 0);
@@ -276,7 +276,7 @@ class CharacterCreatorHelper {
         CanvasElement canvas = querySelector("#canvasSummarycanvas${player.id}");
         CanvasRenderingContext2D ctx = canvas.getContext("2d");
         CanvasElement pSpriteBuffer =
-        Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         ctx.clearRect(0, 0, 600, 300);
         Drawing.drawSpriteFromScratch(pSpriteBuffer, player);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, -30, 0);

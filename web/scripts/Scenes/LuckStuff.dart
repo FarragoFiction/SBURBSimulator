@@ -269,7 +269,7 @@ class LuckStuff extends Scene{
 		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvas);
 
-		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(pSpriteBuffer,roll.player);
 
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);

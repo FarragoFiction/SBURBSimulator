@@ -64,7 +64,7 @@ class AfterlifeController extends SimController {
     appendHtml(div, html);
     CanvasElement canvas = querySelector("#canvas"+ divID);
 
-    var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+    var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
     Drawing.drawSprite(pSpriteBuffer,ghost);
 
     Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);

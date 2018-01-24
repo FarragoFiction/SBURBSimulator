@@ -33,8 +33,8 @@ void startNewSession() {
     String divID = "canvasdeadInvader";
     String ret = "The ${player.htmlTitle()} enters a new session. Huh.  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
     appendHtml(div, ret);
-    Element canvas = querySelector("#$divID");
-    Element buffer = Drawing.getBufferCanvas(canvas);
+    CanvasElement canvas = querySelector("#$divID");
+    Element buffer = Drawing.getBufferCanvas(canvas.width, canvas.height);
     Drawing.drawSinglePlayer(buffer, player);
     Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
     querySelector('body').style.backgroundImage = "url(images/Skaia_Clouds.png)";
@@ -60,7 +60,7 @@ bool trigger(List<Player> playerList) {
         for (int i = 0; i < this.session.players.length; i++) {
             CanvasElement canvasDiv = new CanvasElement(width: 800, height: 1000);
             div.append(canvasDiv);
-            CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv);
+            CanvasElement tmp_canvas = Drawing.getBufferCanvas(canvasDiv.width, canvasDiv.height);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);
             //will be null for new players.
             if (session.players.first.firstStatsCanvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, session.players.first.firstStatsCanvas, 0, 0);

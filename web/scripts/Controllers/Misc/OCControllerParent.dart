@@ -57,22 +57,21 @@ class OCGenerator {
     }
 
     void drawPlayers() {
-        CanvasElement spriteTemplate = querySelector("#sprite_template");
         Element container = querySelector("#container");
         container.setInnerHtml(""); //clear it out.
         for(int i = 0; i<numPlayers; i++) {
-            drawPlayer(players[i], spriteTemplate, container);
+            drawPlayer(players[i], container);
         }
     }
 
-    void drawPlayer(Player p, CanvasElement spriteTemplate, Element container) {
+    void drawPlayer(Player p, Element container) {
         //get canvas, draw player from scratch.
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
         print("canvas is $canvas");
-        CanvasElement godBuffer = Drawing.getBufferCanvas(spriteTemplate);
-        CanvasElement regBuffer = Drawing.getBufferCanvas(spriteTemplate);
-        CanvasElement dreamBuffer = Drawing.getBufferCanvas(spriteTemplate);
+        CanvasElement godBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
+        CanvasElement regBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
+        CanvasElement dreamBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         p.isDreamSelf = false;
         p.godTier = false;
         Drawing.drawSpriteFromScratch(regBuffer, p);

@@ -60,12 +60,12 @@ class FreeWillStuff extends Scene {
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
 
-        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        CanvasElement pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, this.renderPlayer1);
 
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 0, 0);
         if (this.renderPlayer2 != null) {
-            CanvasElement dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+            CanvasElement dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
             Drawing.drawSprite(dSpriteBuffer, this.renderPlayer2);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer, 200, 0);
         }

@@ -23,14 +23,14 @@ class Reward {
         appendHtml(div, ret);
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvas);
-        Element buffer = Drawing.getBufferCanvas(canvas);
+        Element buffer = Drawing.getBufferCanvas(canvas.width, canvas.height);
         Drawing.drawSinglePlayer(buffer, p1);
         if(image != null ) Drawing.drawWhatever(buffer, image);
         if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
         //print("drawing player 1 is ${p1}");
         Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
         if(p2 != null && (p2 is Player)){
-            Element buffer2 = Drawing.getBufferCanvas(canvas);
+            Element buffer2 = Drawing.getBufferCanvas(canvas.width, canvas.height);
             Drawing.drawSinglePlayer(buffer2, p2);
             Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, buffer2, 150,0);
         }

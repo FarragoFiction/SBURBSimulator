@@ -132,10 +132,10 @@ class MurderPlayers extends Scene {
 		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvas);
 
-		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(pSpriteBuffer,murderer);
 
-		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(dSpriteBuffer,victim);
 
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
@@ -148,15 +148,15 @@ class MurderPlayers extends Scene {
 		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvas);
 
-		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(pSpriteBuffer,murderer);
 
 
-		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSpriteTurnways(dSpriteBuffer,diamond);
 
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
-		var diSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var diSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawDiamond(diSpriteBuffer);
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,175,0);
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
@@ -167,17 +167,17 @@ class MurderPlayers extends Scene {
 		CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvas);
 
-		var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(pSpriteBuffer,murderer);
 
-		var vSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var vSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSprite(vSpriteBuffer,victim);
 
-		var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawSpriteTurnways(dSpriteBuffer,club);  //facing non-middle leafs
 
 		//used to check if troll was involved. what the fuck ever. everybody uses the quadrant system. it's just easier.
-		var diSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+		var diSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
 		Drawing.drawClub(diSpriteBuffer); //Auspisticism
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, diSpriteBuffer,475,50);
 

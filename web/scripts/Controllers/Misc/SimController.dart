@@ -16,6 +16,18 @@ import "../../navbar.dart";
 //care about other controllers later.
 abstract class SimController {
     static bool shogun = true;  //sim goes into shogun mode
+    static int spriteTemplateWidth = 400;
+    static int spriteTemplateHeight = 300;
+    static int echeladderTemplateHeight = 300;
+    static int echeladderTemplateWidth = 202;
+    static int canvasTemplateHeight = 300;
+    static int canvasTemplateWidth = 1000;
+    static int rainbowTemplateHeight = 300;
+    static int rainbowTemplateWidth = 1;
+    static int chatTextTemplateHeight = 239;
+    static int chatTextTemplateWidth = 472;
+    static int godTierLevelUpTemplateHeight = 572;
+    static int godTierLevelUpTemplateWidth = 1000;
 
     Element storyElement;
     Element voidStory;

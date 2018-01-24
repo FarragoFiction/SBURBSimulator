@@ -197,10 +197,10 @@ class Aftermath extends Scene {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvasDiv);
 
-        var pSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer, friend);
 
-        var dSpriteBuffer = Drawing.getBufferCanvas(querySelector("#sprite_template"));
+        var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(dSpriteBuffer, dead_player);
 
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer, -100, 0);
@@ -507,7 +507,7 @@ class Aftermath extends Scene {
             CanvasElement last_canvas = new CanvasElement(width: 800, height: 1000);
             div.append(last_canvas);
 
-            CanvasElement tmp_canvas = Drawing.getBufferCanvas(last_canvas);
+            CanvasElement tmp_canvas = Drawing.getBufferCanvas(last_canvas.width, last_canvas.height);
             Drawing.drawCharSheet(tmp_canvas, this.session.players[i]);
             //will be null for new players.
             if (p.firstStatsCanvas != null) Drawing.copyTmpCanvasToRealCanvasAtPos(last_canvas, p.firstStatsCanvas, 0, 0);
