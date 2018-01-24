@@ -57,8 +57,14 @@ class RandomReward extends Reward {
         }else if(land.secondCompleted) {
             items = p1.aspect.items;
         }else {
-            items = p1.interest1.category.items;
-            items.addAll(p1.interest2.category.items);
+            if(p1.session.rand.nextBool()) {
+                items = p1.interest1.category.items;
+            }else {
+                items = p1.interest2.category.items;
+            }
+            //for some reason adding this causes a concurrent modification error and i do not know why.
+            //should not be concurrent
+            //items.addAll(p1.interest2.category.items);
         }
         options.add(new ItemReward(items), p1.class_name.itemWeight + p1.aspect.itemWeight);
         options.add(new FraymotifReward(), p1.class_name.fraymotifWeight + p1.aspect.fraymotifWeight);
@@ -68,7 +74,7 @@ class RandomReward extends Reward {
             options.add(new LeprechaunReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
             options.add(new BrainGhostReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
-            options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
+            //options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
         {
              options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
@@ -266,10 +272,10 @@ class BrainGhostReward extends Reward {
         //don't have two copies of the same brain ghost
         List<Player> toRemove = new List<Player>();
         for(Player pbg in possibleBrainGhosts) {
-            for(GameEntity g in p.companions) {
+            for(GameEntity g in p1.companions) {
                 if(g is Player) {
                     Player gP = g as Player;
-                    if(g.chatHandle == pbg.chatHandle && g.ghost) toRemove.add(pbg);
+                    if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) toRemove.add(pbg);
                 }
             }
         }
@@ -287,7 +293,7 @@ class BrainGhostReward extends Reward {
             return;
         }else {
             p = Player.makeRenderingSnapshot(p);
-            p.ghost = true; //so spooky and transparent
+            p.brainGhost = true; //so spooky and transparent
             relationship = p1.getRelationshipWith(p).saved_type;
             text = " The ${Reward.PLAYER1} believes really hard in their $relationship, the ${p.htmlTitle()} they are surprised, but happy, when it turns out that the version of them in their head can help them out in strifes! ";
         }

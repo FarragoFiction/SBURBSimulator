@@ -22,6 +22,9 @@ class FightKing extends Scene {
 
 	for(num i = 0; i<allPlayers.length; i++){
 		living.addAll(allPlayers[i].doomedTimeClones);
+		for(GameEntity g in allPlayers[i].companions) {
+			if(g is Player && !g.dead) living.add(g);
+		}
 	}
 	return living;
 }

@@ -14,7 +14,7 @@ class GameEntity extends Object with StatOwner   {
     static int _nextID = 0;
     Specibus specibus;
     //1/16/18 let's fucking do this. npc update go. mostly npcs but can be brain ghosts and robots, too.
-    List<GameEntity> companions = new List<NPC>();
+    List<GameEntity> companions = new List<GameEntity>();
 
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
@@ -36,6 +36,8 @@ class GameEntity extends Object with StatOwner   {
     //
     String fontColor = "#000000";
     bool ghost = false; //if you are ghost, you are rendered spoopy style
+    bool brainGhost = false;
+
     num grist = 100; //everything has it.
     bool dead = false;
     String causeOfDrain = null; //if it's ever not null they will be sideways

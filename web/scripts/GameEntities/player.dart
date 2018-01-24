@@ -473,6 +473,9 @@ class Player extends GameEntity{
             ret = "$ret's Corpse";
         } else if (this.ghost) {
             ret = "$ret's Ghost";
+        }else if(this.brainGhost) {
+            ret = "$ret's Brain Ghost";
+
         }
 
         return ret;
@@ -2057,6 +2060,7 @@ class Player extends GameEntity{
         ret.spriteCanvasID = player.spriteCanvasID;
         ret.doomed = player.doomed;
         ret.ghost = player.ghost;
+        ret.brainGhost = player.brainGhost;
         ret.causeOfDrain = player.causeOfDrain;
         ret.session = player.session;
         ret.id = player.id;

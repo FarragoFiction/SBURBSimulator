@@ -1463,8 +1463,8 @@ abstract class Drawing {
             ctx = canvas.context2D;
         }
         Player player = Player.makeRenderingSnapshot(inputplayer);
-        if (player.ghost || player.doomed) { //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
-            ////print("drawing ghost or doomed player from scratch: " + player);
+        if (player.ghost || player.doomed || player.brainGhost) { //don't expect ghosts or doomed players to render more than a time or two, don't bother caching for now.
+            print("drawing ghost or brain ghost or  doomed player from scratch: $player");
             drawSpriteFromScratch(canvas, player, ctx, false);
         } else {
             if(player.spriteCanvasID == null) player.initSpriteCanvas();
@@ -1520,7 +1520,7 @@ abstract class Drawing {
         }
 
         //spotlight
-        if(player.session.mutator.hasSpotLight(player)) drawWhatever(canvas, player.aspect.bigSymbolImgLocation);
+        if (player.session.mutator.hasSpotLight(player)) drawWhatever(canvas, player.aspect.bigSymbolImgLocation);
 
         if (!baby && player.isTroll && player.godTier) { //wings before sprite
             wings(canvas, player);
@@ -1616,6 +1616,11 @@ abstract class Drawing {
                 ghostSwap(canvas);
             }
         }
+
+        if (player.brainGhost){
+            print("rendering a brain ghost");
+            ghostSwap(canvas);
+         }
 
         if (!baby && player.aspect == Aspects.VOID) {
             voidSwap(canvas, 1 - player.getStat(Stats.POWER) / (2000 * Stats.POWER.coefficient)); //a void player at 2000 power is fully invisible.
