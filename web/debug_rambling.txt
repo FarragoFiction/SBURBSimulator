@@ -4554,3 +4554,9 @@ actually maybe do opposite style. random reward calls some other reward's apply 
 ~~~~
 current bug, all leprechauns are getting the first name.
 oh, duh. never adding them to party.
+~~~~~~
+
+alright, time for robots.
+
+i think they'll be easy. if alchemy is high enough, make a bot, either of yourself,
+or of your best friend.

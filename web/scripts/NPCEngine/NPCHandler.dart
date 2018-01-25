@@ -170,6 +170,18 @@ class NPCHandler
             ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
             ..stats.setMap(<Stat, num>{Stats.MOBILITY: 500,Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
+        Fraymotif f = new Fraymotif("Sincere Pep Talk", 3);
+        f.effects.add(new FraymotifEffect(Stats.SANITY, FraymotifEffect.ALLIES, true));
+        f.effects.add(new FraymotifEffect(Stats.SANITY, FraymotifEffect.ALLIES, false));
+
+        f.desc = " KB explains that you're a good person. ";
+        //So a fraymotif might be "Sincere Pep Talk" and a specibus might be "Friendship Bracelet" or something?
+        randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Kid","Kind","Keen","Knave"], lastNames: <String>["Boi","Executant","Educator"], ringFirstNames: <String>["Knight"], ringLastNames: <String>["Boi"])
+            ..specibus = new Specibus("Friendship Bracelet", ItemTraitFactory.STICK, [ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
+            ..fraymotifs.add(f)
+            ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
+        );
+
         //PE	Education/Magic	"Persevering Educator,Persistent Entertainer,Punctual Executant"	Purple Executioner	Prospit
         randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Persevering","Punctual","Persistent"], lastNames: <String>["Entertainer","Executant","Educator"], ringFirstNames: <String>["Purple"], ringLastNames: <String>["Executioner"])
             ..specibus = new Specibus("Ruler", ItemTraitFactory.STICK, [ ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD])

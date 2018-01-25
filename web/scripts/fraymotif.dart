@@ -553,6 +553,10 @@ class FraymotifCreator {
 //effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
 //who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
 class FraymotifEffect {
+    static int ALLIES = 1;
+    static int ENEMIES = 3;
+    static int SELF = 1;
+    static int ENEMY = 2;
     Stat statName; //hp heals current hp AND revives the player.
     num target; //self, allies or enemy or enemies, 0, 1, 2, 3
     bool damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)

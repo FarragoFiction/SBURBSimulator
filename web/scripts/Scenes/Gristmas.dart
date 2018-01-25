@@ -45,6 +45,7 @@ class Gristmas extends Scene {
 
   @override
   void renderContent(Element div) {
+      if(makeRobot(div)) return;
 
       String ret = gristmasContent();
       //okay alchemy is a free action otherwise the space players never fucking do anything.
@@ -56,6 +57,12 @@ class Gristmas extends Scene {
       canvas.context2D.drawImage(canvas2,0,0);
       div.append(canvas);
       appendHtml(div, ret);
+  }
+
+  bool makeRobot(Element div) {
+      if(getAlchemySkillNormalized(player) >=2 && player.companions.isEmpty) return false;
+
+      return true;
   }
 
   //takes all items in inventory and rubs them on each other.
@@ -113,6 +120,10 @@ class Gristmas extends Scene {
               //print("trying to trigger, player is not null");
               bool anyItems = false;
               bool goodItems = false;
+
+              if(getAlchemySkillNormalized(p) >=2 && p.companions.isEmpty) {
+                player = p; //gonna make a robo-bro
+              }
               if (p.specibus.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
                  // if(p.specibus.rank>2) session.logger.info("gristmas ${p.title()} has upgrades remaining, not max. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
 
