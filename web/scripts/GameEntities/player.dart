@@ -263,6 +263,7 @@ class Player extends GameEntity{
             prophecy = ProphecyState.FULLFILLED;
             ret += " The prophecy is fullfilled. ";
         }
+        if(canvas == null) initSpriteCanvas();
         if(!Drawing.checkSimMode()) canvas.context2D.save(); //need to restore living state latr
         this.renderSelf();
         this.triggerOtherPlayersWithMyDeath();
@@ -425,6 +426,7 @@ class Player extends GameEntity{
         this.flipOutReason = "they just freaking died";
         //this.leftMurderMode = false; //no scars
         this.victimBlood = null; //clean face
+        if(canvas == null) initSpriteCanvas();
         if(!Drawing.checkSimMode()) canvas.context2D.restore(); //when i died i saved the state before rotation. now do the reverse.
         this.renderSelf();
     }
