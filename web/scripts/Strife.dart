@@ -307,6 +307,7 @@ class Team implements Comparable<Team> {
                 }
             }
         }
+        print("members is type ${members.runtimeType} and toAdd is type ${toAdd.runtimeType}");
         members.addAll(toAdd);
     }
 

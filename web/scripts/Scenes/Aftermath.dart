@@ -464,7 +464,7 @@ class Aftermath extends Scene {
         appendHtml(div, precedingText);
         CanvasElement tkrCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(tkrCanvas);
-        List<Player> purpleFighters = this.getGoodGuys(trollKidRock);
+        List<GameEntity> purpleFighters = this.getGoodGuys(trollKidRock);
         //var callBack = this.finishPurpleStrife.bind(this, div, purpleFrog, purpleFighters, trollKidRock);
         //loadAllImagesForPlayerWithCallback(trollKidRock, callBack);
         if (doNotRender) {
@@ -476,7 +476,7 @@ class Aftermath extends Scene {
         }
     }
 
-    void finishPurpleStrife(Element div, CanvasElement tkrCanvas, GameEntity purpleFrog, List<Player> fighters, Player trollKidRock) {
+    void finishPurpleStrife(Element div, CanvasElement tkrCanvas, GameEntity purpleFrog, List<GameEntity> fighters, Player trollKidRock) {
         trollKidRock.renderSelf(); //gotta cache his sprite
         Drawing.drawTimeGears(tkrCanvas); //, trollKidRock);
         Drawing.drawSinglePlayer(tkrCanvas, trollKidRock);
