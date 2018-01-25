@@ -60,7 +60,7 @@ class Gristmas extends Scene {
   }
 
   bool makeRobot(Element div) {
-      if(getAlchemySkillNormalized(player) >=2 && player.companions.isEmpty) return false;
+      if(getAlchemySkillNormalized(player) <2 && player.companions.isNotEmpty) return false;
       List<Player> possibleRobots = findAllAspectPlayers(session.players, Aspects.HEART);
       Player p ;
       String robot = "themself";
@@ -74,9 +74,10 @@ class Gristmas extends Scene {
       if(p == null) return false;
       p = Player.makeRenderingSnapshot(p,false);
       session.logger.info("AB: Oh look. A superior robot is being made.");
-      p.robot = true; //so spooky and transparent
+      p.robot = true; //superior robot
       Relationship r = player.getRelationshipWith(p);
       if(r != null) robot = "the ${r.target.htmlTitleBasic()}";
+      player.companions.add(p);
 
       String ret = "The ${player.htmlTitle()} is spending a really long time at the Alchemiter. What's going on? Huh. Is that.... a ROBOT of $robot ? That seems like it will come in handy. Way more useful than the original.";
       CanvasElement canvas = new CanvasElement(width: 400, height: 400);
@@ -87,8 +88,8 @@ class Gristmas extends Scene {
       Drawing.drawSinglePlayer(canvas2, player);
       Drawing.drawSinglePlayer(canvasRobot, p);
 
-      canvas.context2D.drawImage(canvas2,0,0);
-      canvas.context2D.drawImage(canvasRobot,50,0);
+      canvas.context2D.drawImage(canvas2,-50,0);
+      canvas.context2D.drawImage(canvasRobot,100,0);
 
       div.append(canvas);
       appendHtml(div, ret);

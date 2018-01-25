@@ -140,6 +140,9 @@ class QuestsAndStuff extends Scene {
             }else if(helper is Leprechaun){
                 session.logger.info("AB: leprechaun helper.");
                 helperText = "$helperText The ${helper.htmlTitle()} is using Aspect powers in appropriate ways to clear the lands challenges for their Lord. ";
+            }else if(helper is Player && (helper as Player).robot){
+                session.logger.info("AB: robo helper.");
+                helperText = "$helperText The ${helper.htmlTitle()} is helping way more than an organic would be able to. ";
             }else {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
             }
