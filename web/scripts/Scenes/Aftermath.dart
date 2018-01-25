@@ -442,14 +442,20 @@ class Aftermath extends Scene {
         return purpleFrog;
     }
 
-    List<Player> getGoodGuys(Player trollKidRock) {
-        List<Player> living = this.session.players;
+    List<GameEntity> getGoodGuys(Player trollKidRock) {
+        List<GameEntity> ret = <GameEntity>[];
+        List<GameEntity> living = this.session.players;
         List<Player> allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
         for (int i = 0; i < allPlayers.length; i++) {
             living.addAll(allPlayers[i].doomedTimeClones);
+            for(GameEntity g in allPlayers[i].companions) {
+                if(g is Player && !g.dead) ret.add(g);
+            }
         }
-        return living;
+
+        ret.addAll(living);
+        return ret;
     }
 
     void purpleFrogEnding(Element div, String precedingText) {
