@@ -4612,3 +4612,11 @@ VM166:1 rendering Doomed RoboWitch of Blood's Corpse from makeDead
 VM166:1 Drawing sprite from scratch Doomed RoboWitch of Blood's Corpse
 
 Look at that shit.  Why is their dead self getting initSpriteCanvas??? That should happen ONCE.
+........
+i even made sure it would only happen if null right there.
+
+and it keeps saying the canvas is null.
+
+this is not right.
+not right at all.
+

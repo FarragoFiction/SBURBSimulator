@@ -1444,7 +1444,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
-        player = Player.makeRenderingSnapshot(player); //probably dont need to, but whatever
+        player = Player.makeRenderingSnapshot(player,true); //probably dont need to, but whatever
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         ctx.imageSmoothingEnabled = false;
         //don't forget to shrink baby
@@ -1463,12 +1463,14 @@ abstract class Drawing {
         if (ctx == null) {
             ctx = canvas.context2D;
         }
-        Player player = Player.makeRenderingSnapshot(inputplayer);
-        //always cache
-        if(player.canvas == null) {
-            print("canvas is null");
-            player.initSpriteCanvas();
+
+        if(inputplayer.canvas == null) {
+            print("canvas is null for ${inputplayer.title()} before a snapshot");
+            inputplayer.initSpriteCanvas();
+
         }
+        Player player = Player.makeRenderingSnapshot(inputplayer,true);
+        //always cache
         //also take care of face scratches and mind control symbols.
         copyTmpCanvasToRealCanvasAtPos(canvas, player.canvas, 0, 0);
 
@@ -1497,7 +1499,7 @@ abstract class Drawing {
         if (checkSimMode() == true) {
             return;
         }
-        player = Player.makeRenderingSnapshot(player);
+        player = Player.makeRenderingSnapshot(player,true);
         //could be turnways or baby
         if (ctx == null) {
             ctx = canvas.context2D;
