@@ -478,6 +478,10 @@ class CharacterCreatorHelper {
             return "A Witch increases their own associated aspect and starts with a lot of it. They are stronger around others. They feel less of the positive effects of their Aspect, but can twist weakness into strength.";
         if (specific == "Page")
             return "A Page distributes their associated aspect to the entire party. They start with very little of their aspect and must earn it. They can not do quests on their own, but gain power very quickly. They give a  boost to the positive parts of their Aspect, while protecting others from the negative parts.";
+        if (specific == "Smith")
+            return "A Smith forges their associated aspect for their own benefit. They start with very little of their aspect and must create it.";
+
+
         if (specific == "Waste")
             return "Wastes gain no benefits or detriments related to their Aspect. They are associated with extreme highs and lows, either entirely avoiding their aspect or causing great destruction with it. They are assholes who won't stop hacking my damn code.";
         if (specific == "Scribe")
@@ -493,7 +497,7 @@ class CharacterCreatorHelper {
         if (specific == "Muse")
             return "A Muse is the most passive possible class. They take on all the negatives of their Aspect and give the positives to others. They do not start with a lot of their Aspect.";
         if (specific == "Lord")
-            return "A Lord is the most active possible class. They hoard on all the postives of their Aspect and delegate the negatives to others. They start with a lot of their Aspect.";
+            return "A Lord is the most active possible class. They hoard on all the postives of their Aspect and delegate the negatives to others. They start with a lot of their Aspect. They have special minions called Leprechauns.";
 
         return "Class help text not found for " + specific + ".";
     }

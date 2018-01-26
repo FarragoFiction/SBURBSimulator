@@ -11,9 +11,9 @@ class Smith extends SBURBClass {
 
     //what sort of quests rewards do I get?
     @override
-    double itemWeight = 0.51;
+    double itemWeight = 1.51;
     @override
-    double fraymotifWeight = 1.01;
+    double fraymotifWeight = 0.01;
     @override
     double companionWeight = 0.01;
 
@@ -48,7 +48,7 @@ class Smith extends SBURBClass {
 
     @override
     bool highHinit() {
-        return true;
+        return false;
     }
 
     @override
