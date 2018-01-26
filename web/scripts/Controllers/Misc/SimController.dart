@@ -355,7 +355,8 @@ abstract class SimController {
         ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
-        if((curSessionGlobalVar.canReckoning || findLivingPlayers(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
+        int maxScenes = 1000; //don't go forever, dunkass
+        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numScenes > maxScenes ||  findLivingPlayers(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
            curSessionGlobalVar.logger.info("reckoning at ${curSessionGlobalVar.timeTillReckoning} and can reckoning is ${curSessionGlobalVar.canReckoning}");
             curSessionGlobalVar.timeTillReckoning = 0; //might have gotten negative while we wait.
             reckoning();
