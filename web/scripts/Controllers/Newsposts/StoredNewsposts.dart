@@ -14,6 +14,7 @@ class Newspost
     if(SimController.shogun) Newspost.shogun = true;
 
     List<Newspost> ret = [
+      new Newspost("1/25/18","Players can now make robot companions, too."),
       new Newspost("1/24/18","Brain ghosts are things that hope players can have as companions.<br><br>Also slightly improved rendering and rendering speeds."),
       new Newspost("1/23/18","Leprechauns are now available for lords, who ALSO get a buff for each minion they possess. <a href = 'dead_session_finder.html?LordStuck=true'>Dead sessions</a> just got a whole lot dumber."),
       new Newspost("1/19/18","You can get carapace companions via dream quests now, and the structure is in place for the Shenanigan Upate (which will heavily rely on carapaces). The carapaces are p generic right now, of course, but their time to shine will come. <br><br>Next up will be the more gimicky types of companions: imaginary friends, robots and independant dream selves. Won't be 'till Monday, tho, cuz the weekend is for chilling and also WigglerSim/DollSim/Gigglesnort.  "),

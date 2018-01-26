@@ -301,7 +301,7 @@ class Team implements Comparable<Team> {
         List<GameEntity> toAdd = new List<GameEntity>(); //don't add shit to an array while you loop on it, dunkass.
         for(GameEntity g in members) {
             for(GameEntity companion in g.companions) {
-                if(companion.dead == false) {
+                if(companion.dead == false && !members.contains(companion)) { //don't readd it if they were already there
                     session.logger.info("AB: getting companions for members in a strife");
                     toAdd.add(companion);
                 }

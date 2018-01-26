@@ -245,7 +245,7 @@ class Player extends GameEntity{
 
     @override
     String makeDead(String causeOfDeath) {
-       // print("making dead $causeOfDeath");
+        session.logger.info("DEBUGGING MAKE DEAD making ${title} dead $causeOfDeath");
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
         String ret = "";
         this.dead = true;
@@ -267,6 +267,7 @@ class Player extends GameEntity{
         if(!Drawing.checkSimMode()) canvas.context2D.save(); //need to restore living state latr
         this.renderSelf();
         this.triggerOtherPlayersWithMyDeath();
+        canvas.context2D.restore(); //only stay rotated long enough to render.
         return ret;
     }
 
@@ -427,7 +428,6 @@ class Player extends GameEntity{
         //this.leftMurderMode = false; //no scars
         this.victimBlood = null; //clean face
         if(canvas == null) initSpriteCanvas();
-        if(!Drawing.checkSimMode()) canvas.context2D.restore(); //when i died i saved the state before rotation. now do the reverse.
         this.renderSelf();
     }
 
