@@ -4567,3 +4567,48 @@ or of your best friend.
 BUG: each time you're rendered dead, it flips the context. maybe?
 
 robots and combo sessions are rendering upside down.
+
+WHY.
+
+
+What I have it doing now (that STILL isn't working)
+is that it saves the context before rendering for make dead, then restores it.
+
+i confirm the robot is only made dead once.
+
+is it rendered from scrat.... wait even if it was the restored context should......hrrrrm
+maybe not?
+
+let's test
+
+Drawing sprite from scratch Doomed RoboWitch of Blood's Corpse
+2VM144:1 Drawing sprite from scratch Witch of Blood's Corpse
+
+why.
+what about caching?
+
+in fact....nothing seems to be caching?
+should have a change in title if it renders again.
+fuck.
+
+looks like "render self" is called twice. why.
+
+
+WHY???
+
+render self should only be called on state change.
+right?
+
+fuck it , time to add debugging
+
+
+
+~~~
+Alright that took way too long but:
+
+rendering Doomed RoboWitch of Blood's Corpse from initSpriteCanvas
+VM166:1 Drawing sprite from scratch Doomed RoboWitch of Blood's Corpse
+VM166:1 rendering Doomed RoboWitch of Blood's Corpse from makeDead
+VM166:1 Drawing sprite from scratch Doomed RoboWitch of Blood's Corpse
+
+Look at that shit.  Why is their dead self getting initSpriteCanvas??? That should happen ONCE.

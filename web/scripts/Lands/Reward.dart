@@ -360,10 +360,10 @@ class CodReward extends Reward {
         bardQuest = true;
         for(Player p in p1.session.players) {
             if(p.class_name == SBURBClassManager.BARD) {
-                p.renderSelf();
+                p.renderSelf("codTier");
             }
         }
-        p1.renderSelf();
+        //p1.renderSelf();
         super.apply(div, p1, p2, land,text);
     }
 }
@@ -613,10 +613,10 @@ class DreamReward extends Reward {
         p1.addStat(Stats.SANITY, -1); //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
-        p1.renderSelf();
+        p1.renderSelf("dreamSelfProspit");
         super.apply(div, p1, p2, land,text);
         p1.isDreamSelf = savedDream;
-        p1.renderSelf();
+        p1.renderSelf("recoveredFromDreamSelfProspit");
 
     }
 
@@ -642,10 +642,10 @@ class DreamReward extends Reward {
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;
         p1.isDreamSelf = true;
-        p1.renderSelf();
+        p1.renderSelf("dream self derse");
         super.apply(div, p1, p2, land,text);
         p1.isDreamSelf = savedDream;
-        p1.renderSelf();
+        p1.renderSelf("recover from dream self derse");
 
     }
 

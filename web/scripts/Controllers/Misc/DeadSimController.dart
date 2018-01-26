@@ -9,15 +9,7 @@ import 'dart:collection';
 class DeadSimController extends SimController {
   DeadSimController() : super();
 
-  @override
-  void createInitialSprites() {
-    //print("players: ${curSessionGlobalVar.players}");
-    for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
-      Player player = curSessionGlobalVar.players[i];
-      player.renderSelf();
-    }
-    (curSessionGlobalVar as DeadSession).metaPlayer.renderSelf();
-  }
+
 
   @override
   void startSession() {

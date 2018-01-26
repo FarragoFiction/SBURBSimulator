@@ -443,9 +443,9 @@ void scratchEasterEggCallBack() {
 
 
     //need to render self for caching to work for this
-    for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
-        curSessionGlobalVar.players[i].renderSelf();
-    }
+    //for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
+        //curSessionGlobalVar.players[i].renderSelf("scratchCallBack");
+   // }
     Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
     if(curSessionGlobalVar.mutator.spaceField) curSessionGlobalVar.mutator.scratchedCombo(curSessionGlobalVar, raggedPlayers);
     SimController.instance.intro();

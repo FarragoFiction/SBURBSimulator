@@ -99,7 +99,7 @@ class SaveDoomedTimeLine extends Scene {
 
 			this.session.doomedTimelineReasons.add(this.reason);
 			this.leaderPlayer.dead = false;
-			this.leaderPlayer.renderSelf();
+			this.leaderPlayer.renderSelf("deathUndoneDiffFromMakeAlive");
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r != null && r.value != 0){
 					if(r.value > 0){
@@ -122,7 +122,7 @@ class SaveDoomedTimeLine extends Scene {
 			ret += " the " +this.session.players[this.session.players.length-1].htmlTitleBasic() + " will never even make it into the medium. "; //only point of paradox is for last player
 			ret += " After all, the " + this.leaderPlayer.htmlTitleBasic() + " is their server player. ";
 			this.leaderPlayer.dead = false;
-			this.leaderPlayer.renderSelf();
+			this.leaderPlayer.renderSelf("deathUndoneDiffFromMakeAlive");
 			var r = this.timePlayer.getRelationshipWith(this.leaderPlayer);
 			if(r != null && r.value != 0){
 					if(r.value > 0){

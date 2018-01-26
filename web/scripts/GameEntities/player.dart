@@ -219,21 +219,21 @@ class Player extends GameEntity{
         }
         this.grimDark += val;
         if (render) {
-            this.renderSelf();
+            this.renderSelf("changeGrimDark");
         }
     }
 
     void makeMurderMode() {
         this.murderMode = true;
         this.increasePower();
-        this.renderSelf(); //new scars. //can't do scars just on top of sprite 'cause hair might cover.'
+        this.renderSelf("makeMurderMode"); //new scars. //can't do scars just on top of sprite 'cause hair might cover.'
     }
 
     void unmakeMurderMode() {
         if(session.mutator.rageField) return; //you don't LEAVE murdermode until you are mothering fuck DONE you heretic
         this.murderMode = false;
         this.leftMurderMode = true;
-        this.renderSelf();
+        this.renderSelf("unmakeMurderMode");
     }
 
     void addDoomedTimeClone(Player timeClone) {
@@ -245,7 +245,7 @@ class Player extends GameEntity{
 
     @override
     String makeDead(String causeOfDeath) {
-        session.logger.info("DEBUGGING MAKE DEAD making ${title} dead $causeOfDeath");
+        //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
         String ret = "";
         this.dead = true;
@@ -265,7 +265,7 @@ class Player extends GameEntity{
         }
         if(canvas == null) initSpriteCanvas();
         if(!Drawing.checkSimMode()) canvas.context2D.save(); //need to restore living state latr
-        this.renderSelf();
+        this.renderSelf("makeDead");
         this.triggerOtherPlayersWithMyDeath();
         canvas.context2D.restore(); //only stay rotated long enough to render.
         return ret;
@@ -409,7 +409,7 @@ class Player extends GameEntity{
         this.leftMurderMode = false; //no scars, unlike other revival methods
         this.isDreamSelf = false;
         this.makeAlive();
-        renderSelf();
+        renderSelf("goGodTier");
     }
 
     @override
@@ -428,7 +428,7 @@ class Player extends GameEntity{
         //this.leftMurderMode = false; //no scars
         this.victimBlood = null; //clean face
         if(canvas == null) initSpriteCanvas();
-        this.renderSelf();
+        this.renderSelf("makeAlive");
     }
 
     @override
@@ -1551,13 +1551,14 @@ class Player extends GameEntity{
     }
 
     void initSpriteCanvas() {
+        if(canvas != null) return;
         print("Initializing canvas.");
         canvas = new CanvasElement(width: 400, height: 300);
-        renderSelf();
+        renderSelf("initSpriteCanvas");
     }
 
-    void renderSelf() {
-        print("rendering self");
+    void renderSelf(String caller) {
+        print("rendering ${title()} from $caller");
         if(Drawing.checkSimMode()) return;
         if (canvas == null) this.initSpriteCanvas();
         this.clearSelf();
@@ -2133,7 +2134,7 @@ class Player extends GameEntity{
 
         Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 1); //at least did first quest
         timeClone.fraymotifs.add(f);
-        timeClone.renderSelf();
+        timeClone.renderSelf("doomed time clone");
 
         return timeClone;
     }

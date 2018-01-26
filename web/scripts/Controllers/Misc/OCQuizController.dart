@@ -117,7 +117,7 @@ class OCGeneratorQuiz extends OCGenerator {
                     p.dead = false;
                 }
             }
-            p.renderSelf();
+            //p.renderSelf("doQuestsInOCController");
             questsAndStuff.renderContent(session.newScene(null));
             currentCounter ++;
         }

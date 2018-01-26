@@ -1493,7 +1493,7 @@ abstract class Drawing {
     }
 
     static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
-        //print("Drawing sprite from scratch ${player.title()}");
+        print("Drawing sprite from scratch ${player.title()}");
         if (checkSimMode() == true) {
             return;
         }

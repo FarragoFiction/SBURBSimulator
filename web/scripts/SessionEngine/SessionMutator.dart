@@ -169,7 +169,7 @@ class SessionMutator {
             p.godDestiny = false;
             p.grimDark = 1; //i  REALLY don't think they should be like this...
             p.ectoBiologicalSource = -612; //they really aren't from here. (this might even prevent any guardians showing up in future ecto scenes)
-            p.renderSelf();
+            p.renderSelf("bloodBS");
             p.land = null; //SBURB doesn't have a land for you.
             p.guardian = null;
         }
@@ -341,7 +341,7 @@ class SessionMutator {
         //now includes clones.
         for (Player p in s.players) {
             p.generateRelationships(s.players);
-            p.renderSelf(); // either rendering for first time, or rerendering as new classpect
+            p.renderSelf("heartBS"); // either rendering for first time, or rerendering as new classpect
         }
         savedSession = s;
         //need to load the new images.
@@ -354,7 +354,7 @@ class SessionMutator {
     //yes, this isn't how it should work long term. might make a few blank scenes.
     String heartCallBack() {
         for (Player p in savedSession.players) {
-            p.renderSelf(); // either rendering for first time, or rerendering as new classpect
+            p.renderSelf("heartCallback"); // either rendering for first time, or rerendering as new classpect
         }
     }
 
@@ -373,7 +373,7 @@ class SessionMutator {
         //add to session
         for (Player p in chosen) {
             p.increasePower(130, 130); //ignore normal caps. don't want us to be unbeatable, not also not level 1
-            p.renderSelf(); // either rendering for first time, or rerendering as new classpect
+            p.renderSelf("rageBS"); // either rendering for first time, or rerendering as new classpect
             s.players.add(p); //don't add till rendered.
         }
 
@@ -421,7 +421,7 @@ class SessionMutator {
         ret += "They distribute luck like some kind of bullshit fairy sprinkling fake as shit fairy dust everywhere, but their REAL ";
         ret += "trick is how they hog all the relevancy no matter how little sense it makes. Oh, huh, looks like they shook loose some extra information, as well.";
         for (Player p in s.players) {
-            p.renderSelf(); //to pick up lack of relevancy or whatever
+            p.renderSelf("lightBS"); //to pick up lack of relevancy or whatever
             p.setStat(Stats.MAX_LUCK, 88888888);
             p.gnosis += 1; //yes it means they skip whatever effect was supposed to be paired with this, but should increase gnosis ending rate regardless.
         }
@@ -488,7 +488,7 @@ class SessionMutator {
             p.setStat(Stats.CURRENT_HEALTH, 9001);
             p.setStat(Stats.SANITY, 9001);
             p.unconditionallyImmortal = true; //i BELIEVE no one will die.  (of course, this does nothing if they are'nt god tier)
-            p.renderSelf();
+            p.renderSelf("hopeBS");
             Relationship r = hopePlayer.getRelationshipWith(p);
             if (r != null && (r.saved_type == r.badBig || r.saved_type == r.spades || r.saved_type == r.clubs)) {
                 //yes, this means any players who share your enemies class or aspect get renamed too.
@@ -531,7 +531,7 @@ class SessionMutator {
             p.dead = false;
             p.dreamSelf = true; //your dream self is revived, too.
             if (p.land != null && p.land.denizenFeature.denizen != null)p.land.denizenFeature.denizen ;
-            p.renderSelf();
+            p.renderSelf("lifeBS");
         }
 
         List<GameEntity> npcs = s.npcHandler.allNPCS;
@@ -1574,7 +1574,7 @@ class MetaPlayerHandler {
             for (Player pl in p.session.players) {
                 pl.isTroll = true;
                 pl.bloodColor = p.session.rand.pickFrom(bloodColors);
-                pl.renderSelf();
+                pl.renderSelf("killedIO");
                 if (pl.hair > 61) pl.hair = p.session.rand.nextIntRange(0, 61);
                 if (pl.leftHorn > 44) pl.leftHorn = p.session.rand.nextIntRange(0, 44);
                 if (pl.rightHorn > 44) pl.rightHorn = p.session.rand.nextIntRange(0, 44);

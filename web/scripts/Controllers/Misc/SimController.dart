@@ -146,20 +146,12 @@ abstract class SimController {
     void intro() {
         //print("gonna init stats");
         initGatherStats();
-        //print("gonna initialize sprites");
-        createInitialSprites();
+
         //advertisePatreon(SimController.instance.storyElement);
        // print("gonna call next intro");
         callNextIntro(0);
     }
 
-    void createInitialSprites() {
-        //print("players: ${curSessionGlobalVar.players}");
-        for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
-            Player player = curSessionGlobalVar.players[i];
-            player.renderSelf();
-        }
-    }
 
     void processCombinedSession() {
         if(curSessionGlobalVar.mutator.spaceField) {
