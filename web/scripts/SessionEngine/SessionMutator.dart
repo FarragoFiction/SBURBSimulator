@@ -1301,7 +1301,7 @@ class MetaPlayerHandler {
     }
 
     Player makeKR(Session s) {
-        Player player = randomPlayerNoDerived(s, SBURBClassManager.ROGUE, Aspects.DREAM);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.SMITH, Aspects.DREAM);
         player.quirk = randomHumanQuirk(s.rand);
 
         player.deriveSpecibus = false;
