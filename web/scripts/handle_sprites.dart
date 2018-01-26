@@ -1465,7 +1465,7 @@ abstract class Drawing {
         }
 
         if(inputplayer.canvas == null) {
-            print("canvas is null for ${inputplayer.title()} before a snapshot");
+            //print("canvas is null for ${inputplayer.title()} before a snapshot");
             inputplayer.initSpriteCanvas();
 
         }
@@ -1495,7 +1495,7 @@ abstract class Drawing {
     }
 
     static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
-        print("Drawing sprite from scratch ${player.title()}");
+       // print("Drawing sprite from scratch ${player.title()}");
         if (checkSimMode() == true) {
             return;
         }

@@ -73,10 +73,11 @@ class Gristmas extends Scene {
       if(!playerCanMakeRobot(player)) return false;
       List<Player> possibleRobots = findAllAspectPlayers(session.players, Aspects.HEART);
       Player p ;
+      possibleRobots.add(player);
       String robot = "themself";
 
       Player bestFriend = player.getBestFriend();
-      if(player.getRelationshipWith(bestFriend).value >= Relationship.CRUSHVALUE) {
+      if(player.getRelationshipWith(bestFriend).value >= 0) {
           possibleRobots.add(bestFriend);
       }
 
@@ -86,6 +87,10 @@ class Gristmas extends Scene {
       session.logger.info("AB: Oh look. A superior robot is being made.");
       p.robot = true; //superior robot
       p.doomed = true;
+      //sanitizing history as per PL's instruction. but other ppl won't
+      if(p.chatHandle == player.chatHandle) p.leftMurderMode = false;
+      p.hairColor = getRandomGreyColor();
+      p.bloodColor = getRandomGreyColor();
       Relationship r = player.getRelationshipWith(p);
       if(r != null) robot = "the ${r.target.htmlTitleBasic()}";
       player.companions.add(p);

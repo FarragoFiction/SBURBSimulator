@@ -1552,13 +1552,13 @@ class Player extends GameEntity{
 
     void initSpriteCanvas() {
         if(canvas != null) return;
-        print("Initializing canvas for ${title()} because it is currently $canvas.");
+       // print("Initializing canvas for ${title()} because it is currently $canvas.");
         canvas = new CanvasElement(width: 400, height: 300);
         renderSelf("initSpriteCanvas");
     }
 
     void renderSelf(String caller) {
-        print("rendering ${title()} from $caller");
+       // print("rendering ${title()} from $caller");
         if(Drawing.checkSimMode()) return;
         if (canvas == null) this.initSpriteCanvas();
         this.clearSelf();
@@ -2076,11 +2076,11 @@ class Player extends GameEntity{
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.stats = player;
-        print("save canvas is $saveCanvas and ${player.title()}'s canvas is ${player.canvas}");
+        //print("save canvas is $saveCanvas and ${player.title()}'s canvas is ${player.canvas}");
         if(saveCanvas && player.canvas != null) {
             ret.canvas = player.canvas; //you're just for rendering
         }else if(!saveCanvas) {
-            print("${ret.title()} setting canvas to null because i'm a ghost or a robot or a time clone or some shit");
+           // print("${ret.title()} setting canvas to null because i'm a ghost or a robot or a time clone or some shit");
             ret.canvas = null; //re render yourself. you're a ghost or a doomed time clone or some shit
         }
         return ret;
