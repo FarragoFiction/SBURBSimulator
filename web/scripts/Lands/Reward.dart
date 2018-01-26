@@ -45,6 +45,7 @@ class RandomReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+
         WeightedList<Reward> options = new WeightedList<Reward>();
         //if it's an item reward, check land progress before deciding what sort of item to give.
         //fraymotifs will handle themselves
@@ -73,12 +74,11 @@ class RandomReward extends Reward {
         {
             options.add(new LeprechaunReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
-            p1.session.logger.info("DEBUG BRAIN: Hope player trying for a brain ghost");
             options.add(new BrainGhostReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
             //options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
         {
-            p1.session.logger.info("DEBUG BRAIN: ${p1.aspect} player trying for a consort");
+            //p1.session.logger.info("DEBUG BRAIN: ${p1.aspect} player trying for a consort");
              options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }
 
@@ -166,6 +166,15 @@ class DenizenReward extends Reward {
             GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
             text += " The ${Reward.PLAYER1} also unlocks the Leprechaun minion for this Land. They name them ${c.name}.";
             p1.companions.add(c);
+        }
+
+        if(p1.aspect == Aspects.HOPE) {
+            GameEntity c = BrainGhostReward.getGhost(p1); //will handle picking a name out.
+            if(c != null) {
+                text += " The ${Reward.PLAYER1} also believes hard enough to manifest $c.";
+                p1.session.logger.info("Hope player beat denizen and manifested brain ghost");
+                p1.companions.add(c);
+            }
         }
         p1.increaseGrist(100.0);
         p1.sylladex.add(reward.copy());
@@ -255,12 +264,9 @@ class BrainGhostReward extends Reward {
 
     BrainGhostReward();
 
-    @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
-
+    static Player getGhost(Player p1) {
         List<Player> possibleBrainGhosts = findAllAspectPlayers(p1.session.players, Aspects.HEART);
-        Player p ;
-        String relationship = "friend";
+
 
         Player bestFriend = p1.getBestFriend();
         if(p1.getRelationshipWith(bestFriend).value >= Relationship.CRUSHVALUE) {
@@ -271,7 +277,7 @@ class BrainGhostReward extends Reward {
             possibleBrainGhosts.add(worstEnemy);
         }
 
-        p1.session.logger.info("DEBUG BRAIN:  before removing duplicates, brain ghosts are: $possibleBrainGhosts");
+       // p1.session.logger.info("DEBUG BRAIN:  before removing duplicates, brain ghosts are: $possibleBrainGhosts");
 
 
         //don't have two copies of the same brain ghost
@@ -285,15 +291,31 @@ class BrainGhostReward extends Reward {
             }
         }
 
-       for(Player tr in toRemove) {
+        for(Player tr in toRemove) {
             possibleBrainGhosts.remove(tr);
-       }
-        p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");
+        }
+        //p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");
 
-        p1.session.logger.info("DEBUG BRAIN: after removing duplicates, brain ghosts are: $possibleBrainGhosts");
+       // p1.session.logger.info("DEBUG BRAIN: after removing duplicates, brain ghosts are: $possibleBrainGhosts");
 
-        p = p1.session.rand.pickFrom(possibleBrainGhosts);
-        p1.session.logger.info("DEBUG BRAIN:  p is:  $p");
+        Player p = p1.session.rand.pickFrom(possibleBrainGhosts);
+        //p1.session.logger.info("DEBUG BRAIN:  p is:  $p");
+        if(p != null) {
+           // p1.session.logger.info("AB: brain ghost reward.");
+        }else {
+            p = p1.getBestFriend();
+           // if(p != null)p1.session.logger.info("AB: brain ghost reward is just whoever i like most.");
+        }
+
+        return p;
+    }
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        //p1.session.logger.info("DEBUG BRAIN:  brain ghost reward applying");
+        Player p ;
+        String relationship = "friend";
+        p  = BrainGhostReward.getGhost(p1);
 
 
         String text;
