@@ -71,7 +71,8 @@ class DeadQuests extends Scene {
             return;
         }
        // print("Not time for a new planet");
-        GameEntity helper = rand.pickFrom(player.companions);
+        List<GameEntity> choices = findLivingPlayers(player.companions);
+        GameEntity helper = rand.pickFrom(choices);
 
 
         String helperText = "";
