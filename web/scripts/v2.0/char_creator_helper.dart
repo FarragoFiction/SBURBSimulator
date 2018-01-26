@@ -95,7 +95,7 @@ class CharacterCreatorHelper {
         if (p != null) { p..anchor.style.top = "5px"; }
 
         player.initSpriteCanvas();
-       // player.renderSelf("drawSinglePlayerForHelper");
+        player.renderSelf("drawSinglePlayerFor");
 
         var canvas = player.canvas;
         //drawSinglePlayer(canvas, player);
@@ -353,7 +353,7 @@ class CharacterCreatorHelper {
     }
 
     void redrawSinglePlayer(Player player) {
-       // player.renderSelf("redrawSinglePlayer");
+        player.renderSelf("redrawSinglePlayer");
         String divId = "canvas${player.id}";
         //divId = divId.replaceAll(new RegExp(r"""\s+""", multiLine:true), ''); //TODO what is going on here?
         var canvas = querySelector("#" + divId);
