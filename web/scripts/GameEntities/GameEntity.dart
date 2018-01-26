@@ -52,6 +52,7 @@ class GameEntity extends Object with StatOwner   {
     List<AssociatedStat> associatedStats = <AssociatedStat>[]; //most players will have a 2x, a 1x and a -1x stat.
     //String spriteCanvasID = null; //part of new rendering engine. deprecated 1/24/18 in favor of using a canvas directly
     CanvasElement canvas;
+
     num id;
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
     List<Player> doomedTimeClones = <Player>[]; //help fight the final boss(es).

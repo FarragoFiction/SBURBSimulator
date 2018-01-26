@@ -4560,3 +4560,10 @@ alright, time for robots.
 
 i think they'll be easy. if alchemy is high enough, make a bot, either of yourself,
 or of your best friend.
+
+
+~~~~~~
+
+BUG: each time you're rendered dead, it flips the context. maybe?
+
+robots and combo sessions are rendering upside down.

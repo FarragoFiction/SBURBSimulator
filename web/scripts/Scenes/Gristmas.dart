@@ -59,8 +59,18 @@ class Gristmas extends Scene {
       appendHtml(div, ret);
   }
 
+  bool playerCanMakeRobot(Player p)
+
+    {
+        bool first = getAlchemySkillNormalized(p) >=2 && p.companions.isEmpty;
+        if(first) return first;
+        //one last shot, you like tech?
+        if(InterestManager.TECHNOLOGY.playerLikes(p) && getAlchemySkillNormalized(p) >=1 && p.companions.isEmpty ) return true;
+        return false;
+    }
+
   bool makeRobot(Element div) {
-      if(getAlchemySkillNormalized(player) <2 && player.companions.isNotEmpty) return false;
+      if(!playerCanMakeRobot(player)) return false;
       List<Player> possibleRobots = findAllAspectPlayers(session.players, Aspects.HEART);
       Player p ;
       String robot = "themself";
@@ -75,6 +85,7 @@ class Gristmas extends Scene {
       p = Player.makeRenderingSnapshot(p,false);
       session.logger.info("AB: Oh look. A superior robot is being made.");
       p.robot = true; //superior robot
+      p.doomed = true;
       Relationship r = player.getRelationshipWith(p);
       if(r != null) robot = "the ${r.target.htmlTitleBasic()}";
       player.companions.add(p);
@@ -88,8 +99,8 @@ class Gristmas extends Scene {
       Drawing.drawSinglePlayer(canvas2, player);
       Drawing.drawSinglePlayer(canvasRobot, p);
 
-      canvas.context2D.drawImage(canvas2,-50,0);
-      canvas.context2D.drawImage(canvasRobot,100,0);
+      canvas.context2D.drawImage(canvas2,-75,0);
+      canvas.context2D.drawImage(canvasRobot,75,0);
 
       div.append(canvas);
       appendHtml(div, ret);
@@ -154,7 +165,7 @@ class Gristmas extends Scene {
               bool anyItems = false;
               bool goodItems = false;
 
-              if(getAlchemySkillNormalized(p) >=2 && p.companions.isEmpty) {
+              if(playerCanMakeRobot(p)) {
                 player = p; //gonna make a robo-bro
               }
               if (p.specibus.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
