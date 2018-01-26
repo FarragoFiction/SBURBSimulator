@@ -78,6 +78,7 @@ class RandomReward extends Reward {
             //options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
         {
+            p1.session.logger.info("DEBUG BRAIN: ${p1.aspect} player trying for a consort");
              options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }
 
