@@ -1241,7 +1241,10 @@ class Player extends GameEntity{
             }
         }
         //print("Could not find relationship with ${player.title()} in ${relationships}");
-        return null;
+        //JR: this might be a VERY bad idea. let's find out together. (1/26/18)
+        Relationship newR = new Relationship(this, 0, player)
+        player.relationships.add(newR); //nice to meet you
+        return newR;
     }
 
     Player getWhoLikesMeBestFromList(List<Player> potentialFriends) {
