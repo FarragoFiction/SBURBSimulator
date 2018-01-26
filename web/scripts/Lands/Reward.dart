@@ -73,6 +73,7 @@ class RandomReward extends Reward {
         {
             options.add(new LeprechaunReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else if(p1.aspect == Aspects.HOPE){
+            p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");
             options.add(new BrainGhostReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
             //options.add(new ConsortReward(), p1.class_name.companionWeight + p1.aspect.companionWeight);
         }else
@@ -269,6 +270,9 @@ class BrainGhostReward extends Reward {
             possibleBrainGhosts.add(worstEnemy);
         }
 
+        p1.session.logger.info("DEBUG BRAIN:  before removing duplicates, brain ghosts are: $possibleBrainGhosts");
+
+
         //don't have two copies of the same brain ghost
         List<Player> toRemove = new List<Player>();
         for(Player pbg in possibleBrainGhosts) {
@@ -283,8 +287,13 @@ class BrainGhostReward extends Reward {
        for(Player tr in toRemove) {
             possibleBrainGhosts.remove(tr);
        }
+        p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");
+
+        p1.session.logger.info("DEBUG BRAIN: after removing duplicates, brain ghosts are: $possibleBrainGhosts");
 
         p = p1.session.rand.pickFrom(possibleBrainGhosts);
+        p1.session.logger.info("DEBUG BRAIN:  p is:  $p");
+
 
         String text;
         if(p == null) {
@@ -434,7 +443,7 @@ class PaleRomanceReward extends Reward {
         Fraymotif f1;
         Fraymotif f2;
 
-        if(p2 == null || !(p2 is Player)) {
+        if(p2 == null || !p1.session.players.contains(p2)) {
             p1.session.logger.info("got stood up from a pale ship");
             f1 = p1.getNewFraymotif(null); //with other player
             bgImage = null;
@@ -484,7 +493,7 @@ class FlushedRomanceReward extends Reward {
         Fraymotif f1;
         Fraymotif f2;
 
-        if(p2 == null || !(p2 is Player)) {
+        if(p2 == null || !(p1.session.players.contains(p2))) {
             p1.session.logger.info("got stood up from a flushed ship");
             f1 = p1.getNewFraymotif(null); //with other player
             bgImage = null;
@@ -534,7 +543,7 @@ class PitchRomanceReward extends Reward {
 
         Fraymotif f1;
         Fraymotif f2;
-        if(p2 == null || !(p2 is Player)) {
+        if(p2 == null || !p1.session.players.contains(p2)) {
             p1.session.logger.info("got stood up from a pitch ship");
             f1 = p1.getNewFraymotif(null); //with other player
             bgImage = null;
