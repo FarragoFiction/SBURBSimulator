@@ -65,6 +65,21 @@ class Waste extends SBURBClass {
             ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE],shogunDesc: "The Shoguns Vessel",abDesc:"...I would ask why, but I already calculated all possible responses at a million times the speed I could get an answer."))
             ..add(new Item("Nanobots",<ItemTrait>[ItemTraitFactory.ROBOTIC2, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.AI],shogunDesc: "NANOMACHINES SON, THEY HARDEN IN RESPONSE TO PHYSICAL TRAUMA",abDesc:"Oh look, a NON hacking way to fuck everything up, forever."));
     }
+//wastes comically suck at combat
+    @override
+    double getAttackerModifier() {
+        return 0.5;
+    }
+
+    @override
+    double getDefenderModifier() {
+        return 0.5;
+    }
+
+    @override
+    double getMurderousModifier() {
+        return 0.5;
+    }
 
 
     @override
