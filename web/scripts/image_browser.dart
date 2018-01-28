@@ -16,6 +16,7 @@ List<ArtCategory> categores = <ArtCategory>[
     new ArtCategory("First Player",             "First Player Post Great Refactoring",  "firstPlayer",      url: "images/misc/fanArt/FirstPlayer/"),
     new ArtCategory("GrimDark AB FanArt",       "GrimDark AB Gallery",                  "grimAB",           url: "images/misc/fanArt/ABFanArt/"),
     new ArtCategory("star.eyes' Memes FanArt",  "star.eyes' memes",                     "stareyes",         url: "images/misc/fanArt/star.eyes/"),
+    new ArtCategory("Wranglers",              "Wranglers",                    "Wranglers",             url: "images/misc/fanArt/Wranglers/"),
     new ArtCategory("Misc FanArt",              "Miscellaneous Art",                    "misc",             url: "images/misc/fanArt/miscFanArt/"),
     new ArtCategory("Gif FanArt",               "Gif Gallery",                          "gifs",             url: "images/misc/fanArt/gifs/"),
     new ArtCategory("Octobermas FanArt",        "Octobermas!",                          "octobermas",       url: "images/misc/fanArt/OctoberMas/"),
