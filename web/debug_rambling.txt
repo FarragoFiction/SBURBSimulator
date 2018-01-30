@@ -4620,3 +4620,32 @@ and it keeps saying the canvas is null.
 this is not right.
 not right at all.
 
+~~~~~~~~
+i want to enable yellow yards for dead sessions.
+
+i think they are normally called by the aftermath.
+
+so now i just call it via the reckoning.
+
+Basically, for dead sessions, either the lawn ring is up, or you have a good relationship with your meta player
+(or it's the special session)
+
+the meta player will be all "Okay. I feel bad for you. I'll see if JR can do anything." (unless it is JR or AB?).
+
+Then yard.
+
+But.
+
+A secret.
+
+
+
+
+            timePlayer = findAspectPlayer(this.session.players, Aspects.TIME); //NEED to have a time player here.;
+            var s = new YellowYard(this.session);
+            s.timePlayer = timePlayer;
+            s.trigger(null);
+            s.renderContent(div);
+
+
+alright that looks simple enough

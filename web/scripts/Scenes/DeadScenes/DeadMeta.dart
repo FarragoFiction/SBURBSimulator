@@ -11,10 +11,10 @@ class DeadMeta extends Scene {
     String player1Start;
     String player2Start;
     //for generic convos.
-    List<String> fuckOff;
-    List<String> youAsshole;
-    List<String> notSoBad;
-    List<String> goodbye;
+    static List<String> fuckOff;
+    static List<String> youAsshole;
+    static List<String> notSoBad;
+    static List<String> goodbye;
 
     @override
     void renderContent(Element div) {

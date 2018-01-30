@@ -155,7 +155,7 @@ class YellowYard extends Scene {
 
 */
    @override
-	void renderContent(Element div){
+	void renderContent(Element div, [bool deadMetaJR = false]){
 		this.session.stats.yellowYard = true;
 		//div.append("<br>"+this.content());
 		////session.logger.info("Yellow yard is happening. " + this.session.session_id);
@@ -178,6 +178,8 @@ class YellowYard extends Scene {
 		if(SimController.shogun) {
 			chat = this.shogunChat(player);
 		}
+
+
 
 		if(!SimController.shogun) {
 			Drawing.drawChatABJR(canvasDiv, chat);
@@ -209,13 +211,20 @@ class YellowYard extends Scene {
 			chat += this.timeChat();
 		}
 
+		//they know who jr is it's a dead player
+		if(deadMetaJR) {
+			chat = this.deadChat(player);
+		}
+
 		Drawing.drawChatJRPlayer(canvasDiv, chat, player);
 
 		chat = "";
-		if(this.timePlayer.dead){
-			chat += this.doomedTimeChat2();
-		}else{
-			chat += this.timeChat2();
+		if(!deadMetaJR) {
+			if (this.timePlayer.dead) {
+				chat += this.doomedTimeChat2();
+			} else {
+				chat += this.timeChat2();
+			}
 		}
 		//might not be another part.
 		if(chat != ""){
@@ -293,6 +302,20 @@ class YellowYard extends Scene {
 		chat += "AB: ... I'm going to go get JR. You literally aren't capable of this. You aren't a Mind Player. \n";
 		return chat;
 	}
+
+	String deadChat(player){
+		String chat = "";
+		var playerStart = this.timePlayer.chatHandleShort()+ ": ";
+		chat += "JR: Hey. Uh. I wanted to apologize about the whole, 'hassling you' thing. \n";
+		chat += Scene.chatLine(playerStart, this.timePlayer,"... Because that is going to fix everything, forever.");
+		chat += "JR: I mean.... Uh. Yeah? I have this thing I might be able to do to help you. \n";
+		chat += Scene.chatLine(playerStart, this.timePlayer,"Jesus fuck, why did you wait to tell me?");
+		chat += "JR: Because it's not guaranteed to work AND I need to wait until shit hits the fan (i.e. now) to do it. \n";
+		chat += Scene.chatLine(playerStart, this.timePlayer,"Then fucking do it!");
+		chat += "JR: Geez, fine. \n";
+		return chat;
+	}
+
 	String timeChat(){
 		String chat = "";
 		var playerStart = this.timePlayer.chatHandleShort()+ ": ";

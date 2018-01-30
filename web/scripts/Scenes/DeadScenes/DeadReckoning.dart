@@ -24,7 +24,40 @@ void renderContent(Element div) {
         });
     }
     lastRender(div);
+    yellowLawnRing(div);
 }
+
+    void yellowLawnRing(Element div) {
+        Relationship r = session.players[0].getRelationshipWith((session as DeadSession).metaPlayer);
+        if(r.value >0 || this.session.janusReward || (session.session_id == 4037)) {
+            session.logger.info("AB: Shit. Better tell JR about this Dead Yard.");
+            metaScene(div);
+            YellowYard s = new YellowYard(this.session);
+            s.timePlayer = session.players[0];
+            s.trigger(null);
+            s.renderContent(div, true);
+        }
+
+    }
+
+    void metaScene(Element div) {
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        div.append(canvasDiv);
+        //CanvasElement canvas, Player player1, Player player2, String chat, String topicImage
+        DeadSession d = session as DeadSession;
+        String player1Start = d.players[0].chatHandleShort()+ ": ";
+        String player2Start = d.metaPlayer.chatHandleShortCheckDup(session.players[0].chatHandleShort())+ ": "; //don't be lazy and usePlayer1Start as input, there's a colon.
+
+
+        List<PlusMinusConversationalPair> convoSource = new List<PlusMinusConversationalPair>();
+        convoSource.add(new PlusMinusConversationalPair(["Okay. I really feel like a dick about this whole 'hassling you' thing.","Hey. Uh. I wanted to apologize about the whole, 'hassling you' thing."], ["Thanks","It's okay. You were just doing your job."],["What the fuck?", "Fuck off."]..addAll(DeadMeta.fuckOff)));
+        convoSource.add(new PlusMinusConversationalPair(["Okay, but I'm going to let JR know.","JR will be able to help you.", "I'm going to let AB know to get JR."], ["Who?"],["Well that's just fucking great.", "Who?"]));
+        convoSource.add(new PlusMinusConversationalPair(["Bye"], DeadMeta.goodbye,DeadMeta.notSoBad));
+
+        Conversation convo = new Conversation(convoSource);
+        String chat = convo.returnStringConversation(d.metaPlayer, d.players[0], player1Start, player2Start,d.players[0].getRelationshipWith(d.metaPlayer).value > 0);
+        Drawing.drawChat(canvasDiv, d.metaPlayer, d.players[0], chat, "discuss_sburb.png");
+    }
 
 void startNewSession() {
     Element div = SimController.instance.storyElement;
