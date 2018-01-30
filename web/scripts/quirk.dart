@@ -11,9 +11,9 @@ class Quirk {
     static int NORMALCAPS = 1;
 
     static int NOPUNC = 0;
-    static int ENDPUNC = 0;
-    static int PERFPUNC = 0;
-    static int EXPUNC = 0;
+    static int ENDPUNC = 1;
+    static int PERFPUNC = 2;
+    static int EXPUNC = 3;
 
  List<dynamic> lettersToReplace = []; //array of two element arrays. ["e", "3"], ["two",2] would be two examples. e replaced by 3 and two replaced by 2
  List<dynamic> lettersToReplaceIgnoreCase = [];

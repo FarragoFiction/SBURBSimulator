@@ -312,6 +312,16 @@ class DeadSession extends Session {
             }
         }
 
+        if(players[0].chatHandle == mutator.metaHandler.feudalUltimatum.chatHandle) {
+            logger.info("AB: Oh hey JR, there's that asshole you like trolling.");
+            metaPlayer = mutator.metaHandler.jadedResearcher;
+            metaPlayer.setStat(Stats.EXPERIENCE, 1300);player.quirk.capitalization = Quirk.NOCAPS;
+            //dunno why shoguns' quirk is weir d here. whtever.
+            players[0].quirk.punctuation = Quirk.PERFPUNC;
+            players[0].quirk.lettersToReplace = [];
+            players[0].quirk.lettersToReplaceIgnoreCase = [];
+        }
+
         players[0].relationships.add(new Relationship(players[0], -999, metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
         metaPlayer.relationships.add(new Relationship(metaPlayer, -999, players[0])); //if you need to talk to anyone, talk to metaplayer.
 
