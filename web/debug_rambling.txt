@@ -4649,3 +4649,101 @@ A secret.
 
 
 alright that looks simple enough
+
+
+~~~~~
+
+Alright, dead sessions are not allowing yards to happen. Look at this flagrant bluushit:
+
+Before Yard: Scene ID: 1 Name: DeadIntro Session Health: 130000.0 TimeTillReckoning: 397 Last Rand: 1140900365
+After Yard: Scene ID: 182 Name: DeadIntro Session Health: 130000.0 TimeTillReckoning: 397 Last Rand: 3086440375
+
+For the very first fucking scene the rand is differnet.
+WHY!?
+
+        this.rand.setSeed(this.session_id);
+is happening in reinit....hrm.
+
+okay i think i got it
+the session reinit isn't doing everything it needs to
+
+
+dead session on start up does:
+
+ mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
+        sessionHealth = mutator.sessionHealth;
+        //have a metaplayer BEFORE you make the bullshit quests.
+        mutator.metaHandler.initalizePlayers(this);
+        metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
+        metaPlayer.setStat(Stats.EXPERIENCE, 1300);
+        makeThemes();
+        timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
+
+
+ compared to regular session
+
+       this.rand = new Random(session_id);
+         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
+         npcHandler = new NPCHandler(this);
+         mutator = SessionMutator.getInstance();
+         this.setUpBosses();
+         this.setupMoons(); //happens only in reinit
+         stats.initialGameEntityId = GameEntity.getIDCopy();
+         print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
+         ////print("Made a new session with an id of $session_id");
+
+         logger = Logger.get("Session: $session_id", false);
+
+         mutator.syncToSession(this);
+        resetAvailableClasspects();
+
+
+fucking hell.
+i don't think the dead reinit is even being called
+
+
+
+wait, no, it is.
+
+dammit.
+
+
+so what is happening? why is the random number not changing?
+
+bluuuuuuuuuuuh
+
+okay, let's do something dumb, set the random number to something really wrong
+
+........................
+
+Scene ID: 1 Name: DeadIntro Session Health: 130000.0 TimeTillReckoning: 350 Last Rand: 1140900365
+vs
+Scene ID: 90 Name: DeadIntro Session Health: 130000.0 TimeTillReckoning: 350 Last Rand: 1140900365
+
+What.
+The.
+Hell.
+
+I did:
+
+        this.rand.setSeed(131313131313);
+as the last thing in reinit. Why.
+
+What?
+
+((and more importantly. HOW. ))
+
+The session definitely doesn't go the same, either.
+
+Scene ID: 2 Name: DeadQuests Session Health: 130000.0 TimeTillReckoning: 350 Last Rand: 3514035271
+vs
+Scene ID: 91 Name: DeadQuests Session Health: 130000.0 TimeTillReckoning: 350 Last Rand: 3086440375
+
+
+it's count bullshit bugs vs count bullshit rocks, too.
+hrrrm.
+
+and that number....3086440375 is the one i kept seeing before. does that mean one extra seed kept being eaten?
+but then....why isn't 2 the same?
+
+i am so confused.

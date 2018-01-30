@@ -547,7 +547,7 @@ class Session {
             aliens.add(that.aliensClonedOnArrival[i]);
         }
         that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
-        addAliensToSession(curSessionGlobalVar, aliens);
+        if(!(curSessionGlobalVar is DeadSession)) addAliensToSession(curSessionGlobalVar, aliens);
 
         SimController.instance.restartSession(); //in controller
     }
@@ -815,7 +815,7 @@ class Session {
         ret.classes.add("scene");
         String lightBS = "";
         String innerHTML = "";
-        bool debugMode = false;
+        bool debugMode = true;
         if(debugMode || mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             ret.classes.add("sbahj");

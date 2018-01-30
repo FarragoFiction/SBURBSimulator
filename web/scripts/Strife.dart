@@ -302,12 +302,12 @@ class Team implements Comparable<Team> {
         for(GameEntity g in members) {
             for(GameEntity companion in g.companions) {
                 if(companion.dead == false && !members.contains(companion)) { //don't readd it if they were already there
-                    session.logger.info("AB: getting companions for members in a strife");
+                    //session.logger.info("AB: getting companions for members in a strife");
                     toAdd.add(companion);
                 }
             }
         }
-        print("members is type ${members.runtimeType} and toAdd is type ${toAdd.runtimeType}");
+        //print("members is type ${members.runtimeType} and toAdd is type ${toAdd.runtimeType}");
         members.addAll(toAdd);
     }
 

@@ -272,6 +272,27 @@ class DeadSession extends Session {
         players[0].leader = true; //you are the leader.
     }
 
+    @override
+    void reinit() {
+        print("~~~~~~~~~~~~~~~~dead reinit");
+        super.reinit();
+        themes = new Map<Theme, double>();
+        chosenThemesForDeadSession =  new Map<Theme, double>();
+        numberLandsRemaining = 16; //can remove some in "the break".
+        boringBullshit.clear();
+        mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
+        sessionHealth = mutator.sessionHealth;
+        //have a metaplayer BEFORE you make the bullshit quests.
+        mutator.metaHandler.initalizePlayers(this);
+        metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
+        metaPlayer.setStat(Stats.EXPERIENCE, 1300);
+        makeThemes();
+        timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
+        failed = false;
+        this.rand.setSeed(131313131313);
+
+    }
+
     void makeDeadLand() {
         Player player = players[0];
         chosenThemesForDeadSession = new Map<Theme, double>();
