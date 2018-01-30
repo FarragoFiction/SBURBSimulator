@@ -6,8 +6,33 @@ typedef void SessionSource(Player player, int index);
     730 - SBURBNeta
     20082015 -RL
     404 - cynicalTeuthida
+    4037 - ???
  */
 abstract class NonCanonSessions {
+
+    static Map<int, dynamic> get sessionMap {
+        Map<int, dynamic> ret = new Map<int, dynamic>();
+        ret[4037] = session4037; //???
+        ret[80000008] = session80000008; //insipidTestimony
+        ret[730] = session730; //SBURBNeta
+        ret[20082015] = session20082015; //RL
+        ret[404] = session404; //cynicalTeuthida
+        return ret;
+    }
+
+    //does nothing if it's not a saved session
+    static void callSession(int id) {
+        Map<int, dynamic> sm = sessionMap;
+        if (sm.containsKey(id)) {
+            sm[id]();
+        }
+    }
+
+    //yes, this WILL crash in a regular session, how did you know?
+    static void session4037() {
+        curSessionGlobalVar.players = <Player>[curSessionGlobalVar.mutator.metaHandler.feudalUltimatum];
+        curSessionGlobalVar.players.length = 1; //no more, no less.
+    }
 
 
 

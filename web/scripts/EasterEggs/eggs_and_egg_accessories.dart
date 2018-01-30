@@ -92,14 +92,6 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 		session613();
 	}else if(curSessionGlobalVar.session_id == 1025){
 		session1025();
-	}if(curSessionGlobalVar.session_id == 730){
-		NonCanonSessions.session730();
-	}if(curSessionGlobalVar.session_id == 80000008){
-        NonCanonSessions.session80000008();
-    }if(curSessionGlobalVar.session_id == 404){
-		NonCanonSessions.session404();
-	}if(curSessionGlobalVar.session_id == 20082015){
-		NonCanonSessions.session20082015();
 	}else if(curSessionGlobalVar.session_id == 33){
 		session33();
 	}else if(curSessionGlobalVar.session_id == 111111){
@@ -113,6 +105,9 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 	}else if(curSessionGlobalVar.session_id == 13){ //wait, why is THIRTEEN an arc number ???
 		session13();
 	}
+
+	//if it's not a known one, no problem.
+	NonCanonSessions.callSession(curSessionGlobalVar.session_id);
 
 	if(getParameterByName("self",null)  == "cest") {
 		anstusMode();
