@@ -41,6 +41,7 @@ void renderContent(Element div) {
     }
 
     void metaScene(Element div) {
+        session.logger.info("AB:  meta player is trying to get a yellow yard going.");
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvasDiv);
         //CanvasElement canvas, Player player1, Player player2, String chat, String topicImage
@@ -55,7 +56,7 @@ void renderContent(Element div) {
         convoSource.add(new PlusMinusConversationalPair(["Bye"], DeadMeta.goodbye,DeadMeta.notSoBad));
 
         Conversation convo = new Conversation(convoSource);
-        String chat = convo.returnStringConversation(d.metaPlayer, d.players[0], player1Start, player2Start,d.players[0].getRelationshipWith(d.metaPlayer).value > 0);
+        String chat = convo.returnStringConversation(d.metaPlayer, d.players[0], player2Start, player1Start,d.players[0].getRelationshipWith(d.metaPlayer).value > 0);
         Drawing.drawChat(canvasDiv, d.metaPlayer, d.players[0], chat, "discuss_sburb.png");
     }
 
