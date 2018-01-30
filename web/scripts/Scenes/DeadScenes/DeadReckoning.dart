@@ -31,7 +31,7 @@ void renderContent(Element div) {
         Relationship r = session.players[0].getRelationshipWith((session as DeadSession).metaPlayer);
         if(r.value >0 || this.session.janusReward || (session.session_id == 4037)) {
             session.logger.info("AB: Shit. Better tell JR about this Dead Yard.");
-            metaScene(div);
+            if((session as DeadSession).metaPlayer != session.mutator.metaHandler.jadedResearcher && (session as DeadSession).metaPlayer != session.mutator.metaHandler.authorBot) metaScene(div);
             YellowYard s = new YellowYard(this.session);
             s.timePlayer = session.players[0];
             s.trigger(null);
