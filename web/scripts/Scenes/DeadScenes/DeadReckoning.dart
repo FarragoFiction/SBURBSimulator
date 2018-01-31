@@ -24,7 +24,9 @@ void renderContent(Element div) {
         });
     }
     lastRender(div);
-    yellowLawnRing(div);
+    if(!player.unconditionallyImmortal) {
+        yellowLawnRing(div);
+    }
 }
 
     void yellowLawnRing(Element div) {
