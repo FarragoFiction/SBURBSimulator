@@ -269,13 +269,11 @@ class BrainGhostReward extends Reward {
 
 
         Player bestFriend = p1.getBestFriend();
-        if(p1.getRelationshipWith(bestFriend).value >= Relationship.CRUSHVALUE) {
-            possibleBrainGhosts.add(bestFriend);
-        }
+        possibleBrainGhosts.add(bestFriend);
+
         Player worstEnemy = p1.getWorstEnemy();
-        if(p1.getRelationshipWith(worstEnemy).value <= -1*Relationship.CRUSHVALUE) {
-            possibleBrainGhosts.add(worstEnemy);
-        }
+        possibleBrainGhosts.add(worstEnemy);
+
 
        // p1.session.logger.info("DEBUG BRAIN:  before removing duplicates, brain ghosts are: $possibleBrainGhosts");
 
@@ -287,16 +285,17 @@ class BrainGhostReward extends Reward {
                 if(g is Player) {
                     Player gP = g as Player;
                     if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) {
-                        print("${gP.chatHandle} is not a copy.");
+                       // print("${gP.chatHandle} is indeed a copy of ${pbg.chatHandle}.");
                         toRemove.add(pbg);
                     }else {
-                        print("${gP.chatHandle} is indeed a copy.");
+                       // print("${gP.chatHandle} is not a copy. ${pbg.chatHandle}");
                     }
                 }
             }
         }
 
         for(Player tr in toRemove) {
+            //print("removing ${tr.chatHandle} who is indeed a copy.");
             possibleBrainGhosts.remove(tr);
         }
         //p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");
@@ -305,12 +304,7 @@ class BrainGhostReward extends Reward {
 
         Player p = p1.session.rand.pickFrom(possibleBrainGhosts);
         //p1.session.logger.info("DEBUG BRAIN:  p is:  $p");
-        if(p != null) {
-           // p1.session.logger.info("AB: brain ghost reward.");
-        }else {
-            p = p1.getBestFriend();
-           // if(p != null)p1.session.logger.info("AB: brain ghost reward is just whoever i like most.");
-        }
+
         if(p != null) {
             p = Player.makeRenderingSnapshot(p,false);
             p.brainGhost = true; //so spooky and transparent
