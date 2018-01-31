@@ -35,7 +35,7 @@ void doShogun() {
 
 void cycleAuthorPics() {
   String root = "images/misc/fanArt/OctoberMas/";
-  List<String> possibleAvatars = ["author_wq.png","authorDoom.png","authorCal2.png","authorCal.png","authorHussie.png","authorHussieSpace.png","authorRyan.png","authorTrollsona.png"];
+  List<String> possibleAvatars = ["shogunJR_but_Shes_Wendy.png","author_wq.png","authorDoom.png","authorCal2.png","authorCal.png","authorHussie.png","authorHussieSpace.png","authorRyan.png","authorTrollsona.png"];
   possibleAvatars.addAll(["robot_author.png", "firerachet.png","pumpkin.png", "trickster_author_transparent.png","AlliumPomoea.png"]);
   (querySelector("#jrAvatar") as ImageElement).src = "$root${new Random().pickFrom(possibleAvatars)}";
   //jrAvatar(querySelector("#avatar")).style.float = "left";
