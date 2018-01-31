@@ -5,12 +5,12 @@ import "../../SBURBSim.dart";
 ///completely different intro from a regular session, none of that boring "dialogue" that regular sessions start with.
 ///
 class DeadIntro extends Scene {
-
+    Player player;
     DeadIntro(Session session) : super(session);
 
     @override
     void renderContent(Element div) {
-        Player player = session.players[0];
+        player = session.players[0];
         CanvasElement canvasDiv = new CanvasElement(width: 800, height: 1000);
         player.firstStatsCanvas = canvasDiv;
         //div.append(canvasDiv);
@@ -39,11 +39,9 @@ class DeadIntro extends Scene {
     ImportantEvent addImportantEvent(){
         var current_mvp = findStrongestPlayer(this.session.players);
         ////session.logger.info("Entering session, mvp is: " + current_mvp.getStat(Stats.POWER));
-        if(this.player.aspect == Aspects.TIME && this.player.object_to_prototype != null && !this.player.object_to_prototype.illegal){ //tier4 gnosis is weird
-            return this.session.addImportantEvent(new TimePlayerEnteredSessionWihtoutFrog(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
-        }else{
-            return this.session.addImportantEvent(new PlayerEnteredSession(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
-        }
+
+        return this.session.addImportantEvent(new DeadSessionPlayerEntered(this.session, current_mvp.getStat(Stats.POWER),this.player,null) );
+
 
     }
 
