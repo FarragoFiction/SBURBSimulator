@@ -619,13 +619,10 @@ class DeadSessionPlayerEntered  extends ImportantEvent {
 		String narration = "<br>A " + this.doomedTimeClone.htmlTitleBasic() + " suddenly warps in from the future. ";
 		narration += " They seem really apologetic towards the ${this.player.htmlTitleBasic()}. ";
 		narration += " No one deserves what comes next. ";
-		narration += "The now doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes with in a cloud of gears to join the final battle.";
+		narration += "The now doomed " + this.doomedTimeClone.htmlTitleBasic() + " fails to vanishes  in a cloud of gears and instead joins the dead players party as long as they can.";
 		appendHtml(div, narration);
 
-		player.object_to_prototype = new GameEntity("Frog", doomedTimeClone.session); //new GameEntity("Frog",0,null);
-		player.object_to_prototype.setStat(Stats.POWER, 20);
-		player.object_to_prototype.illegal = true;
-		player.object_to_prototype.setStat(Stats.MOBILITY, 100);
+		player.companions.add(this.doomedTimeClone);
 		var divID = (div.id) + "_alt_jack_promotion";
 		String canvasHTML = "<br><canvas id='canvas" + divID + "' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);

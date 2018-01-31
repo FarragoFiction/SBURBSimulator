@@ -124,6 +124,8 @@ void decision(){
     index = index - yyrEventsGlobalVar.length;
     var eventToUndo2x = curSessionGlobalVar.yellowYardController.eventsToUndo[index];
     var timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
+    if(curSessionGlobalVar is DeadSession) timePlayer = curSessionGlobalVar.players[0];
+
     var doom = Player.makeRenderingSnapshot(timePlayer);
 		doom.dead = false;
 		doom.doomed = true;
