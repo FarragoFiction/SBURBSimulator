@@ -289,7 +289,7 @@ class DeadSession extends Session {
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
         failed = false;
-        this.rand.setSeed(131313131313);
+        //this.rand.setSeed(131313131313);
 
     }
 

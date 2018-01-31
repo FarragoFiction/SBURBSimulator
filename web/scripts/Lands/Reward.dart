@@ -171,7 +171,7 @@ class DenizenReward extends Reward {
         if(p1.aspect == Aspects.HOPE) {
             GameEntity c = BrainGhostReward.getGhost(p1); //will handle picking a name out.
             if(c != null) {
-                text += " The ${Reward.PLAYER1} also believes hard enough to manifest $c.";
+                text += " The ${Reward.PLAYER1} also believes hard enough to manifest ${c.title()}.";
                 p1.session.logger.info("Hope player beat denizen and manifested brain ghost");
                 p1.companions.add(c);
             }
@@ -286,7 +286,12 @@ class BrainGhostReward extends Reward {
             for(GameEntity g in p1.companions) {
                 if(g is Player) {
                     Player gP = g as Player;
-                    if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) toRemove.add(pbg);
+                    if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) {
+                        print("${gP.chatHandle} is not a copy.");
+                        toRemove.add(pbg);
+                    }else {
+                        print("${gP.chatHandle} is indeed a copy.");
+                    }
                 }
             }
         }
@@ -306,7 +311,11 @@ class BrainGhostReward extends Reward {
             p = p1.getBestFriend();
            // if(p != null)p1.session.logger.info("AB: brain ghost reward is just whoever i like most.");
         }
-
+        if(p != null) {
+            p = Player.makeRenderingSnapshot(p,false);
+            p.brainGhost = true; //so spooky and transparent
+            p.doomed = true;
+        }
         return p;
     }
 
@@ -324,9 +333,6 @@ class BrainGhostReward extends Reward {
             c.apply(div,p1, p2, land, t);
             return;
         }else {
-            p = Player.makeRenderingSnapshot(p,false);
-            p.brainGhost = true; //so spooky and transparent
-            p.doomed = true;
             relationship = p1.getRelationshipWith(p).saved_type;
             text = " The ${Reward.PLAYER1} believes really hard in their $relationship, the ${p.htmlTitle()} they are surprised, but happy, when it turns out that the version of them in their head can help them out in strifes! ";
         }
