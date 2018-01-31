@@ -99,6 +99,7 @@ void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
     storedEvent.session = newEvent.session; //cant get space players otherwise
     //trigger the new sessions timePlayer.  time shenanigans wear on sanaity.
     var alphaTimePlayer = findAspectPlayer(newEvent.session.players, Aspects.TIME);
+    if(newEvent.session is DeadSession) alphaTimePlayer = newEvent.session.players[0];
     alphaTimePlayer.addStat(Stats.SANITY, -10); //how many re-dos does this give me before they snap?
     alphaTimePlayer.doomedTimeClones.add(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something");

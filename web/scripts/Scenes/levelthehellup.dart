@@ -56,8 +56,12 @@ class LevelTheHellUp extends Scene {
 
         if (levelName != null) {
             narration += " <br>The " + player.htmlTitle();
+            if(player.class_name == SBURBClassManager.WASTE) {
+                narration += " keeps falling up the ECHESTAIRS to a new tread: " + levelName;
+            }else {
+                narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
 
-            narration += " skyrockets up the ECHELADDER to a new rung: " + levelName;
+            }
             narration += " and earns " + boonies + ". ";
         }
         appendHtml(narrationDiv, narration);
