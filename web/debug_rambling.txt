@@ -4772,3 +4772,14 @@ Scene ID: 91 Name: DeadQuests Session Health: 130000.0 TimeTillReckoning: 350 La
 The land is different.
 
 And.....huh.
+
+
+~~~~~~~
+
+Okay.
+
+Combo sessions with a player who WINS works. It's not a dead session.
+
+But the easter egg I'm working on is NOT working and I don't know why. Jesus fuck.
+
+I guess first i need to find a winning player.

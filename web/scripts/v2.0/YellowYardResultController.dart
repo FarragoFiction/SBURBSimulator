@@ -126,9 +126,8 @@ void redemptionArc() {
     Scene.createScenesForSession(s);
     curSessionGlobalVar = s;
     //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-    List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
     window.scrollTo(0, 0);
-    load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+    load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), ""); //in loading.js
     //restart session
     ///???
     ///profit
