@@ -1,4 +1,5 @@
 import "dart:html";
+import "../Controllers/Story/StoryController.dart";
 
 import "../SBURBSim.dart";
 
