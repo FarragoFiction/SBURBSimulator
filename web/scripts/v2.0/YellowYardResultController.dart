@@ -129,6 +129,8 @@ void redemptionArc() {
     s.makeGuardians();
     Scene.createScenesForSession(s);
     curSessionGlobalVar = s;
+    SimController.instance = null;
+    new StoryController();
     //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
     window.scrollTo(0, 0);
     load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), ""); //in loading.js
