@@ -83,7 +83,17 @@ class YellowYard extends Scene {
 			html += "</div>";
 			html += "</div><br>";
 
-			setHtml(div2, html);
+			if(session.session_id != 4037) {
+				setHtml(div2, html);
+			}else {
+				Element d = new DivElement();
+				d.text = "Uh. Shit. Shogun. What are you doing to my fucking yard? You dunkass, this was going to HELP you. You stubborn ass!";
+				ButtonElement b = new ButtonElement();
+				b.id = "yellowButton";
+				b.text = "Luckily I have other tricks up my sleeves ;) ;) ;)";
+				div2.append(d);
+				div.append(b);
+			}
       (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision());
 
 
