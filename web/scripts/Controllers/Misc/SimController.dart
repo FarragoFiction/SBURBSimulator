@@ -171,6 +171,7 @@ abstract class SimController {
     }
 
     void doComboSession(Session tmpcurSessionGlobalVar) {
+        int id = curSessionGlobalVar.id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         curSessionGlobalVar = tmpcurSessionGlobalVar;
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -186,7 +187,13 @@ abstract class SimController {
             //querySelector("#charSheets").setInnerHtml(""); //don't do query selector shit anymore for speed reasons.
             SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
         }
-        load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+
+        //TODO test that this works.
+        if(id == 4037) curSessionGlobalVar.session_id = 13;
+        if(id ==612) curSessionGlobalVar.session_id = 413;
+
+        SimController.instance.startSession(true);
+        //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
     }
 
     void reckoning() {

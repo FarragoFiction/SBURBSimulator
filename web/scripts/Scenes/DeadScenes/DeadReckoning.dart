@@ -78,6 +78,7 @@ void startNewSession() {
     querySelector("#debug").style.backgroundColor = "white";
     querySelector("#charSheets").style.backgroundColor = "white";
     window.scrollTo(0, 0);
+
     SimController.instance.processCombinedSession();
     //TODO have an 'enemy' mechanic for sessions. normal use case is if everybody hates you AND you have killed
     //you get an enemy flag, which makes you strifable (new scene? ). EVERYBODY who is available will drop what they are doing to fight you.

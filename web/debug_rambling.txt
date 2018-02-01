@@ -4796,3 +4796,122 @@ Yes. I confirmed it switches over to Sim Controller (instead of DeadSimControlle
 
 anger.
 
+~~~~~~~~
+
+Okay. I've found a session that AB lies about.
+
+I need to focus up. I haven't had to do this in a while and I feel rusty and overwhelmed.
+
+And weirdly tempted to just....sweep it under the rug. But no. Dear sweet precious AuthorBot needs help.
+
+Session is: 2544085392
+
+and i found it ~43 from the session 737292437 in AB.
+
+
+So, first step is to see if it's still wrong with images = pumpkin, although that hasn't been true since
+that very first time.
+
+Yep. That was a bust.
+
+Okay.
+
+So. Next step is to see if the session is wrong on it's own through ab.
+
+And the step after that is to see how far back i have to go before it's right.
+
+Alright so yes, looking for it directly shows everybody dying instead of better than expected.
+
+Let's go one back.
+
+Huh. Okay. Sessions even before that are busted too. How far do i have to go back before i find one that isn't?
+
+
+check second session in pile, then go back and do binary search
+
+alright, higher up wasn't but 3/4 through was, 2702805258.
+
+alright hopefully getting closer.
+AB is saying that 1348701762  is a combo session but it raw isn't (everybody dies)
+
+Okay i think i have found it.
+
+
+
+: 847410037 is normal.
+
+But it's SCRATCH does some fucked up shit.
+
+and the next session is a completely differenet seed depending on if : 847410037 was first or not.
+
+but what's weird.....wait.
+
+the two scratches are identical
+but the next session is different anyways?
+
+hrrrrm........
+
+maybe only sessions that do whatever is broken are different? I'm gonna look a few sessions up and see if anything
+is wrong higher.
+
+Going one up the session above the scratch is still different. Hrrm.  In both the smaller chains, it's a void waste session.
+
+id of 3867145154 vs 2702805258
+
+it's weird that it divurges so severely there.
+
+1027738496 is still differnt from what i see at the end, too. How high must i go before it divurges.
+
+or.
+
+different question. did the code change? what happens if i search for the first one
+
+the session after 847410037 is what i am interested in....
+
+
+yeah..... it's different.
+
+i guess..... that was just a page that was cached? fuck. well let's see if that original divurgent session is fixed.
+
+Nope.
+
+Fuck. Like seriously. Goddamn.
+
+Gotta focus up.
+
+My current goal is the same: find a session where the divurgence seems to start.
+
+So, is the one directly up different?
+
+930109068 in the big mess is mvp: Witch of Time With a Grist Level of: 508.0, but asked for directly is mvp: Witch of Time With a Grist Level of: 550.0
+
+That's pretty subtle.  What about one up from that?
+
+260330609 is a combo session in the big pile and a regular one stand alone. fuck. it heavily divurges there.
+
+subtle differences in 4118832719
+1348701762 goes from combo to tpk
+2690788458 is only subtly different and is wasted both times
+
+
+there we go.
+
+3867145154 is the same in both sets and is wasted.
+
+fucking wastes.
+
+honestly. at some point i should work on giving AB an upgrade where she literally blows everything away and recreates it.
+let NOTHING be preserved between sessions.
+
+just to make sure, going one back to 847410037
+
+yup.
+
+Alright then. asking 3867145154 if it's the same with images vs non.
+
+wait no that doesn't make sense.
+
+but anyways, looking at the sesssion in question.... it has one wasted  hope event....
+
+so i wonder if it's hope gnosis that's the problem.  one way to test: ask waste of hope stuck
+
