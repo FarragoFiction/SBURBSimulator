@@ -48,6 +48,7 @@ class DeadSession extends Session {
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
+        if(sessionID == 4037) oddsOfSuccess = 0.9999; //fu almost can't lose
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
@@ -336,7 +337,7 @@ class DeadSession extends Session {
         if(players[0].chatHandle == mutator.metaHandler.feudalUltimatum.chatHandle) {
             logger.info("AB: Oh hey JR, there's that asshole you like trolling.");
             metaPlayer = mutator.metaHandler.jadedResearcher;
-            oddsOfSuccess = 1.99999999999; //he almost CAN'T lose
+            oddsOfSuccess = 113.99999999999; //he almost CAN'T lose
 
             metaPlayer.setStat(Stats.EXPERIENCE, 1300);player.quirk.capitalization = Quirk.NOCAPS;
             //dunno why shoguns' quirk is weir d here. whtever.
