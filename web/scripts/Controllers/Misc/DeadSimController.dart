@@ -152,6 +152,9 @@ class DeadSimController extends SimController {
       if(id == 4037) {
         window.alert("Who is Shogun???");
         curSessionGlobalVar.session_id = 13;
+        SBURBClassManager.LORD.name = "Shogun";
+        Aspects.RAGE.name = "Sauce";
+
       }
       if(id ==612) curSessionGlobalVar.session_id = 413;
 
