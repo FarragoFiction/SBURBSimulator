@@ -189,7 +189,10 @@ abstract class SimController {
         }
 
         //TODO test that this works.
-        if(id == 4037) curSessionGlobalVar.session_id = 13;
+        if(id == 4037) {
+            window.alert("Who is Shogun???");
+            curSessionGlobalVar.session_id = 13;
+        }
         if(id ==612) curSessionGlobalVar.session_id = 413;
 
         SimController.instance.startSession(true);

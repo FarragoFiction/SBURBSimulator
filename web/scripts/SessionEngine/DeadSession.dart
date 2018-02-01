@@ -336,6 +336,8 @@ class DeadSession extends Session {
         if(players[0].chatHandle == mutator.metaHandler.feudalUltimatum.chatHandle) {
             logger.info("AB: Oh hey JR, there's that asshole you like trolling.");
             metaPlayer = mutator.metaHandler.jadedResearcher;
+            oddsOfSuccess = 1.99999999999; //he almost CAN'T lose
+
             metaPlayer.setStat(Stats.EXPERIENCE, 1300);player.quirk.capitalization = Quirk.NOCAPS;
             //dunno why shoguns' quirk is weir d here. whtever.
             players[0].quirk.punctuation = Quirk.PERFPUNC;
