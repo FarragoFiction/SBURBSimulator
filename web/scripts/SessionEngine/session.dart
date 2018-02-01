@@ -816,7 +816,7 @@ class Session {
         String lightBS = "";
         String innerHTML = "";
         bool debugMode = true;
-        if(debugMode || mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
             int reallyRand = getRandomIntNoSeed(1, 10);
@@ -863,7 +863,7 @@ class Session {
         this.currentSceneNum ++;
         String div;
         String lightBS = "";
-        if(mutator.lightField) lightBS = "Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
+        if(mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             div = "<div class = 'scene' id='scene${this.currentSceneNum}' style='";
             div = "${div}background-color: #00ff00;";
