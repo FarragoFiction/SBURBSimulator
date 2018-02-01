@@ -171,7 +171,7 @@ abstract class SimController {
     }
 
     void doComboSession(Session tmpcurSessionGlobalVar) {
-        int id = curSessionGlobalVar.id;
+        int id = curSessionGlobalVar.session_id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         curSessionGlobalVar = tmpcurSessionGlobalVar;
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
