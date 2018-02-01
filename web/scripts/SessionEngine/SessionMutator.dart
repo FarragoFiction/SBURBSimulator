@@ -1153,7 +1153,7 @@ class MetaPlayerHandler {
     }
 
     Player makeNB(Session s) {
-        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.LORD, Aspects.BLOOD);
         player.quirk = randomHumanQuirk(s.rand);
 
         player.deriveSpecibus = false;

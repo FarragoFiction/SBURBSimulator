@@ -12,11 +12,11 @@ class DeadSimController extends SimController {
 
 
   @override
-  void startSession() {
+  void startSession([bool keepSession = false]) {
     globalInit(); // initialise classes and aspects if necessary
 
     // //print("Debugging AB: Starting session $initial_seed");
-    curSessionGlobalVar = new DeadSession(initial_seed);
+    if(!keepSession)curSessionGlobalVar = new DeadSession(initial_seed);
     changeCanonState(getParameterByName("canonState",null));
     //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
     reinit();

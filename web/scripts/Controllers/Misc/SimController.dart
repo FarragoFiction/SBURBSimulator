@@ -289,13 +289,14 @@ abstract class SimController {
         SimController.instance.storyElement.appendHtml("Session: $initial_seed", treeSanitizer: NodeTreeSanitizer.trusted);
     }
 
-    void startSession() {
+    //taking ina  bool means if i want to start a session that is already set up i can
+    void startSession([bool keepSession = false]) {
 
         globalInit(); // initialise classes and aspects if necessary
 
 
         // //print("Debugging AB: Starting session $initial_seed");
-        curSessionGlobalVar = new Session(initial_seed);
+        if(!keepSession)curSessionGlobalVar = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
         //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         reinit();
