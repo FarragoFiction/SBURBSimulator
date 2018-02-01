@@ -111,6 +111,7 @@ class DeadSimController extends SimController {
 
   @override
   void callNextIntro(int player_index) {
+    print("Calling next intro in a dead sim controller");
     if (player_index >= curSessionGlobalVar.players.length) {
       tick(); //NOW start ticking
       return;

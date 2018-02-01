@@ -59,6 +59,8 @@ abstract class SimController {
     }
 
     void callNextIntro(int player_index) {
+        print("Calling next intro in a regular sim controller");
+
         if (player_index >= curSessionGlobalVar.players.length) {
             tick(); //NOW start ticking
             return;

@@ -4783,3 +4783,16 @@ Combo sessions with a player who WINS works. It's not a dead session.
 But the easter egg I'm working on is NOT working and I don't know why. Jesus fuck.
 
 I guess first i need to find a winning player.
+
+
+alright, i can see the new intro scenes are right and not deadIntros.
+
+
+it's even not calling the dead session intro scene. am i changing the controller out?
+
+Yes. I confirmed it switches over to Sim Controller (instead of DeadSimController) somehow.
+
+
+
+anger.
+

@@ -13,6 +13,7 @@ class IntroNew extends IntroScene {
     IntroNew(Session session): super(session, false);
   @override
   void renderContent(Element div, int i) {
+      print("debugging dead shit ${SimController.instance}");
       doNarration(div,i);
       String chat = "";
       if(player.dead) {

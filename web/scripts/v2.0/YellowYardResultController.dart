@@ -112,6 +112,10 @@ void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
 void redemptionArc() {
         //make the current session a REGULAR session with the same session number (unless 4037).
     SimController.instance.clearElement(SimController.instance.storyElement);
+    querySelector('body').style.backgroundImage = "url(images/Skaia_Clouds.png)";
+    SimController.instance.storyElement.style.backgroundColor = "white";
+    querySelector("#debug").style.backgroundColor = "white";
+    querySelector("#charSheets").style.backgroundColor = "white";
     Element explanation = new DivElement();
     explanation.text = "Once upon a time there lived a not-quite-yet-player with a chat handle of ${curSessionGlobalVar.players[0].chatHandle}. It's hard to see what happened to them. (This is SBURBSim after all, and our story is not yet set in SBURB).  Did they kill their 'friends'? Abandon them? Were they bullied and rejected by them? (Did they escape on the back of a magic dog?). It doesn't matter why. What DOES matter. Is that they were alone. And were on the verge of playing SBURB alone, which as we now know, is a bad fucking idea. We can imagine that there is a flash of light. A time player.  A Choice changed.  They have friends now. Perhaps bridges were repaired and they are with their old ones. Perhaps they have found new. Who can say? All we can know for sure is... It's not a single player game, anymore. ";
     SimController.instance.storyElement.append(explanation);
