@@ -132,7 +132,11 @@ class DeadSimController extends SimController {
   @override
   void doComboSession(Session tmpcurSessionGlobalVar) {
     int id = curSessionGlobalVar.session_id;
-
+    if(id == 4037) {
+      SBURBClassManager.LORD.name = "Shogun";
+      curSessionGlobalVar.players.first.aspect = Aspects.SAUCE;
+      curSessionGlobalVar.players.first.renderSelf("Just Shogun");
+    }
     if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
       curSessionGlobalVar = tmpcurSessionGlobalVar;
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -153,8 +157,6 @@ class DeadSimController extends SimController {
         window.alert("Who is Shogun???");
         curSessionGlobalVar.session_id = 13;
         SBURBClassManager.LORD.name = "Shogun";
-        Aspects.RAGE.name = "Sauce";
-
       }
       if(id ==612) curSessionGlobalVar.session_id = 413;
 

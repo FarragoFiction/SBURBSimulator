@@ -68,6 +68,10 @@ void startNewSession() {
     Player player = session.players[0];
     String divID = "canvasdeadInvader";
     String ret = "The ${player.htmlTitle()} enters a new session. Huh.  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+    if(session.session_id == 4037) {
+        ret = "The ${player.htmlTitle()} enters a new session. There. Are you happy, Shogun? Can I finally fucking leave this attic?  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
+
+    }
     appendHtml(div, ret);
     CanvasElement canvas = querySelector("#$divID");
     Element buffer = Drawing.getBufferCanvas(canvas.width, canvas.height);
