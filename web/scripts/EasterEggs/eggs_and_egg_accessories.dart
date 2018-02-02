@@ -978,7 +978,7 @@ void session13() {
 	curSessionGlobalVar.players = new List<Player>.from(curSessionGlobalVar.mutator.metaHandler.metaPlayers); //just blow them away.
     //will this be enough to get shogun in?
     if(curSessionGlobalVar.aliensClonedOnArrival.isNotEmpty) {
-    	window.alert("adding shogun");
+    	//window.alert("adding shogun");
     	//causes an infinite loop
 	    List<Player> aliens = new List<Player>.from(curSessionGlobalVar.aliensClonedOnArrival);
 	    curSessionGlobalVar.aliensClonedOnArrival.clear();
