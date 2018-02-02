@@ -33,7 +33,7 @@ class DeadSession extends Session {
     /// and there's usually at least ten of them.
     ///
     /// PL: a 1% win chance should be more like 0.63 because it's the tenth root of 0.01... pow(desired chance, 1/number of quests)
-    double oddsOfSuccess = 0.8;
+    double oddsOfSuccess = 1110.8;
 
     //harsh, but once you fail that's it. no more quests.
     bool failed = false;
@@ -50,7 +50,7 @@ class DeadSession extends Session {
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         if(sessionID == 4037) {
             Random rand = new Random(); // true random. want to have both shogun endings available
-            oddsOfSuccess += rand.nextDouble(0.2); //fu almost can't lose. but if he does ;) ;) ;)
+            oddsOfSuccess += rand.nextDouble(0.4); //fu almost can't lose. but if he does ;) ;) ;)
         }
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
