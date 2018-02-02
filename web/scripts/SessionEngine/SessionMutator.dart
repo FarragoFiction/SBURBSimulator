@@ -1192,6 +1192,7 @@ class MetaPlayerHandler {
         player.quirk.punctuation = 2;
         player.quirk.lettersToReplace = [];
         player.quirk.lettersToReplaceIgnoreCase = [];
+        player.setStat(Stats.EXPERIENCE,100);
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);

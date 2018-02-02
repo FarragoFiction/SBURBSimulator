@@ -5091,4 +5091,21 @@ i can also confirm taht the intro is never called for him.
 
 so....what gives?
 
+~~~~~~~
 
+It's been 8 hours.
+
+I haven't solved this yet. Not fully.
+
+I can't keep coding, in addition to the fact that I'm wearing down, DM will be here soon.
+
+So.
+
+I am going to spend 5 minutes on the clock defining the problem. I should have done that sooner.
+
+The problem is that:
+
+Shogun does not even attempt to enter the session. (confirmed that intro is not called for him).
+At first, he seemed to be in the player list but he suddenly isn't anymore?
+Other dead session players can invade sessions no problem.
+Session 13 overrights existing players with meta players. This might blow shogun away.

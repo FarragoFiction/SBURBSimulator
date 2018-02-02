@@ -975,7 +975,16 @@ void session420(){
 //what even is this???
 void session13() {
     curSessionGlobalVar.mutator.metaHandler.initalizePlayers(curSessionGlobalVar,true);
-	curSessionGlobalVar.players = curSessionGlobalVar.mutator.metaHandler.metaPlayers; //just blow them away.
+	curSessionGlobalVar.players = new List<Player>.from(curSessionGlobalVar.mutator.metaHandler.metaPlayers); //just blow them away.
+    //will this be enough to get shogun in?
+    if(curSessionGlobalVar.aliensClonedOnArrival.isNotEmpty) {
+    	window.alert("adding shogun");
+    	//causes an infinite loop
+	    List<Player> aliens = new List<Player>.from(curSessionGlobalVar.aliensClonedOnArrival);
+	    curSessionGlobalVar.aliensClonedOnArrival.clear();
+	    addAliensToSession(curSessionGlobalVar, aliens);
+	    //curSessionGlobalVar.players.addAll(curSessionGlobalVar.aliensClonedOnArrival);
+    }
     print("players is: ${curSessionGlobalVar.players}");
     curSessionGlobalVar.players[0].leader = true;
     for(Player p in curSessionGlobalVar.players) {

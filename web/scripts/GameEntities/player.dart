@@ -41,7 +41,7 @@ class Player extends GameEntity{
     bool robot = false;
     num ectoBiologicalSource = null; //might not be created in their own session now.
     SBURBClass class_name;
-    Player guardian = null; //no longer the sessions job to keep track.
+    Player _guardian = null; //no longer the sessions job to keep track.
     num number_confessions = 0;
     num number_times_confessed_to = 0;
     bool baby_stuck = false;
@@ -429,6 +429,17 @@ class Player extends GameEntity{
         this.victimBlood = null; //clean face
         if(canvas == null) initSpriteCanvas();
         this.renderSelf("makeAlive");
+    }
+
+    Player get guardian {
+        if(_guardian == null) {
+            makeGuardian();
+        }
+        return _guardian;
+    }
+
+    void set guardian(Player g) {
+        _guardian = g;
     }
 
     @override
@@ -1019,8 +1030,8 @@ class Player extends GameEntity{
         }
         guardian.initializeDerivedStuff(); //redo levels and land based on real aspect
         //this.guardians.add(guardian); //sessions don't keep track of this anymore
-        player.guardian = guardian;
-        guardian.guardian = this; //goes both ways.
+        player._guardian = guardian;
+        guardian._guardian = this; //goes both ways.
     }
 
     void associatedStatsIncreasePower(num powerBoost) {
