@@ -137,7 +137,9 @@ class DeadSimController extends SimController {
       curSessionGlobalVar = tmpcurSessionGlobalVar;
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
       List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
-      if(living.isEmpty) {
+     window.alert("doing combo session in dead, cloned aliens: ${living.length}");
+
+    if(living.isEmpty) {
           appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
       }else {
           appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>");

@@ -5021,3 +5021,66 @@ but nobody still has 1 hp now anyways.
 
 hwy.
 
+~~~~~
+
+now that i at least have a bandaid mark II, i need to figure out why session invasions don't work anymore
+
+the player is rendered, they are a known foreign player. but then nothing happens.
+
+i guess... i just need. to find out why. that happens.
+
+or what normally happens.
+
+is it happening to combo sessions, too? i guess?
+
+Yes.
+
+I broke all combo sessions.
+
+I don't know why.
+
+it could be they aren't being added to the player list for some reason? how are they normally?
+
+aliensClonedOnArrival is null?
+
+        addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
+right before it's called it says:
+about to add: 1 aliens to new session.
+
+about to add: 1 aliens to new session.
+VM93:1 in method, adding 6 aliens to session with 11 players already
+VM93:1 after adding 6 aliens to session it has 17 players
+
+
+
+huh. Oh, that's right. I add the corpses too, just in case.
+for the relationship shit.
+
+but what else?
+
+they are clearly............
+
+
+oh.
+
+OH.
+
+Fuck.
+
+SimController.instance.startSession(true);
+        //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+
+
+the old way was to load the players. and the start
+the new way is to start the session normally which lets me get easter eggs.
+but it MIGHT be clearling out the alien players.
+
+let's find out, together.
+
+or get distracted googling marbits. whatever.
+
+Alright.
+
+Let's go.
+
+

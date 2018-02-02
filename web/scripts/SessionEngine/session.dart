@@ -600,7 +600,7 @@ class Session {
             ////print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
            if(! mutator.spaceField) return null; //their child session is not able to support them  (space says 'fuck this noise we doing it')
         }
-        //	//print("about to add: " + living.length + " aliens to new session.");
+        print("about to add: ${living.length} aliens to new session.");
         ////print(getPlayersTitles(living));
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
@@ -929,7 +929,7 @@ class Session {
 
 //save a copy of the alien (in case of yellow yard)
 void addAliensToSession(Session newSession, List<Player> aliens) {
-    ////print("in method, adding aliens to session");
+   // print("in method, adding ${aliens.length} aliens to session with ${newSession.players.length} players already");
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
         survivor.land = null;
@@ -982,4 +982,6 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
     }
 
     newSession.players.addAll(aliens);
+   // print("after adding ${aliens.length} aliens to session it has ${newSession.players.length} players");
+
 }

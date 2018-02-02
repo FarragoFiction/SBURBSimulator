@@ -155,7 +155,18 @@ abstract class SimController {
         for(Player p in curSessionGlobalVar.players) {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
-        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
+
+        List<String> alienTitlesWithTag = new List<String>();
+        for(Player p in curSessionGlobalVar.aliensClonedOnArrival) {
+            playerTitlesWithTag.add(p.htmlTitleWithTip());
+        }
+
+        String aliens = "";
+        if(alienTitlesWithTag.isNotEmpty) {
+            aliens = "${turnArrayIntoHumanSentence(alienTitlesWithTag)}  will also be there";
+        }
+
+        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. $aliens. <br><br>");
         callNextIntro(0);
     }
 
@@ -318,13 +329,17 @@ abstract class SimController {
         ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         Scene.createScenesForSession(curSessionGlobalVar);
         ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
-        curSessionGlobalVar.makePlayers();
-        print("after make players, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
 
-        ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
-        curSessionGlobalVar.randomizeEntryOrder();
-        //authorMessage();
-        curSessionGlobalVar.makeGuardians(); //after entry order established
+        //let's combo sessions still work
+        if(!keepSession) {
+            curSessionGlobalVar.makePlayers();
+           // print("after make players, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+
+            ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+            curSessionGlobalVar.randomizeEntryOrder();
+            //authorMessage();
+            curSessionGlobalVar.makeGuardians(); //after entry order established
+        }
         //easter egg ^_^
         if (getParameterByName("royalRumble", null) == "true") {
             debugRoyalRumble();
