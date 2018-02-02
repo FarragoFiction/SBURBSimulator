@@ -14,7 +14,7 @@ class Newspost
     if(SimController.shogun) Newspost.shogun = true;
 
     List<Newspost> ret = [
-      new Newspost("2/1/18","I definitely did not just spend three days working on a shitty easter egg. That doesn't sound like me at all."),
+      new Newspost("2/1/18","I definitely did not just spend three days working on a shitty easter egg. That doesn't sound like me at all. <span class = 'void'>4037 is the seed</span>"),
       new Newspost("1/26/18","Whoa, wtf? Are SMITHS finally in the sim in the non fanon section? Shit, KR can finally have their true form now. "),
       new Newspost("1/25/18","Players can now make robot companions, too. There's two basic ways to get a robot: Be REALLY fucking good at alchemy, OR be really fucking enthused about robots. The robots themselves are either yourself, your best friend, or the Heart player (like you do).<br><Br>Also, I changed how relationships worked a bit to avoid being discriminatory to non-player robots. HOPEFULLY that didn't break anything but I am way too tired to check the more subtle shit (like yellow yards).<br><Br>I also tweaked teh brain ghost rate, was way too rare. So brain ghosts can be your friend if you don't have anybody else you feel strongly enough about."),
       new Newspost("1/24/18","Brain ghosts are things that hope players can have as companions. The ghosts are either their crush, their rival, or the Heart player (like you do). <br><br>Also slightly improved rendering and rendering speeds."),
