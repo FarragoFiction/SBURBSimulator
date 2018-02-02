@@ -565,6 +565,10 @@ class Player extends GameEntity{
             ret += "$b<br>";
         }
 
+        for (AssociatedStat s in associatedStats) {
+            ret += "$s<br>";
+        }
+
         ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";

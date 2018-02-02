@@ -156,9 +156,13 @@ class BuffSpecibus extends Buff {
         }
         if (stat.pickable) {
             if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
-                //print("buff health stat");
-                if(val * gameEntity.specibus.rank <1) return 1.0;
-                return val * gameEntity.specibus.rank;
+                double ret = val * gameEntity.specibus.rank;
+                //print("buff health stat ret is $ret");
+                if(ret <1) {
+                    //print("NEGATIVE buff health stat ret is $ret  for $gameEntity so am returning 1.0 instead.");
+                    return 1.0;
+                }
+                return ret;
             }else {
                 return val * gameEntity.specibus.rank;
             }
@@ -200,7 +204,10 @@ class BuffLord extends Buff {
         if (stat.pickable) {
             if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
                 //print("buff health stat");
-                if(val * gameEntity.specibus.rank <1) return 1.0;
+                if(val + sumMinionStats(holder, stat, val)<1) {
+                    print ("$gameEntity would have gotten negative hp from this shitty minion. ${val + sumMinionStats(holder, stat, val)}. They have ${gameEntity.companions.length} minions. And their natural hp would have been ${val}");
+                    return 1.0;
+                }
                 return val + sumMinionStats(holder, stat, val);
             }else {
                 return val + sumMinionStats(holder, stat, val);

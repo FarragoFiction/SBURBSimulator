@@ -1153,7 +1153,7 @@ class MetaPlayerHandler {
     }
 
     Player makeNB(Session s) {
-        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.LORD, Aspects.BLOOD);
         player.quirk = randomHumanQuirk(s.rand);
 
         player.deriveSpecibus = false;
@@ -1192,6 +1192,7 @@ class MetaPlayerHandler {
         player.quirk.punctuation = 2;
         player.quirk.lettersToReplace = [];
         player.quirk.lettersToReplaceIgnoreCase = [];
+        player.setStat(Stats.EXPERIENCE,100);
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);
