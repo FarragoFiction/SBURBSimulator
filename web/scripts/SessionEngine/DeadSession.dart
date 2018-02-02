@@ -48,7 +48,7 @@ class DeadSession extends Session {
         mutator.metaHandler.initalizePlayers(this);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
-        if(sessionID == 4037) oddsOfSuccess = 0.9999; //fu almost can't lose
+        if(sessionID == 4037) oddsOfSuccess = 0.99; //fu almost can't lose. but if he does ;) ;) ;)
         makeThemes();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }

@@ -9,26 +9,26 @@ class Sauce extends Aspect {
 
     //what sort of quests rewards do I get?
     @override
-    double itemWeight = 1.00;
+    double itemWeight = 13.00;
     @override
-    double fraymotifWeight = 1.0;
+    double fraymotifWeight = 13.0;
     @override
-    double companionWeight = 0.01;
+    double companionWeight = 13.0;
 
     @override
     AspectPalette palette = new AspectPalette()
-        ..accent = "#9900cc"
-        ..aspect_light = '#974AA7'
-        ..aspect_dark = '#6B347D'
-        ..shoe_light = '#3D190A'
-        ..shoe_dark = '#2C1207'
-        ..cloak_light = '#7C3FBA'
-        ..cloak_mid = '#6D34A6'
-        ..cloak_dark = '#592D86'
-        ..shirt_light = '#381B76'
-        ..shirt_dark = '#1E0C47'
-        ..pants_light = '#281D36'
-        ..pants_dark = '#1D1526';
+        ..accent = "#00ff00"
+        ..aspect_light = '#00ff00'
+        ..aspect_dark = '#00ff00'
+        ..shoe_light = '#00ff00'
+        ..shoe_dark = '#00cf00'
+        ..cloak_light = '#171717'
+        ..cloak_mid = '#080808'
+        ..cloak_dark = '#080808'
+        ..shirt_light = '#616161'
+        ..shirt_dark = '#3b3b3b'
+        ..pants_light = '#4a4a4a'
+        ..pants_dark = '#292929';
 
 
     @override
@@ -69,14 +69,10 @@ class Sauce extends Aspect {
 
     @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
-        new AssociatedStat(Stats.POWER, 2.0, true),
-        new AssociatedStat(Stats.MOBILITY, 1.0, true),
-        new AssociatedStat(Stats.SANITY, -1.0, true),
-        new AssociatedStat(Stats.RELATIONSHIPS, -1.0, true),
-        new AssociatedStat(Stats.SBURB_LORE, 0.01, false) //yes, technically it's from an aspect, but it's not NORMAL.
-    ]);
+        new AssociatedStat(Stats.POWER, 13.0, true)
+        ]);
 
-    Sauce(int id) :super(id, "Sauce", isInternal:true);
+    Sauce(int id) :super(id, "Sauce", isInternal: true);
 
     @override
     String activateCataclysm(Session s, Player p) {

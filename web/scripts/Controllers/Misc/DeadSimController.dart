@@ -132,11 +132,7 @@ class DeadSimController extends SimController {
   @override
   void doComboSession(Session tmpcurSessionGlobalVar) {
     int id = curSessionGlobalVar.session_id;
-    if(id == 4037) {
-      SBURBClassManager.LORD.name = "Shogun";
-      curSessionGlobalVar.players.first.aspect = Aspects.SAUCE;
-      curSessionGlobalVar.players.first.renderSelf("Just Shogun");
-    }
+
     if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
       curSessionGlobalVar = tmpcurSessionGlobalVar;
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -152,11 +148,15 @@ class DeadSimController extends SimController {
           querySelector("#charSheets").setInnerHtml("");
           SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
       }
-      //TODO test that this works.
       if(id == 4037) {
         window.alert("Who is Shogun???");
         curSessionGlobalVar.session_id = 13;
         SBURBClassManager.LORD.name = "Shogun";
+/*holy fuck nothing i do keeps us from dying. oh well.
+        for(Player p in curSessionGlobalVar.players) {
+          p.addStat(Stats.HEALTH, 100);
+          p.makeAlive(); //why is this necessary, shogun stop killing us before you even get in.
+        }*/
       }
       if(id ==612) curSessionGlobalVar.session_id = 413;
 

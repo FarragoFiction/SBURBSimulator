@@ -69,8 +69,10 @@ void startNewSession() {
     String divID = "canvasdeadInvader";
     String ret = "The ${player.htmlTitle()} enters a new session. Huh.  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
     if(session.session_id == 4037) {
-        ret = "The ${player.htmlTitle()} enters a new session. There. Are you happy, Shogun? Can I finally fucking leave this attic?  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
-
+        SBURBClassManager.LORD.name = "Shogun";
+        curSessionGlobalVar.players.first.aspect = Aspects.SAUCE;
+        curSessionGlobalVar.players.first.renderSelf("Just Shogun");
+        ret = "The ${player.htmlTitle()} enters a new session. There. Are you happy, Shogun? I made your fucking origin story. Can I finally fucking leave this attic?  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
     }
     appendHtml(div, ret);
     CanvasElement canvas = querySelector("#$divID");
