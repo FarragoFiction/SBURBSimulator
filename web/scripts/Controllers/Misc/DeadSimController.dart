@@ -137,7 +137,7 @@ class DeadSimController extends SimController {
       curSessionGlobalVar = tmpcurSessionGlobalVar;
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
       List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
-     window.alert("doing combo session in dead, cloned aliens: ${living.length}");
+     //window.alert("doing combo session in dead, cloned aliens: ${living.length}");
 
     if(living.isEmpty) {
           appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
@@ -153,7 +153,6 @@ class DeadSimController extends SimController {
       if(id == 4037) {
         window.alert("Who is Shogun???");
         curSessionGlobalVar.session_id = 13;
-        SBURBClassManager.LORD.name = "Shogun";
         //okay well this is an entire new priority now that i notice who is dying. i'm so sorry sb.
 /*holy fuck nothing i do keeps us from dying. oh well.
         for(Player p in curSessionGlobalVar.players) {

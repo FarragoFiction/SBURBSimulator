@@ -33,7 +33,7 @@ class DeadSession extends Session {
     /// and there's usually at least ten of them.
     ///
     /// PL: a 1% win chance should be more like 0.63 because it's the tenth root of 0.01... pow(desired chance, 1/number of quests)
-    double oddsOfSuccess = 1110.8;
+    double oddsOfSuccess = 9870.8;
 
     //harsh, but once you fail that's it. no more quests.
     bool failed = false;

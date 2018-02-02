@@ -59,7 +59,6 @@ abstract class SimController {
     }
 
     void callNextIntro(int player_index) {
-        print("Calling next intro in a regular sim controller");
 
         if (player_index >= curSessionGlobalVar.players.length) {
             tick(); //NOW start ticking
@@ -67,6 +66,8 @@ abstract class SimController {
         }
         IntroNew s = new IntroNew(curSessionGlobalVar);
         Player p = curSessionGlobalVar.players[player_index];
+        print("Calling next intro in a regular sim controller. Player index is ${player_index } and number of players is ${curSessionGlobalVar.players.length}. ${curSessionGlobalVar.players[player_index]}, vs ${curSessionGlobalVar.players}");
+
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
         s.trigger(playersInMedium, p);
@@ -156,17 +157,11 @@ abstract class SimController {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        List<String> alienTitlesWithTag = new List<String>();
         for(Player p in curSessionGlobalVar.aliensClonedOnArrival) {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        String aliens = "";
-        if(alienTitlesWithTag.isNotEmpty) {
-            aliens = "${turnArrayIntoHumanSentence(alienTitlesWithTag)}  will also be there";
-        }
-
-        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. $aliens. <br><br>");
+        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
         callNextIntro(0);
     }
 

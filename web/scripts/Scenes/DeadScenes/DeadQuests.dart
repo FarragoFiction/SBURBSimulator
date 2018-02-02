@@ -77,15 +77,15 @@ class DeadQuests extends Scene {
 
         String helperText = "";
         if(helper != null) {
-            session.logger.info("Getting help in dead session from $helper");
+            //session.logger.info("Getting help in dead session from $helper");
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
             if (helper is Sprite) {
                 helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}<br><br>";
             } else if (helper is Consort) {
-                session.logger.info("AB: consort helper.");
+                //session.logger.info("AB: consort helper.");
                 helperText = "$helperText The ${helper.htmlTitle()} is ${(helper as Consort).sound}ing. It's somehow helpful. ";
             } else if (helper is Leprechaun) {
-                session.logger.info("AB: leprechaun helper.");
+                //session.logger.info("AB: leprechaun helper.");
                 helperText = "$helperText The ${helper.htmlTitle()} is using Aspect powers in appropriate ways to clear the lands challenges for their Lord. ";
             } else {
                 helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";

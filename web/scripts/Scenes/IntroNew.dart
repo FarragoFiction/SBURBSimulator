@@ -13,6 +13,7 @@ class IntroNew extends IntroScene {
     IntroNew(Session session): super(session, false);
   @override
   void renderContent(Element div, int i) {
+      //window.alert("$player is entering");
       doNarration(div,i);
       String chat = "";
       if(player.dead) {

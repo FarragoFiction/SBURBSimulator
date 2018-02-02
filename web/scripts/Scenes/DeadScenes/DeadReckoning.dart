@@ -71,6 +71,8 @@ void startNewSession() {
     if(session.session_id == 4037) {
         SBURBClassManager.LORD.name = "Shogun";
         curSessionGlobalVar.players.first.aspect = Aspects.SAUCE;
+        curSessionGlobalVar.players.first.chatHandle = "The Shogun";
+
         curSessionGlobalVar.players.first.renderSelf("Just Shogun");
         ret = "The ${player.htmlTitle()} enters a new session. There. Are you happy, Shogun? I made your fucking origin story. Can I finally fucking leave this attic?  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
     }
