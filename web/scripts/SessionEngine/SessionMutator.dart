@@ -1157,7 +1157,7 @@ class MetaPlayerHandler {
         player.quirk = randomHumanQuirk(s.rand);
 
         player.deriveSpecibus = false;
-        player.specibus = new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.WOOD]);
+        player.specibus = new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.WOOD, ItemTraitFactory.LEGENDARY]);
 
 
         player.hair = 67;
@@ -1192,7 +1192,6 @@ class MetaPlayerHandler {
         player.quirk.punctuation = 2;
         player.quirk.lettersToReplace = [];
         player.quirk.lettersToReplaceIgnoreCase = [];
-        player.setStat(Stats.EXPERIENCE,100);
 
         f.desc = "A circle within itself. Because fuck reality. ";
         player.fraymotifs.add(f);
