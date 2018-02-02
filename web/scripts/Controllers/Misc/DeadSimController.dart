@@ -152,6 +152,7 @@ class DeadSimController extends SimController {
         window.alert("Who is Shogun???");
         curSessionGlobalVar.session_id = 13;
         SBURBClassManager.LORD.name = "Shogun";
+        //okay well this is an entire new priority now that i notice who is dying. i'm so sorry sb.
 /*holy fuck nothing i do keeps us from dying. oh well.
         for(Player p in curSessionGlobalVar.players) {
           p.addStat(Stats.HEALTH, 100);

@@ -30,7 +30,7 @@ abstract class NonCanonSessions {
 
     //yes, this WILL crash in a regular session, how did you know?
     static void session4037() {
-        curSessionGlobalVar.mutator.metaHandler.initalizePlayers(new Session(13));
+        curSessionGlobalVar.mutator.metaHandler.initalizePlayers(new Session(13),true);
         curSessionGlobalVar.players = <Player>[curSessionGlobalVar.mutator.metaHandler.feudalUltimatum];
         curSessionGlobalVar.players.length = 1; //no more, no less.
         curSessionGlobalVar.players[0].setStat(Stats.EXPERIENCE, 1300);

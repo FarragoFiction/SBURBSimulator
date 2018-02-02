@@ -151,6 +151,11 @@ abstract class SimController {
 
         //advertisePatreon(SimController.instance.storyElement);
        // print("gonna call next intro");
+        List<String> playerTitlesWithTag = new List<String>();
+        for(Player p in curSessionGlobalVar.players) {
+            playerTitlesWithTag.add(p.htmlTitleWithTip());
+        }
+        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
         callNextIntro(0);
     }
 

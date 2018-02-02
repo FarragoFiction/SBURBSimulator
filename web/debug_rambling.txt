@@ -4915,3 +4915,81 @@ but anyways, looking at the sesssion in question.... it has one wasted  hope eve
 
 so i wonder if it's hope gnosis that's the problem.  one way to test: ask waste of hope stuck
 
+~~~~~~~~~~
+
+alright jesus fuck the sim is being a dick.
+
+/*holy fuck nothing i do keeps us from dying. oh well.
+        for(Player p in curSessionGlobalVar.players) {
+          p.addStat(Stats.HEALTH, 100);
+          p.makeAlive(); //why is this necessary, shogun stop killing us before you even get in.
+        }*/
+
+
+no more "oh well".
+
+But. If that isn't working.
+
+What would work?
+
+I don't even know why sb is dying? are they the original meta player for 4037 and gets superceded by jr?
+
+is it really noone else? fuck that is. i'm so sorry.
+
+gotta focus up.
+
+first step: check.
+
+Okay. First fact. It happens whether it's a "redemption" or "invasion".  This is important. I thought it was invasion only.
+
+It happens twice. But both times to nobody.
+
+Fuck. How is that even possible?
+
+First step, that piece of code represents "making sure players with zero health count as dead".
+So.
+When the session starts, print out all players and their stats. Probably a useful thing anyways. Maybe he never had
+init stats called?
+
+Okay.  nobody starts life with their health at -508. jesus fuck.
+
+I also see that even the "redeemed" FU is spawning doomed and murder mode because my life can never just be easy, can it?
+
+alright. I think that both problems have the same root:
+
+I need to re-generate the meta players.
+
+I'd also like to find out why nobody has negative health, but I think regenerating him will be good enough.
+
+there we fucking go. I'm TRYING to reinit the players, but as long as JR exists it wiill refuse to do so.
+
+so now i added code so it can insist on doing it anyways. i bet this was causing some yard bullshit or AB bullshit, too.
+
+alright. i THINK the reason sb is taking damage is because of that bug a few people have reported where
+dead sessions with a FORCED meta player will sometimes report the wrong meta player as being involved.
+
+.....
+
+I reinited all players.
+
+I fucking did it.
+
+I KNOW I did it because FU isn't spawning doomed and murder mode.
+
+But.
+
+Nobody still has negative hp.
+
+What.
+
+.........
+
+Is.
+
+Is it because he's a Lord, somehow? That's the other thing I changed.
+
+Fuck. It is. I make him a Page and he has a whopping 1 hp SOMEHOW. WHAT IS GOING ON.
+
+
+and now the invading sauce player doesn't exist anymore at all. wth. focus on nobody first tho.
+

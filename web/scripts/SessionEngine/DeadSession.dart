@@ -45,7 +45,7 @@ class DeadSession extends Session {
         mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
         sessionHealth = mutator.sessionHealth;
         //have a metaplayer BEFORE you make the bullshit quests.
-        mutator.metaHandler.initalizePlayers(this);
+        mutator.metaHandler.initalizePlayers(this, false);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         if(sessionID == 4037) {
@@ -287,7 +287,7 @@ class DeadSession extends Session {
         mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
         sessionHealth = mutator.sessionHealth;
         //have a metaplayer BEFORE you make the bullshit quests.
-        mutator.metaHandler.initalizePlayers(this);
+        mutator.metaHandler.initalizePlayers(this,true);
         metaPlayer = rand.pickFrom(mutator.metaHandler.metaPlayers);
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         makeThemes();

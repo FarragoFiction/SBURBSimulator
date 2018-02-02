@@ -234,7 +234,7 @@ class SessionMutator {
 
         //such a bad idea. stop hurtin AB. SimController.instance.stopped = true; //so there is time to load. will still finish tick, so not instant. but should be enough
 
-        metaHandler.initalizePlayers(s);
+        metaHandler.initalizePlayers(s,false);
 
         s.timeTillReckoning += 20; //the ending can motherfucking wait for my revenge.
         String ret = "The ${activatingPlayer.htmlTitle()} can't stop laughing. They have peeled back the curtain and seen the layer of code underneath. ";
@@ -866,8 +866,8 @@ class MetaPlayerHandler {
        // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
     }
 
-    void initalizePlayers(Session s) {
-        if (jadedResearcher != null) return; //don't reintiialize, dunkass.
+    void initalizePlayers(Session s, bool reinitNoMatterWhat) {
+        if (jadedResearcher != null && reinitNoMatterWhat == false) return; //don't reintiialize, dunkass.
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
         tableGuardian = makeTG(s);
@@ -1153,7 +1153,7 @@ class MetaPlayerHandler {
     }
 
     Player makeNB(Session s) {
-        Player player = randomPlayerNoDerived(s, SBURBClassManager.LORD, Aspects.BLOOD);
+        Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.BLOOD);
         player.quirk = randomHumanQuirk(s.rand);
 
         player.deriveSpecibus = false;
