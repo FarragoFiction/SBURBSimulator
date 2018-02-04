@@ -13,6 +13,9 @@ void renderContent(Element div) {
     if(player.unconditionallyImmortal) {
         session.stats.won = true;
         content += " Despite bullshit odds, the ${player.htmlTitleWithTip()} has won. What will they do now, with their Unconditional Immortality? <Br><Br> <button id = 'deadButton'> Perhaps they will invade a new session?</button>";
+        if(session.session_id == 4037) {
+            content += "<div class = 'void'><img src = 'images/misc/shogunReview.png'></void>";
+        }
     }else {
         content += " We all fail to be surprised that the ${player.htmlTitle()}  didn't manage to beat such a bullshit game. Guess they are stuck here, huh?";
     }
