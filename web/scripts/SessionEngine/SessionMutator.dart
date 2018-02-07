@@ -959,7 +959,7 @@ class MetaPlayerHandler {
         player.makeGuardian();
         player.guardian.initialize();
         player.guardian.guardian = player;
-        player.land.denizenFeature = new HardDenizenFeature("Dendron");
+        player.land.denizenFeature = new HardDenizenFeature("<span class = 'void'>Tablikea,</span> the Guardian");
 
         player.object_to_prototype = new PotentialSprite("Vinyl", s);
         player.sprite.addPrototyping(player.object_to_prototype);

@@ -48,7 +48,7 @@ class Wrangler {
 
         AnchorElement nameElement = new AnchorElement();
         nameElement.text = "$chatHandle posted: ";
-        nameElement.href = "bio.html?$chatHandle";
+        nameElement.href = "bio.html?staff=$chatHandle";
         container.classes.add("MemoNewspostName");
 
 
