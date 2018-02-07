@@ -8,6 +8,7 @@ import '../../includes/colour.dart';
 import "../../SBURBSim.dart";
 
 
+
 class Wrangler {
     String headshot;
     Colour color;
@@ -21,22 +22,37 @@ class Wrangler {
         container.classes.add("MemoNewspost");
         container.style.color = color.toStyleString();
 
+        Element headerContainer = new DivElement();
+
+
         //TODO figure out how i want this to look.
 
         ImageElement icon = new ImageElement(src: headshot);
+        icon.classes.add("MemoNewspostIcon");
 
         SpanElement textElement = new SpanElement();
         appendHtml(textElement, text); //keeps the html intact
+        textElement.classes.add("MemoNewspostText");
+
 
         SpanElement dateElement = new SpanElement();
-        dateElement.text = date.toString();
+        //https://stackoverflow.com/questions/16126579/how-do-i-format-a-date-with-dart
+        String dateSlug ="${date.year.toString()}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}";
+
+        dateElement.text = "$dateSlug: ";
+        container.classes.add("MemoDate");
+
 
         SpanElement nameElement = new SpanElement();
-        dateElement.text = chatHandle;
+        nameElement.text = "$chatHandle posted: ";
+        container.classes.add("MemoNewspostName");
 
+
+        headerContainer.append(dateElement);
+        headerContainer.append(nameElement);
+        container.append(headerContainer);
         container.append(icon);
-        container.append(nameElement);
-        container.append(dateElement);
+
         container.append(textElement);
 
         div.append(container);

@@ -31,10 +31,13 @@ void main() {
 
 //TODO load all newsposts by file.
 void createNews() {
-  new MemoNewspost(ChangeLogMemo.jadedResearcher, new DateTime.now(), "This is just a test.");
   new MemoNewspost(ChangeLogMemo.authorBot, new DateTime.now(), "There is a 94.23423423% chance this is working as intended.");
   new MemoNewspost(ChangeLogMemo.authorBotJunior, new DateTime.now(), "Hrmmm...");
   new MemoNewspost(ChangeLogMemo.jadedResearcher, new DateTime.now(), "Okay. I think it's time to style.");
+  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-13"), "This is just a test. Should be first post.");
+  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-16"), "This is just a test. Should be third post.");
+  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-14"), "This is just a test. Should be second post.");
+
 }
 
 void renderNews() {

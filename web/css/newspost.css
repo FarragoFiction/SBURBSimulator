@@ -1,3 +1,13 @@
+.MemoNewspost{
+    padding: 10px;
+    vertical-align: top;
+    width: 900px;
+}
+
+.MemoNewspostText{
+  vertical-align: top;
+}
+
 #container {
     margin-left: auto;
     margin-right: auto;

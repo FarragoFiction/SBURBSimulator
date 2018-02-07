@@ -29,6 +29,7 @@ class ChangeLogMemo {
 
     void render(Element div) {
         //TODO sort by date;
+        newsposts.sort();
         for(MemoNewspost m in newsposts) {
             m.render(div);
         }
@@ -36,7 +37,7 @@ class ChangeLogMemo {
 }
 
 
-class MemoNewspost {
+class MemoNewspost implements Comparable<MemoNewspost> {
     Wrangler poster;
     String text;
     DateTime date;
@@ -49,4 +50,10 @@ class MemoNewspost {
         poster.renderLine(div, date, text);
     }
 
+  @override
+  int compareTo(MemoNewspost other) {
+      Duration difference = date.difference(other.date);
+      //will it be positive or negative?
+      return difference.inSeconds;
+  }
 }
