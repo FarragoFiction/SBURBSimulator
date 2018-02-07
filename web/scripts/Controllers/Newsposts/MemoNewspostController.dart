@@ -7,7 +7,7 @@ import "../../random.dart";
 import "ChangeLogMemo.dart";
 import "Wrangler.dart";
 
-ChangeLogMemo memo = new ChangeLogMemo();
+ChangeLogMemo memo =  ChangeLogMemo.instance;
 
 void main() {
   loadNavbar();

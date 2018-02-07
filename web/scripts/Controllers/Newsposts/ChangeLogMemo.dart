@@ -11,16 +11,20 @@ import '../../includes/colour.dart';
 
 
 class ChangeLogMemo {
-    static Wrangler jadedResearcher = new Wrangler("jadedResearcher", "jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
-    static Wrangler authorBot = new Wrangler("authorBot", "AB_icon.png", new Colour.fromStyleString("#ff0000"));
-    static Wrangler authorBotJunior = new Wrangler("authorBotJunior", "abj_icon.png", new Colour.fromStyleString("#ffa500"));
+    static Wrangler jadedResearcher = new Wrangler("jadedResearcher", "images/Credits/jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
+    static Wrangler authorBot = new Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
+    static Wrangler authorBotJunior = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
 
-    static ChangeLogMemo instance;
+    static ChangeLogMemo _instance;
 
     List<MemoNewspost> newsposts = new List<MemoNewspost>();
 
+    static ChangeLogMemo get instance {
+        if( _instance == null) _instance = new ChangeLogMemo();
+        return _instance;
+    }
+
     ChangeLogMemo() {
-        ChangeLogMemo.instance = this;
     }
 
     void render(Element div) {
