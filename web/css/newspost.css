@@ -8,6 +8,22 @@
   vertical-align: top;
 }
 
+a:link {
+    color: black;
+
+}
+
+/* visited link */
+a:visited {
+    color: black;
+
+}
+
+/* mouse over link */
+a:hover {
+    color: grey;
+}
+
 #container {
     margin-left: auto;
     margin-right: auto;

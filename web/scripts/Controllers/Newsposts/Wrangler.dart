@@ -20,7 +20,8 @@ class Wrangler {
     void renderLine(Element div, DateTime date, String text) {
         Element container = new DivElement();
         container.classes.add("MemoNewspost");
-        container.style.color = color.toStyleString();
+
+
 
         Element headerContainer = new DivElement();
 
@@ -33,6 +34,8 @@ class Wrangler {
         SpanElement textElement = new SpanElement();
         appendHtml(textElement, text); //keeps the html intact
         textElement.classes.add("MemoNewspostText");
+        textElement.style.color = color.toStyleString();
+
 
 
         SpanElement dateElement = new SpanElement();
@@ -43,8 +46,9 @@ class Wrangler {
         container.classes.add("MemoDate");
 
 
-        SpanElement nameElement = new SpanElement();
+        AnchorElement nameElement = new AnchorElement();
         nameElement.text = "$chatHandle posted: ";
+        nameElement.href = "bio.html?$chatHandle";
         container.classes.add("MemoNewspostName");
 
 
