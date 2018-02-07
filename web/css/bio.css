@@ -1,0 +1,20 @@
+
+.bio{
+    padding: 10px;
+}
+.bioPic{
+    float: left;
+    padding: 10px;
+
+}
+
+.nameHeader{
+    font-size: 33;
+}
+
+.mind{
+    background: #3DA35A;
+    color: #06FFC9;
+    border: 1px solid #1D572E;
+    padding: 10px;
+}

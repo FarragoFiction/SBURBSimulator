@@ -6,13 +6,14 @@ import 'dart:async';
 import "../../random.dart";
 import "ChangeLogMemo.dart";
 import "Wrangler.dart";
+import 'dart:async';
+
 
 ChangeLogMemo memo =  ChangeLogMemo.instance;
 
 void main() {
   loadNavbar();
   createNews();
-  renderNews();
   window.onScroll.listen((Event event){
     num ypos = window.scrollY; //pixels the site is scrolled down
     var visible = window.screen.height; //visible pixels
@@ -30,13 +31,12 @@ void main() {
 }
 
 //TODO load all newsposts by file.
-void createNews() {
-  new MemoNewspost(ChangeLogMemo.authorBot, new DateTime.now(), "There is a 94.23423423% chance this is working as intended.");
-  new MemoNewspost(ChangeLogMemo.authorBotJunior, new DateTime.now(), "Hrmmm...");
-  new MemoNewspost(ChangeLogMemo.jadedResearcher, new DateTime.now(), "Okay. I think it's time to style.");
-  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-13"), "This is just a test. Should be first post.");
-  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-16"), "This is just a test. Should be third post.");
-  new MemoNewspost(ChangeLogMemo.jadedResearcher, DateTime.parse("2017-01-14"), "This is just a test. Should be second post.");
+Future<Null> createNews() async{
+  await ChangeLogMemo.jadedResearcher.slurpNewsposts();
+  await ChangeLogMemo.karmicRetribution.slurpNewsposts();
+
+  print("Ready to handle ${memo.newsposts.length} posts");
+    renderNews();
 
 }
 

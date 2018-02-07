@@ -6,6 +6,10 @@ Wranglers have a headshot, text color and chatHandle.
 import 'dart:html';
 import '../../includes/colour.dart';
 import "../../SBURBSim.dart";
+import "ChangeLogMemo.dart";
+import 'dart:async';
+import '../../includes/path_utils.dart';
+
 
 
 
@@ -13,8 +17,20 @@ class Wrangler {
     String headshot;
     Colour color;
     String chatHandle;
+    List<MemoNewspost> posts = new List<MemoNewspost>();
 
     Wrangler(String this.chatHandle, String this.headshot, Colour this.color) {
+    }
+
+    Future<Null> slurpNewsposts() async{
+        await HttpRequest.getString(PathUtils.adjusted("WranglerNewsposts/${chatHandle}.txt")).then((String data) {
+            List<String> parts = data.split("\n");
+            print("Parts is ${parts.length} long.");
+            for(String line in parts) {
+                posts.add(new MemoNewspost.from(line, this));
+            }
+            print("should be returning ");
+        });
     }
 
     void renderLine(Element div, DateTime date, String text) {
