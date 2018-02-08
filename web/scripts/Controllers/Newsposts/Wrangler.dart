@@ -48,7 +48,7 @@ class Wrangler {
         nameElement.href = "bio.html?staff=$chatHandle";
         nameElement.target = "_blank";
 
-        container.append(icon);
+        nameElement.append(icon);
         container.append(nameElement);
         div.append(container);
         //print("rendering headshot");
@@ -84,12 +84,13 @@ class Wrangler {
         nameElement.href = "bio.html?staff=$chatHandle";
         nameElement.target = "_blank";
         nameElement.classes.add("MemoNewspostName");
+        nameElement.append(icon);
 
 
         headerContainer.append(dateElement);
         headerContainer.append(nameElement);
         container.append(headerContainer);
-        container.append(icon);
+        //container.append(icon);
 
         container.append(textElement);
 
