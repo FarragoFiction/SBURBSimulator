@@ -86,3 +86,22 @@ b=%00%00%00%C2%8B%C3%BE%C2%95%04P%2C%20%3D&s=,,Superheroes,Strong Enemies,baldCa
 b=%00%00%00%C2%97%C3%BE%C2%97%00%C2%90%0D%0D%3D&s=,,Artifacts,Magik,somewhatRobotic
 b=%00%00%00%3A%C3%BET%00%14%2B%2B%0F&s=,,Purification,Baseball,theBatter
 b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard
+b=%00%00%00Z%C3%BE%C2%93%00Q%1D%1D%1E&s=,,Video Games,Character Creation,mrgameandpie
+b=%00%00%00%11%C3%BE%C2%97%00%12%12%12%40&s=,,Video Games,Science Fiction,Zelgan
+b=%00%00%00%C2%97%C3%BE%C2%92%00%13%1B%1B%25&s=,,Video Games,Movie Making,GeorgeGameWatch
+b=%00%00%00e%C3%BE%C2%9B%00T%16%26%15&s=,,Video Games,Social Media,HeatherOnStevia
+b=%00%00%00%40%C3%BE%C2%90%00%1B%24%1A%3B&s=,,Video Games,Puns,Flarp
+b=%00%00%00J%C3%BE%C2%98%00Y%15%15%17&s=,,Video Games,Cooking,alluringIdiosyncracies
+b=%00%00%00%07%C3%BEu%00%0B%18%18%1C&s=,,Fantasy,Money,reimuHakurei
+b=%C3%BF%C3%BF%C3%BF%C2%BA%C3%BEu%00B%2B%2B%10&s=,,Wizards,Hoarding,marisaKirisame
+b=%C3%BF%C3%BF%C3%BF%01%C3%BEX%00%0A*%19%20&s=,,Murder,Cooking,sakuyaIzayoi
+b=%C3%BF%C3%BE%C3%BD%15%C3%BE%C2%84%08B%14%14%0F&s=,,Gardening,Fighting,youmuKonpaku
+b=%00%00%00%22%C3%BEv%00%06’’%0A&s=,,Conspiracies,Mysteries,ayaShameimaru
+b=%C3%BF%C3%BF%C3%BE9%C3%BE%C3%96%00%07**%20&s=,,Physics,Justice,reisenInaba
+b=%00%00%00%1B%C3%BEP%00F%22%22%10&s=,,Fighting,Pranks,cirno
+b=%00%00%00%00%C3%BE%C2%97%00R%26%26%1F&s=,,Superheroes,Science Fiction,sanaeKochiya
+b=%C3%BF%C3%BF%C3%BD%C2%83%C3%BE%5D%00J%0B%0B%23&s=,,Status,Politics,remiliaScarlet
+b=%C3%BF%C3%BF%C3%BF%C2%A0%C3%BEu%00H%09%09%1F&s=,,Undead,Fighting,flandreScarlet
+b=%00%00%00%C2%B7%C3%BE%C3%97%00%05%26%26%1C&s=,,Knowledge,Wizards,patchouliKnowledge
+b=%00%00%005%C3%BEM%00E%0D%0D%0E&s=,,Fitness,Geography,hongMeiling
+b=%C3%BF%C3%BF%C3%BF(%C3%BEe%00%04%10%10%15&s=,,Mysteries,Violence,rumia
