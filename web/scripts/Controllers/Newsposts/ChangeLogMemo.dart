@@ -88,9 +88,9 @@ class MemoNewspost implements Comparable<MemoNewspost> {
 
     MemoNewspost.from(String t, this.poster){
         //2018-02-02: I can fucking believe it's fucking Ground Hogs Day because I have spent the day murdering the fuck out of bugs that should be long fucking dead. Combo sessions once again work, and MAYBE players will stop spawning dead or near dead?<br><br>Also Shogun finally fucking works right. Also, YES I know you're fucking out of character but that is just going to hafta be a thing till the Big Bad update.
-        print("Parsing line: $t");
+        //print("Parsing line: $t");
         List<String> parts = t.split(":");
-        print(parts);
+       // print(parts);
         if(parts.length <2) return;
         date = DateTime.parse(parts[0].trim());
         parts.remove(parts[0]);

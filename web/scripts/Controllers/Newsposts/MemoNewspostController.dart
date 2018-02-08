@@ -31,22 +31,20 @@ void main() {
 
 }
 
-//TODO load all newsposts by file.
 Future<Null> createNews() async{
   await renderHeadshots();
   //await ChangeLogMemo.authorBot.slurpNewsposts();
-  //keep me and kr at bottom so ppl can react to us
-  await ChangeLogMemo.karmicRetribution.slurpNewsposts();
-  await ChangeLogMemo.jadedResearcher.slurpNewsposts();
-  await ChangeLogMemo.authorBot.slurpNewsposts();
-  await ChangeLogMemo.authorBotJunior.slurpNewsposts();
+
+  for(Wrangler w in Wrangler.all) {
+    await w.slurpNewsposts();
+  }
 
 
 
 
 
   print("Ready to handle ${memo.newsposts.length} posts");
-    renderNews();
+  renderNews();
 
 }
 
