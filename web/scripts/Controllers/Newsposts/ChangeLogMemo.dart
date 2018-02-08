@@ -15,14 +15,42 @@ class ChangeLogMemo {
     static Wrangler authorBot;// = //new;// Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
     static Wrangler authorBotJunior;// = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
     static Wrangler karmicRetribution;//= new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
+    static Wrangler recursiveSlacker;
+    static Wrangler wooMod;
+    static Wrangler dilletantMathematician;
+    static Wrangler someBody;
+    static Wrangler aspiringWatcher;
+    static Wrangler paradoxLands;
+    static Wrangler manicInsomniac;
+    static Wrangler tableGuardian;
+    static Wrangler shogun;
+
+
+
+
+
+
 
     static ChangeLogMemo _instance;
 
     static void init() {
         jadedResearcher = new Wrangler("jadedResearcher", "images/Credits/jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
+        karmicRetribution = new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
+        paradoxLands = new Wrangler("paradoxLands", "images/Credits/pl_icon.png", new Colour.fromStyleString("#000066"));
         authorBot = new Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
         authorBotJunior = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
-        karmicRetribution = new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
+
+        recursiveSlacker = new Wrangler("recursiveSlacker", "images/Credits/rs_icon.png", new Colour.fromStyleString("#000066"));
+        aspiringWatcher = new Wrangler("aspiringWatcher", "images/Credits/aw_icon.png", new Colour.fromStyleString("#494132"));
+        manicInsomniac = new Wrangler("manicInsomniac", "images/Credits/mi_icon.png", new Colour.fromStyleString("#003300"));
+
+        wooMod = new Wrangler("wooMod", "images/Credits/wm_icon.png", new Colour.fromStyleString("#3399ff"));
+        someBody = new Wrangler("someBody", "images/Credits/sb_icon.png", new Colour.fromStyleString("#fff000"));
+        tableGuardian = new Wrangler("tableGuardian", "images/Credits/tg_icon.png", new Colour.fromStyleString("#ff3399"));
+        shogun = new Wrangler("shogun", "images/Credits/shogun_icon.png", new Colour.fromStyleString("#00ff00"));
+
+        dilletantMathematician = new Wrangler("dilletantMathematician", "images/Credits/dm_icon.png", new Colour.fromStyleString("#ff0000"));
+
     }
 
     List<MemoNewspost> newsposts = new List<MemoNewspost>();
