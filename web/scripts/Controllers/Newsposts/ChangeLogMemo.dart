@@ -11,12 +11,19 @@ import '../../includes/colour.dart';
 
 
 class ChangeLogMemo {
-    static Wrangler jadedResearcher = new Wrangler("jadedResearcher", "images/Credits/jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
-    static Wrangler authorBot = new Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
-    static Wrangler authorBotJunior = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
-    static Wrangler karmicRetribution = new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
+    static Wrangler jadedResearcher;// = new Wrangler("jadedResearcher", "images/Credits/jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
+    static Wrangler authorBot;// = //new;// Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
+    static Wrangler authorBotJunior;// = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
+    static Wrangler karmicRetribution;//= new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
 
     static ChangeLogMemo _instance;
+
+    static void init() {
+        jadedResearcher = new Wrangler("jadedResearcher", "images/Credits/jadedResearcher_icon.png", new Colour.fromStyleString("#3da35a"));
+        authorBot = new Wrangler("authorBot", "images/Credits/AB_icon.png", new Colour.fromStyleString("#ff0000"));
+        authorBotJunior = new Wrangler("authorBotJunior", "images/Credits/abj_icon.png", new Colour.fromStyleString("#ffa500"));
+        karmicRetribution = new Wrangler("karmicRetribution", "images/Credits/Smith_of_Dreams_Icon.png", new Colour.fromStyleString("#9630BF"));
+    }
 
     List<MemoNewspost> newsposts = new List<MemoNewspost>();
 
@@ -55,7 +62,7 @@ class MemoNewspost implements Comparable<MemoNewspost> {
         if(parts.length <2) return;
         date = DateTime.parse(parts[0].trim());
         parts.remove(parts[0]);
-        text = "${parts.join('')}";
+        text = "${parts.join(':')}";
         ChangeLogMemo.instance.newsposts.add(this);
     }
 

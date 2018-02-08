@@ -2,26 +2,47 @@
     padding: 10px;
     vertical-align: top;
     width: 900px;
+    border: 1px solid #1D572E;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    min-height: 120px;
+
 }
 
 .MemoNewspostText{
   vertical-align: top;
 }
 
+.Header{
+    height: 100px;
+}
+
+.HeadshotContainer{
+    width: 950px;
+    padding: 10px;
+}
+
+.Headshot{
+    width: 150px;
+    display: inline-block;
+}
+
 a:link {
     color: black;
-
+    vertical-align: top;
 }
 
 /* visited link */
 a:visited {
     color: black;
+    vertical-align: top;
 
 }
 
 /* mouse over link */
 a:hover {
     color: grey;
+    vertical-align: top;
 }
 
 #container {

@@ -19,7 +19,10 @@ class Wrangler {
     String chatHandle;
     List<MemoNewspost> posts = new List<MemoNewspost>();
 
+    static List<Wrangler> all = new List<Wrangler>();
+
     Wrangler(String this.chatHandle, String this.headshot, Colour this.color) {
+        all.add(this);
     }
 
     Future<Null> slurpNewsposts() async{
@@ -33,19 +36,33 @@ class Wrangler {
         });
     }
 
+    Future<Null> renderHeadshot(Element div) async {
+        DivElement container = new DivElement();
+        container.classes.add("Headshot");
+
+        ImageElement icon = new ImageElement(src: headshot);
+        icon.classes.add("MemoNewspostIcon");
+
+        AnchorElement nameElement = new AnchorElement();
+        nameElement.text = "$chatHandle";
+        nameElement.href = "bio.html?staff=$chatHandle";
+        nameElement.target = "_blank";
+
+        container.append(icon);
+        container.append(nameElement);
+        div.append(container);
+        print("rendering headshot");
+    }
+
     void renderLine(Element div, DateTime date, String text) {
         Element container = new DivElement();
         container.classes.add("MemoNewspost");
 
-
-
         Element headerContainer = new DivElement();
-
-
-        //TODO figure out how i want this to look.
 
         ImageElement icon = new ImageElement(src: headshot);
         icon.classes.add("MemoNewspostIcon");
+        icon.style.float = "left";
 
         SpanElement textElement = new SpanElement();
         appendHtml(textElement, text); //keeps the html intact
@@ -59,13 +76,14 @@ class Wrangler {
         String dateSlug ="${date.year.toString()}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}";
 
         dateElement.text = "$dateSlug: ";
-        container.classes.add("MemoDate");
+        dateElement.classes.add("MemoDate");
 
 
         AnchorElement nameElement = new AnchorElement();
         nameElement.text = "$chatHandle posted: ";
         nameElement.href = "bio.html?staff=$chatHandle";
-        container.classes.add("MemoNewspostName");
+        nameElement.target = "_blank";
+        nameElement.classes.add("MemoNewspostName");
 
 
         headerContainer.append(dateElement);

@@ -13,6 +13,7 @@ ChangeLogMemo memo =  ChangeLogMemo.instance;
 
 void main() {
   loadNavbar();
+  ChangeLogMemo.init();
   createNews();
   window.onScroll.listen((Event event){
     num ypos = window.scrollY; //pixels the site is scrolled down
@@ -32,12 +33,32 @@ void main() {
 
 //TODO load all newsposts by file.
 Future<Null> createNews() async{
-  await ChangeLogMemo.jadedResearcher.slurpNewsposts();
+  await renderHeadshots();
+  //await ChangeLogMemo.authorBot.slurpNewsposts();
+  //keep me and kr at bottom so ppl can react to us
   await ChangeLogMemo.karmicRetribution.slurpNewsposts();
+  await ChangeLogMemo.jadedResearcher.slurpNewsposts();
+  await ChangeLogMemo.authorBot.slurpNewsposts();
+  await ChangeLogMemo.authorBotJunior.slurpNewsposts();
+
+
+
+
 
   print("Ready to handle ${memo.newsposts.length} posts");
     renderNews();
 
+}
+
+Future<Null> renderHeadshots() async {
+  Element div = querySelector("#newspostsMain");
+  DivElement container = new DivElement();
+  container.classes.add("HeadshotContainer");
+
+  for(Wrangler w in Wrangler.all) {
+    w.renderHeadshot(container);
+  }
+  div.append(container);
 }
 
 void renderNews() {
