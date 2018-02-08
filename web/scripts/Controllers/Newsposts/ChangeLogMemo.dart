@@ -24,6 +24,7 @@ class ChangeLogMemo {
     static Wrangler manicInsomniac;
     static Wrangler tableGuardian;
     static Wrangler shogun;
+    static Wrangler insufferableOracle;
 
 
 
@@ -45,9 +46,12 @@ class ChangeLogMemo {
         manicInsomniac = new Wrangler("manicInsomniac", "images/Credits/mi_icon.png", new Colour.fromStyleString("#003300"));
 
         wooMod = new Wrangler("wooMod", "images/Credits/wm_icon.png", new Colour.fromStyleString("#3399ff"));
+        insufferableOracle = new Wrangler("insufferableOracle", "images/Credits/io_icon.png", new Colour.fromStyleString("#00ff00"));
+
         someBody = new Wrangler("someBody", "images/Credits/sb_icon.png", new Colour.fromStyleString("#fff000"));
-        tableGuardian = new Wrangler("tableGuardian", "images/Credits/tg_icon.png", new Colour.fromStyleString("#ff3399"));
+
         shogun = new Wrangler("shogun", "images/Credits/shogun_icon.png", new Colour.fromStyleString("#00ff00"));
+        tableGuardian = new Wrangler("tableGuardian", "images/Credits/tg_icon.png", new Colour.fromStyleString("#ff3399"));
 
         dilletantMathematician = new Wrangler("dilletantMathematician", "images/Credits/dm_icon.png", new Colour.fromStyleString("#ff0000"));
 
