@@ -74,6 +74,12 @@ class MemoNewspost implements Comparable<MemoNewspost> {
   int compareTo(MemoNewspost other) {
       Duration difference = other.date.difference(date);
       //will it be positive or negative?
+      if (difference.inSeconds == 0) {
+            //if all things are equal, post JRs first because everybody else will be reacting to it
+            int ret = 1;
+            if(other.poster.chatHandle.startsWith("j")) ret = -1;
+            return ret;
+      }
       return difference.inSeconds;
   }
 }
