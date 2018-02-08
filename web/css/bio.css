@@ -3,9 +3,10 @@
     padding: 10px;
 }
 .bioPic{
-    float: left;
     padding: 10px;
-
+    background: white;
+    border: 1px solid black;
+    margin-right: 10px;
 }
 
 .nameHeader{
@@ -13,8 +14,15 @@
 }
 
 .mind{
-    background: #3DA35A;
+    background: #387742;
     color: #06FFC9;
     border: 1px solid #1D572E;
+    padding: 10px;
+}
+
+.dream{
+    background: #fcf9bd;
+    color: #9630bf;
+    border: 1px solid #9630bf;
     padding: 10px;
 }
