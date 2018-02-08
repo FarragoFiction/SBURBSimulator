@@ -1291,7 +1291,7 @@ void session612IndexToTroll(Player player, int index){
 		player.chatHandle = "arsenicCatnip";
 		sawNepeta();
 		player.quirk.suffix = "";
-		player.quirk.prefix = "";
+		player.quirk.prefix = ":33 < t";
 	}else if(index == 6){
 		player.moon = curSessionGlobalVar.prospit;
 		player.aspect = Aspects.BREATH;
