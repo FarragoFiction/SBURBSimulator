@@ -1,0 +1,1 @@
+2017-07-14: If you can solve LORAS without reading the javascript source, I clearly didn't test the math hard enough.
