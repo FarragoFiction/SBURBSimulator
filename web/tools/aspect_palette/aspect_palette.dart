@@ -1,12 +1,14 @@
-
 import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
+import "dart:typed_data";
 
 import "../../scripts/Rendering/3d/three.dart" as THREE;
 import "../../scripts/Rendering/text/opentype.dart" as OT;
 import "../../scripts/SBURBSim.dart";
+import "../../scripts/includes/bytebuilder.dart";
 import "../../scripts/includes/colour.dart";
+import '../../scripts/includes/png.dart';
 
 
 void main() {
@@ -20,9 +22,21 @@ void main() {
         ColourPicker.create(querySelector("#testpicker"));//..onChange.listen((Event e) => //print((e.target as InputElement).value)));
     });*/
 
-    testDrawing();
+    //testDrawing();
     
     //testScaling(stuff);
+
+    testPNG();
+}
+
+Future<Null> testPNG() async {
+    PayloadPng png = new PayloadPng(null);
+
+    ByteBuffer data = png.build();
+
+    print("");
+    print("Output:");
+    ByteBuilder.prettyPrintByteBuffer(data);
 }
 
 Future<bool> testDrawing() async {

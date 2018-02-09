@@ -2,11 +2,13 @@ import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 
+import '../SBURBSim.dart';
 import "bytebuilder.dart";
 
 class PayloadPng {
     /// 2^31 - 1, specified as max block length in png spec
-    static const int MAX_BLOCK_LENGTH = 0x7FFFFFFF;
+    static const int _MAX_BLOCK_LENGTH = 0x7FFFFFFF;
+    static Uint32List _CRC_TABLE = null;
 
     final CanvasElement imageSource;
 
@@ -19,6 +21,8 @@ class PayloadPng {
     ByteBuffer build() {
         ByteBuilder builder = new ByteBuilder();
         this.header(builder);
+
+        this.testBlockWriting(builder);
 
         return builder.toBuffer();
     }
@@ -39,12 +43,12 @@ class PayloadPng {
     /// Writes [data] to an appropriate number of blocks with the identifier [blockname].
     /// Splits the data across several blocks if required.
     void writeDataToBlocks(ByteBuilder builder, String blockname, ByteBuffer data) {
-        int blocks = (data.lengthInBytes / MAX_BLOCK_LENGTH).ceil();
+        int blocks = (data.lengthInBytes / _MAX_BLOCK_LENGTH).ceil();
 
         int start, length;
         for (int i=0; i<blocks; i++) {
-            start = MAX_BLOCK_LENGTH * i;
-            length = Math.min(data.lengthInBytes - start, MAX_BLOCK_LENGTH);
+            start = _MAX_BLOCK_LENGTH * i;
+            length = Math.min(data.lengthInBytes - start, _MAX_BLOCK_LENGTH);
             writeDataBlock(builder, blockname, data.asUint8List(start,length));
         }
     }
@@ -52,13 +56,75 @@ class PayloadPng {
     void writeDataBlock(ByteBuilder builder, String blockname, Uint8List data) {
         builder
             ..appendInt32(data.lengthInBytes)
-            ..appendAllBytes(blockname.substring(0,3).codeUnits)
+            ..appendAllBytes(blockname.substring(0,4).codeUnits)
             ..appendAllBytes(data)
             ..appendInt32(this.calculateCRC(blockname, data))
         ;
     }
 
     int calculateCRC(String blockname, Uint8List data) {
-        return 0;
+        if (_CRC_TABLE == null) {
+            _makeCRCTable();
+        }
+
+        return _updateCRC(0xFFFFFFFF, data) ^ 0xFFFFFFFF;
+    }
+
+    int _updateCRC(int crc, Uint8List data) {
+        int length = data.lengthInBytes;
+
+        for (int i=0; i<length; i++) {
+            crc = (_CRC_TABLE[(crc ^ data[i]) & 0xFF] ^ (crc >> 8)) & 0xFFFFFFFF;
+        }
+
+        return crc;
+    }
+
+    void _makeCRCTable() {
+        _CRC_TABLE = new Uint32List(256);
+
+        int c,n,k;
+
+        for (n=0; n<256; n++) {
+            c = n;
+            for (k=0; k<8; k++) {
+                if (c & 1 != 0) {
+                    c = 0xEDB88320 ^ ((c >> 1) & 0xFFFFFFFF);
+                } else {
+                    c = (c >> 1) & 0xFFFFFFFF;
+                }
+            }
+            _CRC_TABLE[n] = c & 0xFFFFFFFF;
+        }
+    }
+
+    //################################## test stuff
+
+    void testBlockWriting(ByteBuilder builder) {
+        String testlabel = "teST";
+        int testlength = 4096;//32;
+
+        ByteBuffer labelbytes = new Uint8List.fromList(testlabel.codeUnits).buffer;
+
+        Uint8List testlist = new Uint8List(testlength);
+
+        Random rand = new Random();
+
+        for (int i=0; i<testlength; i++) {
+            testlist[i] = rand.nextInt(256);
+        }
+
+        ByteBuffer data = testlist.buffer;
+
+        print("Label: $testlabel");
+        ByteBuilder.prettyPrintByteBuffer(labelbytes);
+        print("");
+        print("Data:");
+        ByteBuilder.prettyPrintByteBuffer(data);
+
+        writeDataToBlocks(builder, testlabel, data);
+
+        //print("CRC table:");
+        //ByteBuilder.prettyPrintByteBuffer(_CRC_TABLE.buffer);
     }
 }
