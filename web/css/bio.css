@@ -13,6 +13,19 @@
     font-size: 33;
 }
 
+.statHeader{
+    font-weight: bold;
+}
+
+.mainText{
+    padding-top: 10px;
+}
+
+.rightCol{
+   width: 800px;
+   vertical-align: top;
+}
+
 .mind{
     background: #387742;
     color: #06FFC9;
