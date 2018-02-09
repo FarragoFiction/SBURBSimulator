@@ -1,1 +1,2 @@
+2017-06-09: I am proud to have helped JR by hosting their early projects on purplefrog.com and am even prouder to see them settled into their new home on FarragoFiction.com. May decades of shenanigans ensue!
 2017-07-14: If you can solve LORAS without reading the javascript source, I clearly didn't test the math hard enough.
