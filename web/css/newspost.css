@@ -23,8 +23,9 @@
 }
 
 .Headshot{
-    width: 150px;
+    width: 130px;
     display: inline-block;
+    margin-bottom: 13px;
 }
 
 a:link {
