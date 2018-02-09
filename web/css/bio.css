@@ -24,91 +24,70 @@
 .rightCol{
    width: 800px;
    vertical-align: top;
+   border: 1px solid black;
+   padding: 10px;
 }
 
 .mind{
     background: #387742;
     color: #06FFC9;
-    border: 1px solid #1D572E;
-    padding: 10px;
+
 }
 
 .dream{
     background: #fcf9bd;
     color: #9630bf;
-    border: 1px solid #9630bf;
-    padding: 10px;
 }
 
 .robot{
     background: #B6B6B6;
     color: #0000FF;
-    border: 1px solid #595959;
-    padding: 10px;
 }
 
 
 .sauce{
     background: #616161;
     color: #00ff00;
-    border: 1px solid #000000;
-    padding: 10px;
 }
 
 
 .doom{
     background: #204020;
     color: #0F0F0F;
-    border: 1px solid #0B0D0B;
-    padding: 10px;
 }
 
 .life{
     background: #CCC4B5;
     color: #76C34E;
-    border: 1px solid #260914;
-    padding: 10px;
 }
 
 .breath{
     background: #10E0FF;
     color: #006BE1;
-    border: 1px solid #003396;
-    padding: 10px;
 }
 
 .heart{
     background: #6B0829;
     color: #ff3399;
-    border: 1px solid #4C1026;
-    padding: 10px;
 }
 
 .juice{
     background: #ff0000;
     color: #fff000;
-    border: 1px solid #003396;
-    padding: 10px;
 }
 
 .space{
     background: #030303;
     color: #ffffff;
-    border: 1px solid #000000;
-    padding: 10px;
 }
 
 
 .time{
     background: #8E1516;
     color: #FF2106;
-    border: 1px solid #1F0000;
-    padding: 10px;
 }
 
 .voidColor{
     background: #033476;
     color: #a5d7ec;
-    border: 1px solid #00164F;
-    padding: 10px;
 }
