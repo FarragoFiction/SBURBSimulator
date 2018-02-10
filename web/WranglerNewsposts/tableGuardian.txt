@@ -1,0 +1,7 @@
+2017-09-27: Grist drops now contain 137% less JPEG-artifacts.
+2017-10-26: Frogs for the Frog God. Heroes of Space who manage to produce a Genesis Frog will now be rewarded with a photograph of the moment they created it.
+2017-11-19: Hope you like Alchemiters.
+2017-11-26: It's table time. Operation "give every two traits a combo" is a-go. And it will be glorious. I guarantee it.
+2017-11-27: Table production efficiency has increased by 230% since yesterday. More traits have been added to fill out the table.
+2017-12-10: More table optimizations. Having to find names for these combinations is quite the mental exercise. All for the glory of the TABLE.
+2017-12-13: Due to a small coding error, I was unable to guard my tables. This issue has since been fixed, and hopefully will never happen again for as long as I live.
