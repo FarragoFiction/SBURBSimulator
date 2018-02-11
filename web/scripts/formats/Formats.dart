@@ -9,7 +9,10 @@ import "ZipFormat.dart";
 export "FileFormat.dart";
 
 abstract class Formats {
+    static bool _INITALISED = false;
+
     static TextFileFormat text;
+    static RawBinaryFileFormat binary;
     static BundleManifestFormat manifest;
     static ZipFormat zip;
 
@@ -20,11 +23,18 @@ abstract class Formats {
     static FontFormat font;
 
     static void init() {
+        if (!_INITALISED) {
+            _INITALISED = true;
+        } else {
+            return;
+        }
 
         text = new TextFileFormat();
         addMapping(text, "txt");
         addMapping(text, "vert", "x-shader/x-vertex");
         addMapping(text, "frag", "x-shader/x-fragment");
+
+        binary = new RawBinaryFileFormat();
 
         manifest = new BundleManifestFormat();
 

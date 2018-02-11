@@ -4,6 +4,7 @@ import 'dart:html';
 import 'dart:typed_data';
 
 import '../includes/predicates.dart';
+import 'Formats.dart';
 
 abstract class FileFormat<T,U> {
     List<String> extensions = <String>[];
