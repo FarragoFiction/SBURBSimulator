@@ -8,6 +8,7 @@ import "../../scripts/Rendering/text/opentype.dart" as OT;
 import "../../scripts/SBURBSim.dart";
 import "../../scripts/includes/bytebuilder.dart";
 import "../../scripts/includes/colour.dart";
+import "../../scripts/includes/improvedbytebuilder.dart";
 import '../../scripts/includes/png.dart';
 
 
@@ -26,11 +27,37 @@ void main() {
     
     //testScaling(stuff);
 
-    testPNG();
+    ByteBuilder b1 = new ByteBuilder();
+    ImprovedByteBuilder b2 = new ImprovedByteBuilder();
+
+    b1
+        ..appendByte(120)
+        ..appendInt32(12345)
+        ..appendByte(73)
+        ..appendInt32(78901)
+        ..appendShort(6342)
+        ..appendInt32(288)
+    ;
+
+    b2
+        ..appendByte(120)
+        ..appendInt32(12345)
+        ..appendByte(73)
+        ..appendInt32(78901)
+        ..appendShort(6342)
+        ..appendInt32(288)
+    ;
+
+    print("current");
+    ByteBuilder.prettyPrintByteBuffer(b1.toBuffer());
+    print("improved");
+    ByteBuilder.prettyPrintByteBuffer(b2.toBuffer());
+
+    //testPNG();
 }
 
 Future<Null> testPNG() async {
-    PayloadPng png = new PayloadPng(null);
+    PayloadPng png = new PayloadPng(new CanvasElement(width:288, height:288));
 
     ByteBuffer data = png.build();
 

@@ -20,9 +20,9 @@ class PayloadPng {
 
     ByteBuffer build() {
         ByteBuilder builder = new ByteBuilder();
-        this.header(builder);
 
-        this.testBlockWriting(builder);
+        this.header(builder);
+        this.writeIHDR(builder);
 
         return builder.toBuffer();
     }
@@ -39,6 +39,25 @@ class PayloadPng {
             ..appendByte(0x0A) // unix line ending
         ;
     }
+
+    //################################## blocks
+
+    /// Image Header Block
+    void writeIHDR(ByteBuilder builder) {
+        ByteBuilder ihdr = new ByteBuilder()
+            ..appendInt32(imageSource.width)
+            ..appendInt32(imageSource.height)
+            ..appendByte(8) // 8 bits per channel
+            ..appendByte(2)//6) // truecolour with alpha
+            ..appendByte(0) // compression mode 0, as per spec
+            ..appendByte(0) // filter mode 0, as per spec
+            ..appendByte(0) // no interlace
+        ;
+
+        writeDataToBlocks(builder, "IHDR", ihdr.toBuffer());
+    }
+
+    //################################## block writing methods
 
     /// Writes [data] to an appropriate number of blocks with the identifier [blockname].
     /// Splits the data across several blocks if required.

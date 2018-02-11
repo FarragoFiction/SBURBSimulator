@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>File Binary Viewer</title>
+        <script type="application/dart" src="hex_viewer.dart"></script>
+        <script src="packages/browser/dart.js"></script>
+        <link rel="stylesheet" href="../../css/colour_picker.css"/>
+
+        <style>
+            table {
+                font-family:courier-new, monospace;
+            }
+
+            td.divide {
+                width:80px;
+            }
+
+            td.match {
+                background-color: #DDEEDD;
+            }
+
+            td.empty {
+                background-color: #CCCCCC;
+            }
+
+            tr.title {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="stuff"></div>
+        <table>
+            <tbody id="table">
+            </tbody>
+        </table>
+    </body>
+</html>
