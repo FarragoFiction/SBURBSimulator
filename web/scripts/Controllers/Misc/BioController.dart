@@ -12,6 +12,19 @@ void displayBio() {
   String staff = getParameterByName("staff",null);
   Element div = querySelector("#$staff");
   if(div != null) div.classes.remove("void");
+
+  ButtonElement button = querySelector("#layWaste") as ButtonElement;
+  button.onClick.listen((e)
+  {
+    TextAreaElement t =  querySelector("#myHeadCanon") as TextAreaElement;
+    DivElement canon =  querySelector("#canon") as DivElement;
+
+    DivElement newFact = new DivElement();
+    newFact.text = t.value;
+    canon.append(newFact);
+  });
 }
+
+
 
 
