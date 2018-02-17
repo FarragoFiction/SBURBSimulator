@@ -33,15 +33,6 @@ class ImprovedByteBuilder {
 		}
 	}
 
-	/// Appends [length] bits of [bits] to the buffer, in reverse order.
-	///
-	/// Used by [appendExpGolomb].
-	/*void appendBitsReversed(int bits, int length) {
-		for (int i=0; i<length; i++) {
-			appendBit(bits & (1 << ((length-1)-i)) > 0);
-		}
-	}*/
-
 	/// Appends 8 bits of [byte] to the buffer.
 	void appendByte(int byte) {
 		appendBits(byte, 8);
@@ -158,7 +149,7 @@ class ImprovedByteReader {
 	/// Internal method for reading a bit at a specific position. Use read for getting single bits from the buffer instead.
 	bool _read(int position) {
 		int bytepos = (position / 8.0).floor();
-		int bitpos = position % 8;
+		int bitpos = 7 - (position % 8);
 
 		int byte = _bytes.getUint8(bytepos);
 
@@ -174,24 +165,6 @@ class ImprovedByteReader {
 
 	/// Reads the next [bitcount] bits from the buffer.
 	int readBits(int bitcount) {
-		if (bitcount > 32) {
-			throw new ArgumentError.value(bitcount,"bitcount may not exceed 32");
-		}
-		int val = 0;
-
-		for (int i=0; i<bitcount; i++) {
-			if (readBit()) {
-				val |= (1 << i);
-			}
-		}
-
-		return val;
-	}
-
-	/// Reads the next [bitcount] bits from the buffer, in reverse order.
-	///
-	/// Used by readExpGolomb.
-	int readBitsReversed(int bitcount) {
 		if (bitcount > 32) {
 			throw new ArgumentError.value(bitcount,"bitcount may not exceed 32");
 		}
@@ -238,6 +211,6 @@ class ImprovedByteReader {
 			}
 		}
 
-		return (this.readBitsReversed(bits+1))-1;
+		return (this.readBits(bits+1))-1;
 	}
 }

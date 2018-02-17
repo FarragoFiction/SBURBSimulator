@@ -27,33 +27,30 @@ void main() {
     
     //testScaling(stuff);
 
-    ByteBuilder b1 = new ByteBuilder();
-    ImprovedByteBuilder b2 = new ImprovedByteBuilder();
 
-    b1
-        ..appendByte(120)
-        ..appendInt32(12345)
-        ..appendByte(73)
-        ..appendInt32(78901)
-        ..appendShort(6342)
-        ..appendInt32(288)
-    ;
+    /*Random rand = new Random();
 
-    b2
-        ..appendByte(120)
-        ..appendInt32(12345)
-        ..appendByte(73)
-        ..appendInt32(78901)
-        ..appendShort(6342)
-        ..appendInt32(288)
-    ;
+    List<int> list = new List<int>.generate(16, (int i) => rand.nextInt(100));
 
-    print("current");
-    ByteBuilder.prettyPrintByteBuffer(b1.toBuffer());
-    print("improved");
-    ByteBuilder.prettyPrintByteBuffer(b2.toBuffer());
+    print(list);
 
-    //testPNG();
+    ImprovedByteBuilder builder = new ImprovedByteBuilder();
+
+    for (int i in list) {
+        builder.appendExpGolomb(i);
+    }
+
+    ByteBuffer buffer = builder.toBuffer();
+
+    ImprovedByteBuilder.prettyPrintByteBuffer(buffer);
+
+    ImprovedByteReader reader = new ImprovedByteReader(buffer);
+
+    List<int> outlist = new List<int>.generate(list.length, (int i) => reader.readExpGolomb());
+
+    print(outlist);*/
+
+    testPNG();
 }
 
 Future<Null> testPNG() async {
