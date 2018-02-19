@@ -14,7 +14,9 @@ class PayloadPng {
 
     Map<String, ByteBuffer> payload = <String, ByteBuffer>{};
 
-    PayloadPng(CanvasElement this.imageSource) {
+    bool saveTransparency;
+
+    PayloadPng(CanvasElement this.imageSource, [bool this.saveTransparency = true]) {
 
     }
 
@@ -22,7 +24,11 @@ class PayloadPng {
         ImprovedByteBuilder builder = new ImprovedByteBuilder();
 
         this.header(builder);
+
+        // image
         this.writeIHDR(builder);
+        this.writeIDAT(builder);
+        this.writeIEND(builder);
 
         return builder.toBuffer();
     }
@@ -48,13 +54,23 @@ class PayloadPng {
             ..appendInt32(imageSource.width)
             ..appendInt32(imageSource.height)
             ..appendByte(8) // 8 bits per channel
-            ..appendByte(2)//6) // truecolour with alpha
+            ..appendByte(this.saveTransparency ? 6 : 2) // 2 = truecolour, 6 = truecolour with alpha
             ..appendByte(0) // compression mode 0, as per spec
             ..appendByte(0) // filter mode 0, as per spec
             ..appendByte(0) // no interlace
         ;
 
         writeDataToBlocks(builder, "IHDR", ihdr.toBuffer());
+    }
+
+    /// Image Data Block(s)
+    void writeIDAT(ImprovedByteBuilder builder) {
+        writeDataToBlocks(builder, "IDAT", processImage());
+    }
+
+    /// Image End Block
+    void writeIEND(ImprovedByteBuilder builder) {
+        writeDataBlock(builder, "IEND");
     }
 
     //################################## block writing methods
@@ -72,7 +88,11 @@ class PayloadPng {
         }
     }
 
-    void writeDataBlock(ImprovedByteBuilder builder, String blockname, Uint8List data) {
+    void writeDataBlock(ImprovedByteBuilder builder, String blockname, [Uint8List data = null]) {
+        if (data == null) {
+            data = new Uint8List(0);
+        }
+
         builder
             ..appendInt32(data.lengthInBytes)
             ..appendAllBytes(blockname.substring(0,4).codeUnits)
@@ -123,6 +143,12 @@ class PayloadPng {
             }
             _CRC_TABLE[n] = c;
         }
+    }
+
+    //################################## image
+
+    ByteBuffer processImage() {
+        
     }
 
     //################################## test stuff
