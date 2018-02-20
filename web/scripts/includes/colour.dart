@@ -237,7 +237,13 @@ class Colour {
         return this.toHex(useAlpha).toRadixString(16).padLeft(useAlpha ? 8 : 6, "0").toUpperCase();
     }
 
-    String toStyleString([bool useAlpha = false]) {
+    String toStyleString([bool useAlpha = false, bool rgba = false]) {
+        if (rgba) {
+            if (useAlpha) {
+                return "rgba($red,$green,$blue,$alphaDouble)";
+            }
+            return "rgb($red,$green,$blue)";
+        }
         return "#${this.toHexString(useAlpha)}";
     }
 

@@ -1,3 +1,4 @@
+import '../../scripts/formats/Formats.dart';
 import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
@@ -54,13 +55,33 @@ void main() {
 }
 
 Future<Null> testPNG() async {
-    PayloadPng png = new PayloadPng(new CanvasElement(width:288, height:288));
+    Formats.init();
 
-    ByteBuffer data = png.build();
+    int size = 256;
+    CanvasElement canvas = new CanvasElement(width:size, height:size);
+    CanvasRenderingContext2D ctx = canvas.context2D;
+    Random rand = new Random();
 
-    print("");
-    print("Output:");
-    ByteBuilder.prettyPrintByteBuffer(data);
+    for (int i=0; i<200; i++) {
+        ctx.fillStyle = new Colour(rand.nextInt(256),rand.nextInt(256),rand.nextInt(256),80).toStyleString(true,true);
+        int x = rand.nextInt(size);
+        int y = rand.nextInt(size);
+        int w = rand.nextInt(size - x);
+        int h = rand.nextInt(size - y);
+        ctx.fillRect(x,y,w,h);
+    }
+
+    querySelector("#stuff").append(canvas);
+
+    PayloadPng png = new PayloadPng(canvas);
+
+    String blob = await Formats.payloadPng.objectToDataURI(png);
+
+    querySelector("#stuff").append(new ImageElement(src: blob));
+
+    //print("");
+    //print("Output:");
+    //ByteBuilder.prettyPrintByteBuffer(data);
 }
 
 Future<bool> testDrawing() async {
