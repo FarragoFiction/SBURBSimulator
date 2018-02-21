@@ -1842,7 +1842,9 @@ class Player extends GameEntity{
         themes[interest1Theme] = interest1.category.themes[interest1Theme];
         themes[interest2Theme] = interest2.category.themes[interest2Theme];
         //print("<Br><br>spawning land with seed ${rand.spawn().nextInt()}");
-        return new Land.fromWeightedThemes(themes, session, aspect,class_name);
+        Land l =  new Land.fromWeightedThemes(themes, session, aspect,class_name);
+        l.associatedEntities.add(this);
+        return l;
 
     }
 

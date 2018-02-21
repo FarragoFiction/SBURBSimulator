@@ -10,6 +10,10 @@ import "dart:html";
 ///A land is build from features.
 class Land extends Object with FeatureHolder {
 
+    //for a land, it will just be their player.
+    //but for a MOON it will be every carapace and all associated dream selves.
+    List<GameEntity> associatedEntities = new List<GameEntity>();
+
     //land hp will buff royalty (if moon)
     //and will be directly compared to a Big Bad's attack power to see if it can be destroyed.
     //corruption weakens a land
@@ -94,12 +98,12 @@ class Land extends Object with FeatureHolder {
 
     @override
     String toString() {
-        return name;
+        return "$name";
     }
 
     String get shortName {
         RegExp exp = new RegExp(r"""\b(\w)""", multiLine: true);
-        return joinMatches(exp.allMatches(name)).toUpperCase();
+        return "${joinMatches(exp.allMatches(name)).toUpperCase()}";
     }
 
     String getChapter() {
@@ -232,9 +236,18 @@ class Land extends Object with FeatureHolder {
 
     //by default, each land has a portion of the sessions hp, though it isn't the same thing as the session's hp.
     void setHP() {
-        int ratio = session.players.length;
+        //ironically, the way lands get set up this has the unintended effect of
+        //making it so the first player has the strongest land, and the last the weakest.
+        //while it's unintended, this sounds like something that would happen in glitch faq so....
+        //canon.
+        //wait it might only happen....huh. why are lands being made so many times?
+        //first few lands have that problem, but not others. and then it thinks 9 players and not 7
+        //whatever. it's not broken.
+        int ratio = 1+session.players.length;
         hp = (session.sessionHealth/ratio).round();
         if(corrupted) hp = (hp/2).round();
+       // print("There are ${ratio} players, so hp is ${hp} for $name");
+
     }
 
     void setFeatures(WeightedList<Feature> list) {
