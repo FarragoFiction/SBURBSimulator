@@ -23,7 +23,8 @@ class QueenRejectRing extends Scene {
 	}
 	dynamic content(){
 		this.session.stats.queenRejectRing = true;
-		this.session.derse.queen.crowned = null; //queen no longer has ring, but session still does.
+		this.session.derse.queen.crowned.dead;
+		session.derse.destroyRing();
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		String ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();
 		ret += "FOLD would take on the attributes of each prototyping. ";

@@ -269,7 +269,7 @@ class CarapaceStatHolder extends ProphecyStatHolder<Carapace> {
         val = super.applyFinalAdditive(stat, val, relevantBuffs);
         if (owner.crowned != null) {
             if (!stat.transient) {
-                val += owner.ring.getStat(stat);
+                val += owner.crowned.getStat(stat);
             }
         }
         return val;
@@ -278,7 +278,7 @@ class CarapaceStatHolder extends ProphecyStatHolder<Carapace> {
 
 
 
-class MagicalItemStatHolder<T extends Item> extends OwnedStatHolder<T> {
+class MagicalItemStatHolder<T extends MagicalItem> extends OwnedStatHolder<T> {
 
     MagicalItemStatHolder(T owner):super(owner);
 
