@@ -9,6 +9,11 @@ import "FeatureTypes/QuestChainFeature.dart";
 import "dart:html";
 ///A land is build from features.
 class Land extends Object with FeatureHolder {
+
+    //land hp will buff royalty (if moon)
+    //and will be directly compared to a Big Bad's attack power to see if it can be destroyed.
+    //corruption weakens a land
+    int hp;
     //Session session; // inherited from FeatureHolder
     bool corrupted = false;
     //can be more than one thing, will pick one or two things at random by weight
@@ -63,6 +68,7 @@ class Land extends Object with FeatureHolder {
         l.mainTheme = mainTheme;
         l.secondaryTheme = secondaryTheme;
         l.currentQuestChain = currentQuestChain;
+        l.hp = hp;
         return l;
     }
 
@@ -221,6 +227,14 @@ class Land extends Object with FeatureHolder {
 
         this.processDenizen(a,c);
         this.processConsort();
+        setHP();
+    }
+
+    //by default, each land has a portion of the sessions hp, though it isn't the same thing as the session's hp.
+    void setHP() {
+        int ratio = session.players.length;
+        hp = (session.sessionHealth/ratio).round();
+        if(corrupted) hp = (hp/2).round();
     }
 
     void setFeatures(WeightedList<Feature> list) {
