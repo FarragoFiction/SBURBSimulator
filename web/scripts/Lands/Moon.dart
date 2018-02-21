@@ -51,6 +51,29 @@ class Moon extends Land {
       return session.rand.pickFrom(choices);
   }
 
+  //your moon is me
+  List<Player> get players {
+      List<Player> ret = new List<Player>();
+      for(Player p in session.players) {
+          if(p.moon == this) {
+              ret.add(p);
+          }
+      }
+      return ret;
+  }
+
+  //has a dream self and also is not a dream self.
+  List<Player> get playersOnMoon {
+      List<Player> ret = new List<Player>();
+      List playerList = players;
+      for(Player p in playerList) {
+          if(!p.isDreamSelf && p.dreamSelf) {
+              ret.add(p);
+          }
+      }
+      return ret;
+  }
+
   @override
     String get shortName {
         return "Strange Dreams:";

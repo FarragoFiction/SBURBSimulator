@@ -23,6 +23,7 @@ class Carapace extends NPC {
     String type;
 
 
+    //TYPE IS REQUIRED. don't try to make it a moon ref, because if moon blows up or combo session, i am still dersite.
     Carapace(String name, Session session, String this.type, {this.firstNames: null, this.lastNames: null, this.ringFirstNames: null, this.ringLastNames: null, this.scenesForPlayers: null, this.scenesForNPCS: null}) : super(name, session) {
         if(firstNames == null) firstNames = <String>[];
         if(lastNames == null) lastNames = <String>[];
