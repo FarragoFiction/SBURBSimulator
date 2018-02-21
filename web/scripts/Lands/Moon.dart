@@ -20,8 +20,8 @@ class Moon extends Land {
     Carapace king;
     Carapace queen;
 
-    GameEntity queensRing = null;
-    GameEntity kingsScepter = null;
+    Ring queensRing = null;
+    Scepter kingsScepter = null;
 
     @override
     FeatureTemplate featureTemplate = FeatureTemplates.MOON;
@@ -58,7 +58,7 @@ class Moon extends Land {
         //print("spawning queen $session");
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;
-        this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+        this.queensRing = new Ring.withoutOptionalParams("RING OF ORBS ${session.convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
         Fraymotif f = new Fraymotif("Red Miles", 3);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You cannot escape them. ";
@@ -72,14 +72,14 @@ class Moon extends Land {
         }
 
         this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
-        this.queen.crowned = this.queensRing;
+        this.queen.sylladex.add(this.queensRing);
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
         queen.heal();
     }
 
     void spawnKing() {
         if(session.mutator.spawnKing(session)) return null;
-        this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+        this.kingsScepter = new Scepter.withoutOptionalParams("SCEPTER",[ ItemTraitFactory.KINGLY] );
         Fraymotif f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " The very meteors from the Reckoning rain down. ";
@@ -90,9 +90,9 @@ class Moon extends Land {
         }else {
             this.king = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
         }
-        this.queen.specibus = new Specibus("Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
+        this.queen.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
 
-        this.king.crowned = this.kingsScepter;
+        this.king.sylladex.add(this.kingsScepter);
 
         king.grist = 1000;
         king.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});

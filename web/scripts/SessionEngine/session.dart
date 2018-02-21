@@ -71,7 +71,6 @@ class Session {
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
         mutator = SessionMutator.getInstance();
-        this.setUpBosses();
         this.setupMoons(); //happens only in reinit
         stats.initialGameEntityId = GameEntity.getIDCopy();
         print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
@@ -690,6 +689,9 @@ class Session {
         Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
         double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
+
+        this.setUpBosses();
+
     }
 
     String convertPlayerNumberToWords() {
@@ -799,9 +801,12 @@ class Session {
 
     void setUpBosses() {
         //queen and king handle their jewlery
-        npcHandler.spawnQueen();
-        npcHandler.spawnKing();
-        npcHandler.spawnJack();
+        prospit.spawnQueen();
+        derse.spawnQueen();
+
+        prospit.spawnKing();
+        derse.spawnKing();
+
         npcHandler.spawnDemocraticArmy();
     }
 

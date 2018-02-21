@@ -18,6 +18,7 @@ class Item implements Comparable<Item> {
     //needed so i can target the ring bearer, for example
     GameEntity owner;
 
+
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
         return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
     }
@@ -231,9 +232,9 @@ class Item implements Comparable<Item> {
 //probably could have extended list, too, but that seems more compliced. 40+ methods i have to write?
 class Sylladex extends Object with IterableMixin<Item> {
     List<Item> inventory;
-    Player player;
+    GameEntity owner;
 
-    Sylladex(this.player, [this.inventory = null]) {
+    Sylladex(GameEntity this.owner, [this.inventory = null]) {
         if(this.inventory == null) inventory = new List<Item>();
     }
 
@@ -250,9 +251,12 @@ class Sylladex extends Object with IterableMixin<Item> {
             i = item.copy();
             //print("Item copied");
         }
+        //we can't both own it
+        item.owner.sylladex.remove(item);
         inventory.add(i);
+        item.owner = owner;
         //print("inventory updated");
-        i.modMaxUpgrades(player);
+        i.modMaxUpgrades(owner);
     }
 
 
