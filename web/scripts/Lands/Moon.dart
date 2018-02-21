@@ -17,6 +17,11 @@ import "FeatureTypes/QuestChainFeature.dart";
  */
 class Moon extends Land {
     WeightedList<MoonQuestChainFeature> moonQuestChains = new WeightedList<MoonQuestChainFeature>();
+    Carapace king;
+    Carapace queen;
+
+    GameEntity queensRing = null;
+    GameEntity kingsScepter = null;
 
     @override
     FeatureTemplate featureTemplate = FeatureTemplates.MOON;
@@ -40,6 +45,59 @@ class Moon extends Land {
       this.processConsort();
 
   }
+
+  void destroyRing() {
+      queensRing.dead = true;
+  }
+
+  void destroyScepter() {
+      kingsScepter.dead = true;
+  }
+
+    void spawnQueen() {
+        //print("spawning queen $session");
+        //hope field can fuck with the queen.
+        if(session.mutator.spawnQueen(session)) return null;
+        this.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+        Fraymotif f = new Fraymotif("Red Miles", 3);
+        f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+        f.desc = " You cannot escape them. ";
+        this.queensRing.fraymotifs.add(f);
+
+
+        if(name.contains("Prospit")) {
+            this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
+        }else {
+            this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
+        }
+
+        this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
+        this.queen.crowned = this.queensRing;
+        queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
+        queen.heal();
+    }
+
+    void spawnKing() {
+        if(session.mutator.spawnKing(session)) return null;
+        this.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+        Fraymotif f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+        f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+        f.desc = " The very meteors from the Reckoning rain down. ";
+        this.kingsScepter.fraymotifs.add(f);
+
+        if(name.contains("Prospit")) {
+            this.king = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
+        }else {
+            this.king = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
+        }
+        this.queen.specibus = new Specibus("Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
+
+        this.king.crowned = this.kingsScepter;
+
+        king.grist = 1000;
+        king.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+        king.heal();
+    }
 
   Carapace get randomNonActiveCarapace {
       List<Carapace> choices = new List<Carapace>();

@@ -11,7 +11,7 @@ class KingPowerful extends Scene {
 	bool trigger(List<Player> playerList){
 	  this.playerList = playerList;
 	    //print("king: ${this.session.npcHandler.king.getStat(Stats.POWER)} vs ${this.session.hardStrength}");
-		return this.session.npcHandler.king.getStat(Stats.POWER) > this.session.hardStrength;
+		return this.session.derse.king.getStat(Stats.POWER) > this.session.hardStrength;
 	}
 
 

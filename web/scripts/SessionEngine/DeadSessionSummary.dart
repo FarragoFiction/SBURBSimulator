@@ -71,8 +71,7 @@ class DeadSessionSummary extends SessionSummary {
         summary.setNumStat("numDead", findDeadPlayers(session.players).length);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
         summary.setBoolStat("plannedToExileJack", session.stats.plannedToExileJack);
-        summary.setBoolStat("exiledJack", session.npcHandler.jack.exiled);
-        summary.setBoolStat("exiledQueen", session.npcHandler.queen.exiled);
+        summary.setBoolStat("exiledQueen", session.derse.queen.exiled);
         summary.setBoolStat("jackGotWeapon", session.stats.jackGotWeapon);
         summary.setBoolStat("jackRampage", session.stats.jackRampage);
         summary.setBoolStat("jackScheme", session.stats.jackScheme);

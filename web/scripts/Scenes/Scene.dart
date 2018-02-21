@@ -27,7 +27,7 @@ abstract class Scene {
       createScenesForDeadSession(session);
       return;
     }
-    session.scenes = [new FuckingDie(session),new GetWasted(session),new StartDemocracy(session), new JackBeginScheming(session), new KingPowerful(session), new QueenRejectRing(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
+    session.scenes = [new FuckingDie(session),new GetWasted(session),new StartDemocracy(session), new KingPowerful(session), new QueenRejectRing(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
     session.scenes.addAll([new QuadrantDialogue(session),new FreeWillStuff(session),new Gristmas(session), new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
     session.scenes.addAll([new VoidyStuff(session),  new DoEctobiology(session), new LuckStuff(session), new QuestsAndStuff(session)]);
@@ -49,7 +49,7 @@ abstract class Scene {
   //dead sessions are exactly like regular sessions but only 1 player in array and less scenes. no romance, etc.
   static void createScenesForDeadSession(Session session) {
     //print("making scenes for DEAD $session");
-    session.scenes = [new FuckingDie(session),new DeadQuests(session),new DeadMeta(session), new JackBeginScheming(session), new GiveJackBullshitWeapon(session), new JackPromotion(session), new JackRampage(session)];
+    session.scenes = [new FuckingDie(session),new DeadQuests(session),new DeadMeta(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
     session.scenes.addAll([new Gristmas(session),new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);
     session.scenes.addAll([new VoidyStuff(session), new LuckStuff(session)]);

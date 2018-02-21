@@ -19,7 +19,7 @@ main() {
     p.initialize();
     Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
 
-    appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.npcHandler.allNPCS} ");
+    appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.derse.associatedEntities} and ${curSessionGlobalVar.prospit.associatedEntities} ");
     appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Minion:  ${p.debugStats}");
 
     List<String> leprechaunsNames = new List<String>();

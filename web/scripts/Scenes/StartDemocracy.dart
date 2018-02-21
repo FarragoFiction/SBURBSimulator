@@ -41,19 +41,17 @@ class StartDemocracy extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		if(this.session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0 ||this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) <= 0){  //the dead can't scheme or be schemed against
+		if(this.session.derse.king.getStat(Stats.CURRENT_HEALTH) <= 0 ||this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0){  //the dead can't scheme or be schemed against
 			return false;
 		}
 		this.findSympatheticPlayer();
 		//print("Democracy check: ${this.session.npcHandler.king.getStat(Stats.POWER)} >  ${this.session.hardStrength}?");
-		return (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) == 0 ) && this.session.npcHandler.king.getStat(Stats.POWER) >  this.session.hardStrength && (this.friend != null);
+		return (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) == 0 ) && this.session.derse.king.getStat(Stats.POWER) >  this.session.hardStrength && (this.friend != null);
 	}
 	dynamic content(){
 		this.friend.increasePower();
 		session.removeAvailablePlayer(friend);
-		this.session.available_scenes.insert(0, new PrepareToExileQueen(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.insert(0, new ExileQueen(session));  //make it top priority, so unshift, don't push
-		this.session.available_scenes.insert(0, new PowerDemocracy(session));  //make it top priority, so unshift, don't push
+			this.session.available_scenes.insert(0, new PowerDemocracy(session));  //make it top priority, so unshift, don't push
 
 		String ret = " The " + this.friend.htmlTitle() + " is just minding their own business when they are approached by an adorable little Dersite. ";
 		ret += " The Dersite introduces himself as a Warweary Villein hoping to recruit a Champion. ";

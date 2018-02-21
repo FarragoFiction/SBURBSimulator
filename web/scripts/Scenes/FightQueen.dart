@@ -13,7 +13,7 @@ class FightQueen extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.npcHandler.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.npcHandler.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 		var living = findLivingPlayers(this.session.players);
@@ -43,9 +43,9 @@ class FightQueen extends Scene {
 	@override
 	void renderContent(Element div){
 
-		if(this.session.npcHandler.queen.getStat(Stats.POWER) < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
-			session.npcHandler.queen.stats.copyFrom(findStrongestPlayer(session.players).stats);
-		session.npcHandler.queen.setStat(Stats.CURRENT_HEALTH, session.npcHandler.queen.getStat(Stats.HEALTH));
+		if(this.session.derse.queen.getStat(Stats.POWER) < 0) //session.logger.info("rendering fight queen with negative power " +this.session.session_id.toString());
+			session.derse.queen.stats.copyFrom(findStrongestPlayer(session.players).stats);
+		session.derse.queen.setStat(Stats.CURRENT_HEALTH, session.derse.queen.getStat(Stats.HEALTH));
 
 
 		appendHtml(div,"<br> <img src = 'images/sceneIcons/bq_icon.png'> ");
@@ -56,7 +56,7 @@ class FightQueen extends Scene {
 		if(this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 0) fighting.add(this.session.npcHandler.democraticArmy);
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
     pTeam.canAbscond = false;
-		Team dTeam = new Team(this.session, [this.session.npcHandler.queen]);
+		Team dTeam = new Team(this.session, [this.session.derse.queen]);
     dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.timeTillRocks = 10;
@@ -79,9 +79,9 @@ class FightQueen extends Scene {
 		String badPrototyping = findBadPrototyping(this.playerList);
 		var living = findLivingPlayers(this.session.players);
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
-		if(badPrototyping != null && this.session.npcHandler.queen.crowned != null){
+		if(badPrototyping != null && this.session.derse.queen.crowned != null){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";
-		}else if(this.session.npcHandler.queen.crowned == null){
+		}else if(this.session.derse.queen.crowned == null){
 			ret += "She may no longer have her RING OF ORBS " +this.session.convertPlayerNumberToWords() + "FOLD, but she is dedicated to her duty and will fight the Players to the bitter end.";
 		}
 

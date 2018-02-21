@@ -61,7 +61,12 @@ class GameEntity extends Object with StatOwner   {
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
     List<Player> doomedTimeClones = <Player>[]; //help fight the final boss(es).
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-    GameEntity crowned = null; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually (and should be able to have multiple crowns)
+
+
+    bool get crowned {
+
+        return false;
+    }
 
 
     GameEntity(this.name, this.session) {

@@ -404,7 +404,7 @@ class Session {
 
 
     void destroyBlackRing() {
-        npcHandler.destroyBlackRing();
+        derse.destroyRing();
     }
 
     Player findBestSpace() {

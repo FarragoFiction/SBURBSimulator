@@ -169,9 +169,8 @@ class VoidyStuff extends Scene {
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(specialStuff) + ". ");
 	}
 	void weakenDesites(Element div, Element specialDiv){
-		this.session.npcHandler.queen.addStat(Stats.POWER,-5);
-		this.session.npcHandler.jack.addStat(Stats.POWER,-5);
-		this.session.npcHandler.king.addStat(Stats.POWER,-5);
+		this.session.derse.queen.addStat(Stats.POWER,-5);
+		this.session.derse.king.addStat(Stats.POWER,-5);
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
 	}
