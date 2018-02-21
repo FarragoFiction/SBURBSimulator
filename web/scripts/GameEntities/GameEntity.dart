@@ -11,12 +11,12 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
-    //for shenanigans update and big bad.  not just players anymore
+    //for shenanigans
     bool available  = true;
-    //if not activated, you're just fucking around wherever you spawn
     bool activated = false;
     static int _nextID = 0;
     Specibus specibus;
+    Sylladex sylladex = null;
     //1/16/18 let's fucking do this. npc update go. mostly npcs but can be brain ghosts and robots, too.
     List<GameEntity> companions = new List<GameEntity>();
 
@@ -63,10 +63,17 @@ class GameEntity extends Object with StatOwner   {
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
 
 
-    bool get crowned {
+    //just returns first, hoarding them does nothing.
+    MagicalItem get crowned
 
-        return false;
-    }
+        {
+            for(Item item in sylladex) {
+                if(item is MagicalItem) {
+                    MagicalItem magicalItem = item as MagicalItem;
+                    if(magicalItem.ring || magicalItem.scepter) return magicalItem;
+                }
+            }
+        }
 
 
     GameEntity(this.name, this.session) {
@@ -186,7 +193,7 @@ class GameEntity extends Object with StatOwner   {
         clonege.doomed = doomed; //if you are doomed, no matter what you are, you are likely to die.
         clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
         clonege.causeOfDeath = causeOfDeath; //fill in every time you die. only matters if you're dead at end
-        clonege.crowned = crowned; //TODO figure out how this should work. for now, crowns count as Game Entities, but should be an Item eventually
+        clonege.sylladex = new Sylladex.clone;
     }
 
     //as each type of entity gets renderable, override this.

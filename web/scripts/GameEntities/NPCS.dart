@@ -35,7 +35,7 @@ class Carapace extends NPC {
     }
 
     void pickName() {
-        if(crowned != null) {
+        if(crowned) {
             name = "${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
         }else {
             name = "${session.rand.pickFrom(firstNames)} ${session.rand.pickFrom(lastNames)}";

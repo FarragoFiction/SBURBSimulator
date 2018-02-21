@@ -15,6 +15,9 @@ class Item implements Comparable<Item> {
     String abDesc;
     String shogunDesc;
 
+    //needed so i can target the ring bearer, for example
+    GameEntity owner;
+
     static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
         return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
     }
@@ -137,7 +140,24 @@ class Item implements Comparable<Item> {
         }
     }
 
-    String abDescription(Random rand) {
+    Item.withoutOptionalParams(String this.baseName,List<ItemTrait> traitsList) {
+        traits = new Set.from(traitsList);
+        if(this.traits.isEmpty)traits.add(ItemTraitFactory.GENERIC); //every item has at least one trait
+        Set<CombinedTrait> ct = new Set.from(combinedTraits);
+        //if i have any combined traits in me, just use the sub traits.
+        for(CombinedTrait it in ct) {
+            traits.addAll(it.subTraits);
+            traits.remove(it);
+        }
+
+        if(!isCopy) {
+            //print("this is a unique item, not a copy. $isCopy");
+            Item.allUniqueItems.add(this);
+        }
+    }
+
+
+        String abDescription(Random rand) {
         if(abDesc != null) {
             return abDesc;
         }else {

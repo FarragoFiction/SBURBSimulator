@@ -10,6 +10,8 @@ export 'includes/math_utils.dart';
 export 'Alchemy/Specibus.dart';
 export 'Alchemy/Trait.dart';
 export 'Alchemy/Item.dart';
+export 'Alchemy/MagicalItem.dart';
+
 export 'Alchemy/AlchemyResult.dart';
 
 
@@ -72,29 +74,22 @@ export "Scenes/DisengageMurderMode.dart";
 export "Scenes/DoEctobiology.dart";
 export "Scenes/QuestsAndStuff.dart";
 export "Scenes/EngageMurderMode.dart";
-export "Scenes/ExileJack.dart";
-export "Scenes/ExileQueen.dart";
+
 export "Scenes/FightQueen.dart";
 export "Scenes/FreeWillStuff.dart";
 export "Scenes/GetTiger.dart";
 export "Scenes/GetWasted.dart";
-export "Scenes/GiveJackBullshitWeapon.dart";
 export "Scenes/GodTierRevival.dart";
 export "Scenes/GoGrimDark.dart";
 export "Scenes/GrimDarkQuests.dart";
 export "Scenes/IntroNew.dart";
-export "Scenes/JackBeginScheming.dart"; //all the jack stuff will be refactored into npc update
-export "Scenes/JackPromotion.dart";
-export "Scenes/JackRampage.dart";
+
 export "Scenes/KingPowerful.dart";
 export "Scenes/levelthehellup.dart";
 export "Scenes/LifeStuff.dart";
 export "Scenes/LuckStuff.dart";
 export "Scenes/MurderPlayers.dart";
-export "Scenes/PlanToExileJack.dart";
 export "Scenes/PowerDemocracy.dart";
-export "Scenes/PrepareToExileJack.dart";
-export "Scenes/PrepareToExileQueen.dart";
 export "Scenes/QuadrantDialogue.dart";
 export "Scenes/QueenRejectRing.dart";
 export "Scenes/Reckoning.dart";
