@@ -17,6 +17,7 @@ abstract class Formats {
     static ZipFormat zip;
 
     static PngFileFormat png;
+    static PayloadPngFileFormat payloadPng;
 
     static SpriteFormat sprite;
 
@@ -45,6 +46,8 @@ abstract class Formats {
         png = new PngFileFormat();
         addMapping(png, "png");
         addMapping(png, "jpg", "image/jpeg");
+
+        payloadPng = new PayloadPngFileFormat();
 
         sprite = new SpriteFormat();
         addMapping(sprite, "psprite");

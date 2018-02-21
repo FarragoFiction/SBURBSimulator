@@ -2,10 +2,14 @@ import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 
+import 'package:archive/archive.dart';
+
 import '../SBURBSim.dart';
 import "improvedbytebuilder.dart";
 
 class PayloadPng {
+    static ZLibEncoder _zlib_encode = new ZLibEncoder();
+
     /// 2^31 - 1, specified as max block length in png spec
     static const int _MAX_BLOCK_LENGTH = 0x7FFFFFFF;
     static Uint32List _CRC_TABLE = null;
@@ -65,7 +69,7 @@ class PayloadPng {
 
     /// Image Data Block(s)
     void writeIDAT(ImprovedByteBuilder builder) {
-        writeDataToBlocks(builder, "IDAT", processImage());
+        writeDataToBlocks(builder, "IDAT", _processImage());
     }
 
     /// Image End Block
@@ -114,7 +118,11 @@ class PayloadPng {
             check[i+4] = data[i];
         }
 
-        return _updateCRC(0xFFFFFFFF, check) ^ 0xFFFFFFFF;
+        return _calculateCRCbytes(check);
+    }
+    
+    int _calculateCRCbytes(Uint8List data) {
+        return _updateCRC(0xFFFFFFFF, data) ^ 0xFFFFFFFF;
     }
 
     int _updateCRC(int crc, Uint8List data) {
@@ -147,8 +155,130 @@ class PayloadPng {
 
     //################################## image
 
-    ByteBuffer processImage() {
-        
+    ByteBuffer _processImage() {
+        return _compress(_filterImage());
+    }
+
+    ByteBuffer _filterImage() {
+        int w = imageSource.width;
+        int h = imageSource.height;
+        ImageData idata = this.imageSource.context2D.getImageData(0,0, w,h);
+        Uint8ClampedList data = idata.data;
+
+        ImprovedByteBuilder builder = new ImprovedByteBuilder();
+
+        // lists for each filter type
+        Uint8List f0 = new Uint8List(w * 4);
+        Uint8List f1 = new Uint8List(w * 4);
+        Uint8List f2 = new Uint8List(w * 4);
+        Uint8List f3 = new Uint8List(w * 4);
+        Uint8List f4 = new Uint8List(w * 4);
+
+        // data index, row index, pixel value, left value, top value, top-left value
+        int i, s, v, a, b, c;
+
+        // row totals
+        int t0,t1,t2,t3,t4;
+
+        // finding best
+        Uint8List best;
+        int bestid, besttotal;
+
+        for (int y = 0; y<h; y++) {
+
+            // calculate the values for each filter for the row
+            for (int x = 0; x<w; x++) {
+                i = (y * w + x) * 4;
+                s = x * 4;
+
+                // per component of the colour too
+                for (int n = 0; n<4; n++) {
+                    v = data[i+n];
+                    a = x == 0 ? 0 : data[i + n - 4];
+                    b = y == 0 ? 0 : data[i + n - w*4];
+                    c = (x == 0) || (y == 0) ? 0 : data[i + n - 4 - w*4];
+                    
+                    f0[s + n] = v;
+                    f1[s + n] = v - a;
+                    f2[s + n] = v - b;
+                    f3[s + n] = v - ((a + b) ~/2);
+                    f4[s + n] = v - _paethPredictor(a, b, c);
+                }
+            }
+
+            // total up the values for each filter type for the row
+            t0 = 0; t1 = 0; t2 = 0; t3 = 0; t4 = 0;
+            for (int n=0; n<w*4; n++) {
+                t0 += f0[n];
+                t1 += f1[n];
+                t2 += f2[n];
+                t3 += f3[n];
+                t4 += f4[n];
+            }
+
+            best = f0;
+            besttotal = t0;
+            bestid = 0;
+
+            if (t1 < besttotal) {
+                best = f1;
+                besttotal = t1;
+                bestid = 1;
+            }
+
+            if (t2 < besttotal) {
+                best = f2;
+                besttotal = t2;
+                bestid = 2;
+            }
+
+            if (t3 < besttotal) {
+                best = f3;
+                besttotal = t3;
+                bestid = 3;
+            }
+
+            if (t4 < besttotal) {
+                best = f4;
+                besttotal = t4;
+                bestid = 4;
+            }
+
+            //print("row $y filter values: 0: $t0, 1: $t1, 2: $t2, 3: $t3, 4: $t4");
+            //print("row $y filter $bestid with a total of $besttotal");
+
+            builder
+                ..appendByte(bestid)
+                ..appendAllBytes(best);
+        }
+
+        return builder.toBuffer();
+    }
+
+    ByteBuffer _compress(ByteBuffer payload) {
+        Uint8List payloadList = payload.asUint8List();
+        ImprovedByteBuilder builder = new ImprovedByteBuilder();
+
+        builder.appendAllBytes(_zlib_encode.encode(payloadList));
+
+        builder.appendInt32(_calculateCRCbytes(payloadList));
+
+        return builder.toBuffer();
+    }
+    
+    int _paethPredictor(int a, int b, int c) {
+        int p = a + b - c;
+        int pa = (p - a).abs();
+        int pb = (p - b).abs();
+        int pc = (p - c).abs();
+
+        if (pa <= pb && pa <= pc) {
+            return a;
+        } else if (pb <= pc) {
+            return b;
+        } else {
+            return c;
+        }
     }
 
     //################################## test stuff
