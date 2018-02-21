@@ -11,6 +11,10 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
+    //for shenanigans update and big bad.  not just players anymore
+    bool available  = true;
+    //if not activated, you're just fucking around wherever you spawn
+    bool activated = false;
     static int _nextID = 0;
     Specibus specibus;
     //1/16/18 let's fucking do this. npc update go. mostly npcs but can be brain ghosts and robots, too.

@@ -625,13 +625,8 @@ class DreamReward extends Reward {
         //TODO if they join your party, that's fine
         //but if they start up a SHENANIGAN we'll want custom text here.
         Carapace companion;
-        if(p1.session.rand.nextBool()) {
-            companion = p1.session.rand.pickFrom(p1.session.npcHandler.sunshineTeam);
-            p1.session.npcHandler.sunshineTeam.remove(companion);
-        }else {
-            companion = p1.session.rand.pickFrom(p1.session.npcHandler.randomProspitians);
-            p1.session.npcHandler.randomProspitians.remove(companion);
-        }
+        companion = p1.session.prospit.randomNonActiveCarapace;
+        companion.activated = true;
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
@@ -656,13 +651,8 @@ class DreamReward extends Reward {
         p1.session.logger.info("derse reward");
         bgImage = "Derse.png";
         Carapace companion;
-        if(p1.session.rand.nextBool()) {
-            companion = p1.session.rand.pickFrom(p1.session.npcHandler.midnightCrew);
-            p1.session.npcHandler.midnightCrew.remove(companion);
-        }else {
-            companion = p1.session.rand.pickFrom(p1.session.npcHandler.randomDersites);
-            p1.session.npcHandler.randomDersites.remove(companion);
-        }
+        companion = p1.session.derse.randomNonActiveCarapace;
+        companion.activated = true;
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {

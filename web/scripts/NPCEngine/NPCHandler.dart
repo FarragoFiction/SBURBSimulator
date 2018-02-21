@@ -11,10 +11,7 @@ class NPCHandler
     GameEntity kingsScepter = null;
     GameEntity democraticArmy = null;
 
-    List<Carapace> midnightCrew = new List<Carapace>();
-    List<Carapace> sunshineTeam = new List<Carapace>();
-    List<Carapace> randomDersites = new List<Carapace>();
-    List<Carapace> randomProspitians = new List<Carapace>();
+
 
 
 
@@ -28,13 +25,12 @@ class NPCHandler
         //TODO eventually the carapaces have a scene attached to them that they either add
         //TODO to the npc or player scene list when activated, or a companions
         //TODO jacks' replacement stabs scene will be able to stab any player OR npc, full on strife
-        initMidnightCrew();
-        initrandomDersites();
-        initrandomProspitians();
-        initSunshineTeam();
+
     }
 
-    void initMidnightCrew() {
+    List<Carapace> getMidnightCrew() {
+        List<Carapace> midnightCrew = new List<Carapace>();
+
         //print ("initializing midnight crew");
         midnightCrew.add(new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Seven"], lastNames: <String>["Slick", "Shanks","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign", "Seven"], ringLastNames: <String>["Slayer", "Shanks"])
         ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.JACKLY])
@@ -62,11 +58,13 @@ class NPCHandler
         ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
         );
          */
-
+        return midnightCrew;
 
     }
 
-    void initSunshineTeam() {
+    List<Carapace> getSunshineTeam() {
+
+        List<Carapace> sunshineTeam = new List<Carapace>();
 
         sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parchment","Pedant","Problem","Paramount","Patriotic"], lastNames: <String>["Sleuth","Secretary","Steward"], ringFirstNames: <String>["Paragon","Promised"], ringLastNames: <String>["Sherrif","Savior"])
             ..specibus = new Specibus("Tommy gun", ItemTraitFactory.MACHINEGUN, [ ItemTraitFactory.SHOOTY])
@@ -92,11 +90,13 @@ class NPCHandler
             ..specibus = new Specibus("Flamethrower", ItemTraitFactory.PISTOL, [ ItemTraitFactory.ONFIRE])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 1, Stats.FREE_WILL: 100, Stats.POWER: 1})
         );
+        return sunshineTeam;
 
     }
 
-    void initrandomDersites() {
+    List<Carapace> getDersites() {
 
+        List<Carapace> randomDersites = new List<Carapace>();
         randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Agitated","Authority","Aimless","Authoritarian"], lastNames: <String>["Regulator","Renegade","Radical","Rifleer"], ringFirstNames: <String>["Ascendant"], ringLastNames: <String>["Rioter"])
             ..specibus = new Specibus("Machine Gun", ItemTraitFactory.MACHINEGUN, [ ItemTraitFactory.SHOOTY])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
@@ -157,9 +157,14 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
 
+        randomDersites.addAll(getMidnightCrew());
+        return randomDersites;
+
     }
 
-    void initrandomProspitians() {
+    List<Carapace> getProspitians() {
+
+        List<Carapace> randomProspitians = new List<Carapace>();
 
         randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Royal","Regal","Rolling"], lastNames: <String>["Baker","Breakmaker"], ringFirstNames: <String>["Rampaging"], ringLastNames: <String>["Butcher"])
             ..specibus = new Specibus("Rolling Pin", ItemTraitFactory.ROLLINGPIN, [ ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD])
@@ -224,14 +229,13 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
         );
 
+        randomProspitians.addAll(getSunshineTeam());
+        return randomProspitians;
+
     }
 
     List<GameEntity> get allNPCS {
         List<GameEntity> ret =  <GameEntity>[jack, king, queen, democraticArmy];
-        ret .addAll(midnightCrew);
-        ret .addAll(sunshineTeam);
-        ret .addAll(randomDersites);
-        ret .addAll(randomProspitians);
         return ret;
     }
 

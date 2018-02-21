@@ -278,7 +278,9 @@ class Session {
         derseThemes[derseTheme] = Theme.HIGH;
 
         prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
+        prospit.associatedEntities.addAll(npcHandler.getProspitians());
         derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
+        derse.associatedEntities.addAll(npcHandler.getDersites());
 
          for(Player p in players) {
              p.syncToSessionMoon();

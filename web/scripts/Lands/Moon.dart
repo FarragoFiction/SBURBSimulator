@@ -41,6 +41,16 @@ class Moon extends Land {
 
   }
 
+  Carapace get randomNonActiveCarapace {
+      List<Carapace> choices = new List<Carapace>();
+      for(GameEntity g in associatedEntities) {
+          if(g is Carapace && !g.activated) {
+              choices.add(g);
+          }
+      }
+      return session.rand.pickFrom(choices);
+  }
+
   @override
     String get shortName {
         return "Strange Dreams:";
