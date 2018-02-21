@@ -68,9 +68,8 @@ class GameEntity extends Object with StatOwner   {
 
         {
             for(Item item in sylladex) {
-                if(item is MagicalItem) {
-                    MagicalItem magicalItem = item as MagicalItem;
-                    if(magicalItem.ring || magicalItem.scepter) return magicalItem;
+                if(item is Ring || item is Scepter) {
+                    return item;
                 }
             }
         }
@@ -193,7 +192,7 @@ class GameEntity extends Object with StatOwner   {
         clonege.doomed = doomed; //if you are doomed, no matter what you are, you are likely to die.
         clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
         clonege.causeOfDeath = causeOfDeath; //fill in every time you die. only matters if you're dead at end
-        clonege.sylladex = new Sylladex.clone;
+        clonege.sylladex = new Sylladex(sylladex.owner, sylladex.inventory);
     }
 
     //as each type of entity gets renderable, override this.
@@ -273,7 +272,7 @@ class GameEntity extends Object with StatOwner   {
         if (this.session.rand.nextDouble() > 0.5 && !(this is Player)) return false; //don't use them all at once, dunkass. unless you are a player. fraymotifs 4 lyfe
         List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
         if (crowned != null) { //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
-            usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifs(crowned, living_allies, living_enemies));
+            usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifsMagicalItem(crowned, living_allies, living_enemies));
         }
         if (usableFraymotifs.isEmpty) return false;
         num mine = getStat(Stats.SANITY);

@@ -89,46 +89,34 @@ class SessionMutator {
     ///will both be called when the hope field is activated, and in any new sessions
     bool spawnQueen(Session s) {
         if (!hopeField) return false;
-        s.npcHandler.queensRing = new GameEntity("!!!RING!!! OMG YOU SHOULD NEVER SEE THIS!", s);
+        s.derse.queensRing = new Ring.withoutOptionalParams("COMPLETELY FAKE RING",[ ItemTraitFactory.QUEENLY] );
         //The joke is that the hope player read the Enquiring Carapacian after some other player published the false story
         //you know, the one about the queen secretly being 3 salamanders in a robe.
-        s.npcHandler.queen = new Carapace("Three Salamanders In a Robe", s,Carapace.DERSE);
+        s.derse.queen = new Carapace("Three Salamanders In a Robe", s,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
         f.baseValue = -10; //will this make it heal you?
-        s.npcHandler.queensRing.fraymotifs.add(f);
-        s.npcHandler.queen.stats.setMap(<Stat, num>{Stats.HEALTH: 3, Stats.FREE_WILL: -100, Stats.POWER: 3});
+        s.derse.queensRing.fraymotifs.add(f);
+        s.derse.queen.stats.setMap(<Stat, num>{Stats.HEALTH: 3, Stats.FREE_WILL: -100, Stats.POWER: 3});
         return true;
     }
 
     bool spawnKing(Session session) {
         if (!hopeField) return false;
-        session.npcHandler.kingsScepter = new GameEntity("!!!SCEPTER!!! OMG YOU SHOULD NEVER SEE THIS!", session);
+        session.derse.kingsScepter = new Scepter.withoutOptionalParams("COMPLETELY FAKE SCEPTER",[ ItemTraitFactory.KINGLY] );
         //if the queen is 3, the king is more.
-        session.npcHandler.king = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
+        session.derse.king = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
         f.baseValue = -10; //will this make it heal you?
-        session.npcHandler.queensRing.fraymotifs.add(f);
-        session.npcHandler.king.grist = 1000;
-        session.npcHandler.king.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
+        session.derse.queensRing.fraymotifs.add(f);
+        session.derse.king.grist = 1000;
+        session.derse.king.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
         return true;
     }
 
-    bool spawnJack(Session session) {
-        if (!hopeField) return false;
-        session.npcHandler.jack = new Carapace("Jack In a Clown Outfit", session,Carapace.DERSE);
-        //minLuck, maxLuck, hp, mobility, sanity, freeWill, power, abscondable, canAbscond, framotifs
-        session.npcHandler.jack.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: -500, Stats.SANITY: -10000, Stats.HEALTH: 5, Stats.FREE_WILL: -100, Stats.POWER: 5});
-        Fraymotif f = new Fraymotif("Stupid Dance", 1);
-        f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
-        f.baseValue = -10; //will this make it heal you?
-        f.desc = " Jack has never hated you more than he does now.";
-        session.npcHandler.jack.fraymotifs.add(f);
-        return true;
-    }
 
     bool spawnDemocraticArmy(Session session) {
         if (!hopeField) return false;
@@ -470,7 +458,6 @@ class SessionMutator {
         s.hardStrength = 0; //this means the players 'need help' from the Mayor automatically.
         spawnQueen(s);
         spawnKing(s);
-        spawnJack(s);
         if(hopePlayer.land != null) hopePlayer.land.denizenFeature.name = "A small toy snake";
         //hopePlayer.denizen.setStat(Stats.POWER, 1);
         //hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH, 1);
@@ -534,7 +521,9 @@ class SessionMutator {
             p.renderSelf("lifeBS");
         }
 
-        List<GameEntity> npcs = s.npcHandler.allNPCS;
+        List<GameEntity> npcs = s.prospit.associatedEntities;
+        npcs.addAll(s.derse.associatedEntities);
+
         for (GameEntity g in npcs) {
             g.makeAlive();
         }
@@ -581,7 +570,8 @@ class SessionMutator {
                 r.value = -1 * r.value;
             }
         }
-        List<GameEntity> npcs = s.npcHandler.allNPCS;
+        List<GameEntity> npcs = s.prospit.associatedEntities;
+        npcs.addAll(s.derse.associatedEntities);
         for (GameEntity g in npcs) {
             g.dead = !g.dead;
         }

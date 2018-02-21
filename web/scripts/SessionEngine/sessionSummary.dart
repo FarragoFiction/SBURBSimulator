@@ -248,7 +248,7 @@ class SessionSummary {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
-        summary.setBoolStat("blackKingDead", session.npcHandler.king.dead || session.npcHandler.king.getStat(Stats.CURRENT_HEALTH) <= 0);
+        summary.setBoolStat("blackKingDead", session.derse.king.dead || session.derse.king.getStat(Stats.CURRENT_HEALTH) <= 0);
         summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
         summary.setBoolStat("hasGhostEvents", session.stats.hasGhostEvents);
@@ -307,12 +307,11 @@ class SessionSummary {
         summary.setBoolStat("ectoBiologyStarted", session.stats.ectoBiologyStarted);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
         summary.setBoolStat("plannedToExileJack", session.stats.plannedToExileJack);
-        summary.setBoolStat("exiledJack", session.npcHandler.jack.exiled);
-        summary.setBoolStat("exiledQueen", session.npcHandler.queen.exiled);
+        summary.setBoolStat("exiledQueen", session.derse.queen.exiled);
         summary.setBoolStat("jackGotWeapon", session.stats.jackGotWeapon);
         summary.setBoolStat("jackRampage", session.stats.jackRampage);
         summary.setBoolStat("jackScheme", session.stats.jackScheme);
-        summary.setBoolStat("kingTooPowerful", session.npcHandler.king.getStat(Stats.POWER) > session.hardStrength);
+        summary.setBoolStat("kingTooPowerful", session.derse.king.getStat(Stats.POWER) > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");
         summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0);

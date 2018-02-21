@@ -366,6 +366,15 @@ class FraymotifCreator {
         return ret;
     }
 
+    List<Fraymotif> getUsableFraymotifsMagicalItem(MagicalItem owner, List<GameEntity> allies, List<GameEntity> enemies) {
+        List<Fraymotif> fraymotifs = owner.fraymotifs;
+        List<dynamic> ret = [];
+        for (num i = 0; i < fraymotifs.length; i++) {
+            if (fraymotifs[i].canCast(owner.owner, allies, enemies)) ret.add(fraymotifs[i]);
+        }
+        ////print("Found: " + ret.length + " usable fraymotifs for " + owner);
+        return ret;
+    }
 
     String getRandomNameForAspect(Random rand, Aspect aspect) {
         String ret = rand.pickFrom(aspect.fraymotifNames);

@@ -246,13 +246,14 @@ class Sylladex extends Object with IterableMixin<Item> {
 
     void add(Item item) {
         Item i = item;
-        if(Item.allUniqueItems.contains(item)) {
+        //if i'm already owned, i'm already physical and unique
+        if(Item.allUniqueItems.contains(item) && item.owner == null) {
             //print("going to copy an item rather than add it directly");
             i = item.copy();
             //print("Item copied");
         }
         //we can't both own it
-        item.owner.sylladex.remove(item);
+        if(item.owner != null) item.owner.sylladex.remove(item);
         inventory.add(i);
         item.owner = owner;
         //print("inventory updated");

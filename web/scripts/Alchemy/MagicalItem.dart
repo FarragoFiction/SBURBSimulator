@@ -9,6 +9,12 @@ class MagicalItem extends Item with StatOwner {
     //it's what makes them magical in addition to direct stat boosts.
     List<Fraymotif> fraymotifs = <Fraymotif>[];
 
+    void resetFraymotifs() {
+        for (num i = 0; i < this.fraymotifs.length; i++) {
+            this.fraymotifs[i].usable = true;
+        }
+    }
+
 
     //magical items can die, if they do so, no longer work and should be nulled out of their owners
     bool dead = false;
