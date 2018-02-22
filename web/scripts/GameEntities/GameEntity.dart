@@ -551,7 +551,7 @@ class GameEntity extends Object with StatOwner   {
                 if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
             }
         }
-        print("going to return $ret");
+       // print("going to return $ret");
         return ret;
     }
 
@@ -593,18 +593,6 @@ class GameEntity extends Object with StatOwner   {
             ret += "${item.fullNameWithUpgrade}<br>";
         }
 
-
-        ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
-
-
-
-        for (Buff b in buffs) {
-            ret += "$b<br>";
-        }
-
-        for (AssociatedStat s in associatedStats) {
-            ret += "$s<br>";
-        }
 
         ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         List<Fraymotif> confusion = fraymotifsForDisplay;

@@ -3,6 +3,7 @@ import "../GameEntities/GameEntity.dart";
 export "../GameEntities/Stats/stat.dart";
 
 import "Item.dart";
+import "MagicalItem.dart";
 import "../random_tables.dart";
 import "Trait.dart";
 import "../random.dart";
@@ -247,7 +248,7 @@ class Sylladex extends Object with IterableMixin<Item> {
     void add(Item item) {
         Item i = item;
         //if i'm already owned, i'm already physical and unique
-        if(Item.allUniqueItems.contains(item) && item.owner == null) {
+        if(Item.allUniqueItems.contains(item) && item.owner == null && !(item is MagicalItem)) {
             //print("going to copy an item rather than add it directly");
             i = item.copy();
             //print("Item copied");

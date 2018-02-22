@@ -34,6 +34,11 @@ class MagicalItem extends Item with StatOwner {
     }
 
 
+    @override
+    String get fullNameWithUpgrade {
+        return "${fullName} ${fraymotifs.length} spells";
+    }
+
     //magical items can die, if they do so, no longer work and should be nulled out of their owners
     bool dead = false;
 
