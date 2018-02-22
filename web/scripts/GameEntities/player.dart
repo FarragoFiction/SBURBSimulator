@@ -242,9 +242,14 @@ class Player extends GameEntity{
 
 
     @override
-    String makeDead(String causeOfDeath) {
+    String makeDead(String causeOfDeath, GameEntity killer) {
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
+
+        //can loot corpses even in life gnosis, or how else will things happen?
+        killer.lootCorpse(this);
+
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
+
         String ret = "";
         this.dead = true;
         this.timesDied ++;

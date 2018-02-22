@@ -210,12 +210,23 @@ class GameEntity extends Object with StatOwner   {
             GameEntity jack = Team.findJackInTeams(enemyTeams);
             GameEntity king = Team.findKingInTeams(enemyTeams);
             String causeOfDeath = "fighting in a strife against ${Team.getTeamsNames(enemyTeams)}";
+            GameEntity killer;
             if (jack != null) {
                 causeOfDeath = "after being shown too many stabs from Jack";
+                killer = jack;
             } else if (king != null) {
                 causeOfDeath = "fighting the Black King";
+                killer = king;
             }
-            makeDead(causeOfDeath);
+
+            if(killer == null) {
+                Team enemies = enemyTeams[0];
+                enemies.members.sort(Stats.MOBILITY.sorter);
+                killer = enemies.members[0]; //fastest member gets the loot
+
+            }
+
+            makeDead(causeOfDeath, killer);
             return "${htmlTitleHP()} has died. ";
         }
         return "";
@@ -638,10 +649,16 @@ class GameEntity extends Object with StatOwner   {
         return null;
     }
 
-    void makeDead(String causeOfDeath) {
+    //a standard RPG trope, even if they are your friend
+    void lootCorpse(GameEntity corpse) {
+        sylladex.addAll(corpse.sylladex.inventory);
+    }
+
+    void makeDead(String causeOfDeath, GameEntity killer) {
         if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
+        killer.lootCorpse(this);
     }
 
     void interactionEffect(GameEntity ge) {
