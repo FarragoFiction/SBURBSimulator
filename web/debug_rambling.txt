@@ -5159,4 +5159,37 @@ So new scenes. But can at least have a debug statement at the end of the current
 maybe game entities can have a flag "allied with players". which gets tripped if they are a companion
 a player, or prospit. or it can be a get
 
+
 yeah npc needs to know who their 'party leader' is.
+
+
+~~
+
+Alright. I need to figure out how to change the Reckoning and the Aftermath.
+
+I do NOT want the reckoning to be stoppable. You fuck up, you fuck up. Maybe in big bad update, can make it stopable
+but it summons a big bad.
+
+
+
+Okay so.
+
+How does reckoning currently happen?
+
+I think it's in the sim controller?
+
+        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numScenes > maxScenes ||  findLiving(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
+
+
+so. if the reckoning is available, or we've done too many scenes, or everyone is dead, or there is no time.
+
+that's easy to fix i think.
+
+just make it instead be
+
+if "reckoning == true || curSessionGlobalVar.numScenes > maxScenes ";
+
+and then different things can set it on.
+
+need to do instance, too.
+
