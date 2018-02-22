@@ -398,7 +398,7 @@ void scratchEasterEggCallBack() {
     if (suddenDeath != null && !suddenDeath.dead) {
         //print("sudden death in: ${curSessionGlobalVar.session_id}");
         for (num i = 0; i < livingRagged.length; i++) {
-            scratch += livingRagged[i].makeDead("right as the scratch happened");
+            scratch += livingRagged[i].makeDead("right as the scratch happened", livingRagged[i]);
         }
         scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
     }

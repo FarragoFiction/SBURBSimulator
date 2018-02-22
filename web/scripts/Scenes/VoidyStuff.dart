@@ -192,9 +192,9 @@ class VoidyStuff extends Scene {
 	     //session.logger.info("AB:  godtiering through shenanigans in session ${session.session_id}");
 		String ret = "";
 		if(this.enablingPlayer.aspect == Aspects.VOID){
-			ret += this.player.makeDead("hidden in void on their way to godhood");
+			ret += this.player.makeDead("hidden in void on their way to godhood",player);
 		} else{
-			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans");
+			ret += this.player.makeDead("with ridiculous bullshit clown shenanigans",player);
 		}
 		this.player.makeGodTier();
 		this.session.stats.godTier = true;

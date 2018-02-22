@@ -319,7 +319,7 @@ class GetWasted extends Scene {
         for(Player p in session.players) {
             if(!p.godTier) {
                 //you don't even have to be alive for this to work, they'll just drag your body to the slab and hope/luck it into working.
-                if(!p.dead) p.makeDead("exploiting SBURB to becoome a god.");
+                if(!p.dead) p.makeDead("exploiting SBURB to becoome a god.",player);
                 p.makeGodTier();
                 fledglingGods.add(p);
             }
@@ -452,19 +452,19 @@ class GetWasted extends Scene {
                 //picture shown differs based on method.
                 if(p.dreamSelf && !p.isDreamSelf && p != player) { //corpse smooch
                     p.prophecy = ProphecyState.ACTIVE;
-                    p.makeDead("exploiting SBURB mechanics");
+                    p.makeDead("exploiting SBURB mechanics",player);
                     drawingMethods.add(new DrawMethodWithParameter(drawCorpseSmooch,canvas, [p, player]));
                     p.makeAlive();
                     ret += subRet;
                 }else if(p.godTier) { //they will god tier revive
                     p.prophecy = ProphecyState.ACTIVE;
-                    p.makeDead("exploiting SBURB mechanics");
+                    p.makeDead("exploiting SBURB mechanics",player);
                     drawingMethods.add(new DrawMethodWithParameter(drawGodRevive,canvas,[p, player]));
                     p.makeAlive();
                     ret += subRet;
                 }else if(player != player && ghost != null && (player.class_name == SBURBClassManager.ROGUE || player.class_name == SBURBClassManager.MAID)) {  //you will ghost revive their ass
                     p.prophecy = ProphecyState.ACTIVE;
-                    p.makeDead("exploiting SBURB mechanics");
+                    p.makeDead("exploiting SBURB mechanics",player);
                     drawingMethods.add(new DrawMethodWithParameter(drawGhostRevive,canvas,[p, ghost, player]));
                     p.makeAlive();
                     ret += subRet;

@@ -230,7 +230,7 @@ class PlayerDiedForever  extends ImportantEvent {
 			player.makeAlive();
 			player.addStat(Stats.SANITY, -0.5);
 
-			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard");
+			this.doomedTimeClone.makeDead("sacrificing themselves through a YellowYard", player);
 
 			var divID = (div.id) + "_alt_${player.id}";
 			String canvasHTML = "<br><canvas id='canvas" + divID+"' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
@@ -514,7 +514,7 @@ class PlayerEnteredSession  extends ImportantEvent {
 
 			narration +=  "After a brief struggle, the doomed " + this.doomedTimeClone.htmlTitleBasic() + " vanishes in a cloud of gears to join the final battle.";
 			player.dead = true;
-			narration += player.makeDead("apparantly displeasing the Observer.");
+			narration += player.makeDead("apparantly displeasing the Observer.",player);
 			appendHtml(div, narration);
 
 			this.doomedTimeClone.victimBlood = player.bloodColor;

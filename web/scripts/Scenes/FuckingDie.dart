@@ -30,7 +30,7 @@ class FuckingDie extends Scene {
         for(Player p in futureCorpses) {
             session.logger.info("$p died out of nowhere. Specibus is ${p.specibus.fullName} with rank ${p.specibus.rank}. Health was ${p.getStat(Stats.HEALTH)}, buffs are ${p.buffs}");
             deadNames.add(p.htmlTitleBasic());
-            p.makeDead("Probably Doom Shit, I don't even know.");
+            p.makeDead("Probably Doom Shit, I don't even know.",p);
         }
         String ret = "Holy shit, the ${turnArrayIntoHumanSentence(deadNames)} just died out of fucking nowhere. I can't even tell what happened? Was it game shit? A glitch? A Doom player? We are all confused and upset that this happened and vow to pester JR until it stops from keep hapening so often. You guess it happening occasionally might be kind of funny, though.";
 

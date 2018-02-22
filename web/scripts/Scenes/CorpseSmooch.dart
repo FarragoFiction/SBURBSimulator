@@ -143,6 +143,7 @@ class CorpseSmooch extends Scene {
 			if(d.dreamSelf == true){
 				Player royalty = this.getRoyalty(d);
 				if(royalty != null){
+					royalty.lootCorpse(d);
 					royalty.addStat(Stats.SANITY, -10);
 					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of ${royalty.moon}, administers the universal remedy for the unawakened ";
 					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on ${d.moon}. ";
@@ -177,6 +178,8 @@ class CorpseSmooch extends Scene {
 		//x times corpse smooch combo
 		return ret;
 	}
+
+
 	ImportantEvent addImportantEvent(Player player){
 		////session.logger.info("adding important event from corpse smooch");
 		Player current_mvp = findStrongestPlayer(this.session.players);

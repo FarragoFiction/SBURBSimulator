@@ -259,7 +259,7 @@ class MurderPlayers extends Scene {
 							ret += " Every one is very impressed that they managed to do it while dying.";
 						}
 						ret += this.friendsOfVictimHateYou(worstEnemy, m);
-						ret += worstEnemy.makeDead("fighting against the crazy " + m.title());
+						ret += worstEnemy.makeDead("fighting against the crazy " + m.title(), m);
 						m.pvpKillCount ++;
 						this.session.stats.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);
@@ -279,7 +279,7 @@ class MurderPlayers extends Scene {
 						if(m.dead == true){ //they could have been killed by another murder player in this same tick
 							ret += " The task is made especially easy by the " + m.htmlTitle() + " being already in the proccess of dying. ";
 						}
-						ret += m.makeDead("being put down like a rabid dog by the " + worstEnemy.title());
+						ret += m.makeDead("being put down like a rabid dog by the " + worstEnemy.title(), worstEnemy);
 						worstEnemy.pvpKillCount ++;
 						this.session.stats.murdersHappened = true;
 						var r = worstEnemy.getRelationshipWith(m);

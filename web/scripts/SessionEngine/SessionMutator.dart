@@ -723,7 +723,7 @@ class SessionMutator {
 
                 deadPlayer = target.clone();
                 deadPlayer.id = GameEntity.generateID();
-                deadPlayer.makeDead("Being assasinated by their own future self. ");
+                deadPlayer.makeDead("Being assasinated by their own future self. ", timePlayer);
                 timePlayer.makeAlive();
                 timePlayer.copyStatsTo(target);
 
@@ -1529,10 +1529,10 @@ class MetaPlayerHandler {
 
         if (p == nobody) {
             for (Player pl in p.session.players) {
-                if (pl != p) pl.makeDead("killing nobody");
+                if (pl != p) pl.makeDead("killing nobody", p);
             }
             p.session.rand.pickFrom(p.session.players).makeAlive();
-            return "Huh. You've killed Nobody. The Curse of Dutton descends upon you, making you wish that Dead Sessions could be a thing.  They aren't. They totally aren't, yet. Everybody but one player dies anyways. ";
+            return "Huh. You've killed Nobody. The Curse of Dutton descends upon you, making you wish that Dead Sessions could be a thing.  They aren't. They totally aren't, in your timeline. Everybody but one player dies anyways. ";
         }
 
         if (p == karmicRetribution) {

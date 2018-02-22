@@ -425,8 +425,7 @@ class Team implements Comparable<Team> {
         //print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
         for (GameEntity ge in getLivingMinusAbsconded()) {
             //print("making $ge dead");
-            ge.makeDead(reason);
-
+            ge.makeDead(reason, ge); //rocks fell or some shit no looting
             ///bluh, no way to talk about prophecies here.
         }
     }
