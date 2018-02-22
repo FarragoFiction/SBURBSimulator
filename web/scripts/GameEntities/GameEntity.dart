@@ -221,8 +221,9 @@ class GameEntity extends Object with StatOwner   {
 
             if(killer == null) {
                 Team enemies = enemyTeams[0];
-                enemies.members.sort(Stats.MOBILITY.sorter);
-                killer = enemies.members[0]; //fastest member gets the loot
+                List<GameEntity> living = findLiving(enemies.members);
+                living.sort(Stats.MOBILITY.sorter);
+                killer = living[0]; //fastest member gets the loot
 
             }
 
@@ -631,11 +632,15 @@ class GameEntity extends Object with StatOwner   {
     void flipOut(String reason) {}
 
     String htmlTitleBasic() {
-        return this.name;
+        String ret = "";
+        if (this.crowned != null) ret = "${ret}Crowned ";
+        return "$ret $name";
     }
 
     String htmlTitleBasicNoTip() {
-        return this.name;
+        String ret = "";
+        if (this.crowned != null) ret = "${ret}Crowned ";
+        return "$ret $name";
     }
 
     void makeAlive() {

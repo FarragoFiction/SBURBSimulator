@@ -186,7 +186,7 @@ abstract class SimController {
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         curSessionGlobalVar = tmpcurSessionGlobalVar;
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-        List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
+        List<Player> living = findLiving(curSessionGlobalVar.aliensClonedOnArrival);
         if(living.isEmpty) {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
         }else {
@@ -259,7 +259,7 @@ abstract class SimController {
         //print("scratch possible, button");
         //alert("scratch [possible]");
         //can't scratch if it was a a total party wipe. just a regular doomed timeline.
-        List<Player> living = findLivingPlayers(session.players);
+        List<Player> living = findLiving(session.players);
         if (!living.isEmpty && (session.stats.makeCombinedSession == false && session.stats.hadCombinedSession == false)) {
             //print("gonna render scratch");
             //var timePlayer = findAspectPlayer(session.players, "Time");
@@ -384,7 +384,7 @@ abstract class SimController {
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
         int maxScenes = 1000; //don't go forever, dunkass
-        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numScenes > maxScenes ||  findLivingPlayers(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
+        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numScenes > maxScenes ||  findLiving(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
            curSessionGlobalVar.logger.info("reckoning at ${curSessionGlobalVar.timeTillReckoning} and can reckoning is ${curSessionGlobalVar.canReckoning}");
             curSessionGlobalVar.timeTillReckoning = 0; //might have gotten negative while we wait.
             reckoning();

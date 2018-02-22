@@ -454,6 +454,10 @@ class Player extends GameEntity{
     String title() {
         String ret = "";
 
+        if(this.crowned != null) {
+            ret = "${ret}Crowned ";
+        }
+
         if (this.doomed) {
             ret = "${ret}Doomed ";
         }
@@ -742,7 +746,7 @@ class Player extends GameEntity{
     }
 
     bool isVoidAvailable() {
-        Player light = findAspectPlayer(findLivingPlayers(this.session.players), Aspects.LIGHT);
+        Player light = findAspectPlayer(findLiving(this.session.players), Aspects.LIGHT);
         if (light != null && light.godTier) return false;
         return true;
     }

@@ -65,7 +65,7 @@ class Fraymotif {
         //first check to see if all aspects are included in the allies array.
         List<GameEntity> casters = [owner];
         //List<dynamic> aspects = [];
-        List<GameEntity> living = findLivingPlayers(allies); //dead men use no fraymotifs. (for now)
+        List<GameEntity> living = findLiving(allies); //dead men use no fraymotifs. (for now)
         for (num i = 1; i < this.aspects.length; i++) { //skip the first aspect, because that's owner.
             Aspect a = this.aspects[i];
             Player p = owner.rand.pickFrom(findAllAspectPlayers(living, a)); //ANY player that matches my aspect can do this.;
@@ -292,7 +292,7 @@ class Fraymotif {
         if (!this.canCast(owner, allies, enemies)) return "";
         List<GameEntity> casters = this.getCasters(owner, allies);
         this.makeCastersUnavailable(casters);
-        List<Player> living = findLivingPlayers(allies);
+        List<Player> living = findLiving(allies);
         //print("$owner fraymotif: $this");
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {

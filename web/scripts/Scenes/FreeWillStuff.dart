@@ -107,7 +107,7 @@ class FreeWillStuff extends Scene {
         if (player.murderMode) {
             ////session.logger.info("disengage murde mode");
             String ret = "";
-            var enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+            var enemies = player.getEnemiesFromList(findLiving(this.session.players));
             var spacePlayerEnemy = findAspectPlayer(enemies, Aspects.SPACE);
             var ectobiologistEnemy = session.getLeader(enemies);
             //not everybody knows about ectobiology.
@@ -158,7 +158,7 @@ class FreeWillStuff extends Scene {
     }
 
     String considerEngagingMurderMode(Player player) {
-        List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+        List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
         if (player.isActive() && enemies.length > 2 && player.getStat(Stats.SANITY) < 0 && !player.murderMode && rand.nextDouble() > 0.98) {
             return this.becomeMurderMode(player);
         } else if (enemies.length > 0 && player.getStat(Stats.SANITY) < 0 && rand.nextDouble() > 0.98) {
@@ -169,7 +169,7 @@ class FreeWillStuff extends Scene {
 
     String becomeMurderMode(Player player) {
         if (!player.murderMode) {
-            List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+            List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
             if (this.isValidTargets(enemies, player)) {
                 //session.logger.info("chosing to go into murdermode " + this.session.session_id.toString());
                 player.makeMurderMode();
@@ -185,7 +185,7 @@ class FreeWillStuff extends Scene {
     }
 
     int howManyEnemiesInCommon(List<Player> enemies, Player patsy) {
-        var myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
+        var myEnemies = patsy.getEnemiesFromList(findLiving(this.session.players));
         int numb = 0;
         for (int i = 0; i < enemies.length; i++) {
             Player e = enemies[i];
@@ -195,7 +195,7 @@ class FreeWillStuff extends Scene {
     }
 
     int howManyFriendsYouHate(List<Player> friends, Player patsy) {
-        List<Player> myEnemies = patsy.getEnemiesFromList(findLivingPlayers(this.session.players));
+        List<Player> myEnemies = patsy.getEnemiesFromList(findLiving(this.session.players));
         int numb = 0;
         for (int i = 0; i < friends.length; i++) {
             Player e = friends[i];
@@ -237,7 +237,7 @@ class FreeWillStuff extends Scene {
 
     List<dynamic> findBestPatsy(Player player, List<Player> enemies) {
         List<dynamic> bestPatsy = null; //array with [patsy, numEnemiesInCommon]
-        List<Player> living = findLivingPlayers(this.session.players);
+        List<Player> living = findLiving(this.session.players);
         List<Player> friends = player.getFriendsFromList(living);
         for (num i = 0; i < living.length; i++) {
             var p = living[i];
@@ -314,7 +314,7 @@ class FreeWillStuff extends Scene {
     }
 
     dynamic forceSomeOneElseMurderMode(Player player) {
-        List<Player> enemies = player.getEnemiesFromList(findLivingPlayers(this.session.players));
+        List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
         List<dynamic> patsyArr = this.findBestPatsy(player, enemies);
 
         Player patsy = null;

@@ -21,7 +21,7 @@ class Aftermath extends Scene {
     //high gnosis can mean you can't be happy in a
     //semblance of your old life.
     String whoEnters() {
-        List<Player> living = findLivingPlayers(session.players);
+        List<Player> living = findLiving(session.players);
         entered.clear();
         String ret = "";
         for (Player p in living) {
@@ -48,7 +48,7 @@ class Aftermath extends Scene {
     // only called if full frog. care about who enters new universe, not living
     String miniEpliogueFull() {
         //window.alert("${entered.length} players entered the new universe, they are $entered");
-        if (entered.isEmpty && findLivingPlayers(session.players).length != 0) return gnosisEnding();
+        if (entered.isEmpty && findLiving(session.players).length != 0) return gnosisEnding();
         if (entered.length == 1) return monoTheismEnding();
         if (Stats.RELATIONSHIPS.average(entered) > 20) return loveEnding();
         if (Stats.RELATIONSHIPS.average(entered) < -20) return hateEnding();
@@ -57,7 +57,7 @@ class Aftermath extends Scene {
 
     String loveEnding() {
         session.stats.loveEnding = true;
-        List<Player> living = findLivingPlayers(session.players);
+        List<Player> living = findLiving(session.players);
         //who has highest relationship?
         Player friendLeader = Stats.RELATIONSHIPS.max(living);
         //does anybody have an abnormally low relationships?
@@ -76,7 +76,7 @@ class Aftermath extends Scene {
 
     String hateEnding() {
         session.stats.hateEnding = true;
-        List<Player> living = findLivingPlayers(session.players);
+        List<Player> living = findLiving(session.players);
         Player shoutLeader = Stats.RELATIONSHIPS.min(living);
         Player peaceMaker = Stats.RELATIONSHIPS.max(living);
         String ret = "The ${shoutLeader.htmlTitle()}  rules with an iron fist and insists that they live as gods. ";
@@ -116,13 +116,13 @@ class Aftermath extends Scene {
         if (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) <= 0) {
             return "";
         }
-        if (this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 10 && findLivingPlayers(this.session.players).length > 0) {
+        if (this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 10 && findLiving(this.session.players).length > 0) {
             this.session.stats.mayorEnding = true;
             ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
             ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
             ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
         } else {
-            if (findLivingPlayers(this.session.players).length > 0) {
+            if (findLiving(this.session.players).length > 0) {
                 this.session.stats.waywardVagabondEnding = true;
                 ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
                 ret += " There can be no democracy in a nation with only one citizen left alive. He is the only remaining living Carapacian in the Democratic Army. ";
@@ -137,7 +137,7 @@ class Aftermath extends Scene {
     }
 
     void yellowLawnRing(div) {
-        var living = findLivingPlayers(this.session.players);
+        var living = findLiving(this.session.players);
         var dead = findDeadPlayers(this.session.players);
         //time players doesn't HAVE to be alive, but it makes it way more likely.
         var singleUseOfSeed = rand.nextDouble();
@@ -157,7 +157,7 @@ class Aftermath extends Scene {
 
     String mournDead(Element div) {
         var dead = findDeadPlayers(this.session.players);
-        var living = findLivingPlayers(this.session.players);
+        var living = findLiving(this.session.players);
         if (dead.length == 0) {
             return "";
         }
@@ -335,7 +335,7 @@ class Aftermath extends Scene {
         //session.logger.info("AB: Aftermath. MVP is ${findStrongestPlayer(session.players).grist} amount of grist");
         bool yellowYard = false;
         String end = "<Br>";
-        List<Player> living = findLivingPlayers(this.session.players);
+        List<Player> living = findLiving(this.session.players);
 
         //var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
         //...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???

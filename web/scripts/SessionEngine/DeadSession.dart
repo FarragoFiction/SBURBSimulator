@@ -374,7 +374,7 @@ class DeadSession extends Session {
     @override
     Session initializeCombinedSession() {
         this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
-        List<Player> living = findLivingPlayers(this.players);
+        List<Player> living = findLiving(this.players);
         living.add((curSessionGlobalVar as DeadSession).metaPlayer);
         //nobody is the leader anymore.
         Session newSession = new Session(this.rand.nextInt()); //Math.seed);  //this is a real session that could have gone on without these new players.

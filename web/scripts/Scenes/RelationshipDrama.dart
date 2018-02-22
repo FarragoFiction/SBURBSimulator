@@ -601,7 +601,7 @@ class RelationshipDrama extends Scene {
 		player2.increasePower();
 	}
 	Player getBestFriendBesidesCrush(Player player, Player crush){
-		List<Player> living = findLivingPlayers(this.session.players);
+		List<Player> living = findLiving(this.session.players);
 		List<Player> dead = findDeadPlayers(this.session.players);
 		List<Player> players = living;//new List.from(living);
 		players.addAll(dead);
@@ -615,7 +615,7 @@ class RelationshipDrama extends Scene {
 		return null;
 	}
 	Player getLivingBestFriendBesidesCrush(Player player, Player crush){
-		List<Player> living = findLivingPlayers(this.session.players);
+		List<Player> living = findLiving(this.session.players);
 		//alert("removing crush: " + crush.title() + " from array: " + living.length)
 		removeFromArray(crush, living);
 		//alert("removed crush: " + crush.title() + " from array: " + living.length)

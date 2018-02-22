@@ -37,7 +37,7 @@ class MurderPlayers extends Scene {
     appendHtml(div,"<br> <img src = 'images/sceneIcons/murder_icon.png'>"+this.contentForRender(div));
 	}
 	dynamic friendsOfVictimHateYou(victim, murderer){
-		var livePlayers = findLivingPlayers(this.session.players); //reroll it 'cause people might have died during this set of murders.'
+		var livePlayers = findLiving(this.session.players); //reroll it 'cause people might have died during this set of murders.'
 		//just, fuck that guy.
 		String ret = "";
 		for(num i = 0; i<livePlayers.length; i++){
@@ -186,7 +186,7 @@ class MurderPlayers extends Scene {
 		Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,500,0);
 	}
 	dynamic contentForRender(Element div){
-		var livePlayers = findLivingPlayers(session.getReadOnlyAvailablePlayers()); //just because they are alive doesn't mean they are in the medium
+		var livePlayers = findLiving(session.getReadOnlyAvailablePlayers()); //just because they are alive doesn't mean they are in the medium
 		String ret = "";
 		for(num i = 0; i<this.murderers.length; i++){
 			Player m = this.murderers[i];
@@ -198,7 +198,7 @@ class MurderPlayers extends Scene {
                 return doAStrife(div, m, worstEnemy);
             }
 			//if(worstEnemy !=null && worstEnemy.sprite.name == "sprite") //session.logger.info("trying to kill somebody not in the medium yet: " + worstEnemy.title() + " in session: " + this.session.session_id.toString());
-			var living = findLivingPlayers(this.session.players);
+			var living = findLiving(this.session.players);
 			removeFromArray(worstEnemy, living);
 			var ausp = rand.pickFrom(living);
 			if(ausp == worstEnemy || ausp == m){

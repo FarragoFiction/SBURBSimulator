@@ -67,7 +67,7 @@ class DeadSessionSummary extends SessionSummary {
         summary.setNumStat("num_scenes", session.numScenes);
         summary.players = session.players;
         summary.mvp = findMVP(session.players);
-        summary.setNumStat("numLiving", findLivingPlayers(session.players).length);
+        summary.setNumStat("numLiving", findLiving(session.players).length);
         summary.setNumStat("numDead", findDeadPlayers(session.players).length);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
         summary.setBoolStat("plannedToExileJack", session.stats.plannedToExileJack);

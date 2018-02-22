@@ -302,7 +302,7 @@ class SessionSummary {
         summary.parentSession = session.parentSession;
         summary.setBoolStat("scratchAvailable", session.stats.scratchAvailable);
         summary.setBoolStat("yellowYard", session.stats.yellowYard);
-        summary.setNumStat("numLiving", findLivingPlayers(session.players).length);
+        summary.setNumStat("numLiving", findLiving(session.players).length);
         summary.setNumStat("numDead", findDeadPlayers(session.players).length);
         summary.setBoolStat("ectoBiologyStarted", session.stats.ectoBiologyStarted);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);

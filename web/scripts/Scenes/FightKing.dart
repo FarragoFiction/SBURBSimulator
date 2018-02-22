@@ -14,10 +14,10 @@ class FightKing extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		////session.logger.info('fight kin trigger?');
-		return (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.derse.king.dead && (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.queen.dead) && (findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.derse.king.dead && (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.queen.dead) && (findLiving(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
-	var living = findLivingPlayers(this.session.players);
+	var living = findLiving(this.session.players);
 	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 	for(num i = 0; i<allPlayers.length; i++){

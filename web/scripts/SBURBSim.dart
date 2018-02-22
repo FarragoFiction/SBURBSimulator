@@ -394,7 +394,7 @@ void scratchEasterEggCallBack() {
     if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
 
     //NOT over time. literally sudden death. thanks meenah!
-    List<Player> livingRagged = findLivingPlayers(raggedPlayers);
+    List<Player> livingRagged = findLiving(raggedPlayers);
     if (suddenDeath != null && !suddenDeath.dead) {
         //print("sudden death in: ${curSessionGlobalVar.session_id}");
         for (num i = 0; i < livingRagged.length; i++) {

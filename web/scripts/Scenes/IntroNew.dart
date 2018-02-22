@@ -158,9 +158,9 @@ class IntroNew extends IntroScene {
   bool trigger(List<Player> playerList, Player player){
       this.playerList = playerList;
       this.player = player;
-      this.friend =  player.getBestFriendFromList(findLivingPlayers(this.session.players), "intro chat");
+      this.friend =  player.getBestFriendFromList(findLiving(this.session.players), "intro chat");
       if(friend == null){
-          friend = player.getWorstEnemyFromList(findLivingPlayers(this.session.players));
+          friend = player.getWorstEnemyFromList(findLiving(this.session.players));
       }
       return true; //this should never be in the main array. call manually.
   }

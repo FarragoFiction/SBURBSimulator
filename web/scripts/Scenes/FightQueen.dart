@@ -13,10 +13,10 @@ class FightQueen extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLivingPlayers(this.session.players).length != 0) ;
+		return (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLiving(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
-		var living = findLivingPlayers(this.session.players);
+		var living = findLiving(this.session.players);
 		var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 		for(num i = 0; i<allPlayers.length; i++){
@@ -77,7 +77,7 @@ class FightQueen extends Scene {
 	dynamic content(){
 		////session.logger.info("Queen Strength : " + this.session.queenStrength);
 		String badPrototyping = findBadPrototyping(this.playerList);
-		var living = findLivingPlayers(this.session.players);
+		var living = findLiving(this.session.players);
 		String ret = " Before the players can reach the Black King, they are intercepted by the Black Queen. ";
 		if(badPrototyping != null && this.session.derse.queen.crowned != null){
 			ret += " She is made especially ferocious with the addition of the " + badPrototyping + ". ";

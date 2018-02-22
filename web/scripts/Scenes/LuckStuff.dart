@@ -100,7 +100,7 @@ class LuckStuff extends Scene{
 	}
 	String roll70(Roll roll){
 		////session.logger.info("roll70 in " + this.session.session_id);
-		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLiving(this.session.players)));
 		if(friend == null){
 			return this.roll65(roll); //backup result.
 		}
@@ -113,7 +113,7 @@ class LuckStuff extends Scene{
 	}
 	String roll30(Roll roll){
 		////session.logger.info("roll30 in " + this.session.session_id);
-		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLivingPlayers(this.session.players)));
+		Player friend = rand.pickFrom(roll.player.getFriendsFromList(findLiving(this.session.players)));
 		if(friend == null){
 			return this.roll65(roll); //backup result.
 		}

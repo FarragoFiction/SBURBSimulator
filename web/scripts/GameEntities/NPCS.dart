@@ -38,14 +38,14 @@ class Carapace extends NPC {
     @override
     List<Fraymotif> get fraymotifsForDisplay {
         List<Fraymotif> ret = new List.from(fraymotifs);
-        print("Test Ring: Getting fraymotifs for display for a carapce with a sylladex of $sylladex.");
+        //print("Test Ring: Getting fraymotifs for display for a carapce with a sylladex of $sylladex.");
         for(Item item in sylladex) {
-            print("Test Ring: checking item $item. Is it magical? ${item is MagicalItem} ${item is Ring}");
+            //print("Test Ring: checking item $item. Is it magical? ${item is MagicalItem} ${item is Ring}");
 
             if(item is MagicalItem) {
                 MagicalItem m = item as MagicalItem;
                 //don't need to include other things
-                print("Test Ring: I am a carapace and i'm adding a magical item named $m that has ${fraymotifs.length} fraymotifs");
+                //print("Test Ring: I am a carapace and i'm adding a magical item named $m that has ${fraymotifs.length} fraymotifs");
                 ret.addAll(m.fraymotifs);
             }
         }
@@ -54,7 +54,7 @@ class Carapace extends NPC {
 
     void pickName() {
         if(crowned != null) {
-            name = "Crowned ${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
+            name = "${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
         }else {
             name = "${session.rand.pickFrom(firstNames)} ${session.rand.pickFrom(lastNames)}";
         }

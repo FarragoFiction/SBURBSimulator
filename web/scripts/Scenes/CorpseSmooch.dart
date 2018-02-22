@@ -28,7 +28,7 @@ class CorpseSmooch extends Scene {
 			//}
 		}
 		//corspses can't smooch themselves.
-		var living = findLivingPlayers(this.session.players);
+		var living = findLiving(this.session.players);
 		////session.logger.info(this.dreamersToRevive.length + " vs "  + playerList.length);
 		return this.dreamersToRevive.length > 0 && living.length>0;
 
@@ -76,11 +76,11 @@ class CorpseSmooch extends Scene {
 	}
 	dynamic getRoyalty(Player d){
 		List<Player> availablePlayers = session.getReadOnlyAvailablePlayers();
-		Player royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(availablePlayers));
+		Player royalty = d.getWhoLikesMeBestFromList(findLiving(availablePlayers));
 		royalty = this.ignoreEnemies(d, royalty);
 		if(royalty == null){
 			//okay, princes are traditional...
-			royalty = findClassPlayer(findLivingPlayers(availablePlayers), SBURBClassManager.PRINCE);
+			royalty = findClassPlayer(findLiving(availablePlayers), SBURBClassManager.PRINCE);
 			if(royalty != null && royalty.grimDark  > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -89,7 +89,7 @@ class CorpseSmooch extends Scene {
 		//from here on out, prefer to god tier than to be corpse smooched.
 		if(royalty == null){
 			//okay, anybody free?
-			royalty = rand.pickFrom(findLivingPlayers(availablePlayers));
+			royalty = rand.pickFrom(findLiving(availablePlayers));
 			if(royalty != null && royalty.grimDark > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}
@@ -97,12 +97,12 @@ class CorpseSmooch extends Scene {
 		royalty = this.ignoreEnemies(d, royalty);
 		//shit, maybe your best friend can drop what they are doing to save your ass?
 		if(royalty == null){
-			royalty = d.getWhoLikesMeBestFromList(findLivingPlayers(this.playerList));
+			royalty = d.getWhoLikesMeBestFromList(findLiving(this.playerList));
 		}
 		royalty = this.ignoreEnemies(d, royalty);
 		//is ANYBODY even alive out there????
 		if(royalty == null){
-			royalty = rand.pickFrom(findLivingPlayers(this.playerList));
+			royalty = rand.pickFrom(findLiving(this.playerList));
 			if(royalty != null && royalty.grimDark > 0){
 				royalty = null; //grim dark won't corpse smooch unless they actual want to.
 			}

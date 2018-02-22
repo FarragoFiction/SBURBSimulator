@@ -62,7 +62,7 @@ class Reckoning extends Scene {
       intro += " Apparently now you're destined to have always have had been born in some other session? You get a little dizzy trying to think about it. ";
       intro += " At least you're able to follow that you SHOULD be doomed right now because ectobiology totally didn't happen. But you aren't. And you should thank the ${session.mutator.spacePlayer.htmlTitle()} ";
     }
-    var living = findLivingPlayers(this.session.players);
+    var living = findLiving(this.session.players);
     if (living.length > 0) {
       if (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) < 0) {
         intro += "<br><br>Normally this is where the Black King would show up to do an epic boss fight. Jack fucked up THAT script, though.  Looks like there's nothing to stop the players from...just...deploying the frog into the Skaia hole???  I mean. If they have a Frog. They do, right?";

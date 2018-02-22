@@ -12,7 +12,7 @@ class GrimDarkQuests extends Scene{
 	@override
 	bool trigger(playerList){
 		this.players = [];
-		var living = findLivingPlayers(playerList);
+		var living = findLiving(playerList);
 		for (num i = 0; i<living.length; i++){
 			var player = living[i];
 			if (player is Player) {

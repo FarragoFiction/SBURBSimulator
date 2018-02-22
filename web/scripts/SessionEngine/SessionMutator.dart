@@ -682,7 +682,7 @@ class SessionMutator {
     //does everything a regular combo does, but a scratch will call this if there's a space field.
     void scratchedCombo(Session s, List<Player> guardians) {
         s.logger.info("AB: A Space player is letting the Players enter their own Scratch.");
-        List<Player> living = findLivingPlayers(guardians);
+        List<Player> living = findLiving(guardians);
         if(living.isEmpty) {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own Scratched Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe their former guardians can revive them? ");
         }else {

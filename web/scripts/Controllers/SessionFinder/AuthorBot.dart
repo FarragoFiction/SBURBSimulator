@@ -101,7 +101,7 @@ abstract class AuthorBot extends SimController {
       }
      // //print("debugging AB: no scratch ${curSessionGlobalVar.session_id}");
       //////print("doomed timeline prevents reckoning");
-      List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
+      List<Player> living = findLiving(curSessionGlobalVar.players);
       if(curSessionGlobalVar.stats.scratched || living.length == 0){ //can't scrach so only way to keep going.
         ////print("doomed scratched timeline");
         summarizeSession(curSessionGlobalVar);
@@ -143,7 +143,7 @@ abstract class AuthorBot extends SimController {
           scratchAB(curSessionGlobalVar);
           return null;
         }
-        List<Player> living = findLivingPlayers(curSessionGlobalVar.players);
+        List<Player> living = findLiving(curSessionGlobalVar.players);
        // //print("debugging AB: about to see if i should summarize session ${curSessionGlobalVar.session_id}");
         if(curSessionGlobalVar.stats.won || living.length == 0 || curSessionGlobalVar.stats.scratched){
           ////print("debugging AB: victory or utter defeat in session session ${curSessionGlobalVar.session_id}");
@@ -163,7 +163,7 @@ abstract class AuthorBot extends SimController {
   void scratchAB(Session session) {
     needToScratch = false;
     //treat myself as a different session that scratched one?
-    List<Player> living = findLivingPlayers(session.players);
+    List<Player> living = findLiving(session.players);
     if(!session.stats.scratched && living.length > 0){
       ////print("scartch");
       //alert("AB sure loves scratching!");

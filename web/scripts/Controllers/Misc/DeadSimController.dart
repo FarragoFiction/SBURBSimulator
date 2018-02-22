@@ -136,7 +136,7 @@ class DeadSimController extends SimController {
     if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
       curSessionGlobalVar = tmpcurSessionGlobalVar;
       //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-      List<Player> living = findLivingPlayers(curSessionGlobalVar.aliensClonedOnArrival);
+      List<Player> living = findLiving(curSessionGlobalVar.aliensClonedOnArrival);
      //window.alert("doing combo session in dead, cloned aliens: ${living.length}");
 
     if(living.isEmpty) {

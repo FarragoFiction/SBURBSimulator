@@ -5109,3 +5109,31 @@ Shogun does not even attempt to enter the session. (confirmed that intro is not 
 At first, he seemed to be in the player list but he suddenly isn't anymore?
 Other dead session players can invade sessions no problem.
 Session 13 overrights existing players with meta players. This might blow shogun away.
+
+~~~~~~~
+
+........Alright.
+
+why.
+
+Why does the thief of blood loot the black king, but then doesn't have the scepter?
+
+cuz they get corpse smooched okay.
+
+but.
+
+why else?
+
+
+ThiefBlood (Wise Guy Book, RING OF ORBS EIGHTFOLD, Candelabra, ..., Nuclear Winter Poster, Compass) is looting BlackKing 's corpse of [SCEPTER]
+VM715:1 after looting I have (Wise Guy Book, RING OF ORBS EIGHTFOLD, Candelabra, Dice, ..., Compass, SCEPTER) and corpse has ()
+VM715:1 ThiefBlood (Wise Guy Book, Friendship Bracelet) is looting KnightLight 's corpse of []
+
+like right there.
+
+They get the RING and then......they go to loot their friend and dont' have it anymore.
+......
+....
+are they alchemizing with it?
+
+maybe add "crowned" to their title.

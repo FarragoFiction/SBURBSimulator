@@ -100,7 +100,7 @@ class QuestsAndStuff extends Scene {
         }
 
         if(helper == null && player.companions.isNotEmpty) {
-            List<GameEntity> choices = findLivingPlayers(player.companions);
+            List<GameEntity> choices = findLiving(player.companions);
             helper = rand.pickFrom(choices);
         }
         return new QuestingParty(session, player, helper);

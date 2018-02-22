@@ -379,7 +379,7 @@ List<Player> findDoomedPlayers(List<Player> playerList) {
 
 //TODO shove this somewhere mroe useful, rename so not just players
 //take in a generic type as long as it extends generic and return a generic type, you get mix of sprites and players, returns that way.i hope
-List<T> findLivingPlayers<T extends GameEntity> (List<T> playerList){
+List<T> findLiving<T extends GameEntity> (List<T> playerList){
     List<T> ret = new List<T>();
     for (int i = 0; i < playerList.length; i++) {
         if (!playerList[i].dead || (playerList[i].session.mutator.doomField && playerList[i].dead )) { //the dead are alive.

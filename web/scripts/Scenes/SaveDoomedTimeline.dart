@@ -156,7 +156,7 @@ class SaveDoomedTimeLine extends Scene {
 
 
 
-		var living = findLivingPlayers(this.session.players);
+		var living = findLiving(this.session.players);
 		if(living.length > 0){
 			ret += " The " + this.timePlayer.htmlTitleBasic() + " has sacrificed themself to change the timeline. ";
 			ret += " YOUR session's " + this.timePlayer.htmlTitle() + " is fine, don't worry about it...but THIS one is now doomed. ";

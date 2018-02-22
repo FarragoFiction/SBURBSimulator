@@ -393,7 +393,7 @@ class EngageMurderMode extends Scene{
 	}
 
 	void chat(Element div){
-		List<Player> livePlayers = findLivingPlayers(this.session.players);
+		List<Player> livePlayers = findLiving(this.session.players);
 		Player player1 = this.player;
 		Player player2 = player1.getWorstEnemyFromList(livePlayers);
 		if(player2 != null && !player2.dead){
