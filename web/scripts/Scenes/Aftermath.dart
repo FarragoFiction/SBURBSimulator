@@ -300,6 +300,13 @@ class Aftermath extends Scene {
         Player strongest = findMVP(this.session.players);
         end += "<br> The MVP of the session was: " + strongest.htmlTitleWithTip() + " with a grist level  of: ${strongest.grist}";
         end += "<br>Thanks for Playing!<br>";
+        GameEntity bqowner = session.derse.queensRing.owner;
+        GameEntity bkowner = session.derse.kingsScepter.owner;
+        GameEntity wqowner = session.prospit.queensRing.owner;
+        GameEntity wkowner = session.prospit.kingsScepter.owner;
+
+        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqowner.htmlTitle()} has the Black Queens Ring Their ally status is ${bqowner.alliedToPlayers}. <br> ${bkowner.htmlTitle()} has the Black Kings Scepter. Their ally status is ${bkowner.alliedToPlayers}.  <br> ${wqowner.htmlTitle()} has the White Queens Ring. Their ally status is ${wqowner.alliedToPlayers}. <br> ${wkowner.htmlTitle()} has the White Kings Scepter. Their ally status is ${wkowner.alliedToPlayers}. <br>";
+
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;
 

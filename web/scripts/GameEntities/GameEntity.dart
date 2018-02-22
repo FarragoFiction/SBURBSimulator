@@ -11,6 +11,10 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
+
+    //not there yet, but putting down foundation.
+    bool bigBad = false;
+
     //for shenanigans
     bool available  = true;
     //if you become a companion, they are your party leader.
@@ -76,6 +80,24 @@ class GameEntity extends Object with StatOwner   {
             }
         }
 
+    bool get alliedToPlayers {
+
+        //big bads are never allies
+        if(bigBad) return false;
+        if(partyLeader != null && partyLeader.bigBad) return false;
+
+        //lots of ways to be on player's side
+        if(this is Sprite) return true; //you're a guide
+        if(this is Player) return true; //you're a player
+        //you're prospit
+        if(this is Carapace && (this as Carapace).type == Carapace.PROSPIT) return true;
+        //if you're a companion you're an ally.
+        if(partyLeader != null && (partyLeader is Player)) return true;
+
+        //default
+        return false;
+    }
+
 
     List<GameEntity> get companionsCopy {
         //don't want there to be a way to get companions directly
@@ -84,7 +106,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addCompanion(GameEntity companion) {
-        if(companion.partyLeader != this) companion.partyLeader.removeCompanion(companion);
+        if(companion.partyLeader != this && companion.partyLeader != null) companion.partyLeader.removeCompanion(companion);
         companion.partyLeader = this;
         _companions.add(companion);
     }
