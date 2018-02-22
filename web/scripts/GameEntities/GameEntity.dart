@@ -78,6 +78,7 @@ class GameEntity extends Object with StatOwner   {
     GameEntity(this.name, this.session) {
         this.initStatHolder();
         id = GameEntity.generateID();
+        sylladex = new Sylladex(this);
         //default non player thingy.
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic

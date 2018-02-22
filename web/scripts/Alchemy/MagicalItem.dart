@@ -3,6 +3,8 @@ import "../SBURBSim.dart";
 
 //rings and shit.
 class MagicalItem extends Item with StatOwner {
+    @override
+    bool isCopy = false;
     //TODO: FIGURE OUT HOW MAGIC ITEMS EFFECT THEIR OWNERS
     //like, rings and scepters should only effect carapaces besides enabling the reckoning.
 
@@ -25,7 +27,7 @@ class MagicalItem extends Item with StatOwner {
             f.desc = " An appropriately themed beam of light damages enemies and heals allies. ";
             this.fraymotifs.add(f);
         }
-       
+
         for (Stat key in object.stats) {
             addStat(key, object.stats.getBase(key)); //add your stats to my stas.
         }
@@ -35,7 +37,9 @@ class MagicalItem extends Item with StatOwner {
     //magical items can die, if they do so, no longer work and should be nulled out of their owners
     bool dead = false;
 
-    MagicalItem.withoutOptionalParams(String baseName,List<ItemTrait> traitsList):super.withoutOptionalParams(baseName, traitsList);
+    MagicalItem.withoutOptionalParams(String baseName,List<ItemTrait> traitsList):super.withoutOptionalParams(baseName, traitsList){
+        initStatHolder();
+    }
 
 
   @override

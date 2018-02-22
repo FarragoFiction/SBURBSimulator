@@ -105,7 +105,6 @@ class Player extends GameEntity{
         //print("making new player with classpect ${title()} and moon $m");
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
-        sylladex = new Sylladex(this);
     }
 
     @override

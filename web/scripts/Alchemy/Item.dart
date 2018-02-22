@@ -35,7 +35,7 @@ class Item implements Comparable<Item> {
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<ItemTrait>  traits = new Set<ItemTrait>();
 
-    void modMaxUpgrades(Player p) {
+    void modMaxUpgrades(GameEntity p) {
         for(AssociatedStat a in p.associatedStats) {
             if(a.stat == Stats.ALCHEMY) maxUpgrades += a.multiplier.round(); //yes, it might be negative. deal with it.
         }
