@@ -651,10 +651,12 @@ class GameEntity extends Object with StatOwner   {
 
     //a standard RPG trope, even if they are your friend
     void lootCorpse(GameEntity corpse) {
-        print("$this is looting $corpse 's corpse");
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
+        print("$this $sylladex is looting $corpse 's corpse of $tmp");
         if(corpse != this) sylladex.addAll(tmp);
+        print("after looting I have $sylladex and corpse has ${corpse.sylladex}");
+
     }
 
     void makeDead(String causeOfDeath, GameEntity killer) {

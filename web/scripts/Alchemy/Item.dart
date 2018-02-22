@@ -254,9 +254,9 @@ class Sylladex extends Object with IterableMixin<Item> {
             //print("Item copied");
         }
         //we can't both own it
-        if(item.owner != null) item.owner.sylladex.remove(item);
+        if(i.owner != null) i.owner.sylladex.remove(i);
         inventory.add(i);
-        item.owner = owner;
+        i.owner = owner;
         //print("inventory updated");
         i.modMaxUpgrades(owner);
     }
