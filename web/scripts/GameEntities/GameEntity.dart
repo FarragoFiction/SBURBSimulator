@@ -79,6 +79,7 @@ class GameEntity extends Object with StatOwner   {
         this.initStatHolder();
         id = GameEntity.generateID();
         sylladex = new Sylladex(this);
+        //print(" made a new syladdex you asshole, its $sylladex");
         //default non player thingy.
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic
@@ -541,6 +542,19 @@ class GameEntity extends Object with StatOwner   {
         return "${getToolTip()}$ret$pname</span>"; //TODO denizens are aspect colored.  also, that extra span there is to close out the tooltip
     }
 
+    //will be diff for carapaces
+    List<Fraymotif> get fraymotifsForDisplay {
+        List<Fraymotif> ret = new List<Fraymotif>.from(fraymotifs);
+        for(Item item in sylladex) {
+            if(item is MagicalItem) {
+                MagicalItem m = item as MagicalItem;
+                if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
+            }
+        }
+        print("going to return $ret");
+        return ret;
+    }
+
     String htmlTitle() {
         String ret = "";
         if (this.crowned != null) ret = "${ret}Crowned ";
@@ -562,28 +576,48 @@ class GameEntity extends Object with StatOwner   {
         String ret = "<span class = 'tooltip'><span class='tooltiptext'><table>";
         ret += "<tr><td class = 'toolTipSection'>$name<hr>";
 
-        ret += "<br><Br>Prophecy Status: ${prophecy}";
-
         ret += "</td>";
+        Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
-        for (Stat stat in Stats.summarise) {
+        for (Stat stat in as) {
             ret += "$stat: ${getStat(stat).round()}<br>";
         }
 
-        ret += "</td><tr></tr><td class = 'toolTipSection'>Fraymotifs<hr>";
-        for(Fraymotif f in fraymotifs) {
+        ret += "</td>";
+
+
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
+        ret += "${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br>";
+
+        for(Item item in sylladex) {
+            ret += "${item.fullNameWithUpgrade}<br>";
+        }
+
+
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
+
+
+
+        for (Buff b in buffs) {
+            ret += "$b<br>";
+        }
+
+        for (AssociatedStat s in associatedStats) {
+            ret += "$s<br>";
+        }
+
+        ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
+        List<Fraymotif> confusion = fraymotifsForDisplay;
+        //print("I am $this and confusion is $confusion");
+        for(Fraymotif f in confusion) {
             ret += "${f.name}<br>";
         }
 
-        if(crowned != null) {
-            for (Fraymotif f in crowned.fraymotifs) {
-                ret += "${f.name}<br>";
-            }
+        ret += "</td><td class = 'toolTipSection'>Relationships<hr>";
+        for(Relationship r in relationships) {
+            ret += "$r<br>";
         }
-
-        ret += "</td>";
-
-        ret += "</tr></table></span>";
+        ret += "</td></tr></table></span>";
         return ret;
     }
 

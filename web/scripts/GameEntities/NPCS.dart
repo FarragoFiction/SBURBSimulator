@@ -34,6 +34,19 @@ class Carapace extends NPC {
         if(name == null) pickName(); //if you already have a name, don't pick one.
     }
 
+
+    List<Fraymotif> get fraymotifsForDisplay {
+        List<Fraymotif> ret = new List.from(fraymotifs);
+        for(Item item in sylladex) {
+            if(item is MagicalItem) {
+                MagicalItem m = item as MagicalItem;
+                //don't need to include other things
+                ret.addAll(m.fraymotifs);
+            }
+        }
+        return ret;
+    }
+
     void pickName() {
         if(crowned != null) {
             name = "Crowned ${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
@@ -696,7 +709,9 @@ class Consort extends NPC {
 //TODO eventually put this logic here instead of in player, and have mechanism for
 //creating a denizen live here in a static method.
 class Denizen extends NPC {
-    Denizen(String name, Session session) : super(name, session);
+    Denizen(String name, Session session) : super(name, session) {
+        //print("making new denizen $this with syladdex $sylladex");
+    }
 
     @override
     Denizen clone() {
