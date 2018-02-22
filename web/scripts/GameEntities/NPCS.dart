@@ -17,20 +17,15 @@ class Carapace extends NPC {
     List<String> lastNames;
     List<String> ringFirstNames;
     List<String> ringLastNames;
-    //TODO do things with this
-    List<Scene> scenesForPlayers;
-    List<Scene> scenesForNPCS;
     String type;
 
 
     //TYPE IS REQUIRED. don't try to make it a moon ref, because if moon blows up or combo session, i am still dersite.
-    Carapace(String name, Session session, String this.type, {this.firstNames: null, this.lastNames: null, this.ringFirstNames: null, this.ringLastNames: null, this.scenesForPlayers: null, this.scenesForNPCS: null}) : super(name, session) {
+    Carapace(String name, Session session, String this.type, {this.firstNames: null, this.lastNames: null, this.ringFirstNames: null, this.ringLastNames: null}) : super(name, session) {
         if(firstNames == null) firstNames = <String>[];
         if(lastNames == null) lastNames = <String>[];
         if(ringFirstNames == null) ringFirstNames = new List<String>.from(firstNames);
         if(ringLastNames == null) ringLastNames = new List<String>.from(lastNames);
-        if(scenesForNPCS == null) scenesForNPCS = <Scene>[];
-        if(scenesForPlayers == null) scenesForPlayers = <Scene>[];
         if(name == null) pickName(); //if you already have a name, don't pick one.
     }
 

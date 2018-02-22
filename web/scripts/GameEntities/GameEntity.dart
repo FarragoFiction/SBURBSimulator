@@ -12,6 +12,9 @@ enum ProphecyState {
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
 
+    //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
+    List<Scene> scenes = new List<Scene>();
+
     //not there yet, but putting down foundation.
     bool bigBad = false;
 

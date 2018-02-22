@@ -47,7 +47,6 @@ class Session {
     num sessionType = -999;
     List<String> doomedTimelineReasons = <String>[]; //am I even still using this?
     num currentSceneNum = 0;
-    List<Scene> scenes = <Scene>[]; //scene controller initializes all this.
     List<Scene> reckoningScenes = <Scene>[];
     List<Scene> deathScenes = <Scene>[];
     List<Scene> available_scenes = <Scene>[];

@@ -21,40 +21,35 @@ abstract class Scene {
   //but like, only things related to scenes, not all the shitty things I added just so i'd have them
   //  like ocdatastring shit.
 
-  static void createScenesForSession(Session session){
+  static void createScenesForPlayer(Session session, Player player){
    // print("making scenes for $session");
     if(session is DeadSession) {
-      createScenesForDeadSession(session);
+      createScenesForDeadSession(session, player);
       return;
     }
-    session.scenes = [new FuckingDie(session),new GetWasted(session),new StartDemocracy(session), new KingPowerful(session), new QueenRejectRing(session)];
+
+    player.scenes = [new FuckingDie(session),new GetWasted(session),new StartDemocracy(session), new KingPowerful(session), new QueenRejectRing(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-    session.scenes.addAll([new QuadrantDialogue(session),new FreeWillStuff(session),new Gristmas(session), new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
-    session.scenes.addAll([new VoidyStuff(session),  new DoEctobiology(session), new LuckStuff(session), new QuestsAndStuff(session)]);
-    session.scenes.addAll([new LevelTheHellUp(session)]);
+    player.scenes.addAll([new QuadrantDialogue(session),new FreeWillStuff(session),new Gristmas(session), new GrimDarkQuests(session),new Breakup(session), new RelationshipDrama(session), new UpdateShippingGrid(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new MurderPlayers(session),new BeTriggered(session),]);
+    player.scenes.addAll([new VoidyStuff(session),  new DoEctobiology(session), new LuckStuff(session), new QuestsAndStuff(session)]);
+    player.scenes.addAll([new LevelTheHellUp(session)]);
 
     //make sure kiss, then godtier, then godtierrevival, then any other form of revival.
     //make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
     session.deathScenes = [ new SaveDoomedTimeLine(session), new GetTiger(session), new CorpseSmooch(session), new GodTierRevival(session), new LifeStuff(session)];  //are always available.
     session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
-    //scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
-    session.available_scenes = []; //remove scenes from this if they get used up.
-    //make non shallow copy.
-    for(num i = 0; i<session.scenes.length; i++){
-      session.available_scenes.add(session.scenes[i]);
-    }
   }
 
   //dead sessions are exactly like regular sessions but only 1 player in array and less scenes. no romance, etc.
-  static void createScenesForDeadSession(Session session) {
+  static void createScenesForDeadSession(Session session, Player player) {
     //print("making scenes for DEAD $session");
-    session.scenes = [new FuckingDie(session),new DeadQuests(session),new DeadMeta(session)];
+    player.scenes = [new FuckingDie(session),new DeadQuests(session),new DeadMeta(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
-    session.scenes.addAll([new Gristmas(session),new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);
-    session.scenes.addAll([new VoidyStuff(session), new LuckStuff(session)]);
+    player.scenes.addAll([new Gristmas(session),new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);
+    player.scenes.addAll([new VoidyStuff(session), new LuckStuff(session)]);
 
-    session.scenes.addAll([new LevelTheHellUp(session)]);
+    player.scenes.addAll([new LevelTheHellUp(session)]);
 
     //make sure kiss, then godtier, then godtierrevival, then any other form of revival.
     //make sure life stuff happens AFTER a chance at god tier, or life players PREVENT god tiering.
@@ -63,10 +58,7 @@ abstract class Scene {
 
     //scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
     session.available_scenes = []; //remove scenes from this if they get used up.
-    //make non shallow copy.
-    for(num i = 0; i<session.scenes.length; i++){
-      session.available_scenes.add(session.scenes[i]);
-    }
+
   }
 
 
