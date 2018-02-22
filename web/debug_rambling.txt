@@ -5137,3 +5137,26 @@ They get the RING and then......they go to loot their friend and dont' have it a
 are they alchemizing with it?
 
 maybe add "crowned" to their title.
+
+....Oh.
+
+It's a robo clone of the Thief of Blood.
+
+Okay.
+
+So.
+
+
+
+How to do frog and reckoning?
+
+If a player or any of their companions or a prospit carapace has the Scepter, reckoning ends.
+If a player or any of their companions or a prospit carapace as the ring, frog happens.
+
+So new scenes. But can at least have a debug statement at the end of the current aftermath to test that asking the session
+"does a player own the black queens ring" or whatever.
+
+maybe game entities can have a flag "allied with players". which gets tripped if they are a companion
+a player, or prospit. or it can be a get
+
+yeah npc needs to know who their 'party leader' is.

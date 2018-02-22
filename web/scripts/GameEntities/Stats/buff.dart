@@ -205,7 +205,7 @@ class BuffLord extends Buff {
             if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
                 //print("buff health stat");
                 if(val + sumMinionStats(holder, stat, val)<1) {
-                    print ("$gameEntity would have gotten negative hp from this shitty minion. ${val + sumMinionStats(holder, stat, val)}. They have ${gameEntity.companions.length} minions. And their natural hp would have been ${val}");
+                    print ("$gameEntity would have gotten negative hp from this shitty minion. ${val + sumMinionStats(holder, stat, val)}. They have ${gameEntity.companionsCopy.length} minions. And their natural hp would have been ${val}");
                     return 1.0;
                 }
                 return val + sumMinionStats(holder, stat, val);
@@ -218,7 +218,7 @@ class BuffLord extends Buff {
 
     double sumMinionStats(StatHolder holder, Stat stat, double val) {
         double ret = 0.0;
-        for(GameEntity g in gameEntity.companions) {
+        for(GameEntity g in gameEntity.companionsCopy) {
             if(!g.dead) {
                 ret += g.getStat(stat);
             }

@@ -13,12 +13,14 @@ enum ProphecyState {
 class GameEntity extends Object with StatOwner   {
     //for shenanigans
     bool available  = true;
+    //if you become a companion, they are your party leader.
+    GameEntity partyLeader;
     bool activated = false;
     static int _nextID = 0;
     Specibus specibus;
     Sylladex sylladex = null;
     //1/16/18 let's fucking do this. npc update go. mostly npcs but can be brain ghosts and robots, too.
-    List<GameEntity> companions = new List<GameEntity>();
+    List<GameEntity> _companions = new List<GameEntity>();
 
     ProphecyState prophecy = ProphecyState.NONE; //doom players can give this which nerfs their stats but ALSO gives them a huge boost when they die
     //TODO figure out how i want tier 2 sprites to work. prototyping with a carapace and then a  player and then god tiering should result in a god tier Player that can use the Royalty's Items.
@@ -73,6 +75,24 @@ class GameEntity extends Object with StatOwner   {
                 }
             }
         }
+
+
+    List<GameEntity> get companionsCopy {
+        //don't want there to be a way to get companions directly
+        //cuz then i might add and remove without going through methods.
+        return new List<GameEntity>.from(_companions);
+    }
+
+    void addCompanion(GameEntity companion) {
+        if(companion.partyLeader != this) companion.partyLeader.removeCompanion(companion);
+        companion.partyLeader = this;
+        _companions.add(companion);
+    }
+
+    void removeCompanion(GameEntity companion) {
+        companion.partyLeader = null;
+        _companions.remove(companion);
+    }
 
 
     GameEntity(this.name, this.session) {

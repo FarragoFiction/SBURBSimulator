@@ -622,7 +622,7 @@ class DeadSessionPlayerEntered  extends ImportantEvent {
 		narration += "The now doomed " + this.doomedTimeClone.htmlTitleBasic() + " fails to vanishes  in a cloud of gears and instead joins the dead players party as long as they can.";
 		appendHtml(div, narration);
 
-		player.companions.add(this.doomedTimeClone);
+		player.addCompanion(this.doomedTimeClone);
 		var divID = (div.id) + "_alt_jack_promotion";
 		String canvasHTML = "<br><canvas id='canvas" + divID + "' width='$canvasWidth' height='$canvasHeight'>  </canvas>";
 		appendHtml(div, canvasHTML);

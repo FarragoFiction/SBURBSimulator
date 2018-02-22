@@ -99,8 +99,8 @@ class QuestsAndStuff extends Scene {
             helper = player.sprite;
         }
 
-        if(helper == null && player.companions.isNotEmpty) {
-            List<GameEntity> choices = findLiving(player.companions);
+        if(helper == null && player.companionsCopy.isNotEmpty) {
+            List<GameEntity> choices = findLiving(player.companionsCopy);
             helper = rand.pickFrom(choices);
         }
         return new QuestingParty(session, player, helper);

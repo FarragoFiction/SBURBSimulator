@@ -557,7 +557,7 @@ class Player extends GameEntity{
 
         ret += "</td>";
         ret += "<td class = 'toolTipSection'>Companions<hr>";
-        for(GameEntity g in companions) {
+        for(GameEntity g in companionsCopy) {
             String species  = "";
             if(g is Leprechaun) species = "(Leprechaun)";
             if(g is Consort) species = "(Consort)";

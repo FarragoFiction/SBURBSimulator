@@ -93,7 +93,7 @@ class Leprechaun extends NPC {
         //if it's 8, instead return a Dersite Carapace
         //stats are based on number, too.
         int leprechaunsAlreadyObtained = 0;
-        for(GameEntity g in player.companions) {
+        for(GameEntity g in player.companionsCopy) {
             if(g is Leprechaun) {
                 leprechaunsAlreadyObtained ++;
             }else if(g is Carapace && eightNames.contains(g.name)) {

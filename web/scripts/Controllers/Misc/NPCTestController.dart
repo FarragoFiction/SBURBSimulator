@@ -26,7 +26,7 @@ main() {
     for(int i = 0; i<20; i++) {
         GameEntity l = Leprechaun.getLeprechaunForPlayer(p);
         leprechaunsNames.add("${l.name} (${l.highestStat})");
-        p.companions.add(l);
+        p.addCompanion(l);
     }
     appendHtml(storyDiv, "<br><Br>Leprechauns are: ${turnArrayIntoHumanSentence(leprechaunsNames)} ");
     appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Lord:  ${p.debugStats}");

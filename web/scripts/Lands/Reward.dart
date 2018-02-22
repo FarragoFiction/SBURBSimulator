@@ -84,7 +84,7 @@ class RandomReward extends Reward {
 
         Reward chosen;
         //some classes are nearly guaranteed to get certain things.
-        if(p1.class_name.isProtective && p1.companions.isEmpty) {
+        if(p1.class_name.isProtective && p1.companionsCopy.isEmpty) {
             chosen = new ConsortReward(); //pages always get at least one companion.
         }else if(p1.class_name.isMagical && p1.fraymotifs.isEmpty) {
             chosen = new FraymotifReward();
@@ -165,7 +165,7 @@ class DenizenReward extends Reward {
         if(p1.class_name == SBURBClassManager.LORD) {
             GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
             text += " The ${Reward.PLAYER1} also unlocks the Leprechaun minion for this Land. They name them ${c.name}.";
-            p1.companions.add(c);
+            p1.addCompanion(c);
         }
 
         if(p1.aspect == Aspects.HOPE) {
@@ -173,7 +173,7 @@ class DenizenReward extends Reward {
             if(c != null) {
                 text += " The ${Reward.PLAYER1} also believes hard enough to manifest ${c.title()}.";
                 p1.session.logger.info("Hope player beat denizen and manifested brain ghost");
-                p1.companions.add(c);
+                p1.addCompanion(c);
             }
         }
         p1.increaseGrist(100.0);
@@ -222,11 +222,11 @@ class ConsortReward extends Reward {
         Consort template = land.consortFeature.makeConsort(p1.session);
         Consort c = Consort.npcForPlayer(template, p1); //will handle picking a title out.
         String text = " The ${Reward.PLAYER1} finds a ${c.sound}ing ${c.name}. They adopt it as their child.";
-        p1.companions.add(c);
+        p1.addCompanion(c);
         if(p2 != null && p2 is Player) {
             Player p2Player = p2 as Player;
             Consort c2 = Consort.npcForPlayer(template, p2);
-            p2Player.companions.add(c);
+            p2Player.addCompanion(c);
             text += "The ${Reward.PLAYER2} finds a ${c.name} as well.";
             text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
         }
@@ -248,7 +248,7 @@ class LeprechaunReward extends Reward {
         //snow man is a carapace.
         GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
         String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and vow to figure out exactly what ${c.name} is good for.";
-        p1.companions.add(c);
+        p1.addCompanion(c);
         //p2 gets NOTHING this is a Lord after all
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         p1.session.logger.info("AB: fakeDesc reward.");
@@ -281,7 +281,7 @@ class BrainGhostReward extends Reward {
         //don't have two copies of the same brain ghost
         List<Player> toRemove = new List<Player>();
         for(Player pbg in possibleBrainGhosts) {
-            for(GameEntity g in p1.companions) {
+            for(GameEntity g in p1.companionsCopy) {
                 if(g is Player) {
                     Player gP = g as Player;
                     if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) {
@@ -330,7 +330,7 @@ class BrainGhostReward extends Reward {
             relationship = p1.getRelationshipWith(p).saved_type;
             text = " The ${Reward.PLAYER1} believes really hard in their $relationship, the ${p.htmlTitle()} they are surprised, but happy, when it turns out that the version of them in their head can help them out in strifes! ";
         }
-        p1.companions.add(p);
+        p1.addCompanion(p);
         p2 = p; //so they get rendered.
 
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
@@ -633,7 +633,7 @@ class DreamReward extends Reward {
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
-            p1.companions.add(companion);
+            p1.addCompanion(companion);
         }
 
 
@@ -659,7 +659,7 @@ class DreamReward extends Reward {
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An"; //look at me, doing grammar
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
-            p1.companions.add(companion);
+            p1.addCompanion(companion);
         }
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;

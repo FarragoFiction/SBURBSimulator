@@ -449,7 +449,7 @@ class Aftermath extends Scene {
 
         for (int i = 0; i < allPlayers.length; i++) {
             living.addAll(allPlayers[i].doomedTimeClones);
-            for(GameEntity g in allPlayers[i].companions) {
+            for(GameEntity g in allPlayers[i].companionsCopy) {
                 if(g is Player && !g.dead) ret.add(g);
             }
         }

@@ -62,10 +62,10 @@ class Gristmas extends Scene {
   bool playerCanMakeRobot(Player p)
 
     {
-        bool first = getAlchemySkillNormalized(p) >=2 && p.companions.isEmpty;
+        bool first = getAlchemySkillNormalized(p) >=2 && p.companionsCopy.isEmpty;
         if(first) return first;
         //one last shot, you like tech?
-        if(InterestManager.TECHNOLOGY.playerLikes(p) && getAlchemySkillNormalized(p) >=1 && p.companions.isEmpty ) return true;
+        if(InterestManager.TECHNOLOGY.playerLikes(p) && getAlchemySkillNormalized(p) >=1 && p.companionsCopy.isEmpty ) return true;
         return false;
     }
 
@@ -93,7 +93,7 @@ class Gristmas extends Scene {
       p.bloodColor = getRandomGreyColor();
       Relationship r = player.getRelationshipWith(p);
       if(r != null) robot = "the ${r.target.htmlTitleBasic()}";
-      player.companions.add(p);
+      player.addCompanion(p);
 
       String ret = "The ${player.htmlTitle()} is spending a really long time at the Alchemiter. What's going on? Huh. Is that.... a ROBOT of $robot ? That seems like it will come in handy. Way more useful than the original.";
       CanvasElement canvas = new CanvasElement(width: 400, height: 400);

@@ -698,7 +698,7 @@ abstract class Drawing {
         i++;
 
         ctx.fillText("Companions Gathered: ", left_margin, current + line_height * i);
-        ctx.fillText(player.companions.length.toString(), right_margin, current + line_height * i);
+        ctx.fillText(player.companionsCopy.length.toString(), right_margin, current + line_height * i);
         i++;
         ctx.fillText("Grim Dark Level: ", left_margin, current + line_height * i);
         ctx.fillText("${player.grimDark}/4", right_margin, current + line_height * i);
