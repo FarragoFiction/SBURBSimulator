@@ -17,6 +17,9 @@ class GameEntity extends Object with StatOwner   {
     bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
     List<Scene> scenes = new List<Scene>();
+    //mostly for npcs, might not be the best way to do it but it's what i'm gonna do for now.
+    //x starts flipping out about TAB soda
+    List<String> distractions = new List<String>();
 
     //not there yet, but putting down foundation.
     bool bigBad = false;
@@ -123,6 +126,7 @@ class GameEntity extends Object with StatOwner   {
            // print("checking scene $s");
             if (s.trigger(session.getReadOnlyAvailablePlayers())) {
                 //session.scenesTriggered.add(s);
+                s.gameEntity = this;
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }

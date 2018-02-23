@@ -14,7 +14,10 @@ class BeDistracted extends Scene {
   }
 
   String getText() {
-      return "$gameEntity is distracted. <br>PLACEHOLDER:   JR wants this to be diff for each carapace, but how? Pass in valid distractions on init?";
+      print("game entity is $gameEntity");
+      List<String> genericDistractions = <String>["is distracted looking out at Skaia.","got stuck glitching into a wall for a while","forgot what they were doing for a bit."];
+      genericDistractions.addAll(gameEntity.distractions);
+      return "<br>The ${gameEntity.title()} ${rand.pickFrom(genericDistractions)}";
   }
 
   @override
