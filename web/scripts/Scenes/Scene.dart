@@ -2,11 +2,10 @@ import "dart:html";
 import "../SBURBSim.dart";
 
 abstract class Scene {
-  bool canRepeat = true;
   Session session;
 
     List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
-  Scene(Session this.session, [bool this.canRepeat = true]); //eventually take in session.
+  Scene(Session this.session); //eventually take in session.
 
 
   //each scene should know how to be triggered.
@@ -57,7 +56,6 @@ abstract class Scene {
     session.reckoningScenes = [new FightQueen(session), new FightKing(session)];
 
     //scenes can add other scenes to available scene list. (for example, spy missions being added if Jack began scheming)
-    session.available_scenes = []; //remove scenes from this if they get used up.
 
   }
 

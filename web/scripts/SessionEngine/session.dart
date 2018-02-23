@@ -22,6 +22,9 @@ class Session {
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
+
+    List<GameEntity> activatedNPCS = <GameEntity>[];
+
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
 
     num sessionHealth = 500 * Stats.POWER.coefficient; //grimDark players work to lower it. at 0, it crashes.  maybe have it do other things at other levels, or effect other things.
@@ -49,7 +52,6 @@ class Session {
     num currentSceneNum = 0;
     List<Scene> reckoningScenes = <Scene>[];
     List<Scene> deathScenes = <Scene>[];
-    List<Scene> available_scenes = <Scene>[];
     Session parentSession = null;
     //private, should only be accessed by methods so removing a player can be invalid for time/breath
     List<Player> _availablePlayers = <Player>[]; //which players are available for scenes or whatever.
@@ -287,21 +289,26 @@ class Session {
 
     //yes this should have been a get, but it's too annoying to fix now, used in too many places and refactoring menu doesn't know how to convert from method to get.
     List<Player> getReadOnlyAvailablePlayers() {
-        return new List<Player>.from(_availablePlayers);
+        List<Player> ret = new List<Player>();
+        for(Player p in players){
+            if(p.available) ret.add(p);
+        }
+        return ret;
     }
 
     bool isPlayerAvailable(Player p) {
-        return (_availablePlayers.contains(p));
+        return p.available;
     }
 
     void addAvailablePlayer(Player p) {
-        _availablePlayers.add(p);
+        p.available = true;
     }
 
     //near as i can figure logger.debug just straight up never works.
     void removeAvailablePlayer(GameEntity p1) {
         if (p1 == null || !(p1 is Player)) {
             //logger.info("i think player is null or not a player");
+            if(p1 != null) p1.available = false; //for npcs
             return;
         }
         Player p = p1;
@@ -344,6 +351,7 @@ class Session {
         for (num i = 0; i < playerList.length; i++) {
             //dead players are always unavailable.
             if (!playerList[i].dead) {
+                playerList[i].available = true;
                 this._availablePlayers.add(playerList[i]);
             }
         }
@@ -355,6 +363,12 @@ class Session {
         ////print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
         setAvailablePlayers(playersInSession);
+
+        for(Player p in _availablePlayers) {
+
+
+        }
+
         for (num i = 0; i < this.available_scenes.length; i++) {
             Scene s = this.available_scenes[i];
             //var debugQueen = queenStrength;

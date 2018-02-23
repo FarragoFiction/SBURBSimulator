@@ -11,7 +11,10 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
-
+    //players activate when they enter session, npcs activate when they encounter a player.
+    bool active = false;
+    //availibility set to false by scenes
+    bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
     List<Scene> scenes = new List<Scene>();
 
@@ -99,6 +102,19 @@ class GameEntity extends Object with StatOwner   {
 
         //default
         return false;
+    }
+
+    //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
+    //this is intended. probably.
+    void processScenes() {
+        //can do as many as you want, so long as you haven't been taken out of availibility
+        for(Scene s in scenes) {
+            if (s.trigger(session.getReadOnlyAvailablePlayers())) {
+                //session.scenesTriggered.add(s);
+                this.session.numScenes ++;
+                s.renderContent(this.session.newScene(s.runtimeType.toString()));
+            }
+        }
     }
 
 
