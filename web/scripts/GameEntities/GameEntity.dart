@@ -12,7 +12,7 @@ enum ProphecyState {
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
     //players activate when they enter session, npcs activate when they encounter a player.
-    bool active = false;
+    bool _active = false;
     //availibility set to false by scenes
     bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
@@ -70,6 +70,19 @@ class GameEntity extends Object with StatOwner   {
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
     List<Player> doomedTimeClones = <Player>[]; //help fight the final boss(es).
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
+
+    void set active(bool isActive) {
+        _active = isActive;
+        if(_active && !session.players.contains(this)) {
+            session.activatedNPCS.add(this);
+        }else {
+            session.activatedNPCS.remove(this);
+        }
+    }
+
+    bool get active {
+        return _active;
+    }
 
 
     //just returns first, hoarding them does nothing.

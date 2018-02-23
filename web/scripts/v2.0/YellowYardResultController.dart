@@ -132,7 +132,7 @@ void redemptionArc() {
     s.makePlayers();
     s.randomizeEntryOrder();
     s.makeGuardians();
-    s.createScenes();
+    s.createScenesForPlayers();
     curSessionGlobalVar = s;
     SimController.instance = null;
     new StoryController();

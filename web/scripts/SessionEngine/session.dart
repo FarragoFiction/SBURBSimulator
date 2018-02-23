@@ -56,7 +56,6 @@ class Session {
     List<Scene> deathScenes = <Scene>[];
     Session parentSession = null;
     //private, should only be accessed by methods so removing a player can be invalid for time/breath
-    List<Player> _availablePlayers = <Player>[]; //which players are available for scenes or whatever.
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
     SessionStats stats = new SessionStats();
@@ -317,12 +316,12 @@ class Session {
         //if you're dead, you're removed even if time/breath NOT doing this in old system probably caused some livly corpse bugs
         if(p.dead || !(p.aspect == Aspects.TIME || p.aspect == Aspects.BREATH || mutator.breathField)) {
             //logger.info("removing player $p");
-            removeFromArray(p, _availablePlayers);
+            p.available = false;
         }else {
             if(!mutator.breathField) {
                 //small chance to remove anyways so time players are less op.
                 if(rand.nextDouble() > 0.4) {
-                    removeFromArray(p, _availablePlayers);
+                    p.available = false;
                 }
             }
             //logger.info("not removing player $p, i think they are a breath or time player or the breath field is active ");
@@ -349,15 +348,15 @@ class Session {
 
     //  //makes copy of player list (no shallow copies!!!!)
     List<Player> setAvailablePlayers(List<Player> playerList) {
-        this._availablePlayers = <Player>[];
+        List<Player> ret = <Player>[];
         for (num i = 0; i < playerList.length; i++) {
             //dead players are always unavailable.
             if (!playerList[i].dead) {
                 playerList[i].available = true;
-                this._availablePlayers.add(playerList[i]);
+                ret.add(playerList[i]);
             }
         }
-        return this._availablePlayers;
+        return ret;
     }
 
     void resetNPCAvailability()
@@ -371,9 +370,9 @@ class Session {
     void processScenes(List<Player> playersInSession) {
         print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
-        setAvailablePlayers(playersInSession);
+        List<Player> avail = setAvailablePlayers(playersInSession);
         resetNPCAvailability();
-        for(Player p in _availablePlayers) {
+        for(Player p in avail) {
             print("$p is available");
             if(p.active) p.processScenes();
         }
@@ -547,7 +546,8 @@ class Session {
         return;
     }
 
-    void createScenes() {
+    void createScenesForPlayers() {
+        print("creating scenes for ${players.length} players");
         for(Player p in players) {
             Scene.createScenesForPlayer(this, p);
         }
@@ -622,7 +622,7 @@ class Session {
 
         this.stats.hadCombinedSession = true;
         newSession.parentSession = this;
-        newSession.createScenes();
+        newSession.createScenesForPlayers();
         ////print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
         return newSession;
     }
@@ -647,7 +647,7 @@ class Session {
         ////print("reinit with seed: "  + Math.seed);
         this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
-        createScenes();
+        createScenesForPlayers();
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
@@ -705,6 +705,8 @@ class Session {
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
 
         this.setUpBosses();
+
+        createScenesForPlayers();
 
     }
 

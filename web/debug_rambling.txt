@@ -5214,3 +5214,14 @@ That's new.
 
 Ah, there we go. The players think they have zero scenes for some reason. Excellent.
 
+
+God fucking damn it. It thinks there are zero plaeyrs when it inits the scenes. because of course it does.
+
+I must be calling it at the wrong time. I'm gonna just....
+
+have players create their own scens on creation i think.
+wait no, then things who are technically players but not active ones would have useless scenes.
+nope nope nope
+
+
+

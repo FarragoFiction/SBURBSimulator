@@ -599,6 +599,9 @@ class PitchRomanceReward extends Reward {
 ///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
 class DreamReward extends Reward {
 
+    double companionOdds = 0.95;
+    double activationOdds = 0.9;
+
     @override
     String image = null;
     String bgImage = "Prospit.png";
@@ -619,17 +622,22 @@ class DreamReward extends Reward {
     }
 
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("prospit reward");
+       // p1.session.logger.info("getting random carapace for prospit reward");
         bgImage = "Prospit.png";
 
         //TODO if they join your party, that's fine
         //but if they start up a SHENANIGAN we'll want custom text here.
         Carapace companion;
-        companion = p1.session.prospit.randomNonActiveCarapace;
-        companion.active = true;
+        if(p1.session.rand.nextDouble() > companionOdds) {
+            companion = p1.session.prospit.randomNonActiveCarapace;
+        }else if(p1.session.rand.nextDouble() > activationOdds) {
+            Carapace doop = p1.session.prospit.randomNonActiveCarapace;
+            doop.active;
+        }
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
+            companion.active = true;
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
@@ -648,14 +656,17 @@ class DreamReward extends Reward {
     }
 
     void applyDerse(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("derse reward");
+        //p1.session.logger.info("getting random carapace for derse reward");
         bgImage = "Derse.png";
         Carapace companion;
-        companion = p1.session.derse.randomNonActiveCarapace;
-        companion.active = true;
+        if(p1.session.rand.nextDouble() > 0.7) {
+            companion = p1.session.derse.randomNonActiveCarapace;
+        }
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {
+            companion.active = true;
+
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An"; //look at me, doing grammar
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";

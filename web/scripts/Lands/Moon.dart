@@ -106,6 +106,7 @@ class Moon extends Land {
               choices.add(g);
           }
       }
+      //print("getting a random carapace from $choices");
       return session.rand.pickFrom(choices);
   }
 

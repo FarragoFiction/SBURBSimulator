@@ -367,7 +367,7 @@ void scratch() {
     curSessionGlobalVar.makePlayers();
     curSessionGlobalVar.randomizeEntryOrder();
     curSessionGlobalVar.makeGuardians(); //after entry order established
-    curSessionGlobalVar.createScenes();
+    curSessionGlobalVar.createScenesForPlayers();
 
     curSessionGlobalVar.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 
