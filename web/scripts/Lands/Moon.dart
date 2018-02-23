@@ -107,6 +107,9 @@ class Moon extends Land {
           }
       }
       //print("getting a random carapace from $choices");
+
+      //always pick jack, he is the main npc
+      if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
       return session.rand.pickFrom(choices);
   }
 

@@ -3,8 +3,11 @@ import "../../SBURBSim.dart";
 
 abstract class Scene {
   Session session;
+  //mostly for npcs in new scene system
+  GameEntity gameEntity;
 
-    List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
+
+  List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today
   Scene(Session this.session); //eventually take in session.
 
 

@@ -117,10 +117,10 @@ class GameEntity extends Object with StatOwner   {
     //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
     //this is intended. probably.
     void processScenes() {
-        print("processing ${scenes.length} scenes for $this");
+       // print("processing ${scenes.length} scenes for $this");
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
-            print("checking scene $s");
+           // print("checking scene $s");
             if (s.trigger(session.getReadOnlyAvailablePlayers())) {
                 //session.scenesTriggered.add(s);
                 this.session.numScenes ++;

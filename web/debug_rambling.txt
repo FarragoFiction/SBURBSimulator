@@ -5223,5 +5223,13 @@ have players create their own scens on creation i think.
 wait no, then things who are technically players but not active ones would have useless scenes.
 nope nope nope
 
+~~~~~
 
+currently problem. only companions are being parsed as active, not bumped into carapaces like jack
+
+
+hrrm, it even says jack isn't active....but....
+A Jack Noir bumps into them and they chat a bit.
+
+that happens. that should be them activating
 

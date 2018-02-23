@@ -104,6 +104,7 @@ class GodTierRevival extends Scene {
 				} else {
 					if (roll < -1 * breakNeeded) {
 						session.logger.info(" unlucky break for god tier revival in" );
+						//he. he just died. out of NOWHERE.
 						ret += " ... Huh. Should the clock be DOING that? It's on both HEROIC and JUST at the same time, somehow? Not neither of them. Talk about a BAD BREAK. They do not revive.  ";
 						p.canGodTierRevive = false;
 						p.causeOfDeath += " (it was an unlucky judgement) ";

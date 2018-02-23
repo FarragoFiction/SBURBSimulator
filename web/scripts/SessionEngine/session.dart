@@ -368,12 +368,12 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
-        print("processing scene");
+        //print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
         List<Player> avail = setAvailablePlayers(playersInSession);
         resetNPCAvailability();
         for(Player p in avail) {
-            print("$p is available");
+            //print("$p is available");
             if(p.active) p.processScenes();
         }
 
