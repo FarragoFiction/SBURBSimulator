@@ -21,11 +21,8 @@ class GameEntity extends Object with StatOwner   {
     //not there yet, but putting down foundation.
     bool bigBad = false;
 
-    //for shenanigans
-    bool available  = true;
     //if you become a companion, they are your party leader.
     GameEntity partyLeader;
-    bool activated = false;
     static int _nextID = 0;
     Specibus specibus;
     Sylladex sylladex = null;

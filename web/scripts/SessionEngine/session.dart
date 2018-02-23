@@ -358,30 +358,25 @@ class Session {
         return this._availablePlayers;
     }
 
+    void resetNPCAvailability()
+    {
+        for(GameEntity g in activatedNPCS) {
+            if(!g.dead) g.available;
+        }
+    }
+
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
         ////print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
         setAvailablePlayers(playersInSession);
-
+        resetNPCAvailability();
         for(Player p in _availablePlayers) {
-
-
+            if(p.active) p.processScenes();
         }
 
-        for (num i = 0; i < this.available_scenes.length; i++) {
-            Scene s = this.available_scenes[i];
-            //var debugQueen = queenStrength;
-            if (s.trigger(playersInSession)) {
-                //session.scenesTriggered.add(s);
-                this.numScenes ++;
-
-                s.renderContent(this.newScene(s.runtimeType.toString()));
-                if (!s.canRepeat) {
-                    //removeFromArray(s,session.available_scenes);
-                    this.available_scenes.remove(s);
-                }
-            }
+        for(GameEntity g in activatedNPCS) {
+            if(g.active && g.available) g.processScenes();
         }
 
         for (num i = 0; i < this.deathScenes.length; i++) {
