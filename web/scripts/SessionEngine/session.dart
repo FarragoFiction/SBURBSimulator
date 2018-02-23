@@ -15,6 +15,8 @@ class Session {
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
     Logger logger = null;
+    //for the reckoning
+    int numTicks = 0;
     Battlefield battlefield;
     Moon prospit;
     Moon derse;
@@ -367,11 +369,12 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
-        ////print("processing scene");
+        print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
         setAvailablePlayers(playersInSession);
         resetNPCAvailability();
         for(Player p in _availablePlayers) {
+            print("$p is available");
             if(p.active) p.processScenes();
         }
 

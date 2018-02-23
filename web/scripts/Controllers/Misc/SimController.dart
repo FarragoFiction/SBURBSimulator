@@ -15,6 +15,7 @@ import "../../navbar.dart";
 //ABController inherits from Story Controller and only changes what she must.
 //care about other controllers later.
 abstract class SimController {
+    int maxTicks = 300;
     static bool shogun = false;  //sim goes into shogun mode
     static int spriteTemplateWidth = 400;
     static int spriteTemplateHeight = 300;
@@ -66,7 +67,7 @@ abstract class SimController {
         }
         IntroNew s = new IntroNew(curSessionGlobalVar);
         Player p = curSessionGlobalVar.players[player_index];
-        print("Calling next intro in a regular sim controller. Player index is ${player_index } and number of players is ${curSessionGlobalVar.players.length}. ${curSessionGlobalVar.players[player_index]}, vs ${curSessionGlobalVar.players}");
+        //print("Calling next intro in a regular sim controller. Player index is ${player_index } and number of players is ${curSessionGlobalVar.players.length}. ${curSessionGlobalVar.players[player_index]}, vs ${curSessionGlobalVar.players}");
 
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
@@ -378,12 +379,13 @@ abstract class SimController {
     }
 
     void tick([num time]) {
-        ////print("Debugging AB: tick");
+        curSessionGlobalVar.numTicks ++;
+        print("Debugging AB: tick");
         ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
         int maxScenes = 1000; //don't go forever, dunkass
-        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numScenes > maxScenes ||  findLiving(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
+        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numTicks > maxTicks ||  findLiving(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
            curSessionGlobalVar.logger.info("reckoning at ${curSessionGlobalVar.timeTillReckoning} and can reckoning is ${curSessionGlobalVar.canReckoning}");
             curSessionGlobalVar.timeTillReckoning = 0; //might have gotten negative while we wait.
             reckoning();

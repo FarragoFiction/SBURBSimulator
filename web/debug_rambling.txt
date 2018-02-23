@@ -5193,3 +5193,24 @@ and then different things can set it on.
 
 need to do instance, too.
 
+
+~~~~
+
+post scene refactoring:
+
+
+
+observed behavior:
+
+all the intro scenes go with no interuptions, then nothing else.
+
+no clue why. so. let's go digging.
+
+Alright, console says infinite ticks are happening with no ending.
+
+So.
+
+That's new.
+
+Ah, there we go. The players think they have zero scenes for some reason. Excellent.
+
