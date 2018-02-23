@@ -61,45 +61,8 @@ export "OCDataStringHandler.dart";
 export "quirk.dart";
 
 
-//scenes
-export "Scenes/Scene.dart";
-export "Scenes/FuckingDie.dart";
-export "Scenes/Gristmas.dart";
-export "Scenes/FightKing.dart";
-export "Scenes/Aftermath.dart";
-export "Scenes/BeTriggered.dart";
-export "Scenes/Breakup.dart";
-export "Scenes/CorpseSmooch.dart";
-export "Scenes/DisengageMurderMode.dart";
-export "Scenes/DoEctobiology.dart";
-export "Scenes/QuestsAndStuff.dart";
-export "Scenes/EngageMurderMode.dart";
 
-export "Scenes/FightQueen.dart";
-export "Scenes/FreeWillStuff.dart";
-export "Scenes/GetTiger.dart";
-export "Scenes/GetWasted.dart";
-export "Scenes/GodTierRevival.dart";
-export "Scenes/GoGrimDark.dart";
-export "Scenes/GrimDarkQuests.dart";
-export "Scenes/IntroNew.dart";
-export "Scenes/levelthehellup.dart";
-export "Scenes/LifeStuff.dart";
-export "Scenes/LuckStuff.dart";
-export "Scenes/MurderPlayers.dart";
-export "Scenes/PowerDemocracy.dart";
-export "Scenes/QuadrantDialogue.dart";
-export "Scenes/QueenRejectRing.dart";
-export "Scenes/Reckoning.dart";
-export "Scenes/RelationshipDrama.dart";
-export "Scenes/SaveDoomedTimeline.dart";
-export "Scenes/UpdateShippingGrid.dart";
-export "Scenes/VoidyStuff.dart";
-export "Scenes/YellowYard.dart";
-export "Scenes/DeadScenes/DeadIntro.dart";
-export "Scenes/DeadScenes/DeadReckoning.dart";
-export "Scenes/DeadScenes/DeadMeta.dart";
-export "Scenes/DeadScenes/DeadQuests.dart";
+export "Scenes/SceneLibrary.dart";
 
 export "includes/colour.dart";
 export "includes/palette.dart";

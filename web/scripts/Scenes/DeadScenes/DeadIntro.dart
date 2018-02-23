@@ -46,7 +46,7 @@ class DeadIntro extends Scene {
     }
 
     @override
-    bool trigger(List<Player> playerList) {
+    bool trigger(List<GameEntity> playerList) {
         return true;
     }
 }

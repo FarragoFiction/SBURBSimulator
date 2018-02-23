@@ -1,6 +1,6 @@
 import "dart:html";
 import "../../SBURBSim.dart";
-import "../../Lands/Feature.dart";
+import "../../SBURBSim.dart";
 
 /// // a scene where the chosen meta player fucks with the single player
 
