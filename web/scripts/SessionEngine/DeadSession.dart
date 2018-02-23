@@ -391,7 +391,7 @@ class DeadSession extends Session {
 
         this.stats.hadCombinedSession = true;
         newSession.parentSession = this;
-        Scene.createScenesForSession(newSession);
+        Scene.createScenesForPlayer(newSession, players.first);
         return newSession;
     }
 

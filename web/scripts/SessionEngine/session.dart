@@ -524,7 +524,7 @@ class Session {
         //reinit the seed and restart the session
         //var savedPlayers = curSessionGlobalVar.players;
         this.reinit();
-        Scene.createScenesForSession(curSessionGlobalVar);
+
         //players need to be reinit as well.
         curSessionGlobalVar.makePlayers();
         curSessionGlobalVar.randomizeEntryOrder();
@@ -533,6 +533,12 @@ class Session {
         this.easterCallBack(this);
 
         return;
+    }
+
+    void createScenes() {
+        for(Player p in players) {
+            Scene.createScenesForPlayer(this, p);
+        }
     }
 
     void easterCallBack(Session that) {
@@ -568,8 +574,6 @@ class Session {
         bool ectoSave = this.stats.ectoBiologyStarted;
         reinit();
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
-        //TODO originally scratched yards didn't recreate scenes, seeing if this is source of post land update yellow yard post scratch bug
-        Scene.createScenesForSession(curSessionGlobalVar);
         curSessionGlobalVar.makePlayers();
         curSessionGlobalVar.randomizeEntryOrder();
         curSessionGlobalVar.makeGuardians(); //after entry order established
@@ -606,7 +610,7 @@ class Session {
 
         this.stats.hadCombinedSession = true;
         newSession.parentSession = this;
-        Scene.createScenesForSession(newSession);
+        newSession.createScenes();
         ////print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
         return newSession;
     }
@@ -632,7 +636,7 @@ class Session {
         this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         this.available_scenes = <Scene>[]; //need a fresh slate because UpdateShippingGrid has MEMORY unlike all other scenes.
-        Scene.createScenesForSession(this);
+        createScenes();
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;

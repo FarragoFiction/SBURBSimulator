@@ -356,7 +356,6 @@ void scratch() {
     var ectoSave = curSessionGlobalVar.stats.ectoBiologyStarted;
 
     SimController.instance.reinit();
-    Scene.createScenesForSession(curSessionGlobalVar);
     curSessionGlobalVar.stats.scratched = true;
     curSessionGlobalVar.stats.scratchAvailable = false;
     curSessionGlobalVar.stats.doomedTimeline = false;
@@ -371,6 +370,8 @@ void scratch() {
     curSessionGlobalVar.makePlayers();
     curSessionGlobalVar.randomizeEntryOrder();
     curSessionGlobalVar.makeGuardians(); //after entry order established
+    curSessionGlobalVar.createScenes();
+
     curSessionGlobalVar.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
 
     checkEasterEgg(scratchEasterEggCallBack, null);

@@ -21,8 +21,6 @@ class DeadSimController extends SimController {
     //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
     reinit();
     ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
-    Scene.createScenesForSession(curSessionGlobalVar);
-    ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
     curSessionGlobalVar.makePlayers();
     ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
     curSessionGlobalVar.randomizeEntryOrder();

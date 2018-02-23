@@ -321,8 +321,7 @@ abstract class SimController {
         changeCanonState(getParameterByName("canonState",null));
         //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
         reinit();
-        ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
-        Scene.createScenesForSession(curSessionGlobalVar);
+
         ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
 
         //let's combo sessions still work
