@@ -624,24 +624,28 @@ class DreamReward extends Reward {
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
        // p1.session.logger.info("getting random carapace for prospit reward");
         bgImage = "Prospit.png";
-
-        //TODO if they join your party, that's fine
         //but if they start up a SHENANIGAN we'll want custom text here.
         Carapace companion;
+        Carapace activated;
+
         if(p1.session.rand.nextDouble() > companionOdds) {
             companion = p1.session.prospit.randomNonActiveCarapace;
         }else if(p1.session.rand.nextDouble() > activationOdds) {
-            Carapace doop = p1.session.prospit.randomNonActiveCarapace;
-            doop.active;
+            activated = p1.session.prospit.randomNonActiveCarapace;
         }
 
-        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
+        String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
             companion.active = true;
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
             p1.addCompanion(companion);
+        }else if (activated != null) {
+            activated.active;
+            String a  = "A";
+            if(activated.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
+            text += "$a ${activated.name} bumps into them and they chat a bit.";
         }
 
 
@@ -659,11 +663,14 @@ class DreamReward extends Reward {
         //p1.session.logger.info("getting random carapace for derse reward");
         bgImage = "Derse.png";
         Carapace companion;
-        if(p1.session.rand.nextDouble() > 0.7) {
+        Carapace activated;
+        if(p1.session.rand.nextDouble() > companionOdds) {
             companion = p1.session.derse.randomNonActiveCarapace;
+        }else if(p1.session.rand.nextDouble() > activationOdds) {
+            activated = p1.session.derse.randomNonActiveCarapace;
         }
 
-        String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
+        String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {
             companion.active = true;
 
@@ -671,6 +678,11 @@ class DreamReward extends Reward {
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An"; //look at me, doing grammar
             text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
             p1.addCompanion(companion);
+        }else if (activated != null) {
+            activated.active;
+            String a  = "A";
+            if(activated.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
+            text += "$a ${activated.name} bumps into them and they chat a bit.";
         }
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;
