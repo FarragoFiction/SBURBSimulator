@@ -8,7 +8,7 @@ class QuestsAndStuff extends Scene {
 	List<QuestingParty> landParties = new List<QuestingParty>();
     List<QuestingParty> moonParties = new List<QuestingParty>();
     List<QuestingParty> skaiaParties = new List<QuestingParty>();
-	QuestsAndStuff(Session session): super(session, false);
+	QuestsAndStuff(Session session): super(session);
 
 
     /*

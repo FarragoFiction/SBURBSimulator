@@ -4,7 +4,7 @@ import "../SBURBSim.dart";
 class Reckoning extends Scene {
   bool canRepeat = false;
 
-  Reckoning(Session session) : super(session, false);
+  Reckoning(Session session) : super(session);
 
   @override
   bool trigger(playerList) {

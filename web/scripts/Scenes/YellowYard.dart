@@ -8,7 +8,7 @@ class YellowYard extends Scene {
 	//mostly just a collection of methods needed fo this.
 
 
-	YellowYard(Session session) : super(session, false);
+	YellowYard(Session session) : super(session);
 
 
 	@override

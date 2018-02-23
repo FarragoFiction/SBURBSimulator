@@ -13,7 +13,7 @@ class Breakup extends Scene {
 	
 
 
-	Breakup(Session session): super(session, false);
+	Breakup(Session session): super(session);
 
 	@override
 	bool trigger(List<Player> playerList){

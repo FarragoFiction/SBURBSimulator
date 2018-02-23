@@ -5,7 +5,7 @@ import "../SBURBSim.dart";
 class QueenRejectRing extends Scene {
   bool canRepeat = false;
 
-	QueenRejectRing(Session session): super(session, false);
+	QueenRejectRing(Session session): super(session);
 
 
 	@override

@@ -6,7 +6,7 @@ import "../SBURBSim.dart";
 
 class Aftermath extends Scene {
 
-    Aftermath(Session session) : super(session, false);
+    Aftermath(Session session) : super(session);
     List<Player> entered = new List<Player>();
 
     @override

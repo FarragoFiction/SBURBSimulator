@@ -102,7 +102,7 @@ class Moon extends Land {
   Carapace get randomNonActiveCarapace {
       List<Carapace> choices = new List<Carapace>();
       for(GameEntity g in associatedEntities) {
-          if(g is Carapace && !g.activated) {
+          if(g is Carapace && !g.active) {
               choices.add(g);
           }
       }

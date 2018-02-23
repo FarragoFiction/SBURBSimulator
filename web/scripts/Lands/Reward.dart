@@ -626,7 +626,7 @@ class DreamReward extends Reward {
         //but if they start up a SHENANIGAN we'll want custom text here.
         Carapace companion;
         companion = p1.session.prospit.randomNonActiveCarapace;
-        companion.activated = true;
+        companion.active = true;
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
@@ -652,7 +652,7 @@ class DreamReward extends Reward {
         bgImage = "Derse.png";
         Carapace companion;
         companion = p1.session.derse.randomNonActiveCarapace;
-        companion.activated = true;
+        companion.active = true;
 
         String text = "The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {

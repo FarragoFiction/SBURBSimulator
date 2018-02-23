@@ -14,6 +14,7 @@ class IntroNew extends IntroScene {
   @override
   void renderContent(Element div, int i) {
       //window.alert("$player is entering");
+      player.active = true;
       doNarration(div,i);
       String chat = "";
       if(player.dead) {

@@ -4,8 +4,7 @@ import "../SBURBSim.dart";
 //that's it, i'm syncing hp to death status and that's FINAL.
 
 class FuckingDie extends Scene {
-    bool canRepeat = true;
-    FuckingDie(Session session): super(session, false);
+    FuckingDie(Session session): super(session);
     List<Player> futureCorpses = new List<Player>();
 
 

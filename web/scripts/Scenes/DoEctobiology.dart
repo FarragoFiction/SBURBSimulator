@@ -11,7 +11,7 @@ class DoEctobiology extends Scene {
 	
 
 
-	DoEctobiology(Session session): super(session, false);
+	DoEctobiology(Session session): super(session);
 
 	@override
 	bool trigger(List<Player> playerList){

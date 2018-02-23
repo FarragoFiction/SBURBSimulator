@@ -595,7 +595,6 @@ class SessionMutator {
         effectsInPlay ++;
         String ret = "The ${activatingPlayer.htmlTitle()} is living the dream. The very fabric of SBURB is being undone according to their whims. Alchemy will now work the way it SHOULD, the way they know in their heart. They also make sure everyone has plenty of items to alchemize with.";
 
-        s.available_scenes.insert(0, new Gristmas(s));
         s.deathScenes.insert(0, new Gristmas(s));
         s.reckoningScenes.insert(0, new Gristmas(s));
 

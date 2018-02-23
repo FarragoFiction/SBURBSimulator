@@ -83,8 +83,6 @@ export "Scenes/GodTierRevival.dart";
 export "Scenes/GoGrimDark.dart";
 export "Scenes/GrimDarkQuests.dart";
 export "Scenes/IntroNew.dart";
-
-export "Scenes/KingPowerful.dart";
 export "Scenes/levelthehellup.dart";
 export "Scenes/LifeStuff.dart";
 export "Scenes/LuckStuff.dart";
@@ -95,7 +93,6 @@ export "Scenes/QueenRejectRing.dart";
 export "Scenes/Reckoning.dart";
 export "Scenes/RelationshipDrama.dart";
 export "Scenes/SaveDoomedTimeline.dart";
-export "Scenes/StartDemocracy.dart";
 export "Scenes/UpdateShippingGrid.dart";
 export "Scenes/VoidyStuff.dart";
 export "Scenes/YellowYard.dart";
