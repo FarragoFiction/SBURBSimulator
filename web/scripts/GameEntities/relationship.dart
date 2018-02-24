@@ -6,9 +6,9 @@ import "../SBURBSim.dart";
 class Relationship {
 
     static int CRUSHVALUE = 20;
-    Player source;
+    GameEntity source;
     num value = 0;
-    Player _target;
+    GameEntity _target;
     String saved_type = "";
     bool drama = false; //drama is set to true if type of relationship changes.
     String old_type = ""; //wish class variables were a thing.
@@ -23,12 +23,12 @@ class Relationship {
     String spades = "Kismesissitude";
 
 
-    Relationship(Player this.source, [num this.value = 0, Player this._target = null]) {
+    Relationship(GameEntity this.source, [num this.value = 0, GameEntity this._target = null]) {
         type(); //check to see if it's a crush or not
     }
 
     //target has to be private if light player can override it. this lets code still do .target, but not .target =
-    Player get target {
+    GameEntity get target {
         if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) {
             Player megalomaniac =  curSessionGlobalVar.mutator.inSpotLight;
             if(source != megalomaniac) return megalomaniac; //don't be in a relationship with your self.

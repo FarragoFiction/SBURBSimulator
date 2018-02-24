@@ -38,7 +38,7 @@ class SeekRing extends Scene {
 
       if(prospitRel.value < derseRel.value ) target = blackRingOwner;
 
-      print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
+      window.alert("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
       //TODO seek the ring of whoever you like the least
 
