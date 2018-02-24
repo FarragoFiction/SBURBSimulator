@@ -34,7 +34,6 @@ void setup() {
   testSessionSummaries = []; //reset
   testSessionSummaryJuniors = [];
   Session testSession = new Session(0);
-  testSession.setUpBosses();
   testSession.players = [];
   testSessionSummaries.add(testSession.generateSummary());
   testSessionSummaries.add(testSession.generateSummary());

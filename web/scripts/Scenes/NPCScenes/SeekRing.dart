@@ -31,14 +31,16 @@ class SeekRing extends Scene {
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
       GameEntity target = whiteRingOwner;
+      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);
+      print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
 
 
-      if(prospitRel.value < derseRel.value ) target = blackRingOwner;
+      if(derseRel.value < prospitRel.value ) target = blackRingOwner;
 
-      window.alert("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
+      print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
       //TODO seek the ring of whoever you like the least
 

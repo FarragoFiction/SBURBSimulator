@@ -777,6 +777,11 @@ class GameEntity extends Object with StatOwner   {
 
     Relationship getRelationshipWith(GameEntity target) {
         //stub for boss fights where an asshole absconds.
+        for (Relationship r in relationships) {
+            if (r.target.id == target.id) {
+                return r;
+            }
+        }
         return null;
     }
 

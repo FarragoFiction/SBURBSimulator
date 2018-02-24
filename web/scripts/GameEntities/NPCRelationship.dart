@@ -11,7 +11,9 @@ class NPCRelationship extends Relationship {
     String clubs = "Helpers";
     String spades = "Best Rivals";
 
-  NPCRelationship(GameEntity source, [int value, GameEntity target]) : super(source, value, target);
+  NPCRelationship(GameEntity source, [int value, GameEntity target]) : super(source, value, target) {
+    print("making npc relationship between $source and $target");
+  }
 
     String nounDescription() {
         return "friend";

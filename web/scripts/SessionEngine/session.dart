@@ -286,6 +286,10 @@ class Session {
          for(Player p in players) {
              p.syncToSessionMoon();
          }
+         prospit.spawnQueen();
+         derse.spawnQueen();
+         prospit.spawnKing();
+         derse.spawnKing();
 
        prospit.initRelationships(derse);
        derse.initRelationships(prospit);
@@ -655,7 +659,6 @@ class Session {
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
-        this.setUpBosses();
         this.setupMoons();
         //fix refereances
 
@@ -707,8 +710,6 @@ class Session {
         Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
         double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
-
-        this.setUpBosses();
 
         createScenesForPlayers();
 
@@ -819,16 +820,7 @@ class Session {
 
     }
 
-    void setUpBosses() {
-        //queen and king handle their jewlery
-        prospit.spawnQueen();
-        derse.spawnQueen();
 
-        prospit.spawnKing();
-        derse.spawnKing();
-
-        npcHandler.spawnDemocraticArmy();
-    }
 
     @override
     String toString() {
