@@ -30,6 +30,8 @@ class SeekRing extends Scene {
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
+      //TODO seek the ring of whoever you like the least
+
       if(gameEntity.violent) tactic = tryFighting;
 
 

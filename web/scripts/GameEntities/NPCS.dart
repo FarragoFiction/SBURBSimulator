@@ -11,8 +11,8 @@ class NPC extends GameEntity {
 //carapaces are the only things that can be crowned and have it give anything but fraymotifs.
 class Carapace extends NPC {
 
-    int royaltyOpinion = 0;
-    int sideLoyalty = 0;
+    int royaltyOpinion = 1;
+    int sideLoyalty = 1;
 
     static String PROSPIT = "prospit";
     static String DERSE = "derse";
