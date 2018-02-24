@@ -30,6 +30,16 @@ class SeekRing extends Scene {
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
+      GameEntity target = whiteRingOwner;
+
+      Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
+      Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);
+
+
+      if(prospitRel.value < derseRel.value ) target = blackRingOwner;
+
+      print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
+
       //TODO seek the ring of whoever you like the least
 
       if(gameEntity.violent) tactic = tryFighting;

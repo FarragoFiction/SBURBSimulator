@@ -39,7 +39,7 @@ class NPCHandler
             ..makeViolent(1000)
             ..makeCunning(1000)
             ..royaltyOpinion = -1000
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
         );
         midnightCrew.add(jack);
 
@@ -48,7 +48,7 @@ class NPCHandler
             ..specibus = new Specibus("Bomb", ItemTraitFactory.GRENADE, [ ItemTraitFactory.EXPLODEY])
             ..distractions = <String>["is flipping the fuck out about a bull penis cane. What?","is trading everbodies hats in the session.","is eating black licorice gummy bears.","is collecting just. So many bombs. You don't even know.","is stopping arguments between carapaces.","having a tea party with some nice consorts and underlings."]
 
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeLucky(1000)
@@ -57,7 +57,7 @@ class NPCHandler
 
         midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Diamonds","Draconian","Dignified"], lastNames: <String>["Droog","Dignitary","Diplomat"], ringFirstNames: <String>["Dashing","Dartabout","Derelict"], ringLastNames: <String>["Destroyer","Demigod"])
             ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, [ ItemTraitFactory.EDGED, ItemTraitFactory.CLASSY])
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is playing classy records. ","is reading the paper. ","is fantasizing about perfectly tailored suits.", "is hiding his swedish fish.","is reading 'classy literature' about grey ladies.","is keeping everyone calm and productive."]
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 100, Stats.SANITY: 500, Stats.HEALTH: 20, Stats.FREE_WILL: 0, Stats.POWER: 20})
             ..makeCharming(1000)
@@ -67,7 +67,7 @@ class NPCHandler
 
         midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Hearts","Hegemonic","Horse"], lastNames: <String>["Brute","Boxcar","Bartender"], ringFirstNames: <String>["Hero-killing","Hateful"], ringLastNames: <String>["Beast","Bastard"])
             ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.BLUNT])
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is shipping just. All the things.","is reading RED CHEEKS magazine.","is protecting his wax lips candies. ","is updating his shipping grid.","is trying to get his OTP together already.","is demanding that this chump just KISS THE GIRL THIS INSTANT."]
 
 
@@ -93,7 +93,7 @@ class NPCHandler
 
         sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parchment","Pedant","Problem","Paramount","Patriotic"], lastNames: <String>["Sleuth","Secretary","Steward"], ringFirstNames: <String>["Paragon","Promised"], ringLastNames: <String>["Sherrif","Savior","Seraph"])
             ..specibus = new Specibus("Tommy gun", ItemTraitFactory.MACHINEGUN, [ ItemTraitFactory.SHOOTY])
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is reading the gamefaqs for this section of his quest.","is brokering a peace treaty between the clowns, elves and pigs. This has NOTHING to do with SBURB.","is engaging SEPULCHRITU...wait no, never mind. False alarm."]
             ..royaltyOpinion = 10
             ..sideLoyalty = 10
@@ -106,7 +106,7 @@ class NPCHandler
             ..specibus = new Specibus("Handgun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.SHOOTY])
             ..distractions = <String>["is oogling various things. It makes them uncomfortable.","is looking at HUNK RUMP magazine.","is using his high IMAGINATION stat to go on useless adventures."]
             ..sideLoyalty = 10
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: 100, Stats.HEALTH: 1, Stats.FREE_WILL: 500, Stats.POWER: 1})
             ..makeCharming(1000)
             ..makeCunning(1000)
@@ -116,7 +116,7 @@ class NPCHandler
             ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.BLUNT])
             ..distractions = <String>["is punching various things in the snoot to establish dominence.","is brewing the worlds most perfect hot sauce.","is wearing a wig. You assume he's undercover or something?"]
             ..royaltyOpinion = -10
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 100, Stats.FREE_WILL: 100, Stats.POWER: 100})
             ..makeViolent(1000)
             ..makeLucky(1000)
@@ -126,7 +126,7 @@ class NPCHandler
             ..specibus = new Specibus("Lipstick Chainsaw", ItemTraitFactory.CHAINSAW, [ ItemTraitFactory.EDGED])
             ..distractions = <String>["is threatening everyone around her with a chainsaw.","is completely hysterical.","is making friends with women of ill repute."]
             ..sideLoyalty = 10
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeCharming(1000)
@@ -137,7 +137,7 @@ class NPCHandler
             ..specibus = new Specibus("Flamethrower", ItemTraitFactory.PISTOL, [ ItemTraitFactory.ONFIRE])
             ..distractions = <String>["is very nervous.","is having a nervous breakdown.","is trying to figure out the difference between a teddy bear and a knife."]
             ..sideLoyalty = 10
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 1, Stats.FREE_WILL: 100, Stats.POWER: 1})
             ..makeViolent(1000)
@@ -257,7 +257,7 @@ class NPCHandler
         );
         //EA	HorrorTerrors	Eldritch Acolyte, Eccentric Advocate, Eclectic Alien	Efflorant Atronach	Derse
         randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Eldritch","Eccentric","Eclectic"], lastNames: <String>["Acolyte","Alien","Advocate"], ringFirstNames: <String>["Efflorant"], ringLastNames: <String>["Atronach"])
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is worshiping the horror terrors.","is thinking about ways to make free-to-play games even more evil.","is doing the work of the Elder Gods."]
             ..specibus = new Specibus("Grimoire", ItemTraitFactory.BOOK, [ ItemTraitFactory.PAPER, ItemTraitFactory.CORRUPT, ItemTraitFactory.MAGICAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
@@ -328,7 +328,7 @@ class NPCHandler
         );
 
         randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Mobster","Monster","Maestro"], lastNames: <String>["Kingpin","Killer","Kilo"], ringFirstNames: <String>["Master"], ringLastNames: <String>["Kriminal"])
-            ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is eating a shit ton of sugar.","is just sort of generally being a dick.","is really emotionally invested in this game of Life being played."]
             ..sideLoyalty = -1000
             ..specibus = new Specibus("Brass Knuckles", ItemTraitFactory.FIST, [ ItemTraitFactory.BLUNT, ItemTraitFactory.METAL])
