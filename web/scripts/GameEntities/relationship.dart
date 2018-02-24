@@ -23,6 +23,7 @@ class Relationship {
     String spades = "Kismesissitude";
 
 
+    //in theory any game entity can have a relationship
     Relationship(GameEntity this.source, [num this.value = 0, GameEntity this._target = null]) {
         type(); //check to see if it's a crush or not
     }
@@ -257,7 +258,7 @@ class Relationship {
         ////print("transfer feelings to clones");
         for (int i = 0; i < player.relationships.length; i++) {
             Relationship r = player.relationships[i];
-            Player clone = findClaspectPlayer(clones, r.target.class_name, r.target.aspect);
+            Player clone = findClaspectPlayer(clones, (r.target  as Player).class_name, (r.target  as Player).aspect);
             //if i can't find a clone, it's probably a dead player that didn't come to the new session.
             //may as well keep the original relationship
             if (clone != null) {

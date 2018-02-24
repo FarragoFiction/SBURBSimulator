@@ -284,39 +284,39 @@ class Player extends GameEntity{
 
             if (r.saved_type == r.goodBig) {
                 r.target.addStat(Stats.SANITY, -10);
-                if (r.target.flipOutReason == null) {
-                    r.target.flipOutReason = " their dead crush, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead crush.
-                    r.target.flippingOutOverDeadPlayer = this;
+                if ((r.target  as Player).flipOutReason == null) {
+                    (r.target  as Player).flipOutReason = " their dead crush, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead crush.
+                    (r.target  as Player).flippingOutOverDeadPlayer = this;
                 }
             } else if (r.value > 0) {
                 r.target.addStat(Stats.SANITY, -10);
-                if (r.target.flipOutReason == null) {
-                    r.target.flippingOutOverDeadPlayer = this;
-                    r.target.flipOutReason = " their dead friend, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead friend.
+                if ((r.target  as Player).flipOutReason == null) {
+                    (r.target  as Player).flippingOutOverDeadPlayer = this;
+                    (r.target  as Player).flipOutReason = " their dead friend, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead friend.
                 }
             } else if (r.saved_type == r.spades) {
-                r.target.addStat(Stats.SANITY, -100);
-                r.target.flipOutReason = " their dead Kismesis, the ${this.htmlTitleBasic()}";
-                r.target.flippingOutOverDeadPlayer = this;
+                (r.target  as Player).addStat(Stats.SANITY, -100);
+                (r.target  as Player).flipOutReason = " their dead Kismesis, the ${this.htmlTitleBasic()}";
+                (r.target  as Player).flippingOutOverDeadPlayer = this;
             } else if (r.saved_type == r.heart) {
-                r.target.addStat(Stats.SANITY, -100);
-                r.target.flipOutReason = " their dead Matesprit, the ${this.htmlTitleBasic()}";
-                r.target.flippingOutOverDeadPlayer = this;
+                (r.target  as Player).addStat(Stats.SANITY, -100);
+                (r.target  as Player).flipOutReason = " their dead Matesprit, the ${this.htmlTitleBasic()}";
+                (r.target  as Player).flippingOutOverDeadPlayer = this;
             } else if (r.saved_type == r.diamond) {
-                r.target.addStat(Stats.SANITY, -1000);
-                r.target.damageAllRelationships();
-                r.target.damageAllRelationships();
-                r.target.damageAllRelationships();
-                r.target.flipOutReason = " their dead Moirail, the ${this.htmlTitleBasic()}, fuck, that can't be good...";
-                r.target.flippingOutOverDeadPlayer = this;
+                (r.target  as Player).addStat(Stats.SANITY, -1000);
+                (r.target  as Player).damageAllRelationships();
+                (r.target  as Player).damageAllRelationships();
+                (r.target  as Player).damageAllRelationships();
+                (r.target  as Player).flipOutReason = " their dead Moirail, the ${this.htmlTitleBasic()}, fuck, that can't be good...";
+                (r.target  as Player).flippingOutOverDeadPlayer = this;
             }
 
             //whether or not i care about them, there's also the novelty factor.
             if (dead.length == 1) { //if only I am dead, death still has it's impact and even my enemies care.
                 r.target.addStat(Stats.SANITY, -10);
-                if (r.target.flipOutReason == null) {
-                    r.target.flipOutReason = " the dead player, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead player.
-                    r.target.flippingOutOverDeadPlayer = this;
+                if ((r.target  as Player).flipOutReason == null) {
+                    (r.target  as Player).flipOutReason = " the dead player, the ${this.htmlTitleBasic()}"; //don't override existing flip out reasons. not for something as generic as a dead player.
+                    (r.target  as Player).flippingOutOverDeadPlayer = this;
                 }
             }
             ////print(r.target.title() + " has flipOutReason of: " + r.target.flipOutReason + " and knows about dead player: " + r.target.flippingOutOverDeadPlayer);
@@ -1620,7 +1620,7 @@ class Player extends GameEntity{
             for (num i = 0; i < this.relationships.length; i++) {
                 //needs to be part of this in ADDITION to initialization because what about custom players now.
                 Relationship r = this.relationships[i];
-                if (this.isTroll && this.bloodColor == "#99004d" && r.target.isTroll && r.target.bloodColor == "#99004d") {
+                if (this.isTroll && this.bloodColor == "#99004d" && (r.target  as Player).isTroll && (r.target  as Player).bloodColor == "#99004d") {
                     r.value = -20; //biological imperitive to fight for throne.
                     this.addStat(Stats.SANITY, -10);
                     r.target.addStat(Stats.SANITY, -10);

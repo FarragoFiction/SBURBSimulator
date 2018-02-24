@@ -225,7 +225,7 @@ class FreeWillStuff extends Scene {
         for (int i = 0; i < player.relationships.length; i++) {
             Relationship r = player.relationships[i];
             num v = (r.value).abs();
-            if (ret == null || (v < ret_abs_value && !r.target.dead && !r.target.godTier)) {
+            if (ret == null || (v < ret_abs_value && !r.target.dead && !(r.target as Player).godTier)) {
                 ret = r;
                 ret_abs_value = v;
             }

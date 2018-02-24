@@ -114,7 +114,7 @@ class Breakup extends Scene {
 			}
 
 			if(r.saved_type ==r.spades){
-				var spades = r.target.getSpades();
+				var spades = (r.target as Player).getSpades();
 				if(spades.length > 1){
 					if(rand.nextDouble()*3 < breakUpChance){
 						this.relationshipToBreakUp = r;
@@ -253,11 +253,11 @@ class Breakup extends Scene {
 		chatText += Scene.chatLine(player2Start, player2,"I have no idea what you are talking about!");
 		String other = "";
 		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
-			 other = player2.getHearts()[0].target.chatHandle;
+			 other = (player2.getHearts()[0].target as Player).chatHandle;
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.diamond){
-			other = player2.getDiamonds()[0].target.chatHandle;
+			other = (player2.getDiamonds()[0].target as Player).chatHandle;
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
-			other = player2.getSpades()[0].target.chatHandle;
+			other = (player2.getSpades()[0].target as Player).chatHandle;
 		}
 		chatText += Scene.chatLine(player1Start, player1,"I know what you've been doing with " + other + ". ");
 		chatText += Scene.chatLine(player2Start, player2,"Fuck.");
@@ -278,11 +278,11 @@ class Breakup extends Scene {
 		chatText += Scene.chatLine(player2Start, player2,"What!?");
 		String other = "";
 		if(this.formerQuadrant == this.relationshipToBreakUp.heart){
-			 other = player1.getHearts()[0].target.chatHandle;
+			 other = (player1.getHearts()[0].target as Player).chatHandle;
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.diamond){
-			other = player1.getDiamonds()[0].target.chatHandle;
+			other = (player1.getDiamonds()[0].target as Player).chatHandle;
 		}else if(this.formerQuadrant == this.relationshipToBreakUp.spades){
-			other = player1.getSpades()[0].target.chatHandle;
+			other = (player1.getSpades()[0].target as Player).chatHandle;
 		}
 		chatText += Scene.chatLine(player1Start, player1,"I didn't mean to hurt you. It just happened. But... I'm with " + other + " now. And I didn't want to keep stringing you along.");
 		chatText += Scene.chatLine(player2Start, player2,"How could you!? I thought we were special!");
