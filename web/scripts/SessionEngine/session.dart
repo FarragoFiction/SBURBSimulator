@@ -374,6 +374,7 @@ class Session {
         resetNPCAvailability();
         for(Player p in avail) {
             //print("$p is available");
+            if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
             if(p.active) p.processScenes();
         }
 
