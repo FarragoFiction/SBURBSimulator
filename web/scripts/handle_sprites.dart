@@ -548,7 +548,8 @@ abstract class Drawing {
         }
         List<CanvasElement> spriteBuffers = <CanvasElement>[];
         int startXpt = -235;
-        for (int i = 0; i < players.length; i++) {
+        int numPlayers = Math.min(18, players.length);
+        for (int i = 0; i < numPlayers; i++) {
             spriteBuffers.add(getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight));
             drawSprite(spriteBuffers[i], players[i]);
         }

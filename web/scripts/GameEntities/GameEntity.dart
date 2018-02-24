@@ -109,6 +109,8 @@ class GameEntity extends Object with StatOwner   {
         return false;
     }
 
+
+
     //useful for initing npcs, probably won't use for players.
 
     //hateful and crazy

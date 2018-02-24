@@ -46,6 +46,18 @@ class Moon extends Land {
 
   }
 
+  void initRelationships(Moon opposite) {
+      for(GameEntity g in associatedEntities) {
+          if(g is Carapace) {
+              Carapace c = g as Carapace;
+              c.initRelationshipsAllies(this);
+              c.initRelationshipsEnemies(opposite);
+              c.initRelationshipsPlayers();
+
+          }
+      }
+  }
+
   void destroyRing() {
       queensRing.dead = true;
   }

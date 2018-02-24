@@ -1,4 +1,4 @@
-import "SBURBSim.dart";
+import "../SBURBSim.dart";
 
 
 //can be positive or negative. if high enough, can

@@ -10,6 +10,10 @@ class NPC extends GameEntity {
 
 //carapaces are the only things that can be crowned and have it give anything but fraymotifs.
 class Carapace extends NPC {
+
+    int royaltyOpinion = 0;
+    int sideLoyalty = 0;
+
     static String PROSPIT = "prospit";
     static String DERSE = "derse";
 
@@ -27,6 +31,41 @@ class Carapace extends NPC {
         if(ringFirstNames == null) ringFirstNames = new List<String>.from(firstNames);
         if(ringLastNames == null) ringLastNames = new List<String>.from(lastNames);
         if(name == null) pickName(); //if you already have a name, don't pick one.
+    }
+
+
+    void initRelationshipsAllies(Moon us) {
+        for(GameEntity g in us.associatedEntities) {
+            if(g != this && g is Carapace) {
+                Carapace c = g as Carapace;
+                int value = sideLoyalty;
+                if(g== us.king || g == us.queen) value += royaltyOpinion;
+                relationships.add(new NPCRelationship(this, value, c));
+            }
+        }
+    }
+
+    void initRelationshipsEnemies(Moon them) {
+        for(GameEntity g in them.associatedEntities) {
+            if(g != this && g is Carapace) {
+                Carapace c = g as Carapace;
+                int value = -1*sideLoyalty;
+                if(g== them.king || g == them.queen) value += -1*royaltyOpinion;
+                relationships.add(new NPCRelationship(this, value, c));
+            }
+        }
+    }
+
+    //this MIGHT be called early enought that custom sessions break this
+    //this amuses me, like none of the npcs know who you are because you replaced the original players.
+    //depending on how bad it is i might let it stay canon
+    void initRelationshipsPlayers() {
+        for(GameEntity g in session.players) {
+            if(g != this && g is Carapace) {
+                Carapace c = g as Carapace;
+                relationships.add(new NPCRelationship(this, 1, c));
+            }
+        }
     }
 
 

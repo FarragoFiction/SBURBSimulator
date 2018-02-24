@@ -286,6 +286,9 @@ class Session {
          for(Player p in players) {
              p.syncToSessionMoon();
          }
+
+       prospit.initRelationships(derse);
+       derse.initRelationships(prospit);
     }
 
     //yes this should have been a get, but it's too annoying to fix now, used in too many places and refactoring menu doesn't know how to convert from method to get.

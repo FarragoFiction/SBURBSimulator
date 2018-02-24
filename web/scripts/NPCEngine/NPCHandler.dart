@@ -385,12 +385,6 @@ class NPCHandler
 
     }
 
-
-
-
-
-
-
     void spawnDemocraticArmy() {
         if(session.mutator.spawnDemocraticArmy(session)) return null;
         this.democraticArmy = new Carapace("Democratic Army", session,Carapace.DERSE); //doesn't actually exist till WV does his thing.

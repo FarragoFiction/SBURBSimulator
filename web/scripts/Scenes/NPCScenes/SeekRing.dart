@@ -2,6 +2,9 @@ import "../../SBURBSim.dart";
 import 'dart:html';
 
 class SeekRing extends Scene {
+    GameEntity target;
+    Action tactic;
+
     SeekRing(Session session) : super(session);
 
   @override
@@ -13,13 +16,23 @@ class SeekRing extends Scene {
 
   }
 
+  void tryFighting() {
+
+  }
+
   String getText() {
 
-      return "TODO: pick a tactic.";
+      return "TODO: pick a tactic. try for the ring.";
   }
 
   @override
   bool trigger(List<Player> playerList) {
+      GameEntity whiteRingOwner = session.prospit.queensRing.owner;
+      GameEntity blackRingOwner = session.derse.queensRing.owner;
+
+      if(gameEntity.violent) tactic = tryFighting;
+
+
       //find who has each ring.
       //for each bearer, ask:
       //if i am stronger than the ring holder, and violent, i will try to strife it off them
