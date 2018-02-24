@@ -43,6 +43,10 @@ class Carapace extends NPC {
                 relationships.add(new NPCRelationship(this, value, c));
             }
         }
+        int value = sideLoyalty;
+        value += royaltyOpinion;
+        relationships.add(new NPCRelationship(this, value, us.king));
+        relationships.add(new NPCRelationship(this, value, us.queen));
     }
 
     void initRelationshipsEnemies(Moon them) {
@@ -54,6 +58,10 @@ class Carapace extends NPC {
                 relationships.add(new NPCRelationship(this, value, c));
             }
         }
+        int value = -1*sideLoyalty;
+        value += -1*royaltyOpinion;
+        relationships.add(new NPCRelationship(this, value, them.king));
+        relationships.add(new NPCRelationship(this, value, them.queen));
     }
 
     //this MIGHT be called early enought that custom sessions break this
