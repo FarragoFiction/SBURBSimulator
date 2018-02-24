@@ -126,6 +126,7 @@ class NPCHandler
 
     }
 
+    //violent, lucky, charming, cunning
     List<Carapace> getDersites() {
 
         List<Carapace> randomDersites = new List<Carapace>();
@@ -221,6 +222,7 @@ class NPCHandler
 
     }
 
+    //violent, lucky, charming, cunning
     List<Carapace> getProspitians() {
 
         List<Carapace> randomProspitians = new List<Carapace>();

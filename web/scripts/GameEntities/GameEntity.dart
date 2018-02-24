@@ -87,6 +87,45 @@ class GameEntity extends Object with StatOwner   {
         return _active;
     }
 
+    //npc traits: violent, lucky, charming, cunning
+
+    bool get violent {
+        if(getStat(Stats.SANITY) <0 && getStat(Stats.RELATIONSHIPS)<0) return true;
+        return false;
+    }
+
+    bool get lucky {
+        if(getStat(Stats.MAX_LUCK) >0 && getStat(Stats.MIN_LUCK) >0) return true;
+        return false;
+    }
+
+    bool get charming {
+        if(getStat(Stats.ALCHEMY) >0 && getStat(Stats.RELATIONSHIPS)>0) return true;
+        return false;
+    }
+
+    bool get cunning {
+        if(getStat(Stats.FREE_WILL) >0 && getStat(Stats.MOBILITY)>0) return true;
+        return false;
+    }
+
+    //useful for initing npcs
+
+    void makeViolent([int base = 100]) {
+
+    }
+
+    void makeLucky([int base = 100]) {
+
+    }
+
+    void makeCharming([int base = 100]) {
+
+    }
+
+    void makeCunning([int base = 100]) {
+
+    }
 
     //just returns first, hoarding them does nothing.
     MagicalItem get crowned
