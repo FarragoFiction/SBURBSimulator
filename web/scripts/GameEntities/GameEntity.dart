@@ -172,10 +172,10 @@ class GameEntity extends Object with StatOwner   {
        // print("processing ${scenes.length} scenes for $this");
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
-           // print("checking scene $s");
+            s.gameEntity = this;
+            // print("checking scene $s");
             if (s.trigger(session.getReadOnlyAvailablePlayers())) {
                 //session.scenesTriggered.add(s);
-                s.gameEntity = this;
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }
