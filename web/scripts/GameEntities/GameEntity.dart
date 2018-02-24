@@ -109,22 +109,30 @@ class GameEntity extends Object with StatOwner   {
         return false;
     }
 
-    //useful for initing npcs
+    //useful for initing npcs, probably won't use for players.
 
+    //hateful and crazy
     void makeViolent([int base = 100]) {
-
+        setStat(Stats.SANITY, -1* base);
+        setStat(Stats.RELATIONSHIPS, -1* base);
     }
 
+    //lucky
     void makeLucky([int base = 100]) {
-
+        setStat(Stats.MIN_LUCK, base);
+        setStat(Stats.MAX_LUCK, base);
     }
 
+    //creative and friendly
     void makeCharming([int base = 100]) {
-
+        setStat(Stats.ALCHEMY, base);
+        setStat(Stats.RELATIONSHIPS, base);
     }
 
+    //determined and fast
     void makeCunning([int base = 100]) {
-
+        setStat(Stats.FREE_WILL, base);
+        setStat(Stats.MOBILITY, base);
     }
 
     //just returns first, hoarding them does nothing.
