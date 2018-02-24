@@ -1,4 +1,4 @@
-library SceneLibrary;
+library DeadSceneLibrary;
 
 export "DeadIntro.dart";
 export "DeadMeta.dart";
