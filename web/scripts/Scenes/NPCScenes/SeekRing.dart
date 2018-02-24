@@ -16,9 +16,21 @@ class SeekRing extends Scene {
 
   }
 
-  void tryFighting() {
+    void tryFighting() {
 
-  }
+    }
+
+    void tryStealing() {
+
+    }
+
+    void tryAsking() {
+
+    }
+
+    void tryFinding() {
+
+    }
 
   String getText() {
 
@@ -27,10 +39,12 @@ class SeekRing extends Scene {
 
   @override
   bool trigger(List<Player> playerList) {
+      tactic = null;
+      target = null;
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
-      GameEntity target = whiteRingOwner;
+      target = whiteRingOwner;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
@@ -42,11 +56,11 @@ class SeekRing extends Scene {
 
       print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
-      //TODO seek the ring of whoever you like the least
-
-      if(gameEntity.violent) tactic = tryFighting;
-
-
+      if(gameEntity.violent && gameEntity.getStat(Stats.POWER) > target.getStat(Stats.POWER)) tactic = tryFighting;
+      if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY)) tactic = tryStealing;
+      if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS)) tactic = tryAsking;
+      if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK)) tactic = tryFinding;
+      
       //find who has each ring.
       //for each bearer, ask:
       //if i am stronger than the ring holder, and violent, i will try to strife it off them
@@ -55,6 +69,6 @@ class SeekRing extends Scene {
       //not all carapaces have 'seek ring' as an option. only ambitious ones
       //this quest can be GIVEN to someone, though.
       //for example, should a big bad have the ring, all players and allies should get this quest
-      return false;
+      return tactic != null && target != null;
   }
 }
