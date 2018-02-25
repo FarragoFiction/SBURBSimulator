@@ -64,12 +64,17 @@ class SeekRing extends Scene {
 
     String tryFinding() {
         //always works, but really hard to trigger
-        return "Seek Ring: $gameEntity try to find ring from $target";
+        gameEntity.sylladex.add(ring);
+        session.logger.info("AB: A ring was just found out of nowhere.");
+
+        return "The ${oldName} trips over practically nothing and somehow finds the $ring !? The  ${target.title()} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
+
     }
 
     String doStrife() {
       //TODO actually have a strife.
-      return "They have a strife???";
+        session.logger.info("AB: A strife for a ring is trying to happen.");
+        return "They have a strife???";
     }
 
   String getText() {
