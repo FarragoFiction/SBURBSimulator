@@ -259,7 +259,7 @@ class Sylladex extends Object with IterableMixin<Item> {
         inventory.add(i);
         i.owner = owner;
         //print("inventory updated");
-        if(owner is Carapace && item is Ring) (owner as Carapace).pickName();
+        if(owner is Carapace && (item is Ring || item is Scepter)) (owner as Carapace).pickName();
         i.modMaxUpgrades(owner);
     }
 

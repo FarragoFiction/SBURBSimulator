@@ -80,7 +80,8 @@ class SeekRing extends Scene {
       print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
 
 
-      if(derseRel.value < prospitRel.value ) target = blackRingOwner;
+      if(derseRel.value < prospitRel.value || target == whiteRingOwner ) target = blackRingOwner;
+      if(target == gameEntity) target = whiteRingOwner;
 
       print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
