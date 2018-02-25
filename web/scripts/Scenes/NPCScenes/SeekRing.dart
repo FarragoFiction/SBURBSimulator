@@ -39,6 +39,7 @@ class SeekRing extends Scene {
         //assasinate if strong enough, else strife.
         if(gameEntity.getStat(Stats.POWER) > target.getStat(Stats.HEALTH)) {
             //should auto loot
+            takeRing();
             target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
             session.logger.info("AB: A ring was assasinated from a target.");
             return "The ${oldName} sneaks up behind the ${targetOldName} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
@@ -51,7 +52,7 @@ class SeekRing extends Scene {
         double rollValueLow = gameEntity.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
         double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
         if(rollValueHigh <300) {
-            gameEntity.sylladex.add(ring);
+            takeRing();
             session.logger.info("AB: A ring was stolen from a target.");
             return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.htmlTitleWithTip()}, and their target is the ${target.htmlTitleWithTip()}! ";
         }else if(rollValueLow < -300) {
@@ -61,11 +62,17 @@ class SeekRing extends Scene {
         }
     }
 
+    void takeRing() {
+        gameEntity.sylladex.add(ring);
+        //for some reason isn't removing in sylladex? testing something.
+        target.sylladex.remove(ring);
+    }
+
     String tryAsking() {
         //thrown out
         Relationship theirRelationship = target.getRelationshipWith(gameEntity);
         if(theirRelationship.value >10) {
-            gameEntity.sylladex.add(ring);
+            takeRing();
             session.logger.info("AB: A ring was given from a target.");
             return "The ${oldName} politely approaches the ${targetOldName} and asks for the $ring. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
         }else if(theirRelationship.value < -10){
@@ -77,7 +84,7 @@ class SeekRing extends Scene {
 
     String tryFinding() {
         //always works, but really hard to trigger
-        gameEntity.sylladex.add(ring);
+        takeRing();
         session.logger.info("AB: A ring was just found out of nowhere.");
 
         return "The ${oldName} trips over practically nothing and somehow finds the $ring !? The  ${targetOldName} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";

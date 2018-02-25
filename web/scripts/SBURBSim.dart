@@ -45,7 +45,7 @@ export "loading.dart";
 export "random.dart";
 export "weighted_lists.dart";
 export "GameEntities/relationship.dart";
-export "GameEntities/NPCrelationship.dart";
+export "GameEntities/NPCRelationship.dart";
 
 export "handle_sprites.dart";
 export "Rendering/renderer.dart";
