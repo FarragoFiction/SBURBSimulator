@@ -77,11 +77,16 @@ class SeekRing extends Scene {
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);
-      print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
+      //print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
 
-
-      if(derseRel.value < prospitRel.value || target == whiteRingOwner ) target = blackRingOwner;
-      if(target == gameEntity) target = whiteRingOwner;
+      //will be null if trying to steal from self
+      if(prospitRel == null) {
+          target == blackRingOwner;
+      }else if(derseRel == null) {
+          target == whiteRingOwner;
+      }else if(derseRel.value < prospitRel.value ) {
+          target = blackRingOwner;
+      }
 
       print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
