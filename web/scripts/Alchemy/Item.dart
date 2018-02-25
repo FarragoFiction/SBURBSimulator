@@ -8,6 +8,7 @@ import "../random_tables.dart";
 import "Trait.dart";
 import "../random.dart";
 import 'dart:collection';
+import "../GameEntities/NPCS.dart";
 
 //I expect aspects and interests to have lists of items inside of them.
 class Item implements Comparable<Item> {
@@ -258,6 +259,7 @@ class Sylladex extends Object with IterableMixin<Item> {
         inventory.add(i);
         i.owner = owner;
         //print("inventory updated");
+        if(owner is Carapace && item is Ring) (owner as Carapace).pickName();
         i.modMaxUpgrades(owner);
     }
 

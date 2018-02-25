@@ -25,16 +25,22 @@ class SeekRing extends Scene {
             session.logger.info("AB: A ring was assasinated from a target.");
             return "The ${gameEntity.title()} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. ";
         }else {
-            return doStrife();
+            return "The ${gameEntity.title()} wants the $ring, they start a strife with the the ${target.title()}!${doStrife()}";
         }
     }
 
     String tryStealing() {
         double rollValueLow = gameEntity.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
         double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
-        //luck if it works or not, if caught, if target dislikes you, strife or insta die, else thrown out
-        return "Seek Ring: $gameEntity try to steal ring from $target";
-
+        if(rollValueHigh <300) {
+            gameEntity.sylladex.add(ring);
+            session.logger.info("AB: A ring was stolen from a target.");
+            return "The ${gameEntity.title()} sneaks up behind the ${target.title()} and pick pockets them! They take the $ring and equip it! ";
+        }else if(rollValueLow < -300) {
+            return "The ${gameEntity.title()} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${doStrife()}";
+        }else {
+            return "The ${gameEntity.title()} tries to pickpocket the $ring from the ${target.title()}, but they fail. They abscond before they are caught! ";
+        }
     }
 
     String tryAsking() {
