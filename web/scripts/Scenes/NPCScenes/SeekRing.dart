@@ -6,11 +6,13 @@ class SeekRing extends Scene {
     Generator<String> tactic;
     Item ring;
     String oldName;
+    bool strifeTime = false;
 
     SeekRing(Session session) : super(session);
 
   @override
   void renderContent(Element div) {
+      strifeTime = false;
       oldName = gameEntity.name;
 
       gameEntity.available = false;
@@ -18,6 +20,15 @@ class SeekRing extends Scene {
       DivElement me = new DivElement();
       me.setInnerHtml(getText());
       div.append(me);
+      if(strifeTime) {
+          Team pTeam = new Team(this.session, <GameEntity>[gameEntity]);
+          pTeam.canAbscond = false;
+          Team dTeam = new Team(this.session, <GameEntity>[target]);
+          dTeam.canAbscond = false;
+          Strife strife = new Strife(this.session, [pTeam, dTeam]);
+          strife.timeTillRocks = 10;
+          strife.startTurn(div);
+      }
 
   }
 
@@ -30,7 +41,7 @@ class SeekRing extends Scene {
             session.logger.info("AB: A ring was assasinated from a target.");
             return "The ${oldName} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
         }else {
-            return "The ${oldName} wants the $ring, they start a strife with the the ${target.title()}!${doStrife()}";
+            return "The ${oldName} wants the $ring, they start a strife with the the ${target.title()}!${prepareStrife()}";
         }
     }
 
@@ -42,7 +53,7 @@ class SeekRing extends Scene {
             session.logger.info("AB: A ring was stolen from a target.");
             return "The ${oldName} sneaks up behind the ${target.title()} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
         }else if(rollValueLow < -300) {
-            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${doStrife()}";
+            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${prepareStrife()}";
         }else {
             return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but they fail. They abscond before they are caught! ";
         }
@@ -56,7 +67,7 @@ class SeekRing extends Scene {
             session.logger.info("AB: A ring was given from a target.");
             return "The ${oldName} politely approaches the ${target.title()} and asks for the $ring. To everyone's surprise, the ${target.title()} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
         }else if(theirRelationship.value < -10){
-            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised that the ${target.title()} is offended enough to strife. ${doStrife()}";
+            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised that the ${target.title()} is offended enough to strife. ${prepareStrife()}";
         }else {
             return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised when it doesn't work.";
         }
@@ -71,15 +82,16 @@ class SeekRing extends Scene {
 
     }
 
-    String doStrife() {
+    String prepareStrife() {
       //TODO actually have a strife.
+        strifeTime = true;
         session.logger.info("AB: A strife for a ring is trying to happen.");
-        return "They have a strife???";
+        return "";
     }
 
   String getText() {
 
-      return "Seek Ring: ${tactic()}";
+      return "<br>Seek Ring: ${tactic()}";
   }
 
   @override
