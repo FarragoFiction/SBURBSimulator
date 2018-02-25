@@ -92,7 +92,7 @@ class SeekScepter extends Scene {
 
   String getText() {
 
-      return "<br>Seek Ring: ${tactic()}";
+      return "<br>Seek Scepter: ${tactic()}";
   }
 
   //todo sometimes someone who doesn't own the ring is chosen.
