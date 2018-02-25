@@ -80,11 +80,11 @@ class Moon extends Land {
         if(name.contains("Prospit")) {
             this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
             this.queen.sylladex.add(this.queensRing);
-            this.king.name = "White Queen"; //override crowned name
+            this.queen.name = "White Queen"; //override crowned name
         }else {
             this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
             this.queen.sylladex.add(this.queensRing);
-            this.king.name = "Black Queen"; //override crowned name
+            this.queen.name = "Black Queen"; //override crowned name
         }
 
         this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
