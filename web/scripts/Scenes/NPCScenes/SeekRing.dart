@@ -3,7 +3,7 @@ import 'dart:html';
 
 class SeekRing extends Scene {
     GameEntity target;
-    Action tactic;
+    Generator<String> tactic;
 
     SeekRing(Session session) : super(session);
 
@@ -16,25 +16,28 @@ class SeekRing extends Scene {
 
   }
 
-    void tryFighting() {
+    String tryFighting() {
+        return "Seek Ring: $gameEntity try to stab ring from $target";
 
     }
 
-    void tryStealing() {
+    String tryStealing() {
+        return "Seek Ring: $gameEntity try to steal ring from $target";
 
     }
 
-    void tryAsking() {
+    String tryAsking() {
+        return "Seek Ring: $gameEntity try to ask for ring from $target";
 
     }
 
-    void tryFinding() {
-
+    String tryFinding() {
+        return "Seek Ring: $gameEntity try to find ring from $target";
     }
 
   String getText() {
 
-      return "TODO: pick a tactic. try for the ring.";
+      return tactic();
   }
 
   @override
@@ -56,11 +59,11 @@ class SeekRing extends Scene {
 
       print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
-      if(gameEntity.violent && gameEntity.getStat(Stats.POWER) > target.getStat(Stats.POWER)) tactic = tryFighting;
-      if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY)) tactic = tryStealing;
       if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS)) tactic = tryAsking;
       if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK)) tactic = tryFinding;
-      
+      if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY)) tactic = tryStealing;
+      if(gameEntity.violent && gameEntity.getStat(Stats.POWER) > target.getStat(Stats.POWER)) tactic = tryFighting;
+
       //find who has each ring.
       //for each bearer, ask:
       //if i am stronger than the ring holder, and violent, i will try to strife it off them
