@@ -6,6 +6,7 @@ class SeekRing extends Scene {
     Generator<String> tactic;
     Item ring;
     String oldName;
+    String targetOldName;
     bool strifeTime = false;
 
     SeekRing(Session session) : super(session);
@@ -13,7 +14,8 @@ class SeekRing extends Scene {
   @override
   void renderContent(Element div) {
       strifeTime = false;
-      oldName = gameEntity.name;
+      oldName = gameEntity.title();
+      targetOldName = target.title();
 
       gameEntity.available = false;
       session.logger.info("$gameEntity is seeking the ring.");
@@ -39,9 +41,9 @@ class SeekRing extends Scene {
             //should auto loot
             target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
             session.logger.info("AB: A ring was assasinated from a target.");
-            return "The ${oldName} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
         }else {
-            return "The ${oldName} wants the $ring, they start a strife with the the ${target.title()}!${prepareStrife()}";
+            return "The ${oldName} wants the $ring, they start a strife with the the ${targetOldName}!${prepareStrife()}";
         }
     }
 
@@ -51,11 +53,11 @@ class SeekRing extends Scene {
         if(rollValueHigh <300) {
             gameEntity.sylladex.add(ring);
             session.logger.info("AB: A ring was stolen from a target.");
-            return "The ${oldName} sneaks up behind the ${target.title()} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
         }else if(rollValueLow < -300) {
-            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${prepareStrife()}";
+            return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
         }else {
-            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but they fail. They abscond before they are caught! ";
+            return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but they fail. They abscond before they are caught! ";
         }
     }
 
@@ -65,11 +67,11 @@ class SeekRing extends Scene {
         if(theirRelationship.value >10) {
             gameEntity.sylladex.add(ring);
             session.logger.info("AB: A ring was given from a target.");
-            return "The ${oldName} politely approaches the ${target.title()} and asks for the $ring. To everyone's surprise, the ${target.title()} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
+            return "The ${oldName} politely approaches the ${targetOldName} and asks for the $ring. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
         }else if(theirRelationship.value < -10){
-            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised that the ${target.title()} is offended enough to strife. ${prepareStrife()}";
+            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $ring. We are unsurprised that the ${targetOldName} is offended enough to strife. ${prepareStrife()}";
         }else {
-            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised when it doesn't work.";
+            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $ring. We are unsurprised when it doesn't work.";
         }
     }
 
@@ -78,7 +80,7 @@ class SeekRing extends Scene {
         gameEntity.sylladex.add(ring);
         session.logger.info("AB: A ring was just found out of nowhere.");
 
-        return "The ${oldName} trips over practically nothing and somehow finds the $ring !? The  ${target.title()} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
+        return "The ${oldName} trips over practically nothing and somehow finds the $ring !? The  ${targetOldName} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
 
     }
 

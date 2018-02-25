@@ -79,12 +79,15 @@ class Moon extends Land {
 
         if(name.contains("Prospit")) {
             this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
+            this.queen.sylladex.add(this.queensRing);
+            this.king.name = "White Queen"; //override crowned name
         }else {
             this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
+            this.queen.sylladex.add(this.queensRing);
+            this.king.name = "Black Queen"; //override crowned name
         }
 
         this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
-        this.queen.sylladex.add(this.queensRing);
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
         queen.heal();
     }
@@ -99,12 +102,18 @@ class Moon extends Land {
 
         if(name.contains("Prospit")) {
             this.king = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
+            this.king.sylladex.add(this.kingsScepter);
+            this.king.name = "White King"; //override crowned name
+
         }else {
             this.king = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
+            this.king.sylladex.add(this.kingsScepter);
+            this.king.name = "Black King"; //override crowned name
+
+
         }
         this.king.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
 
-        this.king.sylladex.add(this.kingsScepter);
 
         king.grist = 1000;
         king.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
