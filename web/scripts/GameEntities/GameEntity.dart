@@ -148,6 +148,26 @@ class GameEntity extends Object with StatOwner   {
             }
         }
 
+    Ring get ring
+
+    {
+        for(Item item in sylladex) {
+            if(item is Ring) {
+                return item;
+            }
+        }
+    }
+
+    Scepter get scepter
+
+    {
+        for(Item item in sylladex) {
+            if(item is Scepter) {
+                return item;
+            }
+        }
+    }
+
     bool get alliedToPlayers {
 
         //big bads are never allies

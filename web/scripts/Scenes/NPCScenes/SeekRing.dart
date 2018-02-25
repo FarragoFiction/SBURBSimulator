@@ -4,6 +4,7 @@ import 'dart:html';
 class SeekRing extends Scene {
     GameEntity target;
     Generator<String> tactic;
+    Item ring;
 
     SeekRing(Session session) : super(session);
 
@@ -17,22 +18,39 @@ class SeekRing extends Scene {
   }
 
     String tryFighting() {
-        return "Seek Ring: $gameEntity try to stab ring from $target";
-
+        //assasinate if strong enough, else strife.
+        if(gameEntity.getStat(Stats.POWER) > target.getStat(Stats.HEALTH)) {
+            //should auto loot
+            target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
+            session.logger.info("AB: A ring was assasinated from a target.");
+            return "The ${gameEntity.title()} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. ";
+        }else {
+            return doStrife();
+        }
     }
 
     String tryStealing() {
+        double rollValueLow = gameEntity.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
+        double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
+        //luck if it works or not, if caught, if target dislikes you, strife or insta die, else thrown out
         return "Seek Ring: $gameEntity try to steal ring from $target";
 
     }
 
     String tryAsking() {
+        //thrown out
         return "Seek Ring: $gameEntity try to ask for ring from $target";
 
     }
 
     String tryFinding() {
+        //always works, but really hard to trigger
         return "Seek Ring: $gameEntity try to find ring from $target";
+    }
+
+    String doStrife() {
+      //TODO actually have a strife.
+      return "They have a strife???";
     }
 
   String getText() {
@@ -48,6 +66,7 @@ class SeekRing extends Scene {
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
       target = whiteRingOwner;
+      ring = target.ring;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
@@ -60,7 +79,7 @@ class SeekRing extends Scene {
       print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
       if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS)) tactic = tryAsking;
-      if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK)) tactic = tryFinding;
+      if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK) && session.rand.nextDouble() > .7) tactic = tryFinding;
       if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY)) tactic = tryStealing;
       if(gameEntity.violent && gameEntity.getStat(Stats.POWER) > target.getStat(Stats.POWER)) tactic = tryFighting;
 
