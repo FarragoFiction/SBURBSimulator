@@ -194,7 +194,8 @@ class GameEntity extends Object with StatOwner   {
         for(Scene s in scenes) {
             s.gameEntity = this;
             // print("checking scene $s");
-            if (s.trigger(session.getReadOnlyAvailablePlayers())) {
+            //if one scene makes you unavailable no future scenes
+            if (this.available && s.trigger(session.getReadOnlyAvailablePlayers())) {
                 //session.scenesTriggered.add(s);
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
