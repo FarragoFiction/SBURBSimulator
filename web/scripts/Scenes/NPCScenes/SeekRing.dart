@@ -50,8 +50,16 @@ class SeekRing extends Scene {
 
     String tryAsking() {
         //thrown out
-        return "Seek Ring: $gameEntity try to ask for ring from $target";
-
+        Relationship theirRelationship = target.getRelationshipWith(gameEntity);
+        if(theirRelationship.value >10) {
+            gameEntity.sylladex.add(ring);
+            session.logger.info("AB: A ring was given from a target.");
+            return "The ${oldName} politely approaches the ${target.title()} and asks for the $ring. To everyone's surprise, the ${target.title()} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
+        }else if(theirRelationship.value < -10){
+            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised that the ${target.title()} is offended enough to strife. ${doStrife()}";
+        }else {
+            return "The ${oldName} has the audacity to just waltz right up to the ${target.title()} and demand the $ring. We are unsurprised when it doesn't work.";
+        }
     }
 
     String tryFinding() {
