@@ -231,7 +231,7 @@ class GameEntity extends Object with StatOwner   {
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
-        if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
+       //crashes if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);

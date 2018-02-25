@@ -14,8 +14,8 @@ class SeekRing extends Scene {
   @override
   void renderContent(Element div) {
       strifeTime = false;
-      oldName = gameEntity.title();
-      targetOldName = target.title();
+      oldName = gameEntity.htmlTitleWithTip();
+      targetOldName = target.htmlTitleWithTip();
 
       gameEntity.available = false;
       session.logger.info("$gameEntity is seeking the ring.");
@@ -53,7 +53,7 @@ class SeekRing extends Scene {
         if(rollValueHigh <300) {
             gameEntity.sylladex.add(ring);
             session.logger.info("AB: A ring was stolen from a target.");
-            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.htmlTitleWithTip()}, and their target is the ${target.htmlTitleWithTip()}! ";
         }else if(rollValueLow < -300) {
             return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
         }else {
