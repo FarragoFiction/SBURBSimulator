@@ -7,6 +7,7 @@ class BeDistracted extends Scene {
   @override
   void renderContent(Element div) {
       print("NPC TEST: a carapace is being distracted");
+      gameEntity.available = false;
       DivElement me = new DivElement();
       me.setInnerHtml(getText());
       div.append(me);

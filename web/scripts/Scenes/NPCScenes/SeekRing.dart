@@ -5,11 +5,15 @@ class SeekRing extends Scene {
     GameEntity target;
     Generator<String> tactic;
     Item ring;
+    String oldName;
 
     SeekRing(Session session) : super(session);
 
   @override
   void renderContent(Element div) {
+      oldName = gameEntity.name;
+
+      gameEntity.available = false;
       session.logger.info("$gameEntity is seeking the ring.");
       DivElement me = new DivElement();
       me.setInnerHtml(getText());
@@ -18,14 +22,15 @@ class SeekRing extends Scene {
   }
 
     String tryFighting() {
+        String oldName = gameEntity.name;
         //assasinate if strong enough, else strife.
         if(gameEntity.getStat(Stats.POWER) > target.getStat(Stats.HEALTH)) {
             //should auto loot
             target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
             session.logger.info("AB: A ring was assasinated from a target.");
-            return "The ${gameEntity.title()} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. ";
+            return "The ${oldName} sneaks up behind the ${target.title()} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
         }else {
-            return "The ${gameEntity.title()} wants the $ring, they start a strife with the the ${target.title()}!${doStrife()}";
+            return "The ${oldName} wants the $ring, they start a strife with the the ${target.title()}!${doStrife()}";
         }
     }
 
@@ -35,11 +40,11 @@ class SeekRing extends Scene {
         if(rollValueHigh <300) {
             gameEntity.sylladex.add(ring);
             session.logger.info("AB: A ring was stolen from a target.");
-            return "The ${gameEntity.title()} sneaks up behind the ${target.title()} and pick pockets them! They take the $ring and equip it! ";
+            return "The ${oldName} sneaks up behind the ${target.title()} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
         }else if(rollValueLow < -300) {
-            return "The ${gameEntity.title()} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${doStrife()}";
+            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but get caught! The ${target.title()} decides to Strife them!${doStrife()}";
         }else {
-            return "The ${gameEntity.title()} tries to pickpocket the $ring from the ${target.title()}, but they fail. They abscond before they are caught! ";
+            return "The ${oldName} tries to pickpocket the $ring from the ${target.title()}, but they fail. They abscond before they are caught! ";
         }
     }
 
@@ -61,7 +66,7 @@ class SeekRing extends Scene {
 
   String getText() {
 
-      return tactic();
+      return "Seek Ring: ${tactic()}";
   }
 
   @override
@@ -88,7 +93,6 @@ class SeekRing extends Scene {
           target = blackRingOwner;
       }
 
-      print("RING TEST: I want to steal the ring from ${target}. My relationship with prospit is ${prospitRel.value} vs ${derseRel.value} for the other one");
 
       if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS)) tactic = tryAsking;
       if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK) && session.rand.nextDouble() > .7) tactic = tryFinding;
