@@ -56,6 +56,13 @@ class Moon extends Land {
 
           }
       }
+      queen.initRelationshipsAllies(this);
+      queen.initRelationshipsEnemies(opposite);
+      queen.initRelationshipsPlayers();
+
+      king.initRelationshipsAllies(this);
+      king.initRelationshipsEnemies(opposite);
+      king.initRelationshipsPlayers();
   }
 
   void destroyRing() {
