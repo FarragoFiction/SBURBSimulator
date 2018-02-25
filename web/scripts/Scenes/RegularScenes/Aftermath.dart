@@ -111,30 +111,7 @@ class Aftermath extends Scene {
         return "With none of the fledgling gods entering the new Universe, it is allowed to grow and develop entirely on it's own. It is a glorious shade of pink. The Players remain inside the Medium supporting Reality from within. You have escaped the cycle of flawed creators ruling over flawed creations, SBURB will never trouble your cosmic progeny.";
     }
 
-    String democracyBonus() {
-        String ret = "<Br><br><img src = 'images/sceneIcons/wv_icon.png'>";
-        if (this.session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) <= 0) {
-            return "";
-        }
-        if (this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 10 && findLiving(this.session.players).length > 0) {
-            this.session.stats.mayorEnding = true;
-            ret += "The adorable Warweary Villein has been duly elected Mayor by the assembled consorts and Carapacians. ";
-            ret += " His acceptance speech consists of promising to be a really great mayor that everyone loves who is totally amazing and heroic and brave. ";
-            ret += " He organizes the consort and Carapacians' immigration to the new Universe. ";
-        } else {
-            if (findLiving(this.session.players).length > 0) {
-                this.session.stats.waywardVagabondEnding = true;
-                ret += " The Warweary Villein feels the sting of defeat. Although he helped the Players win their session, the cost was too great.";
-                ret += " There can be no democracy in a nation with only one citizen left alive. He is the only remaining living Carapacian in the Democratic Army. ";
-                ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players old world, rather than follow them to the new one.";
-            } else {
-                this.session.stats.waywardVagabondEnding = true;
-                ret += " The Warweary Villein feels the sting of defeat. He failed to help the Players.";
-                ret += " He becomes the Wayward Vagabond, and exiles himself to the remains of the Players' old world. ";
-            }
-        }
-        return ret;
-    }
+
 
     void yellowLawnRing(div) {
         var living = findLiving(this.session.players);
@@ -249,7 +226,6 @@ class Aftermath extends Scene {
                 this.session.stats.scratchAvailable = false;
                 //renderScratchButton(this.session);
             } else {
-                end += this.democracyBonus();
                 end += " <Br><br> The door to the new universe is revealed. <br><Br>";
                 end += whoEnters();
                 end += "<Br><Br>";
@@ -367,7 +343,6 @@ class Aftermath extends Scene {
             appendHtml(div, end);
             end = "<Br>";
             this.mournDead(div);
-            end += this.democracyBonus();
             end += " <br>The players have failed. No new universe is created. Their home universe is left unfertilized. <Br><Br>Game Over. ";
             doAtEndOfAfterMath(div, end, yellowYard);
         }

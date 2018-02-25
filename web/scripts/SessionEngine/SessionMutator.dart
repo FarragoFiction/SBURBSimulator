@@ -118,17 +118,6 @@ class SessionMutator {
     }
 
 
-    bool spawnDemocraticArmy(Session session) {
-        if (!hopeField) return false;
-        session.npcHandler.democraticArmy = new Carapace("Democratic Army", session,Carapace.DERSE); //doesn't actually exist till WV does his thing.
-        Fraymotif f = new Fraymotif("Democracy Charge MAXIMUM HOPE", 2);
-        f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
-        f.desc = " The people have chosen to Rise Up against their oppressors, with the players as their symbol of HOPE. ";
-        f.baseValue = 9001;
-        session.npcHandler.democraticArmy.fraymotifs.add(f);
-        session.npcHandler.democraticArmy.stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 9001, Stats.SANITY: 9001, Stats.HEALTH: 5, Stats.FREE_WILL: 9001, Stats.POWER: 9001});
-        return true;
-    }
 
     //TODO have variables that session can query to see if it needs to have alt behavior
 
@@ -462,7 +451,6 @@ class SessionMutator {
         //hopePlayer.denizen.setStat(Stats.POWER, 1);
         //hopePlayer.denizen.setStat(Stats.CURRENT_HEALTH, 1);
         ret += "Their enemies are made into ridiculous non-threats. ";
-        spawnDemocraticArmy(s);
         ret += "The democratic army rallies around this beacon of hope. ";
         ret += "The other players have definitely always been cooperative and sane.  And alive. Very alive. It would be ridiculous to imagine anyone dying. ";
         List<String> insults = <String>["Boy", "Jerk", "Ass", "Dick", "Douche", "Piss", "Fuck", "Butt", "Poop", "Chump", "Cad", "Scam"];

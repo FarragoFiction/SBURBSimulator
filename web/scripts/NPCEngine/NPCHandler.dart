@@ -5,7 +5,6 @@ class NPCHandler
 {
     Session session;
 
-    GameEntity democraticArmy = null;
 
     //jack is special.
     GameEntity jack;
@@ -401,13 +400,5 @@ class NPCHandler
 
     }
 
-    void spawnDemocraticArmy() {
-        if(session.mutator.spawnDemocraticArmy(session)) return null;
-        this.democraticArmy = new Carapace("Democratic Army", session,Carapace.DERSE); //doesn't actually exist till WV does his thing.
-        Fraymotif f = new Fraymotif("Democracy Charge", 2);
-        f.effects.add(new FraymotifEffect(Stats.POWER, 3, true));
-        f.desc = " The people have chosen to Rise Up against their oppressors. ";
-        this.democraticArmy.fraymotifs.add(f);
-    }
 
 }

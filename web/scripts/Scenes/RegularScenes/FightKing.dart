@@ -52,7 +52,6 @@ class FightKing extends Scene {
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		var fighting = this.getGoodGuys();
-		if(this.session.npcHandler.democraticArmy.getStat(Stats.CURRENT_HEALTH) > 0) fighting.add(this.session.npcHandler.democraticArmy);
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
 		pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.derse.king]);

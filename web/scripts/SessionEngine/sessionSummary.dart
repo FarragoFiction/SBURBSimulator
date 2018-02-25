@@ -314,7 +314,6 @@ class SessionSummary {
         summary.setBoolStat("kingTooPowerful", session.derse.king.getStat(Stats.POWER) > session.hardStrength);
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");
-        summary.setBoolStat("democracyStarted", session.npcHandler.democraticArmy.stats.getBase(Stats.POWER) > 0);
         summary.setBoolStat("murdersHappened", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 

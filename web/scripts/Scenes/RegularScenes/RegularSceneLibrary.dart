@@ -25,7 +25,6 @@ export "levelthehellup.dart";
 export "LifeStuff.dart";
 export "LuckStuff.dart";
 export "MurderPlayers.dart";
-export "PowerDemocracy.dart";
 export "QuadrantDialogue.dart";
 export "QueenRejectRing.dart";
 export "Reckoning.dart";
