@@ -56,7 +56,7 @@ class Strife {
                 winner.won = true;
                 describeEnding(winner); //will call processEnding.
             } else {
-                //print("Strife ended with no clear winner");
+                describeEnding(null); //will call processEnding.
             }
         } else {
             turnsPassed ++;
@@ -170,6 +170,11 @@ class Strife {
     void describeEnding( Team winner) {
         denizenManagesToNotKillYou(outerDiv); //only for player on denizen matches.
         processEnding();
+        if(winner == null) {
+            appendHtml(outerDiv, "<br><br>Huh. It ends in a draw.");
+            return;
+        }
+
         winner.level();
         winner.giveGristFromTeams(teams); //will filter out 'me'
         //TODO give winner any ITEMS (such as QUEENS RING) as well. Item should inherit from GameEntity. Maybe. It does now.
@@ -343,6 +348,10 @@ class Team implements Comparable<Team> {
         List<Team> otherTeams = getOtherTeams(teams);
         //loop on all members each member takes turn.
         for (GameEntity member in members) { //member will take care of checking if they are absconded or dead.
+            if(numTurnOn == 0) {
+                //start healed
+                member.setStat(Stats.CURRENT_HEALTH, member.getStat(Stats.HEALTH));
+            }
             member.takeTurn(div, this, otherTeams);
         }
     }

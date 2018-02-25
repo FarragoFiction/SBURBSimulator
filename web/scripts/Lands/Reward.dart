@@ -639,13 +639,13 @@ class DreamReward extends Reward {
             companion.active = true;
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
-            text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            text += "$a ${companion..htmlTitleWithTip()} takes a liking to them and agrees to find them back on their Land.";
             p1.addCompanion(companion);
         }else if (activated != null) {
             activated.active = true;
             String a  = "A";
             if(activated.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
-            text += "$a ${activated.name} bumps into them and they chat a bit.";
+            text += "$a ${activated.htmlTitleWithTip()} bumps into them and they chat a bit.";
         }
 
 
@@ -676,14 +676,14 @@ class DreamReward extends Reward {
 
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An"; //look at me, doing grammar
-            text += "$a ${companion.name} takes a liking to them and agrees to find them back on their Land.";
+            text += "$a ${companion.htmlTitleWithTip()} takes a liking to them and agrees to find them back on their Land.";
             p1.addCompanion(companion);
         }else if (activated != null) {
             activated.active  = true;
 
             String a  = "A";
             if(activated.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
-            text += "$a ${activated.name} bumps into them and they chat a bit.";
+            text += "$a ${activated.htmlTitleWithTip()} bumps into them and they chat a bit.";
         }
         p1.corruptionLevelOther ++; //just a bit.
         bool savedDream = p1.isDreamSelf;

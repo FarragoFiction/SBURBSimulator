@@ -281,7 +281,7 @@ class Aftermath extends Scene {
         GameEntity wqowner = session.prospit.queensRing.owner;
         GameEntity wkowner = session.prospit.kingsScepter.owner;
 
-        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqowner.htmlTitle()} has the Black Queens Ring Their ally status is ${bqowner.alliedToPlayers}. <br> ${bkowner.htmlTitle()} has the Black Kings Scepter. Their ally status is ${bkowner.alliedToPlayers}.  <br> ${wqowner.htmlTitle()} has the White Queens Ring. Their ally status is ${wqowner.alliedToPlayers}. <br> ${wkowner.htmlTitle()} has the White Kings Scepter. Their ally status is ${wkowner.alliedToPlayers}. <br>";
+        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqowner.htmlTitleWithTip()} has the Black Queens Ring Their ally status is ${bqowner.alliedToPlayers}. <br> ${bkowner.htmlTitleWithTip()} has the Black Kings Scepter. Their ally status is ${bkowner.alliedToPlayers}.  <br> ${wqowner.htmlTitleWithTip()} has the White Queens Ring. Their ally status is ${wqowner.alliedToPlayers}. <br> ${wkowner.htmlTitleWithTip()} has the White Kings Scepter. Their ally status is ${wkowner.alliedToPlayers}. <br>";
 
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;

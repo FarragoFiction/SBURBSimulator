@@ -231,6 +231,7 @@ class GameEntity extends Object with StatOwner   {
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
+        if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
@@ -370,8 +371,7 @@ class GameEntity extends Object with StatOwner   {
                 Team enemies = enemyTeams[0];
                 List<GameEntity> living = findLiving(enemies.members);
                 living.sort(Stats.MOBILITY.sorter);
-                killer = living[0]; //fastest member gets the loot
-
+                if(living.isNotEmpty) killer = living[0]; //fastest member gets the loot
             }
 
             makeDead(causeOfDeath, killer);
@@ -820,7 +820,7 @@ class GameEntity extends Object with StatOwner   {
         if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
-        killer.lootCorpse(this);
+        if(killer != null) killer.lootCorpse(this);
     }
 
     void interactionEffect(GameEntity ge) {

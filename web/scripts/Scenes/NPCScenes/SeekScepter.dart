@@ -1,15 +1,15 @@
 import "../../SBURBSim.dart";
 import 'dart:html';
 
-class SeekRing extends Scene {
+class SeekScepter extends Scene {
     GameEntity target;
     Generator<String> tactic;
-    Item ring;
+    Item scepter;
     String oldName;
     String targetOldName;
     bool strifeTime = false;
 
-    SeekRing(Session session) : super(session);
+    SeekScepter(Session session) : super(session);
 
   @override
   void renderContent(Element div) {
@@ -41,9 +41,9 @@ class SeekRing extends Scene {
             //should auto loot
             target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
             session.logger.info("AB: A ring was assasinated from a target.");
-            return "The ${oldName} sneaks up behind the ${targetOldName} and assasinates them! They pull the $ring off their still twitching finger. They are now the ${gameEntity.title()}!";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and assasinates them! They pull the $scepter off their still twitching finger. They are now the ${gameEntity.title()}!";
         }else {
-            return "The ${oldName} wants the $ring, they start a strife with the the ${targetOldName}!${prepareStrife()}";
+            return "The ${oldName} wants the $scepter, they start a strife with the the ${targetOldName}!${prepareStrife()}";
         }
     }
 
@@ -51,13 +51,13 @@ class SeekRing extends Scene {
         double rollValueLow = gameEntity.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
         double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
         if(rollValueHigh <300) {
-            gameEntity.sylladex.add(ring);
+            gameEntity.sylladex.add(scepter);
             session.logger.info("AB: A ring was stolen from a target.");
-            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.title()}! ";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $scepter and equip it! They are now the ${gameEntity.title()}! ";
         }else if(rollValueLow < -300) {
-            return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
+            return "The ${oldName} tries to pickpocket the $scepter from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
         }else {
-            return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but they fail. They abscond before they are caught! ";
+            return "The ${oldName} tries to pickpocket the $scepter from the ${targetOldName}, but they fail. They abscond before they are caught! ";
         }
     }
 
@@ -65,29 +65,28 @@ class SeekRing extends Scene {
         //thrown out
         Relationship theirRelationship = target.getRelationshipWith(gameEntity);
         if(theirRelationship.value >10) {
-            gameEntity.sylladex.add(ring);
+            gameEntity.sylladex.add(scepter);
             session.logger.info("AB: A ring was given from a target.");
-            return "The ${oldName} politely approaches the ${targetOldName} and asks for the $ring. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
+            return "The ${oldName} politely approaches the ${targetOldName} and asks for the $scepter. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
         }else if(theirRelationship.value < -10){
-            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $ring. We are unsurprised that the ${targetOldName} is offended enough to strife. ${prepareStrife()}";
+            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $scepter. We are unsurprised that the ${targetOldName} is offended enough to strife. ${prepareStrife()}";
         }else {
-            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $ring. We are unsurprised when it doesn't work.";
+            return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $scepter. We are unsurprised when it doesn't work.";
         }
     }
 
     String tryFinding() {
         //always works, but really hard to trigger
-        gameEntity.sylladex.add(ring);
+        gameEntity.sylladex.add(scepter);
         session.logger.info("AB: A ring was just found out of nowhere.");
 
-        return "The ${oldName} trips over practically nothing and somehow finds the $ring !? The  ${targetOldName} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
+        return "The ${oldName} trips over practically nothing and somehow finds the $scepter !? The  ${targetOldName} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
 
     }
 
     String prepareStrife() {
-      //TODO actually have a strife.
         strifeTime = true;
-        session.logger.info("AB: A strife for a ring is trying to happen.");
+        session.logger.info("AB: A strife for a scepter is trying to happen.");
         return "";
     }
 
@@ -101,11 +100,11 @@ class SeekRing extends Scene {
   bool trigger(List<Player> playerList) {
       tactic = null;
       target = null;
-      GameEntity whiteRingOwner = session.prospit.queensRing.owner;
-      GameEntity blackRingOwner = session.derse.queensRing.owner;
+      GameEntity whiteRingOwner = session.prospit.kingsScepter.owner;
+      GameEntity blackRingOwner = session.derse.kingsScepter.owner;
 
       target = whiteRingOwner;
-      ring = target.ring;
+      scepter = target.scepter;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
