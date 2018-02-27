@@ -28,7 +28,6 @@ class SeekRing extends Scene {
           Team dTeam = new Team(this.session, <GameEntity>[target]);
           dTeam.canAbscond = false;
           Strife strife = new Strife(this.session, [pTeam, dTeam]);
-          strife.timeTillRocks = 10;
           strife.startTurn(div);
       }
 
@@ -106,6 +105,7 @@ class SeekRing extends Scene {
   //todo sometimes someone who doesn't own the ring is chosen.
   @override
   bool trigger(List<Player> playerList) {
+      strifeTime = false;
       tactic = null;
       target = null;
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;

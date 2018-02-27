@@ -51,7 +51,10 @@ class GetTiger extends Scene{
 
 
 	}
+
+
 	String content(){
+
 		////session.logger.info("trying to get tiger for: " + getPlayersTitles(this.deadPlayersToGodTier))
 		String ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
@@ -106,6 +109,9 @@ class GetTiger extends Scene{
 		for(num i = 0; i<this.deadPlayersToGodTier.length; i++){
 			Player p = this.deadPlayersToGodTier[i];
 			p.makeGodTier();
+			if(p.aspect == Aspects.SAUCE) {
+				ret += "<br><Br>...  Huh. What... what even happened there? Is that a SAUCE player? WTF? That's not canon... Fucking Shogun...";
+			}
 		}
 		return ret;
 	}

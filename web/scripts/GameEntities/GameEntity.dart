@@ -21,6 +21,9 @@ class GameEntity extends Object with StatOwner   {
     //x starts flipping out about TAB soda
     List<String> distractions = new List<String>();
 
+    //why are they pestering Jack?
+    List<String> beurocraticBullshit = new List<String>();
+
     //not there yet, but putting down foundation.
     bool bigBad = false;
 
@@ -86,6 +89,7 @@ class GameEntity extends Object with StatOwner   {
     bool get active {
         return _active;
     }
+
 
     //npc traits: violent, lucky, charming, cunning
 
@@ -808,6 +812,7 @@ class GameEntity extends Object with StatOwner   {
 
     //a standard RPG trope, even if they are your friend
     void lootCorpse(GameEntity corpse) {
+        if(corpse == null) return;
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
         print("$this $sylladex is looting $corpse 's corpse of $tmp");

@@ -246,11 +246,22 @@ class Sylladex extends Object with IterableMixin<Item> {
         inventory.sort();
     }
 
+
+    //pass it in with caps plz
+    bool  containsWord(String word) {
+        for (Item i in inventory) {
+            if(i.fullName.contains(word) || i.fullName.contains(word.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void add(Item item) {
         Item i = item;
         //if i'm already owned, i'm already physical and unique
         if(Item.allUniqueItems.contains(item) && item.owner == null && !(item is MagicalItem)) {
-            //print("going to copy an item rather than add it directly");
+            //print("going to copy $item rather than add it directly");
             i = item.copy();
             //print("Item copied");
         }

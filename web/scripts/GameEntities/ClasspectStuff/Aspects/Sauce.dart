@@ -40,7 +40,7 @@ class Sauce extends Aspect {
 
 
     @override
-    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Shogun"]);
+    List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Glitchy","Sauce","Saucey","Sauced","Seinfield Theme","Glitch"]);
 
 
     @override

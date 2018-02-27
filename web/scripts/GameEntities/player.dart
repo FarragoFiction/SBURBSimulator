@@ -105,6 +105,7 @@ class Player extends GameEntity{
         //print("making new player with classpect ${title()} and moon $m");
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
+        //testing something
     }
 
     @override
@@ -195,6 +196,24 @@ class Player extends GameEntity{
         return ret;
     }
 
+    @override
+    List<Fraymotif> get fraymotifsForDisplay {
+        List<Fraymotif> ret = new List.from(fraymotifs);
+        //print("Test Ring: Getting fraymotifs for display for a carapce with a sylladex of $sylladex.");
+        for(Item item in sylladex) {
+            //print("Test Ring: checking item $item. Is it magical? ${item is MagicalItem} ${item is Ring}");
+
+            if(item is MagicalItem && aspect == Aspects.SAUCE) {
+                MagicalItem m = item as MagicalItem;
+                //only sauce players can use the ring
+                ret.addAll(m.fraymotifs);
+            }else if(Item is MagicalItem) {
+                MagicalItem m = item as MagicalItem;
+                if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
+            }
+        }
+        return ret;
+    }
 
     @override
     void flipOut(String reason) {
@@ -246,7 +265,7 @@ class Player extends GameEntity{
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
 
         //can loot corpses even in life gnosis, or how else will things happen?
-        killer.lootCorpse(this);
+        if(killer != null) killer.lootCorpse(this);
 
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
 
@@ -405,6 +424,15 @@ class Player extends GameEntity{
         this.increasePower();
         //was on a quest bed.
         if(!isDreamSelf && dreamSelf) canSkaia = true;
+
+        //i know for a fact this is rare enough that i'll forget i added it.
+        if(dreamSelf && aspect != Aspects.TIME && aspect != Aspects.SPACE &&  sylladex.containsWord("Sauce")) {
+            aspect = Aspects.SAUCE;
+            session.logger.info("AB: Bluh. One of Shogun's Sauce Glitches just triggered. Better tell JR.");
+            fraymotifs.add(new Fraymotif("Seinfeld Remix", 13)
+                ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))
+                ..desc = " What the fuck? What even is this? Is it a riddle? I thought JR said it wasn't important... ");
+        }
         this.godTier = true;
         this.session.stats.godTier = true;
         this.dreamSelf = false;
@@ -1805,6 +1833,7 @@ class Player extends GameEntity{
     void initializeDerivedStuff() {
         //print("initializing derived stuff for player ${this.chatHandle}");
         populateInventory();
+
         if(deriveLand) land = spawnLand();
 
         if (this.deriveChatHandle) this.chatHandle = getRandomChatHandle(this.session.rand, this.class_name, this.aspect, this.interest1, this.interest2);
@@ -1827,6 +1856,9 @@ class Player extends GameEntity{
         sylladex.clear();
         sylladex.add(session.rand.pickFrom(interest1.category.items));
         sylladex.add(session.rand.pickFrom(interest2.category.items));
+        //testing something
+       // sylladex.add(new Item("Dr Pepper BBQ Sauce",<ItemTrait>[ItemTraitFactory.POISON],shogunDesc: "Culinary Perfection",abDesc:"Gross."));
+
     }
 
     //I mark the source of the themes here, where i'm using them, rather than on creation

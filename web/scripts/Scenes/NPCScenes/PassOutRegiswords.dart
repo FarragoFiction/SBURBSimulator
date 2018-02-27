@@ -1,0 +1,54 @@
+import "../../SBURBSim.dart";
+import 'dart:html';
+
+//jack passes out regiswords and quests to get rings/scepters to everyone he meets
+
+class PassOutRegiswords extends Scene {
+    GameEntity patsy;
+  PassOutRegiswords(Session session) : super(session);
+
+
+  @override
+  void renderContent(Element div) {
+      session.logger.info("Jack is passing out Regiswords again.");
+      DivElement me = new DivElement();
+      patsy.sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]));
+
+      patsy.scenes.insert(0, new SeekRing(session));
+      patsy.scenes.insert(0, new SeekScepter(session));
+      patsy.scenes.insert(0, new GiveJackRing(session));
+      patsy.scenes.insert(0, new GiveJackScepter(session));
+
+
+
+      List<String> genericReasons = <String>["really needs to get a parking ticket validated.","has to pay a fine for smuggling ice cream.","needs to get their small business loan approved."];
+      genericReasons.addAll(gameEntity.beurocraticBullshit);
+
+      me.setInnerHtml("The ${patsy.htmlTitle()} ${session.rand.pickFrom(genericReasons)}. They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
+      div.append(me);
+  }
+
+  GameEntity pickAPatsy() {
+      List<GameEntity> patsies = new List.from(session.players);
+      //royalty are kept separate so jack should NOT give the white queen a quest to get herh own ring.
+      patsies.addAll(session.derse.associatedEntities);
+      patsies.addAll(session.prospit.associatedEntities);
+  }
+
+  @override
+  bool trigger(List<Player> playerList) {
+    // if jack has no party leader and is not crowned, he passes out regiswords and quests to get the
+      //rings and scepters, even to players.
+
+      //trigger is: if i am not jack, and jack is not crowned, and jack has no party leader and i don't already have a 'get ring' quest
+
+      //you're not  going to be your OWN patsy
+      if(gameEntity == patsy ) return false;
+      //no longer during beurocracy stuff
+      if(gameEntity.crowned != null || gameEntity.partyLeader != null ) return false;
+
+      //he already gave you this quest.
+      if(patsy.sylladex.containsWord("Regisword")) return false;
+      if(session.rand.nextDouble() > .5) return true;
+  }
+}
