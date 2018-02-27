@@ -43,6 +43,8 @@ class PassOutRegiswords extends Scene {
       //trigger is: if i am not jack, and jack is not crowned, and jack has no party leader and i don't already have a 'get ring' quest
 
       //you're not  going to be your OWN patsy
+      print("Regisword Test: jack is thinking about offering a regisword");
+
       gameEntity = pickAPatsy();
       if(gameEntity == patsy || gameEntity == null ) return false;
       print("Regisword Test: patsy isn't jack or null");
@@ -54,6 +56,6 @@ class PassOutRegiswords extends Scene {
       if(patsy.sylladex.containsWord("Regisword")) return false;
       print("Regisword Test: patsy doesn't already have the sword");
 
-      if(session.rand.nextDouble() > .01) return true;
+      return true;
   }
 }

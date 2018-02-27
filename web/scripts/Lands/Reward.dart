@@ -680,7 +680,7 @@ class DreamReward extends Reward {
             p1.addCompanion(companion);
         }else if (activated != null) {
             activated.active  = true;
-
+            p1.session.logger.info("AB: A dersite was activated.");
             String a  = "A";
             if(activated.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
             text += "$a ${activated.htmlTitleWithTip()} bumps into them and they chat a bit.";
