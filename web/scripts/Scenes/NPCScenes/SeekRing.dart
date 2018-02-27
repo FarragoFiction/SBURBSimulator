@@ -13,6 +13,8 @@ class SeekRing extends Scene {
 
   @override
   void renderContent(Element div) {
+      ring = target.ring;
+
       strifeTime = false;
       oldName = gameEntity.htmlTitleWithTip();
       targetOldName = target.htmlTitleWithTip();
@@ -53,7 +55,7 @@ class SeekRing extends Scene {
         if(rollValueHigh <300) {
             takeRing();
             session.logger.info("AB: A ring was stolen from a target.");
-            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.htmlTitleWithTip()}, and their target is the ${target.htmlTitleWithTip()}! ";
+            return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.htmlTitleWithTip()}, and their target becomes the ${target.htmlTitleWithTip()}! ";
         }else if(rollValueLow < -300) {
             return "The ${oldName} tries to pickpocket the $ring from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
         }else {
@@ -62,9 +64,14 @@ class SeekRing extends Scene {
     }
 
     void takeRing() {
-        gameEntity.sylladex.add(ring);
+       // print("before adding ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
+       // print("btw does their sylladex CONTAIN the ring? ${target.sylladex.contains(target.ring)}");
+        gameEntity.sylladex.add(target.ring);
         //for some reason isn't removing in sylladex? testing something.
-        target.sylladex.remove(ring);
+        //print("after adding ring from $target but before taking, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
+
+        target.sylladex.remove(target.ring);
+        //print("after taking ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
     }
 
     String tryAsking() {
@@ -91,7 +98,6 @@ class SeekRing extends Scene {
     }
 
     String prepareStrife() {
-      //TODO actually have a strife.
         strifeTime = true;
         session.logger.info("AB: A strife for a ring is trying to happen.");
         return "";
@@ -112,7 +118,6 @@ class SeekRing extends Scene {
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
       target = whiteRingOwner;
-      ring = target.ring;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
@@ -142,6 +147,7 @@ class SeekRing extends Scene {
       //not all carapaces have 'seek ring' as an option. only ambitious ones
       //this quest can be GIVEN to someone, though.
       //for example, should a big bad have the ring, all players and allies should get this quest
+
       return tactic != null && target != null;
   }
 }

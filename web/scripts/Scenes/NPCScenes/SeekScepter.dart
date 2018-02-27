@@ -13,6 +13,8 @@ class SeekScepter extends Scene {
 
   @override
   void renderContent(Element div) {
+      scepter = target.scepter;
+
       strifeTime = false;
       oldName = gameEntity.htmlTitleWithTip();
       targetOldName = target.htmlTitleWithTip();
@@ -104,7 +106,6 @@ class SeekScepter extends Scene {
       GameEntity blackRingOwner = session.derse.kingsScepter.owner;
 
       target = whiteRingOwner;
-      scepter = target.scepter;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);

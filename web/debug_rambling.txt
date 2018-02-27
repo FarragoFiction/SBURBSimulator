@@ -5233,3 +5233,31 @@ A Jack Noir bumps into them and they chat a bit.
 
 that happens. that should be them activating
 
+~~~~~~~~~~~
+
+before adding ring from BlackQueen, their sylladex is (RING OF ORBS ???FOLD) and my sylladex is ()
+VM87:1 after adding ring from BlackQueen but before taking, their sylladex is (RING OF ORBS ???FOLD) and my sylladex is (RING OF ORBS ???FOLD)
+VM87:1 after taking ring from BlackQueen, their sylladex is (RING OF ORBS ???FOLD) and my sylladex is (RING OF ORBS ???FOLD)
+
+
+
+tell me how this makes sense.
+
+Just.
+
+jack takes the ring, and GETS the ring, but TWO ways I try to get it out of queens sylladex, and nothing.
+
+
+.... is it a copy thing?
+
+okay wait
+wait
+wait
+a fucking second.
+
+if i don't cache the ring and isntead directly say ........
+
+oh my fuck.
+
+i was setting       ring = target.ring;
+ but then i was letting the target change like an IDIOT. omfg
