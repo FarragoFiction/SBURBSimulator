@@ -102,6 +102,7 @@ class NPCHandler
             ..sideLoyalty = 10
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: 200, Stats.POWER: 15})
             ..makeCharming(1000)
+            ..beurocraticBullshit = <String>["needs to get their private eye license renewed.","needs to pay off all those mural loans he took out.","has to get this treaty properly ratified."]
             ..makeLucky(1000)
         );
 
@@ -109,6 +110,7 @@ class NPCHandler
             ..specibus = new Specibus("Handgun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.SHOOTY])
             ..distractions = <String>["is oogling various things. It makes them uncomfortable.","is looking at HUNK RUMP magazine.","is using his high IMAGINATION stat to go on useless adventures."]
             ..sideLoyalty = 10
+            ..beurocraticBullshit = <String>["has to pay this fine for public oogling.","needs a permit to fondly regard creation.","has a ticket for excess imagination usage this month."]
             ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: 100, Stats.HEALTH: 1, Stats.FREE_WILL: 500, Stats.POWER: 1})
             ..makeCharming(1000)
@@ -122,6 +124,7 @@ class NPCHandler
             ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 100, Stats.FREE_WILL: 100, Stats.POWER: 100})
             ..makeViolent(1000)
+            ..beurocraticBullshit = <String>["has to pay this fine for public fiestaing.","has to post bail for public rowdyness."]
             ..makeLucky(1000)
         );
 
@@ -130,6 +133,7 @@ class NPCHandler
             ..distractions = <String>["is threatening everyone around her with a chainsaw.","is completely hysterical.","is making friends with women of ill repute."]
             ..sideLoyalty = 10
             ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
+            ..beurocraticBullshit = <String>["has to pay this fine for public hysteria.","needs a permit to open up a fine establishment for her new friends.","has to pay a fine for all this public damage."]
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeCharming(1000)
@@ -141,6 +145,7 @@ class NPCHandler
             ..distractions = <String>["is very nervous.","is having a nervous breakdown.","is trying to figure out the difference between a teddy bear and a knife."]
             ..sideLoyalty = 10
             ..scenes = <Scene>[new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
+            ..beurocraticBullshit = <String>["needs a permit for public fainting.","is trying to help out CI with getting an invention permit. "]
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 1, Stats.FREE_WILL: 100, Stats.POWER: 1})
             ..makeViolent(1000)
@@ -158,7 +163,7 @@ class NPCHandler
             ..specibus = new Specibus("Machine Gun", ItemTraitFactory.MACHINEGUN, [ ItemTraitFactory.SHOOTY])
             ..sideLoyalty = 20
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
-
+            ..beurocraticBullshit = <String>["needs to stock back up on tickets to give people.","has brought in some roughnecks to be sent to the slammer.","needs an updated list of everything that became illegal in the past day."]
             ..distractions = <String>["flipping the fuck out about how illegal everything is.","being extra angry at crimes.","designing slammers to throw things into. You call it the slammer you are extra angry at crimes."]
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
@@ -177,6 +182,7 @@ class NPCHandler
 
         randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Jazz","Jazzed","Jazzy"], lastNames: <String>["Singer","Songstress","Savant"], ringFirstNames: <String>["Jilted"], ringLastNames: <String>["Seductress"])
             ..specibus = new Specibus("Microphone", ItemTraitFactory.CLUB, [ ItemTraitFactory.LOUD, ItemTraitFactory.ZAP])
+            ..beurocraticBullshit = <String>["needs to renew her liquor license.","wants a permit for a public performance.","needs to pay a fine for singing a song with banned words."]
             ..distractions = <String>["is singing a sultry tune.","is writing down some new lyrics for her work in progress song.","is flirting with a random carapace."]
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
@@ -188,6 +194,7 @@ class NPCHandler
             ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is so excited about postal codes!","is telling anyone in earshot about the sheer perfection of the modern postal code!","is zipping around simulating delivering packages in order to train for the real deal."]
+            ..beurocraticBullshit = <String>["wants to pick up some mail to deliver.","needs to deliver a package that's in impound.","needs a copy of the most up to date postal code map."]
 
             ..stats.setMap(<Stat, num>{Stats.MOBILITY: 500, Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeLucky(100)
@@ -199,6 +206,8 @@ class NPCHandler
             ..specibus = new Specibus("Tome", ItemTraitFactory.BOOK, [ ItemTraitFactory.PAPER])
             ..distractions = <String>["is telling everyone that the End is Nigh. Everyone ignores him because this is obviously true.","is ranting about various Philosophical topics that no one actually cares about.","has just given up on everything, for a while."]
             ..sideLoyalty = 10
+            ..beurocraticBullshit = <String>["would like a public protest permit.","wants to tell those in authority about how the End is Nigh.","has to pay a fine for public drunkeness."]
+
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
 
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
@@ -212,6 +221,8 @@ class NPCHandler
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is getting some much needed rest in between shifts.","is probably forging those insurance documents.","is accepting money under the operating table."]
             ..sideLoyalty = -10
+            ..beurocraticBullshit = <String>["is getting sued for malpractice.","needs to refile his permits for all those taxidermied corpses he keeps.","has to renew his 'medical license'. "]
+
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..makeCunning(100)
@@ -224,6 +235,8 @@ class NPCHandler
             ..specibus = new Specibus("Spark Rifle", ItemTraitFactory.RIFLE, [ ItemTraitFactory.ZAP, ItemTraitFactory.SHOOTY, ItemTraitFactory.POINTY])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCunning(100)
+            ..beurocraticBullshit = <String>["needs a permit for all her inventions.","has to pay a fine after one of her Automatons went wild.","wants the Archagent to see her new cosplay."]
+
             ..makeCharming(100)
         );
 
@@ -235,6 +248,8 @@ class NPCHandler
             ..sideLoyalty = -100
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
+            ..beurocraticBullshit = <String>["has to pay a fine after spray painting 'N7' on the Royal Palace.","has to pay a fine after doing sweet BIKE STUNTS off the chain between Derse and it's moon.","has to post bail after punching all those kittens."]
+
             ..makeCharming(100)
         );
 
@@ -246,6 +261,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..makeViolent(100)
+            ..beurocraticBullshit = <String>["needs a permit for a huge banquet in the Queen's honor.","wants to make sure the Archagent is eating right."]
+
             ..sideLoyalty = -10
 
         );
@@ -257,6 +274,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..makeLucky(100)
+            ..beurocraticBullshit = <String>["has to pay a fine after letting that swarm of locusts out into the royal [REDACTED] gardens.","wants a permit to store more fireflies."]
+
         );
         //EA	HorrorTerrors	Eldritch Acolyte, Eccentric Advocate, Eclectic Alien	Efflorant Atronach	Derse
         randomDersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Eldritch","Eccentric","Eclectic"], lastNames: <String>["Acolyte","Alien","Advocate"], ringFirstNames: <String>["Efflorant"], ringLastNames: <String>["Atronach"])
@@ -266,6 +285,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..makeCunning(100)
+            ..beurocraticBullshit = <String>["is paying a nominal fee for breaking the law rather than having any real consequences.","would like to tell the Archagent about the Will of the Elder Gods.","got busted for using Magicks, which have been declared 'fake as fuck' by Royal Decree."]
             ..sideLoyalty = 1000
 
         );

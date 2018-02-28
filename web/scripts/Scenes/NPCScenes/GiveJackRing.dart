@@ -15,8 +15,9 @@ class GiveJackRing extends Scene {
 
     @override
     void renderContent(Element div) {
+        session.logger.info("Ring Test: someone has a ring to give jack");
         DivElement me = new DivElement();
-        me.setInnerHtml(getText());
+        me.setInnerHtml("<br> ${getText()}");
         div.append(me);
         triggered = true;
 
@@ -73,8 +74,10 @@ class GiveJackRing extends Scene {
     //only if sburb lore is low or unallied with players
     String giveRing() {
         session.logger.info("AB: someone is trying to give jack the ring");
+        Ring r = gameEntity.ring;
+        String jackName = jack.name;
         jack.sylladex.add(gameEntity.ring);
-        return "The ${gameEntity.htmlTitle()} hands the ${gameEntity.ring} over to the ${jack.htmlTitle()}. This is clearly a good decision.";
+        return "The ${gameEntity.htmlTitle()} hands the ${r} over to the ${jackName}. This is clearly a good decision and nothing bad can come from ${jackName} becoming the ${jack.name}.";
 
 
     }
