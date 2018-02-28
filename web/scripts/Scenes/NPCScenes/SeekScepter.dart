@@ -106,12 +106,15 @@ class SeekScepter extends Scene {
       GameEntity blackRingOwner = session.derse.kingsScepter.owner;
 
 
+      //ring could be destroyed, or...somehow...not owned by who it thinks it is which is weird and wrong and what is happening.
+      if(whiteRingOwner == null || whiteRingOwner.ring == null) whiteRingOwner = blackRingOwner;
+      if(gameEntity == whiteRingOwner) whiteRingOwner == blackRingOwner;
+      if(blackRingOwner == null || blackRingOwner.ring == null) blackRingOwner = whiteRingOwner;
+      if(gameEntity == blackRingOwner) blackRingOwner == whiteRingOwner;
 
-      //ring could be destroyed
-      if(whiteRingOwner == null) whiteRingOwner = blackRingOwner;
-      if(blackRingOwner == null) blackRingOwner = whiteRingOwner;
       //if both rings are destroyed...don't even bother.
       if(whiteRingOwner == null && blackRingOwner == null) return false;
+      if(whiteRingOwner.ring == null && blackRingOwner.ring == null) return false;
 
       target = whiteRingOwner;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
