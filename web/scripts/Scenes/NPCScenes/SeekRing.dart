@@ -117,6 +117,8 @@ class SeekRing extends Scene {
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
+      print("White ring owner is ${whiteRingOwner} and black ring owner is ${blackRingOwner}");
+
       //ring could be destroyed
       if(whiteRingOwner == null) whiteRingOwner = blackRingOwner;
       if(blackRingOwner == null) blackRingOwner = whiteRingOwner;
@@ -124,7 +126,7 @@ class SeekRing extends Scene {
       if(whiteRingOwner == null && blackRingOwner == null) return false;
 
       target = whiteRingOwner;
-      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
+      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner, black's sylladex is ${gameEntity.sylladex}");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);

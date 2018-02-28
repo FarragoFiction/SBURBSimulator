@@ -105,6 +105,8 @@ class SeekScepter extends Scene {
       GameEntity whiteRingOwner = session.prospit.kingsScepter.owner;
       GameEntity blackRingOwner = session.derse.kingsScepter.owner;
 
+
+
       //ring could be destroyed
       if(whiteRingOwner == null) whiteRingOwner = blackRingOwner;
       if(blackRingOwner == null) blackRingOwner = whiteRingOwner;

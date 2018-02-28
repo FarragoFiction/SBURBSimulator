@@ -82,6 +82,7 @@ class GiveJackRing extends Scene {
     @override
     bool trigger(List<Player> playerList) {
         jack = session.npcHandler.jack;
+        if(gameEntity == jack) return false;
         // if jack has no party leader and is not crowned, he passes out regiswords and quests to get the
         //rings and scepters, even to players.
         //rand is so it can take a bit of time for them to get back to jack
