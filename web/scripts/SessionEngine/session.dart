@@ -415,7 +415,7 @@ class Session {
             if(p.active) p.processScenes();
         }
 
-        print("TEST NPCS: Processing scenes start, activated npcs is ${activatedNPCS}");
+       // print("TEST NPCS: Processing scenes start, activated npcs is ${activatedNPCS}");
         for(GameEntity g in activatedNPCS) {
             if(g.active && g.available) g.processScenes();
         }

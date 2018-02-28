@@ -77,7 +77,7 @@ class Moon extends Land {
         //print("spawning queen $session");
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;
-        this.queensRing = new Ring.withoutOptionalParams("RING OF ORBS ${session.convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
+        this.queensRing = new Ring.withoutOptionalParams("${name.toUpperCase()} RING OF ORBS ${session.convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
         Fraymotif f = new Fraymotif("Red Miles", 3);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You cannot escape them. ";

@@ -64,8 +64,8 @@ class SeekRing extends Scene {
     }
 
     void takeRing() {
-       // print("before adding ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
-       // print("btw does their sylladex CONTAIN the ring? ${target.sylladex.contains(target.ring)}");
+        print("before adding ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
+        print("btw does their sylladex CONTAIN the ring? ${target.sylladex.contains(target.ring)}");
         gameEntity.sylladex.add(target.ring);
         //for some reason isn't removing in sylladex? testing something.
         //print("after adding ring from $target but before taking, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
@@ -119,14 +119,18 @@ class SeekRing extends Scene {
 
       print("White ring owner is ${whiteRingOwner} and black ring owner is ${blackRingOwner}");
 
-      //ring could be destroyed
-      if(whiteRingOwner == null) whiteRingOwner = blackRingOwner;
-      if(blackRingOwner == null) blackRingOwner = whiteRingOwner;
+      //ring could be destroyed, or...somehow...not owned by who it thinks it is which is weird and wrong and what is happening.
+      if(whiteRingOwner == null || whiteRingOwner.ring == null) whiteRingOwner = blackRingOwner;
+      if(gameEntity == whiteRingOwner) whiteRingOwner == blackRingOwner;
+      if(blackRingOwner == null || blackRingOwner.ring == null) blackRingOwner = whiteRingOwner;
+      if(gameEntity == blackRingOwner) blackRingOwner == whiteRingOwner;
+
       //if both rings are destroyed...don't even bother.
       if(whiteRingOwner == null && blackRingOwner == null) return false;
+      if(whiteRingOwner.ring == null && blackRingOwner.ring == null) return false;
 
       target = whiteRingOwner;
-      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner, black's sylladex is ${gameEntity.sylladex}");
+      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner, black's sylladex is ${blackRingOwner.sylladex} and white's sylladex is ${whiteRingOwner.sylladex}");
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);

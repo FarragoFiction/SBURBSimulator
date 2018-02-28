@@ -267,11 +267,11 @@ class Sylladex extends Object with IterableMixin<Item> {
         }
         //we can't both own it
         if(i.owner != null && i.owner != owner) {
-            if(i is Ring) print("TEST RING: removing ring from owner");
+            if(i is Ring) print("TEST RING: removing $i from owner ${i.owner} to give to ${owner}");
             i.owner.sylladex.remove(i);
             if(i.owner is Carapace && (item is Ring || item is Scepter)) (i.owner as Carapace).pickName();
         }else {
-            if(i is Ring) print("TEST RING: i believe this ring is unowned");
+            if(i is Ring) print("TEST RING: i believe this $i is unowned and am giving it to $owner");
 
         }
         inventory.add(i);
