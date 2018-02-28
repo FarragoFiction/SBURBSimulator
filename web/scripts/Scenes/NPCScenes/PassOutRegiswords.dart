@@ -33,6 +33,7 @@ class PassOutRegiswords extends Scene {
       //royalty are kept separate so jack should NOT give the white queen a quest to get herh own ring.
       patsies.addAll(session.derse.associatedEntities);
       patsies.addAll(session.prospit.associatedEntities);
+      return rand.pickFrom(patsies);
   }
 
   @override

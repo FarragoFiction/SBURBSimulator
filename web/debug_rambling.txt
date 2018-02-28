@@ -5282,3 +5282,8 @@ Is it possible it's not re-creating jack or whoever between sessions? Hence it o
  How to test: print out each time a jack is made.
 
  okay never mind, jack thought qbout it 4 times this time. Maybe his shennnaigans needs to be lower prioriry
+ .......
+ oh.
+ my.
+ fuck.
+ patsy isn't ever being returned. Of COURSE this is happening. God DAMN.
