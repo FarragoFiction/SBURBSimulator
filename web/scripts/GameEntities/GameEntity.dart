@@ -11,8 +11,6 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
-    //players activate when they enter session, npcs activate when they encounter a player.
-    bool _active = false;
     //availibility set to false by scenes
     bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
@@ -26,6 +24,8 @@ class GameEntity extends Object with StatOwner   {
 
     //not there yet, but putting down foundation.
     bool bigBad = false;
+    //players activate when they enter session, npcs activate when they encounter a player.
+    bool active  = false;
 
     //if you become a companion, they are your party leader.
     GameEntity partyLeader;
@@ -76,20 +76,6 @@ class GameEntity extends Object with StatOwner   {
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.
     List<Player> doomedTimeClones = <Player>[]; //help fight the final boss(es).
     String causeOfDeath = ""; //fill in every time you die. only matters if you're dead at end
-
-    void set active(bool isActive) {
-        _active = isActive;
-        if(_active && !session.players.contains(this)) {
-            session.activatedNPCS.add(this);
-        }else {
-            session.activatedNPCS.remove(this);
-        }
-    }
-
-    bool get active {
-        return _active;
-    }
-
 
     //npc traits: violent, lucky, charming, cunning
 
@@ -193,7 +179,7 @@ class GameEntity extends Object with StatOwner   {
     //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
     //this is intended. probably.
     void processScenes() {
-       // print("processing ${scenes.length} scenes for $this");
+      // print("TEST NPCS: processing ${scenes.length} scenes for $this");
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
             s.gameEntity = this;

@@ -25,7 +25,25 @@ class Session {
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
 
-    List<GameEntity> activatedNPCS = <GameEntity>[];
+    //these are stable between combos and scratches
+    List<GameEntity> bigBads = new List<GameEntity>();
+    //these are not
+    List<GameEntity> get activatedNPCS {
+        List<GameEntity> ret = new List<GameEntity>();
+        for(GameEntity g in bigBads) {
+            if(g.active) ret.add(g);
+        }
+
+        for(GameEntity g in derse.associatedEntities) {
+            if(g.active) ret.add(g);
+        }
+
+        for(GameEntity g in prospit.associatedEntities) {
+            if(g.active) ret.add(g);
+        }
+
+        return ret;
+    }
 
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
 
@@ -73,7 +91,6 @@ class Session {
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
         mutator = SessionMutator.getInstance();
-        this.setupMoons(); //happens only in reinit
         stats.initialGameEntityId = GameEntity.getIDCopy();
         print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
         ////print("Made a new session with an id of $session_id");
@@ -208,7 +225,7 @@ class Session {
 
 
     void setupMoons() {
-         print("moons set up $session_id");
+         print("Test NPCs: moons set up $session_id");
          setupBattleField();
         //no more than one of each.
         Map<Theme,double> prospitThemes = new Map<Theme, double>();
@@ -279,9 +296,14 @@ class Session {
         derseThemes[derseTheme] = Theme.HIGH;
 
         prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
-        prospit.associatedEntities.addAll(npcHandler.getProspitians());
-        derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
-        derse.associatedEntities.addAll(npcHandler.getDersites());
+         print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
+
+         prospit.associatedEntities.addAll(npcHandler.getProspitians());
+         derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
+         print("Test NPCS: before adding entities, derse has ${derse.associatedEntities}");
+
+         derse.associatedEntities.addAll(npcHandler.getDersites());
+         print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
 
          for(Player p in players) {
              p.syncToSessionMoon();
@@ -393,6 +415,7 @@ class Session {
             if(p.active) p.processScenes();
         }
 
+        print("TEST NPCS: Processing scenes start, activated npcs is ${activatedNPCS}");
         for(GameEntity g in activatedNPCS) {
             if(g.active && g.available) g.processScenes();
         }
@@ -667,6 +690,7 @@ class Session {
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
+        print("TEST NPCS: reiniting session");
         this.setupMoons();
         //fix refereances
 
@@ -720,6 +744,10 @@ class Session {
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
 
         createScenesForPlayers();
+        print("TEST NPCS: making players");
+
+        this.setupMoons(); //happens only in reinit
+
 
     }
 
