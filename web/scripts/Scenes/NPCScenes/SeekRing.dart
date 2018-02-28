@@ -117,6 +117,12 @@ class SeekRing extends Scene {
       GameEntity whiteRingOwner = session.prospit.queensRing.owner;
       GameEntity blackRingOwner = session.derse.queensRing.owner;
 
+      //ring could be destroyed
+      if(whiteRingOwner == null) whiteRingOwner = blackRingOwner;
+      if(blackRingOwner == null) blackRingOwner = whiteRingOwner;
+      //if both rings are destroyed...don't even bother.
+      if(whiteRingOwner == null && blackRingOwner == null) return false;
+
       target = whiteRingOwner;
       print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
 

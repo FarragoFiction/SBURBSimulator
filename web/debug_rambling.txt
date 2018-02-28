@@ -5287,3 +5287,29 @@ Is it possible it's not re-creating jack or whoever between sessions? Hence it o
  my.
  fuck.
  patsy isn't ever being returned. Of COURSE this is happening. God DAMN.
+
+ ~~~~~~~~
+
+             if(!g.dead) g.available;
+
+
+
+..............................
+
+what.
+
+what the fuck.
+
+that.
+why do i keep making that mistake lately. that's not a method, set it to true dunkass.
+
+
+~~~~~
+
+okay.
+
+now.
+
+
+the system thinks a random fucking player owns the ring when they dont'. wtf.
+

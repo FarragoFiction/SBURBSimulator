@@ -361,6 +361,8 @@ class Session {
             if (!playerList[i].dead) {
                 playerList[i].available = true;
                 ret.add(playerList[i]);
+            }else {
+                playerList[i].available = false;
             }
         }
         return ret;
@@ -369,7 +371,13 @@ class Session {
     void resetNPCAvailability()
     {
         for(GameEntity g in activatedNPCS) {
-            if(!g.dead) g.available;
+
+            if(!g.dead) {
+                print("setting $g to available");
+                g.available = true;
+            }else {
+                g.available = false;
+            }
         }
     }
 
