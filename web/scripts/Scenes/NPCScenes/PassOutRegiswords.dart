@@ -10,7 +10,9 @@ class PassOutRegiswords extends Scene {
 
   @override
   void renderContent(Element div) {
-      session.logger.info("Jack is passing out Regiswords again.");
+      gameEntity.available = false;
+      patsy.available = false;
+      session.logger.info("Jack is passing out Regiswords again, this time to ${patsy.htmlTitle()}.");
       DivElement me = new DivElement();
       patsy.sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]));
 
@@ -24,7 +26,7 @@ class PassOutRegiswords extends Scene {
       List<String> genericReasons = <String>["really needs to get a parking ticket validated.","has to pay a fine for smuggling ice cream.","needs to get their small business loan approved."];
       genericReasons.addAll(gameEntity.beurocraticBullshit);
 
-      me.setInnerHtml("The ${patsy.htmlTitle()} ${session.rand.pickFrom(genericReasons)}. They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
+      me.setInnerHtml("<br>The ${patsy.htmlTitle()} ${session.rand.pickFrom(genericReasons)}. They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
       div.append(me);
   }
 
@@ -46,8 +48,8 @@ class PassOutRegiswords extends Scene {
       //you're not  going to be your OWN patsy
       print("Regisword Test: jack is thinking about offering a regisword");
 
-      gameEntity = pickAPatsy();
-      if(gameEntity == patsy || gameEntity == null ) return false;
+      patsy = pickAPatsy();
+      if(gameEntity == patsy || patsy == null ) return false;
       print("Regisword Test: patsy isn't jack or null");
       //no longer during beurocracy stuff
       if(gameEntity.crowned != null || gameEntity.partyLeader != null ) return false;

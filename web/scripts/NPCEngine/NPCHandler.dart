@@ -37,8 +37,9 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
             ..makeViolent(1000)
             ..makeCunning(1000)
+            ..active = true //jack needs to be on for every session
             ..royaltyOpinion = -1000
-            ..scenes = <Scene>[new PassOutRegiswords(session), new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new BeDistracted(session),new PassOutRegiswords(session),  new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
         );
         midnightCrew.add(jack);
 

@@ -66,11 +66,11 @@ class SeekScepter extends Scene {
     String tryAsking() {
         //thrown out
         Relationship theirRelationship = target.getRelationshipWith(gameEntity);
-        if(theirRelationship.value >10) {
+        if(theirRelationship != null && theirRelationship.value >10) {
             gameEntity.sylladex.add(scepter);
             session.logger.info("AB: A scepter was given from a target.");
             return "The ${oldName} politely approaches the ${targetOldName} and asks for the $scepter. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
-        }else if(theirRelationship.value < -10){
+        }else if(theirRelationship != null && theirRelationship.value < -10){
             return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $scepter. We are unsurprised that the ${targetOldName} is offended enough to strife. ${prepareStrife()}";
         }else {
             return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $scepter. We are unsurprised when it doesn't work.";
