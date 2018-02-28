@@ -815,9 +815,9 @@ class GameEntity extends Object with StatOwner   {
         if(corpse == null) return;
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
-        print("$this $sylladex is looting $corpse 's corpse of $tmp");
+       // print("$this $sylladex is looting $corpse 's corpse of $tmp");
         if(corpse != this) sylladex.addAll(tmp);
-        print("after looting I have $sylladex and corpse has ${corpse.sylladex}");
+        //print("after looting I have $sylladex and corpse has ${corpse.sylladex}");
 
     }
 

@@ -35,7 +35,7 @@ class Carapace extends NPC {
 
 
     void initRelationshipsAllies(Moon us) {
-        print("initializing relationships with allies. king is ${us.king} and queen is ${us.queen}");
+       // print("initializing relationships with allies. king is ${us.king} and queen is ${us.queen}");
         for(GameEntity g in us.associatedEntities) {
             if(g != this && g is Carapace) {
                 Carapace c = g as Carapace;
@@ -51,7 +51,7 @@ class Carapace extends NPC {
     }
 
     void initRelationshipsEnemies(Moon them) {
-        print("initializing relationships with allies. king is ${them.king} and queen is ${them.queen}");
+       // print("initializing relationships with allies. king is ${them.king} and queen is ${them.queen}");
 
         for(GameEntity g in them.associatedEntities) {
             if(g != this && g is Carapace) {

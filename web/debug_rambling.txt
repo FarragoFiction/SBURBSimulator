@@ -5269,3 +5269,16 @@ i was setting       ring = target.ring;
 why does jack only think he should even consider offering up the regisword once?
 
 .....are scene availibiites not getting reset or smoething? oh well, future jr will hafta do it
+
+~~~~~
+
+alright, pastjr couldn't figure this out. It's up to me.
+
+I know session mutators do weird shit like not reset between sessions, because tht's the point of them.
+
+Is it possible it's not re-creating jack or whoever between sessions? Hence it only does jacks stuff once
+ cuz he's fucking DEAD the next time?
+
+ How to test: print out each time a jack is made.
+
+ okay never mind, jack thought qbout it 4 times this time. Maybe his shennnaigans needs to be lower prioriry

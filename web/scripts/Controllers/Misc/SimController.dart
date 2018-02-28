@@ -380,7 +380,7 @@ abstract class SimController {
 
     void tick([num time]) {
         curSessionGlobalVar.numTicks ++;
-        print("Debugging AB: tick");
+        //print("Debugging AB: tick");
         ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions

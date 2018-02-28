@@ -68,10 +68,10 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         Item modified;
         if(applyToSpecibus) {
             modified = p.specibus;
-            print("modified is from specibus, is ${modified.traits}, result is ${result.traits}");
+           // print("modified is from specibus, is ${modified.traits}, result is ${result.traits}");
         }else {
             modified = targetItems[targetItems.indexOf(items[0])];
-            print("modified is from sylladex, is ${modified.traits}, result is ${result.traits}");
+            //print("modified is from sylladex, is ${modified.traits}, result is ${result.traits}");
 
         }
         //Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
