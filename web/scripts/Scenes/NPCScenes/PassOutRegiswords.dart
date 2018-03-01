@@ -22,11 +22,11 @@ class PassOutRegiswords extends Scene {
       patsy.scenes.insert(0, new GiveJackScepter(session));
 
 
-      List<String> genericReasons = gameEntity.beurocraticBullshit;
+      List<String> genericReasons = patsy.bureaucraticBullshit;
 
       if(genericReasons == null || genericReasons.isEmpty) genericReasons = <String>["really needs to get a parking ticket validated.","has to pay a fine for smuggling ice cream.","needs to get their small business loan approved.","is in the middle of a series of shenanigans."];
 
-      me.setInnerHtml("<br>The ${patsy.htmlTitle()} ${gameEntity.beurocraticBullshit} ${session.rand.pickFrom(genericReasons)} They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
+      me.setInnerHtml("<br>The ${patsy.htmlTitle()} ${session.rand.pickFrom(genericReasons)} They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
       div.append(me);
   }
 

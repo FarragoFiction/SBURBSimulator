@@ -20,7 +20,7 @@ class GameEntity extends Object with StatOwner   {
     List<String> distractions = new List<String>();
 
     //why are they pestering Jack?
-    List<String> beurocraticBullshit = new List<String>();
+    List<String> bureaucraticBullshit = new List<String>();
 
     //not there yet, but putting down foundation.
     bool bigBad = false;
