@@ -40,11 +40,17 @@ class Moon extends Land {
       this.smells = this.getTypedSubList(FeatureCategories.SMELL);
       this.sounds = this.getTypedSubList(FeatureCategories.SOUND);
       this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
+      setHP();
 
       this.moonQuestChains = this.getTypedSubList(FeatureCategories.MOON_QUEST_CHAIN).toList();
       this.processConsort();
 
   }
+
+    @override
+    void setHP() {
+        hp = (session.sessionHealth/2).round();
+    }
 
   void initRelationships(Moon opposite) {
       for(GameEntity g in associatedEntities) {
@@ -67,10 +73,13 @@ class Moon extends Land {
 
   void destroyRing() {
       queensRing.dead = true;
+      queensRing = null;
   }
 
+  //this should instantly doom the timeline.
   void destroyScepter() {
       kingsScepter.dead = true;
+      kingsScepter = null;
   }
 
     void spawnQueen() {

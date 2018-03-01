@@ -5314,3 +5314,25 @@ now.
 the system thinks a random fucking player owns the ring when they dont'. wtf.
 
 maybe they lost it at some point, but never got marked as not it's owner....or they alchemized with it. fuck.
+
+
+~~~~~~~~
+
+Alright.
+
+So.
+
+Uh.
+
+How do I want to do this?
+
+Lands need to blow up. They kill their associated players, and set their land (if they are a player) to null.
+
+if they are a moon, they kill their associated players's dream selves and the carapaces, and set the sessions' prospit/derse to null.
+
+is that enough? I think so.
+
+but what about for dead sessions? ...worry about taht soon, i guess. for a dead session
+should make session unwinnable. that's a flag, right? yeah.
+
+it means ANY big bad or red miles activity can make a dead session unwinnable. that's the point, dunkass.

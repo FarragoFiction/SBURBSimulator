@@ -17,7 +17,7 @@ class Land extends Object with FeatureHolder {
     //land hp will buff royalty (if moon)
     //and will be directly compared to a Big Bad's attack power to see if it can be destroyed.
     //corruption weakens a land
-    int hp;
+    int hp = 0;
     //Session session; // inherited from FeatureHolder
     bool corrupted = false;
     //can be more than one thing, will pick one or two things at random by weight
@@ -247,6 +247,10 @@ class Land extends Object with FeatureHolder {
         hp = (session.sessionHealth/ratio).round();
         if(corrupted) hp = (hp/2).round();
        // print("There are ${ratio} players, so hp is ${hp} for $name");
+
+    }
+
+    Element planetsplode(GameEntity killer) {
 
     }
 

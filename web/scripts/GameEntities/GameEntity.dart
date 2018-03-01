@@ -11,6 +11,10 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
+
+    int killCount = 0;
+    int landKillCount  = 0;
+
     //availibility set to false by scenes
     bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
@@ -811,7 +815,10 @@ class GameEntity extends Object with StatOwner   {
         if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
-        if(killer != null) killer.lootCorpse(this);
+        if(killer != null) {
+            killer.killCount ++;
+            killer.lootCorpse(this);
+        }
     }
 
     void interactionEffect(GameEntity ge) {

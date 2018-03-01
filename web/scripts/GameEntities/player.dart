@@ -271,10 +271,15 @@ class Player extends GameEntity{
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
 
         //can loot corpses even in life gnosis, or how else will things happen?
-        if(killer != null) killer.lootCorpse(this);
+        if(killer != null) {
+            killer.lootCorpse(this);
+        }
 
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
 
+        if(killer != null) {
+            killer.killCount ++;
+        }
         String ret = "";
         this.dead = true;
         this.timesDied ++;
