@@ -94,6 +94,7 @@ class Moon extends Land {
       if(this == session.prospit) session.prospit == null;
 
       //can do this because it's not canvas
+      //although really if my rendering pipeline were diff i could do on canvas, too.
       image.onLoad.listen((e) {
           ret.append(image);
       });
