@@ -251,7 +251,51 @@ class Land extends Object with FeatureHolder {
     }
 
     Element planetsplode(GameEntity killer) {
+        if(session is DeadSession) {
+            (session as DeadSession).failed = true;
+        }
+        List<GameEntity> killed = new List<GameEntity>();
 
+        //KILL the associated player (unless they have reached skaia)
+        for(GameEntity g in associatedEntities) {
+            if(g is Player) {
+                Player p = g as Player;
+                //land is gone, this should be only reference to it
+                p.land = null;
+                if(!p.canHelp()) { //you can't leave your planet yet, you're dead, and no one can get to your body to smooch it, so dream self dead, too
+                    killed.add(p);
+                    killPlayer(p, killer);
+                }else if(!thirdCompleted && session.rand.nextBool()) {
+                    //you happened to be on your planet even though you could have been off
+                    killed.add(p);
+                    killPlayer(p, killer);
+                }
+                //if third IS completed, assume they are on skaia and so safe
+            }
+        }
+
+        Element ret = new DivElement();
+        String killedString  = "";
+        if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} are now dead.";
+        ret.text = "The ${name} is now destroyed. $killedString";
+        //render explosion graphic and text. text should describe if anyone died.
+        //Rewards/planetsplode.png
+        ImageElement image  = new ImageElement(src: "images/Rewards/planetsplod.png");
+
+        //can do this because it's not canvas
+        image.onLoad.listen((e) {
+            ret.append(image);
+        });
+
+        return ret;
+    }
+
+    void killPlayer(Player p, GameEntity killer) {
+        p.makeDead("The $name exploding.", killer);
+        if(!p.dreamSelf) {
+            p.isDreamSelf = true;
+            p.makeDead("the $name exploding, and leaving no corpse behind to smooch.",killer);
+        }
     }
 
     void setFeatures(WeightedList<Feature> list) {

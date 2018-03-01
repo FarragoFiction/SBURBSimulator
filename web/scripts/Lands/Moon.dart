@@ -47,6 +47,21 @@ class Moon extends Land {
 
   }
 
+  @override
+  Element planetsplode(GameEntity killer) {
+      if(session is DeadSession) {
+          (session as DeadSession).failed = true;
+      }
+
+      //KILL all non activated npcs
+      //Kill all players with you as a dream moon's dream self (unless they are the dream self)
+        //do i generate ghosts for this? how did i handle jack killing dream selves in old code?
+
+      //if i'm derse, set session's derse to null, vice versa
+      //render explosion graphic and text. text should describe if anyone died.
+      //Rewards/derse_explode.png or Rewards/prospit_exploder.png
+  }
+
     @override
     void setHP() {
         hp = (session.sessionHealth/2).round();
