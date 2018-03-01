@@ -96,6 +96,12 @@ class Player extends GameEntity{
     //no longer allowed to set it.
     bool get denizenDefeated => _denizenDefeated;
 
+    @override
+    List<String> get bureaucraticBullshit {
+        return class_name.bureaucraticBullshit;
+    }
+
+
     void set denizenDefeatedExplicitlySet(bool x) {
         _denizenDefeated = x;
     }

@@ -15,6 +15,9 @@ class Thief extends SBURBClass {
     double companionWeight = 1.01;
 
     @override
+    List<String> bureaucraticBullshit = <String>["got caught stealing from a Dersite newstand.","got caught running a con scheme.","finally got caught stealing."];
+
+    @override
     List<String> levels = ["RUMPUS RUINER", "HAMBURGLER YOUTH", "PRISONBAIT"];
     @override
     List<String> quests = ["robbing various enemy imps and ogres to obtain vast riches", "planning an elaborate heist that relies on several hard-to-predict factors going absolutely perfectly", "torrenting vast amounts of grist from the other players"];

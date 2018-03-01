@@ -24,6 +24,9 @@ class Bard extends SBURBClass {
     @override
     List<String> handles = ["bat","benign", "blissful", "boisterous", "bonkers", "broken", "bizarre", "barking"];
 
+    List<String> bureaucraticBullshit = <String>["is posting bail after being in the wrong place in the wrong time.","was fined for being in the wrong place at a the wrong time.","was fined for causing 'a ruckus'. "];
+
+
     //for quests and shit
     @override
     bool isProtective = false;

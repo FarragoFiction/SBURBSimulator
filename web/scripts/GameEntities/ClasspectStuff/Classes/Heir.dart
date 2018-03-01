@@ -16,6 +16,10 @@ class Heir extends SBURBClass {
     double companionWeight = 1.01;
 
     @override
+    List<String> bureaucraticBullshit = <String>["needs to file some paperwork to claim a small inheritance.","needs to pay off some debts with a property they inherited."];
+
+
+    @override
     double difficulty = 0.3;
 
     @override

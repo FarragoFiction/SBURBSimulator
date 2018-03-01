@@ -14,7 +14,7 @@ class QueenRejectRing extends Scene {
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList, this.session.session_id);
 		var goodPrototyping = findGoodPrototyping(playerList);
 		////session.logger.info("holy fucking shit, don't reject the ring if an alien player comes in.");
-		return goodPrototyping != null && this.session.derse.queen.crowned != null;
+		return goodPrototyping != null && this.session.derse.queen.ring != null;
 	}
 
 	@override
@@ -24,6 +24,7 @@ class QueenRejectRing extends Scene {
 	dynamic content(){
 		this.session.stats.queenRejectRing = true;
 		this.session.derse.queen.crowned.dead;
+		this.session.derse.queen.sylladex.remove(this.session.derse.queen.ring);
 		session.derse.destroyRing();
 		var goodPrototyping = findGoodPrototyping(this.playerList);
 		String ret = "The Queen, with her RING OF ORBS " + this.session.convertPlayerNumberToWords();

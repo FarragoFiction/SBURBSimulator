@@ -18,6 +18,9 @@ class Lord extends SBURBClass {
     double companionWeight = 2.01;
 
     @override
+    List<String> bureaucraticBullshit = <String>["needs to file some proclamations.","has some laws to put into place.","needs some decrees to be filed in triplicate"];
+
+    @override
     double difficulty = 2.0;
     @override
     List<String> levels = ["LORDLING", "DELEGATION DELIVERER", "BUFFER THAN KR"];
