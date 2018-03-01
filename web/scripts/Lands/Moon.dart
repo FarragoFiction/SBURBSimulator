@@ -52,14 +52,54 @@ class Moon extends Land {
       if(session is DeadSession) {
           (session as DeadSession).failed = true;
       }
+      List<GameEntity> killed = new List<GameEntity>();
 
-      //KILL all non activated npcs
-      //Kill all players with you as a dream moon's dream self (unless they are the dream self)
-        //do i generate ghosts for this? how did i handle jack killing dream selves in old code?
+      //kill the dream selves
+      for(Player p in session.players) {
+          if(p.moon == this && p.dreamSelf && !p.dreamSelf) {
+              p.dreamSelf = false;
+              Player snop = Player.makeRenderingSnapshot(p);
+              snop.causeOfDeath = "after being blown up with $name.";
+              snop.isDreamSelf = true;
+              this.session.afterLife.addGhost(snop);
+              killed.add(snop);
+          }
+      }
 
-      //if i'm derse, set session's derse to null, vice versa
+      //kill the carapaces
+      for(GameEntity g in associatedEntities) {
+          if(!g.active) {
+              g.makeDead("the $name exploding.",killer);
+          }
+      }
+
+
+
+      Element ret = new DivElement();
+      String killedString  = "";
+      if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} are now dead.";
+      ret.text = "The ${name} is now destroyed. $killedString";
       //render explosion graphic and text. text should describe if anyone died.
-      //Rewards/derse_explode.png or Rewards/prospit_exploder.png
+      //Rewards/planetsplode.png
+      ImageElement image;
+      if(session.derse == this) {
+          image = new ImageElement(src: "images/Rewards/derse_explode.png");
+
+      }else {
+          image = new ImageElement(src: "images/Rewards/prospit_explode.png");
+      }
+
+      //if i ever want fanon moons, will need it to be an array instead. whatever.
+      if(this == session.derse) session.derse == null;
+      if(this == session.prospit) session.prospit == null;
+
+      //can do this because it's not canvas
+      image.onLoad.listen((e) {
+          ret.append(image);
+      });
+
+      return ret;
+
   }
 
     @override
