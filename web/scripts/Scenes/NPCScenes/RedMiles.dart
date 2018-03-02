@@ -49,28 +49,75 @@ class RedMiles extends Scene {
 
   }
 
-  void destroyLand(Element div) {
+  //each thing has a set 'do this next' if it can't be done
+  void destroyLand(Element div, [int count=0]) {
+      //means i've tried and failed to destroy three things
+      if(count > 3) destroyUniverse(div);
+      count++;
+
+      List<Land> targets = new List<Land>();
+      for(Player p in session.players) {
+        if(p.land != null) targets.add(p.land);
+      }
+
+      if(targets.isEmpty) destroyMoon(div, count);
+      session.rand.pickFrom(targets).planetsplode(gameEntity);
+  }
+
+    void destroyMoon(Element div, [int count=0]) {
+        //means i've tried and failed to destroy three things
+        if(count > 3) destroyUniverse(div);
+        count++;
+
+        List<Land> targets = new List<Land>();
+        for(Moon p in session.moons) {
+            if(p != null) targets.add(p);
+        }
+
+        if(targets.isEmpty) destroyPlayer(div, count);
+        session.rand.pickFrom(targets).planetsplode(gameEntity);
+    }
+
+  void destroyPlayer(Element div, [int count=0]) {
+      //technically a sauce player could trigger this, but the 'not self' protection doesn't apply
+      //means i've tried and failed to destroy three things
+      if(count > 3) destroyUniverse(div);
+      count++;
+      List<Player> targets = new List<Player>();
+      for(Player p in session.players) {
+          if(!p.dead) targets.add(p);
+      }
+
+      if(targets.isEmpty) destroyCarapace(div, count);
+      session.rand.pickFrom(targets).makeDead("not being able to escape the miles.", gameEntity);
+
+  }
+
+
+
+  void destroyCarapace(Element div, [int count=0]) {
+      //means i've tried and failed to destroy three things
+      if(count > 3) destroyUniverse(div);
+      count++;
+
       //loop through all players, collect all their non null lands
       //pick a random land
       // land.planetsplode()
+      List<GameEntity> targets = new List<GameEntity>();
+      for(Moon p in session.moons) {
+          if(p != null) {
+            for(GameEntity g in p.associatedEntities) {
+                if(!g.dead && g != gameEntity) targets.add(g);
+            }
+          }
+      }
+
+      if(targets.isEmpty) destroyLand(div, count);
+
+      session.rand.pickFrom(targets).makeDead("not being able to escape the miles.", gameEntity);
   }
 
-  void destroyPlayer(Element div) {
-      //technically a sauce player could trigger this, but the 'not self' protection doesn't apply
-  }
 
-  void destroyMoon(Element div) {
-
-  }
-
-  void destroyCarapace(Element div) {
-      //not self
-  }
-
-  //only if nothing left to destroy
-  void destroySession(Element div) {
-
-  }
 
   @override
   bool trigger(List<Player> playerList) {
