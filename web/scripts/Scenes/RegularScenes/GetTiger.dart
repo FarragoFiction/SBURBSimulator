@@ -59,9 +59,6 @@ class GetTiger extends Scene{
 		String ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
-		for(Player p in withd) {
-			if(p.land == null) withd.remove(p); //sorry, no quest bed, thems the breaks.
-		}
 
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
@@ -70,8 +67,16 @@ class GetTiger extends Scene{
 				var p = withd[i];
 				p.setStat(Stats.CURRENT_HEALTH, p.getStat(Stats.HEALTH));
 				//////session.logger.info("Quest bed: " + this.session.session_id);
-				ret += " Upon being laid to rest on their QUEST BED on the " + p.land.name + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
-				ret +="On ${p.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
+				if(p.land != null) {
+					ret += " Upon being laid to rest on their QUEST BED on the " + p.land.name + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
+					ret += "On ${p.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
+				}else if(p.moon != null) {
+					ret += " You...aren't really sure how a real self made it to the SACRIFICIAL SLAB on ${p.moon}, but there it is.  ";
+					ret += "The " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.  ";
+				}else {
+					p.godDestiny = false; //sorry, no land, no moon, you're fucked.
+				}
+
 				Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 				p.fraymotifs.add(f);
 				ret += " They learn " + f.name + "." ;
@@ -85,7 +90,7 @@ class GetTiger extends Scene{
 		if(withoutd != null){
 			for(num i = 0; i< withoutd.length; i++){
 				var p = withoutd[i];
-				if(p.isDreamSelf){
+				if(p.isDreamSelf && p.moon != null){
 					p.setStat(Stats.CURRENT_HEALTH, p.getStat(Stats.HEALTH));
 					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
 					//////session.logger.info("sacrificial slab: " + this.session.session_id);
@@ -94,6 +99,8 @@ class GetTiger extends Scene{
 					Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 					p.fraymotifs.add(f);
 					ret += " They learn " + f.name + "." ;
+				}else if(p.moon == null) {
+					p.godDestiny = false; //sorry, no moon means you're fucked.
 				}
 
 			}
@@ -110,17 +117,9 @@ class GetTiger extends Scene{
 
 
 
-		for(num i = 0; i<withd.length; i++){
+		for(num i = 0; i<this.deadPlayersToGodTier.length; i++){
 			Player p = this.deadPlayersToGodTier[i];
-			p.makeGodTier();
-			if(p.aspect == Aspects.SAUCE) {
-				ret += "<br><Br>...  Huh. What... what even happened there? Is that a SAUCE player? WTF? That's not canon... Fucking Shogun...";
-			}
-		}
-
-		for(num i = 0; i<withoutd.length; i++){
-			Player p = this.deadPlayersToGodTier[i];
-			p.makeGodTier();
+			if(p.godDestiny) p.makeGodTier(); //god destiny can be set to false if you didn't have anywhere to god tier
 			if(p.aspect == Aspects.SAUCE) {
 				ret += "<br><Br>...  Huh. What... what even happened there? Is that a SAUCE player? WTF? That's not canon... Fucking Shogun...";
 			}

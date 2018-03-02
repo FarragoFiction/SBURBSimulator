@@ -988,6 +988,7 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
         survivor.land = null;
+        survivor.moon = null;
         //note to future JR: you're gonna see this and think that they should lose their moons, too, but that just means they can't have horrorterror dreams. don't do it.
         survivor.dreamSelf = false;
         survivor.godDestiny = false;
