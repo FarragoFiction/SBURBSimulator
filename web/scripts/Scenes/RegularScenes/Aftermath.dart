@@ -294,7 +294,7 @@ class Aftermath extends Scene {
         String wkname = wkowner == null  ?  "No one":"${wkowner.htmlTitleWithTip()}";
         String wkallied =wkowner == null  ?  "N/A":"${wkowner.alliedToPlayers}";
 
-        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqname} has the Black Queens Ring Their ally status is ${bqallied}. <br> ${bkname} has the Black Kings Scepter. Their ally status is ${bkallied}.  <br> ${wkname} has the White Queens Ring. Their ally status is ${wqallied}. <br> ${wkname} has the White Kings Scepter. Their ally status is ${wkallied}. <br>";
+        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqname} has the Black Queens Ring Their ally status is ${bqallied}. <br> ${bkname} has the Black Kings Scepter. Their ally status is ${bkallied}.  <br> ${wqname} has the White Queens Ring. Their ally status is ${wqallied}. <br> ${wkname} has the White Kings Scepter. Their ally status is ${wkallied}. <br>";
 
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;
