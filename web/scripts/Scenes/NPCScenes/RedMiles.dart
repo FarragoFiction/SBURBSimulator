@@ -20,7 +20,11 @@ class RedMiles extends Scene {
   void renderContent(Element div) {
       if(!cannotEscape) {
           Element frame = new DivElement();
-          frame.text = "The ${gameEntity} has had enough of this bullshit. They Activate the Red Miles. They cannot be escaped.";
+          frame.setInnerHtml("<br>The ${gameEntity} has had enough of this bullshit. They Activate the Red Miles. They cannot be escaped.");
+          frame.style.backgroundImage = "url(images/Rewards/miles.png";
+
+          div.append(frame);
+          cannotEscape = true;
           return null; //no one dies the first turn.
       }
     cannotEscape = true;
@@ -67,7 +71,13 @@ class RedMiles extends Scene {
       }
 
       if(targets.isEmpty) return destroyMoon(div, count);
-      session.rand.pickFrom(targets).planetsplode(gameEntity);
+      Land m = session.rand.pickFrom(targets);
+      m..planetsplode(gameEntity);
+      DivElement ret = new DivElement();
+      ret.style.backgroundImage = "url(images/Rewards/miles.png";
+
+
+      ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${m.name} has been targeted.");
   }
 
     void destroyMoon(Element div, [int count=0]) {
@@ -75,13 +85,20 @@ class RedMiles extends Scene {
         if(count > 3) destroyUniverse(div);
         count++;
 
-        List<Land> targets = new List<Land>();
+        List<Moon> targets = new List<Moon>();
         for(Moon p in session.moons) {
             if(p != null) targets.add(p);
         }
 
         if(targets.isEmpty) return destroyPlayer(div, count);
-        session.rand.pickFrom(targets).planetsplode(gameEntity);
+
+        Moon m = session.rand.pickFrom(targets);
+        m..planetsplode(gameEntity);
+        DivElement ret = new DivElement();
+        ret.style.backgroundImage = "url(images/Rewards/miles.png";
+
+
+        ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${m.name} has been targeted.");
     }
 
   void destroyPlayer(Element div, [int count=0]) {
@@ -99,7 +116,9 @@ class RedMiles extends Scene {
       player.makeDead("not being able to escape the miles.", gameEntity);
 
       DivElement ret = new DivElement();
-      ret.setInnerHtml("<br><br>The red miles cannot be escaped. The ${player.htmlTitleBasicWithTip()} is dead.");
+      ret.style.backgroundImage = "url(images/Rewards/miles.png";
+
+      ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${player.htmlTitleBasicWithTip()} is dead.");
       CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
       ret.append(canvas);
       Drawing.drawSinglePlayer(canvas, player);
@@ -131,7 +150,9 @@ class RedMiles extends Scene {
       g.makeDead("not being able to escape the miles.", gameEntity);
 
       DivElement ret = new DivElement();
-      ret.setInnerHtml("<br>The red miles cannot be escaped. The ${g.htmlTitleWithTip()} is dead.");
+      ret.style.backgroundImage = "url(images/Rewards/miles.png";
+
+      ret.setInnerHtml("<br>The Red Miles cannot be escaped. The ${g.htmlTitleWithTip()} is dead.");
       div.append(ret);
   }
 
