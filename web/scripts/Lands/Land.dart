@@ -280,7 +280,7 @@ class Land extends Object with FeatureHolder {
         ret.text = "The ${name} is now destroyed. $killedString";
         //render explosion graphic and text. text should describe if anyone died.
         //Rewards/planetsplode.png
-        ImageElement image  = new ImageElement(src: "images/Rewards/planetsplod.png");
+        ImageElement image  = new ImageElement(src: "images/Rewards/planetsplode.png");
 
         //can do this because it's not canvas
         image.onLoad.listen((e) {

@@ -441,6 +441,4 @@ class NPCHandler
         return randomProspitians;
 
     }
-
-
 }

@@ -59,6 +59,10 @@ class GetTiger extends Scene{
 		String ret = "" +getPlayersTitles(this.deadPlayersToGodTier) + " was always destined to take a Legendary Nap, and upon waking, become a God Tier. ";
 
 		var withd = findPlayersWithDreamSelves(this.deadPlayersToGodTier);
+		for(Player p in withd) {
+			if(p.land == null) withd.remove(p); //sorry, no quest bed, thems the breaks.
+		}
+
 		var withoutd = findPlayersWithoutDreamSelves(this.deadPlayersToGodTier);
 
 		if(withd != null && partyRollForLuck(withd) > 25){  //MOST players in canon go god tier via sacrificial slab.
@@ -106,7 +110,15 @@ class GetTiger extends Scene{
 
 
 
-		for(num i = 0; i<this.deadPlayersToGodTier.length; i++){
+		for(num i = 0; i<withd.length; i++){
+			Player p = this.deadPlayersToGodTier[i];
+			p.makeGodTier();
+			if(p.aspect == Aspects.SAUCE) {
+				ret += "<br><Br>...  Huh. What... what even happened there? Is that a SAUCE player? WTF? That's not canon... Fucking Shogun...";
+			}
+		}
+
+		for(num i = 0; i<withoutd.length; i++){
 			Player p = this.deadPlayersToGodTier[i];
 			p.makeGodTier();
 			if(p.aspect == Aspects.SAUCE) {
