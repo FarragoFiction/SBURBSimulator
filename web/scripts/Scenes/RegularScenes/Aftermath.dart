@@ -282,7 +282,19 @@ class Aftermath extends Scene {
         GameEntity wqowner =  session.prospit.queensRing == null  ?  null:session.prospit.queensRing.owner;
         GameEntity wkowner = session.prospit.kingsScepter == null  ?  null:session.prospit.kingsScepter.owner;
 
-        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqowner.htmlTitleWithTip()} has the Black Queens Ring Their ally status is ${bqowner.alliedToPlayers}. <br> ${bkowner.htmlTitleWithTip()} has the Black Kings Scepter. Their ally status is ${bkowner.alliedToPlayers}.  <br> ${wqowner.htmlTitleWithTip()} has the White Queens Ring. Their ally status is ${wqowner.alliedToPlayers}. <br> ${wkowner.htmlTitleWithTip()} has the White Kings Scepter. Their ally status is ${wkowner.alliedToPlayers}. <br>";
+        String bqname = bqowner == null  ?  "No one":"${bqowner.htmlTitleWithTip()}";
+        String bqallied =bqowner == null  ?  "N/A":"${bqowner.alliedToPlayers}";
+
+        String wqname = wqowner == null  ?  "No one":"${wqowner.htmlTitleWithTip()}";
+        String wqallied =wqowner == null  ?  "N/A":"${wqowner.alliedToPlayers}";
+
+        String bkname = bkowner == null  ?  "No one":"${bkowner.htmlTitleWithTip()}";
+        String bkallied =bkowner == null  ?  "N/A":"${bkowner.alliedToPlayers}";
+
+        String wkname = wkowner == null  ?  "No one":"${wkowner.htmlTitleWithTip()}";
+        String wkallied =wkowner == null  ?  "N/A":"${wkowner.alliedToPlayers}";
+
+        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqname} has the Black Queens Ring Their ally status is ${bqallied}. <br> ${bkname} has the Black Kings Scepter. Their ally status is ${bkallied}.  <br> ${wkname} has the White Queens Ring. Their ally status is ${wqallied}. <br> ${wkname} has the White Kings Scepter. Their ally status is ${wkallied}. <br>";
 
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;
