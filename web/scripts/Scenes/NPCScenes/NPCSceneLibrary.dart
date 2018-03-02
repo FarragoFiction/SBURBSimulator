@@ -6,3 +6,4 @@ export "SeekScepter.dart";
 export "GiveJackRing.dart";
 export "GiveJackScepter.dart";
 export "PassOutRegiswords.dart";
+export "RedMiles.dart";

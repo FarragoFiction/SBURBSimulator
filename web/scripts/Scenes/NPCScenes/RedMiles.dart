@@ -119,6 +119,8 @@ class RedMiles extends Scene {
 
 
 
+  //every carapace can do it, but not everyone wants to
+
   @override
   bool trigger(List<Player> playerList) {
       //do you have a Ring? are you violent?
