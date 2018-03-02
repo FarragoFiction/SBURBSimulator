@@ -276,10 +276,11 @@ class Aftermath extends Scene {
         Player strongest = findMVP(this.session.players);
         end += "<br> The MVP of the session was: " + strongest.htmlTitleWithTip() + " with a grist level  of: ${strongest.grist}";
         end += "<br>Thanks for Playing!<br>";
-        GameEntity bqowner = session.derse.queensRing.owner;
-        GameEntity bkowner = session.derse.kingsScepter.owner;
-        GameEntity wqowner = session.prospit.queensRing.owner;
-        GameEntity wkowner = session.prospit.kingsScepter.owner;
+        //ternary always confuses me. if the ring is null, the ring owner is null
+        GameEntity bqowner = session.derse.queensRing == null  ?  null:session.derse.queensRing.owner;
+        GameEntity bkowner = session.derse.kingsScepter == null  ?  null:session.derse.kingsScepter.owner;
+        GameEntity wqowner =  session.prospit.queensRing == null  ?  null:session.prospit.queensRing.owner;
+        GameEntity wkowner = session.prospit.kingsScepter == null  ?  null:session.prospit.kingsScepter.owner;
 
         end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqowner.htmlTitleWithTip()} has the Black Queens Ring Their ally status is ${bqowner.alliedToPlayers}. <br> ${bkowner.htmlTitleWithTip()} has the Black Kings Scepter. Their ally status is ${bkowner.alliedToPlayers}.  <br> ${wqowner.htmlTitleWithTip()} has the White Queens Ring. Their ally status is ${wqowner.alliedToPlayers}. <br> ${wkowner.htmlTitleWithTip()} has the White Kings Scepter. Their ally status is ${wkowner.alliedToPlayers}. <br>";
 
