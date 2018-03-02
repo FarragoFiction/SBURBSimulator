@@ -164,8 +164,9 @@ class RedMiles extends Scene {
   bool trigger(List<Player> playerList) {
       //do you have a Ring? are you violent?
       //then do it. once triggered, you can no longer escape the miles.
-      if(gameEntity.ring == null) return false;
       if(cannotEscape) return true;
+      if(gameEntity.ring == null) return false;
+
       //you aren't even going to try to do something this omnicidal.
       if(!gameEntity.violent) return false;
 
