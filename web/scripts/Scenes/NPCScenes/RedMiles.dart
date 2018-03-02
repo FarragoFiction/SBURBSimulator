@@ -20,7 +20,7 @@ class RedMiles extends Scene {
   void renderContent(Element div) {
       if(!cannotEscape) {
           Element frame = new DivElement();
-          frame.setInnerHtml("<br>The ${gameEntity} has had enough of this bullshit. They Activate the Red Miles. They cannot be escaped.");
+          frame.setInnerHtml("<br>The ${gameEntity.name} has had enough of this bullshit. They Activate the Red Miles. They cannot be escaped.");
           frame.style.backgroundImage = "url(images/Rewards/miles.png";
 
           div.append(frame);

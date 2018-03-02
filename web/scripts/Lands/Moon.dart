@@ -49,6 +49,8 @@ class Moon extends Land {
 
   @override
   Element planetsplode(GameEntity killer) {
+
+      session.logger.info("AB: Oh shit, JR! A moon is exploding! Come see this!");
       if(session is DeadSession) {
           (session as DeadSession).failed = true;
       }
@@ -81,23 +83,26 @@ class Moon extends Land {
       ret.text = "The ${name} is now destroyed. $killedString";
       //render explosion graphic and text. text should describe if anyone died.
       //Rewards/planetsplode.png
-      ImageElement image;
-      if(session.derse == this) {
-          image = new ImageElement(src: "images/Rewards/derse_explode.png");
 
-      }else {
-          image = new ImageElement(src: "images/Rewards/prospit_explode.png");
+      if(!doNotRender) {
+          ImageElement image;
+          if (session.derse == this) {
+              image = new ImageElement(src: "images/Rewards/derse_explode.png");
+          } else {
+              image = new ImageElement(src: "images/Rewards/prospit_explode.png");
+          }
+
+
+          //can do this because it's not canvas
+          //although really if my rendering pipeline were diff i could do on canvas, too.
+          image.onLoad.listen((e) {
+              ret.append(image);
+          });
       }
 
       //if i ever want fanon moons, will need it to be an array instead. whatever.
       if(this == session.derse) session.derse == null;
       if(this == session.prospit) session.prospit == null;
-
-      //can do this because it's not canvas
-      //although really if my rendering pipeline were diff i could do on canvas, too.
-      image.onLoad.listen((e) {
-          ret.append(image);
-      });
 
       return ret;
 
