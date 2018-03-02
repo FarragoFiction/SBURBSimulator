@@ -11,12 +11,18 @@ class RedMiles extends Scene {
 
   bool timeToDestroyUniverse() {
       if(findLiving(session.players).isNotEmpty) return false;
+      return true;
   }
 
 
 
   @override
   void renderContent(Element div) {
+      if(!cannotEscape) {
+          Element frame = new DivElement();
+          frame.text = "The ${gameEntity} has had enough of this bullshit. They Activate the Red Miles. They cannot be escaped.";
+          return null; //no one dies the first turn.
+      }
     cannotEscape = true;
     session.logger.info("AB: You cannot escape the miles.");
     //pick a random player or land or moon
@@ -60,7 +66,7 @@ class RedMiles extends Scene {
         if(p.land != null) targets.add(p.land);
       }
 
-      if(targets.isEmpty) destroyMoon(div, count);
+      if(targets.isEmpty) return destroyMoon(div, count);
       session.rand.pickFrom(targets).planetsplode(gameEntity);
   }
 
@@ -74,7 +80,7 @@ class RedMiles extends Scene {
             if(p != null) targets.add(p);
         }
 
-        if(targets.isEmpty) destroyPlayer(div, count);
+        if(targets.isEmpty) return destroyPlayer(div, count);
         session.rand.pickFrom(targets).planetsplode(gameEntity);
     }
 
@@ -88,9 +94,16 @@ class RedMiles extends Scene {
           if(!p.dead) targets.add(p);
       }
 
-      if(targets.isEmpty) destroyCarapace(div, count);
-      session.rand.pickFrom(targets).makeDead("not being able to escape the miles.", gameEntity);
+      if(targets.isEmpty) return destroyCarapace(div, count);
+      Player player = session.rand.pickFrom(targets);
+      player.makeDead("not being able to escape the miles.", gameEntity);
 
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("<br><br>The red miles cannot be escaped. The ${player.htmlTitleBasicWithTip()} is dead.");
+      CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+      ret.append(canvas);
+      Drawing.drawSinglePlayer(canvas, player);
+      div.append(ret);
   }
 
 
@@ -112,9 +125,14 @@ class RedMiles extends Scene {
           }
       }
 
-      if(targets.isEmpty) destroyLand(div, count);
+      if(targets.isEmpty) return destroyLand(div, count);
 
-      session.rand.pickFrom(targets).makeDead("not being able to escape the miles.", gameEntity);
+      GameEntity g = session.rand.pickFrom(targets);
+      g.makeDead("not being able to escape the miles.", gameEntity);
+
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("<br>The red miles cannot be escaped. The ${g.htmlTitleWithTip()} is dead.");
+      div.append(ret);
   }
 
 
