@@ -114,8 +114,10 @@ class SeekRing extends Scene {
       strifeTime = false;
       tactic = null;
       target = null;
-      GameEntity whiteRingOwner = session.prospit.queensRing.owner;
-      GameEntity blackRingOwner = session.derse.queensRing.owner;
+      GameEntity whiteRingOwner;
+      if(session.prospit.queensRing != null) whiteRingOwner = session.prospit.queensRing.owner;
+      GameEntity blackRingOwner;
+      if(session.derse.queensRing != null) blackRingOwner = session.derse.queensRing.owner;
 
       print("White ring owner is ${whiteRingOwner} and black ring owner is ${blackRingOwner}");
 
