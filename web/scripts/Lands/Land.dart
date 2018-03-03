@@ -256,7 +256,7 @@ class Land extends Object with FeatureHolder {
         if(session is DeadSession) {
             (session as DeadSession).failed = true;
         }
-        List<GameEntity> killed = new List<GameEntity>();
+        List<String> killed = new List<String>();
 
         //KILL the associated player (unless they have reached skaia)
         for(GameEntity g in associatedEntities) {
@@ -265,11 +265,11 @@ class Land extends Object with FeatureHolder {
                 //land is gone, this should be only reference to it
                 p.land = null;
                 if(!p.canHelp()) { //you can't leave your planet yet, you're dead, and no one can get to your body to smooch it, so dream self dead, too
-                    killed.add(p);
+                    killed.add(p.htmlTitle());
                     killPlayer(p, killer);
                 }else if(!thirdCompleted && session.rand.nextBool()) {
                     //you happened to be on your planet even though you could have been off
-                    killed.add(p);
+                    killed.add(p.htmlTitle());
                     killPlayer(p, killer);
                 }
                 //if third IS completed, assume they are on skaia and so safe
@@ -279,7 +279,7 @@ class Land extends Object with FeatureHolder {
         Element ret = new DivElement();
         String killedString  = "";
         if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} are now dead.";
-        ret.text = "The ${name} is now destroyed. $killedString";
+        ret.setInnerHtml( "The ${name} is now destroyed. $killedString");
         //render explosion graphic and text. text should describe if anyone died.
         //Rewards/planetsplode.png
         if(!doNotRender) {

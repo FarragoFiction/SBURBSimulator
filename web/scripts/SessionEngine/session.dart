@@ -34,12 +34,16 @@ class Session {
             if(g.active) ret.add(g);
         }
 
-        for(GameEntity g in derse.associatedEntities) {
-            if(g.active) ret.add(g);
+        if(derse != null) {
+            for (GameEntity g in derse.associatedEntities) {
+                if (g.active) ret.add(g);
+            }
         }
 
-        for(GameEntity g in prospit.associatedEntities) {
-            if(g.active) ret.add(g);
+        if(prospit != null) {
+            for (GameEntity g in prospit.associatedEntities) {
+                if (g.active) ret.add(g);
+            }
         }
 
         return ret;

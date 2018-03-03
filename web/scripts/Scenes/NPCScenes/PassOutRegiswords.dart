@@ -33,8 +33,8 @@ class PassOutRegiswords extends Scene {
   GameEntity pickAPatsy() {
       List<GameEntity> patsies = new List.from(session.players);
       //royalty are kept separate so jack should NOT give the white queen a quest to get herh own ring.
-      patsies.addAll(session.derse.associatedEntities);
-      patsies.addAll(session.prospit.associatedEntities);
+      if(session.derse != null) patsies.addAll(session.derse.associatedEntities);
+      if(session.prospit != null) patsies.addAll(session.prospit.associatedEntities);
       return rand.pickFrom(patsies);
   }
 

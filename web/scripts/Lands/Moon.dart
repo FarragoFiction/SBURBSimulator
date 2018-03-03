@@ -51,23 +51,30 @@ class Moon extends Land {
   Element planetsplode(GameEntity killer) {
 
       session.logger.info("AB: Oh shit, JR! A moon is exploding! Come see this!");
-      List<GameEntity> killed = new List<GameEntity>();
+      List<String> killed = new List<String>();
 
       //kill the dream selves
       for(Player p in session.players) {
-          if(p.moon == this && p.dreamSelf && !p.dreamSelf) {
+          print("TEST MOON: checking to see if $p would die. ${p.moon}, has dream: ${p.dreamSelf}, is dream: ${p.isDreamSelf}");
+          if(p.moon == this && p.dreamSelf && !p.isDreamSelf) {
+
               p.dreamSelf = false;
               Player snop = Player.makeRenderingSnapshot(p);
               snop.causeOfDeath = "after being blown up with $name.";
               snop.isDreamSelf = true;
               this.session.afterLife.addGhost(snop);
-              killed.add(snop);
+              killed.add(snop.htmlTitle());
+              print("TEST MOON: yup, they toast");
+          }else {
+              print("TEST MOON: they survive.");
           }
       }
 
       //kill the carapaces
       for(GameEntity g in associatedEntities) {
+          //if you're active you'll live....but if you aren't in a players party you won't be relevant anymore.
           if(!g.active) {
+              killed.add(g.htmlTitle());
               g.makeDead("the $name exploding.",killer);
           }
       }
@@ -75,7 +82,7 @@ class Moon extends Land {
       Element ret = new DivElement();
       String killedString  = "";
       if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} are now dead.";
-      ret.text = "The ${name} is now destroyed. $killedString";
+      ret.setInnerHtml("${name} is now destroyed. $killedString");
       //render explosion graphic and text. text should describe if anyone died.
       //Rewards/planetsplode.png
 
@@ -96,9 +103,12 @@ class Moon extends Land {
       }
 
       //if i ever want fanon moons, will need it to be an array instead. whatever.
-      if(this == session.derse) session.derse == null;
-      if(this == session.prospit) session.prospit == null;
-      print("i think i blew up a moon and am returning $ret with ${ret.text}");
+      if(this == session.derse) {
+          //print("TEST MOON: setting derse to null");
+          session.derse = null;
+      }
+      if(this == session.prospit) session.prospit = null;
+      //print("i think i blew up a moon and am returning $ret with ${ret.text}");
       return ret;
 
   }
