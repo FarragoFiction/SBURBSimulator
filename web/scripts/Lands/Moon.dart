@@ -51,9 +51,6 @@ class Moon extends Land {
   Element planetsplode(GameEntity killer) {
 
       session.logger.info("AB: Oh shit, JR! A moon is exploding! Come see this!");
-      if(session is DeadSession) {
-          (session as DeadSession).failed = true;
-      }
       List<GameEntity> killed = new List<GameEntity>();
 
       //kill the dream selves
@@ -74,8 +71,6 @@ class Moon extends Land {
               g.makeDead("the $name exploding.",killer);
           }
       }
-
-
 
       Element ret = new DivElement();
       String killedString  = "";
@@ -103,7 +98,7 @@ class Moon extends Land {
       //if i ever want fanon moons, will need it to be an array instead. whatever.
       if(this == session.derse) session.derse == null;
       if(this == session.prospit) session.prospit == null;
-
+      print("i think i blew up a moon and am returning $ret with ${ret.text}");
       return ret;
 
   }

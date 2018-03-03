@@ -72,12 +72,17 @@ class RedMiles extends Scene {
 
       if(targets.isEmpty) return destroyMoon(div, count);
       Land m = session.rand.pickFrom(targets);
-      m..planetsplode(gameEntity);
       DivElement ret = new DivElement();
       ret.style.backgroundImage = "url(images/Rewards/miles.png";
-
+      ret.append(m.planetsplode(gameEntity));
 
       ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${m.name} has been targeted.");
+
+      Element test = m.planetsplode(gameEntity);
+      print ("moon exploding returns: ${test.text}");
+      ret.append(test);
+      div.append(ret);
+
   }
 
     void destroyMoon(Element div, [int count=0]) {
@@ -93,12 +98,16 @@ class RedMiles extends Scene {
         if(targets.isEmpty) return destroyPlayer(div, count);
 
         Moon m = session.rand.pickFrom(targets);
-        m..planetsplode(gameEntity);
         DivElement ret = new DivElement();
+
         ret.style.backgroundImage = "url(images/Rewards/miles.png";
 
 
-        ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${m.name} has been targeted.");
+        ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. ${m.name} has been targeted.");
+        Element test = m.planetsplode(gameEntity);
+        print ("moon exploding returns: ${test.text}");
+        ret.append(test);
+        div.append(ret);
     }
 
   void destroyPlayer(Element div, [int count=0]) {
