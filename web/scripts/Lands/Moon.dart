@@ -47,6 +47,16 @@ class Moon extends Land {
 
   }
 
+  //never to the point you explode tho, lower divider is stronger
+  void weaken([int forceDivider = 13]) {
+      hp += -1* (hp/forceDivider).floor(); //never can bring it to zero
+  }
+
+    //lower divider is stronger
+    void strengthen([int forceDivider = 13]) {
+        hp += 1* (hp/forceDivider).floor(); //never can bring it to zero
+    }
+
   @override
   Element planetsplode(GameEntity killer) {
 

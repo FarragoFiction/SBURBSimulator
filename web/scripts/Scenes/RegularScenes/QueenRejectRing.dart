@@ -10,6 +10,7 @@ class QueenRejectRing extends Scene {
 
 	@override
 	bool trigger(playerList){
+		if(session.derse == null) return false; //no queen to reject it.
 		this.playerList = playerList;
 		var nativePlayersInSession = findPlayersFromSessionWithId(playerList, this.session.session_id);
 		var goodPrototyping = findGoodPrototyping(playerList);

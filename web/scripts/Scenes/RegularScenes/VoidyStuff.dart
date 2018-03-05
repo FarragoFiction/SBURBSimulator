@@ -9,6 +9,7 @@ class VoidyStuff extends Scene {
 
 	Player player = null;
 	Player enablingPlayer = null;
+	List<String> prospitHelpTasks = <String>["helps out Prospitian Royalty in general.", "spreads good cheer and compliments around Prospit.", "commisions several flattering statues of Prospitian Royalty."]..addAll(<String>["sets up various surprises and secret gifts around Prospit.", "replaces all the lights in the throne room to make things even more cheerful.", "cleans up graffiti in  various Prosipitian public hotspots."])..addAll(<String>["buys new and more fashionable hats for all of the Prospitian high ranking officials.", "Helps deliver ice cream to needy Dersites. "]);
 
 
 	VoidyStuff(Session session): super(session);
@@ -101,7 +102,12 @@ class VoidyStuff extends Scene {
 			return;
 		}else{ //pick from random array.
 				//var options = [this.findFraymotif.bind(this,normalDiv,newDiv),this.makeEnemies.bind(this,normalDiv,newDiv), this.makeFriends.bind(this,normalDiv, newDiv),this.dolandQuests.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv),this.weakenDesites.bind(this,normalDiv,newDiv)];
-				var options = [this.findFraymotif, this.makeEnemies, this.makeFriends, this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites,this.dolandQuests, this.weakenDesites];
+				var options = [this.findFraymotif, this.makeEnemies, this.makeFriends, this.dolandQuests,this.dolandQuests,this.dolandQuests];
+				if(session.derse != null) {
+					options.add(weakenDesites);
+					options.add(weakenDesites);
+					options.add(weakenDesites);
+				}
         ShenaniganCallback chosen = rand.pickFrom(options);
         chosen(normalDiv, newDiv);
 		}
@@ -169,10 +175,19 @@ class VoidyStuff extends Scene {
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " is " + rand.pickFrom(specialStuff) + ". ");
 	}
 	void weakenDesites(Element div, Element specialDiv){
-		this.session.derse.queen.addStat(Stats.POWER,-5);
-		this.session.derse.king.addStat(Stats.POWER,-5);
+		if(this.session.derse.queen != null) this.session.derse.queen.addStat(Stats.POWER,-5);
+		if(this.session.derse.king != null) this.session.derse.king.addStat(Stats.POWER,-5);
+		session.derse.weaken();
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
+	}
+
+	void strengthenProspit(Element div, Element specialDiv){
+		if(this.session.prospit.queen != null) this.session.prospit.queen.addStat(Stats.POWER,5);
+		if(this.session.prospit.king != null) this.session.prospit.king.addStat(Stats.POWER,5);
+		session.prospit.strengthen();
+		appendHtml(div, " The Prospitians sure seem to be happy with them, though. ");
+		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(prospitHelpTasks));
 	}
 
 	void ectoBiologyStarted(Element div, Element specialDiv){
