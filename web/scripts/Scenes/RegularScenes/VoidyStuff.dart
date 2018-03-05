@@ -176,7 +176,7 @@ class VoidyStuff extends Scene {
 	}
 	void weakenDesites(Element div, Element specialDiv){
 		if(this.session.derse.queen != null) this.session.derse.queen.addStat(Stats.POWER,-5);
-		if(this.session.derse.king != null) this.session.derse.king.addStat(Stats.POWER,-5);
+		if(this.session.battlefield.blackKing != null) this.session.battlefield.blackKing.addStat(Stats.POWER,-5);
 		session.derse.weaken();
 		appendHtml(div, " The Dersites sure seem to be mad at them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(lightQueenQuests));
@@ -184,7 +184,7 @@ class VoidyStuff extends Scene {
 
 	void strengthenProspit(Element div, Element specialDiv){
 		if(this.session.prospit.queen != null) this.session.prospit.queen.addStat(Stats.POWER,5);
-		if(this.session.prospit.king != null) this.session.prospit.king.addStat(Stats.POWER,5);
+		if(session.battlefield.whiteKing != null) session.battlefield.whiteKing.addStat(Stats.POWER,5);
 		session.prospit.strengthen();
 		appendHtml(div, " The Prospitians sure seem to be happy with them, though. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " " + rand.pickFrom(prospitHelpTasks));

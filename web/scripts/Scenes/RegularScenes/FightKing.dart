@@ -14,7 +14,7 @@ class FightKing extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		////session.logger.info('fight kin trigger?');
-		return (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.derse.king.dead && (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.queen.dead) && (findLiving(this.session.players).length != 0) ;
+		return (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.battlefield.blackKing.dead && (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.queen.dead) && (findLiving(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 	var living = findLiving(this.session.players);
@@ -44,8 +44,8 @@ class FightKing extends Scene {
 	@override
 	void renderContent(Element div){
 		////session.logger.info("rendering fight king);")
-		session.derse.king.stats.copyFrom(findStrongestPlayer(session.players).stats);
-		session.derse.king.setStat(Stats.CURRENT_HEALTH, session.derse.king.getStat(Stats.HEALTH));
+		session.battlefield.blackKing.stats.copyFrom(findStrongestPlayer(session.players).stats);
+		session.battlefield.blackKing.setStat(Stats.CURRENT_HEALTH, session.battlefield.blackKing.getStat(Stats.HEALTH));
 
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/bk_icon.png'>");
 		appendHtml(div,this.content());
@@ -54,7 +54,7 @@ class FightKing extends Scene {
 		var fighting = this.getGoodGuys();
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
 		pTeam.canAbscond = false;
-		Team dTeam = new Team(this.session, [this.session.derse.king]);
+		Team dTeam = new Team(this.session, [this.session.battlefield.blackKing]);
          dTeam.canAbscond = false;
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.timeTillRocks = 10;

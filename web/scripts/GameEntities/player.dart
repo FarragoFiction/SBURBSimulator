@@ -895,7 +895,7 @@ class Player extends GameEntity{
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if ((this.session.derse.king.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.king.dead == true) && this.session.rand.nextDouble() > .2) {
+            if ((this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.battlefield.blackKing.dead == true) && this.session.rand.nextDouble() > .2) {
                 ret = true;
             }
         } else { //unlikely hero
@@ -903,7 +903,7 @@ class Player extends GameEntity{
                 ret = true;
             }
             //extra likely if you just killed the king/queen, you hero you.
-            if (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.king.dead == true && rand.nextDouble() > .4) {
+            if (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.battlefield.blackKing.dead == true && rand.nextDouble() > .4) {
                 ret = true;
             }
         }

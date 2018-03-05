@@ -106,14 +106,14 @@ class SessionMutator {
         if (!hopeField) return false;
         session.derseScepter = new Scepter.withoutOptionalParams("COMPLETELY FAKE SCEPTER",[ ItemTraitFactory.KINGLY] );
         //if the queen is 3, the king is more.
-        session.derse.king = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
+        session.battlefield.blackKing = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
         f.baseValue = -10; //will this make it heal you?
         session.derseScepter.fraymotifs.add(f);
-        session.derse.king.grist = 1000;
-        session.derse.king.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
+        session.battlefield.blackKing.grist = 1000;
+        session.battlefield.blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
         return true;
     }
 

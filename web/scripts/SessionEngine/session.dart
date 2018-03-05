@@ -233,8 +233,7 @@ class Session {
         battleFieldThemes[battleFieldTheme] = Theme.HIGH;
         //print("battlefield themes is ${battleFieldThemes}");
         battlefield = new Battlefield.fromWeightedThemes("BattleField", battleFieldThemes, this, Aspects.LIGHT);
-
-
+        battlefield.spawnKings();
     }
 
 
@@ -377,8 +376,7 @@ class Session {
 
          prospit.spawnQueen();
          derse.spawnQueen();
-         prospit.spawnKing();
-         derse.spawnKing();
+
 
        prospit.initRelationships(derse);
        derse.initRelationships(prospit);

@@ -47,6 +47,13 @@ class Moon extends Land {
 
   }
 
+  Carapace get king {
+
+      if(name.contains("Prospit")) return session.battlefield.whiteKing;
+      return session.battlefield.blackKing;
+
+  }
+
   //never to the point you explode tho, lower divider is stronger
   void weaken([int forceDivider = 13]) {
       hp += -1* (hp/forceDivider).floor(); //never can bring it to zero
@@ -142,9 +149,15 @@ class Moon extends Land {
       queen.initRelationshipsEnemies(opposite);
       queen.initRelationshipsPlayers();
 
-      king.initRelationshipsAllies(this);
-      king.initRelationshipsEnemies(opposite);
-      king.initRelationshipsPlayers();
+      if(name.contains("Derse")) {
+          session.battlefield.blackKing.initRelationshipsAllies(this);
+          session.battlefield.blackKing.initRelationshipsEnemies(opposite);
+          session.battlefield.blackKing.initRelationshipsPlayers();
+      }else {
+          session.battlefield.whiteKing.initRelationshipsAllies(this);
+          session.battlefield.whiteKing.initRelationshipsEnemies(opposite);
+          session.battlefield.whiteKing.initRelationshipsPlayers();
+      }
   }
 
   void destroyRing() {

@@ -249,7 +249,7 @@ class SessionSummary {
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {
-            summary.setBoolStat("blackKingDead", session.derse.king.dead || session.derse.king.getStat(Stats.CURRENT_HEALTH) <= 0);
+            summary.setBoolStat("blackKingDead", session.battlefield.blackKing.dead || session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) <= 0);
         }else {
             summary.setBoolStat("blackKingDead", true);
         }
@@ -312,7 +312,7 @@ class SessionSummary {
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
 
         if(session.derse != null) {
-            summary.setBoolStat("kingTooPowerful", session.derse.king.getStat(Stats.POWER) > session.hardStrength);
+            summary.setBoolStat("kingTooPowerful", session.battlefield.blackKing.getStat(Stats.POWER) > session.hardStrength);
         }
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");

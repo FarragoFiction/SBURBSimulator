@@ -16,11 +16,11 @@ class Reckoning extends Scene {
   String renderContent(Element div) {
     this.session.reckoningStarted = true;
     String intro = "";
-    if (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) < 0) {
+    if (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) < 0) {
       intro += "<br><br> The reckoning has begun, initiating a meteor storm to destroy Skaia. ";
     } else {
       intro += "<br><br> The reckoning has begun.  The Black King has defeated his Prospitian counterpart, initiating a meteor storm to destroy Skaia. ";
-      this.session.derse.king.heal();
+      this.session.battlefield.blackKing.heal();
       this.session.derse.queen.heal();
     }
 
@@ -64,7 +64,7 @@ class Reckoning extends Scene {
     }
     var living = findLiving(this.session.players);
     if (living.length > 0) {
-      if (this.session.derse.king.getStat(Stats.CURRENT_HEALTH) < 0) {
+      if (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) < 0) {
         intro += "<br><br>Normally this is where the Black King would show up to do an epic boss fight. Jack fucked up THAT script, though.  Looks like there's nothing to stop the players from...just...deploying the frog into the Skaia hole???  I mean. If they have a Frog. They do, right?";
       } else {
         intro += " <br><br>Getting back to the King, all the players can do now is try to defeat him on Skaia before they lose their Ultimate Reward. ";
