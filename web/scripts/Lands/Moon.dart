@@ -17,7 +17,7 @@ import "FeatureTypes/QuestChainFeature.dart";
  */
 class Moon extends Land {
     WeightedList<MoonQuestChainFeature> moonQuestChains = new WeightedList<MoonQuestChainFeature>();
-    Carapace king;
+    //Carapace king; king is stored on skaia, not derse/prospit
     Carapace queen;
 
     Ring _queensRing = null;
@@ -178,29 +178,7 @@ class Moon extends Land {
         queen.heal();
     }
 
-    void spawnKing() {
-        if(session.mutator.spawnKing(session)) return null;
 
-
-        if(name.contains("Prospit")) {
-            this.king = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
-            this.king.sylladex.add(this._kingsScepter);
-            this.king.name = "White King"; //override crowned name
-
-        }else {
-            this.king = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
-            this.king.sylladex.add(this._kingsScepter);
-            this.king.name = "Black King"; //override crowned name
-
-
-        }
-        this.king.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
-
-
-        king.grist = 1000;
-        king.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
-        king.heal();
-    }
 
   Carapace get randomNonActiveCarapace {
       List<Carapace> choices = new List<Carapace>();

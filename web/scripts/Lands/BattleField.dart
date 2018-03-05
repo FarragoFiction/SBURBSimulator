@@ -6,6 +6,10 @@ import "FeatureTypes/QuestChainFeature.dart";
 
 
 class Battlefield extends Land {
+
+    Carapace whiteKing;
+    Carapace blackKing;
+
     @override
     FeatureTemplate featureTemplate = FeatureTemplates.SKAIA;
 
@@ -25,6 +29,24 @@ class Battlefield extends Land {
 
         this.battleFieldQuestChains = this.getTypedSubList(FeatureCategories.SKAIA_QUEST_CHAIN).toList();
         this.processConsort();
+    }
+
+    void spawnKings() {
+            this.whiteKing = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
+            this.whiteKing.sylladex.add(session.prospitScepter);
+            this.whiteKing.name = "White King"; //override crowned name
+            this.whiteKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
+            whiteKing.grist = 1000;
+            whiteKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+            whiteKing.heal();
+
+            this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
+            this.blackKing.sylladex.add(session.derseScepter);
+            this.blackKing.name = "Black King"; //override crowned name
+            this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
+            blackKing.grist = 1000;
+            blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+            blackKing.heal();
     }
 
     @override
