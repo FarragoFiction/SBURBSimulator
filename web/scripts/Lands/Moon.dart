@@ -20,8 +20,8 @@ class Moon extends Land {
     Carapace king;
     Carapace queen;
 
-    Ring queensRing = null;
-    Scepter kingsScepter = null;
+    Ring _queensRing = null;
+    Scepter _kingsScepter = null;
 
     @override
     FeatureTemplate featureTemplate = FeatureTemplates.MOON;
@@ -29,7 +29,7 @@ class Moon extends Land {
 
     Palette palette;
 
-  Moon.fromWeightedThemes(String name, Map<Theme, double> themes, Session session, Aspect a, this.id, this.palette) {
+  Moon.fromWeightedThemes(Ring this._queensRing, Scepter this._kingsScepter, String name, Map<Theme, double> themes, Session session, Aspect a, this.id, this.palette) {
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
       this.session = session;
@@ -138,34 +138,28 @@ class Moon extends Land {
   }
 
   void destroyRing() {
-      queensRing.dead = true;
-      queensRing = null;
+      _queensRing.dead = true;
+      _queensRing = null;
   }
 
   //this should instantly doom the timeline.
   void destroyScepter() {
-      kingsScepter.dead = true;
-      kingsScepter = null;
+      _kingsScepter.dead = true;
+      _kingsScepter = null;
   }
 
     void spawnQueen() {
         //print("spawning queen $session");
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;
-        this.queensRing = new Ring.withoutOptionalParams("${name.toUpperCase()} RING OF ORBS ${session.convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
-        Fraymotif f = new Fraymotif("Red Miles", 3);
-        f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-        f.desc = " You cannot escape them. ";
-        this.queensRing.fraymotifs.add(f);
-
 
         if(name.contains("Prospit")) {
             this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
-            this.queen.sylladex.add(this.queensRing);
+            this.queen.sylladex.add(this._queensRing);
             this.queen.name = "White Queen"; //override crowned name
         }else {
             this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
-            this.queen.sylladex.add(this.queensRing);
+            this.queen.sylladex.add(this._queensRing);
             this.queen.name = "Black Queen"; //override crowned name
         }
 
@@ -176,20 +170,16 @@ class Moon extends Land {
 
     void spawnKing() {
         if(session.mutator.spawnKing(session)) return null;
-        this.kingsScepter = new Scepter.withoutOptionalParams("SCEPTER",[ ItemTraitFactory.KINGLY] );
-        Fraymotif f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
-        f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-        f.desc = " The very meteors from the Reckoning rain down. ";
-        this.kingsScepter.fraymotifs.add(f);
+
 
         if(name.contains("Prospit")) {
             this.king = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
-            this.king.sylladex.add(this.kingsScepter);
+            this.king.sylladex.add(this._kingsScepter);
             this.king.name = "White King"; //override crowned name
 
         }else {
             this.king = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
-            this.king.sylladex.add(this.kingsScepter);
+            this.king.sylladex.add(this._kingsScepter);
             this.king.name = "Black King"; //override crowned name
 
 

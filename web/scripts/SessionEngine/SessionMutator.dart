@@ -89,7 +89,7 @@ class SessionMutator {
     ///will both be called when the hope field is activated, and in any new sessions
     bool spawnQueen(Session s) {
         if (!hopeField) return false;
-        s.derse.queensRing = new Ring.withoutOptionalParams("COMPLETELY FAKE RING",[ ItemTraitFactory.QUEENLY] );
+        s.derseRing = new Ring.withoutOptionalParams("COMPLETELY FAKE RING",[ ItemTraitFactory.QUEENLY] );
         //The joke is that the hope player read the Enquiring Carapacian after some other player published the false story
         //you know, the one about the queen secretly being 3 salamanders in a robe.
         s.derse.queen = new Carapace("Three Salamanders In a Robe", s,Carapace.DERSE);
@@ -97,21 +97,21 @@ class SessionMutator {
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
         f.baseValue = -10; //will this make it heal you?
-        s.derse.queensRing.fraymotifs.add(f);
+        s.derseRing.fraymotifs.add(f);
         s.derse.queen.stats.setMap(<Stat, num>{Stats.HEALTH: 3, Stats.FREE_WILL: -100, Stats.POWER: 3});
         return true;
     }
 
     bool spawnKing(Session session) {
         if (!hopeField) return false;
-        session.derse.kingsScepter = new Scepter.withoutOptionalParams("COMPLETELY FAKE SCEPTER",[ ItemTraitFactory.KINGLY] );
+        session.derseScepter = new Scepter.withoutOptionalParams("COMPLETELY FAKE SCEPTER",[ ItemTraitFactory.KINGLY] );
         //if the queen is 3, the king is more.
         session.derse.king = new Carapace("13 Salamanders In a Robe", session,Carapace.DERSE);
         Fraymotif f = new Fraymotif("Glub Glub Behold our Robes, Y/N?", 1);
         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
         f.desc = " You wonder what the hell is going on. ";
         f.baseValue = -10; //will this make it heal you?
-        session.derse.queensRing.fraymotifs.add(f);
+        session.derseScepter.fraymotifs.add(f);
         session.derse.king.grist = 1000;
         session.derse.king.stats.setMap(<Stat, num>{Stats.HEALTH: 13, Stats.FREE_WILL: -100, Stats.POWER: 13});
         return true;

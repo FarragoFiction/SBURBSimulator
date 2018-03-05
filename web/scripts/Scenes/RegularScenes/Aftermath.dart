@@ -277,10 +277,10 @@ class Aftermath extends Scene {
         end += "<br> The MVP of the session was: " + strongest.htmlTitleWithTip() + " with a grist level  of: ${strongest.grist}";
         end += "<br>Thanks for Playing!<br>";
         //ternary always confuses me. if the ring is null, the ring owner is null
-        GameEntity bqowner = session.derse.queensRing == null  ?  null:session.derse.queensRing.owner;
-        GameEntity bkowner = session.derse.kingsScepter == null  ?  null:session.derse.kingsScepter.owner;
-        GameEntity wqowner =  session.prospit.queensRing == null  ?  null:session.prospit.queensRing.owner;
-        GameEntity wkowner = session.prospit.kingsScepter == null  ?  null:session.prospit.kingsScepter.owner;
+        GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
+        GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
+        GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
+        GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
 
         String bqname = bqowner == null  ?  "No one":"${bqowner.htmlTitleWithTip()}";
         String bqallied =bqowner == null  ?  "N/A":"${bqowner.alliedToPlayers}";

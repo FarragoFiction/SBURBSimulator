@@ -23,6 +23,14 @@ class Session {
     //needed for dreams now, null moons are possible
     Moon furthestRing;
     List<Moon> get moons => <Moon>[prospit, derse];
+
+    //used to be stored on moon, which was good and sane....but then what happens when the moon blows up.
+    //crashes, that's what. and or there not being any more rings.
+    Ring prospitRing;
+    Ring derseRing;
+    Scepter prospitScepter;
+    Scepter derseScepter;
+
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
@@ -233,6 +241,32 @@ class Session {
     void setupMoons() {
          print("Test NPCs: moons set up $session_id");
          setupBattleField();
+
+         prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
+         Fraymotif f = new Fraymotif("Red Miles", 3);
+         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+         f.desc = " You cannot escape them. ";
+         prospitRing.fraymotifs.add(f);
+
+         derseRing = new Ring.withoutOptionalParams("BLACK QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
+         f = new Fraymotif("Red Miles", 3);
+         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+         f.desc = " You cannot escape them. ";
+         derseRing.fraymotifs.add(f);
+
+         prospitScepter = new Scepter.withoutOptionalParams("WHITE KING'S SCEPTER",[ ItemTraitFactory.KINGLY] );
+         f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+         f.desc = " The very meteors from the Reckoning rain down. ";
+         prospitScepter.fraymotifs.add(f);
+
+         derseScepter = new Scepter.withoutOptionalParams("BLACK KING'S SCEPTER",[ ItemTraitFactory.KINGLY] );
+         f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+         f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
+         f.desc = " The very meteors from the Reckoning rain down. ";
+         derseScepter.fraymotifs.add(f);
+
+
         //no more than one of each.
         Map<Theme,double> prospitThemes = new Map<Theme, double>();
         Theme prospitTheme = new Theme(<String>["Prospit"])
@@ -323,21 +357,24 @@ class Session {
         derseThemes[derseTheme] = Theme.HIGH;
         furthestRingThemes[furthestRingTheme] = Theme.HIGH;
 
-        prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
+        prospit = new Moon.fromWeightedThemes(prospitRing, prospitScepter, "Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
          print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
 
          prospit.associatedEntities.addAll(npcHandler.getProspitians());
-         derse = new Moon.fromWeightedThemes("Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
+         derse = new Moon.fromWeightedThemes(derseRing, derseScepter, "Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
          print("Test NPCS: before adding entities, derse has ${derse.associatedEntities}");
 
          derse.associatedEntities.addAll(npcHandler.getDersites());
          print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
 
-         furthestRing = new Moon.fromWeightedThemes("Furthest Ring", furthestRingThemes, this, Aspects.SAUCE, session_id, ReferenceColours.DERSE_PALETTE);
+         furthestRing = new Moon.fromWeightedThemes(null,null,"Furthest Ring", furthestRingThemes, this, Aspects.SAUCE, session_id, ReferenceColours.DERSE_PALETTE);
 
          for(Player p in players) {
              p.syncToSessionMoon();
          }
+
+
+
          prospit.spawnQueen();
          derse.spawnQueen();
          prospit.spawnKing();

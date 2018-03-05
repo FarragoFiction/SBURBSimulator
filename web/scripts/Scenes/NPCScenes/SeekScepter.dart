@@ -102,8 +102,12 @@ class SeekScepter extends Scene {
   bool trigger(List<Player> playerList) {
       tactic = null;
       target = null;
-      GameEntity whiteRingOwner = session.prospit.kingsScepter.owner;
-      GameEntity blackRingOwner = session.derse.kingsScepter.owner;
+
+
+      GameEntity whiteRingOwner;
+      if(session.prospitScepter != null) whiteRingOwner = session.prospitScepter.owner;
+      GameEntity blackRingOwner;
+      if(session.derseScepter != null) blackRingOwner = session.derseScepter.owner;
 
 
       //ring could be destroyed, or...somehow...not owned by who it thinks it is which is weird and wrong and what is happening.
