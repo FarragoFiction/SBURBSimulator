@@ -239,7 +239,6 @@ class Session {
 
     void setupMoons() {
          print("Test NPCs: moons set up $session_id");
-         setupBattleField();
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Red Miles", 3);
@@ -371,9 +370,7 @@ class Session {
          for(Player p in players) {
              p.syncToSessionMoon();
          }
-
-
-
+         setupBattleField();
          prospit.spawnQueen();
          derse.spawnQueen();
 
