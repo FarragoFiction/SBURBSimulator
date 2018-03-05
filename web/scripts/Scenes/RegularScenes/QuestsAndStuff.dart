@@ -108,13 +108,23 @@ class QuestsAndStuff extends Scene {
 
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
-		player.moon.initQuest([player]);
-		String inEarly = "";
-		if(player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
-		String html = "${player.moon.getChapter()} ${inEarly} The ${player.htmlTitleWithTip()} is dreaming.  ${player.moon.randomFlavorText(session.rand, player)} ";
-		appendHtml(div, html);
-		//doQuests will append itself.
-		player.moon.doQuest(div, player, null);
+	    if(player.moon != null) {
+            player.moon.initQuest([player]);
+            String inEarly = "";
+            if (player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
+            String html = "${player.moon.getChapter()} ${inEarly} The ${player.htmlTitleWithTip()} is dreaming.  ${player.moon.randomFlavorText(session.rand, player)} ";
+            appendHtml(div, html);
+            //doQuests will append itself.
+            player.moon.doQuest(div, player, null);
+        }else {
+            session.furthestRing.initQuest([player]);
+            String inEarly = "";
+            if (player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";
+            String html = "${session.furthestRing.getChapter()} ${inEarly} The ${player.htmlTitleWithTip()} is dreaming.  ${session.furthestRing.randomFlavorText(session.rand, player)} ";
+            appendHtml(div, html);
+            //doQuests will append itself.
+            session.furthestRing.doQuest(div, player, null);
+        }
 	}
 
     void processSkaia(Element div, QuestingParty questingParty) {

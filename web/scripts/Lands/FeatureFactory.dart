@@ -35,6 +35,8 @@ class FeatureFactory {
     static ConsortFeature ROBOTCONSORT;
     static CarapaceFeature PROSPITIANCARAPACE;
     static CarapaceFeature DERSECARAPACE;
+    static HorrorTerrorFeature HORRORTERROR;
+
 
     static Iterable<ConsortFeature> RANDOM_CONSORTS;
 
@@ -137,7 +139,7 @@ class FeatureFactory {
         DRAGONCONSORT = new ConsortFeature("Dragon", "roar");
         PROSPITIANCARAPACE = new CarapaceFeature("Prospitian", "murmur");
         DERSECARAPACE = new CarapaceFeature("Dersite", "mutter");
-
+        HORRORTERROR = new HorrorTerrorFeature("Horror Terror", "a;lkjdf");
         RANDOM_CONSORTS = <ConsortFeature>[SNAKECONSORT, ALLIGATORCONSORT, NEWTCONSORT, SALAMANDERCONSORT, IGUANACONSORT, CROCODILECONSORT, TURTLECONSORT, CHAMELEONCONSORT, AXOLOTLCONSORT, LIZARDCONSORT];
     }
 

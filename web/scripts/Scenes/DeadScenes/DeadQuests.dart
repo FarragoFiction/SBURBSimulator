@@ -36,7 +36,11 @@ class DeadQuests extends Scene {
         String html = "${player.moon.getChapter()} ${player.moon.randomFlavorText(session.rand, player)} ";
         appendHtml(div, html);
         //doQuests will append itself.
-        player.moon.doQuest(div, player, null);
+        if(player.moon != null) {
+            player.moon.doQuest(div, player, null);
+        }else {
+            session.furthestRing.doQuest(div, player, null);
+        }
     }
 
     void processEndQuests(div) {

@@ -20,6 +20,8 @@ class Session {
     Battlefield battlefield;
     Moon prospit;
     Moon derse;
+    //needed for dreams now, null moons are possible
+    Moon furthestRing;
     List<Moon> get moons => <Moon>[prospit, derse];
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
@@ -296,8 +298,30 @@ class Session {
             ], new DreamReward(), QuestChainFeature.hasDreamSelf), Feature.LOW);
 
 
+         Map<Theme,double> furthestRingThemes = new Map<Theme, double>();
+         Theme furthestRingTheme = new Theme(<String>["Prospit"])
+             ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.MEDIUM)
+             ..addFeature(FeatureFactory.WHISPERSOUND, Feature.MEDIUM)
+             ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
+             ..addFeature(FeatureFactory.CREEPYFEELING, Feature.LOW)
+             ..addFeature(FeatureFactory.HORRORTERROR, Feature.HIGH)
+             ..addFeature(FeatureFactory.DECEITSMELL, Feature.MEDIUM)
+             ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(randomHorrorTerrorQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(randomBubbleQuestChain(), Feature.WAY_HIGH)
+             ..addFeature(new MoonQuestChainFeature(true, "Be a Legitimate Business Player", [
+                 new Quest("The ${Quest.PLAYER1} learns of a lucrative business opportunity. The BLACK QUEEN has all sorts of contraband laws. Everything from frogs to ice cream is so totally illegal. But that doesn't stop the right sort of Dersite from getting cravings, if you understand me. The ${Quest.PLAYER1} looks like they can be discreet. "),
+                 new Quest("The ${Quest.PLAYER1} runs afoul of the Authority Regulators. Through a frankly preposterous amount of running, parkour and misdirection, they finally escape, only to remember that they could have just flown away.  Dream selves sure are dumb!  "),
+                 new Quest("The ${Quest.PLAYER1} has decided to retire from a life of...legitimate business, highly lucrative though it was.  They use their earnings to set up a simple and refined Suit Shop, catering to only the most exclusive clientel. "),
+             ], new DreamReward(), QuestChainFeature.hasDreamSelf), Feature.LOW);
+
+
         prospitThemes[prospitTheme] = Theme.HIGH;
         derseThemes[derseTheme] = Theme.HIGH;
+        furthestRingThemes[furthestRingTheme] = Theme.HIGH;
 
         prospit = new Moon.fromWeightedThemes("Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
          print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
@@ -308,6 +332,8 @@ class Session {
 
          derse.associatedEntities.addAll(npcHandler.getDersites());
          print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
+
+         furthestRing = new Moon.fromWeightedThemes("Furthest Ring", furthestRingThemes, this, Aspects.SAUCE, session_id, ReferenceColours.DERSE_PALETTE);
 
          for(Player p in players) {
              p.syncToSessionMoon();

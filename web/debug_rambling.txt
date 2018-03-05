@@ -5336,3 +5336,23 @@ but what about for dead sessions? ...worry about taht soon, i guess. for a dead 
 should make session unwinnable. that's a flag, right? yeah.
 
 it means ANY big bad or red miles activity can make a dead session unwinnable. that's the point, dunkass.
+~~~~~
+
+alright so. i'm fixing it up so that if your moon goes null you don't crash
+when you can't do horrorterror dreams.  So...what now?
+
+where does dreams actually happen? in quests? i'll need to do it for dead sessions, too
+
+wait...no?
+
+looks like it's just....
+        player.moon.doQuest(div, player, null);
+
+
+okay, so if moon == null, session.furthestRing.doQuest();
+
+looks solid
+
+and i guess if you somehow manage to blow up the FURTHEST RING you are just fucked and it crashes.
+
+thems the breaks
