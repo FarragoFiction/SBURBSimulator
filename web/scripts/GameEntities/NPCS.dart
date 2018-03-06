@@ -17,6 +17,8 @@ class Carapace extends NPC {
     static String PROSPIT = "prospit";
     static String DERSE = "derse";
 
+    bool royalty = false;
+
     List<String> firstNames;
     List<String> lastNames;
     List<String> ringFirstNames;

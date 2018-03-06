@@ -70,14 +70,23 @@ class DeadSessionSummary extends SessionSummary {
         summary.setNumStat("numLiving", findLiving(session.players).length);
         summary.setNumStat("numDead", findDeadPlayers(session.players).length);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
-        summary.setBoolStat("plannedToExileJack", session.stats.plannedToExileJack);
         summary.setBoolStat("exiledQueen", session.derse.queen.exiled);
-        summary.setBoolStat("jackGotWeapon", session.stats.jackGotWeapon);
-        summary.setBoolStat("jackRampage", session.stats.jackRampage);
-        summary.setBoolStat("jackScheme", session.stats.jackScheme);
+
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         summary.setBoolStat("murderMode", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
+        /*
+            bool cataclysmCrash = false;
+    bool redMilesActivated = false;
+    bool moonDestroyed = false;
+    bool planetDestroyed = false;
+    bool crownedCarapace = false;
+         */
+        summary.setBoolStat("redMilesActivated", session.stats.redMilesActivated);
+        summary.setBoolStat("moonDestroyed", session.stats.moonDestroyed);
+        summary.setBoolStat("planetDestroyed", session.stats.planetDestroyed);
+        summary.setBoolStat("crownedCarapace", session.stats.crownedCarapace);
+
 
 
         return summary;
@@ -104,12 +113,6 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
     setStat("choseGodTier", 0);
     setStat("timesAllLived", 0);
     setStat("denizenBeat", 0);
-    setStat("plannedToExileJack", 0);
-    setStat("exiledJack", 0);
-    setStat("exiledQueen", 0);
-    setStat("jackGotWeapon", 0);
-    setStat("jackRampage", 0);
-    setStat("jackScheme", 0);
     setStat("queenRejectRing", 0);
     setStat("democracyStarted", 0);
     setStat("murderMode", 0);
@@ -126,6 +129,18 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
     setStat("hasUnluckyEvents", 0);
     setStat("hasFreeWillEvents", 0);
     setStat("hasGhostEvents", 0);
+
+    /*
+        bool cataclysmCrash = false;
+    bool redMilesActivated = false;
+    bool moonDestroyed = false;
+    bool planetDestroyed = false;
+    bool crownedCarapace = false;
+     */
+    setStat("planetDestroyed", 0);
+    setStat("redMilesActivated", 0);
+    setStat("moonDestroyed", 0);
+    setStat("crownedCarapace", 0);
 
     setStat("crashedFromSessionBug", 0);
     setStat("averageGrist", 0);
@@ -153,12 +168,12 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
                 if (ss.getNumStat("numLiving") == 0) mss.incNumStat("timesAllDied");
             if (ss.getNumStat("numDead") == 0) mss.incNumStat("timesAllLived");
             if (ss.getBoolStat("denizenBeat")) mss.incNumStat("denizenBeat");
-            if (ss.getBoolStat("plannedToExileJack")) mss.incNumStat("plannedToExileJack");
-            if (ss.getBoolStat("exiledJack")) mss.incNumStat("exiledJack");
-            if (ss.getBoolStat("exiledQueen")) mss.incNumStat("exiledQueen");
-            if (ss.getBoolStat("jackGotWeapon")) mss.incNumStat("jackGotWeapon");
-            if (ss.getBoolStat("jackRampage")) mss.incNumStat("jackRampage");
-            if (ss.getBoolStat("jackScheme")) mss.incNumStat("jackScheme");
+
+            if (ss.getBoolStat("redMilesActivated")) mss.incNumStat("redMilesActivated");
+            if (ss.getBoolStat("moonDestroyed")) mss.incNumStat("moonDestroyed");
+            if (ss.getBoolStat("planetDestroyed")) mss.incNumStat("planetDestroyed");
+            if (ss.getBoolStat("crownedCarapace")) mss.incNumStat("crownedCarapace");
+
             if (ss.getBoolStat("queenRejectRing")) mss.incNumStat("queenRejectRing");
             if (ss.getBoolStat("murderMode")) mss.incNumStat("murderMode");
             if (ss.getBoolStat("grimDark")) mss.incNumStat("grimDark");

@@ -253,13 +253,16 @@ class SessionSummary {
         }else {
             summary.setBoolStat("blackKingDead", true);
         }
-        summary.setBoolStat("mayorEnding", session.stats.mayorEnding);
+        summary.setBoolStat("redMilesActivated", session.stats.redMilesActivated);
+        summary.setBoolStat("moonDestroyed", session.stats.moonDestroyed);
+        summary.setBoolStat("planetDestroyed", session.stats.planetDestroyed);
+        summary.setBoolStat("crownedCarapace", session.stats.crownedCarapace);
+
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
         summary.setBoolStat("hasGhostEvents", session.stats.hasGhostEvents);
         summary.setBoolStat("loveEnding", session.stats.loveEnding);
         summary.setBoolStat("hateEnding", session.stats.hateEnding);
         summary.setBoolStat("monoTheismEnding", session.stats.monoTheismEnding);
-        summary.setBoolStat("waywardVagabondEnding", session.stats.waywardVagabondEnding);
         summary.setBoolStat("badBreakDeath", session.stats.badBreakDeath);
         summary.setBoolStat("luckyGodTier", session.stats.luckyGodTier);
         summary.setBoolStat("choseGodTier", session.stats.choseGodTier);
@@ -542,15 +545,8 @@ class MultiSessionSummary {
         setStat("timesAllLived", 0);
         setStat("ectoBiologyStarted", 0);
         setStat("denizenBeat", 0);
-        setStat("plannedToExileJack", 0);
-        setStat("exiledJack", 0);
-        setStat("exiledQueen", 0);
-        setStat("jackGotWeapon", 0);
-        setStat("jackRampage", 0);
-        setStat("jackScheme", 0);
         setStat("kingTooPowerful", 0);
         setStat("queenRejectRing", 0);
-        setStat("democracyStarted", 0);
         setStat("murdersHappened", 0);
         setStat("grimDark", 0);
         setStat("hasHearts", 0);
@@ -593,6 +589,11 @@ class MultiSessionSummary {
         setStat("crashedFromSessionBug", 0);
         setStat("averageGrist", 0);
         setStat("averageFrogLevel", 0);
+
+        setStat("planetDestroyed", 0);
+        setStat("redMilesActivated", 0);
+        setStat("moonDestroyed", 0);
+        setStat("crownedCarapace", 0);
     }
 
     num getNumStat(String statName) {
@@ -837,6 +838,8 @@ class MultiSessionSummary {
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
         if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "hasGhostEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
+        if (propertyName == "redMilesActivated" ||propertyName == "moonDestroyed" || propertyName == "planetDestroyed" || propertyName == "crownedCarapace" ) return true;
+
         return false;
     }
 
@@ -1062,6 +1065,13 @@ class MultiSessionSummary {
             if (ss.getBoolStat("hasSpades")) mss.incNumStat("hasSpades");
             if (ss.getBoolStat("hasClubs")) mss.incNumStat("hasClubs");
             if (ss.getBoolStat("hasBreakups")) mss.incNumStat("hasBreakups");
+
+            if (ss.getBoolStat("redMilesActivated")) mss.incNumStat("redMilesActivated");
+            if (ss.getBoolStat("moonDestroyed")) mss.incNumStat("moonDestroyed");
+            if (ss.getBoolStat("planetDestroyed")) mss.incNumStat("planetDestroyed");
+            if (ss.getBoolStat("crownedCarapace")) mss.incNumStat("crownedCarapace");
+
+
             if (ss.getBoolStat("hasHearts")) mss.incNumStat("hasHearts");
             if (ss.parentSession != null) mss.incNumStat("comboSessions");
             if (ss.getBoolStat("threeTimesSessionCombo")) mss.incNumStat("threeTimesSessionCombo");

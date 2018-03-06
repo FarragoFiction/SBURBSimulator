@@ -33,6 +33,7 @@ class Battlefield extends Land {
 
     void spawnKings() {
             this.whiteKing = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
+            whiteKing.royalty = true; //do before crowning, to avoid ab being confused
             this.whiteKing.sylladex.add(session.prospitScepter);
             this.whiteKing.name = "White King"; //override crowned name
             this.whiteKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
@@ -41,12 +42,14 @@ class Battlefield extends Land {
             whiteKing.heal();
 
             this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
+            blackKing.royalty = true; //do before crowning, to avoid ab being confused
             this.blackKing.sylladex.add(session.derseScepter);
             this.blackKing.name = "Black King"; //override crowned name
             this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             blackKing.grist = 1000;
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
             blackKing.heal();
+
     }
 
     @override

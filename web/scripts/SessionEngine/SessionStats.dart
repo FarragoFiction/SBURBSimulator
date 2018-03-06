@@ -6,12 +6,8 @@ class SessionStats {
     bool opossumVictory = false;
     bool hasBreakups = false; //sessions aren't in charge of denizens anymore, they are for players and set when they get in the medium
     bool badBreakDeath = false;
-    bool jackGotWeapon = false;
-    bool jackRampage = false;
-    bool jackScheme = false;
     bool luckyGodTier = false;
     bool choseGodTier = false;
-    bool plannedToExileJack = false;
     bool hasHearts = false;
     bool hasSpades = false;
     bool rocksFell = false;
@@ -24,12 +20,10 @@ class SessionStats {
     bool heroicDeath = false;
     bool won = false;
     bool justDeath = false;
-    bool mayorEnding = false;
     bool gnosisEnding = false;
     bool loveEnding = false;
     bool hateEnding = false;
     bool monoTheismEnding = false;
-    bool waywardVagabondEnding = false;
     bool murdersHappened = false;
     bool queenRejectRing = false;
     bool goodLuckEvent = false;
@@ -53,4 +47,8 @@ class SessionStats {
     bool yellowYard = false;
     bool crashedFromCustomShit = false;
     bool cataclysmCrash = false;
+    bool redMilesActivated = false;
+    bool moonDestroyed = false;
+    bool planetDestroyed = false;
+    bool crownedCarapace = false;
 }

@@ -25,6 +25,7 @@ class RedMiles extends Scene {
 
           div.append(frame);
           cannotEscape = true;
+          session.stats.redMilesActivated = true;
           return null; //no one dies the first turn.
       }
     cannotEscape = true;
@@ -182,7 +183,7 @@ class RedMiles extends Scene {
       //you aren't even going to try to do something this omnicidal.
       if(!gameEntity.violent) return false;
 
-      if(session.rand.nextDouble() > .7) return true;
+      if(session.rand.nextDouble() > .9) return true;
       return false;
 
   }

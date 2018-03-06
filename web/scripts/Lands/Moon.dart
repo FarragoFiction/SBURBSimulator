@@ -68,6 +68,7 @@ class Moon extends Land {
   Element planetsplode(GameEntity killer) {
 
       session.logger.info("AB: Oh shit, JR! A moon is exploding! Come see this!");
+      session.stats.moonDestroyed = true;
       List<String> killed = new List<String>();
 
       //kill the dream selves
@@ -178,10 +179,12 @@ class Moon extends Land {
 
         if(name.contains("Prospit")) {
             this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
+            queen.royalty = true;
             this.queen.sylladex.add(this._queensRing);
             this.queen.name = "White Queen"; //override crowned name
         }else {
             this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
+            queen.royalty = true;
             this.queen.sylladex.add(this._queensRing);
             this.queen.name = "Black Queen"; //override crowned name
         }
