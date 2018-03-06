@@ -13,7 +13,7 @@ class FightQueen extends Scene {
 	@override
 	bool trigger(playerList){
 		this.playerList = playerList;
-		return (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLiving(this.session.players).length != 0) ;
+		return (this.session.derse != null && this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLiving(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 		var living = findLiving(this.session.players);

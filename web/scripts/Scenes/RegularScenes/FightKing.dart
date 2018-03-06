@@ -14,7 +14,17 @@ class FightKing extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		////session.logger.info('fight kin trigger?');
-		return (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.battlefield.blackKing.dead && (this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0 || this.session.derse.queen.dead) && (findLiving(this.session.players).length != 0) ;
+
+		bool queenDefeated = false;
+		if(this.session.derse == null) {
+			queenDefeated = true;
+		}else if(this.session.derse.queen.dead || this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) <= 0)  {
+			queenDefeated = true;
+		}
+
+
+
+		return (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.battlefield.blackKing.dead && queenDefeated && (findLiving(this.session.players).length != 0) ;
 	}
 	dynamic getGoodGuys(){
 	var living = findLiving(this.session.players);
