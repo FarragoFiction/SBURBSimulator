@@ -56,6 +56,7 @@ class RedMiles extends Scene {
 
   //nothing left to destroy, so destroy the session
   void destroyUniverse(Element div) {
+      session.stats.ringWraithCrash = true;
       throw new PlayersCrashedSession(getPlayersTitlesNoHTML(<GameEntity>[this.gameEntity]) + " has turned the Red Miles onto the Universe Frog itself.  Frog/Session id was:  ${this.session.session_id}");
 
   }

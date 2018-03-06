@@ -47,6 +47,7 @@ class SessionStats {
     bool yellowYard = false;
     bool crashedFromCustomShit = false;
     bool cataclysmCrash = false;
+    bool ringWraithCrash = false;
     bool redMilesActivated = false;
     bool moonDestroyed = false;
     bool planetDestroyed = false;

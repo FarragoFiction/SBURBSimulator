@@ -277,6 +277,9 @@ class SessionSummary {
         summary.setBoolStat("justDeath", session.stats.justDeath);
         summary.setBoolStat("crashedFromSessionBug", session.stats.crashedFromSessionBug);
         summary.setBoolStat("cataclysmCrash", session.stats.cataclysmCrash);
+
+        summary.setBoolStat("ringWraithCrash", session.stats.ringWraithCrash);
+
         summary.setBoolStat("crashedFromPlayerActions", session.stats.crashedFromPlayerActions);
         summary.setBoolStat("hasFreeWillEvents", session.stats.hasFreeWillEvents);
         summary.setBoolStat("hasTier1GnosisEvents", session.stats.hasTier1Events);
@@ -529,6 +532,9 @@ class MultiSessionSummary {
         setStat("won", 0);
         setStat("crashedFromPlayerActions", 0);
         setStat("cataclysmCrash", 0);
+
+        setStat("ringWraithCrash", 0);
+
         setStat("timesAllDied", 0);
         setStat("yellowYard", 0);
         setStat("scratchAvailable", 0);
@@ -845,7 +851,7 @@ class MultiSessionSummary {
 
     bool isEndingProperty(String propertyName) {
         if (propertyName == "yellowYard" || propertyName == "timesAllLived" || propertyName == "timesAllDied" || propertyName == "scratchAvailable" || propertyName == "won") return true;
-        if (propertyName == "cataclysmCrash" || propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
+        if (propertyName == "ringWraithCrash" ||propertyName == "cataclysmCrash" || propertyName == "crashedFromPlayerActions" || propertyName == "ectoBiologyStarted" || propertyName == "comboSessions" || propertyName == "threeTimesSessionCombo") return true;
         if (propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
         if (propertyName == "numberPurpleFrog" || propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
         if (propertyName == "blackKingDead" || propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
@@ -1041,6 +1047,9 @@ class MultiSessionSummary {
             if (ss.getBoolStat("blackKingDead")) mss.incNumStat("blackKingDead");
             if (ss.getBoolStat("crashedFromSessionBug")) mss.incNumStat("crashedFromSessionBug");
             if (ss.getBoolStat("cataclysmCrash")) mss.incNumStat("cataclysmCrash");
+
+            if (ss.getBoolStat("ringWraithCrash")) mss.incNumStat("ringWraithCrash");
+
             if (ss.getBoolStat("opossumVictory")) mss.incNumStat("opossumVictory");
             if (ss.getBoolStat("rocksFell")) mss.incNumStat("rocksFell");
             if (ss.getBoolStat("crashedFromPlayerActions")) mss.incNumStat("crashedFromPlayerActions");
