@@ -541,12 +541,9 @@ class MultiSessionSummary {
         setStat("blackKingDead", 0);
         setStat("luckyGodTier", 0);
         setStat("choseGodTier", 0);
-        setStat("waywardVagabondEnding", 0);
-        setStat("mayorEnding", 0);
         setStat("gnosisEnding", 0);
         setStat("loveEnding", 0);
         setStat("hateEnding", 0);
-        setStat("mayorEnding", 0);
         setStat("monoTheismEnding", 0);
         setStat("timesAllLived", 0);
         setStat("ectoBiologyStarted", 0);
