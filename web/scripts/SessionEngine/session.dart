@@ -378,7 +378,7 @@ class Session {
         derseThemes[derseTheme] = Theme.HIGH;
         furthestRingThemes[furthestRingTheme] = Theme.HIGH;
 
-        prospit = new Moon.fromWeightedThemes(prospitRing, prospitScepter, "Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
+         prospit = new Moon.fromWeightedThemes(prospitRing, prospitScepter, "Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
          print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
 
          prospit.associatedEntities.addAll(npcHandler.getProspitians());

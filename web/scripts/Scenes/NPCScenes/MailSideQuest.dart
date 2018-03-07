@@ -56,7 +56,6 @@ class MailSideQuest extends Scene {
 
 
       if(package == null) {
-          session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
           difficulty = 0;
           session.stats.mailQuest = true;
           senderOfItem = null;
@@ -71,6 +70,8 @@ class MailSideQuest extends Scene {
         return continueQuest(div);
       }else {
           difficulty ++;
+          session.logger.info("AB: The mail went through. Does ${gameEntity.name} ever stop delivering?");
+
           return endQuest(div);
       }
   }
@@ -244,7 +245,7 @@ class MailSideQuest extends Scene {
   }
 
   Land findLandToBeOn([Land besides]) {
-      WeightedList<Land> targets = new List<Land>();
+      WeightedList<Land> targets = new WeightedList<Land>();
       //extra chance for the target to be on their home base
       if(recipient is Player) {
             Player p = recipient;
