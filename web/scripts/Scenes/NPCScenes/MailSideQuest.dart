@@ -29,9 +29,23 @@ class MailSideQuest extends Scene {
   GameEntity recipient;
 
   MailSideQuest(Session session) : super(session);
-  
+
   @override
   void renderContent(Element div) {
+      if(!doNotRender) {
+          ImageElement image;
+          if (session.derse == this) {
+              image = new ImageElement(src: "images/Rewards/mail.png");
+          } else {
+              image = new ImageElement(src: "images/Rewards/mail.png");
+          }
+          //can do this because it's not canvas
+          //although really if my rendering pipeline were diff i could do on canvas, too.
+          image.onLoad.listen((e) {
+              div.append(image);
+          });
+      }
+
       if(package == null) {
           session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
           return beginQuest(div);
@@ -43,23 +57,43 @@ class MailSideQuest extends Scene {
   }
 
   void findASender() {
-//TODO
+      if(session.rand.nextBool()) {
+         senderOfItem = rand.pickFrom(session.players);
+      }else {
+          senderOfItem = rand.pickFrom(session.activatedNPCS);
+      }
   }
 
   void findAItem() {
-//TODO
+      //Mail quests are WORTH IT. and JESUS FUCK if it turns out it was a ring.
+      package = rand.pickFrom(senderOfItem.sylladex);
+      package.traits.add(ItemTraitFactory.UNBEATABLE);
+
+      gameEntity.sylladex.add(package); //should auto remove from sender, but let's be safe
+      senderOfItem.sylladex.remove((package));
   }
 
   void findARecipient() {
-//TODO
+      if(session.rand.nextBool()) {
+          senderOfItem = rand.pickFrom(session.players);
+      }else {
+          senderOfItem = rand.pickFrom(session.activatedNPCS);
+      }
   }
 
   void beginQuest(Element div) {
-//TODO
+      findASender();
+      findAItem();
+      findARecipient();
+      //TODO print out what all these are.
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
+      div.append(ret);
   }
 
   void continueQuest(Element div) {
-//TODO
+      List<Lambda> questParts = <Lambda>[cantFindRecipient, bullshitDeteor];
+      return session.rand.pickFrom(questParts)(div);
   }
 
   //if it's rank is higher than the recipient's specibus, this item is now their specibus
@@ -70,15 +104,15 @@ class MailSideQuest extends Scene {
 
 
   void getInRandomStrife(Element div) {
-//TODO
+    //TODO if you die, null out item
   }
 
   void cantFindRecipient(Element div) {
-    //TODO  if you die, null out item.
+    //TODO  list of "they were just there a minute ago" bullshit
   }
 
-  void bullsitDeteor(Element div) {
-    //TODO
+  void bullshitDeteor(Element div) {
+    //TODO list of possible deteors, just pick one and write it out
   }
 
   @override
