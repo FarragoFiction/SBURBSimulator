@@ -200,6 +200,8 @@ class ItemTraitFactory {
   static ItemAppearanceTrait FEATHER;
   static ItemAppearanceTrait UGLY;
   static ItemAppearanceTrait LEGENDARY;
+  static ItemAppearanceTrait UNBEATABLE;
+
 
   static ItemFunctionTrait EDGED;
   static ItemFunctionTrait SCARY;
@@ -1345,6 +1347,9 @@ class ItemTraitFactory {
     SHITTY = new ItemAppearanceTrait(<String>["shitty", "poorly made","conksuck", "piece-of-shit"], -13.0,ItemTrait.OPINION);
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3,ItemTrait.MATERIAL);
     LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0,ItemTrait.FIRST);
+    //like the rabbit.
+    UNBEATABLE = new ItemAppearanceTrait(<String>["Unbeatable"], 4037.0,ItemTrait.FIRST);
+
   }
 
   static void initFunctions() {
