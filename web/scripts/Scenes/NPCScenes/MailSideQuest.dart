@@ -96,6 +96,8 @@ class MailSideQuest extends Scene {
 
 
   void failedQuestDeadRecipient(Element div) {
+      session.logger.info("AB: The mail went through, but to a corpse. Does ${gameEntity.name} ever stop delivering?");
+
       DivElement ret = new DivElement();
       ret.setInnerHtml("The ${gameEntity.htmlTitle()} suddenly stops, dead in their tracks. They stare down at the dead ${recipient.htmlTitle()}. It is with a heavy heart they place the ${package} on them, respectfully. The Mail did Not Fail, but nor did it win this day.");
       div.append(ret);
@@ -104,6 +106,8 @@ class MailSideQuest extends Scene {
   }
 
   void failedQuestLostItem(Element div) {
+      session.logger.info("AB: The mail got lost. Shit.");
+
       DivElement ret = new DivElement();
       ret.setInnerHtml("The ${gameEntity.htmlTitle()} suddenly stops, dead in their tracks. They pat around their pockets frantically. Where is the ${package}!? The one the ${senderOfItem.htmlTitle()} entrusted them to deliever to ${recipient.htmlTitle()}!? Oh god. Oh no. How did this happen? They have FAILED THE MAIL.");
       div.append(ret);
@@ -162,6 +166,8 @@ class MailSideQuest extends Scene {
   //if it's rank is higher than the recipient's specibus, this item is now their specibus
   //they get the 'kind' for it, too.
   void endQuest(Element div) {
+      session.logger.info("AB: The mail went through. Does ${gameEntity.name} ever stop delivering?");
+
       bool equiped = givePackageToRecipient();
       DivElement ret = new DivElement();
       String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient.htmlTitle()}.";
@@ -217,6 +223,8 @@ class MailSideQuest extends Scene {
 
 
   void getInRandomStrife(Element div) {
+      session.logger.info("AB: It's a mail fight.");
+
       GameEntity target = findSomeoneBesidesMe();
 
       Team pTeam = new Team(this.session, <GameEntity>[gameEntity]);
@@ -279,6 +287,8 @@ class MailSideQuest extends Scene {
   }
 
   void cantFindRecipient(Element div) {
+      session.logger.info("AB: Mail keeps missing $recipient.");
+
       Land currentLand = findLandToBeOn();
       List<String> bullshit = <String>["The ${gameEntity.htmlTitle()} arrives at ${currentLand} where the ${recipient.htmlTitle()} should be, but a ${currentLand.consortFeature.sound}ing ${currentLand.consortFeature.name} says they just missed them. Drat.","The ${gameEntity.htmlTitle()} arrives at ${currentLand} only to find the ${recipient.htmlTitle()} apparently just left.","The ${gameEntity.htmlTitle()} searches  ${currentLand.name} for a while, but just can't find the ${recipient.htmlTitle()}. "];
       DivElement ret = new DivElement();
@@ -287,6 +297,8 @@ class MailSideQuest extends Scene {
   }
 
   void bullshitDeteor(Element div) {
+      session.logger.info("AB: The mail keeps getting delayed.");
+
       Land currentLand = findLandToBeOn();
       Land detour = findLandToBeOn(currentLand);
       List<String> frustrations = <String>["Of course.","For fucks sake.","Why don't they just let the mail go through!?","The ${gameEntity.htmlTitle()} tries not to get too frustrated."];
@@ -300,7 +312,7 @@ class MailSideQuest extends Scene {
   @override
   bool trigger(List<Player> playerList) {
       //should have a REALLY high chance of triggering. The MAIL is important.
-      if(session.rand.nextDouble() > .2) return true;
+      if(session.rand.nextDouble() > .01) return true;
       return false;
   }
 }
