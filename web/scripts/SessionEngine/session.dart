@@ -38,25 +38,48 @@ class Session {
     //these are stable between combos and scratches
     List<GameEntity> bigBads = new List<GameEntity>();
     //these are not
+
+    //stores them.
+    List<GameEntity> _activatedNPCS = new List<GameEntity>();
+
     List<GameEntity> get activatedNPCS {
-        List<GameEntity> ret = new List<GameEntity>();
+        grabActivatedBigBads();
+        grabActivatedCarapaces();
+        return _activatedNPCS;
+    }
+
+    void grabActivatedBigBads() {
+        List<GameEntity> bbRemove = new List<GameEntity>();
         for(GameEntity g in bigBads) {
-            if(g.active) ret.add(g);
-        }
 
-        if(derse != null) {
-            for (GameEntity g in derse.associatedEntities) {
-                if (g.active) ret.add(g);
+            if(g.active) {
+                _activatedNPCS.add(g);
+                bbRemove.add(g);
             }
         }
 
-        if(prospit != null) {
-            for (GameEntity g in prospit.associatedEntities) {
-                if (g.active) ret.add(g);
-            }
+        for(GameEntity g in bbRemove) {
+            bigBads.remove(g);
         }
 
-        return ret;
+    }
+
+    void grabActivatedCarapaces() {
+        for(Moon m in moons) {
+            List<GameEntity> toRemove = new List<GameEntity>();
+            if(m != null) {
+                for(GameEntity g in m.associatedEntities) {
+
+                    if(g.active) {
+                        _activatedNPCS.add(g);
+                        toRemove.add(g);
+                    }
+                }
+                for(GameEntity g in toRemove) {
+                    m.associatedEntities.remove(g);
+                }
+            }
+        }
     }
 
     FraymotifCreator fraymotifCreator = new FraymotifCreator(); //as long as FraymotifCreator has no state data, this is fine.
