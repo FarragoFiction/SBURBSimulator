@@ -162,6 +162,6 @@ class SeekRing extends Scene {
       //this quest can be GIVEN to someone, though.
       //for example, should a big bad have the ring, all players and allies should get this quest
 
-      return tactic != null && target != null;
+      return tactic != null && target != null && session.rand.nextDouble() > .7;
   }
 }

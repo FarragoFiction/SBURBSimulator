@@ -599,8 +599,8 @@ class PitchRomanceReward extends Reward {
 ///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
 class DreamReward extends Reward {
 
-    double companionOdds = 0.99;
-    double activationOdds = 0.95;
+    double companionOdds = 0.95;
+    double activationOdds = 0.90;
 
     @override
     String image = null;

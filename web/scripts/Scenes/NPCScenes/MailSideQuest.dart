@@ -65,13 +65,12 @@ class MailSideQuest extends Scene {
           return failedQuestLostItem(div);
       }else if(recipient.dead) {
           return failedQuestDeadRecipient(div);
-      }else if(session.rand.nextBool()) {
+      }else if(session.rand.nextDouble()>.3) {
           difficulty ++;
         return continueQuest(div);
       }else {
           difficulty ++;
           session.logger.info("AB: The mail went through. Does ${gameEntity.name} ever stop delivering?");
-
           return endQuest(div);
       }
   }
@@ -136,7 +135,7 @@ class MailSideQuest extends Scene {
           package = null;
           return;
       }
-      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to the ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
       div.append(ret);
   }
 
@@ -165,11 +164,11 @@ class MailSideQuest extends Scene {
   void endQuest(Element div) {
       bool equiped = givePackageToRecipient();
       DivElement ret = new DivElement();
-      String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient}.";
-      if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitle()} shoves the ${package} at the ${recipient}.";
+      String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient.htmlTitle()}.";
+      if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitle()} shoves the ${package} at the ${recipient.htmlTitle()}.";
 
       if(equiped) {
-          text = "$text The ${gameEntity.htmlTitle()} also gets a specibus card so they can equip it, too! It's...huh. Wow. How strong even IS this ${package}?";
+          text = "$text The ${recipient.htmlTitle()} also gets a specibus card so they can equip it, too! It's...huh. Wow. How strong even IS this ${package}?";
       }
       ret.setInnerHtml(text);
       div.append(ret);
