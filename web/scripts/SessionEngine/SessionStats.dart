@@ -8,6 +8,7 @@ class SessionStats {
     bool badBreakDeath = false;
     bool luckyGodTier = false;
     bool choseGodTier = false;
+    bool mailQuest = true;
     bool hasHearts = false;
     bool hasSpades = false;
     bool rocksFell = false;

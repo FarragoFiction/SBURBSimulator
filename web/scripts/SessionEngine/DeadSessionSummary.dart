@@ -86,6 +86,7 @@ class DeadSessionSummary extends SessionSummary {
         summary.setBoolStat("moonDestroyed", session.stats.moonDestroyed);
         summary.setBoolStat("planetDestroyed", session.stats.planetDestroyed);
         summary.setBoolStat("crownedCarapace", session.stats.crownedCarapace);
+        summary.setBoolStat("mailQuest", session.stats.mailQuest);
 
 
 
@@ -141,6 +142,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
     setStat("redMilesActivated", 0);
     setStat("moonDestroyed", 0);
     setStat("crownedCarapace", 0);
+    setStat("mailQuest", 0);
 
     setStat("crashedFromSessionBug", 0);
     setStat("averageGrist", 0);
@@ -173,6 +175,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
             if (ss.getBoolStat("moonDestroyed")) mss.incNumStat("moonDestroyed");
             if (ss.getBoolStat("planetDestroyed")) mss.incNumStat("planetDestroyed");
             if (ss.getBoolStat("crownedCarapace")) mss.incNumStat("crownedCarapace");
+            if (ss.getBoolStat("mailQuest")) mss.incNumStat("mailQuest");
 
             if (ss.getBoolStat("queenRejectRing")) mss.incNumStat("queenRejectRing");
             if (ss.getBoolStat("murderMode")) mss.incNumStat("murderMode");

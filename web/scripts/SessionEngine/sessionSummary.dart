@@ -257,6 +257,7 @@ class SessionSummary {
         summary.setBoolStat("moonDestroyed", session.stats.moonDestroyed);
         summary.setBoolStat("planetDestroyed", session.stats.planetDestroyed);
         summary.setBoolStat("crownedCarapace", session.stats.crownedCarapace);
+        summary.setBoolStat("mailQuest", session.stats.mailQuest);
 
         summary.setBoolStat("gnosisEnding", session.stats.gnosisEnding);
         summary.setBoolStat("hasGhostEvents", session.stats.hasGhostEvents);
@@ -543,6 +544,7 @@ class MultiSessionSummary {
         setStat("choseGodTier", 0);
         setStat("gnosisEnding", 0);
         setStat("loveEnding", 0);
+        setStat("mailQuest", 0);
         setStat("hateEnding", 0);
         setStat("monoTheismEnding", 0);
         setStat("timesAllLived", 0);
@@ -841,7 +843,7 @@ class MultiSessionSummary {
         if (propertyName == "denizenBeat" || propertyName == "godTier" || propertyName == "questBed" || propertyName == "sacrificialSlab" || propertyName == "heroicDeath") return true;
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
         if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "hasGhostEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
-        if (propertyName == "redMilesActivated" ||propertyName == "moonDestroyed" || propertyName == "planetDestroyed" || propertyName == "crownedCarapace" ) return true;
+        if (propertyName == "redMilesActivated" ||propertyName == "moonDestroyed" || propertyName == "planetDestroyed" || propertyName == "crownedCarapace" || propertyName == "mailQuest" ) return true;
 
         return false;
     }
@@ -1076,6 +1078,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("moonDestroyed")) mss.incNumStat("moonDestroyed");
             if (ss.getBoolStat("planetDestroyed")) mss.incNumStat("planetDestroyed");
             if (ss.getBoolStat("crownedCarapace")) mss.incNumStat("crownedCarapace");
+            if (ss.getBoolStat("mailQuest")) mss.incNumStat("mailQuest");
 
 
             if (ss.getBoolStat("hasHearts")) mss.incNumStat("hasHearts");

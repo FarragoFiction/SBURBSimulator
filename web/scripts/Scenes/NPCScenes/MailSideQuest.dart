@@ -4,6 +4,7 @@ import 'dart:html';
 /*
 
 technically anyone can have this, but i'll only give it to ZC on derse and PM on prospit.
+and maybe if they are your companion you can do mail quests, too.
 
 Mail quests pick a random target to deliver to (any player or active carapace,
 and a random item (something a player or a carapce already owns) to deliver.
@@ -54,6 +55,7 @@ class MailSideQuest extends Scene {
       if(package == null) {
           session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
           difficulty = 0;
+          session.stats.mailQuest = true;
           return beginQuest(div);
       }else if(!gameEntity.sylladex.contains(package)) {
           return failedQuestLostItem(div);
@@ -190,7 +192,7 @@ class MailSideQuest extends Scene {
 
   }
 
-  Land findLandToBeOn() {
+  Land findLandToBeOn([Land besides]) {
       WeightedList<Land> targets = new List<Land>();
       //extra chance for the target to be on their home base
       if(recipient is Player) {
@@ -215,6 +217,13 @@ class MailSideQuest extends Scene {
           if(m != null) targets.add(m);
       }
 
+      if(besides != null) {
+          //clear out them all
+          while(targets.contains(besides)){
+            targets.remove(besides);
+          }
+      }
+
       return session.rand.pickFrom(targets);
   }
 
@@ -222,12 +231,19 @@ class MailSideQuest extends Scene {
       Land currentLand = findLandToBeOn();
       List<String> bullshit = <String>["The ${gameEntity.htmlTitle()} arrives at ${currentLand} where the ${recipient.htmlTitle()} should be, but a ${currentLand.consortFeature.sound}ing ${currentLand.consortFeature.name} says they just missed them. Drat.","The ${gameEntity.htmlTitle()} arrives at ${currentLand} only to find the ${recipient.htmlTitle()} apparently just left.","The ${gameEntity.htmlTitle()} searches  ${currentLand.name} for a while, but just can't find the ${recipient.htmlTitle()}. "];
       DivElement ret = new DivElement();
-      ret.setInnerHtml(session.rand.pickFrom((bullshit));
+      ret.setInnerHtml(session.rand.pickFrom(bullshit));
       div.append(ret);
   }
 
   void bullshitDeteor(Element div) {
-    //TODO list of possible deteors, just pick one and write it out
+      Land currentLand = findLandToBeOn();
+      Land detour = findLandToBeOn(currentLand);
+      List<String> frustrations = <String>["Of course.","For fucks sake.","Why don't they just let the mail go through!?","The ${gameEntity.htmlTitle()} tries not to get too frustrated."];
+
+      List<String> bullshit = <String>["The ${gameEntity.htmlTitle()} realizes that to get to the ${recipient.htmlTitle()}, they need to get a key for a bridge on ${currentLand} and the key is only kept on ${detour}. ","A ${currentLand.consortFeature.sound}ing ${currentLand.consortFeature.name} won't let the ${gameEntity.htmlTitle()} past without a rare item that is only kept on ${detour}. ","The ${gameEntity.htmlTitle()} has to bribe the worlds worst ${currentLand.consortFeature.name} with a delicacy that you can only find on ${detour}.  "];
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("${session.rand.pickFrom(bullshit)} ${rand.pickFrom(frustrations)}");
+      div.append(ret);
   }
 
   @override
