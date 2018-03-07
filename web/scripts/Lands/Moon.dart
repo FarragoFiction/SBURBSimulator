@@ -162,8 +162,16 @@ class Moon extends Land {
   }
 
   void destroyRing() {
-      _queensRing.dead = true;
-      _queensRing = null;
+      if(_queensRing != null) {
+          _queensRing.dead = true;
+          _queensRing = null;
+      }
+      if(name.contains("Prospit")) {
+        session.prospitRing = null;
+      }else {
+          session.derseRing = null;
+      }
+
   }
 
   //this should instantly doom the timeline.
