@@ -300,7 +300,7 @@ class MailSideQuest extends Scene {
   @override
   bool trigger(List<Player> playerList) {
       //should have a REALLY high chance of triggering. The MAIL is important.
-      if(session.rand.nextDouble() > .8) return true;
+      if(session.rand.nextDouble() > .2) return true;
       return false;
   }
 }
