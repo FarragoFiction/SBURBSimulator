@@ -56,6 +56,8 @@ class MailSideQuest extends Scene {
           session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
           difficulty = 0;
           session.stats.mailQuest = true;
+          senderOfItem = null;
+          recipient = null;
           return beginQuest(div);
       }else if(!gameEntity.sylladex.contains(package)) {
           return failedQuestLostItem(div);
@@ -71,7 +73,7 @@ class MailSideQuest extends Scene {
   }
 
   void findASender() {
-      senderOfItem = findSomeoneBesidesMe();
+      senderOfItem = findSomeoneBesidesMeWithItems();
   }
 
   void findAItem() {
@@ -106,10 +108,30 @@ class MailSideQuest extends Scene {
   }
 
   void beginQuest(Element div) {
-      findASender();
-      findAItem();
-      findARecipient();
       DivElement ret = new DivElement();
+
+      findASender();
+      if(senderOfItem == null) {
+          ret.setInnerHtml("The ${gameEntity.htmlTitle()} wants to deliver some mail but can't find any one in need!");
+          package = null;
+          div.append(ret);
+          return;
+      }
+
+      findAItem();
+      if(senderOfItem == null) {
+          ret.setInnerHtml("The ${gameEntity.htmlTitle()} wants to deliver some mail but can't find any one in need!");
+          div.append(ret);
+          package = null;
+          return;
+      }
+      findARecipient();
+      if(recipient == null) {
+          ret.setInnerHtml("The ${gameEntity.htmlTitle()} wants to deliver some mail but can't find any one in need!");
+          div.append(ret);
+          package = null;
+          return;
+      }
       ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
       div.append(ret);
   }
@@ -161,6 +183,32 @@ class MailSideQuest extends Scene {
           entities.remove(gameEntity); //do no matter what
           target = rand.pickFrom(entities);
       }
+      return target;
+  }
+
+  GameEntity findSomeoneBesidesMeWithItems() {
+      GameEntity target;
+      List<GameEntity> entities;
+      if(session.rand.nextBool()) {
+          entities = new List.from(session.players);
+          entities.remove(gameEntity);
+      }else {
+          entities = new List.from(session.activatedNPCS);
+          entities.remove(gameEntity); //do no matter what
+      }
+
+      List<GameEntity> toRemove = new List<GameEntity>();
+
+      for(GameEntity g in entities) {
+        if(g.sylladex.isEmpty) toRemove.add(g);
+      }
+
+      for(GameEntity g in toRemove) {
+        entities.remove(g);
+      }
+
+      target = rand.pickFrom(entities);
+
       return target;
   }
 
