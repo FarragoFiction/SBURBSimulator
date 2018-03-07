@@ -29,7 +29,7 @@ class VoidyStuff extends Scene {
 		}
 
 		if(this.enablingPlayer != null && enablingPlayer.hasPowers()){
-			session.logger.info("shenanigans are happening");
+			//session.logger.info("shenanigans are happening");
 			//rage field makes it always act as if passive
 			if(!session.mutator.rageField && (this.enablingPlayer.isActive() || rand.nextDouble() > .5)){
 				this.player = this.enablingPlayer;

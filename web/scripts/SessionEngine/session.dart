@@ -261,7 +261,7 @@ class Session {
 
 
     void setupMoons() {
-         print("Test NPCs: moons set up $session_id");
+         //print("Test NPCs: moons set up $session_id");
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Red Miles", 3);
@@ -379,14 +379,14 @@ class Session {
         furthestRingThemes[furthestRingTheme] = Theme.HIGH;
 
          prospit = new Moon.fromWeightedThemes(prospitRing, prospitScepter, "Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
-         print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
+         //print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
 
          prospit.associatedEntities.addAll(npcHandler.getProspitians());
          derse = new Moon.fromWeightedThemes(derseRing, derseScepter, "Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
-         print("Test NPCS: before adding entities, derse has ${derse.associatedEntities}");
+        // print("Test NPCS: before adding entities, derse has ${derse.associatedEntities}");
 
          derse.associatedEntities.addAll(npcHandler.getDersites());
-         print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
+         //print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
 
          furthestRing = new Moon.fromWeightedThemes(null,null,"Furthest Ring", furthestRingThemes, this, Aspects.SAUCE, session_id, ReferenceColours.DERSE_PALETTE);
 
@@ -480,7 +480,7 @@ class Session {
         for(GameEntity g in activatedNPCS) {
 
             if(!g.dead) {
-                print("setting $g to available");
+                //print("setting $g to available");
                 g.available = true;
             }else {
                 g.available = false;
@@ -671,7 +671,7 @@ class Session {
     }
 
     void createScenesForPlayers() {
-        print("creating scenes for ${players.length} players");
+        //print("creating scenes for ${players.length} players");
         for(Player p in players) {
             Scene.createScenesForPlayer(this, p);
         }

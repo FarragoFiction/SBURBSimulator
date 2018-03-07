@@ -65,7 +65,7 @@ class MailSideQuest extends Scene {
           return failedQuestLostItem(div);
       }else if(recipient.dead) {
           return failedQuestDeadRecipient(div);
-      }else if(session.rand.nextDouble()>.3) {
+      }else if(session.rand.nextDouble()>.2) {
           difficulty ++;
         return continueQuest(div);
       }else {

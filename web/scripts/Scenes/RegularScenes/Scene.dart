@@ -24,7 +24,7 @@ abstract class Scene {
   //  like ocdatastring shit.
 
   static void createScenesForPlayer(Session session, Player player){
-   print("creating scenes for $session and player $player");
+   //print("creating scenes for $session and player $player");
     if(session is DeadSession) {
       createScenesForDeadSession(session, player);
       return;

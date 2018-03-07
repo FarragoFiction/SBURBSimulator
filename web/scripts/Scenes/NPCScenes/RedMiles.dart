@@ -29,7 +29,7 @@ class RedMiles extends Scene {
           return null; //no one dies the first turn.
       }
     cannotEscape = true;
-    session.logger.info("AB: You cannot escape the miles.");
+    //session.logger.info("AB: You cannot escape the miles.");
     //pick a random player or land or moon
       //if you can't find anything, pick the universe itself (i.e. session crash)
 
@@ -81,7 +81,7 @@ class RedMiles extends Scene {
       ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. The ${m.name} has been targeted.");
 
       Element test = m.planetsplode(gameEntity);
-      print ("moon exploding returns: ${test.text}");
+      //print ("moon exploding returns: ${test.text}");
       ret.append(test);
       div.append(ret);
 
@@ -95,7 +95,7 @@ class RedMiles extends Scene {
         List<Moon> targets = new List<Moon>();
         for(Moon p in session.moons) {
             if(p != null) {
-                print("TEST MOON: $p is not null");
+                //print("TEST MOON: $p is not null");
                 targets.add(p);
             }
         }
@@ -110,7 +110,7 @@ class RedMiles extends Scene {
 
         ret.setInnerHtml("<br><br>The Red Miles cannot be escaped. ${m.name} has been targeted.");
         Element test = m.planetsplode(gameEntity);
-        print ("moon exploding returns: ${test.text}");
+        //print ("moon exploding returns: ${test.text}");
         ret.append(test);
         div.append(ret);
     }

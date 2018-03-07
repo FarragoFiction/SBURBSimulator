@@ -12,7 +12,7 @@ class PassOutRegiswords extends Scene {
   void renderContent(Element div) {
       gameEntity.available = false;
       patsy.available = false;
-      session.logger.info("Jack is passing out Regiswords again, this time to ${patsy.htmlTitle()}.");
+      //session.logger.info("Jack is passing out Regiswords again, this time to ${patsy.htmlTitle()}.");
       DivElement me = new DivElement();
       patsy.sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]));
 
