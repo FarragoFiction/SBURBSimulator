@@ -261,7 +261,7 @@ class Land extends Object with FeatureHolder {
 
         //KILL the associated player (unless they have reached skaia)
         for(GameEntity g in associatedEntities) {
-            if(g is Player) {
+            if(g is Player && !g.dead) {
                 Player p = g as Player;
                 //land is gone, this should be only reference to it
                 p.land = null;

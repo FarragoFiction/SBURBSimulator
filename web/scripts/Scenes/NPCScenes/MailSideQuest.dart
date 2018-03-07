@@ -49,10 +49,16 @@ class MailSideQuest extends Scene {
           });
       }
 
+
+
       if(package == null) {
           session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
           difficulty = 0;
           return beginQuest(div);
+      }else if(!gameEntity.sylladex.contains(package)) {
+          return failedQuestLostItem(div);
+      }else if(recipient.dead) {
+          return failedQuestDeadRecipient(div);
       }else if(session.rand.nextBool()) {
           difficulty ++;
         return continueQuest(div);
@@ -63,11 +69,7 @@ class MailSideQuest extends Scene {
   }
 
   void findASender() {
-      if(session.rand.nextBool()) {
-         senderOfItem = rand.pickFrom(session.players);
-      }else {
-          senderOfItem = rand.pickFrom(session.activatedNPCS);
-      }
+      senderOfItem = findSomeoneBesidesMe();
   }
 
   void findAItem() {
@@ -80,11 +82,25 @@ class MailSideQuest extends Scene {
   }
 
   void findARecipient() {
-      if(session.rand.nextBool()) {
-          senderOfItem = rand.pickFrom(session.players);
-      }else {
-          senderOfItem = rand.pickFrom(session.activatedNPCS);
-      }
+      //... I'm okay with the fact that someone can mail an item to themselves.
+      //maybe they are exploiting the buff mechanic
+      recipient = findSomeoneBesidesMe();
+  }
+
+
+  void failedQuestDeadRecipient(Element div) {
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} suddenly stops, dead in their tracks. They stare down at the dead ${recipient.htmlTitle()}. It is with a heavy heart they place the ${package} on them, respectfully. The Mail did Not Fail, but nor did it win this day.");
+      div.append(ret);
+      givePackageToRecipient();
+      package = null;
+  }
+
+  void failedQuestLostItem(Element div) {
+      DivElement ret = new DivElement();
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} suddenly stops, dead in their tracks. They pat around their pockets frantically. Where is the ${package}!? The one the ${senderOfItem.htmlTitle()} entrusted them to deliever to ${recipient.htmlTitle()}!? Oh god. Oh no. How did this happen? They have FAILED THE MAIL.");
+      div.append(ret);
+      package = null;
   }
 
   void beginQuest(Element div) {
@@ -101,19 +117,25 @@ class MailSideQuest extends Scene {
       return session.rand.pickFrom(questParts)(div);
   }
 
-  //if it's rank is higher than the recipient's specibus, this item is now their specibus
-  //they get the 'kind' for it, too.
-  void endQuest(Element div) {
-      bool equiped = false;
+  bool givePackageToRecipient() {
       if(gameEntity.specibus.rank < package.rank) {
           gameEntity.sylladex.add(gameEntity.specibus);
           Specibus s = new Specibus(package.fullName, package.traits.first, new List.from(package.traits));
           gameEntity.specibus = s;
-          equiped = true;
+          gameEntity.sylladex.remove((package));
+          return true;
       }else {
           gameEntity.sylladex.add(package); //should auto remove from sender, but let's be safe
+          gameEntity.sylladex.remove((package));
+          return false;
       }
-      senderOfItem.sylladex.remove((package));
+
+  }
+
+  //if it's rank is higher than the recipient's specibus, this item is now their specibus
+  //they get the 'kind' for it, too.
+  void endQuest(Element div) {
+      bool equiped = givePackageToRecipient();
       DivElement ret = new DivElement();
       String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient}.";
       if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitle()} shoves the ${package} at the ${recipient}.";
@@ -126,13 +148,82 @@ class MailSideQuest extends Scene {
       package = null;
   }
 
+  GameEntity findSomeoneBesidesMe() {
+      GameEntity target;
+      if(session.rand.nextBool()) {
+          List<Player> players = new List.from(session.players);
+          players.remove(gameEntity);
+          target = rand.pickFrom(players);
+      }else {
+          List<GameEntity> entities = new List.from(session.activatedNPCS);
+          entities.remove(gameEntity); //do no matter what
+          target = rand.pickFrom(entities);
+      }
+      return target;
+  }
+
 
   void getInRandomStrife(Element div) {
-    //TODO if you die, null out item
+      GameEntity target = findSomeoneBesidesMe();
+
+      Team pTeam = new Team(this.session, <GameEntity>[gameEntity]);
+      pTeam.canAbscond = false;
+      Team dTeam = new Team(this.session, <GameEntity>[target]);
+      dTeam.canAbscond = false;
+      Strife strife = new Strife(this.session, [pTeam, dTeam]);
+
+      DivElement preFight = new DivElement();
+      preFight.setInnerHtml("Shit. There's been a huge misunderstanding about the mail and now the ${gameEntity.htmlTitle()} has to fight the ${target.htmlTitle()}. This is so stupid.");
+      div.append(preFight);
+
+      strife.startTurn(div);
+
+      DivElement ret = new DivElement();
+
+      if(gameEntity.dead) {
+        package = null; //you don't have it anymore as a deliverable thing
+        ret.setInnerHtml("The mail. Has failed.");
+      }else {
+          ret.setInnerHtml("The mail will go through.");
+      }
+      div.append(ret);
+
+  }
+
+  Land findLandToBeOn() {
+      WeightedList<Land> targets = new List<Land>();
+      //extra chance for the target to be on their home base
+      if(recipient is Player) {
+            Player p = recipient;
+            if(p.land != null) targets.add(p.land, 3);
+      }
+
+      if(recipient is Carapace) {
+          Carapace p = recipient;
+          if(p.type == Carapace.PROSPIT) {
+                if(session.prospit != null) targets.add(session.prospit,3);
+          }else {
+              if(session.derse != null) targets.add(session.derse,3);
+          }
+      }
+
+      for(Player p in session.players) {
+          if(p.land != null) targets.add(p.land);
+      }
+
+      for(Moon m in session.moons) {
+          if(m != null) targets.add(m);
+      }
+
+      return session.rand.pickFrom(targets);
   }
 
   void cantFindRecipient(Element div) {
-    //TODO  list of "they were just there a minute ago" bullshit
+      Land currentLand = findLandToBeOn();
+      List<String> bullshit = <String>["The ${gameEntity.htmlTitle()} arrives at ${currentLand} where the ${recipient.htmlTitle()} should be, but a ${currentLand.consortFeature.sound}ing ${currentLand.consortFeature.name} says they just missed them. Drat.","The ${gameEntity.htmlTitle()} arrives at ${currentLand} only to find the ${recipient.htmlTitle()} apparently just left.","The ${gameEntity.htmlTitle()} searches  ${currentLand.name} for a while, but just can't find the ${recipient.htmlTitle()}. "];
+      DivElement ret = new DivElement();
+      ret.setInnerHtml(session.rand.pickFrom((bullshit));
+      div.append(ret);
   }
 
   void bullshitDeteor(Element div) {
@@ -141,7 +232,6 @@ class MailSideQuest extends Scene {
 
   @override
   bool trigger(List<Player> playerList) {
-    // TODO: implement trigger
       //should have a REALLY high chance of triggering. The MAIL is important.
       if(session.rand.nextDouble() > .8) return true;
       return false;
