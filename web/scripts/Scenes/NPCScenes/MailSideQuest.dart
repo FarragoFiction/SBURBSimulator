@@ -36,6 +36,8 @@ class MailSideQuest extends Scene {
 
   @override
   void renderContent(Element div) {
+      DivElement container = new DivElement();
+      div.append(container);
       if(!doNotRender) {
           ImageElement image;
           if (session.derse == this) {
@@ -46,7 +48,7 @@ class MailSideQuest extends Scene {
           //can do this because it's not canvas
           //although really if my rendering pipeline were diff i could do on canvas, too.
           image.onLoad.listen((e) {
-              div.append(image);
+              container.append(image);
           });
       }
 
