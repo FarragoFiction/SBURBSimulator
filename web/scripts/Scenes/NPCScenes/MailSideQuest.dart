@@ -28,6 +28,9 @@ class MailSideQuest extends Scene {
   GameEntity senderOfItem;
   GameEntity recipient;
 
+  //longer it takes to deliver, the more difficult it's assumed to be
+  int difficulty = 0;
+
   MailSideQuest(Session session) : super(session);
 
   @override
@@ -48,10 +51,13 @@ class MailSideQuest extends Scene {
 
       if(package == null) {
           session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
+          difficulty = 0;
           return beginQuest(div);
       }else if(session.rand.nextBool()) {
+          difficulty ++;
         return continueQuest(div);
       }else {
+          difficulty ++;
           return endQuest(div);
       }
   }
@@ -65,8 +71,8 @@ class MailSideQuest extends Scene {
   }
 
   void findAItem() {
-      //Mail quests are WORTH IT. and JESUS FUCK if it turns out it was a ring.
       package = rand.pickFrom(senderOfItem.sylladex);
+      //Mail quests are WORTH IT. and JESUS FUCK if it turns out it was a ring.
       package.traits.add(ItemTraitFactory.UNBEATABLE);
 
       gameEntity.sylladex.add(package); //should auto remove from sender, but let's be safe
@@ -85,7 +91,6 @@ class MailSideQuest extends Scene {
       findASender();
       findAItem();
       findARecipient();
-      //TODO print out what all these are.
       DivElement ret = new DivElement();
       ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
       div.append(ret);
@@ -99,7 +104,26 @@ class MailSideQuest extends Scene {
   //if it's rank is higher than the recipient's specibus, this item is now their specibus
   //they get the 'kind' for it, too.
   void endQuest(Element div) {
-      //TODO remember to null out item so i can start quest again next time.
+      bool equiped = false;
+      if(gameEntity.specibus.rank < package.rank) {
+          gameEntity.sylladex.add(gameEntity.specibus);
+          Specibus s = new Specibus(package.fullName, package.traits.first, new List.from(package.traits));
+          gameEntity.specibus = s;
+          equiped = true;
+      }else {
+          gameEntity.sylladex.add(package); //should auto remove from sender, but let's be safe
+      }
+      senderOfItem.sylladex.remove((package));
+      DivElement ret = new DivElement();
+      String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient}.";
+      if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitle()} shoves the ${package} at the ${recipient}.";
+
+      if(equiped) {
+          text = "$text The ${gameEntity.htmlTitle()} also gets a specibus card so they can equip it, too! It's...huh. Wow. How strong even IS this ${package}?";
+      }
+      ret.setInnerHtml(text);
+      div.append(ret);
+      package = null;
   }
 
 
