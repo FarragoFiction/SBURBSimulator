@@ -36,6 +36,7 @@ class MailSideQuest extends Scene {
 
   @override
   void renderContent(Element div) {
+      gameEntity.available = false;
       DivElement container = new DivElement();
       div.append(container);
       if(!doNotRender) {
