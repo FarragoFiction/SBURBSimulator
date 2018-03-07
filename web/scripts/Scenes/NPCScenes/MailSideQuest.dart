@@ -24,17 +24,61 @@ Point of these quests is shuffling items around.
 
  */
 class MailSideQuest extends Scene {
-  Item itemToDeliver;
+  Item package;
   GameEntity senderOfItem;
   GameEntity recipient;
 
   MailSideQuest(Session session) : super(session);
-
-
-
+  
   @override
   void renderContent(Element div) {
-    // TODO: implement renderContent
+      if(package == null) {
+          session.logger.info("AB: The mail is going through. Does ${gameEntity.name} ever stop delivering?");
+          return beginQuest(div);
+      }else if(session.rand.nextBool()) {
+        return continueQuest(div);
+      }else {
+          return endQuest(div);
+      }
+  }
+
+  void findASender() {
+//TODO
+  }
+
+  void findAItem() {
+//TODO
+  }
+
+  void findARecipient() {
+//TODO
+  }
+
+  void beginQuest(Element div) {
+//TODO
+  }
+
+  void continueQuest(Element div) {
+//TODO
+  }
+
+  //if it's rank is higher than the recipient's specibus, this item is now their specibus
+  //they get the 'kind' for it, too.
+  void endQuest(Element div) {
+      //TODO remember to null out item so i can start quest again next time.
+  }
+
+
+  void getInRandomStrife(Element div) {
+//TODO
+  }
+
+  void cantFindRecipient(Element div) {
+    //TODO  if you die, null out item.
+  }
+
+  void bullsitDeteor(Element div) {
+    //TODO
   }
 
   @override
