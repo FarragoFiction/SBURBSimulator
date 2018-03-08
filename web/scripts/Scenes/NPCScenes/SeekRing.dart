@@ -146,11 +146,18 @@ class SeekRing extends Scene {
       }else if(derseRel.value < prospitRel.value ) {
           target = blackRingOwner;
       }
+      bool theyLikeMe = false;
+
+      if(target != gameEntity) {
+          Relationship theirRelationship = target.getRelationshipWith(gameEntity);
+          if(theirRelationship != null) theyLikeMe = theirRelationship.value >5;
+      }
 
 
-      if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS)) tactic = tryAsking;
-      if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK) && session.rand.nextDouble() > .7) tactic = tryFinding;
-      if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY)) tactic = tryStealing;
+
+      if(gameEntity.charming && gameEntity.getStat(Stats.RELATIONSHIPS) > target.getStat(Stats.RELATIONSHIPS) && theyLikeMe && session.rand.nextDouble() > .7) tactic = tryAsking;
+      if(gameEntity.lucky && gameEntity.getStat(Stats.MAX_LUCK) > target.getStat(Stats.MAX_LUCK) && session.rand.nextDouble() > .8) tactic = tryFinding;
+      if(gameEntity.cunning && gameEntity.getStat(Stats.MOBILITY) > target.getStat(Stats.MOBILITY) && session.rand.nextDouble() > .8) tactic = tryStealing;
       if(gameEntity.violent && gameEntity.getStat(Stats.POWER) > target.getStat(Stats.POWER)) tactic = tryFighting;
 
       //find who has each ring.

@@ -184,7 +184,7 @@ class RedMiles extends Scene {
       //you aren't even going to try to do something this omnicidal.
       if(!gameEntity.violent) return false;
 
-      if(session.rand.nextDouble() > .9) return true;
+      if(session.rand.nextDouble() > .97) return true;
       return false;
 
   }
