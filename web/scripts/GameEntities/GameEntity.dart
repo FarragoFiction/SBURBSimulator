@@ -207,6 +207,11 @@ class GameEntity extends Object with StatOwner   {
     void addCompanion(GameEntity companion) {
         if(companion.partyLeader != this && companion.partyLeader != null) companion.partyLeader.removeCompanion(companion);
         companion.partyLeader = this;
+        for(Scene s in companion.scenes) {
+            if(s is MailSideQuest) {
+                scenes.insert(0, new MailSideQuest(session));
+            }
+        }
         _companions.add(companion);
     }
 
