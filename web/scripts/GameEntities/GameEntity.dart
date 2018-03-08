@@ -19,6 +19,8 @@ class GameEntity extends Object with StatOwner   {
     bool available = true;
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
     List<Scene> scenes = new List<Scene>();
+    List<Scene> scenesToAdd = new List<Scene>();
+
     //mostly for npcs, might not be the best way to do it but it's what i'm gonna do for now.
     //x starts flipping out about TAB soda
     List<String> distractions = new List<String>();
@@ -200,6 +202,10 @@ class GameEntity extends Object with StatOwner   {
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }
         }
+
+        //otherwise will get conconrrent modification error. put at front, new things are important and shiny
+        scenes.insertAll(0,scenesToAdd);
+        scenesToAdd.clear();
     }
 
 
@@ -214,7 +220,7 @@ class GameEntity extends Object with StatOwner   {
         companion.partyLeader = this;
         for(Scene s in companion.scenes) {
             if(s is MailSideQuest) {
-                scenes.insert(0, new MailSideQuest(session));
+                scenesToAdd.insert(0, new MailSideQuest(session));
             }
         }
         _companions.add(companion);
