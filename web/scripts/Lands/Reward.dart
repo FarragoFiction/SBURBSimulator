@@ -380,12 +380,23 @@ class SpecificCarapaceReward extends Reward {
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
-        String text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${Reward.PLAYER1}'s gib and agree to tag along.";
-        if(carapace.partyLeader != null){
-            text = "$text They ditch the ${carapace.partyLeader.htmlTitle()} entirely.";
+        String text = "";
+
+        if(carapace == null || carapace.dead) {
+            p1.session.logger.info("AB: The Carapace ($carapace that should have been triggered by this is dead.");
+            text = "The ${p1.htmlTitle()} gets the strangest feeling that something more should be happening now.";
+        }else {
+            p1.session.logger.info("AB: A Carapace ($carapace) joins in response to a quest.");
+
+            String text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${Reward.PLAYER1}'s gib and agree to tag along.";
+            if(carapace.partyLeader != null){
+                text = "$text They ditch the ${carapace.partyLeader.htmlTitle()} entirely.";
+            }
+            carapace.active = true;
+            p1.addCompanion(carapace);
         }
-        carapace.active = true;
-        p1.addCompanion(carapace);
+
+
         super.apply(div, p1, p2, land,text);
     }
 }
