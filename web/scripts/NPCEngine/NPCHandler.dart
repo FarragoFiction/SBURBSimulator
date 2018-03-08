@@ -10,21 +10,21 @@ class NPCHandler
     static String JS = "JS"; //done
     static String EA = "EA";
     static String HP = "HP";
-    static String YD = "YD";
+    static String YD = "YD";//done
     static String MD = "MD";
     static String CI = "CI";
-    static String SI = "SI";
-    static String SU = "SU";
+    static String SI = "SI"; //done
+    static String SU = "SU"; //done
     static String ME = "ME";
-    static String RB = "RB";
-    static String GN = "GN";
+    static String RB = "RB"; //done
+    static String GN = "GN"; //done
     static String AC = "AC";
     static String BE = "BE";
     static String MP = "MP";
     static String MK = "MK";
-    static String AR = "AR";
-    static String PE = "PE";
-    static String DP = "DP";
+    static String AR = "AR"; //done
+    static String PE = "PE"; //done
+    static String DP = "DP"; //done
     static String ZC = "ZC";
     static String KB = "KB";
     static String WV = "WV";
@@ -35,7 +35,7 @@ class NPCHandler
     static String NB = "NB";
     static String SS = "SS";
     static String CD = "CD";
-    static String HB = "HB";
+    static String HB = "HB"; //done
     static String DD = "DD";
 
 

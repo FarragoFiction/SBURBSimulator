@@ -48,8 +48,8 @@ class Academic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Recover the Books", [
                 new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that underlings stole all the books. "),
                 new Quest("The ${Quest.PLAYER1} has tracked down the book thieves to a nearby dungeon. After some harrowing puzzles and frankly amazing battles, the books are recovered. "),
-                new Quest("The ${Quest.CONSORT} librarian is beside himself and cannot stop ${Quest.CONSORTSOUND}ing. The  ${Quest.PLAYER1} is hailed as a local hero for returning the books!  "),
-            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.CONSORT} librarian is beside himself and cannot stop ${Quest.CONSORTSOUND}ing. The  ${Quest.PLAYER1} is hailed as a local hero for returning the books! A particular carapace is especially thankful for the help.  "),
+            ], new SpecificCarapaceReward(NPCHandler.PE), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Shelve the Books", [
                 new Quest("The ${Quest.PLAYER1} finds a massive library, with no books in it! They manage to get a local ${Quest.CONSORT} to stop ${Quest.CONSORTSOUND}ing long enough to discover that the Librarian quit and none of the books have been reshelved. "),
                 new Quest("The ${Quest.PLAYER1} decides to volunteer at the library, and beings shelving books. There's a book.  And another book. Oooo, that one looks interesting.... "),
@@ -97,7 +97,7 @@ class Academic extends InterestCategory {
                 new Quest("Too many local ${Quest.CONSORT} have fallen ill from a mysterious plague.  Those inflicted are too weak to even ${Quest.CONSORTSOUND}.  It is up to the ${Quest.PLAYER1} to figure out how to cure the disease.  They are provided with a state of the art lab and a team of ...not completely terrible ${Quest.CONSORT}s."),
                 new Quest("The ${Quest.PLAYER1} has gotten far too little sleep. Suddenly, they realize the key, the one thing they have been missing: ${Quest.PHYSICALMCGUFFIN}. It all makes sense now! "),
                 new Quest("Each ${Quest.CONSORT} lines up to receive their ${Quest.PHYSICALMCGUFFIN} injection. The sound of joyful ${Quest.CONSORTSOUND} fills the air. The plague is defeated!  The ${Quest.PLAYER1} has a statue made of them in the town center. "),
-            ], new RandomReward(), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
+            ], new SpecificCarapaceReward(NPCHandler.YD), QuestChainFeature.playerIsHelpfulClass), Feature.HIGH)
             ..addFeature(new PreDenizenQuestChain("Be the Scientist", [
                 new Quest("The ${Quest.PLAYER1}  finds a mysterious lab, fully stocked with equipment and chemicals. It is completely abandoned. Locked doors are on every wall of the main area. "),
                 new Quest("The ${Quest.PLAYER1}  realizes that various sections of the lab open up if you pour the right kind of chemical into a slot on the door. They begin venturing deeper and deeper into the lab.  "),

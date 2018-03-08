@@ -53,7 +53,7 @@ class PopCulture extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} falls down a series of infinite stairs. A local ${Quest.CONSORT} manages to catch a video of it, and it goes viral on ${Quest.MCGUFFIN}tube. This is humiliating."),
                 new Quest("Oh look, somebody made a dubstep remix of the ${Quest.PLAYER1} falling down all those goddamned stairs. It REALLY is catchy with all those ${Quest.CONSORTSOUND}s added in."),
                 new Quest(" The ${Quest.PLAYER1} decides to own their fame and goes on a ${Quest.CONSORT} talk show to answer questions about those stairs. It turns out nobody warned them about them. There really needs to be, like, a sign or something.")
-            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new SpecificCarapaceReward(NPCHandler.ME), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 

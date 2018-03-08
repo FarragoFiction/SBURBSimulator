@@ -125,7 +125,7 @@ class Blood extends Aspect {
                 new Quest("The ${Quest.PLAYER1} delves in dungeons until the right items are discovered to alchemize new connectors for the chains. The first set of towers are reconnected, and trade and communication immediately resumes. The local ${Quest.CONSORT}s discover that ${Quest.CONSORT}s from other villages aren't so different, after all.  Another victory against xenophobia! "),
                 new Quest("The ${Quest.PLAYER1} has been working tirelessly to hook up tower after tower, only to discover that the first tower they repaired is already broken again. There is no getting around it, ${Quest.DENIZEN} needs to be stopped. "),
                 new DenizenFightQuest("The ${Quest.PLAYER1} has tracked down ${Quest.DENIZEN}. There can be no mercy. ","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} is finally free to restore the chains, bringing peace and understanding to the land. ","The tyranny  and xenophobia of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new DenizenReward(NPCHandler.JACK), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new DenizenQuestChain("Protect the Beams", [
                 new Quest("The ${Quest.PLAYER1} learns of the ${Quest.MCGUFFIN} Tower, said to hold and connect all of the planet together with its many Beams. A quaking ${Quest.CONSORT} explains that the ${Quest.DENIZEN} has besieged this tower since the dawn of time, snapping each Beam one by one, and preventing the ${Quest.CONSORT}s from communciating with other villages and risking the entire planet falling apart.  "),

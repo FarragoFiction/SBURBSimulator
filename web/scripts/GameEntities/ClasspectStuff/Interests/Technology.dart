@@ -46,8 +46,8 @@ class Technology extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Fix the Machine", [
                 new Quest("The ${Quest.PLAYER1} learns from their ${Quest.CONSORT}s about the great ${Quest.MCGUFFIN} MACHINE, which used to keep the ${Quest.CONSORT}s safe before ${Quest.DENIZEN} destroyed it. "),
                 new Quest("The ${Quest.PLAYER1} searches for the ${Quest.PHYSICALMCGUFFIN}s needed to fix the ${Quest.MCGUFFIN} MACHINE, finding them scattered in dungeons across the land. "),
-                new Quest("The ${Quest.PLAYER1} finds the last ${Quest.PHYSICALMCGUFFIN} needed, finishes a boss fight, and slots it into the ${Quest.MCGUFFIN} MACHINE, restoring it to its ancient glory.  "),
-            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.PLAYER1} finds the last ${Quest.PHYSICALMCGUFFIN} needed, finishes a boss fight, and slots it into the ${Quest.MCGUFFIN} MACHINE, restoring it to its ancient glory. An inventress carapace notices the momentous occasion. "),
+            ], new SpecificCarapaceReward(NPCHandler.SI), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ..addFeature(new PreDenizenQuestChain("Decipher the Enigma", [
                 new Quest("The ${Quest.PLAYER1} is approached by a ${Quest.CONSORT}scientist with a complex problem: The underlings have started using a complex code to stage their attacks, and the ${Quest.CONSORT}s are at a loss as to what to do. The ${Quest.PLAYER1} agrees to help decipher the puzzle. I mean, look at the little guy ${Quest.CONSORTSOUND}ing, how could they not? "),
                 new Quest("The ${Quest.PLAYER1} spends an unreasonable amount of time looking for ways through the code. Apparently, ${Quest.DENIZEN} is responsible for the code, and he changes it every day. Each underling group carries a machine that lets them decipher the messages, but without the days settings, the machine is useless."),

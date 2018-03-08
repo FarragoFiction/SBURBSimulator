@@ -77,8 +77,8 @@ class Romantic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Ship All the Ships", [
                 new Quest("The ${Quest.PLAYER1} begins constructing an intricate map of all possible relationships and all ideal relationships for a group of consorts. The ${Quest.CONSORT}s have no idea what's coming. "),
                 new Quest("The ${Quest.PLAYER1} extends their shipping grid to include the entire ${Quest.CONSORT} population, and begins subtly pushing to make these ships a reality. Happy ${Quest.CONSORTSOUND}s ring out through the air.  "),
-                new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, and it's not even banned by the ${Quest.DENIZEN}'s stupid rules. "),
-            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("The ${Quest.PLAYER1} finds the ABSOLUTE BEST SHIP ever, and it's not even banned by the ${Quest.DENIZEN}'s stupid rules. A fellowing shipping enthusiast approaches them to strike a deal."),
+            ], new SpecificCarapaceReward(NPCHandler.HB), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PreDenizenQuestChain("Flushed Shipping Dungeon", [
                 new Quest("The ${Quest.PLAYER1}  and the ${Quest.PLAYER2} seem to be getting along well. The noodly appendages of the Horror Terrors do not fail to notice this.  "),

@@ -62,8 +62,8 @@ class Comedy extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Win the Laughs", [
                 new Quest("The ${Quest.PLAYER1} learns of an Open Mic Nite at the ${Quest.MCGUFFIN} Club. Do they have what it takes to make the toughest crowd in all of Paradox Space laugh? "),
                 new Quest("The ${Quest.PLAYER1} is practicing their jokes on a street corner. A few ${Quest.CONSORT}s let out a braying ${Quest.CONSORTSOUND} of laughter, but most seem unimpressed. The ${Quest.PLAYER1} sure has a long way to go. "),
-                new Quest("It's finally time for the Open Mic Nite at the ${Quest.MCGUFFIN} Club.! The ${Quest.CONSORT}s seem like a tough crowd, but the ${Quest.PLAYER1} leaves them hysterical with laughter. It's a huge success! "),
-            ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+                new Quest("It's finally time for the Open Mic Nite at the ${Quest.MCGUFFIN} Club.! The ${Quest.CONSORT}s seem like a tough crowd, but the ${Quest.PLAYER1} leaves them hysterical with laughter. It's a huge success! A mysterious white carapace approaches them from behind to congratulate them on their success..."),
+            ], new SpecificCarapaceReward(NPCHandler.SU), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
         //the sock ruse was a distaction
