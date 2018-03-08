@@ -6,8 +6,8 @@ class NPCHandler
     Session session;
 
     static String JACK = "JACK";
-    static String PM = "PM";
-    static String JS = "JS";
+    static String PM = "PM"; //done
+    static String JS = "JS"; //done
     static String EA = "EA";
     static String HP = "HP";
     static String YD = "YD";

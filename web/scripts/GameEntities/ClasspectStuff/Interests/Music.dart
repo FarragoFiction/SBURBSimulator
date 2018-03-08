@@ -51,6 +51,12 @@ class Music extends InterestCategory {
                 new Quest("The ${Quest.PLAYER1} learns of a series of ${Quest.PHYSICALMCGUFFIN}s that prevent the ${Quest.MCGUFFIN} from being played. Hrmmmm...how are they gonna clear this up?   "),
                 new Quest(" The ${Quest.PLAYER1} has finally fixed the ${Quest.PHYSICALMCGUFFIN}. They play the ${Quest.MCGUFFIN} and are dramatically revealed as the Legendary Hero. We are all blown away by this startling revelation. The ${Quest.PLAYER1} was the Hero all along? Wow.")
             ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+
+            ..addFeature(new PreDenizenQuestChain("Play the Crowd", [
+                new Quest("The ${Quest.PLAYER1} finds an empty, trashed ${Quest.MCGUFFIN} Jazz Bar. A sign posted at the door says it's free to any who can get it back to profitability. Huh. This sounds interesting."),
+                new Quest("The ${Quest.PLAYER1} puts in a lot of effort cleaning the ${Quest.MCGUFFIN} Jazz Bar up, and getting it ready for opening night. They spend hours interviewing opening acts, wait staff, and sourcing local delicacies like Fizzy ${Quest.PHYSICALMCGUFFIN}.  "),
+                new Quest(" It's finally opening night for the ${Quest.MCGUFFIN} Jazz Bar. There's a line of ${Quest.CONSORTSOUND}ing ${Quest.CONSORT}s stretched out to the horizon, waiting to get in. It's a complete success!  A mysterious carapace approaches the ${Quest.PLAYER1}, claiming to be the original owner. They are impressed with the revival of the ${Quest.MCGUFFIN} Jazz Bar and offer a deal.")
+            ], new SpecificCarapaceReward(NPCHandler.JS), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
 
