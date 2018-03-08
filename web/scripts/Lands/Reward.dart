@@ -371,6 +371,26 @@ class ItemReward extends Reward {
 }
 
 
+class SpecificCarapaceReward extends Reward {
+    @override
+    String image = "Rewards/sweetTreasure.png";
+    Carapace carapace;
+
+    SpecificCarapaceReward(Carapace this.carapace);
+
+    @override
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+        String text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${Reward.PLAYER1}'s gib and agree to tag along.";
+        if(carapace.partyLeader != null){
+            text = "$text They ditch the ${carapace.partyLeader.htmlTitle()} entirely.";
+        }
+        carapace.active = true;
+        p1.addCompanion(carapace);
+        super.apply(div, p1, p2, land,text);
+    }
+}
+
+
 class CodReward extends Reward {
     @override
     String image = "/Rewards/sweetCod.png";
