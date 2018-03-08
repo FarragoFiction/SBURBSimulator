@@ -381,7 +381,7 @@ class ItemReward extends Reward {
 
 class SpecificCarapaceReward extends Reward {
     @override
-    String image = "Rewards/sweetTreasure.png";
+    String image = "Rewards/sweetFriendship.png";
     Carapace carapace;
     String carapaceHandle;
 
@@ -397,15 +397,13 @@ class SpecificCarapaceReward extends Reward {
         }else {
             p1.session.logger.info("AB: A Carapace ($carapace) joins in response to a quest.");
 
-            String text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${Reward.PLAYER1}'s gib and agree to tag along.";
+            text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${p1.htmlTitle()}'s jib and agree to tag along.";
             if(carapace.partyLeader != null){
                 text = "$text They ditch the ${carapace.partyLeader.htmlTitle()} entirely.";
             }
             carapace.active = true;
             p1.addCompanion(carapace);
         }
-
-
         super.apply(div, p1, p2, land,text);
     }
 }

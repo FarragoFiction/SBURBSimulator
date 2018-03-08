@@ -149,7 +149,7 @@ bool printCorruptionMessage(ErrorEvent e) {
         recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(curSessionGlobalVar)}";
     }else if(curSessionGlobalVar.stats.ringWraithCrash) {
         appendHtml(story, "<BR>ERROR: RED MILES TARGETED UNIVERSE. SESSION HAS CRASHED.");
-        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(curSessionGlobalVar)}";
+        recomendedAction = "I MEAN. IF IT GOT THIS BAD YOUR SESSION WAS PROBABLY FUCKED ANYWAYS. DON'T LET RING WRAITHS HAPPEN AND YOU'LL BE FINE. ISH.";
     }else if((curSessionGlobalVar is DeadSession)) {
         appendHtml(story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
         recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(curSessionGlobalVar)}";
