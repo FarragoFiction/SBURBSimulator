@@ -100,7 +100,7 @@ class Breath extends Aspect {
                 new Quest("The ${Quest.PLAYER1} cleans out oil from the nearby ${Quest.PHYSICALMCGUFFIN}s, opening up a few more channels between villages. "),
                 new Quest("The ${Quest.PLAYER1} gets sick of all the fucking oil in the ${Quest.PHYSICALMCGUFFIN} mail system, and realizes the only way to truly deal with it and to allow information to flow free is to confront ${Quest.DENIZEN}."),
                 new DenizenFightQuest("It is time for the ${Quest.PLAYER1}  to finally face the ${Quest.DENIZEN}. The mail is too vital to the ${Quest.CONSORT}s to risk having them reclog.","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s have a bustling mail based economy once again.","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
-            ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            ], new DenizenReward(NPCHandler.PM), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
         addTheme(new Theme(<String>["Zephyr", "Fans", "Windmills", "Pinwheels", "Propellers"])
             ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.HIGH)

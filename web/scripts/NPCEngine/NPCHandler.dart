@@ -5,6 +5,9 @@ class NPCHandler
 {
     Session session;
 
+    static String JACK = "JACK";
+    static String PM = "PM";
+
 
     //some carapaces can be specific rewards
     Carapace jack;
@@ -18,6 +21,12 @@ class NPCHandler
 
     NPCHandler(this.session) {
         setupNpcs();
+    }
+
+    Carapace getCarapaceWithHandle(String handle) {
+        if(handle == PM) return pm;
+        if(handle == JACK) return jack;
+
     }
 
     void setupNpcs() {

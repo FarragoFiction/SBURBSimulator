@@ -18,7 +18,6 @@ class Reward {
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
         String divID = "canvas${div.id}_${p1.id}";
         //print ("applying base reward, text is $text ");
-
         String ret = "$text";
         appendHtml(div, ret);
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
@@ -158,6 +157,11 @@ class DenizenReward extends Reward {
     @override
     String image = "Rewards/sweetLoot.png";
     String bgImage = "Rewards/sweetGrist.png";
+
+    String carapaceHandle;
+
+    DenizenReward([String this.carapaceHandle]);
+
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         Item reward = p1.session.rand.pickFrom((p1.aspect.items));
@@ -190,7 +194,11 @@ class DenizenReward extends Reward {
         text = text.replaceAll("${FRAYMOTIF1}", "${f1.name}");
         //super increases power and renders self.
         p1.setDenizenDefeated();
+
         super.apply(div, p1, p2, land,text);
+        if(carapaceHandle != null) {
+            new SpecificCarapaceReward(carapaceHandle).apply(div, p1, p2, land, text);
+        }
     }
 }
 
@@ -375,13 +383,14 @@ class SpecificCarapaceReward extends Reward {
     @override
     String image = "Rewards/sweetTreasure.png";
     Carapace carapace;
+    String carapaceHandle;
 
-    SpecificCarapaceReward(Carapace this.carapace);
+    SpecificCarapaceReward(String this.carapaceHandle);
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
         String text = "";
-
+        carapace = p1.session.npcHandler.getCarapaceWithHandle(carapaceHandle);
         if(carapace == null || carapace.dead) {
             p1.session.logger.info("AB: The Carapace ($carapace that should have been triggered by this is dead.");
             text = "The ${p1.htmlTitle()} gets the strangest feeling that something more should be happening now.";
