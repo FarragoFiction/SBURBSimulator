@@ -35,6 +35,13 @@ class Carapace extends NPC {
         if(name == null) pickName(); //if you already have a name, don't pick one.
     }
 
+    @override
+    String title() {
+        return "$name ($initials)";
+    }
+
+
+
 
     void initRelationshipsAllies(Moon us) {
        // print("initializing relationships with allies. king is ${us.king} and queen is ${us.queen}");

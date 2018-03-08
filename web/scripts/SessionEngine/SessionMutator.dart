@@ -1386,7 +1386,7 @@ class MetaPlayerHandler {
 
         player.deriveSpecibus = false;
         player.specibus = new Specibus("YellowYard", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT]);
-
+        player.sylladex.add(new Item("Garlic Chicken Burger",<ItemTrait>[ItemTraitFactory.EDIBLE]));
 
         player.hair = 13;
         player.ectoBiologicalSource = 13;

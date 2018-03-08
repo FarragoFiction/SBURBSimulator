@@ -7,25 +7,70 @@ class NPCHandler
 
     static String JACK = "JACK";
     static String PM = "PM";
+    static String JS = "JS";
+    static String EA = "EA";
+    static String HP = "HP";
+    static String YD = "YD";
+    static String MD = "MD";
+    static String CI = "CI";
+    static String SI = "SI";
+    static String SU = "SU";
+    static String ME = "ME";
+    static String RB = "RB";
+    static String GN = "GN";
+    static String AC = "AC";
+    static String BE = "BE";
+    static String MP = "MP";
+    static String MK = "MK";
+    static String AR = "AR";
+    static String PE = "PE";
+    static String DP = "DP";
+    static String ZC = "ZC";
+    static String KB = "KB";
+    static String WV = "WV";
+    static String PS = "PS";
+    static String PI = "PI";
+    static String AD = "AD";
+    static String HS = "HS";
+    static String NB = "NB";
+    static String SS = "SS";
+    static String CD = "CD";
+    static String HB = "HB";
+    static String DD = "DD";
+
+
+
+
+
 
 
     //some carapaces can be specific rewards
     Carapace jack;
-    Carapace pm;
-
-
-
-
-
-
 
     NPCHandler(this.session) {
         setupNpcs();
     }
 
     Carapace getCarapaceWithHandle(String handle) {
-        if(handle == PM) return pm;
         if(handle == JACK) return jack;
+
+        for(GameEntity e in session.activatedNPCS) {
+            if(e is Carapace && e.initials == handle) return e;
+        }
+
+        if(session.prospit != null){
+            for(GameEntity e in session.prospit.associatedEntities) {
+                if(e is Carapace && e.initials == handle) return e;
+            }
+        }
+
+        if(session.derse != null){
+            for(GameEntity e in session.derse.associatedEntities) {
+                if(e is Carapace && e.initials == handle) return e;
+            }
+        }
+        //couldn't find them. thems the breaks.
+        return null;
 
     }
 
@@ -379,7 +424,7 @@ class NPCHandler
             ..royaltyOpinion = 1000
         );
 
-        pm = (new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parcel","Perigrine","Postal"], lastNames: <String>["Mistress","Mendicate","Mailer"], ringFirstNames: <String>["Punititve"], ringLastNames: <String>["Marauder"])
+        randomProspitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parcel","Perigrine","Postal"], lastNames: <String>["Mistress","Mendicate","Mailer"], ringFirstNames: <String>["Punititve"], ringLastNames: <String>["Marauder"])
             ..scenes = <Scene>[new MailSideQuest(session),new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is flipping the fuck out about how great the MAIL is.","is delivering packages to unimportant carapaces.","is just sort of generally being a badass."]
             ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
@@ -392,7 +437,6 @@ class NPCHandler
             ..sideLoyalty = 10
             ..royaltyOpinion = 10
         );
-        randomProspitians.add(pm);
 
         Fraymotif f = new Fraymotif("Sincere Pep Talk", 3);
         f.effects.add(new FraymotifEffect(Stats.SANITY, FraymotifEffect.ALLIES, true));

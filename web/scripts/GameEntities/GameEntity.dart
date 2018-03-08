@@ -83,6 +83,11 @@ class GameEntity extends Object with StatOwner   {
 
     //npc traits: violent, lucky, charming, cunning
 
+    String get initials {
+        RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine: true);
+        return joinMatches(exp.allMatches(name)).toUpperCase();
+    }
+
     bool get violent {
         if(getStat(Stats.SANITY) <0 && getStat(Stats.RELATIONSHIPS)<0) return true;
         return false;
@@ -281,7 +286,7 @@ class GameEntity extends Object with StatOwner   {
 
     @override
     String toString() {
-        return this.title().replaceAll(new RegExp(r"\s", multiLine: true), '').replaceAll(new RegExp(r"'", multiLine: true), ''); //no spces probably trying to use this for a div
+        return this.title();
     }
 
 
