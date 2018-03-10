@@ -23,7 +23,7 @@ transformers:
     commandLineOptions: [--fast-startup]
     $exclude: ["web/manifest/bundlebuilder.dart", "web/manifest/sourcemanifest.txt"]
 
-web:
-  compiler:
-    debug: dartdevc
+#web:
+#  compiler:
+#    debug: dartdevc
 
