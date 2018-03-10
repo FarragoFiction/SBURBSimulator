@@ -51,7 +51,9 @@ void main() {
 
     print(outlist);*/
 
-    testPNG();
+    //testPNG();
+
+    Loader.getResource("/test.png");
 }
 
 Future<Null> testPNG() async {

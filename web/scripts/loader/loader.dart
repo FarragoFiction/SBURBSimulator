@@ -24,7 +24,7 @@ abstract class Loader {
         Formats.init();
     }
 
-    static Future<T> getResource<T>(String path, {FileFormat<T, dynamic> format, bool bypassManifest = false}) async {
+    static Future<T> getResource<T>(String path, {FileFormat<T, dynamic> format, bool bypassManifest = false, bool absoluteRoot = false}) async {
         init();
         if (_resources.containsKey(path)) {
             Resource<dynamic> res = _resources[path];
@@ -50,7 +50,7 @@ abstract class Loader {
                     return _createResource(path).addListener();
                 }
             }
-            return _load(path, format);
+            return _load(path, format: format, absoluteRoot: absoluteRoot);
         }
     }
 
@@ -61,7 +61,7 @@ abstract class Loader {
         return _resources[path];
     }
 
-    static Future<T> _load<T>(String path, [FileFormat<T, dynamic> format = null]) {
+    static Future<T> _load<T>(String path, {FileFormat<T, dynamic> format = null, bool absoluteRoot = false}) {
         if(_resources.containsKey(path)) {
             throw "Resource $path has already been requested for loading";
         }
@@ -73,7 +73,7 @@ abstract class Loader {
 
         Resource<T> res = _createResource(path);
 
-        format.requestObjectFromUrl(PathUtils.adjusted(path))..then((T item) => res.populate(item));
+        format.requestObjectFromUrl(_getFullPath(path, absoluteRoot))..then((T item) => res.populate(item));
 
         return res.addListener();
     }
@@ -103,7 +103,7 @@ abstract class Loader {
 
     static Map<String, ScriptElement> _loadedScripts = <String, ScriptElement>{};
 
-    static Future<ScriptElement> loadJavaScript(String path) async {
+    static Future<ScriptElement> loadJavaScript(String path, [bool absoluteRoot = false]) async {
         if (_loadedScripts.containsKey(path)) {
             return _loadedScripts[path];
         }
@@ -112,9 +112,23 @@ abstract class Loader {
         ScriptElement script = new ScriptElement();
         document.head.append(script);
         script.onLoad.listen((Event e) => completer.complete(script));
-        script.src = PathUtils.adjusted(path);
+        script.src = _getFullPath(path, absoluteRoot);
 
         return completer.future;
+    }
+
+    static String _getFullPath(String path, [bool absoluteRoot = false]) {
+        // treat leading slashes as absolute root anyway
+        if (path.startsWith("/")) {
+            absoluteRoot = true;
+            path = path.substring(1);
+        }
+
+        if (absoluteRoot) {
+            String abspath = "${window.location.protocol}//${window.location.host}/$path";
+            return abspath;
+        }
+        return PathUtils.adjusted(path);
     }
 }
 
