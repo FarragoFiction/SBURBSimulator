@@ -3,7 +3,7 @@ import "dart:html";
 import "dart:math";
 
 import "../../loader/loader.dart";
-import "../3d/three.dart" as THREE;
+import "../threed/three.dart" as THREE;
 import "../renderer.dart";
 
 class RenderJobPassImage extends RenderJobPass {

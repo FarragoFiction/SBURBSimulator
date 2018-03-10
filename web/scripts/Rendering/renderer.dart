@@ -3,7 +3,7 @@ import "dart:html";
 import "dart:math";
 
 import "../SBURBSim.dart";
-import "3d/three.dart" as THREE;
+import "threed/three.dart" as THREE;
 
 export "pass/effect.dart";
 export "pass/gradient.dart";

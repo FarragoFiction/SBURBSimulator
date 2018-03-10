@@ -1,7 +1,7 @@
 import "dart:math" as Math;
 import "dart:typed_data";
 
-import "../3d/three.dart" as THREE;
+import "../threed/three.dart" as THREE;
 
 typedef void SpriteDataRegionCallback(PSprite sprite, int dataindex, int regionindex);
 

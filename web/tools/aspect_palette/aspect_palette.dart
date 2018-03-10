@@ -4,7 +4,7 @@ import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 
-import "../../scripts/Rendering/3d/three.dart" as THREE;
+import "../../scripts/Rendering/threed/three.dart" as THREE;
 import "../../scripts/Rendering/text/opentype.dart" as OT;
 import "../../scripts/SBURBSim.dart";
 import "../../scripts/includes/bytebuilder.dart";

@@ -3,7 +3,7 @@ import "dart:html";
 
 import '../../loader/loader.dart';
 import "../../random.dart";
-import "../3d/three.dart" as THREE;
+import "../threed/three.dart" as THREE;
 import '../renderer.dart';
 
 class RenderEffect {

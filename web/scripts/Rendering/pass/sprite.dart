@@ -5,7 +5,7 @@ import "dart:typed_data";
 import "../../includes/colour.dart";
 import "../../includes/palette.dart";
 import "../../loader/loader.dart";
-import "../3d/three.dart" as THREE;
+import "../threed/three.dart" as THREE;
 import "../renderer.dart";
 import "../sprite/sprite.dart";
 

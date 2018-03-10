@@ -2,7 +2,7 @@ import '../../loader/loader.dart';
 import "dart:async";
 import "dart:math";
 
-import "../3d/three.dart" as THREE;
+import "../threed/three.dart" as THREE;
 import "../renderer.dart";
 import "effect.dart";
 
