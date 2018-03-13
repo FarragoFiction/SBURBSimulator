@@ -27,10 +27,10 @@ void onNavbarLoaded(String data) {
     Random rand = new Random(int.parse(sessionID));
     rand.nextInt();
     if(SimController.shogun || rand.nextDouble()>.99) {
-        (querySelector("#today") as AnchorElement).href = "dead_index.html?seed=$sessionID";
+        (querySelector("#today") as AnchorElement).href = "${"../"*subdirs}dead_index.html?seed=$sessionID";
 
     }else {
-        (querySelector("#today") as AnchorElement).href = "index2.html?seed=$sessionID";
+        (querySelector("#today") as AnchorElement).href = "${"../"*subdirs}index2.html?seed=$sessionID";
     }
 }
 
