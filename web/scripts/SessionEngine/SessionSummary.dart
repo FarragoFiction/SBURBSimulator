@@ -42,6 +42,9 @@ class SessionSummary {
         //then add myself to it
         //then turn them all to json
         //then save
+        Map<String, SessionSummary> summaries =  loadAllSummaries();
+        summaries[jsonKey] = this;
+        SessionSummary.saveAllSummaries(summaries.values);
     }
 
     static Map<String, SessionSummary> loadAllSummaries() {
