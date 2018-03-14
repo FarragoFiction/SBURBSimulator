@@ -3,6 +3,7 @@ import '../../navbar.dart';
 import 'dart:html';
 import 'dart:typed_data';
 import 'dart:collection';
+import "../../SessionEngine/SessionSummaryLib.dart";
 
 //replaces the poorly named scenario_controller2.js
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally

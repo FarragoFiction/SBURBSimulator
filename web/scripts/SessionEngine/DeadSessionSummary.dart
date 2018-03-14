@@ -2,6 +2,7 @@ import "DeadSession.dart";
 import "../SBURBSim.dart";
 import "../navbar.dart";
 
+import "SessionSummaryLib.dart";
 
 //has less or different fields.
 class DeadSessionSummary extends SessionSummary {

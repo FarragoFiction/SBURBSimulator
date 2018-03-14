@@ -5,6 +5,8 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:collection';
 import '../SessionFinder/AuthorBot.dart';
+import "../../SessionEngine/SessionSummaryLib.dart";
+
 
 //replaces the poorly named scenario_controller2.js
 /*

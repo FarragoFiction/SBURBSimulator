@@ -5356,3 +5356,101 @@ looks solid
 and i guess if you somehow manage to blow up the FURTHEST RING you are just fucked and it crashes.
 
 thems the breaks
+
+
+~~~~~~~~~
+
+Alright. Time to stop futzing around with the Bullet Hell Sim.
+Looks like it'll be a three weekend project after all, not a two.
+
+
+Right now I need to code ShogunBot. He's a Villain Nerd, and collects trading cards of them and their stats.
+
+The Carapaces and (eventually) Dedicated Big Bads will keep track of their own stats. Things like:
+
+* How many times did you end the session with a Crown?
+* How many times did you ever have a crown?
+* How many npcs did you kill?
+* How many Players did you kill?
+* How many Planets did you kill?
+* How many Moons did you kill?
+* How many Sessions did you kill?
+* How many Scenes did you complete?
+* How many times did you die?
+* How many times were you active?
+* How many times were you a companion?
+
+Basically, new Object: BigBadBinder that is kept by MultiSessionSummary.
+
+(Should it involve local storage??? This sounds adorable. But maybe impractical. Because...I also want you to be able to
+go view any sessions the BigBad was active in. I could just store that and not the summary data...
+but what if there is a deploy and it gets invalidated?)
+
+Alright let's think about this. I want to introduce VERY rare things to the sim, and being able to have
+AB store information about sessions in your cache would be useful. ShogunBot could use this information as well.
+
+But how would this information work? Currently AB works via..........Shit am I talking about refactoring AB completely?
+
+Maybe I should. She IS kind of insane right now...though that's probably from session leakage.
+
+So, without any commitment to refactoring AB, if I were going to design her from scratch today I would want:
+
+*Ability to store session stats in cache.
+*Ability to 100% not have leakage between sessions.
+*No requirement for sessions to be each other's children. (let's PL's eventual async idea work).
+
+
+So. I could store session summaries as json or whatever. And recreate multisessionsummarires from that.
+
+But is that what I want? Would mean I'd need to have BigBad data in an individual session summary.
+
+How would I mark the data as dirty? That actually seems pretty obvious to me...wait no that'd be dumb.
+Hrrmmmm..
+
+It would need to be automatic, something I can't forget to do when I deploy. It would also have
+to be visible to the Observer, or they won't know why they lost their data.
+
+...
+...
+...
+
+AB Sanity Check.
+
+Before she checks ANY sessions, or lets you view any cached sessions, she does a sanity check.
+She picks a random session from her cache and compares it to her current view of it. If it matches up, you continue.
+
+If it doesn't, she displays a warning and asks if you'd like her to delete her cache, with an explanation that it's likely
+just from JR deploying.
+
+~~~~
+
+What order do steps need to be in?
+
+First: Keep AB exactly as is. Write "toJSON" method for SessionSummaries.  Call this method to store all found data in a cache.
+    keyed by original (in the case of combo) sessionID and the word "scratch" or not.
+
+Second: Make new page that displays ONLY the multisession summaries from memory. Cannot search for new ones
+and does not clog up the page with SessionSummaries.
+
+Third: On that new page, allow for filtering of session summaries.
+
+Fourth: Filtered Session Summaries has pagination. (never more than 13 displayed at a time)
+
+Fifth: On any page besides one (you know the one) AB does a sanity check before searching or displaying sessions.
+    Take a random stored session. Search for it now. Compare results.
+        if the same, start as normal
+        if different, display an error and delete your cache.
+
+Sixth: Decouple Sessions
+    Look at this closer when you get there, but litearlly wipe out all information kept between sessions.
+    Find all singletons or static classes and murder them. Turn them into instances.
+    Manually make session mutators and afterlifes get carried over between scratches and combos.
+        because it's manual, won't be carried over for yards or for ab searches
+
+Seventh:  Write ShogunBot
+    Allows data for BigBads to be displayed. (AB shares her data with her robot boyfriend)
+    Big Bad data has session id stored with it, along with Entity info. Allows easy filtering.
+    Can click a "view sessions" and it displays the session viewer.
+
+
+
