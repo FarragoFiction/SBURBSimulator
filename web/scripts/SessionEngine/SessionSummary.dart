@@ -1,5 +1,6 @@
 import "dart:html";
 import "../navbar.dart";
+import 'dart:convert';
 
 import "../SBURBSim.dart";
 import "SessionSummaryLib.dart";
@@ -36,14 +37,69 @@ class SessionSummary {
 
     SessionSummary(int this.session_id);
 
+    void save() {
+        //i need to load all the session summaries from memory
+        //then add myself to it
+        //then turn them all to json
+        //then save
+    }
+
+    static Map<String, SessionSummary> loadAllSummaries() {
+        Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
+        if(!window.localStorage.containsKey(SAVE_TAG)) return ret;
+
+        String jsonString = window.localStorage[SAVE_TAG];
+        //this should be an array of sessions, so can't jsonobject it directly
+        String idontevenKnow = jsonString;
+        List<dynamic> what = JSON.decode(idontevenKnow);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            SessionSummary s = new SessionSummary(-13);
+            s.fromJSON("j");
+            ret[s.jsonKey] = s;
+        }
+    }
+
+    static void saveAllSummaries(List<SessionSummary> summaries) {
+        List<JSONObject> jsonArray = new List<JSONObject>();
+        for(SessionSummary p in summaries) {
+            //TODO refuse to save if any easter eggs are active or if gnosis 4 happened.
+            // print("Saving ${p.name}");
+            jsonArray.add(p.toJSON());
+        }
+        window.localStorage[SAVE_TAG] = jsonArray.toString();
+    }
+
+    void fromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+
+        var boolExample = true;
+        for(String key in bool_stats.keys) {
+            if(json[key] == boolExample.toString()) {
+                bool_stats[key] = true;
+            }else {
+                bool_stats[key] = false;
+            }
+        }
+
+        for(String key in num_stats.keys) {
+            num_stats[key] = int.parse(json[key]);
+        }
+
+        frogStatus = json["frogStatus"];
+        session_id = int.parse(json["session_id"]);
+    }
+
+    String get jsonKey {
+        String scratch = "";
+        if(scratched) scratch = "(scratched)"; //makes sure a session and its scratch are keyed differently
+        return "${session_id}$scratch";
+    }
+
 
     JSONObject toJSON() {
-        /*TODO
-            json looks like:
-                $sessionID($scratched): "a full json object here."
-                json object consists of all vars
-         */
-        JSONObject jsonWrapper = new JSONObject();
         JSONObject json = new JSONObject();
 
         //TODO what to do about players and mini players? for now, leave off.
@@ -58,12 +114,7 @@ class SessionSummary {
 
         json["frogStatus"] = frogStatus;
         json["session_id"] = session_id.toString();
-
-
-        String scratch = "";
-        if(scratched) scratch = "(scratched)"; //makes sure a session and its scratch are keyed differently
-        jsonWrapper["$SAVE_TAG${session_id}$scratch"] = json.toString();
-        return jsonWrapper;
+        return json;
     }
 
 

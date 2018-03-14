@@ -200,7 +200,7 @@ abstract class AuthorBot extends SimController {
     }else if(sessionSummary.getBoolStat("cataclysmCrash")){
       quip += Zalgo.generate("Holy shit. JR. You NEED to keep those Wastes under control. Why did you ever enable them?");
     }else if(sessionSummary.getBoolStat("hasTier4GnosisEvents")){
-      quip += "Oh my fucking god, who let the Wastes have this much power?  I am NOT guaranteeing the accuracy of this report, even with my 'anti-waste-magicks' JR gave me.";
+      quip += "Oh my fucking god, who let the Wastes have this much power?  I am NOT guaranteeing the accuracy of this report, even with my 'anti-waste-magicks' JR gave me. I'm also not storing this data and risking corrupting my fucking cache.";
     }else if(sessionSummary.frogStatus == "Purple Frog" && sessionSummary.getBoolStat("blackKingDead")){
         quip += "Oh my fucking god is THAT what the Grim Dark players have been trying to do. Are organics really so dumb as to not realize how very little that benefits them?";
     }else if(!sessionSummary.scratched && dead == 0 && sessionSummary.frogStatus == "Full Frog" && sessionSummary.getBoolStat("ectoBiologyStarted") && !sessionSummary.getBoolStat("crashedFromCorruption") && !sessionSummary.getBoolStat("crashedFromPlayerActions")){
