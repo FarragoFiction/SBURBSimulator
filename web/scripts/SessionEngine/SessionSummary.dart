@@ -16,6 +16,7 @@ class MiniPlayer {
 }
 
 class SessionSummary {
+    static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
     //since stats will be hash, don't need to make junior
     int session_id = null;
     Session parentSession; //pretty sure this has to be a full session so i can get lineage
@@ -61,7 +62,7 @@ class SessionSummary {
 
         String scratch = "";
         if(scratched) scratch = "(scratched)"; //makes sure a session and its scratch are keyed differently
-        jsonWrapper["${session_id}$scratch"] = json.toString();
+        jsonWrapper["$SAVE_TAG${session_id}$scratch"] = json.toString();
         return jsonWrapper;
     }
 
@@ -253,7 +254,7 @@ class SessionSummary {
 
     String generateHTML() {
         String params = getParamStringMinusParam("seed");
-        String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
+        String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'> ${toJSON()}";
 
         if (this.parentSession != null) {
             html = "$html${this.decodeLineageGenerateHTML()}";
