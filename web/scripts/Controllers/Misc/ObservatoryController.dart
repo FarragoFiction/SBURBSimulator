@@ -1,4 +1,3 @@
-
 import 'dart:html';
 import 'dart:math' as Math;
 
@@ -15,43 +14,116 @@ void main() {
 }
 
 void test() {
-    int fullscale = 16;
-    int canvasscale = 10;
-    int divisor = Math.pow(2, fullscale - canvasscale);
+    new ObservatoryViewer(1000, 750);
+}
 
-    int samples = 1000000;
+//##################################################################################
 
-    int canvassize = Math.pow(2, canvasscale);
-    CanvasElement canvas = new CanvasElement(width: canvassize, height: canvassize);
-    CanvasRenderingContext2D ctx = canvas.context2D;
+class ObservatoryViewer {
+    static const int size = 65536;
+    static const int gridsize = 256;
+    int cellpadding;
 
-    ctx..fillStyle = "white"
-        ..fillRect(0, 0, canvassize, canvassize)
-        ..fillStyle = "rgba(0,0,0,0.2)";
+    CanvasElement canvas;
+    CanvasRenderingContext2D ctx;
 
-    querySelector("#spiel").append(canvas);
+    int canvasWidth;
+    int canvasHeight;
 
-    /*Random rand = new Random();
-    for (int i=0; i<50; i++) {
-        int input = i;//rand.nextInt();//
+    double camx;
+    double camy;
 
-        int h = Feistel.encrypt(input);
-        int h2 = Feistel.decrypt(h);
-        print("${input.toString().padLeft(12, " ")} -> ${h.toString().padLeft(12, " ")} = ${binary(h)} -> ${h2.toString().padLeft(12, " ")}");
-    }*/
+    Map<int, ObservatorySession> sessions = <int,ObservatorySession>{};
 
-    for (int i=0; i<samples; i++) {
-        Tuple<int,int> c = SeedMapper.seed2coords(i);
-        //print(c);
+    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int seed = 0, int this.cellpadding = 0}) {
+        this.canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        this.ctx = canvas.context2D;
 
-        double x = c.first / divisor;
-        double y = c.second / divisor;
+        this.goToSeed(seed);
+    }
 
-        //print("$x, $y");
 
-        ctx.fillRect(x - 0.5, y - 0.5, 1, 1);
+    void updateSessions() {
+        double leftedge   = this.camx - this.canvasWidth  / 2;
+        double rightedge  = this.camx + this.canvasWidth  / 2;
+        double topedge    = this.camy - this.canvasHeight / 2;
+        double bottomedge = this.camy + this.canvasHeight / 2;
+
+        int leftcell   = (leftedge   / gridsize).floor() - this.cellpadding;
+        int rightcell  = (rightedge  / gridsize).ceil()  + this.cellpadding;
+        int topcell    = (topedge    / gridsize).floor() - this.cellpadding;
+        int bottomcell = (bottomedge / gridsize).ceil()  + this.cellpadding;
+
+        Set<int> toRemove = new Set<int>();
+
+        for (int key in sessions.keys) {
+            ObservatorySession s = sessions[key];
+            if (s.x < leftcell || s.x > rightcell || s.y < topcell || s.y > bottomcell) {
+                toRemove.add(key);
+            }
+        }
+
+        for (int key in toRemove) {
+            ObservatorySession removed = sessions.remove(key);
+            this.destroySession(removed);
+        }
+
+        int rx,ry,id;
+        for (int x = leftcell; x <= rightcell; x++) {
+            rx = x < 0 ? x + size : x > size ? x - size : x;
+            for (int y = topcell; y <= bottomcell; y++) {
+                ry = y < 0 ? y + size : y > size ? y - size : y;
+
+                id = Morton.interleave(rx, ry);
+
+                if (!sessions.containsKey(id)) {
+                    sessions[id] = this.createSession(Feistel.decrypt(id), rx, ry);
+                }
+            }
+        }
+
+        for (ObservatorySession s in sessions.values) {
+            s.update();
+        }
+    }
+
+    void goToCoordinates(num x, num y) {
+        this.camx = x.toDouble();
+        this.camy = y.toDouble();
+
+        this.updateSessions();
+    }
+
+    void goToSeed(int seed) {
+        Tuple<int,int> coords = SeedMapper.seed2coords(seed);
+        this.goToCoordinates((coords.first + 0.5) * gridsize, (coords.second + 0.5) * gridsize);
+    }
+
+    ObservatorySession createSession(int seed, int x, int y) {
+        print("create session $seed at $x,$y");
+        return new ObservatorySession(seed, x, y);
+    }
+
+    void destroySession(ObservatorySession session) {
+        print("destroy session ${session.seed} at ${session.x},${session.y}");
     }
 }
+
+class ObservatorySession {
+    int seed;
+    int x;
+    int y;
+
+    ObservatorySession(int this.seed, int this.x, int this.y) {
+
+    }
+
+    void update() {
+
+    }
+}
+
+//##################################################################################
 
 String binary(int n) {
     String s = n.toRadixString(2).padLeft(32, "0");
