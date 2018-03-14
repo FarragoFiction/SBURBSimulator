@@ -20,6 +20,8 @@ int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
 
+  //TODO later i'll allow it to be stored from multiple page loads, but right now too much could go wrong.
+  SessionSummary.clearCache();
   doNotRender = true;
   doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();

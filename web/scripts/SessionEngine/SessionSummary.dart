@@ -65,6 +65,10 @@ class SessionSummary {
         }
     }
 
+    static void clearCache() {
+        window.localStorage[SAVE_TAG] = null;
+    }
+
     static void saveAllSummaries(List<SessionSummary> summaries) {
         List<JSONObject> jsonArray = new List<JSONObject>();
         for(SessionSummary p in summaries) {
@@ -426,6 +430,7 @@ class SessionSummary {
         summary.setBoolStat("hasSpades", session.stats.hasSpades);
         summary.setBoolStat("hasClubs", session.stats.hasClubs);
         summary.setBoolStat("hasHearts", session.stats.hasHearts);
+        summary.save();
         return summary;
     }
 
