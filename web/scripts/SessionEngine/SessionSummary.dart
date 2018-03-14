@@ -35,6 +35,37 @@ class SessionSummary {
 
     SessionSummary(int this.session_id);
 
+
+    JSONObject toJSON() {
+        /*TODO
+            json looks like:
+                $sessionID($scratched): "a full json object here."
+                json object consists of all vars
+         */
+        JSONObject jsonWrapper = new JSONObject();
+        JSONObject json = new JSONObject();
+
+        //TODO what to do about players and mini players? for now, leave off.
+
+        for(String key in bool_stats.keys) {
+            json[key] = bool_stats[key].toString();
+        }
+
+        for(String key in num_stats.keys) {
+            json[key] = num_stats[key].toString();
+        }
+
+        json["frogStatus"] = frogStatus;
+        json["session_id"] = session_id.toString();
+
+
+        String scratch = "";
+        if(scratched) scratch = "(scratched)"; //makes sure a session and its scratch are keyed differently
+        jsonWrapper["${session_id}$scratch"] = json.toString();
+        return jsonWrapper;
+    }
+
+
     void setBoolStat(String statName, bool statValue) {
         // //print("setting stat: $statName to $statValue");
         this.bool_stats[statName] = statValue;
@@ -244,7 +275,6 @@ class SessionSummary {
         return html;
     }
 
-    //todo, could make this a constructor with from, too. whatever.
     static SessionSummary makeSummaryForSession(Session session) {
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.setMiniPlayers(session.players);
