@@ -6,3 +6,4 @@ export "MultiSessionSummary.dart";
 export "MultiSessionSummaryJunior.dart";
 export "DeadSessionSummary.dart";
 export "JSONObject.dart";
+export "CarapaceSummary.dart";

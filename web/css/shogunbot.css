@@ -1,0 +1,9 @@
+.collectibleCard{
+	background-color: red;
+	padding: 10px;
+}
+
+.cardName{
+    background-color: green;
+	padding: 10px;
+}
