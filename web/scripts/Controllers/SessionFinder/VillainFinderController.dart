@@ -1,10 +1,12 @@
 import "dart:html";
 import "../../SessionEngine/SessionSummaryLib.dart";
+import '../../SBURBSim.dart';
 
 Element div;
 CarapaceSummary carapaceSummary = new CarapaceSummary();
 
 void main() {
+    globalInit();
     div = querySelector("#stats");
     todo("print out the cache from AB.");
     //testCache();
