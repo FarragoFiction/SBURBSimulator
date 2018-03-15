@@ -33,6 +33,8 @@ class SessionSummary {
     List<MiniPlayer> miniPlayers = <MiniPlayer>[]; //array of hashes from players
     List<Player> players = <Player>[]; //TODO do i need this AND this.miniPlayers thing???
     Player mvp;
+    String mvpName;
+    String mvpGrist;
 
 
     SessionSummary(int this.session_id);
@@ -120,6 +122,8 @@ class SessionSummary {
         }
 
         frogStatus = json["frogStatus"];
+        mvpName = json["mvpName"];
+        mvpGrist = json["mvpGrist"];
         session_id = int.parse(json["session_id"]);
     }
 
@@ -144,6 +148,8 @@ class SessionSummary {
         }
 
         json["frogStatus"] = frogStatus;
+        json["mvpName"] = mvpName;
+        json["mvpGrist"] = mvpGrist;
         json["session_id"] = session_id.toString();
         return json;
     }
@@ -347,7 +353,8 @@ class SessionSummary {
             html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
-        html = "$html<Br><b>mvp</b>: ${this.mvp.htmlTitle()} With a Grist Level of: ${this.mvp.grist}";
+
+        html = "$html<Br><b>mvp</b>: ${this.mvpName} With a Grist Level of: ${this.mvpGrist}";
 
         html = "$html<Br><b>Frog Level</b>: ${this.frogLevel} (${this.frogStatus})";
         html = "$html${generateNumHTML()}";
@@ -424,6 +431,8 @@ class SessionSummary {
         summary.setNumStat("num_scenes", session.numScenes);
         summary.players = session.players;
         summary.mvp = findMVP(session.players);
+        summary.mvpName = summary.mvp.htmlTitle();
+        summary.mvpGrist = summary.mvp.grist.toString();
         summary.parentSession = session.parentSession;
         summary.setBoolStat("scratchAvailable", session.stats.scratchAvailable);
         summary.setBoolStat("yellowYard", session.stats.yellowYard);
