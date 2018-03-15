@@ -115,9 +115,9 @@ class SessionSummary {
         var boolExample = true;
         initBoolKeys();
         initNumKeys();
-        print("inited keys");
+        //print("inited keys");
         for(String key in bool_stats.keys) {
-            print("checking key $key");
+            //print("checking key $key");
             if(json[key] == boolExample.toString()) {
                 bool_stats[key] = true;
             }else {
@@ -126,12 +126,19 @@ class SessionSummary {
         }
 
         for(String key in num_stats.keys) {
-            num_stats[key] = int.parse(json[key]);
+           // print("checking num key of $key with value ${json[key]}");
+            num_stats[key] = num.parse(json[key]);
         }
 
         frogStatus = json["frogStatus"];
         mvpName = json["mvpName"];
         mvpGrist = json["mvpGrist"];
+        if(json["scratched"] == boolExample.toString()) {
+            scratched = true;
+        }else {
+            scratched = false;
+        }
+
         session_id = int.parse(json["session_id"]);
     }
 
@@ -159,6 +166,8 @@ class SessionSummary {
         json["mvpName"] = mvpName;
         json["mvpGrist"] = mvpGrist;
         json["session_id"] = session_id.toString();
+        json["scratched"] = scratched.toString();
+
         return json;
     }
 
@@ -375,7 +384,7 @@ class SessionSummary {
 
     //needed for loading
     void initBoolKeys() {
-        print("initting bool keys");
+       // print("initting bool keys");
         SessionSummary summary  = this;
         summary.setBoolStat("blackKingDead", false);
         summary.setBoolStat("redMilesActivated", false);
@@ -429,7 +438,7 @@ class SessionSummary {
     }
 
     void initNumKeys() {
-        print("initing num keys");
+        //print("initing num keys");
         SessionSummary summary  = this;
         summary.setNumStat("num_scenes", 0);
         summary.setNumStat("sizeOfAfterLife", 0);
@@ -445,8 +454,6 @@ class SessionSummary {
         summary.setNumStat("averageAlchemySkill", 0);
         summary.setNumStat("averageRelationshipValue", 0);
         summary.setNumStat("averageSanity", 0);
-
-
     }
 
     static SessionSummary makeSummaryForSession(Session session) {
