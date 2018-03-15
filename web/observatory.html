@@ -9,6 +9,19 @@
 
         <script type="application/dart" src="scripts/Controllers/Misc/ObservatoryController.dart"></script>
         <script src="packages/browser/dart.js"></script>
+
+        <style>
+            canvas.observatory {
+                cursor:-moz-grab;
+                cursor:-webkit-grab;
+                cursor:grab;
+            }
+            canvas.dragging {
+                cursor:-moz-grabbing;
+                cursor:-webkit-grabbing;
+                cursor:grabbing;
+            }
+        </style>
     </head>
     <body>
         <div id = "navbar"></div>

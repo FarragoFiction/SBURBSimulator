@@ -12,7 +12,7 @@ export "pass/image.dart";
 export "pass/sprite.dart";
 
 class Renderer {
-    static Future<ScriptElement> loadThree() => Loader.loadJavaScript("scripts/Rendering/3d/three.min.js");
+    static Future<ScriptElement> loadThree() => Loader.loadJavaScript("scripts/Rendering/threed/three.min.js");
 
     static Map<CanvasImageSource, THREE.Texture> _textureCache = <CanvasImageSource, THREE.Texture>{};
 
