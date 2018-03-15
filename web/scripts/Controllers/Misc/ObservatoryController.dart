@@ -1,47 +1,101 @@
+import "dart:async";
+import 'dart:collection';
 import 'dart:html';
 import 'dart:math' as Math;
 
+import '../../Rendering/renderer.dart';
+import '../../Rendering/threed/three.dart' as THREE;
+import '../../SBURBSim.dart';
 import '../../includes/predicates.dart';
 import '../../navbar.dart';
 import '../../random.dart';
 
-void main() {
-    print("observatory is go!");
-
+Future<Null> main() async {
+    await Renderer.loadThree();
+    globalInit();
     loadNavbar();
 
-    test();
-}
+    ObservatoryViewer observatory = new ObservatoryViewer(1000, 750);
+    querySelector("#spiel")..append(observatory.renderer.domElement);
 
-void test() {
-    new ObservatoryViewer(1000, 750);
+    print("observatory is go!");
 }
 
 //##################################################################################
 
 class ObservatoryViewer {
     static const int size = 65536;
-    static const int gridsize = 256;
-    int cellpadding;
+    static const int gridsize = 720;
+    static const int pixelsize = size * gridsize;
+    static const int cachesize = 500;
+    LinkedHashMap<int, Session> sessionCache = new LinkedHashMap<int, Session>();
 
-    CanvasElement canvas;
-    CanvasRenderingContext2D ctx;
+    int cellpadding;
 
     int canvasWidth;
     int canvasHeight;
 
-    double camx;
-    double camy;
+    CanvasElement canvas;
+    THREE.WebGLRenderer renderer;
+    THREE.Scene scene;
+    THREE.OrthographicCamera camera;
 
-    Map<int, ObservatorySession> sessions = <int,ObservatorySession>{};
+    int camx;
+    int camy;
+
+    Map<Point<int>, ObservatorySession> sessions = <Point<int>,ObservatorySession>{};
+
+    bool dragging = false;
 
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int seed = 0, int this.cellpadding = 0}) {
-        this.canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        this.ctx = canvas.context2D;
+        this.renderer = new THREE.WebGLRenderer();
+        this.renderer
+            ..setSize(canvasWidth, canvasHeight)
+            ..setClearColor(0x000000, 0);
 
-        this.goToSeed(seed);
+        this.canvas = this.renderer.domElement..classes.add("observatory");
+
+        this.scene = new THREE.Scene();
+
+        this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100);//..rotation.z = Math.PI;//..position.z = 10..lookAt(new THREE.Vector3.zero());
+
+        //this.goToSeed(seed);
+        this.goToCoordinates(100, 100);
+
+        this.update();
+
+        this.canvas.onMouseDown.listen(mouseDown);
+        window.onMouseUp.listen(mouseUp);
+        window.onMouseMove.listen(mouseMove);
     }
 
+    void mouseDown(MouseEvent e) {
+        dragging = true;
+        this.canvas.classes.add("dragging");
+    }
+
+    void mouseUp(MouseEvent e) {
+        if (dragging) { dragging = false; }
+        this.canvas.classes.remove("dragging");
+    }
+
+    void mouseMove(MouseEvent e) {
+        if (!dragging) { return; }
+
+        this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
+
+        this.updateSessions();
+    }
+
+    void update([num dt = 0.0]) {
+        window.requestAnimationFrame(update);
+
+        for (ObservatorySession session in sessions.values) {
+            session.update(dt);
+        }
+
+        this.renderer.render(this.scene, this.camera);
+    }
 
     void updateSessions() {
         double leftedge   = this.camx - this.canvasWidth  / 2;
@@ -54,30 +108,31 @@ class ObservatoryViewer {
         int topcell    = (topedge    / gridsize).floor() - this.cellpadding;
         int bottomcell = (bottomedge / gridsize).ceil()  + this.cellpadding;
 
-        Set<int> toRemove = new Set<int>();
+        Set<Point<int>> toRemove = new Set<Point<int>>();
 
-        for (int key in sessions.keys) {
+        for (Point<int> key in sessions.keys) {
             ObservatorySession s = sessions[key];
             if (s.x < leftcell || s.x > rightcell || s.y < topcell || s.y > bottomcell) {
                 toRemove.add(key);
             }
         }
 
-        for (int key in toRemove) {
+        for (Point<int> key in toRemove) {
             ObservatorySession removed = sessions.remove(key);
             this.destroySession(removed);
         }
 
-        int rx,ry,id;
+        int rx,ry;
+        Point<int> id;
         for (int x = leftcell; x <= rightcell; x++) {
-            rx = x < 0 ? x + size : x > size ? x - size : x;
+            rx = x < 0 ? x + size : x >= size ? x - size : x;
             for (int y = topcell; y <= bottomcell; y++) {
-                ry = y < 0 ? y + size : y > size ? y - size : y;
+                ry = y < 0 ? y + size : y >= size ? y - size : y;
 
-                id = Morton.interleave(rx, ry);
+                id = new Point<int>(x,y);
 
                 if (!sessions.containsKey(id)) {
-                    sessions[id] = this.createSession(Feistel.decrypt(id), rx, ry);
+                    sessions[id] = this.createSession(SeedMapper.coords2seed(rx,ry), x, y);
                 }
             }
         }
@@ -88,40 +143,113 @@ class ObservatoryViewer {
     }
 
     void goToCoordinates(num x, num y) {
-        this.camx = x.toDouble();
-        this.camy = y.toDouble();
+        x = x.floor();
+        y = y.floor();
+
+        this.camx = x < 0 ? x + pixelsize : x >= pixelsize ? x -= pixelsize : x;
+        this.camy = y < 0 ? y + pixelsize : y >= pixelsize ? y -= pixelsize : y;
+
+        this.camera..position.x = camx.toDouble()..position.y = camy.toDouble();
 
         this.updateSessions();
     }
 
+    void goToGridCoordinates(num x, num y) {
+        this.goToCoordinates((x+0.5) * gridsize, (y+0.5) * gridsize);
+    }
+
     void goToSeed(int seed) {
         Tuple<int,int> coords = SeedMapper.seed2coords(seed);
-        this.goToCoordinates((coords.first + 0.5) * gridsize, (coords.second + 0.5) * gridsize);
+        this.goToGridCoordinates(coords.first, coords.second);
     }
 
     ObservatorySession createSession(int seed, int x, int y) {
         print("create session $seed at $x,$y");
-        return new ObservatorySession(seed, x, y);
+        return new ObservatorySession(this, seed, x, y)..createModel().then((THREE.Object3D o) => this.scene.add(o));
     }
 
     void destroySession(ObservatorySession session) {
         print("destroy session ${session.seed} at ${session.x},${session.y}");
+        this.scene.remove(session.model);
+    }
+
+    Session getSession(int seed) {
+        if (sessionCache.containsKey(seed)) {
+            return sessionCache[seed];
+        }
+
+        Session session = new Session(seed);
+        curSessionGlobalVar = session;
+        session.reinit();
+        session.makePlayers();
+        session.randomizeEntryOrder();
+        session.makeGuardians();
+
+        checkEasterEgg(this.easterEggCallback, null);
+
+        sessionCache[seed] = session;
+
+        if (sessionCache.length > cachesize) {
+            int oldest = sessionCache.keys.first;
+            sessionCache.remove(oldest);
+            print("removing session $oldest from the cache");
+        }
+
+        return session;
+    }
+
+    void easterEggCallback() {
+        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);
     }
 }
 
 class ObservatorySession {
+    ObservatoryViewer parent;
+
+    Session session;
+
     int seed;
     int x;
     int y;
 
-    ObservatorySession(int this.seed, int this.x, int this.y) {
+    THREE.Object3D model;
+
+    ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
+        this.session = parent.getSession(seed);
+    }
+
+    void update([num dt = 0.0]) {
 
     }
 
-    void update() {
+    Future<THREE.Object3D> createModel() async {
+        int colour = 0xFF0000;
+        if (x < 0 || x >= ObservatoryViewer.size || y < 0 || y >= ObservatoryViewer.size) {
+            colour = 0x00FF00;
+        }
 
+        /*CanvasElement info = new CanvasElement(width: 128, height: 128);
+        info.context2D
+            ..fillStyle = "white"
+            ..fillRect(0, 0, 128, 128)
+            ..fillStyle = "black"
+            ..fillText("seed: $seed", 5, 12)
+            ..fillText("x: $x, y: $y", 5, 24)
+        ;
+
+        THREE.Texture texture = new THREE.Texture(info)..flipY=true..needsUpdate=true;*/
+
+        //THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/image.vert", "shaders/image.frag");
+        THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: colour));//, map:texture));
+
+        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(128, 128), mat)..rotation.x = Math.PI;
+
+        this.model = mesh;
+        this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize..y = (y + 0.5) * ObservatoryViewer.gridsize;
+        return mesh;
     }
 }
+
 
 //##################################################################################
 
