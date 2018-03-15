@@ -14,7 +14,7 @@ export 'Alchemy/MagicalItem.dart';
 
 export 'Alchemy/AlchemyResult.dart';
 
-
+export "Controllers/SessionFinder/AuthorBot.dart";
 export "SessionEngine/SessionMutator.dart";
 export "NPCEngine/NPCHandler.dart";
 export "SessionEngine/SessionStats.dart";
@@ -440,8 +440,13 @@ U joinCollection<T, U>(Iterable<T> list, {U convert(T input), U combine(U previo
 String joinMatches(Iterable<Match> matches, [String joiner = ""]) => joinCollection(matches, convert: (Match m) => m.group(0), combine: (String p, String e) => "$p$joiner$e", initial: "");
 String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(list, convert: (T e) => e.toString(), combine: (String p, String e) => "$p$joiner$e", initial: "");
 
-void appendHtml(Element element, String html) {
-    element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+void appendHtml(Element element, String html, [bool force = false]) {
+    //TODO does this break anything?
+    if(!(SimController.instance is AuthorBot) || force) {
+        element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+    }else {
+       // print("ab says don't bother rendering");
+    }
 }
 
 

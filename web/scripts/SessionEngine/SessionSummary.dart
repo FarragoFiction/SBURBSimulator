@@ -44,29 +44,50 @@ class SessionSummary {
         //then save
         Map<String, SessionSummary> summaries =  loadAllSummaries();
         summaries[jsonKey] = this;
-        SessionSummary.saveAllSummaries(summaries.values);
+        SessionSummary.saveAllSummaries(new List.from(summaries.values));
     }
 
     static Map<String, SessionSummary> loadAllSummaries() {
         Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
-        if(!window.localStorage.containsKey(SAVE_TAG)) return ret;
-
+        if(!window.localStorage.containsKey(SAVE_TAG)) {
+            print("local storage doesn't have my key");
+            return ret;
+        }
         String jsonString = window.localStorage[SAVE_TAG];
+
+        if(jsonString.isEmpty) {
+            print("local storage has my key, but it's empty");
+            return ret;
+        }else if(jsonString == null) {
+            print("local storage has my key, but it's null");
+            return ret;
+        }else {
+            //print("local stoarge has my key. ${window.localStorage.containsKey(SAVE_TAG)} the contents are not empty. ${jsonString}");
+        }
+
+        if(jsonString == "null") print("you got trolled, it's the word null");
+
         //this should be an array of sessions, so can't jsonobject it directly
         String idontevenKnow = jsonString;
-        List<dynamic> what = JSON.decode(idontevenKnow);
-        for(dynamic d in what) {
-            //print("dynamic json thing is  $d");
-            JSONObject j = new JSONObject();
-            j.json = d;
-            SessionSummary s = new SessionSummary(-13);
-            s.fromJSON("j");
-            ret[s.jsonKey] = s;
+        try {
+            List<dynamic> what = JSON.decode(idontevenKnow);
+            for(dynamic d in what) {
+                //print("dynamic json thing is  $d");
+                JSONObject j = new JSONObject();
+                j.json = d;
+                SessionSummary s = new SessionSummary(-13);
+                s.fromJSON("j");
+                ret[s.jsonKey] = s;
+            }
+        }catch(e) {
+            return ret;
         }
+
     }
 
     static void clearCache() {
         window.localStorage[SAVE_TAG] = null;
+        window.localStorage.remove(SAVE_TAG);
     }
 
     static void saveAllSummaries(List<SessionSummary> summaries) {
