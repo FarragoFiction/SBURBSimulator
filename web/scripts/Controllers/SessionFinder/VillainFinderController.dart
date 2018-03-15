@@ -27,6 +27,7 @@ void testCache() {
 
 void todo(String text) {
     DivElement tmp = new DivElement();
-    tmp.text = "TODO: $text";
+    //tmp.text = "TODO: $text";
+    tmp.setInnerHtml("TODO: $text");
     div.append(tmp);
 }

@@ -80,7 +80,9 @@ class SessionSummary {
                 j.json = d;
                 print("made a json object $j");
                 SessionSummary s = new SessionSummary(-13);
+                print("made a session summary");
                 s.fromJSON(j.toString());
+                print("loaded that session summary to json");
                 ret[s.jsonKey] = s;
             }
         }catch(e) {
@@ -106,10 +108,16 @@ class SessionSummary {
     }
 
     void fromJSON(String jsonString) {
+        print("trying to make a json object");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
+        print("made a json object");
 
         var boolExample = true;
+        initBoolKeys();
+        initNumKeys();
+        print("inited keys");
         for(String key in bool_stats.keys) {
+            print("checking key $key");
             if(json[key] == boolExample.toString()) {
                 bool_stats[key] = true;
             }else {
@@ -363,6 +371,82 @@ class SessionSummary {
 
         html = "$html</div><br>";
         return html;
+    }
+
+    //needed for loading
+    void initBoolKeys() {
+        print("initting bool keys");
+        SessionSummary summary  = this;
+        summary.setBoolStat("blackKingDead", false);
+        summary.setBoolStat("redMilesActivated", false);
+        summary.setBoolStat("moonDestroyed", false);
+        summary.setBoolStat("planetDestroyed", false);
+        summary.setBoolStat("crownedCarapace", false);
+        summary.setBoolStat("mailQuest", false);
+        summary.setBoolStat("gnosisEnding", false);
+        summary.setBoolStat("hasGhostEvents", false);
+        summary.setBoolStat("loveEnding", false);
+        summary.setBoolStat("hateEnding", false);
+        summary.setBoolStat("monoTheismEnding", false);
+        summary.setBoolStat("badBreakDeath", false);
+        summary.setBoolStat("luckyGodTier", false);
+        summary.setBoolStat("choseGodTier", false);
+        summary.setBoolStat("opossumVictory", false);
+        summary.setBoolStat("rocksFell", false);
+        summary.setBoolStat("won", false);
+        summary.setBoolStat("hasBreakups",false);
+        summary.setBoolStat("heroicDeath", false);
+        summary.setBoolStat("justDeath", false);
+        summary.setBoolStat("crashedFromSessionBug", false);
+        summary.setBoolStat("cataclysmCrash", false);
+        summary.setBoolStat("ringWraithCrash", false);
+        summary.setBoolStat("crashedFromPlayerActions", false);
+        summary.setBoolStat("hasFreeWillEvents", false);
+        summary.setBoolStat("hasTier1GnosisEvents", false);
+        summary.setBoolStat("hasTier2GnosisEvents", false);
+        summary.setBoolStat("hasTier3GnosisEvents", false);
+        summary.setBoolStat("hasTier4GnosisEvents", false);
+        summary.setBoolStat("hasNoTier4Events", false);  //so you can tell ab to ignore tier4 events
+        summary.setBoolStat("hasLuckyEvents", false);
+        summary.setBoolStat("hasUnluckyEvents", false);
+        summary.setBoolStat("rapBattle", false);
+        summary.setBoolStat("sickFires", false);
+        summary.setBoolStat("godTier", false);
+        summary.setBoolStat("questBed", false);
+        summary.setBoolStat("sacrificialSlab", false);
+        summary.setBoolStat("scratchAvailable", false);
+        summary.setBoolStat("yellowYard", false);
+        summary.setBoolStat("ectoBiologyStarted", false);
+        summary.setBoolStat("denizenBeat", false);
+        summary.setBoolStat("kingTooPowerful", false);
+        summary.setBoolStat("queenRejectRing", false);
+        summary.setBoolStat("murdersHappened", false);
+        summary.setBoolStat("grimDark", false);
+        summary.setBoolStat("hasDiamonds", false);
+        summary.setBoolStat("hasSpades", false);
+        summary.setBoolStat("hasClubs", false);
+        summary.setBoolStat("hasHearts", false);
+    }
+
+    void initNumKeys() {
+        print("initing num keys");
+        SessionSummary summary  = this;
+        summary.setNumStat("num_scenes", 0);
+        summary.setNumStat("sizeOfAfterLife", 0);
+        summary.setNumStat("numLiving", 0);
+        summary.setNumStat("numDead", 0);
+        summary.setNumStat("averageMinLuck", 0);
+        summary.setNumStat("averageMaxLuck", 0);
+        summary.setNumStat("averagePower", 0);
+        summary.setNumStat("averageGrist", 0);
+        summary.setNumStat("averageMobility", 0);
+        summary.setNumStat("averageFreeWill", 0);
+        summary.setNumStat("averageHP", 0);
+        summary.setNumStat("averageAlchemySkill", 0);
+        summary.setNumStat("averageRelationshipValue", 0);
+        summary.setNumStat("averageSanity", 0);
+
+
     }
 
     static SessionSummary makeSummaryForSession(Session session) {
