@@ -48,6 +48,7 @@ class SessionSummary {
     }
 
     static Map<String, SessionSummary> loadAllSummaries() {
+        print("trying to load");
         Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
         if(!window.localStorage.containsKey(SAVE_TAG)) {
             print("local storage doesn't have my key");
@@ -72,17 +73,19 @@ class SessionSummary {
         try {
             List<dynamic> what = JSON.decode(idontevenKnow);
             for(dynamic d in what) {
-                //print("dynamic json thing is  $d");
+                print("dynamic json thing is  $d");
                 JSONObject j = new JSONObject();
                 j.json = d;
+                print("made a json object $j");
                 SessionSummary s = new SessionSummary(-13);
-                s.fromJSON("j");
+                s.fromJSON(j.toString());
                 ret[s.jsonKey] = s;
             }
         }catch(e) {
+            print("Error loading cache, $e");
             return ret;
         }
-
+        return ret;
     }
 
     static void clearCache() {
