@@ -6,6 +6,8 @@ class CarapaceStats {
 
     List<int> sessions = new List<int>();
 
+    String aliases;
+    String exampleName;
     String initials;
     String moon;
 
@@ -26,6 +28,8 @@ class CarapaceStats {
 
     CarapaceStats(Carapace carapace) {
         this.initials = carapace.initials;
+        this.exampleName = carapace.name;
+        this.aliases = carapace.aliases;
         this.moon = carapace.type;
         sessions.addAll([13,8,4037,413,1025,612]);
     }
@@ -60,16 +64,26 @@ class CarapaceStats {
             div.append(tmp);
         }
 
-        div.appendHtml("Sessions Active In:");
+        DivElement activeSession = new DivElement();
+        activeSession.setInnerHtml("Sessions Active In: ...");
+        activeSession.classes.add("tooltip");
+        DivElement tooltipText  = new DivElement();
+        tooltipText.classes.add("tooltiptext");
+        activeSession.append(tooltipText);
+        div.append(activeSession);
         for(int session_id in sessions) {
+            DivElement d = new DivElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
             a.text = " $session_id, ";
-            div.append(a);
+            d.append(a);
+            tooltipText.append(d);
         }
 
         return div;
     }
+
+
 
     //display pic of prospit or derse.
     //display placeholder for the carpace in question.
@@ -82,7 +96,16 @@ class CarapaceStats {
 
         DivElement name = new DivElement();
         name.classes.add("cardName");
-        name.text = "Initials: $initials";
+        name.text = "Name: $exampleName ($initials)";
+        DivElement alts = new DivElement();
+        alts.text = "Aliases: ...";
+        alts.classes.add("tooltip");
+        alts.style.display = "block";
+        DivElement altText = new DivElement();
+        altText.classes.add("tooltiptext");
+        alts.append(altText);
+        altText.text = aliases;
+        name.append(alts);
 
         divBorder.append(div);
         div.append(makePortrait());

@@ -106,6 +106,27 @@ class Carapace extends NPC {
         return ret;
     }
 
+    String get aliases {
+        String ret = "";
+        List<String> alts = new List<String>();
+        if(initials == "JN") alts.add("Jack Noir");
+        int max = firstNames.length;
+        if(lastNames.length < firstNames.length) max = lastNames.length;
+
+        for(int i = 0; i< max; i++) {
+            alts.add("${firstNames[i]} ${lastNames[i]}");
+        }
+
+        max = ringFirstNames.length;
+        if(ringLastNames.length < ringFirstNames.length) max = ringLastNames.length;
+
+        for(int i = 0; i< max; i++) {
+            alts.add("${ringFirstNames[i]} ${ringLastNames[i]}");
+        }
+
+        return turnArrayIntoHumanSentence(alts);
+    }
+
     void pickName() {
         if(crowned != null) {
             name = "${session.rand.pickFrom(ringFirstNames)} ${session.rand.pickFrom(ringLastNames)}";
