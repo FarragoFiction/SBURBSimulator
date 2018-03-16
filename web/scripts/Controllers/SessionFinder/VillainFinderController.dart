@@ -12,7 +12,9 @@ void main() {
     displayCards();
     todo("if no cache, instruct Observer to go check AB");
     todo("figure out why session list tool bar is cut off. is it because bottom?");
-    todo("have session summary have a list of CarapaceData, keyed by initials. CarapaceData is just stuff ShogunBot cares about.");
+    todo("have session summary have a list of CarapaceSummary, keyed by initials. CarapaceSummary is just stuff ShogunBot cares about.");
+    todo("CarapaceSummary can convert self to json and from json");
+    todo("CarapaceSummary can have a carapace stat added to it");
     todo("have each card list their stats (default to zero for now)");
     todo("actually use this data for the card stats");
     todo("in card stats, list sessions this carapace was crowned in. have warning that easter eggs or gnosis may invalidate things.");

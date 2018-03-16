@@ -18,6 +18,9 @@ class MiniPlayer {
 
 class SessionSummary {
     static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
+
+    CarapaceSummary carapaceSummary;
+
     //since stats will be hash, don't need to make junior
     int session_id = null;
     Session parentSession; //pretty sure this has to be a full session so i can get lineage

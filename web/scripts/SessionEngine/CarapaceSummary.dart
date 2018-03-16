@@ -24,6 +24,17 @@ class CarapaceStats {
 
     List<CarapaceStat> get stats => <CarapaceStat>[timesActivated,timesCrowned,carapacesMurdered,moonsMurdered,planetsMurdered,redMilesUsed,playersMurdered,timesDied,timesExiled];
 
+    Map<String, CarapaceStat> _statsMap;
+
+
+    Map<String, CarapaceStat> get statsMap {
+        if(_statsMap == null) {
+            for(CarapaceStat s in stats) {
+                _statsMap[s.name] = s;
+            }
+        }
+        return _statsMap;
+    }
 
 
     CarapaceStats(Carapace carapace) {
@@ -32,6 +43,13 @@ class CarapaceStats {
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
         sessions.addAll([13,8,4037,413,1025,612]);
+    }
+
+    //add all others vars to yourself
+    void add(CarapaceStats other) {
+        for(String key in statsMap.keys) {
+            statsMap[key].value += other.statsMap[key].value;
+        }
     }
 
     Element makePortrait() {
@@ -117,21 +135,39 @@ class CarapaceStats {
 
 }
 
+/*
+    TODO: so how do i want this to work. This is a single object that ShogunBot has, but how does it get built?
+    need to have an object LIKE this  for every SessionSummary maybe even still with CarapceStats...
+    oh...could just literally use this, then also have a way to hrrrm....
+ */
 class CarapaceSummary {
     Map<String, CarapaceStats> data = new Map<String, CarapaceStats>();
 
-    CarapaceSummary() {
+    Session session;
+    CarapaceSummary(Session this.session) {
+        if(session == null) {
+            defaultSession();
+        }
         init();
+    }
+    void defaultSession() {
+         session = new Session(-13);
+         session.setupMoons();
+    }
+
+    //if you add a carapace summary to yourself, you add all it's values to your own data.
+    void add(CarapaceSummary other) {
+        for(CarapaceStats cs in other.data.values) {
+            data[cs.initials].add(cs);
+        }
     }
 
     void init() {
-        Session session = new Session(-13);
-        session.setupMoons();
-        NPCHandler npcHandler = new NPCHandler(session);
-        List<GameEntity> npcs = npcHandler.getProspitians();
+
+        List<GameEntity> npcs = session.npcHandler.getProspitians();
         npcs.add(session.prospit.king);
         npcs.add(session.prospit.queen);
-        npcs.addAll(npcHandler.getDersites());
+        npcs.addAll(session.npcHandler.getDersites());
         npcs.add(session.derse.king);
         npcs.add(session.derse.queen);
 
