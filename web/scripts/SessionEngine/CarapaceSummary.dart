@@ -25,16 +25,16 @@ class CarapaceStats {
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
-        statsMap["Times Activated"] = 0;
-        statsMap["Times Crowned"] = 0;
-        statsMap["Carapaces Murdered"] = 0;
-        statsMap["Moons Murdered"] = 0;
-        statsMap["Planets Murdered"] = 0;
-        statsMap["Red Miles Activated"] = 0;
-        statsMap["Players Murdered"] = 0;
-        statsMap["Times Died"] = 0;
-        statsMap["Times Exiled"] = 0;
-        sessions.addAll([13,8,4037,413,1025,612]);
+        statsMap["Times Activated"] = carapace.active ? 1 : 0;
+        statsMap["Times Crowned"] = carapace.crowned != null ? 1 : 0;
+        statsMap["Carapaces Murdered"] = carapace.npcKillCount;
+        statsMap["Moons Murdered"] = carapace.moonKillCount;
+        statsMap["Planets Murdered"] = carapace.landKillCount;
+        statsMap["Red Miles Activated"] =  carapace.usedMiles ? 1 : 0;
+        statsMap["Players Murdered"] = carapace.playerKillCount;
+        statsMap["Times Died"] =  carapace.dead ? 1 : 0;
+        statsMap["Times Exiled"] =  carapace.exiled ? 1 : 0;
+        sessions.add(carapace.session.session_id);
     }
 
     JSONObject toJSON() {
@@ -55,6 +55,8 @@ class CarapaceStats {
         for(String key in statsMap.keys) {
             statsMap[key] += other.statsMap[key];
         }
+        sessions.addAll(other.sessions);
+
     }
 
     Element makePortrait() {

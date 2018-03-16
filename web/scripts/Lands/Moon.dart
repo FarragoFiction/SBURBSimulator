@@ -66,7 +66,7 @@ class Moon extends Land {
 
   @override
   Element planetsplode(GameEntity killer) {
-
+      killer.moonKillCount ++;
       session.logger.info("AB: Oh shit, JR! A moon is exploding! Come see this!");
       session.stats.moonDestroyed = true;
       List<String> killed = new List<String>();

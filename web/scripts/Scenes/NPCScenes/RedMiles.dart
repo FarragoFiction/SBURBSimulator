@@ -26,6 +26,7 @@ class RedMiles extends Scene {
           div.append(frame);
           cannotEscape = true;
           session.stats.redMilesActivated = true;
+          gameEntity.usedMiles = true;
           return null; //no one dies the first turn.
       }
     cannotEscape = true;

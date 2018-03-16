@@ -253,6 +253,7 @@ class Land extends Object with FeatureHolder {
     Element planetsplode(GameEntity killer) {
         session.logger.info("AB: Oh shit, JR! A land is exploding! Come see this!");
         session.stats.planetDestroyed = true;
+        killer.landKillCount ++;
 
         if(session is DeadSession) {
             (session as DeadSession).failed = true;

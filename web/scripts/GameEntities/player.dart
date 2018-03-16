@@ -278,7 +278,11 @@ class Player extends GameEntity{
         if(session.mutator.lifeField) return " Death has no meaning. "; //does fucking nothing.
 
         if(killer != null) {
-            killer.killCount ++;
+            if(this is Player) {
+                killer.playerKillCount ++;
+            }else {
+                killer.npcKillCount ++;
+            }
         }
         String ret = "";
         this.dead = true;

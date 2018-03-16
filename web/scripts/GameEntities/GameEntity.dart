@@ -12,8 +12,13 @@ enum ProphecyState {
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
 
-    int killCount = 0;
+    int playerKillCount = 0;
+
+    int npcKillCount = 0;
+    bool usedMiles = false;
     int landKillCount  = 0;
+    int moonKillCount  = 0;
+
 
     //availibility set to false by scenes
     bool available = true;
@@ -834,7 +839,11 @@ class GameEntity extends Object with StatOwner   {
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
         if(killer != null) {
-            killer.killCount ++;
+            if(this is Player) {
+                killer.playerKillCount ++;
+            }else {
+                killer.npcKillCount ++;
+            }
             killer.lootCorpse(this);
         }
     }
