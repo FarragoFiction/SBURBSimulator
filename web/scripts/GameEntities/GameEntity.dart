@@ -87,7 +87,9 @@ class GameEntity extends Object with StatOwner   {
 
     String get initials {
         RegExp exp = new RegExp(r"""\b(\w)|[A-Z]""", multiLine: true);
-        return joinMatches(exp.allMatches(name)).toUpperCase();
+        String ret =  joinMatches(exp.allMatches(name)).toUpperCase();
+        if(ret == "JN") return "SS"; //fuck you, that's why. Nah. I'm sorry. It's because Jack Noir needs to have the same initails as his Crowned or Exiled self.
+        return ret;
     }
 
     bool get violent {

@@ -9,10 +9,18 @@
 	margin: 6px;
 }
 
-.cardPortrait{
+.cardPortraitBG{
     width: 275px;
     height: 200px;
 	border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardPortrait{
+    display: block;
+    max-width: 275px;
+    max-height: 200px;
     margin-left: auto;
     margin-right: auto;
 }

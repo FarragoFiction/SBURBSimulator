@@ -32,8 +32,12 @@ class CarapaceStats {
 
     Element makePortrait() {
         DivElement div = new DivElement();
-        div.classes.add("cardPortrait");
+        div.classes.add("cardPortraitBG");
         div.style.backgroundImage = "url(images/BigBadCards/$moon.png)";
+        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${initials.toLowerCase()}.png");
+        portrait.classes.add("cardPortrait");
+
+        div.append(portrait);
 
         return div;
     }
