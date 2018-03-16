@@ -3,10 +3,41 @@
 	 border-radius: 23px;
 	width: 300px;
 	position: relative;
-	height: 450px;
+	height: 490px;
 	padding: 10px;
 	display: inline-block;
 	margin: 6px;
+}
+
+.collectibleCard{
+	background-color: grey;
+	border-radius: 5px;
+	width: 280px;
+	height: 470px;
+	padding: 10px;
+	display: inline-block;
+	margin: 10px;
+	position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.cardStatName{
+    font-weight: bold;
+}
+
+.cardStatValue{
+    text-align: right;
+    margin-left:auto;
+    margin-right:0;
+    position: absolute;
+    right: 20px;
+    width: 80%;
+    border-bottom: 1px dotted black;
+}
+
+.cardStatBox{
+    padding-bottom: 3px;
 }
 
 .cardPortraitBG{
@@ -25,25 +56,15 @@
     margin-right: auto;
 }
 
-.collectibleCard{
-	background-color: grey;
-	border-radius: 5px;
-	width: 280px;
-	height: 430px;
-	padding: 10px;
-	display: inline-block;
-	margin: 10px;
-	position: absolute;
-    left: 0px;
-    top: 0px;
-}
+
 
 .cardStats{
-
+    overflow: hidden;
+    height: 240px;
 }
 
 
 .cardName{
     width: 50%;
-	padding: 10px;
+	padding-bottom: 10px;
 }

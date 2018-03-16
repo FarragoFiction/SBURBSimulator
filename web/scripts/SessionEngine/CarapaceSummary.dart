@@ -47,9 +47,13 @@ class CarapaceStats {
         div.classes.add("cardStats");
         for(CarapaceStat cs in stats) {
             DivElement tmp = new DivElement();
+            tmp.classes.add("cardStatBox");
             SpanElement first = new SpanElement();
-            first.setInnerHtml("<b>${cs.name}</b>:");
+            first.setInnerHtml("${cs.name}:");
+            first.classes.add("cardStatName");
+
             SpanElement second = new SpanElement();
+            second.classes.add("cardStatValue");
             second.setInnerHtml("${cs.value}");
             tmp.append(first);
             tmp.append(second);
