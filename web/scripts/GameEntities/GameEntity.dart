@@ -30,6 +30,8 @@ class GameEntity extends Object with StatOwner   {
     //mostly for npcs, might not be the best way to do it but it's what i'm gonna do for now.
     //x starts flipping out about TAB soda
     List<String> distractions = new List<String>();
+    //AW wrote up a bunch of these for carapaces
+    String description = "";
 
     //why are they pestering Jack?
     List<String> bureaucraticBullshit = new List<String>();

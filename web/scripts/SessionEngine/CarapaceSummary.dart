@@ -13,13 +13,14 @@ class CarapaceStats {
     String exampleName;
     String initials;
     String moon;
+    String description;
 
+    bool showingStats = true;
+
+    Element statPage;
+    Element descriptionPage;
 
     Map<String, int> statsMap = new Map<String, int>();
-
-
-
-
 
     CarapaceStats(Carapace carapace) {
         if(carapace != null) {
@@ -34,6 +35,7 @@ class CarapaceStats {
         this.exampleName = "???";
         this.aliases = "???";
         this.moon = "???";
+        this.description = "???";
         statsMap["Times Activated"] = 0;
         statsMap["Times Crowned"] = 0;
         statsMap["Carapaces Murdered"]  = 0;
@@ -52,6 +54,7 @@ class CarapaceStats {
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
+        this.description = carapace.description;
         statsMap["Times Activated"] = carapace.active ? 1 : 0;
         statsMap["Times Joined Players"] = carapace.partyLeader != null ? 1 : 0;
         statsMap["Times Crowned"] = carapace.everCrowned ? 1 : 0;
@@ -116,6 +119,28 @@ class CarapaceStats {
         return div;
     }
 
+    Element makeDescription() {
+        DivElement div = new DivElement();
+        div.classes.add("cardStats");
+        div.style.display = "none";
+        div.text = description;
+        descriptionPage = div;
+        return div;
+
+    }
+
+    void togglePage() {
+        if(showingStats) {
+            statPage.style.display = "inline-block";
+            descriptionPage.style.display = "none";
+
+        }else {
+            descriptionPage.style.display = "inline-block";
+            statPage.style.display = "none";
+        }
+        showingStats = !showingStats;
+    }
+
     Element makeStats() {
         DivElement div = new DivElement();
         div.classes.add("cardStats");
@@ -149,7 +174,7 @@ class CarapaceStats {
             d.append(a);
             tooltipText.append(d);
         }
-
+        statPage = div;
         return div;
     }
 
@@ -159,6 +184,10 @@ class CarapaceStats {
     //display placeholder for the carpace in question.
     Element getCard() {
         DivElement div = new DivElement();
+        div.onClick.listen((e)
+        {
+            togglePage();
+        });
         div.classes.add("collectibleCard");
 
         DivElement divBorder = new DivElement();
@@ -181,7 +210,7 @@ class CarapaceStats {
         div.append(makePortrait());
         div.append(name);
         div.append(makeStats());
-
+        div.append(makeDescription());
         return divBorder;
     }
 

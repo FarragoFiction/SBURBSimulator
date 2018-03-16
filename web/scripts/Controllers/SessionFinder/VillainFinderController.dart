@@ -8,15 +8,12 @@ CarapaceSummary carapaceSummary = new CarapaceSummary(null);
 void main() {
     globalInit();
     div = querySelector("#stats");
-    //testCache();
-    syncCache();
-    displayCards();
     todo("if no cache, instruct Observer to go check AB");
     todo("figure out why session list tool bar is cut off. is it because bottom?");
-    todo("actually use this data for the card stats, need to load all sesssion summaries, then take and collate their carapaceSummaries");
-
     todo("click a card to cycle through diff pages. aw's descriptions, etc.");
-    todo("in card stats, list sessions this carapace was crowned in. have warning that easter eggs or gnosis may invalidate things.");
+    syncCache();
+    displayCards();
+
 
 }
 
