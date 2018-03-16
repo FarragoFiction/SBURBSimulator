@@ -14,6 +14,13 @@ class Carapace extends NPC {
     int royaltyOpinion = 1;
     int sideLoyalty = 1;
 
+    //TODO make it so when a carapace is crowned they get this scene as their highest priority
+    Scene crownedScene;
+    //what is their normal goal
+    List<String> goalFlavors = new List<String>();
+    //what do they do with the ring?
+    List<String> crownFlavors = new List<String>();
+
     static String PROSPIT = "prospit";
     static String DERSE = "derse";
 

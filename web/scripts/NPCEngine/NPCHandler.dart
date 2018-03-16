@@ -411,7 +411,7 @@ class NPCHandler
 
     //violent, lucky, charming, cunning
     List<Carapace> getProspitians() {
-
+        //TODO give carapaces crownScene which is  a scene that becomes high priority if they are crowned
         prospitians = new List<Carapace>();
 
         prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Royal","Regal","Rolling"], lastNames: <String>["Baker","Breakmaker","Breadmaker"], ringFirstNames: <String>["Rampaging"], ringLastNames: <String>["Butcher"])
