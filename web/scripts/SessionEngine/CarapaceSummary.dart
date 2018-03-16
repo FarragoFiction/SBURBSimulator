@@ -37,7 +37,7 @@ class CarapaceStats {
         statsMap["Times Activated"] = 0;
         statsMap["Times Crowned"] = 0;
         statsMap["Carapaces Murdered"]  = 0;
-        statsMap["Times Partied"] = 0;
+        statsMap["Times Joined Players"] = 0;
         statsMap["Moons Murdered"]  = 0;
         statsMap["Planets Murdered"]  = 0;
         statsMap["Red Miles Activated"]  = 0;
@@ -53,7 +53,7 @@ class CarapaceStats {
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
         statsMap["Times Activated"] = carapace.active ? 1 : 0;
-        statsMap["Times Partied"] = carapace.partyLeader != null ? 1 : 0;
+        statsMap["Times Joined Players"] = carapace.partyLeader != null ? 1 : 0;
         statsMap["Times Crowned"] = carapace.everCrowned ? 1 : 0;
         statsMap["Carapaces Murdered"] = carapace.npcKillCount;
         statsMap["Moons Murdered"] = carapace.moonKillCount;
