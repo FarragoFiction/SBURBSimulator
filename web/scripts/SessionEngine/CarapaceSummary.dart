@@ -123,13 +123,14 @@ class CarapaceStats {
         DivElement div = new DivElement();
         div.classes.add("cardStats");
         div.style.display = "none";
-        div.text = description;
+        div.setInnerHtml(description);
         descriptionPage = div;
         return div;
 
     }
 
     void togglePage() {
+        showingStats = !showingStats;
         if(showingStats) {
             statPage.style.display = "inline-block";
             descriptionPage.style.display = "none";
@@ -138,7 +139,6 @@ class CarapaceStats {
             descriptionPage.style.display = "inline-block";
             statPage.style.display = "none";
         }
-        showingStats = !showingStats;
     }
 
     Element makeStats() {
