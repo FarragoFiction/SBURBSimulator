@@ -1,17 +1,26 @@
 .collectibleCardBorder{
 	background-color: blue;
 	 border-radius: 23px;
-	width: 322px;
+	width: 300px;
 	position: relative;
 	height: 450px;
 	padding: 10px;
 	display: inline-block;
-	margin: 10px;
+	margin: 6px;
 }
+
+.cardPortrait{
+    width: 275px;
+    height: 200px;
+	border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .collectibleCard{
 	background-color: grey;
-	 border-radius: 13px;
-	width: 302px;
+	border-radius: 5px;
+	width: 280px;
 	height: 430px;
 	padding: 10px;
 	display: inline-block;
@@ -21,9 +30,12 @@
     top: 0px;
 }
 
+.cardStats{
+
+}
+
 
 .cardName{
-    background-color: green;
     width: 50%;
 	padding: 10px;
 }
