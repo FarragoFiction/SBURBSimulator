@@ -78,7 +78,7 @@ class SessionSummary {
         try {
             List<dynamic> what = JSON.decode(idontevenKnow);
             for(dynamic d in what) {
-                print("dynamic json thing is  $d");
+               // print("dynamic json thing is  $d");
                 JSONObject j = new JSONObject();
                 j.json = d;
                 print("made a json object $j");
@@ -115,9 +115,11 @@ class SessionSummary {
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         print("made a json object");
         //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
-
         carapaceSummary = new CarapaceSummary(null); //all zeroes
+        print("going to load carapace summary");
+
         carapaceSummary.fromJSON(json["carapaceSummary"]);
+        print("did load carapace summary");
 
         var boolExample = true;
         initBoolKeys();

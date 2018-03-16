@@ -22,6 +22,10 @@ class CarapaceStats {
 
 
     CarapaceStats(Carapace carapace) {
+        if(carapace != null) loadCarapace(carapace);
+    }
+
+    void loadCarapace(Carapace carapace) {
         this.initials = carapace.initials;
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
@@ -39,6 +43,7 @@ class CarapaceStats {
     }
 
     void fromJSON(String jsonString) {
+        print("trying to make a carapace summary from $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         for(String key in statsMap.keys) {
             // print("checking num key of $key with value ${json[key]}");
@@ -179,15 +184,16 @@ class CarapaceSummary {
 
 
     void fromJSON(String jsonString) {
+        print("trying to laod carapace summary from json");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
-            print("dynamic json thing is  $d");
+            print("dynamic json thing for carapace summary is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
-            print("made a json object $j");
+            print("made a json object $j, going to make a carapace summary");
             CarapaceStats s = new CarapaceStats(null);
-            print("made a carapace summary");
+            print("made a carapace summary, gonna load it from json");
             s.fromJSON(j.toString());
             print("loaded that carapace summary to json");
             data[s.initials] = s;
