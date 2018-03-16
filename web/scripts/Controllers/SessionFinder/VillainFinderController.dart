@@ -3,7 +3,7 @@ import "../../SessionEngine/SessionSummaryLib.dart";
 import '../../SBURBSim.dart';
 
 Element div;
-CarapaceSummary carapaceSummary = new CarapaceSummary();
+CarapaceSummary carapaceSummary = new CarapaceSummary(null);
 
 void main() {
     globalInit();
