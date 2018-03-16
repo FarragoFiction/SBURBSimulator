@@ -160,6 +160,16 @@ class CarapaceSummary {
          session.setupMoons();
     }
 
+    JSONObject toJSON() {
+        JSONObject container  = new JSONObject();
+        List<JSONObject> jsonArray = new List<JSONObject>();
+        for(CarapaceStats cs in data.values) {
+            jsonArray.add(cs.toJSON());
+        }
+        container["data"] = jsonArray.toString();
+        return container;
+    }
+
     //if you add a carapace summary to yourself, you add all it's values to your own data.
     void add(CarapaceSummary other) {
         for(CarapaceStats cs in other.data.values) {
