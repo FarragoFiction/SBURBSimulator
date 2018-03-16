@@ -51,6 +51,7 @@ class CarapaceStats {
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
         statsMap["Times Activated"] = carapace.active ? 1 : 0;
+        statsMap["Times Partied"] = carapace.partyLeader != null ? 1 : 0;
         statsMap["Times Crowned"] = carapace.crowned != null ? 1 : 0;
         statsMap["Carapaces Murdered"] = carapace.npcKillCount;
         statsMap["Moons Murdered"] = carapace.moonKillCount;
@@ -93,7 +94,7 @@ class CarapaceStats {
     //add all others vars to yourself
     void add(CarapaceStats other) {
         for(String key in statsMap.keys) {
-            statsMap[key] += other.statsMap[key];
+            if(other.statsMap.containsKey(key))statsMap[key] += other.statsMap[key];
         }
         sessions.addAll(other.sessions);
 
