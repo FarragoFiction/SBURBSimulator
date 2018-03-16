@@ -18,6 +18,7 @@ class GameEntity extends Object with StatOwner   {
     bool usedMiles = false;
     int landKillCount  = 0;
     int moonKillCount  = 0;
+    bool everCrowned = false;
 
 
     //availibility set to false by scenes

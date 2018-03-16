@@ -281,6 +281,10 @@ class Sylladex extends Object with IterableMixin<Item> {
             (owner as Carapace).pickName();
             if(!(owner as Carapace).royalty) owner.session.stats.crownedCarapace = true;
         }
+
+        if(item is Ring || item is Scepter) {
+            owner.everCrowned = true;
+        }
         i.modMaxUpgrades(owner);
     }
 
