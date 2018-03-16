@@ -125,9 +125,16 @@ class CarapaceSummary {
     }
 
     void init() {
-        NPCHandler npcHandler = new NPCHandler(new Session(-13));
+        Session session = new Session(-13);
+        session.setupMoons();
+        NPCHandler npcHandler = new NPCHandler(session);
         List<GameEntity> npcs = npcHandler.getProspitians();
+        npcs.add(session.prospit.king);
+        npcs.add(session.prospit.queen);
         npcs.addAll(npcHandler.getDersites());
+        npcs.add(session.derse.king);
+        npcs.add(session.derse.queen);
+
 
         for(GameEntity g in npcs) {
             if(g is Carapace) {
