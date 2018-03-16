@@ -1,5 +1,7 @@
 import "dart:html";
 import "../SBURBSim.dart";
+import "SessionSummaryLib.dart";
+
 
 
 class CarapaceStats {
@@ -11,30 +13,11 @@ class CarapaceStats {
     String initials;
     String moon;
 
-    //todo figure out how i want to collect stats.
-    CarapaceStat timesActivated = new CarapaceStat("Times Activated");
-    CarapaceStat timesCrowned = new CarapaceStat("Times Crowned");
-    CarapaceStat carapacesMurdered = new CarapaceStat("Carapaces Murdered");
-    CarapaceStat moonsMurdered = new CarapaceStat("Moons Murdered");
-    CarapaceStat planetsMurdered = new CarapaceStat("Planets Murdered");
-    CarapaceStat redMilesUsed =  new CarapaceStat("Red Miles Activated");
-    CarapaceStat playersMurdered = new CarapaceStat("Players Murdered");
-    CarapaceStat timesDied = new CarapaceStat("Times Died");
-    CarapaceStat timesExiled = new CarapaceStat("Times Exiled");
 
-    List<CarapaceStat> get stats => <CarapaceStat>[timesActivated,timesCrowned,carapacesMurdered,moonsMurdered,planetsMurdered,redMilesUsed,playersMurdered,timesDied,timesExiled];
-
-    Map<String, CarapaceStat> _statsMap;
+    Map<String, int> statsMap = new Map<String, int>();
 
 
-    Map<String, CarapaceStat> get statsMap {
-        if(_statsMap == null) {
-            for(CarapaceStat s in stats) {
-                _statsMap[s.name] = s;
-            }
-        }
-        return _statsMap;
-    }
+
 
 
     CarapaceStats(Carapace carapace) {
@@ -42,13 +25,35 @@ class CarapaceStats {
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
+        statsMap["Times Activated"] = 0;
+        statsMap["Times Crowned"] = 0;
+        statsMap["Carapaces Murdered"] = 0;
+        statsMap["Moons Murdered"] = 0;
+        statsMap["Planets Murdered"] = 0;
+        statsMap["Red Miles Activated"] = 0;
+        statsMap["Players Murdered"] = 0;
+        statsMap["Times Died"] = 0;
+        statsMap["Times Exiled"] = 0;
         sessions.addAll([13,8,4037,413,1025,612]);
+    }
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        for(String key in statsMap.keys) {
+            json[key] = statsMap[key].toString();
+        }
+        json["aliases"] = aliases;
+        json["exampleName"] = exampleName;
+        json["initials"] = initials;
+        json["moon"] = moon;
+
+        return json;
     }
 
     //add all others vars to yourself
     void add(CarapaceStats other) {
         for(String key in statsMap.keys) {
-            statsMap[key].value += other.statsMap[key].value;
+            statsMap[key] += other.statsMap[key];
         }
     }
 
@@ -67,16 +72,16 @@ class CarapaceStats {
     Element makeStats() {
         DivElement div = new DivElement();
         div.classes.add("cardStats");
-        for(CarapaceStat cs in stats) {
+        for(String key in statsMap.keys) {
             DivElement tmp = new DivElement();
             tmp.classes.add("cardStatBox");
             SpanElement first = new SpanElement();
-            first.setInnerHtml("${cs.name}:");
+            first.setInnerHtml("${key}:");
             first.classes.add("cardStatName");
 
             SpanElement second = new SpanElement();
             second.classes.add("cardStatValue");
-            second.setInnerHtml("${cs.value}");
+            second.setInnerHtml("${statsMap[key]}");
             tmp.append(first);
             tmp.append(second);
             div.append(tmp);
@@ -181,8 +186,3 @@ class CarapaceSummary {
     }
 }
 
-class CarapaceStat {
-    String name;
-    int value;
-    CarapaceStat(this.name, [this.value=0]);
-}
