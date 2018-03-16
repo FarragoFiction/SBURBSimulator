@@ -17,12 +17,16 @@ class CarapaceStats {
         DivElement div = new DivElement();
         div.classes.add("collectibleCard");
 
-        DivElement name = new DivElement();
-        div.classes.add("cardName");
-        div.text = "Initials: $initials";
+        DivElement divBorder = new DivElement();
+        divBorder.classes.add("collectibleCardBorder");
 
+        DivElement name = new DivElement();
+        name.classes.add("cardName");
+        name.text = "Initials: $initials";
+
+        divBorder.append(div);
         div.append(name);
-        return div;
+        return divBorder;
     }
 
 }

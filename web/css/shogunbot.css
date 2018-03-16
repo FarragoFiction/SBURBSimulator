@@ -1,9 +1,29 @@
-.collectibleCard{
-	background-color: red;
+.collectibleCardBorder{
+	background-color: blue;
+	 border-radius: 23px;
+	width: 322px;
+	position: relative;
+	height: 450px;
 	padding: 10px;
+	display: inline-block;
+	margin: 10px;
 }
+.collectibleCard{
+	background-color: grey;
+	 border-radius: 13px;
+	width: 302px;
+	height: 430px;
+	padding: 10px;
+	display: inline-block;
+	margin: 10px;
+	position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
 
 .cardName{
     background-color: green;
+    width: 50%;
 	padding: 10px;
 }
