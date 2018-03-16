@@ -3,7 +3,7 @@
 	 border-radius: 23px;
 	width: 300px;
 	position: relative;
-	height: 490px;
+	height: 510px;
 	padding: 10px;
 	display: inline-block;
 	margin: 6px;
@@ -13,7 +13,7 @@
 	background-color: grey;
 	border-radius: 5px;
 	width: 280px;
-	height: 470px;
+	height: 490px;
 	padding: 10px;
 	display: inline-block;
 	margin: 10px;
@@ -60,7 +60,7 @@
 
 .cardStats{
     overflow: hidden;
-    height: 240px;
+    height: 260px;
 }
 
 

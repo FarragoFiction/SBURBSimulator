@@ -111,15 +111,15 @@ class SessionSummary {
     }
 
     void fromJSON(String jsonString) {
-        print("trying to make a json object");
+       // print("trying to make a json object");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
-        print("made a json object");
+       // print("made a json object");
         //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
         carapaceSummary = new CarapaceSummary(null); //all zeroes
-        print("going to load carapace summary");
+       // print("going to load carapace summary");
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
-        print("did load carapace summary");
+       // print("did load carapace summary");
 
         var boolExample = true;
         initBoolKeys();

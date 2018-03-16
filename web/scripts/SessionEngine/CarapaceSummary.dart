@@ -47,6 +47,7 @@ class CarapaceStats {
     }
 
     void loadCarapace(Carapace carapace) {
+        print("loading carapace $carapace who is active ${carapace.active}");
         this.initials = carapace.initials;
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
@@ -62,6 +63,8 @@ class CarapaceStats {
         statsMap["Times Died"] =  carapace.dead ? 1 : 0;
         statsMap["Times Exiled"] =  carapace.exiled ? 1 : 0;
         sessions.add(carapace.session.session_id);
+        print("loaded carapace $carapace who is active ${statsMap["Times Activated"]}");
+
     }
 
     void fromJSON(String jsonString) {
@@ -206,18 +209,18 @@ class CarapaceSummary {
 
 
     void fromJSON(String jsonString) {
-        print("trying to laod carapace summary from json");
+      //  print("trying to laod carapace summary from json");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
-            print("dynamic json thing for carapace summary is  $d");
+            //print("dynamic json thing for carapace summary is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
-            print("made a json object $j, going to make a carapace summary");
+            //print("made a json object $j, going to make a carapace summary");
             CarapaceStats s = new CarapaceStats(null);
-            print("made a carapace summary, gonna load it from json");
+            //print("made a carapace summary, gonna load it from json");
             s.fromJSON(j.toString());
-            print("loaded that carapace summary to json");
+           // print("loaded that carapace summary to json");
             data[s.initials] = s;
         }
 
@@ -242,10 +245,12 @@ class CarapaceSummary {
 
     void init() {
 
-        List<GameEntity> npcs = session.npcHandler.getProspitians();
+        List<GameEntity> npcs = session.activatedNPCS;
+        if(session.prospit != null) npcs.addAll(session.prospit.associatedEntities);
+
         npcs.add(session.battlefield.whiteKing);
         if(session.prospit != null) npcs.add(session.prospit.queen);
-        npcs.addAll(session.npcHandler.getDersites());
+        if(session.derse != null) npcs.addAll(session.derse.associatedEntities);
         npcs.add(session.battlefield.blackKing);
         if(session.derse != null) npcs.add(session.derse.queen);
 
