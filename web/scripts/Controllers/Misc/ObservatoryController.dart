@@ -11,8 +11,9 @@ import '../../navbar.dart';
 import '../../random.dart';
 
 Future<Null> main() async {
-    await Renderer.loadThree();
     globalInit();
+    await Renderer.loadThree();
+    await Loader.loadManifest();
     loadNavbar();
 
     ObservatoryViewer observatory = new ObservatoryViewer(1000, 750);
@@ -59,8 +60,8 @@ class ObservatoryViewer {
 
         this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100);//..rotation.z = Math.PI;//..position.z = 10..lookAt(new THREE.Vector3.zero());
 
-        //this.goToSeed(seed);
-        this.goToCoordinates(100, 100);
+        this.goToSeed(seed);
+        //this.goToCoordinates(100, 100);
 
         this.update();
 
@@ -151,6 +152,8 @@ class ObservatoryViewer {
 
         this.camera..position.x = camx.toDouble()..position.y = camy.toDouble();
 
+        //print("x: $camx, y: $camy");
+
         this.updateSessions();
     }
 
@@ -204,18 +207,30 @@ class ObservatoryViewer {
 }
 
 class ObservatorySession {
+    static const int modelsize = 512;
+    static const int max_deviation = ObservatoryViewer.gridsize - modelsize;
+
     ObservatoryViewer parent;
 
     Session session;
+    Random rand;
 
     int seed;
     int x;
     int y;
 
+    int model_offset_x;
+    int model_offset_y;
+
     THREE.Object3D model;
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         this.session = parent.getSession(seed);
+
+        this.rand = new Random(seed);
+
+        this.model_offset_x = rand.nextInt(max_deviation) - max_deviation ~/2;
+        this.model_offset_y = rand.nextInt(max_deviation) - max_deviation ~/2;
     }
 
     void update([num dt = 0.0]) {
@@ -239,13 +254,15 @@ class ObservatorySession {
 
         THREE.Texture texture = new THREE.Texture(info)..flipY=true..needsUpdate=true;*/
 
-        //THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/image.vert", "shaders/image.frag");
-        THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: colour));//, map:texture));
+        THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/image.vert", "shaders/observatory_session.frag")..transparent = true;
+        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: colour));//, map:texture));
 
-        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(128, 128), mat)..rotation.x = Math.PI;
+        THREE.setUniform(mat, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(1, 1));
+        
+        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat)..rotation.x = Math.PI;
 
         this.model = mesh;
-        this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize..y = (y + 0.5) * ObservatoryViewer.gridsize;
+        this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize + model_offset_x..y = (y + 0.5) * ObservatoryViewer.gridsize + model_offset_y;
         return mesh;
     }
 }
