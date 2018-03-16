@@ -40,7 +40,7 @@ abstract class Loader {
         } else {
             if (!bypassManifest) {
                 if (manifest == null) {
-                    manifest = await Loader.getResource("manifest/manifest.txt", format: Formats.manifest, bypassManifest: true);
+                    await loadManifest();
                 }
 
                 String bundle = manifest.getBundleForFile(path);
@@ -52,6 +52,10 @@ abstract class Loader {
             }
             return _load(path, format: format, absoluteRoot: absoluteRoot);
         }
+    }
+
+    static Future<Null> loadManifest() async {
+        manifest = await Loader.getResource("manifest/manifest.txt", format: Formats.manifest, bypassManifest: true);
     }
 
     static Resource<T> _createResource<T>(String path) {
