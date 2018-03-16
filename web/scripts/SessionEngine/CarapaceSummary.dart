@@ -241,11 +241,11 @@ class CarapaceSummary {
     void init() {
 
         List<GameEntity> npcs = session.npcHandler.getProspitians();
-        npcs.add(session.prospit.king);
-        npcs.add(session.prospit.queen);
+        npcs.add(session.battlefield.whiteKing);
+        if(session.prospit != null) npcs.add(session.prospit.queen);
         npcs.addAll(session.npcHandler.getDersites());
-        npcs.add(session.derse.king);
-        npcs.add(session.derse.queen);
+        npcs.add(session.battlefield.blackKing);
+        if(session.derse != null) npcs.add(session.derse.queen);
 
 
         for(GameEntity g in npcs) {
