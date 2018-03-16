@@ -8,11 +8,11 @@ CarapaceSummary carapaceSummary = new CarapaceSummary();
 void main() {
     globalInit();
     div = querySelector("#stats");
-    todo("print out the cache from AB.");
     //testCache();
-    todo("print out a card for each carapace, initially just listing names");
     displayCards();
     todo("if no cache, instruct Observer to go check AB");
+    todo("add kings and queens");
+    todo("figure out why session list tool bar is cut off. is it because bottom?");
     todo("have session summary have a list of CarapaceData, keyed by initials. CarapaceData is just stuff ShogunBot cares about.");
     todo("have each card list their stats (default to zero for now)");
     todo("actually use this data for the card stats");
