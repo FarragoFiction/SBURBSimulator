@@ -1,6 +1,7 @@
 import "dart:html";
 import "../SBURBSim.dart";
 import "SessionSummaryLib.dart";
+import 'dart:convert';
 
 
 
@@ -37,6 +38,19 @@ class CarapaceStats {
         sessions.add(carapace.session.session_id);
     }
 
+    void fromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        for(String key in statsMap.keys) {
+            // print("checking num key of $key with value ${json[key]}");
+            statsMap[key] = num.parse(json[key]);
+        }
+        aliases = json["aliases"];
+        exampleName = json["exampleName"];
+        initials = json["initials"];
+        moon = json["moon"];
+        sessions  = new List.from(JSONObject.jsonStringToIntSet(json["sessions"]));
+    }
+
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         for(String key in statsMap.keys) {
@@ -46,6 +60,7 @@ class CarapaceStats {
         json["exampleName"] = exampleName;
         json["initials"] = initials;
         json["moon"] = moon;
+        json["sessions"] = sessions.toString();
 
         return json;
     }
@@ -160,6 +175,24 @@ class CarapaceSummary {
     void defaultSession() {
          session = new Session(-13);
          session.setupMoons();
+    }
+
+
+    void fromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        List<dynamic> what = JSON.decode(json["data"]);
+        for(dynamic d in what) {
+            print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            print("made a json object $j");
+            CarapaceStats s = new CarapaceStats(null);
+            print("made a carapace summary");
+            s.fromJSON(j.toString());
+            print("loaded that carapace summary to json");
+            data[s.initials] = s;
+        }
+
     }
 
     JSONObject toJSON() {

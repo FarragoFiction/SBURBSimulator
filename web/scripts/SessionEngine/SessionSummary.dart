@@ -114,6 +114,10 @@ class SessionSummary {
         print("trying to make a json object");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         print("made a json object");
+        //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
+
+        carapaceSummary = new CarapaceSummary(null); //all zeroes
+        carapaceSummary.fromJSON(json["carapaceSummary"]);
 
         var boolExample = true;
         initBoolKeys();
@@ -154,6 +158,8 @@ class SessionSummary {
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
+
+        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
 
         //TODO what to do about players and mini players? for now, leave off.
 
@@ -461,6 +467,7 @@ class SessionSummary {
 
     static SessionSummary makeSummaryForSession(Session session) {
         SessionSummary summary = new SessionSummary(session.session_id);
+        summary.carapaceSummary = new CarapaceSummary(session);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {
