@@ -22,7 +22,27 @@ class CarapaceStats {
 
 
     CarapaceStats(Carapace carapace) {
-        if(carapace != null) loadCarapace(carapace);
+        if(carapace != null) {
+            loadCarapace(carapace);
+        }else {
+            initStats();
+        }
+    }
+
+    void initStats() {
+        this.initials = "???";
+        this.exampleName = "???";
+        this.aliases = "???";
+        this.moon = "???";
+        statsMap["Times Activated"] = 0;
+        statsMap["Times Crowned"] = 0;
+        statsMap["Carapaces Murdered"]  = 0;
+        statsMap["Moons Murdered"]  = 0;
+        statsMap["Planets Murdered"]  = 0;
+        statsMap["Red Miles Activated"]  = 0;
+        statsMap["Players Murdered"]  = 0;
+        statsMap["Times Died"]  = 0;
+        statsMap["Times Exiled"] = 0;
     }
 
     void loadCarapace(Carapace carapace) {
