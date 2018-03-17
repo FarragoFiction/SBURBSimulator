@@ -38,6 +38,7 @@ class Battlefield extends Land {
             this.whiteKing.name = "White King"; //override crowned name
             this.whiteKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             whiteKing.grist = 1000;
+            whiteKing.description = "The White King is destined to be defeated on Skaia's Battlefield so that the Reckoning may be started with his Scepter.";
             whiteKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
             whiteKing.heal();
 
@@ -45,6 +46,8 @@ class Battlefield extends Land {
             blackKing.royalty = true; //do before crowning, to avoid ab being confused
             this.blackKing.sylladex.add(session.derseScepter);
             this.blackKing.name = "Black King"; //override crowned name
+            blackKing.description = "The Black King is destined defeat his counterpart on Skaia's Battlefield so that the Reckoning may be started with the twin Scepters.";
+
             this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             blackKing.grist = 1000;
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
