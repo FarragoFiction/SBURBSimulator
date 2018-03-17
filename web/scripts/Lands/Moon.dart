@@ -202,6 +202,33 @@ class Moon extends Land {
         queen.heal();
     }
 
+    Carapace get activateRandomCaparapce {
+        List<Carapace> choices = new List<Carapace>();
+        for(GameEntity g in associatedEntities) {
+            if(g is Carapace && !g.active) {
+                if(session.rand.nextDouble() < g.activationChance) choices.add(g);
+            }
+        }
+        //print("getting a random carapace from $choices");
+
+        //always pick jack, he is the main npc
+        if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
+        return session.rand.pickFrom(choices);
+    }
+
+    Carapace get partyRandomCarapace {
+        List<Carapace> choices = new List<Carapace>();
+        for(GameEntity g in associatedEntities) {
+            if(g is Carapace && !g.active) {
+                if(session.rand.nextDouble() < g.companionChance) choices.add(g);
+            }
+        }
+        //print("getting a random carapace from $choices");
+
+        //always pick jack, he is the main npc
+        if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
+        return session.rand.pickFrom(choices);
+    }
 
 
   Carapace get randomNonActiveCarapace {

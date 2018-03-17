@@ -637,9 +637,6 @@ class PitchRomanceReward extends Reward {
 ///all one thing so if you lose a dream self mid whatever, you at least get the right reward.
 class DreamReward extends Reward {
 
-    double companionOdds = 0.95;
-    double activationOdds = 0.90;
-
     @override
     String image = null;
     String bgImage = "Prospit.png";
@@ -666,11 +663,10 @@ class DreamReward extends Reward {
         Carapace companion;
         Carapace activated;
 
-        if(p1.session.rand.nextDouble() > companionOdds) {
-            companion = p1.session.prospit.randomNonActiveCarapace;
-        }else if(p1.session.rand.nextDouble() > activationOdds) {
-            activated = p1.session.prospit.randomNonActiveCarapace;
-        }
+        //both of these can return null.
+        companion = p1.session.prospit.partyRandomCarapace;
+        activated = p1.session.prospit.activateRandomCaparapce;
+
 
         String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
         if(companion != null) {
@@ -702,11 +698,8 @@ class DreamReward extends Reward {
         bgImage = "Derse.png";
         Carapace companion;
         Carapace activated;
-        if(p1.session.rand.nextDouble() > companionOdds) {
-            companion = p1.session.derse.randomNonActiveCarapace;
-        }else if(p1.session.rand.nextDouble() > activationOdds) {
-            activated = p1.session.derse.randomNonActiveCarapace;
-        }
+        companion = p1.session.derse.partyRandomCarapace;
+        activated = p1.session.derse.activateRandomCaparapce;
 
         String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
         if(companion != null) {

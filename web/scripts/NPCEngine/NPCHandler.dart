@@ -362,7 +362,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..bureaucraticBullshit = <String>["has to pay a fine after spray painting 'N7' on the Royal Palace.","has to pay a fine after doing sweet BIKE STUNTS off the chain between Derse and it's moon.","has to post bail after punching all those kittens."]
-            ..description = ""
+            ..description = "Nobody knows who ME actually is. His graffiti, however, is quite easy to discern - it always includes “N7” symbols. And he often does wacky and morally questionable shit for fun."
             ..makeCharming(100)
         );
 
@@ -374,7 +374,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..sylladex.add(new Item("Cookbook",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.BOOK]))
-            ..description = ""
+            ..description = "The Derse Royal Chef is a busy gentlewoman and a staunch nutritionist. She keeps the Royal Household healthy and well fed."
             ..makeViolent(100)
             ..bureaucraticBullshit = <String>["needs a permit for a huge banquet in the Queen's honor.","wants to make sure the Archagent is eating right."]
 
@@ -384,12 +384,12 @@ class NPCHandler
         //BE	Bugs	Bug Entomologist, Beetle Enthusiast, Butterfly Enquirer	Brigand Engineer	Derse
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Beetle","Butterfly","Bug"], lastNames: <String>["Enthusiast","Entomologist","Enquirer"], ringFirstNames: <String>["Brigand"], ringLastNames: <String>["Eclectica"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
-            ..distractions = <String>["is flipping the fuck out about how great bugs are!","thinks they just saw a rare beetle.","is tending to their butterflies."]
+            ..distractions = <String>["is flipping the fuck out about how great bugs are!","thinks they just saw a rare beetle.","is tending to her butterflies."]
             ..specibus = new Specibus("Butterfly Net", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.WOOD, ItemTraitFactory.RESTRAINING])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..sylladex.add(new Item("Butterfly Collection",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.FAE]))
-            ..description = ""
+            ..description = "BE loves bugs, all bugs. Fluttering butterflies, iridescent beetles, scurrying bugs. They are all equally loved by Derse's foremost Entomologist.  "
             ..makeLucky(100)
             ..bureaucraticBullshit = <String>["has to pay a fine after letting that swarm of locusts out into the royal [REDACTED] gardens.","wants a permit to store more fireflies."]
 
@@ -397,18 +397,16 @@ class NPCHandler
         //EA	HorrorTerrors	Eldritch Acolyte, Eccentric Advocate, Eclectic Alien	Efflorant Atronach	Derse
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Eldritch","Eccentric","Eclectic"], lastNames: <String>["Acolyte","Alien","Advocate"], ringFirstNames: <String>["Efflorant"], ringLastNames: <String>["Atronach"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
-            ..distractions = <String>["is worshiping the horror terrors.","is thinking about ways to make free-to-play games even more evil.","is doing the work of the Elder Gods."]
+            ..distractions = <String>["is worshiping the horror terrors.","is thinking about ways to make free-to-play games even more evil.","is doing the work of the Elder Gods.", "is....not acting like a normal carapace."]
             ..specibus = new Specibus("Grimoire", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER, ItemTraitFactory.CORRUPT, ItemTraitFactory.MAGICAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..sylladex.add(new Item("Shrieking Grimoire",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.CORRUPT]))
-            ..description = ""
+            ..description = "Uh. Nothing to see here. <span class = 'void'>${Zalgo.generate("THE PUPPET HOLDS THE KEY TO OUR POWER.")}</span>"
             ..makeCunning(100)
             ..bureaucraticBullshit = <String>["is paying a nominal fee for breaking the law rather than having any real consequences.","would like to tell the Archagent about the Will of the Elder Gods.","got busted for using Magicks, which have been declared 'fake as fuck' by Royal Decree."]
             ..sideLoyalty = 1000
-
         );
-
         dersites.addAll(getMidnightCrew());
         return dersites;
 
@@ -427,7 +425,7 @@ class NPCHandler
             ..bureaucraticBullshit = <String>["needs to pay a fine after that debacle with the Pastries of Love.","is dropping off a cake topped with Scottie Dogs."]
             ..makeCharming(100)
             ..sylladex.add(new Item("Holy Pastry",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.EDIBLE, ItemTraitFactory.MAGICAL]))
-            ..description = ""
+            ..description = "A skilled baker, RB is skilled at making HOLY PASTRIES. Some of them are magical. RB can teach you to make the pastries, too."
             ..makeLucky(100)
             ..royaltyOpinion = 1000
         );
@@ -440,7 +438,7 @@ class NPCHandler
             ..makeCharming(100)
             ..bureaucraticBullshit = <String>["needs to pick up a package that's in lockup.","has to deliver a small package to the Archagrent.","wants to pick up some mail to deliver."]
             ..sylladex.add(new Item("Mail Cap",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.CLOTH]))
-            ..description = ""
+            ..description = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL. PM loves the MAIL. The MAIL is her job and her hobby. She might even let you help out."
             ..makeLucky(100)
             ..sideLoyalty = 10
             ..royaltyOpinion = 10
@@ -458,7 +456,7 @@ class NPCHandler
             ..specibus = new Specibus("Friendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
             ..fraymotifs.add(f)
             ..sylladex.add(new Item("Catpchacardmon Ball",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.SENTIENT]))
-            ..description = ""
+            ..description = "KB loves playing captchacardmons, and wants to help you be the very best, the best there ever was! He’ll gladly accompany you anywhere you go."
             ..bureaucraticBullshit = <String>["wants to update their captchacardmon license."]
 
         //kid boi is too good and pure to go crazy

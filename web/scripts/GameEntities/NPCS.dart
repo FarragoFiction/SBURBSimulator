@@ -13,6 +13,10 @@ class Carapace extends NPC {
 
     int royaltyOpinion = 1;
     int sideLoyalty = 1;
+    
+    //TODO customize activation vs companion for each npc
+    double activationChance = 0.05;
+    double companionChance = 0.1;
 
     //TODO make it so when a carapace is crowned they get this scene as their highest priority
     Scene crownedScene;
