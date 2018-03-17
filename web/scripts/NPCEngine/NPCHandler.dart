@@ -186,7 +186,7 @@ class NPCHandler
             ..makeCharming(1000)
             ..sylladex.add(new Item("Candy Corn",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("Diversity Mural",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.PRETTY]))
-            ..companionChance = 0.5
+            ..companionChance = 0.1
 
             ..bureaucraticBullshit = <String>["needs to get their private eye license renewed.","needs to pay off all those mural loans he took out.","has to get this treaty properly ratified."]
             ..makeLucky(1000)
@@ -199,7 +199,7 @@ class NPCHandler
             ..description = "A Prospitian Agent with a disconcerting oggle. There is a small sub-cult on Prospit that worships his high Imagination stat instead of The Genesis Frog, and he finds it to be off-putting."
             ..sylladex.add(new Item("Tootsie Roll",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("Imaginary Fort",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.FAKE, ItemTraitFactory.PLYWOOD]))
-            ..companionChance = 0.5
+            ..companionChance = 0.1
 
             ..bureaucraticBullshit = <String>["has to pay this fine for public oogling.","needs a permit to fondly regard creation.","has a ticket for excess imagination usage this month."]
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
@@ -212,7 +212,7 @@ class NPCHandler
             ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT])
             ..distractions = <String>["is punching various things in the snoot to establish dominance.","is brewing the worlds most perfect hot sauce.","is wearing a wig. You assume he's undercover or something?"]
             ..royaltyOpinion = -10
-            ..companionChance = 0.5
+            ..companionChance = 0.1
             ..description = "A Prospitian Agent with famously shitty imagination. He doesn't even have a female counterpart, as  a result. He is AMAZING at establishing dominance and brewing hot sauce, though. "
             ..sylladex.add(new Item("Gummy Worm",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("5 Alarm Hot Sauce",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.ONFIRE]))
@@ -230,7 +230,7 @@ class NPCHandler
             ..description = "A Prospitian Dame who excels at making friends in the most unlikely of situations. Her Hysteria Meter is a formidable attack, though indescriminate in nature."
             ..sylladex.add(new Item("Scale Bodice",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.PRETTY]))
             ..sylladex.add(new Item("Tommy Gun",<ItemTrait>[ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY]))
-            ..companionChance = 0.5
+            ..companionChance = 0.1
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["has to pay this fine for public hysteria.","needs a permit to open up a fine establishment for her new friends.","has to pay a fine for all this public damage."]
 
@@ -246,7 +246,7 @@ class NPCHandler
             ..sylladex.add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.ROBOTIC2]))
             ..description = "A Prospitian broad with a famously low Mangrit stat, which is only as low as her Nervousness threshold. Its anybodies guess why the White Queen allows her to go out in public armed with a flamethrower."
             ..sylladex.add(new Item("Paint Stripper",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ONFIRE]))
-            ..companionChance = 0.5
+            ..companionChance = 0.1
 
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["needs a permit for public fainting.","is trying to help out CI with getting an invention permit. "]

@@ -370,7 +370,7 @@ class SessionSummary {
 
     String generateHTML() {
         String params = getParamStringMinusParam("seed");
-        String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'> ${toJSON()}";
+        String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
 
         if (this.parentSession != null) {
             html = "$html${this.decodeLineageGenerateHTML()}";
