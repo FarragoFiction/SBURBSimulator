@@ -135,10 +135,11 @@ class CarapaceStats {
         if(showingStats) {
             statPage.style.display = "inline-block";
             descriptionPage.style.display = "none";
-
+            pageNum.text = "Page: 1/2";
         }else {
             descriptionPage.style.display = "inline-block";
             statPage.style.display = "none";
+            pageNum.text = "Page: 2/2";
         }
     }
 
@@ -209,7 +210,8 @@ class CarapaceStats {
         altText.text = aliases;
         pageNum = new SpanElement();
         pageNum.text = "Page: 1/2";
-        name.append(pageNum);
+        pageNum.classes.add("cardPageNum");
+        alts.append(pageNum);
         name.append(alts);
 
         divBorder.append(div);
@@ -273,7 +275,11 @@ class CarapaceSummary {
     //if you add a carapace summary to yourself, you add all it's values to your own data.
     void add(CarapaceSummary other) {
         for(CarapaceStats cs in other.data.values) {
-            data[cs.initials].add(cs);
+            if(data.containsKey(cs.initials)) {
+                data[cs.initials].add(cs);
+            }else {
+                data[cs.initials] = cs;
+            }
         }
     }
 

@@ -36,6 +36,11 @@
     border-bottom: 1px dotted black;
 }
 
+.cardPageNum{
+    position: absolute;
+    right: 10px;
+}
+
 .cardStatBox{
     padding-bottom: 3px;
 }
