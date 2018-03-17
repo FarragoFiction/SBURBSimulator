@@ -455,6 +455,7 @@ class NPCHandler
             ..distractions = <String>["is being the very best, like no one ever was.","is explaining the rules to Captchacardmons.","is showing everyone his fanfictions."]
             ..specibus = new Specibus("Friendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
             ..fraymotifs.add(f)
+            ..companionChance = 0.95 //almost guaranteed to follow you
             ..sylladex.add(new Item("Catpchacardmon Ball",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.SENTIENT]))
             ..description = "KB loves playing captchacardmons, and wants to help you be the very best, the best there ever was! He’ll gladly accompany you anywhere you go."
             ..bureaucraticBullshit = <String>["wants to update their captchacardmon license."]
@@ -472,7 +473,7 @@ class NPCHandler
             ..sideLoyalty = 10
             ..bureaucraticBullshit = <String>["wants to get a permit to put on a magic show.","needs to pay a fine for a public disturbance claiming magic was real.","needs to update their magic license."]
             ..sylladex.add(new Item("Magical Textbook",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.MAGICAL, ItemTraitFactory.BOOK]))
-            ..description = ""
+            ..description = "An amateur magician, they’re already good at stage tricks. Totally offering lessons in stage trickery. Totally willing to accompany you on your journeys."
             ..specibus = new Specibus("Magic Wand", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
@@ -484,7 +485,7 @@ class NPCHandler
             ..distractions = <String>["is eating a shit ton of sugar.","is just sort of generally being a dick.","is really emotionally invested in this game of Life being played."]
             ..sideLoyalty = -1000
             ..sylladex.add(new Item("Romance Novel",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.ROMANTIC, ItemTraitFactory.BOOK]))
-            ..description = ""
+            ..description = "The crime lord of Prospit. Skilled at crime. Cheater. Used to have diabetes. Stay away from him. Or challenge him to a game of Life."
             ..bureaucraticBullshit = <String>["wants to file a 'legitimate business' license.","wants to talk shop.","wants a license to practice 'legitimate business'."]
             ..specibus = new Specibus("Brass Knuckles", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT, ItemTraitFactory.METAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 500})
@@ -502,7 +503,7 @@ class NPCHandler
             ..sylladex.add(new Item("Lewd Object",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.METAL])) //its' a bucket
             ..sideLoyalty = 10
             ..bureaucraticBullshit = <String>["wants to file paperwork to get reimbursed for a community mural she painted.","needs to file an extension for a mural she's painting.","has to get a permit to order more lewd objects filled with paint."]
-            ..description = ""
+            ..description = "A cutesy Prospitian with an affinity for art, she loves painting things. She is also one of the most compassionate persons on Prospit. "
             ..makeLucky(100)
         );
         //HP	Holy	Holy Preacher,Happy Painter, High Pediatrician	Hallowed Patrician	Prospit
@@ -513,7 +514,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..sylladex.add(new Item("Crystaline Frog",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.GLOWING]))
-            ..description = ""
+            ..description = "He knows the End is Nigh and preaches acceptance, nay ANTICIPATION, of this joyous event. The Vast Croak will purify the world in the fires of creation, and build it anew in the Players image. "
             ..bureaucraticBullshit = <String>["needs a license to preach.","would like to get a permit for limited amphibian iconography to spread the word of the Vast Croak.","has gotten arrested for spreading Frog Religion on Derse."]
             ..sideLoyalty = 1000
             ..makeCunning(100)
@@ -525,7 +526,7 @@ class NPCHandler
             ..bureaucraticBullshit = <String>["wants a permit to publicly display their rock collection.","would like a permit to throw the first stone."]
             ..sylladex.add(new Item("Lapis Lazuli Gem",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.CRYSTAL]))
             ..sylladex.add(new Item("Peridot Gem",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.CRYSTAL]))
-            ..description = ""
+            ..description = "She collects rocks. Especially shiny and sparkly ones. That’s all she is talking about. She even ships her rocks. She wants more of them. Give her more rocks, and she will follow you."
             ..specibus = new Specibus("Geode", ItemTraitFactory.BUST, <ItemTrait>[ ItemTraitFactory.STONE, ItemTraitFactory.GLASS])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
@@ -539,7 +540,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..sylladex.add(new Item("'How to Have a Bad Time' Book",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.BOOK, ItemTraitFactory.IRONICSHITTYFUNNY]))
             ..makeViolent(100)
-            ..description = ""
+            ..description = "ME’s spiritual sibling. Meme brought to flesh and chitin. They are usually chilling, munching on the hotdogs somewhere you cannot reach them, or doing dumb things.<br><br>Oh, and when they go crowned their left eye lights up and Megalovania starts accompanying them everywhere. Who writes this crap???...oh right."
             ..bureaucraticBullshit = <String>["is having a bad time."]
             ..sideLoyalty = -1000
             ..makeCharming(100)
@@ -552,8 +553,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..sylladex.add(new Item("Bronze Gear",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.METAL]))
-            ..description = ""
-            ..bureaucraticBullshit = <String>["needs a permit for their giant robot.","has to pay fines for the robot's destruction.","needs to update their inventor license."]
+            ..description = "She is skilled at tech. Especially steampunk tech. Which works despite the fact that it shouldn’t work. But who fucking cares."
+            ..bureaucraticBullshit = <String>["needs a permit for her giant robot.","has to pay fines for the robot's destruction.","needs to update her inventor license."]
 
             ..makeCunning(100)
         );
@@ -566,7 +567,7 @@ class NPCHandler
             ..sylladex.add(new Item("Stethescope",<ItemTrait>[ItemTraitFactory.UNBEATABLE, ItemTraitFactory.HEALING]))
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
-            ..description = ""
+            ..description = "He probably won’t chop off the wrong limb, and he probably won’t treat something you don’t have.  You...get the feeling he is supposed to be something more than this."
             ..makeCunning(100)
         );
 
