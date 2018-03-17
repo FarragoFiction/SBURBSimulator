@@ -188,13 +188,13 @@ class Moon extends Land {
         if(name.contains("Prospit")) {
             this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
             queen.royalty = true;
-            queen.description = "Prospit's White Queen. She does not leave her Royal Chambers until it's time for the final battle.";
+            queen.description = "Prospit's White Queen, famously kind and compassionate. She does not leave her Royal Chambers until it's time for the final battle.";
             this.queen.sylladex.add(this._queensRing);
             this.queen.name = "White Queen"; //override crowned name
         }else {
             this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
             queen.royalty = true;
-            queen.description = "Derses's White Queen. She does not leave her Royal Chambers until it's time for the final battle.";
+            queen.description = "Derses's Black Queen, famously a huge bitch. She does not leave her Royal Chambers until it's time for the final battle.";
             this.queen.sylladex.add(this._queensRing);
             this.queen.name = "Black Queen"; //override crowned name
         }

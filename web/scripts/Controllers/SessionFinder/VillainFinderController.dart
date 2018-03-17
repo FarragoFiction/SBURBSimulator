@@ -1,6 +1,7 @@
 import "dart:html";
 import "../../SessionEngine/SessionSummaryLib.dart";
 import '../../SBURBSim.dart';
+import "dart:async";
 
 Element div;
 CarapaceSummary carapaceSummary = new CarapaceSummary(null);
@@ -17,9 +18,9 @@ void main() {
 
 }
 
-void displayCards() {
+Future<Null> displayCards() async {
     for(CarapaceStats cs in carapaceSummary.data.values) {
-        div.append(cs.getCard());
+        cs.getCard(div);
     }
 }
 

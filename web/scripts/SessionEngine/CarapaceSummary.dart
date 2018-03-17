@@ -2,7 +2,7 @@ import "dart:html";
 import "../SBURBSim.dart";
 import "SessionSummaryLib.dart";
 import 'dart:convert';
-
+import "dart:async";
 
 
 class CarapaceStats {
@@ -19,6 +19,7 @@ class CarapaceStats {
 
     Element statPage;
     Element descriptionPage;
+    Element pageNum;
 
     Map<String, int> statsMap = new Map<String, int>();
 
@@ -182,7 +183,7 @@ class CarapaceStats {
 
     //display pic of prospit or derse.
     //display placeholder for the carpace in question.
-    Element getCard() {
+    Element getCard(Element container) {
         DivElement div = new DivElement();
         div.onClick.listen((e)
         {
@@ -192,6 +193,8 @@ class CarapaceStats {
 
         DivElement divBorder = new DivElement();
         divBorder.classes.add("collectibleCardBorder");
+        container.append(divBorder);
+
 
         DivElement name = new DivElement();
         name.classes.add("cardName");
@@ -204,6 +207,9 @@ class CarapaceStats {
         altText.classes.add("tooltiptext");
         alts.append(altText);
         altText.text = aliases;
+        pageNum = new SpanElement();
+        pageNum.text = "Page: 1/2";
+        name.append(pageNum);
         name.append(alts);
 
         divBorder.append(div);
@@ -211,7 +217,6 @@ class CarapaceStats {
         div.append(name);
         div.append(makeStats());
         div.append(makeDescription());
-        return divBorder;
     }
 
 }

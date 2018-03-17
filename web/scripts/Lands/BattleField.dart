@@ -46,7 +46,7 @@ class Battlefield extends Land {
             blackKing.royalty = true; //do before crowning, to avoid ab being confused
             this.blackKing.sylladex.add(session.derseScepter);
             this.blackKing.name = "Black King"; //override crowned name
-            blackKing.description = "The Black King is destined defeat his counterpart on Skaia's Battlefield so that the Reckoning may be started with the twin Scepters.";
+            blackKing.description = "The Black King is destined to defeat his counterpart on Skaia's Battlefield so that the Reckoning may be started with the twin Scepters.";
 
             this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             blackKing.grist = 1000;
