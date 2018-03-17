@@ -239,7 +239,7 @@ class NPCHandler
             ..makeViolent(1000)
         );
 
-        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Nervous","Naive","Nice"], lastNames: <String>["Broad","Bird","Bartender"], ringFirstNames: <String>["Notorious","Never-ending"], ringLastNames: <String>["Bard","Bloodshed"])
+        sunshineTeam.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Nervous","Naive","Nice"], lastNames: <String>["Broad","Bird","Bartender"], ringFirstNames: <String>["Notorious","Neverending"], ringLastNames: <String>["Bard","Bloodshed"])
             ..specibus = new Specibus("Flamethrower", ItemTraitFactory.PISTOL, <ItemTrait>[ ItemTraitFactory.ONFIRE])
             ..distractions = <String>["is very nervous.","is having a nervous breakdown.","is trying to figure out the difference between a teddy bear and a knife."]
             ..sideLoyalty = 10
