@@ -210,6 +210,11 @@ class ObservatorySession {
     static const int modelsize = 512;
     static const int max_deviation = ObservatoryViewer.gridsize - modelsize;
 
+    static bool _graphics_init = false;
+    static THREE.Texture spiro_tex;
+    static THREE.ShaderUniform<THREE.Texture> spiro_uniform;
+    static THREE.MeshBasicMaterial spiro_material;
+
     ObservatoryViewer parent;
 
     Session session;
@@ -237,33 +242,39 @@ class ObservatorySession {
 
     }
 
-    Future<THREE.Object3D> createModel() async {
-        int colour = 0xFF0000;
-        if (x < 0 || x >= ObservatoryViewer.size || y < 0 || y >= ObservatoryViewer.size) {
-            colour = 0x00FF00;
+    static Future<Null> initGraphics() async {
+        if (_graphics_init) {
+            return;
         }
 
-        /*CanvasElement info = new CanvasElement(width: 128, height: 128);
-        info.context2D
-            ..fillStyle = "white"
-            ..fillRect(0, 0, 128, 128)
-            ..fillStyle = "black"
-            ..fillText("seed: $seed", 5, 12)
-            ..fillText("x: $x, y: $y", 5, 24)
-        ;
+        spiro_tex = new THREE.Texture(await Loader.getResource("images/spirograph_white.png"))..needsUpdate = true;
+        //spiro_uniform = new THREE.ShaderUniform<THREE.Texture>()..value = spiro_tex;
+        spiro_material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: spiro_tex));
 
-        THREE.Texture texture = new THREE.Texture(info)..flipY=true..needsUpdate=true;*/
+        _graphics_init = true;
+    }
+
+    Future<THREE.Object3D> createModel() async {
+        await initGraphics();
+
+        THREE.Object3D group = new THREE.Object3D()..rotation.x = Math.PI;
 
         THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/image.vert", "shaders/observatory_session.frag")..transparent = true;
-        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: colour));//, map:texture));
+        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: 0xFF0000));//, map:texture));
 
         THREE.setUniform(mat, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(1, 1));
+        //THREE.setUniform(mat, "spiro_tex", spiro_uniform);
         
-        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat)..rotation.x = Math.PI;
+        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat);
+        group.add(mesh);
 
-        this.model = mesh;
+        print(spiro_material);
+        THREE.Mesh testspiro = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), spiro_material)..position.z = 1.0..position.x = 32.0;
+        group.add(testspiro);
+
+        this.model = group;
         this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize + model_offset_x..y = (y + 0.5) * ObservatoryViewer.gridsize + model_offset_y;
-        return mesh;
+        return group;
     }
 }
 
