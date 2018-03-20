@@ -124,24 +124,33 @@ class CarapaceStats {
         div.classes.add("cardStats");
         div.style.display = "none";
         div.setInnerHtml(description);
-        pages[1] = div;
+        pages.add(div);
         return div;
 
     }
 
     Element makeSessions() {
         DivElement div = new DivElement();
-        div.classes.add("cardStats");
+        div.setInnerHtml("Sessions Active In: ");
         div.style.display = "none";
-        div.setInnerHtml(description);
-        pages[2] = div;
+        DivElement sessionsDiv  = new DivElement();
+        div.append(sessionsDiv);
+        for(int session_id in sessions) {
+            DivElement d = new DivElement();
+            AnchorElement a = new AnchorElement();
+            a.href = "index2.html?seed=$session_id";
+            a.text = " $session_id, ";
+            d.append(a);
+            sessionsDiv.append(d);
+        }
+        pages.add(div);
         return div;
 
     }
 
     void turnPage() {
         currentPage ++;
-        if(currentPage > pages.length) currentPage = 0;
+        if(currentPage >= pages.length) currentPage = 0;
 
         for(int i = 0; i<pages.length; i++) {
             Element e = pages[i];
@@ -151,7 +160,7 @@ class CarapaceStats {
                   e.style.display = "none";
             }
         }
-        pageNum.text = "Page: ${currentPage}/${pages.length}";
+        pageNum.text = "Page: ${currentPage+1}/${pages.length}";
     }
 
     Element makeStats() {
@@ -172,22 +181,8 @@ class CarapaceStats {
             div.append(tmp);
         }
 
-        DivElement activeSession = new DivElement();
-        activeSession.setInnerHtml("Sessions Active In: ...");
-        activeSession.classes.add("tooltip");
-        DivElement tooltipText  = new DivElement();
-        tooltipText.classes.add("tooltiptext");
-        activeSession.append(tooltipText);
-        div.append(activeSession);
-        for(int session_id in sessions) {
-            DivElement d = new DivElement();
-            AnchorElement a = new AnchorElement();
-            a.href = "index2.html?seed=$session_id";
-            a.text = " $session_id, ";
-            d.append(a);
-            tooltipText.append(d);
-        }
-        pages[0] = div;
+
+        pages.add(div);
         return div;
     }
 
@@ -220,7 +215,6 @@ class CarapaceStats {
         alts.append(altText);
         altText.text = aliases;
         pageNum = new SpanElement();
-        pageNum.text = "Page: ${currentPage}/${pages.length}";
         pageNum.classes.add("cardPageNum");
         alts.append(pageNum);
         name.append(alts);
@@ -231,6 +225,7 @@ class CarapaceStats {
         div.append(makeStats());
         div.append(makeDescription());
         div.append(makeSessions());
+        pageNum.text = "Page: ${currentPage+1}/${pages.length}";
     }
 
 }
