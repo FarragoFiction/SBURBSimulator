@@ -5631,3 +5631,40 @@ alright.
 
 I know that the session list is a list of ints. or rather. a set that turns into a list
 does anything happen there?
+
+check where it gets created.
+
+DEBUG SHOGUNBOT:to json, sessions are now 1 for active and 0 long for crowned and made it [4047210998] and [] respectively
+(program):1 DEBUG SHOGUNBOT:to json, sessions are now 1 for active and 1 long for crowned and made it [4047210998] and [4047210998] respectively
+
+
+that looks good. so when it loads...
+
+this might be it:
+DEBUG SHOGUNBOT: from json, sessions are now 0 for active and 0 long for crowned, was [2583821404] and [2583821404] respectively
+VM227:1 DEBUG SHOGUNBOT: from json, sessions are now 0 for active and 0 long for crowned, was [2583821404] and [] respectively
+
+it has 0 when loading, evne if the json wasn't zero.
+
+i know this works for....
+DO i know this works for wigglersim? when was the last time i tested it?
+
+
+
+DEBUG SHOGUNBOT: from json, sessions are now 0 for active and 0 long for crowned, was [3463532254] and [3463532254] respectively. temporary set form is {}
+VM254:1 DEBUG SHOGUNBOT: from json, sessions are now 0 for active and 0 long for crowned, was [3463532254] and [] respectively. temporary set form is {}
+
+
+even the set is empty, which i wasn't expecting. i figured it....
+
+huh.
+
+if it's expecting to parse a set,but it's getting an array....does an array look different?
+
+yup, iti's expecting curly braces
+well
+i kno whow to fix that
+make it expect both
+or make a new method
+whatever
+make a new method is probalby correct

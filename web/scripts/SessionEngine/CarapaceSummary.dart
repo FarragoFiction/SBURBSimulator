@@ -84,9 +84,9 @@ class CarapaceStats {
         exampleName = json["exampleName"];
         initials = json["initials"];
         moon = json["moon"];
-        activeSessions  = new List.from(JSONObject.jsonStringToIntSet(json["activeSessions"]));
-        crownedSessions  = new List.from(JSONObject.jsonStringToIntSet(json["crownedSessions"]));
-       // print("from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
+        activeSessions  = JSONObject.jsonStringToIntArray(json["activeSessions"]);
+        crownedSessions  =  JSONObject.jsonStringToIntArray(json["crownedSessions"]);
+       print("DEBUG SHOGUNBOT: from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned, was ${json["activeSessions"]} and ${json["crownedSessions"]} respectively. ");
     }
 
     JSONObject toJSON() {
@@ -100,7 +100,8 @@ class CarapaceStats {
         json["moon"] = moon;
         json["activeSessions"] = activeSessions.toString();
         json["crownedSessions"] = crownedSessions.toString();
-       // print("to json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
+
+        // print("DEBUG SHOGUNBOT:to json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned and made it ${json["activeSessions"]} and ${json["crownedSessions"]} respectively");
         return json;
     }
 
