@@ -5668,3 +5668,15 @@ make it expect both
 or make a new method
 whatever
 make a new method is probalby correct
+
+
+I....
+
+what?
+
+this isn't right.
+
+i think it's acting differently, but never getting above one session long?
+
+hrm. or. no that makes sense, it's not collated. lets' go ask ShogunBot.
+
