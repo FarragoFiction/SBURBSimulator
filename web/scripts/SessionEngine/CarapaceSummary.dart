@@ -50,7 +50,7 @@ class CarapaceStats {
     }
 
     void loadCarapace(Carapace carapace) {
-        print("loading carapace $carapace who is active ${carapace.active}");
+        //print("loading carapace $carapace who is active ${carapace.active}");
         this.initials = carapace.initials;
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
@@ -69,12 +69,12 @@ class CarapaceStats {
         if(carapace.active) activeSessions.add(carapace.session.session_id);
         if(carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
 
-        print("loaded carapace $carapace who is active ${statsMap["Times Activated"]} and sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
+        //print("loaded carapace $carapace who is active ${statsMap["Times Activated"]} and sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
 
     }
 
     void fromJSON(String jsonString) {
-        print("trying to make a carapace summary from $jsonString");
+        //print("trying to make a carapace summary from $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         for(String key in statsMap.keys) {
             // print("checking num key of $key with value ${json[key]}");
@@ -86,7 +86,7 @@ class CarapaceStats {
         moon = json["moon"];
         activeSessions  = new List.from(JSONObject.jsonStringToIntSet(json["activeSessions"]));
         crownedSessions  = new List.from(JSONObject.jsonStringToIntSet(json["crownedSessions"]));
-        print("sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
+       // print("from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
     }
 
     JSONObject toJSON() {
@@ -100,10 +100,7 @@ class CarapaceStats {
         json["moon"] = moon;
         json["activeSessions"] = activeSessions.toString();
         json["crownedSessions"] = crownedSessions.toString();
-
-        print("sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
-
-
+       // print("to json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
         return json;
     }
 

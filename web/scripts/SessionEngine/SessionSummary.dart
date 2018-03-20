@@ -47,13 +47,14 @@ class SessionSummary {
         //then add myself to it
         //then turn them all to json
         //then save
+        print("DEBUG SHOGUNBOT: going to save a summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
         Map<String, SessionSummary> summaries =  loadAllSummaries();
         summaries[jsonKey] = this;
         SessionSummary.saveAllSummaries(new List.from(summaries.values));
     }
 
     static Map<String, SessionSummary> loadAllSummaries() {
-        print("trying to load");
+       // print("trying to load");
         Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
         if(!window.localStorage.containsKey(SAVE_TAG)) {
             print("local storage doesn't have my key");
@@ -81,11 +82,11 @@ class SessionSummary {
                // print("dynamic json thing is  $d");
                 JSONObject j = new JSONObject();
                 j.json = d;
-                print("made a json object $j");
+                //print("made a json object $j");
                 SessionSummary s = new SessionSummary(-13);
-                print("made a session summary");
+                //print("made a session summary");
                 s.fromJSON(j.toString());
-                print("loaded that session summary to json");
+                //print("loaded that session summary to json");
                 ret[s.jsonKey] = s;
             }
         }catch(e) {
@@ -119,7 +120,9 @@ class SessionSummary {
        // print("going to load carapace summary");
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
-       // print("did load carapace summary");
+        print("DEBUG SHOGUNBOT: loaded a session summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
+
+        // print("did load carapace summary");
 
         var boolExample = true;
         initBoolKeys();
@@ -468,6 +471,7 @@ class SessionSummary {
     }
 
     static SessionSummary makeSummaryForSession(Session session) {
+        print("DEBUG SHOGUNBOT: making a session summary for session $session");
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.carapaceSummary = new CarapaceSummary(session);
         summary.setMiniPlayers(session.players);

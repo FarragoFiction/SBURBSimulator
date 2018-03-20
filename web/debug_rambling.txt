@@ -5465,3 +5465,169 @@ places to look:
 * place i create the list
 * place i convert hte list to json
 * place i load it from json
+
+
+What do I see?
+
+the creation of the list has either zero or one after a single session.
+
+Then, 35 carapaces are loded from json, and they are all zero:
+
+from json, sessions are now 0 for active and 0 long for carapace
+VM88:1 loaded carapace Jack Noir (SS) who is active 1 and sessions are now 1 for active and 0 long for carapace
+
+this repeats over and over until it's time to write to json:
+to json, sessions are now 0 for active and 0 long for carapace
+(program):1 to json, sessions are now 1 for active and 1 long for carapace
+
+
+how is it being called FROM json if it's never being called to json? and if that's the problem, why aren't the
+rest of the stats zeroed out, too?
+
+what else do i see?
+
+to json, sessions are now 0 for active and 0 long for carapace
+(program):1 to json, sessions are now 1 for active and 1 long for carapace
+(program):1 to json, sessions are now 0 for active and 0 long for carapace
+(program):1 to json, sessions are now 1 for active and 0 long for carapace
+14(program):1 to json, sessions are now 0 for active and 0 long for carapace
+2(program):1 to json, sessions are now 0 for active and 1 long for carapace
+14(program):1 to json, sessions are now 0 for active and 0 long for carapace
+2(program):1 to json, sessions are now 0 for active and 1 long for carapace
+
+
+so some of them are 1 big when they go to json....
+
+my assumption is it's any that were one this round......
+
+So...
+
+I guess the first thing I want to know is, why is "from json" being called? it looks like that's wehre the data is
+ being lost.
+
+ i kinda think that the carapace data shouldn't be messed with ....untill....
+
+
+ Oh okay.
+
+ So, what I'm doing is saving each session to the local cache every time it's done, since that's how
+ i make it so you don't hafta wait for ab to be done to have data.
+
+ i'm still not sure why 'to json' isn't being called tho
+
+ so let's go find the place where i save a session....
+
+
+    void save() {
+        //i need to load all the session summaries from memory
+        //then add myself to it
+        //then turn them all to json
+        //then save
+        Map<String, SessionSummary> summaries =  loadAllSummaries();
+        summaries[jsonKey] = this;
+        SessionSummary.saveAllSummaries(new List.from(summaries.values));
+    }
+
+
+
+    so it looks like what i do is i load all the summaries i've stored in json (which is empty the first time)
+    and then i add myself to it, and then i turn all the summaries back to json and put back into local storage
+
+6 total sessions got:
+
+DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+5  VM146:1 DEBUG SHOGUNBOT: loaded carapace summary with 0 active sessions for  SS
+
+
+so....it was saved once and loaded 5 times. this doesn't make sense. the stats still look right...
+
+
+when is save called?
+
+makeSummaryForSession...
+
+
+DEBUG SHOGUNBOT: making a session summary for session 1677437000
+VM176:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+4 VM176:1 DEBUG SHOGUNBOT: loaded carapace summary with 0 active sessions for  SS
+
+
+
+
+
+this is insane.
+
+i notice i am confused.
+
+
+what it looks like it's saying is that it makes exactly one summary, then loads 4 of them. how. why.
+
+okay. Yes. that's the final session in the list.
+
+which means ab is printing too much shit out for me to read it all.
+
+time to go on a purge.
+
+looks like a lot of json
+
+
+
+yes okay
+
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 1054585160
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2952231370
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2952231370
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+2VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2834243485
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+3VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+(program):1 Debugging AB: going to check for combo in session: 2834243485 because makeCombined is true
+(program):1 DEBUG SHOGUNBOT: making a session summary for session 2834243485
+(program):1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+4(program):1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+
+this looks better.
+
+now to look closely at it
+
+i'ts hard to focus but i can do this.
+
+these are from 5 sessions total.
+
+so let's add new lines
+
+
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 1054585160
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+
+
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2952231370
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2952231370
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+2VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+
+VM196:1 DEBUG SHOGUNBOT: making a session summary for session 2834243485
+VM196:1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+3VM196:1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+
+(program):1 DEBUG SHOGUNBOT: making a session summary for session 2834243485
+(program):1 DEBUG SHOGUNBOT: going to save a summary with 1 active sessions for  SS
+4(program):1 DEBUG SHOGUNBOT: loaded a session summary with 0 active sessions for  SS
+
+
+so, i correctly see that it loads a session for each one saved, none at first, then 1, 2, etc.
+
+i notice that it always goes to save a summary with 1 active sessions, but then loads
+loaded a session summary with 0 active sessions for  SS
+
+alright.
+
+I know that the session list is a list of ints. or rather. a set that turns into a list
+does anything happen there?
