@@ -47,7 +47,7 @@ class SessionSummary {
         //then add myself to it
         //then turn them all to json
         //then save
-        print("DEBUG SHOGUNBOT: going to save a summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
+       // print("DEBUG SHOGUNBOT: going to save a summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
         Map<String, SessionSummary> summaries =  loadAllSummaries();
         summaries[jsonKey] = this;
         SessionSummary.saveAllSummaries(new List.from(summaries.values));
@@ -120,7 +120,7 @@ class SessionSummary {
        // print("going to load carapace summary");
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
-        print("DEBUG SHOGUNBOT: loaded a session summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
+        //print("DEBUG SHOGUNBOT: loaded a session summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
 
         // print("did load carapace summary");
 

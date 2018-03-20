@@ -66,8 +66,10 @@ class CarapaceStats {
         statsMap["Players Murdered"] = carapace.playerKillCount;
         statsMap["Times Died"] =  carapace.dead ? 1 : 0;
         statsMap["Times Exiled"] =  carapace.exiled ? 1 : 0;
-        if(carapace.active) activeSessions.add(carapace.session.session_id);
-        if(carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
+        if(carapace.session.session_id >0) {
+            if (carapace.active) activeSessions.add(carapace.session.session_id);
+            if (carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
+        }
 
         //print("loaded carapace $carapace who is active ${statsMap["Times Activated"]} and sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
 
@@ -86,7 +88,7 @@ class CarapaceStats {
         moon = json["moon"];
         activeSessions  = JSONObject.jsonStringToIntArray(json["activeSessions"]);
         crownedSessions  =  JSONObject.jsonStringToIntArray(json["crownedSessions"]);
-       print("DEBUG SHOGUNBOT: from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned, was ${json["activeSessions"]} and ${json["crownedSessions"]} respectively. ");
+       //print("DEBUG SHOGUNBOT: from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned, was ${json["activeSessions"]} and ${json["crownedSessions"]} respectively. ");
     }
 
     JSONObject toJSON() {
@@ -111,6 +113,7 @@ class CarapaceStats {
             if(other.statsMap.containsKey(key))statsMap[key] += other.statsMap[key];
         }
         activeSessions.addAll(other.activeSessions);
+        crownedSessions.addAll(other.crownedSessions);
 
     }
 
