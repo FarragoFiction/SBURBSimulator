@@ -10,8 +10,6 @@ const int pixelsize = 512;
 const float PI = 3.1415926535897932384626433832795;
 
 vec4 alpha_mix(vec4 source, vec4 destination, float mult) {
-    //source.a *= mult;
-    //return destination * (1.0 - source.a) + source;
     return mix(destination, source, source.a * mult);
 }
 
@@ -43,7 +41,6 @@ vec4 spiro(vec4 in_col, vec2 centre, float size, float rad_inner, float rad_oute
     if (v_uv.x <= centre.x - size * 0.5 || v_uv.x >= centre.x + size * 0.5 || v_uv.y <= centre.y - size * 0.5 || v_uv.y >= centre.y + size * 0.5) {
         return in_col;
     }
-    //if (dist > 1.1) { return in_col; }
 
     float c = cos(rotation);
     float s = sin(rotation);
@@ -128,13 +125,16 @@ void main() {
     float km_size = 5.0 * pixel;
 
     // derse and moon
-    col = circle(col, vec2(cos(derse_rot) * derse_dist + 0.5, sin(derse_rot) * derse_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
-    col = circle(col, vec2(cos(derse_rot) * (derse_dist + moon_offset) + 0.5, sin(derse_rot) * (derse_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
+    float d_cos = cos(derse_rot);
+    float d_sin = sin(derse_rot);
+    col = circle(col, vec2(d_cos * derse_dist + 0.5, d_sin * derse_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
+    col = circle(col, vec2(d_cos * (derse_dist + moon_offset) + 0.5, d_sin * (derse_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
 
     // prospit and moon
-    col = circle(col, vec2(cos(prospit_rot) * prospit_dist + 0.5, sin(prospit_rot) * prospit_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
-    col = circle(col, vec2(cos(prospit_rot) * (prospit_dist + moon_offset) + 0.5, sin(prospit_rot) * (prospit_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
+    float p_cos = cos(prospit_rot);
+    float p_sin = sin(prospit_rot);
+    col = circle(col, vec2(p_cos * prospit_dist + 0.5, p_sin * prospit_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
+    col = circle(col, vec2(p_cos * (prospit_dist + moon_offset) + 0.5, p_sin * (prospit_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
 
 	gl_FragColor = col;
-	//gl_FragColor = texture2D(spiro_tex, v_uv);
 }
