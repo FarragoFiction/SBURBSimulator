@@ -66,7 +66,8 @@ class CarapaceStats {
         statsMap["Players Murdered"] = carapace.playerKillCount;
         statsMap["Times Died"] =  carapace.dead ? 1 : 0;
         statsMap["Times Exiled"] =  carapace.exiled ? 1 : 0;
-        if(carapace.session.session_id >0) {
+        //don't even bother.
+        if(carapace.session.session_id >0 && !carapace.session.stats.scratched && !carapace.session.stats.hadCombinedSession) {
             if (carapace.active) activeSessions.add(carapace.session.session_id);
             if (carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
         }
@@ -149,7 +150,7 @@ class CarapaceStats {
         DivElement sessionsDiv  = new DivElement();
         activeDiv.append(sessionsDiv);
         for(int session_id in activeSessions) {
-            DivElement d = new DivElement();
+            SpanElement d = new SpanElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
             a.text = " $session_id, ";
@@ -163,7 +164,7 @@ class CarapaceStats {
         DivElement crownedDiv2  = new DivElement();
         crownedDiv.append(crownedDiv2);
         for(int session_id in crownedSessions) {
-            DivElement d = new DivElement();
+            SpanElement d = new SpanElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
             a.text = " $session_id, ";
