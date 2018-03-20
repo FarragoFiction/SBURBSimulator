@@ -212,7 +212,6 @@ class ObservatoryViewer {
 
 class ObservatorySession {
     static const int modelsize = 512;
-    static const int max_deviation = ObservatoryViewer.gridsize - modelsize;
     static const double max_rotation = 0.008;
     static const double min_rotation = 0.003;
 
@@ -257,6 +256,8 @@ class ObservatorySession {
         double minsize = 0.5 + 0.035 * this.session.players.length;
         double maxsize = 0.5 + 0.1 * this.session.players.length;
         this.session_size = Math.min(1.0, rand.nextDouble(maxsize - minsize) + minsize);
+
+        int max_deviation = (ObservatoryViewer.gridsize - modelsize * this.session_size).floor();
 
         this.model_offset_x = rand.nextInt(max_deviation) - max_deviation ~/2;
         this.model_offset_y = rand.nextInt(max_deviation) - max_deviation ~/2;

@@ -119,13 +119,21 @@ void main() {
 
     // prospit and derse objects
     float prospit_dist = skaia_scale * 0.05 + 0.03;
-    float prospit_rot = session_rotation + (PI * 0.5) + (PI / float(land_count));
+    float prospit_rot = session_rotation + (PI * 0.5) + (PI / float(land_count)); // half of one land angle offset ccw
     float derse_dist = session_size * 0.29 + 0.03;
     float derse_rot = -session_rotation * 0.5;
 
-    col = circle(col, vec2(cos(derse_rot) * derse_dist + 0.5, sin(derse_rot) * derse_dist + 0.5), 10.0 * pixel, vec4(1.0,1.0,1.0,1.0));
-    //col = crescent(col, vec2(cos(prospit_rot) * prospit_dist + 0.5, sin(prospit_rot) * prospit_dist + 0.5), 12.0 * pixel, -prospit_rot, vec4(1.0,1.0,1.0,1.0));
-    col = circle(col, vec2(cos(prospit_rot) * prospit_dist + 0.5, sin(prospit_rot) * prospit_dist + 0.5), 10.0 * pixel, vec4(1.0,1.0,1.0,1.0));
+    float moon_offset = 10.0 * pixel;
+    float kd_size = 10.0 * pixel;
+    float km_size = 5.0 * pixel;
+
+    // derse and moon
+    col = circle(col, vec2(cos(derse_rot) * derse_dist + 0.5, sin(derse_rot) * derse_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
+    col = circle(col, vec2(cos(derse_rot) * (derse_dist + moon_offset) + 0.5, sin(derse_rot) * (derse_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
+
+    // prospit and moon
+    col = circle(col, vec2(cos(prospit_rot) * prospit_dist + 0.5, sin(prospit_rot) * prospit_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
+    col = circle(col, vec2(cos(prospit_rot) * (prospit_dist + moon_offset) + 0.5, sin(prospit_rot) * (prospit_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
 
 	gl_FragColor = col;
 	//gl_FragColor = texture2D(spiro_tex, v_uv);
