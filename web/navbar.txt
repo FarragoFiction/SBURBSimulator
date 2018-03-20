@@ -9,15 +9,22 @@
       <a id = 'today' href="index2.html">Today's Session</a>
       <a href="index2.html">Read Random</a>
       <a href="character_creator.html">Customize Random</a>
-      <a href="rare_session_finder.html">Find Rare</a>
       <a href="dead_index.html">Random Dead Session</a>
-      <a href="dead_session_finder.html">Find Dead Sessions</a>
             <a href="testAlchemy.html">AlchemySim</a>
-
       <a href="http://farragofiction.com/SBURBSim/mainLanding.html">Main Branch</a>
       <a href="http://farragofiction.com/SBURBSimE/experimentalLanding.html">Experimental Branch</a>
     </div>
   </li>
+
+    <li class="dropdown menuButtonPureCSS">
+      <a href="javascript:void(0)" class="dropbtn">FIND</a>
+      <div class="dropdown-content">
+        <a href="rare_session_finder.html">AuthorBot: Find Ending Conditions</a>
+          <a href="rare_session_finder.html">AuthorBotJunior: Find Starting Conditions</a>
+         <a href="rare_villain_finder.html">ShogunBot: Big Bad Binder</a>
+        <a href="dead_session_finder.html">AuthorBot: Find Dead Sessions</a>
+      </div>
+    </li>
 
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">FANS</a>
@@ -47,7 +54,7 @@
   </li>
 
   <li class = "menuButtonPureCSS"><a href="https://discord.gg/KPunMPc">DISCORD</a></li>
-  <li class = "menuButtonPureCSS"><a href="support.html">SUPPORT SBURBSim</a></li>
+  <li class = "menuButtonPureCSS"><a href="support.html">SUPPORT</a></li>
   <li class="dropdown menuButtonPureCSS">
     <a href="javascript:void(0)" class="dropbtn">???</a>
     <div class="dropdown-content">
