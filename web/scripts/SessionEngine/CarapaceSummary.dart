@@ -153,6 +153,7 @@ class CarapaceStats {
             SpanElement d = new SpanElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
+            a.target = "_blank";
             a.text = " $session_id, ";
             d.append(a);
             sessionsDiv.append(d);
@@ -167,6 +168,7 @@ class CarapaceStats {
             SpanElement d = new SpanElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
+            a.target = "_blank";
             a.text = " $session_id, ";
             d.append(a);
             crownedDiv2.append(d);
