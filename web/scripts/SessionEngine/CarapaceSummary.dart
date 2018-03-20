@@ -7,7 +7,8 @@ import "dart:async";
 
 class CarapaceStats {
 
-    List<int> sessions = new List<int>();
+    List<int> activeSessions = new List<int>();
+    List<int> crownedSessions = new List<int>();
 
     String aliases;
     String exampleName;
@@ -65,8 +66,10 @@ class CarapaceStats {
         statsMap["Players Murdered"] = carapace.playerKillCount;
         statsMap["Times Died"] =  carapace.dead ? 1 : 0;
         statsMap["Times Exiled"] =  carapace.exiled ? 1 : 0;
-        sessions.add(carapace.session.session_id);
-        print("loaded carapace $carapace who is active ${statsMap["Times Activated"]}");
+        if(carapace.active) activeSessions.add(carapace.session.session_id);
+        if(carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
+
+        print("loaded carapace $carapace who is active ${statsMap["Times Activated"]} and sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
 
     }
 
@@ -81,7 +84,9 @@ class CarapaceStats {
         exampleName = json["exampleName"];
         initials = json["initials"];
         moon = json["moon"];
-        sessions  = new List.from(JSONObject.jsonStringToIntSet(json["sessions"]));
+        activeSessions  = new List.from(JSONObject.jsonStringToIntSet(json["activeSessions"]));
+        crownedSessions  = new List.from(JSONObject.jsonStringToIntSet(json["crownedSessions"]));
+        print("sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
     }
 
     JSONObject toJSON() {
@@ -93,7 +98,11 @@ class CarapaceStats {
         json["exampleName"] = exampleName;
         json["initials"] = initials;
         json["moon"] = moon;
-        json["sessions"] = sessions.toString();
+        json["activeSessions"] = activeSessions.toString();
+        json["crownedSessions"] = crownedSessions.toString();
+
+        print("sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for carapace");
+
 
         return json;
     }
@@ -103,7 +112,7 @@ class CarapaceStats {
         for(String key in statsMap.keys) {
             if(other.statsMap.containsKey(key))statsMap[key] += other.statsMap[key];
         }
-        sessions.addAll(other.sessions);
+        activeSessions.addAll(other.activeSessions);
 
     }
 
@@ -130,12 +139,15 @@ class CarapaceStats {
     }
 
     Element makeSessions() {
-        DivElement div = new DivElement();
-        div.setInnerHtml("Sessions Active In: ");
-        div.style.display = "none";
+        DivElement ret = new DivElement();
+        ret.style.display = "none";
+
+        DivElement activeDiv = new DivElement();
+        ret.append(activeDiv);
+        activeDiv.setInnerHtml("Sessions Active In: ");
         DivElement sessionsDiv  = new DivElement();
-        div.append(sessionsDiv);
-        for(int session_id in sessions) {
+        activeDiv.append(sessionsDiv);
+        for(int session_id in activeSessions) {
             DivElement d = new DivElement();
             AnchorElement a = new AnchorElement();
             a.href = "index2.html?seed=$session_id";
@@ -143,8 +155,22 @@ class CarapaceStats {
             d.append(a);
             sessionsDiv.append(d);
         }
-        pages.add(div);
-        return div;
+
+        DivElement crownedDiv = new DivElement();
+        ret.append(crownedDiv);
+        crownedDiv.setInnerHtml("Sessions Crowned In: ");
+        DivElement crownedDiv2  = new DivElement();
+        crownedDiv.append(crownedDiv2);
+        for(int session_id in crownedSessions) {
+            DivElement d = new DivElement();
+            AnchorElement a = new AnchorElement();
+            a.href = "index2.html?seed=$session_id";
+            a.text = " $session_id, ";
+            d.append(a);
+            crownedDiv2.append(d);
+        }
+        pages.add(ret);
+        return ret;
 
     }
 

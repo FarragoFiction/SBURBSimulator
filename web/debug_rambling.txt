@@ -5454,3 +5454,14 @@ Seventh:  Write ShogunBot
 
 
 
+~~~~~~~~~~~
+
+alright . uh.
+
+why does shogun bot not know about the list of sessions i'm making?
+
+places to look:
+
+* place i create the list
+* place i convert hte list to json
+* place i load it from json

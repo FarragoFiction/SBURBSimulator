@@ -134,7 +134,8 @@ class Carapace extends NPC {
             alts.add("${ringFirstNames[i]} ${ringLastNames[i]}");
         }
 
-        return turnArrayIntoHumanSentence(alts);
+        if(alts.length > 0)return turnArrayIntoHumanSentence(alts);
+        return "No Aliases Found. This is probably a bug.";
     }
 
     void pickName() {

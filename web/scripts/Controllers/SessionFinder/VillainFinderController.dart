@@ -2,16 +2,17 @@ import "dart:html";
 import "../../SessionEngine/SessionSummaryLib.dart";
 import '../../SBURBSim.dart';
 import "dart:async";
+import '../../navbar.dart';
 
 Element div;
 CarapaceSummary carapaceSummary = new CarapaceSummary(null);
 
 void main() {
     globalInit();
+    loadNavbar();
+
     div = querySelector("#stats");
-    todo("if no cache, instruct Observer to go check AB");
-    todo("figure out why session list tool bar is cut off. is it because bottom?");
-    todo("click a card to cycle through diff pages. aw's descriptions, etc.");
+    todo("get sessions linking");
     syncCache();
     displayCards();
 
