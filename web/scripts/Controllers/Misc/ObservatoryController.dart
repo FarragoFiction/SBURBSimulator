@@ -16,7 +16,7 @@ Future<Null> main() async {
     await Loader.loadManifest();
     loadNavbar();
 
-    ObservatoryViewer observatory = new ObservatoryViewer(1000, 750);
+    ObservatoryViewer observatory = new ObservatoryViewer(1000, 750, seed:13);
     querySelector("#spiel")..append(observatory.renderer.domElement);
 
     print("observatory is go!");
@@ -88,8 +88,12 @@ class ObservatoryViewer {
         this.updateSessions();
     }
 
-    void update([num dt = 0.0]) {
+    double prevframe = 0.0;
+    void update([num time = 0.0]) {
         window.requestAnimationFrame(update);
+        double doubletime = time.toDouble();
+        double dt = (doubletime - prevframe) / 1000;
+        prevframe = doubletime;
 
         for (ObservatorySession session in sessions.values) {
             session.update(dt);
@@ -208,7 +212,14 @@ class ObservatoryViewer {
 
 class ObservatorySession {
     static const int modelsize = 512;
-    static const int max_deviation = ObservatoryViewer.gridsize - modelsize;
+    static const double max_rotation = 0.008;
+    static const double min_rotation = 0.003;
+
+    static bool _graphics_init = false;
+    static THREE.Texture spiro_tex;
+    static THREE.ShaderUniform<THREE.Texture> spiro_uniform;
+    static THREE.MeshBasicMaterial spiro_material;
+    static THREE.MeshBasicMaterial spiro_material_land;
 
     ObservatoryViewer parent;
 
@@ -223,47 +234,134 @@ class ObservatorySession {
     int model_offset_y;
 
     THREE.Object3D model;
+    THREE.Object3D spin_group;
+    double rotation_speed;
+    double initial_rotation;
+    double session_size;
+
+    List<THREE.Object3D> land_spinners = <THREE.Object3D>[];
+    THREE.ShaderUniform<double> rotation_uniform;
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         this.session = parent.getSession(seed);
 
         this.rand = new Random(seed);
 
+        this.initial_rotation = rand.nextDouble(Math.PI * 2);
+        this.rotation_speed = rand.nextDouble() * (max_rotation - min_rotation) + min_rotation;
+        if (rand.nextBool()) {
+            this.rotation_speed *= -1;
+        }
+
+        double minsize = 0.5 + 0.035 * this.session.players.length;
+        double maxsize = 0.5 + 0.1 * this.session.players.length;
+        this.session_size = Math.min(1.0, rand.nextDouble(maxsize - minsize) + minsize);
+
+        int max_deviation = (ObservatoryViewer.gridsize - modelsize * this.session_size).floor();
+
         this.model_offset_x = rand.nextInt(max_deviation) - max_deviation ~/2;
         this.model_offset_y = rand.nextInt(max_deviation) - max_deviation ~/2;
     }
 
     void update([num dt = 0.0]) {
+        if (this.model == null) { return; }
+        spin_group.rotation.z = (spin_group.rotation.z + dt * rotation_speed * Math.PI * 2) % (Math.PI * 2 * 8);
 
+        for (THREE.Object3D spiro in land_spinners) {
+            spiro.rotation.z = (spiro.rotation.z + dt * rotation_speed * Math.PI * 2 * -8) % (Math.PI * 2);
+        }
+
+        this.rotation_uniform.value = spin_group.rotation.z;
+    }
+
+    static Future<Null> initGraphics() async {
+        if (_graphics_init) {
+            return;
+        }
+
+        spiro_tex = new THREE.Texture(await Loader.getResource("images/spirograph_white.png"))..needsUpdate = true;
+        //spiro_uniform = new THREE.ShaderUniform<THREE.Texture>()..value = spiro_tex;
+        spiro_material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: spiro_tex));
+        spiro_material_land = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: 0x707070, map: spiro_tex));
+
+        _graphics_init = true;
     }
 
     Future<THREE.Object3D> createModel() async {
-        int colour = 0xFF0000;
-        if (x < 0 || x >= ObservatoryViewer.size || y < 0 || y >= ObservatoryViewer.size) {
-            colour = 0x00FF00;
+        await initGraphics();
+
+        THREE.Object3D group = new THREE.Object3D()..rotation.x = Math.PI;
+        THREE.Object3D spinner = new THREE.Object3D();
+
+        THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_session.frag")..transparent = true;
+        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: 0xFF0000));//, map:texture));
+
+        this.rotation_uniform = new THREE.ShaderUniform<double>()..value = 0.0;
+        THREE.setUniform(mat, "session_rotation", rotation_uniform);
+        THREE.setUniform(mat, "land_count", new THREE.ShaderUniform<int>()..value = this.session.players.length);
+        THREE.setUniform(mat, "session_size", new THREE.ShaderUniform<double>()..value = this.session_size);
+
+        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat);
+        group.add(mesh);
+        group.add(spinner);
+
+        this.spin_group = spinner;
+
+        int players = this.session.players.length;
+        double angle_inc = (Math.PI * 2) / players;
+        double landdist = 120.0 * this.session_size - 40;
+        double land_extra_dist = 10.0;
+        double gate_sep = 15.0 * (0.8 + 0.2 * this.session_size);
+        int gates = (landdist / gate_sep).ceil();
+        double gate_inc = landdist / gates;
+        double skaia_dist = 35.0 * (0.5 + 0.5 * this.session_size);
+
+
+        for (int i=0; i<players; i++) {
+            double angle = angle_inc * i;
+            double ux = Math.sin(angle);
+            double uy = Math.cos(angle);
+            for (int j=0; j<gates; j++) {
+                double dist = skaia_dist + gate_inc * j;
+                double x = dist * ux;
+                double y = dist * uy;
+
+                THREE.Mesh gate = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), spiro_material)..position.z = 1.0..position.x = x..position.y = y;
+                spinner.add(gate);
+            }
+
+            Player player = session.players[i];
+            Land land = player.land;
+            THREE.Mesh landmodel = await createLandModel(player, land);
+            landmodel.position..x = (skaia_dist + landdist + land_extra_dist) * ux..y = (skaia_dist + landdist + land_extra_dist) * uy;
+            landmodel.rotation..z = -angle + Math.PI;
+            spinner.add(landmodel);
         }
 
-        /*CanvasElement info = new CanvasElement(width: 128, height: 128);
-        info.context2D
-            ..fillStyle = "white"
-            ..fillRect(0, 0, 128, 128)
-            ..fillStyle = "black"
-            ..fillText("seed: $seed", 5, 12)
-            ..fillText("x: $x, y: $y", 5, 24)
-        ;
-
-        THREE.Texture texture = new THREE.Texture(info)..flipY=true..needsUpdate=true;*/
-
-        THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/image.vert", "shaders/observatory_session.frag")..transparent = true;
-        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: colour));//, map:texture));
-
-        THREE.setUniform(mat, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(1, 1));
-        
-        THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat)..rotation.x = Math.PI;
-
-        this.model = mesh;
+        this.model = group;
         this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize + model_offset_x..y = (y + 0.5) * ObservatoryViewer.gridsize + model_offset_y;
-        return mesh;
+        spinner.rotation..z = this.initial_rotation;
+        return group;
+    }
+
+    Future<THREE.Object3D> createLandModel(Player player, Land land) async {
+        Colour col = new Colour.fromStyleString(player.getChatFontColor());
+
+        THREE.Object3D group = new THREE.Object3D();
+
+        THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/circle.frag");
+        THREE.setUniform(mat, "colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(col.redDouble, col.greenDouble, col.blueDouble, 1.0));
+
+        THREE.Mesh spiro = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), spiro_material_land)..position.z = 2.0;
+        THREE.Mesh landmodel = new THREE.Mesh(new THREE.PlaneGeometry(12, 12),
+            mat
+        )..position.z = 1.0;
+
+        this.land_spinners.add(spiro);
+        group.add(spiro);
+        group.add(landmodel);
+
+        return group;
     }
 }
 
@@ -389,10 +487,10 @@ class Morton {
     ];
 
     static int interleave(int x, int y) {
-        return _lookup[y >> 8]   << 17 |
-               _lookup[x >> 8]   << 16 |
-               _lookup[y & 0xFF] <<  1 |
-               _lookup[x & 0xFF];
+        return _lookup[y >> 8] << 17 |
+        _lookup[x >> 8] << 16 |
+        _lookup[y & 0xFF] << 1 |
+        _lookup[x & 0xFF];
     }
 
     static int _demorton(int x) {
@@ -407,6 +505,123 @@ class Morton {
     static Tuple<int, int> deinterleave(int z) {
         int x = _demorton(z);
         int y = _demorton(z >> 1);
-        return new Tuple<int, int>(x,y);
+        return new Tuple<int, int>(x, y);
     }
 }
+
+/* DM's C# tentacles
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Tentacle : MonoBehaviour {
+
+    MeshFilter mf;
+    public int nSegs;
+
+        // Use this for initialization
+        void Start () {
+        mf = GetComponent<MeshFilter>();
+
+        mf.mesh.Clear();
+
+        Vector3[] newVs = new Vector3[2*nSegs+1];
+
+        setCoords(0f, newVs);
+        mf.mesh.vertices = newVs;
+
+        Vector2[] uvs = new Vector2[2*nSegs+1];
+        for (int i=0; i<nSegs; i++)
+        {
+            float v = 0.4f * i;
+            uvs[2 * i] = new Vector2(0, v);
+            uvs[2 * i+1] = new Vector2(1, v);
+        }
+        uvs[2 * nSegs] = new Vector2(0.4f*(nSegs+0.5f), 0);
+        mf.mesh.uv = uvs;
+
+        int[] newTs = new int[(2 * nSegs + 1) * 3];
+        for (int i=0; i<nSegs; i++)
+        {
+            int j = i * 2 * 3;
+            int vi0 = i * 2;
+
+            newTs[j] = vi0;
+            newTs[j + 1] = vi0 + 1;
+            newTs[j + 2] = vi0 + 2;
+            if (i+1 < nSegs)
+            {
+                newTs[j + 3] = vi0 + 2;
+                newTs[j + 4] = vi0 + 1;
+                newTs[j + 5] = vi0 + 3;
+            }
+        }
+        mf.mesh.triangles = newTs;
+
+        if (false)
+        {
+            Vector3[] norms = new Vector3[4];
+            Vector3 norm = new Vector3(0, 0, -1);
+            for (int i = 0; i < norms.Length; i++)
+            {
+                norms[i] = norm;
+            }
+            mf.mesh.normals = norms;
+        }
+        else
+        {
+            mf.mesh.RecalculateNormals();
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        float t = Time.time;
+        float period = 4;
+        Vector3[] verts = mf.mesh.vertices;
+        setCoords(t, verts);
+        mf.mesh.vertices = verts;
+        }
+
+    public float timeCurlFactor=0.2f;
+    public float indexCurlFactor=0.1f;
+    public float baseSegLen = 0.3f;
+    public float segExponent = 0;
+    public float curlCeiling = 0.15f;
+    public float phase = 0;
+
+    void setCoords(float secs, Vector3[] verts)
+    {
+        Vector2 root = new Vector2(0, 0);
+
+        float theta = 0;
+        for (int i=0; i<=nSegs; i++)
+        {
+            float segLen = baseSegLen * Mathf.Exp(- i * segExponent);
+            float q = i / (float)nSegs;
+            float thick = 0.5f*(1 - q * q);
+
+            float x1 = root.x + segLen / 2 * Mathf.Cos(theta);
+            float y1 = root.y + segLen / 2 * Mathf.Sin(theta);
+            float dx = Mathf.Sin(theta);
+            float dy = -Mathf.Cos(theta);
+            float x2 = x1 + dx * thick;
+            float y2 = y1 + dy * thick;
+            float x3 = x1 - dx * thick;
+            float y3 = y1 - dy * thick;
+            verts[2*i] = new Vector3(x2, y2, 0);
+            if (i < nSegs)
+            {
+                verts[2 * i + 1] = new Vector3(x3, y3, 0);
+
+                root.x = root.x + segLen * Mathf.Cos(theta);
+                root.y = root.y + segLen * Mathf.Sin(theta);
+                float kludge = Mathf.Min(1, (1+i)*4f / nSegs);
+                theta += kludge * curlCeiling*Mathf.Cos(phase + (secs*timeCurlFactor -i * indexCurlFactor) * Mathf.PI);
+            }
+        }
+    }
+}
+ */
