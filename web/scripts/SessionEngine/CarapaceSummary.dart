@@ -15,10 +15,9 @@ class CarapaceStats {
     String moon;
     String description;
 
-    bool showingStats = true;
+    int currentPage = 0;
+    List<Element> pages = <Element>[];
 
-    Element statPage;
-    Element descriptionPage;
     Element pageNum;
 
     Map<String, int> statsMap = new Map<String, int>();
@@ -125,22 +124,34 @@ class CarapaceStats {
         div.classes.add("cardStats");
         div.style.display = "none";
         div.setInnerHtml(description);
-        descriptionPage = div;
+        pages[1] = div;
         return div;
 
     }
 
-    void togglePage() {
-        showingStats = !showingStats;
-        if(showingStats) {
-            statPage.style.display = "inline-block";
-            descriptionPage.style.display = "none";
-            pageNum.text = "Page: 1/2";
-        }else {
-            descriptionPage.style.display = "inline-block";
-            statPage.style.display = "none";
-            pageNum.text = "Page: 2/2";
+    Element makeSessions() {
+        DivElement div = new DivElement();
+        div.classes.add("cardStats");
+        div.style.display = "none";
+        div.setInnerHtml(description);
+        pages[2] = div;
+        return div;
+
+    }
+
+    void turnPage() {
+        currentPage ++;
+        if(currentPage > pages.length) currentPage = 0;
+
+        for(int i = 0; i<pages.length; i++) {
+            Element e = pages[i];
+            if(i == currentPage) {
+                e.style.display = "inline-block";
+            }else {
+                  e.style.display = "none";
+            }
         }
+        pageNum.text = "Page: ${currentPage}/${pages.length}";
     }
 
     Element makeStats() {
@@ -176,7 +187,7 @@ class CarapaceStats {
             d.append(a);
             tooltipText.append(d);
         }
-        statPage = div;
+        pages[0] = div;
         return div;
     }
 
@@ -188,7 +199,7 @@ class CarapaceStats {
         DivElement div = new DivElement();
         div.onClick.listen((e)
         {
-            togglePage();
+            turnPage();
         });
         div.classes.add("collectibleCard");
 
@@ -209,7 +220,7 @@ class CarapaceStats {
         alts.append(altText);
         altText.text = aliases;
         pageNum = new SpanElement();
-        pageNum.text = "Page: 1/2";
+        pageNum.text = "Page: ${currentPage}/${pages.length}";
         pageNum.classes.add("cardPageNum");
         alts.append(pageNum);
         name.append(alts);
@@ -219,6 +230,7 @@ class CarapaceStats {
         div.append(name);
         div.append(makeStats());
         div.append(makeDescription());
+        div.append(makeSessions());
     }
 
 }
