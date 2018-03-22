@@ -70,7 +70,7 @@ class MailSideQuest extends Scene {
         return continueQuest(div);
       }else {
           difficulty ++;
-          session.logger.info("AB: The mail went through. Does ${gameEntity.name} ever stop delivering?");
+          session.logger.info("AB: The mail went through. Does ${gameEntity.title()} ever stop delivering?");
           return endQuest(div);
       }
   }
@@ -150,13 +150,13 @@ class MailSideQuest extends Scene {
 
   bool givePackageToRecipient() {
       if(gameEntity.specibus.rank < package.rank) {
-          gameEntity.sylladex.add(gameEntity.specibus);
+          recipient.sylladex.add(recipient.specibus);
           Specibus s = new Specibus(package.fullName, package.traits.first, new List.from(package.traits));
-          gameEntity.specibus = s;
+          recipient.specibus = s;
           gameEntity.sylladex.remove((package));
           return true;
       }else {
-          gameEntity.sylladex.add(package); //should auto remove from sender, but let's be safe
+          recipient.sylladex.add(package); //should auto remove from sender, but let's be safe
           gameEntity.sylladex.remove((package));
           return false;
       }
@@ -170,8 +170,8 @@ class MailSideQuest extends Scene {
 
       bool equiped = givePackageToRecipient();
       DivElement ret = new DivElement();
-      String text = "With a proud flourish, the ${gameEntity.htmlTitle()} finishes delivering the ${package} to the ${recipient.htmlTitle()}.";
-      if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitle()} shoves the ${package} at the ${recipient.htmlTitle()}.";
+      String text = "With a proud flourish, the ${gameEntity.htmlTitleWithTip()} finishes delivering the ${package} to the ${recipient.htmlTitleWithTip()}.";
+      if(difficulty > 4) text = "With a frustrated huff, the ${gameEntity.htmlTitleWithTip()} shoves the ${package} at the ${recipient.htmlTitleWithTip()}.";
 
       if(equiped) {
           text = "$text The ${recipient.htmlTitle()} also gets a specibus card so they can equip it, too! It's...huh. Wow. How strong even IS this ${package}?";

@@ -766,7 +766,7 @@ class GameEntity extends Object with StatOwner   {
 
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
-        ret += "${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br>";
+        ret += "Specibus: ${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br><br>";
 
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";

@@ -5709,3 +5709,9 @@ bluh.
 
 why am i so surprised that completely redoing how scenes work fucks shit up
 
+~~~~~
+
+confirmed that mail quests aren't working right. what hte fuck. i'd hoped it was because players were
+equipping the delivered items, but it just fucking isn't happening.
+
+Alright. Let's find out why.

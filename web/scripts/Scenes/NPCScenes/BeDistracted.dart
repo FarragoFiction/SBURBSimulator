@@ -18,7 +18,7 @@ class BeDistracted extends Scene {
       //print("game entity is $gameEntity");
       List<String> genericDistractions = <String>["is distracted looking out at Skaia.","got stuck glitching into a wall for a while","forgot what they were doing for a bit."];
       genericDistractions.addAll(gameEntity.distractions);
-      return "<br>The ${gameEntity.title()} ${rand.pickFrom(genericDistractions)}";
+      return "<br>The ${gameEntity.htmlTitleWithTip()} ${rand.pickFrom(genericDistractions)}";
   }
 
   @override
