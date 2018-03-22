@@ -3,6 +3,7 @@ uniform sampler2D spiro_tex;
 uniform float session_rotation;
 uniform float session_size;
 uniform int land_count;
+uniform bool selected;
 
 varying vec2 v_uv;
 
@@ -135,6 +136,24 @@ void main() {
     float p_sin = sin(prospit_rot);
     col = circle(col, vec2(p_cos * prospit_dist + 0.5, p_sin * prospit_dist + 0.5), kd_size, vec4(1.0,1.0,1.0,1.0));
     col = circle(col, vec2(p_cos * (prospit_dist + moon_offset) + 0.5, p_sin * (prospit_dist + moon_offset) + 0.5), km_size, vec4(1.0,1.0,1.0,1.0));
+
+    if (selected) {
+        float border = (1.0 - session_size) * 0.4;
+
+        if (v_uv.x > border && v_uv.x < 1.0 - border && v_uv.y > border && v_uv.y < 1.0 - border) {
+            float thickness = 2.0 * pixel + border;
+            float length = 24.0 * pixel + border;
+
+            bool x_edge = v_uv.x < thickness || v_uv.x > 1.0 - thickness;
+            bool y_edge = v_uv.y < thickness || v_uv.y > 1.0 - thickness;
+            bool x_len = v_uv.x < length || v_uv.x > 1.0 - length;
+            bool y_len = v_uv.y < length || v_uv.y > 1.0 - length;
+
+            if ((x_edge && y_len) || (y_edge && x_len)) {
+                col = vec4(0.0,1.0,0.0,1.0);
+            }
+        }
+    }
 
 	gl_FragColor = col;
 }

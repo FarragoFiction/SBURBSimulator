@@ -16,8 +16,9 @@ Future<Null> main() async {
     await Loader.loadManifest();
     loadNavbar();
 
-    ObservatoryViewer observatory = new ObservatoryViewer(1000, 750, seed:13);
-    querySelector("#spiel")..append(observatory.renderer.domElement);
+    ObservatoryViewer observatory = new ObservatoryViewer(1000, 700);
+    await observatory.setup(13);
+    querySelector("#screen_container")..append(observatory.renderer.domElement);
 
     print("observatory is go!");
 }
@@ -40,15 +41,28 @@ class ObservatoryViewer {
     THREE.WebGLRenderer renderer;
     THREE.Scene scene;
     THREE.OrthographicCamera camera;
+    THREE.Object3D cameraRig;
+    THREE.Texture uiTexture;
+
+    THREE.Scene renderScene;
+    THREE.OrthographicCamera renderCamera;
+    THREE.WebGLRenderTarget renderTarget;
+
+    CanvasElement uiCanvas;
 
     int camx;
     int camy;
 
     Map<Point<int>, ObservatorySession> sessions = <Point<int>,ObservatorySession>{};
+    ObservatorySession detailSession = null;
 
     bool dragging = false;
 
-    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int seed = 0, int this.cellpadding = 0}) {
+    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0}) {
+
+    }
+
+    Future<Null> setup([int seed = 0]) async {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer
             ..setSize(canvasWidth, canvasHeight)
@@ -57,8 +71,35 @@ class ObservatoryViewer {
         this.canvas = this.renderer.domElement..classes.add("observatory");
 
         this.scene = new THREE.Scene();
+        this.renderScene = new THREE.Scene();
 
-        this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100);//..rotation.z = Math.PI;//..position.z = 10..lookAt(new THREE.Vector3.zero());
+        this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
+        this.renderCamera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
+
+        // UI plane
+        this.uiCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        this.uiTexture = new THREE.Texture(this.uiCanvas)..minFilter = THREE.NearestFilter..magFilter = THREE.NearestFilter;
+        THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
+            ..position.z = 5.0
+            ..rotation.x = Math.PI;
+
+        // render target texture plane
+        this.renderTarget = new THREE.WebGLRenderTarget(canvasWidth, canvasHeight);
+        
+        THREE.ShaderMaterial postShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_screen.frag");
+
+        THREE.setUniform(postShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.renderTarget.texture);
+        THREE.setUniform(postShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+        
+        THREE.Mesh renderPlane = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), postShader)
+            ..position.z = 5.0
+            ..rotation.x = Math.PI;
+        this.renderScene.add(renderPlane);
+
+        // camera rig
+        this.cameraRig = new THREE.Object3D()..add(this.camera)..add(uiObject);
+        this.scene.add(this.cameraRig);
+
 
         this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
@@ -99,7 +140,9 @@ class ObservatoryViewer {
             session.update(dt);
         }
 
-        this.renderer.render(this.scene, this.camera);
+        this.renderer
+            ..render(this.scene, this.camera, this.renderTarget)
+            ..render(this.renderScene, this.renderCamera);
     }
 
     void updateSessions() {
@@ -151,14 +194,31 @@ class ObservatoryViewer {
         x = x.floor();
         y = y.floor();
 
-        this.camx = x < 0 ? x + pixelsize : x >= pixelsize ? x -= pixelsize : x;
-        this.camy = y < 0 ? y + pixelsize : y >= pixelsize ? y -= pixelsize : y;
+        x = x < 0 ? x + pixelsize : x >= pixelsize ? x -= pixelsize : x;
+        y = y < 0 ? y + pixelsize : y >= pixelsize ? y -= pixelsize : y;
 
-        this.camera..position.x = camx.toDouble()..position.y = camy.toDouble();
+        if (x == this.camx && y == this.camy) { return; } // abort if no movement
+
+        this.camx = x;
+        this.camy = y;
+
+        this.cameraRig..position.x = camx.toDouble()..position.y = camy.toDouble();
 
         //print("x: $camx, y: $camy");
 
         this.updateSessions();
+
+        ObservatorySession nearest = this.findDetailSession();
+
+        if (nearest == this.detailSession) { return; } // abort if nearest session is the same
+
+        if (this.detailSession != null) {
+            this.detailSession.selected = false;
+        }
+        this.detailSession = nearest;
+        this.detailSession.selected = true;
+
+        this.updateSessionDetails();
     }
 
     void goToGridCoordinates(num x, num y) {
@@ -170,13 +230,71 @@ class ObservatoryViewer {
         this.goToGridCoordinates(coords.first, coords.second);
     }
 
+    //############ detail session
+
+    ObservatorySession findDetailSession() {
+        ObservatorySession nearest = null;
+        double distance = double.INFINITY;
+
+        int x,y;
+        double diff;
+        for (ObservatorySession session in sessions.values) {
+            x = ((session.x + 0.5) * gridsize).floor() + session.model_offset_x - this.camx;
+            y = ((session.y + 0.5) * gridsize).floor() + session.model_offset_y - this.camy;
+
+            diff = Math.sqrt(x*x + y*y) - (ObservatorySession.modelsize * session.session_size * 0.5) * 0.5; // halved offset for tuning
+
+            if (diff < distance) {
+                distance = diff;
+                nearest = session;
+            }
+        }
+
+        return nearest;
+    }
+
+    void updateSessionDetails() {
+        if (this.detailSession == null) { return; }
+
+        CanvasRenderingContext2D ctx = this.uiCanvas.context2D;
+        int w = this.canvasWidth;
+        int h = this.canvasHeight;
+
+        int top = 10;
+        int left = 10;
+        int lineheight = 16;
+        int title = 26;
+
+        ctx
+            ..clearRect(0, 0, w, h)
+            ..fillStyle = "lime"
+            ..font = "bold 24px courier, monospace"
+            ..fillText("Session ${detailSession.seed}", left, top + title)
+            ..font = "bold 14px courier, monospace"
+            ..fillText("Players: ${detailSession.session.players.length}", left, top + title + lineheight)
+        ;
+
+        int line = 3;
+        for (Player p in detailSession.session.players) {
+            ctx..fillText("${p.title()} (${p.chatHandle})", left, top + title + lineheight * line);
+            line++;
+            ctx..fillText("${p.land.name}", left, top + title + lineheight * line);
+
+            line += 2;
+        }
+
+        this.uiTexture.needsUpdate = true;
+    }
+
+    //############ creation
+
     ObservatorySession createSession(int seed, int x, int y) {
-        print("create session $seed at $x,$y");
+        //print("create session $seed at $x,$y");
         return new ObservatorySession(this, seed, x, y)..createModel().then((THREE.Object3D o) => this.scene.add(o));
     }
 
     void destroySession(ObservatorySession session) {
-        print("destroy session ${session.seed} at ${session.x},${session.y}");
+        //print("destroy session ${session.seed} at ${session.x},${session.y}");
         this.scene.remove(session.model);
     }
 
@@ -222,6 +340,7 @@ class ObservatorySession {
     static THREE.MeshBasicMaterial spiro_material_land;
 
     ObservatoryViewer parent;
+    bool selected = false;
 
     Session session;
     Random rand;
@@ -241,6 +360,7 @@ class ObservatorySession {
 
     List<THREE.Object3D> land_spinners = <THREE.Object3D>[];
     THREE.ShaderUniform<double> rotation_uniform;
+    THREE.ShaderUniform<bool> selected_uniform;
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         this.session = parent.getSession(seed);
@@ -272,6 +392,7 @@ class ObservatorySession {
         }
 
         this.rotation_uniform.value = spin_group.rotation.z;
+        this.selected_uniform.value = this.selected;
     }
 
     static Future<Null> initGraphics() async {
@@ -280,7 +401,6 @@ class ObservatorySession {
         }
 
         spiro_tex = new THREE.Texture(await Loader.getResource("images/spirograph_white.png"))..needsUpdate = true;
-        //spiro_uniform = new THREE.ShaderUniform<THREE.Texture>()..value = spiro_tex;
         spiro_material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: spiro_tex));
         spiro_material_land = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: 0x707070, map: spiro_tex));
 
@@ -294,10 +414,11 @@ class ObservatorySession {
         THREE.Object3D spinner = new THREE.Object3D();
 
         THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_session.frag")..transparent = true;
-        //THREE.MeshBasicMaterial mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(color: 0xFF0000));//, map:texture));
 
         this.rotation_uniform = new THREE.ShaderUniform<double>()..value = 0.0;
         THREE.setUniform(mat, "session_rotation", rotation_uniform);
+        this.selected_uniform = new THREE.ShaderUniform<bool>()..value = this.selected;
+        THREE.setUniform(mat, "selected", selected_uniform);
         THREE.setUniform(mat, "land_count", new THREE.ShaderUniform<int>()..value = this.session.players.length);
         THREE.setUniform(mat, "session_size", new THREE.ShaderUniform<double>()..value = this.session_size);
 
