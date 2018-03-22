@@ -16,8 +16,9 @@ Future<Null> main() async {
     await Loader.loadManifest();
     loadNavbar();
 
-    ObservatoryViewer observatory = new ObservatoryViewer(1000, 750, seed:13);
-    querySelector("#spiel")..append(observatory.renderer.domElement);
+    ObservatoryViewer observatory = new ObservatoryViewer(1000, 700);
+    await observatory.setup(13);
+    querySelector("#screen_container")..append(observatory.renderer.domElement);
 
     print("observatory is go!");
 }
@@ -43,6 +44,10 @@ class ObservatoryViewer {
     THREE.Object3D cameraRig;
     THREE.Texture uiTexture;
 
+    THREE.Scene renderScene;
+    THREE.OrthographicCamera renderCamera;
+    THREE.WebGLRenderTarget renderTarget;
+
     CanvasElement uiCanvas;
 
     int camx;
@@ -53,7 +58,11 @@ class ObservatoryViewer {
 
     bool dragging = false;
 
-    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int seed = 0, int this.cellpadding = 0}) {
+    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0}) {
+
+    }
+
+    Future<Null> setup([int seed = 0]) async {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer
             ..setSize(canvasWidth, canvasHeight)
@@ -62,17 +71,32 @@ class ObservatoryViewer {
         this.canvas = this.renderer.domElement..classes.add("observatory");
 
         this.scene = new THREE.Scene();
+        this.renderScene = new THREE.Scene();
 
         this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
+        this.renderCamera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
 
+        // UI plane
         this.uiCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         this.uiTexture = new THREE.Texture(this.uiCanvas)..minFilter = THREE.NearestFilter..magFilter = THREE.NearestFilter;
         THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
-            //..position.x = 0.5
-            //..position.y = 0.5
             ..position.z = 5.0
             ..rotation.x = Math.PI;
 
+        // render target texture plane
+        this.renderTarget = new THREE.WebGLRenderTarget(canvasWidth, canvasHeight);
+        
+        THREE.ShaderMaterial postShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_screen.frag");
+
+        THREE.setUniform(postShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.renderTarget.texture);
+        THREE.setUniform(postShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+        
+        THREE.Mesh renderPlane = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), postShader)
+            ..position.z = 5.0
+            ..rotation.x = Math.PI;
+        this.renderScene.add(renderPlane);
+
+        // camera rig
         this.cameraRig = new THREE.Object3D()..add(this.camera)..add(uiObject);
         this.scene.add(this.cameraRig);
 
@@ -116,7 +140,9 @@ class ObservatoryViewer {
             session.update(dt);
         }
 
-        this.renderer.render(this.scene, this.camera);
+        this.renderer
+            ..render(this.scene, this.camera, this.renderTarget)
+            ..render(this.renderScene, this.renderCamera);
     }
 
     void updateSessions() {

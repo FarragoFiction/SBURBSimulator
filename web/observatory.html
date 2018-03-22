@@ -21,6 +21,28 @@
                 cursor:-webkit-grabbing;
                 cursor:grabbing;
             }
+
+            div#screen {
+                position:relative;
+                padding:65px 0 0 0;
+                clear:both;
+                box-sizing:border-box;
+                height:875px;
+                background-color:black;
+            }
+            div#screen_container {
+
+            }
+            div#screen_overlay {
+                position:absolute;
+                left:-65px;
+                top:0px;
+                width:1130px;
+                height:875px;
+                background-image:url("images/observatory_screen.png");
+
+                pointer-events:none;
+            }
         </style>
     </head>
     <body>
@@ -28,7 +50,11 @@
         <img id = "avatar" src = "images/authorbot_jr_scout.png" style="float:left;">
 
         <div id = "spiel">
-            blah
+
+            <div id="screen">
+                <div id="screen_container"></div>
+                <div id="screen_overlay"></div>
+            </div>
         </div>
     </body>
 </html>
