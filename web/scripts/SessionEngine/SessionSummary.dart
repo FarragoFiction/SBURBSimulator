@@ -42,6 +42,7 @@ class SessionSummary {
 
     SessionSummary(int this.session_id);
 
+
     void save() {
         //i need to load all the session summaries from memory
         //then add myself to it
@@ -570,7 +571,6 @@ class SessionSummary {
         summary.setBoolStat("hasSpades", session.stats.hasSpades);
         summary.setBoolStat("hasClubs", session.stats.hasClubs);
         summary.setBoolStat("hasHearts", session.stats.hasHearts);
-        summary.save();
         return summary;
     }
 

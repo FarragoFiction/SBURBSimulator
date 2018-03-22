@@ -334,7 +334,6 @@ Player findMVP(List<Player> playerList) {
         if (p.grist > strongest.grist) {
             strongest = p;
         }
-
     }
     return strongest;
 }
@@ -349,7 +348,6 @@ Player findStrongestPlayer(List<Player> playerList) {
         if (p.getStat(Stats.POWER) > strongest.getStat(Stats.POWER)) {
             strongest = p;
         }
-
     }
     return strongest;
 }
