@@ -49,6 +49,7 @@ class OCGenerator {
 
     void initPlayers() {
         if(session != null) session.resetAvailableClasspects();
+        session.setupMoons();
         for(int i = 0; i< numPlayers; i++) {
             //NOT doing this was causing oc gen to crash when it ran out of classpects.
             players[i] =(randomPlayer(session));
