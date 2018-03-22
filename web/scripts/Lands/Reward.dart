@@ -397,7 +397,7 @@ class SpecificCarapaceReward extends Reward {
         }else {
             p1.session.logger.info("AB: A Carapace ($carapace) joins in response to a quest.");
 
-            text = " The ${Reward.PLAYER1} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${p1.htmlTitle()}'s jib and agree to tag along.";
+            text = " The ${p1.htmlTitle()} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${p1.htmlTitle()}'s jib and agree to tag along.";
             if(carapace.partyLeader != null){
                 text = "$text They ditch the ${carapace.partyLeader.htmlTitle()} entirely.";
             }
