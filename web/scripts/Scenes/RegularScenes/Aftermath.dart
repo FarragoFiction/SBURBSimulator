@@ -340,7 +340,7 @@ class Aftermath extends Scene {
         }
         //var spacePlayer = findAspectPlayer(this.session.players, Aspects.SPACE);
         //...hrrrm...better debug this. looks like this can be triggered when players AREN"T being revived???
-        if (living.length > 0 && (!this.session.battlefield.blackKing.dead || queenDefeated)) {
+        if (living.length > 0 && (!this.session.battlefield.blackKing.dead || !queenDefeated)) {
             end += " While various bullshit means of revival were being processed, the Black Royalty have fled Skaia to try to survive the Meteor storm. There is no more time, if the frog isn't deployed now, it never will be. There is no time for mourning. ";
             this.session.stats.opossumVictory = true; //still laughing about this. it's when the players don't kill the queen/king because they don't have to fight them because they are al lint he process of god tier reviving. so the royalty fucks off. and when the players wake up, there's no bosses, so they just pop the frog in the skia hole.
             appendHtml(div, end);
