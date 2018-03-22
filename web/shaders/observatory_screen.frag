@@ -4,6 +4,7 @@ uniform sampler2D image;
 uniform vec2 size;
 
 const float distort_size = 45.0;
+const float PI = 3.1415926535897932384626433832795;
 
 void main() {
     vec2 pixel = 1.0 / size;
@@ -24,10 +25,22 @@ void main() {
     float vignette_darken = max(vignette.x, vignette.y);
 
     vec2 distorted = ((v_uv - 0.5) * (1.0 + distort_pixels * distortion)) + 0.5;
+    vec2 distorted2 = ((v_uv - 0.5) * (1.0 + distort_pixels * distortion * 0.875)) + 0.5;
+    vec2 distorted3 = ((v_uv - 0.5) * (1.0 + distort_pixels * distortion * 0.75)) + 0.5;
+
+    // scan
+
+    float scan = sin(distorted.y * PI * size.y) * 0.1 + 1.0;
 
     if (!(distorted.x < 0.0 || distorted.x > 1.0 || distorted.y < 0.0 || distorted.y > 1.0)) {
-        col = texture2D(image, distorted);
-        col.rgb *= (1.0 - vignette_darken * 0.35);
+        vec4 red = texture2D(image, distorted3);
+        vec4 green = texture2D(image, distorted2);
+        vec4 blue = texture2D(image, distorted);
+
+        col = blue;
+        col.r = red.r;
+        col.g = green.g;
+        col.rgb *= (1.0 - vignette_darken * 0.35) * scan;
 	}
 
 	gl_FragColor = col;

@@ -303,7 +303,7 @@ class ObservatoryViewer {
             return sessionCache[seed];
         }
 
-        Session session = new Session(seed);
+        Session session = new Session(seed)..logger.disabled = true;
         curSessionGlobalVar = session;
         session.reinit();
         session.makePlayers();

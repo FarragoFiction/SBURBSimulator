@@ -19,6 +19,9 @@ class Logger {
     /// Debug messages are never shown in compiled js.
     bool printDebug;
 
+    /// Setting this to true disables the logger entirely, for when you want to suppress output.
+    bool disabled = false;
+
     /// Section name displayed in output.
     final String name;
 
@@ -48,6 +51,7 @@ class Logger {
 
     /// Prefer one of the level specific methods
     void log(LogLevel level, Object arg) {
+        if (disabled) { return; }
         _getPrintForLevel(level)(_format(level, arg));
     }
 
