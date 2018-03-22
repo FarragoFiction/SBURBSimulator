@@ -1149,7 +1149,7 @@ class Player extends GameEntity{
 
     @override
     String htmlTitle() {
-        return "${this.aspect.fontTag()}${this.title()}</font>";
+        return "${this.aspect.fontTag()}${this.title()}</font> (Active: ${active}, Available: ${available})";
     }
 
     @override

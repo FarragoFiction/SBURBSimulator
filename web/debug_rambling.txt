@@ -5680,3 +5680,32 @@ i think it's acting differently, but never getting above one session long?
 
 hrm. or. no that makes sense, it's not collated. lets' go ask ShogunBot.
 
+~~~~~~~~~~~~
+
+>long, steadying breath.
+
+Players are doing things before they are in a session, because, for example, the Alchemy scene just says
+
+"who has highest alchemy, pick them." instead of "who owns this scene.".
+
+So the blood player enters the session, then gets the Life player to do alchemy.
+
+Redoing each scene to be sane would take time, and might not even work since some scenes are "groups of people do this"
+type of deals.
+
+Additionally, it gets rid of the "highest alchemy player" does alchemy that turn
+since suddenly ALL players can do alchemy that turn.
+
+Actually, that problem will happen no matter what. Ignore that for now.
+
+Another thing is that the sessions should be able to access available players,
+and so shouldn't try to secure a non active player. it's possible available does not exclude active
+so an easy fix is to do that first.
+
+actually, doing it that way is probably best, since each plaeyrs alcehmy scene as it stands now all chooses the same person
+that person just might not be available? i think?
+
+bluh.
+
+why am i so surprised that completely redoing how scenes work fucks shit up
+

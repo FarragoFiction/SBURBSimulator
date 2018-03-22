@@ -460,12 +460,21 @@ class Session {
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
+    void makeSurePlayersNotInSessionArentAvailable(List<Player> playerList) {
+        for(Player p in players) {
+            if(!playerList.contains(p)) {
+                p.active = false;
+                p.available = false;
+            }
+        }
+    }
+
     //  //makes copy of player list (no shallow copies!!!!)
     List<Player> setAvailablePlayers(List<Player> playerList) {
         List<Player> ret = <Player>[];
         for (num i = 0; i < playerList.length; i++) {
             //dead players are always unavailable.
-            if (!playerList[i].dead) {
+            if (!playerList[i].dead && playerList[i].active) {
                 playerList[i].available = true;
                 ret.add(playerList[i]);
             }else {
@@ -493,11 +502,15 @@ class Session {
         //print("processing scene");
         //SimController.instance.storyElement.append("processing scene");
         List<Player> avail = setAvailablePlayers(playersInSession);
+        makeSurePlayersNotInSessionArentAvailable(playersInSession);
         resetNPCAvailability();
         for(Player p in avail) {
             //print("$p is available");
             if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
-            if(p.active) p.processScenes();
+            if(p.active && p.available) {
+                //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
+                p.processScenes();
+            }
         }
 
        // print("TEST NPCS: Processing scenes start, activated npcs is ${activatedNPCS}");
@@ -808,6 +821,11 @@ class Session {
         for (num j = 0; j < this.players.length; j++) {
             Player p = this.players[j];
             p.generateRelationships(this.players);
+            if(p.aspect != Aspects.TIME) {
+                p.active = false;
+            }else {
+                p.active = true;
+            }
         }
         //random chance of Lord/Muse for two player sessions
         if(numPlayers <= 2) {
