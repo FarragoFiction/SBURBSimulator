@@ -1149,7 +1149,9 @@ class Player extends GameEntity{
 
     @override
     String htmlTitle() {
-        return "${this.aspect.fontTag()}${this.title()}</font> (Active: ${active}, Available: ${available})";
+        String light = "";
+        if(session.mutator.lightField) light = " (Active: ${active}, Available: ${available})";
+        return "${this.aspect.fontTag()}${this.title()}</font>$light";
     }
 
     @override
