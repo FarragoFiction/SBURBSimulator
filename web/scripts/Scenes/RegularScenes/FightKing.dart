@@ -54,7 +54,7 @@ class FightKing extends Scene {
 	@override
 	void renderContent(Element div){
 		////session.logger.info("rendering fight king);")
-		session.battlefield.blackKing.stats.copyFrom(findStrongestPlayer(session.players).stats);
+		//session.battlefield.blackKing.stats.copyFrom(findStrongestPlayer(session.players).stats);
 		session.battlefield.blackKing.setStat(Stats.CURRENT_HEALTH, session.battlefield.blackKing.getStat(Stats.HEALTH));
 
 		appendHtml(div, "<br> <img src = 'images/sceneIcons/bk_icon.png'>");

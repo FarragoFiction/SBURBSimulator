@@ -313,7 +313,9 @@ class MailSideQuest extends Scene {
   @override
   bool trigger(List<Player> playerList) {
       //should have a REALLY high chance of triggering. The MAIL is important.
-      if(session.rand.nextDouble() > .01  && gameEntity is Carapace) return true;
+      //BUT not guaranteed, can still do dumb shit like alchemize with the package.
+      if(package != null && session.rand.nextDouble() > .01) return true;
+      if(session.rand.nextDouble() > .03  && gameEntity is Carapace) return true;
       if(session.rand.nextDouble() > .06  && !(gameEntity is Carapace)) {
           session.logger.info("AB: Non carapace is delivering the mail. Okay. Whatever floats your boat.");
           return true;
