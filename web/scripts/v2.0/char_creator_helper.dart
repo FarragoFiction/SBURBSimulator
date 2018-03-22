@@ -530,7 +530,10 @@ class CharacterCreatorHelper {
 
                 List<Player> players = dataBytesAndStringsToPlayers(b, s, x); //technically an array of one players.;
                 //print("Player class name: " + players[0].class_name.name);
+
                 player.copyFromPlayer(players[0]);
+                player.session = curSessionGlobalVar;
+                player.syncToSessionMoon();
                 that.redrawSinglePlayer(player);
                 //should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
             });

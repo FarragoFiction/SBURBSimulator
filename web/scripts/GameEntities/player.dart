@@ -88,7 +88,7 @@ class Player extends GameEntity{
     Moon get moon => _moon;
 
     void set moon(Moon m) {
-        //print("${title()} setting moon to: $m");
+        print("${title()} setting moon to: $m");
         _moon = m;
         if(m!=null)syncToSessionMoon();
     }
