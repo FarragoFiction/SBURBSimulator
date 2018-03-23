@@ -19,8 +19,6 @@ Future<Null> main() async {
     ObservatoryViewer observatory = new ObservatoryViewer(1000, 700);
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
-
-
 }
 
 //##################################################################################
@@ -30,6 +28,11 @@ class ObservatoryViewer {
     static const int gridsize = 720;
     static const int pixelsize = size * gridsize;
     static const int cachesize = 500;
+
+    static const String param_x = "cx";
+    static const String param_y = "cy";
+    static const String param_seed = "seed";
+
     LinkedHashMap<int, Session> sessionCache = new LinkedHashMap<int, Session>();
 
     int cellpadding;
@@ -49,6 +52,10 @@ class ObservatoryViewer {
     THREE.WebGLRenderTarget renderTarget;
 
     CanvasElement uiCanvas;
+
+    NumberInputElement coordElementX;
+    NumberInputElement coordElementY;
+    NumberInputElement sessionElement;
 
     int camx;
     int camy;
@@ -101,7 +108,7 @@ class ObservatoryViewer {
         this.scene.add(this.cameraRig);
 
 
-        this.goToSeed(seed);
+        //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
 
         this.update();
@@ -109,6 +116,19 @@ class ObservatoryViewer {
         this.canvas.onMouseDown.listen(mouseDown);
         window.onMouseUp.listen(mouseUp);
         window.onMouseMove.listen(mouseMove);
+
+        this.sessionElement = querySelector("#session_id");
+        this.coordElementX = querySelector("#coordinates_x");
+        this.coordElementY = querySelector("#coordinates_y");
+
+        querySelector("#session_button")..onClick.listen(this.readSessionElement);
+        this.coordElementX.onChange.listen(this.readCoordinateElement);
+        this.coordElementY.onChange.listen(this.readCoordinateElement);
+
+        this.readURL();
+
+        this.setCoordinateElement();
+        this.setSessionElement();
     }
 
     void mouseDown(MouseEvent e) {
@@ -127,6 +147,49 @@ class ObservatoryViewer {
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 
         this.updateSessions();
+    }
+
+    void readURL() {
+        Map<String,String> p = Uri.base.queryParameters;
+
+        if (p.containsKey(param_seed)) {
+            this.goToSeed(int.parse(p[param_seed], onError: (String s) => 0));
+        } else if (p.containsKey(param_x) && p.containsKey(param_y)) {
+            double x = double.parse(p[param_x], (String s) => 0.0);
+            double y = double.parse(p[param_y], (String s) => 0.0);
+
+            this.goToCoordinates(x * gridsize, y * gridsize);
+        } else {
+            this.goToSeed(int.parse(todayToSession(), onError: (String s) => 13));
+        }
+    }
+
+    void setURL() {
+        String x = ((10000 * this.camx / gridsize).roundToDouble() / 10000).toString();
+        String y = ((10000 * this.camy / gridsize).roundToDouble() / 10000).toString();
+        window.history.replaceState(<String,String>{}, "Observatory", "${Uri.base.path}?$param_x=$x&$param_y=$y");
+    }
+
+    void readCoordinateElement([Event e]) {
+        if (this.coordElementX == null) { return; }
+
+        this.goToCoordinates(this.coordElementX.valueAsNumber.toDouble() * gridsize, this.coordElementY.valueAsNumber.toDouble() * gridsize);
+    }
+
+    void setCoordinateElement() {
+        if (this.coordElementX == null) { return; }
+        this.coordElementX.valueAsNumber = (10000 * this.camx / gridsize).roundToDouble() / 10000;
+        this.coordElementY.valueAsNumber = (10000 * this.camy / gridsize).roundToDouble() / 10000;
+    }
+
+    void readSessionElement([Event e]) {
+        if (this.sessionElement == null) { return; }
+        this.goToSeed(this.sessionElement.valueAsNumber.floor());
+    }
+
+    void setSessionElement() {
+        if (this.sessionElement == null) { return; }
+        this.sessionElement.valueAsNumber = this.detailSession != null ? this.detailSession.session.session_id : 0;
     }
 
     double prevframe = 0.0;
@@ -202,11 +265,14 @@ class ObservatoryViewer {
         this.camx = x;
         this.camy = y;
 
+        this.setCoordinateElement();
+
         this.cameraRig..position.x = camx.toDouble()..position.y = camy.toDouble();
 
         //
 
         this.updateSessions();
+        this.setURL();
 
         ObservatorySession nearest = this.findDetailSession();
 
@@ -217,6 +283,7 @@ class ObservatoryViewer {
         }
         this.detailSession = nearest;
         this.detailSession.selected = true;
+        this.setSessionElement();
 
         this.updateSessionDetails();
     }
