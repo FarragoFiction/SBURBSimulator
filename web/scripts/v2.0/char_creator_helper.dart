@@ -528,7 +528,7 @@ class CharacterCreatorHelper {
                 //;
                 //;
 
-                List<Player> players = dataBytesAndStringsToPlayers(b, s, x); //technically an array of one players.;
+                List<Player> players = dataBytesAndStringsToPlayers(curSessionGlobalVar,b, s, x); //technically an array of one players.;
                 //print("Player class name: " + players[0].class_name.name);
 
                 player.copyFromPlayer(players[0]);

@@ -210,7 +210,7 @@ class CharacterEasterEggEngine {
       List<String> s = Uri.encodeFull(getParameterByName("s", bs)).split(","); //these are NOT encoded in files, so make sure to encode them
       String x = (getParameterByName("x", bs));
       print ("processing fan oc, bs is $bs and b is $b and s is $s and x is: $x");
-      Player p = (dataBytesAndStringsToPlayer(b,s));
+      Player p = (dataBytesAndStringsToPlayer(curSessionGlobalVar,b,s));
       if(x != null) {
         ByteReader reader = new ByteReader((stringToByteArray(x).buffer), 0);
         p.readInExtensionsString(reader);
@@ -286,7 +286,7 @@ String generateURLParamsForPlayers(players, includeChatHandle){
 
 
 
-List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes){
+List<Player> dataBytesAndStringsToPlayers(Session session, String bytes, String s, String xbytes){
   //;
   //bytes are 11 chars per player
   //strings are 5 csv per player.
@@ -304,7 +304,7 @@ List<Player> dataBytesAndStringsToPlayers(String bytes, String s, String xbytes)
     var s = strings.sublist(si, si +5);  //TODO used to be "slice" in js, is it still?
     ////;
     ////print(b);
-    var p = (dataBytesAndStringsToPlayer(b,s));
+    var p = (dataBytesAndStringsToPlayer(session, b,s));
     p.id = i; //will be overwritten by sim, but viewer needs it
     players.add(p);
   }
@@ -334,9 +334,10 @@ Uint8List stringToByteArray(str){
 
 //TODO FUTUREJR, REMOVE THIS METHOD AND INSTAD RELY ON session.RenderingEngine.renderers[1].dataBytesAndStringsToPlayer
 //see player.js toDataBytes and toDataString to see how I expect them to be formatted.
-dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
+dynamic dataBytesAndStringsToPlayer(Session session, String charString, List<String>str_arr){
   var player = new Player();
-  player.session = new Session(-13); //so shit doesn't crash lookin gfor a mututator
+  player.session = session;
+  //player.session = new Session(-13); //so shit doesn't crash lookin gfor a mututator
   player.quirk = new Quirk(null);
   //;
   ////print("chars is: " + charString);
@@ -370,8 +371,10 @@ dynamic dataBytesAndStringsToPlayer(String charString, List<String>str_arr){
   player.leftMurderMode = 0 != ((1) & charString.codeUnitAt(6));
   player.robot = 0 != ((1<<7) & charString.codeUnitAt(7));
   var moon = 0 != ((1<<6) & charString.codeUnitAt(7));
-  ////print("moon binary is: " + moon);
+  print("moon binary is: $moon");
   player.moon = moon ? player.session.prospit : player.session.derse;
+  print("i think that becomes ${player.moon}, is that ${player.session.prospit} or ${player.session.derse}?");
+
   ////print("moon string is: "  + player.moon);
   player.dead = 0 != ((1<<5) & charString.codeUnitAt(7));
   ////print("Binary string is: " + charString[7]);

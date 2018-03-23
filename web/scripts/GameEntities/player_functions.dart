@@ -10,6 +10,8 @@ why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 List<Player> getReplayers(Session session) {
+    //needed or i can't parse moon data
+    session.setupMoons();
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
     //var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
     String raw = getRawParameterByName("b", null);
@@ -24,7 +26,7 @@ List<Player> getReplayers(Session session) {
     ////print(b);
     ////;
     ////print(s);
-    List<Player> ret =  dataBytesAndStringsToPlayers(b, s, x);
+    List<Player> ret =  dataBytesAndStringsToPlayers(curSessionGlobalVar,b, s, x);
     //can't let them keep their null session reference.
     for(Player p in ret) {
         p.session = session;
@@ -94,8 +96,14 @@ void initializePlayers(List<Player> players, Session session) {
     syncReplayNumberToPlayerNumber(replayPlayers);
     ;
     for (num i = 0; i < players.length; i++) {
-        if (replayPlayers.length > i) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
-        if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
+
+        if (replayPlayers.length > i) {
+            print("replay player moon is ${replayPlayers[i].moon} for ${replayPlayers[i]}");
+
+            players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
+            print("After loading a replay player, moon is ${players[i].moon} for ${players[i]}");
+        }
+            if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
             players[i].initialize();
             players[i].guardian.initialize();
             if (replayPlayers.length > i) {
