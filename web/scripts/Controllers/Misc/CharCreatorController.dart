@@ -22,13 +22,21 @@ void main()
     self.initial_seed = tmp;
   }
   querySelector("#button2").onClick.listen((Event e) => newPlayer());
+  querySelector("#buttonNotVoid").onClick.listen((Event e) => newPlayerButNotVoid());
+
   querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
   SimController.instance.startSession();
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
 
 void newPlayer() {
+  print("making a new player");
   self.newPlayer();
+}
+
+void newPlayerButNotVoid() {
+  print("making a new player");
+  self.newPlayerButNotVoid();
 }
 
 void renderURLToSendPlayersIntoSBURB() {
@@ -85,9 +93,23 @@ class CharCreatorController extends SimController {
   }
 
   void newPlayer(){
+    print("TEST MOON: making a new player ");
     Player p = randomPlayerWithClaspect(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
     curSessionGlobalVar.players.add(p);
     if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
+    p.renderSelf("newPlayer");
+    print("$p should have rendered themselves, ${p.canvas}");
+    charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
+
+  }
+
+  void newPlayerButNotVoid(){
+    print("TEST MOON: making a new player that is not void ");
+    Player p = randomPlayer(curSessionGlobalVar);
+    curSessionGlobalVar.players.add(p);
+    if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
+    p.renderSelf("newPlayer");
+    print("$p should have rendered themselves, ${p.canvas}");
     charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
 
   }

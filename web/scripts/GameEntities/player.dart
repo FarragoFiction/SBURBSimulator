@@ -17,6 +17,9 @@ class Player extends GameEntity{
     @override
     num grist = 0; // players do not spawn with grist
 
+    //set when you set moon, so you know what your dream self looks like even if you don't have a moon.
+    Palette dreamPalette;
+
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
@@ -88,9 +91,13 @@ class Player extends GameEntity{
     Moon get moon => _moon;
 
     void set moon(Moon m) {
-        print("${title()} setting moon to: $m");
+        if(m != null) print("${title()} setting moon to: $m from $_moon");
         _moon = m;
-        if(m!=null)syncToSessionMoon();
+        if(m!=null) {
+            dreamPalette = _moon.palette;
+            print("TEST MOON: after syncing, ${title()} moon is $_moon");
+            syncToSessionMoon();
+        }
     }
 
     //no longer allowed to set it.
@@ -109,6 +116,7 @@ class Player extends GameEntity{
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon m, bool this.godDestiny]) : super("", session) {
         //print("making new player with classpect ${title()} and moon $m");
+        print("TEST MOON: creating player with moon");
         moon = m; //set explicitly so triggers syncing.
         this.name = "player_$id"; //this.htmlTitleBasic();
         //testing something
@@ -132,10 +140,10 @@ class Player extends GameEntity{
         if(moon == null || session == null || session.prospit == null || session.derse == null) return;
         //print("moon wasn't null, moon is ${moon.name}.");
         if (moon.name == session.prospit.name) {
-            //print("${title()} moon was prospit,${moon.name}");
+            print("${title()} moon was prospit,${moon.name}");
             _moon = session.prospit;
         } else if (moon.name == session.derse.name) {
-            //print(" ${title()} moon was derse, ${moon.name}");
+            print(" ${title()} moon was derse, ${moon.name}");
             _moon = session.derse;
         }
     }
@@ -985,6 +993,7 @@ class Player extends GameEntity{
         if(sprite != null) clone.sprite =  sprite.clone(); //gets set to a blank sprite when character is created.
         clone.deriveChatHandle = deriveChatHandle;
         clone.deriveLand = deriveLand;
+        print("TEST MOON: setting clone moon");
         clone.moon = moon;
         clone.flipOutReason = flipOutReason; //if it's null, i'm not flipping my shit.
         clone.flippingOutOverDeadPlayer = flippingOutOverDeadPlayer; //don't let this go into url. but, don't flip out if the friend is currently alive, you goof.
@@ -1787,11 +1796,11 @@ class Player extends GameEntity{
     }
 
     Map<String, dynamic> toJSON() {
-        num moon = 0;
+        num moonNum = 0;
         String cod = this.causeOfDrain;
         if (cod == null) cod = "";
-        if (this.moon == session.prospit) moon = 1;
-        Map<String, dynamic> json = <String, dynamic>{"aspect": this.aspect.id, "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair, "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": this.interest1.category.id, "interest2Category": this.interest2.category.id, "interest1": this.interest1.name, "interest2": this.interest2.name, "robot": this.robot ? 1 : 0, "moon": moon, "causeOfDrain": cod, "victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf": this.isDreamSelf ? 1 : 0, "murderMode": this.murderMode ? 1 : 0, "leftMurderMode": this.leftMurderMode ? 1 : 0, "grimDark": this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0};
+        if (this.moon == session.prospit) moonNum = 1;
+        Map<String, dynamic> json = <String, dynamic>{"aspect": this.aspect.id, "class_name": classNameToInt(this.class_name), "favoriteNumber": this.quirk.favoriteNumber, "hair": this.hair, "hairColor": hexColorToInt(this.hairColor), "isTroll": this.isTroll ? 1 : 0, "bloodColor": bloodColorToInt(this.bloodColor), "leftHorn": this.leftHorn, "rightHorn": this.rightHorn, "interest1Category": this.interest1.category.id, "interest2Category": this.interest2.category.id, "interest1": this.interest1.name, "interest2": this.interest2.name, "robot": this.robot ? 1 : 0, "moon": moonNum, "causeOfDrain": cod, "victimBlood": bloodColorToInt(this.victimBlood), "godTier": this.godTier ? 1 : 0, "isDreamSelf": this.isDreamSelf ? 1 : 0, "murderMode": this.murderMode ? 1 : 0, "leftMurderMode": this.leftMurderMode ? 1 : 0, "grimDark": this.grimDark, "causeOfDeath": this.causeOfDeath, "dead": this.dead ? 1 : 0, "godDestiny": this.godDestiny ? 1 : 0};
         return json;
     }
 
@@ -1828,6 +1837,8 @@ class Player extends GameEntity{
         this.murderMode = replayPlayer.murderMode;
         this.leftMurderMode = replayPlayer.leftMurderMode;
         this.grimDark = replayPlayer.grimDark;
+        print("TEST MOON: setting copyFromPlayer moon");
+
         this.moon = replayPlayer.moon;
         this.dead = replayPlayer.dead;
         this.victimBlood = replayPlayer.victimBlood;

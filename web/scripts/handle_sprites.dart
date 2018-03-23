@@ -1976,7 +1976,7 @@ abstract class Drawing {
             ..shoe_light = player.aspect.palette.shirt_light
             ..shoe_dark = player.aspect.palette.shirt_dark;
 
-        Palette dream = player.moon.palette;
+        Palette dream = player.dreamPalette;
         Palette p = new Palette.combined(<Palette>[dream, shoes]);
 
         swapPalette(canvas, ReferenceColours.SPRITE_PALETTE, p);
