@@ -778,6 +778,7 @@ class Session {
 
     void reinit() {
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
+        _activatedNPCS.clear();
         resetAvailableClasspects();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);

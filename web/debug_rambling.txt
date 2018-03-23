@@ -5715,3 +5715,60 @@ confirmed that mail quests aren't working right. what hte fuck. i'd hoped it was
 equipping the delivered items, but it just fucking isn't happening.
 
 Alright. Let's find out why.
+
+
+
+~~~~~~
+Just one more bug fix before I can go back to my myserties and gigglesnort.
+
+scratched sessions are crashing, just straight up crashing, the first time anyone tries to access a moon.
+
+To be fair, this is after red miles are going, but it was Derse that exploded and a prospit dreamer
+that couldn't dream.
+
+Which is also a good point: this prospit dreamer claims to have no moon but is trying to dream on prospit.
+
+so.
+
+first, figure out why there is no prospit, but the player thinks they have a prospit.
+
+print statement on reward
+oh wait, not, it IS aplly derse. wtf?
+
+but the scene it ends on is "do prospit bullshit".
+
+Hrrrmmmm....
+
+theory: it's from some sort of if statements where it's "if it's prospit, do x, else do derse"
+
+i guess maybe they got blown up mid dream quest?
+
+so rogue of mind is a real self without a dream self i'm thinking.....
+
+i don't think it's the rewards fault...
+
+i think the code for "dream in furthest ring" needs tweaked, and i think the rogue of mind needs to be marked as having
+a dead dream self. maybe moon explosions aren't working
+
+yeah only carapaces are listed out as dying from derse fuckign exploding.
+
+so that's where i'll start
+
+yeah it says that they all didn't die.
+
+this is wrong.
+
+i am
+i am so confused.
+further statements say that it was PROSPIT that exploded, despite it being visibly derse and all the dersite
+carapaces dying....did i typo?
+wait maybe two moons:
+
+HeirLife did not die  in a moon splosion. Is it not their moon? They have Derse and it was Derse, false
+(program):1 PageBreath did not die  in a moon splosion. Is it not their moon? They have Prospit and it was Derse, false
+
+so what's up with this . they have derse and it was derse
+
+is it a scratch thing? am i not syncing moons post scratch?
+
+god i hate looking at the really old shit and figuring out how scratches worked

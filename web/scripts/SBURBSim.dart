@@ -338,7 +338,10 @@ void scratch() {
     curSessionGlobalVar.createScenesForPlayers();
 
     curSessionGlobalVar.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
-
+    //technically teh scratched moon is diff than the one they knew about as a guardian
+    for(Player p in curSessionGlobalVar.players) {
+        p.syncToSessionMoon();
+    }
     checkEasterEgg(scratchEasterEggCallBack, null);
 }
 

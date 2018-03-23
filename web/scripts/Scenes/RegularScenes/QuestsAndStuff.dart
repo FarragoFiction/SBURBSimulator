@@ -108,7 +108,8 @@ class QuestsAndStuff extends Scene {
 
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
-	    if(player.moon != null) {
+	    //&& (player.moon == session.prospit || player.moon == session.derse) && player.dreamSelf
+	    if(player.moon != null ) {
             player.moon.initQuest([player]);
             String inEarly = "";
             if (player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";

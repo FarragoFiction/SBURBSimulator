@@ -73,18 +73,17 @@ class Moon extends Land {
 
       //kill the dream selves
       for(Player p in session.players) {
-          //;
           if(p.moon == this && p.dreamSelf && !p.isDreamSelf) {
-
+              print("$p died in a moon splosion");
               p.dreamSelf = false;
               Player snop = Player.makeRenderingSnapshot(p);
               snop.causeOfDeath = "after being blown up with $name.";
               snop.isDreamSelf = true;
               this.session.afterLife.addGhost(snop);
               killed.add(snop.htmlTitle());
-             // ;
           }else {
-              //;
+              print("$p did not die  in a moon splosion. Is it not their moon? They have ${p.moon} and it was $this, ${p.moon == this}");
+
           }
       }
 
