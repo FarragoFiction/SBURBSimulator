@@ -43,6 +43,82 @@
 
                 pointer-events:none;
             }
+
+            div#screen_controls {
+                position:absolute;
+                top:790px;
+                width:1000px;
+                height:80px;
+                box-sizing:border-box;
+                left:0px;
+                /*background-color:#FFEEEE;*/
+                text-align:center;
+                padding:15px 0 5px 0;
+            }
+
+            div.label {
+                display:inline-block;
+            }
+
+            div.label label {
+                background-color:#FFFFFF;
+                padding:4px 12px 4px 12px;
+                font-family:courier, monospace;
+                font-weight:bold;
+                color:black;
+                box-shadow:2px 4px 2px rgba(0,0,0,0.4);
+                margin:0 4px 0 4px;
+                display:block;
+            }
+            #coordinates_y {
+                margin-right:16px;
+            }
+            label#coordinate_label {
+                transform: rotate(-4deg);
+            }
+            label#id_label {
+                transform: rotate(3deg);
+            }
+            #session_button {
+                background-color:#383838;
+                font-family:courier, monospace;
+                font-weight:bold;
+                color:lime;
+                border:1px solid #202020;
+                border-top:1px solid  #707070;
+                border-left:1px solid  #707070;
+                padding:5px 8px 5px 8px;
+                cursor:pointer;
+                border-radius:3px;
+            }
+
+            #session_button:active {
+                border:1px solid #202020;
+                border-bottom:1px solid  #707070;
+                border-right:1px solid  #707070;
+            }
+
+            div#screen_controls input[type=number] {
+                background-color:black;
+                border:1px #383838;
+                padding:6px 8px 6px 18px;
+                font-family:courier, monospace;
+                font-weight:bold;
+                color:white;
+                width:100px;
+                height:15px;
+            }
+            div.inputarrow {
+                display:inline-block;
+                position:relative;
+                width:0px;
+                left:4px;
+                top:1px;
+                font-family:courier, monospace;
+                font-weight:bold;
+                color:white;
+                z-index:2;
+            }
         </style>
     </head>
     <body>
@@ -53,7 +129,18 @@
 
             <div id="screen">
                 <div id="screen_container"></div>
-                <div id="screen_overlay"></div>
+                <div id="screen_overlay">
+
+                </div>
+                <div id="screen_controls">
+                    <div class="label"><label id="coordinate_label">Coordinates</label></div>
+                    <div class="inputarrow">X</div><input id="coordinates_x" type="number" value="0" min="0" max="65536" step="0.0001">
+                    <div class="inputarrow">Y</div><input id="coordinates_y" type="number" value="0" min="0" max="65536" step="0.0001">
+
+                    <div class="inputarrow">&gt;</div><input id="session_id" type="number" value="0" min="0" max="4294967295" step="1">
+                    <button id="session_button">==&gt;</button>
+                    <div class="label"><label id="id_label">Session ID</label></div>
+                </div>
             </div>
         </div>
     </body>
