@@ -111,13 +111,13 @@ class Land extends Object with FeatureHolder {
     }
 
     bool doQuest(Element div, Player p1, GameEntity p2) {
-        //print("current quest chain is: ${currentQuestChain.name} and helper is: $p2");
+        //;
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) {
            // session.logger.info("deciding what to do next.");
             decideHowToProcede(); //if i just finished the last quest, then i am done.
         }
-        //print("ret is $ret from $currentQuestChain");
+        //;
         return ret;
     }
 
@@ -129,13 +129,13 @@ class Land extends Object with FeatureHolder {
     void decideHowToProcede() {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
-                //print("moving on to next set of quests");
+                //;
                 firstCompleted = true;
             }else if(currentQuestChain is DenizenQuestChain) {
-                //print("moving on to next set of quests");
+                //;
                 secondCompleted = true;
             }else{
-                //print("no more quests for $name");
+                //;
                 thirdCompleted = true;
                 noMoreQuests = true;
 
@@ -146,15 +146,15 @@ class Land extends Object with FeatureHolder {
     void decideIfTimeForNextChain(List<GameEntity> players) {
         if(currentQuestChain.finished) {
             if(currentQuestChain is PreDenizenQuestChain) {
-                //print("moving on to next set of quests");
+                //;
                 firstCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(players, secondQuests);
             }else if(currentQuestChain is DenizenQuestChain) {
-                //print("moving on to next set of quests");
+                //;
                 secondCompleted = true;
                 currentQuestChain = selectQuestChainFromSource(players, thirdQuests);
             }else{
-                //print("no more quests for $name");
+                //;
                 thirdCompleted = true;
                 noMoreQuests = true;
                 currentQuestChain = null;
@@ -166,7 +166,7 @@ class Land extends Object with FeatureHolder {
     // So go through first and check the trigger, and that are false, remove.
     // then pick randomly from remainder.
     QuestChainFeature selectQuestChainFromSource(List<GameEntity> players, WeightedIterable<QuestChainFeature> source) {
-        //print("Selecting a quest from $source");
+        //;
         if(source.isEmpty) {
             currentQuestChain = null;
             noMoreQuests = true;
@@ -176,7 +176,7 @@ class Land extends Object with FeatureHolder {
         WeightedList<QuestChainFeature> valid = new WeightedList<QuestChainFeature>();
         for(WeightPair<QuestChainFeature> p in source.pairs) {
             //TODO make work for multiple players post DEAD Sessions
-           // print("condition is: ${p.item.condition}");
+           // ;
             if(p.item.condition(players)) valid.addPair(p);
         }
         return session.rand.pickFrom(valid);
@@ -220,7 +220,7 @@ class Land extends Object with FeatureHolder {
     ///pass in an aspect so i can make denizens.
     Land.fromWeightedThemes(Map<Theme, double> themes, Session session, Aspect a, SBURBClass c){
         this.session = session;
-       // print("making a land for session $session");
+       // ;
         if(themes == null) return; //just make an empty land. (nneeded for dead sessions);
 
         pickName(themes);
@@ -246,7 +246,7 @@ class Land extends Object with FeatureHolder {
         int ratio = 1+session.players.length;
         hp = (session.sessionHealth/ratio).round();
         if(corrupted) hp = (hp/2).round();
-       // print("There are ${ratio} players, so hp is ${hp} for $name");
+       // ;
 
     }
 

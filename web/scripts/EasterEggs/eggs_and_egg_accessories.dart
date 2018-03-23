@@ -82,7 +82,7 @@ void sbahjMode(){
 void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
-	print("checking eggs, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+	;
 
 	if(curSessionGlobalVar.session_id == 413){
 		session413();
@@ -128,7 +128,7 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 
 
 	if(getParameterByName("selfInsertOC",null)  == "true"){
-		//print("Self Insert OC was true, so I'm going hunting for what ocs I want");
+		//;
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
 		processFanOCs(callBack,that);
 		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
@@ -197,13 +197,13 @@ void janusReward(){
 //auto works with new claspects, too. genius
 void processXStuck(){
 	if(window.location.search.isEmpty && simulatedParamsGlobalVar.isEmpty) {
-	  //print("no params to look at");
+	  //;
 		return;
 	}
 	String params1 = null;
 	if(window.location.search.isNotEmpty) params1 = window.location.search.substring(1);
 	String params2 = simulatedParamsGlobalVar;
-	//print("~~~~~~params1 is $params1 ~~~~~~and~~~~~~params2 is $params2");
+	//;
 	List<String> tmp = SBURBClassManager.allClassNames;
 	List<String> all_aspects =  Aspects.names.toList();
 	String params = "";
@@ -231,7 +231,7 @@ void processXStuck(){
 
 
 void setAllAspectsTo(String a){
-	//print("Setting all aspects to: $a");
+	//;
 	Aspect aspect = Aspects.stringToAspect(a);
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		if(curSessionGlobalVar.players[i].aspect != Aspects.TIME && curSessionGlobalVar.players[i].aspect != Aspects.SPACE ) curSessionGlobalVar.players[i].aspect = aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
@@ -242,7 +242,7 @@ void setAllAspectsTo(String a){
 
 
 void setAllClassesTo(String c){
-	//print("Setting all classes to: $c");
+	//;
 	SBURBClass class_name = SBURBClassManager.stringToSBURBClass(c);
 	for(num i = 0; i<curSessionGlobalVar.players.length; i++){
 		curSessionGlobalVar.players[i].class_name = class_name;
@@ -253,7 +253,7 @@ void setAllClassesTo(String c){
 
 
 void processFanOCs(callBack, that){
-	//print("making a new easte egg engine");
+	//;
 	//start up an easterEggEngine.
 	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }
@@ -360,15 +360,15 @@ void debugRoyalRumble(){
 
 
 void session413(){
-	//print("413");
+	//;
 	for(int i = 0; i<8; i++){
 		Player player;
 		Player guardian;
 		if(i< curSessionGlobalVar.players.length){
 			player = curSessionGlobalVar.players[i];
-			//print("using existing player");
+			//;
 		}else{
-			//print("making new player");
+			//;
 			player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
 			guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
@@ -945,7 +945,7 @@ void session420(){
 		var player;
 		var guardian;
 		if(i>curSessionGlobalVar.players.length){
-			//print("blank player");
+			//;
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.initialize();
@@ -985,7 +985,7 @@ void session13() {
 	    addAliensToSession(curSessionGlobalVar, aliens);
 	    //curSessionGlobalVar.players.addAll(curSessionGlobalVar.aliensClonedOnArrival);
     }
-    print("players is: ${curSessionGlobalVar.players}");
+    ;
     curSessionGlobalVar.players[0].leader = true;
     for(Player p in curSessionGlobalVar.players) {
         p.ectoBiologicalSource = null; //can do ectobiology.
@@ -1005,7 +1005,7 @@ void session13() {
 }
 
 void sawNepeta() {
-	print("saw a nepeta");
+	;
 	if(!window.localStorage.containsKey("catTroll")) {
 		window.localStorage["catTroll"] = "1";
 	}else {
@@ -1019,7 +1019,7 @@ void session0(){
 		var player;
 		var guardian;
 		if(i>curSessionGlobalVar.players.length){
-			//print("blank player");
+			//;
 			player = blankPlayerNoDerived(curSessionGlobalVar);
 			guardian = blankPlayerNoDerived(curSessionGlobalVar);
 			player.guardian = guardian;

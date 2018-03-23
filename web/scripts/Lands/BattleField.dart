@@ -61,11 +61,11 @@ class Battlefield extends Land {
     }
 
     void processBattlefieldShit( Map<QuestChainFeature, double> features) {
-        // print("Processing moon shit: ${features.keys}");
+        // ;
         for(QuestChainFeature f in features.keys) {
-            // print("checking if ${f} is a moon quest.  ${f is MoonQuestChainFeature}");
+            // ;
             if(f is SkaiaQuestChainFeature) {
-                //print("adding moon quest chain");
+                //;
                 battleFieldQuestChains.add(f, features[f]);
             }
         }
@@ -81,7 +81,7 @@ class Battlefield extends Land {
         if(symbolicMcguffin == null) decideMcGuffins(players.first);
         //first, do i have a current quest chain?
         if(currentQuestChain == null) {
-            //print("going to pick a moon quest from ${moonQuestChains}");
+            //;
             currentQuestChain = selectQuestChainFromSource(players, battleFieldQuestChains);
             //nobody else can do this.
             if(!currentQuestChain.canRepeat) battleFieldQuestChains.remove(currentQuestChain);
@@ -99,7 +99,7 @@ class Battlefield extends Land {
         if(currentQuestChain.finished){
             currentQuestChain = null;
         }
-        //print("ret is $ret from $currentQuestChain");
+        //;
         return ret;
     }
 

@@ -75,10 +75,10 @@ class Lord extends SBURBClass {
     @override
     bool isActive([double multiplier = 0.0]) {
         if(multiplier >= 0) { //if no stat passed, act active
-           // print("Lord taking  the good of stat");
+           // ;
             return true; //muse applies it to self if bad.
         }
-       // print("Lord dellegating the bad of stat");
+       // ;
         return false; //to others if good.
     }
 

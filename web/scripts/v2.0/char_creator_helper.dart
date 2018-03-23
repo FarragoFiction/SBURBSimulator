@@ -524,9 +524,9 @@ class CharacterCreatorHelper {
                 String s = getParameterByName("s", bs);
                 String x = (getParameterByName("x", bs));
                 //TODO oh god why ar eall these null???
-                //print("b: $b");
-                //print("s: $s");
-                //print("x: $x");
+                //;
+                //;
+                //;
 
                 List<Player> players = dataBytesAndStringsToPlayers(b, s, x); //technically an array of one players.;
                 //print("Player class name: " + players[0].class_name.name);
@@ -941,7 +941,7 @@ class CharacterCreatorHelper {
     String drawInterestDropDown(InterestCategory category, int num, Player player) {
         String html = "<select id = 'interestDrop$num${player.id}' name='interestDrop$num${player.id}'>";
         List<String> interestsInCategory = category.copyOfInterestStrings;
-        ////print("Interests in category $category are $interestsInCategory");
+        ////;
         String interestToCheck = player.interest1.name;
         if (num == 2) interestToCheck = player.interest2.name;
         for (int i = 0; i < interestsInCategory.length; i++) {

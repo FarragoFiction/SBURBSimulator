@@ -10,7 +10,7 @@ void main()
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
-    printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
+
     return;
   });
   new CharCreatorController();
@@ -30,17 +30,17 @@ void main()
 }
 
 void newPlayer() {
-  print("making a new player");
+
   self.newPlayer();
 }
 
 void newPlayerButNotVoid() {
-  print("making a new player");
+
   self.newPlayerButNotVoid();
 }
 
 void renderURLToSendPlayersIntoSBURB() {
-  //print("clicked render button");
+  //
   self.renderURLToSendPlayersIntoSBURB();
 }
 
@@ -81,11 +81,11 @@ class CharCreatorController extends SimController {
   }
 
   void renderURLToSendPlayersIntoSBURB(){
-    //print("getting ready to grab players");
+    //
     grabAllPlayerInterests();
     grabCustomChatHandles();
     numURLS ++;
-    //print("getting ready to generate urls");
+    //
     String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>  | <a href = 'rare_session_finder.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Have AB find different ways a session with these players could go?</a>";
     if(curSessionGlobalVar.players.length == 1)  html = "<Br><br><a href = 'dead_index.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Be Responsible For Sending Player into a Dead Session? (Link $numURLS)</a> | <a href = 'dead_session_finder.html?seed=$initial_seed&${generateURLParamsForPlayers(curSessionGlobalVar.players,true)}' target='_blank'>Have AB try to find a dead session where this player wins?</a>";
 
@@ -93,23 +93,25 @@ class CharCreatorController extends SimController {
   }
 
   void newPlayer(){
-    print("TEST MOON: making a new player ");
     Player p = randomPlayerWithClaspect(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
+
     curSessionGlobalVar.players.add(p);
+
     if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
+    p.canvas = null;
     p.renderSelf("newPlayer");
-    print("$p should have rendered themselves, ${p.canvas}");
+
     charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
+
 
   }
 
   void newPlayerButNotVoid(){
-    print("TEST MOON: making a new player that is not void ");
     Player p = randomPlayer(curSessionGlobalVar);
     curSessionGlobalVar.players.add(p);
     if(curSessionGlobalVar.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
+    p.canvas = null;
     p.renderSelf("newPlayer");
-    print("$p should have rendered themselves, ${p.canvas}");
     charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
 
   }

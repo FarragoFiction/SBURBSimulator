@@ -159,7 +159,7 @@ class SBURBClass {
     SBURBClass(this.name, this.id, this.isCanon,{ this.isInternal = false}) {
         this.savedName = name;
         faqFile = new FAQFile("Classes/$name.xml");
-        //print("Making a sburb class ${this.name}");
+        //;
         initializeItems();
         initializeThemes();
         SBURBClassManager.addClass(this);

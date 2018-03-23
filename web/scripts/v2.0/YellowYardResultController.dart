@@ -30,10 +30,10 @@ class YellowYardResultController {
 
 
 	ImportantEvent doesEventNeedToBeUndone(ImportantEvent e){
-    //  //print("Does: " + e.humanLabel() + " need to be undone?")
+    //  //
         for(num i = 0; i<this.eventsToUndo.length; i++){
             ImportantEvent e2 = this.eventsToUndo[i];
-		 // //print("checking if needs to be undone");
+		 // //;
           if(doEventsMatch(e,e2,true)){
           //  //print("retunning event that will provide alternate scene, " + e2.humanLabel())
               return e2;
@@ -52,33 +52,33 @@ class YellowYardResultController {
 	it is not unreasonable to imagien 2 timelines that are extremely similar where the Observer made the same choice.
 */
 bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool spawn = false]){
-	////print("comparing: '" + newEvent.humanLabel() + "' to '" + storedEvent.humanLabel() + "'")
+	////
 	if(newEvent == null || storedEvent == null) return false; //can't match if one of them doesn't exist.;
   if(newEvent.session.session_id != storedEvent.session.session_id){
-    //  //print("session id did not match.");
+    //  //;
       return false;
   }
   //are they the same kind of event
   if(newEvent.runtimeType != storedEvent.runtimeType){
-  //  //print("constructor did not match.");
+  //  //;
     return false;
   }
   if(newEvent.mvp_value != storedEvent.mvp_value ){ //mind field means mvp doesn't matter.
       return false;
-    //  //print("mvp did not match");
+    //  //;
   }
   if(newEvent.player != null && storedEvent.player != null){
 	  //should work even if player is supposed to be null
 	  if(newEvent.player.class_name != storedEvent.player.class_name){
-		 ////print("player class did not match");
+		 ////;
 		  return false;
 	  }
 
 	    if(newEvent.player.aspect != storedEvent.player.aspect){
-    //  //print("player aspect did not match");
+    //  //;
 		return false;
 		}
-    //print("yes, there is a match.");
+    //;
     if(spawn){ //don't spawn a time cloen if i'm checking for afterlife stuff.
       spawnDoomedTimeClone(newEvent, storedEvent);
     }
@@ -93,7 +93,7 @@ bool doEventsMatch(ImportantEvent newEvent, ImportantEvent storedEvent, [bool sp
 
 
 void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
-    //print("spawning a doomed time clone");
+    //;
     //since i know the events match, make sure my player is up to date with the current session.
     //had a stupidly tragic bug where I was bringing players back in the DEAD SESSION instead of this new version of it.
     storedEvent.player = newEvent.player;
@@ -105,7 +105,7 @@ void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
     alphaTimePlayer.doomedTimeClones.add(storedEvent.doomedTimeClone);
     alphaTimePlayer.flipOut("their own doomed time clones that seem to be mind controlled or something");
     if(storedEvent.secondTimeClone != null){
-        //print("think there is a second time clone");
+        //;
         alphaTimePlayer.doomedTimeClones.add(storedEvent.secondTimeClone);
     }
 }

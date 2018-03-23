@@ -28,7 +28,7 @@ class Item implements Comparable<Item> {
     //power of item
     @override
     int compareTo(Item other) {
-        // print("trying to sort ${this} against ${other}, ret is $ret. other value was ${other.result.rank}, my value was ${result.rank}  ");
+        //
         return (other.rank - rank).sign.round(); //higher numbers first
     }
 
@@ -54,7 +54,7 @@ class Item implements Comparable<Item> {
         //TODO if this is slow, then cache result and only reget if dirty flag is set..
         List<ItemTrait> combinedTraits = new List<ItemTrait>.from(CombinedTrait.lookForCombinedTraits(traits));
         combinedTraits.sort((ItemTrait a,ItemTrait b){
-          //  print("Sorting a is ${a.ordering} and b is ${b.ordering}");
+          //
             return a.ordering - b.ordering.round();
         });
         for(ItemTrait t in combinedTraits) {
@@ -107,7 +107,7 @@ class Item implements Comparable<Item> {
 
     Item copy() {
         Item ret =  new Item(baseName, new List<ItemTrait>.from(traits),isCopy:true, abDesc: this.abDesc, shogunDesc:this.shogunDesc);
-     //   print("I copied the item. Does it know it's a copy? ${ret.isCopy}");
+     //
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;
@@ -115,7 +115,7 @@ class Item implements Comparable<Item> {
 
     //it takes a master to alchemize with a legendary weapon. high grist cost.
     bool canUpgrade(bool master) {
-        //print("Checking number of upgrades remaining for ${baseName}, numUpgrades is ${numUpgrades} and maxUpgrades is ${maxUpgrades}");
+        //
         if(maxUpgrades > 0 && numUpgrades< maxUpgrades) {
             if(traits.contains(ItemTraitFactory.LEGENDARY)){ //only a master can handle a legendary thing
                 if(!master) return false;
@@ -138,7 +138,7 @@ class Item implements Comparable<Item> {
         }
 
         if(!isCopy) {
-            //print("this is a unique item, not a copy. $isCopy");
+            //
             Item.allUniqueItems.add(this);
         }
     }
@@ -154,7 +154,7 @@ class Item implements Comparable<Item> {
         }
 
         if(!isCopy) {
-            //print("this is a unique item, not a copy. $isCopy");
+            //
             Item.allUniqueItems.add(this);
         }
     }
@@ -261,22 +261,22 @@ class Sylladex extends Object with IterableMixin<Item> {
         Item i = item;
         //if i'm already owned, i'm already physical and unique
         if(Item.allUniqueItems.contains(item) && item.owner == null && !(item is MagicalItem)) {
-            //print("going to copy $item rather than add it directly");
+            //
             i = item.copy();
-            //print("Item copied");
+            //
         }
         //we can't both own it
         if(i.owner != null && i.owner != owner) {
-           // if(i is Ring) print("TEST RING: removing $i from owner ${i.owner} to give to ${owner}");
+           // if(i is Ring)
             i.owner.sylladex.remove(i);
             if(i.owner is Carapace && (item is Ring || item is Scepter)) (i.owner as Carapace).pickName();
         }else {
-            //if(i is Ring) print("TEST RING: i believe this $i is unowned and am giving it to $owner");
+            //if(i is Ring)
 
         }
         inventory.add(i);
         i.owner = owner;
-        //print("inventory updated");
+        //
         if(owner is Carapace && (item is Ring || item is Scepter)) {
             (owner as Carapace).pickName();
             if(!(owner as Carapace).royalty) owner.session.stats.crownedCarapace = true;
@@ -292,7 +292,7 @@ class Sylladex extends Object with IterableMixin<Item> {
 
     void addAll(List<Item> items) {
         for(Item i in items) {
-            //print("adding ${i.fullName}");
+            //
             add(i);
         }
     }

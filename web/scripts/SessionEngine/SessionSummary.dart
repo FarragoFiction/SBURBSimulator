@@ -48,50 +48,50 @@ class SessionSummary {
         //then add myself to it
         //then turn them all to json
         //then save
-       // print("DEBUG SHOGUNBOT: going to save a summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
+       // ;
         Map<String, SessionSummary> summaries =  loadAllSummaries();
         summaries[jsonKey] = this;
         SessionSummary.saveAllSummaries(new List.from(summaries.values));
     }
 
     static Map<String, SessionSummary> loadAllSummaries() {
-       // print("trying to load");
+       // ;
         Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
         if(!window.localStorage.containsKey(SAVE_TAG)) {
-            print("local storage doesn't have my key");
+            ;
             return ret;
         }
         String jsonString = window.localStorage[SAVE_TAG];
 
         if(jsonString.isEmpty) {
-            print("local storage has my key, but it's empty");
+            ;
             return ret;
         }else if(jsonString == null) {
-            print("local storage has my key, but it's null");
+            ;
             return ret;
         }else {
-            //print("local stoarge has my key. ${window.localStorage.containsKey(SAVE_TAG)} the contents are not empty. ${jsonString}");
+            //;
         }
 
-        if(jsonString == "null") print("you got trolled, it's the word null");
+        if(jsonString == "null") ;
 
         //this should be an array of sessions, so can't jsonobject it directly
         String idontevenKnow = jsonString;
         try {
             List<dynamic> what = JSON.decode(idontevenKnow);
             for(dynamic d in what) {
-               // print("dynamic json thing is  $d");
+               // ;
                 JSONObject j = new JSONObject();
                 j.json = d;
-                //print("made a json object $j");
+                //;
                 SessionSummary s = new SessionSummary(-13);
-                //print("made a session summary");
+                //;
                 s.fromJSON(j.toString());
-                //print("loaded that session summary to json");
+                //;
                 ret[s.jsonKey] = s;
             }
         }catch(e) {
-            print("Error loading cache, $e");
+            ;
             return ret;
         }
         return ret;
@@ -106,31 +106,31 @@ class SessionSummary {
         List<JSONObject> jsonArray = new List<JSONObject>();
         for(SessionSummary p in summaries) {
             //TODO refuse to save if any easter eggs are active or if gnosis 4 happened.
-            // print("Saving ${p.name}");
+            // ;
             jsonArray.add(p.toJSON());
         }
         window.localStorage[SAVE_TAG] = jsonArray.toString();
     }
 
     void fromJSON(String jsonString) {
-       // print("trying to make a json object");
+       // ;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
-       // print("made a json object");
+       // ;
         //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
         carapaceSummary = new CarapaceSummary(null); //all zeroes
-       // print("going to load carapace summary");
+       // ;
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
-        //print("DEBUG SHOGUNBOT: loaded a session summary with ${carapaceSummary.data.values.first.activeSessions.length} active sessions for  ${carapaceSummary.data.values.first.initials} ");
+        //;
 
-        // print("did load carapace summary");
+        // ;
 
         var boolExample = true;
         initBoolKeys();
         initNumKeys();
-        //print("inited keys");
+        //;
         for(String key in bool_stats.keys) {
-            //print("checking key $key");
+            //;
             if(json[key] == boolExample.toString()) {
                 bool_stats[key] = true;
             }else {
@@ -139,7 +139,7 @@ class SessionSummary {
         }
 
         for(String key in num_stats.keys) {
-           // print("checking num key of $key with value ${json[key]}");
+           // ;
             num_stats[key] = num.parse(json[key]);
         }
 
@@ -188,7 +188,7 @@ class SessionSummary {
 
 
     void setBoolStat(String statName, bool statValue) {
-        // //print("setting stat: $statName to $statValue");
+        // //;
         this.bool_stats[statName] = statValue;
     }
 
@@ -273,32 +273,32 @@ class SessionSummary {
 
             if (filter == "numberNoFrog") {
                 if (this.frogStatus != "No Frog") {
-                    //	//print("not no frog");
+                    //	//;
                     return false;
                 }
             } else if (filter == "numberSickFrog") {
                 if (this.frogStatus != "Sick Frog") {
-                    ////print("not sick frog");
+                    ////;
                     return false;
                 }
             } else if (filter == "numberFullFrog") {
                 if (this.frogStatus != "Full Frog") {
-                    ////print("not full frog");
+                    ////;
                     return false;
                 }
             } else if (filter == "numberPurpleFrog") {
                 if (this.frogStatus != "Purple Frog") {
-                    ////print("not full frog");
+                    ////;
                     return false;
                 }
             } else if (filter == "timesAllDied") {
                 if (this.getNumStat("numLiving") != 0) {
-                    ////print("not all dead");
+                    ////;
                     return false;
                 }
             } else if (filter == "timesAllLived") {
                 if (this.getNumStat("numDead") != 0) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
-                    ////print("not all alive");
+                    ////;
                     return false;
                 }
             } else if (filter == "scratched") {
@@ -307,14 +307,14 @@ class SessionSummary {
                 }
             } else if (filter == "comboSessions") {
                 if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
-                    ////print("not combo session");
+                    ////;
                     return false;
                 }
             } else if (!this.getBoolStat(filter)) { //assume it exists
                 return false;
             }
         }
-        ////print("i pass all filters");
+        ////;
         return true;
     }
 
@@ -399,7 +399,7 @@ class SessionSummary {
 
     //needed for loading
     void initBoolKeys() {
-       // print("initting bool keys");
+       // ;
         SessionSummary summary  = this;
         summary.setBoolStat("blackKingDead", false);
         summary.setBoolStat("redMilesActivated", false);
@@ -453,7 +453,7 @@ class SessionSummary {
     }
 
     void initNumKeys() {
-        //print("initing num keys");
+        //;
         SessionSummary summary  = this;
         summary.setNumStat("num_scenes", 0);
         summary.setNumStat("sizeOfAfterLife", 0);
@@ -472,7 +472,7 @@ class SessionSummary {
     }
 
     static SessionSummary makeSummaryForSession(Session session) {
-        print("DEBUG SHOGUNBOT: making a session summary for session $session");
+        ;
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.carapaceSummary = new CarapaceSummary(session);
         summary.setMiniPlayers(session.players);
@@ -553,7 +553,7 @@ class SessionSummary {
             summary.setBoolStat("kingTooPowerful", session.battlefield.blackKing.getStat(Stats.POWER) > session.hardStrength);
         }
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
-        ////print("Debugging: King strength is ${session.king.getStat(Stats.POWER)} and hardStrength is ${session.hardStrength}");
+        ////;
         summary.setBoolStat("murdersHappened", session.stats.murdersHappened);
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 

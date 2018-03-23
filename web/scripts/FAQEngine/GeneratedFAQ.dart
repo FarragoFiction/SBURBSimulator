@@ -44,7 +44,7 @@ class GeneratedFAQ {
 
 
         int amount = 10;
-       // //print("I'm making html for a generated faq with ${sections.length} sections");
+       // //;
         Quirk q = author.quirk;
         asciiHeader = GeneratedFAQ.pickASCIIHeaderFromSections(rand, sections);
 

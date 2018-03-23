@@ -103,7 +103,7 @@ void wirePlayer(p, fs){
 void getStatsForPlayer(player){
 	String ret = "";
 	var allStats = player.allStats();
-//	//print(allStats);
+//	//
 
 	for(num i = 0; i<allStats.length; i++){
 		var stat = allStats[i];
@@ -114,7 +114,7 @@ void getStatsForPlayer(player){
 		}else{
 			num tmp = 0;
 			for(num j = 0; j<player.relationships.length; j++){
-			//	//print(player.relationships[j]);
+			//	//
 				tmp +=Math.round(player.relationships[j].value);
 
 			}
@@ -129,7 +129,7 @@ void getStatsForPlayer(player){
 
 
 dynamic createPlayersFromAspects(aspects){
-	//print(aspects);
+	//
 	List<dynamic> ret = [];
 	available_classes = classes; //allow all classes again for next fraymotif.
 	available_aspects = all_aspects;

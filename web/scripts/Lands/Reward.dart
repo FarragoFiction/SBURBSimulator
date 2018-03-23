@@ -26,7 +26,7 @@ class Reward {
         Drawing.drawSinglePlayer(buffer, p1);
         if(image != null ) Drawing.drawWhatever(buffer, image);
         if(bgImage != null) Drawing.drawWhatever(canvas, bgImage);
-        //print("drawing player 1 is ${p1}");
+        //;
         Drawing.copyTmpCanvasToRealCanvas(canvas, buffer);
         if(p2 != null && (p2 is Player)){
             Element buffer2 = Drawing.getBufferCanvas(canvas.width, canvas.height);
@@ -187,7 +187,7 @@ class DenizenReward extends Reward {
             df.makeDenizen(p1);
         }
         Fraymotif f1 = df.denizen.fraymotifs.first;
-       // print("narrating player 1 is ${p1}");
+       // ;
         p1.fraymotifs.add(f1);
 
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
@@ -293,17 +293,17 @@ class BrainGhostReward extends Reward {
                 if(g is Player) {
                     Player gP = g as Player;
                     if(gP.chatHandle == pbg.chatHandle && gP.brainGhost) {
-                       // print("${gP.chatHandle} is indeed a copy of ${pbg.chatHandle}.");
+                       // ;
                         toRemove.add(pbg);
                     }else {
-                       // print("${gP.chatHandle} is not a copy. ${pbg.chatHandle}");
+                       // ;
                     }
                 }
             }
         }
 
         for(Player tr in toRemove) {
-            //print("removing ${tr.chatHandle} who is indeed a copy.");
+            //;
             possibleBrainGhosts.remove(tr);
         }
         //p1.session.logger.info("DEBUG BRAIN:  Hope player trying for a brain ghost");

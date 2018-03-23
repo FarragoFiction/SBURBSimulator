@@ -122,13 +122,13 @@ int getRandomSeed() {
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(ErrorEvent e) {
-    print("trying to print corruption message $e");
+    ;
     if(curSessionGlobalVar == null) {
       appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION. THIS IS STUPID.");
       SimController.instance.recoverFromCorruption();
       return false;
     }
-    //print("Debugging AB: corruption msg in session: ${curSessionGlobalVar.session_id}");
+    //;
     Element story = SimController.instance.storyElement;
 
     //String msg = e.message;
@@ -226,8 +226,8 @@ bool printCorruptionMessage(ErrorEvent e) {
     appendHtml(story, "<BR>SUGGESTED ACTION: $recomendedAction");
     renderAfterlifeURL();
 
-    //print("Corrupted session: ${scratchedLineageText(curSessionGlobalVar.getLineage())} helping AB return, if she is lost here.");
-    //print("Debugging AB: trying to recover from corruption now.");
+    //;
+    //;
     SimController.instance.recoverFromCorruption();
     appendHtml(story,"<h1>IT BEGINS TO DAWN ON YOU. THAT EVERYTHING YOU JUST DID. MAY HAVE BEEN A COLOSSAL WASTE OF TIME. </h1>");
     return false; //if i return true here, the real error doesn't show up;
@@ -263,7 +263,7 @@ String getYellowYardEvents(Session session) {
 
 
 String scratchedLineageText(List<Session> lineage) {
-    //print("Generating linage text for crash");
+    //;
     String scratched = "";
     String ret = "";
     String yellowYard = getYellowYardEvents(lineage[0]);
@@ -316,7 +316,7 @@ void crashEasterEgg(String url) {
 
 
 void scratch() {
-    //print("scratch has been confirmed");
+    //;
     numPlayersPreScratch = curSessionGlobalVar.players.length;
     var ectoSave = curSessionGlobalVar.stats.ectoBiologyStarted;
 
@@ -362,7 +362,7 @@ void scratchEasterEggCallBack() {
     //NOT over time. literally sudden death. thanks meenah!
     List<Player> livingRagged = findLiving(raggedPlayers);
     if (suddenDeath != null && !suddenDeath.dead) {
-        //print("sudden death in: ${curSessionGlobalVar.session_id}");
+        //;
         for (num i = 0; i < livingRagged.length; i++) {
             scratch += livingRagged[i].makeDead("right as the scratch happened", livingRagged[i]);
         }
@@ -370,10 +370,10 @@ void scratchEasterEggCallBack() {
     }
     if (curSessionGlobalVar.players.length != numPlayersPreScratch) {
         scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. ";
-        //print("forign players erased.");
+        //;
     }
     scratch += " What will happen?";
-   // //print("about to switch players");
+   // //;
 
     setHtml(SimController.instance.storyElement, scratch);
     if (!doNotRender) window.scrollTo(0, 0);
@@ -445,7 +445,7 @@ void appendHtml(Element element, String html, [bool force = false]) {
     if(!(SimController.instance is AuthorBot) || force) {
         element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
     }else {
-       // print("ab says don't bother rendering");
+       // ;
     }
 }
 
@@ -466,7 +466,7 @@ void renderAfterlifeURL() {
         html = "$html<br><br><a href = 'index2.html'>Random New Session?</a>";
         html = '$html<br><br><a href = "index2.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Shareable URL </a> ';
         html = "$html<Br><Br>Simulation took: ${msToTime(stopTime.difference(startTime))} to render. ";
-        print("Start time is $startTime and stop time is $stopTime, seconds for stop time is ${stopTime.second}");
+        ;
         ////print("gonna append: " + html);
         SimController.instance.storyElement.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
     } else {

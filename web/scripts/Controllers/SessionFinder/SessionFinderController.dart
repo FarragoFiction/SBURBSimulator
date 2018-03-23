@@ -121,7 +121,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   }
 
   void filterSessionSummaries() {
-    //print("attempting to filter");
+    //;
     List<SessionSummary> tmp = [];
     List<String> filters = [];
     sessionSummariesDisplayed = [] ;//can filter already filtered arrays.;
@@ -129,11 +129,11 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       sessionSummariesDisplayed.add(allSessionsSummaries[i]);
     }
     List<Element> filterCheckBoxes = querySelectorAll("input[name='filter']:checked");
-    ////print("debugging ab: I think i have found this many checked boxes: ${filterCheckBoxes.length}");
+    ////;
     for(CheckboxInputElement c in filterCheckBoxes) {
       filters.add(c.value);
     }
-    ////print("debugging ab: I think i have found this manyfilters: ${filters.length}");
+    ////;
     for(int i = 0; i<sessionSummariesDisplayed.length; i++){
       SessionSummary ss = sessionSummariesDisplayed[i];
       if(ss.satifies_filter_array(filters)){
@@ -160,7 +160,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
     //////print(tmp);
     sessionSummariesDisplayed = tmp;
-    ////print("debugging ab: I think i have this many session summaries: ${sessionSummariesDisplayed.length}");
+    ////;
     printSummaries();
     printStats(filters,classes, aspects);
 
@@ -192,7 +192,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     for(num i = 0; i<toRemove.length; i++){
       removeFromArray(toRemove[i],tmp);
     }
-    ////print("debugging ab: I think i have found this summaries after removing non matching claspects: ${tmp.length}");
+    ////;
 
     return tmp;
   }
@@ -241,7 +241,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   //stripped out tournament stuff, that'll be a different controller.
   @override
   SessionSummary summarizeSession(Session session) {
-    ////print("Debugging AB: Summarizing session ${session.session_id}");
+    ////;
     ////print("summarizing: " + curSessionGlobalVar.session_id + " please ignore: " +curSessionGlobalVar.pleaseIgnoreThisSessionAB);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if (sessionsSimulated.indexOf(session.session_id) != -1 &&
@@ -261,11 +261,11 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     printStats(null,null,null); //no filters here
     numSimulationsDone ++;
     initial_seed = session.rand.nextInt(); //child session
-    ////print("num sim done is $numSimulationsDone vs todo of $numSimulationsToDo");
+    ////;
     if(numSimulationsDone >= numSimulationsToDo){
       round ++;
       (querySelector("#button")as ButtonElement).disabled =false;
-     // //print("Debugging AB: I think I am done now");
+     // //;
       stopTime = new DateTime.now();
       appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>", true);
       mvp = null; //reset.
@@ -277,14 +277,14 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
         e.disabled = false;
       }
     }else{
-     // //print("Debugging AB: going to start new session");
+     // //;
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
       //RESETTING the mutator so that wastes can't leak into other sessions
       getMVP();
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t) => startSession());
     }
-    ////print("Debugging AB: done summarizing session ${session.session_id}");
+    ////;
     return sum;
   }
 
@@ -330,20 +330,20 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   void wireUpAllFilters() {
     //except for corpse party apparently
     List<Element> allFilters = querySelectorAll("input[name='filter']");
-   // //print("debugging AB: wiring up ${allFilters.length} filters");
+   // //;
     for(CheckboxInputElement e in allFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
 
 
     List<Element> classFilters = querySelectorAll("input[name='filterClass']");
-    ////print("debugging AB: wiring up class ${classFilters.length} filters");
+    ////;
     for(CheckboxInputElement e in classFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
 
     List<Element> aspectFilters = querySelectorAll("input[name='filterAspect']");
-    ////print("debugging AB: wiring up aspect ${aspectFilters.length} filters");
+    ////;
     for(CheckboxInputElement e in aspectFilters) {
       e.onChange.listen((e) => filterSessionSummaries());
     }
@@ -368,7 +368,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       mms = MultiSessionSummary.collateMultipleSessionSummaries(sessionSummariesDisplayed);
     }
 
-    ////print("MMS is: ${mms.num_stats}");
+    ////;
     SimController.instance.clearElement(querySelector("#stats"));
 
     setHtml(querySelector("#stats"), mms.generateHTML());

@@ -69,7 +69,7 @@ class OCGenerator {
         //get canvas, draw player from scratch.
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
-        print("canvas is $canvas");
+
         CanvasElement godBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         CanvasElement regBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         CanvasElement dreamBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
@@ -342,7 +342,7 @@ class OCGenerator {
         }else {
             h = int.parse(numb);
         }
-        print("#favorit enumber is $h");
+
         p.quirk.favoriteNumber = h;
     }
 

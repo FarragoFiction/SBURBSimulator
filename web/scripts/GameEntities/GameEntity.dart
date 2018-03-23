@@ -200,11 +200,11 @@ class GameEntity extends Object with StatOwner   {
     //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
     //this is intended. probably.
     void processScenes() {
-      // print("TEST NPCS: processing ${scenes.length} scenes for $this");
+      // ;
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
             s.gameEntity = this;
-            // print("checking scene $s");
+            // ;
             //if one scene makes you unavailable no future scenes
             if (this.available && s.trigger(session.getReadOnlyAvailablePlayers())) {
                 //session.scenesTriggered.add(s);
@@ -246,7 +246,7 @@ class GameEntity extends Object with StatOwner   {
         this.initStatHolder();
         id = GameEntity.generateID();
         sylladex = new Sylladex(this);
-        //print(" made a new syladdex you asshole, its $sylladex");
+        //;
         //default non player thingy.
         this.specibus = SpecibusFactory.CLAWS;
         this.addBuff(new BuffSpecibus(this)); //programatic
@@ -282,7 +282,7 @@ class GameEntity extends Object with StatOwner   {
         for(Stat s in stats) {
             //stats.getBase lets you get raw value, not multiplieid
             if(s != Stats.CURRENT_HEALTH && getStat(s)/s.coefficient > getStat(ret)/ret.coefficient) {
-                //print("$s ${getStat(s)/s.coefficient} is higher than ${getStat(ret)/ret.coefficient}");
+                //;
                 ret = s;
             }
         }
@@ -677,12 +677,12 @@ class GameEntity extends Object with StatOwner   {
     String describeBuffs() {
         List<String> ret = <String>[];
         Iterable<Stat> allStats = Stats.all;
-        //print("$this buffs: $buffs");
+        //;
         for (Stat stat in allStats) {
             double withbuffs = this.stats.derive(stat); // functionally this.stats[stat]
             double withoutbuffs = this.stats.derive(stat, (Buff b) => !b.combat);
             double diff = withbuffs - withoutbuffs;
-            //print("$stat: with: $withbuffs, without: $withoutbuffs, diff: $diff");
+            //;
             //only say nothing if equal to zero
             if (diff > 0) ret.add("more ${stat.emphaticPositive}");
             if (diff < 0) ret.add("less ${stat.emphaticPositive}");
@@ -730,7 +730,7 @@ class GameEntity extends Object with StatOwner   {
                 if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
             }
         }
-       // print("going to return $ret");
+       // ;
         return ret;
     }
 
@@ -775,7 +775,7 @@ class GameEntity extends Object with StatOwner   {
 
         ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         List<Fraymotif> confusion = fraymotifsForDisplay;
-        //print("I am $this and confusion is $confusion");
+        //;
         for(Fraymotif f in confusion) {
             ret += "${f.name}<br>";
         }
@@ -831,9 +831,9 @@ class GameEntity extends Object with StatOwner   {
         if(corpse == null) return;
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
-       // print("$this $sylladex is looting $corpse 's corpse of $tmp");
+       // ;
         if(corpse != this) sylladex.addAll(tmp);
-        //print("after looting I have $sylladex and corpse has ${corpse.sylladex}");
+        //;
 
     }
 
@@ -899,7 +899,7 @@ class GameEntity extends Object with StatOwner   {
   }
 
   void setImportantShit(Session newSession, List<AssociatedStat> newAssociatedStats, String newName, double strength, List<Fraymotif> newFraymotifs, bool denizenBeat, bool god) {
-      print("Strength for denizen $name is: $strength");
+      ;
       //based off existing denizen code.  care about which aspect i am.
       //also make minion here.
       this.name = newName;

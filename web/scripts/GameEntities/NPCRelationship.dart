@@ -12,7 +12,7 @@ class NPCRelationship extends Relationship {
     String spades = "Best Rivals";
 
   NPCRelationship(GameEntity source, [int value, GameEntity target]) : super(source, value, target) {
-    //print("making npc relationship between $source and $target");
+    //;
   }
 
     String nounDescription() {

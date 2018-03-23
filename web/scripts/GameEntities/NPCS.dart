@@ -54,7 +54,7 @@ class Carapace extends NPC {
 
 
     void initRelationshipsAllies(Moon us) {
-       // print("initializing relationships with allies. king is ${us.king} and queen is ${us.queen}");
+       // ;
         for(GameEntity g in us.associatedEntities) {
             if(g != this && g is Carapace) {
                 Carapace c = g as Carapace;
@@ -70,7 +70,7 @@ class Carapace extends NPC {
     }
 
     void initRelationshipsEnemies(Moon them) {
-       // print("initializing relationships with allies. king is ${them.king} and queen is ${them.queen}");
+       // ;
 
         for(GameEntity g in them.associatedEntities) {
             if(g != this && g is Carapace) {
@@ -102,14 +102,14 @@ class Carapace extends NPC {
     @override
     List<Fraymotif> get fraymotifsForDisplay {
         List<Fraymotif> ret = new List.from(fraymotifs);
-        //print("Test Ring: Getting fraymotifs for display for a carapce with a sylladex of $sylladex.");
+        //;
         for(Item item in sylladex) {
-            //print("Test Ring: checking item $item. Is it magical? ${item is MagicalItem} ${item is Ring}");
+            //;
 
             if(item is MagicalItem) {
                 MagicalItem m = item as MagicalItem;
                 //don't need to include other things
-                //print("Test Ring: I am a carapace and i'm adding a magical item named $m that has ${fraymotifs.length} fraymotifs");
+                //;
                 ret.addAll(m.fraymotifs);
             }
         }
@@ -272,7 +272,7 @@ class Leprechaun extends NPC {
             }
         }
 
-        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        //;
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         return companion;
     }
@@ -527,7 +527,7 @@ class Leprechaun extends NPC {
                 companion.setStat(stat, companion.stats.getBase(stat) / divisor); //basically nothing
             }
         }
-        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        //;
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         return companion;
     }
@@ -563,7 +563,7 @@ class Consort extends NPC {
 
     Consort(String name, Session session) : super(name, session);
     Consort.withSound(String name, Session session,  this.sound): super(name, session){
-       // print("making consort named $name and sound $sound");
+       // ;
     }
 
     //takes in a player and randomly generates a consort with a special title just for them.
@@ -583,7 +583,7 @@ class Consort extends NPC {
             }
         }
 
-        //print("$p health was ${p.getStat(Stats.HEALTH)} and consort health is ${companion.getStat(Stats.HEALTH)}");
+        //;
         companion.setStat(Stats.CURRENT_HEALTH, companion.getStat(Stats.HEALTH));
         companion.setTitleBasedOnStats();
         List<Specibus> possibleSpecibi = new List<Specibus>();
@@ -801,7 +801,7 @@ class Consort extends NPC {
 //creating a denizen live here in a static method.
 class Denizen extends NPC {
     Denizen(String name, Session session) : super(name, session) {
-        //print("making new denizen $this with syladdex $sylladex");
+        //;
     }
 
     @override
@@ -867,12 +867,12 @@ class PotentialSprite extends NPC {
         if(PotentialSprite.prototyping_objects != null) return; //dont' reinit.
         defaultSession = s;
 
-        print("initializing potential sprites");
+        ;
         initializeAShitTonOfGenericSprites();
         initializeAShitTonOfFortuneSprites();
         initializeAShitTonOfDisastorSprites();
         initializeAShotTonOfLususSprites();
-       // print("prototyping objects is ${PotentialSprite.prototyping_objects}");
+       // ;
         prototyping_objects.addAll(PotentialSprite.disastor_objects);
         prototyping_objects.addAll(PotentialSprite.fortune_objects);
         prototyping_objects.addAll(PotentialSprite.lusus_objects);

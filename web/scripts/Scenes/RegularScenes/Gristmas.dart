@@ -121,19 +121,19 @@ class Gristmas extends Scene {
       for(Item item1 in player.sylladex) {
         for(Item item2 in player.sylladex) {
             if(item1 != item2){
-                //print("checking ${item1.fullName} for do alchemy");
+                //;
                 if ((item1.canUpgrade(playerSkill == 3) || session.mutator.dreamField)){
-                    //print("Okay. No can I REALLY upgrade item1? ${item1.canUpgrade()}");
+                    //;
 
                     ret.addAll(AlchemyResult.planAlchemy(<Item>[item1, item2],session,playerSkill));
                 }
             }else {
-                //print("for alchemy ${item1} is ${item2}");
+                //;
             }
         }
       }
       //WHY the fuck is this sometimes returning 0 without a dream field? oh, cuz only upgrading specibus
-      //if(ret.length == 0) print("alchemy size is ${ret.length} dream field is ${session.mutator.dreamField}");
+      //if(ret.length == 0) ;
       return ret;
   }
 
@@ -158,15 +158,15 @@ class Gristmas extends Scene {
 
       //List<Player>players = availablePlayers;
       player = null;
-      //print("trying to trigger gristmas for ${players.length} players.");
+      //;
       for(Player p in players) {
-          //print("P is ${p}");
-         // print("P stats is ${p.stats}");
-         // print("P alchemy is ${p.getStat(Stats.ALCHEMY)}");
+          //;
+         // ;
+         // ;
 
           if(player == null && p.getStat(Stats.ALCHEMY) > 0) { //you don't even bother trying alchemy if you can't figure it out
               //session.logger.info("checking gristmas player ${p} with alchemy skill of ${ p.getStat(Stats.ALCHEMY)}");
-              //print("trying to trigger, player is not null");
+              //;
               bool anyItems = false;
               bool goodItems = false;
 
@@ -176,11 +176,11 @@ class Gristmas extends Scene {
               if (p.specibus.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
                  // if(p.specibus.rank>2) session.logger.info("gristmas ${p.title()} has upgrades remaining, not max. Rank: ${p.specibus.rank}, num alchemizations: ${p.specibus.numUpgrades}");
 
-                  //print("trying to trigger, specibus can upgrade");
+                  //;
                   p.sylladex.sort();
                   for (Item i in p.sylladex) {
                       if (i.canUpgrade(playerSkill == 3) || session.mutator.dreamField) {
-                          //print("in trigger, upgradeable item for alchemy is ${i.fullName}");
+                          //;
                           anyItems = true;
                       }
                       if (meetsStandards(p,i)) goodItems = true;

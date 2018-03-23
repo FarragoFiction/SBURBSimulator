@@ -110,7 +110,7 @@ abstract class DeadAuthorBot extends DeadSimController {
 
   @override
   void recoverFromCorruption() {
-    print("AB thinks she should check a new session after finding a shitty crashed session");
+    ;
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 

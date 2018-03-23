@@ -17,12 +17,12 @@ List<Player> getReplayers(Session session) {
     String b = Uri.decodeComponent(LZString.decompressFromEncodedURIComponent(getRawParameterByName("b", null)));
     String s = LZString.decompressFromEncodedURIComponent(getRawParameterByName("s", null));
     String x = (getRawParameterByName("x", null));
-    //print(" i think x is $x");
+    //;
     if (b == null || s == null) return <Player>[];
     if (b == "null" || s == "null") return <Player>[]; //why was this necesassry????????????????
-    ////print("b is");
+    ////;
     ////print(b);
-    ////print("s is ");
+    ////;
     ////print(s);
     List<Player> ret =  dataBytesAndStringsToPlayers(b, s, x);
     //can't let them keep their null session reference.
@@ -57,7 +57,7 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
 //this code is needed to make sure replay players have guardians.
 void redoRelationships(List<Player> players) {
     List<Player> guardians = <Player>[];
-    //print("redoing relationships");
+    //;
     for (num j = 0; j < players.length; j++) {
         Player p = players[j];
         guardians.add(p.guardian);
@@ -87,12 +87,12 @@ void initializePlayersNoReplayers(List<Player> players, Session session) {
 }
 
 void initializePlayers(List<Player> players, Session session) {
-    print("initializing players");
+    ;
     List<Player> replayPlayers = getReplayers(session);
-    print("replayers");
+    ;
     if (replayPlayers.isEmpty && session != null) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
     syncReplayNumberToPlayerNumber(replayPlayers);
-    print("synced");
+    ;
     for (num i = 0; i < players.length; i++) {
         if (replayPlayers.length > i) players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
         if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
@@ -113,7 +113,7 @@ void initializePlayers(List<Player> players, Session session) {
         redoRelationships(players); //why was i doing this, this overrides robot and gim dark and initial relationships
         //oh because it makes replayed sessions with scratches crash.
     }
-    //print("initialize players done");
+    //;
 }
 
 
@@ -186,8 +186,8 @@ Player randomPlayerNoDerived(Session session, SBURBClass c, Aspect a) {
 
 
 Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a, [Moon m = null]) {
-    ////print("random player");
-   // //print("class: $c, aspect: $a, session: $session");
+    ////;
+   // //;
     GameEntity k = session.rand.pickFrom(PotentialSprite.prototyping_objects);
     k.session = session;
 
@@ -195,9 +195,9 @@ Player randomPlayerWithClaspect(Session session, SBURBClass c, Aspect a, [Moon m
 
     if(m == null) {
         m = session.rand.pickFrom(session.moons);
-        //print("setting random moon to $m");
+        //;
     }else {
-       // print("making player with set moon of $m");
+       // ;
     }
     Player p = new Player(session, c, a, k, m, gd);
     p.decideTroll();
@@ -267,7 +267,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.aspect == aspect) {
-                ////print("Found " + aspect + " player");
+                ////;
                 return p;
             }
         }
@@ -284,7 +284,7 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.aspect == aspect) {
-                ////print("Found " + aspect + " player");
+                ////;
                 ret.add(p);
             }
         }
@@ -302,7 +302,7 @@ Player findClaspectPlayer(List<GameEntity> playerList, SBURBClass class_name, As
         if (g is Player) {
             Player p = playerList[i];
             if (p.class_name == class_name && p.aspect == aspect) {
-                ////print("Found " + class_name + " player");
+                ////;
                 return p;
             }
         }
@@ -317,7 +317,7 @@ Player findClassPlayer(List<GameEntity> playerList, SBURBClass class_name) {
         if (g is Player) {
             Player p = playerList[i];
             if (p.class_name == class_name) {
-                ////print("Found " + class_name + " player");
+                ////;
                 return p;
             }
         }
@@ -521,7 +521,7 @@ Player clonePlayer(Player player, Session session, bool isGuardian) {
         clone.guardian = g;
         g.guardian = clone;
     }
-    //print("returning clone $clone");
+    //;
     return clone;
 }
 

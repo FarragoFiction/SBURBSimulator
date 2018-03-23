@@ -129,8 +129,8 @@ class Session {
         npcHandler = new NPCHandler(this);
         mutator = SessionMutator.getInstance();
         stats.initialGameEntityId = GameEntity.getIDCopy();
-        print("Making sesssion $this with initialGameEntity id of ${stats.initialGameEntityId}");
-        ////print("Made a new session with an id of $session_id");
+        ;
+        ////;
 
         logger = Logger.get("Session: $session_id", false);
 
@@ -139,7 +139,7 @@ class Session {
     }
 
     Moon stringToMoon(String string) {
-        print("string to moon");
+        ;
         if(string == prospit.name) return prospit;
         if(string == derse.name) return derse;
         return null;
@@ -254,14 +254,14 @@ class Session {
 
 
         battleFieldThemes[battleFieldTheme] = Theme.HIGH;
-        //print("battlefield themes is ${battleFieldThemes}");
+        //;
         battlefield = new Battlefield.fromWeightedThemes("BattleField", battleFieldThemes, this, Aspects.LIGHT);
         battlefield.spawnKings();
     }
 
 
     void setupMoons() {
-         //print("Test NPCs: moons set up $session_id");
+         //;
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Red Miles", 3);
@@ -379,14 +379,14 @@ class Session {
         furthestRingThemes[furthestRingTheme] = Theme.HIGH;
 
          prospit = new Moon.fromWeightedThemes(prospitRing, prospitScepter, "Prospit", prospitThemes, this, Aspects.LIGHT, session_id, ReferenceColours.PROSPIT_PALETTE);
-         //print("Test NPCS: before adding entities, prospit has ${prospit.associatedEntities}");
+         //;
 
          prospit.associatedEntities.addAll(npcHandler.getProspitians());
          derse = new Moon.fromWeightedThemes(derseRing, derseScepter, "Derse", derseThemes, this, Aspects.VOID, session_id +1, ReferenceColours.DERSE_PALETTE);
-        // print("Test NPCS: before adding entities, derse has ${derse.associatedEntities}");
+        // ;
 
          derse.associatedEntities.addAll(npcHandler.getDersites());
-         //print("Test NPCS: after adding entities, derse has ${derse.associatedEntities}");
+         //;
 
          furthestRing = new Moon.fromWeightedThemes(null,null,"Furthest Ring", furthestRingThemes, this, Aspects.SAUCE, session_id, ReferenceColours.DERSE_PALETTE);
 
@@ -489,7 +489,7 @@ class Session {
         for(GameEntity g in activatedNPCS) {
 
             if(!g.dead) {
-                //print("setting $g to available");
+                //;
                 g.available = true;
             }else {
                 g.available = false;
@@ -499,13 +499,13 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
-        //print("processing scene");
+        //;
         //SimController.instance.storyElement.append("processing scene");
         List<Player> avail = setAvailablePlayers(playersInSession);
         makeSurePlayersNotInSessionArentAvailable(playersInSession);
         resetNPCAvailability();
         for(Player p in avail) {
-            //print("$p is available");
+            //;
             if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
             if(p.active && p.available) {
                 //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
@@ -513,7 +513,7 @@ class Session {
             }
         }
 
-       // print("TEST NPCS: Processing scenes start, activated npcs is ${activatedNPCS}");
+       // ;
         for(GameEntity g in activatedNPCS) {
             if(g.active && g.available) g.processScenes();
         }
@@ -577,11 +577,11 @@ class Session {
         ImportantEvent alternate = this.yellowYardController.doesEventNeedToBeUndone(important_event);
         //	//print("alternate i got from yellowYardController is: " + alternate);
         if (alternate != null) {
-            //	//print("returning alternate");
+            //	//;
             if (doEventsMatch(important_event, this.afterLife.timeLineSplitsWhen, false)) this.afterLife.allowTransTimeLineInteraction();
             return alternate; //scene will use the alternate to go a different way. important event no longer happens.
         } else {
-            ////print(" pushing important event and returning null");
+            ////;
             this.importantEvents.add(important_event);
             return null;
         }
@@ -661,7 +661,7 @@ class Session {
     void addEventToUndoAndReset(ImportantEvent e) {
         //when I reset, need things to go the same. that includes having no ghosts interact with the session. figure out how to renable them once my event happens again.
         this.afterLife.complyWithLifeTimeShenanigans(e);
-        ////print("undoing an event.");
+        ////;
         if (this.stats.scratched) {
             this.addEventToUndoAndResetScratch(e); //works different
             return;
@@ -684,7 +684,7 @@ class Session {
     }
 
     void createScenesForPlayers() {
-        //print("creating scenes for ${players.length} players");
+        //;
         for(Player p in players) {
             Scene.createScenesForPlayer(this, p);
         }
@@ -753,7 +753,7 @@ class Session {
             ////print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
            if(! mutator.spaceField) return null; //their child session is not able to support them  (space says 'fuck this noise we doing it')
         }
-        print("about to add: ${living.length} aliens to new session.");
+        ;
         ////print(getPlayersTitles(living));
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
@@ -772,7 +772,7 @@ class Session {
                 return p; //yeah, technically there COULD be two players with the same claspect in a combo session, but i have ceased caring.
             }
         }
-        //print("Error finding session's: ${player.title()}");
+        //;
         return null;
     }
 
@@ -788,7 +788,7 @@ class Session {
         //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
-        print("TEST NPCS: reiniting session");
+        ;
         this.setupMoons();
         //fix refereances
 
@@ -808,7 +808,7 @@ class Session {
         double special = rand.nextDouble();
 
         this.players.add(randomSpacePlayer(this));
-        print("after make space player, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+        ;
 
         this.players.add(randomTimePlayer(this));
 
@@ -829,7 +829,7 @@ class Session {
         }
         //random chance of Lord/Muse for two player sessions
         if(numPlayers <= 2) {
-            print("less than 2 players");
+            ;
             if(special > .6) {
                 players[0].class_name = SBURBClassManager.LORD;
                 players[1].class_name = SBURBClassManager.MUSE;
@@ -847,7 +847,7 @@ class Session {
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
 
         createScenesForPlayers();
-        print("TEST NPCS: making players");
+        ;
 
         this.setupMoons(); //happens only in reinit
 
@@ -889,7 +889,7 @@ class Session {
     }
 
     void makeGuardians() {
-        ////print("Making guardians");
+        ////;
         resetAvailableClasspects();
         //guardians have to pick from existing classes.
         available_classes_guardians = SBURBClassManager.playersToClasses(players);
@@ -985,7 +985,7 @@ class Session {
                     tin[1] = "${getRandomIntNoSeed(1, 100)}%";
                 }
                 ret.style.setProperty(tin[0], tin[1]);
-                //print("Setting ${tin[0]} to ${tin[1]} in ${ret.style.cssText}");
+                //;
             }
         }
         if (ouija == true) {
@@ -1070,7 +1070,7 @@ class Session {
     }
 
     List<Session> getLineage() {
-        //print("Getting lineage for session: $session_id");
+        //;
         if (this.parentSession != null) {
             List<Session> tmp = this.parentSession.getLineage();
             tmp.add(this);
@@ -1087,7 +1087,7 @@ class Session {
 
 //save a copy of the alien (in case of yellow yard)
 void addAliensToSession(Session newSession, List<Player> aliens) {
-   // print("in method, adding ${aliens.length} aliens to session with ${newSession.players.length} players already");
+   // ;
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
         survivor.land = null;
@@ -1108,7 +1108,7 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
         Player clone = newSession.aliensClonedOnArrival[i];
         Relationship.transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
     }
-    ////print("generated relationships between clones");
+    ////;
     //generate relationships AFTER saving a backup of hte player.
     //want clones to only know about other clones. not players.
     for (num i = 0; i < aliens.length; i++) {
@@ -1141,6 +1141,6 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
     }
 
     newSession.players.addAll(aliens);
-   // print("after adding ${aliens.length} aliens to session it has ${newSession.players.length} players");
+   // ;
 
 }

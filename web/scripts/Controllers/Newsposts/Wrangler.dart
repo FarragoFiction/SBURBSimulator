@@ -28,11 +28,11 @@ class Wrangler {
     Future<Null> slurpNewsposts() async{
         await HttpRequest.getString(PathUtils.adjusted("WranglerNewsposts/${chatHandle}.txt")).then((String data) {
             List<String> parts = data.split("\n");
-            //print("Parts is ${parts.length} long.");
+            //;
             for(String line in parts) {
                 posts.add(new MemoNewspost.from(line, this));
             }
-           // print("should be returning ");
+           // ;
         });
     }
 
@@ -51,7 +51,7 @@ class Wrangler {
         nameElement.append(icon);
         container.append(nameElement);
         div.append(container);
-        //print("rendering headshot");
+        //;
     }
 
     void renderLine(Element div, DateTime date, String text) {

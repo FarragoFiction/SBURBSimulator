@@ -263,7 +263,7 @@ class DeadSession extends Session {
 
         //random chance of Lord/Muse for natural two player sessions, even if they become dead
         if(numPlayers <= 2) {
-            print("less than 2 players");
+            ;
             if(special > .6) {
                 players[0].class_name = SBURBClassManager.LORD;
             }else if(special < .3) {
@@ -278,7 +278,7 @@ class DeadSession extends Session {
 
     @override
     void reinit() {
-        print("~~~~~~~~~~~~~~~~dead reinit");
+        ;
         super.reinit();
         themes = new Map<Theme, double>();
         chosenThemesForDeadSession =  new Map<Theme, double>();
@@ -309,7 +309,7 @@ class DeadSession extends Session {
         chosenThemesForDeadSession[interest1Theme] = player.interest1.category.themes[interest1Theme];
         chosenThemesForDeadSession[interest2Theme] = player.interest2.category.themes[interest2Theme];
         chosenThemesForDeadSession[deadTheme] = themes[deadTheme];
-        print("making a dead land. with themes: ${chosenThemesForDeadSession}");
+        ;
         players[0].land = new Land.fromWeightedThemes(chosenThemesForDeadSession, this, players[0].aspect,players[0].class_name);
 
         //check to see if it's dutton related.

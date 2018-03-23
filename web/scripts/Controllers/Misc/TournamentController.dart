@@ -12,7 +12,7 @@ void main() {
   loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
-    printCorruptionMessage(e);
+
     return;
   });
   new TournamentController();
@@ -115,7 +115,7 @@ class TournamentController extends AuthorBot {
     String divStart = "<div id = '${team.stat}$tierNumber' class = 'teamDescription'>";
     String divEnd = "</div>";
     String mid = getTeamDescription(team);
-    //print("debugging ab: team description is: $mid");
+    //
     html += divStart + mid + divEnd;
     return html;
   }
@@ -123,7 +123,7 @@ class TournamentController extends AuthorBot {
 
 //when tournament starts up, drop down is set to none, and this is left most thing.
   String getTeamDescription(TournamentTeam team){
-    //print("Debugging AB: getting team description,  tier number is: $tierNumber");
+    //
     var stuck = team.name.split("Stuck");
     if(tierNumber > 0) return team.name + ": <div class = 'score' id = 'score_${team.name}$tierNumber'></div>";
     if(stuck.length == 2) return "<h2>" +stuck[0] +"Stuck</h2> <div id = 'score_${team.name}$tierNumber'></div><div id = 'mvp_${team.name}$tierNumber'></div><hr> A random team of only  " + stuck[0] + " Players. (With Time/Space guaranteed)";
@@ -146,7 +146,7 @@ class TournamentController extends AuthorBot {
 //queue up next 2.
 //when done, erase all losers, and start again with new teams (teamsGlobalVar should be object[], not string[])
   void startTournament(){
-    //print("Debugging AB: Starting up a tournament");
+    //
     if (startingTeams.length == 0) setStartingTeams(); //don't THINK i have to make a copy of it, because i just throw away old array when i'm done, i don't modify it.
     currentTier = new Tier(); //add rounds to it as it goes on.
     resetColors();
@@ -172,14 +172,14 @@ class TournamentController extends AuthorBot {
 
   //want rounds to take long enough that you can read what happens.
   void startRound(){
-    //print("Debugging AB: Starting up a round");
+    //
     new Timer(new Duration(milliseconds: 1000), () => startRoundPart2()); //sweet sweet async
   }
 
 
 
   void startRoundPart2(){
-    //print("Debugging AB: Starting up a round post timer");
+    //
     lastTeamIndex += 2;
     if(lastTeamIndex >= teamsGlobalVar.length) {
       doneWithTier();
@@ -191,11 +191,11 @@ class TournamentController extends AuthorBot {
       doneWithRound();
       return;
     }
-    //print("Debugging AB: teams are $team1 and $team2");
+    //
     String team1Title = "<span class = 'vsName' id = 'team1Title'>$team1</span>";
     String team2Title = "<span class = 'vsName' id = 'team2Title'>$team2</span>";
     querySelector("#roundTitle").setInnerHtml(team1Title +" vs " + team2Title);
-    //print("Debugging AB: Gonna render teams");
+    //
     renderTeam(team1, querySelector("#team1"));
     renderTeam(team2, querySelector("#team2"));
     clearTeam(querySelector("#team1"));
@@ -206,17 +206,17 @@ class TournamentController extends AuthorBot {
 
 
   dynamic fight(){
-    //print("Debugging AB: Starting up a tournament fight");
+    //
     SimController.instance.storyElement.setInnerHtml("");
     //TODO how was this supposed to be working? make sure sessions gets this
     initial_seed = getRandomSeed(); //pick a random session
     TournamentTeam team = teamsGlobalVar[lastTeamIndex];
-    //print("Debugging AB: team is $team");
+    //
     if(team.numberSessions >= numSimulationsToDo){
       team = teamsGlobalVar[lastTeamIndex+1];
-      ////print("switiching teams in fight");
+      ////
     }
-    ////print("number of sessions for team: " + team + " is " + team.numberSessions);
+    ////
 
     if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
     //var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
@@ -252,7 +252,7 @@ void  summarizeSession(Session session) {
     var team = teamsGlobalVar[lastTeamIndex];
     num teamNum = 1;
     if(team.numberSessions >= numSimulationsToDo){
-      ////print("switching to team 2 in callback");
+      ////
       teamNum = 2;
       team = teamsGlobalVar[lastTeamIndex+1];
       abRight(false);
@@ -300,11 +300,11 @@ void  summarizeSession(Session session) {
 
 
   void abjSummary(sessionSummary){
-    ////print(sessionSummary);
+    ////
     var team = teamsGlobalVar[lastTeamIndex];
     num teamNum = 1;
     if(team.numberSessions >= numSimulationsToDo){
-      ////print("switching to team 2 in callback");
+      ////
       teamNum = 2;
       team = teamsGlobalVar[lastTeamIndex+1];
       abRight(false);
@@ -460,8 +460,8 @@ void  summarizeSession(Session session) {
   }
 
   void markLoser(Element loser){
-    ////print("marking loser");
-    ////print(loser);
+    ////
+    ////
     loser.classes.add("loser");
   }
 

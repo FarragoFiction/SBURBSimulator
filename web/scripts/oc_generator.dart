@@ -22,7 +22,7 @@ window.onload = () {
 //  reroll();
 }
 void reroll(){
-	//print("rerolling");
+	//;
 	makePlayers();
 	//describe();
  	drawSpriteAll();

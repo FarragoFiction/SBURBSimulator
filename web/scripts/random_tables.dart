@@ -411,7 +411,7 @@ String intToHexColor(int num) {
     for (int i = 0; i < padding; i++) {
         tmp = "0" + tmp;
     }
-    ////print("which i think is: " + tmp + " in hex");
+    ////;
     return "#" + tmp;
 }
 

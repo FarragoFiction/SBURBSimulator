@@ -63,7 +63,7 @@ class QuestChainFeature extends Feature {
             completedQuests.add(quests.first);
             quests.remove(quests.first);
             if (quests.isEmpty) {
-               // print("I've finished quest chain $name!,player is $p1");
+               // ;
                 finished = true;
                 reward.apply(div, p1, p2,  land);
             }
@@ -230,7 +230,7 @@ class QuestChainFeature extends Feature {
     //make quest chains be a weighted list so default option is ALWAYS very unlikely to trigger. or something.
     static bool isJadedResearcher(List<GameEntity> ps) {
         Player potentialJR = ps.first as Player;
-        print("is it JR? ${potentialJR.chatHandle} ${potentialJR.chatHandle == "jadedResearcher"} ");
+        ;
         return potentialJR.chatHandle == "jadedResearcher";
     }
 }

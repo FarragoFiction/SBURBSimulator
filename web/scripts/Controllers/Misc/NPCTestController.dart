@@ -39,7 +39,7 @@ main() {
     for(Player p in curSessionGlobalVar.players) {
         p.initialize();
         Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
-        //print("template is ${template.name}");
+        //
 
         appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} ${p.highestStat} ${p.lowestStat}  has land ${p.land}");
         for(int i = 0; i<3; i++) {

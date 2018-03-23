@@ -43,7 +43,7 @@ Future<Null> createNews() async{
 
 
 
-  print("Ready to handle ${memo.newsposts.length} posts");
+  ;
   renderNews();
 
 }

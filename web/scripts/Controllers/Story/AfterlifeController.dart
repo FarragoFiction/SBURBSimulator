@@ -27,7 +27,7 @@ void main()
   }
   self.loadPlayers();
   globalCallBack = self.renderGhosts;
-  print("going to load images for ${curSessionGlobalVar.players} players");
+  ;
   load(curSessionGlobalVar.players, [], "ghostNewBullshitReallyIShouldJustBeUsingCallbackAlone");
 
 
@@ -52,7 +52,7 @@ class AfterlifeController extends SimController {
   }
 
   void renderSingleGhost(Player ghost, int i) {
-    //print("rendering ghost");
+    //;
     Element div = querySelector("#afterlifeViewer");
     String html = "<div class = 'eulogy'><div class = 'eulogy_text'>The " + ghost.htmlTitle() + " died " + ghost.causeOfDeath + ".";
     if(ghost.causeOfDrain != null && ghost.causeOfDrain.isNotEmpty){

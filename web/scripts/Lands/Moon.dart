@@ -73,7 +73,7 @@ class Moon extends Land {
 
       //kill the dream selves
       for(Player p in session.players) {
-          //print("TEST MOON: checking to see if $p would die. ${p.moon}, has dream: ${p.dreamSelf}, is dream: ${p.isDreamSelf}");
+          //;
           if(p.moon == this && p.dreamSelf && !p.isDreamSelf) {
 
               p.dreamSelf = false;
@@ -82,9 +82,9 @@ class Moon extends Land {
               snop.isDreamSelf = true;
               this.session.afterLife.addGhost(snop);
               killed.add(snop.htmlTitle());
-             // print("TEST MOON: yup, they toast");
+             // ;
           }else {
-              //print("TEST MOON: they survive.");
+              //;
           }
       }
 
@@ -122,11 +122,11 @@ class Moon extends Land {
 
       //if i ever want fanon moons, will need it to be an array instead. whatever.
       if(this == session.derse) {
-          //print("TEST MOON: setting derse to null");
+          //;
           session.derse = null;
       }
       if(this == session.prospit) session.prospit = null;
-      //print("i think i blew up a moon and am returning $ret with ${ret.text}");
+      //;
       return ret;
 
   }
@@ -181,7 +181,7 @@ class Moon extends Land {
   }
 
     void spawnQueen() {
-        //print("spawning queen $session");
+        //;
         //hope field can fuck with the queen.
         if(session.mutator.spawnQueen(session)) return null;
 
@@ -211,7 +211,7 @@ class Moon extends Land {
                 if(session.rand.nextDouble() < g.activationChance) choices.add(g);
             }
         }
-        //print("getting a random carapace from $choices");
+        //;
 
         //always pick jack, he is the main npc
         if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
@@ -225,7 +225,7 @@ class Moon extends Land {
                 if(session.rand.nextDouble() < g.companionChance) choices.add(g);
             }
         }
-        //print("getting a random carapace from $choices");
+        //;
 
         //always pick jack, he is the main npc
         if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
@@ -240,7 +240,7 @@ class Moon extends Land {
               choices.add(g);
           }
       }
-      //print("getting a random carapace from $choices");
+      //;
 
       //always pick jack, he is the main npc
       if(choices.contains(session.npcHandler.jack)) return session.npcHandler.jack;
@@ -276,11 +276,11 @@ class Moon extends Land {
     }
 
   void processMoonShit( Map<QuestChainFeature, double> features) {
-     // print("Processing moon shit: ${features.keys}");
+     // ;
       for(QuestChainFeature f in features.keys) {
-         // print("checking if ${f} is a moon quest.  ${f is MoonQuestChainFeature}");
+         // ;
           if(f is MoonQuestChainFeature) {
-              //print("adding moon quest chain");
+              //;
               moonQuestChains.add(f, features[f]);
           }
       }
@@ -296,7 +296,7 @@ class Moon extends Land {
       if(symbolicMcguffin == null) decideMcGuffins(players.first);
       //first, do i have a current quest chain?
       if(currentQuestChain == null) {
-          //print("going to pick a moon quest from ${moonQuestChains}");
+          //;
           currentQuestChain = selectQuestChainFromSource(players, moonQuestChains);
           //nobody else can do this.
           if(!currentQuestChain.canRepeat) moonQuestChains.remove(currentQuestChain);
@@ -314,7 +314,7 @@ class Moon extends Land {
         if(currentQuestChain.finished){
             currentQuestChain = null;
         }
-        //print("ret is $ret from $currentQuestChain");
+        //;
         return ret;
     }
 }

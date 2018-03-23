@@ -121,11 +121,11 @@ class SeekScepter extends Scene {
       if(whiteRingOwner.ring == null && blackRingOwner.ring == null) return false;
 
       target = whiteRingOwner;
-      print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner");
+      ;
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);
-      //print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
+      //;
 
       //will be null if trying to steal from self
       if(prospitRel == null) {

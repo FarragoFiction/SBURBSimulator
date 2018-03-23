@@ -60,7 +60,7 @@ class SessionMutator {
     bool hasSpotLight(Player player) {
         if (inSpotLight == null) return false;
         bool ret = player.id == inSpotLight.id;
-        //print("I was asked if ${player.title()} has the spotlight. I know ${inSpotLight.title()} does. I will return $ret");
+        //;
         return ret;
     }
 
@@ -169,7 +169,7 @@ class SessionMutator {
             p.bloodColor = "#ff0000"; //we are ALL the same caste now.
             //need to have relationship with new null players
             p.relationships = <Relationship>[];
-            //print("Generating relationships for $p");
+            //;
             p.generateRelationships(s.players);
 
             for (Stat str in Stats.pickable) {
@@ -702,13 +702,13 @@ class SessionMutator {
     }
 
     void replacePlayerIfCan(Element div, Player target) {
-        //print("trying to replace player,target is ${target.title()} and  time players are ${getPlayersTitlesNoHTML(timePlayersReplacing)}  and target relationships are ${target.relationships.length}");
+        //;
         String ret = "The ${target.htmlTitle()} lies dead on the ground. ";
         bool replaced = false;
         Player deadPlayer;
         List<Relationship> relationshipsCopy = new List<Relationship>.from(target.relationships);
         for (Player timePlayer in timePlayersReplacing) {
-            //print("timePlayer id is ${timePlayer.id} vs target id is ${target.id} and relationships are  ${timePlayer.relationships.length}");
+            //;
             if (timePlayer.id == target.id) {
 
                 deadPlayer = target.clone();

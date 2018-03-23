@@ -10,20 +10,20 @@ class JSONObject extends Object with MapMixin<String,String>{
     JSONObject();
 
     JSONObject.fromJSONString(String j){
-        //print("trying to make a json object from $j ");
+        //;
         //okay. that's not working. what if i do it opposite to see what a encoded object looks like
         JSONObject test = new JSONObject();
         test["HELLO"] = "WORLD ";
         test["GOODBYE"] = "WORLD BUT A SECOND TIME ";
-        //print("Encoded: ${JSON.encode(test)}");
-        //print("String: ${test}");
+        //;
+        //;
 
         json  = JSON.decode(j);
     }
 
     static Set<int> jsonStringToIntSet(String str) {
         if(str == null) return new Set<int>();
-        //print("str is $str");
+        //;
         str = str.replaceAll("{", "");
         str = str.replaceAll("}", "");
         str = str.replaceAll(" ", "");
@@ -31,10 +31,10 @@ class JSONObject extends Object with MapMixin<String,String>{
         List<String> tmp = str.split(",");
         Set<int> ret = new Set<int>();
         for(String s in tmp) {
-            //print("s is $s");
+            //;
             try {
                 int i = int.parse(s);
-                //print("adding $i");
+                //;
                 ret.add(i);
             }catch(e) {
                 //oh well. probably a bracket or a space or something
@@ -45,7 +45,7 @@ class JSONObject extends Object with MapMixin<String,String>{
 
     static List<int> jsonStringToIntArray(String str) {
         if(str == null) return new List<int>();
-        //print("str is $str");
+        //;
         str = str.replaceAll("[", "");
         str = str.replaceAll("]", "");
         str = str.replaceAll(" ", "");
@@ -53,10 +53,10 @@ class JSONObject extends Object with MapMixin<String,String>{
         List<String> tmp = str.split(",");
         List<int> ret = new List<int>();
         for(String s in tmp) {
-            //print("s is $s");
+            //;
             try {
                 int i = int.parse(s);
-                //print("adding $i");
+                //;
                 ret.add(i);
             }catch(e) {
                 //oh well. probably a bracket or a space or something
@@ -67,7 +67,7 @@ class JSONObject extends Object with MapMixin<String,String>{
 
     static Set<String> jsonStringToStringSet(String str) {
         if(str == null) return new Set<String>();
-        //print("str is $str");
+        //;
         str = str.replaceAll("{", "");
         str = str.replaceAll("}", "");
         str = str.replaceAll(" ", "");
@@ -75,9 +75,9 @@ class JSONObject extends Object with MapMixin<String,String>{
         List<String> tmp = str.split(",");
         Set<String> ret = new Set<String>();
         for(String s in tmp) {
-            //print("s is $s");
+            //;
             try {
-                //print("adding $i");
+                //;
                 ret.add(s);
             }catch(e) {
                 //oh well. probably a bracket or a space or something

@@ -159,7 +159,7 @@ class SpriteFormat extends BinaryFileFormat<PSprite> {
         SpriteEncodingFormat.formats.forEach((int id, SpriteEncodingFormat format) {
             ByteBuffer potential = format.encoder(id, header, data.buffer, sprite);
             int length = potential.lengthInBytes;
-            print("Encoding method $id - ${format.name}: $length bytes");
+            ;
             if (length < size) {
                 size = length.toDouble();
                 bestmethod = format;
@@ -171,7 +171,7 @@ class SpriteFormat extends BinaryFileFormat<PSprite> {
             throw new Error();
         }
 
-        print("Encoding sprite: ${bestmethod.name}: ${bestOutput.lengthInBytes} bytes");
+        ;
 
         return bestOutput;
     }

@@ -32,7 +32,7 @@ class Strife {
             div.append(innerDiv);
             button.onClick.listen((e) {
                 String display = innerDiv.style.display;
-                ////print("display is $display");
+                ////;
                 if (display == "none" || display.isEmpty) {
                     show(innerDiv);
                     button.setInnerHtml("Unview Strife!");
@@ -81,7 +81,7 @@ class Strife {
         List<GameEntity> members = findMembersOfDenizenFight();
         if (members == null || members.length < 2) return; //not a denizen fight
         Player player = members[1];
-        ////print("Player $player is dead: ${player.dead}");
+        ////;
         if (!player.dead) return; //you can't spare a player who won.
         if (player.grimDark >= 3) return; //deniznes will actually kill grim dark players.
         if (player.godDestiny && !player.godTier && player.rand.nextBool()) return; //less important to not kill you if you'll gain power from me doing it.
@@ -312,7 +312,7 @@ class Team implements Comparable<Team> {
                 }
             }
         }
-        //print("members is type ${members.runtimeType} and toAdd is type ${toAdd.runtimeType}");
+        //;
         members.addAll(toAdd);
     }
 
@@ -431,9 +431,9 @@ class Team implements Comparable<Team> {
     }
 
     void killEveryone(String reason) {
-        //print("going to kill everyone because: $reason"); //string interpolation makes that print statement just so...so great.
+        //; //string interpolation makes that print statement just so...so great.
         for (GameEntity ge in getLivingMinusAbsconded()) {
-            //print("making $ge dead");
+            //;
             ge.makeDead(reason, ge); //rocks fell or some shit no looting
             ///bluh, no way to talk about prophecies here.
         }

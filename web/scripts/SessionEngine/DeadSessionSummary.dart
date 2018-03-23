@@ -151,7 +151,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
 
 
     static DeadMultiSessionSummary collateMultipleSessionSummaries(List<DeadSessionSummary> sessionSummaries) {
-        print("making dead mss");
+        ;
         DeadMultiSessionSummary mss = new DeadMultiSessionSummary();
         mss.setClasses();
         mss.setAspects();
@@ -227,7 +227,7 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
         mss.setStat("averageRelationshipValue", (mss.getNumStat("averageRelationshipValue") / sessionSummaries.length).round());
         mss.setStat("averageNumScenes", (mss.getNumStat("averageNumScenes") / sessionSummaries.length).round());
         mss.setStat("survivalRate", (100 * (mss.getNumStat("totalLivingPlayers") / (mss.getNumStat("totalLivingPlayers") + mss.getNumStat("totalDeadPlayers")))).round());
-        print("after creation $mss is: ${mss.num_stats}");
+        ;
         return mss;
     }
 

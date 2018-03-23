@@ -64,14 +64,14 @@ class SeekRing extends Scene {
     }
 
     void takeRing() {
-       // print("before adding ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
-        //print("btw does their sylladex CONTAIN the ring? ${target.sylladex.contains(target.ring)}");
+       // ;
+        //;
         gameEntity.sylladex.add(target.ring);
         //for some reason isn't removing in sylladex? testing something.
-        //print("after adding ring from $target but before taking, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
+        //;
 
         target.sylladex.remove(target.ring);
-        //print("after taking ring from $target, their sylladex is ${target.sylladex} and my sylladex is ${gameEntity.sylladex}");
+        //;
     }
 
     String tryAsking() {
@@ -119,7 +119,7 @@ class SeekRing extends Scene {
       GameEntity blackRingOwner;
       if(session.derseRing != null) blackRingOwner = session.derseRing.owner;
 
-      //print("White ring owner is ${whiteRingOwner} and black ring owner is ${blackRingOwner}");
+      //;
 
       //ring could be destroyed, or...somehow...not owned by who it thinks it is which is weird and wrong and what is happening.
       if(whiteRingOwner == null || whiteRingOwner.ring == null) whiteRingOwner = blackRingOwner;
@@ -132,11 +132,11 @@ class SeekRing extends Scene {
       if(whiteRingOwner.ring == null && blackRingOwner.ring == null) return false;
 
       target = whiteRingOwner;
-      //print("i am $gameEntity, white is $whiteRingOwner and black is $blackRingOwner, black's sylladex is ${blackRingOwner.sylladex} and white's sylladex is ${whiteRingOwner.sylladex}");
+      //;
 
       Relationship prospitRel = gameEntity.getRelationshipWith(whiteRingOwner);
       Relationship derseRel = gameEntity.getRelationshipWith(blackRingOwner);
-      //print("my relationship with white is  $prospitRel and black is $derseRel, my reltionships are ${gameEntity.relationships}");
+      //;
 
       //will be null if trying to steal from self
       if(prospitRel == null) {

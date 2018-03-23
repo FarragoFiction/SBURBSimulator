@@ -22,7 +22,7 @@ class DenizenFeature extends Feature {
     Denizen makeDenizen(Player p) {
         if(denizen != null) return denizen;
 
-        //print("making denizen with strength $strength");
+        //;
         Denizen ret =  new Denizen(name, p.session);
         List<Fraymotif> f = new List<Fraymotif>();
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
@@ -58,7 +58,7 @@ class HardDenizenFeature extends DenizenFeature
     Denizen makeDenizen(Player p) {
         if(denizen != null) return denizen;
 
-        //print("making denizen with strength $strength");
+        //;
         HardDenizen ret =  new HardDenizen(name, p.session);
         List<Fraymotif> f = new List<Fraymotif>();
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));
@@ -79,7 +79,7 @@ class EasyDenizenFeature extends DenizenFeature
     Denizen makeDenizen(Player p) {
         if(denizen != null) return denizen;
 
-        //print("making denizen with strength $strength");
+        //;
         Denizen ret =  new Denizen(name, p.session);
         List<Fraymotif> f = new List<Fraymotif>();
         f.add(p.session.fraymotifCreator.makeDenizenFraymotif(p, name));

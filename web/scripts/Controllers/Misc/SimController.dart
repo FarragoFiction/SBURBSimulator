@@ -67,7 +67,7 @@ abstract class SimController {
         }
         IntroNew s = new IntroNew(curSessionGlobalVar);
         Player p = curSessionGlobalVar.players[player_index];
-        //print("Calling next intro in a regular sim controller. Player index is ${player_index } and number of players is ${curSessionGlobalVar.players.length}. ${curSessionGlobalVar.players[player_index]}, vs ${curSessionGlobalVar.players}");
+        //
 
         //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
@@ -126,13 +126,13 @@ abstract class SimController {
     }
 
     void easterEggCallBack() {
-        print("easter egg callback, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+
         initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
         checkSGRUB();
         if (doNotRender == true) {
             intro();
         } else {
-            //print("gonna load");
+            //
             load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
         }
     }
@@ -148,11 +148,11 @@ abstract class SimController {
     }
 
     void intro() {
-        //print("gonna init stats");
+        //
         initGatherStats();
 
         //advertisePatreon(SimController.instance.storyElement);
-       // print("gonna call next intro");
+       //
         List<String> playerTitlesWithTag = new List<String>();
         for(Player p in curSessionGlobalVar.players) {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
@@ -212,7 +212,7 @@ abstract class SimController {
     }
 
     void reckoning() {
-        ////print('reckoning');
+        ////
         Scene s = new Reckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
         s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
@@ -224,7 +224,7 @@ abstract class SimController {
     }
 
     void reckoningTick([num time]) {
-        ////print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
+        ////
         if (curSessionGlobalVar.timeTillReckoning > -10) {
             curSessionGlobalVar.timeTillReckoning += -1;
             curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
@@ -247,7 +247,7 @@ abstract class SimController {
     void recoverFromCorruption() {
         if(curSessionGlobalVar != null) curSessionGlobalVar.mutator.renderEndButtons(SimController.instance.storyElement);
         if(curSessionGlobalVar != null) curSessionGlobalVar.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
-        //print("Other controllers will do something after corruption, but the sim just ends.");
+        //
     }
 
     void reinit() {
@@ -257,12 +257,12 @@ abstract class SimController {
     void renderScratchButton(Session session) {
         Player timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
         if (timePlayer == null) throw "CAN'T SCRATCH WITHOUT A TIME PLAYER, JACKASS";
-        //print("scratch possible, button");
+        //
         //alert("scratch [possible]");
         //can't scratch if it was a a total party wipe. just a regular doomed timeline.
         List<Player> living = findLiving(session.players);
         if (!living.isEmpty && (session.stats.makeCombinedSession == false && session.stats.hadCombinedSession == false)) {
-            //print("gonna render scratch");
+            //
             //var timePlayer = findAspectPlayer(session.players, "Time");
             if (!session.stats.scratched) {
                 //this is apparently spoilery.
@@ -274,12 +274,12 @@ abstract class SimController {
                     renderAfterlifeURL();
                 }
             } else {
-                //print("no more scratches");
+                //
                 appendHtml(SimController.instance.storyElement, "<br>This session is already scratched. No further scratches available.");
                 renderAfterlifeURL();
             }
         } else {
-            //print("what went wrong? is makecomo?${session.makeCombinedSession}is all dead: ${living.length} is had combo? ${session.hadCombinedSession}");
+            //
         }
     }
 
@@ -317,20 +317,20 @@ abstract class SimController {
         globalInit(); // initialise classes and aspects if necessary
 
 
-        // //print("Debugging AB: Starting session $initial_seed");
+        // //
         if(!keepSession)curSessionGlobalVar = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
-        //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        //  //
         reinit();
 
-        ////print("created scenes with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+        ////
 
         //let's combo sessions still work
         if(!keepSession) {
             curSessionGlobalVar.makePlayers();
-           // print("after make players, first player is ${curSessionGlobalVar.players.first.title()} with moon ${curSessionGlobalVar.players.first.moon}");
+           //
 
-            ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+            ////
             curSessionGlobalVar.randomizeEntryOrder();
             //authorMessage();
             curSessionGlobalVar.makeGuardians(); //after entry order established
@@ -380,8 +380,8 @@ abstract class SimController {
 
     void tick([num time]) {
         curSessionGlobalVar.numTicks ++;
-        //print("Debugging AB: tick");
-        ////print("Tick: " + curSessionGlobalVar.timeTillReckoning);
+        //
+        ////
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
         int maxScenes = 1000; //don't go forever, dunkass

@@ -68,14 +68,14 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         Item modified;
         if(applyToSpecibus) {
             modified = p.specibus;
-           // print("modified is from specibus, is ${modified.traits}, result is ${result.traits}");
+           //
         }else {
             modified = targetItems[targetItems.indexOf(items[0])];
-            //print("modified is from sylladex, is ${modified.traits}, result is ${result.traits}");
+            //
 
         }
         //Set<ItemTrait> newTraits = result.traits.difference(modified.traits);
-       // print("Adding a new descriptor. First item has ${modified.traits.length} traits, second has ${result.traits.length} traits. Difference is ${newTraits.length} big.");
+       //
 
         result.numUpgrades ++;
         String ret = description(p, []); //don't do description earlier or later or will have wrong name.
@@ -83,7 +83,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         modified.numUpgrades ++;
 
 
-        //print("result is ${result.fullName} and has ${result.traits.length} traits  and modified is ${modified.fullName} and has ${modified.traits.length} traits");
+        //
 
         //remove all other items.
         if(!p.session.mutator.dreamField) {
@@ -100,7 +100,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
     //alchemy results are naturally sorted by the power of the items they produce.
     @override
     int compareTo(AlchemyResult other) {
-       // print("trying to sort ${this} against ${other}, ret is $ret. other value was ${other.result.rank}, my value was ${result.rank}  ");
+       //
         return (other.result.rank - result.rank).sign.round(); //higher numbers first
     }
 
@@ -131,13 +131,13 @@ class AlchemyResultAND extends AlchemyResult {
   @override
   void combine() {
       result = items[0].copy();
-     // print("just copied the first item. result has ${result.traits.length} traits.");
+     //
       //skip first item
       for(int i = 1; i<items.length; i++) {
           Item item = items[i];
-          //print("going to shove ${item.fullName} into ${result.fullName}.");
+          //
           for(ItemTrait t in item.traits) {
-              //print("adding trait ${t.descriptions.first}");
+              //
             result.traits.add(t); //will handle not allowing duplicates.
           }
       }

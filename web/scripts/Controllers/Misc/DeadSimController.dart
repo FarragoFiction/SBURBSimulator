@@ -15,14 +15,14 @@ class DeadSimController extends SimController {
   void startSession([bool keepSession = false]) {
     globalInit(); // initialise classes and aspects if necessary
 
-    // //print("Debugging AB: Starting session $initial_seed");
+    // //
     if(!keepSession)curSessionGlobalVar = new DeadSession(initial_seed);
     changeCanonState(getParameterByName("canonState",null));
-    //  //print("made session with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    //  //
     reinit();
-    ////print("did reinit with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    ////
     curSessionGlobalVar.makePlayers();
-    ////print("made players with next int of: ${curSessionGlobalVar.rand.nextInt()}");
+    ////
     curSessionGlobalVar.randomizeEntryOrder();
     //authorMessage();
     curSessionGlobalVar.makeGuardians(); //after entry order established
@@ -88,7 +88,7 @@ class DeadSimController extends SimController {
 
   @override
   void reckoning() {
-    ////print('reckoning');
+    ////
     Scene s = new DeadReckoning(curSessionGlobalVar);
     s.trigger(curSessionGlobalVar.players);
     s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
@@ -109,7 +109,7 @@ class DeadSimController extends SimController {
 
   @override
   void callNextIntro(int player_index) {
-    print("Calling next intro in a dead sim controller");
+
     if (player_index >= curSessionGlobalVar.players.length) {
       tick(); //NOW start ticking
       return;

@@ -24,7 +24,7 @@ abstract class Scene {
   //  like ocdatastring shit.
 
   static void createScenesForPlayer(Session session, Player player){
-   //print("creating scenes for $session and player $player");
+   //;
     if(session is DeadSession) {
       createScenesForDeadSession(session, player);
       return;
@@ -45,7 +45,7 @@ abstract class Scene {
 
   //dead sessions are exactly like regular sessions but only 1 player in array and less scenes. no romance, etc.
   static void createScenesForDeadSession(Session session, Player player) {
-    //print("making scenes for DEAD $session");
+    //;
     player.scenes = [new FuckingDie(session),new DeadQuests(session),new DeadMeta(session)];
     //relationship drama has a high priority because it can distract a session from actually making progress. happened to universe a trolls.
     player.scenes.addAll([new Gristmas(session),new FreeWillStuff(session),new GrimDarkQuests(session),  new EngageMurderMode(session), new GoGrimDark(session),  new DisengageMurderMode(session),new BeTriggered(session),]);

@@ -50,7 +50,7 @@ class CarapaceStats {
     }
 
     void loadCarapace(Carapace carapace) {
-        //print("loading carapace $carapace who is active ${carapace.active}");
+        //;
         this.initials = carapace.initials;
         this.exampleName = carapace.name;
         this.aliases = carapace.aliases;
@@ -72,15 +72,15 @@ class CarapaceStats {
             if (carapace.everCrowned) crownedSessions.add(carapace.session.session_id);
         }
 
-        //print("loaded carapace $carapace who is active ${statsMap["Times Activated"]} and sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned");
+        //;
 
     }
 
     void fromJSON(String jsonString) {
-        //print("trying to make a carapace summary from $jsonString");
+        //;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         for(String key in statsMap.keys) {
-            // print("checking num key of $key with value ${json[key]}");
+            // ;
             statsMap[key] = num.parse(json[key]);
         }
         aliases = json["aliases"];
@@ -89,7 +89,7 @@ class CarapaceStats {
         moon = json["moon"];
         activeSessions  = JSONObject.jsonStringToIntArray(json["activeSessions"]);
         crownedSessions  =  JSONObject.jsonStringToIntArray(json["crownedSessions"]);
-       //print("DEBUG SHOGUNBOT: from json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned, was ${json["activeSessions"]} and ${json["crownedSessions"]} respectively. ");
+       //;
     }
 
     JSONObject toJSON() {
@@ -104,7 +104,7 @@ class CarapaceStats {
         json["activeSessions"] = activeSessions.toString();
         json["crownedSessions"] = crownedSessions.toString();
 
-        // print("DEBUG SHOGUNBOT:to json, sessions are now ${activeSessions.length} for active and ${crownedSessions.length} long for crowned and made it ${json["activeSessions"]} and ${json["crownedSessions"]} respectively");
+        // ;
         return json;
     }
 
@@ -282,18 +282,18 @@ class CarapaceSummary {
 
 
     void fromJSON(String jsonString) {
-      //  print("trying to laod carapace summary from json");
+      //  ;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
-            //print("dynamic json thing for carapace summary is  $d");
+            //;
             JSONObject j = new JSONObject();
             j.json = d;
-            //print("made a json object $j, going to make a carapace summary");
+            //;
             CarapaceStats s = new CarapaceStats(null);
-            //print("made a carapace summary, gonna load it from json");
+            //;
             s.fromJSON(j.toString());
-           // print("loaded that carapace summary to json");
+           // ;
             data[s.initials] = s;
         }
 

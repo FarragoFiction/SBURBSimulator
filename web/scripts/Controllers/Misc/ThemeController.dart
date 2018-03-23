@@ -7,7 +7,7 @@ main() {
     loadNavbar();
     window.onError.listen((Event event){
         ErrorEvent e = event as ErrorEvent;
-        printCorruptionMessage(e);
+
         return;
     });
 

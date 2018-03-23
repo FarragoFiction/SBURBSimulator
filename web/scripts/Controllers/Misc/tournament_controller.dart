@@ -250,8 +250,8 @@ void clearTeam(teamDiv){
 
 
 void markLoser(loser){
-	////print("marking loser");
-	////print(loser);
+	////
+	////
 	loser.addClass("loser");
 }
 
@@ -290,9 +290,9 @@ dynamic fight(){
 	var team = teamsGlobalVar[lastTeamIndex];
 	if(team.numberSessions >= numSimulationsToDo){
 			team = teamsGlobalVar[lastTeamIndex+1];
-			////print("switiching teams in fight");
+			////
 	}
-	////print("number of sessions for team: " + team + " is " + team.numberSessions);
+	////
 
 	if(team.numberSessions >= numSimulationsToDo) return doneWithRound();
 	//var team2 = teamsGlobalVar[lastTeamIndex+1]  ;//if no team 2, they win???;
@@ -319,7 +319,7 @@ dynamic aBCallBack(sessionSummary){
 	var team = teamsGlobalVar[lastTeamIndex];
 	num teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
-		////print("switching to team 2 in callback");
+		////
 		teamNum = 2;
 		team = teamsGlobalVar[lastTeamIndex+1];
 		abRight();
@@ -361,11 +361,11 @@ dynamic aBCallBack(sessionSummary){
 
 
 void abjCallBack(sessionSummary){
-	////print(sessionSummary);
+	////
 	var team = teamsGlobalVar[lastTeamIndex];
 	num teamNum = 1;
 	if(team.numberSessions >= numSimulationsToDo){
-		////print("switching to team 2 in callback");
+		////
 		teamNum = 2;
 		team = teamsGlobalVar[lastTeamIndex+1];
 		abRight();

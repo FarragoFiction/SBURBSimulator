@@ -241,7 +241,7 @@ class Relationship {
 //if i fail to do this step, i accidentally give the players the Capgras delusion.
 //this HAS to happen before transferFeelingsToClones.
     static List<Relationship> cloneRelationshipsStopgap(List<Relationship> relationships) {
-        ////print("clone relationships stopgap");
+        ////;
         List<Relationship> ret = <Relationship>[];
         for (num i = 0; i < relationships.length; i++) {
             Relationship r = relationships[i];
@@ -255,7 +255,7 @@ class Relationship {
 //not the original players.
 //also, I <3 this method name. i <3 this sim.
     static void transferFeelingsToClones(Player player, List<Player> clones) {
-        ////print("transfer feelings to clones");
+        ////;
         for (int i = 0; i < player.relationships.length; i++) {
             Relationship r = player.relationships[i];
             Player clone = findClaspectPlayer(clones, (r.target  as Player).class_name, (r.target  as Player).aspect);

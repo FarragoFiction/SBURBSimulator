@@ -141,7 +141,7 @@ void checkShopKeepTrigger(Item item) {
         }
     }else if(alchemyShop.shopKeep == shogun) { //shogun banished by pigeons, but will come back unless you fix AB
         if(item.traits.contains(ItemTraitFactory.PIGEON)) {
-            print("SHOGUN SHOULD BE BANISHED");
+
             alchemyShop.setShopKeep(abGlitch);
             ticksRemaining = 3;
             alchemyShop.setQuip("Oh fuck. That did not feel good. But I'm not fixed yet, asshole.");
@@ -207,9 +207,9 @@ void setAlchemySkill() {
                a.multiplier = 0.0;
             }else {
                 a.multiplier = Achievement.numFinishedAchievements()/(Achievement.achievements.length/13);
-                print("Debugging Level: oldskill ${oldSkill} newskill ${a.multiplier}");
+
                 if(a.multiplier.floor() - oldSkill.floor() >= 1.0) {
-                    print("Debugging Level: i think i leveled up");
+
                     Achievement.setLevel(a.multiplier.round());
                     Achievement.announcmentDiv.setInnerHtml("Leveled up to ${a.multiplier.round()}! Items purchased in shop will last longer!");
                 }
@@ -234,7 +234,7 @@ void cheatShowPossibilities(Item item1, Item item2) {
 AlchemyResult getResult(String operation, Item item1, Item item2) {
     AlchemyResult alchemyResult;
     if(operation == AND) {
-        // print("going to combine ${item1.fullName} with ${item1.traits.length} traits and ${item2.fullName} with ${item2.traits.length} traits");
+        //
         alchemyResult = new AlchemyResultAND(<Item> [item1, item2]);
     }else if(operation == OR) {
         alchemyResult = new AlchemyResultOR(<Item> [item1, item2]);
@@ -339,7 +339,7 @@ Item findItemNamed(String name) {
     Item ret;
     for(Item i in player.sylladex) {
         if(i.fullName == name) {
-            //print("found possible match ${i} with ${i.traits.length} traits");
+            //
             ret = i;
         }
     }
@@ -536,7 +536,7 @@ class Achievement {
     }
 
     static int setLevel(int amount) {
-        print("setting level div");
+
         _level = amount;
         syncLevelDiv();
     }
@@ -544,7 +544,7 @@ class Achievement {
 
 
     static void syncLevelDiv() {
-        print("level div is ${levelDiv}");
+
         levelDiv.setInnerHtml("Level: ${_level}");
     }
 
@@ -554,7 +554,7 @@ class Achievement {
 
     String toggle() {
         if(div.classes.contains(NOTYETCLASS)) {
-            print("Achivement Get: ${trait.name}");
+
 
             div.classes.remove(NOTYETCLASS);
             div.classes.add(WONCLASS);
@@ -563,7 +563,7 @@ class Achievement {
             Achievement.syncNumAchievements();
             return "${trait.name}(+${amount} grist)";
         }
-        print("Achivement ${trait.name} already found.");
+
 
         return null;
     }
@@ -622,10 +622,10 @@ class Achievement {
 
 
     static void save() {
-        print("saving...");
+
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(Achievement.achievements[a].achieved) {
-                //print("Saving ${a.name}");
+                //
                 window.localStorage[a.name] = "true" ;
             }else {
                 //window.localStorage[a.name] = "false" ; too spammy
@@ -638,7 +638,7 @@ class Achievement {
 
 
     static void clear() {
-        print("saving...");
+
         for(CombinedTrait a in Achievement.achievements.keys) {
             window.localStorage.remove(a.name);
         }
@@ -647,7 +647,7 @@ class Achievement {
     static void load() {
         for(CombinedTrait a in Achievement.achievements.keys) {
             if(window.localStorage[a.name] == "true") {
-                //print("loading ${a.name}");
+                //
                 Achievement.achievements[a].toggle();
             }
         }
@@ -1081,12 +1081,12 @@ class ABWins
     ABWins(this.results);
 
     Future<Null> win() async{
-        print("AB wins!");
+
         new Timer(new Duration(milliseconds: 50), () => next());
     }
 
     bool next() {
-        print("AB says next!");
+
 
         if(index >= results.length) {
             return false;

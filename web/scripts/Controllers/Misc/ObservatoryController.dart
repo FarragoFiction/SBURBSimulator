@@ -20,7 +20,7 @@ Future<Null> main() async {
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
 
-    print("observatory is go!");
+
 }
 
 //##################################################################################
@@ -204,7 +204,7 @@ class ObservatoryViewer {
 
         this.cameraRig..position.x = camx.toDouble()..position.y = camy.toDouble();
 
-        //print("x: $camx, y: $camy");
+        //
 
         this.updateSessions();
 
@@ -289,12 +289,12 @@ class ObservatoryViewer {
     //############ creation
 
     ObservatorySession createSession(int seed, int x, int y) {
-        //print("create session $seed at $x,$y");
+        //
         return new ObservatorySession(this, seed, x, y)..createModel().then((THREE.Object3D o) => this.scene.add(o));
     }
 
     void destroySession(ObservatorySession session) {
-        //print("destroy session ${session.seed} at ${session.x},${session.y}");
+        //
         this.scene.remove(session.model);
     }
 
@@ -317,7 +317,7 @@ class ObservatoryViewer {
         if (sessionCache.length > cachesize) {
             int oldest = sessionCache.keys.first;
             sessionCache.remove(oldest);
-            print("removing session $oldest from the cache");
+
         }
 
         return session;

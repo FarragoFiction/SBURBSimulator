@@ -96,7 +96,7 @@ class RedMiles extends Scene {
         List<Moon> targets = new List<Moon>();
         for(Moon p in session.moons) {
             if(p != null) {
-                //print("TEST MOON: $p is not null");
+                //;
                 targets.add(p);
             }
         }

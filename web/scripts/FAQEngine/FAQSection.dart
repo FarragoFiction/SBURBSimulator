@@ -11,18 +11,18 @@ class FAQSection {
 
     FAQSection(this.header, this.body, this.associatedAscii);
     FAQSection.fromXMLDoc(Xml.XmlNode s, this.associatedAscii){
-        ////print("making FAQSection from $s which has document of ${s.document}");
+        ////;
         header = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "header")).first.text;
         body = s.children.where((Xml.XmlNode child) => (child is Xml.XmlElement && child.name.local == "body")).first.text;
-        ////print("made FAQSection with header $header and body $body");
+        ////;
     }
 
     ///assume sections start with <section> and have no ending tag cuz i am lazy
     static List<Xml.XmlNode> mainTextToSubStrings(String text) {
-       // //print("text is $text");
+       // //;
         Xml.XmlDocument document = Xml.parse(text);
         Xml.XmlElement ele = document.findElements("faq").first;
-       // //print("document is $document, children are ${ele.children} elements that are section are: ${ele.findElements("section")}");
+       // //;
         return ele.findElements("section").toList();
     }
 }

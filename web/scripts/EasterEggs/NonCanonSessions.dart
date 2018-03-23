@@ -162,9 +162,9 @@ abstract class NonCanonSessions {
             Player guardian;
             if(i< curSessionGlobalVar.players.length){
                 player = curSessionGlobalVar.players[i];
-                //print("using existing player");
+                //;
             }else{
-                //print("making new player");
+                //;
                 player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
                 guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
                 guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);

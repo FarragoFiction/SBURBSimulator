@@ -17,7 +17,7 @@ class ConsortFeature extends DescriptiveFeature {
     }
 
     Consort makeConsort(Session s) {
-        //print("making consort named $name");
+        //;
         return new Consort.withSound(name, s, sound);
     }
 

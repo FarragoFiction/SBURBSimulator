@@ -76,7 +76,7 @@ class DenizenFightQuest extends Quest {
         Strife strife = new Strife(p1.session, [pTeam, dTeam]);
         strife.startTurn(div);
         bool success = pTeam.won;
-        //print("I won: $success");
+        //;
         String ret = failureText;
         p1.flipOutReason = "how terrifying ${denizen.name} was ";
         if(success) ret = text;
@@ -98,7 +98,7 @@ class FailableQuest extends Quest {
     @override
     bool doQuest(Element div, Player p1,GameEntity p2,DenizenFeature denizen, ConsortFeature consort, String mcguffin, String physicalMcguffin) {
         double roll = p1.session.rand.nextDouble();
-       // print("roll is ${roll} and odds are ${odds}");
+       // ;
         if(roll < odds) {
             return replaceTags(div, true, text, p1, p2, denizen,  consort,  mcguffin,  physicalMcguffin);
         }else {

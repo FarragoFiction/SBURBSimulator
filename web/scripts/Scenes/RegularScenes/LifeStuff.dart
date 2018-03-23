@@ -234,7 +234,7 @@ class LifeStuff extends Scene {
 
     dynamic communeDead(Element div, String str, Player player, SBURBClass playerClass, Aspect enablingAspect) {
         //takes in player class because if there is a helper, what happens is based on who THEY are not who the player is.
-        print("$player is communing with dead.");
+        ;
         Player ghost = this.session.afterLife.findGuardianSpirit(player);
         String ghostName = "";
         if (ghost != null && player.getPactWithGhost(ghost) == null && !player.ghostWisdom.contains(ghost) && ghost.causeOfDrain == null) {

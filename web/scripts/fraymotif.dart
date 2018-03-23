@@ -293,12 +293,12 @@ class Fraymotif {
         List<GameEntity> casters = this.getCasters(owner, allies);
         this.makeCastersUnavailable(casters);
         List<Player> living = findLiving(allies);
-        //print("$owner fraymotif: $this");
+        //;
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
             enemies[0].addBuff(new BuffFlat(Stats.CURRENT_HEALTH, -9999.0, combat:true)); //they REALLY believed in this attack.
             List<String> jakeisms = <String>["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM"];
-            //print("Hope Rides Alone in session: ${owner.session.session_id}");
+            //;
             String scream = owner.aspect.fontTag() + owner.rand.pickFrom(jakeisms) + "</font>";
             return " [HOPE RIDES ALONE] is activated. " + owner.htmlTitle() + " starts screaming. <br><br><span class = 'jake'> " + scream + " </span>  <Br><Br> Holy fucking SHIT, that is WAY MORE DAMAGE then is needed. Jesus christ. Someone nerf that Hope player already!";
         }
@@ -669,11 +669,11 @@ class FraymotifEffect {
         ////print(["target chosen: ", targetArr]);
         if (this.damageInsteadOfBuff) {
             ////print("applying damage: " + targetArr.length);
-            //print("$owner fraymotif damage: $effectValue at $targetArr");
+            //;
             this.applyDamage(targetArr, effectValue);
         } else {
-            ////print("applying buff");
-            //print("$owner fraymotif buff: $effectValue at $targetArr");
+            ////;
+            //;
             this.applyBuff(targetArr, effectValue);
         }
     }
@@ -714,7 +714,7 @@ class FraymotifEffect {
                     t.addBuff(new BuffFlat(this.statName, e, combat:true));
                 }
             }
-            //print("$t, ${t.buffs}");
+            //;
         }
     }
 
