@@ -111,9 +111,20 @@ class ObservatoryViewer {
             ..rotation.x = Math.PI;
         this.renderScene.add(renderPlane);
 
+        // test stuff
+
+        THREE.ShaderMaterial tentamat = await THREE.makeShaderMaterial("shaders/tentacle.vert", "shaders/basic.frag");
+        THREE.Mesh tentatest = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 2, 20), tentamat);
+        tentatest.position..z = 5.0;
+        tentatest.rotation.x = Math.PI;
+
         // camera rig
         this.cameraRig = new THREE.Object3D()..add(this.camera)..add(uiObject);
+        this.cameraRig.add(tentatest);
+
+
         this.scene.add(this.cameraRig);
+
 
 
         //this.goToSeed(seed);
