@@ -86,7 +86,15 @@ class ObservatoryViewer {
         // UI plane
         this.uiCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         this.uiTexture = new THREE.Texture(this.uiCanvas)..minFilter = THREE.NearestFilter..magFilter = THREE.NearestFilter;
-        THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
+
+        THREE.ShaderMaterial uiShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/outline.frag")..transparent = true;
+
+        THREE.setUniform(uiShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.uiTexture);
+        THREE.setUniform(uiShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+        THREE.setUniform(uiShader, "outline_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(0.0,0.0,0.0,1.0));
+
+        //THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
+        THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), uiShader)
             ..position.z = 5.0
             ..rotation.x = Math.PI;
 
@@ -327,9 +335,9 @@ class ObservatoryViewer {
         int w = this.canvasWidth;
         int h = this.canvasHeight;
 
-        int top = 10;
-        int left = 10;
-        int lineheight = 16;
+        int top = 18;
+        int left = 22;
+        int lineheight = 14;
         int title = 26;
 
         ctx
@@ -338,14 +346,16 @@ class ObservatoryViewer {
             ..font = "bold 24px courier, monospace"
             ..fillText("Session ${detailSession.seed}", left, top + title)
             ..font = "bold 14px courier, monospace"
-            ..fillText("Players: ${detailSession.session.players.length}", left, top + title + lineheight)
+            ..fillText("Lands: ${detailSession.session.players.length}", left, top + title + lineheight)
         ;
 
         int line = 3;
+        int i=0;
         for (Player p in detailSession.session.players) {
-            ctx..fillText("${p.title()} (${p.chatHandle})", left, top + title + lineheight * line);
+            i++;
+            ctx..fillText("#${i.toString().padLeft(2,"0")}: ${p.land.name}", left, top + title + lineheight * line);
             line++;
-            ctx..fillText("${p.land.name}", left, top + title + lineheight * line);
+            ctx..fillText("     ${p.title()} (${p.chatHandle})", left, top + title + lineheight * line);
 
             line += 2;
         }
