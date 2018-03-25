@@ -65,6 +65,8 @@ class ObservatoryViewer {
 
     bool dragging = false;
 
+    THREE.ShaderUniform<double> time;
+
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0}) {
 
     }
@@ -113,8 +115,20 @@ class ObservatoryViewer {
 
         // test stuff
 
-        THREE.ShaderMaterial tentamat = await THREE.makeShaderMaterial("shaders/tentacle.vert", "shaders/basic.frag");
-        THREE.Mesh tentatest = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 2, 20), tentamat);
+        THREE.ShaderMaterial tentamat = await THREE.makeShaderMaterial("shaders/tentacle.vert", "shaders/observatory_tentacle.frag")..transparent = true;
+        THREE.setUniform(tentamat, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(70, 350));
+        THREE.setUniform(tentamat, "total_curve", new THREE.ShaderUniform<double>()..value = 2.0);
+        THREE.setUniform(tentamat, "total_offset", new THREE.ShaderUniform<double>()..value = 4.0);
+        THREE.setUniform(tentamat, "tip_curve_mult", new THREE.ShaderUniform<double>()..value = 4.0);
+        THREE.setUniform(tentamat, "tip_curve_exponent", new THREE.ShaderUniform<double>()..value = 2.0);
+        THREE.setUniform(tentamat, "tentacle_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(0.0,0.0,0.0,1.0));
+        THREE.setUniform(tentamat, "glow_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(1.0,1.0,1.0,0.2));
+        THREE.setUniform(tentamat, "glow_thickness", new THREE.ShaderUniform<double>()..value = 10.0);
+
+        this.time = new THREE.ShaderUniform<double>()..value = 0.0;
+        THREE.setUniform(tentamat, "period", this.time);
+
+        THREE.Mesh tentatest = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 1, 30), tentamat);
         tentatest.position..z = 5.0;
         tentatest.rotation.x = Math.PI;
 
@@ -221,6 +235,8 @@ class ObservatoryViewer {
         for (ObservatorySession session in sessions.values) {
             session.update(dt);
         }
+
+        this.time.value = ((time / 3000) % 1).toDouble();
 
         this.renderer
             ..render(this.scene, this.camera, this.renderTarget)

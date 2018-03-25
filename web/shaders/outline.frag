@@ -23,7 +23,6 @@ void main() {
                         col = tex;
                     } else {
                         col = texture2D(image, v_uv + vec2(x,y) * pixel);
-                        //col = texture2D(image, v_uv + vec2(1.0,1.0) * pixel);
                     }
 
                     if (col.a > density) {
