@@ -1,11 +1,13 @@
 varying vec2 v_uv;
 
 
-const int segments = 29;
+const int segments = 49;
 uniform float total_curve;
 uniform float total_offset;
 uniform float tip_curve_mult;
 uniform float tip_curve_exponent;
+uniform float base_curve_mult;
+uniform float base_curve_exponent;
 uniform float period;
 
 uniform vec2 size;
@@ -17,7 +19,7 @@ vec2 angledOffset(float angle, float len) {
 }
 
 float curveMult(float fraction) {
-    return 1.0 + pow(fraction, tip_curve_exponent) * (tip_curve_mult - 1.0);
+    return 1.0 + pow(fraction, tip_curve_exponent) * (tip_curve_mult - 1.0) + pow(1.0 - fraction, base_curve_exponent) * (base_curve_mult - 1.0);
 }
 
 void main() {
