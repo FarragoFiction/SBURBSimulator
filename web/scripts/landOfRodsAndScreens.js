@@ -24,6 +24,7 @@ var distactions = new Array(maxState); //all images, screen responsible for disp
 
 window.onload = function() {
 	setTimeout(function() {window.scrollTo(0, 0);},1) //because chrome is a special snowlake (refrance)
+	storeNormalCard();
 	Math.seed = 3;
 	initializeX();
 	makeScreens(256);
@@ -38,6 +39,27 @@ window.onload = function() {
 function showMindButton(){
 	$("#spiel").hide();
 	$("#mindButton").show();
+}
+
+function storeNormalCard(){
+    storeCard("N4Igzg9grgTgxgUxALhAGQPICUCCBlEAGhADsBDAWyVQCEEACAYQhIDMowEATesgF3qZcBYnwQAPPihAQA7iQQwE5KjHoALMmF4AjSABsoY-QE96JCPQCWXBGQ1z6fdVe1D8TlyQDm9WRBgAazAAOiIQHTI4QO8YaBIuADlKanQILDI8K28oBDBQgAcfcL4YbO9FRk0SRGkABhCAVnCwRAUwABUIAFUSfQho6QBtAF1wpTAofT4wPD5+MGHgAB1SFNXkVYBxRIw8AEk8VcJVgDcyQwQN1YBGVYBfMdEy7wqYOYW0PM4YYaeQUrlRQfGZbJT8RR-EovN4gsAAUQAjlALlD7kA");
+}
+
+function storeWasteCard(){
+    storeCard("N4Igzg9grgTgxgUxALhAIQKIEEAqBJAOQHEACAGQHkAlLAZRABoQA7AQwFslU0E4JOSrEgHVWYAC5ImkgB7iUICAHdmCGAjacYJAJZgSAGwSsYzHcwDmJABbKS4iCQBGCQSLGSAdCQASUa94AqgEkePri1nokYFAADrEQYAgAJvaOLjas8RrmFgD8jCBOrHAA1hYw0MzJBBxcIGQQVKy0OhZQCGBgnrGWheIwbRZqAMLWrMyICgAMngCshWCIqmA4EIHMBhBlCgDawAA64NDwCEfIR5i4hKSUNLRHDEeaZyiXrjhqgwBmOim6zBIWEBWHE4h0cEeR1k4nORwo1hI3ygZQYJGUqnUL20UQGWVi-3MgkBrDBEOJqRcuXsXx0v3+TgAnvZIvpaAkIKVmcIIAZvgBCKFFErlSpQaq1ThwkCg8FwHqWIUDIajcaTV4XECzOZCpYaTprDZbMrS3YAXSF6hiBnEYFo4lJYFNhwOzzqrrhrpARAIFFoeAeXqeXoAbqwDB0PW8vQBGKMAXwtjGhgwswxg9sdZE6SRgzqjLyjFy9Pr9AajwaOYYjZy9xaOAGYE0mniBlWm1JnbUR1KS1KaWymVRmHbaMABHKDhgdHROFK1QG120dgPaHFjut7e33+h7JkDVyNbuMgOfSVPprtgbNdNRrt1Srel3dCw8axuzs39C+dlc94ySDAexfuew5XhOU4GMBp5AA");
+}
+
+function storeCard(cardString){
+  var existing = localStorage.getItem("LIFESIMFOUNDCARDS");
+  if(existing == null){
+      localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
+  }else {
+    var subsets = existing.split(",");
+    if(!subsets.includes(cardString)){
+        existing += ","+cardString;
+        localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
+    }
+  }
 }
 
 
@@ -372,6 +394,8 @@ function talkJanus(){
 		distactions[0] = distactions[1025];
 		denizenEnding = true;
 		denizenCheat();
+		storeWasteCard();
+
 	}
 	janusNum ++;
 }
