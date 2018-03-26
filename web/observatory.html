@@ -11,12 +11,12 @@
         <script src="packages/browser/dart.js"></script>
 
         <style>
-            canvas.observatory {
+            .observatory {
                 cursor:-moz-grab;
                 cursor:-webkit-grab;
                 cursor:grab;
             }
-            canvas.dragging {
+            .dragging {
                 cursor:-moz-grabbing;
                 cursor:-webkit-grabbing;
                 cursor:grabbing;
@@ -31,7 +31,16 @@
                 background-color:black;
             }
             div#screen_container {
+                width:1000px;
+                height:700px;
+            }
+            div#screen_clickzone {
+                position:absolute;
+                width:1000px;
+                height:700px;
 
+                top:65px;
+                left:0px;
             }
             div#screen_overlay {
                 position:absolute;
@@ -119,18 +128,65 @@
                 color:white;
                 z-index:2;
             }
+
+            #avatar {
+                z-index:10;
+                position:absolute;
+                right:-160px;
+                top:620px;
+            }
+
+            #speechbubble {
+                position:absolute;
+                right:0px;
+                width:200px;
+                bottom:220px;
+                z-index:10;
+            }
+            #speechbubblebody {
+                position:absolute;
+                background-color:white;
+                border-radius:20px;
+                padding:16px;
+                bottom:40px;
+                width:200px;
+
+                font-family:courier, monospace;
+                font-weight:bold;
+                color: #0d378e;
+
+                box-shadow: 6px 8px 3px rgba(0,0,0,0.2);
+            }
+            #speechbubblestalk {
+                width:32px;
+                height:40px;
+                /*background-color:white;*/
+                position:absolute;
+                bottom:0px;
+                left:80px;
+                box-shadow: 6px 8px 3px rgba(0,0,0,0.2);
+
+                box-sizing:border-box;
+                border-right:16px solid white;
+                border-left: 16px solid transparent;
+                border-top: 20px solid white;
+                border-bottom: 20px solid transparent;
+            }
         </style>
     </head>
     <body>
         <div id = "navbar"></div>
-        <img id = "avatar" src = "images/authorbot_jr_scout.png" style="float:left;">
 
         <div id = "spiel">
 
             <div id="screen">
                 <div id="screen_container"></div>
-                <div id="screen_overlay">
-
+                <div id="screen_overlay"></div>
+                <div id="screen_clickzone" class="observatory"></div>
+                <img id="avatar" src="images/paradoxLands_turnways.png">
+                <div id="speechbubble">
+                    <div id="speechbubblebody">PL: Hello, friends<br><br>Testing multi-line text expanding upwards?</div>
+                    <div id="speechbubblestalk"></div>
                 </div>
                 <div id="screen_controls">
                     <div class="label"><label id="coordinate_label">Coordinates</label></div>

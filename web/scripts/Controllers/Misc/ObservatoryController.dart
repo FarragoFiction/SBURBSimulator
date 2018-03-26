@@ -549,7 +549,7 @@ class ObservatorySession {
         this.model = group;
         this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize + model_offset_x..y = (y + 0.5) * ObservatoryViewer.gridsize + model_offset_y;
         spinner.rotation..z = this.initial_rotation;
-        spinner.position.z = -10.0;
+        spinner.position.z = -2.0;
 
         await this.createTentacles();
 
