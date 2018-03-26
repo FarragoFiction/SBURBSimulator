@@ -39,6 +39,7 @@ class ObservatoryViewer {
 
     int canvasWidth;
     int canvasHeight;
+    double viewRadius;
 
     CanvasElement canvas;
     THREE.WebGLRenderer renderer;
@@ -66,7 +67,9 @@ class ObservatoryViewer {
     bool dragging = false;
 
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0}) {
-
+        double hw = this.canvasWidth / 2;
+        double hh = this.canvasHeight / 2;
+        this.viewRadius = Math.sqrt(hw*hw + hh*hh);
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -86,7 +89,15 @@ class ObservatoryViewer {
         // UI plane
         this.uiCanvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         this.uiTexture = new THREE.Texture(this.uiCanvas)..minFilter = THREE.NearestFilter..magFilter = THREE.NearestFilter;
-        THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
+
+        THREE.ShaderMaterial uiShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/outline.frag")..transparent = true;
+
+        THREE.setUniform(uiShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.uiTexture);
+        THREE.setUniform(uiShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+        THREE.setUniform(uiShader, "outline_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(0.0,0.0,0.0,1.0));
+
+        //THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
+        THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), uiShader)
             ..position.z = 5.0
             ..rotation.x = Math.PI;
 
@@ -105,8 +116,8 @@ class ObservatoryViewer {
 
         // camera rig
         this.cameraRig = new THREE.Object3D()..add(this.camera)..add(uiObject);
-        this.scene.add(this.cameraRig);
 
+        this.scene.add(this.cameraRig);
 
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
@@ -327,9 +338,9 @@ class ObservatoryViewer {
         int w = this.canvasWidth;
         int h = this.canvasHeight;
 
-        int top = 10;
-        int left = 10;
-        int lineheight = 16;
+        int top = 18;
+        int left = 22;
+        int lineheight = 14;
         int title = 26;
 
         ctx
@@ -338,14 +349,16 @@ class ObservatoryViewer {
             ..font = "bold 24px courier, monospace"
             ..fillText("Session ${detailSession.seed}", left, top + title)
             ..font = "bold 14px courier, monospace"
-            ..fillText("Players: ${detailSession.session.players.length}", left, top + title + lineheight)
+            ..fillText("Lands: ${detailSession.session.players.length}", left, top + title + lineheight)
         ;
 
         int line = 3;
+        int i=0;
         for (Player p in detailSession.session.players) {
-            ctx..fillText("${p.title()} (${p.chatHandle})", left, top + title + lineheight * line);
+            i++;
+            ctx..fillText("#${i.toString().padLeft(2,"0")}: ${p.land.name}", left, top + title + lineheight * line);
             line++;
-            ctx..fillText("${p.land.name}", left, top + title + lineheight * line);
+            ctx..fillText("     ${p.title()} (${p.chatHandle})", left, top + title + lineheight * line);
 
             line += 2;
         }
@@ -357,12 +370,13 @@ class ObservatoryViewer {
 
     ObservatorySession createSession(int seed, int x, int y) {
         //
-        return new ObservatorySession(this, seed, x, y)..createModel().then((THREE.Object3D o) => this.scene.add(o));
+        return new ObservatorySession(this, seed, x, y)..createModel();
     }
 
     void destroySession(ObservatorySession session) {
         //
-        this.scene.remove(session.model);
+        //this.scene.remove(session.model);
+        session.remove();
     }
 
     Session getSession(int seed) {
@@ -429,6 +443,8 @@ class ObservatorySession {
     THREE.ShaderUniform<double> rotation_uniform;
     THREE.ShaderUniform<bool> selected_uniform;
 
+    List<ObservatoryTentacle> tentacles = <ObservatoryTentacle>[];
+
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         this.session = parent.getSession(seed);
 
@@ -460,6 +476,10 @@ class ObservatorySession {
 
         this.rotation_uniform.value = spin_group.rotation.z;
         this.selected_uniform.value = this.selected;
+
+        for (ObservatoryTentacle tent in this.tentacles) {
+            tent.update(dt);
+        }
     }
 
     static Future<Null> initGraphics() async {
@@ -474,7 +494,7 @@ class ObservatorySession {
         _graphics_init = true;
     }
 
-    Future<THREE.Object3D> createModel() async {
+    Future<Null> createModel() async {
         await initGraphics();
 
         THREE.Object3D group = new THREE.Object3D()..rotation.x = Math.PI;
@@ -529,7 +549,48 @@ class ObservatorySession {
         this.model = group;
         this.model.position..x = (x + 0.5) * ObservatoryViewer.gridsize + model_offset_x..y = (y + 0.5) * ObservatoryViewer.gridsize + model_offset_y;
         spinner.rotation..z = this.initial_rotation;
-        return group;
+        spinner.position.z = -10.0;
+
+        await this.createTentacles();
+
+        this.parent.scene.add(this.model);
+    }
+
+    Future<Null> createTentacles() async {
+        int count = 1 + this.rand.nextInt(3);
+
+        int corruption = findCorruption();
+
+        for (int i=0; i<corruption; i++) {
+            count += 1 + rand.nextInt(2);
+        }
+
+        double radius = 50.0 + this.parent.viewRadius * 2;
+
+        for (int i=0; i<count; i++) {
+            double angle = this.rand.nextDouble(Math.PI * 2);
+            int ox = (Math.sin(angle) * radius).round();
+            int oy = (Math.cos(angle) * radius).round();
+
+            ObservatoryTentacle tent = new ObservatoryTentacle(this, ((x + 0.5) * ObservatoryViewer.gridsize + ox).floor(), ((y + 0.5) * ObservatoryViewer.gridsize + oy).floor(), rand.nextInt());
+            await tent.createModel();
+            this.tentacles.add(tent);
+            this.parent.scene.add(tent.mesh);
+        }
+    }
+
+    int findCorruption() {
+        int corrupt = 0;
+        for (Player p in this.session.players) {
+            Land l = p.land;
+            if (l.corrupted) {
+                corrupt++;
+            }
+        }
+        if (corrupt > 0) {
+            corrupt += 2;
+        }
+        return corrupt;
     }
 
     Future<THREE.Object3D> createLandModel(Player player, Land land) async {
@@ -551,8 +612,101 @@ class ObservatorySession {
 
         return group;
     }
+
+    void remove() {
+        this.parent.scene.remove(this.model);
+        for (ObservatoryTentacle t in this.tentacles) {
+            this.parent.scene.remove(t.mesh);
+        }
+    }
 }
 
+class ObservatoryTentacle {
+    static THREE.PlaneGeometry _geometry = new THREE.PlaneGeometry(1, 1, 4, 50);
+
+    ObservatorySession session;
+    int seed;
+
+    int x;
+    int y;
+
+    double length = 100.0;
+    double width = 70.0;
+    double period = 0.0;
+
+    double speed = 0.3;
+
+    THREE.Mesh mesh;
+    THREE.ShaderMaterial material;
+
+    ObservatoryTentacle(ObservatorySession this.session, int this.x, int this.y, int this.seed) {}
+
+    void update([num dt]) {
+        this.period = (this.period + dt * speed) % 1.0;
+
+        THREE.getUniform(this.material, "period")..value = this.period;
+
+        double radius = this.session.parent.viewRadius;
+
+        double xdiff = (this.x - this.session.parent.camx).toDouble();
+        double ydiff = (this.y - this.session.parent.camy).toDouble();
+
+        double diff = Math.sqrt(xdiff*xdiff + ydiff*ydiff);
+
+        if (diff < radius) {
+            this.mesh.visible = false;
+        } else {
+            this.mesh.visible = true;
+
+            double frac = ((diff - radius) / (radius));
+            frac = frac.clamp(0.01, 1.0);
+            frac = smoothstep(frac);
+
+            THREE.getUniform(this.material, "size")..value = new THREE.Vector2(this.width, this.length * frac);
+        }
+    }
+
+    Future<Null> createModel() async {
+        Random rand = new Random(this.seed);
+
+        this.period = rand.nextDouble();
+
+        double speedval = rand.nextDouble() * rand.nextDouble();
+        double angleval = 0.5 + speedval * 1.25 + rand.nextDouble();
+        double offsetval = 3.0 + rand.nextDouble() * 20.0;
+        angleval *= 1.0 + offsetval * 0.2;
+        double tipcurveval = 1.5 + speedval;
+        tipcurveval *= 1.0 + offsetval * 0.02;
+        double basecurveval = 0.2 + rand.nextDouble(0.1);
+
+        this.speed = 0.05 + speedval * 0.05;
+
+        double xdiff = (this.x - this.session.model.position.x).toDouble();
+        double ydiff = (this.y - this.session.model.position.y).toDouble();
+
+        this.width = 110.0 + rand.nextDouble(110.0);
+        this.length = Math.sqrt(xdiff*xdiff + ydiff*ydiff) * (0.8 + rand.nextDouble(0.4));
+
+        double angle = Math.PI * 0.5 - Math.atan2(ydiff, xdiff);
+
+        this.material = await THREE.makeShaderMaterial("shaders/tentacle.vert", "shaders/observatory_tentacle.frag")..transparent = true;
+        THREE.setUniform(this.material, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.width, this.length));
+        THREE.setUniform(this.material, "total_curve", new THREE.ShaderUniform<double>()..value = angleval);
+        THREE.setUniform(this.material, "total_offset", new THREE.ShaderUniform<double>()..value = offsetval);
+        THREE.setUniform(this.material, "tip_curve_mult", new THREE.ShaderUniform<double>()..value = tipcurveval);
+        THREE.setUniform(this.material, "tip_curve_exponent", new THREE.ShaderUniform<double>()..value = 2.0);
+        THREE.setUniform(this.material, "base_curve_mult", new THREE.ShaderUniform<double>()..value = basecurveval);
+        THREE.setUniform(this.material, "base_curve_exponent", new THREE.ShaderUniform<double>()..value = 2.0);
+        THREE.setUniform(this.material, "tentacle_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(0.0,0.0,0.0,1.0));
+        THREE.setUniform(this.material, "glow_colour", new THREE.ShaderUniform<THREE.Vector4>()..value = new THREE.Vector4(1.0,1.0,1.0,0.1));
+        THREE.setUniform(this.material, "glow_thickness", new THREE.ShaderUniform<double>()..value = 10.0);
+        THREE.setUniform(this.material, "period", new THREE.ShaderUniform<double>()..value = 0.0);
+
+        this.mesh = new THREE.Mesh(_geometry, material)..frustumCulled = false
+            ..position.x = this.x..position.y = this.y..position.z = -10.0 + rand.nextDouble()
+            ..rotation.x = Math.PI..rotation.z = angle;
+    }
+}
 
 //##################################################################################
 

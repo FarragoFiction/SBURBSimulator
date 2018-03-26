@@ -23,6 +23,12 @@ class Object3D {
 
 	external Vector3 get up;
 
+	external bool get frustumCulled;
+	external void set frustumCulled(bool value);
+
+	external bool get visible;
+	external void set visible(bool value);
+
 	external Object3D clone([bool recursive]);
 }
 

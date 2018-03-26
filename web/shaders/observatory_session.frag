@@ -90,7 +90,7 @@ void main() {
     float pixel = 1.0 / float(pixelsize);
     vec3 offset = vec3(-1,0,1) * pixel;
 
-    vec4 col = vec4(1.0,1.0,1.0,0.0);
+    vec4 col = vec4(0.0,0.0,0.0,0.0);
 
     float dist = length((v_uv - 0.5) * 2.0);
 
@@ -105,7 +105,11 @@ void main() {
     float skaia_scale = (0.5 + session_size * 0.5);
     float outer_scale = (0.25 + session_size * 0.75);
 
-    col = halo_circle(col, outer_scale - 0.1, outer_scale, dist, vec4(1.0,1.0,1.0,0.4), vec4(1.0,1.0,1.0,0.0)); // edge halo
+    if (dist < outer_scale - 0.1) {
+        col.a = 0.5;
+    }
+
+    col = halo_circle(col, outer_scale - 0.1, outer_scale, dist, vec4(1.0,1.0,1.0,0.5), vec4(1.0,1.0,1.0,0.0)); // edge halo
 
     col = centred_circle(col, outer_scale - 0.15 * (0.8 + 0.2 * outer_scale), dist, dist_max, vec4(1.0,1.0,1.0,0.45)); // outer edge
     col = centred_circle(col, session_size * 0.58, dist, dist_max, vec4(1.0,1.0,1.0,1.0)); // veil
