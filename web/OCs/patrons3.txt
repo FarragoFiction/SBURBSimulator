@@ -2,3 +2,4 @@ b=8%1E%0A%C2%81%C3%BE%C2%97%00%08HH3&s=,,Video Games,Science Fiction,insipidTest
 b=%C2%8Di2'%C3%BE%C2%97%00R%11%11%1E&s=,,Video Games,Werewolves,stoicLoafer
 b=K%C3%AC%13%C2%94%C3%BE%C2%A7%00%16%08%088&s=,,Artificial Intelligence,Science Fiction,notBuddy
 b=%00%00%00Z%C3%BE%C2%93%00Q%1D%1D%1E&s=,,Video Games,Character Creation,mrgameandpie
+b=%00%00%00S%C3%B9W%12%0544%3B&s=,,Clowns,Undead,clownlovingHeathen
