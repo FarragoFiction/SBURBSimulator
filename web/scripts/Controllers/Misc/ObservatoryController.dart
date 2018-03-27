@@ -16,7 +16,7 @@ Future<Null> main() async {
     await Loader.loadManifest();
     loadNavbar();
 
-    ObservatoryViewer observatory = new ObservatoryViewer(1000, 700);
+    ObservatoryViewer observatory = new ObservatoryViewer(1000, 700, eventDelegate: querySelector("#screen_clickzone"));
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
 }
@@ -53,6 +53,7 @@ class ObservatoryViewer {
     THREE.WebGLRenderTarget renderTarget;
 
     CanvasElement uiCanvas;
+    Element eventDelegate;
 
     NumberInputElement coordElementX;
     NumberInputElement coordElementY;
@@ -66,7 +67,7 @@ class ObservatoryViewer {
 
     bool dragging = false;
 
-    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0}) {
+    ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
@@ -79,6 +80,9 @@ class ObservatoryViewer {
             ..setClearColor(0x000000, 0);
 
         this.canvas = this.renderer.domElement..classes.add("observatory");
+        if (this.eventDelegate == null) {
+            this.eventDelegate = this.canvas;
+        }
 
         this.scene = new THREE.Scene();
         this.renderScene = new THREE.Scene();
@@ -124,7 +128,7 @@ class ObservatoryViewer {
 
         this.update();
 
-        this.canvas.onMouseDown.listen(mouseDown);
+        this.eventDelegate.onMouseDown.listen(mouseDown);
         window.onMouseUp.listen(mouseUp);
         window.onMouseMove.listen(mouseMove);
 
@@ -144,16 +148,19 @@ class ObservatoryViewer {
 
     void mouseDown(MouseEvent e) {
         dragging = true;
-        this.canvas.classes.add("dragging");
+        this.eventDelegate.classes.add("dragging");
     }
 
     void mouseUp(MouseEvent e) {
         if (dragging) { dragging = false; }
-        this.canvas.classes.remove("dragging");
+        this.eventDelegate.classes.remove("dragging");
     }
 
     void mouseMove(MouseEvent e) {
         if (!dragging) { return; }
+
+        window.getSelection().empty();
+        window.getSelection().removeAllRanges();
 
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 

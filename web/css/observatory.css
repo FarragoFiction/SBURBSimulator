@@ -1,0 +1,306 @@
+body {
+    background-image:none;
+
+    background: #292930; /* Old browsers */
+    background: -moz-linear-gradient(top, #292930 1%, #292930 30%, #151518 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #292930 1%,#292930 30%,#151518 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #292930 1%,#292930 30%,#151518 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292930', endColorstr='#151518',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#headerbg {
+    z-index:-1;
+    left:0px;
+    top:0px;
+    position:absolute;
+    background-color:#151518;
+    background-image:url("../images/observatory/observatory_header.png");
+    height:800px;
+    width:100%;
+    background-position:top center;
+}
+
+#headerbg::after {
+    content:" ";
+    width:100%;
+    height:50px;
+    background-color:#151518;
+    position:absolute;
+    top:790px;
+    border-top:15px solid #191920;
+    box-shadow:0px 5px 8px rgba(0,0,0,0.3);
+}
+
+.observatory {
+    cursor:-moz-grab;
+    cursor:-webkit-grab;
+    cursor:grab;
+}
+.dragging {
+    cursor:-moz-grabbing;
+    cursor:-webkit-grabbing;
+    cursor:grabbing;
+}
+
+div#screen {
+    position:relative;
+    padding:65px 0 0 0;
+    clear:both;
+    box-sizing:border-box;
+    height:875px;
+}
+div#screen_container {
+    width:1000px;
+    height:700px;
+    background-color:black;
+}
+div#screen_clickzone {
+    position:absolute;
+    width:1000px;
+    height:700px;
+
+    /*background-color:rgba(255,0,0,0.4);*/
+
+    top:65px;
+    left:0px;
+    z-index:10;
+}
+div#screen_overlay {
+    position:absolute;
+    left:-65px;
+    top:0px;
+    width:1130px;
+    height:875px;
+    background-image:url("../images/observatory/observatory_screen.png");
+
+    pointer-events:none;
+}
+div#screen_shadow {
+    position:absolute;
+    left:-62px;
+    top:2px;
+    width:1126px;
+    height:871px;
+    box-shadow:0px 8px 30px rgba(0,0,0,0.8);
+}
+
+div#screen_controls {
+    position:absolute;
+    top:790px;
+    width:1000px;
+    height:80px;
+    box-sizing:border-box;
+    left:0px;
+    /*background-color:#FFEEEE;*/
+    text-align:center;
+    padding:15px 0 5px 0;
+}
+
+div.label {
+    display:inline-block;
+}
+
+div.label label {
+    background-color:#FFFFFF;
+    padding:4px 12px 4px 12px;
+    font-family:courier, monospace;
+    font-weight:bold;
+    color:black;
+    box-shadow:2px 4px 2px rgba(0,0,0,0.4);
+    margin:0 4px 0 4px;
+    display:block;
+}
+#coordinates_y {
+    margin-right:16px;
+}
+label#coordinate_label {
+    transform: rotate(-4deg);
+}
+label#id_label {
+    transform: rotate(3deg);
+}
+#session_button {
+    background-color:#383838;
+    font-family:courier, monospace;
+    font-weight:bold;
+    color:lime;
+    border:1px solid #202020;
+    border-top:1px solid  #707070;
+    border-left:1px solid  #707070;
+    padding:5px 8px 5px 8px;
+    cursor:pointer;
+    border-radius:3px;
+}
+
+#session_button:active {
+    border:1px solid #202020;
+    border-bottom:1px solid  #707070;
+    border-right:1px solid  #707070;
+}
+
+div#screen_controls input[type=number] {
+    background-color:black;
+    border:1px #383838;
+    padding:6px 8px 6px 18px;
+    font-family:courier, monospace;
+    font-weight:bold;
+    color:white;
+    width:100px;
+    height:15px;
+}
+div.inputarrow {
+    display:inline-block;
+    position:relative;
+    width:0px;
+    left:4px;
+    top:1px;
+    font-family:courier, monospace;
+    font-weight:bold;
+    color:white;
+    z-index:2;
+}
+
+#avatar {
+    z-index:5;
+    position:absolute;
+    right:-160px;
+    top:620px;
+}
+
+#speechbubble {
+    position:absolute;
+    right:0px;
+    width:200px;
+    bottom:220px;
+    z-index:5;
+}
+#speechbubblebody {
+    position:absolute;
+    background-color:white;
+    border-radius:20px;
+    padding:16px;
+    bottom:40px;
+    width:200px;
+
+    font-family:courier, monospace;
+    font-weight:bold;
+    color: #0d378e;
+
+    box-shadow: 6px 8px 3px rgba(0,0,0,0.2);
+}
+#speechbubblestalk {
+    width:32px;
+    height:40px;
+    /*background-color:white;*/
+    position:absolute;
+    bottom:0px;
+    left:80px;
+    box-shadow: 3px 0px 0px rgba(0,0,0,0.1);
+
+    box-sizing:border-box;
+    border-right:16px solid white;
+    border-left: 16px solid transparent;
+    border-top: 20px solid white;
+    border-bottom: 20px solid transparent;
+}
+
+div.note {
+    position:relative;
+    background-color:#F2F1F0;
+    box-shadow:1px 5px 7px rgba(0,0,0,0.4);
+    padding: 30px 30px 30px 30px;
+    margin: 30px 20px 25px 20px;
+
+    font-family:courier, monospace;
+    font-weight:bold;
+    color:#363636;
+}
+
+div.note::before {
+    content:" ";
+    display:block;
+    background-color:rgba(255,255,255,0.5);
+    width:90px;
+    height:30px;
+
+    position:absolute;
+    top:0px;
+    left:-30px;
+    transform: rotate(-36deg);
+}
+div.note::after {
+    content:" ";
+    display:block;
+    background-color:rgba(255,255,255,0.5);
+    width:90px;
+    height:30px;
+
+    position:absolute;
+    top:0px;
+    right:-30px;
+    transform: rotate(48deg);
+}
+
+div#spiel {
+    border-top:14px solid #404040;
+    border-right:6px solid #202020;
+    border-left:6px solid #202020;
+    background-color:#303030;
+    box-shadow:0px 0px 30px rgba(0,0,0,0.6), 0px 10px 50px rgba(0,0,0,0.2);
+}
+
+#pipes {
+    position:absolute;
+    /*width:0;
+    left:50%;*/
+    /*top:265px;*/
+    left:0;
+    right:0;
+}
+
+div.pipe {
+    height:350px;
+    /*background-color:#CC3333;*/
+    width:50vw;
+    position:absolute;
+    background-color:rgba(0,0,0,0.2);
+    box-shadow:0px 3px 8px rgba(0,0,0,0.2);
+
+    top:265px;
+}
+
+#pipeleft {
+    left:0px;
+    background-image:url("../images/observatory/pipe_left.png");
+    background-position:top right;
+}
+#piperight {
+    right:0px;
+    background-image:url("../images/observatory/pipe_right.png");
+    background-position:top left;
+}
+
+
+#pipeends {
+    position:relative;
+    width:0;
+    left:50%;
+}
+div.pipeend {
+    height:454px;
+    width:137px;
+    position:absolute;
+    /*top:-52px;*/
+    top:213px;
+}
+
+div#pipeendleft {
+    background-image:url("../images/observatory/pipe_end_left.png");
+    right:550px;
+}
+div#pipeendright {
+    background-image:url("../images/observatory/pipe_end_right.png");
+    left:550px;
+}
