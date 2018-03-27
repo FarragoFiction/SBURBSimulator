@@ -52,10 +52,12 @@ function storeWasteCard(){
 function storeCard(cardString){
   var existing = localStorage.getItem("LIFESIMFOUNDCARDS");
   if(existing == null){
+    print("storing card");
       localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
   }else {
     var subsets = existing.split(",");
     if(!subsets.includes(cardString)){
+      print("storing card");
         existing += ","+cardString;
         localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
     }

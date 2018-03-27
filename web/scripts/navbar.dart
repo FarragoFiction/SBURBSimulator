@@ -11,6 +11,8 @@ void loadNavbar() {
     HttpRequest.getString(PathUtils.adjusted("navbar.txt")).then(onNavbarLoaded);
 }
 
+
+
 void onNavbarLoaded(String data) {
     // PL: oh boy fixing those urls
     int subdirs = PathUtils.getPathDepth();
@@ -141,3 +143,14 @@ void hide(Element v) {
     v.style.display = "none";
 }
 
+
+void storeCard(String card) {
+    String key = "LIFESIMFOUNDCARDS";
+    if(window.localStorage.containsKey(key)) {
+        String existing = window.localStorage[key];
+        List<String> parts = existing.split(",");
+        if(!parts.contains(card)) window.localStorage[key] = "$existing,$card";
+    }else {
+        window.localStorage[key] = card;
+    }
+}
