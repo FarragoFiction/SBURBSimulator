@@ -107,6 +107,12 @@ class Player extends GameEntity{
         return class_name.bureaucraticBullshit;
     }
 
+    @override
+    void processCardFor() {
+      class_name.processCard();
+      aspect.processCard();
+    }
+
 
     void set denizenDefeatedExplicitlySet(bool x) {
         _denizenDefeated = x;

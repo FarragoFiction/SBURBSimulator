@@ -879,6 +879,11 @@ class GameEntity extends Object with StatOwner   {
         return <Relationship>[];
     }
 
+    void processCardFor() {
+        //does nothing, offspring will override if they need to
+    }
+
+
     static String getEntitiesNames(List<GameEntity> ges) {
         return ges.map((i) => i.title()).join(','); //TODO put an and at the end.
     }

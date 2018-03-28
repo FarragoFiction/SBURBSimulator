@@ -72,6 +72,7 @@ class Session {
 
                     if(g.active) {
                         _activatedNPCS.add(g);
+                        g.processCardFor();
                         toRemove.add(g);
                     }
                 }

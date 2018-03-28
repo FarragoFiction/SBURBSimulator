@@ -170,6 +170,9 @@ class SBURBClass {
             ..add(new Item("Perfectly Generic Object",<ItemTrait>[],shogunDesc: "Green Version of Those Sweet Yellow Candies I Loved"));
     }
 
+    void processCard() {
+
+    }
 
 
     List<String> levels = <String>["SNOWMAN SAVIOR", "NOBODY NOWHERE", "NULLZILLA"];
