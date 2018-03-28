@@ -435,7 +435,7 @@ class NPCHandler
             ..royaltyOpinion = 1000
         );
 
-        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parcel","Perigrine","Postal"], lastNames: <String>["Mistress","Mendicate","Mailer"], ringFirstNames: <String>["Punititve"], ringLastNames: <String>["Marauder"])
+        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parcel","Perigrine","Postal","Prospitian"], lastNames: <String>["Mistress","Mendicate","Mailer", "Maillady"], ringFirstNames: <String>["Punititve","Prospitian"], ringLastNames: <String>["Marauder","Monarch"])
             ..scenes = <Scene>[new MailSideQuest(session),new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is flipping the fuck out about how great the MAIL is.","is delivering packages to unimportant carapaces.","is just sort of generally being a badass."]
             ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
