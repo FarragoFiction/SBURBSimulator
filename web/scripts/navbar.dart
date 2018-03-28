@@ -1,3 +1,4 @@
+import "dart:async";
 import 'dart:html';
 import "Controllers/Misc/SimController.dart";
 import "random.dart";
@@ -17,13 +18,15 @@ void onNavbarLoaded(String data) {
     // PL: oh boy fixing those urls
     int subdirs = PathUtils.getPathDepth();
     data = data.replaceAllMapped(new RegExp("(href|src) ?= ?([\"'])(?!https?:)"), (Match m) => "${m.group(1)} = ${m.group(2)}${"../"*subdirs}");
-    
+
     querySelector("#navbar").appendHtml(data, treeSanitizer: NodeTreeSanitizer.trusted);
     if (getParameterByName("seerOfVoid", null) == "true") {
-        window.alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
-        storeCard("N4Igzg9grgTgxgUxALhAVTAgJgAgMoIIwDyAZgGoQCWuIANCAHYCGAtkqgHJG7FQAuOAOpV+ACxwAlPPRD8EAD34oQEAO6MiCFuxg4A5swBeCMDiqN+EHOIQ4AbtVzNGuADYJmMRmdYQYdmBiogCEsgBGzHAA1vow0K6cbBwgACwADKkADsz6COEIcMxQmIVwYgB0WYz6svwwVPp5MADCYi6IKukVAKyyYIiaYAAqEGiMbhAxKgDaALqyAWBQbvxgePzMa7PAADpMyfvI+wBCkgCCAJKcl8NoACIAovt0+-bMblAIR-s9+wC+dBwewO7B+IAA4pxiHhLngXm8Pl9wQBGAELBj1RrNDZbMAAGVMmBgswxcgaTSIuLWEICWyIpLqFJxmzWjwAjlAPoz-kA");
-        querySelector("#story").appendHtml("<button id = 'voidButton'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.", treeSanitizer: NodeTreeSanitizer.trusted);
-        (querySelector("#voidButton") as ButtonElement).onClick.listen((Event e) => toggleVoid());
+        new Future<Null>(() {
+            querySelector("#story").appendHtml("<button id = 'voidButton'>Peer into Void, Y/N?</a><div class='void'>Well, NOW you've certainly gone and done it. You can expect to see any Void Player shenanignans now. If there are any.", treeSanitizer: NodeTreeSanitizer.trusted);
+            (querySelector("#voidButton") as ButtonElement).onClick.listen((Event e) => toggleVoid());
+            window.alert("If you gaze long into an abyss, the abyss also gazes into you.  - Troll Bruce Willis");
+            storeCard("N4Igzg9grgTgxgUxALhAVTAgJgAgMoIIwDyAZgGoQCWuIANCAHYCGAtkqgHJG7FQAuOAOpV+ACxwAlPPRD8EAD34oQEAO6MiCFuxg4A5swBeCMDiqN+EHOIQ4AbtVzNGuADYJmMRmdYQYdmBiogCEsgBGzHAA1vow0K6cbBwgACwADKkADsz6COEIcMxQmIVwYgB0WYz6svwwVPp5MADCYi6IKukVAKyyYIiaYAAqEGiMbhAxKgDaALqyAWBQbvxgePzMa7PAADpMyfvI+wBCkgCCAJKcl8NoACIAovt0+-bMblAIR-s9+wC+dBwewO7B+IAA4pxiHhLngXm8Pl9wQBGAELBj1RrNDZbMAAGVMmBgswxcgaTSIuLWEICWyIpLqFJxmzWjwAjlAPoz-kA");
+        });
     }
     String sessionID = todayToSession();
     //print('sessionID is $sessionID');
@@ -107,9 +110,8 @@ String getRawParameterByName(String name, String url) {
 }
 
 void toggleVoid() {
-    querySelector('body').style.backgroundColor = "#f8c858";
-    querySelector('body').style.backgroundImage = "url(images/pen15_bg1.png)"; //can not unsee the dics now.
-    //querySelectorAll(".void").forEach((Element e) => WHAT SHOULD I DO HEAR for DISPLAY:none);
+    querySelector('body').classes.add("voidbody"); // for the main page theme this is ouija (can not unsee the dics now).
+
     List<Element> voidElements = querySelectorAll(".void");
     for (Element v in voidElements) {
         toggle(v);
@@ -119,7 +121,6 @@ void toggleVoid() {
 //work around for dart not having this jquery function except for classes apparently
 void toggle(Element v) {
     String display = v.style.display;
-    ////;
     if (display == "none" || display.isEmpty) {
         show(v);
     } else {
@@ -128,19 +129,12 @@ void toggle(Element v) {
 }
 
 void show(Element v) {
-    if(v == null) {
-        //;
-        return;
-    }
-    ////;
-    v.style.display = "block";
+    if(v == null) {return;}
+    v.style.display = (v is SpanElement) ? "inline" : "block";
 }
 
 void hide(Element v) {
-    if(v == null) {
-        //;
-        return;
-    }
+    if(v == null) {return;}
     v.style.display = "none";
 }
 

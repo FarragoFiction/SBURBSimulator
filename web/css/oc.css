@@ -601,3 +601,8 @@ div.renderJobPlaceholder {
     box-sizing: border-box;
     box-shadow:0 0 30px #EEEEEE inset;
 }
+
+.voidbody {
+    background-color:#f8c858;
+    background-image:url("../images/pen15_bg1.png");
+}
