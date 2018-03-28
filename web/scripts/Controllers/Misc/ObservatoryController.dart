@@ -17,6 +17,24 @@ Future<Null> main() async {
     loadNavbar();
 
     ObservatoryViewer observatory = new ObservatoryViewer(1000, 700, eventDelegate: querySelector("#screen_clickzone"));
+
+    Random rand = new Random();
+    querySelector("#random_link")..onClick.listen((Event e){ observatory.goToSeed(rand.nextInt()); });
+    querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(int.parse(todayToSession(), onError: (String s) => 13)); });
+    AnchorElement sim_link = querySelector("#sim_link");
+    AnchorElement ab_link = querySelector("#ab_link");
+    observatory.callback_session = () {
+        Session session = observatory.detailSession.session;
+        int seed = session.session_id;
+        if (session.players.length == 1) {
+            sim_link.href = "dead_index.html?seed=$seed";
+            ab_link.href = "dead_session_finder.html?seed=$seed";
+        } else {
+            sim_link.href = "index2.html?seed=$seed";
+            ab_link.href = "rare_session_finder.html?seed=$seed";
+        }
+    };
+
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
 }
@@ -32,6 +50,8 @@ class ObservatoryViewer {
     static const String param_x = "cx";
     static const String param_y = "cy";
     static const String param_seed = "seed";
+
+    Action callback_session = null;
 
     LinkedHashMap<int, Session> sessionCache = new LinkedHashMap<int, Session>();
 
@@ -185,7 +205,10 @@ class ObservatoryViewer {
     void setURL() {
         String x = ((10000 * this.camx / gridsize).roundToDouble() / 10000).toString();
         String y = ((10000 * this.camy / gridsize).roundToDouble() / 10000).toString();
-        window.history.replaceState(<String,String>{}, "Observatory", "${Uri.base.path}?$param_x=$x&$param_y=$y");
+
+        String otherparams = Uri.base.queryParameters.keys.where((String key) => key != "cx" && key != "cy" && key != "seed").map((String key) => "$key=${Uri.base.queryParameters[key]}").join("&");
+
+        window.history.replaceState(<String,String>{}, "Observatory", "${Uri.base.path}?$param_x=$x&$param_y=$y${otherparams.isEmpty?"":"&$otherparams"}");
     }
 
     void readCoordinateElement([Event e]) {
@@ -304,6 +327,8 @@ class ObservatoryViewer {
         this.setSessionElement();
 
         this.updateSessionDetails();
+
+        if (this.callback_session != null) { this.callback_session(); }
     }
 
     void goToGridCoordinates(num x, num y) {

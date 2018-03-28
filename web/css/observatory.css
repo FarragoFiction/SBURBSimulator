@@ -1,4 +1,4 @@
-body {
+body, body.voidbody {
     background-image:none;
 
     background: #292930; /* Old browsers */
@@ -6,8 +6,12 @@ body {
     background: -webkit-linear-gradient(top, #292930 1%,#292930 30%,#151518 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #292930 1%,#292930 30%,#151518 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292930', endColorstr='#151518',GradientType=0 ); /* IE6-9 */
+}
 
-
+body.voidbody {
+    background-image:url("../images/pen15_bg1.png"), -moz-linear-gradient(to bottom, #292930 1%,#292930 30%,#151518 100%);
+    background-image:url("../images/pen15_bg1.png"), -webkit-linear-gradient(to bottom, #292930 1%,#292930 30%,#151518 100%);
+    background-image:url("../images/pen15_bg1.png"), linear-gradient(to bottom, #292930 1%,#292930 30%,#151518 100%);
 }
 
 #headerbg {
@@ -250,6 +254,12 @@ div#spiel {
     background-color:#303030;
     box-shadow:0px 0px 30px rgba(0,0,0,0.6), 0px 10px 50px rgba(0,0,0,0.2);
 }
+#story {
+    width:initial;
+    background-color:transparent;
+    padding:0;
+    text-align:center;
+}
 
 #pipes {
     position:absolute;
@@ -303,4 +313,32 @@ div#pipeendleft {
 div#pipeendright {
     background-image:url("../images/observatory/pipe_end_right.png");
     left:550px;
+}
+
+.sig {
+    text-align:right;
+}
+
+a, .link {
+    color:#000080;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+a:hover, .link:hover {
+    color:#0000FF;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+a:active, .link:active {
+    color:#0000FF;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+a:visited, .link:visited {
+    color:#000080;
+    text-decoration:underline;
+    cursor:pointer;
 }
