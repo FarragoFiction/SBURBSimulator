@@ -179,6 +179,8 @@ div.inputarrow {
     width:200px;
     bottom:220px;
     z-index:5;
+
+    display:none;
 }
 #speechbubblebody {
     position:absolute;

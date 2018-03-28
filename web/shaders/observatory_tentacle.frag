@@ -22,7 +22,10 @@ void main() {
 	    discard;
 	} else if (sideval > sidetaper) {
 	    float glowfrac = 1.0 - ((sideval - sidetaper) / halo.x);
-	    float tipglow = clamp((1.0 - v_uv.y) / (halo.y * 3.0), 0.0, 1.0);
+
+        float tipglowlength = halo.y * 5.0;
+	    float tipglow = 1.0 - clamp((v_uv.y - (1.0 - tipglowlength)) / tipglowlength, 0.0, 1.0);
+        tipglow = smoothstep(0.0, 1.0, tipglow);
 
 	    glowfrac *= tipglow;
 

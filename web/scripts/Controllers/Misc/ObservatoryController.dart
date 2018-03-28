@@ -18,11 +18,17 @@ Future<Null> main() async {
 
     ObservatoryViewer observatory = new ObservatoryViewer(1000, 700, eventDelegate: querySelector("#screen_clickzone"));
 
+    int today = int.parse(todayToSession(), onError: (String s) => 13);
     Random rand = new Random();
     querySelector("#random_link")..onClick.listen((Event e){ observatory.goToSeed(rand.nextInt()); });
-    querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(int.parse(todayToSession(), onError: (String s) => 13)); });
+    querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(today); });
+
     AnchorElement sim_link = querySelector("#sim_link");
     AnchorElement ab_link = querySelector("#ab_link");
+
+    Element speechbubble = querySelector("#speechbubble");
+    Element speechbubbletext = querySelector("#speechbubblebody");
+
     observatory.callback_session = () {
         Session session = observatory.detailSession.session;
         int seed = session.session_id;
@@ -33,10 +39,45 @@ Future<Null> main() async {
             sim_link.href = "index2.html?seed=$seed";
             ab_link.href = "rare_session_finder.html?seed=$seed";
         }
+        String comment = processSessionComment(observatory, today);
+
+        if (comment == null) {
+            hide(speechbubble);
+        } else {
+            setHtml(speechbubbletext, comment);
+            show(speechbubble);
+        }
     };
 
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
+}
+
+String processSessionComment(ObservatoryViewer ob, int today) {
+    Session session = ob.detailSession.session;
+    int id = session.session_id;
+
+    List<String> segments = <String>[];
+
+    /*
+        ok, need to look for:
+
+        interesting things:
+
+        corruption
+        LOTS of corruption
+        dead sessions
+        lord/muse 2 player combo
+        but what else?
+
+        easter eggs:
+
+        just like, all the special sessions need comments
+        idea: is there a flag for when a session has an easter egg active?
+
+    */
+
+    return segments.isEmpty ? null : segments.join("<br><br>");
 }
 
 //##################################################################################
@@ -882,120 +923,3 @@ class Morton {
         return new Tuple<int, int>(x, y);
     }
 }
-
-/* DM's C# tentacles
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Tentacle : MonoBehaviour {
-
-    MeshFilter mf;
-    public int nSegs;
-
-        // Use this for initialization
-        void Start () {
-        mf = GetComponent<MeshFilter>();
-
-        mf.mesh.Clear();
-
-        Vector3[] newVs = new Vector3[2*nSegs+1];
-
-        setCoords(0f, newVs);
-        mf.mesh.vertices = newVs;
-
-        Vector2[] uvs = new Vector2[2*nSegs+1];
-        for (int i=0; i<nSegs; i++)
-        {
-            float v = 0.4f * i;
-            uvs[2 * i] = new Vector2(0, v);
-            uvs[2 * i+1] = new Vector2(1, v);
-        }
-        uvs[2 * nSegs] = new Vector2(0.4f*(nSegs+0.5f), 0);
-        mf.mesh.uv = uvs;
-
-        int[] newTs = new int[(2 * nSegs + 1) * 3];
-        for (int i=0; i<nSegs; i++)
-        {
-            int j = i * 2 * 3;
-            int vi0 = i * 2;
-
-            newTs[j] = vi0;
-            newTs[j + 1] = vi0 + 1;
-            newTs[j + 2] = vi0 + 2;
-            if (i+1 < nSegs)
-            {
-                newTs[j + 3] = vi0 + 2;
-                newTs[j + 4] = vi0 + 1;
-                newTs[j + 5] = vi0 + 3;
-            }
-        }
-        mf.mesh.triangles = newTs;
-
-        if (false)
-        {
-            Vector3[] norms = new Vector3[4];
-            Vector3 norm = new Vector3(0, 0, -1);
-            for (int i = 0; i < norms.Length; i++)
-            {
-                norms[i] = norm;
-            }
-            mf.mesh.normals = norms;
-        }
-        else
-        {
-            mf.mesh.RecalculateNormals();
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update () {
-        float t = Time.time;
-        float period = 4;
-        Vector3[] verts = mf.mesh.vertices;
-        setCoords(t, verts);
-        mf.mesh.vertices = verts;
-        }
-
-    public float timeCurlFactor=0.2f;
-    public float indexCurlFactor=0.1f;
-    public float baseSegLen = 0.3f;
-    public float segExponent = 0;
-    public float curlCeiling = 0.15f;
-    public float phase = 0;
-
-    void setCoords(float secs, Vector3[] verts)
-    {
-        Vector2 root = new Vector2(0, 0);
-
-        float theta = 0;
-        for (int i=0; i<=nSegs; i++)
-        {
-            float segLen = baseSegLen * Mathf.Exp(- i * segExponent);
-            float q = i / (float)nSegs;
-            float thick = 0.5f*(1 - q * q);
-
-            float x1 = root.x + segLen / 2 * Mathf.Cos(theta);
-            float y1 = root.y + segLen / 2 * Mathf.Sin(theta);
-            float dx = Mathf.Sin(theta);
-            float dy = -Mathf.Cos(theta);
-            float x2 = x1 + dx * thick;
-            float y2 = y1 + dy * thick;
-            float x3 = x1 - dx * thick;
-            float y3 = y1 - dy * thick;
-            verts[2*i] = new Vector3(x2, y2, 0);
-            if (i < nSegs)
-            {
-                verts[2 * i + 1] = new Vector3(x3, y3, 0);
-
-                root.x = root.x + segLen * Mathf.Cos(theta);
-                root.y = root.y + segLen * Mathf.Sin(theta);
-                float kludge = Mathf.Min(1, (1+i)*4f / nSegs);
-                theta += kludge * curlCeiling*Mathf.Cos(phase + (secs*timeCurlFactor -i * indexCurlFactor) * Mathf.PI);
-            }
-        }
-    }
-}
- */
