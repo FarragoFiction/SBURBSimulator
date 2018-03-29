@@ -41,7 +41,7 @@ Future<Null> main() async {
         }
         String comment = processSessionComment(observatory, today);
 
-        if (comment == null) {
+        if (comment == null || comment.isEmpty) {
             hide(speechbubble);
         } else {
             setHtml(speechbubbletext, comment);
@@ -53,9 +53,92 @@ Future<Null> main() async {
     querySelector("#screen_container")..append(observatory.renderer.domElement);
 }
 
+Map<int, String> eggComments = <int,String>{
+    413      : "There's something familiar about this one...", // beta + alpha
+    612      : "This session seems familiar somehow...", // trolls
+    613      : "This session seems familiar somehow...", // dancestors
+    1025     : "Wasn't there like, a comic or something about this one?", // beta + alpha + CG,GA,GC,AG
+    33       : "AB isn't going to be happy about this...", // THAT DAMN CAT
+    111111   : "There's something familiar about this one...", // alpha + beta
+    88888888 : "So many irons in the fire!<br><br>... and so many 8s, holy shit", // like, so many spiders
+    420      : "I don't even want to know what kind of shit is going on in there.<br><br>... wait, do you hear honking?", // fridgestuck
+    0        : "Hang on a second, are they all robot versions of the same player?", // 0u0
+    13       : "Is that... here?<br><br>How is that even possible? Ugh, the geometry out here SUCKS.", // yooo it's us
+    4037     : "Wow, that guy looks like he's having a terrible time. I wonder what'd happen if he won? <span class='void'><br><br>Become a really good friend, probably ;)</span>", // Shoges
+};
+
+List<String> deadComments = <String>[
+    "Is that a black hole where Skaia should be? Wow that does not look like a good time.",
+    "Oh dang, a dead session. These are rare! And *really* shitty for whoever's playing...",
+    "Looks like someone tried to tempt fate and play SBURB alone. This will not end well...",
+];
+
+List<String> lordMuseComments = <String>[
+    "Ooh, the master class pair. This might be interesting.",
+    "A Lord and a Muse playing together. Could be interesting.",
+    "A Lord/Muse pairing, they only ever seem to happen in two player sessions...",
+    "Two master class players, all alone. This could get interesting.",
+    "Lord and Muse, the classic combo.",
+    "Lord and Muse, a potent combination.",
+];
+
+List<String> corruptComments = <String>[
+    "Something seems a bit off here...",
+    "Looks like there might be some session corruption going on.",
+    "Seems like there's corruption happening in this one...",
+    "I don't like the look of that corruption.",
+    "Something doesn't seem quite right here...",
+    "Hmm, looks like there's a bit of corruption happening in this one.",
+];
+
+List<String> followCorruptComments = <String>[
+    "Also, there's something off about this one...",
+    "And looks like there might be some session corruption involved too.",
+    "Plus there's some corruption happening here...",
+    "Oh, and I really don't look the look of that corruption.",
+    "Also something doesn't seem quite right here...",
+    "Hmm, and it looks like there's a bit of corruption happening as well...",
+];
+
+List<String> veryCorruptComments = <String>[
+    "Oh wow that corruptuon is a MESS. Wouldn't want to be in there...",
+    "Looks like the horrorterrors are having fun with that session...",
+    "Wow, ok, that's a lot of corruption.",
+    "I really, really do not like the look of all that corruption. That cannot be good.",
+    "That corruption looks pretty terrible, I hope they are ok in there...",
+    "That is... a pretty concerning amount of corruption, I hope they'll be ok in there...",
+];
+
+List<String> followVeryCorruptComments = <String>[
+    "Also, wow, that corruption is a MESS. I would not want to be in there...",
+    "Looks like the horrorterrors are having their fun with the session, too.",
+    "And that... is an awful lot of corruption.",
+    "Oh, and I really, really do not like the look of all that corruption. That cannot be good.",
+    "... and I hope they are ok in there, that corruption looks pretty terrible.",
+    "Also that is a pretty concerning amount of corruption, I hope they'll be ok in there...",
+];
+
+List<String> heiressComments = <String>[
+    "Wow, multiple troll heiresses... that's gonna be a messy one.",
+    "How the heck did they get more than one heiress to play together?!",
+    "Oh wow, more than one troll heiress in the same session. Nasty!",
+    "Is that a session with more than one royal troll? Dang, sounds bad.",
+    "Hm, do I see multiple troll heiresses in there? How did that happen?",
+];
+
+List<String> disastorComments = <String>[
+    "Those are some pretty gnarly sprites, the enemies in there must be really nasty.",
+    "With prototypings like that I bet the players will have some trouble...",
+    "I hope they know what a pain prototyping all that dangerous shit will be...",
+    "The prototypings in this one look pretty horrible.",
+    "I hope they can cope with all the dangerous shit they're prototyping in there.",
+    "With sprites that dangerous the enemies must be real monsters in there.",
+];
+
 String processSessionComment(ObservatoryViewer ob, int today) {
     Session session = ob.detailSession.session;
     int id = session.session_id;
+    Random rand = new Random(id);
 
     List<String> segments = <String>[];
 
@@ -70,12 +153,114 @@ String processSessionComment(ObservatoryViewer ob, int today) {
         lord/muse 2 player combo
         but what else?
 
+        multiple heiresses!
+        multiple disastor
+        LEG DAY
+
         easter eggs:
 
         just like, all the special sessions need comments
         idea: is there a flag for when a session has an easter egg active?
 
     */
+    bool dead = false;
+    bool lordMuse = false;
+    bool multiHeiress = false;
+    bool multiDisastor = false;
+
+    if (eggComments.containsKey(id)) {
+        // if it's an easter-egg session, get the special descriptor for that
+        segments.add(eggComments[id]);
+    } else {
+        if (session.players.length == 1) { // check dead sessions
+            segments.add(rand.pickFrom(deadComments));
+            dead = true;
+        } else if (session.players.length == 2) { // check 2p for lord+muse
+            bool lord = false;
+            bool muse = false;
+            for (Player p in session.players) {
+                if (p.class_name == SBURBClassManager.LORD) {
+                    lord = true;
+                } else if (p.class_name == SBURBClassManager.MUSE) {
+                    muse = true;
+                }
+            }
+            if (lord && muse) {
+                segments.add(rand.pickFrom(lordMuseComments));
+                lordMuse = true;
+            }
+        }
+
+        // check for competing heiresses
+        int heiresses = 0;
+        for (Player p in session.players) {
+            if (p.isTroll && p.bloodColor == "#99004d") {
+                heiresses++;
+            }
+        }
+        if (heiresses > 1) {
+            segments.add(rand.pickFrom(heiressComments));
+            multiHeiress = true;
+        }
+
+        // check for multiple disastor prototypings
+        int disastor = 0;
+        for (Player p in session.players) {
+            if (p.object_to_prototype.disaster) {
+                disastor++;
+            }
+        }
+        if (disastor > 1 && (disastor / session.players.length) > 0.33) {
+            segments.add(rand.pickFrom(disastorComments));
+            multiDisastor = true;
+        }
+    }
+
+    // add a corruption comment
+    // should be after other stuff to take advantage of follow-ons
+    int corruption = 0;
+    for (Player p in session.players) {
+        Land l = p.land;
+        if (l != null && l.corrupted) {
+            corruption++;
+        }
+    }
+    if (corruption >= 3) {
+        if (segments.isEmpty) {
+            segments.add(rand.pickFrom(veryCorruptComments));
+        } else {
+            segments.add(rand.pickFrom(followVeryCorruptComments));
+        }
+    } else if (corruption >= 1) {
+        if (segments.isEmpty) {
+            segments.add(rand.pickFrom(corruptComments));
+        } else {
+            segments.add(rand.pickFrom(followCorruptComments));
+        }
+    }
+
+    // combo finishers
+    if (lordMuse && multiHeiress) { // lord and muse heiresses
+        segments.add("This is going to be one hell of a showdown.");
+    }
+    if (lordMuse && multiDisastor) {
+        segments.add("They're really making it hard for themselves...");
+    }
+    if (dead && corruption > 0) {
+        segments.add("Wait, corrupt *and* dead... holy shit");
+    }
+
+    // LEG DAY
+    for (Player p in session.players) {
+        if (p.class_name == SBURBClassManager.PAGE && p.aspect == Aspects.HEART && p.interest1.category == InterestManager.ATHLETIC && p.interest2.category == InterestManager.ATHLETIC) {
+            if (segments.isEmpty) {
+                segments.add("Wow, look at the legs on that Page of Heart!");
+            } else {
+                segments.add("... and do you SEE the legs on that Page of Heart?!");
+            }
+            break;
+        }
+    }
 
     return segments.isEmpty ? null : segments.join("<br><br>");
 }
