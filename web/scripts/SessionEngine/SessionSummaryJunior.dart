@@ -26,7 +26,7 @@ class SessionSummaryJunior {
         String params = getParamStringMinusParam("seed");
         StringBuffer html = new StringBuffer()
             ..write("<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>")
-            ..write("<Br><b> Session</b>: ${this.session_id}<br>[ <a href = 'index2.html?seed=${this.session_id}&$params'>Simulate</a> | <a href='observatory.html?seed=${this.session_id}&$params'>Observatory</a> ]")
+            ..write("<Br><b> Session</b>: ${this.session_id}<br>[ <a href = 'index2.html?seed=${this.session_id}&$params' target='_blank'>Simulate</a> | <a href='observatory.html?seed=${this.session_id}&$params' target='_blank'>Observatory</a> ]")
             ..write("<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}")
             ..write("<Br><b>Potential God Tiers</b>: ${getPlayersTitlesBasic(this.grabPotentialGodTiers())}")
             ..write("<Br><b>Initial Average Min Luck</b>: ${this.averageMinLuck}")
