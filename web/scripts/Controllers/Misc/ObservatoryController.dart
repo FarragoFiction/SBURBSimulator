@@ -22,6 +22,7 @@ Future<Null> main() async {
     Random rand = new Random();
     querySelector("#random_link")..onClick.listen((Event e){ observatory.goToSeed(rand.nextInt()); });
     querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(today); });
+    querySelector("#session_id")..onKeyPress.listen((KeyboardEvent e){ if(e.keyCode == 13) { observatory.readSessionElement(); }});
 
     AnchorElement sim_link = querySelector("#sim_link");
     AnchorElement ab_link = querySelector("#ab_link");
