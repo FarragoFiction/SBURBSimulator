@@ -38,7 +38,7 @@ class ChangeLogMemo {
         String end  = ".png";
         DateTime now = new DateTime.now();
         //gosh what could this even mean???
-        
+
         if(now.month == 4 && now.day == 1) {
             end = "_sauce.png";
         }
