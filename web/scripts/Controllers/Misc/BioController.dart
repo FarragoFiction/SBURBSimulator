@@ -10,6 +10,7 @@ void main() {
 
 void displayBio() {
   String staff = getParameterByName("staff",null);
+  changeAvatar(staff);
   processShenanigans(staff);
   Element div = querySelector("#$staff");
   if(div != null) div.classes.remove("void");
@@ -25,6 +26,14 @@ void displayBio() {
     canon.append(newFact);
   });
 }
+
+
+void changeAvatar(String staff) {
+  ImageElement img = querySelector("#${staff}Avatar");
+  img.src = img.src.replaceAll(".png", "_sauce.png");
+}
+
+
 
 void processShenanigans(String staff) {
   //HI!!!  You're following along at home, right?   Let's not spoil the surprise ;) ;) ;)

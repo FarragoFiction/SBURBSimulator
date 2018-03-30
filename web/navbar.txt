@@ -21,7 +21,7 @@
       <div class="dropdown-content">
         <a href="rare_session_finder.html">AuthorBot: Find Ending Conditions</a>
           <a href="rare_session_finder_junior.html">AuthorBotJunior: Find Starting Conditions</a>
-         <a href="rare_villain_finder.html">ShogunBot: Big Bad Binder</a>
+         <a href="rare_villain_finder.html">ShogunBot: Big Bad &#58675;inder</a>
         <a href="dead_session_finder.html">AuthorBot: Find Dead Sessions</a>
         <a href="observatory.html">Observatory: Browse Session Map</a>
       </div>
