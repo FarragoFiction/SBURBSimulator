@@ -51,6 +51,7 @@ Future<Null> main() async {
 
     await observatory.setup(13);
     querySelector("#screen_container")..append(observatory.renderer.domElement);
+    querySelector("#screen_container")..append(observatory.landDetails.container);
 }
 
 Map<int, String> eggComments = <int,String>{
@@ -311,12 +312,17 @@ class ObservatoryViewer {
     Map<Point<int>, ObservatorySession> sessions = <Point<int>,ObservatorySession>{};
     ObservatorySession detailSession = null;
 
+    Point<num> dragStart = null;
     bool dragging = false;
+
+    bool viewingLandDetails = false;
+    ObservatoryLandDetails landDetails;
 
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
+        this.landDetails = new ObservatoryLandDetails(this);
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -375,6 +381,7 @@ class ObservatoryViewer {
         this.update();
 
         this.eventDelegate.onMouseDown.listen(mouseDown);
+        this.eventDelegate.onClick.listen(mouseClick);
         window.onMouseUp.listen(mouseUp);
         window.onMouseMove.listen(mouseMove);
 
@@ -393,7 +400,9 @@ class ObservatoryViewer {
     }
 
     void mouseDown(MouseEvent e) {
+        if (this.viewingLandDetails) { return; }
         dragging = true;
+        dragStart = e.offset;
         this.eventDelegate.classes.add("dragging");
     }
 
@@ -403,6 +412,15 @@ class ObservatoryViewer {
     }
 
     void mouseMove(MouseEvent e) {
+        int zone = detectClickZone(e);
+
+        if (zone != 0) {
+            this.eventDelegate.classes.add("clickable");
+        } else {
+            this.eventDelegate.classes.remove("clickable");
+        }
+
+        if (this.viewingLandDetails) { return; }
         if (!dragging) { return; }
 
         window.getSelection().empty();
@@ -411,6 +429,50 @@ class ObservatoryViewer {
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 
         this.updateSessions();
+    }
+
+    void mouseClick(MouseEvent e) {
+        if (this.viewingLandDetails) { return; }
+        double dist = double.INFINITY;
+        if (dragStart != null) {
+            int dx = e.offset.x - dragStart.x;
+            int dy = e.offset.y - dragStart.y;
+            dist = Math.sqrt(dx*dx + dy*dy);
+        }
+        if (dist >= 2.0) { return; }
+
+        int zone = detectClickZone(e);
+
+        if (zone != 0) {
+            this.landDetails.showLand(this.detailSession.session.players[zone-1].land);
+        }
+    }
+
+    int detectClickZone(MouseEvent e) {
+        if (this.detailSession == null || this.detailSession.session.players.isEmpty) {
+            return 0;
+        }
+        Session session = this.detailSession.session;
+        int lands = session.players.length;
+
+        int left = 22;
+        int top = 80;
+        int height = 30;
+        int gap = 11;
+        num x = e.offset.x;
+        num y = e.offset.y;
+
+        for (int i=0; i<lands; i++) {
+            if (x >= left && y >= top + (height + gap) * i && y <= top + height + (height + gap) * i) {
+                Player p = session.players[i];
+                int text = 4 + Math.max(p.land.name.length, p.chatHandle.length + 7 + p.class_name.name.length + p.aspect.name.length);
+                if (x <= left + 8.5 * text) {
+                    return i + 1;
+                }
+            }
+        }
+
+        return 0;
     }
 
     void readURL() {
@@ -876,6 +938,49 @@ class ObservatorySession {
         for (ObservatoryTentacle t in this.tentacles) {
             this.parent.scene.remove(t.mesh);
         }
+    }
+}
+
+class ObservatoryLandDetails {
+    ObservatoryViewer parent;
+
+    Element container;
+
+    Element landElement;
+    HeadingElement landName;
+
+    ObservatoryLandDetails(ObservatoryViewer this.parent) {
+        this.container = new DivElement()..className="details_screen";
+
+        this.landElement = new DivElement()..className="details_landview";
+        this.landName = new HeadingElement.h1()..text="Land of Stuff and Things";
+
+        this.container
+            ..append(new DivElement()..className="details_close"..text="\u00d7"..onClick.listen((Event e) {hideElement();}))
+            ..append(landName)
+            ..append(landElement)
+            ..append(new ParagraphElement()..text = "Land rendering is not yet implemented, sorry! This window will show a picture in future, though. - PL")
+        ;
+
+        hideElement();
+    }
+
+    void showLand(Land land) {
+        this.landName.text = land.name;
+
+        // land rendering call goes here later
+
+        showElement();
+    }
+
+    void showElement() {
+        show(container);
+        parent.viewingLandDetails = true;
+    }
+
+    void hideElement() {
+        hide(container);
+        parent.viewingLandDetails = false;
     }
 }
 

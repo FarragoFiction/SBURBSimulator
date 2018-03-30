@@ -42,6 +42,9 @@ body.voidbody {
     cursor:-webkit-grab;
     cursor:grab;
 }
+.clickable {
+    cursor:pointer;
+}
 .dragging {
     cursor:-moz-grabbing;
     cursor:-webkit-grabbing;
@@ -100,6 +103,77 @@ div#screen_controls {
     /*background-color:#FFEEEE;*/
     text-align:center;
     padding:15px 0 5px 0;
+}
+
+div.details_screen {
+    position:absolute;
+    width: 800px;
+    height: 630px;
+    top:95px;
+    left:100px;
+    z-index:100;
+    background-color:#303030;
+    border-top:2px solid #505050;
+    border-left:2px solid #404040;
+    border-right:2px solid #202020;
+    border-bottom:2px solid #101010;
+    border-radius:8px;
+
+    font-family:courier, monospace;
+    font-weight:bold;
+    font-size:14px;
+    color:#A0A0A0;
+
+    box-shadow:2px 5px 15px black, 2px 5px 25px black, 2px 5px 35px black;
+    padding:15px;
+}
+div.details_screen h1 {
+    text-align:center;
+}
+
+div.details_screen p {
+    text-align:center;
+    width:620px;
+    margin:20px auto 0 auto;
+}
+
+div.details_landview {
+    width:640px;
+    height:480px;
+    background-color:#303030;
+    border-top:2px solid #202020;
+    border-left:2px solid #101010;
+    border-right:2px solid #404040;
+    border-bottom:2px solid #505050;
+    background-color:black;
+    margin:0 auto 0 auto;
+
+    background-image:url("../images/observatory/seele_joke.png");
+}
+
+.details_close {
+    position:absolute;
+    top:15px;
+    right:15px;
+
+    width:32px;
+    height:32px;
+    border:3px solid #202020;
+    border-radius:6px;
+    color:#202020;
+    cursor:pointer;
+
+    box-sizing:border-box;
+    padding:1px 0 0 6px;
+    font-size:24px;
+}
+.details_close:hover {
+    color:#20FF20;
+    border:3px solid #20FF20;
+}
+.details_close:active {
+    color:#D0FFD0;
+    border:3px solid #D0FFD0;
 }
 
 div.label {
