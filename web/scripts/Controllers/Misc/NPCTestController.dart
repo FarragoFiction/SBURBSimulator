@@ -48,6 +48,13 @@ main() {
         }
     }
 
+    printPrototypeAbleThings();
 
 
+}
+
+void printPrototypeAbleThings() {
+    DivElement prototypes = new DivElement();
+    prototypes.text = "${turnArrayIntoHumanSentence(PotentialSprite.prototyping_objects)}";
+    storyDiv.append(prototypes);
 }
