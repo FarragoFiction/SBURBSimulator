@@ -18,7 +18,7 @@ Future<Null> main() async {
 
     ObservatoryViewer observatory = new ObservatoryViewer(1000, 700, eventDelegate: querySelector("#screen_clickzone"));
 
-    int today = int.parse(todayToSession(), onError: (String s) => 13);
+    int today = ObservatoryViewer._today_session;
     Random rand = new Random();
     querySelector("#random_link")..onClick.listen((Event e){ observatory.goToSeed(rand.nextInt()); });
     querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(today); });
@@ -178,6 +178,10 @@ String processSessionComment(ObservatoryViewer ob, int today) {
         // if it's an easter-egg session, get the special descriptor for that
         segments.add(eggComments[id]);
     } else {
+        if (session.session_id == ObservatoryViewer._today_session) {
+            segments.add("This is today's featured session.");
+        }
+
         if (session.players.length == 1) { // check dead sessions
             segments.add(rand.pickFrom(deadComments));
             dead = true;
@@ -282,6 +286,8 @@ class ObservatoryViewer {
     static const String param_x = "cx";
     static const String param_y = "cy";
     static const String param_seed = "seed";
+
+    static int _today_session = int.parse(todayToSession(), onError: (String s) => 13);
 
     Action callback_session = null;
 
@@ -491,7 +497,7 @@ class ObservatoryViewer {
 
             this.goToCoordinates(x * gridsize, y * gridsize);
         } else {
-            this.goToSeed(int.parse(todayToSession(), onError: (String s) => 13));
+            this.goToSeed(_today_session);
         }
     }
 

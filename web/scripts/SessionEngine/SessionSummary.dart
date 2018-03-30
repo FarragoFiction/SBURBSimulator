@@ -1,6 +1,7 @@
 import "dart:html";
 import "../navbar.dart";
 import 'dart:convert';
+import "dart:math" as Math;
 
 import "../SBURBSim.dart";
 import "SessionSummaryLib.dart";
@@ -323,6 +324,7 @@ class SessionSummary {
         String params = getParamStringMinusParam("seed");
         List<Session> lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
         String scratched = "";
+
         if (lineage[0].stats.scratched) scratched = "(scratched)";
         html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${lineage[0].session_id}&$params'>${lineage[0].session_id}$scratched</a> ";
         for (num i = 1; i < lineage.length; i++) {
@@ -378,11 +380,13 @@ class SessionSummary {
 
         if (this.parentSession != null) {
             html = "$html${this.decodeLineageGenerateHTML()}";
+            html = "$html<br><a href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
         } else {
             String scratch = "";
-            if (this.scratched) scratch = "(scratched)";
+            if (this.scratched) scratch = " (scratched)";
 
             html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
+            html = "$html<br><a href='observatory.html?seed=${this.session_id}&$params'>View in the Observatory</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
 
