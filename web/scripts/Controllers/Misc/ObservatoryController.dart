@@ -33,12 +33,16 @@ Future<Null> main() async {
     observatory.callback_session = () {
         Session session = observatory.detailSession.session;
         int seed = session.session_id;
+
+        String paramstring = getParamStringMinusParam(<String>["cx","cy","seed"]);
+        paramstring = paramstring.isEmpty ? paramstring : "&$paramstring";
+
         if (session.players.length == 1) {
-            sim_link.href = "dead_index.html?seed=$seed";
-            ab_link.href = "dead_session_finder.html?seed=$seed";
+            sim_link.href = "dead_index.html?seed=$seed$paramstring";
+            ab_link.href = "dead_session_finder.html?seed=$seed$paramstring";
         } else {
-            sim_link.href = "index2.html?seed=$seed";
-            ab_link.href = "rare_session_finder.html?seed=$seed";
+            sim_link.href = "index2.html?seed=$seed$paramstring";
+            ab_link.href = "rare_session_finder.html?seed=$seed$paramstring";
         }
         String comment = processSessionComment(observatory, today);
 
@@ -495,7 +499,7 @@ class ObservatoryViewer {
         String x = ((10000 * this.camx / gridsize).roundToDouble() / 10000).toString();
         String y = ((10000 * this.camy / gridsize).roundToDouble() / 10000).toString();
 
-        String otherparams = Uri.base.queryParameters.keys.where((String key) => key != "cx" && key != "cy" && key != "seed").map((String key) => "$key=${Uri.base.queryParameters[key]}").join("&");
+        String otherparams = getParamStringMinusParam(<String>["cx","cy","seed"]);
 
         window.history.replaceState(<String,String>{}, "Observatory", "${Uri.base.path}?$param_x=$x&$param_y=$y${otherparams.isEmpty?"":"&$otherparams"}");
     }

@@ -54,17 +54,17 @@ String todayToSession() {
     return "$y$m$d";
 }
 
-String getParamStringMinusParam(String name) {
-    String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
-    if (params == window.location.href) params = "";
-    String value = getParameterByName(name);
-    String replaceString = "${name}=${value}";
-    //;
-    if(value != null) {
-        params = params.replaceAll(replaceString, "");
+String getParamStringMinusParam(dynamic filtered) {
+    Set<String> toFilter = new Set<String>();
+    if (filtered is String) {
+        toFilter.add(filtered);
+    } else if (filtered is Iterable<String>) {
+        toFilter.addAll(filtered);
+    } else {
+        throw "Parameter filter list should be String or Iterable<String>";
     }
-    //;
-    return params;
+
+    return Uri.base.queryParameters.keys.skipWhile(toFilter.contains).map((String key) => "$key=${Uri.base.queryParameters[key]}").join("&");
 }
 
 //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript

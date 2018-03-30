@@ -10,7 +10,7 @@
       <a href="index2.html">Read Random</a>
       <a href="character_creator.html">Customize Random</a>
       <a href="dead_index.html">Random Dead Session</a>
-            <a href="testAlchemy.html">AlchemySim</a>
+      <a href="testAlchemy.html">AlchemySim</a>
       <a href="http://farragofiction.com/SBURBSim/mainLanding.html">Main Branch</a>
       <a href="http://farragofiction.com/SBURBSimE/experimentalLanding.html">Experimental Branch</a>
     </div>
@@ -23,6 +23,7 @@
           <a href="rare_session_finder_junior.html">AuthorBotJunior: Find Starting Conditions</a>
          <a href="rare_villain_finder.html">ShogunBot: Big Bad Binder</a>
         <a href="dead_session_finder.html">AuthorBot: Find Dead Sessions</a>
+        <a href="observatory.html">Observatory: Browse Session Map</a>
       </div>
     </li>
 
