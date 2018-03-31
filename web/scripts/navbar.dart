@@ -144,6 +144,10 @@ void hide(Element v) {
 
 void storeCard(String card) {
     String key = "LIFESIMFOUNDCARDS";
+    if(window.localStorage == null) {
+        print("saving isn't possible....you don't have local storage");
+        return;
+    }
     if(window.localStorage.containsKey(key)) {
         String existing = window.localStorage[key];
         List<String> parts = existing.split(",");
