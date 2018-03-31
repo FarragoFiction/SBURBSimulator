@@ -11,6 +11,7 @@ class DeadIntro extends Scene {
     @override
     void renderContent(Element div) {
         player = session.players[0];
+        player.active = true; //booyeah, that's probably fixed dead sessions never starting right
         CanvasElement canvasDiv = new CanvasElement(width: 800, height: 1000);
         player.firstStatsCanvas = canvasDiv;
         //div.append(canvasDiv);
