@@ -7,6 +7,8 @@ import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
 void main() {
+  sowChaos();
+
   //maybe if i define it here it won't be the same as end time
   startTime =new DateTime.now();
   //;
@@ -34,6 +36,15 @@ void main() {
   SimController.instance.shareableURL();
 
   SimController.instance.startSession();
+}
+
+//sauce jr, what are you doing. stahp.
+void sowChaos() {
+  DateTime now = new DateTime.now();
+  if(now.month == 4 && now.day == 1) {
+    window.alert("You know. I think I can do better than this.  Why not just....meteor shit. Start from scratch??? Get a sweet graphical update.");
+    window.location.href = "http://www.farragofiction.com/LifeSim/";
+  }
 }
 
 class StoryController extends SimController {
