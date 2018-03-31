@@ -148,27 +148,6 @@ String processSessionComment(ObservatoryViewer ob, int today) {
 
     List<String> segments = <String>[];
 
-    /*
-        ok, need to look for:
-
-        interesting things:
-
-        corruption
-        LOTS of corruption
-        dead sessions
-        lord/muse 2 player combo
-        but what else?
-
-        multiple heiresses!
-        multiple disastor
-        LEG DAY
-
-        easter eggs:
-
-        just like, all the special sessions need comments
-        idea: is there a flag for when a session has an easter egg active?
-
-    */
     bool dead = false;
     bool lordMuse = false;
     bool multiHeiress = false;
