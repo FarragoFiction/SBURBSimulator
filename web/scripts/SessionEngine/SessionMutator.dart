@@ -828,7 +828,7 @@ class MetaPlayerHandler {
     Player dilletantMathematician;
     Player insufferableOracle;
     Player manicInsomniac;
-    Player nobody;
+    Player somebody;
     Player wooMod;
     Player recusiveSlacker;
     Player tableGuardian;
@@ -842,7 +842,7 @@ class MetaPlayerHandler {
 
     List<Player> get metaPlayers {
         //everything else is 'canon' entry order
-        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, nobody, paradoxLands, dilletantMathematician,tableGuardian, feudalUltimatum,authorBot, authorBotJunior];
+        return <Player>[jadedResearcher, karmicRetribution, recusiveSlacker, aspiringWatcher, manicInsomniac, insufferableOracle, wooMod, somebody, paradoxLands, dilletantMathematician,tableGuardian, feudalUltimatum,authorBot, authorBotJunior];
        // return <Player>[jadedResearcher, aspiringWatcher, dilletantMathematician, insufferableOracle, manicInsomniac, nobody, wooMod, recusiveSlacker, paradoxLands, karmicRetribution, authorBot, authorBotJunior];
     }
 
@@ -855,7 +855,7 @@ class MetaPlayerHandler {
         dilletantMathematician = makeDM(s);
         insufferableOracle = makeIO(s);
         manicInsomniac = makeMI(s);
-        nobody = makeNB(s);
+        somebody = makeSB(s);
         wooMod = makeWM(s);
         recusiveSlacker = makeRS(s);
         paradoxLands = makePL(s);
@@ -1132,7 +1132,7 @@ class MetaPlayerHandler {
         return player;
     }
 
-    Player makeNB(Session s) {
+    Player makeSB(Session s) {
         Player player = randomPlayerNoDerived(s, SBURBClassManager.LORD, Aspects.BLOOD);
         player.quirk = randomHumanQuirk(s.rand);
 
@@ -1145,7 +1145,7 @@ class MetaPlayerHandler {
         player.hairColor = "#382207";
         player.bloodColor = "#ff0000";
         player.isTroll = false;
-        player.chatHandle = "noBody";
+        player.chatHandle = "someBody";
         player.interest1 = new Interest("Charles Dutton", InterestManager.POPCULTURE);
         player.interest2 = new Interest("Online Roleplaying", InterestManager.SOCIAL);
         player.moon = s.derse;
@@ -1517,7 +1517,7 @@ class MetaPlayerHandler {
             return "With a final 'Interesting!!!', AuthorBotJunior is defeated. It feels like a great curse has been lifted. The Players are revived and healed. ";
         }
 
-        if (p == nobody) {
+        if (p == somebody) {
             for (Player pl in p.session.players) {
                 if (pl != p) pl.makeDead("killing nobody", p);
             }

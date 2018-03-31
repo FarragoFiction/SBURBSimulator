@@ -51,7 +51,7 @@ class DeadMeta extends Scene {
             conversation = session.rand.pickFrom(DMMiddle());
         }else if(meta == session.mutator.metaHandler.wooMod ) {
             conversation = session.rand.pickFrom(WMMiddle());
-        } else if(meta == session.mutator.metaHandler.nobody ) {
+        } else if(meta == session.mutator.metaHandler.somebody ) {
             conversation = session.rand.pickFrom(NBMiddle());
         } else if(meta == session.mutator.metaHandler.tableGuardian ) {
             conversation = session.rand.pickFrom(TGMiddle());

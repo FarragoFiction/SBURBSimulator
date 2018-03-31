@@ -316,7 +316,7 @@ class DeadSession extends Session {
         for(QuestChainFeature q in players[0].land.firstQuests) {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
-                metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer = mutator.metaHandler.somebody;
                 metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
@@ -324,7 +324,7 @@ class DeadSession extends Session {
         for(QuestChainFeature q in players[0].land.secondQuests) {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
-                metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer = mutator.metaHandler.somebody;
                 metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
@@ -332,7 +332,7 @@ class DeadSession extends Session {
         for(QuestChainFeature q in players[0].land.thirdQuests) {
             if(q.name.contains("Dutton")) {
                 logger.info("AB: It's a dutton quest in a dead session? Better go get noBody...");
-                metaPlayer = mutator.metaHandler.nobody;
+                metaPlayer = mutator.metaHandler.somebody;
                 metaPlayer.setStat(Stats.EXPERIENCE, 1300);
             }
         }
