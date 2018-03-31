@@ -1,5 +1,5 @@
 <div class = "banner">
-      <center><a href = "index.html"><img src = "images/StatusBanners/Card_0_Fucking_Nothing.png"/></a></center>
+      <center><a href = "index.html"><img src = "images/StatusBanners/sburb_sim_page_header.png"/></a></center>
 </div>
 <ul class = "menuPureCSS">
   <span class = 'centeredMenu'>
