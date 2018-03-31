@@ -43,6 +43,9 @@ void onNavbarLoaded(String data) {
 
 String todayToSession() {
     DateTime now = new DateTime.now();
+    if(now.month == 4 && now.day == 1) {
+        querySelector('body').classes.add("voidbody");
+    }
     int year = now.year;
     int month = now.month;
     int day = now.day;
