@@ -50,17 +50,21 @@ function storeWasteCard(){
 }
 
 function storeCard(cardString){
+    try{
   var existing = localStorage.getItem("LIFESIMFOUNDCARDS");
   if(existing == null){
-    print("storing card");
+    console.log("storing card");
       localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
   }else {
     var subsets = existing.split(",");
     if(!subsets.includes(cardString)){
-      print("storing card");
+      console.log("storing card");
         existing += ","+cardString;
         localStorage.setItem("LIFESIMFOUNDCARDS",cardString)
     }
+  }
+  }catch(e){
+    console.log("local storage not available for card storage");
   }
 }
 

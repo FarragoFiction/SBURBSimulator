@@ -148,11 +148,15 @@ void storeCard(String card) {
         print("saving isn't possible....you don't have local storage");
         return;
     }
-    if(window.localStorage.containsKey(key)) {
-        String existing = window.localStorage[key];
-        List<String> parts = existing.split(",");
-        if(!parts.contains(card)) window.localStorage[key] = "$existing,$card";
-    }else {
-        window.localStorage[key] = card;
+    try {
+        if (window.localStorage.containsKey(key)) {
+            String existing = window.localStorage[key];
+            List<String> parts = existing.split(",");
+            if (!parts.contains(card)) window.localStorage[key] = "$existing,$card";
+        } else {
+            window.localStorage[key] = card;
+        }
+    }catch(e) {
+        print("Saving isn't possible....you don't have local storage");
     }
 }
