@@ -952,7 +952,7 @@ class Session {
             }
         }
         //only do this if you were passed all players
-        if (!specificPlayers.isEmpty && allPlayers) {
+        if (!specificPlayers.isEmpty) {
             logger.info("found a leaderless session");
             specificPlayers[0].leader = true; //SOMEONE be the leader god damn it
             return specificPlayers[0];
