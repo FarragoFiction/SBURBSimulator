@@ -6,12 +6,14 @@ import '../../navbar.dart';
 
 
 DivElement div;
+SanityChecker sanityChecker;
 Map<String, SessionSummary> cache;
 void main() {
     globalInit();
     loadNavbar();
     div = querySelector("#story");
     listTodos();
+    sanityChecker = new SanityChecker();
     drawCache();
 }
 
@@ -28,12 +30,10 @@ void drawCache() {
     }
 }
 
-void resetEnvironment() {
 
-}
 
 void drawOneSummary(SessionSummary summary) {
-    resetEnvironment();
+    sanityChecker.initial_seed = summary.session_id;
     DivElement container = new DivElement();
     div.append(container);
     //every thing past this can be async.
@@ -66,6 +66,7 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
 
 
 void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    //TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
     TableRowElement tr = new TableRowElement();
     table.append(tr);
     TableCellElement td1 = new TableCellElement();
