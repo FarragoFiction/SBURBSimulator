@@ -2,6 +2,7 @@ import "dart:html";
 import '../../GameEntities/Stats/sampler/statsampler.dart';
 import "../../SBURBSim.dart";
 import "../../navbar.dart";
+import "dart:async";
 /*
   Each way the sim is able to be used inherits from this abstract class.
 
@@ -312,72 +313,21 @@ abstract class SimController {
     }
 
     //taking ina  bool means if i want to start a session that is already set up i can
-    void startSession([bool keepSession = false]) {
-
+    Future<Null> startSession([bool keepSession = false]) async {
         globalInit(); // initialise classes and aspects if necessary
-
-
-        // //
         if(!keepSession)curSessionGlobalVar = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
-        //  //
         reinit();
-
-        ////
-
-        //let's combo sessions still work
         if(!keepSession) {
             curSessionGlobalVar.makePlayers();
-           //
-
-            ////
             curSessionGlobalVar.randomizeEntryOrder();
-            //authorMessage();
             curSessionGlobalVar.makeGuardians(); //after entry order established
         }
-        //easter egg ^_^
-        if (getParameterByName("royalRumble", null) == "true") {
-            debugRoyalRumble();
-        }
-
-        if (getParameterByName("COOLK1D", null) == "true") {
-            cool_kid = true;
-            coolK1DMode();
-        }
-
-        if (getParameterByName("pen15", null) == "ouija") {
-            pen15Ouija();
-        }
-
-
-
-        if (getParameterByName("faces", null) == "off") {
-            faceOffMode();
-        }
-
-        if (getParameterByName("tier", null) == "cod") {
-            bardQuestMode();
-        }
-
-        if (getParameterByName("lollipop", null) == "true") {
-            tricksterMode();
-        }
-
-        if (getParameterByName("robot", null) == "true") {
-            roboMode();
-        }
-
-        if (getParameterByName("sbajifier", null) == "true") {
-            sbahjMode();
-        }
-
-        if (getParameterByName("babyStuck", null) == "true") {
-            babyStuckMode();
-        }
-
-        checkEasterEgg(easterEggCallBack, null);
+        //TODO do i even need to await it, why was it EVER a callbakc? only loading should need awaited....
+        await checkEasterEgg(null, null);
+        easterEggCallBack();
     }
-
+    
     void tick([num time]) {
         curSessionGlobalVar.numTicks ++;
         //

@@ -1,7 +1,7 @@
 //put all OCDataString code here.
 import "dart:html";
 import 'dart:typed_data';
-
+import "dart:async";
 import "SBURBSim.dart";
 import 'includes/bytebuilder.dart';
 import 'includes/lz-string.dart';
@@ -36,21 +36,14 @@ class CharacterEasterEggEngine {
 
 
   //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
-  dynamic loadArrayFromFile(arr, String file, p, callBack, that){
+  dynamic loadArrayFromFile(arr, String file, p){
    // //print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     HttpRequest.getString(file).then((data) {
       // Do something with the response.
       ////;
       parseFileContentsToArray(arr, data.trim());
-      if(p != null && callBack != null) return processForSim(callBack);
-      if(p == null && callBack != null) {
-        if(that == null) {
-          callBack();
-        }else {
-          callBack(that); //whoever calls me is responsible for knowing when all are loaded.
-        }
-      }
+      if(p != null) return processForSim();
     });
 
 
@@ -63,7 +56,7 @@ class CharacterEasterEggEngine {
     ////print(arr);
     ////print(this[arr]);
   }
-  void processForSim(callBack){
+  void processForSim(){
   	Random rand = curSessionGlobalVar.rand;
   	//;
     var pool = this.getPoolBasedOnEggs(rand);
@@ -107,21 +100,21 @@ class CharacterEasterEggEngine {
       if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(rand, p.class_name,p.aspect,p.interest1, p.interest2);
     }
     curSessionGlobalVar.replayers = ret;
-    callBack();
   }
-  void loadArraysFromFile(callBack, processForSim, that){
+  
+  Future<Null> loadArraysFromFile(processForSim) async {
     //too confusing trying to only load the assest i'll need. wait for now.
-    this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim,null,null);
-    this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim,null,null);
-    this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim,null,null);
-    this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim,null,null);
-    this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim,null,null);
-    this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim,null,null);
-    this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim,null,null);
-    this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim,null,null);
-    this.loadArrayFromFile("canon","OCs/canon.txt", processForSim,null,null);
-    this.loadArrayFromFile("bards","OCs/bards.txt", processForSim,null,null);
-    this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim,callBack,that); //last one in list has callback so I know to do next thing.
+    await this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim);
+    await this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim);
+    await this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim);
+    await this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim);
+    await this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim);
+    await this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim);
+    await this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim);
+    await this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim);
+    await this.loadArrayFromFile("canon","OCs/canon.txt", processForSim);
+    await this.loadArrayFromFile("bards","OCs/bards.txt", processForSim);
+    await this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim); //last one in list has callback so I know to do next thing.
   }
   dynamic getPoolBasedOnEggs(Random rand){
     //;

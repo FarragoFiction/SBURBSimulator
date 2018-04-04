@@ -79,10 +79,49 @@ void sbahjMode(){
 
 
 //will get called twice for initialization purposes.
-void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
+ void checkEasterEgg(){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
 	;
+	//easter egg ^_^
+	if (getParameterByName("royalRumble", null) == "true") {
+		debugRoyalRumble();
+	}
+
+	if (getParameterByName("COOLK1D", null) == "true") {
+		cool_kid = true;
+		coolK1DMode();
+	}
+
+	if (getParameterByName("pen15", null) == "ouija") {
+		pen15Ouija();
+	}
+
+
+
+	if (getParameterByName("faces", null) == "off") {
+		faceOffMode();
+	}
+
+	if (getParameterByName("tier", null) == "cod") {
+		bardQuestMode();
+	}
+
+	if (getParameterByName("lollipop", null) == "true") {
+		tricksterMode();
+	}
+
+	if (getParameterByName("robot", null) == "true") {
+		roboMode();
+	}
+
+	if (getParameterByName("sbajifier", null) == "true") {
+		sbahjMode();
+	}
+
+	if (getParameterByName("babyStuck", null) == "true") {
+		babyStuckMode();
+	}
 
 	if(curSessionGlobalVar.session_id == 413){
 		session413();
@@ -176,12 +215,6 @@ void checkEasterEgg(callBack, that){  //only yellow yard session uses 'that' bec
 	}
 
 	processXStuck(); //might not do anything.
-
-	if(that != null) {
-    callBack(that); //TODO might never need to do this again in Dart.
-  }else {
-    callBack();
-  }
 }
 
 
@@ -252,10 +285,10 @@ void setAllClassesTo(String c){
 
 
 
-void processFanOCs(callBack, that){
+Future<Null> processFanOCs(callBack, that) async {
 	//;
 	//start up an easterEggEngine.
-	new CharacterEasterEggEngine().loadArraysFromFile(callBack,true,that); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
+	await new CharacterEasterEggEngine().loadArraysFromFile(true); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }
 
 
