@@ -95,7 +95,25 @@ void todo(String text) {
 
 
 class SanityChecker extends AuthorBot {
-    //works exactly like Sim unless otherwise specified.
+    /*
+
+    TODO:  What I want is the ability to get a session, and then simulate until it's done, then get it's summary.
+
+    I believe that AuthorBot knows a session is done based on some bullshit complicated code in teh
+    aftermath tick shit.
+
+    TODO: Investigate if I can take everything in a SimController that does the ticks and put it in sessions instead
+    that way i could have session.start and have it return it's summary.
+
+    It would mean making the session code more complex, but it would stop it from being spread around so much.
+
+    First Step: How many methods are in SimController?
+    Second Step: How many would need to be in session instead for my idea?
+    Third Step: Can I make instanced or static things (like the session mutator) NOT be instanced,
+                and instead passed to scratched or combo sessions. What instanced or static things store data?
+
+
+     */
 
   @override
   void summarizeSession(Session session) {
