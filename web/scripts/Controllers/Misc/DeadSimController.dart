@@ -12,7 +12,7 @@ class DeadSimController extends SimController {
 
 
   @override
-  void startSession([bool keepSession = false]) {
+  Future<Null> startSession([bool keepSession = false]) async {
     globalInit(); // initialise classes and aspects if necessary
 
     // //
@@ -26,47 +26,9 @@ class DeadSimController extends SimController {
     curSessionGlobalVar.randomizeEntryOrder();
     //authorMessage();
     curSessionGlobalVar.makeGuardians(); //after entry order established
-    //easter egg ^_^
-    if (getParameterByName("royalRumble", null) == "true") {
-      debugRoyalRumble();
-    }
 
-    if (getParameterByName("COOLK1D", null) == "true") {
-      cool_kid = true;
-      coolK1DMode();
-    }
-
-    if (getParameterByName("pen15", null) == "ouija") {
-      pen15Ouija();
-    }
-
-
-
-    if (getParameterByName("faces", null) == "off") {
-      faceOffMode();
-    }
-
-    if (getParameterByName("tier", null) == "cod") {
-      bardQuestMode();
-    }
-
-    if (getParameterByName("lollipop", null) == "true") {
-      tricksterMode();
-    }
-
-    if (getParameterByName("robot", null) == "true") {
-      roboMode();
-    }
-
-    if (getParameterByName("sbajifier", null) == "true") {
-      sbahjMode();
-    }
-
-    if (getParameterByName("babyStuck", null) == "true") {
-      babyStuckMode();
-    }
-
-    checkEasterEgg(easterEggCallBack, null);
+    checkEasterEgg();
+    easterEggCallBack();
   }
 
   @override

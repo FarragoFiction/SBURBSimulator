@@ -689,7 +689,7 @@ class ObservatoryViewer {
         session.remove();
     }
 
-    Session getSession(int seed) {
+    Future<Session> getSession(int seed) async{
         if (sessionCache.containsKey(seed)) {
             return sessionCache[seed];
         }
@@ -701,7 +701,8 @@ class ObservatoryViewer {
         session.randomizeEntryOrder();
         session.makeGuardians();
 
-        checkEasterEgg(this.easterEggCallback, null);
+        await checkEasterEgg();
+        this.easterEggCallback();
 
         sessionCache[seed] = session;
 
@@ -756,7 +757,14 @@ class ObservatorySession {
     List<ObservatoryTentacle> tentacles = <ObservatoryTentacle>[];
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
-        this.session = parent.getSession(seed);
+        //JR: yes technically this might not finish by the time this objec ti s returned
+        //JR: but observatory doesn't use any of the async bullshit anyways.
+        init();
+    }
+
+    //JR: needed for the non callback paradigm
+    Future<Null> init() async {
+        this.session = await parent.getSession(seed);
 
         this.rand = new Random(seed);
 
