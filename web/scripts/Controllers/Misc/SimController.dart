@@ -291,16 +291,18 @@ abstract class SimController {
         }
     }
 
-    void restartSession() {
+    Future<Null> restartSession() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        checkEasterEgg(easterEggCallBackRestart, null);
+        await (easterEggCallBackRestart);
+        easterEggCallBackRestart();
     }
 
-    void restartSessionScratch() {
+    Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        checkEasterEgg(easterEggCallBackRestartScratch, null);
+        await checkEasterEgg();
+        easterEggCallBackRestartScratch();
     }
 
     void shareableURL() {
@@ -323,8 +325,8 @@ abstract class SimController {
             curSessionGlobalVar.randomizeEntryOrder();
             curSessionGlobalVar.makeGuardians(); //after entry order established
         }
-        //TODO do i even need to await it, why was it EVER a callbakc? only loading should need awaited....
-        await checkEasterEgg(null, null);
+        //we await this because of the fan ocs being loaded from file like assholes.
+        await checkEasterEgg();
         easterEggCallBack();
     }
     

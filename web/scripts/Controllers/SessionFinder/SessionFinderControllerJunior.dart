@@ -3,6 +3,7 @@ import '../../navbar.dart';
 import 'dart:html';
 import 'dart:typed_data';
 import 'dart:collection';
+import "dart:async";
 import "../../SessionEngine/SessionSummaryLib.dart";
 
 //replaces the poorly named scenario_controller2.js
@@ -209,7 +210,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   @override
-  void restartSession() {
+  Future<Null> restartSession() async {
     throw "ABJ does not actually simulate shit.";
   }
 

@@ -4,6 +4,7 @@ library SBURBSim;
 import 'dart:html';
 
 import 'SBURBSim.dart';
+import "dart:async";
 import "includes/tracer.dart";
 export 'navbar.dart';
 export 'includes/logger.dart';
@@ -316,7 +317,8 @@ void crashEasterEgg(String url) {
 }
 
 
-void scratch() {
+//TODO oh god why is this still here and not somwhere sane like in a SimController.
+Future<Null> scratch() async {
     //;
     numPlayersPreScratch = curSessionGlobalVar.players.length;
     var ectoSave = curSessionGlobalVar.stats.ectoBiologyStarted;
@@ -343,7 +345,8 @@ void scratch() {
     for(Player p in curSessionGlobalVar.players) {
         p.syncToSessionMoon();
     }
-    checkEasterEgg(scratchEasterEggCallBack, null);
+    await checkEasterEgg();
+    scratchEasterEggCallBack();
 }
 
 
