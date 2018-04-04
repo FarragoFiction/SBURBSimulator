@@ -253,7 +253,7 @@ Player randomSpacePlayer(Session session) {
     removeFromArray(c, session.available_classes_players);
     Aspect a = Aspects.SPACE;
     removeFromArray(a, session.available_aspects);
-    return randomPlayerWithClaspect(session, c, a,session.prospit);
+    return randomPlayerWithClaspect(session, c, a);
 }
 
 
@@ -263,7 +263,7 @@ Player randomTimePlayer(Session session) {
     removeFromArray(c, session.available_classes_players);
     Aspect a = Aspects.TIME;
     removeFromArray(a, session.available_aspects);
-    return randomPlayerWithClaspect(session, c, a, session.derse);
+    return randomPlayerWithClaspect(session, c, a);
 }
 
 

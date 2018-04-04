@@ -26,11 +26,8 @@ Future<Null> displayCards() async {
 }
 
 void syncCache() {
-    ;
     Map<String, SessionSummary> cache =  SessionSummary.loadAllSummaries();
-    ;
     for(SessionSummary s in cache.values) {
-        ;
         carapaceSummary.add(s.carapaceSummary);
     }
 
