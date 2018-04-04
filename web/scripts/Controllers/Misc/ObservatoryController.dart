@@ -527,7 +527,7 @@ class ObservatoryViewer {
             ..render(this.renderScene, this.renderCamera);
     }
 
-    void updateSessions() {
+    Future<Null> updateSessions() async {
         double leftedge   = this.camx - this.canvasWidth  / 2;
         double rightedge  = this.camx + this.canvasWidth  / 2;
         double topedge    = this.camy - this.canvasHeight / 2;
@@ -562,7 +562,7 @@ class ObservatoryViewer {
                 id = new Point<int>(x,y);
 
                 if (!sessions.containsKey(id)) {
-                    sessions[id] = this.createSession(SeedMapper.coords2seed(rx,ry), x, y);
+                    sessions[id] = await this.createSession(SeedMapper.coords2seed(rx,ry), x, y);
                 }
             }
         }
@@ -572,7 +572,7 @@ class ObservatoryViewer {
         }
     }
 
-    void goToCoordinates(num x, num y) {
+    Future<Null> goToCoordinates(num x, num y) async {
         x = x.floor();
         y = y.floor();
 
@@ -590,7 +590,7 @@ class ObservatoryViewer {
 
         //
 
-        this.updateSessions();
+        await this.updateSessions();
         this.setURL();
 
         ObservatorySession nearest = this.findDetailSession();
@@ -627,7 +627,7 @@ class ObservatoryViewer {
         int x,y;
         double diff;
         for (ObservatorySession session in sessions.values) {
-            print("doing a thing to $session with ${session.x} and ${gridsize} and ${session.model_offset_x} and ${camx}");
+           // print("doing a thing to $session with ${session.x} and ${gridsize} and ${session.model_offset_x} and ${camx}");
             x = ((session.x + 0.5) * gridsize).floor() + session.model_offset_x - this.camx;
             y = ((session.y + 0.5) * gridsize).floor() + session.model_offset_y - this.camy;
 
@@ -679,9 +679,11 @@ class ObservatoryViewer {
 
     //############ creation
 
-    ObservatorySession createSession(int seed, int x, int y) {
-        //
-        return new ObservatorySession(this, seed, x, y)..createModel();
+    Future<ObservatorySession> createSession(int seed, int x, int y) async {
+        //JR: shit this is more involved than anticipated. time to follow the chain up.
+        ObservatorySession ret =  new ObservatorySession(this, seed, x, y)..createModel();
+        await ret.init();
+        return ret;
     }
 
     void destroySession(ObservatorySession session) {
@@ -712,7 +714,6 @@ class ObservatoryViewer {
             sessionCache.remove(oldest);
 
         }
-        print("returning session $session");
         return session;
     }
 
@@ -758,15 +759,11 @@ class ObservatorySession {
     List<ObservatoryTentacle> tentacles = <ObservatoryTentacle>[];
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
-        //JR: yes technically this might not finish by the time this objec ti s returned
-        //JR: but observatory doesn't use any of the async bullshit anyways.
         this.rand = new Random(seed);
-        init();
     }
 
     //JR: needed for the non callback paradigm
     Future<Null> init() async {
-        print("Initing whatever $this is");
         this.session = await parent.getSession(seed);
 
 
