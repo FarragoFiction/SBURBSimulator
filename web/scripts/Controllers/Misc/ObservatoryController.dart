@@ -627,6 +627,7 @@ class ObservatoryViewer {
         int x,y;
         double diff;
         for (ObservatorySession session in sessions.values) {
+            print("doing a thing to $session with ${session.x} and ${gridsize} and ${session.model_offset_x} and ${camx}");
             x = ((session.x + 0.5) * gridsize).floor() + session.model_offset_x - this.camx;
             y = ((session.y + 0.5) * gridsize).floor() + session.model_offset_y - this.camy;
 
@@ -711,7 +712,7 @@ class ObservatoryViewer {
             sessionCache.remove(oldest);
 
         }
-
+        print("returning session $session");
         return session;
     }
 
@@ -759,14 +760,15 @@ class ObservatorySession {
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         //JR: yes technically this might not finish by the time this objec ti s returned
         //JR: but observatory doesn't use any of the async bullshit anyways.
+        this.rand = new Random(seed);
         init();
     }
 
     //JR: needed for the non callback paradigm
     Future<Null> init() async {
+        print("Initing whatever $this is");
         this.session = await parent.getSession(seed);
 
-        this.rand = new Random(seed);
 
         this.initial_rotation = rand.nextDouble(Math.PI * 2);
         this.rotation_speed = rand.nextDouble() * (max_rotation - min_rotation) + min_rotation;
