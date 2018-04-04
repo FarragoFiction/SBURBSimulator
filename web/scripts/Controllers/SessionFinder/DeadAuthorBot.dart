@@ -7,6 +7,7 @@ import '../../SBURBSim.dart';
 import '../../navbar.dart';
 import "../Misc/DeadSimController.dart";
 import 'dart:html';
+import "dart:async";
 abstract class DeadAuthorBot extends DeadSimController {
 
   List<int> sessionsSimulated = [];
@@ -129,10 +130,11 @@ abstract class DeadAuthorBot extends DeadSimController {
 
 
   @override
-  void restartSession() {
+  Future<Null> restartSession() async {
     setHtml(SimController.instance.storyElement, '');
     window.scrollTo(0, 0);
-    checkEasterEgg(easterEggCallBackRestart,null);
+    await checkEasterEgg();
+    easterEggCallBackRestart();
   }
 
   @override

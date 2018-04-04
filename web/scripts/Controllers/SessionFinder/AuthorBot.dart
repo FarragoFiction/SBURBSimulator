@@ -6,6 +6,8 @@ Rare session finder, tournament,  etc.
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 import 'dart:html';
+import "dart:async";
+
 abstract class AuthorBot extends SimController {
 
   List<int> sessionsSimulated = [];
@@ -270,10 +272,11 @@ abstract class AuthorBot extends SimController {
   }
 
   @override
-  void restartSession() {
+  Future<Null> restartSession() async {
     setHtml(SimController.instance.storyElement, '');
     window.scrollTo(0, 0);
-    checkEasterEgg(easterEggCallBackRestart,null);
+    await checkEasterEgg();
+    easterEggCallBackRestart();
   }
 
   @override
