@@ -991,6 +991,9 @@ class Player extends GameEntity{
         super.copyStatsTo(clone);
         //clone stats.
         clone.baby = baby;
+        //don't let that bitch be null
+        clone.dreamPalette = dreamPalette;
+
         clone.pvpKillCount = pvpKillCount; //for stats.
         clone.timesDied = timesDied;
 

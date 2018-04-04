@@ -1,13 +1,16 @@
 import "dart:html";
 import '../SessionFinder/AuthorBot.dart';
 import "../../SessionEngine/SessionSummaryLib.dart";
+import '../../navbar.dart';
+
 
 DivElement div;
 Map<String, SessionSummary> cache;
 void main() {
+    loadNavbar();
     div = querySelector("#story");
-    cache =  SessionSummary.loadAllSummaries();
     listTodos();
+    drawCache();
 }
 
 void listTodos() {
@@ -16,11 +19,17 @@ void listTodos() {
 }
 
 void drawCache() {
-
+    cache =  SessionSummary.loadAllSummaries();
+    todo("there are ${cache.values.length} cached summaries");
+    for(SessionSummary s in cache.values) {
+        drawOneSummary(s);
+    }
 }
 
-void drawOneSummary() {
-
+void drawOneSummary(SessionSummary summary) {
+    DivElement container = new DivElement();
+    container.setInnerHtml("<b>TODO:</b> $summary");
+    div.append(container);
 }
 
 void todo(String text) {
