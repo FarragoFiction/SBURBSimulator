@@ -78,11 +78,10 @@ void sbahjMode(){
 
 
 
-//will get called twice for initialization purposes.
- void checkEasterEgg(){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
+// 4/4/18 i'm trying to make this async instead of callback based so that AB will be saner.
+ Future<Null> checkEasterEgg() async{  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
-	;
 	//easter egg ^_^
 	if (getParameterByName("royalRumble", null) == "true") {
 		debugRoyalRumble();
@@ -169,8 +168,7 @@ void sbahjMode(){
 	if(getParameterByName("selfInsertOC",null)  == "true"){
 		//;
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
-		processFanOCs(callBack,that);
-		return; //do nothing else. processFanOCs will handle the callback, since it's the reason it exists in the first place, 'cause async
+		await processFanOCs();
 	}
 
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
@@ -284,9 +282,9 @@ void setAllClassesTo(String c){
 }
 
 
-
-Future<Null> processFanOCs(callBack, that) async {
-	//;
+//TBH i'm tempted to disable this feature entirely if it ends up being the one thing
+//bteween AB and sanity
+Future<Null> processFanOCs() async {
 	//start up an easterEggEngine.
 	await new CharacterEasterEggEngine().loadArraysFromFile(true); //<-- ASYNCHRONOUS, so MUST END HERE. any future steps should be in the easterEggEngine itself.
 }

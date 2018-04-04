@@ -36,12 +36,12 @@ class CharacterEasterEggEngine {
 
 
   //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
-  dynamic loadArrayFromFile(arr, String file, p){
+  Future<Null> loadArrayFromFile(arr, String file, p)async{
    // //print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
-    HttpRequest.getString(file).then((data) {
-      // Do something with the response.
-      ////;
+    // 4/4/18 is this a sane thing to do? instead of a 'then' should i be doing something else?
+    //how does homestuck the moive do it? oh, just like this. okay then.
+    await HttpRequest.getString(file).then((data) {
       parseFileContentsToArray(arr, data.trim());
       if(p != null) return processForSim();
     });
@@ -101,7 +101,7 @@ class CharacterEasterEggEngine {
     }
     curSessionGlobalVar.replayers = ret;
   }
-  
+
   Future<Null> loadArraysFromFile(processForSim) async {
     //too confusing trying to only load the assest i'll need. wait for now.
     await this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim);
