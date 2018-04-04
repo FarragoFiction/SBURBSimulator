@@ -59,16 +59,16 @@ class SessionSummary {
        // ;
         Map<String, SessionSummary> ret = new Map<String, SessionSummary>();
         if(!window.localStorage.containsKey(SAVE_TAG)) {
-            ;
+            print("local storage doesn't have key $SAVE_TAG");
             return ret;
         }
         String jsonString = window.localStorage[SAVE_TAG];
 
         if(jsonString.isEmpty) {
-            ;
+            print("json string is empty");
             return ret;
         }else if(jsonString == null) {
-            ;
+            print("json string is null");
             return ret;
         }else {
             //;
@@ -78,6 +78,7 @@ class SessionSummary {
 
         //this should be an array of sessions, so can't jsonobject it directly
         String idontevenKnow = jsonString;
+        //print("jsonstring is $idontevenKnow");
         try {
             List<dynamic> what = JSON.decode(idontevenKnow);
             for(dynamic d in what) {
@@ -92,7 +93,8 @@ class SessionSummary {
                 ret[s.jsonKey] = s;
             }
         }catch(e) {
-            ;
+            print("error caught trying to parse sessions from cache, $e");
+
             return ret;
         }
         return ret;
