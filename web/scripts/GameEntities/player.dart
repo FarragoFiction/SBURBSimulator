@@ -2170,6 +2170,7 @@ class Player extends GameEntity{
         ret.interest1 = player.interest1;
         ret.interest2 = player.interest2;
         ret.stats = player;
+        ret.dreamPalette = player.dreamPalette;
         //;
         if(saveCanvas && player.canvas != null) {
             ret.canvas = player.canvas; //you're just for rendering

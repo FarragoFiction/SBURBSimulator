@@ -5772,3 +5772,11 @@ so what's up with this . they have derse and it was derse
 is it a scratch thing? am i not syncing moons post scratch?
 
 god i hate looking at the really old shit and figuring out how scratches worked
+
+~~~~~
+
+found a crash when combo sessions don't know wht the dream palette of a player is.
+why.
+
+when i print it out, all the survivors have a dream palette. clones have it. what's going on?
+

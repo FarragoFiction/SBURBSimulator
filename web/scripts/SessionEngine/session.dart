@@ -1103,6 +1103,7 @@ void addAliensToSession(Session newSession, List<Player> aliens) {
 
     for (num i = 0; i < aliens.length; i++) {
         Player survivor = aliens[i];
+        print("survivor dream palette is ${survivor.dreamPalette}");
         newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession, false));
     }
     //don't want relationships to still be about original players
