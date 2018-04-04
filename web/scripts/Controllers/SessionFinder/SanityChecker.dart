@@ -103,13 +103,36 @@ class SanityChecker extends AuthorBot {
     aftermath tick shit.
 
     TODO: Investigate if I can take everything in a SimController that does the ticks and put it in sessions instead
-    that way i could have session.start and have it return it's summary.
+    that way i could have session.start and have it return its summary.
 
     It would mean making the session code more complex, but it would stop it from being spread around so much.
 
     First Step: How many methods are in SimController?
+                Looks like ~17 and the Scratch method in the Sim Library. This is doable.
     Second Step: How many would need to be in session instead for my idea?
-    Third Step: Can I make instanced or static things (like the session mutator) NOT be instanced,
+        tick
+        introTick
+        reckoning
+        doComboSession
+        callNextIntro
+        processCombinedSession
+        intro
+        reckoningTick
+        startSession
+        easterEggCallBack
+        restartSessionScratch
+        restartSession
+        easterEggCallBackRestart
+        easterEggCallBack
+        scratchConfirm
+        scratch
+        renderScratchButton
+    Third Step: Investigate which methods are overridden via controller inheritance.
+        any dead sessions overwriting can be handled easily with dead sessions getting the correspondingmethods
+        but what about any other overrides?
+            AB overrides scartch stuff (deoesn't render button, and restarting is diff). recoverFromCorruption,too
+    Fourth Step: Move those methods into session, rely on "this" instead of curSessionGlobalVar
+    Fifth Step: Can I make instanced or static things (like the session mutator) NOT be instanced,
                 and instead passed to scratched or combo sessions. What instanced or static things store data?
 
 
