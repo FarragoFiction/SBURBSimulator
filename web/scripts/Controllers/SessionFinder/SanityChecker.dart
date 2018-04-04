@@ -28,10 +28,22 @@ void drawCache() {
     }
 }
 
+void resetEnvironment() {
+
+}
+
 void drawOneSummary(SessionSummary summary) {
-    //TODO reset session shit between this.
+    resetEnvironment();
     DivElement container = new DivElement();
-    container.setInnerHtml("<b>Session:</b> ${summary.session_id}");
+    div.append(container);
+    //every thing past this can be async.
+    drawOneSummaryAsync(summary, container);
+}
+
+Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) async {
+    //TODO simulate the session BE SANE ABOUT THIS, no callbacks, instead do awaits.
+
+    container.setInnerHtml("<b>Session:</b> <a href = 'index2.html?seed=${summary.session_id}'>${summary.session_id}</a>");
     TableElement table = new TableElement();
     table.style.border = "2px solid black";
     TableRowElement tr = new TableRowElement();
@@ -50,8 +62,8 @@ void drawOneSummary(SessionSummary summary) {
     tr.append(td3);
     addMVPRow(table, summary, summary);
     container.append(table);
-    div.append(container);
 }
+
 
 void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
     TableRowElement tr = new TableRowElement();
@@ -61,7 +73,7 @@ void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
     td1.style.border = "1px solid black";
 
     TableCellElement td2 = new TableCellElement();
-    td2.text = "${s1.mvp}";
+    td2.setInnerHtml("${s1.mvpName}:${s1.mvpGrist}");
     td2.style.border = "1px solid black";
 
     TableCellElement td3 = new TableCellElement();
