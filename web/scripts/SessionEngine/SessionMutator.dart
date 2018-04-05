@@ -681,24 +681,24 @@ class SessionMutator {
         addAliensToSession(s, guardians);
     }
 
-    void renderEndButtons(Element div) {
-        if(timeField && !doNotRender) renderTimeButton(div);
-        if(spaceField && !doNotRender) renderSpaceButton(div);  //TODO make sure scratches ALSO act as combo sessions.
+    void renderEndButtons(Element div, Session session) {
+        if(timeField && !doNotRender) renderTimeButton(div, session);
+        if(spaceField && !doNotRender) renderSpaceButton(div, session);  //TODO make sure scratches ALSO act as combo sessions.
     }
 
 
-    void renderTimeButton(Element div) {
+    void renderTimeButton(Element div,Session session) {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/reset.png' id='resetButton'><br>Shit man, we can do better. The ${getPlayersTitles(timePlayersReplacing)} knows we can. It's not the 'current' version of them though, but the one from when they got into the code. Time travel, man. ";
         appendHtml(SimController.instance.storyElement, html);
-        querySelector("#resetButton").onClick.listen((Event e) => curSessionGlobalVar.addEventToUndoAndReset(null));
+        querySelector("#resetButton").onClick.listen((Event e) => session.addEventToUndoAndReset(null));
     }
 
-    void renderSpaceButton(Element div) {
+    void renderSpaceButton(Element div,Session session) {
         //renders a button. If that button is clicked, resets session.
         String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
         appendHtml(SimController.instance.storyElement, html);
-        querySelector("#husieButton").onClick.listen((Event e) => SimController.instance.doComboSession(null));
+        querySelector("#husieButton").onClick.listen((Event e) => session.doComboSession(null));
     }
 
     void replacePlayerIfCan(Element div, Player target) {

@@ -306,7 +306,7 @@ class Aftermath extends Scene {
             this.yellowLawnRing(div); //can still scratch, even if yellow lawn ring is available
         }
 
-        session.mutator.renderEndButtons(div);
+        session.mutator.renderEndButtons(div, session);
         return null;
     }
 

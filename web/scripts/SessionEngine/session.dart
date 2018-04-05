@@ -562,8 +562,110 @@ class Session {
         }
         if(id ==612) this.session_id = 413;
 
-        tmpcurSessionGlobalVar.startSession(true);
+        tmpcurSessionGlobalVar.startSession();
         //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+    }
+
+    //TODO oh god why is this still here and not somwhere sane like in a SimController.
+    Future<Null> scratch() async {
+        //;
+        numPlayersPreScratch = this.players.length;
+        var ectoSave = this.stats.ectoBiologyStarted;
+
+        reinit();
+        this.stats.scratched = true;
+        this.stats.scratchAvailable = false;
+        this.stats.doomedTimeline = false;
+        raggedPlayers = findPlayersFromSessionWithId(this.players, this.session_id); //but only native
+        //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
+        //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
+        //to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
+        //for easter egg sessions would be way easier than initially feared. Thanks a bajillion.
+        //it's not as simple as remebering to do easter eggs here, but that's a good start. i also gotta
+        //rework the easter egg guardian code. last time it worked guardians were an array a session had, but now they're owned by individual players.
+        //plus, at the time i first re-enabled the easter egg, session 612 totally didn't have a scratch, so i could exactly test.
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
+        this.createScenesForPlayers();
+
+        this.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
+        //technically teh scratched moon is diff than the one they knew about as a guardian
+        for(Player p in this.players) {
+            p.syncToSessionMoon();
+        }
+        await checkEasterEgg();
+        scratchEasterEggCallBack();
+    }
+
+
+    void scratchEasterEggCallBack() {
+        initializePlayers(this.players, this); //will take care of overriding players if need be.
+
+
+        if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
+            setEctobiologicalSource(this.players, this.session_id);
+        }
+        this.switchPlayersForScratch();
+
+        String scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(this.players)) + " will now be the beloved guardians.";
+        scratch += " Their former guardians, the " + getPlayersTitlesBasic(this.players) + " will now be the players.";
+        scratch += " The new players will be given stat boosts to give them a better chance than the previous generation.";
+
+        Player suddenDeath = findAspectPlayer(raggedPlayers, Aspects.LIFE);
+        if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
+
+        //NOT over time. literally sudden death. thanks meenah!
+        List<Player> livingRagged = findLiving(raggedPlayers);
+        if (suddenDeath != null && !suddenDeath.dead) {
+            //;
+            for (num i = 0; i < livingRagged.length; i++) {
+                scratch += livingRagged[i].makeDead("right as the scratch happened", livingRagged[i]);
+            }
+            scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
+        }
+        if (this.players.length != numPlayersPreScratch) {
+            scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. ";
+            //;
+        }
+        scratch += " What will happen?";
+        // //;
+
+        setHtml(SimController.instance.storyElement, scratch);
+        if (!doNotRender) window.scrollTo(0, 0);
+
+        List<Player> guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
+
+        Element guardianDiv = this.newScene("???");
+        String guardianID = "${guardianDiv.id}_guardians";
+        num ch = canvasHeight;
+        if (guardians.length > 6) {
+            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
+        }
+
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        guardianDiv.append(canvasDiv);
+
+        Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
+
+
+        Element playerDiv = this.newScene("???");
+        String playerID = "${playerDiv.id}_players";
+        ch = canvasHeight;
+        if (this.players.length > 6) {
+            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
+        }
+        canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        playerDiv.append(canvasDiv);
+
+
+        //need to render self for caching to work for this
+        //for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
+        //curSessionGlobalVar.players[i].renderSelf("scratchCallBack");
+        // }
+        Drawing.poseAsATeam(canvasDiv, this.players); //everybody, even corpses, pose as a team.
+        if(this.mutator.spaceField) this.mutator.scratchedCombo(this, raggedPlayers);
+        intro();
     }
 
     void reckoning() {
