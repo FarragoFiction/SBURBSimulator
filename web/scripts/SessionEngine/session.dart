@@ -861,13 +861,13 @@ class Session {
         that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
         if(!(this is DeadSession)) addAliensToSession(this, aliens);
 
-        SimController.instance.restartSession(); //in controller
+        restartSession(); //in controller
     }
     void easterCallBackScratch(Session that) {
         if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
             setEctobiologicalSource(this.players, this.session_id);
         }
-        SimController.instance.restartSessionScratch(); //in controller, will initialize players
+        restartSessionScratch(); //in controller, will initialize players
 
     }
 
@@ -892,17 +892,15 @@ class Session {
         //SimController.instance.restartSession(); //in controller
     }
 
-    //taking ina  bool means if i want to start a session that is already set up i can
-    Future<Null> startSession([bool keepSession = false]) async {
+    //TODO since this lives in the session now, need to remember that ive already started a session
+    Future<Null> startSession() async {
         globalInit(); // initialise classes and aspects if necessary
-        if(!keepSession)this = new Session(initial_seed);
         changeCanonState(getParameterByName("canonState",null));
         reinit();
-        if(!keepSession) {
-            this.makePlayers();
-            this.randomizeEntryOrder();
-            this.makeGuardians(); //after entry order established
-        }
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
+
         //we await this because of the fan ocs being loaded from file like assholes.
         await checkEasterEgg();
         easterEggCallBack();
