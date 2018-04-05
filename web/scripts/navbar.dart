@@ -2,13 +2,14 @@ import "dart:async";
 import 'dart:html';
 import "Controllers/Misc/SimController.dart";
 import "random.dart";
-
+import "SBURBSim.dart";
 import 'includes/path_utils.dart';
 
 String simulatedParamsGlobalVar = "";
 
 //just loads the navbar.text into the appropriate div.
 void loadNavbar() {
+    globalInit();
     HttpRequest.getString(PathUtils.adjusted("navbar.txt")).then(onNavbarLoaded);
 }
 

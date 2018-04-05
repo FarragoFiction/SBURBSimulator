@@ -9,7 +9,7 @@ import "../../SessionEngine/SessionSummaryLib.dart";
 //replaces the poorly named scenario_controller2.js
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
 
-main() {
+void main() {
   doNotRender = true;
   loadNavbar();
   window.onError.listen((Event event){
@@ -96,6 +96,7 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   void checkSessions() {
+    print("abj is checking a sessions");
     numSimulationsDone = 0; //but don't reset stats
     sessionSummariesDisplayed = [];
     for(num i = 0; i<allSessionsSummaries.length; i++){
@@ -104,6 +105,7 @@ class SessionFinderControllerJunior extends SimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
+    print("ab is going to make a session");
     curSessionGlobalVar = new Session(SimController.instance.initial_seed);
     curSessionGlobalVar.startSession();
   }
@@ -175,54 +177,19 @@ class SessionFinderControllerJunior extends SimController {
   }
 
 
-  @override
-  void easterEggCallBackRestart() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void intro() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void processCombinedSession() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void reckoning() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void reckoningTick([num time]) {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void recoverFromCorruption() {
-    throw "ABJ does not actually simulate shit.";
-  }
 
 
   @override
   void renderScratchButton(Session session) {
-    throw "ABJ does not actually simulate shit.";
+    throw "ABJ does not actually simulate shit render scratch.";
   }
 
-  @override
-  Future<Null> restartSession() async {
-    throw "ABJ does not actually simulate shit.";
-  }
+
 
   @override
   void shareableURL() {
-    throw "ABJ does not actually simulate shit.";
+    throw "ABJ does not actually simulate shit. shareable url";
   }
 
-  @override
-  void tick([num time]) {
-    throw "ABJ does not actually simulate shit.";
-  }
+
 }

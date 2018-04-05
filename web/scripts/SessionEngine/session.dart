@@ -125,6 +125,7 @@ class Session {
     SessionMutator mutator;
 
     Session(int this.session_id) {
+        globalInit();
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
@@ -996,6 +997,7 @@ class Session {
 
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Null> startSession() async {
+        print("session is starting");
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(getParameterByName("canonState",null));
         reinit();
