@@ -224,8 +224,8 @@ class TournamentController extends AuthorBot {
     if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true";
     //TODO how do i get this working?
     simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
-    startSession(); // used to pass a callback here to try to use rare session finder. now there is inheritance.
-  }
+    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    curSessionGlobalVar.startSession();  }
 
   //don't add selfInsertOC to claspect stuck
   dynamic isClassOrAspectStuck(TournamentTeam team){

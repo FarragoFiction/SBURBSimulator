@@ -34,8 +34,8 @@ void main() {
   }
 
   SimController.instance.shareableURL();
-
-  SimController.instance.startSession();
+  curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+  curSessionGlobalVar.startSession();
 }
 
 //sauce jr, what are you doing. stahp.

@@ -35,12 +35,9 @@ abstract class AuthorBot extends SimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
-    startSession(); //my callback is what will be different
+    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    curSessionGlobalVar.startSession();
   }
-
-
-
-
 
 
   @override
@@ -54,7 +51,7 @@ abstract class AuthorBot extends SimController {
     //only diff from story is don't check SGRUB
     initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
     if(doNotRender == true){
-      intro();
+      curSessionGlobalVar.intro();
     }else{
       load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
     }
@@ -63,7 +60,7 @@ abstract class AuthorBot extends SimController {
   @override
   void easterEggCallBackRestart() {
     initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
-    intro();
+    curSessionGlobalVar.intro();
   }
 
 
@@ -75,7 +72,7 @@ abstract class AuthorBot extends SimController {
      // //;
       curSessionGlobalVar = newcurSessionGlobalVar;
       appendHtml(SimController.instance.storyElement,"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
-      intro();
+      curSessionGlobalVar.intro();
     }else{
       ////;
       needToScratch = false; //can't scratch if skaiai is a frog
@@ -171,7 +168,7 @@ abstract class AuthorBot extends SimController {
       //alert("AB sure loves scratching!");
       session.stats.scratchAvailable = true;
       summarizeSessionNoFollowup(session);
-      scratch(); //not user input, just straight up do it.
+      session.scratch(); //not user input, just straight up do it.
     }else{
       ////;
       session.stats.scratchAvailable = false;

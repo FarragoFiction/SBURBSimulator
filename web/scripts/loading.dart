@@ -127,7 +127,7 @@ dynamic checkDone(String skipInit){
       }
       return null;
     }
-		SimController.instance.intro();  //TODO this will work for ALL things now, probably can remove skipInit
+		curSessionGlobalVar.intro();  //TODO this will work for ALL things now, probably can remove skipInit
 	}
 	return null;
 }

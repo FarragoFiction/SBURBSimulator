@@ -113,7 +113,7 @@ abstract class SimController {
 
 
     void recoverFromCorruption() {
-        if(curSessionGlobalVar != null) curSessionGlobalVar.mutator.renderEndButtons(SimController.instance.storyElement);
+        if(curSessionGlobalVar != null) curSessionGlobalVar.mutator.renderEndButtons(SimController.instance.storyElement, curSessionGlobalVar);
         if(curSessionGlobalVar != null) curSessionGlobalVar.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes
         //
     }
@@ -151,7 +151,7 @@ abstract class SimController {
     void scratchConfirm() {
         bool scratchConfirmed = window.confirm("This session is doomed. Scratching this session will erase it. A new session will be generated, but you will no longer be able to view this session. Is this okay?");
         if (scratchConfirmed) {
-            scratch();
+            curSessionGlobalVar.scratch();
         }
     }
 

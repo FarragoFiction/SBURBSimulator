@@ -54,7 +54,7 @@ abstract class DeadAuthorBot extends DeadSimController {
     //ds.metaPlayer.relationships.add(new Relationship(ds.metaPlayer, -999, ds.players[0])); //if you need to talk to anyone, talk to metaplayer.
 
     if(doNotRender == true){
-      intro();
+      curSessionGlobalVar.intro();
     }else{
       load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
     }
@@ -63,7 +63,7 @@ abstract class DeadAuthorBot extends DeadSimController {
   @override
   void easterEggCallBackRestart() {
     initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
-    intro();
+    curSessionGlobalVar.intro();
   }
 
 

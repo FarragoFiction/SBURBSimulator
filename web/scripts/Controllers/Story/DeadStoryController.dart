@@ -40,8 +40,8 @@ void main() {
   }
 
   SimController.instance.shareableURL();
-
-  SimController.instance.startSession();
+  curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+  curSessionGlobalVar.startSession();
 }
 
 //so dead session finder can use this without a main.

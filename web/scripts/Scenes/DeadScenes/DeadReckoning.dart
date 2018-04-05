@@ -90,7 +90,7 @@ void startNewSession() {
     querySelector("#charSheets").style.backgroundColor = "white";
     window.scrollTo(0, 0);
 
-    SimController.instance.processCombinedSession();
+    session.processCombinedSession();
     //TODO have an 'enemy' mechanic for sessions. normal use case is if everybody hates you AND you have killed
     //you get an enemy flag, which makes you strifable (new scene? ). EVERYBODY who is available will drop what they are doing to fight you.
     //dead session players aren't necessarily set to enemy. but i bet quite a few of them will earn it naturally, caliborn style

@@ -104,7 +104,8 @@ class SessionFinderControllerJunior extends SimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
-    startSession(); //im junior so deal with it
+    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    curSessionGlobalVar.startSession();
   }
 
   @override
@@ -140,7 +141,8 @@ class SessionFinderControllerJunior extends SimController {
       (querySelector("#button")as ButtonElement).disabled =false;
     }else{
       initial_seed = getRandomSeed();
-      startSession();
+      curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+      curSessionGlobalVar.startSession();
     }
   }
 
