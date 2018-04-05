@@ -106,8 +106,98 @@ abstract class SimController {
         }
     }
 
+    void scratchEasterEggCallBack() {
+        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
 
 
+        if (curSessionGlobalVar.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
+            setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
+        }
+        curSessionGlobalVar.switchPlayersForScratch();
+
+        String scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(curSessionGlobalVar.players)) + " will now be the beloved guardians.";
+        scratch += " Their former guardians, the " + getPlayersTitlesBasic(curSessionGlobalVar.players) + " will now be the players.";
+        scratch += " The new players will be given stat boosts to give them a better chance than the previous generation.";
+
+        Player suddenDeath = findAspectPlayer(raggedPlayers, Aspects.LIFE);
+        if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
+
+        //NOT over time. literally sudden death. thanks meenah!
+        List<Player> livingRagged = findLiving(raggedPlayers);
+        if (suddenDeath != null && !suddenDeath.dead) {
+            //;
+            for (num i = 0; i < livingRagged.length; i++) {
+                scratch += livingRagged[i].makeDead("right as the scratch happened", livingRagged[i]);
+            }
+            scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
+        }
+        if (curSessionGlobalVar.players.length != numPlayersPreScratch) {
+            scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. ";
+            //;
+        }
+        scratch += " What will happen?";
+        // //;
+
+        setHtml(SimController.instance.storyElement, scratch);
+        if (!doNotRender) window.scrollTo(0, 0);
+
+        List<Player> guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
+
+        Element guardianDiv = curSessionGlobalVar.newScene("???");
+        String guardianID = "${guardianDiv.id}_guardians";
+        num ch = canvasHeight;
+        if (guardians.length > 6) {
+            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
+        }
+
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        guardianDiv.append(canvasDiv);
+
+        Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
+
+
+        Element playerDiv = curSessionGlobalVar.newScene("???");
+        String playerID = "${playerDiv.id}_players";
+        ch = canvasHeight;
+        if (curSessionGlobalVar.players.length > 6) {
+            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
+        }
+        canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        playerDiv.append(canvasDiv);
+
+
+        //need to render self for caching to work for this
+        //for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
+        //curSessionGlobalVar.players[i].renderSelf("scratchCallBack");
+        // }
+        Drawing.poseAsATeam(canvasDiv, curSessionGlobalVar.players); //everybody, even corpses, pose as a team.
+        if(curSessionGlobalVar.mutator.spaceField) curSessionGlobalVar.mutator.scratchedCombo(curSessionGlobalVar, raggedPlayers);
+        curSessionGlobalVar.intro();
+    }
+
+
+
+    void easterEggCallBack() {
+
+        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
+        SimController.instance.checkSGRUB();
+        if (doNotRender == true) {
+            curSessionGlobalVar.intro();
+        } else {
+            //
+            load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
+        }
+    }
+
+    void easterEggCallBackRestart() {
+        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
+        curSessionGlobalVar.intro(); //<-- instead of load, bc don't need to load.
+
+    }
+
+    void easterEggCallBackRestartScratch() {
+        scratchEasterEggCallBack();
+    }
 
 
 

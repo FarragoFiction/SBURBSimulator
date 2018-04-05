@@ -483,27 +483,7 @@ class Session {
         window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
-    void easterEggCallBack() {
 
-        initializePlayers(this.players, this); //will take care of overriding players if need be.
-        SimController.instance.checkSGRUB();
-        if (doNotRender == true) {
-            intro();
-        } else {
-            //
-            load(this.players, getGuardiansForPlayers(this.players), "");
-        }
-    }
-
-    void easterEggCallBackRestart() {
-        initializePlayers(this.players, this); //initializePlayers
-        intro(); //<-- instead of load, bc don't need to load.
-
-    }
-
-    void easterEggCallBackRestartScratch() {
-        scratchEasterEggCallBack();
-    }
 
     void intro() {
         //
@@ -596,78 +576,10 @@ class Session {
             p.syncToSessionMoon();
         }
         await checkEasterEgg();
-        scratchEasterEggCallBack();
+        SimController.instance.scratchEasterEggCallBack();
     }
 
 
-    void scratchEasterEggCallBack() {
-        initializePlayers(this.players, this); //will take care of overriding players if need be.
-
-
-        if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
-            setEctobiologicalSource(this.players, this.session_id);
-        }
-        this.switchPlayersForScratch();
-
-        String scratch = "The session has been scratched. The " + getPlayersTitlesBasic(getGuardiansForPlayers(this.players)) + " will now be the beloved guardians.";
-        scratch += " Their former guardians, the " + getPlayersTitlesBasic(this.players) + " will now be the players.";
-        scratch += " The new players will be given stat boosts to give them a better chance than the previous generation.";
-
-        Player suddenDeath = findAspectPlayer(raggedPlayers, Aspects.LIFE);
-        if (suddenDeath == null) suddenDeath = findAspectPlayer(raggedPlayers, Aspects.DOOM);
-
-        //NOT over time. literally sudden death. thanks meenah!
-        List<Player> livingRagged = findLiving(raggedPlayers);
-        if (suddenDeath != null && !suddenDeath.dead) {
-            //;
-            for (num i = 0; i < livingRagged.length; i++) {
-                scratch += livingRagged[i].makeDead("right as the scratch happened", livingRagged[i]);
-            }
-            scratch += " It...appears that the " + suddenDeath.htmlTitleBasic() + " managed to figure out that killing everyone at the last minute would allow them to live on in the afterlife between sessions. They may be available as guides for the players. ";
-        }
-        if (this.players.length != numPlayersPreScratch) {
-            scratch += " You are quite sure that players not native to this session have never been here at all. Quite frankly, you find the notion absurd. ";
-            //;
-        }
-        scratch += " What will happen?";
-        // //;
-
-        setHtml(SimController.instance.storyElement, scratch);
-        if (!doNotRender) window.scrollTo(0, 0);
-
-        List<Player> guardians = raggedPlayers; //if i use guardians, they will be all fresh and squeaky. want the former players.
-
-        Element guardianDiv = this.newScene("???");
-        String guardianID = "${guardianDiv.id}_guardians";
-        num ch = canvasHeight;
-        if (guardians.length > 6) {
-            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
-        }
-
-        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        guardianDiv.append(canvasDiv);
-
-        Drawing.poseAsATeam(canvasDiv, guardians); //everybody, even corpses, pose as a team.
-
-
-        Element playerDiv = this.newScene("???");
-        String playerID = "${playerDiv.id}_players";
-        ch = canvasHeight;
-        if (this.players.length > 6) {
-            ch = canvasHeight * 1.5; //a little bigger than two rows, cause time clones
-        }
-        canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        playerDiv.append(canvasDiv);
-
-
-        //need to render self for caching to work for this
-        //for (int i = 0; i < curSessionGlobalVar.players.length; i++) {
-        //curSessionGlobalVar.players[i].renderSelf("scratchCallBack");
-        // }
-        Drawing.poseAsATeam(canvasDiv, this.players); //everybody, even corpses, pose as a team.
-        if(this.mutator.spaceField) this.mutator.scratchedCombo(this, raggedPlayers);
-        intro();
-    }
 
     void reckoning() {
         ////
@@ -684,15 +596,15 @@ class Session {
     Future<Null> restartSession() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        await (easterEggCallBackRestart);
-        easterEggCallBackRestart();
+        await (SimController.instance.easterEggCallBackRestart);
+        SimController.instance.easterEggCallBackRestart();
     }
 
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await checkEasterEgg();
-        easterEggCallBackRestartScratch();
+        SimController.instance.easterEggCallBackRestartScratch();
     }
 
     void reckoningTick([num time]) {
@@ -1007,7 +919,7 @@ class Session {
 
         //we await this because of the fan ocs being loaded from file like assholes.
         await checkEasterEgg();
-        easterEggCallBack();
+        SimController.instance.easterEggCallBack();
     }
 
     void tick([num time]) {

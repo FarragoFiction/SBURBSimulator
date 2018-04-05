@@ -111,21 +111,6 @@ class SessionFinderControllerJunior extends SimController {
   }
 
   @override
-  void callNextIntro([num time]) {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void checkSGRUB() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
-  void createInitialSprites() {
-    throw "ABJ does not actually simulate shit.";
-  }
-
-  @override
   void easterEggCallBack() {
     initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
     //aaaaand. done.
@@ -143,10 +128,34 @@ class SessionFinderControllerJunior extends SimController {
       (querySelector("#button")as ButtonElement).disabled =false;
     }else{
       initial_seed = getRandomSeed();
-      curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+      curSessionGlobalVar = new Session(initial_seed);
       curSessionGlobalVar.startSession();
     }
   }
+
+
+
+  @override
+  void easterEggCallBackRestart() {
+    throw "ABJ does not actually simulate shit.";
+  }
+
+  @override
+  void callNextIntro([num time]) {
+    throw "ABJ does not actually simulate shit.";
+  }
+
+  @override
+  void checkSGRUB() {
+    throw "ABJ does not actually simulate shit.";
+  }
+
+  @override
+  void createInitialSprites() {
+    throw "ABJ does not actually simulate shit.";
+  }
+
+  
 
   void printStatsJunior(){
     var mms = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
