@@ -176,7 +176,7 @@ abstract class SimController {
     }
 
 
-
+    //they aren't full callbacks anymore but live here so regular vs ab etc have diff behaviors
     void easterEggCallBack() {
 
         initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.

@@ -155,7 +155,7 @@ class SessionFinderControllerJunior extends SimController {
     throw "ABJ does not actually simulate shit.";
   }
 
-  
+
 
   void printStatsJunior(){
     var mms = MultiSessionSummaryJunior.collateMultipleSessionSummariesJunior(sessionSummariesDisplayed);
