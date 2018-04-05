@@ -31,7 +31,8 @@ abstract class DeadAuthorBot extends DeadSimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
-    startSession(); //my callback is what will be different
+    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    curSessionGlobalVar.startSession();
   }
 
 

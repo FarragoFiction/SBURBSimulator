@@ -25,7 +25,8 @@ void main()
   querySelector("#buttonNotVoid").onClick.listen((Event e) => newPlayerButNotVoid());
 
   querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
-  SimController.instance.startSession();
+  curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+  curSessionGlobalVar.startSession();
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
 

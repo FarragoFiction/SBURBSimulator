@@ -275,7 +275,10 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
       //RESETTING the mutator so that wastes can't leak into other sessions
       getMVP();
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
-      window.requestAnimationFrame((num t) => startSession());
+      window.requestAnimationFrame((num t) {
+        curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+        curSessionGlobalVar.startSession();
+      });
     }
     ////;
     return sum;
