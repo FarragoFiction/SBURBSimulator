@@ -7,3 +7,4 @@ b=%C3%A6%C3%9C%C2%81J%C3%BE%02%00%5C%0B%0B%1E&s=,,Muppets,Books,secondhandPurvey
 b=%C3%BFU%C3%84p%C3%BE%13%00%17%2C%2C%3B&s=,,Playing Bass,Authoring,hluulyAnnihilator
 b=%00%00%00Z%C3%BE%C2%93%00Q%1D%1D%1E&s=,,Video Games,Character Creation,mrgameandpie
 b=%00%00%00S%C3%B9W%12%0544%3B&s=,,Clowns,Undead,clownlovingHeathen
+b=%00%00%00%06%C3%BE!%00%0C%06%05%23&s=,,Books,Music,Cipah
