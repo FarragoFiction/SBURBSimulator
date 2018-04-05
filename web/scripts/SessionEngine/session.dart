@@ -2,7 +2,7 @@ import "dart:html";
 import "../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../Lands/Quest.dart";
 import "../Lands/Reward.dart";
-
+import "dart:async";
 import "../SBURBSim.dart";
 enum CanonLevel {
     CANON_ONLY,
@@ -461,6 +461,162 @@ class Session {
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
+    void callNextIntro(int player_index) {
+
+        if (player_index >= this.players.length) {
+            tick(); //NOW start ticking
+            return;
+        }
+        IntroNew s = new IntroNew(this);
+        Player p = this.players[player_index];
+        //
+
+        //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+        List<Player> playersInMedium = this.players.sublist(0, player_index + 1);
+        s.trigger(playersInMedium, p);
+        s.renderContent(this.newScene(s.runtimeType.toString()), player_index); //new scenes take care of displaying on their own.
+        this.processScenes(playersInMedium);
+        //player_index += 1;
+        //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
+        SimController.instance.gatherStats();
+        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
+    }
+
+    void easterEggCallBack() {
+
+        initializePlayers(this.players, this); //will take care of overriding players if need be.
+        SimController.instance.checkSGRUB();
+        if (doNotRender == true) {
+            intro();
+        } else {
+            //
+            load(this.players, getGuardiansForPlayers(this.players), "");
+        }
+    }
+
+    void easterEggCallBackRestart() {
+        initializePlayers(this.players, this); //initializePlayers
+        intro(); //<-- instead of load, bc don't need to load.
+
+    }
+
+    void easterEggCallBackRestartScratch() {
+        scratchEasterEggCallBack();
+    }
+
+    void intro() {
+        //
+        SimController.instance.initGatherStats();
+
+        //advertisePatreon(SimController.instance.storyElement);
+        //
+        List<String> playerTitlesWithTag = new List<String>();
+        for(Player p in this.players) {
+            playerTitlesWithTag.add(p.htmlTitleWithTip());
+        }
+
+        for(Player p in this.aliensClonedOnArrival) {
+            playerTitlesWithTag.add(p.htmlTitleWithTip());
+        }
+
+        appendHtml(SimController.instance.storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
+        callNextIntro(0);
+    }
+
+    void processCombinedSession() {
+        if(this.mutator.spaceField) {
+            return; //you will do combo a different route.
+        }
+        Session tmpcurSessionGlobalVar = this.initializeCombinedSession();
+        if (tmpcurSessionGlobalVar != null) {
+            doComboSession(tmpcurSessionGlobalVar);
+        } else {
+            //scratch fuckers.
+            this.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
+            renderAfterlifeURL();
+            //renderScratchButton(this);
+        }
+    }
+
+    void doComboSession(Session tmpcurSessionGlobalVar) {
+        int id = this.session_id;
+        if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
+        //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
+        List<Player> living = findLiving(this.aliensClonedOnArrival);
+        if(living.isEmpty) {
+            appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
+        }else {
+            appendHtml(SimController.instance.storyElement, "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${this.session_id}'>${this.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
+        }
+        SimController.instance.checkSGRUB();
+        if(this.mutator.spaceField) {
+            window.scrollTo(0, 0);
+            //querySelector("#charSheets").setInnerHtml(""); //don't do query selector shit anymore for speed reasons.
+            SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${this.players.length} fucking players inside it? ");
+        }
+
+        //TODO test that this works.
+        if(id == 4037) {
+            window.alert("Who is Shogun???");
+            this.session_id = 13;
+        }
+        if(id ==612) this.session_id = 413;
+
+        tmpcurSessionGlobalVar.startSession(true);
+        //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+    }
+
+    void reckoning() {
+        ////
+        Scene s = new Reckoning(this);
+        s.trigger(this.players);
+        s.renderContent(this.newScene(s.runtimeType.toString(),));
+        if (!this.stats.doomedTimeline) {
+            reckoningTick();
+        } else {
+            renderAfterlifeURL();
+        }
+    }
+
+    Future<Null> restartSession() async {
+        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
+        window.scrollTo(0, 0);
+        await (easterEggCallBackRestart);
+        easterEggCallBackRestart();
+    }
+
+    Future<Null> restartSessionScratch() async {
+        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
+        window.scrollTo(0, 0);
+        await checkEasterEgg();
+        easterEggCallBackRestartScratch();
+    }
+
+    void reckoningTick([num time]) {
+        ////
+        if (this.timeTillReckoning > -10) {
+            this.timeTillReckoning += -1;
+            this.processReckoning(this.players);
+            SimController.instance.gatherStats();
+            window.requestAnimationFrame(reckoningTick);
+            //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
+        } else {
+            Scene s = new Aftermath(this);
+            s.trigger(this.players);
+            s.renderContent(this.newScene(s.runtimeType.toString(), true));
+            if (this.stats.makeCombinedSession == true) {
+                processCombinedSession(); //make sure everything is done rendering first
+            } else {
+                renderAfterlifeURL();
+            }
+            SimController.instance.gatherStats();
+        }
+    }
+
+
+
+
+
     void makeSurePlayersNotInSessionArentAvailable(List<Player> playerList) {
         for(Player p in players) {
             if(!playerList.contains(p)) {
@@ -671,13 +827,13 @@ class Session {
             this.yellowYardController.eventsToUndo.add(e);
         }
         //reinit the seed and restart the session
-        //var savedPlayers = curSessionGlobalVar.players;
+        //var savedPlayers = this.players;
         this.reinit();
 
         //players need to be reinit as well.
-        curSessionGlobalVar.makePlayers();
-        curSessionGlobalVar.randomizeEntryOrder();
-        curSessionGlobalVar.makeGuardians(); //after entry order established
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
         this.easterCallBack(this);
 
@@ -695,21 +851,21 @@ class Session {
         //now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
         //after alll, i could be from a combo session.
         //but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-        curSessionGlobalVar.aliensClonedOnArrival = that.aliensClonedOnArrival;
-        ////print("adding this many clone aliens: " + curSessionGlobalVar.aliensClonedOnArrival.length);
-        ////print(getPlayersTitles(curSessionGlobalVar.aliensClonedOnArrival));
+        this.aliensClonedOnArrival = that.aliensClonedOnArrival;
+        ////print("adding this many clone aliens: " + this.aliensClonedOnArrival.length);
+        ////print(getPlayersTitles(this.aliensClonedOnArrival));
         List<Player> aliens = <Player>[]; //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
         for (num i = 0; i < that.aliensClonedOnArrival.length; i++) {
             aliens.add(that.aliensClonedOnArrival[i]);
         }
         that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
-        if(!(curSessionGlobalVar is DeadSession)) addAliensToSession(curSessionGlobalVar, aliens);
+        if(!(this is DeadSession)) addAliensToSession(this, aliens);
 
         SimController.instance.restartSession(); //in controller
     }
     void easterCallBackScratch(Session that) {
-        if (curSessionGlobalVar.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
-            setEctobiologicalSource(curSessionGlobalVar.players, curSessionGlobalVar.session_id);
+        if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
+            setEctobiologicalSource(this.players, this.session_id);
         }
         SimController.instance.restartSessionScratch(); //in controller, will initialize players
 
@@ -724,9 +880,9 @@ class Session {
         bool ectoSave = this.stats.ectoBiologyStarted;
         reinit();
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
-        curSessionGlobalVar.makePlayers();
-        curSessionGlobalVar.randomizeEntryOrder();
-        curSessionGlobalVar.makeGuardians(); //after entry order established
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
 
         this.stats.ectoBiologyStarted = ectoSave;
         this.stats.scratched = true;
@@ -735,6 +891,44 @@ class Session {
        this.easterCallBackScratch(this); //in the controller.
         //SimController.instance.restartSession(); //in controller
     }
+
+    //taking ina  bool means if i want to start a session that is already set up i can
+    Future<Null> startSession([bool keepSession = false]) async {
+        globalInit(); // initialise classes and aspects if necessary
+        if(!keepSession)this = new Session(initial_seed);
+        changeCanonState(getParameterByName("canonState",null));
+        reinit();
+        if(!keepSession) {
+            this.makePlayers();
+            this.randomizeEntryOrder();
+            this.makeGuardians(); //after entry order established
+        }
+        //we await this because of the fan ocs being loaded from file like assholes.
+        await checkEasterEgg();
+        easterEggCallBack();
+    }
+
+    void tick([num time]) {
+        this.numTicks ++;
+        //
+        ////
+        //don't start  a reckoning until at least one person has been to the battlefield.
+        //if everyone is dead, you can end. no more infinite jack sessions
+        int maxScenes = 1000; //don't go forever, dunkass
+        if((this.canReckoning || this.numTicks > SimController.instance.maxTicks ||  findLiving(this.players).isEmpty ) && this.timeTillReckoning <= 0) {
+            this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
+            this.timeTillReckoning = 0; //might have gotten negative while we wait.
+            reckoning();
+        }else if (!this.stats.doomedTimeline) {
+            this.timeTillReckoning += -1;
+            this.processScenes(this.players);
+            SimController.instance.gatherStats();
+            window.requestAnimationFrame(tick);
+        }
+        //if we are doomed, we crashed, so don't do anything.
+    }
+
+
 
     Session initializeCombinedSession() {
         if(this.stats.rocksFell) return null; //can't combo is skaia doesn't exist.
@@ -787,10 +981,9 @@ class Session {
         this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         createScenesForPlayers();
-        //curSessionGlobalVar.available_scenes = curSessionGlobalVar.scenes.slice(0);
+        //this.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
-        ;
         this.setupMoons();
         //fix refereances
 
@@ -1086,6 +1279,12 @@ class Session {
     }
 
 }
+
+
+
+
+
+
 
 //save a copy of the alien (in case of yellow yard)
 void addAliensToSession(Session newSession, List<Player> aliens) {

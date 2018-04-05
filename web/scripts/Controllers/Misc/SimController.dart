@@ -60,26 +60,6 @@ abstract class SimController {
         });
     }
 
-    void callNextIntro(int player_index) {
-
-        if (player_index >= curSessionGlobalVar.players.length) {
-            tick(); //NOW start ticking
-            return;
-        }
-        IntroNew s = new IntroNew(curSessionGlobalVar);
-        Player p = curSessionGlobalVar.players[player_index];
-        //
-
-        //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
-        List<Player> playersInMedium = curSessionGlobalVar.players.sublist(0, player_index + 1);
-        s.trigger(playersInMedium, p);
-        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()), player_index); //new scenes take care of displaying on their own.
-        curSessionGlobalVar.processScenes(playersInMedium);
-        //player_index += 1;
-        //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
-        this.gatherStats();
-        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
-    }
 
     void checkSGRUB() {
         bool sgrub = true;
@@ -126,124 +106,11 @@ abstract class SimController {
         }
     }
 
-    void easterEggCallBack() {
-
-        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
-        checkSGRUB();
-        if (doNotRender == true) {
-            intro();
-        } else {
-            //
-            load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
-        }
-    }
-
-    void easterEggCallBackRestart() {
-        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //initializePlayers
-        intro(); //<-- instead of load, bc don't need to load.
-
-    }
-
-    void easterEggCallBackRestartScratch() {
-        scratchEasterEggCallBack();
-    }
-
-    void intro() {
-        //
-        initGatherStats();
-
-        //advertisePatreon(SimController.instance.storyElement);
-       //
-        List<String> playerTitlesWithTag = new List<String>();
-        for(Player p in curSessionGlobalVar.players) {
-            playerTitlesWithTag.add(p.htmlTitleWithTip());
-        }
-
-        for(Player p in curSessionGlobalVar.aliensClonedOnArrival) {
-            playerTitlesWithTag.add(p.htmlTitleWithTip());
-        }
-
-        appendHtml(storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
-        callNextIntro(0);
-    }
 
 
-    void processCombinedSession() {
-        if(curSessionGlobalVar.mutator.spaceField) {
-            return; //you will do combo a different route.
-        }
-        Session tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
-        if (tmpcurSessionGlobalVar != null) {
-            doComboSession(tmpcurSessionGlobalVar);
-        } else {
-            //scratch fuckers.
-            curSessionGlobalVar.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
-            renderAfterlifeURL();
-            //renderScratchButton(curSessionGlobalVar);
-        }
-    }
 
-    void doComboSession(Session tmpcurSessionGlobalVar) {
-        int id = curSessionGlobalVar.session_id;
-        if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
-        curSessionGlobalVar = tmpcurSessionGlobalVar;
-        //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-        List<Player> living = findLiving(curSessionGlobalVar.aliensClonedOnArrival);
-        if(living.isEmpty) {
-            appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
-        }else {
-            appendHtml(SimController.instance.storyElement, "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
-        }
-        checkSGRUB();
-        if(curSessionGlobalVar.mutator.spaceField) {
-            window.scrollTo(0, 0);
-            //querySelector("#charSheets").setInnerHtml(""); //don't do query selector shit anymore for speed reasons.
-            SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
-        }
 
-        //TODO test that this works.
-        if(id == 4037) {
-            window.alert("Who is Shogun???");
-            curSessionGlobalVar.session_id = 13;
-        }
-        if(id ==612) curSessionGlobalVar.session_id = 413;
 
-        SimController.instance.startSession(true);
-        //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
-    }
-
-    void reckoning() {
-        ////
-        Scene s = new Reckoning(curSessionGlobalVar);
-        s.trigger(curSessionGlobalVar.players);
-        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
-        if (!curSessionGlobalVar.stats.doomedTimeline) {
-            reckoningTick();
-        } else {
-            renderAfterlifeURL();
-        }
-    }
-
-    void reckoningTick([num time]) {
-        ////
-        if (curSessionGlobalVar.timeTillReckoning > -10) {
-            curSessionGlobalVar.timeTillReckoning += -1;
-            curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-            this.gatherStats();
-            window.requestAnimationFrame(reckoningTick);
-            //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
-        } else {
-            Scene s = new Aftermath(curSessionGlobalVar);
-            s.trigger(curSessionGlobalVar.players);
-            s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(), true));
-            if (curSessionGlobalVar.stats.makeCombinedSession == true) {
-                processCombinedSession(); //make sure everything is done rendering first
-            } else {
-                renderAfterlifeURL();
-            }
-            this.gatherStats();
-        }
-    }
 
     void recoverFromCorruption() {
         if(curSessionGlobalVar != null) curSessionGlobalVar.mutator.renderEndButtons(SimController.instance.storyElement);
@@ -251,9 +118,6 @@ abstract class SimController {
         //
     }
 
-    void reinit() {
-        curSessionGlobalVar.reinit();
-    }
 
     void renderScratchButton(Session session) {
         Player timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
@@ -291,19 +155,7 @@ abstract class SimController {
         }
     }
 
-    Future<Null> restartSession() async {
-        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
-        window.scrollTo(0, 0);
-        await (easterEggCallBackRestart);
-        easterEggCallBackRestart();
-    }
 
-    Future<Null> restartSessionScratch() async {
-        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
-        window.scrollTo(0, 0);
-        await checkEasterEgg();
-        easterEggCallBackRestartScratch();
-    }
 
     void shareableURL() {
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
@@ -312,42 +164,6 @@ abstract class SimController {
         setHtml(querySelector("#seedText"), str);
 
         SimController.instance.storyElement.appendHtml("Session: $initial_seed", treeSanitizer: NodeTreeSanitizer.trusted);
-    }
-
-    //taking ina  bool means if i want to start a session that is already set up i can
-    Future<Null> startSession([bool keepSession = false]) async {
-        globalInit(); // initialise classes and aspects if necessary
-        if(!keepSession)curSessionGlobalVar = new Session(initial_seed);
-        changeCanonState(getParameterByName("canonState",null));
-        reinit();
-        if(!keepSession) {
-            curSessionGlobalVar.makePlayers();
-            curSessionGlobalVar.randomizeEntryOrder();
-            curSessionGlobalVar.makeGuardians(); //after entry order established
-        }
-        //we await this because of the fan ocs being loaded from file like assholes.
-        await checkEasterEgg();
-        easterEggCallBack();
-    }
-    
-    void tick([num time]) {
-        curSessionGlobalVar.numTicks ++;
-        //
-        ////
-        //don't start  a reckoning until at least one person has been to the battlefield.
-        //if everyone is dead, you can end. no more infinite jack sessions
-        int maxScenes = 1000; //don't go forever, dunkass
-        if((curSessionGlobalVar.canReckoning || curSessionGlobalVar.numTicks > maxTicks ||  findLiving(curSessionGlobalVar.players).isEmpty ) && curSessionGlobalVar.timeTillReckoning <= 0) {
-           curSessionGlobalVar.logger.info("reckoning at ${curSessionGlobalVar.timeTillReckoning} and can reckoning is ${curSessionGlobalVar.canReckoning}");
-            curSessionGlobalVar.timeTillReckoning = 0; //might have gotten negative while we wait.
-            reckoning();
-        }else if (!curSessionGlobalVar.stats.doomedTimeline) {
-            curSessionGlobalVar.timeTillReckoning += -1;
-            curSessionGlobalVar.processScenes(curSessionGlobalVar.players);
-            this.gatherStats();
-            window.requestAnimationFrame(tick);
-        }
-        //if we are doomed, we crashed, so don't do anything.
     }
 
 
