@@ -12,7 +12,22 @@ class DeadSimController extends SimController {
 
 
 
+  @override
+  void easterEggCallBack() {
+    DeadSession ds = (curSessionGlobalVar as DeadSession);
+    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
+    //has to happen here cuz initializePlayers can wipe out relationships.
+    ds.players[0].deriveLand = false;
+    //ds.players[0].relationships.add(new Relationship(ds.players[0], -999, ds.metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
+    //ds.metaPlayer.relationships.add(new Relationship(ds.metaPlayer, -999, ds.players[0])); //if you need to talk to anyone, talk to metaplayer.
 
+    checkSGRUB();
+    if (doNotRender == true) {
+      curSessionGlobalVar.intro();
+    } else {
+      load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
+    }
+  }
 
   @override
   void shareableURL() {

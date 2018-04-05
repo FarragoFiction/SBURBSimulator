@@ -40,7 +40,7 @@ void main() {
   }
 
   SimController.instance.shareableURL();
-  curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+  curSessionGlobalVar = new DeadSession(SimController.instance.initial_seed);
   curSessionGlobalVar.startSession();
 }
 
