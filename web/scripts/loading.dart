@@ -1,5 +1,5 @@
 import "dart:html";
-
+import "dart:async";
 import "SBURBSim.dart";
 
 num imagesWaiting = 0;
@@ -59,7 +59,7 @@ dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
 
 
 
-dynamic loadAllImagesForPlayers(List<Player> players, List<Player> guardians, String skipInit){
+Future<Null> loadAllImagesForPlayers(List<Player> players, List<Player> guardians, String skipInit) async{
 	if(doNotRender == true) return checkDone(skipInit);
 	num numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.

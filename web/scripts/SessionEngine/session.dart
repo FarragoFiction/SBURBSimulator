@@ -462,10 +462,10 @@ class Session {
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
-    void callNextIntro(int player_index) {
+    Future<Null> callNextIntro(int player_index) async{
 
         if (player_index >= this.players.length) {
-            tick(); //NOW start ticking
+            await tick(); //NOW start ticking
             return;
         }
         IntroNew s = new IntroNew(this);
@@ -480,12 +480,12 @@ class Session {
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
         SimController.instance.gatherStats();
-        window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
+        await window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
 
 
-    void intro() {
+    Future<Null> intro() async {
         //
         SimController.instance.initGatherStats();
 
@@ -501,16 +501,16 @@ class Session {
         }
 
         appendHtml(SimController.instance.storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
-        callNextIntro(0);
+        await callNextIntro(0);
     }
 
-    void processCombinedSession() {
+    Future<Null> processCombinedSession() async {
         if(this.mutator.spaceField) {
             return; //you will do combo a different route.
         }
         Session tmpcurSessionGlobalVar = this.initializeCombinedSession();
         if (tmpcurSessionGlobalVar != null) {
-            doComboSession(tmpcurSessionGlobalVar);
+            await doComboSession(tmpcurSessionGlobalVar);
         } else {
             //scratch fuckers.
             this.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
@@ -519,7 +519,7 @@ class Session {
         }
     }
 
-    void doComboSession(Session tmpcurSessionGlobalVar) {
+    Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
         int id = this.session_id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -543,7 +543,7 @@ class Session {
         }
         if(id ==612) this.session_id = 413;
 
-        tmpcurSessionGlobalVar.startSession();
+        await tmpcurSessionGlobalVar.startSession();
         //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
     }
 
@@ -581,13 +581,13 @@ class Session {
 
 
 
-    void reckoning() {
+    Future<Null> reckoning() async {
         ////
         Scene s = new Reckoning(this);
         s.trigger(this.players);
         s.renderContent(this.newScene(s.runtimeType.toString(),));
         if (!this.stats.doomedTimeline) {
-            reckoningTick();
+            await reckoningTick();
         } else {
             renderAfterlifeURL();
         }
@@ -607,20 +607,20 @@ class Session {
         SimController.instance.easterEggCallBackRestartScratch();
     }
 
-    void reckoningTick([num time]) {
+    Future<Null> reckoningTick([num time]) async {
         ////
         if (this.timeTillReckoning > -10) {
             this.timeTillReckoning += -1;
             this.processReckoning(this.players);
             SimController.instance.gatherStats();
-            window.requestAnimationFrame(reckoningTick);
+            await window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
             Scene s = new Aftermath(this);
             s.trigger(this.players);
             s.renderContent(this.newScene(s.runtimeType.toString(), true));
             if (this.stats.makeCombinedSession == true) {
-                processCombinedSession(); //make sure everything is done rendering first
+                await processCombinedSession(); //make sure everything is done rendering first
             } else {
                 renderAfterlifeURL();
             }
@@ -908,7 +908,7 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    void startSession() {
+    Future<Null> startSession() async {
         print("session is starting");
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(getParameterByName("canonState",null));
@@ -919,12 +919,12 @@ class Session {
 
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg();
-        SimController.instance.easterEggCallBack();
+        await SimController.instance.easterEggCallBack();
         print("print i think the session is definitely done");
 
     }
 
-    void tick([num time]) {
+    Future<Null> tick([num time]) async{
         this.numTicks ++;
         //
         ////
@@ -934,12 +934,12 @@ class Session {
         if((this.canReckoning || this.numTicks > SimController.instance.maxTicks ||  findLiving(this.players).isEmpty ) && this.timeTillReckoning <= 0) {
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
-            reckoning();
+            await reckoning();
         }else if (!this.stats.doomedTimeline) {
             this.timeTillReckoning += -1;
             this.processScenes(this.players);
             SimController.instance.gatherStats();
-            window.requestAnimationFrame(tick);
+            await window.requestAnimationFrame(tick);
         }
         //if we are doomed, we crashed, so don't do anything.
     }

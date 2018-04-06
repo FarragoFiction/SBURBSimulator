@@ -122,7 +122,7 @@ class DeadSession extends Session {
 
 
     @override
-    void doComboSession(Session tmpcurSessionGlobalVar) {
+    Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
         int id = curSessionGlobalVar.session_id;
 
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
@@ -153,7 +153,7 @@ class DeadSession extends Session {
         }
         if(id ==612) this.session_id = 413;
 
-        tmpcurSessionGlobalVar.startSession();
+        await tmpcurSessionGlobalVar.startSession();
     }
 
 
@@ -194,7 +194,7 @@ class DeadSession extends Session {
     }
 
     @override
-    void reckoning() {
+    Future<Null> reckoning() async{
         ////
         Scene s = new DeadReckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
@@ -203,22 +203,22 @@ class DeadSession extends Session {
     }
 
     @override
-    void processCombinedSession() {
+    Future<Null> processCombinedSession() async{
         //guaranteed to make one since it's a dead session
         this.players[0].relationships.clear(); //forgot about that annoying voice in your head.
         Session tmpcurSessionGlobalVar = this.initializeCombinedSession();
         SimController.instance = null;
         new StoryController();
-        doComboSession(tmpcurSessionGlobalVar);
+        await doComboSession(tmpcurSessionGlobalVar);
 
     }
 
 
     @override
-    void callNextIntro(int player_index) {
+    Future<Null> callNextIntro(int player_index) async{
 
         if (player_index >= this.players.length) {
-            tick(); //NOW start ticking
+            await tick(); //NOW start ticking
             return;
         }
         DeadIntro s = new DeadIntro(this);
@@ -231,7 +231,7 @@ class DeadSession extends Session {
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
         SimController.instance.gatherStats();
-        tick();
+        await tick();
     }
 
     void makeThemes() {
