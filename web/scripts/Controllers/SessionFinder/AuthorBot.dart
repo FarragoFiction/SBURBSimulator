@@ -26,7 +26,7 @@ abstract class AuthorBot extends SimController {
 
   }
 
-  void checkSessions() {
+  Future<Null> checkSessions() async {
     numSimulationsDone = 0; //but don't reset stats
     sessionSummariesDisplayed = [];
     for(num i = 0; i<allSessionsSummaries.length; i++){
@@ -36,7 +36,8 @@ abstract class AuthorBot extends SimController {
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-    curSessionGlobalVar.startSession();
+    await curSessionGlobalVar.startSession();
+    print("I think the session stopped!");
   }
 
 

@@ -908,7 +908,7 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Null> startSession() async {
+    void startSession() {
         print("session is starting");
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(getParameterByName("canonState",null));
@@ -918,8 +918,10 @@ class Session {
         this.makeGuardians(); //after entry order established
 
         //we await this because of the fan ocs being loaded from file like assholes.
-        await checkEasterEgg();
+        checkEasterEgg();
         SimController.instance.easterEggCallBack();
+        print("print i think the session is definitely done");
+
     }
 
     void tick([num time]) {

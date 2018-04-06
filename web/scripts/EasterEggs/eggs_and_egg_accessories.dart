@@ -79,7 +79,7 @@ void sbahjMode(){
 
 
 // 4/4/18 i'm trying to make this async instead of callback based so that AB will be saner.
- Future<Null> checkEasterEgg() async{  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
+ void checkEasterEgg(){  //only yellow yard session uses 'that' because it needs to get back to the session context after doing easter egg.
 	//authorMessage();
 	//i cannot resist
 	//easter egg ^_^
@@ -168,7 +168,8 @@ void sbahjMode(){
 	if(getParameterByName("selfInsertOC",null)  == "true"){
 		//;
 		// call a method, method will determine what other params exist, like reddit=true and shit.;
-		await processFanOCs();
+		window.alert("Uh. Long story short, JR took this functionality out to make AB saner. Maybe it will work again soon. Maybe.");
+		//await processFanOCs();
 	}
 
 	//not an else if because this OVERIDES other easter egg sessions. but called here and not where other params are 'cause needs to have session initialized first.
