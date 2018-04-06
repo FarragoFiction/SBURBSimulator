@@ -12,6 +12,8 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+    Completer<Session> _completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
+
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
     Logger logger = null;
@@ -908,7 +910,7 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Null> startSession() async {
+    Future<Session> startSession() async {
         print("session is starting");
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(getParameterByName("canonState",null));
@@ -920,8 +922,12 @@ class Session {
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg();
         await SimController.instance.easterEggCallBack();
-        print("print i think the session is definitely done");
 
+        return _completer.future;
+    }
+
+    void simulationComplete() {
+        this._completer.complete(this);
     }
 
     Future<Null> tick([num time]) async{
