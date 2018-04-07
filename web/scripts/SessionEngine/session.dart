@@ -516,6 +516,7 @@ class Session {
         } else {
             //scratch fuckers.
             this.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
+            simulationComplete();
             renderAfterlifeURL();
             //renderScratchButton(this);
         }
@@ -591,6 +592,7 @@ class Session {
         if (!this.stats.doomedTimeline) {
             await reckoningTick();
         } else {
+            simulationComplete();
             renderAfterlifeURL();
         }
     }
