@@ -161,7 +161,7 @@ class DeadSession extends Session {
 
 
     @override
-    Future<Null> startSession() async {
+    Future<Session> startSession() async {
         globalInit(); // initialise classes and aspects if necessary
 
         // //
