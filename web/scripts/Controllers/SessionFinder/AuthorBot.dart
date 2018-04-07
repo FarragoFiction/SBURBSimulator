@@ -36,8 +36,13 @@ abstract class AuthorBot extends SimController {
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    await startSessionThenSummarize();
+  }
+
+  Future<Null> startSessionThenSummarize() async{
     await curSessionGlobalVar.startSession();
     print("I think the session stopped!");
+    summarizeSession(curSessionGlobalVar);
   }
 
 

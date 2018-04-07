@@ -32,7 +32,7 @@ abstract class DeadAuthorBot extends DeadSimController {
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-    curSessionGlobalVar.startSession();
+    startSessionThenSummarize();
   }
 
 
@@ -59,6 +59,12 @@ abstract class DeadAuthorBot extends DeadSimController {
     }else{
       load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
     }
+  }
+
+  Future<Null> startSessionThenSummarize() async{
+    await curSessionGlobalVar.startSession();
+    print("I think the session stopped!");
+    summarizeSession(curSessionGlobalVar);
   }
 
   @override

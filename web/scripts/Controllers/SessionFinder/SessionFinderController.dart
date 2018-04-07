@@ -284,7 +284,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t){
         curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-        curSessionGlobalVar.startSession();
+        startSessionThenSummarize();
       });
     }
     ////;
