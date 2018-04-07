@@ -929,6 +929,7 @@ class Session {
     }
 
     void simulationComplete() {
+        logger.info("session complete");
         this._completer.complete(this);
     }
 
