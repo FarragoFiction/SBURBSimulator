@@ -256,7 +256,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void recoverFromCorruption() {
-    ;
+    curSessionGlobalVar.simulationComplete();
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 

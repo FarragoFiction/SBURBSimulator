@@ -232,6 +232,7 @@ bool printCorruptionMessage(ErrorEvent e) {
     //;
     SimController.instance.recoverFromCorruption();
     appendHtml(story,"<h1>IT BEGINS TO DAWN ON YOU. THAT EVERYTHING YOU JUST DID. MAY HAVE BEEN A COLOSSAL WASTE OF TIME. </h1>");
+    curSessionGlobalVar.simulationComplete();
     return false; //if i return true here, the real error doesn't show up;
 }
 
