@@ -43,6 +43,7 @@ abstract class AuthorBot extends SimController {
     await curSessionGlobalVar.startSession();
     print("I think the session stopped!");
     summarizeSession(curSessionGlobalVar);
+    print("I think i summarized the session!");
   }
 
 

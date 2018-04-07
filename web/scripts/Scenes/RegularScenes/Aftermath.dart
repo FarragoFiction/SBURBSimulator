@@ -305,8 +305,11 @@ class Aftermath extends Scene {
         if (yellowYard == true || this.session.janusReward) {
             this.yellowLawnRing(div); //can still scratch, even if yellow lawn ring is available
         }
-
         session.mutator.renderEndButtons(div, session);
+        //i'll do a different end point check in that case
+        if(!session.stats.makeCombinedSession) {
+            session.simulationComplete();
+        }
         return null;
     }
 
