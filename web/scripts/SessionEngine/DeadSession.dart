@@ -10,6 +10,9 @@ import 'dart:async';
 import 'dart:html';
 //only one player, player has no sprite, player has DeadLand, and session has 16 (or less) subLands.
 class DeadSession extends Session {
+
+    Completer<Session> _completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
+
     @override
     bool canReckoning = true; // dead sessions can ALWAYS run out of time.
 
@@ -174,6 +177,8 @@ class DeadSession extends Session {
 
         checkEasterEgg();
         easterEggCallBack();
+        return _completer.future;
+
     }
 
     @override

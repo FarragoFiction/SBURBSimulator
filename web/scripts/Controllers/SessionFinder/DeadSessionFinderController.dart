@@ -262,6 +262,7 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
       (querySelector("#button")as ButtonElement).disabled =false;
      // //;
       stopTime = new DateTime.now();
+      if(mvp == null)       getMVP();
       appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>");
       mvp = null; //reset.
       window.alert("Notice: should be ready to check more sessions.");
