@@ -308,7 +308,7 @@ class Aftermath extends Scene {
         session.mutator.renderEndButtons(div, session);
         //i'll do a different end point check in that case
         if(!session.stats.makeCombinedSession) {
-            session.simulationComplete();
+            session.simulationComplete("Aftermath, not eligible for a combo.");
         }
         return null;
     }

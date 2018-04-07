@@ -51,7 +51,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void checkSGRUB() {
-    throw "ab does not do this";
+    //throw "ab does not do this";
   }
 
 
@@ -262,7 +262,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void recoverFromCorruption() {
-    curSessionGlobalVar.simulationComplete();
+    curSessionGlobalVar.simulationComplete("Crashed in AB");
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 

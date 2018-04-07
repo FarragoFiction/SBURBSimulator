@@ -20,6 +20,7 @@ void main() {
 void listTodos() {
     todo("load all the sessions AB has cached for ShogunBot. shuffle them, print them out.");
     todo("for each session, simulate it, print out if it differs from cache or 'SANITY CONFIRMED'.");
+    todo("definitely compare crash stats between cache and simulated");
 }
 
 void drawCache() {

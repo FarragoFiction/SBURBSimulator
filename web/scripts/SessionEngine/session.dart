@@ -516,7 +516,7 @@ class Session {
         } else {
             //scratch fuckers.
             this.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
-            simulationComplete();
+            simulationComplete("Was eligible for a combo but it didn't have room.");
             renderAfterlifeURL();
             //renderScratchButton(this);
         }
@@ -592,7 +592,7 @@ class Session {
         if (!this.stats.doomedTimeline) {
             await reckoningTick();
         } else {
-            simulationComplete();
+            simulationComplete("the reckoning doomed the timeline");
             renderAfterlifeURL();
         }
     }
@@ -928,8 +928,8 @@ class Session {
         return _completer.future;
     }
 
-    void simulationComplete() {
-        logger.info("session complete");
+    void simulationComplete(String ending) {
+        logger.info("session complete from $ending");
         this._completer.complete(this);
     }
 

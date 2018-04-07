@@ -31,7 +31,7 @@ abstract class DeadAuthorBot extends DeadSimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
-    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
+    curSessionGlobalVar = new DeadSession(SimController.instance.initial_seed);
     startSessionThenSummarize();
   }
 
@@ -42,7 +42,7 @@ abstract class DeadAuthorBot extends DeadSimController {
 
   @override
   void checkSGRUB() {
-    throw "ab does not do this";
+    //throw "ab does not do this";
   }
 
 

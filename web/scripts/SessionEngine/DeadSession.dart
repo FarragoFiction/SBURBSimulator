@@ -199,6 +199,7 @@ class DeadSession extends Session {
         Scene s = new DeadReckoning(curSessionGlobalVar);
         s.trigger(curSessionGlobalVar.players);
         s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
+        simulationComplete("Dead Reckoning.");
         renderAfterlifeURL();
     }
 
