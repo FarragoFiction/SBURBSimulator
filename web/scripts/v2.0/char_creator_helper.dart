@@ -17,19 +17,19 @@ class CharacterCreatorHelper {
         div = querySelector("#character_creator");
     }
 
-    void drawAllPlayers() {
+    void drawAllPlayers(Session session) {
         bloodColors.add("#ff0000"); //for humans
         for (int i = 0; i < this.players.length; i++) {
-            this.drawSinglePlayerForHelper(this.players[i]);
+            this.drawSinglePlayerForHelper(session, this.players[i]);
         }
     }
 
-    void draw12PlayerSummaries() {
+    void draw12PlayerSummaries(Session session) {
         int start = this.player_index;
         int num_at_a_time = 12;
         for (int i = start; i < start + num_at_a_time; i++) {
             if (this.players.length > i) {
-                this.drawSinglePlayerSummary(this.players[i]);
+                this.drawSinglePlayerSummary(session, this.players[i]);
                 this.player_index++; //okay to mod this in the loop because only initial i value relies on it.
             } else {
                 //no more players.
@@ -39,7 +39,7 @@ class CharacterCreatorHelper {
         }
     }
 
-    void drawSinglePlayerSummary(Player player) {
+    void drawSinglePlayerSummary(Session session, Player player) {
         ////print("drawing: " + player.title());
         String str =
             "<div class='standAloneSummary' id='createdCharacter${player.id}'>";
@@ -53,19 +53,19 @@ class CharacterCreatorHelper {
         this.createSummaryOnCanvas(player);
         show(querySelector(
             "#canvasSummary${player.id}")); //unlike char creator, always show
-        this.wireUpDataBox(player);
+        this.wireUpDataBox(session,player);
     }
 
     //TODO why the fuck did this have the same name as a handle_sprites function?
-    void drawSinglePlayerForHelper(Player player) {
+    void drawSinglePlayerForHelper(Session session, Player player) {
         //print("drawing: " + player.title());
         String str = "";
         String divId = player.id.toString();
-        if (curSessionGlobalVar.session_id != 612 &&
-            curSessionGlobalVar.session_id != 613 &&
-            curSessionGlobalVar.session_id != 413 &&
-            curSessionGlobalVar.session_id != 1025 &&
-            curSessionGlobalVar.session_id != 111111) player.chatHandle = "";
+        if (session.session_id != 612 &&
+            session.session_id != 613 &&
+            session.session_id != 413 &&
+            session.session_id != 1025 &&
+            session.session_id != 111111) player.chatHandle = "";
         //divId = divId.replace(new RegExp(r"""\s+""", multiLine:true), '');
         str += "<div class='createdCharacter' id='createdCharacter${player.id}'>";
         str += "<canvas class = 'createdCharacterCanvas' id='canvas" +
@@ -104,12 +104,12 @@ class CharacterCreatorHelper {
         Drawing.drawSpriteFromScratch(p1SpriteBuffer, player);
         //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer, 0, 0);
-        this.wireUpTabs(player);
+        this.wireUpTabs(session,player);
         this.wireUpPlayerDropDowns(player);
         this.wireUpTextBoxes(player);
         this.wireUpCheckBoxes(player);
         this.createSummaryOnCanvas(player);
-        this.wireUpDataBox(player);
+        this.wireUpDataBox(session,player);
         this.syncPlayerToFields(player);
     }
 
@@ -502,7 +502,7 @@ class CharacterCreatorHelper {
         return "Class help text not found for " + specific + ".";
     }
 
-    void wireUpDataBox(Player player) {
+    void wireUpDataBox(Session session, Player player) {
         this.writePlayerToDataBox(player);
         ButtonElement copyButton = querySelector("#copyButton${player.id}");
         ButtonElement loadButton = querySelector("#loadButton${player.id}");
@@ -528,11 +528,11 @@ class CharacterCreatorHelper {
                 //;
                 //;
 
-                List<Player> players = dataBytesAndStringsToPlayers(curSessionGlobalVar,b, s, x); //technically an array of one players.;
+                List<Player> players = dataBytesAndStringsToPlayers(session,b, s, x); //technically an array of one players.;
                 //print("Player class name: " + players[0].class_name.name);
 
                 player.copyFromPlayer(players[0]);
-                player.session = curSessionGlobalVar;
+                player.session = session;
                 player.syncToSessionMoon();
                 that.redrawSinglePlayer(player);
                 //should have had wireUp methods to the fields to begin with. looks like I gotta pay for pastJR's mistakes.
@@ -728,7 +728,7 @@ class CharacterCreatorHelper {
         });
     }
 
-    void wireUpTabs(Player player) {
+    void wireUpTabs(Session session, Player player) {
         Element ddTab = querySelector("#ddTab${player.id}");
         Element cbTab = querySelector("#cbTab${player.id}");
         Element tbTab = querySelector("#tbTab${player.id}");
@@ -748,7 +748,7 @@ class CharacterCreatorHelper {
             var monster = window.confirm("Delete player? (You monster)");
             if (monster) {
                 hide(querySelector("#createdCharacter${player.id}"));
-                removeFromArray(player, curSessionGlobalVar.players);
+                removeFromArray(player, session.players);
             }
         });
         ddTab.onClick.listen((Event e) {
