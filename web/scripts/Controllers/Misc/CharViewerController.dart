@@ -19,6 +19,7 @@ void main()
   new CharViewerController();
   self = SimController.instance;
   globalInit();
+  curSessionGlobalVar = new Session(SimController.instance.initial_seed);
   self.renderHeader();
   var params = window.location.href.substring(window.location.href.indexOf("?")+1);
   if (params == window.location.href) params = "";
