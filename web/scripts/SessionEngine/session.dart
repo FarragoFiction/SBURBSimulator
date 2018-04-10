@@ -12,7 +12,7 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
-    Completer<Session> _completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
+    Completer<Session> completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
 
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
@@ -925,12 +925,12 @@ class Session {
         checkEasterEgg();
         await SimController.instance.easterEggCallBack();
 
-        return _completer.future;
+        return completer.future;
     }
 
     void simulationComplete(String ending) {
         logger.info("session complete from $ending");
-        this._completer.complete(this);
+        this.completer.complete(this);
     }
 
     Future<Null> tick([num time]) async{
