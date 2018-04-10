@@ -9,6 +9,8 @@ MysteryController self; //want to access myself as more than just a sim controll
 void main() {
   doNotRender = true;
   rand = new Random();
+  globalInit();
+
   querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
   querySelector("#pwButton").onClick.listen((e) => self.checkPassword());
   window.onError.listen((Event event){
@@ -92,7 +94,7 @@ class MysteryController extends AuthorBot {
 
 
 
-  void checkPassword(){
+  Future<Null> checkPassword() async{
     ////;
     numSimulationsDone = 0; //but don't reset stats
     sessionSummariesDisplayed = [];
@@ -107,7 +109,7 @@ class MysteryController extends AuthorBot {
       window.alert("Hrrrm...let me think about it.");
       initial_seed = tmp;
       curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-      curSessionGlobalVar.startSession();
+      startSessionThenSummarize();
     }
   }
 
