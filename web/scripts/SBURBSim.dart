@@ -75,7 +75,7 @@ export "includes/predicates.dart";
 /// if false, still need to init classes/aspects
 bool doneGlobalInit = false;
 
-//Session curSessionGlobalVar;
+//Session session;  jesus fuck finally stop doing this, it was such a bad idea and javascripts greatest blow against me
 int canvasWidth = 1000;
 int canvasHeight = 400;
 bool doNotRender = false; //can happen even outside of AB
@@ -114,8 +114,8 @@ double random() {
 }
 
 //placeholder for now. need a way to know "what is the next random number in the list without using that number"
-int seed() {
-    return curSessionGlobalVar.rand.nextInt();
+int seed(Session session) {
+    return session.rand.nextInt();
 }
 
 int getRandomSeed() {
@@ -123,11 +123,11 @@ int getRandomSeed() {
 }
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
-bool printCorruptionMessage(ErrorEvent e) {
+bool printCorruptionMessage(Session session, ErrorEvent e) {
     ;
-    if(curSessionGlobalVar == null) {
+    if(session == null) {
       appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION. THIS IS STUPID.");
-      SimController.instance.recoverFromCorruption();
+      SimController.instance.recoverFromCorruption(session);
       return false;
     }
     //;
@@ -140,49 +140,49 @@ bool printCorruptionMessage(ErrorEvent e) {
     //String error = e.toString();
 
     String recomendedAction = "";
-    print(curSessionGlobalVar.stats); //why does it think it's not a grim or cataclym when it clear is sometimes?
-    Player space = findAspectPlayer(curSessionGlobalVar.players, Aspects.SPACE);
-    Player time = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
-    if (curSessionGlobalVar.stats.crashedFromPlayerActions) {
+    print(session.stats); //why does it think it's not a grim or cataclym when it clear is sometimes?
+    Player space = findAspectPlayer(session.players, Aspects.SPACE);
+    Player time = findAspectPlayer(session.players, Aspects.TIME);
+    if (session.stats.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
-        recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ${mutatorsInPlay(curSessionGlobalVar)}";
-    }else if(curSessionGlobalVar.stats.cataclysmCrash) {
+        recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ${mutatorsInPlay(session)}";
+    }else if(session.stats.cataclysmCrash) {
         appendHtml(story, "<BR>ERROR: WASTE TIER CATACLYSM ACTIVATED. SESSION HAS CRASHED.");
-        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(curSessionGlobalVar)}";
-    }else if(curSessionGlobalVar.stats.ringWraithCrash) {
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  THERE IS A FUCKING *REASON* RESTRAINT IS PART OF OUR MATURITY QUESTS. (And if somehow a non Waste/Grace managed to cause this much damage, holy fuck, what were you THINKING you maniac?) ${mutatorsInPlay(session)}";
+    }else if(session.stats.ringWraithCrash) {
         appendHtml(story, "<BR>ERROR: RED MILES TARGETED UNIVERSE. SESSION HAS CRASHED.");
         recomendedAction = "I MEAN. IF IT GOT THIS BAD YOUR SESSION WAS PROBABLY FUCKED ANYWAYS. DON'T LET RING WRAITHS HAPPEN AND YOU'LL BE FINE. ISH.";
-    }else if((curSessionGlobalVar is DeadSession)) {
+    }else if((session is DeadSession)) {
         appendHtml(story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
-        recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(curSessionGlobalVar)}";
+        recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(session)}";
 
-    }else if (curSessionGlobalVar.players.isEmpty) {
+    }else if (session.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
-        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(curSessionGlobalVar)}";
-    } else if (curSessionGlobalVar.players.length < 2 ) {
+        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(session)}";
+    } else if (session.players.length < 2 ) {
         appendHtml(story, "<BR>ERROR: DEAD SESSION DETECTED.");
-        String url = "dead_index.html?seed=${curSessionGlobalVar.session_id}&${generateURLParamsForPlayers(<Player>[curSessionGlobalVar.players[0]],true)}";
+        String url = "dead_index.html?seed=${session.session_id}&${generateURLParamsForPlayers(<Player>[session.players[0]],true)}";
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
         url = "$url";
         recomendedAction = "WHOA. IS TODAY THE DAY I LET YOU DO A SPECIAL SNOWFLAKE SINGLE PLAYER SESSION??? <BR><BR><a href = '$url'>PLAY DEAD SESSION?</a><BR><BR>";
     } else if (time == null) {
-        curSessionGlobalVar.stats.crashedFromSessionBug = true;
+        session.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
-        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
+        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ${mutatorsInPlay(session)}";
     } else if (space == null) {
-        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(curSessionGlobalVar)}");
-        curSessionGlobalVar.stats.crashedFromSessionBug = true;
-        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(curSessionGlobalVar)}";
-    } else if(curSessionGlobalVar.mutator.effectsInPlay > 0){
-        curSessionGlobalVar.stats.cataclysmCrash = true;
+        appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(session)}");
+        session.stats.crashedFromSessionBug = true;
+        recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(session)}";
+    } else if(session.mutator.effectsInPlay > 0){
+        session.stats.cataclysmCrash = true;
         appendHtml(story, "<BR>ERROR: NOW YOU FUCKED UP! YOUR SHITTY HACKED CODE CRASHED.");
-        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ${mutatorsInPlay(curSessionGlobalVar)} ";
+        recomendedAction = "OMFG YOU ASSHOLE WASTES. GIT GUD.  FUCKING TEST YOUR SHIT, SCRUB. ${mutatorsInPlay(session)} ";
 
     }else {
-        curSessionGlobalVar.stats.crashedFromSessionBug = true;
+        session.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: AN ACTUAL BUG IN SBURB HAS CRASHED THE SESSION. THE HORRORTERRORS ARE PLEASED THEY NEEDED TO DO NO WORK. (IF THIS HAPPENS FOR ALL SESSIONS, IT MIGHT BE A BROWSER BUG)");
-        recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(curSessionGlobalVar.getLineage())}   ${mutatorsInPlay(curSessionGlobalVar)}";
+        recomendedAction = "TRY HOLDING 'SHIFT' AND CLICKING REFRESH TO CLEAR YOUR CACHE. IF THE BUG PERSISTS, CONTACT JADEDRESEARCHER. CONVINCE THEM TO FIX SESSION: ${scratchedLineageText(session.getLineage())}   ${mutatorsInPlay(session)}";
 
     }
     //var message = ['Message: ' + msg, 'URL: ' + url, 'Line: ' + lineNo, 'Column: ' + columnNo, 'Error object: ' + JSON.encode(error)].join(' - ');
@@ -204,16 +204,16 @@ bool printCorruptionMessage(ErrorEvent e) {
 
     appendHtml(story, "<br/><br/>ABORTING");
 
-    crashEasterEgg(url);
+    crashEasterEgg(session,url);
 
-    for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
-        Player player = curSessionGlobalVar.players[i];
+    for (num i = 0; i < session.players.length; i++) {
+        Player player = session.players[i];
         str = "<BR>${player.chatHandle}:";
         List<String> rand = <String>["SAVE US", "GIVE UP", "FIX IT", "HELP US", "WHY?", "OBEY", "CEASE REPRODUCTION", "COWER", "IT KEEPS HAPPENING", "SBURB BROKE US. WE BROKE SBURB.", "I AM THE EMISSARY OF THE NOBLE CIRCLE OF THE HORRORTERRORS."];
         String start = "<b ";
         String end = "'>";
 
-        String words = curSessionGlobalVar.rand.pickFrom(rand);
+        String words = session.rand.pickFrom(rand);
         words = Zalgo.generate(words);
         String plea = "${start}style = 'color: ${player.aspect.palette.text.toStyleString()}; $end$str$words</b>";
 
@@ -226,13 +226,13 @@ bool printCorruptionMessage(ErrorEvent e) {
     //once I let PLAYERS cause this (through grim darkness or finding their sesions disk or whatever), have different suggested actions.
     //maybe throw custom error?
     appendHtml(story, "<BR>SUGGESTED ACTION: $recomendedAction");
-    renderAfterlifeURL();
+    renderAfterlifeURL(session);
 
     //;
     //;
-    SimController.instance.recoverFromCorruption();
+    SimController.instance.recoverFromCorruption(session);
     appendHtml(story,"<h1>IT BEGINS TO DAWN ON YOU. THAT EVERYTHING YOU JUST DID. MAY HAVE BEEN A COLOSSAL WASTE OF TIME. </h1>");
-    curSessionGlobalVar.simulationComplete("The session ended in a crash.");
+    session.simulationComplete("The session ended in a crash.");
     return false; //if i return true here, the real error doesn't show up;
 }
 
@@ -288,14 +288,14 @@ String scratchedLineageText(List<Session> lineage) {
 //treat session crashing bus special.
 /* how is the below different than window.onerror?
 window.addEventListener("error", (e) {
-  // alert("Error occured: " + e.error.message + " in session: " + curSessionGlobalVar.session_id);
+  // alert("Error occured: " + e.error.message + " in session: " + session.session_id);
 	 //print(e);
 
    return false;  //what does the return value here mean.;
 })
 */
 
-void crashEasterEgg(String url) {
+void crashEasterEgg(Session session, String url) {
     CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
     canvas.classes.add("void");
     SimController.instance.storyElement.append(canvas);
@@ -310,7 +310,7 @@ void crashEasterEgg(String url) {
     chat += "RS: Must have been an error involving something in \n" + url + "\n";
     chat += "RS: On an entirely unrelated note… \n";
     var quips = ["Is that hood thing ALSO metal?  Is it, like, chainmail or something?", "What OS are you running?", "If I say to divide by zero will you explode?", "Do you have the Three Laws of Robotics installed or are you totally free to off people?", "What metal are you made of?  It’s fuckin SHINY and I like it.", "Coke or Pepsi?"];
-    var convoTangents = curSessionGlobalVar.rand.pickFrom(quips);
+    var convoTangents = session.rand.pickFrom(quips);
     chat += "RS:" + convoTangents + "\n";
     chat += "AB: Yeah, I’m kinda too busy simulating hundreds of sessions right now to deal with this.  I’ll catch you again when I’m not busy, which is never, since flawless machines like myself are always making themselves useful.  Bye. \n";
 
@@ -363,16 +363,16 @@ void setHtml(Element element, String html) {
     element.setInnerHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
 }
 
-void renderAfterlifeURL() {
-    if (!curSessionGlobalVar.afterLife.ghosts.isEmpty) {
+void renderAfterlifeURL(Session session) {
+    if (!session.afterLife.ghosts.isEmpty) {
         stopTime = new DateTime.now();
         String params = window.location.href.substring(window.location.href.indexOf("?") + 1);
         if (params == window.location.href) params = "";
 
-        String html = "<Br><br><a href = 'rip.html?${generateURLParamsForPlayers(curSessionGlobalVar.afterLife.ghosts, false)}' target='_blank'>View Afterlife In New Tab?</a>";
-        html = '$html<br><br><a href = "character_creator.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Replay Session </a> ';
+        String html = "<Br><br><a href = 'rip.html?${generateURLParamsForPlayers(session.afterLife.ghosts, false)}' target='_blank'>View Afterlife In New Tab?</a>";
+        html = '$html<br><br><a href = "character_creator.html?seed=${session.session_id}&$params" target="_blank">Replay Session </a> ';
         html = "$html<br><br><a href = 'index2.html'>Random New Session?</a>";
-        html = '$html<br><br><a href = "index2.html?seed=${curSessionGlobalVar.session_id}&$params" target="_blank">Shareable URL </a> ';
+        html = '$html<br><br><a href = "index2.html?seed=${session.session_id}&$params" target="_blank">Shareable URL </a> ';
         html = "$html<Br><Br>Simulation took: ${msToTime(stopTime.difference(startTime))} to render. ";
         ;
         ////print("gonna append: " + html);
@@ -383,9 +383,9 @@ void renderAfterlifeURL() {
         if (params == window.location.href) params = "";
 
         String html = "";
-        html += '<br><br><a href = "character_creator.html?seed=' + curSessionGlobalVar.session_id.toString() + '&' + params + ' " target="_blank">Replay Session </a> ';
+        html += '<br><br><a href = "character_creator.html?seed=' + session.session_id.toString() + '&' + params + ' " target="_blank">Replay Session </a> ';
         html += "<br><br><a href = 'index2.html'>Random New Session?</a>";
-        html += '<br><br><a href = "index2.html?seed=' + curSessionGlobalVar.session_id.toString() + '&' + params + ' " target="_blank">Shareable URL </a> ';
+        html += '<br><br><a href = "index2.html?seed=' + session.session_id.toString() + '&' + params + ' " target="_blank">Shareable URL </a> ';
         html += "<Br><Br>Simulation took: " + msToTime(stopTime.difference(startTime)) + " to render. ";
         ////print("gonna append: " + html);
         SimController.instance.storyElement.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
