@@ -36,14 +36,14 @@ class CharacterEasterEggEngine {
 
 
   //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
-  Future<Null> loadArrayFromFile(arr, String file, p)async{
+  Future<Null> loadArrayFromFile(Session session, arr, String file, p)async{
    // //print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     // 4/4/18 is this a sane thing to do? instead of a 'then' should i be doing something else?
     //how does homestuck the moive do it? oh, just like this. okay then.
     await HttpRequest.getString(file).then((data) {
       parseFileContentsToArray(arr, data.trim());
-      if(p != null) return processForSim();
+      if(p != null) return processForSim(session);
     });
 
 
@@ -56,17 +56,17 @@ class CharacterEasterEggEngine {
     ////print(arr);
     ////print(this[arr]);
   }
-  void processForSim(){
-  	Random rand = curSessionGlobalVar.rand;
+  void processForSim(Session session){
+  	Random rand = session.rand;
   	//;
     var pool = this.getPoolBasedOnEggs(rand);
-    var potentials = this.playerDataStringArrayToURLFormat(pool);
+    var potentials = this.playerDataStringArrayToURLFormat(session, pool);
     List<dynamic> ret = [];
     List<Player> spacePlayers = findAllAspectPlayers(potentials, Aspects.SPACE);
     var space = rand.pickFrom(spacePlayers);
     removeFromArray(space,potentials);
     if(space == null){
-      space = randomSpacePlayer(curSessionGlobalVar);
+      space = randomSpacePlayer(session);
       space.chatHandle = "randomSpace";
       ////;
       space.quirk = new Quirk(rand);
@@ -77,7 +77,7 @@ class CharacterEasterEggEngine {
     var time = rand.pickFrom(timePlayers);
     removeFromArray(time,potentials);
     if(time == null){
-      time = randomTimePlayer(curSessionGlobalVar);
+      time = randomTimePlayer(session);
       time.chatHandle = "randomTime";
       time.quirk = new Quirk(rand);
       time.quirk.favoriteNumber = 0;
@@ -99,22 +99,22 @@ class CharacterEasterEggEngine {
       ////print(p);
       if(p.chatHandle.trim() == "") p.chatHandle = getRandomChatHandle(rand, p.class_name,p.aspect,p.interest1, p.interest2);
     }
-    curSessionGlobalVar.replayers = ret;
+    session.replayers = ret;
   }
 
-  Future<Null> loadArraysFromFile(processForSim) async {
+  Future<Null> loadArraysFromFile(Session session,bool processForSim) async {
     //too confusing trying to only load the assest i'll need. wait for now.
-    await this.loadArrayFromFile("redditCharacters","OCs/reddit.txt", processForSim);
-    await this.loadArrayFromFile("tumblrCharacters","OCs/tumblr.txt", processForSim);
-    await this.loadArrayFromFile("discordCharcters","OCs/discord.txt", processForSim);
-    await this.loadArrayFromFile("creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim);
-    await this.loadArrayFromFile("ideasWranglers","OCs/ideasWranglers.txt", processForSim);
-    await this.loadArrayFromFile("patrons","OCs/patrons.txt", processForSim);
-    await this.loadArrayFromFile("patrons2","OCs/patrons2.txt", processForSim);
-    await this.loadArrayFromFile("patrons3","OCs/patrons3.txt", processForSim);
-    await this.loadArrayFromFile("canon","OCs/canon.txt", processForSim);
-    await this.loadArrayFromFile("bards","OCs/bards.txt", processForSim);
-    await this.loadArrayFromFile("otherFandoms","OCs/otherFandoms.txt", processForSim); //last one in list has callback so I know to do next thing.
+    await this.loadArrayFromFile(session,"redditCharacters","OCs/reddit.txt", processForSim);
+    await this.loadArrayFromFile(session,"tumblrCharacters","OCs/tumblr.txt", processForSim);
+    await this.loadArrayFromFile(session,"discordCharcters","OCs/discord.txt", processForSim);
+    await this.loadArrayFromFile(session,"creditsBuckaroos","OCs/creditsBuckaroos.txt", processForSim);
+    await this.loadArrayFromFile(session,"ideasWranglers","OCs/ideasWranglers.txt", processForSim);
+    await this.loadArrayFromFile(session,"patrons","OCs/patrons.txt", processForSim);
+    await this.loadArrayFromFile(session,"patrons2","OCs/patrons2.txt", processForSim);
+    await this.loadArrayFromFile(session,"patrons3","OCs/patrons3.txt", processForSim);
+    await this.loadArrayFromFile(session,"canon","OCs/canon.txt", processForSim);
+    await this.loadArrayFromFile(session,"bards","OCs/bards.txt", processForSim);
+    await this.loadArrayFromFile(session,"otherFandoms","OCs/otherFandoms.txt", processForSim); //last one in list has callback so I know to do next thing.
   }
   dynamic getPoolBasedOnEggs(Random rand){
     //;
@@ -187,11 +187,13 @@ class CharacterEasterEggEngine {
     return shuffle(rand, pool); //boring if the same peeps are always first.
 
   }
-  List<Player> processEasterEggsViewer(Random rand){
+  List<Player> processEasterEggsViewer(Session session, Random rand){
     var pool = this.getPoolBasedOnEggs(rand);
-    return this.playerDataStringArrayToURLFormat(pool);
+    return this.playerDataStringArrayToURLFormat(session,pool);
   }
-  List<Player> playerDataStringArrayToURLFormat(List<String> playerDataStringArray){
+
+
+  List<Player> playerDataStringArrayToURLFormat(Session session, List<String> playerDataStringArray){
     List<Player> ret = new List<Player>();
     String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
     String base = window.location.href.replaceAll("?$params","");
@@ -203,7 +205,7 @@ class CharacterEasterEggEngine {
       List<String> s = Uri.encodeFull(getParameterByName("s", bs)).split(","); //these are NOT encoded in files, so make sure to encode them
       String x = (getParameterByName("x", bs));
       print ("processing fan oc, bs is $bs and b is $b and s is $s and x is: $x");
-      Player p = (dataBytesAndStringsToPlayer(curSessionGlobalVar,b,s));
+      Player p = (dataBytesAndStringsToPlayer(session,b,s));
       if(x != null) {
         ByteReader reader = new ByteReader((stringToByteArray(x).buffer), 0);
         p.readInExtensionsString(reader);
@@ -212,8 +214,8 @@ class CharacterEasterEggEngine {
     }
     return ret;
   }
-  dynamic getAllReddit(){
-    return this.playerDataStringArrayToURLFormat(this.ocs["redditCharacters"]);
+  dynamic getAllReddit(Session session,){
+    return this.playerDataStringArrayToURLFormat(session,this.ocs["redditCharacters"]);
   }
 
 
