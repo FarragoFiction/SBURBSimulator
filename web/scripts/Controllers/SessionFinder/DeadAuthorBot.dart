@@ -62,6 +62,7 @@ abstract class DeadAuthorBot extends DeadSimController {
   }
 
   Future<Null> startSessionThenSummarize() async{
+    print("starting the session sane style");
     await curSessionGlobalVar.startSession();
     print("I think the session stopped!");
     summarizeSession(curSessionGlobalVar);
@@ -118,8 +119,9 @@ abstract class DeadAuthorBot extends DeadSimController {
 
   @override
   void recoverFromCorruption() {
-    ;
+    curSessionGlobalVar.simulationComplete("Crashed in AB");
     summarizeSession(curSessionGlobalVar); //well...THAT session ended
+    //summarizeSession(curSessionGlobalVar); //well...THAT session ended
   }
 
   //this will be called once session has ended. it's up to each child to know what to do here.
