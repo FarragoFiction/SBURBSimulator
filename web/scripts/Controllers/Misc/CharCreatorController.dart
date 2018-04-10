@@ -4,7 +4,10 @@ import '../../navbar.dart';
 import '../../v2.0/char_creator_helper.dart';
 
 CharCreatorController self;
+//only one session on this page
+Session session;
 void main()
+
 {
   loadNavbar();
   window.onError.listen((Event event){
@@ -25,8 +28,8 @@ void main()
   querySelector("#buttonNotVoid").onClick.listen((Event e) => newPlayerButNotVoid());
 
   querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
-  SimController.instance.session = new Session(SimController.instance.initial_seed);
-  SimController.instance.session.startSession();
+  session = new Session(SimController.instance.initial_seed);
+  session.startSession();
   loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
 }
 
@@ -60,7 +63,7 @@ class CharCreatorController extends SimController {
 
   //don't actually start the session, but get players ready.
   @override
-  void easterEggCallBack() {
+  void easterEggCallBack(Session session) {
     initializePlayers(session.players, session);
     charCreatorHelperGlobalVar = new CharacterCreatorHelper(session.players);
 

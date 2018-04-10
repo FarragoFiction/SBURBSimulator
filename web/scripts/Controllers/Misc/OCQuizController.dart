@@ -19,7 +19,7 @@ main() {
     SimController.instance.storyElement.append(button);
 
     ocgen = new OCGeneratorQuiz(1);
-    curSessionGlobalVar =ocgen.session;
+    Session session =ocgen.session;
     button.onClick.listen((e) => ocgen.doQuests(ocgen.players.first));
 
     loadFuckingEverything("I really should stop doing this",ocgen.start );

@@ -182,13 +182,6 @@ abstract class AuthorBot extends SimController {
     needToScratch = true;
   }
 
-  @override
-  Future<Null> restartSession() async {
-    setHtml(SimController.instance.storyElement, '');
-    window.scrollTo(0, 0);
-    await checkEasterEgg();
-    easterEggCallBackRestart(session);
-  }
 
   @override
   void shareableURL() {

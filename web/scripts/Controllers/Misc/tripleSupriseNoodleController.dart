@@ -35,7 +35,7 @@ class MysteryController extends AuthorBot {
 
   @override
   void summarizeSession(Session session) {
-      checkPasswordAgainstQuip(curSessionGlobalVar.generateSummary());
+      checkPasswordAgainstQuip(session.generateSummary());
   }
 
   @override

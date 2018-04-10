@@ -698,14 +698,13 @@ class ObservatoryViewer {
         }
 
         Session session = new Session(seed)..logger.disabled = true;
-        curSessionGlobalVar = session;
         session.reinit();
         session.makePlayers();
         session.randomizeEntryOrder();
         session.makeGuardians();
 
-        await checkEasterEgg();
-        this.easterEggCallback();
+        checkEasterEgg();
+        this.easterEggCallback(session);
 
         sessionCache[seed] = session;
 
@@ -717,8 +716,8 @@ class ObservatoryViewer {
         return session;
     }
 
-    void easterEggCallback() {
-        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);
+    void easterEggCallback(Session session) {
+        initializePlayers(session.players, session);
     }
 }
 
