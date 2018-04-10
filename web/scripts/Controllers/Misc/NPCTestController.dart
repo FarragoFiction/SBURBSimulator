@@ -9,17 +9,17 @@ main() {
     globalInit();
     storyDiv = querySelector("#story");
     //curSessionGlobalVar = new Session(int.parse(todayToSession()));
-    curSessionGlobalVar = new Session(getRandomSeed());
-    curSessionGlobalVar.makePlayers();
-    curSessionGlobalVar.randomizeEntryOrder();
+    SimController.instance.session = new Session(getRandomSeed());
+    SimController.instance.session.makePlayers();
+    SimController.instance.session.randomizeEntryOrder();
 
 
 
-    Player p = curSessionGlobalVar.players.first;
+    Player p = SimController.instance.session.players.first;
     p.initialize();
-    Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
+    Consort template = p.land.consortFeature.makeConsort(SimController.instance.session);
 
-    appendHtml(storyDiv, "Carapaces are: ${curSessionGlobalVar.derse.associatedEntities} and ${curSessionGlobalVar.prospit.associatedEntities} ");
+    appendHtml(storyDiv, "Carapaces are: ${SimController.instance.session.derse.associatedEntities} and ${SimController.instance.session.prospit.associatedEntities} ");
     appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Minion:  ${p.debugStats}");
 
     List<String> leprechaunsNames = new List<String>();
@@ -36,9 +36,9 @@ main() {
 
 
 
-    for(Player p in curSessionGlobalVar.players) {
+    for(Player p in SimController.instance.session.players) {
         p.initialize();
-        Consort template = p.land.consortFeature.makeConsort(curSessionGlobalVar);
+        Consort template = p.land.consortFeature.makeConsort(SimController.instance.session);
         //
 
         appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} ${p.highestStat} ${p.lowestStat}  has land ${p.land}");

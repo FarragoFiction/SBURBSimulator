@@ -108,8 +108,9 @@ class MysteryController extends AuthorBot {
     }else{
       window.alert("Hrrrm...let me think about it.");
       initial_seed = tmp;
-      curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-      startSessionThenSummarize();
+      //don't need to keep a ref to it
+      Session session = new Session(SimController.instance.initial_seed);
+      startSessionThenSummarize(session);
     }
   }
 

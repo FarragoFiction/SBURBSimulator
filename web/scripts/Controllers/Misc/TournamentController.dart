@@ -224,8 +224,8 @@ class TournamentController extends AuthorBot {
     if(!isClassOrAspectStuck(team)) selfInsert = "&selfInsertOC=true";
     //TODO how do i get this working?
     simulatedParamsGlobalVar = team.name + "=true"+selfInsert; //which session are we checking?
-    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-    curSessionGlobalVar.startSession();  }
+    Session session = new Session(SimController.instance.initial_seed);
+    session.startSession();  }
 
   //don't add selfInsertOC to claspect stuck
   dynamic isClassOrAspectStuck(TournamentTeam team){

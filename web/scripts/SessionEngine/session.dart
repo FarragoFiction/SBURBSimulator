@@ -481,7 +481,7 @@ class Session {
         this.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
-        SimController.instance.gatherStats();
+        SimController.instance.gatherStats(this);
         await window.requestAnimationFrame((num t) => callNextIntro(player_index + 1));
     }
 
@@ -532,7 +532,7 @@ class Session {
         }else {
             appendHtml(SimController.instance.storyElement, "<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Their sick frog may have screwed them over, but the connection it provides to their child universe will equally prove to be their salvation. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session <a href = 'index2.html?seed=${this.session_id}'>${this.session_id}</a>. You are a little scared to ask them why they are bringing the corpses with them. Something about...shipping??? That can't be right.");
         }
-        SimController.instance.checkSGRUB();
+        checkSGRUB();
         if(this.mutator.spaceField) {
             window.scrollTo(0, 0);
             //querySelector("#charSheets").setInnerHtml(""); //don't do query selector shit anymore for speed reasons.
@@ -579,7 +579,7 @@ class Session {
             p.syncToSessionMoon();
         }
         await checkEasterEgg();
-        SimController.instance.scratchEasterEggCallBack();
+        SimController.instance.scratchEasterEggCallBack(this);
     }
 
 
@@ -601,14 +601,14 @@ class Session {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await (SimController.instance.easterEggCallBackRestart);
-        SimController.instance.easterEggCallBackRestart();
+        SimController.instance.easterEggCallBackRestart(this);
     }
 
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await checkEasterEgg();
-        SimController.instance.easterEggCallBackRestartScratch();
+        SimController.instance.easterEggCallBackRestartScratch(this);
     }
 
     Future<Null> reckoningTick([num time]) async {
@@ -616,7 +616,7 @@ class Session {
         if (this.timeTillReckoning > -10) {
             this.timeTillReckoning += -1;
             this.processReckoning(this.players);
-            SimController.instance.gatherStats();
+            SimController.instance.gatherStats(this);
             await window.requestAnimationFrame(reckoningTick);
             //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
         } else {
@@ -628,7 +628,7 @@ class Session {
             } else {
                 renderAfterlifeURL();
             }
-            SimController.instance.gatherStats();
+            SimController.instance.gatherStats(this);
         }
     }
 
@@ -911,6 +911,51 @@ class Session {
         //SimController.instance.restartSession(); //in controller
     }
 
+    void checkSGRUB() {
+        bool sgrub = true;
+        for (num i = 0; i < players.length; i++) {
+            if (players[i].isTroll == false) {
+                sgrub = false;
+            }
+        }
+        //can only get here if all are trolls.
+        if (sgrub) {
+            document.title = "SGRUB Story Generator by jadedResearcher";
+        }
+
+        if (getParameterByName("nepeta", null) == ":33") {
+            document.title = "NepetaQuest by jadedResearcher";
+        }
+        if (session_id == 33) {
+            document.title = "NepetaQuest by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&nepeta=:33'>The furryocious huntress makes sure to bat at this link to learn a secret!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
+        } else if (session_id == 420) {
+            document.title = "FridgeQuest by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&honk=:o)'>wHoA. lIkE. wHaT If yOu jUsT...ReAcHeD OuT AnD ToUcHeD ThIs? HoNk!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
+        } else if (session_id == 88888888) {
+            document.title = "SpiderQuuuuuuuuest!!!!!!!! by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&luck=AAAAAAAALL'>Only the BEST Observers click here!!!!!!!!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
+        } else if (session_id == 0) {
+            document.title = "0_0 by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&temporal=shenanigans'>Y0ur inevitabile clicking here will briefly masquerade as free will, and I'm 0kay with it.</a>");
+        } else if (session_id == 413) { //why the hell is this one not triggering?
+            "Homestuck Simulator by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&home=stuck'>A young man stands next to a link. Though it was 13 years ago he was given life, it is only today he will click it.</a>");
+        } else if (session_id == 111111) { //why the hell is this one not triggering?
+            document.title = "Homestuck Simulator by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&home=stuck'>A young lady stands next to a link. Though it was 16 years ago she was given life, it is only today she will click it.</a>");
+        } else if (session_id == 613) {
+            document.title = "OpenBound Simulator by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&open=bound'>Rebubble this link?.</a>", treeSanitizer: NodeTreeSanitizer.trusted);
+        } else if (session_id == 612) {
+            document.title = "HiveBent Simulator by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&hive=bent'>A young troll stands next to a click horizon. Though it was six solar sweeps ago that he was given life, it is only today that he will click it.</a>");
+        } else if (session_id == 1025) {
+            document.title = "Fruity Rumpus Asshole Simulator by jadedResearcher";
+            SimController.instance.storyElement.appendHtml(" <a href = 'index2.html?seed=${getRandomSeed()}&rumpus=fruity'>I will have order in this RumpusBlock!!!</a>", treeSanitizer: NodeTreeSanitizer.trusted);
+        }
+    }
+
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Session> startSession() async {
         print("session is starting");
@@ -923,7 +968,7 @@ class Session {
 
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg();
-        await SimController.instance.easterEggCallBack();
+        await SimController.instance.easterEggCallBack(this);
 
         return completer.future;
     }
@@ -947,7 +992,7 @@ class Session {
         }else if (!this.stats.doomedTimeline) {
             this.timeTillReckoning += -1;
             this.processScenes(this.players);
-            SimController.instance.gatherStats();
+            SimController.instance.gatherStats(this);
             await window.requestAnimationFrame(tick);
         }
         //if we are doomed, we crashed, so don't do anything.

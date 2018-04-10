@@ -35,14 +35,14 @@ abstract class AuthorBot extends SimController {
     setHtml(SimController.instance.storyElement, "");
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
-    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-    await startSessionThenSummarize();
+    Session session = new Session(SimController.instance.initial_seed);
+    await startSessionThenSummarize(session);
   }
 
-  Future<Null> startSessionThenSummarize() async{
-    await curSessionGlobalVar.startSession();
+  Future<Null> startSessionThenSummarize(Session session) async{
+    await session.startSession();
     print("I think the session stopped!");
-    summarizeSession(curSessionGlobalVar);
+    summarizeSession(session);
     print("I think i summarized the session!");
   }
 
@@ -56,135 +56,40 @@ abstract class AuthorBot extends SimController {
 
 
   @override
-  void easterEggCallBack() {
+  void easterEggCallBack(Session session) {
     //only diff from story is don't check SGRUB
-    initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
+    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
     if(doNotRender == true){
-      curSessionGlobalVar.intro();
+      session.intro();
     }else{
-      load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players),""); //in loading.js
+      load(session.players, getGuardiansForPlayers(session.players),""); //in loading.js
     }
   }
 
   @override
-  void easterEggCallBackRestart() {
-    initializePlayers(curSessionGlobalVar.players,curSessionGlobalVar); //need to redo it here because all other versions are in case customizations
-    curSessionGlobalVar.intro();
+  void easterEggCallBackRestart(Session session) {
+    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
+    session.intro();
   }
 
 
   @override
-  void processCombinedSession() {
+  void processCombinedSession(Session session ) {
     //;
-    Session newcurSessionGlobalVar = curSessionGlobalVar.initializeCombinedSession();
+    Session newcurSessionGlobalVar = session.initializeCombinedSession();
     if(newcurSessionGlobalVar != null){
      // //;
-      curSessionGlobalVar = newcurSessionGlobalVar;
-      appendHtml(SimController.instance.storyElement,"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + curSessionGlobalVar.session_id.toString() + ". ");
-      curSessionGlobalVar.intro();
+      session = newcurSessionGlobalVar;
+      appendHtml(SimController.instance.storyElement,"<br><Br> But things aren't over, yet. The survivors manage to contact the players in the universe they created. Time has no meaning between universes, and they are given ample time to plan an escape from their own Game Over. They will travel to the new universe, and register as players there for session " + session.session_id.toString() + ". ");
+      session.intro();
     }else{
       ////;
       needToScratch = false; //can't scratch if skaiai is a frog
-      curSessionGlobalVar.stats.makeCombinedSession = false;
-      summarizeSession(curSessionGlobalVar);
-    }
-  }
-
-  //AB's reckoning is like the normal one, but if the session ends at the recknoing, ab knows what to do.
-  @override
-  void reckoning() {
-    Scene s = new Reckoning(curSessionGlobalVar);
-    s.trigger(curSessionGlobalVar.players);
-    s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()));
-    if(!curSessionGlobalVar.stats.doomedTimeline){
-      ////;
-      reckoningTick();
-      return null;
-    }else{
-      ////;
-      if(needToScratch){
-       // //;
-        scratchAB(curSessionGlobalVar);
-        return null;
-      }
-     // //;
-      //////;
-      List<Player> living = findLiving(curSessionGlobalVar.players);
-      if(curSessionGlobalVar.stats.scratched || living.length == 0){ //can't scrach so only way to keep going.
-        ////;
-        summarizeSession(curSessionGlobalVar);
-        return null;
-      }
-
-    }
-    //;
-  }
-
-  @override
-  void reckoningTick([num time]) {
-   // //;
-    ////print("Reckoning Tick: " + curSessionGlobalVar.timeTillReckoning);
-    if(curSessionGlobalVar.timeTillReckoning > -10){
-      curSessionGlobalVar.timeTillReckoning += -1;
-      curSessionGlobalVar.processReckoning(curSessionGlobalVar.players);
-      window.requestAnimationFrame(reckoningTick);
-      //new Timer(new Duration(milliseconds: 10), () => reckoningTick()); //sweet sweet async
-      return null;
-    }else{
-     // //;
-      Scene s = new Aftermath(curSessionGlobalVar);
-     // //;
-
-      s.trigger(curSessionGlobalVar.players);
-      ////;
-
-      s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString()));
-      ////;
-      if(curSessionGlobalVar.stats.makeCombinedSession == true){
-        ;
-        processCombinedSession();  //make sure everything is done rendering first
-        return null;
-      }else{
-       // //;
-        if(needToScratch){
-        //  //;
-          scratchAB(curSessionGlobalVar);
-          return null;
-        }
-        List<Player> living = findLiving(curSessionGlobalVar.players);
-       // //;
-        if(curSessionGlobalVar.stats.won || living.length == 0 || curSessionGlobalVar.stats.scratched){
-          ////;
-          summarizeSession(curSessionGlobalVar);
-          return null;
-        }else {
-         // //;
-          return null;
-        }
-      }
-    }
-
-    //;
-  }
-
-
-  void scratchAB(Session session) {
-    needToScratch = false;
-    //treat myself as a different session that scratched one?
-    List<Player> living = findLiving(session.players);
-    if(!session.stats.scratched && living.length > 0){
-      ////;
-      //alert("AB sure loves scratching!");
-      session.stats.scratchAvailable = true;
-      summarizeSessionNoFollowup(session);
-      session.scratch(); //not user input, just straight up do it.
-    }else{
-      ////;
-      session.stats.scratchAvailable = false;
+      session.stats.makeCombinedSession = false;
       summarizeSession(session);
     }
-
   }
+
 
 
   String getQuipAboutSession(SessionSummary sessionSummary) {
@@ -261,9 +166,9 @@ abstract class AuthorBot extends SimController {
 
 
   @override
-  void recoverFromCorruption() {
-    curSessionGlobalVar.simulationComplete("Crashed in AB");
-    summarizeSession(curSessionGlobalVar); //well...THAT session ended
+  void recoverFromCorruption(Session session) {
+    session.simulationComplete("Crashed in AB");
+    summarizeSession(session); //well...THAT session ended
   }
 
   //this will be called once session has ended. it's up to each child to know what to do here.
@@ -282,7 +187,7 @@ abstract class AuthorBot extends SimController {
     setHtml(SimController.instance.storyElement, '');
     window.scrollTo(0, 0);
     await checkEasterEgg();
-    easterEggCallBackRestart();
+    easterEggCallBackRestart(session);
   }
 
   @override

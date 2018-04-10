@@ -75,7 +75,7 @@ export "includes/predicates.dart";
 /// if false, still need to init classes/aspects
 bool doneGlobalInit = false;
 
-Session curSessionGlobalVar;
+//Session curSessionGlobalVar;
 int canvasWidth = 1000;
 int canvasHeight = 400;
 bool doNotRender = false; //can happen even outside of AB
