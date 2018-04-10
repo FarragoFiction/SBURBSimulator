@@ -6,9 +6,9 @@ num imagesWaiting = 0;
 num imagesLoaded = 0;
 var globalCallBack = null;
 
-dynamic loadFuckingEverything(String skipInit, cb){
-	if(doNotRender == true) return checkDone(skipInit);
-	loadAllImages(skipInit);
+dynamic loadFuckingEverything(Session session, String skipInit, cb){
+	if(doNotRender == true) return checkDone(session, skipInit);
+	loadAllImages(session,skipInit);
 	globalCallBack = cb;
 	return null;
 }
@@ -18,20 +18,20 @@ dynamic loadFuckingEverything(String skipInit, cb){
 
 
 //load everything while showing a progress bar. delete loadingCanvas when done.
-dynamic load(List<Player>players, List<Player>guardians, String skipInit){
-	if(doNotRender == true) return checkDone(skipInit);
-  var guardians = getGuardiansForPlayers(players);
-	loadAllImagesForPlayers(players, guardians,skipInit);
+dynamic load(Session session, List<Player>players, List<Player>guardians, String skipInit){
+	if(doNotRender == true) return checkDone(session, skipInit);
+    var guardians = getGuardiansForPlayers(players);
+	loadAllImagesForPlayers(session,players, guardians,skipInit);
 	return null;
 }
 
 
 
 
-dynamic loadAllImages(skipInit){
-	if(doNotRender == true) return checkDone(skipInit);
-	loadOther(skipInit);
-	loadAllPossiblePlayers(skipInit);
+dynamic loadAllImages(Session session, skipInit){
+	if(doNotRender == true) return checkDone(session, skipInit);
+	loadOther(session,skipInit);
+	loadAllPossiblePlayers(session,skipInit);
 	return null;
 }
 
@@ -49,31 +49,32 @@ dynamic loadAllImages(skipInit){
 
 
 
-dynamic loadAllImagesForPlayerWithCallback(Player player, cb){
+dynamic loadAllImagesForPlayerWithCallback(Session session, Player player, cb){
 	globalCallBack = cb;
 	String skipInit = "yes";
-	if(doNotRender == true) return checkDone(skipInit);
-	loadPlayer(player,skipInit);
+	if(doNotRender == true) return checkDone(session,skipInit);
+	loadPlayer(session,player,skipInit);
 	return null;
 }
 
 
 
-Future<Null> loadAllImagesForPlayers(List<Player> players, List<Player> guardians, String skipInit) async{
-	if(doNotRender == true) return checkDone(skipInit);
+Future<Null> loadAllImagesForPlayers(Session session, List<Player> players, List<Player> guardians, String skipInit) async{
+	if(doNotRender == true) return checkDone(session, skipInit);
+	if(players.isEmpty) return checkDone(session, skipInit);
 	num numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 
 	//same number of players and guardians
 	for(num i = 0; i<players.length; i++){
-		loadPlayer(players[i],skipInit);
+		loadPlayer(session,players[i],skipInit);
 	}
 	//guardians aren't going to match players if combo session
 	for(num i = 0; i<guardians.length; i++){
-		loadPlayer(guardians[i],skipInit);
+		loadPlayer(session,guardians[i],skipInit);
 	}
 
-	loadOther(skipInit);
+	loadOther(session,skipInit);
 
 	return null;
 }
@@ -109,7 +110,7 @@ String escapeId(String toEscape) {
 }
 
 
-dynamic checkDone(String skipInit){
+dynamic checkDone(Session session, String skipInit){
     if(querySelector("#loading_stats") != null) querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
@@ -127,16 +128,16 @@ dynamic checkDone(String skipInit){
       }
       return null;
     }
-		curSessionGlobalVar.intro();  //TODO this will work for ALL things now, probably can remove skipInit
+		session.intro();  //TODO this will work for ALL things now, probably can remove skipInit
 	}
 	return null;
 }
 
 
 
-void loadImage(String img, String skipInit) {
+void loadImage(Session session, String img, String skipInit) {
 
-	if(doNotRender == true) return checkDone(skipInit);
+	if(doNotRender == true) return checkDone(session, skipInit);
 	////print(img);
 	imagesWaiting ++;
 	ImageElement imageObj = new ImageElement();
@@ -144,7 +145,7 @@ void loadImage(String img, String skipInit) {
       //  context.drawImage(imageObj, 69, 50); //i don't want to draw it. i could put it in image staging?
 			addImageTagLoading(img);
 			imagesLoaded ++;
-			checkDone(skipInit);
+			checkDone(session, skipInit);
   });
 
   imageObj.onError.listen((Event e){
@@ -169,175 +170,175 @@ void loadImage(String img, String skipInit) {
 
 
 //load pesterchum, blood, big aspect symbols, echeladders, god tier level up, romance symbols, babies, grubs
-dynamic loadOther(String skipInit){
-	if(doNotRender == true) return checkDone(skipInit);
-		loadImage("Credits/recursiveSlacker.png", skipInit);
+dynamic loadOther(Session session, String skipInit){
+	if(doNotRender == true) return checkDone(session,skipInit);
+		loadImage(session,"Credits/recursiveSlacker.png", skipInit);
 	  if(cool_kid){
-		loadImage("/Bodies/coolk1dlogo.png",skipInit);
-		loadImage("/Bodies/coolk1dsword.png",skipInit);
-		loadImage("/Bodies/coolk1dshades.png",skipInit);
+		loadImage(session,"/Bodies/coolk1dlogo.png",skipInit);
+		loadImage(session,"/Bodies/coolk1dsword.png",skipInit);
+		loadImage(session,"/Bodies/coolk1dshades.png",skipInit);
 	  }
 
 	if(ouija){
-		  loadImage("/Bodies/pen15.png",skipInit);
+		  loadImage(session,"/Bodies/pen15.png",skipInit);
 	}
 
 	if(faceOff){
-		  loadImage("/Bodies/face1.png",skipInit);
-			loadImage("/Bodies/face2.png",skipInit);
-			loadImage("/Bodies/face3.png",skipInit);
-			loadImage("/Bodies/face4.png",skipInit); //wait, aren't there onyl 3 possible faces??? oh god
+		  loadImage(session,"/Bodies/face1.png",skipInit);
+			loadImage(session,"/Bodies/face2.png",skipInit);
+			loadImage(session,"/Bodies/face3.png",skipInit);
+			loadImage(session,"/Bodies/face4.png",skipInit); //wait, aren't there onyl 3 possible faces??? oh god
 	}
 
-	loadImage("charSheet.png", skipInit);
-	loadImage("Rewards/no_reward.png", skipInit);
-	loadImage("Rewards/holyAlchemy.png", skipInit);
-	loadImage("Rewards/sweetFrog.png", skipInit);
-	loadImage("Rewards/sweetFriendship.png", skipInit);
-	loadImage("Rewards/bitterFrog.png", skipInit);
-	loadImage("Rewards/holyShitFrogs.png", skipInit);
-	loadImage("Rewards/sweetLoot.png", skipInit);
-	loadImage("Rewards/sweetGrist.png", skipInit);
-	loadImage("Rewards/sweetTreasure.png", skipInit);
-	loadImage("Rewards/fraymotifBG.png", skipInit);
-	loadImage("Rewards/sweetBoonies.png", skipInit);
-	loadImage("Rewards/ohShit.png", skipInit);
-	loadImage("Rewards/sweetClock.png", skipInit);
-	loadImage("Rewards/battlefield.png", skipInit);
+	loadImage(session,"charSheet.png", skipInit);
+	loadImage(session,"Rewards/no_reward.png", skipInit);
+	loadImage(session,"Rewards/holyAlchemy.png", skipInit);
+	loadImage(session,"Rewards/sweetFrog.png", skipInit);
+	loadImage(session,"Rewards/sweetFriendship.png", skipInit);
+	loadImage(session,"Rewards/bitterFrog.png", skipInit);
+	loadImage(session,"Rewards/holyShitFrogs.png", skipInit);
+	loadImage(session,"Rewards/sweetLoot.png", skipInit);
+	loadImage(session,"Rewards/sweetGrist.png", skipInit);
+	loadImage(session,"Rewards/sweetTreasure.png", skipInit);
+	loadImage(session,"Rewards/fraymotifBG.png", skipInit);
+	loadImage(session,"Rewards/sweetBoonies.png", skipInit);
+	loadImage(session,"Rewards/ohShit.png", skipInit);
+	loadImage(session,"Rewards/sweetClock.png", skipInit);
+	loadImage(session,"Rewards/battlefield.png", skipInit);
 
-	loadImage("/Bodies/cod.png",skipInit);
-	loadImage("/Rewards/sweetCod.png",skipInit);
+	loadImage(session,"/Bodies/cod.png",skipInit);
+	loadImage(session,"/Rewards/sweetCod.png",skipInit);
 
-	loadImage("jr.png",skipInit);
-	loadImage("kr_chat.png",skipInit);
-  loadImage("drain_lightning.png", skipInit);
-  loadImage("drain_lightning_long.png", skipInit);
-  loadImage("drain_halo.png", skipInit);
-  loadImage("afterlife_life.png", skipInit);
-  loadImage("afterlife_doom.png", skipInit);
-  loadImage("doom_res.png", skipInit);
-  loadImage("life_res.png", skipInit);
-	loadImage("stab.png",skipInit);
-  loadImage("denizoned.png",skipInit);
-  loadImage("sceptre.png",skipInit);
-	loadImage("rainbow.png",skipInit);
-  loadImage("ghostGradient.png",skipInit);
-	loadImage("halo.png",skipInit);
-	loadImage("gears.png",skipInit);
-	loadImage("mind_forehead.png",skipInit);
-	loadImage("blood_forehead.png",skipInit);
-	loadImage("rage_forehead.png",skipInit);
-	loadImage("heart_forehead.png",skipInit);
-	loadImage("ab.png",skipInit);
-	loadImage("shogun.png",skipInit);
-	loadImage("grimdark.png",skipInit);
-  loadImage("squiddles_chaos.png",skipInit); //re load
-	loadImage("fin1.png",skipInit);  //re load
-	loadImage("fin2.png",skipInit);  //re load
-	loadImage("echeladder.png",skipInit);
-	loadImage("godtierlevelup.png",skipInit);
-	loadImage("cataclysm.png",skipInit);
-	loadImage("pesterchum.png",skipInit);
-	loadImage("blood_puddle.png",skipInit);  //re load
-	loadImage("scratch_face.png",skipInit); //re load
-	loadImage("robo_face.png",skipInit);  //re load
-	loadImage("calm_scratch_face.png",skipInit); //rendering engine will load
-	loadImage( "Prospit.png",skipInit);
-	//loadImage("Prospit_symbol.png");
-	loadImage("Derse.png",skipInit);
-	//loadImage("Derse_symbol.png");
-	loadImage("bloody_face.png",skipInit);  ///Rendering engine will load
-	loadImage("Moirail.png",skipInit);
-	loadImage("Matesprit.png",skipInit);
-  loadImage("horrorterror.png", skipInit);
-  loadImage("dreambubbles.png", skipInit);
-	loadImage("Auspisticism.png",skipInit);
-	loadImage("Kismesis.png",skipInit);
-	loadImage("discuss_romance.png",skipInit);
-	loadImage("discuss_ashenmance.png",skipInit);
-	loadImage("discuss_palemance.png",skipInit);
-	loadImage("discuss_hatemance.png",skipInit);
-	loadImage("discuss_breakup.png",skipInit);
-	loadImage("discuss_sburb.png",skipInit);
-	loadImage("discuss_jack.png",skipInit);
-	loadImage("discuss_murder.png",skipInit);
-  loadImage("discuss_raps.png",skipInit);
+	loadImage(session,"jr.png",skipInit);
+	loadImage(session,"kr_chat.png",skipInit);
+  loadImage(session,"drain_lightning.png", skipInit);
+  loadImage(session,"drain_lightning_long.png", skipInit);
+  loadImage(session,"drain_halo.png", skipInit);
+  loadImage(session,"afterlife_life.png", skipInit);
+  loadImage(session,"afterlife_doom.png", skipInit);
+  loadImage(session,"doom_res.png", skipInit);
+  loadImage(session,"life_res.png", skipInit);
+	loadImage(session,"stab.png",skipInit);
+  loadImage(session,"denizoned.png",skipInit);
+  loadImage(session,"sceptre.png",skipInit);
+	loadImage(session,"rainbow.png",skipInit);
+  loadImage(session,"ghostGradient.png",skipInit);
+	loadImage(session,"halo.png",skipInit);
+	loadImage(session,"gears.png",skipInit);
+	loadImage(session,"mind_forehead.png",skipInit);
+	loadImage(session,"blood_forehead.png",skipInit);
+	loadImage(session,"rage_forehead.png",skipInit);
+	loadImage(session,"heart_forehead.png",skipInit);
+	loadImage(session,"ab.png",skipInit);
+	loadImage(session,"shogun.png",skipInit);
+	loadImage(session,"grimdark.png",skipInit);
+  loadImage(session,"squiddles_chaos.png",skipInit); //re load
+	loadImage(session,"fin1.png",skipInit);  //re load
+	loadImage(session,"fin2.png",skipInit);  //re load
+	loadImage(session,"echeladder.png",skipInit);
+	loadImage(session,"godtierlevelup.png",skipInit);
+	loadImage(session,"cataclysm.png",skipInit);
+	loadImage(session,"pesterchum.png",skipInit);
+	loadImage(session,"blood_puddle.png",skipInit);  //re load
+	loadImage(session,"scratch_face.png",skipInit); //re load
+	loadImage(session,"robo_face.png",skipInit);  //re load
+	loadImage(session,"calm_scratch_face.png",skipInit); //rendering engine will load
+	loadImage(session, "Prospit.png",skipInit);
+	//loadImage(session,"Prospit_symbol.png");
+	loadImage(session,"Derse.png",skipInit);
+	//loadImage(session,"Derse_symbol.png");
+	loadImage(session,"bloody_face.png",skipInit);  ///Rendering engine will load
+	loadImage(session,"Moirail.png",skipInit);
+	loadImage(session,"Matesprit.png",skipInit);
+  loadImage(session,"horrorterror.png", skipInit);
+  loadImage(session,"dreambubbles.png", skipInit);
+	loadImage(session,"Auspisticism.png",skipInit);
+	loadImage(session,"Kismesis.png",skipInit);
+	loadImage(session,"discuss_romance.png",skipInit);
+	loadImage(session,"discuss_ashenmance.png",skipInit);
+	loadImage(session,"discuss_palemance.png",skipInit);
+	loadImage(session,"discuss_hatemance.png",skipInit);
+	loadImage(session,"discuss_breakup.png",skipInit);
+	loadImage(session,"discuss_sburb.png",skipInit);
+	loadImage(session,"discuss_jack.png",skipInit);
+	loadImage(session,"discuss_murder.png",skipInit);
+  loadImage(session,"discuss_raps.png",skipInit);
 	for(int i = 1; i<4; i++){
-		loadImage("Bodies/baby${i}.png",skipInit); //rendering engine will laod
+		loadImage(session,"Bodies/baby${i}.png",skipInit); //rendering engine will laod
 	}
 
 	for(int i = 1; i<4; i++){
-		loadImage("Bodies/grub${i}.png",skipInit);
+		loadImage(session,"Bodies/grub${i}.png",skipInit);
 	}
 	return null;
 }
 
 
 
-dynamic loadAllPossiblePlayers(skipInit){
-	if(doNotRender == true) return checkDone(skipInit);
+dynamic loadAllPossiblePlayers(Session session, skipInit){
+	if(doNotRender == true) return checkDone(session, skipInit);
     num numBodies = 21;  //1 indexed
     var numHair = Player.maxHairNumber; //+1025 for rufio.  1 indexed
     var numHorns = Player.maxHornNumber; //1 indexed.
     //var numWings = 12 ;//0 indexed, not 1.  for now, don't bother with wings. not gonna show godtier, for now.;
     for(int i = 1; i<=numBodies; i++){
-        loadImage("Bodies/reg${i}.png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
-        loadImage("Bodies/god${i}.png",skipInit);
-        loadImage("Bodies/dream${i}.png",skipInit);
-				loadImage("Bodies/cowl${i}.png",skipInit);
-				if(easter_egg == true)   loadImage("Bodies/egg${i}.png",skipInit);
+        loadImage(session,"Bodies/reg${i}.png",skipInit);  //as long as i i do a 'load' again when it's to to start the simulation, can get away with only loading these bodies.
+        loadImage(session,"Bodies/god${i}.png",skipInit);
+        loadImage(session,"Bodies/dream${i}.png",skipInit);
+				loadImage(session,"Bodies/cowl${i}.png",skipInit);
+				if(easter_egg == true)   loadImage(session,"Bodies/egg${i}.png",skipInit);
     }
 
     //error handling
-    loadImage("Null.png",skipInit);
+    loadImage(session,"Null.png",skipInit);
     //cause i made images 1 indexed like a dunkass
-    loadImage("Bodies/reg256.png",skipInit);
-    loadImage("Bodies/dream256.png",skipInit);
-    loadImage("Bodies/god256.png",skipInit);
-    loadImage("Bodies/cowl256.png",skipInit);
+    loadImage(session,"Bodies/reg256.png",skipInit);
+    loadImage(session,"Bodies/dream256.png",skipInit);
+    loadImage(session,"Bodies/god256.png",skipInit);
+    loadImage(session,"Bodies/cowl256.png",skipInit);
 
 
 
 
     for(int i = 1; i<=numHair; i++){
-        loadImage("Hair/hair_back${i}.png",skipInit);
-        loadImage("Hair/hair${i}.png",skipInit);
+        loadImage(session,"Hair/hair_back${i}.png",skipInit);
+        loadImage(session,"Hair/hair${i}.png",skipInit);
     }
 
 
       for(int i = 0; i<13; i++){
-        loadImage("Wings/wing${i}.png",skipInit);
+        loadImage(session,"Wings/wing${i}.png",skipInit);
       }
 
-      loadImage("Blood.png",skipInit);
-      loadImage("Mind.png",skipInit);
-      loadImage("Rage.png",skipInit);
-      loadImage("Time.png",skipInit);
-      loadImage("Void.png",skipInit);
-      loadImage("Heart.png",skipInit);
-      loadImage("Breath.png",skipInit);
-	  loadImage("Dream.png",skipInit);
-      loadImage("Light.png",skipInit);
-      loadImage("Space.png",skipInit);
-      loadImage("Hope.png",skipInit);
-      loadImage("Life.png",skipInit);
-      loadImage("Doom.png",skipInit);
+      loadImage(session,"Blood.png",skipInit);
+      loadImage(session,"Mind.png",skipInit);
+      loadImage(session,"Rage.png",skipInit);
+      loadImage(session,"Time.png",skipInit);
+      loadImage(session,"Void.png",skipInit);
+      loadImage(session,"Heart.png",skipInit);
+      loadImage(session,"Breath.png",skipInit);
+	  loadImage(session,"Dream.png",skipInit);
+      loadImage(session,"Light.png",skipInit);
+      loadImage(session,"Space.png",skipInit);
+      loadImage(session,"Hope.png",skipInit);
+      loadImage(session,"Life.png",skipInit);
+      loadImage(session,"Doom.png",skipInit);
 
 
 
 
-	loadImage("Hair/hair_back254.png",skipInit);
-    loadImage("Hair/hair254.png",skipInit);
+	loadImage(session,"Hair/hair_back254.png",skipInit);
+    loadImage(session,"Hair/hair254.png",skipInit);
 
     for(int i = 1; i<=numHorns; i++){
-        loadImage("Horns/left${i}.png",skipInit);
-        loadImage("Horns/right${i}.png",skipInit);
+        loadImage(session,"Horns/left${i}.png",skipInit);
+        loadImage(session,"Horns/right${i}.png",skipInit);
     }
 
     num maxCustomHorns = 4; //kr doesn't want these widely available.
     for(num i = 255; i> 255-maxCustomHorns; i+=-1){;
-        loadImage("Horns/left${i}.png",skipInit);
-        loadImage("Horns/right${i}.png",skipInit);
+        loadImage(session,"Horns/left${i}.png",skipInit);
+        loadImage(session,"Horns/right${i}.png",skipInit);
      }
      return null;
 }
@@ -345,28 +346,28 @@ dynamic loadAllPossiblePlayers(skipInit){
 
 
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
-dynamic loadPlayer(Player player, String skipInit){
-	if(doNotRender == true) return checkDone(skipInit);
+dynamic loadPlayer(Session session, Player player, String skipInit){
+	if(doNotRender == true) return checkDone(session,skipInit);
   if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);
-	loadImage(Drawing.playerToRegularBody(player),skipInit);
-  loadImage(Drawing.playerToDreamBody(player),skipInit);
-	loadImage(Drawing.playerToGodBody(player),skipInit);
-  loadImage(Drawing.playerToCowl(player),skipInit);
-	loadImage("${player.aspect}.png",skipInit);
+	loadImage(session,Drawing.playerToRegularBody(player),skipInit);
+  loadImage(session,Drawing.playerToDreamBody(player),skipInit);
+	loadImage(session,Drawing.playerToGodBody(player),skipInit);
+  loadImage(session,Drawing.playerToCowl(player),skipInit);
+	loadImage(session,"${player.aspect}.png",skipInit);
 
-	loadImage("${player.aspect}Big.png",skipInit);
-	loadImage("Hair/hair"+player.hair.toString()+".png",skipInit);
-  loadImage("Hair/hair_back"+player.hair.toString()+".png",skipInit);
+	loadImage(session,"${player.aspect}Big.png",skipInit);
+	loadImage(session,"Hair/hair"+player.hair.toString()+".png",skipInit);
+  loadImage(session,"Hair/hair_back"+player.hair.toString()+".png",skipInit);
 
 	if(player.isTroll == true){
-		loadImage("Wings/wing"+player.quirk.favoriteNumber.toString() + ".png",skipInit);
-		loadImage("Horns/left"+player.leftHorn.toString() + ".png",skipInit);
-		loadImage("Horns/right"+player.rightHorn.toString() + ".png",skipInit);
-		//loadImage("Bodies/grub"+player.baby + ".png");
+		loadImage(session,"Wings/wing"+player.quirk.favoriteNumber.toString() + ".png",skipInit);
+		loadImage(session,"Horns/left"+player.leftHorn.toString() + ".png",skipInit);
+		loadImage(session,"Horns/right"+player.rightHorn.toString() + ".png",skipInit);
+		//loadImage(session,"Bodies/grub"+player.baby + ".png");
 	}else{
-		//loadImage("Bodies/baby"+player.baby + ".png");
+		//loadImage(session,"Bodies/baby"+player.baby + ".png");
 	}
 	return null;
 }

@@ -46,7 +46,7 @@ void drawOneSummary(SessionSummary summary) {
 Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) async {
     //TODO simulate the session BE SANE ABOUT THIS, no callbacks, instead do awaits.
 
-    curSessionGlobalVar = new Session(summary.session_id);
+    Session session = new Session(summary.session_id);
 
     container.setInnerHtml("<b>Session:</b> <a href = 'index2.html?seed=${summary.session_id}'>${summary.session_id}</a>");
     TableElement table = new TableElement();
@@ -66,8 +66,8 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     tr.append(td2);
     tr.append(td3);
 
-    await curSessionGlobalVar.startSession();
-    SessionSummary simSummary = curSessionGlobalVar.generateSummary();
+    await session.startSession();
+    SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);
     container.append(table);
 }
@@ -105,8 +105,8 @@ void todo(String text) {
 class SanityChecker extends AuthorBot {
 
     @override
-    void recoverFromCorruption() {
-        curSessionGlobalVar.simulationComplete("Crashed in Sanity Checker");
+    void recoverFromCorruption(Session session) {
+        session.simulationComplete("Crashed in Sanity Checker");
     }
 
   @override

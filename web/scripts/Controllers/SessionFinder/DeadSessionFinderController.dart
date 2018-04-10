@@ -262,7 +262,7 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
       (querySelector("#button")as ButtonElement).disabled =false;
      // //;
       stopTime = new DateTime.now();
-      if(mvp == null)       getMVP();
+      if(mvp == null)       getMVP(session);
       appendHtml(querySelector("#roundTime"), "Round: MVP: ${mvp.htmlTitleBasicNoTip()} with Power ${mvp.getStat(Stats.POWER).round()} and Grist ${mvp.grist.round()}, $round took ${stopTime.difference(startTime)}<br>");
       mvp = null; //reset.
       window.alert("Notice: should be ready to check more sessions.");
@@ -274,22 +274,22 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
      // //;
       //new Timer(new Duration(milliseconds: 10), () => startSession()); //sweet sweet async
       //RESETTING the mutator so that wastes can't leak into other sessions
-      getMVP();
+      getMVP(session);
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
       window.requestAnimationFrame((num t) {
-        curSessionGlobalVar = new DeadSession(SimController.instance.initial_seed);
-        startSessionThenSummarize();
+        Session session = new DeadSession(SimController.instance.initial_seed);
+        startSessionThenSummarize(session);
       });
     }
     ////;
     return sum;
   }
 
-  void getMVP() {
+  void getMVP(Session session) {
     if(mvp == null) {
-      mvp = findMVP(curSessionGlobalVar.players);
+      mvp = findMVP(session.players);
     }else {
-      Player tmp = findMVP(curSessionGlobalVar.players);
+      Player tmp = findMVP(session.players);
       //this way makes SURE it uses the same metric as findMVP
       mvp = findMVP(<Player>[mvp, tmp]);
     }
@@ -303,9 +303,9 @@ class DeadSessionFinderController extends DeadAuthorBot { //works exactly like S
       //////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
       return null;
     }
-    sessionsSimulated.add(curSessionGlobalVar.session_id);
+    sessionsSimulated.add(session.session_id);
     setHtml(SimController.instance.storyElement, "");
-    var sum = curSessionGlobalVar.generateSummary();
+    var sum = session.generateSummary();
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.

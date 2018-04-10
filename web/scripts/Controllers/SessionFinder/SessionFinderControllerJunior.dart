@@ -106,16 +106,16 @@ class SessionFinderControllerJunior extends SimController {
     numSimulationsToDo = int.parse((querySelector("#num_sessions")as InputElement).value);
     (querySelector("#button")as ButtonElement).disabled =true;
     print("ab is going to make a session");
-    curSessionGlobalVar = new Session(SimController.instance.initial_seed);
-    curSessionGlobalVar.startSession();
+    Session session = new Session(SimController.instance.initial_seed);
+    session.startSession();
   }
 
   @override
-  void easterEggCallBack() {
-    initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar);  //need to redo it here because all other versions are in case customizations
+  void easterEggCallBack(Session session) {
+    initializePlayers(session.players, session);  //need to redo it here because all other versions are in case customizations
     //aaaaand. done.
-    sessionsSimulated.add(curSessionGlobalVar.session_id);
-    SessionSummary sum = curSessionGlobalVar.generateSummary();
+    sessionsSimulated.add(session.session_id);
+    SessionSummary sum = session.generateSummary();
     SessionSummaryJunior sumJR = sum.getSessionSummaryJunior();
     allSessionsSummaries.add(sumJR);
     sessionSummariesDisplayed.add(sumJR);
@@ -128,15 +128,15 @@ class SessionFinderControllerJunior extends SimController {
       (querySelector("#button")as ButtonElement).disabled =false;
     }else{
       initial_seed = getRandomSeed();
-      curSessionGlobalVar = new Session(initial_seed);
-      curSessionGlobalVar.startSession();
+      session = new Session(initial_seed);
+      session.startSession();
     }
   }
 
 
 
   @override
-  void easterEggCallBackRestart() {
+  void easterEggCallBackRestart(Session session) {
     throw "ABJ does not actually simulate shit.";
   }
 

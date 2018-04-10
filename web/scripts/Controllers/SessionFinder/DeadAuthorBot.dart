@@ -120,7 +120,7 @@ abstract class DeadAuthorBot extends DeadSimController {
   void renderScratchButton(Session session) {
     needToScratch = true;
   }
-  
+
   @override
   void shareableURL() {
     throw "AB doesn't do this";

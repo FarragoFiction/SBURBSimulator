@@ -17,7 +17,7 @@ void main()
 
   new AfterlifeController();
   globalInit(); // initialise classes and aspects if necessary
-  curSessionGlobalVar = new Session(-13);
+  Session session = new Session(-13);
   self = SimController.instance;
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));
@@ -25,10 +25,10 @@ void main()
     int tmp = getRandomSeed();
     self.initial_seed = tmp;
   }
-  self.loadPlayers();
+  self.loadPlayers(session);
   globalCallBack = self.renderGhosts;
   ;
-  load(curSessionGlobalVar.players, [], "ghostNewBullshitReallyIShouldJustBeUsingCallbackAlone");
+  load(session.players, [], "ghostNewBullshitReallyIShouldJustBeUsingCallbackAlone");
 
 
 }
@@ -44,10 +44,10 @@ class AfterlifeController extends SimController {
   AfterlifeController() : super();
 
 
-  void loadPlayers(){
-    curSessionGlobalVar.players = getReplayers(curSessionGlobalVar);
-    for(num i = 0; i<curSessionGlobalVar.players.length; i++){
-      curSessionGlobalVar.players[i].ghost = true; //not storing that as a bool. 'cause fuck you,thats why'
+  void loadPlayers(Session session){
+    session.players = getReplayers(session);
+    for(num i = 0; i<session.players.length; i++){
+      session.players[i].ghost = true; //not storing that as a bool. 'cause fuck you,thats why'
     }
   }
 
@@ -70,9 +70,9 @@ class AfterlifeController extends SimController {
     Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
   }
 
-  void renderGhosts() {
-    for(int i =0; i<curSessionGlobalVar.players.length; i++) {
-      Player p = curSessionGlobalVar.players[i];
+  void renderGhosts(Session session) {
+    for(int i =0; i<session.players.length; i++) {
+      Player p = session.players[i];
       renderSingleGhost(p, i);
     }
   }
