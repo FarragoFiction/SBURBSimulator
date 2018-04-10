@@ -371,7 +371,7 @@ class Aftermath extends Scene {
 
     Player trollKidRock() {
         String trollKidRockString = "b=%00%00%00%C2%91%C3%B0%15%10VDD%20&s=,,Rap-Rock,Riches,bawitdaBastard"; //Ancient, thank you for best meme. ;
-        Player trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat([trollKidRockString])[0];
+        Player trollKidRock = new CharacterEasterEggEngine().playerDataStringArrayToURLFormat(session,[trollKidRockString])[0];
         trollKidRock.session = this.session;
         Fraymotif f = new Fraymotif("BANG DA DANG DIGGY DIGGY", 3); //most repetitive song, ACTIVATE!!!;
         f.effects.add(new FraymotifEffect(Stats.POWER, 3, true)); //buffs party and hurts enemies
@@ -479,7 +479,7 @@ class Aftermath extends Scene {
         if (doNotRender) {
             this.finishPurpleStrife(div,tkrCanvas, purpleFrog, purpleFighters, trollKidRock);
         } else {
-            loadAllImagesForPlayerWithCallback(trollKidRock, () {
+            loadAllImagesForPlayerWithCallback(session,trollKidRock, () {
                 this.finishPurpleStrife(div,tkrCanvas, purpleFrog, purpleFighters, trollKidRock);
             });
         }

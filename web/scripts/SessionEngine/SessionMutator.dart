@@ -647,7 +647,7 @@ class SessionMutator {
             html += "</div><br>";
 
             setHtml(div2, html);
-            (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision());
+            (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision(session));
 
 
             //wire up custom radio buttons after they are rendered

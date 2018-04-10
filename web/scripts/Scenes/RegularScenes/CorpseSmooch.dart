@@ -45,7 +45,7 @@ class CorpseSmooch extends Scene {
 			if (Drawing.checkSimMode() == true) {
 				return;
 			}
-			if (curSessionGlobalVar.sbahj) {
+			if (session.sbahj) {
 				div.append(SBAHJ.sbahjText("${this.combo}x COPRSSMOOCH COMBOB${"!!" * this.combo}", 50, SBAHJGradients.horizon));
 			} else {
 				Colour col = new Colour(255, 0, 0);

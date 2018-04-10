@@ -94,7 +94,7 @@ class YellowYard extends Scene {
 				div2.append(d);
 				div.append(b);
 			}
-      (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision());
+      (querySelector("#yellowButton") as ButtonElement).onClick.listen((e) => decision(session));
 
 
       //wire up custom radio buttons after they are rendered
