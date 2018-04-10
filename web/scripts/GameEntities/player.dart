@@ -1271,8 +1271,8 @@ class Player extends GameEntity{
     }
 
     void damageAllRelationshipsWithMe() {
-        for (num i = 0; i < curSessionGlobalVar.players.length; i++) {
-            Relationship r = this.getRelationshipWith(curSessionGlobalVar.players[i]);
+        for (num i = 0; i < session.players.length; i++) {
+            Relationship r = this.getRelationshipWith(session.players[i]);
             if (r != null) {
                 r.decrease();
             }
@@ -2184,6 +2184,7 @@ class Player extends GameEntity{
 
     //TODO has specific 'doomed time clone' stuff in it, like randomizing state
     static Player makeDoomedSnapshot(Player doomedPlayer) {
+        Session session = doomedPlayer.session;
         Player timeClone = Player.makeRenderingSnapshot(doomedPlayer,false);
         timeClone.dead = false;
         timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
@@ -2219,16 +2220,16 @@ class Player extends GameEntity{
         }
 
         if (timeClone.godTier) {
-            Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 3); //first god tier fraymotif
+            Fraymotif f = session.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 3); //first god tier fraymotif
             timeClone.fraymotifs.add(f);
         }
 
         if (timeClone.getStat(Stats.POWER) > 50) {
-            Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 2); //probably beat denizen at least
+            Fraymotif f = session.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 2); //probably beat denizen at least
             timeClone.fraymotifs.add(f);
         }
 
-        Fraymotif f = curSessionGlobalVar.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 1); //at least did first quest
+        Fraymotif f = session.fraymotifCreator.makeFraymotif(doomedPlayer.rand, <Player>[doomedPlayer], 1); //at least did first quest
         timeClone.fraymotifs.add(f);
         timeClone.renderSelf("doomed time clone");
 

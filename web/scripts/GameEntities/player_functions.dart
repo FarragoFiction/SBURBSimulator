@@ -26,7 +26,7 @@ List<Player> getReplayers(Session session) {
     ////print(b);
     ////;
     ////print(s);
-    List<Player> ret =  dataBytesAndStringsToPlayers(curSessionGlobalVar,b, s, x);
+    List<Player> ret =  dataBytesAndStringsToPlayers(session,b, s, x);
     //can't let them keep their null session reference.
     for(Player p in ret) {
         p.session = session;
@@ -37,20 +37,22 @@ List<Player> getReplayers(Session session) {
 
 
 void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
-    if (curSessionGlobalVar.players.length == replayPlayers.length || replayPlayers.isEmpty) return; //nothing to do.
+    if(replayPlayers.isEmpty) return;
+    Session session = replayPlayers.first.session;
+    if (session.players.length == replayPlayers.length || replayPlayers.isEmpty) return; //nothing to do.
 
-    if (replayPlayers.length < curSessionGlobalVar.players.length) { //gotta destroy some players (you monster);
-        num remove_length = curSessionGlobalVar.players.length - replayPlayers.length;
-        curSessionGlobalVar.players.removeRange(0, remove_length); //TODO check to see if off by one
+    if (replayPlayers.length < session.players.length) { //gotta destroy some players (you monster);
+        num remove_length = session.players.length - replayPlayers.length;
+        session.players.removeRange(0, remove_length); //TODO check to see if off by one
         return;
-    } else if (replayPlayers.length > curSessionGlobalVar.players.length) {
-        int numNeeded = replayPlayers.length - curSessionGlobalVar.players.length;
-        ////print("Have: " + curSessionGlobalVar.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
+    } else if (replayPlayers.length > session.players.length) {
+        int numNeeded = replayPlayers.length - session.players.length;
+        ////print("Have: " + session.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
         for (int i = 0; i < numNeeded; i++) {
             // //print("making new player: " + i);
-            curSessionGlobalVar.players.add(randomPlayerWithClaspect(curSessionGlobalVar, SBURBClassManager.PAGE, Aspects.VOID));
+            session.players.add(randomPlayerWithClaspect(session, SBURBClassManager.PAGE, Aspects.VOID));
         }
-        ////print("Number of players is now: " + curSessionGlobalVar.players.length);
+        ////print("Number of players is now: " + session.players.length);
         return;
     }
 }
@@ -58,13 +60,15 @@ void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
 
 //this code is needed to make sure replay players have guardians.
 void redoRelationships(List<Player> players) {
+    if(players.isEmpty) return;
+    Session session = players.first.session;
     List<Player> guardians = <Player>[];
     //;
     for (num j = 0; j < players.length; j++) {
         Player p = players[j];
         guardians.add(p.guardian);
         p.relationships.clear();
-        p.generateRelationships(curSessionGlobalVar.players);
+        p.generateRelationships(session.players);
         p.initializeRelationships();
     }
 
@@ -269,7 +273,9 @@ Player randomTimePlayer(Session session) {
 
 ///takes list of players adn aspect i am looking for
 Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
-    if(curSessionGlobalVar.mutator.lightField) return curSessionGlobalVar.mutator.inSpotLight;
+    if(playerList.isEmpty) return null;
+    Session session = playerList.first.session;
+    if(session.mutator.lightField) return session.mutator.inSpotLight;
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
@@ -285,7 +291,10 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
 
 
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
-    if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) return [curSessionGlobalVar.mutator.inSpotLight];
+    if(playerList.isEmpty) return null;
+    Session session = playerList.first.session;
+
+    if(session.mutator.lightField && session.mutator.inSpotLight != null) return [session.mutator.inSpotLight];
     List<Player> ret = <Player>[];
     for (int i = 0; i < playerList.length; i++) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player

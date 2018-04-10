@@ -1,6 +1,6 @@
 import "../SBURBSim.dart";
 //all static
-typedef void SessionSource(Player player, int index);
+typedef void SessionSource(Session session, Player player, int index);
 /*
     80000008 -insipidTestimony
     730 - SBURBNeta
@@ -21,36 +21,36 @@ abstract class NonCanonSessions {
     }
 
     //does nothing if it's not a saved session
-    static void callSession(int id) {
+    static void callSession(Session session, int id) {
         Map<int, dynamic> sm = sessionMap;
         if (sm.containsKey(id)) {
-            sm[id]();
+            sm[id](session);
         }
     }
 
     //yes, this WILL crash in a regular session, how did you know?
-    static void session4037() {
-        curSessionGlobalVar.mutator.metaHandler.initalizePlayers(new Session(13),true);
-        curSessionGlobalVar.players = <Player>[curSessionGlobalVar.mutator.metaHandler.feudalUltimatum];
-        curSessionGlobalVar.players.length = 1; //no more, no less.
-        curSessionGlobalVar.players[0].setStat(Stats.EXPERIENCE, 1300);
+    static void session4037(Session session) {
+        session.mutator.metaHandler.initalizePlayers(new Session(13),true);
+        session.players = <Player>[session.mutator.metaHandler.feudalUltimatum];
+        session.players.length = 1; //no more, no less.
+        session.players[0].setStat(Stats.EXPERIENCE, 1300);
     }
 
 
 
     //from patron cynicalTeuthida: thanks for your support!!!
-    static void session404() {
+    static void session404(Session session) {
         int numPlayers = 8;
-        makeASessionFromSource(session404IndexToPlayer, numPlayers);
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
-        Player ap  = curSessionGlobalVar.players[0];
-        Player at = curSessionGlobalVar.players[1];
-        Player pa = curSessionGlobalVar.players[2];
-        Player tt = curSessionGlobalVar.players[3];
-        Player pp  = curSessionGlobalVar.players[4];
-        Player pm = curSessionGlobalVar.players[5];
-        Player aa = curSessionGlobalVar.players[6];
-        Player mm = curSessionGlobalVar.players[7];
+        makeASessionFromSource(session,session404IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //no more, no less.
+        Player ap  = session.players[0];
+        Player at = session.players[1];
+        Player pa = session.players[2];
+        Player tt = session.players[3];
+        Player pp  = session.players[4];
+        Player pm = session.players[5];
+        Player aa = session.players[6];
+        Player mm = session.players[7];
 
         /*TT <> PP is a confirmed ship
          AP <3 PM is a confirmed ship
@@ -83,13 +83,13 @@ abstract class NonCanonSessions {
 
 
     //from patron insipidTestimony: thanks for your support!!!
-    static void session80000008() {
+    static void session80000008(Session session) {
         int numPlayers = 4;
-        makeASessionFromSource(session80000008IndexToPlayer, numPlayers);
-        Player it  = curSessionGlobalVar.players[0];
-        Player vk = curSessionGlobalVar.players[1];
-        Player nc = curSessionGlobalVar.players[2];
-        Player ca = curSessionGlobalVar.players[3];
+        makeASessionFromSource(session,session80000008IndexToPlayer, numPlayers);
+        Player it  = session.players[0];
+        Player vk = session.players[1];
+        Player nc = session.players[2];
+        Player ca = session.players[3];
 
 
         Relationship refactor = new Relationship(it,0); //it would be WAY too much work to make these static.
@@ -110,20 +110,20 @@ abstract class NonCanonSessions {
 
 
 
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+        session.players.length = numPlayers; //no more, no less.
     }
 
     //from patron RL: thanks for your support!!!
-    static void session20082015() {
+    static void session20082015(Session session) {
         int numPlayers = 6;
-        makeASessionFromSource(session20082015IndexToPlayer, numPlayers);
+        makeASessionFromSource(session,session20082015IndexToPlayer, numPlayers);
 
-        Player p1  = curSessionGlobalVar.players[0];
-        Player p2 = curSessionGlobalVar.players[1];
-        Player p3 = curSessionGlobalVar.players[2];
-        Player p4 = curSessionGlobalVar.players[3];
-        Player p5 = curSessionGlobalVar.players[4];
-        Player p6 = curSessionGlobalVar.players[5];
+        Player p1  = session.players[0];
+        Player p2 = session.players[1];
+        Player p3 = session.players[2];
+        Player p4 = session.players[3];
+        Player p5 = session.players[4];
+        Player p6 = session.players[5];
 
         Relationship refactor = new Relationship(p1,0); //it would be WAY too much work to make these static.
 
@@ -151,42 +151,42 @@ abstract class NonCanonSessions {
         p6.getRelationshipWith(p5).value = 20;
 
 
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+        session.players.length = numPlayers; //no more, no less.
     }
 
     //tell me how to turn player num into a player and how many players there are and i'll do the heavy lifting of setting up the session
-    static void makeASessionFromSource(SessionSource playerFunction, int numPlayers) {
+    static void makeASessionFromSource(Session session, SessionSource playerFunction, int numPlayers) {
         //add the correct amount of extra players
         for(int i = 0; i<numPlayers; i++){
             Player player;
             Player guardian;
-            if(i< curSessionGlobalVar.players.length){
-                player = curSessionGlobalVar.players[i];
+            if(i< session.players.length){
+                player = session.players[i];
                 //;
             }else{
                 //;
-                player = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
-                guardian = randomPlayerNoDerived(curSessionGlobalVar,SBURBClassManager.PAGE, Aspects.VOID);
-                guardian.quirk = randomHumanSim(curSessionGlobalVar.rand, guardian);
-                player.quirk = randomHumanSim(curSessionGlobalVar.rand, player);
+                player = randomPlayerNoDerived(session,SBURBClassManager.PAGE, Aspects.VOID);
+                guardian = randomPlayerNoDerived(session,SBURBClassManager.PAGE, Aspects.VOID);
+                guardian.quirk = randomHumanSim(session.rand, guardian);
+                player.quirk = randomHumanSim(session.rand, player);
                 player.guardian = guardian;
                 guardian.guardian = player;
-                curSessionGlobalVar.players.add(player);
+                session.players.add(player);
             }
         }
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+        session.players.length = numPlayers; //no more, no less.
 
 
         //overright players
         for(int i = 0; i<numPlayers; i++){
-            Player player = curSessionGlobalVar.players[i];
+            Player player = session.players[i];
             Player guardian = player.guardian;
             player.relationships = [];
-            List<Player> guardians = getGuardiansForPlayers(curSessionGlobalVar.players);
+            List<Player> guardians = getGuardiansForPlayers(session.players);
             guardian.generateBlandRelationships(guardians);
-            player.generateBlandRelationships(curSessionGlobalVar.players);
-            playerFunction(player, i);
-            playerFunction(guardian, i);//just call regular with a different index
+            player.generateBlandRelationships(session.players);
+            playerFunction(session,player, i);
+            playerFunction(session,guardian, i);//just call regular with a different index
             player.mylevels = getLevelArray(player);
             guardian.mylevels = getLevelArray(guardian);
         }
@@ -194,22 +194,22 @@ abstract class NonCanonSessions {
 
 
     //SBURB NETA, a DELTA spawn.  Ran from 7/31 to 10/31 (barring an epilogue final boss fight)
-   static void session730(){
+   static void session730(Session session){
         int numPlayers = 9;
-        makeASessionFromSource(session730IndexToPlayer, numPlayers);
+        makeASessionFromSource(session, session730IndexToPlayer, numPlayers);
 
         //shipping is srs business.
         //SBURB NETA is such a scandalous fuck pile
 
-        Player ci = curSessionGlobalVar.players[0];
-        Player im = curSessionGlobalVar.players[3];
-        Player ds = curSessionGlobalVar.players[1];
-        Player cw = curSessionGlobalVar.players[2];
-        Player aa = curSessionGlobalVar.players[7];
-        Player jr = curSessionGlobalVar.players[5];
-        Player ca = curSessionGlobalVar.players[6];
-        Player va = curSessionGlobalVar.players[4];
-        Player sr = curSessionGlobalVar.players[8];
+        Player ci = session.players[0];
+        Player im = session.players[3];
+        Player ds = session.players[1];
+        Player cw = session.players[2];
+        Player aa = session.players[7];
+        Player jr = session.players[5];
+        Player ca = session.players[6];
+        Player va = session.players[4];
+        Player sr = session.players[8];
 
 
         Relationship.makeDiamonds(ci,im);
@@ -255,12 +255,12 @@ abstract class NonCanonSessions {
         //ds likes ci, seems kinda bland about everything else
         cw.getRelationshipWith(ci).value = 20;
 
-        curSessionGlobalVar.players.length = numPlayers; //no more, no less.
+        session.players.length = numPlayers; //no more, no less.
     }
 
 
 
-    static void session730IndexToPlayer(Player player, int index){
+    static void session730IndexToPlayer(Session session, Player player, int index){
         player.isTroll = true;
         player.hairColor = "#000000";
 
@@ -296,7 +296,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Mines and Smoke";
             player.land.denizenFeature = new DenizenFeature('Terpischore');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }else if(index == 1){
             player.bloodColor = "#416600";
             player.class_name = SBURBClassManager.SEER;
@@ -322,7 +322,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Problems and Wind";
             player.land.denizenFeature = new DenizenFeature('Aeolus');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }else if(index == 2){
             player.bloodColor = "#a25203";
             player.class_name = SBURBClassManager.MAID;
@@ -354,7 +354,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Poison and Paranoia";
             player.land.denizenFeature = new DenizenFeature('Tartarus');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }else if(index == 3){
             player.bloodColor = "#008282";
             player.class_name = SBURBClassManager.SYLPH;
@@ -386,7 +386,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Walls and Strife";
             player.land.denizenFeature = new DenizenFeature('Bacchus');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }else if(index == 4){
             player.bloodColor = "#a1a100";
             player.class_name = SBURBClassManager.BARD;
@@ -417,7 +417,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Clocks and Crime";
             player.land.denizenFeature = new DenizenFeature('Chronos');
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }else if(index == 5){
             player.bloodColor = "#078446";
             player.class_name = SBURBClassManager.WITCH;
@@ -448,7 +448,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Bullshit and More Bullshit"; //formerly known as the land of Ghosts and Absence
             player.land.denizenFeature = new DenizenFeature('Athena'); // <-- only good thing about this bullshit land
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }else if(index == 6){
             player.bloodColor = "#0021cb";
             player.class_name = SBURBClassManager.HEIR;
@@ -474,7 +474,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Titanium and Dreams";
             player.land.denizenFeature = new DenizenFeature('Hyperion');//sir not appearing in this film.
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
 
         }else if(index == 7){
             player.bloodColor = "#631db4";
@@ -501,7 +501,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Drought and Frogs";
             player.land.denizenFeature = new DenizenFeature('Echidna');
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }else if(index == 8){
             player.bloodColor = "#008282";
             player.class_name = SBURBClassManager.SEER;
@@ -528,7 +528,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of ??? and ???";
             player.land.denizenFeature = new DenizenFeature('???');
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }
 
     }
@@ -536,8 +536,8 @@ abstract class NonCanonSessions {
 
 
     //could make this a mapping, but whatever, i like it like this
-    static void session80000008IndexToPlayer(Player player, int index){
-        Session s = curSessionGlobalVar;
+    static void session80000008IndexToPlayer(Session session, Player player, int index){
+        Session s = session;
         player.deriveChatHandle = false;
         player.deriveLand = false;
         if(index == 0){
@@ -565,7 +565,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Cold and Pendulums";
             player.land.denizenFeature = new DenizenFeature('Hephaestus');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }else if(index == 1){
             player.isTroll = false;
             player.bloodColor = "#ff0000";
@@ -592,7 +592,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of  Harmony and Paranoia";
             player.land.denizenFeature = new DenizenFeature('Echidna');
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }else if(index == 2){
             player.isTroll = false;
             player.bloodColor = "#ff0000";
@@ -619,7 +619,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Stars and Castles";
             player.land.denizenFeature = new EasyDenizenFeature('Abraxas');
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
         }else if(index == 3){
             player.isTroll = false;
             player.bloodColor = "#ff0000";
@@ -646,15 +646,15 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Rainbows and Oil";
             player.land.denizenFeature = new HardDenizenFeature('Yaldabaoth');
 
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
         }
 
     }
 
 
     //could make this a mapping, but whatever, i like it like this
-    static void session20082015IndexToPlayer(Player player, int index){
-        Session s = curSessionGlobalVar;
+    static void session20082015IndexToPlayer(Session session,Player player, int index){
+        Session s = session;
         player.deriveChatHandle = false;
         player.deriveLand = false;
         if(index == 0){
@@ -738,8 +738,8 @@ abstract class NonCanonSessions {
 
 
     //could make this a mapping, but whatever, i like it like this
-    static void session404IndexToPlayer(Player player, int index){
-        Session s = curSessionGlobalVar;
+    static void session404IndexToPlayer(Session session,Player player, int index){
+        Session s = session;
         player.deriveChatHandle = false;
         player.deriveLand = false;
         if(index == 0){
@@ -757,7 +757,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [["o","O-"]];
             player.quirk.prefix = "-|";
             player.quirk.suffix = "|-";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Caves and Rain";
             player.land.denizenFeature = new DenizenFeature('Synesis');
@@ -778,7 +778,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [["a","/\\"],["t","+"]];
             player.quirk.prefix = "";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
             player.quirk.suffix = "";
             player.land = player.spawnLand();
             player.land.name = "Land of Cherished Hymns and Reason";
@@ -801,7 +801,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [["o","0"],["i","1"],["l","1"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
             player.land = player.spawnLand();
             player.land.name = "Land of Mountains and Robots";
             player.land.denizenFeature = new DenizenFeature('Patrikos');
@@ -831,7 +831,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [["v",">"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
             player.land = player.spawnLand();
             player.land.name = "Land of Echoes and Haze";
             player.land.denizenFeature = new DenizenFeature('Sige');
@@ -859,7 +859,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [["w","\|\|"],["y","\|"],["e","[["]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Construction and Fistfights";
             player.land.denizenFeature = new DenizenFeature('Acinetos');
@@ -886,7 +886,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplaceIgnoreCase = [["o","-0-"]];
             player.quirk.prefix = "--{{:} ";
             player.quirk.suffix = "";
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
             player.land = player.spawnLand();
             player.land.name = "Land of Slums and Resonance";
             player.land.denizenFeature = new DenizenFeature('Sermo');
@@ -909,7 +909,7 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "/2/";
             player.quirk.suffix = "/3/";
             player.land = player.spawnLand();
-            player.moon = curSessionGlobalVar.derse;
+            player.moon = session.derse;
             player.land.name = "Land of Brass and Despair";
             player.land.denizenFeature = new DenizenFeature('Vita');
             player.land.consortFeature = new ConsortFeature('Kingfishers', 'peck');
@@ -921,7 +921,7 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus =  new Specibus("Chain", ItemTraitFactory.CHAIN, [ ItemTraitFactory.METAL, ItemTraitFactory.RESTRAINING]);
 
-            player.moon = curSessionGlobalVar.prospit;
+            player.moon = session.prospit;
             player.object_to_prototype = new PotentialSprite("Tarantulamom", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.ALLCAPS;

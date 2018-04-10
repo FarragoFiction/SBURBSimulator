@@ -30,8 +30,9 @@ class Relationship {
 
     //target has to be private if light player can override it. this lets code still do .target, but not .target =
     GameEntity get target {
-        if(curSessionGlobalVar.mutator.lightField && curSessionGlobalVar.mutator.inSpotLight != null) {
-            Player megalomaniac =  curSessionGlobalVar.mutator.inSpotLight;
+        Session session = _target.session;
+        if(session.mutator.lightField && session.mutator.inSpotLight != null) {
+            Player megalomaniac =  session.mutator.inSpotLight;
             if(source != megalomaniac) return megalomaniac; //don't be in a relationship with your self.
         }
         return _target;
