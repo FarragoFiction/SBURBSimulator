@@ -125,7 +125,7 @@ class DeadSession extends Session {
 
     @override
     Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
-        int id = curSessionGlobalVar.session_id;
+        int id = this.session_id;
 
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -135,20 +135,20 @@ class DeadSession extends Session {
         if(living.isEmpty) {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
         }else {
-            appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${curSessionGlobalVar.session_id}'>${curSessionGlobalVar.session_id}</a>");
+            appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${this.session_id}'>${this.session_id}</a>");
         }
-        SimController.instance.checkSGRUB();
-        if(curSessionGlobalVar.mutator.spaceField) {
+        checkSGRUB();
+        if(this.mutator.spaceField) {
             window.scrollTo(0, 0);
             querySelector("#charSheets").setInnerHtml("");
-            SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${curSessionGlobalVar.players.length} fucking players inside it? ");
+            SimController.instance.storyElement.setInnerHtml("You feel a nauseating wave of space go over you. What happened? Huh. Is that.... a new session? How did the Players get here? Are they joining it? Will...it...even FIT having ${this.players.length} fucking players inside it? ");
         }
         if(id == 4037) {
             window.alert("Who is Shogun???");
             tmpcurSessionGlobalVar.session_id = 13;
             //okay well this is an entire new priority now that i notice who is dying. i'm so sorry sb.
 /*holy fuck nothing i do keeps us from dying. oh well.
-        for(Player p in curSessionGlobalVar.players) {
+        for(Player p in this.players) {
           p.addStat(Stats.HEALTH, 100);
           p.makeAlive(); //why is this necessary, shogun stop killing us before you even get in.
         }*/
@@ -166,13 +166,13 @@ class DeadSession extends Session {
         // //
         changeCanonState(getParameterByName("canonState",null));
         //  //
-        curSessionGlobalVar.reinit();
+        this.reinit();
         ////
-        curSessionGlobalVar.makePlayers();
+        this.makePlayers();
         ////
-        curSessionGlobalVar.randomizeEntryOrder();
+        this.randomizeEntryOrder();
         //authorMessage();
-        curSessionGlobalVar.makeGuardians(); //after entry order established
+        this.makeGuardians(); //after entry order established
 
         checkEasterEgg();
         easterEggCallBack();
@@ -185,29 +185,29 @@ class DeadSession extends Session {
 
     @override
     void easterEggCallBack() {
-        DeadSession ds = (curSessionGlobalVar as DeadSession);
-        initializePlayers(curSessionGlobalVar.players, curSessionGlobalVar); //will take care of overriding players if need be.
+        DeadSession ds = (this as DeadSession);
+        initializePlayers(this.players, this); //will take care of overriding players if need be.
         //has to happen here cuz initializePlayers can wipe out relationships.
         ds.players[0].deriveLand = false;
         //ds.players[0].relationships.add(new Relationship(ds.players[0], -999, ds.metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
         //ds.metaPlayer.relationships.add(new Relationship(ds.metaPlayer, -999, ds.players[0])); //if you need to talk to anyone, talk to metaplayer.
 
-        SimController.instance.checkSGRUB();
+        checkSGRUB();
         if (doNotRender == true) {
-            curSessionGlobalVar.intro();
+            this.intro();
         } else {
-            load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), "");
+            load(this, this.players, getGuardiansForPlayers(this.players), "");
         }
     }
 
     @override
     Future<Null> reckoning() async{
         ////
-        Scene s = new DeadReckoning(curSessionGlobalVar);
-        s.trigger(curSessionGlobalVar.players);
-        s.renderContent(curSessionGlobalVar.newScene(s.runtimeType.toString(),));
+        Scene s = new DeadReckoning(this);
+        s.trigger(this.players);
+        s.renderContent(this.newScene(s.runtimeType.toString(),));
         simulationComplete("Dead Reckoning.");
-        renderAfterlifeURL();
+        renderAfterlifeURL(this);
     }
 
     @override
@@ -231,14 +231,14 @@ class DeadSession extends Session {
         }
         DeadIntro s = new DeadIntro(this);
         Player p = this.players[player_index];
-        //var playersInMedium = curSessionGlobalVar.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
+        //var playersInMedium = this.players.slice(0, player_index+1); //anybody past me isn't in the medium, yet.
         List<Player> playersInMedium = this.players.sublist(0, player_index + 1);
         s.trigger(<Player>[p]);
         s.renderContent(this.newScene(s.runtimeType.toString())); //new scenes take care of displaying on their own.
         this.processScenes(playersInMedium);
         //player_index += 1;
         //new Timer(new Duration(milliseconds: 10), () => callNextIntro(player_index)); //sweet sweet async
-        SimController.instance.gatherStats();
+        SimController.instance.gatherStats(this);
         await tick();
     }
 
@@ -501,7 +501,7 @@ class DeadSession extends Session {
     Session initializeCombinedSession() {
         this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
         List<Player> living = findLiving(this.players);
-        living.add((curSessionGlobalVar as DeadSession).metaPlayer);
+        living.add((this as DeadSession).metaPlayer);
         //nobody is the leader anymore.
         Session newSession = new Session(this.rand.nextInt()); //Math.seed);  //this is a real session that could have gone on without these new players.
         newSession

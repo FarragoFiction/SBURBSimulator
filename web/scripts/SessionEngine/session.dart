@@ -517,7 +517,7 @@ class Session {
             //scratch fuckers.
             this.stats.makeCombinedSession = false; //can't make a combo session, and skiaia is a frog so no scratch.
             simulationComplete("Was eligible for a combo but it didn't have room.");
-            renderAfterlifeURL();
+            renderAfterlifeURL(this);
             //renderScratchButton(this);
         }
     }
@@ -593,7 +593,7 @@ class Session {
             await reckoningTick();
         } else {
             simulationComplete("the reckoning doomed the timeline");
-            renderAfterlifeURL();
+            renderAfterlifeURL(this);
         }
     }
 
@@ -626,7 +626,7 @@ class Session {
             if (this.stats.makeCombinedSession == true) {
                 await processCombinedSession(); //make sure everything is done rendering first
             } else {
-                renderAfterlifeURL();
+                renderAfterlifeURL(this);
             }
             SimController.instance.gatherStats(this);
         }

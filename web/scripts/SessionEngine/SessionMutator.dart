@@ -219,7 +219,7 @@ class SessionMutator {
         ret += " They change what they want, and set the stage for their revenge.  All they have to do is wait for the new Players to join. You suspect that things might get a little hard to share depending on how long they have to wait. They know the Reckoning won't happen in the mean time. ";
         globalCallBack = rageCallBack; //metaPlayers will just show up unannounced.
         //need to spawn these assholes, then set up a loading callback for them. they'll show up when they are ready.
-        load(metaHandler.metaPlayers, [], "thisReallyShouldn'tExistAnymoreButIAmLazy");
+        load(s,metaHandler.metaPlayers, [], "thisReallyShouldn'tExistAnymoreButIAmLazy");
 
         for (Player p in s.players) {
             p.makeMurderMode(); //you're all murder mode, but can you get teh meta players in time?
@@ -323,7 +323,7 @@ class SessionMutator {
         savedSession = s;
         //need to load the new images.
         globalCallBack = heartCallBack;
-        load(s.players, [], "thisReallyShouldn'tExistAnymoreButIAmLazy");
+        load(s,s.players, [], "thisReallyShouldn'tExistAnymoreButIAmLazy");
 
         return ret; //<--still return tho, not waiting on the async loading
     }

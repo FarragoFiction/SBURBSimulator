@@ -110,7 +110,7 @@ void spawnDoomedTimeClone(ImportantEvent newEvent, ImportantEvent storedEvent){
     }
 }
 
-void redemptionArc() {
+void redemptionArc(Session session) {
         //make the current session a REGULAR session with the same session number (unless 4037).
     SimController.instance.clearElement(SimController.instance.storyElement);
     querySelector('body').style.backgroundImage = "url(images/Skaia_Clouds.png)";
@@ -120,12 +120,12 @@ void redemptionArc() {
     Element explanation = new DivElement();
 
     //convert session
-    int id = curSessionGlobalVar.session_id;
+    int id = session.session_id;
     if(id == 4037) {
         id = 13; //redemption and new friends.
     }
 
-    explanation.text = "Once upon a time there lived a not-quite-yet-player with a chat handle of ${curSessionGlobalVar.players[0].chatHandle}. It's hard to see what happened to them. (This is SBURBSim after all, and our story is not yet set in SBURB).  Did they kill their 'friends'? Abandon them? Were they bullied and rejected by them? (Did they escape on the back of a magic dog/dragon?). It doesn't matter why. What DOES matter. Is that they were alone. And were on the verge of playing SBURB alone, which as we now know, is a bad fucking idea. We can imagine that there is a flash of light. A time player.  A Choice changed.  They have friends now. Perhaps bridges were repaired and they are with their old ones. Perhaps they have found new. Who can say? All we can know for sure is... It's not a single player game, anymore. ";
+    explanation.text = "Once upon a time there lived a not-quite-yet-player with a chat handle of ${session.players[0].chatHandle}. It's hard to see what happened to them. (This is SBURBSim after all, and our story is not yet set in SBURB).  Did they kill their 'friends'? Abandon them? Were they bullied and rejected by them? (Did they escape on the back of a magic dog/dragon?). It doesn't matter why. What DOES matter. Is that they were alone. And were on the verge of playing SBURB alone, which as we now know, is a bad fucking idea. We can imagine that there is a flash of light. A time player.  A Choice changed.  They have friends now. Perhaps bridges were repaired and they are with their old ones. Perhaps they have found new. Who can say? All we can know for sure is... It's not a single player game, anymore. ";
     SimController.instance.storyElement.append(explanation);
     Session s = new Session(id);
     s.reinit();
@@ -133,38 +133,37 @@ void redemptionArc() {
     s.randomizeEntryOrder();
     s.makeGuardians();
     s.createScenesForPlayers();
-    curSessionGlobalVar = s;
     SimController.instance = null;
     new StoryController();
     //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
     window.scrollTo(0, 0);
-    curSessionGlobalVar.startSession();
-    //load(curSessionGlobalVar.players, getGuardiansForPlayers(curSessionGlobalVar.players), ""); //in loading.js
+    s.startSession();
+    //load(session.players, getGuardiansForPlayers(session.players), ""); //in loading.js
     //restart session
     ///???
     ///profit
 }
 
 
-void decision(){
+void decision(Session session){
     String a;
     try {
          a = (querySelector("input[name='decision']:checked") as InputElement).value;
     }catch(e) {
-        if(curSessionGlobalVar is DeadSession) redemptionArc();
+        if(session is DeadSession) redemptionArc(session);
         return;
     }
   int index = int.parse(a, onError:(String s) => 0);
   if(index < yyrEventsGlobalVar.length){
     var eventDecided = yyrEventsGlobalVar[int.parse(a, onError:(String s) => 0)];
     //alert(eventDecided.humanLabel());
-    curSessionGlobalVar.addEventToUndoAndReset(eventDecided);
+    session.addEventToUndoAndReset(eventDecided);
   }else{
     //undoing undoing an event.
     index = index - yyrEventsGlobalVar.length;
-    var eventToUndo2x = curSessionGlobalVar.yellowYardController.eventsToUndo[index];
-    var timePlayer = findAspectPlayer(curSessionGlobalVar.players, Aspects.TIME);
-    if(curSessionGlobalVar is DeadSession) timePlayer = curSessionGlobalVar.players[0];
+    var eventToUndo2x = session.yellowYardController.eventsToUndo[index];
+    var timePlayer = findAspectPlayer(session.players, Aspects.TIME);
+    if(session is DeadSession) timePlayer = session.players[0];
 
     var doom = Player.makeRenderingSnapshot(timePlayer);
 		doom.dead = false;
@@ -172,7 +171,7 @@ void decision(){
 		doom.setStat(Stats.CURRENT_HEALTH, doom.getStat(Stats.HEALTH));
     doom.influenceSymbol = "mind_forehead.png";
     eventToUndo2x.secondTimeClone = doom;
-    curSessionGlobalVar.addEventToUndoAndReset(null);
+    session.addEventToUndoAndReset(null);
   }
 
 }
