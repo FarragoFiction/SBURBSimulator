@@ -578,7 +578,7 @@ class Session {
         for(Player p in this.players) {
             p.syncToSessionMoon();
         }
-        await checkEasterEgg();
+        await checkEasterEgg(this);
         SimController.instance.scratchEasterEggCallBack(this);
     }
 
@@ -607,7 +607,7 @@ class Session {
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        await checkEasterEgg();
+        await checkEasterEgg(this);
         SimController.instance.easterEggCallBackRestartScratch(this);
     }
 
@@ -959,15 +959,16 @@ class Session {
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Session> startSession() async {
         print("session is starting");
+        SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
-        changeCanonState(getParameterByName("canonState",null));
+        changeCanonState(this,getParameterByName("canonState",null));
         reinit();
         this.makePlayers();
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
 
         //we await this because of the fan ocs being loaded from file like assholes.
-        checkEasterEgg();
+        checkEasterEgg(this);
         await SimController.instance.easterEggCallBack(this);
 
         return completer.future;

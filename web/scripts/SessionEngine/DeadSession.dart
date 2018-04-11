@@ -162,9 +162,10 @@ class DeadSession extends Session {
     @override
     Future<Session> startSession() async {
         globalInit(); // initialise classes and aspects if necessary
+        SimController.instance.currentSessionForErrors = this;
 
         // //
-        changeCanonState(getParameterByName("canonState",null));
+        changeCanonState(this, getParameterByName("canonState",null));
         //  //
         this.reinit();
         ////
@@ -174,7 +175,7 @@ class DeadSession extends Session {
         //authorMessage();
         this.makeGuardians(); //after entry order established
 
-        checkEasterEgg();
+        checkEasterEgg(this);
         easterEggCallBack();
         //red miles are way too common and also dead sessions are special
         prospit.destroyRing();

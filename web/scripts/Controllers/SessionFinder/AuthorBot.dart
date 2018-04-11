@@ -62,7 +62,7 @@ abstract class AuthorBot extends SimController {
     if(doNotRender == true){
       session.intro();
     }else{
-      load(session.players, getGuardiansForPlayers(session.players),""); //in loading.js
+      load(session, session.players, getGuardiansForPlayers(session.players),""); //in loading.js
     }
   }
 

@@ -16,6 +16,7 @@ import "dart:async";
 //ABController inherits from Story Controller and only changes what she must.
 //care about other controllers later.
 abstract class SimController {
+    Session currentSessionForErrors;
     int maxTicks = 300;
     static bool shogun = false;  //sim goes into shogun mode
     static int spriteTemplateWidth = 400;
@@ -135,14 +136,13 @@ abstract class SimController {
 
     //they aren't full callbacks anymore but live here so regular vs ab etc have diff behaviors
     void easterEggCallBack(Session s) {
-
         initializePlayers(s.players, s); //will take care of overriding players if need be.
         s.checkSGRUB();
         if (doNotRender == true) {
             s.intro();
         } else {
             //
-            load(s.players, getGuardiansForPlayers(s.players), "");
+            load(s,s.players, getGuardiansForPlayers(s.players), "");
         }
     }
 
@@ -183,12 +183,12 @@ abstract class SimController {
                     String html = '<img src="images/Scratch.png" id="scratchButton"><br>Click To Scratch Session?';
                     appendHtml(SimController.instance.storyElement, html);
                     querySelector("#scratchButton").onClick.listen((Event e) => scratchConfirm(session));
-                    renderAfterlifeURL();
+                    renderAfterlifeURL(session);
                 }
             } else {
                 //
                 appendHtml(SimController.instance.storyElement, "<br>This session is already scratched. No further scratches available.");
-                renderAfterlifeURL();
+                renderAfterlifeURL(session);
             }
         } else {
             //

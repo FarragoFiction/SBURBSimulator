@@ -11,7 +11,7 @@ void main()
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
-    printCorruptionMessage(e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
+    printCorruptionMessage(SimController.instance.currentSessionForErrors,e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
     return;
   });
 
@@ -28,7 +28,7 @@ void main()
   self.loadPlayers(session);
   globalCallBack = self.renderGhosts;
   ;
-  load(session.players, [], "ghostNewBullshitReallyIShouldJustBeUsingCallbackAlone");
+  load(session, session.players, [], "ghostNewBullshitReallyIShouldJustBeUsingCallbackAlone");
 
 
 }

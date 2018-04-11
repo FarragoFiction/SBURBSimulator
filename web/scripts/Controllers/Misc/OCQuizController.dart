@@ -22,7 +22,7 @@ main() {
     Session session =ocgen.session;
     button.onClick.listen((e) => ocgen.doQuests(ocgen.players.first));
 
-    loadFuckingEverything("I really should stop doing this",ocgen.start );
+    loadFuckingEverything(session, "I really should stop doing this",ocgen.start );
     //TODO have a form element for picking session id, which should overright the rand number
     //have a bigger canvas
     //write out the quests straight up.

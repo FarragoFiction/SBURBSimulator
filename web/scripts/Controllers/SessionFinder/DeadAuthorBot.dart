@@ -54,7 +54,7 @@ abstract class DeadAuthorBot extends DeadSimController {
     if(doNotRender == true){
       session.intro();
     }else{
-      load(session.players, getGuardiansForPlayers(session.players),""); //in loading.js
+      load(SimController.instance.currentSessionForErrors,session.players, getGuardiansForPlayers(session.players),""); //in loading.js
     }
   }
 
