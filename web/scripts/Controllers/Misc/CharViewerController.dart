@@ -5,7 +5,7 @@ import 'dart:html';
 import 'dart:async';
 
 CharViewerController self;
-
+Session session; //only one for this page
 void main()
 {
   loadNavbar();
@@ -18,7 +18,8 @@ void main()
   new CharViewerController();
   self = SimController.instance;
   globalInit();
-  Session session = new Session(SimController.instance.initial_seed);
+  session = new Session(SimController.instance.initial_seed);
+  session.setupMoons();
   querySelector("#draw12Button").onClick.listen((e) => draw12(session));
 
   self.renderHeader();
@@ -33,7 +34,7 @@ void draw12(Session session) {
   self.draw12(session);
 }
 
-void renderPlayersForEditing(Session session) {
+void renderPlayersForEditing() {
   self.renderPlayersForEditing(session);
 }
 /*

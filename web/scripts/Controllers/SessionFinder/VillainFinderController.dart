@@ -12,7 +12,6 @@ void main() {
     loadNavbar();
 
     div = querySelector("#stats");
-    todo("get sessions linking");
     syncCache();
     displayCards();
 
