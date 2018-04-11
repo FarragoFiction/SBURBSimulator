@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:html";
 import "dart:math" as Math;
 
 import "package:js/js_util.dart" as JsUtil;
@@ -7,6 +8,16 @@ import '../../includes/colour.dart';
 import "../../loader/loader.dart";
 import "../text/opentype.dart" as OT;
 import "three.dart";
+
+abstract class ScriptLoader {
+    static Future<ScriptElement> three() => Loader.loadJavaScript("scripts/Rendering/threed/three.min.js");
+
+    static Future<ScriptElement> obj() async {
+        await Loader.loadJavaScript("scripts/Rendering/threed/extensions/LoaderSupport.js");
+        return Loader.loadJavaScript("scripts/Rendering/threed/extensions/OBJLoader2.js");
+    }
+}
+
 
 Future<ShaderMaterial> makeShaderMaterial(String vertexfile, String fragmentfile) async {
     List<String> programs = await Future.wait(<Future<String>>[

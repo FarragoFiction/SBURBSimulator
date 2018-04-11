@@ -55,6 +55,10 @@ Future<Null> main() async {
     };
 
     await observatory.setup(13);
+
+    //THREE.Mesh ship = await shiptest();
+    //observatory.cameraRig.add(ship);
+
     querySelector("#screen_container")..append(observatory.renderer.domElement);
     querySelector("#screen_container")..append(observatory.landDetails.container);
 }
@@ -252,6 +256,12 @@ String processSessionComment(ObservatoryViewer ob, int today) {
     }
 
     return segments.isEmpty ? null : segments.join("<br><br>");
+}
+
+Future<THREE.Mesh> shiptest() async {
+    THREE.Mesh ship = await Loader.getResource("models/overcoat.obj");
+    //ship.material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))..needsUpdate=true))..transparent=true;
+    return ship;
 }
 
 //##################################################################################
@@ -527,7 +537,7 @@ class ObservatoryViewer {
             ..render(this.renderScene, this.renderCamera);
     }
 
-    Future<Null> updateSessions() async {
+    void updateSessions() {
         double leftedge   = this.camx - this.canvasWidth  / 2;
         double rightedge  = this.camx + this.canvasWidth  / 2;
         double topedge    = this.camy - this.canvasHeight / 2;
@@ -562,7 +572,7 @@ class ObservatoryViewer {
                 id = new Point<int>(x,y);
 
                 if (!sessions.containsKey(id)) {
-                    sessions[id] = await this.createSession(SeedMapper.coords2seed(rx,ry), x, y);
+                    sessions[id] = this.createSession(SeedMapper.coords2seed(rx,ry), x, y);
                 }
             }
         }
@@ -572,7 +582,7 @@ class ObservatoryViewer {
         }
     }
 
-    Future<Null> goToCoordinates(num x, num y) async {
+    void goToCoordinates(num x, num y) {
         x = x.floor();
         y = y.floor();
 
@@ -590,7 +600,7 @@ class ObservatoryViewer {
 
         //
 
-        await this.updateSessions();
+        this.updateSessions();
         this.setURL();
 
         ObservatorySession nearest = this.findDetailSession();
@@ -627,7 +637,6 @@ class ObservatoryViewer {
         int x,y;
         double diff;
         for (ObservatorySession session in sessions.values) {
-           // print("doing a thing to $session with ${session.x} and ${gridsize} and ${session.model_offset_x} and ${camx}");
             x = ((session.x + 0.5) * gridsize).floor() + session.model_offset_x - this.camx;
             y = ((session.y + 0.5) * gridsize).floor() + session.model_offset_y - this.camy;
 
@@ -679,20 +688,16 @@ class ObservatoryViewer {
 
     //############ creation
 
-    Future<ObservatorySession> createSession(int seed, int x, int y) async {
-        //JR: shit this is more involved than anticipated. time to follow the chain up.
+    ObservatorySession createSession(int seed, int x, int y) {
         ObservatorySession ret =  new ObservatorySession(this, seed, x, y)..createModel();
-        await ret.init();
         return ret;
     }
 
     void destroySession(ObservatorySession session) {
-        //
-        //this.scene.remove(session.model);
         session.remove();
     }
 
-    Future<Session> getSession(int seed) async{
+    Session getSession(int seed) {
         if (sessionCache.containsKey(seed)) {
             return sessionCache[seed];
         }
@@ -703,7 +708,7 @@ class ObservatoryViewer {
         session.randomizeEntryOrder();
         session.makeGuardians();
 
-        checkEasterEgg();
+        checkEasterEgg(session);
         this.easterEggCallback(session);
 
         sessionCache[seed] = session;
@@ -759,12 +764,8 @@ class ObservatorySession {
 
     ObservatorySession(ObservatoryViewer this.parent, int this.seed, int this.x, int this.y) {
         this.rand = new Random(seed);
-    }
 
-    //JR: needed for the non callback paradigm
-    Future<Null> init() async {
-        this.session = await parent.getSession(seed);
-
+        this.session = parent.getSession(seed);
 
         this.initial_rotation = rand.nextDouble(Math.PI * 2);
         this.rotation_speed = rand.nextDouble() * (max_rotation - min_rotation) + min_rotation;
