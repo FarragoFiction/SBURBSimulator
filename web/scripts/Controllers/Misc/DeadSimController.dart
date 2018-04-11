@@ -25,7 +25,7 @@ class DeadSimController extends SimController {
     if (doNotRender == true) {
       session.intro();
     } else {
-      load(session.players, getGuardiansForPlayers(session.players), "");
+      load(session, session.players, getGuardiansForPlayers(session.players), "");
     }
   }
 

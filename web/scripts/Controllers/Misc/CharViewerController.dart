@@ -15,25 +15,26 @@ void main()
 
     return;
   });
-  querySelector("#draw12Button").onClick.listen((e) => draw12());
   new CharViewerController();
   self = SimController.instance;
   globalInit();
   Session session = new Session(SimController.instance.initial_seed);
+  querySelector("#draw12Button").onClick.listen((e) => draw12(session));
+
   self.renderHeader();
   var params = window.location.href.substring(window.location.href.indexOf("?")+1);
   if (params == window.location.href) params = "";
   appendHtml(querySelector("#character_creator"),"<a target='_blank' href = 'index2.html?selfInsertOC=true&" + params + "'>Send Random Fan OCs From This Category Into SBURB?</a> &nbsp &nbsp &nbsp<a target='_blank' href = 'rare_session_finder.html?selfInsertOC=true&" + params + "'>AB Report For Fan OCs From This Category</a><Br><Br><Br>");
   //TODO what does passing true here mean again, really should make it callbacks eventually.
-  loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
+  loadFuckingEverything(session, "I really should stop doing this",renderPlayersForEditing );
 }
 
-void draw12() {
-  self.draw12();
+void draw12(Session session) {
+  self.draw12(session);
 }
 
-void renderPlayersForEditing() {
-  self.renderPlayersForEditing();
+void renderPlayersForEditing(Session session) {
+  self.renderPlayersForEditing(session);
 }
 /*
   doesn't do sim stuff, it's overrides are errors, but need it to do a few other things. whatever.
@@ -68,10 +69,10 @@ class CharViewerController extends SimController {
 
 
 
-  Future<Null> renderPlayersForEditing() async{
+  Future<Null> renderPlayersForEditing(Session session) async{
     easterEggEngine = new CharacterEasterEggEngine();
-    await easterEggEngine.loadArraysFromFile(false);
-    callBackForLoadOCsFromFile();
+    await easterEggEngine.loadArraysFromFile(session, false);
+    callBackForLoadOCsFromFile(session);
   }
 
 
@@ -80,17 +81,17 @@ class CharViewerController extends SimController {
 //range slider for "number of players", and will auto select that number of players from list (repeats if necessary.)
 //check box for "guarantee space/time".
 //just generates a URL for the session. that you click right on this page. so only this page needs to load the ocs from file.
-  void callBackForLoadOCsFromFile(){
-    players = easterEggEngine.processEasterEggsViewer(new Random());
+  void callBackForLoadOCsFromFile(Session session){
+    players = easterEggEngine.processEasterEggsViewer(session,new Random());
     charCreatorHelper = new CharacterCreatorHelper(players);
-    charCreatorHelper.draw12PlayerSummaries();
+    charCreatorHelper.draw12PlayerSummaries(session, );
   }
 
 
 
 
-  void draw12(){
-    charCreatorHelper.draw12PlayerSummaries();
+  void draw12(Session session){
+    charCreatorHelper.draw12PlayerSummaries(session);
   }
 
 

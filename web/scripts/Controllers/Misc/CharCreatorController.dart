@@ -30,7 +30,7 @@ void main()
   querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
   session = new Session(SimController.instance.initial_seed);
   session.startSession();
-  loadFuckingEverything("I really should stop doing this",renderPlayersForEditing );
+  loadFuckingEverything(session,"I really should stop doing this",renderPlayersForEditing );
 }
 
 void newPlayer() {
@@ -49,7 +49,7 @@ void renderURLToSendPlayersIntoSBURB() {
 }
 
 void renderPlayersForEditing() {
-  self.renderPlayersForEditing();
+  self.renderPlayersForEditing(session);
 }
 /*
   doesn't do sim stuff, it's overrides are errors, but need it to do a few other things. whatever.
@@ -78,8 +78,8 @@ class CharCreatorController extends SimController {
 
 
 
-  void renderPlayersForEditing(){
-    charCreatorHelperGlobalVar.drawAllPlayers();
+  void renderPlayersForEditing(Session session){
+    charCreatorHelperGlobalVar.drawAllPlayers(session);
     updateRender();
     (querySelector("#button")as ButtonElement).disabled =false;
   }
@@ -105,7 +105,7 @@ class CharCreatorController extends SimController {
     p.canvas = null;
     p.renderSelf("newPlayer");
 
-    charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
+    charCreatorHelperGlobalVar.drawSinglePlayerForHelper(session,p);
 
 
   }
@@ -116,7 +116,7 @@ class CharCreatorController extends SimController {
     if(session.players.length == 13) window.alert("Like, go ahead and all, but this is your Official Warning that the sim is optimized for no more than 12 player sessions.");
     p.canvas = null;
     p.renderSelf("newPlayer");
-    charCreatorHelperGlobalVar.drawSinglePlayerForHelper(p);
+    charCreatorHelperGlobalVar.drawSinglePlayerForHelper(session,p);
 
   }
 
