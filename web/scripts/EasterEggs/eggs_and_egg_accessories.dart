@@ -418,8 +418,8 @@ void session413(Session session){
 		List<Player> guardians = getGuardiansForPlayers(session.players);
 		guardian.generateBlandRelationships(guardians);
 		player.generateBlandRelationships(session.players);
-		session413IndexToHuman(player, i);
-		session413IndexToAncestor(guardian, i);//just call regular with a different index
+		session413IndexToHuman(session,player, i);
+		session413IndexToAncestor(session,guardian, i);//just call regular with a different index
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
@@ -457,8 +457,8 @@ void session111111(Session session){
 		List<Player> guardians = getGuardiansForPlayers(session.players);
 		guardian.generateBlandRelationships(guardians);
 		player.generateBlandRelationships(session.players);
-		session413IndexToAncestor(player, i);
-		session413IndexToHuman(guardian, i);//just call regular with a different index
+		session413IndexToAncestor(session,player, i);
+		session413IndexToHuman(session,guardian, i);//just call regular with a different index
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
@@ -667,15 +667,15 @@ void homestuck(Session session){
 		var p = session.players[i];
 		var g = p.guardian;
 		if(p.aspect == Aspects.TIME){
-			session413IndexToHuman(p,2);
-			session413IndexToAncestor(g,2);
+			session413IndexToHuman(session,p,2);
+			session413IndexToAncestor(session,g,2);
 		}else if(p.aspect == Aspects.SPACE){
-			session413IndexToHuman(p,3);
-			session413IndexToHuman(g,3);
+			session413IndexToHuman(session,p,3);
+			session413IndexToHuman(session,g,3);
 		}else{
 			var index = rand.nextIntRange(0,7);
-			session413IndexToHuman(p,index);
-			session413IndexToAncestor(g,index);
+			session413IndexToHuman(session,p,index);
+			session413IndexToAncestor(session,g,index);
 		}
 	}
 }
@@ -691,15 +691,15 @@ void hivebent(Session session){
 		var p = session.players[i];
 		var g = p.guardian;
 		if(p.aspect == Aspects.TIME){
-			session612IndexToTroll(p,4);
-			session612IndexToTrollAncestor(g,4);
+			session612IndexToTroll(session,p,4);
+			session612IndexToTrollAncestor(session,g,4);
 		}else if(p.aspect == Aspects.SPACE){
-			session612IndexToTroll(p,8);
-			session612IndexToTrollAncestor(g,8);
+			session612IndexToTroll(session,p,8);
+			session612IndexToTrollAncestor(session,g,8);
 		}else{
 			var index = rand.nextIntRange(0,11);
-			session612IndexToTroll(p,index);
-			session612IndexToTrollAncestor(g,index);
+			session612IndexToTroll(session,p,index);
+			session612IndexToTrollAncestor(session,g,index);
 		}
 	}
 }
@@ -741,15 +741,15 @@ void openBound(Session session){
 		var p = session.players[i];
 		var g = p.guardian;
 		if(p.aspect == Aspects.TIME){
-			session612IndexToTroll(g,4);
-			session612IndexToTrollAncestor(p,4);
+			session612IndexToTroll(session,g,4);
+			session612IndexToTrollAncestor(session,p,4);
 		}else if(p.aspect == Aspects.SPACE){
-			session612IndexToTroll(g,8);
-			session612IndexToTrollAncestor(p,8);
+			session612IndexToTroll(session,g,8);
+			session612IndexToTrollAncestor(session,p,8);
 		}else{
 			var index = rand.nextIntRange(0,11);
-			session612IndexToTroll(g,index);
-			session612IndexToTrollAncestor(p,index);
+			session612IndexToTroll(session,g,index);
+			session612IndexToTrollAncestor(session,p,index);
 		}
 	}
 }
@@ -814,13 +814,13 @@ void aradiaQuest(Session session){
 
 	for(num i = 0; i< session.players.length; i++){
 		var player = blankPlayerNoDerived(session); //unlike gamzee or vriska, aradias can be different
-		session612IndexToTroll(player, 4);
+		session612IndexToTroll(session,player, 4);
 		var p = session.players[i];
 		var g = p.guardian;
 		p.id = i;
 		g.id = i + 111111;
-		copyPlayerFromTemplate(p,player);
-		copyPlayerFromTemplate(g,player);
+		copyPlayerFromTemplate(session,p,player);
+		copyPlayerFromTemplate(session,g,player);
 	}
 }
 
@@ -829,8 +829,8 @@ void aradiaQuest(Session session){
 //like nepeta quest, but with gamzee instead of nepeta.
 void fridgeQuest(Session session){
 	var player = blankPlayerNoDerived(session);
-	session612IndexToTroll(player, 2);
-	copyPlayersFromTemplate(player);
+	session612IndexToTroll(session,player, 2);
+	copyPlayersFromTemplate(session,player);
 }
 
 
@@ -839,7 +839,7 @@ void fridgeQuest(Session session){
 //everyone replaced by vriska. thief of space and thief of time.
 void lucky8rk(Session session){
 	var player = blankPlayerNoDerived(session);
-	session612IndexToTroll(player, 7);
+	session612IndexToTroll(session,player, 7);
 	copyPlayersFromTemplate(session,player);
 }
 
@@ -875,8 +875,8 @@ void copyPlayersFromTemplate(Session session,template){
 		var g = p.guardian;
 		p.id = i;
 		g.id = i + 111111;
-		copyPlayerFromTemplate(p,template);
-		copyPlayerFromTemplate(g,template);
+		copyPlayerFromTemplate(session,p,template);
+		copyPlayerFromTemplate(session,g,template);
 	}
 }
 
@@ -947,7 +947,7 @@ void session88888888(Session session){
 		guardian.guardian = player;
 		session.players.add(player);
 	}
-	lucky8rk();
+	lucky8rk(session);
 	for(num i = 0; i<session.players.length;i++){
 		var player = session.players[i];
 		var guardian = player.guardian;
@@ -1158,8 +1158,8 @@ void session612(Session session){
 		var guardians = getGuardiansForPlayers(session.players);
 		guardian.generateRelationships(guardians);
 		player.generateRelationships(session.players);
-		session612IndexToTroll(player, i);
-		session612IndexToTrollAncestor(guardian, i);
+		session612IndexToTroll(session,player, i);
+		session612IndexToTrollAncestor(session,guardian, i);
 		player.mylevels = getLevelArray(player);
 		guardian.mylevels = getLevelArray(guardian);
 	}
@@ -1796,8 +1796,8 @@ void session1025(Session session){
 			}else if(i == 11){
 				index = 7;
 			}
-			session612IndexToTroll(player, index);
-			session612IndexToTroll(guardian, index);
+			session612IndexToTroll(session,player, index);
+			session612IndexToTroll(session,guardian, index);
 		}
 		var guardians = getGuardiansForPlayers(session.players);
 		guardian.generateRelationships(guardians);
