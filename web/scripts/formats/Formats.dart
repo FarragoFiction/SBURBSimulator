@@ -3,6 +3,7 @@ import "BundleManifestFormat.dart";
 import "FileFormat.dart";
 import "FontFormat.dart";
 import "ImageFormats.dart";
+import "OBJFormat.dart";
 import "SpriteFormat.dart";
 import "ZipFormat.dart";
 
@@ -22,6 +23,8 @@ abstract class Formats {
     static SpriteFormat sprite;
 
     static FontFormat font;
+
+    static OBJFormat obj;
 
     static void init() {
         if (!_INITALISED) {
@@ -56,6 +59,9 @@ abstract class Formats {
         addMapping(font, "ttf");
         addMapping(font, "otf");
         addMapping(font, "woff");
+
+        obj = new OBJFormat();
+        addMapping(obj, "obj");
     }
 
     static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {

@@ -535,6 +535,14 @@ class Mesh extends Object3D {
 	external void set geometry(Geometry geometry);
 }
 
+// Loaders ################################################################
+
+@JS()
+class OBJLoader2 {
+	external Object3D parse(ByteBuffer content);
+}
+
+
 // Controls ################################################################
 
 @JS()
