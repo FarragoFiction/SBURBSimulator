@@ -34,8 +34,14 @@ void main() {
   }
 
   SimController.instance.shareableURL();
+  startSession();
+
+}
+
+Future<Null> startSession() async {
   Session session = new Session(SimController.instance.initial_seed);
-  session.startSession();
+  await session.startSession();
+  print("I think the session stopped!");
 }
 
 //sauce jr, what are you doing. stahp.

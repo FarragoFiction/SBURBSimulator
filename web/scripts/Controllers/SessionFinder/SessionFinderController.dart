@@ -28,6 +28,7 @@ void main() {
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
+    SimController.instance.currentSessionForErrors.logger.info("AB found a crash in current session");
     printCorruptionMessage(SimController.instance.currentSessionForErrors,e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
     return;
   });

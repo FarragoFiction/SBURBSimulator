@@ -975,8 +975,10 @@ class Session {
     }
 
     void simulationComplete(String ending) {
-        logger.info("session complete from $ending");
+        logger.info("before session complete from $ending");
         this.completer.complete(this);
+        logger.info("after session complete from $ending");
+
     }
 
     Future<Null> tick([num time]) async{

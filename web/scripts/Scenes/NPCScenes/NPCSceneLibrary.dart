@@ -8,3 +8,4 @@ export "GiveJackScepter.dart";
 export "PassOutRegiswords.dart";
 export "RedMiles.dart";
 export "MailSideQuest.dart";
+export "KillWhiteKing.dart";

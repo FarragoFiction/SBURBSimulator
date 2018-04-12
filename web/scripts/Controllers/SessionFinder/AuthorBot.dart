@@ -167,6 +167,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void recoverFromCorruption(Session session) {
+    session.logger.info("Recovering from corruption in ab");
     session.simulationComplete("Crashed in AB");
     summarizeSession(session); //well...THAT session ended
   }
