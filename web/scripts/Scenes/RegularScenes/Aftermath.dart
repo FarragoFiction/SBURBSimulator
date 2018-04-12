@@ -204,9 +204,9 @@ class Aftermath extends Scene {
         GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
         GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
         if(session.playersHaveRings()) {
-            ret = "The players are given the ${session.derseRing } from the  and the ${session.derseRing.owner} and the ${session.prospitRing} from the ${session.prospitRing.owner}. They chuck them into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. ";
+            ret = "The players are given the ${session.derseRing } from the  ${session.derseRing.owner.htmlTitle()} and the ${session.prospitRing} from the ${session.prospitRing.owner.htmlTitle()}. They chuck them into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. <br><br>";
         }else {
-            ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.";
+            ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.<br><br>";
         }
         return ret;
     }

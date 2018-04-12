@@ -71,6 +71,8 @@ class MultiSessionSummary {
         setStat("heroicDeath", 0);
         setStat("rapBattle", 0);
         setStat("sickFires", 0);
+        setStat("timeoutReckoning", 0);
+        setStat("forgesStoked", 0);
         setStat("hasLuckyEvents", 0);
         setStat("hasUnluckyEvents", 0);
         setStat("hasTier1GnosisEvents", 0);
@@ -346,6 +348,7 @@ class MultiSessionSummary {
         if (propertyName == "fourTimesSessionCombo" || propertyName == "fiveTimesSessionCombo" || propertyName == "holyShitMmmmmonsterCombo" || propertyName == "numberFullFrog") return true;
         if (propertyName == "numberPurpleFrog" || propertyName == "numberFullFrog" || propertyName == "numberSickFrog" || propertyName == "numberNoFrog" || propertyName == "rocksFell" || propertyName == "opossumVictory") return true;
         if (propertyName == "blackKingDead" || propertyName == "gnosisEnding" || propertyName == "loveEnding" || propertyName == "hateEnding" || propertyName == "monoTheismEnding" || propertyName == "mayorEnding" || propertyName == "waywardVagabondEnding") return true;
+        if(propertyName == "forgesStoked" || propertyName == "timeoutReckoning") return true;
         return false;
     }
 
@@ -590,6 +593,9 @@ class MultiSessionSummary {
             if (ss.getBoolStat("heroicDeath")) mss.incNumStat("heroicDeath");
             if (ss.getBoolStat("rapBattle")) mss.incNumStat("rapBattle");
             if (ss.getBoolStat("sickFires")) mss.incNumStat("sickFires");
+            if (ss.getBoolStat("forgesStoked")) mss.incNumStat("forgesStoked");
+            if (ss.getBoolStat("timeoutReckoning")) mss.incNumStat("timeoutReckoning");
+
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
             if (ss.getBoolStat("hasUnluckyEvents")) mss.incNumStat("hasUnluckyEvents");
             if (ss.getBoolStat("hasFreeWillEvents")) mss.incNumStat("hasFreeWillEvents");
