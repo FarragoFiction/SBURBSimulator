@@ -20,17 +20,26 @@ class StartReckoning extends Scene {
 
   }
 
+
   @override
   bool trigger(List<Player> playerList) {
-      /*
-            Two Main Trigger types:
 
-            if you're allied with the players, you wait for them to have a full frog and enough grist and the rings.
+      //first, if i don't have both scepters, don't even bother
+      GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
+      GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
 
-            if youre not....you just fucking do it. right away.
+      if(bkowner != wkowner) return false;
+      if(bkowner != gameEntity) return false;
+      //alright, so now I know I own both scepeters.
+      session.logger.info("$gameEntity has both scepters, will they cause a reckoning?");
+      if(gameEntity.alliedToPlayers) {
+          Player spacePlayer = session.findBestSpace();
+          if(session.fullFrogCheck(spacePlayer)) {
+              return true;
+          }
+      }else {
+          return true; //assap, just like jack did, just like the black king will.
+      }
 
-            if you'e the black king, do it at: session.canReckoning == true
-
-       */
   }
 }

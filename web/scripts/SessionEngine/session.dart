@@ -793,6 +793,7 @@ class Session {
     }
 
 
+
     bool fullFrogCheck(Player spacePlayer) {
         if(spacePlayer == null) return false;
         //there is  a frog but it's not good enough
