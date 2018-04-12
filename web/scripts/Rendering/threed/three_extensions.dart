@@ -9,6 +9,8 @@ import "../../loader/loader.dart";
 import "../text/opentype.dart" as OT;
 import "three.dart";
 
+final Material DEFAULT_MATERIAL = new MeshBasicMaterial(new MeshBasicMaterialProperties(color: 0xFF00FF));
+
 abstract class ScriptLoader {
     static Future<ScriptElement> three() => Loader.loadJavaScript("scripts/Rendering/threed/three.min.js");
 

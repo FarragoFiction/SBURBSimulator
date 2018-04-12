@@ -54,13 +54,26 @@ Future<Null> main() async {
         }
     };
 
-    await observatory.setup(13);
 
-    //THREE.Mesh ship = await shiptest();
-    //observatory.cameraRig.add(ship);
+
+    await observatory.setup(13);
 
     querySelector("#screen_container")..append(observatory.renderer.domElement);
     querySelector("#screen_container")..append(observatory.landDetails.container);
+
+
+    /*THREE.Object3D ship = await shiptest();
+    double s = 25.0;
+    ship.scale..x=s..y=s..z=s;
+    ship.rotation..x=Math.PI;
+    observatory.cameraRig.add(ship);*/
+}
+
+Future<THREE.Object3D> shiptest() async {
+    THREE.Object3D ship = await Loader.getResource("models/overcoat.obj");
+    THREE.Texture tex = new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))..needsUpdate = true;
+    (ship.children[0] as THREE.Mesh).material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: tex))..transparent=true;
+    return ship;
 }
 
 Map<int, String> eggComments = <int,String>{
@@ -256,12 +269,6 @@ String processSessionComment(ObservatoryViewer ob, int today) {
     }
 
     return segments.isEmpty ? null : segments.join("<br><br>");
-}
-
-Future<THREE.Mesh> shiptest() async {
-    THREE.Mesh ship = await Loader.getResource("models/overcoat.obj");
-    //ship.material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))..needsUpdate=true))..transparent=true;
-    return ship;
 }
 
 //##################################################################################
@@ -825,6 +832,7 @@ class ObservatorySession {
         THREE.setUniform(mat, "selected", selected_uniform);
         THREE.setUniform(mat, "land_count", new THREE.ShaderUniform<int>()..value = this.session.players.length);
         THREE.setUniform(mat, "session_size", new THREE.ShaderUniform<double>()..value = this.session_size);
+        THREE.setUniform(mat, "spiro_tex", new THREE.ShaderUniform<THREE.TextureBase>()..value = spiro_tex);
 
         THREE.Mesh mesh = new THREE.Mesh(new THREE.PlaneGeometry(modelsize, modelsize), mat);
         group.add(mesh);

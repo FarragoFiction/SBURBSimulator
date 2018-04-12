@@ -16,6 +16,7 @@ class Object3D {
 	external void lookAt(Vector3 vector);
 	external Object3D add(Object3D object);
 	external Object3D remove(Object3D object);
+	external JsArray<Object3D> get children;
 
 	external Vector3 get position;
 	external Vector3 get scale;
@@ -538,10 +539,20 @@ class Mesh extends Object3D {
 // Loaders ################################################################
 
 @JS()
-class OBJLoader2 {
-	external Object3D parse(ByteBuffer content);
+class OBJLoader {
+	external OBJLoader([bool dummy]); // we don't need the actual params, but empty seems to crash?
+
+	external Object3D parse(String content);
 }
 
+@JS()
+class OBJLoader2 {
+	external OBJLoader2([bool dummy]); // we don't need the actual params, but empty seems to crash?
+
+	external Object3D parse(String content);
+	external void setLogging(bool enabled, [bool debug]);
+	external void setMaterials(Map<String, Material> materials);
+}
 
 // Controls ################################################################
 
