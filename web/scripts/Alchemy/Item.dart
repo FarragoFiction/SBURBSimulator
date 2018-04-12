@@ -9,6 +9,7 @@ import "Trait.dart";
 import "../random.dart";
 import 'dart:collection';
 import "../GameEntities/NPCS.dart";
+import "../SBURBSim.dart";
 
 //I expect aspects and interests to have lists of items inside of them.
 class Item implements Comparable<Item> {
@@ -285,6 +286,12 @@ class Sylladex extends Object with IterableMixin<Item> {
         if(item is Ring || item is Scepter) {
             owner.everCrowned = true;
         }
+
+        if(item is Scepter) {
+            owner.scenesToAdd.insert(0, new StartReckoning(owner.session));
+
+        }
+        
         i.modMaxUpgrades(owner);
     }
 

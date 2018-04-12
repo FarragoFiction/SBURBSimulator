@@ -20,6 +20,11 @@ class StartReckoning extends Scene {
 
   }
 
+  /*
+    TODO: have everyone given a scepter auto get a copy of this scene.
+    TODO: have text fleshed out for if it's the black king doing it, an ally, or an enemy
+   */
+
 
   @override
   bool trigger(List<Player> playerList) {
