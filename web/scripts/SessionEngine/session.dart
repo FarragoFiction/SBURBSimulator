@@ -14,6 +14,7 @@ enum CanonLevel {
 class Session {
     Completer<Session> completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
 
+    bool didReckoning = false;
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
     Logger logger = null;
@@ -585,15 +586,18 @@ class Session {
 
 
     Future<Null> reckoning() async {
-        ////
-        Scene s = new Reckoning(this);
-        s.trigger(this.players);
-        s.renderContent(this.newScene(s.runtimeType.toString(),));
-        if (!this.stats.doomedTimeline) {
-            await reckoningTick();
-        } else {
-            simulationComplete("the reckoning doomed the timeline");
-            renderAfterlifeURL(this);
+        // this could be called, in theory, by an npc scene AND by the timer going off
+        if(!didReckoning) {
+            didReckoning = true;
+            Scene s = new Reckoning(this);
+            s.trigger(this.players);
+            s.renderContent(this.newScene(s.runtimeType.toString(),));
+            if (!this.stats.doomedTimeline) {
+                await reckoningTick();
+            } else {
+                simulationComplete("the reckoning doomed the timeline");
+                renderAfterlifeURL(this);
+            }
         }
     }
 
@@ -976,7 +980,12 @@ class Session {
 
     void simulationComplete(String ending) {
         logger.info("before session complete from $ending");
-        this.completer.complete(this);
+        //allow you to call this multiple times (reiniting will ALWAYS complete before making a new completer)
+        try {
+            this.completer.complete(this);
+        }catch(e) {
+            logger.info("completing from  $ending had an error $e, probably cuz i tried to do it twice");
+        }
         logger.info("after session complete from $ending");
 
     }
@@ -988,6 +997,13 @@ class Session {
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
         int maxScenes = 1000; //don't go forever, dunkass
+
+        /*
+
+        TODO:
+            two things can start the reckoning: enough time passing (shenanigans launch the meteors)
+            or someone having both scepters.
+         */
         if((this.canReckoning || this.numTicks > SimController.instance.maxTicks ||  findLiving(this.players).isEmpty ) && this.timeTillReckoning <= 0) {
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
@@ -1048,6 +1064,11 @@ class Session {
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
         resetAvailableClasspects();
+        canReckoning = false;
+        didReckoning = false;
+        //it already completed so, start over.
+        simulationComplete("restarting");
+        completer = new Completer<Session>();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
         ////print("reinit with seed: "  + Math.seed);
