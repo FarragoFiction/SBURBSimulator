@@ -29,6 +29,8 @@ class StartReckoning extends Scene {
 
             if youre not....you just fucking do it. right away.
 
+            if you'e the black king, do it at: session.canReckoning == true
+
        */
   }
 }
