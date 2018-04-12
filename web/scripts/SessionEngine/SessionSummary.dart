@@ -328,15 +328,15 @@ class SessionSummary {
         String scratched = "";
 
         if (lineage[0].stats.scratched) scratched = "(scratched)";
-        html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${lineage[0].session_id}&$params'>${lineage[0].session_id}$scratched</a> ";
+        html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${lineage[0].session_id}&$params'>${lineage[0].session_id}$scratched</a> ";
         for (num i = 1; i < lineage.length; i++) {
             String scratched = "";
             if (lineage[i].stats.scratched) scratched = "(scratched)";
-            html = "$html combined with: <a href = 'index2.html?seed=${lineage[i].session_id}&$params'>${lineage[i].session_id}$scratched</a> ";
+            html = "$html combined with: <a target = '_blank' href = 'index2.html?seed=${lineage[i].session_id}&$params'>${lineage[i].session_id}$scratched</a> ";
         }
         scratched = "";
         if (this.getBoolStat("scratched")) scratched = "(scratched)";
-        html = "$html combined with: <a href = 'index2.html?seed=${this.session_id.toString()}&$params'>${this.session_id.toString()}$scratched</a> ";
+        html = "$html combined with: <a target = '_blank' href = 'index2.html?seed=${this.session_id.toString()}&$params'>${this.session_id.toString()}$scratched</a> ";
         if ((lineage.length + 1) == 3) {
             this.setBoolStat("threeTimesSessionCombo", true);
             html = "$html 3x SESSIONS COMBO!!!";
