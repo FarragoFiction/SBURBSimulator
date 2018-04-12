@@ -291,7 +291,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
 
 
 List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
-    if(playerList.isEmpty) return null;
+    if(playerList.isEmpty) return <Player>[];
     Session session = playerList.first.session;
 
     if(session.mutator.lightField && session.mutator.inSpotLight != null) return [session.mutator.inSpotLight];

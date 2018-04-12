@@ -12,7 +12,8 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
-    Completer<Session> completer = new Completer<Session>(); // PL: this handles the internal callback for awaiting a session!
+    //this will be set by reinit
+    Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
     bool didReckoning = false;
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
@@ -557,7 +558,7 @@ class Session {
         numPlayersPreScratch = this.players.length;
         var ectoSave = this.stats.ectoBiologyStarted;
 
-        reinit();
+        reinit("scratch");
         this.stats.scratched = true;
         this.stats.scratchAvailable = false;
         this.stats.doomedTimeline = false;
@@ -769,6 +770,7 @@ class Session {
 
     ///frog status is part actual tadpole, part grist
     bool sickFrogCheck(Player spacePlayer) {
+        if(spacePlayer == null) return false; //it's actually NO frog, not sick
         //there is  a frog but it's not good enough
         bool frogSick = spacePlayer.landLevel < goodFrogLevel;
         bool frog = !noFrogCheck(spacePlayer);
@@ -797,8 +799,9 @@ class Session {
         bool frogSick = spacePlayer.landLevel < goodFrogLevel;
         bool frog = !noFrogCheck(spacePlayer);
         bool grist = enoughGristForFull();
+        bool rings = playersHaveRings();
         //frog is full if it was bred AND nurtured right.
-        return (frog && (!frogSick &&  grist));
+        return (frog && rings &&  (!frogSick &&  grist));
     }
 
     //don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
@@ -809,9 +812,16 @@ class Session {
         return (frog && grist);
     }
 
+    //will this return false if either moon is destroyed??? that's weird
     bool playersHaveRings() {
         GameEntity bqowner = derseRing == null  ?  null:derseRing.owner;
         GameEntity wqowner =  prospitRing == null  ?  null:prospitRing.owner;
+        //if a ring is destroyed, it counts as being in the forge, even if it was destroyed through dumb shit like alchemy
+        //the forge is just a game mechanic
+        //all the session needs is the energy from teh ring
+        if(bqowner == null || wqowner == null) return true;
+        if(bqowner == null && wqowner.alliedToPlayers) return true;
+        if(wqowner == null && bqowner.alliedToPlayers) return true;
         return bqowner.alliedToPlayers && wqowner.alliedToPlayers;
     }
 
@@ -841,8 +851,12 @@ class Session {
              logger.info("AB:  What the HELL kind of frog is this in session ${session_id}");
             ret = "??? Frog";
         }
-         logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
-        return ret;
+        if(spacePlayer !=null) {
+            logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+        }else {
+            logger.info("AB: Uh. JR. There's no space player. What the fuck did you break this time???");
+        }
+         return ret;
     }
 
     void addEventToUndoAndReset(ImportantEvent e) {
@@ -858,7 +872,7 @@ class Session {
         }
         //reinit the seed and restart the session
         //var savedPlayers = this.players;
-        this.reinit();
+        this.reinit("yellow yard");
 
         //players need to be reinit as well.
         this.makePlayers();
@@ -908,7 +922,7 @@ class Session {
             this.yellowYardController.eventsToUndo.add(e);
         }
         bool ectoSave = this.stats.ectoBiologyStarted;
-        reinit();
+        reinit("yellow yard scratch");
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         this.makePlayers();
         this.randomizeEntryOrder();
@@ -973,7 +987,7 @@ class Session {
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
-        reinit();
+        reinit("start session");
         this.makePlayers();
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
@@ -986,14 +1000,14 @@ class Session {
     }
 
     void simulationComplete(String ending) {
-        logger.info("before session complete from $ending");
+        logger.info("TEST COMPLETION: before session complete from $ending, with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
         //allow you to call this multiple times (reiniting will ALWAYS complete before making a new completer)
         try {
             this.completer.complete(this);
         }catch(e) {
             logger.info("completing from  $ending had an error $e, probably cuz i tried to do it twice");
         }
-        logger.info("after session complete from $ending");
+        logger.info("after session complete from $ending, with won: ${stats.won}, frog status:  ${frogStatus()}");
 
     }
 
@@ -1012,6 +1026,7 @@ class Session {
             or someone having both scepters.
          */
         if((this.canReckoning || this.numTicks > SimController.instance.maxTicks ||  findLiving(this.players).isEmpty ) && this.timeTillReckoning <= 0) {
+            if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
             await reckoning();
@@ -1036,7 +1051,7 @@ class Session {
             ..currentSceneNum = this.currentSceneNum
             ..afterLife = this.afterLife //afterlife carries over.
             ..stats.dreamBubbleAfterlife = this.stats.dreamBubbleAfterlife //this, too
-            ..reinit()
+            ..reinit("combined session")
             ..makePlayers()
             ..randomizeEntryOrder()
             ..makeGuardians();
@@ -1067,14 +1082,15 @@ class Session {
         return null;
     }
 
-    void reinit() {
+    void reinit(String source) {
+        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
         resetAvailableClasspects();
         canReckoning = false;
         didReckoning = false;
         //it already completed so, start over.
-        simulationComplete("restarting");
+        if(completer != null) simulationComplete("restarting");
         completer = new Completer<Session>();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);

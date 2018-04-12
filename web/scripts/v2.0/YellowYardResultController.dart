@@ -128,7 +128,7 @@ void redemptionArc(Session session) {
     explanation.text = "Once upon a time there lived a not-quite-yet-player with a chat handle of ${session.players[0].chatHandle}. It's hard to see what happened to them. (This is SBURBSim after all, and our story is not yet set in SBURB).  Did they kill their 'friends'? Abandon them? Were they bullied and rejected by them? (Did they escape on the back of a magic dog/dragon?). It doesn't matter why. What DOES matter. Is that they were alone. And were on the verge of playing SBURB alone, which as we now know, is a bad fucking idea. We can imagine that there is a flash of light. A time player.  A Choice changed.  They have friends now. Perhaps bridges were repaired and they are with their old ones. Perhaps they have found new. Who can say? All we can know for sure is... It's not a single player game, anymore. ";
     SimController.instance.storyElement.append(explanation);
     Session s = new Session(id);
-    s.reinit();
+    s.reinit("yellow yard result controller redemption");
     s.makePlayers();
     s.randomizeEntryOrder();
     s.makeGuardians();

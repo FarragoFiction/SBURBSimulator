@@ -200,15 +200,39 @@ class Aftermath extends Scene {
     }
 
     String ringText() {
-        String ret;
+        String ret = "";
         GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
         GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
+
         if(session.playersHaveRings()) {
-            ret = "The players are given the ${session.derseRing } from the  ${session.derseRing.owner.htmlTitle()} and the ${session.prospitRing} from the ${session.prospitRing.owner.htmlTitle()}. They chuck them into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. <br><br>";
+            if(bqowner != null) {
+                ret = "$ret The  ${session.derseRing.owner.htmlTitle()} helpfully hands over the  ${session.derseRing}.";
+            }else {
+                ret = "$ret The BLACK RING has already been destroyed in the Forge, ";
+            }
+
+            if(wqowner != null) {
+                ret = "$ret and the ${session.prospitRing.owner.htmlTitle()} helpfully hands over the ${session.prospitRing}.";
+            }else {
+                ret = "$ret and the WHITE RING has already been destroyed in the Forge. ";
+            }
+            ret = "$ret They chuck the two RINGS into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. <br><br>";
         }else {
-            ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.<br><br>";
+            ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.";
+
+            if(bqowner != null) {
+                ret = "$ret The ${session.derseRing.owner.htmlTitle()} has their grubby mits on the ${session.derseRing}.";
+            }else {
+                ret = "$ret The BLACK RING has already been destroyed in the Forge, ";
+            }
+
+            if(wqowner != null) {
+                ret = "$ret and the ${session.prospitRing.owner.htmlTitle()} has their grubby mits on the ${session.prospitRing}.";
+            }else {
+                ret = "$ret and the WHITE RING has already been destroyed in the Forge. ";
+            }
         }
-        return ret;
+        return "$ret <br><br>";
     }
 
     bool checkThereIsAFrog(Element div, String end, bool yellowYard, Player spacePlayer) {
@@ -259,7 +283,7 @@ class Aftermath extends Scene {
             end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
         } else {
             end = "$end ${ringText()}";
-            if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny()) {
+            if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny() && session.playersHaveRings()) {
                 end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
                 end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).floor()}% of the way through. ";
                 ////session.logger.info("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
@@ -273,7 +297,10 @@ class Aftermath extends Scene {
 
                 end += "<br>Unfortunately, the players did not collect enough grist to even BEGIN to nurture the battlefield. They only got ${session.gristPercent()}% of the needed amount. ";
                 end += "Apparently it wasn't enough to focus on beating the game, you had to actually PLAY it, too.";
-            } else {
+            }else if(!session.playersHaveRings()) {
+                end += "Without the Forge Stoked, the Universe Frog has nowhere to gestate. All of their hard work was for nothing...";
+
+            }else {
                 ////session.logger.info("AB:  Frog glitched out, should exist but doesn't in session ${session.session_id}");
                 end += "<br> Whoa.  Tell JR that this shouldn't happen. There's apparently no Universe Frog, but there IS a frog and also enough grist.";
             }
@@ -310,7 +337,7 @@ class Aftermath extends Scene {
         String wkname = wkowner == null  ?  "No one":"${wkowner.htmlTitleWithTip()}";
         String wkallied =wkowner == null  ?  "N/A":"${wkowner.alliedToPlayers}";
 
-        end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqname} has the Black Queens Ring Their ally status is ${bqallied}. <br> ${bkname} has the Black Kings Scepter. Their ally status is ${bkallied}.  <br> ${wqname} has the White Queens Ring. Their ally status is ${wqallied}. <br> ${wkname} has the White Kings Scepter. Their ally status is ${wkallied}. <br>";
+       // end += "<br>JR is going to nuke the fuck out of the current Aftermath. In the meantime: <br><Br>${bqname} has the Black Queens Ring Their ally status is ${bqallied}. <br> ${bkname} has the Black Kings Scepter. Their ally status is ${bkallied}.  <br> ${wqname} has the White Queens Ring. Their ally status is ${wqallied}. <br> ${wkname} has the White Kings Scepter. Their ally status is ${wkallied}. <br>";
 
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;

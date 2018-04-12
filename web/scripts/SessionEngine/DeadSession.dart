@@ -167,7 +167,7 @@ class DeadSession extends Session {
         // //
         changeCanonState(this, getParameterByName("canonState",null));
         //  //
-        this.reinit();
+        this.reinit("dead start");
         ////
         this.makePlayers();
         ////
@@ -404,9 +404,9 @@ class DeadSession extends Session {
     }
 
     @override
-    void reinit() {
+    void reinit(String source) {
         ;
-        super.reinit();
+        super.reinit(source);
         themes = new Map<Theme, double>();
         chosenThemesForDeadSession =  new Map<Theme, double>();
         numberLandsRemaining = 16; //can remove some in "the break".
@@ -509,7 +509,7 @@ class DeadSession extends Session {
             ..currentSceneNum = this.currentSceneNum
             ..afterLife = this.afterLife //afterlife carries over.
             ..stats.dreamBubbleAfterlife = this.stats.dreamBubbleAfterlife //this, too
-            ..reinit()
+            ..reinit("Dead Combo")
             ..makePlayers()
             ..randomizeEntryOrder()
             ..makeGuardians();

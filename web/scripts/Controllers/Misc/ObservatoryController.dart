@@ -710,7 +710,7 @@ class ObservatoryViewer {
         }
 
         Session session = new Session(seed)..logger.disabled = true;
-        session.reinit();
+        session.reinit("observatory");
         session.makePlayers();
         session.randomizeEntryOrder();
         session.makeGuardians();

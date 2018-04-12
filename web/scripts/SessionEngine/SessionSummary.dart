@@ -382,13 +382,13 @@ class SessionSummary {
 
         if (this.parentSession != null) {
             html = "$html${this.decodeLineageGenerateHTML()}";
-            html = "$html<br><a href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
+            html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
         } else {
             String scratch = "";
             if (this.scratched) scratch = " (scratched)";
 
-            html = "$html<Br><b> Session</b>: <a href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
-            html = "$html<br><a href='observatory.html?seed=${this.session_id}&$params'>View in the Observatory</a>";
+            html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
+            html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View in the Observatory</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
 
