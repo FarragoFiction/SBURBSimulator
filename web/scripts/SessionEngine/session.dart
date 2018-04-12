@@ -809,13 +809,20 @@ class Session {
         return (frog && grist);
     }
 
+    bool playersHaveRings() {
+        GameEntity bqowner = derseRing == null  ?  null:derseRing.owner;
+        GameEntity wqowner =  prospitRing == null  ?  null:prospitRing.owner;
+        return bqowner.alliedToPlayers && wqowner.alliedToPlayers;
+    }
+
 
     //don't care about grist, if there's no frog to deploy at all. eventually check for rings
     bool noFrogCheck(Player spacePlayer) {
         if(spacePlayer == null) return false;
         bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
         bool grist = !enoughGristForAny();
-        return (frog || grist);
+        bool rings  = !playersHaveRings();
+        return (frog || grist || rings);
     }
 
     String frogStatus() {

@@ -199,9 +199,24 @@ class Aftermath extends Scene {
         return false;
     }
 
+    String ringText() {
+        String ret;
+        GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
+        GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
+        if(session.playersHaveRings()) {
+            ret = "The players are given the ${session.derseRing } from the  and the ${session.derseRing.owner} and the ${session.prospitRing} from the ${session.prospitRing.owner}. They chuck them into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. ";
+        }else {
+            ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.";
+        }
+        return ret;
+    }
+
     bool checkThereIsAFrog(Element div, String end, bool yellowYard, Player spacePlayer) {
         if (!session.noFrogCheck(spacePlayer)) {
             end += "<br><img src = 'images/sceneIcons/frogger_animated.gif'> Luckily, the " + spacePlayer.htmlTitle() + " was diligent in frog breeding duties. ";
+
+            end = "$end ${ringText()}";
+
             if (session.enoughGristForFull()) {
                 end += "The entire party showers the battlefield with hard earned grist. ";
             } else {
@@ -243,6 +258,7 @@ class Aftermath extends Scene {
         if (this.session.stats.rocksFell) {
             end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
         } else {
+            end = "$end ${ringText()}";
             if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny()) {
                 end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
                 end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).floor()}% of the way through. ";
