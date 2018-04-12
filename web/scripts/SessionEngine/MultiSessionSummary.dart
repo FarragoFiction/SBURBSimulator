@@ -593,7 +593,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("heroicDeath")) mss.incNumStat("heroicDeath");
             if (ss.getBoolStat("rapBattle")) mss.incNumStat("rapBattle");
             if (ss.getBoolStat("sickFires")) mss.incNumStat("sickFires");
-            if (ss.getBoolStat("forgesStoked")) mss.incNumStat("forgesStoked");
+            if (ss.getBoolStat("forgeStoked")) mss.incNumStat("forgesStoked");
             if (ss.getBoolStat("timeoutReckoning")) mss.incNumStat("timeoutReckoning");
 
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
