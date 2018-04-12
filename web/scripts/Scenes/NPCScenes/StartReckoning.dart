@@ -17,7 +17,7 @@ class StartReckoning extends Scene {
   }
 
   String getText() {
-
+      window.alert("oh fuck, ${session.session_id} tried to start a reckoning early");
   }
 
   /*

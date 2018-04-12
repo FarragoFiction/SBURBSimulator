@@ -291,7 +291,7 @@ class Sylladex extends Object with IterableMixin<Item> {
             owner.scenesToAdd.insert(0, new StartReckoning(owner.session));
 
         }
-        
+
         i.modMaxUpgrades(owner);
     }
 

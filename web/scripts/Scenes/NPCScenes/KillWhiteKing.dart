@@ -23,9 +23,15 @@ class KillWhiteKing extends Scene {
   @override
   bool trigger(List<Player> playerList) {
       /*
-            When enough ticks have passed, anyone holding the Black King's Scepter
-            will try to go kill whoever is holding the White King's Scepter, unless they are an ally.
+            When the first player get to the battlefield, anyone holding the Black King's Scepter
+            will try to go kill whoever is holding the White King's Scepter.
 
+            sucks if you were friends ten seconds ago, there's a REASON you'er not supposed to be holding
+            this shit.
        */
+      GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
+      GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
+
+      if(session.canReckoning && bkowner == gameEntity) return true;
   }
 }
