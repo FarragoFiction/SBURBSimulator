@@ -1084,7 +1084,7 @@ class Session {
     }
 
     void reinit(String source) {
-        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks");
+        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parentSession.session_id}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
         resetAvailableClasspects();

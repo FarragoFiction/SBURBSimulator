@@ -327,10 +327,10 @@ class CarapaceSummary {
         //or....maybe i can keep a record. cuz it sure will look weird if jack kills more ppl than shogunbot thinks exist
         if(session.prospit != null) npcs.addAll(session.npcHandler.prospitians);
 
-        npcs.add(session.battlefield.whiteKing);
+        if(session.battlefield != null) npcs.add(session.battlefield.whiteKing);
         if(session.prospit != null) npcs.add(session.prospit.queen);
         if(session.derse != null) npcs.addAll(session.npcHandler.dersites);
-        npcs.add(session.battlefield.blackKing);
+        if(session.battlefield != null) npcs.add(session.battlefield.blackKing);
         if(session.derse != null) npcs.add(session.derse.queen);
 
 
