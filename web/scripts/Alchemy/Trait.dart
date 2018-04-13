@@ -1348,7 +1348,7 @@ class ItemTraitFactory {
     STONE = new ItemAppearanceTrait(<String>["stone", "rock", "concrete"], 0.3,ItemTrait.MATERIAL);
     LEGENDARY = new ItemAppearanceTrait(<String>["legendary"], 13.0,ItemTrait.FIRST);
     //like the rabbit.
-    UNBEATABLE = new ItemAppearanceTrait(<String>["Unbeatable"], 4037.0,ItemTrait.FIRST);
+    UNBEATABLE = new ItemAppearanceTrait(<String>["Unbeatable"], 40.37,ItemTrait.FIRST);
 
   }
 
