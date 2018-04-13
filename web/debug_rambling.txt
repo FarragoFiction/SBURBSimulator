@@ -5780,3 +5780,52 @@ why.
 
 when i print it out, all the survivors have a dream palette. clones have it. what's going on?
 
+
+~~~~~~~~~
+
+
+it's 4/13
+
+I wanted to do a deploy today to at least have AB fixed.
+
+It's been DAYS.
+
+And things are currently WORSE than they were. Now instead of just being insane after X sessions, AB flat out doesn't
+return after like, 1 or 2 or sometimes as many as ten.
+
+I need to take a step back and just. Breathe. Define my problem for five minutes on the clock. Don't look
+for solutions yet.
+
+Alright: When this all started I was getting multiple reports about AB lying about sessions, especially
+for [???].  I was, with some trouble, able to replicate this. It was pretty rare.
+
+Once I found the problem, I tried to do my normal routine of debugging. View the session normally,
+view it in What Pumpkin mode, see if there's differences (there were not, but it's been awhile i might be crazy).
+
+Then, see if the the session goes wrong if it's the only session AB looks at (it did not).
+
+At that point I know it's a leak of some sort between sessions. Sometimes it's the afterlife, often it's a mutator.
+
+Basically, anything kept between sessions is suspect.
+But this time, unlike the last times, I couldn't find anything obvious.
+
+SO I did two huge refactorings designed to keep less information between sessions.  I even made it so that
+sessions go asynchronously (wiht PL's help), so that I could make a "AB sanity checker" page (which i still haven't finished).
+
+However, at that point AB stopped returning. After a lot of head scratching and hair pulling,
+I determined that EVERY time she doesn't return she calls the sessionComplete function
+and it does NOT give control back to AB.
+
+I determined that it DOES relinquish control when run alone, and that if a session that fails is run FIRST
+it will NOT fail.
+
+To me this means it's part of the multiple session structure, somehow.  Except, if it were that simple,
+she'd ALWAYS return on only the first session and no subsequent sessions.
+
+I tried printing out a lot of data, but sessons that fail don't seem to differ in any meaningful way compared to sessions
+that don't.
+
+I DID see that "combo" code is being called when I think it shouldn't, but it LOOKS like this might happen
+even for sucessful sessions.
+
+I don't have any leads, even after five minutes, so I"ll dig around combos again.
