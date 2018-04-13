@@ -509,6 +509,7 @@ class Session {
     }
 
     Future<Null> processCombinedSession() async {
+        logger.info("TEST COMPLETE: processing combo session.");
         if(this.mutator.spaceField) {
             return; //you will do combo a different route.
         }
@@ -525,6 +526,8 @@ class Session {
     }
 
     Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
+        logger.info("TEST COMPLETE: doing combo session.");
+
         int id = this.session_id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
@@ -550,6 +553,7 @@ class Session {
 
         await tmpcurSessionGlobalVar.startSession();
         //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
+        simulationComplete("Combo Session Returned");
     }
 
     //TODO oh god why is this still here and not somwhere sane like in a SimController.
@@ -984,7 +988,7 @@ class Session {
 
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Session> startSession() async {
-        print("session is starting");
+        logger.info("TEST COMPLETE: session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
@@ -1005,7 +1009,7 @@ class Session {
             logger.error("TEST COMPLETION: Uh. Tried to complete something that hadn't been created yet. What???");
             return;
         }
-        logger.info("TEST COMPLETION: before session complete from $ending, with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
+        logger.info("TEST COMPLETION: before session complete from $ending, with players ${players} with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
         //allow you to call this multiple times (reiniting will ALWAYS complete before making a new completer)
         try {
             this.completer.complete(this);

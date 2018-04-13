@@ -23,6 +23,7 @@ void main() {
   //TODO later i'll allow it to be stored from multiple page loads, but right now too much could go wrong.
   SessionSummary.clearCache();
   doNotRender = true;
+  drawDebugButton();
   doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();
   window.onError.listen((Event event){
@@ -45,6 +46,20 @@ void main() {
   self.formInit();
   if(SimController.shogun) doShogun();
 
+}
+
+void drawDebugButton() {
+  DivElement debug = querySelector("#debug");
+  ButtonElement button = new ButtonElement();
+  button.text = "Debug Last Session???";
+  debug.append(button);
+  button.onClick.listen((e) {
+    //debug.setInnerHtml("");
+    TextAreaElement text = new TextAreaElement();
+    //copy that's easy to copy pasta into a diff function
+    text.value = SimController.instance.storyElement.text;
+    debug.append(SimController.instance.storyElement);
+  });
 }
 
 
@@ -292,6 +307,9 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     ////;
     return sum;
   }
+
+
+
 
   void getMVP(Session session) {
     if(mvp == null) {

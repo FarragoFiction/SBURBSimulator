@@ -22,7 +22,6 @@ abstract class AuthorBot extends SimController {
 
   AuthorBot() : super() {
     storyElement = new DivElement(); //will not actually rendering to screen speed AB up?
-    //TODO yes, in that all sessions crash
 
   }
 
