@@ -17,7 +17,7 @@ class KillWhiteKing extends Scene {
   }
 
   String getText() {
-
+      window.alert("$gameEntity wants to kill the white scepter owner in session ${session.session_id}");
   }
 
   @override
@@ -31,7 +31,8 @@ class KillWhiteKing extends Scene {
        */
       GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
       GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
-
+      print("should i try to kill the white king???");
       if(session.canReckoning && bkowner == gameEntity) return true;
+      return false;
   }
 }

@@ -45,6 +45,7 @@ class StartReckoning extends Scene {
       }else {
           return true; //assap, just like jack did, just like the black king will.
       }
+      return false;
 
   }
 }

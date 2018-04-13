@@ -17,11 +17,12 @@ class OhShitFuckWheresTheRing extends Scene {
   }
 
   String getText() {
-
+      window.alert("shit fuck, the players don't have the rings and the meteors are going in session ${session.session_id}");
   }
 
   @override
   bool trigger(List<Player> playerList) {
       if(session.canReckoning && !session.playersHaveRings()) return true;
+      return false;
   }
 }
