@@ -98,6 +98,9 @@ class Euler {
 
 	external num get z;
 	external void set z(num z);
+
+	external String get order;
+	external void set order(String value);
 }
 
 @JS()
@@ -433,6 +436,12 @@ abstract class Material {
 
 	external bool get transparent;
 	external void set transparent(bool flag);
+
+	external int get side;
+	external void set side(int val);
+
+	external int get depthFunc;
+	external void set depthFunc(int val);
 }
 
 @JS()

@@ -21,7 +21,7 @@ class OBJFormat extends StringFileFormat<THREE.Object3D> {
                 ..setMaterials(<String,THREE.Material>{
                     "" : THREE.DEFAULT_MATERIAL,
                 })
-                //..setLogging(false)
+                ..setLogging(false)
             ;
         }
 

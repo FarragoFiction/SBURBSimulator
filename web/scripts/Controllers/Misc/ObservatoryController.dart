@@ -54,26 +54,11 @@ Future<Null> main() async {
         }
     };
 
-
-
     await observatory.setup(13);
 
     querySelector("#screen_container")..append(observatory.renderer.domElement);
     querySelector("#screen_container")..append(observatory.landDetails.container);
 
-
-    /*THREE.Object3D ship = await shiptest();
-    double s = 25.0;
-    ship.scale..x=s..y=s..z=s;
-    ship.rotation..x=Math.PI;
-    observatory.cameraRig.add(ship);*/
-}
-
-Future<THREE.Object3D> shiptest() async {
-    THREE.Object3D ship = await Loader.getResource("models/overcoat.obj");
-    THREE.Texture tex = new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))..needsUpdate = true;
-    (ship.children[0] as THREE.Mesh).material = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: tex))..transparent=true;
-    return ship;
 }
 
 Map<int, String> eggComments = <int,String>{
@@ -325,14 +310,19 @@ class ObservatoryViewer {
     bool viewingLandDetails = false;
     ObservatoryLandDetails landDetails;
 
+    ShipLogic overcoat;
+
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
+        this.overcoat = new ShipLogic(this);
     }
 
     Future<Null> setup([int seed = 0]) async {
+        await this.overcoat.initGraphics();
+
         this.renderer = new THREE.WebGLRenderer();
         this.renderer
             ..setSize(canvasWidth, canvasHeight)
@@ -346,7 +336,7 @@ class ObservatoryViewer {
         this.scene = new THREE.Scene();
         this.renderScene = new THREE.Scene();
 
-        this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
+        this.camera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 1000.0)..position.z = 700.0;
         this.renderCamera = new THREE.OrthographicCamera(-canvasWidth/2, canvasWidth/2, -canvasHeight/2, canvasHeight/2, 0, 100)..position.z = 10.0;
 
         // UI plane
@@ -361,8 +351,9 @@ class ObservatoryViewer {
 
         //THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
         THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), uiShader)
-            ..position.z = 5.0
-            ..rotation.x = Math.PI;
+            ..position.z = 500.0
+            ..rotation.x = Math.PI
+        ;
 
         // render target texture plane
         this.renderTarget = new THREE.WebGLRenderTarget(canvasWidth, canvasHeight);
@@ -384,6 +375,8 @@ class ObservatoryViewer {
 
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
+
+        //this.cameraRig.add(this.overcoat.shipModel);
 
         this.update();
 
@@ -538,6 +531,8 @@ class ObservatoryViewer {
         for (ObservatorySession session in sessions.values) {
             session.update(dt);
         }
+
+        this.overcoat.update(dt);
 
         this.renderer
             ..render(this.scene, this.camera, this.renderTarget)
@@ -1073,6 +1068,60 @@ class ObservatoryTentacle {
         this.mesh = new THREE.Mesh(_geometry, material)..frustumCulled = false
             ..position.x = this.x..position.y = this.y..position.z = -10.0 + rand.nextDouble()
             ..rotation.x = Math.PI..rotation.z = angle;
+    }
+}
+
+//##################################################################################
+
+class ShipLogic {
+    final ObservatoryViewer parent;
+
+    bool active = false;
+
+    THREE.Object3D shipModel;
+    double angle = 0.0;
+
+    ShipLogic(ObservatoryViewer this.parent);
+
+    Future<Null> initGraphics() async {
+
+        shipModel = await Loader.getResource("models/overcoat.obj");
+        THREE.Texture tex = new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))
+            //..magFilter = THREE.NearestFilter
+            //..minFilter = THREE.NearestFilter
+            ..minFilter = THREE.LinearFilter
+            ..needsUpdate = true;
+        THREE.Material mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: tex))
+            ..side=THREE.DoubleSide
+            ..transparent=true;
+        for (THREE.Object3D o in shipModel.children) {
+            if (o is THREE.Mesh) {
+                o.material = mat;
+            }
+        }
+
+        double s = 50.0;
+        shipModel.scale..x=s..y=s..z=s;
+        shipModel.position..z = 250.0;
+        shipModel.rotation..order = "ZYX";
+    }
+
+    void update([num dt]) {
+        this.angle = (this.angle + dt * 0.5) % (Math.PI * 2);
+
+        this.setShipRotation();
+    }
+
+    void setShipRotation() {
+
+        double sin = Math.sin(angle);
+        double cos = Math.cos(angle);
+
+        this.shipModel.rotation
+            ..z = this.angle
+            ..y = -sin * Math.PI * 0.5
+            ..x = cos.abs() * Math.PI * 0.03125
+        ;
     }
 }
 
