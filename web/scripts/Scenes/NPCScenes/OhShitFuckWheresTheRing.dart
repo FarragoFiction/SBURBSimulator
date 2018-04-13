@@ -10,6 +10,7 @@ class OhShitFuckWheresTheRing extends Scene {
   void renderContent(Element div) {
       gameEntity.available = false;
       DivElement me = new DivElement();
+      div.append(me);
       me.setInnerHtml(getText());
       GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
       GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
@@ -27,7 +28,6 @@ class OhShitFuckWheresTheRing extends Scene {
           GameEntity whiteQueen = session.prospit == null  ?  null:session.prospit.queen;
           startFight(div, wqowner, session.prospitRing, whiteQueen);
       }
-      div.append(me);
   }
 
     List<GameEntity> getGoodGuys(){
@@ -56,13 +56,15 @@ class OhShitFuckWheresTheRing extends Scene {
         Drawing.poseAsATeam(canvasDiv, fightingPlayers);
     }
 
-  void startFight(Element div, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
+  void startFight(Element container, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
+      DivElement div = new DivElement();
+      container.append(div);
       this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
       String text = "";
       if(target == whoSHOULDHaveIt) {
-          text = "<img src = 'images/sceneIcons/bq_icon.png'> The ${target.htmlTitle()} is ready to fulfill her role as the players penultimate challenge. ";
+          text = "<br><br><img src = 'images/sceneIcons/bq_icon.png'> The ${target.htmlTitle()} is ready to fulfill her role as the players penultimate challenge. ";
       }else {
-          text = "Huh. Well. The ${target.htmlTitle()} is DEFINITELY not a Carapace Queen. You are blown away by this stunning revelation.  Who knew that the Main Quest of SBURB could go off the rails like that???  Either way, they have to be taken out, or the game cannot be beaten. The Players prepare for an epic boss fight.";
+          text = "<br><br>Huh. Well. The ${target.htmlTitle()} is DEFINITELY not a Carapace Queen. You are blown away by this stunning revelation.  Who knew that the Main Quest of SBURB could go off the rails like that???  Either way, they have to be taken out, or the game cannot be beaten. The Players prepare for an epic boss fight.";
       }
 
       div.setInnerHtml(text);
@@ -81,12 +83,18 @@ class OhShitFuckWheresTheRing extends Scene {
       strife.timeTillRocks = 10;
       strife.startTurn(div);
 
+      DivElement div2 = new DivElement();
+      container.append(div2);
+      div2.setInnerHtml("The ${ring.owner.htmlTitle()} is now the owner of the ${ring}. ");
+
   }
 
 
   String getText() {
+        //yes this isn't hte same thing as gnosis, but i have to pick someone, and PL's stats auto sort
+      //and gnosis isn't a stat like that
         Player smartest = Stats.SBURB_LORE.sortedList(session.players).first;
-      return("Shit. Fuck. The ${smartest.htmlTitle()} just found out that you need both QUEEN's RINGS to beat this shitty game.  Time to get their Boss Fight on.");
+      return("<br><br>Shit. Fuck. The ${smartest.htmlTitle()} just found out that you need both QUEEN's RINGS to beat this shitty game.  Time to get their Boss Fight on.");
   }
 
   @override
