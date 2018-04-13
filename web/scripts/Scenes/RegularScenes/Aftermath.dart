@@ -216,7 +216,7 @@ class Aftermath extends Scene {
             }else {
                 ret = "$ret and the WHITE RING has already been destroyed in the Forge. ";
             }
-            ret = "$ret They chuck the two RINGS into the Forge in a dramatic moment, lighting it and preparing it for the Ultimate Frog. <br><br>";
+            ret = "$ret They chuck the two RINGS into the Forge in a dramatic moment, stoking it and preparing it for the Ultimate Frog. <br><br>";
         }else {
             ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.";
 

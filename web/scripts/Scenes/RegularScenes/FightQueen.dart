@@ -3,11 +3,6 @@ import "../../SBURBSim.dart";
 
 
 class FightQueen extends Scene {
-
-
-	
-
-
 	FightQueen(Session session): super(session);
 
 	@override

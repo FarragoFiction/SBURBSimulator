@@ -17,7 +17,7 @@ class StartReckoning extends Scene {
   }
 
   String getText() {
-      window.alert("oh fuck, ${session.session_id} tried to start a reckoning early");
+      print("oh fuck, ${session.session_id} tried to start a reckoning early");
   }
 
   /*
@@ -28,6 +28,7 @@ class StartReckoning extends Scene {
 
   @override
   bool trigger(List<Player> playerList) {
+      if(session.didReckoning) return false;
 
       //first, if i don't have both scepters, don't even bother
       GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;

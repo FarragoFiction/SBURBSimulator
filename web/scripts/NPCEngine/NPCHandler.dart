@@ -87,6 +87,8 @@ class NPCHandler
     }
 
     //each npc has items in their sylladex, at least one of which is legendary
+    //TODO each game entity optionally has text for what to say if they are doing
+    //TODO DESTROY, CORRUPT, CONTROL or whatever
     //decides their quest rewards and what items MAIL QUESTS can choose from.
 
     //violent, lucky, charming, cunning

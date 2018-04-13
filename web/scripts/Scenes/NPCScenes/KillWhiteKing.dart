@@ -17,7 +17,7 @@ class KillWhiteKing extends Scene {
   }
 
   String getText() {
-      window.alert("$gameEntity wants to kill the white scepter owner in session ${session.session_id}");
+      print("$gameEntity wants to kill the white scepter owner in session ${session.session_id}");
   }
 
   @override
