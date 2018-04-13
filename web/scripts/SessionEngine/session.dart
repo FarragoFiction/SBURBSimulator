@@ -1001,6 +1001,10 @@ class Session {
     }
 
     void simulationComplete(String ending) {
+        if(completer == null) {
+            logger.error("TEST COMPLETION: Uh. Tried to complete something that hadn't been created yet. What???");
+            return;
+        }
         logger.info("TEST COMPLETION: before session complete from $ending, with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
         //allow you to call this multiple times (reiniting will ALWAYS complete before making a new completer)
         try {
@@ -1084,7 +1088,9 @@ class Session {
     }
 
     void reinit(String source) {
-        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parentSession.session_id}");
+        String parent = "";
+        if(parentSession != null) parent = "${parentSession.session_id}";
+        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
         resetAvailableClasspects();
