@@ -24,7 +24,7 @@ class SessionSummary {
 
     //since stats will be hash, don't need to make junior
     int session_id = null;
-    Session parentSession; //pretty sure this has to be a full session so i can get lineage
+    Session childSession; //reverse polarity for new async system
     bool scratched = false;
     num frogLevel = 0;
     List<Player> ghosts = <Player>[];
@@ -309,7 +309,7 @@ class SessionSummary {
                     return false;
                 }
             } else if (filter == "comboSessions") {
-                if (this.parentSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
+                if (this.childSession == null) { //if this were an and on the outer if, it would let it fall down to the else if(!this[filter) and i don't want this.
                     ////;
                     return false;
                 }
@@ -324,7 +324,7 @@ class SessionSummary {
     String decodeLineageGenerateHTML() {
         String html = "";
         String params = getParamStringMinusParam("seed");
-        List<Session> lineage = this.parentSession.getLineage(); //i am not a session so remember to tack myself on at the end.
+        List<Session> lineage = this.childSession.getLineage(); //i am not a session so remember to tack myself on at the end.
         String scratched = "";
 
         if (lineage[0].stats.scratched) scratched = "(scratched)";
@@ -380,7 +380,7 @@ class SessionSummary {
         String params = getParamStringMinusParam("seed");
         String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
 
-        if (this.parentSession != null) {
+        if (this.childSession != null) {
             html = "$html${this.decodeLineageGenerateHTML()}";
             html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
         } else {
@@ -551,7 +551,7 @@ class SessionSummary {
         summary.mvp = findMVP(session.players);
         summary.mvpName = summary.mvp.htmlTitle();
         summary.mvpGrist = summary.mvp.grist.toString();
-        summary.parentSession = session.parentSession;
+        summary.childSession = session.childSession;
         summary.setBoolStat("scratchAvailable", session.stats.scratchAvailable);
         summary.setBoolStat("yellowYard", session.stats.yellowYard);
         summary.setNumStat("numLiving", findLiving(session.players).length);

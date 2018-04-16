@@ -126,16 +126,16 @@ abstract class AuthorBot extends SimController {
       quip += "Holy Shit, do you SEE the " + strongest.titleBasic() + "!?  How even strong ARE they?" ;
     }else if(sessionSummary.frogStatus == "No Frog" ){
       quip += "Man, why is it always the frogs? " ;
-      if(sessionSummary.parentSession != null){
+      if(sessionSummary.childSession != null){
         quip += " You'd think what with it being a combo session, they would have gotten the frog figured out. ";
       }
-    }else  if(sessionSummary.parentSession != null){
+    }else  if(sessionSummary.childSession != null){
       quip += "Combo sessions are always so cool. " ;
     }else  if(sessionSummary.getBoolStat("jackRampage")){
       quip += "Jack REALLY gave them trouble." ;
     }else  if(sessionSummary.getNumStat("num_scenes") > 200){
       quip += "God, this session just would not END." ;
-      if(sessionSummary.parentSession == null){
+      if(sessionSummary.childSession == null){
         quip += " It didn't even have the excuse of being a combo session. ";
       }
     }else  if(sessionSummary.getBoolStat("murderMode")){

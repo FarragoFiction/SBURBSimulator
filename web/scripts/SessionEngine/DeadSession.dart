@@ -517,7 +517,8 @@ class DeadSession extends Session {
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
         this.stats.hadCombinedSession = true;
-        newSession.parentSession = this;
+        this.childSession = childSession;
+        //newSession.parentSession = this;
         Scene.createScenesForPlayer(newSession, players.first);
         return newSession;
     }

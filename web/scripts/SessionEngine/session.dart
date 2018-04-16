@@ -114,7 +114,9 @@ class Session {
     num currentSceneNum = 0;
     List<Scene> reckoningScenes = <Scene>[];
     List<Scene> deathScenes = <Scene>[];
-    Session parentSession = null;
+    //Session parentSession = null;
+    //need to reverse the polarity
+    Session childSession = null;
     //private, should only be accessed by methods so removing a player can be invalid for time/breath
     List<ImportantEvent> importantEvents = <ImportantEvent>[];
     YellowYardResultController yellowYardController = new YellowYardResultController(); //don't expect doomed time clones to follow them to any new sessions
@@ -1073,9 +1075,12 @@ class Session {
         addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
         this.stats.hadCombinedSession = true;
-        newSession.parentSession = this;
+        this.childSession = newSession;
+        //reverse polarity
+        //newSession.parentSession = this;
+        this.childSession = newSession;
         newSession.createScenesForPlayers();
-        ////print("Session: " + this.session_id + " has made child universe: " + newSession.session_id + " child has this long till reckoning: " + newSession.timeTillReckoning);
+        logger.info("New session ${newSession.session_id } has been born. Has ${newSession.players.length} and will  add: ${living.length}");
         return newSession;
     }
 
@@ -1093,7 +1098,7 @@ class Session {
 
     void reinit(String source) {
         String parent = "";
-        if(parentSession != null) parent = "${parentSession.session_id}";
+        if(childSession != null) parent = "${childSession.session_id}";
         logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
@@ -1394,8 +1399,8 @@ class Session {
 
     List<Session> getLineage() {
         //;
-        if (this.parentSession != null) {
-            List<Session> tmp = this.parentSession.getLineage();
+        if (this.childSession != null) {
+            List<Session> tmp = this.childSession.getLineage();
             tmp.add(this);
             return tmp;
         }

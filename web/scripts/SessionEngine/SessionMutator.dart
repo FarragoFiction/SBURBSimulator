@@ -803,7 +803,7 @@ class SessionMutator {
         summary.setNumStat("num_scenes", 8008135);
         summary.players = session.players;
         summary.mvp = findMVP(session.players);
-        summary.parentSession = session.parentSession;
+        summary.childSession = session.childSession;
         summary.setNumStat("numLiving", 8008135);
         summary.setNumStat("numDead", 8008135);
 
