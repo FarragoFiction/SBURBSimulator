@@ -24,8 +24,12 @@ void listTodos() {
 
 void drawCache() {
     cache =  SessionSummary.loadAllSummaries();
-    todo("there are ${cache.values.length} cached summaries");
-    for(SessionSummary s in cache.values) {
+    List<SessionSummary> values = new List.from(cache.values);
+    if(getParameterByName("order",null)  == "reversed") {
+        values = new List.from(values.reversed);
+    }
+    //todo("there are ${cache.values.length} cached summaries");
+    for(SessionSummary s in values) {
         drawOneSummary(s);
     }
 }
