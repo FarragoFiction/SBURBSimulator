@@ -9,19 +9,17 @@ class KillWhiteKing extends Scene {
 
     @override
     void renderContent(Element div) {
+        session.logger.info("Time to kick the White King's Ass.");
         gameEntity.available = false;
         DivElement me = new DivElement();
         div.append(me);
         me.setInnerHtml(getText());
         GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
 
-
-        if(wkowner != null) {
-            Element container = new DivElement();
-            me.append(container);
-            GameEntity whiteKing = session.battlefield == null  ?  null:session.battlefield.whiteKing;
-            startFight(div, wkowner, session.prospitScepter, whiteKing);
-        }
+        Element container = new DivElement();
+        me.append(container);
+        GameEntity whiteKing = session.battlefield == null  ?  null:session.battlefield.whiteKing;
+        startFight(div, wkowner, session.prospitScepter, whiteKing);
     }
 
 

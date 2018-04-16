@@ -39,7 +39,8 @@ class Battlefield extends Land {
             this.whiteKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             whiteKing.grist = 1000;
             whiteKing.description = "The White King is destined to be defeated on Skaia's Battlefield so that the Reckoning may be started with his Scepter.";
-            whiteKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+            //white king is destined to be defeatd by black, so is much weaker base
+            whiteKing.stats.setMap(<Stat, num>{Stats.HEALTH: 100, Stats.FREE_WILL: -100, Stats.POWER: 10});
             whiteKing.heal();
 
             this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal","Burger"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
