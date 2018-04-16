@@ -325,7 +325,7 @@ class SessionSummary {
         String html = "";
         String params = getParamStringMinusParam("seed");
         List<Session> lineage = this.childSession.getLineage(); //i am not a session so remember to tack myself on at the end.
-        lineage = lineage.reversed; //put parent first.
+        if(!lineage.isEmpty) lineage = new List.from(lineage.reversed); //put parent first.
         String scratched = "";
 
         if (lineage[0].stats.scratched) scratched = "(scratched)";
