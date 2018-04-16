@@ -376,7 +376,7 @@ class ObservatoryViewer {
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
 
-        //this.scene.add(this.overcoat.shipModel); // TODO: reenable
+        this.scene.add(this.overcoat.shipModel); // TODO: reenable
 
         this.update();
 
@@ -1096,7 +1096,7 @@ class ObservatoryTentacle {
 class ShipLogic {
     final ObservatoryViewer parent;
 
-    bool active = false; // TODO: true for tests
+    bool active = true; // TODO: true for tests
 
     THREE.Object3D shipModel;
     double angle = Math.PI * 1.4;
@@ -1107,8 +1107,10 @@ class ShipLogic {
     double frictionInactive = 0.965;
     double thrust = 5.0;
     static const double maxspeed = 750.0;
-    double brake = 0.2;
+    double brake = 0.9;
 
+    double angVel = 0.0;
+    double angFriction = 0.925;
     double turnRateStopped = Math.PI / 16.0;
     double turnRateMax = Math.PI / 3.0;
     double speedForMaxTurn = 250.0;
@@ -1165,12 +1167,14 @@ class ShipLogic {
     }
 
     void physicsUpdate(num dt) {
+        angVel = angVel * angFriction;
         if (turn != 0) {
             double turnfraction = (vel.length() / speedForMaxTurn).clamp(0.0, 1.0);
             double turnrate = (1 - turnfraction) * turnRateStopped + turnfraction * turnRateMax;
 
-            this.angle -= turnrate * turn * dt;
+            angVel = (angVel + turnrate * 0.1 * turn).clamp(-turnrate, turnrate);
         }
+        this.angle -= angVel * dt;
 
         THREE.Vector2 heading = new THREE.Vector2(Math.sin(angle), Math.cos(angle));
 
@@ -1186,8 +1190,10 @@ class ShipLogic {
             this.vel.multiplyScalar(frictionInactive);
         }
 
-        if (forward != 0) {
+        if (forward == 1) {
             this.vel.addScaledVector(heading, thrust * forward);
+        } else if (forward == -1) {
+            this.vel.multiplyScalar(brake);
         }
 
         if (vel.length() > maxspeed) {
