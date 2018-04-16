@@ -1065,7 +1065,7 @@ class Session {
             ..randomizeEntryOrder()
             ..makeGuardians();
         if (living.length + newSession.players.length > 12) {
-            ////print("New session " + newSession.session_id +" cannot support living players. Already has " + newSession.players.length + " and would need to add: " + living.length);
+            logger.info("New session ${newSession.session_id } cannot support living players. Already has ${newSession.players.length} and would need to add: ${living.length}");
            if(! mutator.spaceField) return null; //their child session is not able to support them  (space says 'fuck this noise we doing it')
         }
         ;
