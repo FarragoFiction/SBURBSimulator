@@ -25,13 +25,27 @@ void listTodos() {
 void drawCache() {
     cache =  SessionSummary.loadAllSummaries();
     List<SessionSummary> values = new List.from(cache.values);
+    //no reason to do it in the same order that ab did it, i already have that.
     if(getParameterByName("order",null)  == "reversed") {
         values = new List.from(values.reversed);
+    }else {
+        values = shuffle(values);
     }
     //todo("there are ${cache.values.length} cached summaries");
     for(SessionSummary s in values) {
         drawOneSummary(s);
     }
+}
+
+List shuffle(List list) {
+    List ret = new List();
+    Random rand = new Random();
+    while(list.length > 0) {
+        dynamic chosen = rand.pickFrom(list);
+        ret.add(chosen);
+        list.remove(chosen);
+    }
+    return ret;
 }
 
 
