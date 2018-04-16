@@ -376,7 +376,7 @@ class ObservatoryViewer {
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
 
-        this.scene.add(this.overcoat.shipModel); // TODO: reenable
+        //this.scene.add(this.overcoat.shipModel); // TODO: reenable
 
         this.update();
 
@@ -1096,7 +1096,7 @@ class ObservatoryTentacle {
 class ShipLogic {
     final ObservatoryViewer parent;
 
-    bool active = true; // TODO: true for tests
+    bool active = false; // TODO: true for tests
 
     THREE.Object3D shipModel;
     double angle = Math.PI * 1.4;
