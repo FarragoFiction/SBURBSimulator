@@ -39,12 +39,34 @@ class Vector2 {
 	factory Vector2.zero() {
 		return new Vector2(0,0);
 	}
+	external Vector2 clone();
 
 	external num get x;
 	external void set x(num x);
 
 	external num get y;
 	external void set y(num y);
+
+	external num length();
+	external Vector2 setLength(num l);
+
+	external num dot(Vector2 v);
+	external Vector2 normalize();
+
+	external Vector2 add(Vector2 v);
+	external Vector2 addScalar(num s);
+	external Vector2 addScaledVector(Vector2 v, num s);
+	external Vector2 addVectors(Vector2 a, Vector2 b);
+
+	external Vector2 sub(Vector2 v);
+	external Vector2 subScalar(num s);
+	external Vector2 subVectors(Vector2 a, Vector2 b);
+
+	external Vector2 divide(Vector2 v);
+	external Vector2 divideScalar(num s);
+
+	external Vector2 multiply(Vector2 v);
+	external Vector2 multiplyScalar(num s);
 }
 
 @JS()

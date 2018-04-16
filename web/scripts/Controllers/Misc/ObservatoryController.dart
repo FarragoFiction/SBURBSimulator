@@ -298,8 +298,8 @@ class ObservatoryViewer {
     NumberInputElement coordElementY;
     NumberInputElement sessionElement;
 
-    int camx;
-    int camy;
+    int camx = 0;
+    int camy = 0;
 
     Map<Point<int>, ObservatorySession> sessions = <Point<int>,ObservatorySession>{};
     ObservatorySession detailSession = null;
@@ -376,7 +376,7 @@ class ObservatoryViewer {
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
 
-        //this.cameraRig.add(this.overcoat.shipModel);
+        //this.scene.add(this.overcoat.shipModel); // TODO: reenable
 
         this.update();
 
@@ -384,6 +384,8 @@ class ObservatoryViewer {
         this.eventDelegate.onClick.listen(mouseClick);
         window.onMouseUp.listen(mouseUp);
         window.onMouseMove.listen(mouseMove);
+        window.onKeyDown.listen(keyDown);
+        window.onKeyUp.listen(keyUp);
 
         this.sessionElement = querySelector("#session_id");
         this.coordElementX = querySelector("#coordinates_x");
@@ -426,6 +428,8 @@ class ObservatoryViewer {
         window.getSelection().empty();
         window.getSelection().removeAllRanges();
 
+        this.overcoat.active = false;
+
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 
         this.updateSessions();
@@ -447,6 +451,22 @@ class ObservatoryViewer {
             this.landDetails.showLand(this.detailSession.session.players[zone-1].land);
         }
     }
+
+    Map<int, bool> keys = <int,bool>{};
+    void keyDown(KeyboardEvent e) {
+        if (this.overcoat.active) {
+            keys[e.keyCode] = true;
+            if (document.activeElement == document.body) {
+                if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
+                    e.preventDefault();
+                }
+            }
+        }
+    }
+    void keyUp(KeyboardEvent e) {
+        keys[e.keyCode] = false;
+    }
+    bool getKey(int keyCode) => keys.containsKey(keyCode) && keys[keyCode];
 
     int detectClickZone(MouseEvent e) {
         if (this.detailSession == null || this.detailSession.session.players.isEmpty) {
@@ -1076,14 +1096,37 @@ class ObservatoryTentacle {
 class ShipLogic {
     final ObservatoryViewer parent;
 
-    bool active = false;
+    bool active = false; // TODO: true for tests
 
     THREE.Object3D shipModel;
-    double angle = 0.0;
+    double angle = Math.PI * 1.4;
+    THREE.Vector2 pos = new THREE.Vector2(0, 0);
+    THREE.Vector2 vel = new THREE.Vector2(0, 0);
+    double frictionForward = 0.998;
+    double frictionSideways = 0.96;
+    double frictionInactive = 0.965;
+    double thrust = 5.0;
+    static const double maxspeed = 750.0;
+    double brake = 0.9;
+
+    double angVel = 0.0;
+    double angFriction = 0.925;
+    double turnRateStopped = Math.PI / 16.0;
+    double turnRateMax = Math.PI / 3.0;
+    double speedForMaxTurn = 250.0;
+
+    double stepTime = 0.0;
+    static const double stepLength = 0.05;
+
+    int forward = 0;
+    int turn = 0;
 
     ShipLogic(ObservatoryViewer this.parent);
 
     Future<Null> initGraphics() async {
+
+        Tuple<int,int> s4037 = SeedMapper.seed2coords(4037);
+        this.pos..x = (s4037.first+0.45) * ObservatoryViewer.gridsize ..y = (s4037.second+0.4) * ObservatoryViewer.gridsize;
 
         shipModel = await Loader.getResource("models/overcoat.obj");
         THREE.Texture tex = new THREE.Texture(await Loader.getResource("images/textures/overcoat.png"))
@@ -1100,25 +1143,95 @@ class ShipLogic {
             }
         }
 
-        double s = 50.0;
+        double s = 10.0;
         shipModel.scale..x=s..y=s..z=s;
         shipModel.position..z = 250.0;
         shipModel.rotation..order = "ZYX";
     }
 
     void update([num dt]) {
-        this.angle = (this.angle + dt * 0.5) % (Math.PI * 2);
+        //if (!this.active) { return; }
 
-        this.setShipRotation();
+        stepTime += dt;
+        
+        this.forward = ((this.parent.getKey(38) || this.parent.getKey(87)) ? 1 : 0) - ((this.parent.getKey(40) || this.parent.getKey(83)) ? 1 : 0);
+        this.turn = ((this.parent.getKey(39) || this.parent.getKey(68)) ? 1 : 0) - ((this.parent.getKey(37) || this.parent.getKey(65)) ? 1 : 0);
+
+        while (stepTime >= stepLength) {
+            stepTime -= stepLength;
+
+            this.physicsUpdate(stepLength);
+        }
+
+        graphicsUpdate(stepTime);
+    }
+
+    void physicsUpdate(num dt) {
+        angVel = angVel * angFriction;
+        if (turn != 0) {
+            double turnfraction = (vel.length() / speedForMaxTurn).clamp(0.0, 1.0);
+            double turnrate = (1 - turnfraction) * turnRateStopped + turnfraction * turnRateMax;
+
+            angVel = (angVel + turnrate * 0.1 * turn).clamp(-turnrate, turnrate);
+        }
+        this.angle -= angVel * dt;
+
+        THREE.Vector2 heading = new THREE.Vector2(Math.sin(angle), Math.cos(angle));
+
+        THREE.Vector2 veldir = vel.clone().normalize();
+        num dir = heading.dot(veldir);
+
+        num absdir = dir.abs();
+        num friction = absdir * frictionForward + (1-absdir) * frictionSideways;
+
+        this.vel.multiplyScalar(friction);
+
+        if (!this.active) {
+            this.vel.multiplyScalar(frictionInactive);
+        }
+
+        if (forward == 1) {
+            this.vel.addScaledVector(heading, thrust * forward);
+        } else if (forward == -1) {
+            this.vel.multiplyScalar(brake);
+        }
+
+        if (vel.length() > maxspeed) {
+            vel.setLength(maxspeed);
+        }
+
+        this.pos.addScaledVector(this.vel, dt);
+    }
+
+    void graphicsUpdate(double stepFraction) {
+        setShipRotation();
+
+        THREE.Vector2 modelpos = this.pos.clone().addScaledVector(this.vel, stepFraction);
+        if (modelpos.x < 0) {
+            modelpos.x += ObservatoryViewer.pixelsize;
+        } else if(modelpos.x > ObservatoryViewer.pixelsize) {
+            modelpos.x -= ObservatoryViewer.pixelsize;
+        }
+        if (modelpos.y < 0) {
+            modelpos.y += ObservatoryViewer.pixelsize;
+        } else if(modelpos.y > ObservatoryViewer.pixelsize) {
+            modelpos.y -= ObservatoryViewer.pixelsize;
+        }
+
+        if (this.active) {
+            parent.goToCoordinates(modelpos.x, modelpos.y);
+        }
+
+        this.shipModel.position..x = modelpos.x..y = modelpos.y;
     }
 
     void setShipRotation() {
 
-        double sin = Math.sin(angle);
-        double cos = Math.cos(angle);
+        double sin = Math.sin(-angle);
+        double cos = Math.cos(-angle);
 
         this.shipModel.rotation
-            ..z = this.angle
+            ..z = -this.angle
             ..y = -sin * Math.PI * 0.5
             ..x = cos.abs() * Math.PI * 0.03125
         ;
