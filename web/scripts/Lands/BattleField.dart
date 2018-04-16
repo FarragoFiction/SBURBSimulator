@@ -51,6 +51,8 @@ class Battlefield extends Land {
 
             this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             blackKing.grist = 1000;
+            //what will this do?
+            blackKing.addBuff(new BuffGodTier());
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
             blackKing.heal();
 
