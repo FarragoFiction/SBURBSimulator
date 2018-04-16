@@ -17,8 +17,7 @@ class  SerializableScene extends Scene {
 
     //things that can be replaced
     static String BIGBADNAME = "BIGBADNAME";
-    static String LIVINGTARGET = "LIVINGTARGETNAME";
-    static String LANDTARGET = "LANDTARGETNAME";
+    static String TARGET = "TARGET";
 
     //what do you try to target, used for drop down
     static String TARGETPLAYERS = "Players";
@@ -43,7 +42,8 @@ class  SerializableScene extends Scene {
     //higher = better chance of triggering
     double triggerChance = 0.5;
 
-  List<String> flavorText;
+    //flavor text will not influence the actual actions going on, but will change how it is narratively
+  List<String> flavorText = <String>["$BIGBADNAME does a thing to $TARGET in the first flavor","$BIGBADNAME does a thing to $TARGET in the second flavor","$BIGBADNAME does a thing to $TARGET in the third flavor"];
   GameEntity livingTarget;
   //can include moons or the battlefield
   Land landTarget;
@@ -57,8 +57,9 @@ class  SerializableScene extends Scene {
   void renderContent(Element div) {
       String displayText = rand.pickFrom(flavorText);
       displayText =   displayText.replaceAll("$BIGBADNAME", "${gameEntity.htmlTitle()}");
-      if(livingTarget != null) displayText =   displayText.replaceAll("$LIVINGTARGET", "${livingTarget.htmlTitle()}");
-      if(landTarget != null) displayText =   displayText.replaceAll("$LANDTARGET", "${landTarget.name}");
+      //if i some how have both, living target will be the one i pick.
+      if(livingTarget != null) displayText =   displayText.replaceAll("$TARGET", "${livingTarget.htmlTitle()}");
+      if(landTarget != null) displayText =   displayText.replaceAll("$TARGET", "${landTarget.name}");
 
       DivElement content = new DivElement();
       div.append(content);
