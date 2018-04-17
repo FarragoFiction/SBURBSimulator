@@ -16,7 +16,7 @@ import 'dart:html';
 class  SerializableScene extends Scene {
 
     //things that can be replaced
-    static String BIGBADNAME = "BIGBADNAME";
+    static String BIGBADNAME = BigBad.BIGBADNAME;
     static String TARGET = "TARGET";
 
     //what do you try to target, used for drop down
@@ -32,12 +32,14 @@ class  SerializableScene extends Scene {
     static String TARGETROBOTS = "Robots";
     static String TARGETDREAMSELVES = "Dream Selves";
     static String TARGETBIGBADS = "Big Bads";
+    static String TARGETGODS = "Gods";
+    static String TARGETMORTALS = "Mortals";
 
 
 
     //subclasses can override this to have different valid targets
     //this builds the drop down for the forms
-    List<String> get validTargets => <String>[TARGETPLAYERS, TARGETCARAPACES, TARGETDENIZENS, TARGETLANDS, TARGETMOONS, TARGETBIGBADS,TARGETCONSORTS, TARGETGHOSTS, TARGETROBOTS, TARGETDREAMSELVES, TARGETDEADPLAYERS, TARGETDEADCARAPACES];
+    List<String> get validTargets => <String>[TARGETPLAYERS, TARGETGODS, TARGETMORTALS,TARGETCARAPACES, TARGETDENIZENS, TARGETLANDS, TARGETMOONS, TARGETBIGBADS,TARGETCONSORTS, TARGETGHOSTS, TARGETROBOTS, TARGETDREAMSELVES, TARGETDEADPLAYERS, TARGETDEADCARAPACES];
 
     //higher = better chance of triggering
     double triggerChance = 0.5;

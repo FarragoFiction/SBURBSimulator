@@ -46,6 +46,7 @@ export "random_tables.dart";
 export "loading.dart";
 export "random.dart";
 export "weighted_lists.dart";
+export "GameEntities/BigBadStuff/BigBadLib.dart";
 export "GameEntities/relationship.dart";
 export "GameEntities/NPCRelationship.dart";
 
