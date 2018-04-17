@@ -307,6 +307,11 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(["I'm THINKING of a number between 450 and 850.", "Let's go deeper, I bet we could play SBURB while we play SBURB, dog.","I just lost the game."], ["..."],youAsshole))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
+        List<PlusMinusConversationalPair> convo9 = new List<PlusMinusConversationalPair>()
+            ..add(new PlusMinusConversationalPair(["You know? Something has been bothering me...", " Is it okay if I ask a question?", "I always wondered..."], ["Yes?"],["For fucks sake, just spit it out.","Just say it already."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["Why do you think eggplants are called that?", "What even ARE egg plants? They definitely aren't eggs...","What do eggplants have to do with eggs?"], ["I have no idea."],["...I hate you.","Oh fuck, now I'M gonna be wondering that.", "...could you get any more inane?"]))
+            ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
+
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
@@ -316,6 +321,8 @@ class DeadMeta extends Scene {
         ret.add(new Conversation(convo6));
         ret.add(new Conversation(convo7));
         ret.add(new Conversation(convo8));
+        ret.add(new Conversation(convo9));
+
         ret.add(new Conversation(convoRand0));
         ret.add(new Conversation(convoRand1));
         return ret;
