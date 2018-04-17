@@ -546,6 +546,7 @@ class Aftermath extends Scene {
             ret += "With a final, deafening 'CROAK', the " + purpleFrog.name + " floats victorious over the remains of the Players.   The Horror Terrors happily colonize the new Universe, though, so I guess the GrimDark players would be happy with this ending?  <Br><Br> Thanks for Playing. ";
         }
         appendHtml(div, ret);
+        session.simulationComplete("Purple Frog");
         this.lastRender(div);
     }
 
