@@ -7,6 +7,9 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Heir extends SBURBClass {
 
+    @override
+    String sauceTitle = "Stalker";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.01;

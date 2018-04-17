@@ -9,6 +9,9 @@ import "../../../Lands/Quest.dart";
 
 class Smith extends SBURBClass {
 
+    @override
+    String sauceTitle = "Sculpter";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.51;

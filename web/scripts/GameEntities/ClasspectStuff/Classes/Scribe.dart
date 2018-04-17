@@ -9,6 +9,9 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Scribe extends SBURBClass {
 
+    @override
+    String sauceTitle = "Archwright";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;

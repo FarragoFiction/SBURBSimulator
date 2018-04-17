@@ -5,6 +5,11 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Guide extends SBURBClass {
+
+    @override
+    String sauceTitle = "Highlord";
+
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.51;

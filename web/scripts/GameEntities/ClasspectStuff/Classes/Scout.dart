@@ -7,6 +7,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Scout extends SBURBClass {
 
+    @override
+    String sauceTitle = "Scorned";
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;

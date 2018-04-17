@@ -848,10 +848,12 @@ class MetaPlayerHandler {
 
     void initalizePlayers(Session s, bool reinitNoMatterWhat) {
         if (jadedResearcher != null && reinitNoMatterWhat == false) return; //don't reintiialize, dunkass.
+        authorBotJunior = makeABJ(s);
+        feudalUltimatum = makeFU(s);
+
         jadedResearcher = makeJR(s);
         aspiringWatcher = makeAW(s);
         tableGuardian = makeTG(s);
-        feudalUltimatum = makeFU(s);
         dilletantMathematician = makeDM(s);
         insufferableOracle = makeIO(s);
         manicInsomniac = makeMI(s);
@@ -861,7 +863,6 @@ class MetaPlayerHandler {
         paradoxLands = makePL(s);
         karmicRetribution = makeKR(s);
         authorBot = makeAB(s);
-        authorBotJunior = makeABJ(s);
     }
 
     Player makeAW(Session s) {
@@ -896,6 +897,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
 
@@ -937,6 +939,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature("<span class = 'void'>Tablikea, the</span> Guardian");
@@ -973,8 +976,14 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(authorBotJunior);
         player.guardian.initialize();
         player.guardian.guardian = player;
+
+        authorBotJunior.guardian.copyFromPlayer(feudalUltimatum);
+        authorBotJunior.guardian.initialize();
+        authorBotJunior.guardian.guardian = player;
+
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Shogun the, Glitch</span>');
 
         player.object_to_prototype = new PotentialSprite("Aku", s);
@@ -1026,6 +1035,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature("<span class = 'void'>Algebron, The </span>Dilletant");
@@ -1078,6 +1088,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('Insurorracle');
@@ -1110,6 +1121,7 @@ class MetaPlayerHandler {
         player.initialize();
         player.deriveSprite = false;
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Maniomnia, the </span>Dreamwaker');
@@ -1157,6 +1169,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Nobrop, the </span>Null');
@@ -1205,6 +1218,7 @@ class MetaPlayerHandler {
         player.gnosis = 4; //woomod doesn't care that this means they don't do any gnosis tier.
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Doomod, The </span>Wanderer');
@@ -1256,6 +1270,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Recurscker, The</span>Hollow One');
@@ -1306,6 +1321,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('Karmiution');
@@ -1352,6 +1368,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Paraxalan, The </span>Ever-Searching');
@@ -1405,6 +1422,7 @@ class MetaPlayerHandler {
         player.deriveLand = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Jadeacher the,</span>Researcher');
@@ -1447,6 +1465,7 @@ class MetaPlayerHandler {
         player.deriveSprite = false;
         player.initialize();
         player.makeGuardian();
+        player.guardian.copyFromPlayer(feudalUltimatum);
         player.guardian.initialize();
         player.guardian.guardian = player;
         player.land.denizenFeature = new HardDenizenFeature('<span class = "void">Authorot, the</span> Robot');

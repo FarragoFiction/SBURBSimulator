@@ -545,7 +545,12 @@ class Player extends GameEntity{
         if (this.gnosis == 4) {
             ret = "${ret}Wasted ";
         }
-        ret = "$ret${this.class_name} of ${this.aspect}";
+        //refrance to shogun's april fools artwork
+        if(aspect == Aspects.SAUCE) {
+            ret = "$ret${this.class_name.sauceTitle} of ${this.aspect}";
+        }else {
+            ret = "$ret${this.class_name} of ${this.aspect}";
+        }
         if (this.dead) {
             ret = "$ret's Corpse";
         } else if (this.ghost) {

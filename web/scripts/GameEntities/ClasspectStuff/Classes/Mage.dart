@@ -9,6 +9,9 @@ import "../../../Lands/Quest.dart";
 
 class Mage extends SBURBClass {
 
+    @override
+    String sauceTitle = "Master";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.01;

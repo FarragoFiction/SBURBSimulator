@@ -124,6 +124,7 @@ class SBURBClassManager {
 //instantiatable for Null classes.
 class SBURBClass {
 
+    String sauceTitle = "Glitch";
     //what sort of quests rewards do I get?
     double itemWeight = 0.01;
     double fraymotifWeight = 0.01;

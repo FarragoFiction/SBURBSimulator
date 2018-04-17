@@ -6,6 +6,9 @@ import "../../../Lands/Quest.dart";
 
 class Prince extends SBURBClass {
 
+    @override
+    String sauceTitle = "Archduke";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;

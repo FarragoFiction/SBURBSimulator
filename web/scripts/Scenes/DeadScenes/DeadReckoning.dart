@@ -72,7 +72,7 @@ void startNewSession() {
     String divID = "canvasdeadInvader";
     String ret = "The ${player.htmlTitle()} enters a new session. Huh.  <canvas id='${divID}' width='${canvasWidth.toString()}' height='${canvasHeight.toString()}'>  </canvas>";
     if(session.session_id == 4037) {
-        SBURBClassManager.LORD.name = "Shogun";
+        //SBURBClassManager.LORD.name = "Shogun";
         session.players.first.aspect = Aspects.SAUCE;
         session.players.first.chatHandle = "The Shogun";
 

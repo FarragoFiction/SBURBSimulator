@@ -11,6 +11,9 @@ import "../../../Lands/Quest.dart";
 
 class Witch extends SBURBClass {
 
+    @override
+    String sauceTitle = "Warlock";
+
     //what sort of quests rewards do I get?
     //witches have familiars, spells and potions
     @override

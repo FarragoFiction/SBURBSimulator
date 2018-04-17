@@ -5,7 +5,8 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Bard extends SBURBClass {
-
+    @override
+    String sauceTitle = "Maestro";
 
     //what sort of quests rewards do I get?
     @override

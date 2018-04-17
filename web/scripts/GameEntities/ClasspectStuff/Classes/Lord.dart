@@ -9,6 +9,9 @@ import "../../../Lands/Quest.dart";
 
 class Lord extends SBURBClass {
 
+    @override
+    String sauceTitle = "Shogun";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.01;
