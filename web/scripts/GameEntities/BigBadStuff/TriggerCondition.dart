@@ -34,8 +34,13 @@ abstract class TriggerCondition {
 class ItemTraitTriggerCondition extends TriggerCondition{
     static String BIGBADNAME = BigBad.BIGBADNAME;
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
+    static String ITEMAME = "ITEMNAME";
+
+    static String ITEMTRAITOWNERNAME = "PLAYER";
     ItemTrait itemTrait;
-    String flavorText = "$BIGBADNAME suddenly appears because one of the players is holding something that is $ITEMTRAITNAME.";
+    //strongly encouraged for this to be replaced
+    //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
+    String flavorText = "$BIGBADNAME suddenly appears because the ${ITEMTRAITOWNERNAME} is holding a ${ITEMAME} that is $ITEMTRAITNAME.";
 
   @override
   bool triggered() {

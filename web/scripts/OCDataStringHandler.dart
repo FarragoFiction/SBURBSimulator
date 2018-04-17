@@ -367,6 +367,7 @@ dynamic dataBytesAndStringsToPlayer(Session session, String charString, List<Str
   player.robot = 0 != ((1<<7) & charString.codeUnitAt(7));
   var moon = 0 != ((1<<6) & charString.codeUnitAt(7));
   print("moon binary is: $moon");
+  if(player.session.prospit == null) player.session.setupMoons();
   player.moon = moon ? player.session.prospit : player.session.derse;
   print("i think that becomes ${player.moon}, is that ${player.session.prospit} or ${player.session.derse}?");
 

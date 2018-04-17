@@ -959,7 +959,7 @@ class MetaPlayerHandler {
         player.quirk = randomHumanQuirk(s.rand);
 
         player.copyFromOCDataString("b=%C2%80%40%009%C3%BEU%04%17%0F%258&s=,,Classism,Genocide,feudalUltimatum&x=nkgA");
-
+        print("Fu's moon is ${player.moon}");
         player.land = player.spawnLand();
         player.land.name = "Land of Dynasties and Taint";
         player.godTier = true;
