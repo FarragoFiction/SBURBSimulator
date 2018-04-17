@@ -125,6 +125,7 @@ class DeadSession extends Session {
 
     @override
     Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
+        logger.info("Doing a Dead Combo");
         int id = this.session_id;
 
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
@@ -135,7 +136,7 @@ class DeadSession extends Session {
         if(living.isEmpty) {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
         }else {
-            appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${this.session_id}'>${this.session_id}</a>");
+            appendHtml(SimController.instance.storyElement, "<br><Br> Entering: session <a href = 'index2.html?seed=${tmpcurSessionGlobalVar.session_id}'>${tmpcurSessionGlobalVar.session_id}</a>");
         }
         checkSGRUB();
         if(this.mutator.spaceField) {
@@ -213,6 +214,8 @@ class DeadSession extends Session {
 
     @override
     Future<Null> processCombinedSession() async{
+        logger.info("processing a Dead Combo");
+
         //guaranteed to make one since it's a dead session
         this.players[0].relationships.clear(); //forgot about that annoying voice in your head.
         Session tmpcurSessionGlobalVar = this.initializeCombinedSession();
@@ -500,6 +503,8 @@ class DeadSession extends Session {
     //unlike regular sessions there is no way to fail this.
     @override
     Session initializeCombinedSession() {
+        logger.info("initing a Dead Combo");
+
         this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
         List<Player> living = findLiving(this.players);
         living.add((this as DeadSession).metaPlayer);

@@ -506,7 +506,7 @@ class Session {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        appendHtml(SimController.instance.storyElement, "<Br><br>A Game of SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
+        appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
         await callNextIntro(0);
     }
 
@@ -990,7 +990,7 @@ class Session {
 
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Session> startSession() async {
-       // logger.info("TEST COMPLETE: session is starting");
+        logger.info("session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
@@ -998,6 +998,7 @@ class Session {
         this.makePlayers();
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
+        logger.info("session has ${players.length} players");
 
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg(this);

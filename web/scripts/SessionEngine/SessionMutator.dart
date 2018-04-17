@@ -981,7 +981,7 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
 
-        authorBotJunior.guardian.copyFromPlayer(this);
+        authorBotJunior.guardian.copyFromPlayer(player);
         authorBotJunior.guardian.initialize();
         authorBotJunior.guardian.guardian = player;
 
