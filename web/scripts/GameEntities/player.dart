@@ -1825,6 +1825,7 @@ class Player extends GameEntity{
         ////print("copying from player who has a favorite number of: " + replayPlayer.quirk.favoriteNumber);
         ////;
         ////print(replayPlayer);
+        session.logger.info("copying ${replayPlayer} to ${this}");
         this.aspect = replayPlayer.aspect;
         this.class_name = replayPlayer.class_name;
         this.hair = replayPlayer.hair;

@@ -958,6 +958,7 @@ class MetaPlayerHandler {
     }
 
     Player makeFU(Session s) {
+        s.logger.info("Making fu");
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.VOID);
         player.quirk = randomHumanQuirk(s.rand);
 
@@ -980,7 +981,7 @@ class MetaPlayerHandler {
         player.guardian.initialize();
         player.guardian.guardian = player;
 
-        authorBotJunior.guardian.copyFromPlayer(feudalUltimatum);
+        authorBotJunior.guardian.copyFromPlayer(this);
         authorBotJunior.guardian.initialize();
         authorBotJunior.guardian.guardian = player;
 
@@ -1481,6 +1482,7 @@ class MetaPlayerHandler {
     }
 
     Player makeABJ(Session s) {
+        s.logger.info("Making abj");
         Player player = randomPlayerNoDerived(s, SBURBClassManager.SCOUT, Aspects.MIND);
         player.quirk = randomHumanQuirk(s.rand);
 
