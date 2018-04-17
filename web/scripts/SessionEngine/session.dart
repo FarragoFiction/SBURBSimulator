@@ -533,7 +533,7 @@ class Session {
         int id = this.session_id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
         //maybe ther ARE no corpses...but they are sure as shit bringing the dead dream selves.
-        List<Player> living = findLiving(this.aliensClonedOnArrival);
+        List<Player> living = findLiving(tmpcurSessionGlobalVar.aliensClonedOnArrival);
         if(living.isEmpty) {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. Fuck. That's right. The Space Player made it so that they could enter their own child Session. But. Fuck. Everybody is dead. This...god. Maybe...maybe the other Players can revive them? ");
         }else {
