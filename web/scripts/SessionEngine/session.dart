@@ -511,7 +511,7 @@ class Session {
     }
 
     Future<Null> processCombinedSession() async {
-        logger.info("TEST COMPLETE: processing combo session.");
+        //logger.info("TEST COMPLETE: processing combo session.");
         if(this.mutator.spaceField) {
             return; //you will do combo a different route.
         }
@@ -528,7 +528,7 @@ class Session {
     }
 
     Future<Null> doComboSession(Session tmpcurSessionGlobalVar) async {
-        logger.info("TEST COMPLETE: doing combo session.");
+       // logger.info("TEST COMPLETE: doing combo session.");
 
         int id = this.session_id;
         if(tmpcurSessionGlobalVar == null) tmpcurSessionGlobalVar = this.initializeCombinedSession();  //if space field this ALWAYS returns something. this should only be called on null with space field
@@ -990,7 +990,7 @@ class Session {
 
     //TODO since this lives in the session now, need to remember that ive already started a session
     Future<Session> startSession() async {
-        logger.info("TEST COMPLETE: session is starting");
+       // logger.info("TEST COMPLETE: session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
@@ -1008,17 +1008,17 @@ class Session {
 
     void simulationComplete(String ending) {
         if(completer == null) {
-            logger.error("TEST COMPLETION: Uh. Tried to complete something that hadn't been created yet. What???");
+           // logger.error("TEST COMPLETION: Uh. Tried to complete something that hadn't been created yet. What???");
             return;
         }
-        logger.info("TEST COMPLETION: before session complete from $ending, with players ${players} with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
+        //logger.info("TEST COMPLETION: before session complete from $ending, with players ${players} with ticks: ${numTicks} with won: ${stats.won}, frog status ${frogStatus()} and scratch status of ${stats.scratched} and scratch available of ${stats.scratchAvailable}");
         //allow you to call this multiple times (reiniting will ALWAYS complete before making a new completer)
         try {
             this.completer.complete(this);
         }catch(e) {
-            logger.info("completing from  $ending had an error $e, probably cuz i tried to do it twice");
+           // logger.info("completing from  $ending had an error $e, probably cuz i tried to do it twice");
         }
-        logger.info("after session complete from $ending, with won: ${stats.won}, frog status:  ${frogStatus()}");
+        //logger.info("after session complete from $ending, with won: ${stats.won}, frog status:  ${frogStatus()}");
 
     }
 
