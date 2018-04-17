@@ -36,17 +36,22 @@ List<Player> getReplayers(Session session) {
 }
 
 
-void syncReplayNumberToPlayerNumber(List<Player> replayPlayers) {
+void syncReplayNumberToPlayerNumber(List<Player> replayPlayers, Session session) {
     if(replayPlayers.isEmpty) return;
     Session session = replayPlayers.first.session;
     if (session.players.length == replayPlayers.length || replayPlayers.isEmpty) return; //nothing to do.
 
-    if (replayPlayers.length < session.players.length) { //gotta destroy some players (you monster);
-        num remove_length = session.players.length - replayPlayers.length;
+    //foreign players are allowed in, even though it'll jsut be more of the sae
+    int max = replayPlayers.length + session.aliensClonedOnArrival.length;
+    print("max is ${max} which is ${replayPlayers.length} replayers and ${session.aliensClonedOnArrival.length} aliens");
+
+    if (max < session.players.length) { //gotta destroy some players (you monster);
+        num remove_length = session.players.length - max;
+        print("I think I need to remove ${remove_length} players from ${session.players.length} to get $max");
         session.players.removeRange(0, remove_length); //TODO check to see if off by one
         return;
-    } else if (replayPlayers.length > session.players.length) {
-        int numNeeded = replayPlayers.length - session.players.length;
+    } else if (max > session.players.length) {
+        int numNeeded = max - session.players.length;
         ////print("Have: " + session.players.length + " need: " + replayPlayers.length + " think the difference is: " + numNeeded);
         for (int i = 0; i < numNeeded; i++) {
             // //print("making new player: " + i);
@@ -93,19 +98,18 @@ void initializePlayersNoReplayers(List<Player> players, Session session) {
 }
 
 void initializePlayers(List<Player> players, Session session) {
-    ;
+    session.logger.info("initializing ${players.length} players which includes overwriting them to be replayers");
     List<Player> replayPlayers = getReplayers(session);
     ;
     if (replayPlayers.isEmpty && session != null) replayPlayers = session.replayers; //<-- probably blank too, but won't be for fan oc easter eggs.
-    syncReplayNumberToPlayerNumber(replayPlayers);
+    syncReplayNumberToPlayerNumber(replayPlayers, session);
+    //replay players will negate foreign players
     ;
     for (num i = 0; i < players.length; i++) {
 
         if (replayPlayers.length > i) {
-            print("replay player moon is ${replayPlayers[i].moon} for ${replayPlayers[i]}");
 
             players[i].copyFromPlayer(replayPlayers[i]); //DOES NOT use MORE PLAYERS THAN SESSION HAS ROOM FOR, BUT AT LEAST WON'T CRASH ON LESS.
-            print("After loading a replay player, moon is ${players[i].moon} for ${players[i]}");
         }
             if (players[i].land != null) { //don't reinit aliens, their stats stay how they were cloned.
             players[i].initialize();
@@ -126,6 +130,8 @@ void initializePlayers(List<Player> players, Session session) {
         //oh because it makes replayed sessions with scratches crash.
     }
     //;
+    session.logger.info("done initializing ${players.length} players (length could have changed due to replayers)");
+
 }
 
 

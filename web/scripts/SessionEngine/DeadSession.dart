@@ -525,6 +525,7 @@ class DeadSession extends Session {
         this.childSession = childSession;
         //newSession.parentSession = this;
         Scene.createScenesForPlayer(newSession, players.first);
+        //logger.info("initializing  a session with players ${newSession.players}");
         return newSession;
     }
 
