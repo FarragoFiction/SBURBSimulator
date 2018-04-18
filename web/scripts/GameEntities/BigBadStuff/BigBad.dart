@@ -28,7 +28,7 @@ class BigBad extends NPC {
 
   static BigBad fromJSON(String rawJSON, Session session) {
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
-      BigBad ret = new BigBad(json["name", session);
+      BigBad ret = new BigBad(json["name"], session);
       return ret;
   }
 
