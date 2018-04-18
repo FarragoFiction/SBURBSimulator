@@ -52,6 +52,9 @@ abstract class Audio {
         s.onInput.listen((Event e) {
             param.value = s.valueAsNumber.toDouble();
         });
+        s.onChange.listen((Event e) {
+            param.value = s.valueAsNumber.toDouble();
+        });
 
         return s;
     }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:html';
 import 'dart:typed_data';
 
+import '../includes/path_utils.dart';
 import '../includes/predicates.dart';
 import 'Formats.dart';
 
@@ -164,7 +165,7 @@ abstract class ElementFileFormat<T> extends FileFormat<T,String> {
     bool identify(String data) => true;
 
     @override
-    Future<String> requestFromUrl(String url) async => url;
+    Future<String> requestFromUrl(String url) async => PathUtils.adjusted(url);
 
     @override
     Future<String> readFromFile(File file) => throw "Element format doesn't read from files";
