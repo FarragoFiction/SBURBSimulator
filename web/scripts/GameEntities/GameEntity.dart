@@ -415,6 +415,13 @@ class GameEntity extends Object with StatOwner   {
         }
     }
 
+    bool friendsWith(GameEntity other) {
+        if(other == null) return false;
+        Relationship r = getRelationshipWith(other);
+        if(r == null) return false;
+        return r.value > 0;
+    }
+
     //any subclass can choose to do things differently. for now, this is default.
     //so yes, npcs can have ghost attacks.
     //this won't be called if I CAN'T take a turn because i participated in fraymotif

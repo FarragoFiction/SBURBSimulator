@@ -53,14 +53,16 @@ class KillWhiteKing extends Scene {
 
         DivElement div2 = new DivElement();
         container.append(div2);
-        div2.setInnerHtml("The ${scepter.owner.htmlTitle()} is now the owner of the ${scepter}. ");
+        div2.setInnerHtml("<br>The ${scepter.owner.htmlTitle()} is now the owner of the ${scepter}. ");
 
     }
 
 
     String getText() {
-        //TODO check if you like the white scepter owner
-        return("<br><br>It is time. The ${gameEntity.htmlTitle()} feels the inexporable pull of the ${session.derseScepter.baseName} to slay whosoever bears the ${session.prospitScepter.baseName}.");
+        String friends = "";
+        GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
+        if(gameEntity.friendsWith(wkowner)) friends = "They get a really bad feeling about this. ";
+        return("<br><br>It is time. The ${gameEntity.htmlTitle()} feels the inexporable pull of the ${session.derseScepter.baseName} to slay whosoever bears the ${session.prospitScepter.baseName}. $friends");
     }
 
   @override
