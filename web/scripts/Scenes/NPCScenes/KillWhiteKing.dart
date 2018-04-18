@@ -72,16 +72,15 @@ class KillWhiteKing extends Scene {
             sucks if you were friends ten seconds ago, there's a REASON you'er not supposed to be holding
             this shit.
        */
-      print("TEST RECKONING: should i try to kill the white king???");
       GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
-      if(bkowner != gameEntity) return false;
-      print("TEST RECKONING: i'm the black scepter owner");
-
       GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
+
+
+      if(bkowner != gameEntity) return false;
+
       //please don't try to murder yourself. it's fine.
       if(bkowner == wkowner || wkowner == null) return false;
       if(session.canReckoning) return true;
-      print("TEST RECKONING: no, canReckoning is ${session.canReckoning}");
 
       return false;
   }

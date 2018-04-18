@@ -32,7 +32,7 @@ class Battlefield extends Land {
     }
 
     void spawnKings() {
-            this.whiteKing = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"]);
+            this.whiteKing = new Carapace("White King", session,Carapace.PROSPIT,firstNames: <String>["Winsome","Windswept","Warweary","Wandering","Wondering"], lastNames: <String>["Kindred","Knight","Keeper","Kisser"], ringFirstNames: <String>["White"], ringLastNames: ["King"]);
             whiteKing.royalty = true; //do before crowning, to avoid ab being confused
             this.whiteKing.sylladex.add(session.prospitScepter);
             this.whiteKing.name = "White King"; //override crowned name
@@ -44,7 +44,7 @@ class Battlefield extends Land {
             whiteKing.heal();
             whiteKing.scenesToAdd.insert(0, new StartReckoning(session));
 
-            this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal","Burger"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
+            this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal","Burger"], lastNames: <String>["Keeper","Knave","Key","Killer"], ringFirstNames: <String>["Black"], ringLastNames: ["King"]);
             blackKing.royalty = true; //do before crowning, to avoid ab being confused
             this.blackKing.sylladex.add(session.derseScepter);
             this.blackKing.name = "Black King"; //override crowned name
