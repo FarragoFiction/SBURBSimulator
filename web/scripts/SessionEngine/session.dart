@@ -565,10 +565,6 @@ class Session {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        for(Player p in this.aliensClonedOnArrival) {
-            playerTitlesWithTag.add(p.htmlTitleWithTip());
-        }
-
         appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
         await callNextIntro(0);
     }
