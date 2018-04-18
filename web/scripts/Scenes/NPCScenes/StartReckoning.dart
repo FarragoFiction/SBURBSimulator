@@ -13,10 +13,8 @@ class StartReckoning extends Scene {
       DivElement me = new DivElement();
       me.setInnerHtml(getText());
       div.append(me);
-
-      session.didReckoning = true;
-      session.reckoning();
-
+      //don't start it directly, skaia will handle this
+      session.plzStartReckoning = true;
   }
 
   String ectoBiologyString() {

@@ -15,6 +15,7 @@ class Session {
     //this will be set by reinit
     Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
+    bool plzStartReckoning = false;
     bool didReckoning = false;
     bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
@@ -1114,10 +1115,11 @@ class Session {
             two things can start the reckoning: enough time passing (shenanigans launch the meteors)
             or someone having both scepters.
          */
-        if((this.canReckoning || this.numTicks > SimController.instance.maxTicks ||  findLiving(this.players).isEmpty ) && this.timeTillReckoning <= 0) {
+        if(plzStartReckoning || numTicks > SimController.instance.maxTicks ||  findLiving(players).isEmpty) {
             if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
+            didReckoning = true;
             await reckoning();
         }else if (!this.stats.doomedTimeline) {
             this.timeTillReckoning += -1;
