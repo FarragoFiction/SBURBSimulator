@@ -17,6 +17,25 @@ class BigBad extends NPC {
 
   BigBad(String name, Session session) : super(name, session);
 
+  String toDataString() {
+      //TODO use LZ compression
+  }
+
+  JSONObject toJSON() {
+      JSONObject json = new JSONObject();
+      json["name"] = name;
+  }
+
+  static BigBad fromJSON(String rawJSON, Session session) {
+      JSONObject json = new JSONObject.fromJSONString(rawJSON);
+      BigBad ret = new BigBad(json["name", session);
+      return ret;
+  }
+
+  static BigBad fromDataString(String rawDataString) {
+      //TODO use LZ compression
+  }
+
   void drawForm(Element container) {
 
       LabelElement nameLabel = new LabelElement();
