@@ -671,9 +671,12 @@ class Session {
         // this could be called, in theory, by an npc scene AND by the timer going off
         if(!didReckoning) {
             didReckoning = true;
-            Scene s = new Reckoning(this);
-            s.trigger(this.players);
-            s.renderContent(this.newScene(s.runtimeType.toString(),));
+            //this happens iff the reckoning doens't happen via two scepters
+            if(!plzStartReckoning) {
+                Scene s = new Reckoning(this);
+                s.trigger(this.players);
+                s.renderContent(this.newScene(s.runtimeType.toString(),));
+            }
             if (!this.stats.doomedTimeline) {
                 await reckoningTick();
             } else {
@@ -1119,7 +1122,6 @@ class Session {
             if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
-            didReckoning = true;
             await reckoning();
         }else if (!this.stats.doomedTimeline) {
             this.timeTillReckoning += -1;

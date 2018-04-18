@@ -11,7 +11,7 @@ class StartReckoning extends Scene {
       //;
       gameEntity.available = false;
       DivElement me = new DivElement();
-      me.setInnerHtml(getText());
+      me.setInnerHtml("<br>${getText()}");
       div.append(me);
       //don't start it directly, skaia will handle this
       session.plzStartReckoning = true;
