@@ -214,6 +214,7 @@ class GameEntity extends Object with StatOwner   {
         }
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny
+        if(scenesToAdd.isNotEmpty) print("TEST RECKONING: adding ${scenesToAdd.length} scenes to $this");
         scenes.insertAll(0,scenesToAdd);
         scenesToAdd.clear();
     }
@@ -252,6 +253,7 @@ class GameEntity extends Object with StatOwner   {
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
        //crashes if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
+        if(!(this is PotentialSprite)) session.npcHandler.allEntities.add(this);
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);

@@ -5,6 +5,8 @@ class NPCHandler
 {
     Session session;
 
+    List<GameEntity> allEntities = new List<GameEntity>();
+
     static String JACK = "JACK";
     static String PM = "PM"; //done
     static String JS = "JS"; //done
