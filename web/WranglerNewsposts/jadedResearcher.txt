@@ -1,4 +1,4 @@
-2018-04-17: A particular Dead Session is working again and is completely unrelated to the Big Bad code I'm fleshing out. <br><br>Bug fixes and reckoning work as well.
+2018-04-17: A particular Dead Session is working again and is completely unrelated to the Big Bad code I'm fleshing out. <br><br>Bug fixes are out especially for combo and dead sessions.
 2018-04-16: AB knows about combo sessions again, is actually sane and also I've got the first part of the new reckoning mechanic wired up.
 2018-04-13: It's a 413 motherfucking miracle because AB is actually working. Last minute, too.
 2018-04-11: Give me a fucking nobel peace prize because global var is no longer a thing (thanks coolthulu that was an amazing pun you made :) :) :) ).  AB is not yet any saner, but the entire SIM is saner and easier to debug now that i've done that mini refactoring.<br><br>Also it's so fucking adorable that ShogunBot made his own cards after AB told him about what a hope player with too much power did.<br><br> <img src = 'images/BigBadCards/crownedDipshit.png'><br><br>1SIAR and TSIAR are my new favorite Big Bads.
