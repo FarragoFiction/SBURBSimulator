@@ -5,11 +5,12 @@ import '../../navbar.dart';
 
 
 Element storyDiv;
+Session session;
 main() {
     globalInit();
     storyDiv = querySelector("#story");
     //curSessionGlobalVar = new Session(int.parse(todayToSession()));
-    Session session = new Session(getRandomSeed());
+    session = new Session(getRandomSeed());
     session.makePlayers();
     session.randomizeEntryOrder();
 
@@ -50,7 +51,16 @@ main() {
 
     printPrototypeAbleThings();
 
+    printAllThings();
 
+
+}
+
+void printAllThings() {
+    //        //logger.info("All Entities is: ${npcHandler.allEntities}");
+    DivElement prototypes = new DivElement();
+    prototypes.text = "Everything This Session Knows About Besides Prototypable Objects: (${session.npcHandler.allEntities.length} )${turnArrayIntoHumanSentence(session.npcHandler.allEntities)}";
+    storyDiv.append(prototypes);
 }
 
 void printPrototypeAbleThings() {

@@ -134,13 +134,16 @@ class Session {
     void grabSpecialCases() {
         //no matter what you are, denizen, consort, ghost, ANYTHING
         //if you have the scepter and it's time for a reckoning, you have  role to play
-        logger.info("All Entities is: ${npcHandler.allEntities}");
-        for(GameEntity g in npcHandler.allEntities) {
-            if(canReckoning && g.scepter != null) {
-                g.active = true;
-                _activatedNPCS.add(g);
+        //logger.info("All Entities is: ${npcHandler.allEntities}");
+        if(canReckoning) {
+            for (GameEntity g in npcHandler.allEntities) {
+                if (canReckoning && g.scepter != null) {
+                    g.active = true;
+                    _activatedNPCS.add(g);
+                }
             }
         }
+
     }
 
     void grabActivatedCarapaces() {
