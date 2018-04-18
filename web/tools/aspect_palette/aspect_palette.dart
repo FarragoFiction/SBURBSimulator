@@ -60,13 +60,19 @@ void main() {
 }
 
 Future<Null> testAudio() async {
-    AudioElement sound = await Audio.load("audio/spiderblood");
-    AudioSourceNode node = Audio.node(sound);
+    Audio.masterVolume.value = 0.15;
+    AudioElement soundElement = await Audio.load("audio/spiderblood");
+    AudioSourceNode sound = Audio.node(soundElement);
 
-    node.connectNode(Audio.output);
+    MuffleEffect muffle = new MuffleEffect(1.0);
 
-    sound.loop = true;
-    sound.play();
+    sound.connectNode(muffle.input);
+    muffle.output.connectNode(Audio.output);
+
+    soundElement.loop = true;
+    soundElement.play();
+
+    querySelector("#stuff").append(Audio.slider(muffle));
 }
  
 Future<Null> testPNG() async {

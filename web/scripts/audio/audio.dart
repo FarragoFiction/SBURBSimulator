@@ -4,13 +4,16 @@ import "dart:web_audio";
 
 import "../loader/loader.dart";
 
+export "muffleEffect.dart";
+
 abstract class Audio {
     static bool _checkedFormats = false;
     static bool canPlayMP3 = false;
     static bool canPlayOgg = false;
 
     static final AudioContext context = new AudioContext();
-    static final AudioDestinationNode output = context.destination;
+    static final GainNode output = context.createGain()..connectNode(context.destination);
+    static final AudioParam masterVolume = output.gain;
 
     static void checkFormats() {
         if (_checkedFormats) { return; }
@@ -34,4 +37,26 @@ abstract class Audio {
     }
 
     static MediaElementAudioSourceNode node(AudioElement element) => context.createMediaElementSource(element);
+
+    static InputElement slider(dynamic param, [double min = 0.0, double max = 1.0, double increment = 0.01]) {
+        if (!(param is AudioParam || param is AudioEffect )) {
+            throw "Unsupported type for Audio.slider, should be an AudioParam or AudioEffect";
+        }
+
+        InputElement s = new RangeInputElement()
+            ..min = min.toString()
+            ..max = max.toString()
+            ..step = increment.toString()
+            ..valueAsNumber = param.value.clamp(min,max);
+
+        s.onInput.listen((Event e) {
+            param.value = s.valueAsNumber.toDouble();
+        });
+
+        return s;
+    }
+}
+
+abstract class AudioEffect {
+    double value;
 }
