@@ -64,8 +64,9 @@ class StartReckoning extends Scene {
       GameEntity blackKing = session.battlefield == null  ?  null:session.battlefield.blackKing;
 
       String ectobiology = ectoBiologyString();
-
+      session.stats.nonKingReckoning = true;
       if(gameEntity == blackKing) {
+          session.stats.nonKingReckoning = false;
           return("The ${gameEntity} fulfills his ancient purpose and calls up the Meteors of the Reckoning. The Players do not have much time remaining to beat the game, if they are to get the Ultimate Frog into Skaia before the Meteors destroy it.  <Br><br>${ectobiology}");
       }else if(gameEntity.alliedToPlayers) {
           return("The Players are finally ready to beat the game. The  ${gameEntity} calls up the Meteors of the Reckoning, to fullfill the time loop and prepare Skaia to recieve the Ultimate Frog.  <Br><br>${ectobiology}");

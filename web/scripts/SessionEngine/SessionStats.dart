@@ -54,4 +54,5 @@ class SessionStats {
     bool planetDestroyed = false;
     bool crownedCarapace = false;
     bool timeoutReckoning = false; //did it happen via two scepters, or did it hit the timeout?
+    bool nonKingReckoning = false;
 }

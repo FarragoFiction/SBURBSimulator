@@ -673,6 +673,7 @@ class Session {
             didReckoning = true;
             //this happens iff the reckoning doens't happen via two scepters
             if(!plzStartReckoning) {
+                stats.timeoutReckoning = true;
                 Scene s = new Reckoning(this);
                 s.trigger(this.players);
                 s.renderContent(this.newScene(s.runtimeType.toString(),));
