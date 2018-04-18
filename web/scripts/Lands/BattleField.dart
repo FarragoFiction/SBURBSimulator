@@ -42,6 +42,7 @@ class Battlefield extends Land {
             //white king is destined to be defeatd by black, so is much weaker base
             whiteKing.stats.setMap(<Stat, num>{Stats.HEALTH: 100, Stats.FREE_WILL: -100, Stats.POWER: 10});
             whiteKing.heal();
+            whiteKing.scenesToAdd.insert(0, new StartReckoning(session));
 
             this.blackKing = new Carapace("Black King", session,Carapace.DERSE,firstNames: <String>["Bombastic","Bitter","Batshit","Boring","Brutal","Burger"], lastNames: <String>["Keeper","Knave","Key","Killer"]);
             blackKing.royalty = true; //do before crowning, to avoid ab being confused
@@ -54,6 +55,8 @@ class Battlefield extends Land {
             //what will this do?
             blackKing.addBuff(new BuffGodTier());
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
+            blackKing.scenesToAdd.insert(0, new KillWhiteKing(session));
+            blackKing.scenesToAdd.insert(0, new StartReckoning(session));
             blackKing.heal();
 
     }

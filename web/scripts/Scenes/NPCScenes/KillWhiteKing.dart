@@ -59,6 +59,7 @@ class KillWhiteKing extends Scene {
 
 
     String getText() {
+        //TODO check if you like the white scepter owner
         return("<br><br>It is time. The ${gameEntity.htmlTitle()} feels the inexporable pull of the ${session.derseScepter.baseName} to slay whosoever bears the ${session.prospitScepter.baseName}.");
     }
 
@@ -71,12 +72,17 @@ class KillWhiteKing extends Scene {
             sucks if you were friends ten seconds ago, there's a REASON you'er not supposed to be holding
             this shit.
        */
+      print("TEST RECKONING: should i try to kill the white king???");
       GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
+      if(bkowner != gameEntity) return false;
+      print("TEST RECKONING: i'm the black scepter owner");
+
       GameEntity wkowner = session.prospitScepter == null  ?  null:session.prospitScepter.owner;
       //please don't try to murder yourself. it's fine.
       if(bkowner == wkowner || wkowner == null) return false;
-      print("should i try to kill the white king???");
-      if(session.canReckoning && bkowner == gameEntity) return true;
+      if(session.canReckoning) return true;
+      print("TEST RECKONING: no, canReckoning is ${session.canReckoning}");
+
       return false;
   }
 }
