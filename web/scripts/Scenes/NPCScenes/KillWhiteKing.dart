@@ -53,7 +53,9 @@ class KillWhiteKing extends Scene {
 
         DivElement div2 = new DivElement();
         container.append(div2);
-        div2.setInnerHtml("<br>The ${scepter.owner.htmlTitle()} is now the owner of the ${scepter}. ");
+        String what = "";
+        if(scepter.owner != gameEntity) what = "Uh. I....really don't think that was supposed to happen. Fuck. Now what happens?";
+        div2.setInnerHtml("<br>The ${scepter.owner.htmlTitle()} is now the owner of the ${scepter}. $what <br>");
 
     }
 
