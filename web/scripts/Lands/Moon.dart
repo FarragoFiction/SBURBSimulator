@@ -185,13 +185,13 @@ class Moon extends Land {
         if(session.mutator.spawnQueen(session)) return null;
 
         if(name.contains("Prospit")) {
-            this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"]);
+            this.queen = new Carapace("White Queen", session,Carapace.PROSPIT, firstNames: <String>["Winsome","Windswept","Warweary","Wondering"], lastNames: <String>["Quasiroyal","Quakeress","Questant"],ringFirstNames: <String>["White"], ringLastNames: <String>["Queen"]);
             queen.royalty = true;
             queen.description = "Prospit's White Queen, famously kind and compassionate. She does not leave her Royal Chambers until it's time for the final battle.";
             this.queen.sylladex.add(this._queensRing);
             this.queen.name = "White Queen"; //override crowned name
         }else {
-            this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"]);
+            this.queen = new Carapace("Black Queen", session,Carapace.DERSE, firstNames: <String>["Baroque","Bombastic","Bitter","Batshit","Bitchy"], lastNames: <String>["Quasiroyal","Quakeress","Quaestor"],ringFirstNames: <String>["Black"], ringLastNames: <String>["Queen"]);
             queen.royalty = true;
             queen.description = "Derses's Black Queen, famously a huge bitch. She does not leave her Royal Chambers until it's time for the final battle.";
             this.queen.sylladex.add(this._queensRing);
