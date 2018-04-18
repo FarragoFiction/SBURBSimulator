@@ -165,7 +165,7 @@ abstract class ElementFileFormat<T> extends FileFormat<T,String> {
     bool identify(String data) => true;
 
     @override
-    Future<String> requestFromUrl(String url) async => PathUtils.adjusted(url);
+    Future<String> requestFromUrl(String url) async => url;
 
     @override
     Future<String> readFromFile(File file) => throw "Element format doesn't read from files";

@@ -8,7 +8,9 @@ abstract class AudioFormat extends ElementFileFormat<AudioElement> {
 
     @override
     Future<AudioElement> read(String input) async {
-        AudioElement element = new AudioElement(PathUtils.adjusted(input));
+        print(input);
+        AudioElement element = new AudioElement(input);
+        print(element.src);
         await element.onCanPlay.first;
         return element;
     }
