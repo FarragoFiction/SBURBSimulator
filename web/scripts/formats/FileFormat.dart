@@ -157,3 +157,24 @@ abstract class StringFileFormat<T> extends FileFormat<T,String> {
         return HttpRequest.getString(url);
     }
 }
+
+// this is a little weird and sort of a special case, mostly for streaming audio
+abstract class ElementFileFormat<T> extends FileFormat<T,String> {
+    @override
+    bool identify(String data) => true;
+
+    @override
+    Future<String> requestFromUrl(String url) async => url;
+
+    @override
+    Future<String> readFromFile(File file) => throw "Element format doesn't read from files";
+
+    @override
+    Future<String> dataToDataURI(String data) async => data;
+
+    @override
+    Future<String> fromBytes(ByteBuffer buffer) => throw "Element format doesn't read from buffers";
+
+    @override
+    String header() => "";
+}

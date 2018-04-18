@@ -72,6 +72,7 @@ export "Scenes/SceneLibrary.dart";
 export "includes/colour.dart";
 export "includes/palette.dart";
 export "includes/predicates.dart";
+export "audio/audio.dart";
 
 /// if false, still need to init classes/aspects
 bool doneGlobalInit = false;

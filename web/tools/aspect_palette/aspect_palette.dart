@@ -3,6 +3,7 @@ import 'dart:async';
 import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
+import "dart:web_audio";
 
 import "../../scripts/Rendering/threed/three.dart" as THREE;
 import "../../scripts/Rendering/text/opentype.dart" as OT;
@@ -51,11 +52,23 @@ void main() {
 
     print(outlist);*/
 
-    testPNG();
+    //testPNG();
 
     //Loader.getResource("/test.png");
+    
+    testAudio();
 }
 
+Future<Null> testAudio() async {
+    AudioElement sound = await Audio.load("audio/spiderblood");
+    AudioSourceNode node = Audio.node(sound);
+
+    node.connectNode(Audio.output);
+
+    sound.loop = true;
+    sound.play();
+}
+ 
 Future<Null> testPNG() async {
     Formats.init();
 

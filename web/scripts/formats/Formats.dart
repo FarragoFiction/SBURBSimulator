@@ -1,3 +1,4 @@
+import "AudioFormats.dart";
 import "BasicFormats.dart";
 import "BundleManifestFormat.dart";
 import "FileFormat.dart";
@@ -25,6 +26,9 @@ abstract class Formats {
     static FontFormat font;
 
     static OBJFormat obj;
+
+    static MP3Format mp3;
+    static OggFormat ogg;
 
     static void init() {
         if (!_INITALISED) {
@@ -62,6 +66,12 @@ abstract class Formats {
 
         obj = new OBJFormat();
         addMapping(obj, "obj");
+
+        mp3 = new MP3Format();
+        addMapping(mp3, "mp3");
+
+        ogg = new OggFormat();
+        addMapping(ogg, "ogg");
     }
 
     static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {
