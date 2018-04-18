@@ -68,6 +68,69 @@ class Session {
 
     }
 
+    //save a copy of the alien (in case of yellow yard)
+    void addAliensToSession(List<Player> aliens) {
+        logger.info("adding ${aliens.length} aliens to me.");
+        for (num i = 0; i < aliens.length; i++) {
+            Player survivor = aliens[i];
+            survivor.land = null;
+            survivor.moon = null;
+            //note to future JR: you're gonna see this and think that they should lose their moons, too, but that just means they can't have horrorterror dreams. don't do it.
+            survivor.dreamSelf = false;
+            survivor.godDestiny = false;
+            survivor.leader = false;
+        }
+        //save a copy of the alien players in case this session has time shenanigans happen
+
+        for (num i = 0; i < aliens.length; i++) {
+            Player survivor = aliens[i];
+            // print("survivor dream palette is ${survivor.dreamPalette}");
+            aliensClonedOnArrival.add(clonePlayer(survivor, this, false));
+        }
+        //don't want relationships to still be about original players
+        for (num i = 0; i < aliensClonedOnArrival.length; i++) {
+            Player clone = aliensClonedOnArrival[i];
+            Relationship.transferFeelingsToClones(clone, aliensClonedOnArrival);
+        }
+        ////;
+        //generate relationships AFTER saving a backup of hte player.
+        //want clones to only know about other clones. not players.
+        for (num i = 0; i < aliens.length; i++) {
+            Player survivor = aliens[i];
+            ////print(survivor.title() + " generating relationship with new players ")
+            survivor.generateRelationships(players); //don't need to regenerate relationship with your old friends
+        }
+
+
+        for (int j = 0; j < players.length; j++) {
+            Player player = players[j];
+            player.generateRelationships(aliens);
+        }
+
+        for (num i = 0; i < aliens.length; i++) {
+            for (int j = 0; j < players.length; j++) {
+                Player player = players[j];
+                Player survivor = aliens[i];
+                //survivors have been talking to players for a very long time, because time has no meaning between univereses.
+                Relationship r1 = survivor.getRelationshipWith(player);
+                Relationship r2 = player.getRelationshipWith(survivor);
+                r1.moreOfSame();
+                r1.moreOfSame();
+                //been longer from player perspective
+                r2.moreOfSame();
+                r2.moreOfSame();
+                r2.moreOfSame();
+                r2.moreOfSame();
+            }
+        }
+
+        players.addAll(aliens);
+        // ;
+
+    }
+
+
+
     void grabActivatedCarapaces() {
         for(Moon m in moons) {
             List<GameEntity> toRemove = new List<GameEntity>();
@@ -910,7 +973,7 @@ class Session {
             aliens.add(that.aliensClonedOnArrival[i]);
         }
         that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
-        if(!(this is DeadSession)) addAliensToSession(this, aliens);
+        if(!(this is DeadSession)) addAliensToSession(aliens);
 
         restartSession(); //in controller
     }
@@ -994,10 +1057,13 @@ class Session {
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
-        reinit("start session");
-        this.makePlayers();
-        this.randomizeEntryOrder();
-        this.makeGuardians(); //after entry order established
+        //only do this shit if you'e completely virgin
+        if(aliensClonedOnArrival.isEmpty) {
+            reinit("start session");
+            this.makePlayers();
+            this.randomizeEntryOrder();
+            this.makeGuardians(); //after entry order established
+        }
         logger.info("session has ${players.length} players");
 
         //we await this because of the fan ocs being loaded from file like assholes.
@@ -1073,7 +1139,7 @@ class Session {
         }
         ;
         ////print(getPlayersTitles(living));
-        addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
+        newSession.addAliensToSession(this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
         this.stats.hadCombinedSession = true;
         this.childSession = newSession;
@@ -1081,7 +1147,7 @@ class Session {
         //newSession.parentSession = this;
         this.childSession = newSession;
         newSession.createScenesForPlayers();
-        logger.info("New session ${newSession.session_id } has been born. Has ${newSession.players.length} and will  add: ${living.length}");
+        logger.info("New session ${newSession.session_id } has been born. Has ${newSession.players.length} and will  add: ${newSession.aliensClonedOnArrival.length}");
         return newSession;
     }
 
@@ -1420,63 +1486,3 @@ class Session {
 
 
 
-//save a copy of the alien (in case of yellow yard)
-void addAliensToSession(Session newSession, List<Player> aliens) {
-   // ;
-    for (num i = 0; i < aliens.length; i++) {
-        Player survivor = aliens[i];
-        survivor.land = null;
-        survivor.moon = null;
-        //note to future JR: you're gonna see this and think that they should lose their moons, too, but that just means they can't have horrorterror dreams. don't do it.
-        survivor.dreamSelf = false;
-        survivor.godDestiny = false;
-        survivor.leader = false;
-    }
-    //save a copy of the alien players in case this session has time shenanigans happen
-
-    for (num i = 0; i < aliens.length; i++) {
-        Player survivor = aliens[i];
-       // print("survivor dream palette is ${survivor.dreamPalette}");
-        newSession.aliensClonedOnArrival.add(clonePlayer(survivor, newSession, false));
-    }
-    //don't want relationships to still be about original players
-    for (num i = 0; i < newSession.aliensClonedOnArrival.length; i++) {
-        Player clone = newSession.aliensClonedOnArrival[i];
-        Relationship.transferFeelingsToClones(clone, newSession.aliensClonedOnArrival);
-    }
-    ////;
-    //generate relationships AFTER saving a backup of hte player.
-    //want clones to only know about other clones. not players.
-    for (num i = 0; i < aliens.length; i++) {
-        Player survivor = aliens[i];
-        ////print(survivor.title() + " generating relationship with new players ")
-        survivor.generateRelationships(newSession.players); //don't need to regenerate relationship with your old friends
-    }
-
-
-    for (int j = 0; j < newSession.players.length; j++) {
-        Player player = newSession.players[j];
-        player.generateRelationships(aliens);
-    }
-
-    for (num i = 0; i < aliens.length; i++) {
-        for (int j = 0; j < newSession.players.length; j++) {
-            Player player = newSession.players[j];
-            Player survivor = aliens[i];
-            //survivors have been talking to players for a very long time, because time has no meaning between univereses.
-            Relationship r1 = survivor.getRelationshipWith(player);
-            Relationship r2 = player.getRelationshipWith(survivor);
-            r1.moreOfSame();
-            r1.moreOfSame();
-            //been longer from player perspective
-            r2.moreOfSame();
-            r2.moreOfSame();
-            r2.moreOfSame();
-            r2.moreOfSame();
-        }
-    }
-
-    newSession.players.addAll(aliens);
-   // ;
-
-}

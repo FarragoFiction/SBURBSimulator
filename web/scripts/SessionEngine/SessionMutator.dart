@@ -678,7 +678,7 @@ class SessionMutator {
         }else {
             appendHtml(SimController.instance.storyElement, "<br><Br>You feel a nauseating wave of space go over you. What happened? Wait. How did the players get into their OWN SCRATCH? This doesn't...fuck. What? So wait, do they count as foreign players??? ");
         }
-        addAliensToSession(s, guardians);
+        s.addAliensToSession(guardians);
     }
 
     void renderEndButtons(Element div, Session session) {

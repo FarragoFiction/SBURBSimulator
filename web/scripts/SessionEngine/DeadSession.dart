@@ -519,7 +519,7 @@ class DeadSession extends Session {
             ..randomizeEntryOrder()
             ..makeGuardians();
 
-        addAliensToSession(newSession, this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
+        newSession.addAliensToSession(this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
 
         this.stats.hadCombinedSession = true;
         this.childSession = childSession;

@@ -1014,7 +1014,7 @@ void session13(Session session) {
     	//causes an infinite loop
 	    List<Player> aliens = new List<Player>.from(session.aliensClonedOnArrival);
 	    session.aliensClonedOnArrival.clear();
-	    addAliensToSession(session, aliens);
+	    session.addAliensToSession(aliens);
 	    //session.players.addAll(session.aliensClonedOnArrival);
     }
     ;
