@@ -61,7 +61,12 @@ void main() {
 
 Future<Null> testAudio() async {
     Audio.masterVolume.value = 0.15;
+    //ImageElement imageElementTest = await Loader.getResource("images/ab.png");
+    //print(imageElementTest.src);
+    //querySelector("#stuff").append(imageElementTest);
+    //AudioElement soundElement = await  Loader.getResource("audio/spiderblood.ogg");
     AudioElement soundElement = await Audio.load("audio/spiderblood");
+
     AudioSourceNode sound = Audio.node(soundElement);
 
     MuffleEffect muffle = new MuffleEffect(1.0);
