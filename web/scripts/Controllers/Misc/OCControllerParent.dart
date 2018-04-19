@@ -438,6 +438,7 @@ class OCGenerator {
     }
 
     void moonDropDown() {
+        session.setupMoons();
         moonSelect = selectElementThatRedrawsPlayers(holderElement("Moon"), new List<Moon>.from(session.moons), "moon");
     }
 

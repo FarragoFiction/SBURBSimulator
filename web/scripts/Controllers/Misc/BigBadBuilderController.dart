@@ -13,7 +13,6 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
   
-  todo("Have Big Bad know how to load/save it's data string. have text area box");
   todo("Have a button (created by a static method) to add one of X different kinds of trigger conditions");
   todo("Have trigger conditions know how to draw themselves");
   todo("have a button (created by a a static method) to add one of X different AI ACTIONS");

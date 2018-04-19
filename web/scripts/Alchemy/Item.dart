@@ -288,7 +288,7 @@ class Sylladex extends Object with IterableMixin<Item> {
         }
 
         if(item is Scepter) {
-            print("TEST RECKONING: giving out scenes to $owner");
+            //print("TEST RECKONING: giving out scenes to $owner");
             owner.scenesToAdd.insert(0, new KillWhiteKing(owner.session));
             owner.scenesToAdd.insert(0, new StartReckoning(owner.session));
         }
