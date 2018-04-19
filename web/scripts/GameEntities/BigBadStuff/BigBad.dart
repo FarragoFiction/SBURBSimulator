@@ -17,7 +17,7 @@ class BigBad extends NPC {
   //if any of these are true, the big bad is triggered.
   List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
 
-  String get labelPattern => "$name:___ ";
+  String get labelPattern => ":___ ";
 
   @override
   String description = "What shows up in ShogunBot's BigBadBinder?";
@@ -25,7 +25,7 @@ class BigBad extends NPC {
   BigBad(String name, Session session) : super(name, session);
 
   String toDataString() {
-      return  "$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+      return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
   }
 
   JSONObject toJSON() {
@@ -36,6 +36,7 @@ class BigBad extends NPC {
   }
 
   void copyFromDataString(String data) {
+      print("copying from data: $data, looking for labelpattern: $labelPattern");
       String dataWithoutName = data.split("$labelPattern")[1];
       String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
 
@@ -83,6 +84,12 @@ class BigBadForm {
         dataBox.value = bigBad.toDataString();
     }
 
+    void syncFormToBigBad() {
+        nameElement.value = bigBad.name;
+        descElement.value = bigBad.description;
+        syncDataBoxToBigBad();
+    }
+
     void drawName() {
         DivElement subContainer = new DivElement();
         LabelElement nameLabel = new LabelElement();
@@ -125,6 +132,7 @@ class BigBadForm {
         dataBox.onChange.listen((e) {
             print("syncing template to data box");
             bigBad.copyFromDataString(dataBox.value);
+            syncFormToBigBad();
         });
         container.append(dataBox);
     }
