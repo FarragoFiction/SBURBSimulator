@@ -129,7 +129,7 @@ class QuestsAndStuff extends Scene {
 	}
 
     void processSkaia(Element div, QuestingParty questingParty) {
-	    session.canReckoning = true;
+        session.numberPlayersOnBattlefield ++;
         Player player = questingParty.player1;
         session.battlefield.initQuest([player]);
         String html = "${session.battlefield.getChapter()} The ${player.htmlTitleWithTip()} wanders the battlefield.   ${session.battlefield.randomFlavorText(session.rand, player)} ";

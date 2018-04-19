@@ -52,8 +52,6 @@ class Battlefield extends Land {
             //black king should be stronger than white king. period.
             this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY, ItemTraitFactory.LEGENDARY]);
             blackKing.grist = 1000;
-            //what will this do?
-            blackKing.addBuff(new BuffGodTier());
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
             blackKing.scenesToAdd.insert(0, new KillWhiteKing(session));
             blackKing.scenesToAdd.insert(0, new StartReckoning(session));

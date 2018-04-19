@@ -84,7 +84,8 @@ class KillWhiteKing extends Scene {
 
       //please don't try to murder yourself. it's fine.
       if(bkowner == wkowner || wkowner == null) return false;
-      if(session.canReckoning) return true;
+      //you don't necessarily murder your counterpart the second a player sets foot on the battlefield
+      if(session.canReckoning && session.rand.nextDouble()<.75) return true;
 
       return false;
   }

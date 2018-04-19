@@ -17,7 +17,12 @@ class Session {
 
     bool plzStartReckoning = false;
     bool didReckoning = false;
-    bool canReckoning = false; //can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
+    int numberPlayersOnBattlefield = 0;
+    bool get canReckoning {
+        int difficulty = 2;//at least half of us are done
+        if(stats.crownedCarapace)difficulty = players.length; // ANY of us are down (ala canon's early reckoning)
+        return numberPlayersOnBattlefield > (players.length/difficulty).round();
+    }//can't do the reckoning until this is set (usually when at least one player has made it to the battlefield)
     //TODO some of these should just live in session mutator
     Logger logger = null;
     //for the reckoning
@@ -1188,8 +1193,8 @@ class Session {
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         _activatedNPCS.clear();
         resetAvailableClasspects();
-        canReckoning = false;
         didReckoning = false;
+        numberPlayersOnBattlefield = 0;
         //it already completed so, start over.
         if(completer != null) simulationComplete("restarting");
         completer = new Completer<Session>();
