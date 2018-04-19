@@ -19,6 +19,9 @@ class BigBad extends NPC {
 
   String get labelPattern => "$name:___ ";
 
+  @override
+  String description = "What shows up in ShogunBot's BigBadBinder?";
+
   BigBad(String name, Session session) : super(name, session);
 
   String toDataString() {
@@ -28,6 +31,7 @@ class BigBad extends NPC {
   JSONObject toJSON() {
       JSONObject json = new JSONObject();
       json["name"] = name;
+      json["description"] = description;
       return json;
   }
 
@@ -37,23 +41,19 @@ class BigBad extends NPC {
 
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
+      description = json["description"];
   }
 
-  static BigBad fromJSON(String rawJSON, Session session) {
+
+  static BigBad fromDataString(String rawDataString, session) {
       BigBad ret = new BigBad("TEMPORARY", session);
-      ret.copyFromDataString(rawJSON);
+      ret.copyFromDataString(rawDataString);
       return ret;
-  }
-
-
-
-  static BigBad fromDataString(String rawDataString) {
-      //TODO use LZ compression
   }
 
   void drawForm(Element container) {
       BigBadForm form = new BigBadForm(this, container);
-
+      form.drawForm();
   }
 
 
@@ -68,14 +68,15 @@ class BigBadForm {
 
     TextInputElement nameElement;
     TextAreaElement dataBox;
+    TextAreaElement descElement;
 
     BigBadForm(BigBad this.bigBad, Element this.container) {
-        drawForm();
     }
 
     void drawForm() {
-        drawName();
         drawDataBox();
+        drawName();
+        drawDesc();
     }
 
     void syncDataBoxToBigBad() {
@@ -83,12 +84,14 @@ class BigBadForm {
     }
 
     void drawName() {
+        DivElement subContainer = new DivElement();
         LabelElement nameLabel = new LabelElement();
         nameLabel.text = "Name:";
         nameElement = new TextInputElement();
         nameElement.value = bigBad.name;
-        container.append(nameLabel);
-        container.append(nameElement);
+        subContainer.append(nameLabel);
+        subContainer.append(nameElement);
+        container.append(subContainer);
 
         nameElement.onInput.listen((e) {
             bigBad.name = nameElement.value;
@@ -96,9 +99,29 @@ class BigBadForm {
         });
     }
 
+    void drawDesc() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Card Description:";
+        descElement = new TextAreaElement();
+        descElement.value = bigBad.description;
+        descElement.cols = 60;
+        descElement.rows = 10;
+        subContainer.append(nameLabel);
+        subContainer.append(descElement);
+        container.append(subContainer);
+
+        descElement.onInput.listen((e) {
+            bigBad.description = descElement.value;
+            syncDataBoxToBigBad();
+        });
+    }
+
     void drawDataBox() {
         dataBox = new TextAreaElement();
         dataBox.value = bigBad.toDataString();
+        dataBox.cols = 60;
+        dataBox.rows = 10;
         dataBox.onChange.listen((e) {
             print("syncing template to data box");
             bigBad.copyFromDataString(dataBox.value);
