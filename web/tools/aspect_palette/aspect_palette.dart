@@ -56,7 +56,7 @@ void main() {
 
     //Loader.getResource("/test.png");
     
-    testAudio();
+    //testAudio();
 }
 
 Future<Null> testAudio() async {

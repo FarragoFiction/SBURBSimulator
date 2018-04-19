@@ -2,6 +2,7 @@ import "dart:async";
 import 'dart:collection';
 import 'dart:html';
 import 'dart:math' as Math;
+import "dart:web_audio";
 
 import '../../Rendering/renderer.dart';
 import '../../Rendering/threed/three.dart' as THREE;
@@ -317,11 +318,13 @@ class ObservatoryViewer {
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        this.overcoat = new ShipLogic(this);
+        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
-        await this.overcoat.initGraphics();
+        if (this.overcoat != null) {
+            await this.overcoat.init();
+        }
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer
@@ -376,9 +379,14 @@ class ObservatoryViewer {
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
 
-        //this.scene.add(this.overcoat.shipModel); // TODO: reenable
+        if (this.overcoat != null) {
+            this.scene.add(this.overcoat.shipModel);
+        }
 
         this.update();
+        if (this.overcoat != null) {
+            this.overcoat.sound.startSound();
+        }
 
         this.eventDelegate.onMouseDown.listen(mouseDown);
         this.eventDelegate.onClick.listen(mouseClick);
@@ -428,7 +436,9 @@ class ObservatoryViewer {
         window.getSelection().empty();
         window.getSelection().removeAllRanges();
 
-        this.overcoat.active = false;
+        if (this.overcoat != null && this.overcoat.active) {
+            this.toggleOvercoat();
+        }
 
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 
@@ -447,7 +457,9 @@ class ObservatoryViewer {
 
         int zone = detectClickZone(e);
 
-        if (zone != 0) {
+        if (zone == 4037) {
+            this.toggleOvercoat();
+        } else if (zone != 0) {
             this.landDetails.showLand(this.detailSession.session.players[zone-1].land);
         }
     }
@@ -469,6 +481,23 @@ class ObservatoryViewer {
     bool getKey(int keyCode) => keys.containsKey(keyCode) && keys[keyCode];
 
     int detectClickZone(MouseEvent e) {
+        num x = e.offset.x;
+        num y = e.offset.y;
+
+        if (this.overcoat != null) {
+            int worldx = camx + x - canvasWidth ~/ 2;
+            int worldy = camy + y - canvasHeight ~/ 2;
+
+            num dx = this.overcoat.pos.x - worldx;
+            num dy = this.overcoat.pos.y - worldy;
+
+            double dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < 30.0) {
+                return 4037;
+            }
+        }
+
         if (this.detailSession == null || this.detailSession.session.players.isEmpty) {
             return 0;
         }
@@ -479,8 +508,6 @@ class ObservatoryViewer {
         int top = 80;
         int height = 30;
         int gap = 11;
-        num x = e.offset.x;
-        num y = e.offset.y;
 
         for (int i=0; i<lands; i++) {
             if (x >= left && y >= top + (height + gap) * i && y <= top + height + (height + gap) * i) {
@@ -552,7 +579,9 @@ class ObservatoryViewer {
             session.update(dt);
         }
 
-        this.overcoat.update(dt);
+        if (this.overcoat != null) {
+            this.overcoat.update(dt);
+        }
 
         this.renderer
             ..render(this.scene, this.camera, this.renderTarget)
@@ -745,6 +774,16 @@ class ObservatoryViewer {
 
     void easterEggCallback(Session session) {
         initializePlayers(session.players, session);
+    }
+
+    void toggleOvercoat() {
+        this.overcoat.active = !this.overcoat.active;
+
+        if (this.overcoat.active) {
+
+        } else {
+
+        }
     }
 }
 
@@ -1095,8 +1134,9 @@ class ObservatoryTentacle {
 
 class ShipLogic {
     final ObservatoryViewer parent;
+    ShipSound sound;
 
-    bool active = false; // TODO: true for tests
+    bool active = false;
 
     THREE.Object3D shipModel;
     double angle = Math.PI * 1.4;
@@ -1121,9 +1161,11 @@ class ShipLogic {
     int forward = 0;
     int turn = 0;
 
-    ShipLogic(ObservatoryViewer this.parent);
+    ShipLogic(ObservatoryViewer this.parent) {}
 
-    Future<Null> initGraphics() async {
+    Future<Null> init() async {
+        this.sound = new ShipSound(this.parent);
+        await this.sound.init();
 
         Tuple<int,int> s4037 = SeedMapper.seed2coords(4037);
         this.pos..x = (s4037.first+0.45) * ObservatoryViewer.gridsize ..y = (s4037.second+0.4) * ObservatoryViewer.gridsize;
@@ -1163,6 +1205,7 @@ class ShipLogic {
             this.physicsUpdate(stepLength);
         }
 
+        this.sound.updateSound();
         graphicsUpdate(stepTime);
     }
 
@@ -1235,6 +1278,60 @@ class ShipLogic {
             ..y = -sin * Math.PI * 0.5
             ..x = cos.abs() * Math.PI * 0.03125
         ;
+    }
+}
+
+class ShipSound {
+    final ObservatoryViewer parent;
+
+    GainNode _volume;
+    AudioElement _music;
+    MuffleEffect _muffle;
+    PannerNode _panning;
+
+    ShipSound(ObservatoryViewer this.parent) {}
+
+    Future<Null> init() async {
+        Audio.masterVolume.value = 0.25;
+        _panning = Audio.context.createPanner()
+            ..panningModel = "HRTF"
+            ..distanceModel = "linear"
+            ..maxDistance = 2000.0
+            ..rolloffFactor = 1.0
+            ..connectNode(Audio.output);
+
+        _volume = Audio.context.createGain()..connectNode(_panning);
+        _muffle = new MuffleEffect(0.0)..output.connectNode(_volume);
+        _music = await Audio.load("audio/spiderblood")..loop = true..currentTime=35.9;
+        Audio.node(_music)..connectNode(_muffle.input);
+
+        this.updateSound();
+    }
+
+    void startSound() {
+        _music.play();
+    }
+
+    void updateSound() {
+        double shipx = parent.overcoat.pos.x.toDouble();
+        double shipy = parent.overcoat.pos.y.toDouble();
+        double camx = parent.camx.toDouble();
+        double camy = parent.camy.toDouble();
+
+        _panning.setPosition(shipx, shipy, 0);
+        Audio.context.listener.setPosition(camx, camy, 1000);
+
+        if (parent.overcoat.active) {
+
+            double speed = parent.overcoat.vel.length().toDouble();
+            double fract = (speed / (ShipLogic.maxspeed * 0.8)).clamp(0.0, 1.0);
+
+            _volume.gain.value = 0.8 + 0.7 * fract;
+            _muffle.value = (1.0 - fract) * 0.7;
+        } else {
+            _volume.gain.value = 0.25;
+            _muffle.value = 1.0;
+        }
     }
 }
 
