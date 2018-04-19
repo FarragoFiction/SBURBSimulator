@@ -67,13 +67,13 @@ class StartReckoning extends Scene {
       session.stats.nonKingReckoning = true;
       if(gameEntity == blackKing) {
           session.stats.nonKingReckoning = false;
-          return("The ${gameEntity} fulfills his ancient purpose and calls up the Meteors of the Reckoning. The Players do not have much time remaining to beat the game, if they are to get the Ultimate Frog into Skaia before the Meteors destroy it.  <Br><br>${ectobiology}");
+          return("The ${gameEntity.htmlTitleWithTip()} fulfills his ancient purpose and calls up the Meteors of the Reckoning. The Players do not have much time remaining to beat the game, if they are to get the Ultimate Frog into Skaia before the Meteors destroy it.  <Br><br>${ectobiology}");
       }else if(gameEntity.alliedToPlayers) {
-          return("The Players are finally ready to beat the game. The  ${gameEntity} calls up the Meteors of the Reckoning, to fullfill the time loop and prepare Skaia to recieve the Ultimate Frog.  <Br><br>${ectobiology}");
+          return("The Players are finally ready to beat the game. The  ${gameEntity.htmlTitleWithTip()} calls up the Meteors of the Reckoning, to fullfill the time loop and prepare Skaia to recieve the Ultimate Frog.  <Br><br>${ectobiology}");
       }else if(gameEntity is Carapace && (gameEntity as Carapace).type == Carapace.DERSE) {
-          return("The ${gameEntity} has no intention of allowing a Blasphemous Frog be bred, and calls up the Meteors of the Reckoning in an attempt to end the game before the players can do so. <Br><br>${ectobiology}");
+          return("The ${gameEntity.htmlTitleWithTip()} has no intention of allowing a Blasphemous Frog be bred, and calls up the Meteors of the Reckoning in an attempt to end the game before the players can do so. <Br><br>${ectobiology}");
       }else {
-          return("It's not clear why the ${gameEntity} calls up the Meteor of the Reckoning. Was it malice? An accident? A plan? Some machinations from Skaia itself? The Players do not have much time remaining to beat the game, if they are to get the Ultimate Frog into Skaia before the Meteors destroy it.  <Br><br>${ectobiology}");
+          return("It's not clear why the ${gameEntity.htmlTitleWithTip()} calls up the Meteor of the Reckoning. Was it malice? An accident? A plan? Some machinations from Skaia itself? The Players do not have much time remaining to beat the game, if they are to get the Ultimate Frog into Skaia before the Meteors destroy it.  <Br><br>${ectobiology}");
       }
 
   }

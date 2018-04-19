@@ -70,7 +70,7 @@ class MailSideQuest extends Scene {
         return continueQuest(div);
       }else {
           difficulty ++;
-          session.logger.info("AB: The mail went through. Does ${gameEntity.title()} ever stop delivering?");
+          session.logger.info("AB: The mail ($package) went through. Does ${gameEntity.title()} ever stop delivering?");
           return endQuest(div);
       }
   }
@@ -144,7 +144,7 @@ class MailSideQuest extends Scene {
           crown = "Huh. Maybe they are tired of the heavy burden a $package represents? <span class = 'void'>Attached is a Note: Haha, nope, I have no intention of being part of this back stab parade.</span>";
           session.stats.mailedCrownAbdication = true;
       }
-      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to the ${recipient.htmlTitle()} as soon as possible. $crown The ${gameEntity.htmlTitle()} will not let the Mail down!");
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliver to the ${recipient.htmlTitle()} as soon as possible. $crown The ${gameEntity.htmlTitle()} will not let the Mail down!");
       div.append(ret);
   }
 
@@ -208,14 +208,14 @@ class MailSideQuest extends Scene {
           entities = new List.from(session.players);
           entities.remove(gameEntity);
       }else {
-          entities = new List.from(session.activatedNPCS);
+          entities = new List.from(session.npcHandler.allEntities);
           entities.remove(gameEntity); //do no matter what
       }
 
       List<GameEntity> toRemove = new List<GameEntity>();
 
       for(GameEntity g in entities) {
-        if(g.sylladex.isEmpty) toRemove.add(g);
+        if(g.sylladex.isEmpty || g.dead) toRemove.add(g);
       }
 
       for(GameEntity g in toRemove) {
