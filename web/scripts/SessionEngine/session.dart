@@ -780,7 +780,9 @@ class Session {
         }
 
        // ;
-        for(GameEntity g in activatedNPCS) {
+        List<GameEntity> cachedActivated = new List.from(activatedNPCS);
+        //(since an npc can be activated during these scenes)
+        for(GameEntity g in cachedActivated) {
             if(g.active && g.available) g.processScenes();
         }
 

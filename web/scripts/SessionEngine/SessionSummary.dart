@@ -447,6 +447,7 @@ class SessionSummary {
         summary.setBoolStat("sickFires", false);
         summary.setBoolStat("forgeStoked",false);
         summary.setBoolStat("timeoutReckoning", false);
+        summary.setBoolStat("mailedCrownAbdication", false);
         summary.setBoolStat("nonKingReckoning", false);
         summary.setBoolStat("godTier", false);
         summary.setBoolStat("questBed", false);
@@ -548,6 +549,7 @@ class SessionSummary {
         summary.frogStatus = session.frogStatus();
         summary.setBoolStat("forgeStoked", session.playersHaveRings());
         summary.setBoolStat("timeoutReckoning", session.stats.timeoutReckoning);
+        summary.setBoolStat("mailedCrownAbdication", session.stats.mailedCrownAbdication);
         summary.setBoolStat("nonKingReckoning", session.stats.nonKingReckoning);
 
         summary.setBoolStat("godTier", session.stats.godTier);

@@ -139,7 +139,12 @@ class MailSideQuest extends Scene {
           package = null;
           return;
       }
-      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to the ${recipient.htmlTitle()} as soon as possible. The ${gameEntity.htmlTitle()} will not let the Mail down!");
+      String crown = "";
+      if(package is Ring || package is Scepter) {
+          crown = "Huh. Maybe they are tired of the heavy burden a $package represents? <span class = 'void'>Attached is a Note: Haha, nope, I have no intention of being part of this back stab parade.</span>";
+          session.stats.mailedCrownAbdication = true;
+      }
+      ret.setInnerHtml("The ${gameEntity.htmlTitle()} is entrusted with a vital task. The ${senderOfItem.htmlTitle()} gives them a ${package} to deliever to the ${recipient.htmlTitle()} as soon as possible. $crown The ${gameEntity.htmlTitle()} will not let the Mail down!");
       div.append(ret);
   }
 

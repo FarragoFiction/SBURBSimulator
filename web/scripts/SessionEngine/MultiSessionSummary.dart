@@ -72,6 +72,7 @@ class MultiSessionSummary {
         setStat("rapBattle", 0);
         setStat("sickFires", 0);
         setStat("timeoutReckoning", 0);
+        setStat("mailedCrownAbdication", 0);
         setStat("nonKingReckoning", 0);
         setStat("forgesStoked", 0);
         setStat("hasLuckyEvents", 0);
@@ -339,7 +340,7 @@ class MultiSessionSummary {
         if (propertyName == "justDeath" || propertyName == "rapBattle" || propertyName == "sickFires" || propertyName == "hasLuckyEvents" || propertyName == "hasUnluckyEvents") return true;
         if (propertyName == "hasNoTier4Events" ||propertyName == "hasTier1GnosisEvents" || propertyName == "hasTier2GnosisEvents" || propertyName == "hasTier3GnosisEvents" || propertyName == "hasTier4GnosisEvents" || propertyName == "hasFreeWillEvents" || propertyName == "hasGhostEvents" || propertyName == "jackRampage" || propertyName == "democracyStarted") return true;
         if (propertyName == "redMilesActivated" ||propertyName == "moonDestroyed" || propertyName == "planetDestroyed" || propertyName == "crownedCarapace" || propertyName == "mailQuest" ) return true;
-
+        if(propertyName == "mailedCrownAbdication") return true;
         return false;
     }
 
@@ -596,6 +597,7 @@ class MultiSessionSummary {
             if (ss.getBoolStat("sickFires")) mss.incNumStat("sickFires");
             if (ss.getBoolStat("forgeStoked")) mss.incNumStat("forgesStoked");
             if (ss.getBoolStat("timeoutReckoning")) mss.incNumStat("timeoutReckoning");
+            if (ss.getBoolStat("mailedCrownAbdication")) mss.incNumStat("mailedCrownAbdication");
             if (ss.getBoolStat("nonKingReckoning")) mss.incNumStat("nonKingReckoning");
 
             if (ss.getBoolStat("hasLuckyEvents")) mss.incNumStat("hasLuckyEvents");
