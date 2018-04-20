@@ -25,6 +25,12 @@ Future<Null> main() async {
     querySelector("#today_link")..onClick.listen((Event e){ observatory.goToSeed(today); });
     querySelector("#session_id")..onKeyPress.listen((KeyboardEvent e){ if(e.keyCode == 13) { observatory.readSessionElement(); }});
 
+    Element overcoat_link = querySelector("#overcoat_link");
+
+    overcoat_link..onClick.listen((Event e){
+        observatory.goToOvercoat();
+    });
+
     AnchorElement sim_link = querySelector("#sim_link");
     AnchorElement ab_link = querySelector("#ab_link");
 
@@ -53,6 +59,25 @@ Future<Null> main() async {
             setHtml(speechbubbletext, comment);
             show(speechbubble);
         }
+
+        if (observatory.overcoat != null) {
+            if (observatory.overcoat.active) {
+                overcoat_link.text = "Leave the Kyoto Overcoat";
+
+                querySelector("#overcoat_message").style.display = "none";
+                querySelector("#overcoat_item").style.display = "list-item";
+
+                querySelector("#speechbubble").classes.add("overcoat");
+                querySelector("#pl").style.display = "none";
+                querySelector("#shoges").style.display = "block";
+            } else {
+                overcoat_link.text = "Return to the Kyoto Overcoat";
+
+                querySelector("#speechbubble").classes.remove("overcoat");
+                querySelector("#pl").style.display = "block";
+                querySelector("#shoges").style.display = "none";
+            }
+        }
     };
 
     await observatory.setup(13);
@@ -62,87 +87,146 @@ Future<Null> main() async {
 
 }
 
-Map<int, String> eggComments = <int,String>{
-    413      : "There's something familiar about this one...", // beta + alpha
-    612      : "This session seems familiar somehow...", // trolls
-    613      : "This session seems familiar somehow...", // dancestors
-    1025     : "Wasn't there like, a comic or something about this one?", // beta + alpha + CG,GA,GC,AG
-    33       : "AB isn't going to be happy about this...", // THAT DAMN CAT
-    111111   : "There's something familiar about this one...", // alpha + beta
-    88888888 : "So many irons in the fire!<br><br>... and so many 8s, holy shit", // like, so many spiders
-    420      : "I don't even want to know what kind of shit is going on in there.<br><br>... wait, do you hear honking?", // fridgestuck
-    0        : "Hang on a second, are they all robot versions of the same player?", // 0u0
-    13       : "Is that... here?<br><br>How is that even possible? Ugh, the geometry out here SUCKS.", // yooo it's us
-    4037     : "Wow, that guy looks like he's having a terrible time. I wonder what'd happen if he won? <span class='void'><br><br>Become a really good friend, probably ;)</span>", // Shoges
-};
+List<Map<int, String>> eggComments = <Map<int,String>>[
+    <int,String> { // PL
+        413 : "There's something familiar about this one...", // beta + alpha
+        612 : "This session seems familiar somehow...", // trolls
+        613 : "This session seems familiar somehow...", // dancestors
+        1025 : "Wasn't there like, a comic or something about this one?", // beta + alpha + CG,GA,GC,AG
+        33 : "AB isn't going to be happy about this...", // THAT DAMN CAT
+        111111 : "There's something familiar about this one...", // alpha + beta
+        88888888 : "So many irons in the fire!<br><br>... and so many 8s, holy shit", // like, so many spiders
+        420 : "I don't even want to know what kind of shit is going on in there.<br><br>... wait, do you hear honking?", // fridgestuck
+        0 : "Hang on a second, are they all robot versions of the same player?", // 0u0
+        13 : "Is that... here?<br><br>How is that even possible? Ugh, the geometry out here SUCKS.", // yooo it's us
+        4037 : "Wow, that guy looks like he's having a terrible time. I wonder what'd happen if he won? <span class='void'><br><br>Become a really good friend, probably ;)</span>", // Shoges
+    },
 
-List<String> deadComments = <String>[
-    "Is that a black hole where Skaia should be? Wow that does not look like a good time.",
-    "Oh dang, a dead session. These are rare! And *really* shitty for whoever's playing...",
-    "Looks like someone tried to tempt fate and play SBURB alone. This will not end well...",
+    <int,String> { // Shogun
+        413 : "413",
+        612 : "612",
+        613 : "613",
+        1025 : "1025",
+        33 : "33",
+        111111 : "111111",
+        88888888 : "88888888",
+        420 : "420",
+        0 : "0",
+        13 : "13",
+        4037 : "4037",
+    }
 ];
 
-List<String> lordMuseComments = <String>[
-    "Ooh, the master class pair. This might be interesting.",
-    "A Lord and a Muse playing together. Could be interesting.",
-    "A Lord/Muse pairing, they only ever seem to happen in two player sessions...",
-    "Two master class players, all alone. This could get interesting.",
-    "Lord and Muse, the classic combo.",
-    "Lord and Muse, a potent combination.",
+List<List<String>> deadComments = <List<String>>[
+    <String>[
+        "Is that a black hole where Skaia should be? Wow that does not look like a good time.",
+        "Oh dang, a dead session. These are rare! And *really* shitty for whoever's playing...",
+        "Looks like someone tried to tempt fate and play SBURB alone. This will not end well...",
+    ],
+    <String>[
+        "Dead session",
+    ],
 ];
 
-List<String> corruptComments = <String>[
-    "Something seems a bit off here...",
-    "Looks like there might be some session corruption going on.",
-    "Seems like there's corruption happening in this one...",
-    "I don't like the look of that corruption.",
-    "Something doesn't seem quite right here...",
-    "Hmm, looks like there's a bit of corruption happening in this one.",
+List<List<String>> lordMuseComments = <List<String>>[
+    <String>[
+        "Ooh, the master class pair. This might be interesting.",
+        "A Lord and a Muse playing together. Could be interesting.",
+        "A Lord/Muse pairing, they only ever seem to happen in two player sessions...",
+        "Two master class players, all alone. This could get interesting.",
+        "Lord and Muse, the classic combo.",
+        "Lord and Muse, a potent combination.",
+    ],
+    <String>[
+        "Lord/Muse",
+    ],
 ];
 
-List<String> followCorruptComments = <String>[
-    "Also, there's something off about this one...",
-    "And looks like there might be some session corruption involved too.",
-    "Plus there's some corruption happening here...",
-    "Oh, and I really don't look the look of that corruption.",
-    "Also something doesn't seem quite right here...",
-    "Hmm, and it looks like there's a bit of corruption happening as well...",
+List<List<String>> corruptComments = <List<String>>[
+    <String>[
+        "Something seems a bit off here...",
+        "Looks like there might be some session corruption going on.",
+        "Seems like there's corruption happening in this one...",
+        "I don't like the look of that corruption.",
+        "Something doesn't seem quite right here...",
+        "Hmm, looks like there's a bit of corruption happening in this one.",
+    ],
+    <String>[
+        "Corrupt",
+    ],
 ];
 
-List<String> veryCorruptComments = <String>[
-    "Oh wow that corruptuon is a MESS. Wouldn't want to be in there...",
-    "Looks like the horrorterrors are having fun with that session...",
-    "Wow, ok, that's a lot of corruption.",
-    "I really, really do not like the look of all that corruption. That cannot be good.",
-    "That corruption looks pretty terrible, I hope they are ok in there...",
-    "That is... a pretty concerning amount of corruption, I hope they'll be ok in there...",
+List<List<String>> followCorruptComments = <List<String>>[
+    <String>[
+        "Also, there's something off about this one...",
+        "And looks like there might be some session corruption involved too.",
+        "Plus there's some corruption happening here...",
+        "Oh, and I really don't look the look of that corruption.",
+        "Also something doesn't seem quite right here...",
+        "Hmm, and it looks like there's a bit of corruption happening as well...",
+    ],
+    <String>[
+        "Also Corrupt",
+    ],
 ];
 
-List<String> followVeryCorruptComments = <String>[
-    "Also, wow, that corruption is a MESS. I would not want to be in there...",
-    "Looks like the horrorterrors are having their fun with the session, too.",
-    "And that... is an awful lot of corruption.",
-    "Oh, and I really, really do not like the look of all that corruption. That cannot be good.",
-    "... and I hope they are ok in there, that corruption looks pretty terrible.",
-    "Also that is a pretty concerning amount of corruption, I hope they'll be ok in there...",
+List<List<String>> veryCorruptComments = <List<String>>[
+    <String>[
+        "Oh wow that corruptuon is a MESS. Wouldn't want to be in there...",
+        "Looks like the horrorterrors are having fun with that session...",
+        "Wow, ok, that's a lot of corruption.",
+        "I really, really do not like the look of all that corruption. That cannot be good.",
+        "That corruption looks pretty terrible, I hope they are ok in there...",
+        "That is... a pretty concerning amount of corruption, I hope they'll be ok in there...",
+    ],
+    <String>[
+        "Very Corrupt",
+    ],
 ];
 
-List<String> heiressComments = <String>[
-    "Wow, multiple troll heiresses... that's gonna be a messy one.",
-    "How the heck did they get more than one heiress to play together?!",
-    "Oh wow, more than one troll heiress in the same session. Nasty!",
-    "Is that a session with more than one royal troll? Dang, sounds bad.",
-    "Hm, do I see multiple troll heiresses in there? How did that happen?",
+List<List<String>> followVeryCorruptComments = <List<String>>[
+    <String>[
+        "Also, wow, that corruption is a MESS. I would not want to be in there...",
+        "Looks like the horrorterrors are having their fun with the session, too.",
+        "And that... is an awful lot of corruption.",
+        "Oh, and I really, really do not like the look of all that corruption. That cannot be good.",
+        "... and I hope they are ok in there, that corruption looks pretty terrible.",
+        "Also that is a pretty concerning amount of corruption, I hope they'll be ok in there...",
+    ],
+    <String>[
+        "Also Very Corrupt",
+    ],
 ];
 
-List<String> disastorComments = <String>[
-    "Those are some pretty gnarly sprites, the enemies in there must be really nasty.",
-    "With prototypings like that I bet the players will have some trouble...",
-    "I hope they know what a pain prototyping all that dangerous shit will be...",
-    "The prototypings in this one look pretty horrible.",
-    "I hope they can cope with all the dangerous shit they're prototyping in there.",
-    "With sprites that dangerous the enemies must be real monsters in there.",
+List<List<String>> heiressComments = <List<String>>[
+    <String>[
+        "Wow, multiple troll heiresses... that's gonna be a messy one.",
+        "How the heck did they get more than one heiress to play together?!",
+        "Oh wow, more than one troll heiress in the same session. Nasty!",
+        "Is that a session with more than one royal troll? Dang, sounds bad.",
+        "Hm, do I see multiple troll heiresses in there? How did that happen?",
+    ],
+    <String>[
+        "Multiple heiress",
+    ],
 ];
+
+List<List<String>> disastorComments = <List<String>>[
+    <String>[
+        "Those are some pretty gnarly sprites, the enemies in there must be really nasty.",
+        "With prototypings like that I bet the players will have some trouble...",
+        "I hope they know what a pain prototyping all that dangerous shit will be...",
+        "The prototypings in this one look pretty horrible.",
+        "I hope they can cope with all the dangerous shit they're prototyping in there.",
+        "With sprites that dangerous the enemies must be real monsters in there.",
+    ],
+    <String>[
+        "Disastor",
+    ],
+];
+
+// pick list depending on shogun or not
+T pc<T>(ObservatoryViewer ob, List<T> lists) => lists[((ob.overcoat != null) && ob.overcoat.active) ? 1 : 0];
 
 String processSessionComment(ObservatoryViewer ob, int today) {
     Session session = ob.detailSession.session;
@@ -156,16 +240,18 @@ String processSessionComment(ObservatoryViewer ob, int today) {
     bool multiHeiress = false;
     bool multiDisastor = false;
 
-    if (eggComments.containsKey(id)) {
+
+
+    if (pc(ob,eggComments).containsKey(id)) {
         // if it's an easter-egg session, get the special descriptor for that
-        segments.add(eggComments[id]);
+        segments.add(pc(ob,eggComments)[id]);
     } else {
         if (session.session_id == ObservatoryViewer._today_session) {
-            segments.add("This is today's featured session.");
+            segments.add(pc(ob,<String>["This is today's featured session.","TODAY"]));
         }
 
         if (session.players.length == 1) { // check dead sessions
-            segments.add(rand.pickFrom(deadComments));
+            segments.add(rand.pickFrom(pc(ob,deadComments)));
             dead = true;
         } else if (session.players.length == 2) { // check 2p for lord+muse
             bool lord = false;
@@ -178,7 +264,7 @@ String processSessionComment(ObservatoryViewer ob, int today) {
                 }
             }
             if (lord && muse) {
-                segments.add(rand.pickFrom(lordMuseComments));
+                segments.add(rand.pickFrom(pc(ob,lordMuseComments)));
                 lordMuse = true;
             }
         }
@@ -191,7 +277,7 @@ String processSessionComment(ObservatoryViewer ob, int today) {
             }
         }
         if (heiresses > 1) {
-            segments.add(rand.pickFrom(heiressComments));
+            segments.add(rand.pickFrom(pc(ob,heiressComments)));
             multiHeiress = true;
         }
 
@@ -203,7 +289,7 @@ String processSessionComment(ObservatoryViewer ob, int today) {
             }
         }
         if (disastor > 1 && (disastor / session.players.length) > 0.33) {
-            segments.add(rand.pickFrom(disastorComments));
+            segments.add(rand.pickFrom(pc(ob,disastorComments)));
             multiDisastor = true;
         }
     }
@@ -219,36 +305,36 @@ String processSessionComment(ObservatoryViewer ob, int today) {
     }
     if (corruption >= 3) {
         if (segments.isEmpty) {
-            segments.add(rand.pickFrom(veryCorruptComments));
+            segments.add(rand.pickFrom(pc(ob,veryCorruptComments)));
         } else {
-            segments.add(rand.pickFrom(followVeryCorruptComments));
+            segments.add(rand.pickFrom(pc(ob,followVeryCorruptComments)));
         }
     } else if (corruption >= 1) {
         if (segments.isEmpty) {
-            segments.add(rand.pickFrom(corruptComments));
+            segments.add(rand.pickFrom(pc(ob,corruptComments)));
         } else {
-            segments.add(rand.pickFrom(followCorruptComments));
+            segments.add(rand.pickFrom(pc(ob,followCorruptComments)));
         }
     }
 
     // combo finishers
     if (lordMuse && multiHeiress) { // lord and muse heiresses
-        segments.add("This is going to be one hell of a showdown.");
+        segments.add(pc(ob,<String>["This is going to be one hell of a showdown.", "Showdown"]));
     }
     if (lordMuse && multiDisastor) {
-        segments.add("They're really making it hard for themselves...");
+        segments.add(pc(ob,<String>["They're really making it hard for themselves...", "Hardcore"]));
     }
     if (dead && corruption > 0) {
-        segments.add("Wait, corrupt *and* dead... holy shit");
+        segments.add(pc(ob,<String>["Wait, corrupt *and* dead... holy shit", "FUN"]));
     }
 
     // LEG DAY
     for (Player p in session.players) {
         if (p.class_name == SBURBClassManager.PAGE && p.aspect == Aspects.HEART && p.interest1.category == InterestManager.ATHLETIC && p.interest2.category == InterestManager.ATHLETIC) {
             if (segments.isEmpty) {
-                segments.add("Wow, look at the legs on that Page of Heart!");
+                segments.add(pc(ob,<String>["Wow, look at the legs on that Page of Heart!", "leg"]));
             } else {
-                segments.add("... and do you SEE the legs on that Page of Heart?!");
+                segments.add(pc(ob,<String>["... and do you SEE the legs on that Page of Heart?!", "also, leg"]));
             }
             break;
         }
@@ -313,12 +399,14 @@ class ObservatoryViewer {
 
     ShipLogic overcoat;
 
+    THREE.ShaderUniform<bool> overcoatPostToggle;
+
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -363,8 +451,11 @@ class ObservatoryViewer {
         
         THREE.ShaderMaterial postShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_screen.frag");
 
+        this.overcoatPostToggle = new THREE.ShaderUniform<bool>()..value = false;
+
         THREE.setUniform(postShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.renderTarget.texture);
         THREE.setUniform(postShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+        THREE.setUniform(postShader, "overcoat", this.overcoatPostToggle);
         
         THREE.Mesh renderPlane = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), postShader)
             ..position.z = 5.0
@@ -442,9 +533,9 @@ class ObservatoryViewer {
         window.getSelection().empty();
         window.getSelection().removeAllRanges();
 
-        if (this.overcoat != null && this.overcoat.active) {
+        /*if (this.overcoat != null && this.overcoat.active) {
             this.toggleOvercoat();
-        }
+        }*/
 
         this.goToCoordinates(this.camx - e.movement.x, this.camy - e.movement.y);
 
@@ -689,6 +780,12 @@ class ObservatoryViewer {
         this.goToGridCoordinates(coords.first, coords.second);
     }
 
+    void goToOvercoat() {
+        if (this.overcoat != null && !this.overcoat.active) {
+            this.toggleOvercoat();
+        }
+    }
+
     //############ detail session
 
     ObservatorySession findDetailSession() {
@@ -789,13 +886,9 @@ class ObservatoryViewer {
     void toggleOvercoat() {
         this.overcoat.active = !this.overcoat.active;
 
-        if (this.overcoat.active) {
-            querySelector("#pl").style.display="none";
-            querySelector("#shoges").style.display="block";
-        } else {
-            querySelector("#pl").style.display="block";
-            querySelector("#shoges").style.display="none";
-        }
+        this.overcoatPostToggle.value = this.overcoat.active;
+
+        if (this.callback_session != null) { this.callback_session(); }
     }
 }
 
