@@ -1,4 +1,5 @@
 body, body.voidbody {
+    margin:0;
     background-image:none;
 
     background: #292930; /* Old browsers */
@@ -240,11 +241,66 @@ div.inputarrow {
     z-index:2;
 }
 
-#avatar {
+.avatar {
     z-index:5;
     position:absolute;
-    right:-160px;
+
     top:620px;
+}
+
+#pl {
+    background-image:url("../images/paradoxLands_turnways.png");
+
+    width:300px;
+    height:620px;
+
+    right:-160px;
+}
+
+#shoges {
+    background-image:url("../images/Shogun_IN_REVERSE.png");
+
+    width:419px;
+    height:653px;
+
+    right:-300px;
+
+    display:none;
+}
+
+@media only screen and (min-width: 1032px) {
+    html {
+        overflow-x:hidden;
+    }
+    body {
+        width:100%;
+        left:0px;
+        position:relative;
+        overflow-x:hidden;
+    }
+}
+
+@media only screen and (max-width: 1032px) {
+
+    html {
+        width:1032px;
+    }
+    body {
+        width:1032px;
+    }
+
+    #shoges {
+        right:-65px;
+        width:184px;
+    }
+    #pl {
+        right:-65px;
+        width:205px;
+    }
+
+    .pipeend {
+        display:none;
+    }
 }
 
 #speechbubble {
@@ -284,6 +340,18 @@ div.inputarrow {
     border-left: 16px solid transparent;
     border-top: 20px solid white;
     border-bottom: 20px solid transparent;
+}
+
+#speechbubble.overcoat #speechbubblebody {
+    background-color:#101010;
+    color:#00FF00;
+    box-shadow: 0px 0px 15px rgba(255,0,0,0.7);
+}
+#speechbubble.overcoat #speechbubblestalk {
+    border-right:16px solid #101010;
+    border-top: 20px solid #101010;
+
+    box-shadow: 3px 0px 0px rgba(255,0,0,0.2);
 }
 
 div.note {
@@ -417,4 +485,11 @@ a:visited, .link:visited {
     color:#000080;
     text-decoration:underline;
     cursor:pointer;
+}
+
+#overcoat_item {
+    display:none;
+}
+#overcoat_link {
+    color:#00AA00;
 }

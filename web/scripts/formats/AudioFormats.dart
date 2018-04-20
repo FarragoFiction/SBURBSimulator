@@ -11,7 +11,8 @@ abstract class AudioFormat extends ElementFileFormat<AudioElement> {
         print(input);
         AudioElement element = new AudioElement(input);
         print(element.src);
-        await element.onCanPlay.first;
+        //await element.onCanPlay.first;
+        await element.onCanPlayThrough.first;
         return element;
     }
 
