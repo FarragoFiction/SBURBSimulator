@@ -831,7 +831,8 @@ class Session {
         if (spaces.isEmpty) return null;
         Player ret = spaces[0];
         for (num i = 0; i < spaces.length; i++) {
-            if (spaces[i].landLevel > ret.landLevel) ret = spaces[i];
+            //if you don't have a land you don't have a frog. thems the breaks
+            if (spaces[i].landLevel > ret.landLevel && spaces[i].land != null) ret = spaces[i];
         }
         return ret;
     }
@@ -867,8 +868,10 @@ class Session {
         bool frogSick = spacePlayer.landLevel < goodFrogLevel;
         bool frog = !noFrogCheck(spacePlayer);
         bool grist = enoughGristForFull();
+        bool hasPlanet = spacePlayer.land != null;
+
         //frog is sick if it was bred wrong, or if it was nutured wrong
-        return (frog && (frogSick || !grist));
+        return (frog && hasPlanet && (frogSick || !grist));
 
     }
 
@@ -893,8 +896,9 @@ class Session {
         bool frog = !noFrogCheck(spacePlayer);
         bool grist = enoughGristForFull();
         bool rings = playersHaveRings();
+        bool hasPlanet = spacePlayer.land != null;
         //frog is full if it was bred AND nurtured right.
-        return (frog && rings &&  (!frogSick &&  grist));
+        return (frog && rings && hasPlanet && (!frogSick &&  grist));
     }
 
     //don't care about grist, this is already p rare. maybe it eats grim dark and not grist???
@@ -925,7 +929,9 @@ class Session {
         bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
         bool grist = !enoughGristForAny();
         bool rings  = !playersHaveRings();
-        return (frog || grist || rings);
+        bool hasNoPlanet = spacePlayer.land == null;
+
+        return (frog || grist || rings || hasNoPlanet);
     }
 
     String frogStatus() {
