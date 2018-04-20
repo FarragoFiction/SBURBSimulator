@@ -92,7 +92,8 @@ class Moon extends Land {
           //if you're active you'll live....but if you aren't in a players party you won't be relevant anymore.
           if(!g.active && !g.dead) {
               killed.add(g.htmlTitle());
-              g.makeDead("the $name exploding.",killer);
+              //don't loot shit you explode
+              g.makeDead("the $name exploding.",killer, false);
           }
       }
 

@@ -846,7 +846,7 @@ class GameEntity extends Object with StatOwner   {
 
     }
 
-    void makeDead(String causeOfDeath, GameEntity killer) {
+    void makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         if(session.mutator.lifeField) return; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
@@ -856,7 +856,7 @@ class GameEntity extends Object with StatOwner   {
             }else {
                 killer.npcKillCount ++;
             }
-            killer.lootCorpse(this);
+            if(killer != null && allowLooting)  killer.lootCorpse(this);
         }
     }
 

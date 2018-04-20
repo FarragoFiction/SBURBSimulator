@@ -279,11 +279,11 @@ class Player extends GameEntity{
 
 
     @override
-    String makeDead(String causeOfDeath, GameEntity killer) {
+    String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
 
         //can loot corpses even in life gnosis, or how else will things happen?
-        if(killer != null) {
+        if(killer != null && allowLooting) {
             killer.lootCorpse(this);
         }
 

@@ -305,7 +305,8 @@ class Land extends Object with FeatureHolder {
         p.makeDead("The $name exploding.", killer);
         if(!p.dreamSelf) {
             p.isDreamSelf = true;
-            p.makeDead("the $name exploding, and leaving no corpse behind to smooch.",killer);
+            //don't loot shit youe xplode
+            p.makeDead("the $name exploding, and leaving no corpse behind to smooch.",killer,false);
         }
     }
 
