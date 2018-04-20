@@ -406,7 +406,7 @@ class ObservatoryViewer {
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
