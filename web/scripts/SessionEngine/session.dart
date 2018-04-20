@@ -831,8 +831,20 @@ class Session {
         if (spaces.isEmpty) return null;
         Player ret = spaces[0];
         for (num i = 0; i < spaces.length; i++) {
-            //if you don't have a land you don't have a frog. thems the breaks
-            if (spaces[i].landLevel > ret.landLevel && spaces[i].land != null) ret = spaces[i];
+            //the best space player either has the most quests done, OR has a land when the current best does not
+            if (spaces[i].landLevel > ret.landLevel) {
+                ret = spaces[i];
+            }
+        }
+
+        //do a second loop to find the best space player with a land, if i can't find one, still return the one without a land
+        if(ret.land == null) {
+            for (num i = 0; i < spaces.length; i++) {
+                //the best space player either has the most quests done, OR has a land when the current best does not
+                if (spaces[i].landLevel > ret.landLevel || spaces[i].land != null) {
+                    ret = spaces[i];
+                }
+            }
         }
         return ret;
     }

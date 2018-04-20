@@ -56,4 +56,5 @@ class SessionStats {
     bool timeoutReckoning = false; //did it happen via two scepters, or did it hit the timeout?
     bool nonKingReckoning = false;
     bool mailedCrownAbdication = false; //did someone with a crown just fucking mail it.
+    bool brokenForge = false;
 }

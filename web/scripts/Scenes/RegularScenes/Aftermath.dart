@@ -283,7 +283,7 @@ class Aftermath extends Scene {
             end += "<br>With Skaia's destruction, there is nowhere to deploy the frog to. It doesn't matter how much frog breeding the Space Player did.";
         } else {
             end = "$end ${ringText()}";
-            if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny() && session.playersHaveRings()) {
+            if (session.noFrogCheck(spacePlayer) && session.enoughGristForAny() && session.playersHaveRings() && spacePlayer.land !=null) {
                 end += "<br>Unfortunately, the " + spacePlayer.htmlTitle() + " was unable to complete frog breeding duties. ";
                 end += " They only got ${(spacePlayer.landLevel / this.session.minFrogLevel * 100).floor()}% of the way through. ";
                 ////session.logger.info("${(spacePlayer.landLevel / this.session.minFrogLevel * 100).round()} % frog in session: ${this.session.session_id}");
@@ -292,7 +292,10 @@ class Aftermath extends Scene {
                 }
                 end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
                 end += " No universe frog, no new universe to live in. Thems the breaks. ";
-            } else if (!session.enoughGristForAny()) {
+            }else if(spacePlayer.land == null) {
+                end += " The Players realize, far too late, that with the destruction of the ${spacePlayer.htmlTitle()}'s land, there is no more Forge in which to deploy the Ultimate Frog. ";
+                session.stats.brokenForge = true;
+            }else if (!session.enoughGristForAny()) {
                 ////session.logger.info("AB:  Not enough grist for any frog in session ${session.session_id}");
 
                 end += "<br>Unfortunately, the players did not collect enough grist to even BEGIN to nurture the battlefield. They only got ${session.gristPercent()}% of the needed amount. ";
