@@ -648,6 +648,9 @@ class Session {
         this.stats.scratched = true;
         this.stats.scratchAvailable = false;
         this.stats.doomedTimeline = false;
+        this.didReckoning = false;
+        npcHandler = new NPCHandler(this);
+        _activatedNPCS.clear();
         raggedPlayers = findPlayersFromSessionWithId(this.players, this.session_id); //but only native
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
