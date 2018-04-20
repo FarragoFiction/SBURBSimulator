@@ -69,6 +69,8 @@ class KillWhiteKing extends Scene {
 
   @override
   bool trigger(List<Player> playerList) {
+      if(session is DeadSession) return false; //they do shit different
+
       /*
             When the first player get to the battlefield, anyone holding the Black King's Scepter
             will try to go kill whoever is holding the White King's Scepter.

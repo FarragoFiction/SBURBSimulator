@@ -82,6 +82,7 @@ class StartReckoning extends Scene {
   @override
   bool trigger(List<Player> playerList) {
       if(session.didReckoning) return false;
+      if(session is DeadSession) return false;
 
       //first, if i don't have both scepters, don't even bother
       GameEntity bkowner = session.derseScepter == null  ?  null:session.derseScepter.owner;
