@@ -649,8 +649,6 @@ class Session {
         this.stats.scratchAvailable = false;
         this.stats.doomedTimeline = false;
         this.didReckoning = false;
-        npcHandler = new NPCHandler(this);
-        _activatedNPCS.clear();
         raggedPlayers = findPlayersFromSessionWithId(this.players, this.session_id); //but only native
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
@@ -1215,6 +1213,7 @@ class Session {
         if(childSession != null) parent = "${childSession.session_id}";
         logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
+        plzStartReckoning = false;
         npcHandler = new NPCHandler(this);
         _activatedNPCS.clear();
         resetAvailableClasspects();

@@ -36,7 +36,7 @@ class SeekRing extends Scene {
   }
 
     String tryFighting() {
-        String oldName = gameEntity.name;
+        String oldName = gameEntity.htmlTitle();
         //assasinate if strong enough, else strife.
         if(gameEntity.getStat(Stats.POWER) > target.getStat(Stats.HEALTH)) {
             //should auto loot
