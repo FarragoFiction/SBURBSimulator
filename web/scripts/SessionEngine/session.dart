@@ -990,6 +990,8 @@ class Session {
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
+        print(npcHandler.debugNPCs());
+
         this.easterCallBack(this);
 
         return;
@@ -1109,6 +1111,7 @@ class Session {
 
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg(this);
+        print(npcHandler.debugNPCs());
         await SimController.instance.easterEggCallBack(this);
 
         return completer.future;
@@ -1209,6 +1212,7 @@ class Session {
         if(childSession != null) parent = "${childSession.session_id}";
         logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
+        npcHandler = new NPCHandler(this);
         _activatedNPCS.clear();
         resetAvailableClasspects();
         didReckoning = false;
@@ -1409,7 +1413,7 @@ class Session {
         ret.classes.add("scene");
         String lightBS = "";
         String innerHTML = "";
-        bool debugMode = false;
+        bool debugMode = getParameterByName("debug") == "fuckYes";
         if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}";
         if (this.sbahj) {
             ret.classes.add("sbahj");

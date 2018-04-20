@@ -56,6 +56,12 @@ class NPCHandler
         setupNpcs();
     }
 
+    void debugNPCs() {
+        for(GameEntity g in allEntities) {
+            print("$g is active: ${g.active} and is dead: ${g.dead}  has ${g.sylladex.length} items.");
+        }
+    }
+
     Carapace getCarapaceWithHandle(String handle) {
         if(handle == JACK) return jack;
 
@@ -117,7 +123,7 @@ class NPCHandler
         midnightCrew.add(jack);
 
         //he's lucky and cunning
-        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Cordial","Courtyard","Clubs","Curious"], lastNames: <String>["Deuce","Droll","Dabbler"], ringFirstNames: <String>["Crowned","Capering","Chaotic","Collateral"], ringLastNames: <String>["Destroyer","Demigod"])
+        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Cordial","Courtyard","Clubs","Curious", "Cheerful", "Cheery"], lastNames: <String>["Deuce","Droll","Dabbler", "Demoman"], ringFirstNames: <String>["Crowned","Capering","Chaotic","Collateral"], ringLastNames: <String>["Destroyer","Demigod"])
             ..specibus = new Specibus("Bomb", ItemTraitFactory.GRENADE, <ItemTrait>[ ItemTraitFactory.EXPLODEY])
             ..distractions = <String>["is flipping the fuck out about a bull penis cane. What?","is trading everbodies hats in the session.","is eating black licorice gummy bears.","is collecting just. So many bombs. You don't even know.","is stopping arguments between carapaces.","having a tea party with some nice consorts and underlings."]
             ..description = "One of the Dersite Agents, CD is an incompetent buffoon with a taste for big explosions. He’s really lucky, though. Perhaps that’s why he’s still good at being an agent. He sometimes playing jazz music at the Liquid Negrocity."
