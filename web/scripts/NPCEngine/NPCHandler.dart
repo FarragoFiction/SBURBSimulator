@@ -156,7 +156,7 @@ class NPCHandler
             ..sideLoyalty = 1000
         );
 
-        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Hearts","Hegemonic","Horse"], lastNames: <String>["Brute","Boxcar","Bartender"], ringFirstNames: <String>["Herokilling","Hateful"], ringLastNames: <String>["Beast","Bastard"])
+        midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Hearts","Hegemonic","Horse","Heavy","Handsome"], lastNames: <String>["Brute","Boxcar","Bartender","Brawler","Beefcake"], ringFirstNames: <String>["Herokilling","Hateful"], ringLastNames: <String>["Beast","Bastard"])
             ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session), new GiveJackScepter(session), new GiveJackRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is shipping just. All the things.","is reading RED CHEEKS magazine.","is protecting his wax lips candies. ","is updating his shipping grid.","is trying to get his OTP together already.","is demanding that this chump just KISS THE GIRL THIS INSTANT."]

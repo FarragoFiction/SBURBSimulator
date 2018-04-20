@@ -189,22 +189,22 @@ class Carapace extends NPC {
 
 class Leprechaun extends NPC {
     //all names relate at least tangentially to their number
-    static List<String> oneNames  = <String>["Itchy","Partridge","Ridge","Lonely","Yuno","Ace","Jan"];
-    static List<String> twoNames  = <String>["Doze","Wei","Turtle","Dove","Matrix","Bull","Hands"];
-    static List<String> threeNames  = <String>["Trace","Tree","Henry","Frenchie","Link","Hattrick","Charm"];
+    static List<String> oneNames  = <String>["Itchy","Partridge","Ridge","Lonely","Yuno","Ace","Jan","Yan"];
+    static List<String> twoNames  = <String>["Doze","Wei","Turtle","Dove","Matrix","Bull","Hands","Tan"];
+    static List<String> threeNames  = <String>["Trace","Tree","Henry","Frenchie","Link","Hattrick","Charm","Tethera"];
     static List<String> fourNames  = <String>["Clover"];
-    static List<String> fiveNames  = <String>["Fin","Rings","Goldboy","Plato","Sense","Byron","Johnny"];
-    static List<String> sixNames  = <String>["Die","Sez","Goose","Buzz","Juan","Seraph","Diamond"];
+    static List<String> fiveNames  = <String>["Fin","Rings","Goldboy","Plato","Sense","Byron","Johnny","Pimp"];
+    static List<String> sixNames  = <String>["Die","Sez","Goose","Buzz","Juan","Seraph","Diamond","Sethera"];
     static List<String> sevenNames  = <String>["Crowbar"];
     static List<String> eightNames  = <String>["Snowman"];
-    static List<String> nineNames  = <String>["Stitch","Nein","Lady","Dancer","Dragon","Muse","Cat"];
-    static List<String> tenNames  = <String>["Sawbuck","Diaz","Hamilton","Alexander","Leaper","Fingers","Neon"];
-    static List<String> elevenNames  = <String>["Matchsticks","Amp","Piper","Rep","Salt","Rocket","Duck"];
-    static List<String> twelveNames  = <String>["Eggs","Dozer","Drummer","Killer","Magnum","Nerve","Solar"];
-    static List<String> thirteenNames  = <String>["Biscuits","Bakers","Jason","Curse","Emirp","Archimedes","Luna"];
-    static List<String> fourteenNames  = <String>["Quarters","Chef","Shakespear","Cyber","Babylon","Osirus","Fortress"];
-    static List<String> fifteenNames  = <String>["Cans","Pho","Quiche","Bonita","Mystic","Salute","Mandarin"];
-    static List<String> infinityNames  = <String>["Flowers","Soy","Wasabi","Spot","Fido","Slasher","Paints","Researcher","Librarian","The House","Snake Eyes","Eyepatch","Shanks","Machette","Gums","Nose","Max","Mad","Wedge","Biggs","Big Daddy","Coins","Shadow","Undertaker","Numbers","Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet"];
+    static List<String> nineNames  = <String>["Stitch","Nein","Lady","Dancer","Dragon","Muse","Cat","Dickory"];
+    static List<String> tenNames  = <String>["Sawbuck","Diaz","Hamilton","Alexander","Leaper","Fingers","Neon","Dock"];
+    static List<String> elevenNames  = <String>["Matchsticks","Amp","Piper","Rep","Salt","Rocket","Duck","Yan-a-dik"];
+    static List<String> twelveNames  = <String>["Eggs","Dozer","Drummer","Killer","Magnum","Nerve","Solar","Tan-a-dik"];
+    static List<String> thirteenNames  = <String>["Biscuits","Bakers","Jason","Curse","Emirp","Archimedes","Luna","Tethera-dik"];
+    static List<String> fourteenNames  = <String>["Quarters","Chef","Shakespear","Cyber","Babylon","Osirus","Fortress","Pethera-dik"];
+    static List<String> fifteenNames  = <String>["Cans","Pho","Quiche","Bonita","Mystic","Salute","Mandarin","Bumfit"];
+    static List<String> infinityNames  = <String>["Flowers","Soy","Wasabi","Spot","Fido","Slasher","Paints","Researcher","Librarian","The House","Snake Eyes","Eyepatch","Shanks","Machette","Gums","Nose","Max","Mad","Wedge","Biggs","Big Daddy","Coins","Shadow","Undertaker","Numbers","Jalapeno","Hard","Cocktail","Sriracha","Kerburn","Sour","Doc","Hirohito","Barbeque","Tojo","Szechuan","Kestik","Sweet","Ketchup","Catsup"];
     static List<String> fakeDesc = <String>["Toad Goblin","Elf","Gnome","Puppet Person","Frogman","Leprechaun"];
 
 
