@@ -4,6 +4,7 @@ uniform sampler2D image;
 uniform vec2 size;
 
 uniform bool overcoat;
+uniform float beat;
 
 const float distort_size = 45.0;
 const float PI = 3.1415926535897932384626433832795;
@@ -44,6 +45,8 @@ void main() {
         col.g = green.g;
 
         if (overcoat) {
+            vignette_darken *= 0.75 + 0.5 * (1.0 - beat);
+
             col += vignette_darken * 0.035;
             col.rb *= (1.0 - vignette_darken * 0.35) * scan;
             col.g *= (1.0 + vignette_darken * 0.85) * scan;

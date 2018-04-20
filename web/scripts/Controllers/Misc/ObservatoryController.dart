@@ -399,14 +399,14 @@ class ObservatoryViewer {
 
     ShipLogic overcoat;
 
-    THREE.ShaderUniform<bool> overcoatPostToggle;
+    Action _shaderUpdate = null;
 
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -451,11 +451,13 @@ class ObservatoryViewer {
         
         THREE.ShaderMaterial postShader = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_screen.frag");
 
-        this.overcoatPostToggle = new THREE.ShaderUniform<bool>()..value = false;
+        THREE.ShaderUniform<bool> postOvercoatUniform = new THREE.ShaderUniform<bool>()..value = false;
+        THREE.ShaderUniform<double> postBeat = new THREE.ShaderUniform<double>()..value = 0.0;
 
         THREE.setUniform(postShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.renderTarget.texture);
         THREE.setUniform(postShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
-        THREE.setUniform(postShader, "overcoat", this.overcoatPostToggle);
+        THREE.setUniform(postShader, "overcoat", postOvercoatUniform);
+        THREE.setUniform(postShader, "beat", postBeat);
         
         THREE.Mesh renderPlane = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), postShader)
             ..position.z = 5.0
@@ -473,6 +475,13 @@ class ObservatoryViewer {
         if (this.overcoat != null) {
             this.scene.add(this.overcoat.shipModel);
         }
+
+        this._shaderUpdate = () {
+            if (this.overcoat != null) {
+                postOvercoatUniform.value = this.overcoat.active;
+                postBeat.value = this.overcoat.sound.beat;
+            }
+        };
 
         this.update();
 
@@ -684,6 +693,8 @@ class ObservatoryViewer {
             this.overcoat.update(dt);
         }
 
+        _shaderUpdate();
+
         this.renderer
             ..render(this.scene, this.camera, this.renderTarget)
             ..render(this.renderScene, this.renderCamera);
@@ -885,8 +896,6 @@ class ObservatoryViewer {
 
     void toggleOvercoat() {
         this.overcoat.active = !this.overcoat.active;
-
-        this.overcoatPostToggle.value = this.overcoat.active;
 
         if (this.callback_session != null) { this.callback_session(); }
     }
@@ -1238,6 +1247,9 @@ class ObservatoryTentacle {
 //##################################################################################
 
 class ShipLogic {
+    static final double SCALE = 10.0;
+    static final double BEAT_SCALE = 0.35;
+
     final ObservatoryViewer parent;
     ShipSound sound;
 
@@ -1290,8 +1302,7 @@ class ShipLogic {
             }
         }
 
-        double s = 10.0;
-        shipModel.scale..x=s..y=s..z=s;
+        shipModel.scale..x=SCALE..y=SCALE..z=SCALE;
         shipModel.position..z = 250.0;
         shipModel.rotation..order = "ZYX";
     }
@@ -1354,6 +1365,9 @@ class ShipLogic {
     void graphicsUpdate(double stepFraction) {
         setShipRotation();
 
+        double s = SCALE - BEAT_SCALE * 0.5 + BEAT_SCALE * (1.0 - this.sound.beat);
+        this.shipModel.scale..x=s..y=s..z=s;
+
         THREE.Vector2 modelpos = this.pos.clone().addScaledVector(this.vel, stepFraction);
         if (modelpos.x < 0) {
             modelpos.x += ObservatoryViewer.pixelsize;
@@ -1387,12 +1401,18 @@ class ShipLogic {
 }
 
 class ShipSound {
+    static const double BPM = 164.0;
+    static const double BPS = BPM / 60.0;
+    static const double BEAT_OFFSET = 0.3;
+
     final ObservatoryViewer parent;
 
     GainNode _volume;
     AudioElement _music;
     MuffleEffect _muffle;
     PannerNode _panning;
+
+    double beat = 0.0;
 
     ShipSound(ObservatoryViewer this.parent) {}
 
@@ -1448,6 +1468,8 @@ class ShipSound {
             _volume.gain.value = 0.25;
             _muffle.value = 1.0;
         }
+
+        beat = (_music.currentTime * BPS + BEAT_OFFSET) % 1.0;
     }
 }
 
