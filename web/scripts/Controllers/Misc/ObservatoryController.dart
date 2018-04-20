@@ -781,7 +781,7 @@ class ObservatoryViewer {
     }
 
     void goToOvercoat() {
-        if (this.overcoat != null && !this.overcoat.active) {
+        if (this.overcoat != null) {
             this.toggleOvercoat();
         }
     }
