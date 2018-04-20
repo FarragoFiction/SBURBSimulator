@@ -991,7 +991,7 @@ class Session {
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
-        print(npcHandler.debugNPCs());
+        //print(npcHandler.debugNPCs());
 
         this.easterCallBack(this);
 
@@ -1112,7 +1112,7 @@ class Session {
 
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg(this);
-        print(npcHandler.debugNPCs());
+        //print(npcHandler.debugNPCs());
         await SimController.instance.easterEggCallBack(this);
 
         return completer.future;
