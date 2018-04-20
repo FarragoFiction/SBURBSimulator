@@ -1,4 +1,5 @@
 body, body.voidbody {
+    margin:0;
     background-image:none;
 
     background: #292930; /* Old browsers */
@@ -240,11 +241,66 @@ div.inputarrow {
     z-index:2;
 }
 
-#avatar {
+.avatar {
     z-index:5;
     position:absolute;
-    right:-160px;
+
     top:620px;
+}
+
+#pl {
+    background-image:url("../images/paradoxLands_turnways.png");
+
+    width:300px;
+    height:620px;
+
+    right:-160px;
+}
+
+#shoges {
+    background-image:url("../images/Shogun_IN_REVERSE.png");
+
+    width:419px;
+    height:653px;
+
+    right:-300px;
+
+    display:none;
+}
+
+@media only screen and (min-width: 1032px) {
+    html {
+        overflow-x:hidden;
+    }
+    body {
+        width:100%;
+        left:0px;
+        position:relative;
+        overflow-x:hidden;
+    }
+}
+
+@media only screen and (max-width: 1032px) {
+
+    html {
+        width:1032px;
+    }
+    body {
+        width:1032px;
+    }
+
+    #shoges {
+        right:-65px;
+        width:184px;
+    }
+    #pl {
+        right:-65px;
+        width:205px;
+    }
+
+    .pipeend {
+        display:none;
+    }
 }
 
 #speechbubble {

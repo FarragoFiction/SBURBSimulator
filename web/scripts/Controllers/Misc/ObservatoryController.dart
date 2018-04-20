@@ -384,9 +384,6 @@ class ObservatoryViewer {
         }
 
         this.update();
-        if (this.overcoat != null) {
-            this.overcoat.sound.startSound();
-        }
 
         this.eventDelegate.onMouseDown.listen(mouseDown);
         this.eventDelegate.onClick.listen(mouseClick);
@@ -407,9 +404,14 @@ class ObservatoryViewer {
 
         this.setCoordinateElement();
         this.setSessionElement();
+
     }
 
     void mouseDown(MouseEvent e) {
+        if (this.overcoat != null) {
+            this.overcoat.sound.startSound();
+        }
+
         if (this.viewingLandDetails) { return; }
         dragging = true;
         dragStart = e.offset;
@@ -417,6 +419,10 @@ class ObservatoryViewer {
     }
 
     void mouseUp(MouseEvent e) {
+        if (this.overcoat != null) {
+            this.overcoat.sound.startSound();
+        }
+
         if (dragging) { dragging = false; }
         this.eventDelegate.classes.remove("dragging");
     }
@@ -461,6 +467,10 @@ class ObservatoryViewer {
             this.toggleOvercoat();
         } else if (zone != 0) {
             this.landDetails.showLand(this.detailSession.session.players[zone-1].land);
+        }
+
+        if (this.overcoat != null) {
+            this.overcoat.sound.startSound();
         }
     }
 
@@ -780,9 +790,11 @@ class ObservatoryViewer {
         this.overcoat.active = !this.overcoat.active;
 
         if (this.overcoat.active) {
-
+            querySelector("#pl").style.display="none";
+            querySelector("#shoges").style.display="block";
         } else {
-
+            querySelector("#pl").style.display="block";
+            querySelector("#shoges").style.display="none";
         }
     }
 }
@@ -1302,14 +1314,25 @@ class ShipSound {
 
         _volume = Audio.context.createGain()..connectNode(_panning);
         _muffle = new MuffleEffect(0.0)..output.connectNode(_volume);
-        _music = await Audio.load("audio/spiderblood")..loop = true..currentTime=35.9;
+        _music = await Audio.load("audio/spiderblood")
+            ..muted = true
+            ..autoplay = true
+            ..loop = true
+            //..controls = true
+            ..currentTime=35.9
+        ;
         Audio.node(_music)..connectNode(_muffle.input);
 
         this.updateSound();
+        this.startSound();
     }
 
     void startSound() {
+        //print("starting music");
+        //querySelector("#story")..append(_music);
         _music.play();
+        _music.muted = false;
+        Audio.context.resume();
     }
 
     void updateSound() {
