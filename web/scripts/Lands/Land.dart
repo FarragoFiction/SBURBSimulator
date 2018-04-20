@@ -266,6 +266,9 @@ class Land extends Object with FeatureHolder {
                 Player p = g as Player;
                 //land is gone, this should be only reference to it
                 p.land = null;
+                if(p.aspect == Aspects.SPACE) {
+                    session.stats.brokenForge = true;
+                }
                 if(!p.canHelp()) { //you can't leave your planet yet, you're dead, and no one can get to your body to smooch it, so dream self dead, too
                     killed.add(p.htmlTitle());
                     killPlayer(p, killer);
@@ -280,7 +283,9 @@ class Land extends Object with FeatureHolder {
 
         Element ret = new DivElement();
         String killedString  = "";
-        if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} are now dead.";
+        String are = "are";
+        if(killed.length == 1) are = "is";
+        if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} $are now dead.";
         ret.setInnerHtml( "The ${name} is now destroyed. $killedString");
         //render explosion graphic and text. text should describe if anyone died.
         //Rewards/planetsplode.png

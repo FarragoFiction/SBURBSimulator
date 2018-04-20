@@ -140,6 +140,7 @@ class QuestsAndStuff extends Scene {
 
     void processLand(Element div, QuestingParty questingParty) {
         Player player = questingParty.player1;
+
         GameEntity helper = questingParty.helper;
         player.land.initQuest([player, helper]);
         String helperText = corruptionIsSpreading(questingParty);
@@ -171,6 +172,16 @@ class QuestsAndStuff extends Scene {
 
         if(savedLevel != player.land.firstCompleted) {
             appendHtml(div, "<br><br>The ${player.htmlTitleBasicNoTip()}'s house has been built up enough to let them start visiting other lands. ");
+        }
+
+        if(player.aspect == Aspects.SPACE && getParameterByName("spacePlayers") == "screwed") {
+            //i've already killed sextellions, may as well do this,too, wait, let me go find out if shogun wants dibs
+            //yup, he wants dibs. I can't keep doing villanous things if I'm supposed to be the 'good guy' after all.
+            DivElement joke = new DivElement();
+            joke.setInnerHtml("<br>Uh. What. God dammit Shogun, why did you blow that space player's planet up? Jesus fuck, no they did NOT 'steal your palette' they had it first! Ugh. Whatever. How are they supposed to win now, dunkass???");
+            session.mutator.metaHandler.initalizePlayers(session, false);
+            div.append(joke);
+            div.append(player.land.planetsplode(session.mutator.metaHandler.feudalUltimatum));
         }
 
     }
@@ -207,6 +218,7 @@ class QuestsAndStuff extends Scene {
 
 	@override
 	void renderContent(Element div){
+
 		for(QuestingParty qp in moonParties) {
             processMoon(div, qp);
         }
