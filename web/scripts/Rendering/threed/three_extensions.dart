@@ -18,6 +18,8 @@ abstract class ScriptLoader {
         await Loader.loadJavaScript("scripts/Rendering/threed/extensions/LoaderSupport.js");
         return Loader.loadJavaScript("scripts/Rendering/threed/extensions/OBJLoader2.js");
     }
+
+    static Future<ScriptElement> particleSystem() => Loader.loadJavaScript("scripts/Rendering/threed/extensions/GPUParticleSystem.js");
 }
 
 
