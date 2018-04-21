@@ -325,7 +325,7 @@ class NPCHandler
         );
 
         //DP	Philosophy	Deep Philosopher,Drunk Philanthropist, Dance Practitioner	Doom Prophet	Prospit
-        dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Deep","Drunk","Dance"], lastNames: <String>["Philanthropist","Practitioner","Philosopher"], ringFirstNames: <String>["Doom"], ringLastNames: <String>["Prophet"])
+        dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Deep","Drunk","Dance","Delusory"], lastNames: <String>["Philanthropist","Practitioner","Philosopher","Pundit"], ringFirstNames: <String>["Doom"], ringLastNames: <String>["Prophet"])
             ..specibus = new Specibus("Tome", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER])
             ..distractions = <String>["is telling everyone that the End is Nigh. Everyone ignores him because this is obviously true.","is ranting about various Philosophical topics that no one actually cares about.","has just given up on everything, for a while.", "is drunk off his ass."]
             ..sideLoyalty = 10
@@ -381,8 +381,8 @@ class NPCHandler
             ..makeCharming(100)
         );
 
-        //GN	Cooking	garrulous Nutritionist, gourmet Noodle, gourmand Nibbler,	Gluttonous Newt	Derse
-        dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Gooby","Garrulous","Gourmet","Gourmand"], lastNames: <String>["Nutritionist","Noodle","Nibbler"], ringFirstNames: <String>["Gluttonous"], ringLastNames: <String>["Newt"])
+        //GN	duckking says: Gastronomical Nourisher, Cooking	garrulous Nutritionist, gourmet Noodle, gourmand Nibbler,	Gluttonous Newt	Derse
+        dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Gooby","Garrulous","Gourmet","Gourmand","Gastronomical"], lastNames: <String>["Nutritionist","Noodle","Nibbler","Nourisher"], ringFirstNames: <String>["Gluttonous"], ringLastNames: <String>["Newt"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is eating a shit ton of food.","is cooking, and then eating, a shit ton of food.","has further perfected her noodle recipe."]
             ..specibus = new Specibus("Salad Fork", ItemTraitFactory.FORK, <ItemTrait>[ ItemTraitFactory.POINTY, ItemTraitFactory.METAL])
@@ -482,7 +482,7 @@ class NPCHandler
         );
 
         //PE	Education/Magic	"Persevering Educator,Persistent Entertainer,Punctual Executant"	Purple Executioner	Prospit
-        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Persevering","Punctual","Persistent"], lastNames: <String>["Entertainer","Executant","Educator"], ringFirstNames: <String>["Purple"], ringLastNames: <String>["Executioner"])
+        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Persevering","Punctual","Persistent"], lastNames: <String>["Entertainer","Executant","Educator","Enchanter"], ringFirstNames: <String>["Purple"], ringLastNames: <String>["Executioner"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is teaching everyone who will listen the rules of Magic, which is a totally real thing.","is performing stage magic for a crowd.","is teaching simple magic to onlookers."]
             ..sideLoyalty = 10
@@ -494,8 +494,8 @@ class NPCHandler
             ..makeCharming(100)
             ..makeCunning(100)
         );
-
-        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Mobster","Monster","Maestro"], lastNames: <String>["Kingpin","Killer","Kilo"], ringFirstNames: <String>["Master"], ringLastNames: <String>["Kriminal"])
+        //duckking is helping out with names, just like wigglersim
+        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Mobster","Monster","Maestro", "Mafia"], lastNames: <String>["Kingpin","Killer","Kilo", "Kaiser"], ringFirstNames: <String>["Master"], ringLastNames: <String>["Kriminal"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..distractions = <String>["is eating a shit ton of sugar.","is just sort of generally being a dick.","is really emotionally invested in this game of Life being played."]
             ..sideLoyalty = -1000
@@ -522,7 +522,7 @@ class NPCHandler
             ..makeLucky(100)
         );
         //HP	Holy	Holy Preacher,Happy Painter, High Pediatrician	Hallowed Patrician	Prospit
-        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Holy","Happy","High"], lastNames: <String>["Preacher","Pediatrician","Priest"], ringFirstNames: <String>["Hallowed"], ringLastNames: <String>["Patrician"])
+        prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Holy","Happy","High"], lastNames: <String>["Preacher","Pediatrician","Priest","Pope"], ringFirstNames: <String>["Hallowed"], ringLastNames: <String>["Patrician"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is expounding on the virutes of the Vast Croak to any who would listen.","is meditating on how to be more Frog-like.","is performing an acapello song of croaks."]
             ..specibus = new Specibus("Religious Text", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL])
