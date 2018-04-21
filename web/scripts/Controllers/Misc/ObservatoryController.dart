@@ -103,17 +103,17 @@ List<Map<int, String>> eggComments = <Map<int,String>>[
     },
 
     <int,String> { // Shogun
-        413 : "413",
-        612 : "612",
-        613 : "613",
-        1025 : "1025",
-        33 : "33",
-        111111 : "111111",
-        88888888 : "88888888",
-        420 : "420",
-        0 : "0",
-        13 : "13",
-        4037 : "4037",
+        413 : "Ah, the one that started it all. I aspire to be greater than the evil that plagued these children.",
+        612 : "Equius deserved better than this.",
+        613 : "I wonder if something like this exists for Session 13...",
+        1025 : "When will we have 144 player session support JR? When?!",
+        33 : "*>:33*",
+        111111 : "It's like 413 but fucked turnways... That's how the phrase goes yeah? Well it's how it goes now.",
+        88888888 : "I have long superseded this spider. I love the taste of *Spider's Blood*.",
+        420 : "I'm normally a fan of clowns. But this... I'm not feeling this.",
+        0 : "The sheer density of 0u0 in this fucking session is making me ill.",
+        13 : "Finally. Here we are. The Ultimate Goal. This lot have had this coming for so long. And now I'll show them all. <span class='void'><br><br>All I wanted was out of this fucking game.</span>",
+        4037 : "My home. My coffin. My beginning and end. A cursed number, a cursed player. No better fit for a villain.",
     }
 ];
 
@@ -124,7 +124,9 @@ List<List<String>> deadComments = <List<String>>[
         "Looks like someone tried to tempt fate and play SBURB alone. This will not end well...",
     ],
     <String>[
-        "Dead session",
+        "Ah, someone stuck in the same spot I was. They don't have the same helping hand I did. But maybe they'll become as great as scourge as I.",
+        "A rare and familiar sight. Let's see if they win and tear hell like I do.",
+        "I wonder if they were tricked by their friends to fall into that cruel fate like I was. Ah, I pity the poor soul.",
     ],
 ];
 
@@ -138,7 +140,12 @@ List<List<String>> lordMuseComments = <List<String>>[
         "Lord and Muse, a potent combination.",
     ],
     <String>[
-        "Lord/Muse",
+        "Look at them. A squabbling pair. If one of those insect fellas were here they'd probably say something about pitch shit. God I hate that fucking Trove.",
+        "I've heard people say these classes are fanon. I think even the Sim does it. I don't get it.",
+        "Ah, the PvP choice. The Lord almost always wins though.",
+        "I need to get my binoculars. I wanna see how this goes.",
+        "Lord and Muse. Hell in two halves.",
+        "Lord and Muse. Rest in Peace Muse.",
     ],
 ];
 
@@ -152,7 +159,12 @@ List<List<String>> corruptComments = <List<String>>[
         "Hmm, looks like there's a bit of corruption happening in this one.",
     ],
     <String>[
-        "Corrupt",
+        "I can taste something off about this.",
+        "Ah, some good old fashioned taint.",
+        "Five out of six of my comments about this are gonna sound lewd.",
+        "I'm loving how that corruption looks.",
+        "God I wish that was me.",
+        "I'm a professional on the matter at hand, and after careful analysis I can deliver my medical opinion. Shit's probably fucked.",
     ],
 ];
 
@@ -166,7 +178,12 @@ List<List<String>> followCorruptComments = <List<String>>[
         "Hmm, and it looks like there's a bit of corruption happening as well...",
     ],
     <String>[
-        "Also Corrupt",
+        "... And I can taste something off about this.",
+        "Ah, and there's also some good old fashioned taint.",
+        "Also, Five out of six of my comments about this are gonna sound lewd.",
+        "And btw I am loving how that corruption looks.",
+        "And is that… God I wish that was me.",
+        "Also, as a professional on the matter, after careful analysis of this I can safely say, shit is probably fucked.",
     ],
 ];
 
@@ -180,7 +197,11 @@ List<List<String>> veryCorruptComments = <List<String>>[
         "That is... a pretty concerning amount of corruption, I hope they'll be ok in there...",
     ],
     <String>[
-        "Very Corrupt",
+        "Holy shit that is some wicked nasty taint up in that. G fucking G.",
+        "THIS IS JUST LIKE ONE OF MY SHOGUNLAND ANIMES!",
+        "That corruption is so big… almost makes me feel inadequate. But of course, there's no greater taint than I.",
+        "That corruption looks pretty terrible, I hope they're already dead.",
+        "That's quite a healthy amount of raw fucked shit happening there. If they can win in this state… Who am I kidding?",
     ],
 ];
 
@@ -194,7 +215,11 @@ List<List<String>> followVeryCorruptComments = <List<String>>[
         "Also that is a pretty concerning amount of corruption, I hope they'll be ok in there...",
     ],
     <String>[
-        "Also Very Corrupt",
+        "And shit that is some wicked nasty taint up in that. G fucking G.",
+        "And… Oh. *OH.* THIS IS JUST LIKE ONE OF MY SHOGUNLAND ANIMES!",
+        "And phew, that corruption is so big… almost makes me feel inadequate. But of course, there's no greater taint than I.",
+        "And judging by that corruption, they're probably already dead.",
+        "And that's quite a healthy amount of raw fucked shit happening there. If they can win in this state… Who am I kidding?",
     ],
 ];
 
@@ -207,7 +232,11 @@ List<List<String>> heiressComments = <List<String>>[
         "Hm, do I see multiple troll heiresses in there? How did that happen?",
     ],
     <String>[
-        "Multiple heiress",
+        "Oh YES. I can just smell the bloodbath building up. I should stick around for this.",
+        "This is gonna be getting an Adult rating. Fuck deathmatch wrestling. This is the shit that needs televised.",
+        "I am hype as fuck for these alien heiresses settling their blood feud in a universe creating video game.",
+        "These Heiresses all have a bit of Shogun in them it seems. Heh.",
+        "The only thing that would make this better is like. All Lords.",
     ],
 ];
 
@@ -221,7 +250,12 @@ List<List<String>> disastorComments = <List<String>>[
         "With sprites that dangerous the enemies must be real monsters in there.",
     ],
     <String>[
-        "Disastor",
+        "What are those wispy shits? They look… worse than they should be. This could be interesting.",
+        "Those regular baddies look like something that could rival the big fuckers I had to take on. This bunch must be tough.",
+        "These lot must want a harder time. They could've gone a lone like.",
+        "Those wispy shits look hype as fuck.",
+        "I hope they come out the other end of that gauntlet with the power they sought.",
+        "Hahah, rip",
     ],
 ];
 
@@ -247,7 +281,7 @@ String processSessionComment(ObservatoryViewer ob, int today) {
         segments.add(pc(ob,eggComments)[id]);
     } else {
         if (session.session_id == ObservatoryViewer._today_session) {
-            segments.add(pc(ob,<String>["This is today's featured session.","TODAY"]));
+            segments.add(pc(ob,<String>["This is today's featured session.", "Here's the featured one, I dunno if it's random or chosen by JR. Probably cool or something. If it's not cool bitch about it on discord or summin."]));
         }
 
         if (session.players.length == 1) { // check dead sessions
@@ -319,22 +353,22 @@ String processSessionComment(ObservatoryViewer ob, int today) {
 
     // combo finishers
     if (lordMuse && multiHeiress) { // lord and muse heiresses
-        segments.add(pc(ob,<String>["This is going to be one hell of a showdown.", "Showdown"]));
+        segments.add(pc(ob,<String>["This is going to be one hell of a showdown.", "This is… *SO GOD DAMN COOL!*."]));
     }
     if (lordMuse && multiDisastor) {
-        segments.add(pc(ob,<String>["They're really making it hard for themselves...", "Hardcore"]));
+        segments.add(pc(ob,<String>["They're really making it hard for themselves...", "They must really want to kill the other one. Like Spy vs Spy."]));
     }
     if (dead && corruption > 0) {
-        segments.add(pc(ob,<String>["Wait, corrupt *and* dead... holy shit", "FUN"]));
+        segments.add(pc(ob,<String>["Wait, corrupt *and* dead... holy shit", "Ah. Now this reminds me of my run through it. Except I helped the player instead of trying to kill him. Heheh."]));
     }
 
     // LEG DAY
     for (Player p in session.players) {
         if (p.class_name == SBURBClassManager.PAGE && p.aspect == Aspects.HEART && p.interest1.category == InterestManager.ATHLETIC && p.interest2.category == InterestManager.ATHLETIC) {
             if (segments.isEmpty) {
-                segments.add(pc(ob,<String>["Wow, look at the legs on that Page of Heart!", "leg"]));
+                segments.add(pc(ob,<String>["Wow, look at the legs on that Page of Heart!", "Those are some good legs, but I'm more of a thigh man myself."]));
             } else {
-                segments.add(pc(ob,<String>["... and do you SEE the legs on that Page of Heart?!", "also, leg"]));
+                segments.add(pc(ob,<String>["... and do you SEE the legs on that Page of Heart?!", "And those are some good legs, but I'm more of a thigh man myself."]));
             }
             break;
         }

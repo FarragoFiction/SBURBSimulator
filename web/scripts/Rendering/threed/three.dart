@@ -585,6 +585,68 @@ class OBJLoader2 {
 	external void setMaterials(Map<String, Material> materials);
 }
 
+// Particle System ################################################################
+
+@JS()
+class GPUParticleSystem extends Object3D {
+	external GPUParticleSystem([GPUParticleSystemOptions options]);
+
+	external void update(num dt);
+	external void spawnParticle([GPUParticleSystemSpawnOptions options]);
+}
+
+@anonymous
+@JS()
+class GPUParticleSystemOptions {
+	external factory GPUParticleSystemOptions({
+		int maxParticles = 1000000,
+		int particleContainers = 1,
+		Texture particleNoiseTex,
+		Texture particleSpriteTex,
+	});
+}
+
+@anonymous
+@JS()
+class GPUParticleSystemSpawnOptions {
+	external factory GPUParticleSystemSpawnOptions({
+		Vector3 position = null,
+		Vector3 velocity = null,
+		int color = 0xFFFFFF,
+		double positionRandomness = 0.0,
+		double velocityRandomness = 0.0,
+		double colorRandomness = 1.0,
+		double turbulence = 1.0,
+		double lifetime = 5.0,
+		double size = 10.0,
+		double sizeRandomness = 0.0,
+		bool smoothPosition = false,
+	});
+
+	external Vector3 get position;
+	external void set position(Vector3 v);
+	external Vector3 get velocity;
+	external void set velocity(Vector3 v);
+	external int get color;
+	external void set color(int v);
+	external double get positionRandomness;
+	external void set positionRandomness(double v);
+	external double get velocityRandomness;
+	external void set velocityRandomness(double v);
+	external double get colorRandomness;
+	external void set colorRandomness(double v);
+	external double get turbulence;
+	external void set turbulence(double v);
+	external double get lifetime;
+	external void set lifetime(double v);
+	external double get size;
+	external void set size(double v);
+	external double get sizeRandomness;
+	external void set sizeRandomness(double v);
+	external bool get smoothPosition;
+	external void set smoothPosition(bool v);
+}
+
 // Controls ################################################################
 
 @JS()
