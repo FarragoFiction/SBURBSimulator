@@ -89,13 +89,14 @@ THREE.GPUParticleSystem = function ( options ) {
 			'		lifeLeft = 0.0;',
 
 			'	}',
-
+			// why does this section even exist? -PL
+            /*
 			'	if( v.x < - 1.45 ) {',
 
 			'		lifeLeft = 0.0;',
 
 			'	}',
-
+            */
 			'	if( timeElapsed > 0.0 ) {',
 
 			'		gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );',
