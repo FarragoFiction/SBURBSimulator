@@ -1,5 +1,7 @@
 import "../../SBURBSim.dart";
 import 'dart:html';
+import '../../includes/lz-string.dart';
+import "dart:convert";
 
 /**
  * Serializable Scenes are similar to Life Sim.
@@ -18,6 +20,9 @@ abstract class  SerializableScene extends Scene {
     //things that can be replaced
     static String BIGBADNAME = BigBad.BIGBADNAME;
     static String TARGET = "TARGET";
+
+    String get labelPattern => ":___ ";
+
 
     //not all things have a target, subclasses without one won't bother
 
@@ -82,10 +87,29 @@ abstract class  SerializableScene extends Scene {
   }
 
   void renderForm(Element container) {
-      /**
-       * TODO: need to have name, and then draw drop down of trigger conditions (and effects eventually)
-       */
+      SceneForm form = new SceneForm(this, container);
+      form.drawForm();
   }
+
+    String toDataString() {
+        return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+    }
+
+    void copyFromDataString(String data) {
+        print("copying from data: $data, looking for labelpattern: $labelPattern");
+        String dataWithoutName = data.split("$labelPattern")[1];
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+
+        JSONObject json = new JSONObject.fromJSONString(rawJSON);
+        name = json["name"];
+    }
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json["name"] = name;
+        return json;
+    }
+
 
   //all trigger conditions must be true for this to be true.
   @override
@@ -95,4 +119,68 @@ abstract class  SerializableScene extends Scene {
       }
       return true;
   }
+}
+
+
+
+class SceneForm {
+
+    Element container;
+    SerializableScene scene;
+
+    TextInputElement nameElement;
+    TextAreaElement dataBox;
+    TextAreaElement flavorText;
+
+    SceneForm(SerializableScene this.scene, Element this.container) {
+
+    }
+
+    void drawForm() {
+        drawDataBox();
+        drawName();
+    }
+
+    void syncDataBoxToScene() {
+        dataBox.value = scene.toDataString();
+    }
+
+    void syncFormToBigBad() {
+        nameElement.value = scene.name;
+        syncDataBoxToScene();
+    }
+
+
+
+    void drawName() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Name:";
+        nameElement = new TextInputElement();
+        nameElement.value = scene.name;
+        subContainer.append(nameLabel);
+        subContainer.append(nameElement);
+        container.append(subContainer);
+
+        nameElement.onInput.listen((e) {
+            scene.name = nameElement.value;
+            syncDataBoxToScene();
+        });
+    }
+
+
+
+    void drawDataBox() {
+        dataBox = new TextAreaElement();
+        dataBox.value = scene.toDataString();
+        dataBox.cols = 60;
+        dataBox.rows = 10;
+        dataBox.onChange.listen((e) {
+            print("syncing template to data box");
+            scene.copyFromDataString(dataBox.value);
+            syncFormToBigBad();
+        });
+        container.append(dataBox);
+    }
+
 }
