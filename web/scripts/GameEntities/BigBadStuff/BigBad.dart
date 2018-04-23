@@ -105,6 +105,11 @@ class BigBadForm {
         button.onClick.listen((e)
         {
             subContainer.appendHtml("TODO: DO THIS");
+            SummonScene summonScene = new SummonScene(bigBad.session);
+            summonScene.gameEntity = bigBad;
+            bigBad.startMechanisms.add(summonScene);
+            summonScene.renderForm(subContainer);
+            syncDataBoxToBigBad();
         });
 
     }

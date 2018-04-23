@@ -54,6 +54,9 @@ abstract class  SerializableScene extends Scene {
 
   //everything in this list must be true for this scene to hit
   List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
+  //TODO consider if i want a list of effects as well, might work to do things like "if summoned this way, have this effect"
+
+
   String name = "Generic Scene";
 
   SerializableScene(Session session) : super(session);
@@ -76,6 +79,12 @@ abstract class  SerializableScene extends Scene {
 
   void pickTarget() {
       throw("TODO: map string target to a thing i'm looking for.");
+  }
+
+  void renderForm(Element container) {
+      /**
+       * TODO: need to have name, and then draw drop down of trigger conditions (and effects eventually)
+       */
   }
 
   //all trigger conditions must be true for this to be true.
