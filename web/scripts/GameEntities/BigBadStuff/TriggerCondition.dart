@@ -6,14 +6,16 @@
 import "../../SBURBSim.dart";
 import 'dart:html';
 abstract class TriggerCondition {
-    Session session;
+    //TODO shit i've been conflating these, these need to be assigned to a TriggerOwner and not a big bad
+    //need to do miins
     static String BIGBADNAME = BigBad.BIGBADNAME;
     //could just be a carapace or a player I don't care
     GameEntity bigBad;
     //definitely replace this.
     String flavorText = "$BIGBADNAME suddenly appears for probably no reason.";
-    TriggerCondition(Session this.session, GameEntity bigBad);
     String name = "Generic Trigger";
+    TriggerCondition(GameEntity bigBad);
+
 
     //TODO how to actually set up the triggers? sub classes? where are my notes...
 
@@ -23,7 +25,7 @@ abstract class TriggerCondition {
     TriggerCondition makeNewOfSameType();
 
     static SelectElement drawSelectTriggerConditions(Element div, Session session, BigBad bigBad) {
-        List<TriggerCondition> conditions = listPossibleTriggers(session, bigBad);
+        List<TriggerCondition> conditions = listPossibleTriggers(bigBad);
         SelectElement select = new SelectElement();
         for(TriggerCondition sample in conditions) {
             OptionElement o = new OptionElement();
@@ -39,7 +41,7 @@ abstract class TriggerCondition {
             for(TriggerCondition tc in conditions) {
                 if(tc.name == type) {
                     TriggerCondition newCondition = tc.makeNewOfSameType();
-                    bigBad.triggerConditions.add(newCondition);
+                    //bigBad.triggerConditions.add(newCondition);
                     newCondition.renderForm(div);
                 }
             }
@@ -50,10 +52,10 @@ abstract class TriggerCondition {
         return select;
     }
 
-    static List<TriggerCondition> listPossibleTriggers(Session session, GameEntity bigBad) {
+    static List<TriggerCondition> listPossibleTriggers(GameEntity bigBad) {
         List<TriggerCondition> ret = new List<TriggerCondition>();
-        ret.add(new ItemTraitTriggerCondition(session, bigBad));
-        ret.add(new CrownedCarapaceTriggerCondition(session,bigBad));
+        ret.add(new ItemTraitTriggerCondition(bigBad));
+        ret.add(new CrownedCarapaceTriggerCondition(bigBad));
         return ret;
     }
 
@@ -74,7 +76,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     @override
     String flavorText = "$BIGBADNAME suddenly appears because the $ITEMTRAITOWNERNAME is holding a $ITEMAME that is $ITEMTRAITNAME.";
 
-  ItemTraitTriggerCondition(Session session, GameEntity bigBad) : super(session, bigBad);
+  ItemTraitTriggerCondition(GameEntity bigBad) : super(bigBad);
 
   @override
   bool triggered() {
@@ -89,7 +91,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
   }
   @override
   TriggerCondition makeNewOfSameType() {
-    return new ItemTraitTriggerCondition(session, bigBad);
+    return new ItemTraitTriggerCondition(bigBad);
   }
 }
 
@@ -108,7 +110,7 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     @override
     String flavorText = "$BIGBADNAME suddenly appears because the ${CARAPACENAME} has summoned them with the ULTIMATE POWER a ${CROWNNAME} represents.";
 
-  CrownedCarapaceTriggerCondition(Session session, GameEntity bigBad) : super(session, bigBad);
+  CrownedCarapaceTriggerCondition(GameEntity bigBad) : super(bigBad);
 
     @override
     bool triggered() {
@@ -116,6 +118,7 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     }
     @override
     void renderForm(Element div) {
+        Session session = bigBad.session;
         // TODO: implement renderForm, should have list of all carapace initials
         List<GameEntity> allCarapaces = new List.from(session.prospit.associatedEntities);
         allCarapaces.addAll(session.derse.associatedEntities);
@@ -124,6 +127,6 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     }
   @override
   TriggerCondition makeNewOfSameType() {
-    return new CrownedCarapaceTriggerCondition(session, bigBad);
+    return new CrownedCarapaceTriggerCondition(bigBad);
   }
 }

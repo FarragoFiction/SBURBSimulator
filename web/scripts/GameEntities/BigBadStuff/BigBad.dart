@@ -14,10 +14,15 @@ class BigBad extends NPC {
   @override
   bool bigBad = true;
 
-  //if any of these are true, the big bad is triggered.
-  List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
+  //if any of these are true, the big bad is triggered. proccessed even if not active
+  List<SerializableScene> startMechanisms = new List<SerializableScene>();
+  //scenes list is like normal, but i assume they are all serializable
 
-  String get labelPattern => ":___ ";
+    //these are processed only if active, but separately from regular scenes. you can take an action and then be defeated
+    List<SerializableScene> defeatMechanisms = new List<SerializableScene>();
+
+
+    String get labelPattern => ":___ ";
 
   @override
   String description = "What shows up in ShogunBot's BigBadBinder?";
