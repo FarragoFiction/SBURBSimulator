@@ -6,13 +6,11 @@
 import "../../SBURBSim.dart";
 import 'dart:html';
 abstract class TriggerCondition {
-    //TODO shit i've been conflating these, these need to be assigned to a TriggerOwner and not a big bad
     //need to do miins
     static String BIGBADNAME = BigBad.BIGBADNAME;
     //could just be a carapace or a player I don't care
     GameEntity bigBad;
     //definitely replace this.
-    String flavorText = "$BIGBADNAME suddenly appears for probably no reason.";
     String name = "Generic Trigger";
     TriggerCondition(GameEntity bigBad);
 
@@ -73,8 +71,6 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     ItemTrait itemTrait;
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
-    @override
-    String flavorText = "$BIGBADNAME suddenly appears because the $ITEMTRAITOWNERNAME is holding a $ITEMAME that is $ITEMTRAITNAME.";
 
   ItemTraitTriggerCondition(GameEntity bigBad) : super(bigBad);
 
@@ -107,8 +103,6 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     String carapaceInitials;
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
-    @override
-    String flavorText = "$BIGBADNAME suddenly appears because the ${CARAPACENAME} has summoned them with the ULTIMATE POWER a ${CROWNNAME} represents.";
 
   CrownedCarapaceTriggerCondition(GameEntity bigBad) : super(bigBad);
 

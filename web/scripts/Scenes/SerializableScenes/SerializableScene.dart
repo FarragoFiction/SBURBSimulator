@@ -13,11 +13,13 @@ import 'dart:html';
  * if a sub class overrides the trigger, it should be to make sure the ACTION on a TARGET
  * is actually possible (i.e. there are any carapaces living remainging)
  */
-class  SerializableScene extends Scene {
+abstract class  SerializableScene extends Scene {
 
     //things that can be replaced
     static String BIGBADNAME = BigBad.BIGBADNAME;
     static String TARGET = "TARGET";
+
+    //not all things have a target, subclasses without one won't bother
 
     //what do you try to target, used for drop down
     static String TARGETPLAYERS = "Players";
@@ -52,8 +54,11 @@ class  SerializableScene extends Scene {
 
   //everything in this list must be true for this scene to hit
   List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
+  String name = "Generic Scene";
 
   SerializableScene(Session session) : super(session);
+
+  void doAction();
 
   @override
   void renderContent(Element div) {
