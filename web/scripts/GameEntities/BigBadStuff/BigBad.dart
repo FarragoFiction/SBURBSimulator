@@ -135,6 +135,11 @@ class BigBadForm {
             syncDataBoxToBigBad();
         });
 
+        //render the ones the big bad starts with
+        for(SummonScene s in bigBad.startMechanisms) {
+            s.renderForm(subContainer);
+        }
+
     }
 
     void drawName() {
