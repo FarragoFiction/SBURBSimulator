@@ -14,6 +14,7 @@ import '../../random.dart';
 Future<Null> main() async {
     globalInit();
     await Renderer.loadThree();
+    await THREE.ScriptLoader.particleSystem();
     await Loader.loadManifest();
     loadNavbar();
 
@@ -408,6 +409,9 @@ class ObservatoryViewer {
     THREE.Object3D cameraRig;
     THREE.Texture uiTexture;
 
+    THREE.GPUParticleSystem particleSystem;
+    THREE.GPUParticleSystemSpawnOptions _particleSpawnOptions;
+
     THREE.Scene renderScene;
     THREE.OrthographicCamera renderCamera;
     THREE.WebGLRenderTarget renderTarget;
@@ -502,6 +506,15 @@ class ObservatoryViewer {
         this.cameraRig = new THREE.Object3D()..add(this.camera)..add(uiObject);
 
         this.scene.add(this.cameraRig);
+
+        this.particleSystem = new THREE.GPUParticleSystem(new THREE.GPUParticleSystemOptions(
+            maxParticles: 250000,
+            particleNoiseTex: new THREE.Texture(await Loader.getResource("images/textures/perlin512.png"))..needsUpdate=true,
+            particleSpriteTex: new THREE.Texture(await Loader.getResource("images/textures/particle.png"))..needsUpdate=true,
+        ));
+        this._particleSpawnOptions = new THREE.GPUParticleSystemSpawnOptions(position: new THREE.Vector3.zero(), velocity: new THREE.Vector3.zero());
+
+        this.scene.add(this.particleSystem);
 
         //this.goToSeed(seed);
         //this.goToCoordinates(100, 100);
@@ -610,7 +623,7 @@ class ObservatoryViewer {
 
     Map<int, bool> keys = <int,bool>{};
     void keyDown(KeyboardEvent e) {
-        if (this.overcoat.active) {
+        if (this.overcoat != null && this.overcoat.active) {
             keys[e.keyCode] = true;
             if (document.activeElement == document.body) {
                 if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
@@ -727,6 +740,7 @@ class ObservatoryViewer {
             this.overcoat.update(dt);
         }
 
+        this.particleSystem.update(doubletime / 1000);
         _shaderUpdate();
 
         this.renderer
@@ -932,6 +946,29 @@ class ObservatoryViewer {
         this.overcoat.active = !this.overcoat.active;
 
         if (this.callback_session != null) { this.callback_session(); }
+    }
+
+    void spawnParticle(num x, num y, num z, num vx, num vy, num vz, {double posRand = 0.0, double velRand = 0.0, double size = 10.0, double sizeRand = 0.0, int colour = 0xFFFFFF, double colourRand = 0.0, double life = 2.0, double turbulence = 0.0, bool smooth = false}) {
+
+        this._particleSpawnOptions
+            ..position.x = x
+            ..position.y = y
+            ..position.z = z
+            ..positionRandomness = posRand
+            ..velocity.x = vx
+            ..velocity.y = vy
+            ..velocity.z = vz
+            ..velocityRandomness = velRand
+            ..size = size
+            ..sizeRandomness = sizeRand
+            ..color = colour
+            ..colorRandomness = colourRand
+            ..lifetime = life
+            ..turbulence = turbulence
+            ..smoothPosition = smooth
+        ;
+
+        this.particleSystem.spawnParticle(this._particleSpawnOptions);
     }
 }
 
@@ -1394,6 +1431,10 @@ class ShipLogic {
         }
 
         this.pos.addScaledVector(this.vel, dt);
+
+        for (int i=0; i<10; i++) {
+            this.parent.spawnParticle(pos.x, pos.y, 500.0, -vel.x * 0.5, -vel.y * 0.5, 0, life: 5.0, posRand: 10.0, velRand: 3.0, turbulence: 0.3);
+        }
     }
 
     void graphicsUpdate(double stepFraction) {
