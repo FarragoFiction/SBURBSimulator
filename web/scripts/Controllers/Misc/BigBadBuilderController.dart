@@ -13,10 +13,12 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
   
-  todo("Have a button (created by a static method) to add one of X different kinds of trigger conditions");
-  todo("Have trigger conditions know how to draw themselves");
-  todo("have a button (created by a a static method) to add one of X different AI ACTIONS");
-  todo("have AI ACTION know how to draw themselves");
+  todo("existing start scenes in a big bad know how to draw themselves");
+  todo("start scenes part of data string");
+  todo("can delete a start scene");
+  todo("start scenes know how to render a add trigger condition button");
+  todo("adding a trigger condition adds it to the owning scene");
+
   setUpForm();
 
 }

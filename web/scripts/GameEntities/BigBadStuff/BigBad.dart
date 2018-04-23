@@ -98,13 +98,15 @@ class BigBadForm {
 
     void drawAddStartButton() {
         DivElement subContainer = new DivElement();
+        subContainer.setInnerHtml("Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
+        subContainer.style.border = "1px solid black";
+        subContainer.style.padding = "10px";
         ButtonElement button = new ButtonElement();
         button.text = "Add A Start Scene";
         container.append(subContainer);
         container.append(button);
         button.onClick.listen((e)
         {
-            subContainer.appendHtml("TODO: DO THIS");
             SummonScene summonScene = new SummonScene(bigBad.session);
             summonScene.gameEntity = bigBad;
             bigBad.startMechanisms.add(summonScene);
