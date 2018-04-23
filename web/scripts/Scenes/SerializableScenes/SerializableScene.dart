@@ -139,6 +139,9 @@ class SceneForm {
 
     SceneForm(SerializableScene this.scene, parentContainer) {
         container = new DivElement();
+        container.style.border = "2px solid black";
+        container.style.padding = "10px";
+        container.style.marginTop = "10px";
         parentContainer.append(container);
 
     }

@@ -147,7 +147,7 @@ class BigBadForm {
 
     void drawAddStartButton() {
         startSceneSection = new DivElement();
-        startSceneSection.setInnerHtml("Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
+        startSceneSection.setInnerHtml("<h1>Start Scenes</h1><hr>Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
         startSceneSection.style.border = "1px solid black";
         startSceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();
