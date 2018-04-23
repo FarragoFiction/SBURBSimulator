@@ -8,6 +8,7 @@ import 'dart:html';
 abstract class TriggerCondition {
     //need to do miins
     static String BIGBADNAME = BigBad.BIGBADNAME;
+    static String IMPORTANTWORD = "importantWord";
     //could just be a carapace or a player I don't care
     SerializableScene scene;
     String importantWord;
@@ -19,10 +20,11 @@ abstract class TriggerCondition {
     void renderForm(Element div);
     void syncToForm();
     void syncFormToMe();
+    void copyFromJSON(JSONObject json);
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
-        json["importantWord"] = importantWord;
+        json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
 
     }
@@ -31,8 +33,13 @@ abstract class TriggerCondition {
     static TriggerCondition fromJSON(JSONObject json, SerializableScene scene) {
         String name = json["name"];
         List<TriggerCondition> allConditions = listPossibleTriggers(scene);
-        //TODO if the name matches a condition, pass it to that condition.
-
+        for(TriggerCondition tc in allConditions) {
+            if(tc.name == name) {
+                TriggerCondition ret = tc.makeNewOfSameType();
+                ret.copyFromJSON(json);
+                return ret;
+            }
+        }
     }
 
     TriggerCondition makeNewOfSameType();
@@ -146,6 +153,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
 
 
 
+
     @override
     void syncFormToMe() {
         for(OptionElement o in select.options) {
@@ -163,6 +171,10 @@ class ItemTraitTriggerCondition extends TriggerCondition{
         //keeps the data boxes synced up the chain
         scene.syncForm();
     }
+  @override
+  void copyFromJSON(JSONObject json) {
+      itemTrait = allTraits[json[TriggerCondition.IMPORTANTWORD]];
+  }
 }
 
 class CrownedCarapaceTriggerCondition extends TriggerCondition {
@@ -234,4 +246,8 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
         //keeps the data boxes synced up the chain
         scene.syncForm();
     }
+  @override
+  void copyFromJSON(JSONObject json) {
+      carapaceInitials = json[TriggerCondition.IMPORTANTWORD];
+  }
 }
