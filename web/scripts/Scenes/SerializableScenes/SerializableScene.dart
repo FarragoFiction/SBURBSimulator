@@ -21,6 +21,8 @@ abstract class  SerializableScene extends Scene {
     static String BIGBADNAME = BigBad.BIGBADNAME;
     static String TARGET = "TARGET";
 
+    SceneForm form;
+
     String get labelPattern => ":___ ";
 
 
@@ -86,6 +88,13 @@ abstract class  SerializableScene extends Scene {
       throw("TODO: map string target to a thing i'm looking for.");
   }
 
+    void syncForm() {
+        form.syncDataBoxToScene();
+        if(gameEntity is BigBad) {
+            (gameEntity as BigBad).syncForm();
+        }
+    }
+
   void renderForm(Element container) {
       SceneForm form = new SceneForm(this, container);
       form.drawForm();
@@ -137,6 +146,7 @@ class SceneForm {
     TextAreaElement dataBox;
     TextAreaElement flavorText;
 
+
     SceneForm(SerializableScene this.scene, parentContainer) {
         container = new DivElement();
         container.style.border = "2px solid black";
@@ -166,7 +176,8 @@ class SceneForm {
 
     void drawAddTriggerConditionButton() {
         //trigger conditions know how to add their own damn selves
-        TriggerCondition.drawSelectTriggerConditions(container, scene.gameEntity);
+
+        TriggerCondition.drawSelectTriggerConditions(container, scene);
     }
 
 
