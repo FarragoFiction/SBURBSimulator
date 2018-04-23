@@ -10,17 +10,30 @@ abstract class TriggerCondition {
     static String BIGBADNAME = BigBad.BIGBADNAME;
     //could just be a carapace or a player I don't care
     SerializableScene scene;
+    String importantWord;
     //definitely replace this.
     String name = "Generic Trigger";
     TriggerCondition(SerializableScene scene);
-
-
-    //TODO how to actually set up the triggers? sub classes? where are my notes...
 
     bool triggered();
     void renderForm(Element div);
     void syncToForm();
     void syncFormToMe();
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json["importantWord"] = importantWord;
+        json["name"] = name;
+
+    }
+
+    //need to figure out what type of trigger condition it is.
+    static TriggerCondition fromJSON(JSONObject json, SerializableScene scene) {
+        String name = json["name"];
+        List<TriggerCondition> allConditions = listPossibleTriggers(scene);
+        //TODO if the name matches a condition, pass it to that condition.
+
+    }
 
     TriggerCondition makeNewOfSameType();
 
@@ -57,8 +70,15 @@ abstract class TriggerCondition {
 
         container.append(select);
         container.append(button);
+
+        //render the ones the big bad starts with
+        for(TriggerCondition s in owner.triggerConditions) {
+            s.renderForm(triggersSection);
+        }
         return select;
     }
+
+
 
     static List<TriggerCondition> listPossibleTriggers(SerializableScene scene) {
         List<TriggerCondition> ret = new List<TriggerCondition>();
@@ -83,6 +103,10 @@ class ItemTraitTriggerCondition extends TriggerCondition{
 
     static String ITEMTRAITOWNERNAME = "PLAYER";
     ItemTrait itemTrait;
+
+    @override
+    String get importantWord => itemTrait.toString();
+
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
@@ -110,7 +134,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
           o.text = trait.toString();
           select.append(o);
       }
-
+      select.selectedIndex = 0;
       select.onChange.listen((e) => syncToForm());
       syncToForm();
 
@@ -119,6 +143,9 @@ class ItemTraitTriggerCondition extends TriggerCondition{
   TriggerCondition makeNewOfSameType() {
     return new ItemTraitTriggerCondition(scene);
   }
+
+
+
     @override
     void syncFormToMe() {
         for(OptionElement o in select.options) {
@@ -148,6 +175,9 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
 
     @override
     String name = "CrownedCarapaceExists";
+
+    @override
+    String get importantWord => carapaceInitials;
 
     String carapaceInitials;
     //strongly encouraged for this to be replaced
@@ -180,6 +210,7 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
             select.append(o);
         }
 
+        select.selectedIndex = 0;
         select.onChange.listen((e) => syncToForm());
         syncToForm();
     }

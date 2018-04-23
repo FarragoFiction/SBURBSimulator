@@ -18,8 +18,9 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
 
-  todo("trigger conditions know how to serialize themselves");
-  todo("scenes serialize their trigger conditions");
+
+  todo("scenes know how to put their trigger conditions into the big bads data string");
+  todo("scenes know how to load their trigger conditions");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
   setUpForm();

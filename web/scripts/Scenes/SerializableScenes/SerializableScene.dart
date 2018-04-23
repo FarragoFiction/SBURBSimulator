@@ -115,12 +115,30 @@ abstract class  SerializableScene extends Scene {
 
     void copyFromJSON(JSONObject json) {
         name = json["name"];
+        String triggerContionsString = json["triggerConditions"];
+        loadTriggerConditions(triggerContionsString);
+    }
+
+    void loadTriggerConditions(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            TriggerCondition tc = TriggerCondition.fromJSON(j, this);
+            triggerConditions.add(tc);
+        }
     }
 
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = name;
+        List<JSONObject> triggerCondtionsArray = new List<JSONObject>();
+        for(TriggerCondition s in triggerConditions) {
+            triggerCondtionsArray.add(s.toJSON());
+        }
+        json["triggerConditions"] = triggerCondtionsArray.toString();
         return json;
     }
 

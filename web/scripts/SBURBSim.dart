@@ -126,7 +126,6 @@ int getRandomSeed() {
 
 //bool printCorruptionMessage(String msg, String url, String lineNo, String columnNo, String error){
 bool printCorruptionMessage(Session session, ErrorEvent e) {
-    ;
     if(session == null) {
       appendHtml(SimController.instance.storyElement, "ERROR: CRASHING EVEN IN NON SIMULATION. THIS IS STUPID.");
       SimController.instance.recoverFromCorruption(session);
