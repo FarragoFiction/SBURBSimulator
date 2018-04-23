@@ -83,6 +83,7 @@ class BigBadForm {
         drawDataBox();
         drawName();
         drawDesc();
+        drawAddStartButton();
     }
 
     void syncDataBoxToBigBad() {
@@ -93,6 +94,19 @@ class BigBadForm {
         nameElement.value = bigBad.name;
         descElement.value = bigBad.description;
         syncDataBoxToBigBad();
+    }
+
+    void drawAddStartButton() {
+        DivElement subContainer = new DivElement();
+        ButtonElement button = new ButtonElement();
+        button.text = "Add A Start Scene";
+        container.append(subContainer);
+        container.append(button);
+        button.onClick.listen((e)
+        {
+            subContainer.appendHtml("TODO: DO THIS");
+        });
+
     }
 
     void drawName() {
