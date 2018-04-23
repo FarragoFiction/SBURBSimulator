@@ -13,7 +13,6 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
   
-  todo("can delete a start scene (bug why does it think i'm not inside it)");
   todo("start scenes know how to render a add trigger condition button");
   todo("adding a trigger condition adds it to the owning scene");
 

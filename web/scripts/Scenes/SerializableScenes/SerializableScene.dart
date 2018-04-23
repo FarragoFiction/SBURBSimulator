@@ -147,6 +147,7 @@ class SceneForm {
         drawDataBox();
         drawDeleteButton();
         drawName();
+        drawAddTriggerConditionButton();
 
     }
 
@@ -159,6 +160,11 @@ class SceneForm {
         syncDataBoxToScene();
     }
 
+
+    void drawAddTriggerConditionButton() {
+        //trigger conditions know how to add their own damn selves
+        TriggerCondition.drawSelectTriggerConditions(container, scene.gameEntity);
+    }
 
 
     void drawDeleteButton() {

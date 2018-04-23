@@ -22,7 +22,9 @@ abstract class TriggerCondition {
 
     TriggerCondition makeNewOfSameType();
 
-    static SelectElement drawSelectTriggerConditions(Element div, Session session, BigBad bigBad) {
+    static SelectElement drawSelectTriggerConditions(Element div, GameEntity bigBad) {
+        DivElement container = new DivElement();
+        div.append(container);
         List<TriggerCondition> conditions = listPossibleTriggers(bigBad);
         SelectElement select = new SelectElement();
         for(TriggerCondition sample in conditions) {
@@ -40,13 +42,13 @@ abstract class TriggerCondition {
                 if(tc.name == type) {
                     TriggerCondition newCondition = tc.makeNewOfSameType();
                     //bigBad.triggerConditions.add(newCondition);
-                    newCondition.renderForm(div);
+                    newCondition.renderForm(container);
                 }
             }
         });
 
-        div.append(select);
-        div.append(button);
+        container.append(select);
+        container.append(button);
         return select;
     }
 
