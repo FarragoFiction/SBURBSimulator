@@ -89,6 +89,7 @@ abstract class  SerializableScene extends Scene {
   }
 
     void syncForm() {
+      print("$name is syncing form, it has ${triggerConditions.length} triggers and it's game entity is $gameEntity");
         form.syncDataBoxToScene();
         if(gameEntity is BigBad) {
             (gameEntity as BigBad).syncForm();
@@ -96,7 +97,7 @@ abstract class  SerializableScene extends Scene {
     }
 
   void renderForm(Element container) {
-      SceneForm form = new SceneForm(this, container);
+      form = new SceneForm(this, container);
       form.drawForm();
   }
 

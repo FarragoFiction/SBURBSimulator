@@ -37,6 +37,7 @@ abstract class TriggerCondition {
             if(tc.name == name) {
                 TriggerCondition ret = tc.makeNewOfSameType();
                 ret.copyFromJSON(json);
+                ret.scene = scene;
                 return ret;
             }
         }
@@ -69,6 +70,7 @@ abstract class TriggerCondition {
                     TriggerCondition newCondition = tc.makeNewOfSameType();
                     newCondition.scene = owner;
                     owner.triggerConditions.add(newCondition);
+                    print("adding new condition to $owner");
                     //bigBad.triggerConditions.add(newCondition);
                     newCondition.renderForm(triggersSection);
                 }

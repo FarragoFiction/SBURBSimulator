@@ -19,7 +19,7 @@ void main() {
   div.append(todoElement);
 
 
-  todo("scenes know how to put their trigger conditions into the big bads data string");
+  todo("scenes know how to put their trigger conditions into the big bads data string (why isn't this happening)");
   todo("scenes know how to load their trigger conditions");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
