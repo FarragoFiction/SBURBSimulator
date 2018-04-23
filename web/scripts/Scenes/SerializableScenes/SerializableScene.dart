@@ -101,8 +101,13 @@ abstract class  SerializableScene extends Scene {
         String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
 
         JSONObject json = new JSONObject.fromJSONString(rawJSON);
+        copyFromJSON(json);
+    }
+
+    void copyFromJSON(JSONObject json) {
         name = json["name"];
     }
+
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();

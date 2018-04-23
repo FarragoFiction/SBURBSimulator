@@ -37,6 +37,12 @@ class BigBad extends NPC {
       JSONObject json = new JSONObject();
       json["name"] = name;
       json["description"] = description;
+
+      List<JSONObject> startSceneArray = new List<JSONObject>();
+      for(Scene s in startMechanisms) {
+          if(s is SerializableScene) startSceneArray.add((s as SerializableScene).toJSON());
+      }
+      json["startMechanisms"] = startSceneArray.toString();
       return json;
   }
 
@@ -48,7 +54,22 @@ class BigBad extends NPC {
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];
+
+      String startScenesString = json["startMechanisms"];
+      loadStartMechanisms(startScenesString);
   }
+
+    void loadStartMechanisms(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            SummonScene ss = new SummonScene(session);
+            ss.copyFromJSON(j);
+            startMechanisms.add(ss);
+        }
+    }
 
 
   static BigBad fromDataString(String rawDataString, session) {
