@@ -17,8 +17,9 @@ void main() {
   todoElement = new UListElement();
   todoElement.style.border = "1px";
   div.append(todoElement);
-  
-  todo("adding a trigger condition adds it to the owning scene (how does big bad know to update it's condition?)");
+
+  todo("trigger conditions know how to serialize themselves");
+  todo("scenes serialize their trigger conditions");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
   setUpForm();

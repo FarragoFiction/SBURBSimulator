@@ -26,7 +26,9 @@ abstract class TriggerCondition {
 
     static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner) {
         DivElement container = new DivElement();
+
         DivElement triggersSection = new DivElement();
+        triggersSection.setInnerHtml("<h3>Trigger Conditions:</h3>ALL of these must be TRUE<br>");
         div.append(triggersSection);
         div.append(container);
         List<TriggerCondition> conditions = listPossibleTriggers(owner);
@@ -72,6 +74,10 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
     static String ITEMAME = "ITEMNAME";
 
+    Map<String, ItemTrait> allTraits  = new Map<String, ItemTrait>();
+
+    SelectElement select;
+
     @override
     String name = "PlayerHasItemWithTrait";
 
@@ -88,24 +94,48 @@ class ItemTraitTriggerCondition extends TriggerCondition{
   }
   @override
   void renderForm(Element div) {
-    // TODO: implement renderForm, should have list of all traits in system (do i even have that? oh uup)
-      Set<ItemTrait> allTraits = ItemTraitFactory.allTraits;
-      div.appendHtml("TODO: Render Item Trait Form");
+      Set<ItemTrait> allTraitsKnown = ItemTraitFactory.allTraits;
+      Session session = scene.session;
+      DivElement me = new DivElement();
+      div.append(me);
+      me.setInnerHtml("<br>ANY player MUST have ANY item with Trait: <br>");
+
+      select = new SelectElement();
+      select.size = 13;
+      me.append(select);
+      for(ItemTrait trait in allTraitsKnown) {
+          allTraits[trait.toString()]= trait;
+          OptionElement o = new OptionElement();
+          o.value = trait.toString();
+          o.text = trait.toString();
+          select.append(o);
+      }
+
+      select.onChange.listen((e) => syncToForm());
+      syncToForm();
 
   }
   @override
   TriggerCondition makeNewOfSameType() {
     return new ItemTraitTriggerCondition(scene);
   }
-  @override
-  void syncFormToMe() {
-    // TODO: implement syncFormToMe
-  }
+    @override
+    void syncFormToMe() {
+        for(OptionElement o in select.options) {
+            if(o.value == itemTrait.toString()) {
+                o.selected = true;
+                return;
+            }
+        }
+    }
 
-  @override
-  void syncToForm() {
-    // TODO: implement syncToForm
-  }
+    @override
+    void syncToForm() {
+        String traitName = select.options[select.selectedIndex].value;
+        itemTrait = allTraits[traitName];
+        //keeps the data boxes synced up the chain
+        scene.syncForm();
+    }
 }
 
 class CrownedCarapaceTriggerCondition extends TriggerCondition {
@@ -138,8 +168,10 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
         allCarapaces.addAll(session.derse.associatedEntities);
         DivElement me = new DivElement();
         div.append(me);
+        me.setInnerHtml("<br>Selected Carapace MUST have a Ring or Scepter: <br>");
 
         select = new SelectElement();
+        select.size = 13;
         me.append(select);
         for(GameEntity carapace in allCarapaces) {
             OptionElement o = new OptionElement();
@@ -150,26 +182,25 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
 
         select.onChange.listen((e) => syncToForm());
         syncToForm();
-
     }
   @override
   TriggerCondition makeNewOfSameType() {
     return new CrownedCarapaceTriggerCondition(scene);
   }
   @override
-  void syncFormToMe() {
-      for(OptionElement o in select.options) {
+    void syncFormToMe() {
+        for(OptionElement o in select.options) {
             if(o.value == carapaceInitials) {
                 o.selected = true;
                 return;
             }
-      }
-  }
+        }
+    }
 
-  @override
-  void syncToForm() {
-      carapaceInitials = select.options[select.selectedIndex].value;
-      //keeps the data boxes synced up the chain
-      scene.syncForm();
-  }
+    @override
+    void syncToForm() {
+        carapaceInitials = select.options[select.selectedIndex].value;
+        //keeps the data boxes synced up the chain
+        scene.syncForm();
+    }
 }
