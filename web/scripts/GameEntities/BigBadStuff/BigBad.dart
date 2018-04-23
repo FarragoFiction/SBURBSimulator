@@ -96,6 +96,7 @@ class BigBadForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement descElement;
+    Element startSceneSection;
 
     BigBadForm(BigBad this.bigBad, Element this.container) {
     }
@@ -114,30 +115,34 @@ class BigBadForm {
     void syncFormToBigBad() {
         nameElement.value = bigBad.name;
         descElement.value = bigBad.description;
+
+        for(SummonScene s in bigBad.startMechanisms) {
+            s.renderForm(startSceneSection);
+        }
         syncDataBoxToBigBad();
     }
 
     void drawAddStartButton() {
-        DivElement subContainer = new DivElement();
-        subContainer.setInnerHtml("Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
-        subContainer.style.border = "1px solid black";
-        subContainer.style.padding = "10px";
+        startSceneSection = new DivElement();
+        startSceneSection.setInnerHtml("Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
+        startSceneSection.style.border = "1px solid black";
+        startSceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();
         button.text = "Add A Start Scene";
-        container.append(subContainer);
+        container.append(startSceneSection);
         container.append(button);
         button.onClick.listen((e)
         {
             SummonScene summonScene = new SummonScene(bigBad.session);
             summonScene.gameEntity = bigBad;
             bigBad.startMechanisms.add(summonScene);
-            summonScene.renderForm(subContainer);
+            summonScene.renderForm(startSceneSection);
             syncDataBoxToBigBad();
         });
 
         //render the ones the big bad starts with
         for(SummonScene s in bigBad.startMechanisms) {
-            s.renderForm(subContainer);
+            s.renderForm(startSceneSection);
         }
 
     }
