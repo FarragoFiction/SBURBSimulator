@@ -13,13 +13,14 @@ class BigBad extends NPC {
 
   @override
   bool bigBad = true;
+  BigBadForm form;
 
   //if any of these are true, the big bad is triggered. proccessed even if not active
   List<SerializableScene> startMechanisms = new List<SerializableScene>();
   //scenes list is like normal, but i assume they are all serializable
 
     //these are processed only if active, but separately from regular scenes. you can take an action and then be defeated
-    List<SerializableScene> defeatMechanisms = new List<SerializableScene>();
+    List<SerializableScene> stopMechanisms = new List<SerializableScene>();
 
 
     String get labelPattern => ":___ ";
@@ -78,8 +79,28 @@ class BigBad extends NPC {
       return ret;
   }
 
+  void syncForm() {
+      print("going to sync with ${startMechanisms.length} start scenes");
+     form.syncDataBoxToBigBad();
+  }
+
+  void removeScene(SerializableScene scene) {
+      String jsonString = scene.toJSON().toString();
+      List<Scene> allScenes = new List.from(startMechanisms);
+      allScenes.addAll(scenes);
+      allScenes.addAll(stopMechanisms);
+      for(Scene s in startMechanisms) {
+          if(s is SerializableScene) {
+              if (s.toJSON().toString() == jsonString) {
+                  startMechanisms.remove(s);
+                  return;
+              }
+          }
+      }
+  }
+
   void drawForm(Element container) {
-      BigBadForm form = new BigBadForm(this, container);
+      form = new BigBadForm(this, container);
       form.drawForm();
   }
 
@@ -98,7 +119,9 @@ class BigBadForm {
     TextAreaElement descElement;
     Element startSceneSection;
 
-    BigBadForm(BigBad this.bigBad, Element this.container) {
+    BigBadForm(BigBad this.bigBad, Element parentContainer) {
+        container = new DivElement();
+        parentContainer.append(container);
     }
 
     void drawForm() {

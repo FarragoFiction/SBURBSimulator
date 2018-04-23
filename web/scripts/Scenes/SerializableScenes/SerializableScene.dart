@@ -137,13 +137,17 @@ class SceneForm {
     TextAreaElement dataBox;
     TextAreaElement flavorText;
 
-    SceneForm(SerializableScene this.scene, Element this.container) {
+    SceneForm(SerializableScene this.scene, parentContainer) {
+        container = new DivElement();
+        parentContainer.append(container);
 
     }
 
     void drawForm() {
         drawDataBox();
+        drawDeleteButton();
         drawName();
+
     }
 
     void syncDataBoxToScene() {
@@ -156,6 +160,20 @@ class SceneForm {
     }
 
 
+
+    void drawDeleteButton() {
+        ButtonElement delete = new ButtonElement();
+        delete.text = "Remove Scene";
+        delete.onClick.listen((e) {
+            BigBad bigBad = scene.gameEntity as BigBad;
+            //don't bother knowing where i am, just remove from all
+            print("big bad has ${ bigBad.startMechanisms.length} start mechanisms. are any me? ${ bigBad.startMechanisms.contains(this)}");
+            bigBad.removeScene(scene);
+            container.remove();
+            bigBad.syncForm();
+        });
+        container.append(delete);
+    }
 
     void drawName() {
         DivElement subContainer = new DivElement();

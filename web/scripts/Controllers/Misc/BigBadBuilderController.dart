@@ -13,9 +13,7 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
   
-  todo("existing start scenes in a big bad know how to draw themselves");
-  todo("start scenes part of data string");
-  todo("can delete a start scene");
+  todo("can delete a start scene (bug why does it think i'm not inside it)");
   todo("start scenes know how to render a add trigger condition button");
   todo("adding a trigger condition adds it to the owning scene");
 
