@@ -41,9 +41,6 @@ class  SerializableScene extends Scene {
     //this builds the drop down for the forms
     List<String> get validTargets => <String>[TARGETPLAYERS, TARGETGODS, TARGETMORTALS,TARGETCARAPACES, TARGETDENIZENS, TARGETLANDS, TARGETMOONS, TARGETBIGBADS,TARGETCONSORTS, TARGETGHOSTS, TARGETROBOTS, TARGETDREAMSELVES, TARGETDEADPLAYERS, TARGETDEADCARAPACES];
 
-    //higher = better chance of triggering
-    double triggerChance = 0.5;
-
     //flavor text will not influence the actual actions going on, but will change how it is narratively
   List<String> flavorText = <String>["$BIGBADNAME does a thing to $TARGET in the first flavor","$BIGBADNAME does a thing to $TARGET in the second flavor","$BIGBADNAME does a thing to $TARGET in the third flavor"];
   GameEntity livingTarget;
@@ -52,6 +49,9 @@ class  SerializableScene extends Scene {
 
   //player, land, carapace, etc.
   String targetType;
+
+  //everything in this list must be true for this scene to hit
+  List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
 
   SerializableScene(Session session) : super(session);
 
@@ -73,17 +73,12 @@ class  SerializableScene extends Scene {
       throw("TODO: map string target to a thing i'm looking for.");
   }
 
+  //all trigger conditions must be true for this to be true.
   @override
   bool trigger(List<Player> playerList) {
-      //VERY simple triggers for these things, what matters more is the order the scenes are in
-      //and what targets it's picking (only won't trigger if it can't find a target
-
-      livingTarget = null;
-      landTarget = null;
-      pickTarget();
-
-      //can't go if there is no target
-      if(livingTarget == null && landTarget == null) return false;
-    return session.rand.nextDouble() < triggerChance;
+      for(TriggerCondition tc in triggerConditions) {
+          if(!tc.triggered()) return false;
+      }
+      return true;
   }
 }
