@@ -18,7 +18,7 @@ void main() {
 
   todo("scenes should flavor text with replaceable words and shit. (how to do with such complex triggers?)");
   todo("big bads need 0 or more custom fraymotif names");
-  todo("big bads need low, medium, high values for all stats");
+  todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("big bad needs to be in default state before loading still, need to refresh page to clear shit out");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
