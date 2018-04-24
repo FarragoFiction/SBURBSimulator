@@ -15,7 +15,7 @@ class GetTiger extends Scene{
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		this.deadPlayersToGodTier = [];
-		if(this.session.reckoningStarted){
+		if(this.session.reckoningStarted || this.session.didReckoning){
 			return false; //can't god tier if you are definitely on skaia. (makes king fight too easy)
 		}
 		//all dead players who aren't god tier and are destined to be god tier god tier now.

@@ -16,11 +16,12 @@ void main() {
   todoElement.style.border = "1px";
   div.append(todoElement);
 
-
-  todo("why does data scene load wrong, doesn't pick right triggers. actually, what is drawing the triggers in the first place?");
-  todo("scenes know how to load their trigger conditions");
+  todo("scenes should flavor text with replaceable words and shit. (how to do with such complex triggers?)");
+  todo("big bad needs to be in default state before loading still, need to refresh page to clear shit out");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
+  todo("scenes shouldu have effects styled just like triggers");
+
   setUpForm();
 
 }

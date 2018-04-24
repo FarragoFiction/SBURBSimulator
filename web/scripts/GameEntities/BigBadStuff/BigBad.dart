@@ -101,11 +101,6 @@ class BigBad extends NPC {
   }
 
   void drawForm(Element container) {
-      if(startMechanisms.isEmpty) {
-          SummonScene defaultSummon = new SummonScene(session);
-          defaultSummon.gameEntity = this;
-          startMechanisms.add(defaultSummon);
-      }
       form = new BigBadForm(this, container);
       form.drawForm();
   }

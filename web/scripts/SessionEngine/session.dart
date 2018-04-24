@@ -674,9 +674,11 @@ class Session {
 
 
     Future<Null> reckoning() async {
+
         // this could be called, in theory, by an npc scene AND by the timer going off
         if(!didReckoning) {
             didReckoning = true;
+            this.reckoningStarted = true;
             //this happens iff the reckoning doens't happen via two scepters
             if(!plzStartReckoning) {
                 stats.timeoutReckoning = true;
