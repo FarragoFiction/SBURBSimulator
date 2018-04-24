@@ -26,7 +26,7 @@ abstract class TriggerCondition {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
-
+        return json;
     }
 
     //need to figure out what type of trigger condition it is.

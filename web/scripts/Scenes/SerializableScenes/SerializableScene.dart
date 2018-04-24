@@ -139,7 +139,9 @@ abstract class  SerializableScene extends Scene {
         for(TriggerCondition s in triggerConditions) {
             triggerCondtionsArray.add(s.toJSON());
         }
+        print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
         json["triggerConditions"] = triggerCondtionsArray.toString();
+        print(json);
         return json;
     }
 
