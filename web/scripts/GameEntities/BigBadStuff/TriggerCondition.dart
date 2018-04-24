@@ -106,9 +106,12 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     Map<String, ItemTrait> _allTraits  = new Map<String, ItemTrait>();
 
     Map<String, ItemTrait> get allTraits {
-        if(_allTraits == null) {
+        //print("getting allTraits");
+        if(_allTraits == null || _allTraits.isEmpty) {
+            //print("Setting all traits");
             Set<ItemTrait> allTraitsKnown = ItemTraitFactory.allTraits;
             for(ItemTrait trait in allTraitsKnown) {
+                //print("setting trait $trait");
                 _allTraits[trait.toString()] = trait;
             }
         }
@@ -157,7 +160,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
               print("selecting ${o.value}");
               o.selected = true;
           }else {
-              print("selecting ${o.value} is not ${itemTrait.toString()}");
+              //print("selecting ${o.value} is not ${itemTrait.toString()}");
           }
 
       }
@@ -194,7 +197,9 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     }
   @override
   void copyFromJSON(JSONObject json) {
-      itemTrait = allTraits[json[TriggerCondition.IMPORTANTWORD]];
+      String key = json[TriggerCondition.IMPORTANTWORD];
+      print("key is $key and itemTraits are ${allTraits}");
+      itemTrait = allTraits[key];
   }
 }
 
