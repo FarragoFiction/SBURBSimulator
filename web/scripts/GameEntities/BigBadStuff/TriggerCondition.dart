@@ -103,7 +103,18 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
     static String ITEMAME = "ITEMNAME";
 
-    Map<String, ItemTrait> allTraits  = new Map<String, ItemTrait>();
+    Map<String, ItemTrait> _allTraits  = new Map<String, ItemTrait>();
+
+    Map<String, ItemTrait> get allTraits {
+        if(_allTraits == null) {
+            Set<ItemTrait> allTraitsKnown = ItemTraitFactory.allTraits;
+            for(ItemTrait trait in allTraitsKnown) {
+                _allTraits[trait.toString()] = trait;
+            }
+        }
+
+        return _allTraits;
+    }
 
     SelectElement select;
 
@@ -137,13 +148,20 @@ class ItemTraitTriggerCondition extends TriggerCondition{
       select.size = 13;
       me.append(select);
       for(ItemTrait trait in allTraitsKnown) {
-          allTraits[trait.toString()]= trait;
+          _allTraits[trait.toString()]= trait;
           OptionElement o = new OptionElement();
           o.value = trait.toString();
           o.text = trait.toString();
           select.append(o);
+          if(trait.toString() == itemTrait.toString()) {
+              print("selecting ${o.value}");
+              o.selected = true;
+          }else {
+              print("selecting ${o.value} is not ${itemTrait.toString()}");
+          }
+
       }
-      select.selectedIndex = 0;
+      if(itemTrait == null) select.selectedIndex = 0;
       select.onChange.listen((e) => syncToForm());
       syncToForm();
 
@@ -158,6 +176,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
 
     @override
     void syncFormToMe() {
+      print("syncing item trait form with trait of $itemTrait");
         for(OptionElement o in select.options) {
             if(o.value == itemTrait.toString()) {
                 o.selected = true;
@@ -222,9 +241,13 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
             o.value = carapace.initials;
             o.text = "${carapace.initials} (${carapace.name})";
             select.append(o);
+            if(o.value == carapaceInitials) {
+                print("selecting ${o.value}");
+                o.selected = true;
+            }
         }
 
-        select.selectedIndex = 0;
+        if(carapaceInitials == null) select.selectedIndex = 0;
         select.onChange.listen((e) => syncToForm());
         syncToForm();
     }

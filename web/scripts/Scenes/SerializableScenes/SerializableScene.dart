@@ -139,7 +139,7 @@ abstract class  SerializableScene extends Scene {
         for(TriggerCondition s in triggerConditions) {
             triggerCondtionsArray.add(s.toJSON());
         }
-        print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
+        //print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
         json["triggerConditions"] = triggerCondtionsArray.toString();
         print(json);
         return json;
@@ -189,7 +189,7 @@ class SceneForm {
         dataBox.value = scene.toDataString();
     }
 
-    void syncFormToBigBad() {
+    void syncFormToScene() {
         nameElement.value = scene.name;
         syncDataBoxToScene();
     }
@@ -242,7 +242,7 @@ class SceneForm {
         dataBox.onChange.listen((e) {
             print("syncing template to data box");
             scene.copyFromDataString(dataBox.value);
-            syncFormToBigBad();
+            syncFormToScene();
         });
         container.append(dataBox);
     }

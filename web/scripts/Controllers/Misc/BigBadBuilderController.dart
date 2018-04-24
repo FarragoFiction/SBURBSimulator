@@ -10,16 +10,14 @@ void main() {
   loadNavbar();
   globalInit();
   bigBad.session.setupMoons();
-  SummonScene defaultSummon = new SummonScene(bigBad.session);
-  defaultSummon.gameEntity = bigBad;
-  bigBad.startMechanisms.add(defaultSummon);
+
   div = querySelector("#story");
   todoElement = new UListElement();
   todoElement.style.border = "1px";
   div.append(todoElement);
 
 
-  todo("scenes know how to put their trigger conditions into the big bads data string (why isn't this happening)");
+  todo("why does data scene load wrong, doesn't pick right triggers. actually, what is drawing the triggers in the first place?");
   todo("scenes know how to load their trigger conditions");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");

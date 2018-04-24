@@ -82,6 +82,7 @@ class BigBad extends NPC {
   void syncForm() {
       print("going to sync with ${startMechanisms.length} start scenes");
      form.syncDataBoxToBigBad();
+
   }
 
   void removeScene(SerializableScene scene) {
@@ -100,6 +101,11 @@ class BigBad extends NPC {
   }
 
   void drawForm(Element container) {
+      if(startMechanisms.isEmpty) {
+          SummonScene defaultSummon = new SummonScene(session);
+          defaultSummon.gameEntity = this;
+          startMechanisms.add(defaultSummon);
+      }
       form = new BigBadForm(this, container);
       form.drawForm();
   }
