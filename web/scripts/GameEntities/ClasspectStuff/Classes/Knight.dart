@@ -123,7 +123,7 @@ class Knight extends SBURBClass {
             ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
 
             ..addFeature(new PostDenizenQuestChain("Protect the Consorts", [
-                new Quest("The volcanos of the land are weirdly active after the defeat of the ${Quest.DENIZEN}. Onehas begins to erupt near a ${Quest.CONSORT} village.  The resident ${Quest.CONSORT}s are filling the air with panicked ${Quest.CONSORTSOUND}s, but not really doing anything to evacuate or save anyone. The ${Quest.PLAYER1} face palms, then begins wildly captchalogging everyone in order to get them to safety.  When they let everyone free, the village is destroyed, but at least it's people are safe."),
+                new Quest("The volcanos of the land are weirdly active after the defeat of the ${Quest.DENIZEN}. One begins to erupt near a ${Quest.CONSORT} village.  The resident ${Quest.CONSORT}s are filling the air with panicked ${Quest.CONSORTSOUND}s, but not really doing anything to evacuate or save anyone. The ${Quest.PLAYER1} face palms, then begins wildly captchalogging everyone in order to get them to safety.  When they let everyone free, the village is destroyed, but at least it's people are safe."),
                 new Quest("Another day, another volcano is erupting. After decaptchalogging the final rescued ${Quest.CONSORT}, the ${Quest.PLAYER1} thinks that there MUST be a better way."),
                 new Quest("After a lot of false starts, the ${Quest.PLAYER1} has managed to rig a system where the rising heat of the lava itself will trigger entire ${Quest.CONSORT} villages to just rise up out of harms way. Hell yes!")
             ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
