@@ -70,7 +70,7 @@ class Bard extends SBURBClass {
     void initializeItems() {
         items = new WeightedList<Item>()
         //things that let you destroy yourself.
-            ..add(new Item("Cod Piece",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.LEGENDARY,ItemTraitFactory.FAKE, ItemTraitFactory.CLASSRELATED],abDesc:"God damn it, MI. "))
+            ..add(new Item("Cod Piece",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.LEGENDARY,ItemTraitFactory.FAKE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.WOOD],abDesc:"God damn it, MI. "))
             ..add(new Item("Poisoned Candy",<ItemTrait>[ItemTraitFactory.CANDY, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.POISON],shogunDesc: "Not So Sweet Treat",abDesc:"I guess CodTier is okay."))
             ..add(new Item("Cursed Lyre",<ItemTrait>[ItemTraitFactory.DOOMED,ItemTraitFactory.WOOD,ItemTraitFactory.CALMING, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.MUSICAL],shogunDesc: "I Don’t Know What This Is Normally",abDesc:"I guess CodTier is okay. Sort of."))
             ..add(new Item("Snare Trap",<ItemTrait>[ItemTraitFactory.CLOTH,ItemTraitFactory.DOOMED, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.RESTRAINING],shogunDesc: "The Perfect Trap",abDesc:"I guess CodTier is okay. But still. The actual codpiece. You fleshy meatbags and your weird shit."));
