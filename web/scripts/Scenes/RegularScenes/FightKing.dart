@@ -14,6 +14,7 @@ class FightKing extends Scene {
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
 		////session.logger.info('fight kin trigger?');
+		if(!session.reckoningStarted) return false;
 
 		bool queenDefeated = false;
 		if(this.session.derse == null) {
