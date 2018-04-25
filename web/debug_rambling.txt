@@ -5863,3 +5863,29 @@ So, A BigBad has three lists of scenes:
 Start, the regular scenes list and End.
 
 Does this sound right? Yes....
+
+~~~~~~~~
+
+Alright I need to focus up here:
+
+My SHORT TERM GOAL is to be able to prove that Big Bads can appear in a session.
+ Which means that, barring flavor text, the next step I need to take is to make a single "Effect" for a scene
+ that involves the BigBad actually being activated. Then, I need to have a text document of big bads that I parse
+ and a method every tick in a session that evaluates all known big bads to see if they have been activated.
+
+
+ I don't want to actually do that, though, before I've branched Main and Experimental.
+
+ SO.
+
+ The Order of things I should do is:
+
+ * Add flavor text to SummonScenes
+ * Add effects to SerializableScenes
+ * Text doc of a few Big Bads
+ * BUG FIXES
+ * Branch Main and Experimental
+ * Big Bad Activation Loop
+ * Test for crashes
+ * Teach ShogunBot how to make cards for non Carapace Big Bads
+ * Find sessions where the current Big Bads are being summoned
