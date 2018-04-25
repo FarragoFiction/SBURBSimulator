@@ -59,7 +59,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       DivElement container = new DivElement();
 
       DivElement triggersSection = new DivElement();
-      triggersSection.setInnerHtml("<h3>Target Filters:</h3>Filters Applied In Order<br>");
+      triggersSection.setInnerHtml("<h3>Target Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
       div.append(triggersSection);
       div.append(container);
       List<TargetCondition> conditions;
@@ -159,7 +159,7 @@ abstract class TargetConditionLand extends TargetCondition {
       DivElement container = new DivElement();
 
       DivElement triggersSection = new DivElement();
-      triggersSection.setInnerHtml("<h3>Target Filters:</h3>Filters Applied In Order<br>");
+      triggersSection.setInnerHtml("<h3>Target Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
       div.append(triggersSection);
       div.append(container);
       List<TargetCondition> conditions;

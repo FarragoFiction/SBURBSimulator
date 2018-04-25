@@ -26,7 +26,7 @@ void main() {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
-  todo("oh god no burn it to the ground, also when rebuilding carapace trigger, have 'any' as option or a specific one");
+  todo("have 'any' as option for is carapace");
   todo("serializable scenes have a bool for first or all targets");
   todo("be able to remove triggers from scene, put into TargetCondition (living or land) parent class (i thought i did this)");
   todo("big bads have intro mod flavor text (like dystopic empire)");
@@ -45,7 +45,7 @@ void main() {
   todo("any unconditionally immortal player that has killed a player is flagged as big bad");
   todo("FORM BUG: big bad needs to be in default state before loading still, need to refresh page to clear shit out");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
-  todo("more living conditions: is meta player, is god tier, is player, is consort, is denizen, is alive, is dead, isAspect, isClass");
+  todo("more living conditions: is meta player, is god tier, is player, is Sprite, isRobot, is consort, is denizen, is alive, is dead, isAspect, isClass");
   todo("more land contions: owned by Aspect player,owned by Class player, owned by Meta Player, owned by God Tier, corrupt");
   todo("side apps, like big bad gotcha, or big bad betting battles");
   todo("can lands be resurrected? if so, instead of nulling them out on destruction, maybe i should .dead them? what all would i have to change for that? questing, at the very least. space player frog shit...");
