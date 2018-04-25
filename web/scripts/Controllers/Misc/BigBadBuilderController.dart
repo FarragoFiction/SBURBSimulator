@@ -45,6 +45,8 @@ void main() {
   todo("any unconditionally immortal player that has killed a player is flagged as big bad");
   todo("FORM BUG: big bad needs to be in default state before loading still, need to refresh page to clear shit out");
   todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)");
+  todo("more living conditions: is meta player, is god tier, is player, is consort, is denizen, is alive, is dead, isAspect, isClass");
+  todo("more land contions: owned by Aspect player,owned by Class player, owned by Meta Player, owned by God Tier, corrupt");
   todo("side apps, like big bad gotcha, or big bad betting battles");
   todo("can lands be resurrected? if so, instead of nulling them out on destruction, maybe i should .dead them? what all would i have to change for that? questing, at the very least. space player frog shit...");
 

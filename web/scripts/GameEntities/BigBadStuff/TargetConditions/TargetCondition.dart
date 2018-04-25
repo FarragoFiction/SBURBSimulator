@@ -123,7 +123,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       List<TargetConditionLiving> ret = new List<TargetConditionLiving>();
       ret.add(new TargetHasItemWithTrait(scene));
       ret.add(new TargetHasCrown(scene));
-
+      ret.add(new TargetIsCarapace(scene));
       return ret;
   }
 
