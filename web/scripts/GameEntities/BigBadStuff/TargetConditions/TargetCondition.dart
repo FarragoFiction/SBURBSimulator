@@ -121,7 +121,7 @@ abstract class TargetConditionLiving extends TargetCondition {
 
   static List<TargetConditionLiving> listPossibleTriggers(SerializableScene scene) {
       List<TargetConditionLiving> ret = new List<TargetCondition>();
-      //ret.add(new ItemTraitTriggerCondition(scene));
+      ret.add(new TargetHasItemWithTrait(scene));
       return ret;
   }
 
