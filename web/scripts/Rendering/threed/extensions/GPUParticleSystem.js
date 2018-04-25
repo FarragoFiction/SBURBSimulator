@@ -84,11 +84,11 @@ THREE.GPUParticleSystem = function ( options ) {
 
 			'	newPosition = mix( newPosition, newPosition + vec3( noiseVel * ( turbulence * 5.0 ) ), ( timeElapsed / lifeTime ) );',
 
-			'	if( v.y > 0. && v.y < .05 ) {',
+			/*'	if( v.y > 0. && v.y < .05 ) {',
 
 			'		lifeLeft = 0.0;',
 
-			'	}',
+			'	}',*/
 			// why does this section even exist? -PL
             /*
 			'	if( v.x < - 1.45 ) {',
