@@ -39,30 +39,22 @@ abstract class TriggerCondition {
         return textWithShitToReplaceProbably;
     }
 
-    //need to figure out what type of trigger condition it is.
-    static TriggerCondition fromJSON(JSONObject json, SerializableScene scene) {
-        String name = json["name"];
-        List<TriggerCondition> allConditions = listPossibleTriggers(scene);
-        for(TriggerCondition tc in allConditions) {
-            if(tc.name == name) {
-                TriggerCondition ret = tc.makeNewOfSameType();
-                ret.copyFromJSON(json);
-                ret.scene = scene;
-                return ret;
-            }
-        }
-    }
 
     TriggerCondition makeNewOfSameType();
 
-    static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner) {
+    static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, bool forAlive) {
         DivElement container = new DivElement();
 
         DivElement triggersSection = new DivElement();
         triggersSection.setInnerHtml("<h3>Trigger Conditions:</h3>ALL of these must be TRUE<br>");
         div.append(triggersSection);
         div.append(container);
-        List<TriggerCondition> conditions = listPossibleTriggers(owner);
+        List<TriggerCondition> conditions;
+        if(forAlive) {
+            conditions = TriggerConditionLiving.listPossibleTriggers(owner);
+        }else {
+            conditions = TriggerConditionLand.listPossibleTriggers(owner);
+        }
         SelectElement select = new SelectElement();
         for(TriggerCondition sample in conditions) {
             OptionElement o = new OptionElement();
@@ -79,7 +71,11 @@ abstract class TriggerCondition {
                 if(tc.name == type) {
                     TriggerCondition newCondition = tc.makeNewOfSameType();
                     newCondition.scene = owner;
-                    owner.triggerConditions.add(newCondition);
+                    if(forAlive) {
+                        owner.triggerConditionsLiving.add(newCondition);
+                    }else {
+                        owner.triggerConditionsLand.add(newCondition);
+                    }
                     print("adding new condition to $owner");
                     //bigBad.triggerConditions.add(newCondition);
                     newCondition.renderForm(triggersSection);
@@ -91,7 +87,14 @@ abstract class TriggerCondition {
         container.append(button);
 
         //render the ones the big bad starts with
-        for(TriggerCondition s in owner.triggerConditions) {
+        List<TriggerCondition> all;
+        if(forAlive) {
+            all = owner.triggerConditionsLiving;
+        }else {
+            all = owner.triggerConditionsLand;
+        }
+
+        for (TriggerCondition s in all) {
             s.renderForm(triggersSection);
         }
         return select;
@@ -99,12 +102,7 @@ abstract class TriggerCondition {
 
 
 
-    static List<TriggerCondition> listPossibleTriggers(SerializableScene scene) {
-        List<TriggerCondition> ret = new List<TriggerCondition>();
-        ret.add(new ItemTraitTriggerCondition(scene));
-        ret.add(new CrownedCarapaceTriggerCondition(scene));
-        return ret;
-    }
+
 
 }
 
@@ -114,11 +112,52 @@ abstract class TriggerConditionLiving extends TriggerCondition {
   TriggerConditionLiving(SerializableScene scene) : super(scene);
 
 
+  //need to figure out what type of trigger condition it is.
+  static TriggerCondition fromJSON(JSONObject json, SerializableScene scene) {
+      String name = json["name"];
+      List<TriggerCondition> allConditions = listPossibleTriggers(scene);
+      for(TriggerCondition tc in allConditions) {
+          if(tc.name == name) {
+              TriggerCondition ret = tc.makeNewOfSameType();
+              ret.copyFromJSON(json);
+              ret.scene = scene;
+              return ret;
+          }
+      }
+  }
+
+  static List<TriggerConditionLiving> listPossibleTriggers(SerializableScene scene) {
+      List<TriggerConditionLiving> ret = new List<TriggerCondition>();
+      //ret.add(new ItemTraitTriggerCondition(scene));
+      return ret;
+  }
+
+
 }
 
 //i filter lands or moons or whatever
 abstract class TriggerConditionLand extends TriggerCondition {
   TriggerConditionLand(SerializableScene scene) : super(scene);
+
+
+  //need to figure out what type of trigger condition it is.
+  static TriggerCondition fromJSON(JSONObject json, SerializableScene scene) {
+      String name = json["name"];
+      List<TriggerCondition> allConditions = listPossibleLandTriggers(scene);
+      for(TriggerCondition tc in allConditions) {
+          if(tc.name == name) {
+              TriggerCondition ret = tc.makeNewOfSameType();
+              ret.copyFromJSON(json);
+              ret.scene = scene;
+              return ret;
+          }
+      }
+  }
+
+  static List<TriggerConditionLand> listPossibleTriggers(SerializableScene scene) {
+      List<TriggerConditionLand> ret = new List<TriggerConditionLand>();
+      return ret;
+  }
 
 
 }
