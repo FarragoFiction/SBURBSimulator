@@ -3,7 +3,6 @@ import 'dart:html';
 
 //todo use ItmeTraitTriggerCondition as a guide
 class TargetHasItemWithTrait extends TargetConditionLiving {
-    static String BIGBADNAME = BigBad.BIGBADNAME;
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
     static String ITEMAME = "ITEMNAME";
 
@@ -26,9 +25,8 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     SelectElement select;
 
     @override
-    String name = "PlayerHasItemWithTrait";
+    String name = "HasItemWithTrait";
 
-    static String ITEMTRAITOWNERNAME = "PLAYER";
     ItemTrait itemTrait;
 
     @override
@@ -38,15 +36,11 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
     TargetHasItemWithTrait(SerializableScene scene) : super(scene){
-        replacements[ITEMTRAITOWNERNAME] = getOwnerName;
         replacements[ITEMAME] = getItemName;
         replacements[ITEMTRAITNAME] = getItemName;
 
     }
 
-    String getOwnerName() {
-        return "TODO: GET CARAPACE NAME";
-    }
 
     String getItemName() {
         return "TODO: GET CROWN NAME";

@@ -1,41 +1,60 @@
 import "../../../SBURBSim.dart";
 import 'dart:html';
 
+//has no sub form, just exists
 class TargetHasCrown extends TargetConditionLiving {
+    static String ITEMAME = "CROWNNAME";
+    @override
+    String name = "HasCrown";
+
+    Item crown;
 
     @override
-    String name = "hasCrown";
+    String get importantWord => "N/A";
 
-  TargetHasCrown(SerializableScene scene) : super(scene);
+    //strongly encouraged for this to be replaced
+    //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
+
+    TargetHasCrown(SerializableScene scene) : super(scene){
+        replacements[ITEMAME] = getItemName;
+    }
+
+    String getItemName() {
+        return "TODO: GET CROWN NAME";
+    }
 
 
-  @override
-  void copyFromJSON(JSONObject json) {
-    // TODO: implement copyFromJSON
-  }
+    @override
+    void renderForm(Element div) {
+        DivElement me = new DivElement();
+        div.append(me);
+        me.setInnerHtml("<br>Target Entity must be CROWNED (even if they can't use it). <br>");
+        syncToForm();
+    }
 
-  @override
-  TargetCondition makeNewOfSameType() {
-    // TODO: implement makeNewOfSameType
-  }
+    @override
+    TargetCondition makeNewOfSameType() {
+        return new TargetHasCrown(scene);
+    }
 
-  @override
-  void renderForm(Element div) {
-    // TODO: implement renderForm
-  }
 
-  @override
-  void syncFormToMe() {
-    // TODO: implement syncFormToMe
-  }
 
-  @override
-  void syncToForm() {
-    // TODO: implement syncToForm
-  }
 
-  @override
-  List<GameEntity> filter(List<GameEntity> list) {
-    // TODO: implement filter
-  }
+    @override
+    void syncFormToMe() {
+            //does nothing
+    }
+
+    @override
+    void syncToForm() {
+        scene.syncForm();
+    }
+    @override
+    void copyFromJSON(JSONObject json) {
+
+    }
+    @override
+    List<GameEntity> filter(List<GameEntity> list) {
+        // TODO: implement filter
+    }
 }
