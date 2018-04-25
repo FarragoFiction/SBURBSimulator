@@ -5932,3 +5932,19 @@ where Replacement Object has the same string as it's key and then a lambda cuz i
 the key/values mapped together even when called....
 
 
+~~
+
+okay i can replace shit, what next?
+
+I need scenes to have a flavor text box, and for that box to also have a drop down for every trigger condition
+the scene has. these drop downs need to be added and removed if you add or remove trigger conditions.
+
+Seems complicated, so let's break it down into steps:
+
+STEP 1: FLAVOR TEXT BOX
+    STEP 1a: when you edit box ,edit's scene's text
+    STEP 1b: serialize flavor text
+STEP 2: for each current trigger, add a drop down plus button
+    STEP 2a: when you click button, adds selected word to flavor text box
+
+and now, a quick break
