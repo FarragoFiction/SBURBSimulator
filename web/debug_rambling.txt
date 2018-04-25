@@ -5889,3 +5889,46 @@ My SHORT TERM GOAL is to be able to prove that Big Bads can appear in a session.
  * Test for crashes
  * Teach ShogunBot how to make cards for non Carapace Big Bads
  * Find sessions where the current Big Bads are being summoned
+
+
+
+ How to do FLAVOR TEXT:
+
+ Instead of it being a constant stored as a static (like i do with quests)
+ each TRIGGER CONDITION has a list of replacements.
+
+ A scene's flavor text builder lets you add anything from the list to the text box
+ and then when it's time to actually replace it you itterate through all your conditions
+ lists to replace shit.
+
+ but it's not enough to just be a list of strings, is it. it needs to be a MAP
+ of string, method to replace shit pairs.
+
+ does it need to be a method or could it be a get? i like it being a get i think.
+
+wait that might not work when i try to think it through...
+
+Map<String, LambdaOrWhatever> replacements;
+
+replacements["CARAPACENAME"] = replaceCarapaceName
+
+String replaceCarapaceName(String textWithNameInItProbably){
+    //do the replacey thing
+    return newStringWithTHeNameInsteadOfThePlaceholder;
+}
+
+Big thing I'll need ot do is make sure the thingy to replace is unique....
+
+Alright. Let's go.
+
+Wait shit i need to rethink this
+
+because i need to take in more than just a string. i need to take in....
+yes okay
+
+Map<String, ReplacementObject>
+
+where Replacement Object has the same string as it's key and then a lambda cuz i need to keep
+the key/values mapped together even when called....
+
+

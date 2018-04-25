@@ -1,4 +1,4 @@
 library BigBadLibrary;
 
 export "BigBad.dart";
-export "TriggerCondition.dart";
+export "TriggerConditions/TriggerConditionLib.dart";
