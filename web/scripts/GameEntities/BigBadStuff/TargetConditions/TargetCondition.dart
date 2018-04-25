@@ -157,7 +157,7 @@ abstract class TargetConditionLand extends TargetCondition {
       DivElement container = new DivElement();
 
       DivElement triggersSection = new DivElement();
-      triggersSection.setInnerHtml("<h3>Trigger Conditions:</h3>ALL of these must be TRUE<br>");
+      triggersSection.setInnerHtml("<h3>Target Filters:</h3>Filters Applied In Order<br>");
       div.append(triggersSection);
       div.append(container);
       List<TargetCondition> conditions;

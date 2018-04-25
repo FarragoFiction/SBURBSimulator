@@ -2,9 +2,12 @@ import "../../../SBURBSim.dart";
 import 'dart:html';
 
 //todo use ItmeTraitTriggerCondition as a guide
-class TargetIsCarapace extends TargetConditionLiving {
+class TargetHasItemWithTrait extends TargetConditionLiving {
 
-    TargetIsCarapace(SerializableScene scene) : super(scene);
+    @override
+    String name = "hasItemWithTrait";
+
+    TargetHasItemWithTrait(SerializableScene scene) : super(scene);
 
 
     @override

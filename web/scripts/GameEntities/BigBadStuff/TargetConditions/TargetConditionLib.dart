@@ -1,5 +1,6 @@
 library TargetConditionLib;
 
 export "TargetCondition.dart";
-export "CrownedCarapaceTriggerCondition.dart";
-export "ItemTraitTriggerCondition.dart";
+export "TargetIsCarapace.dart";
+export "TargetHasItemWithTrait.dart";
+export "TargetHasCrown.dart";

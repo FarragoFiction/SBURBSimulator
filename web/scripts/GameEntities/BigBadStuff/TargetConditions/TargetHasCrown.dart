@@ -3,6 +3,9 @@ import 'dart:html';
 
 class TargetHasCrown extends TargetConditionLiving {
 
+    @override
+    String name = "hasCrown";
+
   TargetHasCrown(SerializableScene scene) : super(scene);
 
 

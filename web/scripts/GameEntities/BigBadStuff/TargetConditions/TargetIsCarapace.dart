@@ -4,6 +4,9 @@ import 'dart:html';
 //TODO can pick "any" or pick a specific carapace, use CrownedCarapace trigger as a guide
 class TargetIsCarapace extends TargetConditionLiving {
 
+  @override
+  String name = "IsCarapace";
+
   TargetIsCarapace(SerializableScene scene) : super(scene);
 
 
