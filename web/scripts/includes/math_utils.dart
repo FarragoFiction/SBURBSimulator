@@ -1,4 +1,4 @@
-
+import "dart:math" as Math;
 
 double smoothstep(double n) {
     n = n.clamp(0.0, 1.0);
@@ -28,4 +28,9 @@ double smoothCap(double val, double limit, double startval, double divisor) {
     n = (1-mix) * n + mix * (n / (divisor + n));
 
     return startval + n * (limit - startval);
+}
+
+double angleDiff(double a, double b) {
+    double diff = a - b + Math.PI;
+    return (diff - (diff/(Math.PI*2)).floorToDouble() * Math.PI * 2) - Math.PI;
 }

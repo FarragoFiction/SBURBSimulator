@@ -390,6 +390,8 @@ class ObservatoryViewer {
     static const String param_y = "cy";
     static const String param_seed = "seed";
 
+    static const double _particleSpeedMult = 100.0;
+
     static int _today_session = int.parse(todayToSession(), onError: (String s) => 13);
 
     Action callback_session = null;
@@ -444,7 +446,7 @@ class ObservatoryViewer {
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -740,7 +742,7 @@ class ObservatoryViewer {
             this.overcoat.update(dt);
         }
 
-        this.particleSystem.update(doubletime / 1000);
+        this.particleSystem.update((doubletime * _particleSpeedMult) / 1000);
         _shaderUpdate();
 
         this.renderer
@@ -955,16 +957,16 @@ class ObservatoryViewer {
             ..position.y = y
             ..position.z = z
             ..positionRandomness = posRand
-            ..velocity.x = vx
-            ..velocity.y = vy
-            ..velocity.z = vz
-            ..velocityRandomness = velRand
+            ..velocity.x = vx / _particleSpeedMult
+            ..velocity.y = vy / _particleSpeedMult
+            ..velocity.z = vz / _particleSpeedMult
+            ..velocityRandomness = velRand / _particleSpeedMult
             ..size = size
             ..sizeRandomness = sizeRand
             ..color = colour
             ..colorRandomness = colourRand
-            ..lifetime = life
-            ..turbulence = turbulence
+            ..lifetime = life * _particleSpeedMult
+            ..turbulence = turbulence / _particleSpeedMult
             ..smoothPosition = smooth
         ;
 
@@ -1318,6 +1320,8 @@ class ObservatoryTentacle {
 //##################################################################################
 
 class ShipLogic {
+    static Random _rand = new Random();
+
     static final double SCALE = 10.0;
     static final double BEAT_SCALE = 0.35;
 
@@ -1339,9 +1343,23 @@ class ShipLogic {
 
     double angVel = 0.0;
     double angFriction = 0.925;
-    double turnRateStopped = Math.PI / 16.0;
-    double turnRateMax = Math.PI / 3.0;
+    double turnRateStopped = Math.PI / 15.0;
+    double turnRateMax = Math.PI / 2.5;
     double speedForMaxTurn = 250.0;
+
+    double drift = 0.0;
+    double driftRaw = 0.0;
+    double driftMult = 0.8;
+    double driftSub = 5.0;
+    double driftMinThreshold = 20.0;
+    double driftMaxThreshold = 1000.0;
+
+    double driftMusic = 0.0;
+    double driftRawMusic = 0.0;
+    double driftMultMusic = 0.95;
+    double driftSubMusic = 1.0;
+    double driftMinThresholdMusic = 100.0;
+    double driftMaxThresholdMusic = 1500.0;
 
     double stepTime = 0.0;
     static const double stepLength = 0.05;
@@ -1398,19 +1416,24 @@ class ShipLogic {
 
     void physicsUpdate(num dt) {
         angVel = angVel * angFriction;
+        double turnfraction = (vel.length() / speedForMaxTurn).clamp(0.0, 1.0);
+        double speedfraction = (vel.length() / maxspeed).clamp(0.0, 1.0);
+        double turnrate = (1 - turnfraction) * turnRateStopped + turnfraction * turnRateMax;
         if (turn != 0) {
-            double turnfraction = (vel.length() / speedForMaxTurn).clamp(0.0, 1.0);
-            double turnrate = (1 - turnfraction) * turnRateStopped + turnfraction * turnRateMax;
-
             angVel = (angVel + turnrate * 0.1 * turn).clamp(-turnrate, turnrate);
         }
         this.angle -= angVel * dt;
 
         THREE.Vector2 heading = new THREE.Vector2(Math.sin(angle), Math.cos(angle));
-
         THREE.Vector2 veldir = vel.clone().normalize();
-        num dir = heading.dot(veldir);
 
+        //double a = Math.atan2(veldir.x, veldir.y) - angle + Math.PI;
+        //double angdiff = (a - (a/(Math.PI*2)).floorToDouble() * Math.PI * 2) - Math.PI;
+        double angdiff = angleDiff(Math.atan2(veldir.x, veldir.y), angle);
+
+        this.angVel -= angdiff * turnfraction * turnfraction * dt * 1.0;
+
+        num dir = heading.dot(veldir);
         num absdir = dir.abs();
         num friction = absdir * frictionForward + (1-absdir) * frictionSideways;
 
@@ -1432,8 +1455,43 @@ class ShipLogic {
 
         this.pos.addScaledVector(this.vel, dt);
 
-        for (int i=0; i<10; i++) {
-            this.parent.spawnParticle(pos.x, pos.y, 500.0, -vel.x * 0.5, -vel.y * 0.5, 0, life: 5.0, posRand: 10.0, velRand: 3.0, turbulence: 0.3);
+        // drift factor
+
+        num speed = this.vel.length();
+
+        this.driftRaw = Math.max(0.0, this.driftRaw * this.driftMult - this.driftSub);
+        this.driftRawMusic = Math.max(0.0, this.driftRawMusic * this.driftMultMusic - this.driftSubMusic);
+
+        this.driftRaw += speed * (1.0-absdir);
+        this.driftRawMusic += speed * (1.0-absdir);
+
+        if (driftRaw < 0.1) { driftRaw = 0.0; }
+        if (driftRawMusic < 0.1) { driftRawMusic = 0.0; }
+
+        this.drift = ((driftRaw - driftMinThreshold) / (driftMaxThreshold - driftMinThreshold)).clamp(0.0, 1.0);
+        this.driftMusic = ((driftRawMusic - driftMinThresholdMusic) / (driftMaxThresholdMusic - driftMinThresholdMusic)).clamp(0.0, 1.0);
+
+        // particle stuff
+
+        int count = (turnfraction * (10.0 + (1.0-absdir) * 20.0)).floor();
+        int spacefoam = 0xAAFFAA;
+        int spacefoamdark = 0x508050;
+
+        for (int i=0; i<count; i++) {
+
+            THREE.Vector2 offset = heading.clone().multiplyScalar((_rand.nextDouble(2.0) - 1.0) * 25.0).addScaledVector(vel, -_rand.nextDouble(dt));
+
+            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, 0.0, 0.0, 0, size: 5.0, life: 5.0, posRand: 4.0 + 6.0 * turnfraction, velRand: 1.0 + 3.0 * speedfraction, turbulence: 0.2 + 0.3 * speedfraction, colour: spacefoam);
+        }
+
+        int driftcount = (80.0 * drift).floor();
+        double sprayspeed = (1.0 + 1.5 * drift) * dt;
+
+        for (int i=0; i<driftcount; i++) {
+
+            THREE.Vector2 offset = heading.clone().multiplyScalar((_rand.nextDouble(2.0) - 1.0) * 25.0).addScaledVector(veldir, 5.0 + _rand.nextDouble(5.0)).addScaledVector(vel, -_rand.nextDouble(dt));
+
+            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, vel.x * sprayspeed, vel.y * sprayspeed, 0, size: 5.0 + 3.0 * speedfraction, life: 0.5 + 1.0 * turnfraction, posRand: 1.5, velRand: 2.0 + 5.0 * drift, turbulence: 0.0, colour: spacefoamdark, smooth: true);
         }
     }
 
@@ -1535,7 +1593,7 @@ class ShipSound {
         if (parent.overcoat.active) {
 
             double speed = parent.overcoat.vel.length().toDouble();
-            double fract = (speed / (ShipLogic.maxspeed * 0.8)).clamp(0.0, 1.0);
+            double fract = ((speed / (ShipLogic.maxspeed * 0.8)) + parent.overcoat.driftMusic * 0.35 ).clamp(0.0, 1.0);
 
             _volume.gain.value = 0.8 + 0.7 * fract;
             _muffle.value = (1.0 - fract) * 0.7;
