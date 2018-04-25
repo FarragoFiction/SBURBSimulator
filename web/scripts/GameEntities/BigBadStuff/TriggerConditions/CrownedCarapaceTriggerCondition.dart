@@ -20,7 +20,6 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     CrownedCarapaceTriggerCondition(SerializableScene scene) : super(scene) {
         replacements[CARAPACENAME] = getCarapaceName;
         replacements[CROWNNAME] = getCrownName;
-
     }
 
     String getCarapaceName() {

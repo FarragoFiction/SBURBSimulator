@@ -35,7 +35,24 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    ItemTraitTriggerCondition(SerializableScene scene) : super(scene);
+    ItemTraitTriggerCondition(SerializableScene scene) : super(scene){
+        replacements[ITEMTRAITOWNERNAME] = getOwnerName;
+        replacements[ITEMAME] = getItemName;
+        replacements[ITEMTRAITNAME] = getItemName;
+
+    }
+
+    String getOwnerName() {
+        return "TODO: GET CARAPACE NAME";
+    }
+
+    String getItemName() {
+        return "TODO: GET CROWN NAME";
+    }
+
+    String getItemTraitName() {
+        return itemTrait.toString();
+    }
 
     @override
     bool triggered() {
