@@ -26,7 +26,8 @@ void main() {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
-  todo("trigger condition can be 'any' ");
+  todo("oh god no burn it to the ground, also when rebuilding carapace trigger, have 'any' as option or a specific one");
+  todo("serializable scenes have a bool for first or all targets");
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("scenes should flavor text with replaceable words and shit. (how to do with such complex triggers?)");
   todo("scenes should have effects, summon scenes all start with 'is active'");

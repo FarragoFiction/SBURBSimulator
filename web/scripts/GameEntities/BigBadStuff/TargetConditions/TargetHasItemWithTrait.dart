@@ -64,7 +64,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         Session session = scene.session;
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br>ANY player MUST have ANY item with Trait: <br>");
+        me.setInnerHtml("<br>Target Entity must have an item with Trait: <br>");
 
         select = new SelectElement();
         select.size = 13;
