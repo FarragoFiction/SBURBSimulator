@@ -16,8 +16,8 @@ abstract class TriggerCondition {
     String name = "Generic Trigger";
     TriggerCondition(SerializableScene scene);
 
-    //the keys for this are used for the form builder
-    Map<String, ReplacementObject> replacements = new Map<String, ReplacementObject>();
+    //the keys for this are used for the form builder and the actions are called when it's time to replace words
+    Map<String, Generator> replacements = new Map<String, Generator>();
 
     bool triggered();
     void renderForm(Element div);
@@ -30,6 +30,13 @@ abstract class TriggerCondition {
         json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
         return json;
+    }
+
+    String replaceAll(String textWithShitToReplaceProbably) {
+        for(String key in replacements.keys) {
+            textWithShitToReplaceProbably = textWithShitToReplaceProbably.replaceAll("$key", "${replacements[key]()}");
+        }
+        return textWithShitToReplaceProbably;
     }
 
     //need to figure out what type of trigger condition it is.
@@ -101,23 +108,3 @@ abstract class TriggerCondition {
 
 }
 
-
-
-class ReplacementObject {
-    String key;
-    Lambda methodToReplace;
-
-    String call(String textToReplaceShitIn, String shitIWantInstead) {
-        //TODO no this still isn't working fuck. i need to take a break tho.
-        /**
-         *
-         * there are three strings involved....
-         *
-         * PLACEHOLDERWORD
-         * REPLACEMENTWORD
-         * TEXTTOREPLACESHIT IN.
-         *
-         * How do i want to store this?
-         */
-    }
-}

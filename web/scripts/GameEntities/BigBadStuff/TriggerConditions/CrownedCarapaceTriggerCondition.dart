@@ -17,7 +17,19 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    CrownedCarapaceTriggerCondition(SerializableScene scene) : super(scene);
+    CrownedCarapaceTriggerCondition(SerializableScene scene) : super(scene) {
+        replacements[CARAPACENAME] = getCarapaceName;
+        replacements[CROWNNAME] = getCrownName;
+
+    }
+
+    String getCarapaceName() {
+        return "TODO: GET CARAPACE NAME";
+    }
+
+    String getCrownName() {
+        return "TODO: GET CROWN NAME";
+    }
 
     @override
     bool triggered() {
