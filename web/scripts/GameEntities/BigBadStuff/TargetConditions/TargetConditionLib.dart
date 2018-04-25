@@ -1,5 +1,5 @@
-library TriggerConditionLib;
+library TargetConditionLib;
 
-export "TriggerCondition.dart";
+export "TargetCondition.dart";
 export "CrownedCarapaceTriggerCondition.dart";
 export "ItemTraitTriggerCondition.dart";

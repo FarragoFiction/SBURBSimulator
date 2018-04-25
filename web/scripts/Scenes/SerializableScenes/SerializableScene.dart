@@ -55,8 +55,8 @@ abstract class  SerializableScene extends Scene {
 
 
   //a valid target has all these conditions
-  List<TriggerConditionLiving> triggerConditionsLiving = new List<TriggerCondition>();
-    List<TriggerConditionLand> triggerConditionsLand = new List<TriggerCondition>();
+  List<TargetConditionLiving> triggerConditionsLiving = new List<TargetConditionLiving>();
+    List<TargetConditionLand> triggerConditionsLand = new List<TargetConditionLand>();
   //TODO consider if i want a list of effects as well, might work to do things like "if summoned this way, have this effect"
 
 
@@ -123,7 +123,7 @@ abstract class  SerializableScene extends Scene {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
-            TriggerCondition tc = TriggerCondition.fromJSON(j, this);
+            TargetCondition tc = TargetConditionLand.fromJSON(j, this);
             triggerConditionsLand.add(tc);
         }
     }
@@ -134,7 +134,7 @@ abstract class  SerializableScene extends Scene {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
-            TriggerCondition tc = TriggerCondition.fromJSON(j, this);
+            TargetCondition tc = TargetConditionLiving.fromJSON(j, this);
             triggerConditionsLiving.add(tc);
         }
     }
@@ -146,11 +146,11 @@ abstract class  SerializableScene extends Scene {
         List<JSONObject> triggerCondtionsArrayLiving = new List<JSONObject>();
         List<JSONObject> triggerCondtionsArrayLand = new List<JSONObject>();
 
-        for(TriggerCondition s in triggerConditionsLiving) {
+        for(TargetCondition s in triggerConditionsLiving) {
             triggerCondtionsArrayLiving.add(s.toJSON());
         }
 
-        for(TriggerCondition s in triggerConditionsLand) {
+        for(TargetCondition s in triggerConditionsLand) {
             triggerCondtionsArrayLand.add(s.toJSON());
         }
         //print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
@@ -167,10 +167,16 @@ abstract class  SerializableScene extends Scene {
   bool trigger(List<Player> playerList) {
       landTargets.clear();
       livingTargets.clear();
-      List<GameEntity> possible = session.npcHandler.allEntities;
+      livingTargets = session.npcHandler.allEntities;
+      landTargets = session.allLands;
 
-      for(TriggerCondition tc in triggerConditionsLiving) {
-          tc.
+
+      for(TargetConditionLiving tc in triggerConditionsLiving) {
+          livingTargets = tc.filter(livingTargets);
+      }
+
+      for(TargetConditionLand tc in triggerConditionsLand) {
+          landTargets = tc.filter(landTargets);
       }
 
 
@@ -221,7 +227,9 @@ class SceneForm {
     void drawAddTriggerConditionButton() {
         //trigger conditions know how to add their own damn selves
 
-        TriggerCondition.drawSelectTriggerConditions(container, scene);
+        TargetConditionLiving.drawSelectTriggerConditions(container, scene);
+        TargetConditionLand.drawSelectTriggerConditions(container, scene);
+
     }
 
 

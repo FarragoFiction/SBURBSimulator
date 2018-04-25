@@ -11,6 +11,7 @@ abstract class Scene {
   Scene(Session this.session); //eventually take in session.
 
 
+
   //each scene should know how to be triggered.
   bool trigger(List<Player> playerList);
 

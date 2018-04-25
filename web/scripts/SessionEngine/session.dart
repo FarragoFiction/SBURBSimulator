@@ -34,6 +34,15 @@ class Session {
     Moon furthestRing;
     List<Moon> get moons => <Moon>[prospit, derse];
 
+    List<Land> get allLands {
+        List<Land> targets = new List<Land>();
+        for(Player p in players) {
+            if(p.land != null) targets.add(p.land);
+        }
+        targets.addAll(moons);
+        return targets;
+    }
+
     //used to be stored on moon, which was good and sane....but then what happens when the moon blows up.
     //crashes, that's what. and or there not being any more rings.
     Ring prospitRing;

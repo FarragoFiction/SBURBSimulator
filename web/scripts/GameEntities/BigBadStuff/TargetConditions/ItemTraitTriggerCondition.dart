@@ -1,6 +1,6 @@
 import "../../../SBURBSim.dart";
 import 'dart:html';
-class ItemTraitTriggerCondition extends TriggerCondition{
+class ItemTraitTriggerCondition extends TargetCondition{
     static String BIGBADNAME = BigBad.BIGBADNAME;
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
     static String ITEMAME = "ITEMNAME";
@@ -89,7 +89,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
 
     }
     @override
-    TriggerCondition makeNewOfSameType() {
+    TargetCondition makeNewOfSameType() {
         return new ItemTraitTriggerCondition(scene);
     }
 
@@ -116,7 +116,7 @@ class ItemTraitTriggerCondition extends TriggerCondition{
     }
     @override
     void copyFromJSON(JSONObject json) {
-        String key = json[TriggerCondition.IMPORTANTWORD];
+        String key = json[TargetCondition.IMPORTANTWORD];
         print("key is $key and itemTraits are ${allTraits}");
         itemTrait = allTraits[key];
     }

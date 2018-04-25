@@ -1,7 +1,7 @@
 import "../../../SBURBSim.dart";
 import 'dart:html';
 
-class CrownedCarapaceTriggerCondition extends TriggerCondition {
+class CrownedCarapaceTriggerCondition extends TargetCondition {
     static String CARAPACENAME = "CROWNCARAPACENAME";
     static String CROWNNAME = "CROWNNAME";
 
@@ -64,7 +64,7 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
         syncToForm();
     }
     @override
-    TriggerCondition makeNewOfSameType() {
+    TargetCondition makeNewOfSameType() {
         return new CrownedCarapaceTriggerCondition(scene);
     }
     @override
@@ -85,6 +85,6 @@ class CrownedCarapaceTriggerCondition extends TriggerCondition {
     }
     @override
     void copyFromJSON(JSONObject json) {
-        carapaceInitials = json[TriggerCondition.IMPORTANTWORD];
+        carapaceInitials = json[TargetCondition.IMPORTANTWORD];
     }
 }
