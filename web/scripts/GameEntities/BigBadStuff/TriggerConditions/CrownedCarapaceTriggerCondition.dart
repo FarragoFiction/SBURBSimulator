@@ -2,7 +2,7 @@ import "../../../SBURBSim.dart";
 import 'dart:html';
 
 class CrownedCarapaceTriggerCondition extends TriggerCondition {
-    static String CARAPACENAME = "CARAPACENAME";
+    static String CARAPACENAME = "CROWNCARAPACENAME";
     static String CROWNNAME = "CROWNNAME";
 
     SelectElement select;

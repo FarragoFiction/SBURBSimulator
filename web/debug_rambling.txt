@@ -5948,3 +5948,68 @@ STEP 2: for each current trigger, add a drop down plus button
     STEP 2a: when you click button, adds selected word to flavor text box
 
 and now, a quick break
+
+or wait, what if the drop down is part of the trigger condition?
+
+what would that mean? well for one it would auto show up or be removed when the trigger condition changes... and it'd
+be obvious what it applies to....
+
+but how would it know which text box to add it's text to?
+
+let's do step 1 first
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shit.
+
+Fuck.
+
+I'm confused again.
+
+I need to stop before I code anymore.
+
+What is a scene like?
+
+For a start scene, that's simple:
+
+triggers cause the thingy to become active.
+
+But what about for a more complicated scene, like let's say:
+
+
+BB attacks a PLAYER.
+
+The Trigger Conditions decide that the scene should happen.  maybe but....
+
+~~~~~~~~
+
+Okay.
+
+
+New plan:
+
+SerializableScenes have a list of targets, and boolean var for if they are supposed
+to apply effects to ONE target, or ALL TARGETS.
+
+TRIGGERCONDITIONS
+
+are ways to filter possible targets.
+
+CROWNEDCARAPACE becomes:
+* target is carapace <-- gets all carapaces
+* target is crowned <-- uses output of previous trigger to get only those with crowns
+* target has item X <-- uses output of previous trigger to get only those with item
+
+then it's triggered becomes if List<GameEntity> livingTargets.isNotEmpty && List<Land>  landTargets.isNotEmpty;

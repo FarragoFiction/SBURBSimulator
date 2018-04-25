@@ -108,3 +108,17 @@ abstract class TriggerCondition {
 
 }
 
+
+//i filter living things
+abstract class TriggerConditionLiving extends TriggerCondition {
+  TriggerConditionLiving(SerializableScene scene) : super(scene);
+
+
+}
+
+//i filter lands or moons or whatever
+abstract class TriggerConditionLand extends TriggerCondition {
+  TriggerConditionLand(SerializableScene scene) : super(scene);
+
+
+}

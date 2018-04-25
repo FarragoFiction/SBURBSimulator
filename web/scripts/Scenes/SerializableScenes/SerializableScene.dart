@@ -44,23 +44,19 @@ abstract class  SerializableScene extends Scene {
     static String TARGETGODS = "Gods";
     static String TARGETMORTALS = "Mortals";
 
-
-
-    //subclasses can override this to have different valid targets
-    //this builds the drop down for the forms
-    List<String> get validTargets => <String>[TARGETPLAYERS, TARGETGODS, TARGETMORTALS,TARGETCARAPACES, TARGETDENIZENS, TARGETLANDS, TARGETMOONS, TARGETBIGBADS,TARGETCONSORTS, TARGETGHOSTS, TARGETROBOTS, TARGETDREAMSELVES, TARGETDEADPLAYERS, TARGETDEADCARAPACES];
-
     //flavor text will not influence the actual actions going on, but will change how it is narratively
-  List<String> flavorText = <String>["$BIGBADNAME does a thing to $TARGET in the first flavor","$BIGBADNAME does a thing to $TARGET in the second flavor","$BIGBADNAME does a thing to $TARGET in the third flavor"];
-  GameEntity livingTarget;
+  String flavorText = "";
+  List<GameEntity> livingTargets;
   //can include moons or the battlefield
-  Land landTarget;
+  List<Land> landTargets;
 
-  //player, land, carapace, etc.
-  String targetType;
+  //prefers land to living, otherwise first in list
+  bool oneTarget;
 
-  //everything in this list must be true for this scene to hit
-  List<TriggerCondition> triggerConditions = new List<TriggerCondition>();
+
+  //a valid target has all these conditions
+  List<TriggerConditionLiving> triggerConditionsLiving = new List<TriggerCondition>();
+    List<TriggerConditionLand> triggerConditionsLand = new List<TriggerCondition>();
   //TODO consider if i want a list of effects as well, might work to do things like "if summoned this way, have this effect"
 
 
@@ -72,12 +68,10 @@ abstract class  SerializableScene extends Scene {
 
   @override
   void renderContent(Element div) {
-      String displayText = rand.pickFrom(flavorText);
+      String displayText = "$flavorText";
       displayText =   displayText.replaceAll("$BIGBADNAME", "${gameEntity.htmlTitle()}");
       //if i some how have both, living target will be the one i pick.
-      if(livingTarget != null) displayText =   displayText.replaceAll("$TARGET", "${livingTarget.htmlTitle()}");
-      if(landTarget != null) displayText =   displayText.replaceAll("$TARGET", "${landTarget.name}");
-
+      //TODO replace shit.
       DivElement content = new DivElement();
       div.append(content);
       content.setInnerHtml(displayText);
@@ -89,7 +83,6 @@ abstract class  SerializableScene extends Scene {
   }
 
     void syncForm() {
-      print("$name is syncing form, it has ${triggerConditions.length} triggers and it's game entity is $gameEntity");
         form.syncDataBoxToScene();
         if(gameEntity is BigBad) {
             (gameEntity as BigBad).syncForm();
@@ -116,18 +109,33 @@ abstract class  SerializableScene extends Scene {
 
     void copyFromJSON(JSONObject json) {
         name = json["name"];
-        String triggerContionsString = json["triggerConditions"];
-        loadTriggerConditions(triggerContionsString);
+        String triggerContionsStringLiving = json["triggerConditionsLiving"];
+        String triggerContionsStringLand = json["triggerConditionsLand"];
+
+        loadTriggerConditionsLiving(triggerContionsStringLiving);
+        loadTriggerConditionsLand(triggerContionsStringLand);
+
     }
 
-    void loadTriggerConditions(String weirdString) {
+    void loadTriggerConditionsLand(String weirdString) {
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
             TriggerCondition tc = TriggerCondition.fromJSON(j, this);
-            triggerConditions.add(tc);
+            triggerConditionsLand.add(tc);
+        }
+    }
+
+    void loadTriggerConditionsLiving(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            TriggerCondition tc = TriggerCondition.fromJSON(j, this);
+            triggerConditionsLiving.add(tc);
         }
     }
 
@@ -135,12 +143,20 @@ abstract class  SerializableScene extends Scene {
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = name;
-        List<JSONObject> triggerCondtionsArray = new List<JSONObject>();
-        for(TriggerCondition s in triggerConditions) {
-            triggerCondtionsArray.add(s.toJSON());
+        List<JSONObject> triggerCondtionsArrayLiving = new List<JSONObject>();
+        List<JSONObject> triggerCondtionsArrayLand = new List<JSONObject>();
+
+        for(TriggerCondition s in triggerConditionsLiving) {
+            triggerCondtionsArrayLiving.add(s.toJSON());
+        }
+
+        for(TriggerCondition s in triggerConditionsLand) {
+            triggerCondtionsArrayLand.add(s.toJSON());
         }
         //print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
-        json["triggerConditions"] = triggerCondtionsArray.toString();
+        json["triggerConditionsLiving"] = triggerCondtionsArrayLiving.toString();
+        json["triggerConditionsLand"] = triggerCondtionsArrayLand.toString();
+
         print(json);
         return json;
     }
@@ -149,10 +165,16 @@ abstract class  SerializableScene extends Scene {
   //all trigger conditions must be true for this to be true.
   @override
   bool trigger(List<Player> playerList) {
-      for(TriggerCondition tc in triggerConditions) {
-          if(!tc.triggered()) return false;
+      landTargets.clear();
+      livingTargets.clear();
+      List<GameEntity> possible = session.npcHandler.allEntities;
+
+      for(TriggerCondition tc in triggerConditionsLiving) {
+          tc.
       }
-      return true;
+
+
+      return landTargets.isNotEmpty || livingTargets.isNotEmpty;
   }
 }
 
@@ -181,6 +203,7 @@ class SceneForm {
         drawDataBox();
         drawDeleteButton();
         drawName();
+        drawFlavorText();
         drawAddTriggerConditionButton();
 
     }
@@ -230,6 +253,19 @@ class SceneForm {
             scene.name = nameElement.value;
             syncDataBoxToScene();
         });
+    }
+
+
+    void drawFlavorText() {
+        flavorText = new TextAreaElement();
+        flavorText.value = scene.toDataString();
+        flavorText.cols = 60;
+        flavorText.rows = 10;
+        flavorText.onChange.listen((e) {
+            scene.flavorText = flavorText.value;
+            syncFormToScene();
+        });
+        container.append(dataBox);
     }
 
 
