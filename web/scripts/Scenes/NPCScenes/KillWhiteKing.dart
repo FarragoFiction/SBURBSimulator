@@ -48,7 +48,6 @@ class KillWhiteKing extends Scene {
         Team dTeam = new Team(this.session, [target]);
         dTeam.canAbscond = false;
         Strife strife = new Strife(this.session, [pTeam, dTeam]);
-        strife.timeTillRocks = 10;
         strife.startTurn(div);
 
         DivElement div2 = new DivElement();
