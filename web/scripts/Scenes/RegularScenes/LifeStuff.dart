@@ -221,6 +221,8 @@ class LifeStuff extends Scene {
             CanvasElement canvas = drawDreamBubbleH(div, player, ghost);
             session.removeAvailablePlayer(player);
             session.stats.hasGhostEvents = true;
+            session.stats.hadGhostPowerUp = true;
+
             return canvas;
         } else {
             ////session.logger.info("no ghosts in dream bubble: "+ player.titleBasic() + this.session.session_id);
@@ -270,6 +272,7 @@ class LifeStuff extends Scene {
             appendHtml(div, "<br><br>${this.ghostPsionics(player)}$str${this.communeDeadResult(playerClass, player, ghost, ghostName, enablingAspect)}");
             CanvasElement canvas = this.drawCommuneDead(div, player, ghost);
             session.removeAvailablePlayer(player);
+            session.stats.hadGhostPowerUp = true;
             session.stats.hasGhostEvents = true;
             return canvas;
         } else {
@@ -353,6 +356,7 @@ class LifeStuff extends Scene {
         if (playerClass == SBURBClassManager.KNIGHT || playerClass == SBURBClassManager.PAGE) {
             player.ghostPacts.add(new GhostPact(ghost, enablingAspect)); //help with a later fight.
             ////session.logger.info("Knight or Page promise of ghost attack: " + this.session.session_id);
+            session.stats.hadGhostArmy = true;
             return " The ${player.htmlTitleBasic()} gains a promise of aid from the $ghostName. ";
         } else  {
             player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
@@ -361,9 +365,11 @@ class LifeStuff extends Scene {
                 //session.logger.info("player learning fraymotifs from a ghost ${this.session.session_id}");
                 player.fraymotifs.addAll(ghost.fraymotifs); //copy not reference
                 effect = "They learn ${turnArrayIntoHumanSentence(ghost.fraymotifs)} from the $ghostName. ";
+                session.stats.hadGhostPowerUp = true;
             } else {
                 //player.increasePower(ghost.getStat(Stats.POWER) / 2); //want to increase aspect stats, too.
                 player.addStat(Stats.EXPERIENCE, (ghost.getStat(Stats.EXPERIENCE) + 5) / 2);
+                session.stats.hadGhostPowerUp = true;
                 effect = " The ${player.htmlTitleBasic()} gains valuable wisdom from the $ghostName. Their power grows much more quickly than merely doing quests. ";
             }
 
@@ -436,6 +442,8 @@ class LifeStuff extends Scene {
             CanvasElement canvas = this.drawDrainDead(div, player, ghost, long);
             session.removeAvailablePlayer(player);
             session.stats.hasGhostEvents = true;
+            session.stats.hadGhostPowerUp = true;
+
             return canvas;
         } else {
             ////session.logger.info("no ghosts to commune dead for: "+ player.titleBasic() + this.session.session_id);
@@ -497,6 +505,8 @@ class LifeStuff extends Scene {
             removeFromArray(myGhost, this.session.afterLife.ghosts);
             session.removeAvailablePlayer(player);
             session.stats.hasGhostEvents = true;
+            session.stats.hadGhostRevival = true;
+
             return canvas;
         } else {
             ////session.logger.info("no ghosts to revive dead for: "+ player.titleBasic() + this.session.session_id);

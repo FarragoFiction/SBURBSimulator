@@ -1,6 +1,7 @@
 ///get rid of session having way too many fields. Everything a session is keeping track of for summaries.
 class SessionStats {
     int initialGameEntityId = 0;
+
     bool hasClubs = false;
     bool hasDiamonds = false;
     bool opossumVictory = false;
@@ -18,6 +19,10 @@ class SessionStats {
     bool crashedFromPlayerActions = false;
     bool sickFires = false;
     bool dreamBubbleAfterlife = false;
+    bool hasGhostEvents = false;
+    bool hadGhostRevival = false;
+    bool hadGhostArmy = false;
+    bool hadGhostPowerUp = false;
     bool heroicDeath = false;
     bool won = false;
     bool justDeath = false;
@@ -30,7 +35,6 @@ class SessionStats {
     bool goodLuckEvent = false;
     bool badLuckEvent = false;
     bool hasFreeWillEvents = false;
-    bool hasGhostEvents = false;
     bool hasTier1Events = false;
     bool hasTier2Events = false;
     bool hasTier3Events = false;
