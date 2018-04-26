@@ -446,7 +446,7 @@ class ObservatoryViewer {
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -1477,11 +1477,25 @@ class ShipLogic {
         int spacefoam = 0xAAFFAA;
         int spacefoamdark = 0x508050;
 
+        double s = -angdiff.sign;
+        double trailmult = (0.2 + 0.8 * (1.0 - absdir)) * s;
+
         for (int i=0; i<count; i++) {
 
-            THREE.Vector2 offset = heading.clone().multiplyScalar((_rand.nextDouble(2.0) - 1.0) * 25.0).addScaledVector(vel, -_rand.nextDouble(dt));
+            double side = _rand.nextDouble(2.0) - 1.0;
+            THREE.Vector2 offset = heading.clone().multiplyScalar(side * 25.0).addScaledVector(vel, -_rand.nextDouble(dt));
+            double ol = (side * -2.0) * trailmult;
 
-            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, 0.0, 0.0, 0, size: 5.0, life: 5.0, posRand: 4.0 + 6.0 * turnfraction, velRand: 1.0 + 3.0 * speedfraction, turbulence: 0.2 + 0.3 * speedfraction, colour: spacefoam);
+            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, veldir.y * ol, -veldir.x * ol, 0, size: 5.0, life: 2.0 + _rand.nextDouble(4.0), posRand: 4.0 + 6.0 * turnfraction, velRand: 1.0 + 3.0 * speedfraction, turbulence: 0.2 + 0.3 * speedfraction, colour: spacefoam);
+        }
+
+        int wakecount = (10 * speedfraction * (1-drift)).floor();
+
+        for (int i=0; i<wakecount; i++) {
+            THREE.Vector2 offset = heading.clone().multiplyScalar(3.0).addScaledVector(vel, ((-(i+1)/wakecount)-1)*dt);
+            double ol = 20.0 * trailmult;
+            this.parent.spawnParticle(pos.x + offset.x + (veldir.y * 5 * s), pos.y + offset.y - (veldir.x * 5 * s), 500.0, veldir.y *  ol, -veldir.x *  ol, 0, size: 5.0, life: 5.0 * speedfraction, posRand: 2.0, velRand: 1.0 + 3.0 * speedfraction, turbulence: 0.2 + 0.3 * speedfraction, colour: spacefoam);
+            this.parent.spawnParticle(pos.x + offset.x - (veldir.y * 5 * s), pos.y + offset.y + (veldir.x * 5 * s), 500.0, veldir.y * -ol, -veldir.x * -ol, 0, size: 5.0, life: 5.0 * speedfraction, posRand: 2.0, velRand: 1.0 + 3.0 * speedfraction, turbulence: 0.2 + 0.3 * speedfraction, colour: spacefoam);
         }
 
         int driftcount = (80.0 * drift).floor();
@@ -1491,7 +1505,7 @@ class ShipLogic {
 
             THREE.Vector2 offset = heading.clone().multiplyScalar((_rand.nextDouble(2.0) - 1.0) * 25.0).addScaledVector(veldir, 5.0 + _rand.nextDouble(5.0)).addScaledVector(vel, -_rand.nextDouble(dt));
 
-            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, vel.x * sprayspeed, vel.y * sprayspeed, 0, size: 5.0 + 3.0 * speedfraction, life: 0.5 + 1.0 * turnfraction, posRand: 1.5, velRand: 2.0 + 5.0 * drift, turbulence: 0.0, colour: spacefoamdark, smooth: true);
+            this.parent.spawnParticle(pos.x + offset.x, pos.y + offset.y, 500.0, vel.x * sprayspeed, vel.y * sprayspeed, 0, size: 5.0 + 3.0 * speedfraction, life: (0.5 + 1.0 * turnfraction) * (0.2 + 0.8 * _rand.nextDouble()), posRand: 1.5, velRand: 2.0 + 5.0 * drift, turbulence: 0.0, colour: spacefoamdark, smooth: true);
         }
     }
 
