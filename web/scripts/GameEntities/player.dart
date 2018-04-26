@@ -90,6 +90,14 @@ class Player extends GameEntity{
 
     Moon get moon => _moon;
 
+    String get moonName {
+        if(_moon == null) {
+            return "[ERROR: MOON NOT FOUND]";
+        }else {
+            return _moon.name;
+        }
+    }
+
     void set moon(Moon m) {
         if(m != null) ;
         _moon = m;

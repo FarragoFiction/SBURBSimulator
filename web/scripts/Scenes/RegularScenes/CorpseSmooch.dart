@@ -145,8 +145,8 @@ class CorpseSmooch extends Scene {
 				if(royalty != null){
 					royalty.lootCorpse(d);
 					royalty.addStat(Stats.SANITY, -10);
-					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of ${royalty.moon}, administers the universal remedy for the unawakened ";
-					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on ${d.moon}. ";
+					ret += " The " + royalty.htmlTitle() + ", as a member of the royalty of ${royalty.moonName}, administers the universal remedy for the unawakened ";
+					ret += " to the " + d.htmlTitle() + ". Their dream self takes over on ${d.moonName}. ";
 					if(d.aspect == Aspects.DOOM) ret += "The prophecy is fulfilled. ";
 					this.renderForPlayer(div, this.dreamersToRevive[i], royalty);
 					session.removeAvailablePlayer(royalty);

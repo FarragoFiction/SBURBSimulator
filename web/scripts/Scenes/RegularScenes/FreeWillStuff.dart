@@ -518,7 +518,7 @@ class FreeWillStuff extends Scene {
     String godTierHappens(Player player) {
         String ret = "";
         if (!player.isDreamSelf) {
-            ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. " + "On ${player.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
+            ret += "The " + player.htmlTitleBasic() + "'s body glows, and rises Skaiaward. " + "On ${player.moonName}, their dream self takes over and gets a sweet new outfit to boot.  ";
             this.session.stats.questBed = true;
             ret += player.makeDead("on their quest bed",player); //doesn't actually matter, they can loot their own corpse
         } else {

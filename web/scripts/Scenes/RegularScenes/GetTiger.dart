@@ -69,9 +69,9 @@ class GetTiger extends Scene{
 				//////session.logger.info("Quest bed: " + this.session.session_id);
 				if(p.land != null) {
 					ret += " Upon being laid to rest on their QUEST BED on the " + p.land.name + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
-					ret += "On ${p.moon}, their dream self takes over and gets a sweet new outfit to boot.  ";
+					ret += "On ${p.moonName}, their dream self takes over and gets a sweet new outfit to boot.  ";
 				}else if(p.moon != null) {
-					ret += " You...aren't really sure how a real self made it to the SACRIFICIAL SLAB on ${p.moon}, but there it is.  ";
+					ret += " You...aren't really sure how a real self made it to the SACRIFICIAL SLAB on ${p.moonName}, but there it is.  ";
 					ret += "The " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.  ";
 				}else {
 					p.godDestiny = false; //sorry, no land, no moon, you're fucked.
@@ -94,7 +94,7 @@ class GetTiger extends Scene{
 					p.setStat(Stats.CURRENT_HEALTH, p.getStat(Stats.HEALTH));
 					removeFromArray(this.session.afterLife.findClosesToRealSelf(p), this.session.afterLife.ghosts);
 					//////session.logger.info("sacrificial slab: " + this.session.session_id);
-					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on ${p.moon}, the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
+					ret += " Upon a wacky series of events leaving their corpse on their SACRIFICIAL SLAB on ${p.moonName}, the " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.";
 					this.session.stats.sacrificialSlab = true;
 					Fraymotif f = this.session.fraymotifCreator.makeFraymotif(rand, [p], 3);//first god tier fraymotif
 					p.fraymotifs.add(f);
