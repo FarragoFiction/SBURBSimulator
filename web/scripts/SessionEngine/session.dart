@@ -854,7 +854,8 @@ class Session {
             for (num i = 0; i < spaces.length; i++) {
                 //the best space player either has the most quests done, OR has a land when the current best does not
                 if (spaces[i].landLevel > ret.landLevel || spaces[i].land != null) {
-                    ret = spaces[i];
+                    //not enough to be better, need to also not be null
+                    if(spaces[i].land != null) ret = spaces[i];
                 }
             }
         }
