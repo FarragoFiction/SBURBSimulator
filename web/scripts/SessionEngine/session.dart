@@ -365,27 +365,27 @@ class Session {
          //;
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
-         Fraymotif f = new Fraymotif("Red Miles", 3);
+         Fraymotif f = new Fraymotif("Mini Red Miles", 3);
          f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-         f.desc = " You cannot escape them. ";
+         f.desc = " You cannot escape them, unless you get far enough away. ";
          prospitRing.fraymotifs.add(f);
 
          derseRing = new Ring.withoutOptionalParams("BLACK QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
-         f = new Fraymotif("Red Miles", 3);
+         f = new Fraymotif("Mini Red Miles", 3);
          f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-         f.desc = " You cannot escape them. ";
+         f.desc = " You cannot escape them, unless you get far enough away. ";
          derseRing.fraymotifs.add(f);
 
          prospitScepter = new Scepter.withoutOptionalParams("WHITE KING'S SCEPTER",[ ItemTraitFactory.KINGLY] );
-         f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+         f = new Fraymotif("Mini Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
          f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-         f.desc = " The very meteors from the Reckoning rain down. ";
+         f.desc = " The very meteors from the Reckoning rain down. But small. ";
          prospitScepter.fraymotifs.add(f);
 
          derseScepter = new Scepter.withoutOptionalParams("BLACK KING'S SCEPTER",[ ItemTraitFactory.KINGLY] );
-         f = new Fraymotif("Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
+         f = new Fraymotif("Mini Reckoning Meteors", 3); //TODO eventually check for this fraymotif (just lik you do troll psionics) to decide if you can start recknoing.;
          f.effects.add(new FraymotifEffect(Stats.POWER, 2, true));
-         f.desc = " The very meteors from the Reckoning rain down. ";
+         f.desc = " The very meteors from the Reckoning rain down. But small.";
          derseScepter.fraymotifs.add(f);
 
 
