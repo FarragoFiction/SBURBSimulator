@@ -321,8 +321,13 @@ class MailSideQuest extends Scene {
       //BUT not guaranteed, can still do dumb shit like alchemize with the package.
       if(package != null && session.rand.nextDouble() > .01) return true;
       if(session.rand.nextDouble() > .03  && gameEntity is Carapace) return true;
-      if(session.rand.nextDouble() > .06  && !(gameEntity is Carapace)) {
-          session.logger.info("AB: Non carapace is delivering the mail. Okay. Whatever floats your boat.");
+      if(session.rand.nextDouble() > .06  && !(gameEntity is Carapace) && !(session is DeadSession)) {
+          //session.logger.info("AB: Non carapace is delivering the mail. Okay. Whatever floats your boat.");
+          return true;
+      }
+
+      if(session.rand.nextDouble() > .09  && !(gameEntity is Carapace) && (session is DeadSession)) {
+          session.logger.info("AB: Non carapace is delivering the mail in a dead session. Okay. Whatever floats your boat.");
           return true;
       }
 
