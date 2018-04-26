@@ -92,6 +92,7 @@ class Player extends GameEntity{
 
     String get moonName {
         if(_moon == null) {
+            session.logger.info("AB: a player without a moon did something that needed a moon. probably kissing someone. whatever.");
             return "[ERROR: MOON NOT FOUND]";
         }else {
             return _moon.name;
