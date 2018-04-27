@@ -82,6 +82,8 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     await session.startSession();
     SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);
+    addLineageRow(table, summary, simSummary);
+
     addFrogStatusRow(table, summary, simSummary);
     addNumStatsRows(table, summary, simSummary);
     addBoolStatsRows(table, summary, simSummary);
@@ -91,6 +93,10 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
 
 void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
     addComparisonRow(table, "MVP", "${s1.mvpName}:${s1.mvpGrist}", "${s2.mvpName}:${s2.mvpGrist}");
+}
+
+void addLineageRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    addComparisonRow(table, "Session Lineage", "${s1.lineageString}", "${s2.lineageString}");
 }
 
 void addBoolStatsRows(TableElement table, SessionSummary s1, SessionSummary s2) {
