@@ -34,6 +34,7 @@ class SessionSummary {
     Map<String, bool> bool_stats = <String, bool>{}; //most things
     Map<String, num> num_stats = <String, num>{}; //num_living etc
     String frogStatus; //doesn't need to be in a hash.
+    String lineageString;
     List<MiniPlayer> miniPlayers = <MiniPlayer>[]; //array of hashes from players
     List<Player> players = <Player>[]; //TODO do i need this AND this.miniPlayers thing???
     Player mvp;
@@ -147,6 +148,7 @@ class SessionSummary {
         }
 
         frogStatus = json["frogStatus"];
+        lineageString = json["lineageString"];
         mvpName = json["mvpName"];
         mvpGrist = json["mvpGrist"];
         if(json["scratched"] == boolExample.toString()) {
@@ -181,6 +183,7 @@ class SessionSummary {
         }
 
         json["frogStatus"] = frogStatus;
+        json["lineageString"] = lineageString;
         json["mvpName"] = mvpName;
         json["mvpGrist"] = mvpGrist;
         json["session_id"] = session_id.toString();
@@ -592,6 +595,7 @@ class SessionSummary {
         summary.setBoolStat("hasSpades", session.stats.hasSpades);
         summary.setBoolStat("hasClubs", session.stats.hasClubs);
         summary.setBoolStat("hasHearts", session.stats.hasHearts);
+        if(summary.childSession != null) summary.lineageString = summary.decodeLineageGenerateHTML();
         return summary;
     }
 

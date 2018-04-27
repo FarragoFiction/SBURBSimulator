@@ -94,13 +94,13 @@ void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
 }
 
 void addBoolStatsRows(TableElement table, SessionSummary s1, SessionSummary s2) {
-    for(String b in s1.bool_stats.keys) {
+    for(String b in s2.bool_stats.keys) {
         addComparisonRow(table, b, "${s1.bool_stats[b]}", "${s2.bool_stats[b]}");
     }
 }
 
 void addNumStatsRows(TableElement table, SessionSummary s1, SessionSummary s2) {
-    for(String b in s1.num_stats.keys) {
+    for(String b in s2.num_stats.keys) {
         addComparisonRow(table, b, "${s1.num_stats[b]}", "${s2.num_stats[b]}");
     }
 }
