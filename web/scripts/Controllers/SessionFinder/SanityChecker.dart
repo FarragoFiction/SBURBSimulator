@@ -82,37 +82,47 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     await session.startSession();
     SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);
+    addIsComboRow(table, summary, simSummary);
     container.append(table);
 }
 
 
 void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
-    //TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
+    addComparisonRow(table, "MVP", "${s1.mvpName}:${s1.mvpGrist}", "${s2.mvpName}:${s2.mvpGrist}");
+}
+
+void addIsComboRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    addComparisonRow(table, "MVP", "${s1.bool_stats["comboSessions"]}", "${s1.bool_stats["comboSessions"]}");
+}
+
+void addComparisonRow(TableElement table, String valueName, String value1, String value2) {
+//TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
     Colour color = ReferenceColours.WHITE;
-    if(s1.mvpGrist != s2.mvpGrist) {
+    if(value1 != value2) {
         color = ReferenceColours.RED;
     }
     TableRowElement tr = new TableRowElement();
     table.append(tr);
     TableCellElement td1 = new TableCellElement();
-    td1.text = "MVP:";
+    td1.text = "${valueName}:";
     td1.style.border = "1px solid black";
     td1.style.backgroundColor = color.toStyleString();
 
     TableCellElement td2 = new TableCellElement();
-    td2.setInnerHtml("${s1.mvpName}:${s1.mvpGrist}");
+    td2.setInnerHtml("value1");
     td2.style.border = "1px solid black";
     td2.style.backgroundColor = color.toStyleString();
 
 
     TableCellElement td3 = new TableCellElement();
-    td3.setInnerHtml("${s2.mvpName}:${s2.mvpGrist}");
+    td3.setInnerHtml("${value2}");
     td3.style.border = "1px solid black";
 
     tr.append(td1);
     tr.append(td2);
     tr.append(td3);
 }
+
 
 void todo(String text) {
     print("todo: $text");
