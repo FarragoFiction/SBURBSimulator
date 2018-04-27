@@ -82,7 +82,9 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     await session.startSession();
     SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);
-    addIsComboRow(table, summary, simSummary);
+    addFrogStatusRow(table, summary, simSummary);
+    addNumStatsRow(table, summary, simSummary);
+    addBoolStatsRow(table, summary, simSummary);
     container.append(table);
 }
 
@@ -91,10 +93,18 @@ void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
     addComparisonRow(table, "MVP", "${s1.mvpName}:${s1.mvpGrist}", "${s2.mvpName}:${s2.mvpGrist}");
 }
 
-void addIsComboRow(TableElement table, SessionSummary s1, SessionSummary s2) {
-    addComparisonRow(table, "MVP", "${s1.bool_stats["comboSessions"]}", "${s1.bool_stats["comboSessions"]}");
+void addBoolStatsRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    addComparisonRow(table, "Bool Stats", "${s1.bool_stats}", "${s2.bool_stats}");
 }
 
+void addNumStatsRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    addComparisonRow(table, "Num Stats", "${s1.num_stats}", "${s2.num_stats}");
+}
+
+
+void addFrogStatusRow(TableElement table, SessionSummary s1, SessionSummary s2) {
+    addComparisonRow(table, "Frog Status", "${s1.frogStatus}", "${s2.frogStatus}");
+}
 void addComparisonRow(TableElement table, String valueName, String value1, String value2) {
 //TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
     Colour color = ReferenceColours.WHITE;
@@ -104,12 +114,12 @@ void addComparisonRow(TableElement table, String valueName, String value1, Strin
     TableRowElement tr = new TableRowElement();
     table.append(tr);
     TableCellElement td1 = new TableCellElement();
-    td1.text = "${valueName}:";
+    td1.text = "$valueName:";
     td1.style.border = "1px solid black";
     td1.style.backgroundColor = color.toStyleString();
 
     TableCellElement td2 = new TableCellElement();
-    td2.setInnerHtml("value1");
+    td2.setInnerHtml("$value1");
     td2.style.border = "1px solid black";
     td2.style.backgroundColor = color.toStyleString();
 
