@@ -83,8 +83,8 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);
     addFrogStatusRow(table, summary, simSummary);
-    addNumStatsRow(table, summary, simSummary);
-    addBoolStatsRow(table, summary, simSummary);
+    addNumStatsRows(table, summary, simSummary);
+    addBoolStatsRows(table, summary, simSummary);
     container.append(table);
 }
 
@@ -93,12 +93,16 @@ void addMVPRow(TableElement table, SessionSummary s1, SessionSummary s2) {
     addComparisonRow(table, "MVP", "${s1.mvpName}:${s1.mvpGrist}", "${s2.mvpName}:${s2.mvpGrist}");
 }
 
-void addBoolStatsRow(TableElement table, SessionSummary s1, SessionSummary s2) {
-    addComparisonRow(table, "Bool Stats", "${s1.bool_stats}", "${s2.bool_stats}");
+void addBoolStatsRows(TableElement table, SessionSummary s1, SessionSummary s2) {
+    for(String b in s1.bool_stats.keys) {
+        addComparisonRow(table, b, "${s1.bool_stats[b]}", "${s2.bool_stats[b]}");
+    }
 }
 
-void addNumStatsRow(TableElement table, SessionSummary s1, SessionSummary s2) {
-    addComparisonRow(table, "Num Stats", "${s1.num_stats}", "${s2.num_stats}");
+void addNumStatsRows(TableElement table, SessionSummary s1, SessionSummary s2) {
+    for(String b in s1.num_stats.keys) {
+        addComparisonRow(table, b, "${s1.num_stats[b]}", "${s2.num_stats[b]}");
+    }
 }
 
 
