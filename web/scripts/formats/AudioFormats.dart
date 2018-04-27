@@ -1,17 +1,45 @@
 import 'dart:async';
 import "dart:html";
+import "dart:typed_data";
+import "dart:web_audio";
 
 import "../SBURBSim.dart";
-import '../includes/path_utils.dart';
 
-abstract class AudioFormat extends ElementFileFormat<AudioElement> {
+abstract class AudioFormat extends BinaryFileFormat<AudioBufferSourceNode> {
+    @override
+    Future<AudioBufferSourceNode> read(ByteBuffer input) async {
+        AudioBufferSourceNode node = Audio.context.createBufferSource();
+        node.buffer = await Audio.context.decodeAudioData(input);
+        return node;
+    }
+
+    @override
+    Future<ByteBuffer> write(AudioBufferSourceNode data) => throw "Audio saving not yet implemented";
+}
+
+class MP3Format extends AudioFormat {
+    @override
+    String mimeType() => "audio/mpeg";
+
+    @override
+    String header() => null;
+}
+
+class OggFormat extends AudioFormat {
+    @override
+    String mimeType() => "audio/ogg";
+
+    @override
+    String header() => null;
+}
+
+// streamed versions, good for music and stuff where exact timings aren't 100% necessary
+
+abstract class StreamedAudioFormat extends ElementFileFormat<AudioElement> {
 
     @override
     Future<AudioElement> read(String input) async {
-        print(input);
         AudioElement element = new AudioElement(input);
-        print(element.src);
-        //await element.onCanPlay.first;
         await element.onCanPlayThrough.first;
         return element;
     }
@@ -20,12 +48,12 @@ abstract class AudioFormat extends ElementFileFormat<AudioElement> {
     Future<String> write(AudioElement data) => throw "Audio write not implemented";
 }
 
-class MP3Format extends AudioFormat {
+class StreamedMP3Format extends StreamedAudioFormat {
     @override
     String mimeType() => "audio/mpeg";
 }
 
-class OggFormat extends AudioFormat {
+class StreamedOggFormat extends StreamedAudioFormat {
     @override
     String mimeType() => "audio/ogg";
 }

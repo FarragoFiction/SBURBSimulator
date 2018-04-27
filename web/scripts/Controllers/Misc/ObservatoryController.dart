@@ -439,14 +439,14 @@ class ObservatoryViewer {
 
     ShipLogic overcoat;
 
-    Action _shaderUpdate = null;
+    Lambda<double> _shaderUpdate = null;
 
     ObservatoryViewer(int this.canvasWidth, int this.canvasHeight, {int this.cellpadding = 0, Element this.eventDelegate = null}) {
         double hw = this.canvasWidth / 2;
         double hh = this.canvasHeight / 2;
         this.viewRadius = Math.sqrt(hw*hw + hh*hh);
         this.landDetails = new ObservatoryLandDetails(this);
-        //this.overcoat = new ShipLogic(this); // TODO: The Big Man HASSS the ship
+        this.overcoat = new ShipLogic(this); // The Big Man HASSS the ship, forever!
     }
 
     Future<Null> setup([int seed = 0]) async {
@@ -496,6 +496,18 @@ class ObservatoryViewer {
 
         THREE.setUniform(postShader, "image", new THREE.ShaderUniform<THREE.TextureBase>()..value = this.renderTarget.texture);
         THREE.setUniform(postShader, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.canvasWidth, this.canvasHeight));
+
+        THREE.setUniform(postShader, "speedlines", new THREE.ShaderUniform<THREE.TextureBase>()..value = (new THREE.Texture(await Loader.getResource("images/textures/speedlines.png"))
+            ..wrapS = THREE.RepeatWrapping
+            ..wrapT = THREE.RepeatWrapping
+            ..needsUpdate = true
+        ));
+
+        THREE.Vector2 vel = new THREE.Vector2.zero();
+        THREE.setUniform(postShader, "velocity", new THREE.ShaderUniform<THREE.Vector2>()..value = vel);
+        THREE.ShaderUniform<double> speedLineOffset = new THREE.ShaderUniform<double>()..value = 0.0;
+        THREE.setUniform(postShader, "speedlineoffset", speedLineOffset);
+
         THREE.setUniform(postShader, "overcoat", postOvercoatUniform);
         THREE.setUniform(postShader, "beat", postBeat);
         
@@ -518,17 +530,18 @@ class ObservatoryViewer {
 
         this.scene.add(this.particleSystem);
 
-        //this.goToSeed(seed);
-        //this.goToCoordinates(100, 100);
-
         if (this.overcoat != null) {
             this.scene.add(this.overcoat.shipModel);
         }
 
-        this._shaderUpdate = () {
+        this._shaderUpdate = (double dt) {
             if (this.overcoat != null) {
                 postOvercoatUniform.value = this.overcoat.active;
                 postBeat.value = this.overcoat.sound.beat;
+                vel.x = this.overcoat.vel.x;
+                vel.y = this.overcoat.vel.y;
+
+                speedLineOffset.value = (speedLineOffset.value + (this.overcoat.vel.length() / 512.0) * dt) % 1.0;
             }
         };
 
@@ -554,6 +567,7 @@ class ObservatoryViewer {
         this.setCoordinateElement();
         this.setSessionElement();
 
+        Audio.masterVolume.value = 0.25;
     }
 
     void mouseDown(MouseEvent e) {
@@ -743,7 +757,7 @@ class ObservatoryViewer {
         }
 
         this.particleSystem.update((doubletime * _particleSpeedMult) / 1000);
-        _shaderUpdate();
+        _shaderUpdate(dt);
 
         this.renderer
             ..render(this.scene, this.camera, this.renderTarget)
@@ -1410,7 +1424,7 @@ class ShipLogic {
             this.physicsUpdate(stepLength);
         }
 
-        this.sound.updateSound();
+        this.sound.updateSound(dt);
         graphicsUpdate(stepTime);
     }
 
@@ -1555,7 +1569,7 @@ class ShipSound {
     final ObservatoryViewer parent;
 
     GainNode _volume;
-    AudioElement _music;
+    AudioBufferSourceNode _music;
     MuffleEffect _muffle;
     PannerNode _panning;
 
@@ -1564,7 +1578,7 @@ class ShipSound {
     ShipSound(ObservatoryViewer this.parent) {}
 
     Future<Null> init() async {
-        Audio.masterVolume.value = 0.25;
+        Audio.masterVolume.value = 0.0;
         _panning = Audio.context.createPanner()
             ..panningModel = "HRTF"
             ..distanceModel = "linear"
@@ -1575,27 +1589,27 @@ class ShipSound {
         _volume = Audio.context.createGain()..connectNode(_panning);
         _muffle = new MuffleEffect(0.0)..output.connectNode(_volume);
         _music = await Audio.load("audio/spiderblood")
-            ..muted = true
-            ..autoplay = true
             ..loop = true
-            //..controls = true
-            ..currentTime=35.9
         ;
-        Audio.node(_music)..connectNode(_muffle.input);
+        _music..connectNode(_muffle.input);
 
         this.updateSound();
         this.startSound();
     }
 
+    bool _started = false;
     void startSound() {
         //print("starting music");
         //querySelector("#story")..append(_music);
-        _music.play();
-        _music.muted = false;
+        if (!_started) {
+            beat = 0.02;
+            _music.start(0);
+            _started = true;
+        }
         Audio.context.resume();
     }
 
-    void updateSound() {
+    void updateSound([num dt = 0]) {
         double shipx = parent.overcoat.pos.x.toDouble();
         double shipy = parent.overcoat.pos.y.toDouble();
         double camx = parent.camx.toDouble();
@@ -1616,7 +1630,7 @@ class ShipSound {
             _muffle.value = 1.0;
         }
 
-        beat = (_music.currentTime * BPS + BEAT_OFFSET) % 1.0;
+        beat = (beat + dt * BPS) % 1.0;
     }
 }
 

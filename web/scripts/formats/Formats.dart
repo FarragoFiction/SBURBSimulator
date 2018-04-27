@@ -28,7 +28,9 @@ abstract class Formats {
     static OBJFormat obj;
 
     static MP3Format mp3;
+    static StreamedMP3Format mp3Streamed;
     static OggFormat ogg;
+    static StreamedOggFormat oggStreamed;
 
     static void init() {
         if (!_INITALISED) {
@@ -69,9 +71,10 @@ abstract class Formats {
 
         mp3 = new MP3Format();
         addMapping(mp3, "mp3");
-
+        mp3Streamed = new StreamedMP3Format();
         ogg = new OggFormat();
         addMapping(ogg, "ogg");
+        oggStreamed = new StreamedOggFormat();
     }
 
     static void addMapping<T,U>(FileFormat<T,U> format, String extension, [String mimeType = null]) {

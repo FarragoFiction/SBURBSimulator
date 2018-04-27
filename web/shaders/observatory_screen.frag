@@ -9,6 +9,53 @@ uniform float beat;
 const float distort_size = 45.0;
 const float PI = 3.1415926535897932384626433832795;
 
+const float speedlinescale = 2.0;
+uniform sampler2D speedlines;
+uniform vec2 velocity;
+uniform float speedlineoffset;
+
+const float minspeed = 450.0;
+const float maxspeed = 750.0;
+
+vec4 mixlines(vec2 c) {
+    vec4 screen = texture2D(image, c);
+
+    float speed = length(velocity);
+    float factor = (speed - minspeed) / (maxspeed - minspeed);
+
+    if (factor <= 0.0) {
+        return screen;
+    }
+
+    factor = clamp(factor, 0.0,1.0);
+
+    factor = factor * 0.5 + (factor * factor) * 0.5;
+
+    vec2 dir;
+    if (speed <= 0.0) {
+        dir = vec2(1.0,0.0);
+    } else {
+        dir = normalize(velocity);
+    }
+
+    vec2 ratio = (size / (512.0 * speedlinescale));
+
+    vec2 lc = c * ratio;
+
+    lc = lc - 0.5 * ratio;
+    lc = vec2(lc.x * dir.x - lc.y * dir.y, lc.x * dir.y + lc.y * dir.x);
+    lc += 0.5 * ratio;
+    lc.x += speedlineoffset;
+
+    float lines = clamp(texture2D(speedlines, lc).r - (1.0 - factor), 0.0, 1.0) * 0.25;;
+
+    vec4 col = screen;
+
+    col.rgb += vec3(lines * 0.65, lines, lines * 0.65);
+
+    return col;
+}
+
 void main() {
     vec2 pixel = 1.0 / size;
     vec4 col = vec4(0.5,0.5,0.5,1.0);
@@ -36,9 +83,9 @@ void main() {
     float scan = sin(distorted.y * PI * size.y) * 0.1 + 1.0;
 
     if (!(distorted.x < 0.0 || distorted.x > 1.0 || distorted.y < 0.0 || distorted.y > 1.0)) {
-        vec4 red = texture2D(image, distorted3);
-        vec4 green = texture2D(image, distorted2);
-        vec4 blue = texture2D(image, distorted);
+        vec4 red = mixlines(distorted3);
+        vec4 green = mixlines(distorted2);
+        vec4 blue = mixlines(distorted);
 
         col = blue;
         col.r = red.r;

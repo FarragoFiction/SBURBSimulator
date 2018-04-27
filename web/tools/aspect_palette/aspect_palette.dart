@@ -65,7 +65,7 @@ Future<Null> testAudio() async {
     //print(imageElementTest.src);
     //querySelector("#stuff").append(imageElementTest);
     //AudioElement soundElement = await  Loader.getResource("audio/spiderblood.ogg");
-    AudioElement soundElement = await Audio.load("audio/spiderblood");
+    AudioElement soundElement = await Audio.loadStreamed("audio/spiderblood");
 
     AudioSourceNode sound = Audio.node(soundElement);
 

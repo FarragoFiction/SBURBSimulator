@@ -2,6 +2,7 @@ import "dart:async";
 import "dart:html";
 import "dart:web_audio";
 
+import '../formats/Formats.dart';
 import "../loader/loader.dart";
 
 export "muffleEffect.dart";
@@ -25,13 +26,24 @@ abstract class Audio {
         canPlayOgg = testElement.canPlayType("audio/ogg") != "";
     }
 
-    static Future<AudioElement> load(String path) {
+    static Future<AudioBufferSourceNode> load(String path) {
         checkFormats();
 
         if (canPlayOgg) {
             return Loader.getResource("$path.ogg");
         } else if (canPlayMP3) {
             return Loader.getResource("$path.mp3");
+        }
+        throw "Browser does not support ogg or mp3, somehow?!";
+    }
+
+    static Future<AudioElement> loadStreamed(String path) {
+        checkFormats();
+
+        if (canPlayOgg) {
+            return Loader.getResource("$path.ogg", format: Formats.oggStreamed);
+        } else if (canPlayMP3) {
+            return Loader.getResource("$path.mp3", format: Formats.mp3Streamed);
         }
         throw "Browser does not support ogg or mp3, somehow?!";
     }
