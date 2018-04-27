@@ -119,6 +119,8 @@ void addComparisonRow(TableElement table, String valueName, String value1, Strin
 //TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
     Colour color = ReferenceColours.WHITE;
     if(value1 != value2) {
+        window.alert("insanity found, colored red, search for INSANITY.");
+        valueName = "$valueName(INSANITY)";
         color = ReferenceColours.RED;
     }
     TableRowElement tr = new TableRowElement();
