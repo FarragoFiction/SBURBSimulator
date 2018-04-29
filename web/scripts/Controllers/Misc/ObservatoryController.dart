@@ -11,6 +11,19 @@ import '../../includes/predicates.dart';
 import '../../navbar.dart';
 import '../../random.dart';
 
+/*
+todo:
+
+- move session generation to a queue system which gives delays for the main drawing to go ahead
+- placeholders for waiting sessions
+- averaging out generation times to give a budget for generation in an attempt to keep stuff smooth
+- sorting the generation list in order of relevancy, so using time-averaged direction of motion to inform ordering
+- drop sessions outside of scope if they are on the list by the time it's their turn
+
+- make sure that the queue system could use threading later to make it even more streamlined
+
+ */
+
 Future<Null> main() async {
     globalInit();
     await Renderer.loadThree();
