@@ -116,7 +116,7 @@ class VoidyStuff extends Scene {
 	}
 
 	bool checkCanGod() {
-		if(!this.player.godDestiny || this.player.godTier || this.player.land == null ) return false;
+		if(!this.player.godDestiny || this.player.godTier || player.canGodTierSomeWay() ) return false;
 		bool ret = false;
 		//more likely to happen the longer they've been playing the game.
 		if(!player.denizenMinionDefeated) return rand.nextDouble()>0.9;

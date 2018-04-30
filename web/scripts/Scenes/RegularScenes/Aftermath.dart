@@ -292,7 +292,7 @@ class Aftermath extends Scene {
                 }
                 end += " Who knew that such a pointless mini-game was actually crucial to the ending? ";
                 end += " No universe frog, no new universe to live in. Thems the breaks. ";
-            }else if(spacePlayer.land == null) {
+            }else if(spacePlayer.land == null || spacePlayer.land.dead) {
                 end += " The Players realize, far too late, that with the destruction of the ${spacePlayer.htmlTitle()}'s land, there is no more Forge in which to deploy the Ultimate Frog. ";
                 session.stats.brokenForge = true;
             }else if (!session.enoughGristForAny()) {

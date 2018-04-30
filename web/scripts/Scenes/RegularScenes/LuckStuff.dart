@@ -218,10 +218,11 @@ class LuckStuff extends Scene{
 		////session.logger.info("roll100 in " + this.session.session_id + " roll is: " + roll.value);
 
 		this.session.stats.goodLuckEvent = true; // moved to top because at the bottom it's dead code -PL
+		if(!roll.player.canGodTierSomeWay()) return roll95(roll);
 
-		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf)){
+		if(roll.player.godDestiny && !roll.player.godTier && (roll.player.dreamSelf || roll.player.isDreamSelf) && roll.player.hasMoon()){
 			String ret = " What the HELL!? The " + roll.player.htmlTitle() + " managed to somehow lose to REGULAR FUCKING ENEMIES!? Is that even POSSIBLE!? This is BULLSHIT. Wait. What's going on? How did they end up on their " ;
-			if(!roll.player.isDreamSelf){
+			if(!roll.player.isDreamSelf && roll.player.canGodTierSomeWay()){
 				ret += "QUEST BED!? Their body glows, and rises Skaiaward. "+"On ${roll.player.moonName}, their dream self takes over and gets a sweet new outfit to boot.  ";
 				this.session.stats.questBed = true;
 				ret += roll.player.makeDead("luckily on their Quest Bed",roll.player);

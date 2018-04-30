@@ -1944,6 +1944,19 @@ class Player extends GameEntity{
         return godTier || isDreamSelf || land == null || land.firstCompleted || (aspect == Aspects.BREATH && hasPowers()) ;
     }
 
+    bool canGodTierSomeWay() {
+        if(isDreamSelf) return hasMoon();
+        return hasLand();
+    }
+
+    bool hasLand() {
+        return land != null && !land.dead;
+    }
+
+    bool hasMoon() {
+        return moon != null && !moon.dead;
+    }
+
     ///not static because who can help me varies based on who i am (space is knight, for example)
     ///no longer inside a scene because multiple scenes need a consistent result from this
      Player findHelper(List<Player> players) {

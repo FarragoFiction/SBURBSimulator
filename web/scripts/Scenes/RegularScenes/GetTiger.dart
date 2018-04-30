@@ -67,10 +67,10 @@ class GetTiger extends Scene{
 				var p = withd[i];
 				p.setStat(Stats.CURRENT_HEALTH, p.getStat(Stats.HEALTH));
 				//////session.logger.info("Quest bed: " + this.session.session_id);
-				if(p.land != null) {
+				if(p.hasLand()) {
 					ret += " Upon being laid to rest on their QUEST BED on the " + p.land.name + ", the " + p.htmlTitle() + "'s body glows, and rises Skaiaward. ";
 					ret += "On ${p.moonName}, their dream self takes over and gets a sweet new outfit to boot.  ";
-				}else if(p.moon != null) {
+				}else if(p.hasMoon()) {
 					ret += " You...aren't really sure how a real self made it to the SACRIFICIAL SLAB on ${p.moonName}, but there it is.  ";
 					ret += "The " + p.htmlTitle() + " glows and ascends to the God Tiers with a sweet new outfit.  ";
 				}else {
