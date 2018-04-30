@@ -9,7 +9,7 @@ BigBad bigBad = new BigBad("Sample Big Bad", new Session(-13));
 void main() {
   loadNavbar();
   globalInit();
-  bigBad.session.setupMoons();
+  bigBad.session.setupMoons("BigBad setup");
 
   div = querySelector("#story");
   todoElement = new UListElement();

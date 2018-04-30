@@ -277,7 +277,7 @@ class CarapaceSummary {
     }
     void defaultSession() {
          session = new Session(-13);
-         session.setupMoons();
+         session.setupMoons("getting a default session");
     }
 
 

@@ -19,7 +19,7 @@ void main()
   self = SimController.instance;
   globalInit();
   session = new Session(SimController.instance.initial_seed);
-  session.setupMoons();
+  session.setupMoons("Char Viewer Setup");
   querySelector("#draw12Button").onClick.listen((e) => draw12(session));
 
   self.renderHeader();

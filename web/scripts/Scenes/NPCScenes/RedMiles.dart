@@ -70,7 +70,7 @@ class RedMiles extends Scene {
 
       List<Land> targets = new List<Land>();
       for(Player p in session.players) {
-        if(p.land != null) targets.add(p.land);
+        if(p.land != null  && !p.land.dead) targets.add(p.land);
       }
 
       if(targets.isEmpty) return destroyMoon(div, count);
@@ -95,8 +95,8 @@ class RedMiles extends Scene {
 
         List<Moon> targets = new List<Moon>();
         for(Moon p in session.moons) {
-            if(p != null) {
-                //;
+            if(p != null && !p.dead) {
+                session.logger.info("$p is not null for destroying");
                 targets.add(p);
             }
         }

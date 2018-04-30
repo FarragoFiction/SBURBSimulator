@@ -14,6 +14,8 @@ class Land extends Object with FeatureHolder {
     //but for a MOON it will be every carapace and all associated dream selves.
     List<GameEntity> associatedEntities = new List<GameEntity>();
 
+    bool dead = false;
+
     //land hp will buff royalty (if moon)
     //and will be directly compared to a Big Bad's attack power to see if it can be destroyed.
     //corruption weakens a land
@@ -254,6 +256,7 @@ class Land extends Object with FeatureHolder {
         session.logger.info("AB: Oh shit, JR! A land is exploding! Come see this!");
         session.stats.planetDestroyed = true;
         killer.landKillCount ++;
+        dead = true;
 
         if(session is DeadSession) {
             (session as DeadSession).failed = true;
@@ -265,7 +268,7 @@ class Land extends Object with FeatureHolder {
             if(g is Player && !g.dead) {
                 Player p = g as Player;
                 //land is gone, this should be only reference to it
-                p.land = null;
+                //p.land = null;
                 if(p.aspect == Aspects.SPACE) {
                     session.stats.brokenForge = true;
                 }

@@ -361,8 +361,9 @@ class Session {
     }
 
 
-    void setupMoons() {
+    void setupMoons(String reason) {
          //;
+        logger.info("DEBUG DESTROY MOON: setting up moons because $reason");
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Mini Red Miles", 3);
@@ -850,12 +851,12 @@ class Session {
         }
 
         //do a second loop to find the best space player with a land, if i can't find one, still return the one without a land
-        if(ret.land == null) {
+        if(ret.land == null || ret.land.dead) {
             for (num i = 0; i < spaces.length; i++) {
                 //the best space player either has the most quests done, OR has a land when the current best does not
                 if (spaces[i].landLevel > ret.landLevel || spaces[i].land != null) {
                     //not enough to be better, need to also not be null
-                    if(spaces[i].land != null) ret = spaces[i];
+                    if(spaces[i].land != null && !spaces[i].land.dead) ret = spaces[i];
                 }
             }
         }
@@ -1243,7 +1244,7 @@ class Session {
         //this.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
-        this.setupMoons();
+        this.setupMoons("reiniting session");
         //fix refereances
 
         this.reckoningStarted = false;
@@ -1303,7 +1304,7 @@ class Session {
         createScenesForPlayers();
         ;
 
-        this.setupMoons(); //happens only in reinit
+        this.setupMoons("making players"); //happens only in reinit
 
 
     }

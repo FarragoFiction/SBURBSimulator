@@ -43,7 +43,7 @@ class QuestsAndStuff extends Scene {
         //random players get to go first
         List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
         for(Player p in avail) {
-            if(session.isPlayerAvailable(p) && !p.dead && p.land != null && !p.land.noMoreQuests){
+            if(session.isPlayerAvailable(p) && !p.dead && p.land != null && !p.land.noMoreQuests && !p.land.dead){
                 QuestingParty party = createQuestingParty(p);
                 if(party != null) landParties.add(party);
             }
@@ -109,7 +109,7 @@ class QuestsAndStuff extends Scene {
 	void processMoon(Element div, QuestingParty questingParty) {
 	    Player player = questingParty.player1;
 	    //&& (player.moon == session.prospit || player.moon == session.derse) && player.dreamSelf
-	    if(player.moon != null && (player.moon == session.prospit || player.moon == session.derse) && player.dreamSelf) {
+	    if(player.moon != null && !player.moon.dead && (player.moon == session.prospit || player.moon == session.derse) && player.dreamSelf) {
             player.moon.initQuest([player]);
             String inEarly = "";
             if (player.sprite.name == "sprite") inEarly = "The ${player.htmlTitle()} has awoken early. ";

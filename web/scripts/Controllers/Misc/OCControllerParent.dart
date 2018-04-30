@@ -49,7 +49,7 @@ class OCGenerator {
 
     void initPlayers() {
         if(session != null) session.resetAvailableClasspects();
-        session.setupMoons();
+        session.setupMoons("initing players");
         for(int i = 0; i< numPlayers; i++) {
             //NOT doing this was causing oc gen to crash when it ran out of classpects.
             players[i] =(randomPlayer(session));
@@ -438,7 +438,7 @@ class OCGenerator {
     }
 
     void moonDropDown() {
-        session.setupMoons();
+        session.setupMoons("making moon drop down");
         moonSelect = selectElementThatRedrawsPlayers(holderElement("Moon"), new List<Moon>.from(session.moons), "moon");
     }
 

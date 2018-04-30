@@ -11,7 +11,7 @@ javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 List<Player> getReplayers(Session session) {
     //needed or i can't parse moon data
-    session.setupMoons();
+    session.setupMoons("getting replayers");
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
     //var available_classes_guardians = classes.sublist(0); //if there are replayers, then i need to reset guardian classes
     String raw = getRawParameterByName("b", null);

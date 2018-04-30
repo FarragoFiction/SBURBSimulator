@@ -30,6 +30,7 @@ class Moon extends Land {
     Palette palette;
 
   Moon.fromWeightedThemes(Ring this._queensRing, Scepter this._kingsScepter, String name, Map<Theme, double> themes, Session session, Aspect a, this.id, this.palette) {
+      session.logger.info("DEBUG DESTROY MOON: making moon $name");
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
       this.session = session;
@@ -122,12 +123,8 @@ class Moon extends Land {
           });
       }
 
-      //if i ever want fanon moons, will need it to be an array instead. whatever.
-      if(this == session.derse) {
-          //;
-          session.derse = null;
-      }
-      if(this == session.prospit) session.prospit = null;
+      dead = true;
+
       //;
       return ret;
 
