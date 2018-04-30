@@ -69,9 +69,15 @@ class RedMiles extends Scene {
       count++;
 
       List<Land> targets = new List<Land>();
+      List<Land> spaceTargets = new List<Land>();
       for(Player p in session.players) {
-        if(p.land != null  && !p.land.dead) targets.add(p.land);
+        if(p.aspect != Aspects.SPACE && p.land != null  && !p.land.dead) targets.add(p.land);
+        if(p.aspect == Aspects.SPACE && p.land != null  && !p.land.dead) spaceTargets.add(p.land);
+
       }
+
+      //only allow space planets to be destroyed last
+      if(targets.isEmpty) targets.addAll(spaceTargets);
 
       if(targets.isEmpty) return destroyMoon(div, count);
       Land m = session.rand.pickFrom(targets);

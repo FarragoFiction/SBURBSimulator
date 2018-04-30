@@ -50,7 +50,7 @@ class Battlefield extends Land {
             this.blackKing.name = "Black King"; //override crowned name
             blackKing.description = "The Black King is destined to defeat his counterpart on Skaia's Battlefield so that the Reckoning may be started with the twin Scepters.";
             //black king should be stronger than white king. period.
-            this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY, ItemTraitFactory.LEGENDARY]);
+            this.blackKing.specibus = new Specibus("Backup Scepter", ItemTraitFactory.STICK, [ ItemTraitFactory.KINGLY]);
             blackKing.grist = 1000;
             blackKing.stats.setMap(<Stat, num>{Stats.HEALTH: 1000, Stats.FREE_WILL: -100, Stats.POWER: 100});
             blackKing.scenesToAdd.insert(0, new KillWhiteKing(session));
