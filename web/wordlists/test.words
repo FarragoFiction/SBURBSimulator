@@ -4,7 +4,14 @@ TextEngine Word List
 //include otherList // this is currently commented out because without the other file it crashes
 
 test // comments should work inline too
-    @otherlist
+    @otherlist // include other lists additively
+    @thirdlist:0.25 // including with multiplied weights
+
+    #otherlist# // or include them as single entries via the replacement
+    #thirdlist#: 0.5 // including weights as usual
+
+    // the difference between these two methods is that additive they get inserted as if they were part of
+    // the base list, whereas with replacement they are only rolled on if that single entry is picked.
 
     word one
         test: test one
@@ -20,3 +27,7 @@ test // comments should work inline too
 
 otherlist
     a word
+
+thirdlist
+    another word
+    third word: 0.5
