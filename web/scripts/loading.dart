@@ -115,6 +115,7 @@ dynamic checkDone(Session session, String skipInit){
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
     if(skipInit != null && !skipInit.isEmpty){
+    	print("global callback is $globalCallBack ");
 		if(globalCallBack != null) return globalCallBack();
       if(skipInit == "oc"){
         //print("images loaded: $imagesLoaded");

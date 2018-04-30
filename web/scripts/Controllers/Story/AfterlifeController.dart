@@ -5,6 +5,7 @@ import 'dart:html';
 import 'dart:async';
 
 AfterlifeController self;
+Session session;
 
 void main()
 {
@@ -17,7 +18,7 @@ void main()
 
   new AfterlifeController();
   globalInit(); // initialise classes and aspects if necessary
-  Session session = new Session(-13);
+  session = new Session(-13);
   self = SimController.instance;
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));
@@ -70,7 +71,7 @@ class AfterlifeController extends SimController {
     Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
   }
 
-  void renderGhosts(Session session) {
+  void renderGhosts() {
     for(int i =0; i<session.players.length; i++) {
       Player p = session.players[i];
       renderSingleGhost(p, i);
