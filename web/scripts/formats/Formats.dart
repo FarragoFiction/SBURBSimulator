@@ -6,6 +6,7 @@ import "FontFormat.dart";
 import "ImageFormats.dart";
 import "OBJFormat.dart";
 import "SpriteFormat.dart";
+import "WordListFileFormat.dart";
 import "ZipFormat.dart";
 
 export "FileFormat.dart";
@@ -17,6 +18,7 @@ abstract class Formats {
     static RawBinaryFileFormat binary;
     static BundleManifestFormat manifest;
     static ZipFormat zip;
+    static WordListFileFormat wordList;
 
     static PngFileFormat png;
     static PayloadPngFileFormat payloadPng;
@@ -51,6 +53,9 @@ abstract class Formats {
         zip = new ZipFormat();
         addMapping(zip, "zip");
         addMapping(zip, "bundle");
+
+        wordList = new WordListFileFormat();
+        addMapping(wordList, "words");
 
         png = new PngFileFormat();
         addMapping(png, "png");

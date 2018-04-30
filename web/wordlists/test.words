@@ -1,0 +1,21 @@
+TextEngine Word List
+
+//include otherList
+
+test
+    @otherlist
+
+    word one
+        test: test one
+
+    word two
+        test: test two
+
+    word three: 0.5
+        test: test three
+
+    and a [ #test# ], and a [ #test@test# ]
+        test: no double recursion here boss
+
+otherlist
+    a word

@@ -57,6 +57,15 @@ void main() {
     //Loader.getResource("/test.png");
     
     //testAudio();
+
+    testText();
+}
+
+Future<Null> testText() async {
+    TextEngine text = new TextEngine();
+    await text.loadList("test");
+
+    print(text.phrase("test"));
 }
 
 Future<Null> testAudio() async {
