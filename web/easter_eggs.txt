@@ -5,7 +5,7 @@
 <p> Easter eggs can be combined as such: 'index2.html?seed=SEEDID&lollipop=true&sbajifier=true'.  Start with a question mark after index2.html, and then for each new easter egg have an ampersand.  Here there be dragons. These are easter eggs, not main features. Shit can get weird.  I want to stress that each of these easter eggs are 100% modifiers to the real sessions. You can look at a session where everybody died and add a lollipop to it to see if it makes things better. One big exception is the seed easter eggs, like 612 or 413. These easter eggs straight up override the native players (and create some wholesale if there aren't enough players). So there's nothing to compare it to.</p>
 
 <p> Hall of Fame is officially closed as of 6/12/17. </p>
-
+<p>I wonder if any other arc numbers have sessions for them. <span class = 'void'>Like 13? Like 4037???</span></p>
 <p><a href = "index2.html?spacePlayers=screwed">Shogun Hates Space Players, A Saga</a>: Wait. Is JR still adding easter eggs???</p>
 <p><a href = "index2.html?self=cest">Anstus Mode</a>:  It's a refrance, dunkass. Makes all players copies of the leader player. </p>
 
