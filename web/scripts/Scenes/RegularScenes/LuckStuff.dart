@@ -60,7 +60,7 @@ class LuckStuff extends Scene{
 	}
 	String roll60(Roll roll){
 		////session.logger.info("roll60 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || roll.player.land.dead|| (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll65(roll);
 		}
 		String ret = "The " + roll.player.htmlTitle() + " was just wandering around on " + roll.player.shortLand()+ " when they suddenly tripped over a huge treasure chest! When opened, it revealed a modest hoard of grist. It will be easier to complete their land quests now.";
@@ -81,7 +81,7 @@ class LuckStuff extends Scene{
 		return ret;
 	}
 	String roll40(Roll roll){
-		if(roll.player.land == null){
+		if(roll.player.land == null || roll.player.land.dead){
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		////session.logger.info("roll40 in " + this.session.session_id);
@@ -134,7 +134,7 @@ class LuckStuff extends Scene{
 	}
 	String roll80(Roll roll){
 		////session.logger.info("roll80 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || roll.player.land.dead || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll85(roll);
 		}
 
@@ -163,7 +163,7 @@ class LuckStuff extends Scene{
 	}
 	String roll20(Roll roll){
 		////session.logger.info("roll20 in " + this.session.session_id);
-		if(roll.player.land == null){
+		if(roll.player.land == null || roll.player.land.dead){
 			return ""; //you've had enough bad luck. just...go rest or something.
 		}
 		Item chosen = session.rand.pickFrom(roll.player.sylladex);
@@ -192,7 +192,7 @@ class LuckStuff extends Scene{
 	}
 	String roll95(Roll roll){
 		////session.logger.info("roll95 in " + this.session.session_id);
-		if(roll.player.land == null || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
+		if(roll.player.land == null || roll.player.land.dead || (roll.player.aspect != Aspects.SPACE && roll.player.landLevel >= this.landLevelNeeded)){  //not lucky to get land level when you don't need it.
 			return this.roll90(roll);
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a catapult, which throws impudent fruit at a nearby Ogre, which wakes him up, which makes him wander away, which frees the local consorts from his tyranny, who then celebrate an end to their famine by eating the fruit.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be completed. ";
@@ -206,8 +206,8 @@ class LuckStuff extends Scene{
 	}
 	String roll10(Roll roll){
 		////session.logger.info("roll10 in " + this.session.session_id);
-		if(roll.player.land == null){
-			return "The " + roll.player.htmlTitle() + " gets a bad feeling, like maybe their land back in their home session just got damaged. But...it's not like they can ever go back, right? Who cares."; //you've had enough bad luck. just...go rest or something.
+		if(roll.player.land == null || roll.player.land.dead){
+			return "The " + roll.player.htmlTitle() + " gets a bad feeling, like maybe their lands' ghost got damaged. But...it's not like that's a real thing, right? Who cares."; //you've had enough bad luck. just...go rest or something.
 		}
 		String ret = "Through a frankly preposterous level of Scooby-Doo shenanigans, the  " + roll.player.htmlTitle() + " trips into a wall, which depresses a panel, which launches a flaming rock via catapult, which crashes into a local consort village. Which immediately catches on fire, which makes them be refugees, which makes them immigrate to a new area, which disrupts the stability of the entire goddamned planet.  All of which causes, like, a third of the main quest of "  + roll.player.shortLand() + " to be fucked up. ";
 		roll.player.increaseLandLevel(-4.0);

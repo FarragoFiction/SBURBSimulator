@@ -955,7 +955,7 @@ class Session {
         bool frog =  spacePlayer.landLevel <= this.minFrogLevel;
         bool grist = !enoughGristForAny();
         bool rings  = !playersHaveRings();
-        bool hasNoPlanet = spacePlayer.land == null;
+        bool hasNoPlanet = spacePlayer.land == null || spacePlayer.land.dead;
 
         return (frog || grist || rings || hasNoPlanet);
     }
