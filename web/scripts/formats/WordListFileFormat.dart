@@ -8,7 +8,8 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
     static const String _HEADER = "TextEngine Word List";
     static RegExp _NEWLINE = new RegExp("[\n\r]+");
     static RegExp _SPACES = new RegExp("( *)(.*)");
-    static RegExp _COMMENT = new RegExp("^\s*\/\/");
+    static RegExp _COMMENT_START = new RegExp("^\s*\/\/");
+    static RegExp _COMMENT_SPLIT = new RegExp("\/\/");
     static Logger _LOGGER = new Logger("WordListFileFormat");//, true);
     static String _SEPARATOR = "${TextEngine.FILE_SEPARATOR} ";
     static int _TAB = 4;
@@ -32,13 +33,13 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
             lineNumber++;
             String line = lines[lineNumber];
             _LOGGER.debug("Reading line $lineNumber, raw: $line");
-
+            line = line.split(_COMMENT_SPLIT)[0];
 
             if (line.isEmpty) {
                 _LOGGER.debug("Empty line");
                 continue;
             }
-            if (line.startsWith(_COMMENT)) {
+            if (line.startsWith(_COMMENT_START)) {
                 _LOGGER.debug("Comment: $line");
                 continue;
             }

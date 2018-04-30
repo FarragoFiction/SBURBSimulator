@@ -1,8 +1,9 @@
 TextEngine Word List
 
-//include otherList
+// comments!
+//include otherList // this is currently commented out because without the other file it crashes
 
-test
+test // comments should work inline too
     @otherlist
 
     word one
