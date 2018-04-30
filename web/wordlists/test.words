@@ -5,7 +5,7 @@ TextEngine Word List
 
 test // comments should work inline too
     @otherlist // include other lists additively
-    @thirdlist:0.25 // including with multiplied weights
+    @thirdlist: 0.25 // including with multiplied weights
 
     #otherlist# // or include them as single entries via the replacement
     #thirdlist#: 0.5 // including weights as usual
