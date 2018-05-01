@@ -53,9 +53,11 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
                 if (m != null) {
                     int spaces = m.group(1).length;
                     String content = line.substring(spaces);
+                    if (content.isEmpty) { continue; }
 
                     if (spaces == 0) { // new wordlist
 
+                        content = content.trimRight();
                         _LOGGER.debug("new WordList: $content");
                         currentList = new WordList(content);
                         file.lists[content] = currentList;

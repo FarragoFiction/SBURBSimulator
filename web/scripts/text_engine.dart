@@ -2,6 +2,12 @@ import "dart:async";
 
 import "SBURBSim.dart";
 
+/*
+    TODO:
+    - list processing
+    - handling #DEFAULT variants
+    - switching from recursive to iterative, with iteration limit
+ */
 
 class TextEngine {
     static const String WORDLIST_PATH = "wordlists/";
@@ -10,6 +16,8 @@ class TextEngine {
     static const String SEPARATOR = "|";
     static const String SECTION_SEPARATOR = "@";
     static const String FILE_SEPARATOR = ":";
+
+    static Logger _LOGGER = new Logger("TextEngine", true);
 
     static RegExp _MAIN_PATTERN = new RegExp("$DELIMITER(.*?)$DELIMITER");
 
@@ -26,11 +34,12 @@ class TextEngine {
         if (rand == null) {
             rand = new Random();
         }
-        Map<String,Word> savedWords;
+        Map<String,Word> savedWords = <String,Word>{};
 
         Word rootWord = _getWord(rootList);
 
         if (rootWord == null) {
+            _LOGGER.debug("Root list '$rootList' not found");
             return "[$rootList]";
         }
 
@@ -38,12 +47,14 @@ class TextEngine {
     }
 
     Future<Null> loadList(String key) async {
-        if (_loadedFiles.contains(key)) { return; }
+        if (_loadedFiles.contains(key)) {
+            _LOGGER.debug("World list '$key' already loaded, skipping");
+            return;
+        }
 
         _loadedFiles.add(key);
 
         WordListFile file = await Loader.getResource("$WORDLIST_PATH$key.words");
-        print(file);
 
         wordLists.addAll(file.lists);
 
@@ -53,7 +64,10 @@ class TextEngine {
     }
 
     Word _getWord(String list) {
-        if (!wordLists.containsKey(list)) { return null; }
+        if (!wordLists.containsKey(list)) {
+            _LOGGER.debug("List '$list' not found");
+            return null;
+        }
 
         WordList words = wordLists[list];
 
@@ -65,8 +79,59 @@ class TextEngine {
     String _process(String input, Map<String,Word> savedWords) {
 
         input = input.replaceAllMapped(_MAIN_PATTERN, (Match match) {
-            print(match.group(0));
-            return match.group(0);
+            String raw = match.group(1);
+            List<String> sections = raw.split(SEPARATOR);
+
+            Word outword = null;
+            String variant = null;
+
+            // main section
+            {
+                List<String> parts = sections[0].split(SECTION_SEPARATOR);
+
+                if (parts.length > 1) {
+                    variant = parts[1];
+                }
+
+                Word w = _getWord(parts[0]);
+
+                outword = w;
+            }
+
+            if (sections.length > 1) {
+                for (int i=1; i<sections.length; i++) {
+                    String section = sections[i];
+
+                    List<String> parts = section.split(SECTION_SEPARATOR);
+
+                    String tag = parts[0];
+
+                    if(tag == "var") { // read or write a variable
+
+                        if (parts.length < 2) { continue; }
+                        String variable = parts[1];
+
+                        if (savedWords.containsKey(variable)) {
+                            outword = savedWords[variable];
+                        } else {
+                            savedWords[variable] = outword;
+                        }
+
+                    }
+                }
+            }
+
+            if (outword == null) {
+                return "[${sections[0]}]";
+            }
+            String output = outword.get(variant);
+
+            if (output == null) {
+                _LOGGER.debug("Missing variant '$variant' for word '$outword', falling back to base");
+                output = outword.get();
+            }
+
+            return _process(output, savedWords);
         });
 
         return input;

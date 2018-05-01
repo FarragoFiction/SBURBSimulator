@@ -1,20 +1,31 @@
 TextEngine Word List
+// the first line is required exactly as-is
 
-// comments!
+// including another list file by name here means it is loaded when this one is. Good for dependencies.
 //include otherList // this is currently commented out because without the other file it crashes
 
 test // comments should work inline too
     @otherlist // include other lists additively
     @thirdlist: 0.25 // including with multiplied weights
 
-    #otherlist# // or include them as single entries via the replacement
+    #otherlist# // or include them as single entries via the replacement (not recommended except for special cases)
+        test: #otherlist@test# // though like this you're gonna need to do manual passing of variants
     #thirdlist#: 0.5 // including weights as usual
+        test: #thirdlist@test#
 
     // the difference between these two methods is that additive they get inserted as if they were part of
     // the base list, whereas with replacement they are only rolled on if that single entry is picked.
 
+    // the #DEFAULT word defines default values for variants within this list that are not
+    // otherwise specified in the words themselves. Handy for when all words in a list have the same
+    // word for a particular variant. Carried across with this list's content if included in another list.
+    #DEFAULT
+        deftest: default value
+
     word one
         test: test one
+
+    a save test; #thirdlist|var@thing#, #thirdlist|var@thing#, #thirdlist|var@thing#, #thirdlist|var@thing#, #thirdlist|var@thing#
 
     word two
         test: test two
@@ -31,3 +42,9 @@ otherlist
 thirdlist
     another word
     third word: 0.5
+    more words
+    yet more
+    additional stuff
+    blah
+    bloop
+    blort

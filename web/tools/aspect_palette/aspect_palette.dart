@@ -65,7 +65,11 @@ Future<Null> testText() async {
     TextEngine text = new TextEngine();
     await text.loadList("test");
 
-    print(text.phrase("test"));
+    Element e = querySelector("#stuff");
+
+    for (int i=0; i<20; i++) {
+        e.append(new ParagraphElement()..text = text.phrase("test"));
+    }
 }
 
 Future<Null> testAudio() async {
