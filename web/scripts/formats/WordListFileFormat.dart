@@ -10,7 +10,7 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
     static RegExp _SPACES = new RegExp("( *)(.*)");
     static RegExp _COMMENT_START = new RegExp("^\s*\/\/");
     static RegExp _COMMENT_SPLIT = new RegExp("\/\/");
-    static Logger _LOGGER = new Logger("WordListFileFormat", true);
+    static Logger _LOGGER = new Logger("WordListFileFormat");//, true);
     static int _TAB = 4;
     
     @override

@@ -1,0 +1,107 @@
+TextEngine Word List
+
+@nouns
+@verbs
+
+JRheadcanon
+    #onceUponATime# #verb_action@pastThird# a #noun#.: 0.5
+    #onceUponATime# #verb_action@pastThird# #amount# #noun@plural|var@thing#. Every #noun|var@thing# was #noun_emotion@experience#.
+    #onceUponATime# #verb_programming@pastThird# a #project|var@project# which #projectEffect#.
+    JR #attitude# #noun@plural#.: 0.3
+    #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the whole concept.
+    #onceUponATime# asked #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
+
+otherPeeps
+    KR: 2.0
+    PL: 2.0
+    Shogun: 2.0
+    AB: 1.5
+    ABJ: 1.5
+    AW
+    MI
+    SB
+    RS
+    TG
+    DM
+    WM
+
+onceUponATime
+    One time, JR
+    JR once
+    There was this time when JR
+    JR
+    A couple of weeks ago, JR
+    JR was messing around and
+    Back when SBURBSim was new, JR
+    Before SBURBSim itself, JR
+
+project
+    ?user: user
+
+    sim
+        user: observer
+    minigame
+        user: player
+    miniSim
+        user: player
+    program
+    game
+        user: player
+    tool
+
+projectEffect
+    had a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# #verb_travel@continuous# around
+    made adding #noun@plural# to the sim simpler
+    inspired the addition of #noun@plural# to the sim
+    made sure #noun@plural# would never be added to the sim
+    caused all sorts of chaos until it was fixed
+    which let the #project@user|var@project# interact with a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# at once
+
+attitude
+    loves
+    hates
+    dislikes
+    is indifferent to
+    likes
+    wants to like
+    secretly adores
+    secretly hates
+    is delighted by
+    adores
+    makes fun of
+    has plans to destroy
+
+// amounts
+amount
+    @amountVerySmall: 0.2
+    @amountSmall: 0.5
+    @amountMedium
+    @amountLarge: 0.5
+    @amountVeryLarge: 0.2
+
+amountVerySmall
+    barely any
+    almost no
+    infinitessimal amounts of: 0.2
+
+amountSmall
+    a few
+    a small group of
+    some
+
+amountMedium
+    some
+    a small group of
+    several
+
+amountLarge
+    a group of
+    quite a few
+    lots of
+    many
+
+amountVeryLarge
+    a huge group of
+    a throng of
+    huge numbers of
+    just about all: 0.2

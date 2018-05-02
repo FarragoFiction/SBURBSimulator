@@ -1,0 +1,155 @@
+TextEngine Word List
+
+?plural: ?MAIN?s
+?collective: pile
+
+noun_all
+    @noun
+    @noun_abstract
+
+// ####################################################
+// CONCRETE
+
+noun
+    @noun_animal
+    @noun_food
+    @noun_object
+    @noun_building
+
+noun_object
+    ball
+    piano
+    cube
+    pyramid
+    sphere
+    orb
+    plank
+    tree
+    table
+    wall
+    door
+    pant
+        plural: pant
+
+noun_building
+    ?collective: district
+
+    house
+    greenhouse
+    warehouse
+    office
+    factory
+        plural: factories
+    shop
+
+noun_animal
+    ?collective: group
+
+    cat
+    dog
+    bird
+    fish
+        plural: fish
+    gnome
+    penguin
+    hamster
+    guinea pig
+    pig
+    cow
+    sheep
+        plural: sheep
+    goat
+    pigeon
+    lobster
+    camel
+    giraffe
+    elephant
+    oyster
+    louse
+        plural: lice
+    mouse
+        plural: mice
+    moose
+    cherub
+    troll
+    human
+    monkey
+    gorilla
+    rat
+
+noun_food
+    @noun_vegetable
+    @noun_fruit
+
+noun_vegetable
+    ?collective: bunch
+
+    potato
+        plural: potatoes
+    carrot
+    tomato
+        plural: tomatoes
+    lettuce
+        plural: lettuce
+    broccoli
+        plural: broccoli
+    sprout
+    yam
+    cucumber
+    parsnip
+    radish
+        plural:radishes
+    squash
+    pumpkin
+    gourd
+    pepper
+
+noun_fruit
+    ?collective: bunch
+
+    apple
+    pear
+    banana
+    lemon
+    lime
+    grape
+    pineapple
+    mango
+        plural: mangoes
+    durian
+    kiwi fruit
+        plural: kiwi fruit
+    strawberry
+        plural: strawberries
+
+// ####################################################
+// ABSTRACT
+
+noun_abstract
+    ?collective: plurality
+
+    @noun_emotion
+
+
+noun_emotion
+    love
+        experience: loving
+    fear
+        experience: scared
+    hate
+        experience: hateful
+    anger
+        experience: angry
+    sadness
+        plural: sadnesses
+        experience: sad
+    envy
+        plural: envies
+        experience: jealous
+    whimsy
+        plural: whimsies
+        experience: whimsical
+    disgust
+        experience: disgusted
+    joy
+        experience: happy

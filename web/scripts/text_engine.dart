@@ -25,7 +25,7 @@ class TextEngine {
     static final RegExp SECTION_SEPARATOR_PATTERN = new RegExp("([^\\\\$SECTION_SEPARATOR]|\\\\$SECTION_SEPARATOR)+");
     static final RegExp FILE_SEPARATOR_PATTERN = new RegExp("([^\\\\$FILE_SEPARATOR]|\\\\$FILE_SEPARATOR)+");
 
-    static Logger _LOGGER = new Logger("TextEngine", true);
+    static Logger _LOGGER = new Logger("TextEngine");//, true);
 
     static RegExp MAIN_PATTERN = new RegExp("$DELIMITER(.*?)$DELIMITER");
     static RegExp REFERENCE_PATTERN = new RegExp("\\?(.*?)\\?");
@@ -105,6 +105,15 @@ class TextEngine {
             list.processIncludes(this.wordLists);
 
             for (Word word in list) {
+
+                // add default variants
+                for (String dkey in list.defaults.keys) {
+                    if (!word._variants.containsKey(dkey)) {
+                        word._variants[dkey] = list.defaults[dkey];
+                    }
+                }
+
+                // resolve references
                 for (String vkey in word._variants.keys) {
                     word._variants[vkey] = word._variants[vkey].replaceAllMapped(REFERENCE_PATTERN, (Match match) {
                         String variant = match.group(1);
@@ -239,7 +248,7 @@ class WordList extends WeightedList<Word> {
         }
 
         for (String key in other.defaults.keys) {
-            copy.includes[key] = other.includes[key];
+            copy.defaults[key] = other.defaults[key];
         }
 
         for (WeightPair<Word> pair in other.pairs) {

@@ -63,15 +63,15 @@ void main() {
 
 Future<Null> testText() async {
     TextEngine text = new TextEngine();
-    await text.loadList("test");
+    await text.loadList("headcanon");
 
     Element e = querySelector("#stuff");
 
     for (int i=0; i<20; i++) {
-        e.append(new ParagraphElement()..text = text.phrase("test"));
+        e.append(new ParagraphElement()..text = text.phrase("JRheadcanon"));
     }
 
-    print(text.wordLists);
+    //print(text.wordLists);
 }
 
 Future<Null> testAudio() async {

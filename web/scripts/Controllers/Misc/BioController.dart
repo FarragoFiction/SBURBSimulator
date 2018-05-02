@@ -1,4 +1,5 @@
 import '../../navbar.dart';
+import '../../text_engine.dart';
 import 'dart:html';
 
 //bare minimum for a page.
@@ -28,6 +29,12 @@ void displayBio() {
     DivElement newFact = new DivElement();
     newFact.text = t.value;
     canon.append(newFact);
+  });
+
+  TextEngine text = new TextEngine()..loadList("headcanon");
+
+  querySelector("#askAB").onClick.listen((Event e){
+    querySelector("#canon")..append(new DivElement()..text = "AB: ${text.phrase("JRheadcanon")}");
   });
 }
 

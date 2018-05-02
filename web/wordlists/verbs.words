@@ -1,0 +1,70 @@
+TextEngine Word List
+
+// this default set should cover a most(?) things
+?present: ?MAIN?
+?pc: ?MAIN?
+?presentFirst: ?present?
+?presentSecond: ?presentFirst?
+?presentThird: ?presentFirst?s
+?presentPlural: ?presentSecond?
+?past: ?pc?ed
+?pastFirst: ?past?
+?pastSecond: ?pastFirst?
+?pastThird: ?pastFirst?
+?pastPlural: ?pastSecond?
+?continuous: ?pc?ing
+?perfect: ?pastFirst?
+
+verb
+    @verb_programming: 0.2
+    @verb_travel
+    @verb_action
+
+
+verb_action
+    // to be or not to be?
+    // gotta fucking love how irregular this is in English
+    be
+        presentFirst: am
+        presentSecond: are
+        presentThird: is
+        pastFirst: was
+        pastSecond: were
+
+    throw
+        past: threw
+    kick
+    stab
+        pc: stabb
+    eat
+        past: ate
+    kiss: 0.2
+    caress: 0.2
+        presetThird: caresses
+    pet
+        pc: pett
+
+verb_travel
+    walk
+    fly
+        past:flew
+    slide
+        pc:slid
+    crawl
+    swim
+        pc:swimm
+        past:swam
+    stroll: 0.5
+    climb
+    waddle: 0.2
+        pc:waddl
+
+verb_programming
+    write
+        past: wrote
+        pc: writ
+    script
+    design
+    program
+        pc: programm
+    engineer
