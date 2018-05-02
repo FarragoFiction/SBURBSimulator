@@ -10,8 +10,7 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
     static RegExp _SPACES = new RegExp("( *)(.*)");
     static RegExp _COMMENT_START = new RegExp("^\s*\/\/");
     static RegExp _COMMENT_SPLIT = new RegExp("\/\/");
-    static Logger _LOGGER = new Logger("WordListFileFormat");//, true);
-    static String _SEPARATOR = "${TextEngine.FILE_SEPARATOR} ";
+    static Logger _LOGGER = new Logger("WordListFileFormat", true);
     static int _TAB = 4;
     
     @override
@@ -29,6 +28,8 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
         WordList currentList = null;
         Word currentWord = null;
 
+        Map<String,String> globalDefaults = <String,String>{};
+
         while (lineNumber+1 < lines.length) {
             lineNumber++;
             String line = lines[lineNumber];
@@ -44,10 +45,20 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
                 continue;
             }
 
-            if (line.startsWith("include ")) {
-                String include = line.substring(8);
+            if (line.startsWith(TextEngine.INCLUDE_SYMBOL)) {
+                String include = line.substring(1);
                 _LOGGER.debug("new file include: $include");
                 file.includes.add(include);
+            } else if (line.startsWith(TextEngine.DEFAULT_SYMBOL)) {
+                List<String> parts = escapedSplit(line.substring(1), TextEngine.FILE_SEPARATOR_PATTERN);
+                if (parts.length < 2) {
+                    _LOGGER.error("Invalid global default '$line'");
+                } else {
+                    String def = parts[0];
+                    String val = parts[1];
+                    _LOGGER.debug("new global default '$def': '$val'");
+                    globalDefaults[def] = val;
+                }
             } else {
                 Match m = _SPACES.matchAsPrefix(line);
                 if (m != null) {
@@ -60,15 +71,31 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
                         content = content.trimRight();
                         _LOGGER.debug("new WordList: $content");
                         currentList = new WordList(content);
+                        currentList.defaults.addAll(globalDefaults);
                         file.lists[content] = currentList;
 
-                    } else if (spaces == _TAB) { // new word or include
+                    } else if (spaces == _TAB) { // a default or include or word
 
-                        if (content.startsWith(TextEngine.SECTION_SEPARATOR)) {
+                        if (content.startsWith(TextEngine.DEFAULT_SYMBOL)) { // default
+
+                            content = content.substring(1);
+                            List<String> parts = escapedSplit(content, TextEngine.FILE_SEPARATOR_PATTERN);
+
+                            _LOGGER.debug("list default: $content");
+                            if (parts.length < 2) {
+                                _LOGGER.error("Invalid list default '$line'");
+                            } else if (currentList != null) {
+                                String def = _removeEscapes(parts[0]);
+                                String val = _removeEscapes(parts[1]);
+                                _LOGGER.debug("new list default for '${currentList.name}': '$def' -> '$val'");
+                                currentList.defaults[def] = val;
+                            }
+
+                        } else if (content.startsWith(TextEngine.INCLUDE_SYMBOL)) { // include
 
                             String include = content.substring(1);
                             _LOGGER.debug("list include: $include");
-                            List<String> parts = line.split(_SEPARATOR);
+                            List<String> parts = escapedSplit(content, TextEngine.FILE_SEPARATOR_PATTERN);
                             double weight = 1.0;
                             if (parts.length > 1) {
                                 weight = double.parse(parts[1], (String part) {
@@ -76,12 +103,12 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
                                     return 1.0;
                                 });
                             }
-                            currentList.includes[include] = weight;
+                            currentList.includes[_removeEscapes(include)] = weight;
 
-                        } else {
+                        } else { // word
 
                             _LOGGER.debug("new Word: $content");
-                            List<String> parts = line.split(_SEPARATOR);
+                            List<String> parts = escapedSplit(line, TextEngine.FILE_SEPARATOR_PATTERN);
                             double weight = 1.0;
                             if (parts.length > 1) {
                                 weight = double.parse(parts[1], (String part) {
@@ -89,19 +116,19 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
                                     return 1.0;
                                 });
                             }
-                            currentWord = new Word(parts[0].trim());
+                            currentWord = new Word(_removeEscapes(parts[0]).trim());
                             currentList.add(currentWord, weight);
 
                         }
 
-                    } else if (spaces == _TAB*2) { // new variant
+                    } else if (spaces == _TAB*2) { // a variant
 
                         _LOGGER.debug("new Variant: $content");
-                        List<String> parts = line.split(_SEPARATOR);
+                        List<String> parts = escapedSplit(line, TextEngine.FILE_SEPARATOR_PATTERN);
                         if (parts.length != 2) {
                             _LOGGER.error("Invalid variant for ${currentWord.get()} in ${currentList.name}");
                         } else {
-                            currentWord.addVariant(parts[0].trim(), parts[1].trim());
+                            currentWord.addVariant(_removeEscapes(parts[0]).trim(), _removeEscapes(_trimFirstSpace(parts[1])));
                         }
 
                     }
@@ -117,4 +144,13 @@ class WordListFileFormat extends StringFileFormat<WordListFile> {
 
     @override
     String header() => _HEADER;
+
+    static String _trimFirstSpace(String input) {
+        if (input.startsWith(" ")) {
+            return input.substring(1);
+        }
+        return input;
+    }
+
+    static String _removeEscapes(String input) => input.replaceAll(TextEngine.ESCAPE_PATTERN, "");
 }

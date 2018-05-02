@@ -70,6 +70,8 @@ Future<Null> testText() async {
     for (int i=0; i<20; i++) {
         e.append(new ParagraphElement()..text = text.phrase("test"));
     }
+
+    print(text.wordLists);
 }
 
 Future<Null> testAudio() async {
