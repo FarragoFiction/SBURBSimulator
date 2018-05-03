@@ -5,6 +5,7 @@ import "dart:html";
 //these are permanent modifications to sessions and their behavior
 //while the lesser shit that are one off things will be in the GainGnosis scenes themselves. (such as writing faqs)
 class SessionMutator {
+    double powerCoefficient = 10.0;
     int effectsInPlay = 0; //more there are, more likely session will crash.
     bool hopeField = false; //facts about session change
     bool breathField = false; //sets availability to true, will interact with npc quests eventually
@@ -82,6 +83,7 @@ class SessionMutator {
     //when a session inits, it asks if any of it's vars should have different intial values (like hope shit)
     void syncToSession(Session s) {
         s.sessionHealth = this.sessionHealth;
+        Stats.POWER.coefficient = powerCoefficient;
         s.minimumGristPerPlayer = this.minimumGristPerPlayer;
         s.expectedGristContributionPerPlayer = this.expectedGristContributionPerPlayer;
         s.goodFrogLevel = this.goodFrogLevel;
@@ -446,7 +448,8 @@ class SessionMutator {
         String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
         String ret = "The ${hopePlayer.htmlTitle()} begins glowing and screaming dramatically. Lines of SBURBs code light up around them. <div class = 'jake'>$scream</div>";
         ret += "Every aspect of SBURB appears to be aligning itself with their beliefs. ";
-        Stats.POWER.coefficient = 9001.0;
+        powerCoefficient = 9001.0;
+        Stats.POWER.coefficient = powerCoefficient;
         hopePlayer.setStat(Stats.POWER, 9001); //i know i can save everyone.
         Stats.POWER.minDerived = 9000.0; //you have to be be OVER 9000!!!
         gameEntityMinPower = 9000.0;
