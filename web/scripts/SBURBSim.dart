@@ -93,7 +93,6 @@ int numPlayersPreScratch = 0;
 Future<Null> globalInit() async {
     if (doneGlobalInit) { return; }
     doneGlobalInit = true;
-    await NPCHandler.loadBigBads();
     Stats.init();
     ItemTraitFactory.init();
     SpecibusFactory.init();
@@ -104,6 +103,8 @@ Future<Null> globalInit() async {
     InterestManager.init();
 
     Loader.init();
+    await NPCHandler.loadBigBads();
+
 }
 
 Random globalRand = new Random();
