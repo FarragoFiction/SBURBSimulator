@@ -228,7 +228,7 @@ class Session {
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
-        mutator = SessionMutator.getInstance();
+        mutator = new SessionMutator();
         stats.initialGameEntityId = GameEntity.getIDCopy();
         ;
         ////;
@@ -643,6 +643,8 @@ class Session {
         }
         if(id ==612) this.session_id = 413;
 
+        //wastes effect you, too
+        tmpcurSessionGlobalVar.mutator = mutator;
         await tmpcurSessionGlobalVar.startSession();
         //load(curSessionGlobalVar.players, <Player>[], ""); //in loading.js
         simulationComplete("Combo Session Returned");

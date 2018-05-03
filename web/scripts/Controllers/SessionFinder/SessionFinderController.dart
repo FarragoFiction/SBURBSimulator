@@ -262,6 +262,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   SessionSummary summarizeSession(Session session) {
     ////;
     print("summarizing: ${session}");
+    backup = SimController.instance.storyElement.text;
+    SimController.instance.clearElement(SimController.instance.storyElement);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
     if (sessionsSimulated.indexOf(session.session_id) != -1 &&
         !session.stats.scratched) { //scratches are allowed to be repeats
@@ -270,8 +272,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();
-    backup = SimController.instance.storyElement.text;
-   // SimController.instance.clearElement(SimController.instance.storyElement);
+
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
@@ -323,29 +324,6 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       //this way makes SURE it uses the same metric as findMVP
       mvp = findMVP(<Player>[mvp, tmp]);
     }
-  }
-
-  @override
-  SessionSummary summarizeSessionNoFollowup(Session session) {
-    ////print("no timeout summarizing: " + curSessionGlobalVar.session_id);
-    //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
-    if(sessionsSimulated.indexOf(session.session_id) != -1){
-      //////print("should be skipping a repeat session: " + curSessionGlobalVar.session_id);
-      return null;
-    }
-    sessionsSimulated.add(session.session_id);
-    backup = SimController.instance.storyElement.text;
-    //SimController.instance.clearElement(SimController.instance.storyElement);
-
-    var sum = session.generateSummary();
-    allSessionsSummaries.add(sum);
-    sessionSummariesDisplayed.add(sum);
-    //printSummaries();  //this slows things down too much. don't erase and reprint every time.
-    var str = sum.generateHTML();
-    debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
-    debug(str);
-    printStats(null, null, null); //not filtering anything
-    return sum;
   }
 
 
@@ -458,5 +436,9 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
     }
 
+  }
+  @override
+  void summarizeSessionNoFollowup(Session session) {
+    // TODO: implement summarizeSessionNoFollowup
   }
 }
