@@ -1,4 +1,7 @@
 import "../SBURBSim.dart";
+import "dart:async";
+import 'dart:html';
+import '../includes/path_utils.dart';
 
 //handles spawning and maintaining various npcs.
 class NPCHandler
@@ -6,6 +9,7 @@ class NPCHandler
     Session session;
 
     List<GameEntity> allEntities = new List<GameEntity>();
+    List<GameEntity> bigBads = new List<BigBad>();
 
     static String JACK = "JACK";
     static String PM = "PM"; //done
@@ -85,14 +89,20 @@ class NPCHandler
 
     }
 
-    void setupNpcs() {
-        //for now, leave jack where he is and just have a second copy of him here. deal with it.
-        //not gonna rip out existing 'shenannigans' system till i have a new one in place
-        //TODO eventually the carapaces have a scene attached to them that they either add
-        //TODO to the npc or player scene list when activated, or a companions
-        //TODO jacks' replacement stabs scene will be able to stab any player OR npc, full on strife
-
+    Future<Null> setupNpcs() async {
+        await loadBigBads();
     }
+
+    Future<Null> loadBigBads() async {
+        await HttpRequest.getString(PathUtils.adjusted("BigBadLists/bigBads.txt")).then((String data) {
+            List<String> parts = data.split("\n");
+            //;
+            for(String line in parts) {
+                bigBads.add(BigBad.fromDataString(line, session));
+            }
+        });
+
+        }
 
     //each npc has items in their sylladex, at least one of which is legendary
     //TODO each game entity optionally has text for what to say if they are doing
