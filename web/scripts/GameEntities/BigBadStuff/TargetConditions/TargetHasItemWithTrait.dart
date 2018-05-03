@@ -111,7 +111,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     @override
     void copyFromJSON(JSONObject json) {
         String key = json[TargetCondition.IMPORTANTWORD];
-        print("key is $key and itemTraits are ${allTraits}");
+        //print("key is $key and itemTraits are ${allTraits}");
         itemTrait = allTraits[key];
     }
   @override

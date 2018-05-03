@@ -20,6 +20,8 @@ main() {
     p.initialize();
     Consort template = p.land.consortFeature.makeConsort(session);
 
+    printBigBads();
+
     appendHtml(storyDiv, "Carapaces are: ${session.derse.associatedEntities} and ${session.prospit.associatedEntities} ");
     appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Minion:  ${p.debugStats}");
 
@@ -53,7 +55,13 @@ main() {
 
     printAllThings();
 
+}
 
+void printBigBads() {
+    DivElement bb = new DivElement();
+    bb.text = "Big Bads: ${session.npcHandler.bigBads}";
+    storyDiv.append(bb);
+    print("done printing big bads");
 }
 
 void printAllThings() {

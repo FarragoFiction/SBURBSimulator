@@ -94,14 +94,15 @@ class NPCHandler
     }
 
     Future<Null> loadBigBads() async {
-        await HttpRequest.getString(PathUtils.adjusted("BigBadLists/bigBads.txt")).then((String data) {
+
+        String data = await Loader.getResource("BigBadLists/bigBads.txt");
             List<String> parts = data.split("\n");
             //;
             for(String line in parts) {
-                bigBads.add(BigBad.fromDataString(line, session));
+                BigBad newBB = BigBad.fromDataString(line, session);
+                print("made a new BB ${newBB}");
+                bigBads.add(newBB);
             }
-        });
-
         }
 
     //each npc has items in their sylladex, at least one of which is legendary
