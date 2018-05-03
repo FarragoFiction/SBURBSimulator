@@ -53,22 +53,26 @@ noun_animal
     ?collective: group
 
     cat
+        collective: clowder
     dog
+        collective: pack
     bird
     fish
         plural: fish
     robot
-        ?collective: superiority
+        collective: superiority
     gnome
     penguin
     hamster
     guinea pig
     pig
     cow
+        collective: herd
     sheep
         plural: sheep
     goat
     pigeon
+        collective: fock
     lobster
     camel
     giraffe

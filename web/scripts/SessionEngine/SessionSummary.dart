@@ -572,6 +572,7 @@ class SessionSummary {
         summary.setNumStat("numDead", findDeadPlayers(session.players).length);
         summary.setBoolStat("ectoBiologyStarted", session.stats.ectoBiologyStarted);
         summary.setBoolStat("denizenBeat", session.stats.denizenBeat);
+        summary.setBoolStat("scratched", session.stats.scratched);
 
         if(session.derse != null) {
             summary.setBoolStat("kingTooPowerful", session.battlefield.blackKing.getStat(Stats.POWER) > session.hardStrength);
