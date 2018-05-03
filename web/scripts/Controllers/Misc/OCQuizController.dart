@@ -10,9 +10,9 @@ import 'dart:async';
 
 OCGeneratorQuiz ocgen;
 
-main() {
+Future<Null> main() async {
     loadNavbar();
-    globalInit();
+    await globalInit();
     ButtonElement button = new ButtonElement();
     button.setInnerHtml("Do Quests");
     new StoryJustQuestController(); //so we can do quests and stufff.

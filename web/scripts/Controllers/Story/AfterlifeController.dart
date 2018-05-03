@@ -7,8 +7,7 @@ import 'dart:async';
 AfterlifeController self;
 Session session;
 
-void main()
-{
+Future<Null> main() async {
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
@@ -17,7 +16,7 @@ void main()
   });
 
   new AfterlifeController();
-  globalInit(); // initialise classes and aspects if necessary
+  await globalInit(); // initialise classes and aspects if necessary
   session = new Session(-13);
   self = SimController.instance;
   if(getParameterByName("seed",null) != null){

@@ -3,6 +3,7 @@ import '../../navbar.dart';
 import 'dart:html';
 import 'dart:math' as Math;
 import "OCControllerParent.dart";
+import "dart:async";
 
 /*
     TODO:
@@ -21,10 +22,13 @@ OCGenerator ocgen;
 main() {
     loadNavbar();
 
-    globalInit();
+    start();
+}
+
+Future<Null> start() async {
+    await globalInit();
     //4 is number of players, session id is left to be todays date
     ocgen = new OCGenerator(4);
     Session session =ocgen.session;
     loadFuckingEverything(session,"I really should stop doing this",ocgen.start );
-
 }

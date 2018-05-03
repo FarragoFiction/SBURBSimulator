@@ -90,10 +90,10 @@ DateTime stopTime;
 List<Player> raggedPlayers = null; //just for scratch'
 int numPlayersPreScratch = 0;
 
-void globalInit() {
+Future<Null> globalInit() async {
     if (doneGlobalInit) { return; }
     doneGlobalInit = true;
-
+    await NPCHandler.loadBigBads();
     Stats.init();
     ItemTraitFactory.init();
     SpecibusFactory.init();

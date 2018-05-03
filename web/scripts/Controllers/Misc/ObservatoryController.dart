@@ -25,7 +25,7 @@ todo:
  */
 
 Future<Null> main() async {
-    globalInit();
+    await globalInit();
     await Renderer.loadThree();
     await THREE.ScriptLoader.particleSystem();
     await Loader.loadManifest();

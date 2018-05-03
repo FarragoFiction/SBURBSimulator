@@ -228,6 +228,7 @@ class Session {
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
+        npcHandler.setupNpcs();
         mutator = new SessionMutator();
         stats.initialGameEntityId = GameEntity.getIDCopy();
         ;
@@ -1231,6 +1232,7 @@ class Session {
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         plzStartReckoning = false;
         npcHandler = new NPCHandler(this);
+        npcHandler.setupNpcs();
         _activatedNPCS.clear();
         resetAvailableClasspects();
         didReckoning = false;

@@ -9,9 +9,9 @@ DivElement div;
 SanityChecker sanityChecker;
 Map<String, SessionSummary> cache;
 bool insanity = false;
-void main() {
+Future<Null> main() async {
     doNotRender = true;
-    globalInit();
+    await globalInit();
     loadNavbar();
     div = querySelector("#story");
     listTodos();

@@ -1,8 +1,9 @@
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 import 'dart:html';
+import "dart:async";
 
-main() {
+Future<Null> main() async {
     doNotRender = true;
     loadNavbar();
     window.onError.listen((Event event){
@@ -11,7 +12,7 @@ main() {
         return;
     });
 
-    globalInit();
+    await globalInit();
     Element div = querySelector("#story");
     displayInterestThemes(div);
     displayAspect(div);

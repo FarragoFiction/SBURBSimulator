@@ -7,8 +7,8 @@ import '../../navbar.dart';
 Element div;
 CarapaceSummary carapaceSummary = new CarapaceSummary(null);
 
-void main() {
-    globalInit();
+Future<Null> main() async {
+    await globalInit();
     loadNavbar();
 
     div = querySelector("#stats");

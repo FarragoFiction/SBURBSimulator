@@ -1,6 +1,7 @@
 import 'dart:html';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
+import "dart:async";
 
 String AND = "AND";
 String OR = "OR";
@@ -11,10 +12,10 @@ Player player;
 
 void main() {
     //loadNavbar();
-    globalInit();
     init();
 }
-void init() {
+Future<Null> init() async {
+    await globalInit();
     player = randomPlayer(new Session(int.parse(todayToSession())));
     player.sylladex = new Sylladex(player,new List <Item>.from(Item.allUniqueItems));
     renderTraitsTable(querySelector("#traitTable"));

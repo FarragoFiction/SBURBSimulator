@@ -1,6 +1,7 @@
 import '../../navbar.dart';
 import 'dart:html';
 import "../../SBURBSim.dart";
+import "dart:async";
 
 
 Element div;
@@ -8,7 +9,12 @@ UListElement todoElement;
 BigBad bigBad = new BigBad("Sample Big Bad", new Session(-13));
 void main() {
   loadNavbar();
-  globalInit();
+  start();
+
+}
+
+Future<Null> start() async {
+  await globalInit();
   bigBad.session.setupMoons("BigBad setup");
 
   div = querySelector("#story");
@@ -51,7 +57,6 @@ void main() {
   todo("can lands be resurrected? if so, instead of nulling them out on destruction, maybe i should .dead them? what all would i have to change for that? questing, at the very least. space player frog shit...");
 
   setUpForm();
-
 }
 
 void setUpForm() {

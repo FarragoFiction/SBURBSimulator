@@ -15,9 +15,14 @@ void main()
 
     return;
   });
+  start();
+
+}
+
+Future<Null> start() async {
   new CharViewerController();
   self = SimController.instance;
-  globalInit();
+  await globalInit();
   session = new Session(SimController.instance.initial_seed);
   session.setupMoons("Char Viewer Setup");
   querySelector("#draw12Button").onClick.listen((e) => draw12(session));

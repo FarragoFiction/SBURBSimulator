@@ -6,10 +6,10 @@ import '../SessionFinder/AuthorBot.dart';
 
 Random rand;
 MysteryController self; //want to access myself as more than just a sim controller occasionally
-void main() {
+Future<Null> main() async {
   doNotRender = true;
   rand = new Random();
-  globalInit();
+  await globalInit();
 
   querySelector("#pw_hint_button").onClick.listen((e) => self.showHint());
   querySelector("#pwButton").onClick.listen((e) => self.checkPassword());

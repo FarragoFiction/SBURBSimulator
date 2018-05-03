@@ -1,13 +1,18 @@
 import 'dart:html';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
-
+import "dart:async";
 
 
 Element storyDiv;
 Session session;
 main() {
-    globalInit();
+    start();
+
+}
+
+Future<Null> start() async {
+    await globalInit();
     storyDiv = querySelector("#story");
     //curSessionGlobalVar = new Session(int.parse(todayToSession()));
     session = new Session(getRandomSeed());

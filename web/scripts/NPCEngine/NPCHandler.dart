@@ -7,6 +7,8 @@ import '../includes/path_utils.dart';
 class NPCHandler
 {
     Session session;
+    //not parsed, but means i only need to do the async thing once.
+    static List<String> _bigBadsFromFile = new List<String>();
 
     List<GameEntity> allEntities = new List<GameEntity>();
     List<GameEntity> bigBads = new List<BigBad>();
@@ -56,8 +58,7 @@ class NPCHandler
     List<Carapace> dersites = <Carapace>[];
 
 
-    NPCHandler(this.session) {
-        setupNpcs();
+    NPCHandler(Session this.session) {
     }
 
     void debugNPCs() {
@@ -89,21 +90,24 @@ class NPCHandler
 
     }
 
-    Future<Null> setupNpcs() async {
-        await loadBigBads();
+   void setupNpcs() {
+        setupBigBads();
     }
 
-    Future<Null> loadBigBads() async {
-
+    static Future<Null> loadBigBads() async {
+        print("loading big bads");
         String data = await Loader.getResource("BigBadLists/bigBads.txt");
-            List<String> parts = data.split("\n");
-            //;
-            for(String line in parts) {
-                BigBad newBB = BigBad.fromDataString(line, session);
-                print("made a new BB ${newBB}");
-                bigBads.add(newBB);
-            }
+        _bigBadsFromFile = data.split("\n");
+    }
+
+    void setupBigBads() {
+        print("setting up big bads from ${_bigBadsFromFile.length} data strings");
+        for(String line in _bigBadsFromFile) {
+            BigBad newBB = BigBad.fromDataString(line, session);
+            print("made a new BB ${newBB}");
+            bigBads.add(newBB);
         }
+    }
 
     //each npc has items in their sylladex, at least one of which is legendary
     //TODO each game entity optionally has text for what to say if they are doing
