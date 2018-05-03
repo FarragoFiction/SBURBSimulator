@@ -72,6 +72,123 @@ class BigBadStats {
 
     }
 
+    void turnPage() {
+        currentPage ++;
+        if(currentPage >= pages.length) currentPage = 0;
+
+        for(int i = 0; i<pages.length; i++) {
+            Element e = pages[i];
+            if(i == currentPage) {
+                e.style.display = "inline-block";
+            }else {
+                e.style.display = "none";
+            }
+        }
+        pageNum.text = "Page: ${currentPage+1}/${pages.length}";
+    }
+
+
+    //display pic of prospit or derse.
+    //display placeholder for the carpace in question.
+    Element getCard(Element container) {
+        DivElement div = new DivElement();
+        div.onClick.listen((e)
+        {
+            turnPage();
+        });
+        div.classes.add("collectibleCard");
+
+        DivElement divBorder = new DivElement();
+        divBorder.classes.add("collectibleCardBorder");
+        container.append(divBorder);
+
+
+        DivElement name = new DivElement();
+        name.classes.add("cardName");
+        name.text = "Name: $name";
+        pageNum = new SpanElement();
+        pageNum.classes.add("cardPageNum");
+
+        divBorder.append(div);
+        div.append(makePortrait());
+        div.append(name);
+        div.append(makeStats());
+        div.append(makeDescription());
+        div.append(makeSessions());
+        pageNum.text = "Page: ${currentPage+1}/${pages.length}";
+    }
+
+    @override
+    Element makePortrait() {
+        DivElement div = new DivElement();
+        div.classes.add("cardPortraitBG");
+        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}.png");
+        portrait.classes.add("cardPortrait");
+
+        div.append(portrait);
+
+        return div;
+    }
+
+    Element makeDescription() {
+        DivElement div = new DivElement();
+        div.classes.add("cardStats");
+        div.style.display = "none";
+        div.setInnerHtml(description);
+        pages.add(div);
+        return div;
+
+    }
+
+    Element makeSessions() {
+        DivElement ret = new DivElement();
+        ret.style.display = "none";
+
+        DivElement activeDiv = new DivElement();
+        ret.append(activeDiv);
+        activeDiv.setInnerHtml("Sessions Active In: ");
+        DivElement sessionsDiv  = new DivElement();
+        activeDiv.append(sessionsDiv);
+        for(int session_id in activeSessions) {
+            SpanElement d = new SpanElement();
+            AnchorElement a = new AnchorElement();
+            a.href = "index2.html?seed=$session_id";
+            a.target = "_blank";
+            a.text = " $session_id, ";
+            d.append(a);
+            sessionsDiv.append(d);
+        }
+
+        pages.add(ret);
+        return ret;
+
+    }
+
+
+    Element makeStats() {
+        DivElement div = new DivElement();
+        div.classes.add("cardStats");
+        for(String key in statsMap.keys) {
+            DivElement tmp = new DivElement();
+            tmp.classes.add("cardStatBox");
+            SpanElement first = new SpanElement();
+            first.setInnerHtml("${key}:");
+            first.classes.add("cardStatName");
+
+            SpanElement second = new SpanElement();
+            second.classes.add("cardStatValue");
+            second.setInnerHtml("${statsMap[key]}");
+            tmp.append(first);
+            tmp.append(second);
+            div.append(tmp);
+        }
+
+
+        pages.add(div);
+        return div;
+    }
+
+
     @override
     void fromJSON(String jsonString) {
         JSONObject json = new JSONObject.fromJSONString(jsonString);

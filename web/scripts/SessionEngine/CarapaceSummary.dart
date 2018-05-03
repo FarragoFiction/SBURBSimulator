@@ -109,6 +109,7 @@ class CarapaceStats extends BigBadStats{
 
     }
 
+    @override
     Element makePortrait() {
         DivElement div = new DivElement();
         div.classes.add("cardPortraitBG");
@@ -121,16 +122,7 @@ class CarapaceStats extends BigBadStats{
         return div;
     }
 
-    Element makeDescription() {
-        DivElement div = new DivElement();
-        div.classes.add("cardStats");
-        div.style.display = "none";
-        div.setInnerHtml(description);
-        pages.add(div);
-        return div;
-
-    }
-
+    @override
     Element makeSessions() {
         DivElement ret = new DivElement();
         ret.style.display = "none";
@@ -169,48 +161,14 @@ class CarapaceStats extends BigBadStats{
 
     }
 
-    void turnPage() {
-        currentPage ++;
-        if(currentPage >= pages.length) currentPage = 0;
-
-        for(int i = 0; i<pages.length; i++) {
-            Element e = pages[i];
-            if(i == currentPage) {
-                e.style.display = "inline-block";
-            }else {
-                  e.style.display = "none";
-            }
-        }
-        pageNum.text = "Page: ${currentPage+1}/${pages.length}";
-    }
-
-    Element makeStats() {
-        DivElement div = new DivElement();
-        div.classes.add("cardStats");
-        for(String key in statsMap.keys) {
-            DivElement tmp = new DivElement();
-            tmp.classes.add("cardStatBox");
-            SpanElement first = new SpanElement();
-            first.setInnerHtml("${key}:");
-            first.classes.add("cardStatName");
-
-            SpanElement second = new SpanElement();
-            second.classes.add("cardStatValue");
-            second.setInnerHtml("${statsMap[key]}");
-            tmp.append(first);
-            tmp.append(second);
-            div.append(tmp);
-        }
 
 
-        pages.add(div);
-        return div;
-    }
 
 
 
     //display pic of prospit or derse.
     //display placeholder for the carpace in question.
+    @override
     Element getCard(Element container) {
         DivElement div = new DivElement();
         div.onClick.listen((e)

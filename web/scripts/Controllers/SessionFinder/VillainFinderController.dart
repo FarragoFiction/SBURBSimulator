@@ -6,6 +6,7 @@ import '../../navbar.dart';
 
 Element div;
 CarapaceSummary carapaceSummary = new CarapaceSummary(null);
+BigBadSummary bigBadSummary = new BigBadSummary(null);
 
 Future<Null> main() async {
     await globalInit();
@@ -21,6 +22,10 @@ Future<Null> main() async {
 Future<Null> displayCards() async {
     for(CarapaceStats cs in carapaceSummary.data.values) {
         cs.getCard(div);
+    }
+
+    for(BigBadStats bs in bigBadSummary.data.values) {
+        bs.getCard(div);
     }
 }
 
