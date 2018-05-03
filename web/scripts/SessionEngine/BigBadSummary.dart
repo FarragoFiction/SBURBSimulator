@@ -29,15 +29,12 @@ class BigBadStats {
         this.name = "???";
         this.description = "???";
         statsMap["Times Activated"] = 0;
-        statsMap["Times Crowned"] = 0;
-        statsMap["Carapaces Murdered"]  = 0;
         statsMap["Times Joined Players"] = 0;
+        statsMap["Carapaces Murdered"]  = 0;
         statsMap["Moons Murdered"]  = 0;
         statsMap["Planets Murdered"]  = 0;
-        statsMap["Red Miles Activated"]  = 0;
         statsMap["Players Murdered"]  = 0;
         statsMap["Times Died"]  = 0;
-        statsMap["Times Exiled"] = 0;
     }
 
     //add all others vars to yourself
@@ -55,14 +52,11 @@ class BigBadStats {
         this.description = bigBad.description;
         statsMap["Times Activated"] = bigBad.active ? 1 : 0;
         statsMap["Times Joined Players"] = bigBad.partyLeader != null ? 1 : 0;
-        statsMap["Times Crowned"] = bigBad.everCrowned ? 1 : 0;
         statsMap["Carapaces Murdered"] = bigBad.npcKillCount;
         statsMap["Moons Murdered"] = bigBad.moonKillCount;
         statsMap["Planets Murdered"] = bigBad.landKillCount;
-        statsMap["Red Miles Activated"] =  bigBad.usedMiles ? 1 : 0;
         statsMap["Players Murdered"] = bigBad.playerKillCount;
         statsMap["Times Died"] =  bigBad.dead ? 1 : 0;
-        statsMap["Times Exiled"] =  bigBad.exiled ? 1 : 0;
         //don't even bother.
         if(bigBad.session.session_id >0 && !bigBad.session.stats.scratched && !bigBad.session.stats.hadCombinedSession) {
             if (bigBad.active) activeSessions.add(bigBad.session.session_id);
@@ -103,15 +97,15 @@ class BigBadStats {
         container.append(divBorder);
 
 
-        DivElement name = new DivElement();
-        name.classes.add("cardName");
-        name.text = "Name: $name";
+        DivElement nameDiv = new DivElement();
+        nameDiv.classes.add("cardName");
+        nameDiv.text = "Name: $name";
         pageNum = new SpanElement();
         pageNum.classes.add("cardPageNum");
 
         divBorder.append(div);
         div.append(makePortrait());
-        div.append(name);
+        div.append(nameDiv);
         div.append(makeStats());
         div.append(makeDescription());
         div.append(makeSessions());
@@ -123,6 +117,12 @@ class BigBadStats {
         DivElement div = new DivElement();
         div.classes.add("cardPortraitBG");
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}.png");
+        div.style.backgroundImage = "url(images/BigBadCards/white.png)";
+
+        portrait.onError.listen((e) {
+            portrait.src = "images/BigBadCards/default.gif";
+        });
+
         portrait.classes.add("cardPortrait");
 
         div.append(portrait);

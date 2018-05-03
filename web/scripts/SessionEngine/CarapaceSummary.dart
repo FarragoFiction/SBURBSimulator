@@ -115,6 +115,9 @@ class CarapaceStats extends BigBadStats{
         div.classes.add("cardPortraitBG");
         div.style.backgroundImage = "url(images/BigBadCards/$moon.png)";
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${initials.toLowerCase()}.png");
+        portrait.onError.listen((e) {
+            portrait.src = "images/BigBadCards/default.gif";
+        });
         portrait.classes.add("cardPortrait");
 
         div.append(portrait);
@@ -182,9 +185,9 @@ class CarapaceStats extends BigBadStats{
         container.append(divBorder);
 
 
-        DivElement name = new DivElement();
-        name.classes.add("cardName");
-        name.text = "Name: $name ($initials)";
+        DivElement nameDiv = new DivElement();
+        nameDiv.classes.add("cardName");
+        nameDiv.text = "Name: $name ($initials)";
         DivElement alts = new DivElement();
         alts.text = "Aliases: ...";
         alts.classes.add("tooltip");
@@ -196,11 +199,11 @@ class CarapaceStats extends BigBadStats{
         pageNum = new SpanElement();
         pageNum.classes.add("cardPageNum");
         alts.append(pageNum);
-        name.append(alts);
+        nameDiv.append(alts);
 
         divBorder.append(div);
         div.append(makePortrait());
-        div.append(name);
+        div.append(nameDiv);
         div.append(makeStats());
         div.append(makeDescription());
         div.append(makeSessions());

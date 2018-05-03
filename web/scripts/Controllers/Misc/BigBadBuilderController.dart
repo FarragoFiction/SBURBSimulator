@@ -42,6 +42,7 @@ Future<Null> start() async {
   todo("split main and experimental");
   todo("big bad activation loop");
   todo("teach shogunbot how to make non carapace cards");
+  todo("teach AB to write bigBadSummaries to cache");
   todo("When a BIG BAD is activated, you can see their image as a img tag");
   todo("find a test sessions where big bad is summoned");
   todo("big bads need 0 or more custom fraymotif names");
