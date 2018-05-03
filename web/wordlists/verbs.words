@@ -43,6 +43,7 @@ verb_action
         presetThird: caresses
     pet
         pc: pett
+    sample
 
 verb_travel
     walk
@@ -68,3 +69,10 @@ verb_programming
     program
         pc: programm
     engineer
+    code
+        pc: cod
+    sample
+        pc: sampl
+    construct
+    fabricate
+        pc: fabricat

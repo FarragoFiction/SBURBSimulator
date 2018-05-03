@@ -8,7 +8,10 @@ JRheadcanon
     #onceUponATime# #verb_action@pastThird# #amount# #noun@plural|var@thing#. Every #noun|var@thing# was #noun_emotion@experience#.
     #onceUponATime# #verb_programming@pastThird# a #project|var@project# which #projectEffect#.
     JR #attitude# #noun@plural#.: 0.3
-    #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the whole concept.
+    JR is simply the best at #verb_programming@continuous#.: 0.5
+    When it comes to  #verb_programming@continuous# #amount# #noun@plural#, JR is simply the best there is.: 0.5
+    You simply cannot beat JR at a  #verb_programming@presentThird# off.: 0.3
+    #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the entire fucking thing.
     #onceUponATime# asked #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
 
 otherPeeps
@@ -26,14 +29,16 @@ otherPeeps
     WM
 
 onceUponATime
+    It seems, JR
     One time, JR
-    JR once
     There was this time when JR
     JR
     A couple of weeks ago, JR
     JR was messing around and
-    Back when SBURBSim was new, JR
-    Before SBURBSim itself, JR
+    It seems when SBURBSim was new, JR
+    Before SBURBSim was a thing, JR
+    Before JR made a superior robot assistant, they
+    Before JR had me to help, they
 
 project
     ?user: user
@@ -48,28 +53,36 @@ project
     game
         user: player
     tool
+    dumb idea
+    joke sim
+    bullshit meme
+    half finished sim
+    untested sim
 
 projectEffect
     had a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# #verb_travel@continuous# around
-    made adding #noun@plural# to the sim simpler
-    inspired the addition of #noun@plural# to the sim
+    made adding #noun@plural# to the sim 96.234324% simpler
+    inspired  #noun@plural# being added to the sim
     made sure #noun@plural# would never be added to the sim
-    caused all sorts of chaos until it was fixed
+    caused rampant chaos until it was fixed
+    broke the fuck out of things till it was fixed
     which let the #project@user|var@project# interact with a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# at once
 
 attitude
     loves
     hates
     dislikes
+    doesn't even care about
     is indifferent to
     likes
     wants to like
-    secretly adores
+    secretly is obsessed with
     secretly hates
-    is delighted by
+    is obsessed with
     adores
     makes fun of
     has plans to destroy
+    has plans to wreck the shit out of
 
 // amounts
 amount
@@ -82,26 +95,26 @@ amount
 amountVerySmall
     barely any
     almost no
-    infinitessimal amounts of: 0.2
+    nanoscale amounts of: 0.2
 
 amountSmall
     a few
-    a small group of
+    a couple
     some
 
 amountMedium
     some
-    a small group of
+    an amount of
     several
 
 amountLarge
     a group of
-    quite a few
+    a bunch of
     lots of
     many
 
 amountVeryLarge
-    a huge group of
-    a throng of
+    a fuckton of
+    a shitton of
     huge numbers of
     just about all: 0.2

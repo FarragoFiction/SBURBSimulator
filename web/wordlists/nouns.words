@@ -20,12 +20,19 @@ noun_object
     ball
     piano
     cube
+    pylons
+        plural: pylons
     pyramid
+    alchemiter
+    puzzle
+    riddle
     sphere
     orb
     plank
     tree
     table
+    shipping grid
+    lighter
     wall
     door
     pant
@@ -50,6 +57,8 @@ noun_animal
     bird
     fish
         plural: fish
+    robot
+        ?collective: superiority
     gnome
     penguin
     hamster
@@ -77,6 +86,7 @@ noun_animal
     monkey
     gorilla
     rat
+    chinchilla
 
 noun_food
     @noun_vegetable
@@ -154,3 +164,5 @@ noun_emotion
         experience: disgusted
     joy
         experience: happy
+    smug
+        experience: gigglesnorty
