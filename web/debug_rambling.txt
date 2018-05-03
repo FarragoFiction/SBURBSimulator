@@ -6013,3 +6013,38 @@ CROWNEDCARAPACE becomes:
 * target has item X <-- uses output of previous trigger to get only those with item
 
 then it's triggered becomes if List<GameEntity> livingTargets.isNotEmpty && List<Land>  landTargets.isNotEmpty;
+
+
+
+
+~~~~~~~~
+
+Okay. I'm frustrated and confused. It's time to step back for five minutes, then maybe go take a break outside.
+
+AB is insane. I've gotten multiple reports about it, and this time it's worse than normal.
+
+I have a session, 2304171846, where a void gnosis happens and NOTHING IS RIGHT afterwards.
+
+I went and did a quick refactor to make sure the mutator isn't being shared between sessions, and added a thing to
+ the debug printout for the number of mutators.
+
+The first session after that void gnosis is still wrong. It ends in a space gnosis in reality but AB
+ thinks there's no gnosis and everything went okay.
+
+ When I ask her to print out what happened in the session, somehow she prints out a bunch of debug
+ lines but not any text unless it's about carapaces. I don't know why, but it means I can't
+ do a simple diff comparison of the sessions.
+
+ I'm frustrated, and I don't know what to do. If I could get her to print the entire session out correctly, then
+ I'd be fine. I know the NPC stuff is the most recent, so likely makes a new div instead of appendHtml
+ , it might be related to that.
+
+ Even without an auto diff, though, I should be able to compare scene ids and see where there's a difference.
+ It would be tedius and boring, but it gets me information I need.
+
+ I can't think of anything at all that would be shared between sessions at this point, and any step is better than nothing.
+
+ So.
+
+ I'm going to go outside and look at some nature for ten minutes, then I'm going to come back in and
+ spend a half hour or so line by line manually comparing the sessions.
