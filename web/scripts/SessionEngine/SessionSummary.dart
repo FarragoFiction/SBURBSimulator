@@ -463,6 +463,7 @@ class SessionSummary {
         summary.setBoolStat("kingTooPowerful", false);
         summary.setBoolStat("queenRejectRing", false);
         summary.setBoolStat("murdersHappened", false);
+        summary.setBoolStat("scratched", false);
         summary.setBoolStat("grimDark", false);
         summary.setBoolStat("hasDiamonds", false);
         summary.setBoolStat("hasSpades", false);
@@ -580,6 +581,7 @@ class SessionSummary {
         summary.setBoolStat("queenRejectRing", session.stats.queenRejectRing);
         ////;
         summary.setBoolStat("murdersHappened", session.stats.murdersHappened);
+
         summary.setBoolStat("grimDark", session.stats.grimDarkPlayers);
 
         Player spacePlayer = session.findBestSpace();

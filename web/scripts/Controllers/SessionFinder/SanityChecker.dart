@@ -148,6 +148,8 @@ void addComparisonRow(TableElement table, String valueName, String value1, Strin
     TableCellElement td3 = new TableCellElement();
     td3.setInnerHtml("${value2}");
     td3.style.border = "1px solid black";
+    td3.style.backgroundColor = color.toStyleString();
+
 
     tr.append(td1);
     tr.append(td2);
