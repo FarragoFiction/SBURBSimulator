@@ -8,6 +8,7 @@ import '../../navbar.dart';
 DivElement div;
 SanityChecker sanityChecker;
 Map<String, SessionSummary> cache;
+bool insanity = false;
 void main() {
     doNotRender = true;
     globalInit();
@@ -19,7 +20,6 @@ void main() {
 }
 
 void listTodos() {
-    todo("params for do sessions in reverse order, or shuffle");
 }
 
 void drawCache() {
@@ -31,7 +31,6 @@ void drawCache() {
     }else {
         values = shuffle(values);
     }
-    //todo("there are ${cache.values.length} cached summaries");
     for(SessionSummary s in values) {
         drawOneSummary(s);
     }
@@ -88,6 +87,9 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     addNumStatsRows(table, summary, simSummary);
     addBoolStatsRows(table, summary, simSummary);
     container.append(table);
+    if(insanity) {
+        window.alert("insanity found, colored red, search for INSANITY.");
+    }
 }
 
 
@@ -119,7 +121,7 @@ void addComparisonRow(TableElement table, String valueName, String value1, Strin
 //TODO make this more extendable, pass in text to display for s1 and s2 and be able to auto color border if they don't match
     Colour color = ReferenceColours.WHITE;
     if(value1 != value2) {
-        window.alert("insanity found, colored red, search for INSANITY.");
+        insanity = true;
         valueName = "$valueName(INSANITY)";
         color = ReferenceColours.RED;
     }

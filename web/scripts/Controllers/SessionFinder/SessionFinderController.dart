@@ -16,6 +16,7 @@ import "../../SessionEngine/SessionSummaryLib.dart";
 Random rand;
 //each round keeps track of it's mvp
 Player mvp;
+String backup = ""; //keep a back up of last div
 int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
 void main() {
@@ -55,9 +56,10 @@ void drawDebugButton() {
   debug.append(button);
   button.onClick.listen((e) {
     //debug.setInnerHtml("");
+    print("trying to debug $backup");
     TextAreaElement text = new TextAreaElement();
     //copy that's easy to copy pasta into a diff function
-    text.value = SimController.instance.storyElement.text;
+    text.value = backup;
     debug.append(SimController.instance.storyElement);
   });
 }
@@ -185,11 +187,12 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
 
   void printSummaries(){
+    backup = SimController.instance.storyElement.text;
     SimController.instance.clearElement(querySelector("#debug"));
     for(num i = 0; i<sessionSummariesDisplayed.length; i++){
       var ssd = sessionSummariesDisplayed[i];
       var str = ssd.generateHTML();
-      debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(ssd) + "</font><Br>" );
+      debug("<br>$i<hr><font color = 'red'> AB: " + getQuipAboutSession(ssd) + "</font><Br>" );
       debug(str);
     }
   }
@@ -267,12 +270,13 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();
-    SimController.instance.clearElement(SimController.instance.storyElement);
+    backup = SimController.instance.storyElement.text;
+   // SimController.instance.clearElement(SimController.instance.storyElement);
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
     var str = sum.generateHTML();
-    debug("<br><hr><font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+    debug("<br><hr>${sessionsSimulated.indexOf(session.session_id)}<font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
     debug(str);
     printStats(null,null,null); //no filters here
     numSimulationsDone ++;
@@ -330,7 +334,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       return null;
     }
     sessionsSimulated.add(session.session_id);
-    SimController.instance.clearElement(SimController.instance.storyElement);
+    backup = SimController.instance.storyElement.text;
+    //SimController.instance.clearElement(SimController.instance.storyElement);
 
     var sum = session.generateSummary();
     allSessionsSummaries.add(sum);

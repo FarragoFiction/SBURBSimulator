@@ -1072,7 +1072,7 @@ class Session {
         }
         //can only get here if all are trolls.
         if (sgrub) {
-            document.title = "SGRUB Story Generator by jadedResearcher";
+            document.title = "SGRUBSim ${document.title}";
         }
 
         if (getParameterByName("nepeta", null) == ":33") {
