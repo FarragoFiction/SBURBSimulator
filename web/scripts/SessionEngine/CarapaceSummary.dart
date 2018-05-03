@@ -5,25 +5,17 @@ import 'dart:convert';
 import "dart:async";
 
 
-class CarapaceStats {
+class CarapaceStats extends BigBadStats{
 
-    List<int> activeSessions = new List<int>();
     List<int> crownedSessions = new List<int>();
 
     String aliases;
-    String exampleName;
     String initials;
     String moon;
     String description;
 
-    int currentPage = 0;
-    List<Element> pages = <Element>[];
 
-    Element pageNum;
-
-    Map<String, int> statsMap = new Map<String, int>();
-
-    CarapaceStats(Carapace carapace) {
+    CarapaceStats(GameEntity carapace):super(carapace) {
         if(carapace != null) {
             loadCarapace(carapace);
         }else {
@@ -33,7 +25,7 @@ class CarapaceStats {
 
     void initStats() {
         this.initials = "???";
-        this.exampleName = "???";
+        this.name = "???";
         this.aliases = "???";
         this.moon = "???";
         this.description = "???";
@@ -52,7 +44,7 @@ class CarapaceStats {
     void loadCarapace(Carapace carapace) {
         //;
         this.initials = carapace.initials;
-        this.exampleName = carapace.name;
+        this.name = carapace.name;
         this.aliases = carapace.aliases;
         this.moon = carapace.type;
         this.description = carapace.description;
@@ -76,6 +68,7 @@ class CarapaceStats {
 
     }
 
+    @override
     void fromJSON(String jsonString) {
         //;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
@@ -84,7 +77,7 @@ class CarapaceStats {
             statsMap[key] = num.parse(json[key]);
         }
         aliases = json["aliases"];
-        exampleName = json["exampleName"];
+        name = json["exampleName"];
         initials = json["initials"];
         moon = json["moon"];
         activeSessions  = JSONObject.jsonStringToIntArray(json["activeSessions"]);
@@ -92,13 +85,14 @@ class CarapaceStats {
        //;
     }
 
+    @override
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         for(String key in statsMap.keys) {
             json[key] = statsMap[key].toString();
         }
         json["aliases"] = aliases;
-        json["exampleName"] = exampleName;
+        json["name"] = name;
         json["initials"] = initials;
         json["moon"] = moon;
         json["activeSessions"] = activeSessions.toString();
@@ -108,13 +102,10 @@ class CarapaceStats {
         return json;
     }
 
-    //add all others vars to yourself
-    void add(CarapaceStats other) {
-        for(String key in statsMap.keys) {
-            if(other.statsMap.containsKey(key))statsMap[key] += other.statsMap[key];
-        }
-        activeSessions.addAll(other.activeSessions);
-        crownedSessions.addAll(other.crownedSessions);
+    @override
+    void add(BigBadStats other) {
+        super.add(other);
+        crownedSessions.addAll((other as CarapaceStats).crownedSessions);
 
     }
 
@@ -235,7 +226,7 @@ class CarapaceStats {
 
         DivElement name = new DivElement();
         name.classes.add("cardName");
-        name.text = "Name: $exampleName ($initials)";
+        name.text = "Name: $name ($initials)";
         DivElement alts = new DivElement();
         alts.text = "Aliases: ...";
         alts.classes.add("tooltip");
@@ -265,20 +256,15 @@ class CarapaceStats {
     need to have an object LIKE this  for every SessionSummary maybe even still with CarapceStats...
     oh...could just literally use this, then also have a way to hrrrm....
  */
-class CarapaceSummary {
-    Map<String, CarapaceStats> data = new Map<String, CarapaceStats>();
+class CarapaceSummary extends BigBadSummary {
 
-    Session session;
-    CarapaceSummary(Session this.session) {
+    CarapaceSummary(session):super(session) {
         if(session == null) {
             defaultSession();
         }
         init();
     }
-    void defaultSession() {
-         session = new Session(-13);
-         session.setupMoons("getting a default session");
-    }
+
 
 
     void fromJSON(String jsonString) {
