@@ -20,6 +20,26 @@ class SessionMutator {
     bool spaceField = false; //exclusively controls combo endings .
     bool dreamField = false; //alchemy doesn't consume items, alchemy can happen as many times as you want.
 
+    @override
+    String toString() {
+        String ret = "Effects in Play: $effectsInPlay ";
+        if(hopeField) ret = "$ret hope";
+        if(breathField) ret = "$ret breath";
+        if(heartField) ret = "$ret heart";
+        if(voidField) ret = "$ret void";
+        if(lightField) ret = "$ret light";
+        if(bloodField) ret = "$ret blood";
+        if(lifeField) ret = "$ret life";
+        if(doomField) ret = "$ret doom";
+        if(rageField) ret = "$ret rage";
+        if(mindField) ret = "$ret mind";
+        if(timeField) ret = "$ret time";
+        if(spaceField) ret = "$ret space";
+        if(dreamField) ret = "$ret dream";
+
+        return ret;
+    }
+
     bool rapsAndLuckDisabled = false;
     num timeTillReckoning = 0;
     double gameEntityMinPower = 1.0;
