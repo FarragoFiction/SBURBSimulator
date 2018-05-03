@@ -13,12 +13,14 @@ JRheadcanon
     You simply cannot beat JR at a  #verb_programming@presentThird# off.: 0.3
     #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the entire fucking thing.
     #onceUponATime# asked #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
+    #onceUponATime# dared #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
+
 
 otherPeeps
     KR: 2.0
     PL: 2.0
     Shogun: 2.0
-    AB: 1.5
+    me: 1.5
     ABJ: 1.5
     AW
     MI
@@ -58,6 +60,8 @@ project
     bullshit meme
     half finished sim
     untested sim
+    bullshit puzzle
+    sadistic puzzle
 
 projectEffect
     had a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# #verb_travel@continuous# around
