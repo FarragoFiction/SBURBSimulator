@@ -363,7 +363,7 @@ class Session {
 
     void setupMoons(String reason) {
          //;
-        logger.info("DEBUG DESTROY MOON: setting up moons because $reason");
+        //logger.info("DEBUG DESTROY MOON: setting up moons because $reason");
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Mini Red Miles", 3);

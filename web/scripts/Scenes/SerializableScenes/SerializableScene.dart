@@ -68,6 +68,8 @@ abstract class  SerializableScene extends Scene {
 
   @override
   void renderContent(Element div) {
+      session.logger.info("TEST BIG BAD: rendering content");
+
       String displayText = "$flavorText";
       displayText =   displayText.replaceAll("$BIGBADNAME", "${gameEntity.htmlTitle()}");
       //if i some how have both, living target will be the one i pick.
@@ -162,6 +164,8 @@ void syncForm() {
   //all trigger conditions must be true for this to be true.
   @override
   bool trigger(List<Player> playerList) {
+      session.logger.info("TEST BIG BAD: checking triggers");
+
       landTargets.clear();
       livingTargets.clear();
       livingTargets = session.npcHandler.allEntities;

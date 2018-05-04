@@ -30,7 +30,7 @@ class Moon extends Land {
     Palette palette;
 
   Moon.fromWeightedThemes(Ring this._queensRing, Scepter this._kingsScepter, String name, Map<Theme, double> themes, Session session, Aspect a, this.id, this.palette) {
-      session.logger.info("DEBUG DESTROY MOON: making moon $name");
+      //session.logger.info("DEBUG DESTROY MOON: making moon $name");
       //override land of x and y. you are named Prospit/derse/etc
       this.name = name;
       this.session = session;

@@ -6,7 +6,8 @@ import 'dart:typed_data';
 import 'dart:collection';
 
 //replaces the poorly named scenario_controller2.js
-void main() {
+Future<Null> main() async {
+  await globalInit();
   sowChaos();
 
   //maybe if i define it here it won't be the same as end time
