@@ -168,7 +168,8 @@ void syncForm() {
 
       landTargets.clear();
       livingTargets.clear();
-      livingTargets = session.npcHandler.allEntities;
+      livingTargets = new List<GameEntity>.from(session.activatedNPCS); //not all, just active
+      livingTargets.addAll(session.players);
       landTargets = session.allLands;
 
 
