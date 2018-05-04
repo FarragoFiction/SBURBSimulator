@@ -67,6 +67,7 @@ class BigBad extends NPC {
             JSONObject j = new JSONObject();
             j.json = d;
             SummonScene ss = new SummonScene(session);
+            ss.gameEntity = this;
             ss.copyFromJSON(j);
             startMechanisms.add(ss);
         }

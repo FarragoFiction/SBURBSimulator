@@ -47,6 +47,7 @@ class SessionStats {
     bool godTier = false;
     bool grimDarkPlayers = false;
     bool questBed = false;
+    bool bigBadActive = false;
     bool sacrificialSlab = false;
     bool hadCombinedSession = false;
     bool yellowYard = false;

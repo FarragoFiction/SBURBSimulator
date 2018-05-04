@@ -10,8 +10,25 @@ class SummonScene extends SerializableScene {
     String name = "Summon Scene";
   SummonScene(Session session) : super(session);
 
+
+    @override
+    void renderContent(Element div) {
+        DivElement intro = new DivElement();
+        intro.text = "<h1>All tremble at the arrival of ${gameEntity.name}.";
+        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}.png");
+        portrait.onError.listen((e) {
+            portrait.src = "images/BigBadCards/default.gif";
+        });
+        intro.append(portrait);
+        div.append(intro);
+        super.renderContent(div);
+
+    }
+
   @override
   void doAction() {
-    gameEntity.active = true;
+      session.stats.bigBadActive = true;
+      session.logger.info("TEST BIG BAD: is this it? the first big bad has spawned? they probably don't do text replacement tho");
+      gameEntity.active = true;
   }
 }

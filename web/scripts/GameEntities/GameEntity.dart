@@ -214,7 +214,7 @@ class GameEntity extends Object with StatOwner   {
         }
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny
-        if(scenesToAdd.isNotEmpty) print("TEST RECKONING: adding ${scenesToAdd.length} scenes to $this");
+       // if(scenesToAdd.isNotEmpty) print("TEST RECKONING: adding ${scenesToAdd.length} scenes to $this");
         scenes.insertAll(0,scenesToAdd);
         scenesToAdd.clear();
     }

@@ -34,7 +34,7 @@ void displayBio() {
   TextEngine text = new TextEngine()..loadList("headcanon");
 
   querySelector("#askAB").onClick.listen((Event e){
-    querySelector("#canon")..append(new DivElement()..text = "AB: ${text.phrase("JRheadcanon")}")..style.color ="#ff0000";
+    querySelector("#canon")..append(new DivElement()..text = "AB: ${text.phrase("JRheadcanon")}")..style.color ="#ff0000"..style.backgroundColor = "#888888";
   });
 }
 

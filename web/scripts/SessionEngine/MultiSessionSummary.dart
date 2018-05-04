@@ -47,7 +47,9 @@ class MultiSessionSummary {
         setStat("murdersHappened", 0);
         setStat("grimDark", 0);
         setStat("hasHearts", 0);
+        setStat("bigBadActive", 0);
         setStat("hasDiamonds", 0);
+
         setStat("hasSpades", 0);
         setStat("hasClubs", 0);
         setStat("hasBreakups", 0);
@@ -568,6 +570,8 @@ class MultiSessionSummary {
             if (ss.getBoolStat("murdersHappened")) mss.incNumStat("murdersHappened");
             if (ss.getBoolStat("grimDark")) mss.incNumStat("grimDark");
             if (ss.getBoolStat("hasDiamonds")) mss.incNumStat("hasDiamonds");
+            if (ss.getBoolStat("bigBadActive")) mss.incNumStat("bigBadActive");
+
             if (ss.getBoolStat("hasSpades")) mss.incNumStat("hasSpades");
             if (ss.getBoolStat("hasClubs")) mss.incNumStat("hasClubs");
             if (ss.getBoolStat("hasBreakups")) mss.incNumStat("hasBreakups");

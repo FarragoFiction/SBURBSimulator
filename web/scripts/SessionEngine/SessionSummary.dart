@@ -465,7 +465,9 @@ class SessionSummary {
         summary.setBoolStat("murdersHappened", false);
         summary.setBoolStat("scratched", false);
         summary.setBoolStat("grimDark", false);
+        summary.setBoolStat("bigBadActive", false);
         summary.setBoolStat("hasDiamonds", false);
+
         summary.setBoolStat("hasSpades", false);
         summary.setBoolStat("hasClubs", false);
         summary.setBoolStat("hasHearts", false);
@@ -595,6 +597,7 @@ class SessionSummary {
         }
 
         summary.setBoolStat("hasDiamonds", session.stats.hasDiamonds);
+        summary.setBoolStat("bigBadActive", session.stats.bigBadActive);
         summary.setBoolStat("hasSpades", session.stats.hasSpades);
         summary.setBoolStat("hasClubs", session.stats.hasClubs);
         summary.setBoolStat("hasHearts", session.stats.hasHearts);

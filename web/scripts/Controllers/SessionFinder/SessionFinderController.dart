@@ -19,10 +19,11 @@ Player mvp;
 String backup = ""; //keep a back up of last div
 int round = 0;
 SessionFinderController self; //want to access myself as more than just a sim controller occasionally
-void main() {
+Future<Null>  main() async {
 
   //TODO later i'll allow it to be stored from multiple page loads, but right now too much could go wrong.
   SessionSummary.clearCache();
+  await globalInit();
   doNotRender = true;
   drawDebugButton();
   doNotFetchXml = true; //AB slows down like whoa.

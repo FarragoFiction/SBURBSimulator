@@ -16,11 +16,13 @@ Random rand;
 Player mvp;
 int round = 0;
 DeadSessionFinderController self; //want to access myself as more than just a sim controller occasionally
-void main() {
+Future<Null> main() async {
 
   doNotRender = true;
   doNotFetchXml = true; //AB slows down like whoa.
   loadNavbar();
+  await globalInit();
+
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error

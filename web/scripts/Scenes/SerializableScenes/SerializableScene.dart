@@ -46,9 +46,9 @@ abstract class  SerializableScene extends Scene {
 
     //flavor text will not influence the actual actions going on, but will change how it is narratively
   String flavorText = "";
-  List<GameEntity> livingTargets;
+  List<GameEntity> livingTargets = new List<GameEntity>();
   //can include moons or the battlefield
-  List<Land> landTargets;
+  List<Land> landTargets = new List<Land>();
 
   //prefers land to living, otherwise first in list
   bool oneTarget;
