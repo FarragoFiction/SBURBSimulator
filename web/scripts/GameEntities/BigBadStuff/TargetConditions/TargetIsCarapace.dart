@@ -88,7 +88,7 @@ class TargetIsCarapace extends TargetConditionLiving {
   @override
   List<GameEntity> filter(List<GameEntity> list) {
     if(carapaceInitials != ANY) {
-      list.removeWhere((GameEntity item) => !(item is Carapace) && item.initials != carapaceInitials);
+      list.removeWhere((GameEntity item) => !(item is Carapace) || item.initials != carapaceInitials);
     }else {
       list.removeWhere((GameEntity item) => !(item is Carapace));
     }
