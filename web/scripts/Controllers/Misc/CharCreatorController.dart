@@ -2,14 +2,16 @@ import 'dart:html';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 import '../../v2.0/char_creator_helper.dart';
+import "dart:async";
 
 CharCreatorController self;
 //only one session on this page
 Session session;
-void main()
+Future<Null> main() async
 
 {
   loadNavbar();
+  await globalInit();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
     //String msg, String url, lineNo, columnNo, error
