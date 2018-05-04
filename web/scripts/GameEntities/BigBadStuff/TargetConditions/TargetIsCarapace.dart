@@ -72,6 +72,7 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
   @override
   List<GameEntity> filter(List<GameEntity> list) {
-    // TODO: implement filter
+    list.removeWhere((GameEntity item) => !(item is Carapace));
+    return list;
   }
 }
