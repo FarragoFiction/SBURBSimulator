@@ -41,7 +41,7 @@ class BigBad extends NPC {
 
       List<JSONObject> startSceneArray = new List<JSONObject>();
       for(Scene s in startMechanisms) {
-          if(s is SerializableScene) startSceneArray.add((s as SerializableScene).toJSON());
+          if(s is SerializableScene) startSceneArray.add(s.toJSON());
       }
       json["startMechanisms"] = startSceneArray.toString();
       return json;
@@ -73,10 +73,16 @@ class BigBad extends NPC {
     }
 
 
-  static BigBad fromDataString(String rawDataString, session) {
+  static BigBad fromDataString(String rawDataString, Session session) {
       BigBad ret = new BigBad("TEMPORARY", session);
       ret.copyFromDataString(rawDataString);
       return ret;
+  }
+
+  SummonScene summonTriggered() {
+      for(SummonScene s in startMechanisms) {
+
+      }
   }
 
   void syncForm() {
@@ -87,7 +93,7 @@ class BigBad extends NPC {
 
   void removeScene(SerializableScene scene) {
       String jsonString = scene.toJSON().toString();
-      List<Scene> allScenes = new List.from(startMechanisms);
+      List<Scene> allScenes = new List<Scene>.from(startMechanisms);
       allScenes.addAll(scenes);
       allScenes.addAll(stopMechanisms);
       for(Scene s in startMechanisms) {
@@ -155,7 +161,7 @@ class BigBadForm {
         button.text = "Add A Start Scene";
         container.append(startSceneSection);
         container.append(button);
-        button.onClick.listen((e)
+        button.onClick.listen((Event e)
         {
             SummonScene summonScene = new SummonScene(bigBad.session);
             summonScene.gameEntity = bigBad;
@@ -181,7 +187,7 @@ class BigBadForm {
         subContainer.append(nameElement);
         container.append(subContainer);
 
-        nameElement.onInput.listen((e) {
+        nameElement.onInput.listen((Event e) {
             bigBad.name = nameElement.value;
             syncDataBoxToBigBad();
         });
@@ -199,7 +205,7 @@ class BigBadForm {
         subContainer.append(descElement);
         container.append(subContainer);
 
-        descElement.onInput.listen((e) {
+        descElement.onInput.listen((Event e) {
             bigBad.description = descElement.value;
             syncDataBoxToBigBad();
         });
@@ -210,7 +216,7 @@ class BigBadForm {
         dataBox.value = bigBad.toDataString();
         dataBox.cols = 60;
         dataBox.rows = 10;
-        dataBox.onChange.listen((e) {
+        dataBox.onChange.listen((Event e) {
             print("syncing template to data box");
             bigBad.copyFromDataString(dataBox.value);
             syncFormToBigBad();

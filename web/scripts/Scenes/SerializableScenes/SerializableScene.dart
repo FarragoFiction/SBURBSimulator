@@ -75,6 +75,7 @@ abstract class  SerializableScene extends Scene {
       DivElement content = new DivElement();
       div.append(content);
       content.setInnerHtml(displayText);
+      doAction();
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
   }
 

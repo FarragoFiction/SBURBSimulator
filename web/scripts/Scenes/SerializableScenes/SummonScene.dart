@@ -12,6 +12,6 @@ class SummonScene extends SerializableScene {
 
   @override
   void doAction() {
-    throw("TODO: make this set my game entity to active");
+    gameEntity.active = true;
   }
 }

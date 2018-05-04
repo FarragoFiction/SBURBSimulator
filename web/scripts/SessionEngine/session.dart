@@ -55,7 +55,7 @@ class Session {
     List<Player> players = <Player>[];
 
     //these are stable between combos and scratches
-    List<GameEntity> bigBads = new List<GameEntity>();
+    List<GameEntity> get bigBads => npcHandler.bigBads;
     //these are not
 
     //stores them.
@@ -71,13 +71,11 @@ class Session {
     void grabActivatedBigBads() {
         List<GameEntity> bbRemove = new List<GameEntity>();
         for(GameEntity g in bigBads) {
-
             if(g.active) {
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
             }
         }
-
         for(GameEntity g in bbRemove) {
             bigBads.remove(g);
         }
@@ -787,8 +785,6 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
-        //;
-        //SimController.instance.storyElement.append("processing scene");
         List<Player> avail = setAvailablePlayers(playersInSession);
         makeSurePlayersNotInSessionArentAvailable(playersInSession);
         resetNPCAvailability();
@@ -800,12 +796,21 @@ class Session {
                 p.processScenes();
             }
         }
-
-       // ;
         List<GameEntity> cachedActivated = new List.from(activatedNPCS);
         //(since an npc can be activated during these scenes)
         for(GameEntity g in cachedActivated) {
             if(g.active && g.available) g.processScenes();
+        }
+
+        for(GameEntity g in bigBads) {
+            if(g is BigBad) {
+                //summon scene handles activation
+                SummonScene s = g.summonTriggered();
+                if(s!= null) {
+                    numScenes ++;
+                    s.renderContent(newScene(s.runtimeType.toString()));
+                }
+            }
         }
 
         for (num i = 0; i < this.deathScenes.length; i++) {
