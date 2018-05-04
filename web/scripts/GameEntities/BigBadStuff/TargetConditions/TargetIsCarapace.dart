@@ -5,6 +5,8 @@ import 'dart:html';
 class TargetIsCarapace extends TargetConditionLiving {
   SelectElement select;
 
+  static String ANY = "ANY";
+
   @override
   String name = "IsCarapace";
 
@@ -31,6 +33,11 @@ class TargetIsCarapace extends TargetConditionLiving {
     select = new SelectElement();
     select.size = 13;
     me.append(select);
+
+    OptionElement o = new OptionElement();
+    o.value = ANY;
+    o.text = ANY;
+    select.append(o);
     for(GameEntity carapace in allCarapaces) {
       OptionElement o = new OptionElement();
       o.value = carapace.initials;
@@ -40,7 +47,10 @@ class TargetIsCarapace extends TargetConditionLiving {
         print("selecting ${o.value}");
         o.selected = true;
       }
+
     }
+
+
 
     if(carapaceInitials == null) select.selectedIndex = 0;
     select.onChange.listen((e) => syncToForm());
@@ -72,7 +82,11 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
   @override
   List<GameEntity> filter(List<GameEntity> list) {
-    list.removeWhere((GameEntity item) => !(item is Carapace));
+    if(carapaceInitials != ANY) {
+      list.removeWhere((GameEntity item) => !(item is Carapace));
+    }else {
+      list.removeWhere((GameEntity item) => !(item is Carapace));
+    }
     return list;
   }
 }
