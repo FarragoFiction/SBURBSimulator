@@ -175,10 +175,13 @@ void syncForm() {
       for(TargetConditionLiving tc in triggerConditionsLiving) {
           livingTargets = tc.filter(livingTargets);
       }
+      if(triggerConditionsLiving.isEmpty) livingTargets.clear();
+
 
       for(TargetConditionLand tc in triggerConditionsLand) {
           landTargets = tc.filter(landTargets);
       }
+      if(triggerConditionsLand.isEmpty) landTargets.clear();
 
 
       return landTargets.isNotEmpty || livingTargets.isNotEmpty;
