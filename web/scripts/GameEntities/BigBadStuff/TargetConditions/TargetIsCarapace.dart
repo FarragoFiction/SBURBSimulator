@@ -71,6 +71,11 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
 
   @override
+  String toString() {
+    return "TargetIsCarapace: ${carapaceInitials}";
+  }
+
+  @override
   void syncToForm() {
     carapaceInitials = select.options[select.selectedIndex].value;
     //keeps the data boxes synced up the chain
@@ -83,7 +88,7 @@ class TargetIsCarapace extends TargetConditionLiving {
   @override
   List<GameEntity> filter(List<GameEntity> list) {
     if(carapaceInitials != ANY) {
-      list.removeWhere((GameEntity item) => !(item is Carapace));
+      list.removeWhere((GameEntity item) => !(item is Carapace) && item.initials == carapaceInitials);
     }else {
       list.removeWhere((GameEntity item) => !(item is Carapace));
     }

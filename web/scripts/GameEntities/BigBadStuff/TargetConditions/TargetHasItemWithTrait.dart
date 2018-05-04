@@ -102,6 +102,11 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     }
 
     @override
+    String toString() {
+        return "TargetHasItemWithTrait: ${getItemTraitName()}";
+    }
+
+    @override
     void syncToForm() {
         String traitName = select.options[select.selectedIndex].value;
         itemTrait = allTraits[traitName];
