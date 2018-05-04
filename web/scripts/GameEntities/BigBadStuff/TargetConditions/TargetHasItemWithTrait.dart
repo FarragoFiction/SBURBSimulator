@@ -124,9 +124,17 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
       list.removeWhere((GameEntity entity) {
         for(Item i in entity.sylladex) {
             bool ret = (i.hasTrait(itemTrait));
-            if(ret == true) return true;
+            if(ret == true) {
+                scene.session.logger.info("$entity has item in sylladex with trait $itemTrait");
+                return true;
+            }
         }
-        return (entity.specibus.hasTrait(itemTrait));
+        bool ret = (entity.specibus.hasTrait(itemTrait));
+        if(ret == true) {
+            scene.session.logger.info("$entity has specibus with trait $itemTrait");
+            return true;
+        }
       });
-      return list;  }
+      return list;
+    }
 }
