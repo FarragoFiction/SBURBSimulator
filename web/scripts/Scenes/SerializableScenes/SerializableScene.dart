@@ -173,6 +173,7 @@ void syncForm() {
 
 
       for(TargetConditionLiving tc in triggerConditionsLiving) {
+          print("before filtinger by $tc, targets is $livingTargets");
           livingTargets = tc.filter(livingTargets);
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
