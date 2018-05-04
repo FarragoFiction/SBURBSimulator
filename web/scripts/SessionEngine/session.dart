@@ -802,12 +802,16 @@ class Session {
             if(g.active && g.available) g.processScenes();
         }
 
-        for(GameEntity g in bigBads) {
+        //keep it from being a concurrent mod if i activate (and thus get removed from list
+        List<GameEntity> bb = new List.from(bigBads);
+        for(GameEntity g in bb) {
             if(g is BigBad) {
                 //handles activation and rendering
                 g.summonTriggered();
             }
+            logger.info("done processing $g showing up, big bads is $bigBads");
         }
+        logger.info("done processing big bads showing up");
 
         for (num i = 0; i < this.deathScenes.length; i++) {
             Scene s = this.deathScenes[i];
