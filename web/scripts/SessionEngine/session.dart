@@ -804,12 +804,8 @@ class Session {
 
         for(GameEntity g in bigBads) {
             if(g is BigBad) {
-                //summon scene handles activation
-                SummonScene s = g.summonTriggered();
-                if(s!= null) {
-                    numScenes ++;
-                    s.renderContent(newScene(s.runtimeType.toString()));
-                }
+                //handles activation and rendering
+                g.summonTriggered();
             }
         }
 
@@ -817,7 +813,6 @@ class Session {
             Scene s = this.deathScenes[i];
             if (s.trigger(playersInSession)) {
                 //	session.scenesTriggered.add(s);
-                this.numScenes ++;
                 s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
@@ -828,7 +823,6 @@ class Session {
             Scene s = this.reckoningScenes[i];
             if (s.trigger(playerList)) {
                 //session.scenesTriggered.add(s);
-                this.numScenes ++;
                 s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
@@ -837,7 +831,6 @@ class Session {
             Scene s = this.deathScenes[i];
             if (s.trigger(playerList)) {
                 //	session.scenesTriggered.add(s);
-                this.numScenes ++;
                 s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
@@ -1432,6 +1425,7 @@ class Session {
     }
 
     Element newScene(String callingScene, [overRideVoid =false]) {
+        numScenes ++;
         this.currentSceneNum ++;
         Element ret = new DivElement();
         ret.id = 'scene${this.currentSceneNum}';

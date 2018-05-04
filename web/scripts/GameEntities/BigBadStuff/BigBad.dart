@@ -79,9 +79,14 @@ class BigBad extends NPC {
       return ret;
   }
 
-  SummonScene summonTriggered() {
+  void summonTriggered() {
+      //first summon scene to trigger has dibs
       for(SummonScene s in startMechanisms) {
-
+          if(s.trigger(session.players)) {
+              this.session.numScenes ++;
+              s.renderContent(this.session.newScene(s.runtimeType.toString()));
+              return;
+          }
       }
   }
 
