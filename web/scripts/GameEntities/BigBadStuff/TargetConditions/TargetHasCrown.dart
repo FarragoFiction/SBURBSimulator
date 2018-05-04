@@ -55,6 +55,7 @@ class TargetHasCrown extends TargetConditionLiving {
     }
     @override
     List<GameEntity> filter(List<GameEntity> list) {
-        // TODO: implement filter
+        list.removeWhere((GameEntity item) => item.crowned == null);
+        return list;
     }
 }

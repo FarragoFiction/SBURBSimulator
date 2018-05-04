@@ -79,16 +79,12 @@ abstract class  SerializableScene extends Scene {
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
   }
 
-  void pickTarget() {
-      throw("TODO: map string target to a thing i'm looking for.");
-  }
-
-    void syncForm() {
-        form.syncDataBoxToScene();
-        if(gameEntity is BigBad) {
-            (gameEntity as BigBad).syncForm();
-        }
+void syncForm() {
+    form.syncDataBoxToScene();
+    if(gameEntity is BigBad) {
+        (gameEntity as BigBad).syncForm();
     }
+}
 
   void renderForm(Element container) {
       form = new SceneForm(this, container);
