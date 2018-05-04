@@ -123,8 +123,10 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
   List<GameEntity> filter(List<GameEntity> list) {
       list.removeWhere((GameEntity entity) {
         for(Item i in entity.sylladex) {
-            return (i.hasTrait(itemTrait));
+            bool ret = (i.hasTrait(itemTrait));
+            if(ret == true) return true;
         }
+        return (entity.specibus.hasTrait(itemTrait));
       });
       return list;  }
 }

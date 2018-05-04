@@ -232,6 +232,7 @@ class FreeWillStuff extends Scene {
         }
 
         if (ret.target == player && player.aspect != Aspects.TIME) ret = null;
+        if(ret == null) return null;
         return ret.target;
     }
 
