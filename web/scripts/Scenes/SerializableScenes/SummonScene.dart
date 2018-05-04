@@ -16,7 +16,7 @@ class SummonScene extends SerializableScene {
         DivElement intro = new DivElement();
         bool debugMode = getParameterByName("debug") == "fuckYes";
         String debug = "";
-        if(debugMode || true) {
+        if(debugMode) {
             debug = " (Triggers are: $triggerConditionsLand and $triggerConditionsLiving) Targets are: $landTargets nad $livingTargets";
         }
         intro.setInnerHtml("<h1>All tremble at the arrival of ${gameEntity.name}. $debug <br>");

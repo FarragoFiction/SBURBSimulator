@@ -91,7 +91,7 @@ class StartReckoning extends Scene {
       if(bkowner != wkowner) return false;
       if(bkowner != gameEntity) return false;
       //alright, so now I know I own both scepeters.
-      session.logger.info("$gameEntity has both scepters, will they cause a reckoning?");
+      //session.logger.info("$gameEntity has both scepters, will they cause a reckoning?");
       if(gameEntity.alliedToPlayers) {
           Player spacePlayer = session.findBestSpace();
           if(session.fullFrogCheck(spacePlayer)) {
