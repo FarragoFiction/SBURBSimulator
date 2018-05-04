@@ -116,6 +116,10 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     }
   @override
   List<GameEntity> filter(List<GameEntity> list) {
-    // TODO: implement filter
-  }
+      list.removeWhere((GameEntity entity) {
+        for(Item i in entity.sylladex) {
+            return (i.hasTrait(itemTrait));
+        }
+      });
+      return list;  }
 }

@@ -177,6 +177,10 @@ class Item implements Comparable<Item> {
         }
     }
 
+    bool hasTrait(ItemTrait trait) {
+        return traits.contains(trait);
+    }
+
     //it's sharp, it's pointy and it's a sword.   so can pick the same trait multiple times and just pick different words? Yes.
     String randomDescription(Random rand) {
         if(traits.isEmpty) traits.add(ItemTraitFactory.GENERIC); //don't stay empty

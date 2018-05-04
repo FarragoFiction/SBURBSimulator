@@ -121,6 +121,13 @@ class ItemTraitFactory {
   static Iterable<ItemTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
   static Iterable<ItemTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
 
+  static ItemTrait itemTraitNamed(String name) {
+    for(ItemTrait itemTrait in allTraits) {
+      if(itemTrait.descriptions.contains(name)) return itemTrait;
+    }
+    return null;
+  }
+
 
   //these are what shape it has? doubles as both specibus kinds and basic objects.
   static ItemObjectTrait GENERIC;
