@@ -807,7 +807,7 @@ class Session {
         for(GameEntity g in bb) {
             if(g is BigBad) {
                 //handles activation and rendering
-                g.summonTriggered();
+                //g.summonTriggered();
             }
             logger.info("done processing $g showing up, big bads is $bigBads");
         }
