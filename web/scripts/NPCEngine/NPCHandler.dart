@@ -91,7 +91,7 @@ class NPCHandler
     }
 
    void setupNpcs() {
-        setupBigBads();
+        //setupBigBads();
     }
 
     static Future<Null> loadBigBads() async {
