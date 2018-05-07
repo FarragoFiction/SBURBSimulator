@@ -17,6 +17,7 @@ import "Time.dart";
 import "Void.dart";
 import "Dream.dart";
 import "Sauce.dart";
+import "Law.dart";
 
 abstract class Aspects {
     static Aspect SPACE;
@@ -33,6 +34,7 @@ abstract class Aspects {
     static Aspect LIFE;
     static Aspect DREAM;
     static Aspect SAUCE; //just shogun
+    static Aspect LAW;
 
     static Aspect NULL;
 
@@ -51,6 +53,7 @@ abstract class Aspects {
         LIFE = new Life(11);
         DREAM = new Dream(12);
         SAUCE = new Sauce(13);
+        LAW = new Law(14);
 
         NULL = new Aspect(255, "Null", isInternal:true);
     }
