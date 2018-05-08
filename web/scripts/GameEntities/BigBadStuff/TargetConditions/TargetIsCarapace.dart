@@ -26,6 +26,7 @@ class TargetIsCarapace extends TargetConditionLiving {
     Session session = scene.session;
     List<GameEntity> allCarapaces = new List.from(session.prospit.associatedEntities);
     allCarapaces.addAll(session.derse.associatedEntities);
+    print("all carapaces is $allCarapaces");
     DivElement me = new DivElement();
     div.append(me);
     me.setInnerHtml("<br>Target must be a carapace: <br>");
@@ -52,7 +53,7 @@ class TargetIsCarapace extends TargetConditionLiving {
 
 
 
-    if(carapaceInitials == null) select.selectedIndex = 0;
+    if(select.selectedIndex == -1) select.options[0].selected = true;
     select.onChange.listen((e) => syncToForm());
     syncToForm();
   }
@@ -68,6 +69,7 @@ class TargetIsCarapace extends TargetConditionLiving {
         return;
       }
     }
+    if(select.selectedIndex == -1) select.options[0].selected = true;
   }
 
   @override

@@ -111,12 +111,12 @@ void syncForm() {
     void copyFromJSON(JSONObject json) {
         name = json["name"];
         if(json["targetOne"] == "true") targetOne = true;
+        flavorText = json["flavorText"];
         String triggerContionsStringLiving = json["triggerConditionsLiving"];
         String triggerContionsStringLand = json["triggerConditionsLand"];
 
         loadTriggerConditionsLiving(triggerContionsStringLiving);
         loadTriggerConditionsLand(triggerContionsStringLand);
-
     }
 
     void loadTriggerConditionsLand(String weirdString) {
@@ -145,6 +145,8 @@ void syncForm() {
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = name;
+        json["flavorText"] = flavorText;
+
         json["targetOne"] = targetOne.toString();
 
         List<JSONObject> triggerCondtionsArrayLiving = new List<JSONObject>();
@@ -303,9 +305,9 @@ class SceneForm {
         flavorText.value = "TODO: make flavor text a thing";
         flavorText.cols = 60;
         flavorText.rows = 10;
-        flavorText.onChange.listen((e) {
+        flavorText.onInput.listen((e) {
             scene.flavorText = flavorText.value;
-            syncFormToScene();
+            syncDataBoxToScene();
         });
         container.append(flavorText);
     }
