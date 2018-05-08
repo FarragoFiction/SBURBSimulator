@@ -16,10 +16,7 @@ import "dart:convert";
  * is actually possible (i.e. there are any carapaces living remainging)
  */
 abstract class  SerializableScene extends Scene {
-
-    //things that can be replaced
-    static String BIGBADNAME = BigBad.BIGBADNAME;
-    static String TARGET = "TARGET";
+    static String TARGET = "TARGET_NAME_OR_NAMES";
 
     SceneForm form;
     //if this is set i only poke at the first valid target, not all valid targets
@@ -312,6 +309,16 @@ class SceneForm {
             scene.flavorText = flavorText.value;
             syncDataBoxToScene();
         });
+
+        DivElement buttonDiv = new DivElement();
+        ButtonElement button = new ButtonElement();
+        button.text = "Append Target Name(s)";
+        button.onClick.listen((e) {
+            flavorText.text = "${flavorText.text} ${SerializableScene.TARGET}";
+            scene.flavorText = flavorText.text;
+            syncDataBoxToScene();
+        });
+        buttonDiv.append(button);
         container.append(flavorText);
     }
 
