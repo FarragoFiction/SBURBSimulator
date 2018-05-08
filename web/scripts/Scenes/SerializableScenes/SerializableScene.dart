@@ -28,7 +28,7 @@ abstract class  SerializableScene extends Scene {
     //not all things have a target, subclasses without one won't bother
 
     //flavor text will not influence the actual actions going on, but will change how it is narratively
-  String flavorText = "";
+  String flavorText = "Describe what happens in this scene in human words, based on what it targets and what it does to the targets. You can add a script tag to refer to the target or targets, but everything else should be your own words, including the Big Bads name.";
   List<GameEntity> livingTargets = new List<GameEntity>();
   //can include moons or the battlefield
   List<Land> landTargets = new List<Land>();
@@ -90,9 +90,7 @@ abstract class  SerializableScene extends Scene {
 
 void syncForm() {
     form.syncDataBoxToScene();
-    if(gameEntity is BigBad) {
-        (gameEntity as BigBad).syncForm();
-    }
+
 }
 
   void renderForm(Element container) {
@@ -236,6 +234,9 @@ class SceneForm {
 
     void syncDataBoxToScene() {
         dataBox.value = scene.toDataString();
+        if(scene.gameEntity is BigBad) {
+            (scene.gameEntity as BigBad).syncForm();
+        }
     }
 
     void syncFormToScene() {
@@ -322,12 +323,13 @@ class SceneForm {
         ButtonElement button = new ButtonElement();
         button.text = "Append Target Name(s)";
         button.onClick.listen((e) {
-            flavorText.text = "${flavorText.text} ${SerializableScene.TARGET}";
-            scene.flavorText = flavorText.text;
+            flavorText.value = "${flavorText.value} ${SerializableScene.TARGET}";
+            scene.flavorText = flavorText.value;
             syncDataBoxToScene();
         });
         buttonDiv.append(button);
         container.append(flavorText);
+        container.append(buttonDiv);
     }
 
 
