@@ -1827,7 +1827,7 @@ class Player extends GameEntity{
 
     @override
     String toString() {
-        return ("${this.class_name}${this.aspect}").replaceAll(new RegExp(r"'", multiLine: true), ''); //no spaces.
+        return title(); //no spaces.
     }
 
     void copyFromPlayer(Player replayPlayer) {

@@ -27,22 +27,6 @@ abstract class  SerializableScene extends Scene {
 
     //not all things have a target, subclasses without one won't bother
 
-    //what do you try to target, used for drop down
-    static String TARGETPLAYERS = "Players";
-    static String TARGETCARAPACES = "Carapaces";
-    static String TARGETDENIZENS = "Denizens";
-    static String TARGETLANDS = "Lands";
-    static String TARGETMOONS = "Moons";
-    static String TARGETCONSORTS = "Consorts";
-    static String TARGETGHOSTS = "Ghosts";
-    static String TARGETDEADPLAYERS = "Dead Players";
-    static String TARGETDEADCARAPACES = "Dead Carapaces";
-    static String TARGETROBOTS = "Robots";
-    static String TARGETDREAMSELVES = "Dream Selves";
-    static String TARGETBIGBADS = "Big Bads";
-    static String TARGETGODS = "Gods";
-    static String TARGETMORTALS = "Mortals";
-
     //flavor text will not influence the actual actions going on, but will change how it is narratively
   String flavorText = "";
   List<GameEntity> livingTargets = new List<GameEntity>();
@@ -70,14 +54,38 @@ abstract class  SerializableScene extends Scene {
       session.logger.info("TEST BIG BAD: rendering content");
 
       String displayText = "$flavorText";
-      displayText =   displayText.replaceAll("$BIGBADNAME", "${gameEntity.htmlTitle()}");
-      //if i some how have both, living target will be the one i pick.
-      //TODO replace shit.
+      displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       DivElement content = new DivElement();
       div.append(content);
       content.setInnerHtml(displayText);
       doAction();
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
+  }
+
+  List<GameEntity> get finalLivingTargets {
+      if(targetOne) {
+          return <GameEntity>[livingTargets.first];
+      }else {
+          return livingTargets;
+      }
+  }
+
+    List<Land> get finalLandTargets {
+        if(targetOne) {
+            return <Land>[landTargets.first];
+        }else {
+            return landTargets;
+        }
+    }
+
+    //if i some how have both, living target will be the one i pick.
+    String getTargetNames() {
+      if(livingTargets.isNotEmpty) {
+          return turnArrayIntoHumanSentence(finalLivingTargets);
+      }else {
+          return turnArrayIntoHumanSentence(finalLandTargets);
+      }
+
   }
 
 void syncForm() {
