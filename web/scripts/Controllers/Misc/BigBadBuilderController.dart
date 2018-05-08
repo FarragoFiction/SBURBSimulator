@@ -33,7 +33,7 @@ Future<Null> start() async {
    * Find sessions where the current Big Bads are being summoned
    */
 
-  todo("scenes don't appear to be saving anymore for some fucking reason, or at least aren't loading");
+  todo("scenes don't appear to be saving name or flavortext");
   todo("serializable scenes have a bool for first or all targets");
   todo("scenes should flavor text with replaceable words and shit.");
 
