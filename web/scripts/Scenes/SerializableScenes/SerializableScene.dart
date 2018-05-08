@@ -22,6 +22,8 @@ abstract class  SerializableScene extends Scene {
     static String TARGET = "TARGET";
 
     SceneForm form;
+    //if this is set i only poke at the first valid target, not all valid targets
+    bool targetOne = false;
 
     String get labelPattern => ":___ ";
 
@@ -108,6 +110,7 @@ void syncForm() {
 
     void copyFromJSON(JSONObject json) {
         name = json["name"];
+        if(json["targetOne"] == "true") targetOne = true;
         String triggerContionsStringLiving = json["triggerConditionsLiving"];
         String triggerContionsStringLand = json["triggerConditionsLand"];
 
@@ -142,6 +145,8 @@ void syncForm() {
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = name;
+        json["targetOne"] = targetOne.toString();
+
         List<JSONObject> triggerCondtionsArrayLiving = new List<JSONObject>();
         List<JSONObject> triggerCondtionsArrayLand = new List<JSONObject>();
 
@@ -199,6 +204,7 @@ class SceneForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement flavorText;
+    CheckboxInputElement targetOneElement;
 
 
     SceneForm(SerializableScene this.scene, parentContainer) {
@@ -215,6 +221,7 @@ class SceneForm {
         drawDeleteButton();
         drawName();
         drawFlavorText();
+        drawTargetOne();
         drawAddTriggerConditionButton();
 
     }
@@ -266,6 +273,28 @@ class SceneForm {
             scene.name = nameElement.value;
             syncDataBoxToScene();
         });
+    }
+
+    void drawTargetOne() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Target One Valid Target (vs target All Valid Targets):";
+        targetOneElement = new CheckboxInputElement();
+        targetOneElement.checked = scene.targetOne;
+
+        subContainer.append(nameLabel);
+        subContainer.append(targetOneElement);
+        container.append(subContainer);
+
+        nameElement.onInput.listen((e) {
+            if(targetOneElement.checked) {
+                scene.targetOne = true;
+            }else {
+                scene.targetOne = false;
+            }
+            syncDataBoxToScene();
+        });
+
     }
 
 
