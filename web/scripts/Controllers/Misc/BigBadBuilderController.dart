@@ -32,19 +32,13 @@ Future<Null> start() async {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
-  todo("have 'any' as option for is carapace");
   todo("serializable scenes have a bool for first or all targets");
+  todo("scenes should flavor text with replaceable words and shit.");
+
   todo("be able to remove triggers from scene, put into TargetCondition (living or land) parent class (i thought i did this)");
   todo("big bads have intro mod flavor text (like dystopic empire)");
-  todo("scenes should flavor text with replaceable words and shit. (how to do with such complex triggers?)");
   todo("scenes should have effects, summon scenes all start with 'is active'");
-  todo("text doc of big bads");
-  todo("split main and experimental");
-  todo("big bad activation loop");
-  todo("teach shogunbot how to make non carapace cards");
   todo("teach AB to write bigBadSummaries to cache");
-  todo("When a BIG BAD is activated, you can see their image as a img tag");
-  todo("find a test sessions where big bad is summoned");
   todo("big bads need 0 or more custom fraymotif names");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("have anything flagged as a big bad be something players try to strife, if it seems defeatable");
@@ -55,7 +49,6 @@ Future<Null> start() async {
   todo("more living conditions: is meta player, is god tier, is player, is Sprite, isRobot, is consort, is denizen, is alive, is dead, isAspect, isClass");
   todo("more land contions: owned by Aspect player,owned by Class player, owned by Meta Player, owned by God Tier, corrupt");
   todo("side apps, like big bad gotcha, or big bad betting battles");
-  todo("can lands be resurrected? if so, instead of nulling them out on destruction, maybe i should .dead them? what all would i have to change for that? questing, at the very least. space player frog shit...");
 
   setUpForm();
 }
