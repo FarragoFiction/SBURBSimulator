@@ -23,12 +23,12 @@ void main() {
 
 }
 
-void loadImage(ImageElement image) {
+void loadImage(ImageElement image, String filename) {
     sourceImage = image;
     querySelector("#sdg_source")..setInnerHtml("")..append(image);
 }
 
-void loadMask(ImageElement image) {
+void loadMask(ImageElement image, String filename) {
     maskImage = image;
     querySelector("#sdg_mask")..setInnerHtml("")..append(image);
 }

@@ -42,6 +42,10 @@ class TextEngine {
         this.rand = new Random(seed);
     }
 
+    void setSeed(int seed) {
+        this.rand = new Random(seed);
+    }
+
     String phrase(String rootList, [String variant = null]) {
         if (!_processed) {
             this.processLists();
@@ -294,6 +298,8 @@ class WordList extends WeightedList<Word> {
 class WordListFile {
     List<String> includes = <String>[];
     Map<String,WordList> lists = <String,WordList>{};
+
+    WordListFile();
 
     @override
     String toString() => "[WordListFile: $lists ]";

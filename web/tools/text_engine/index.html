@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Text Image Tools</title>
+        <link rel="stylesheet" href="../../css/oc.css">
+        <link rel="stylesheet" href="../../css/navbar.css">
+        <script type="application/dart" src="text_engine_playground.dart"></script>
+        <script src="packages/browser/dart.js"></script>
+        <style>
+            body {
+                background-image:url("../../images/copypasta_pl.png");
+            }
+            #listbox {
+                margin:5px;
+            }
+            #listbox>div {
+                border: 1px solid black;
+                padding:5px;
+            }
+            #listbox>h3 {
+                margin:5px 0px 2px 0px;
+            }
+            #text>div {
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "navbar"></div>
+        <div id="story">
+            <div id="controls">
+                <div id="loader"></div>
+                <div>
+                    <label for="count">Number of phrases</label>
+                    <input type="number" id="count" min="1" step="1" value="10">
+                </div>
+                <div>
+                    <label for="seed">Seed</label>
+                    <input type="number" id="seed" value="0">
+                    <input type="checkbox" id="useseed" title="Use seed">
+                </div>
+                <div>
+                    <label for="list">Initial list</label>
+                    <input type="text" id="list">
+                </div>
+
+                <div id="listbox">
+                    <h3>Manually Loaded Word Lists</h3>
+                    <div id="loadedlists"></div>
+                </div>
+                <div>
+                    <button id="reset">Reset Lists</button>
+                </div>
+                <div>
+                    <button id="generate">Generate</button>
+                </div>
+            </div>
+            <div id="text"></div>
+        </div>
+    </body>
+</html>
