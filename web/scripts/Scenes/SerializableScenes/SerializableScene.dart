@@ -300,7 +300,7 @@ class SceneForm {
 
     void drawFlavorText() {
         flavorText = new TextAreaElement();
-        flavorText.value = scene.toDataString();
+        flavorText.value = "TODO: make flavor text a thing";
         flavorText.cols = 60;
         flavorText.rows = 10;
         flavorText.onChange.listen((e) {

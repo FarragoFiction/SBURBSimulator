@@ -13,14 +13,14 @@ void main() {
     Formats.init();
     Element stuff = querySelector("#stuff");
 
-    Element load1 = FileFormat.loadButton(Formats.binary, (ByteBuffer data){
+    Element load1 = FileFormat.loadButton(Formats.binary, (ByteBuffer data, String filename){
         buffer1 = data;
         updateViewer();
     });
 
     stuff..append(load1);
 
-    Element load2 = FileFormat.loadButton(Formats.binary, (ByteBuffer data){
+    Element load2 = FileFormat.loadButton(Formats.binary, (ByteBuffer data, String filename){
         buffer2 = data;
         updateViewer();
     });
