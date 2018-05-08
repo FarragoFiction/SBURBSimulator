@@ -33,9 +33,7 @@ Future<Null> start() async {
    * Find sessions where the current Big Bads are being summoned
    */
 
-  todo("scenes don't appear to be saving name or flavortext");
-  todo("serializable scenes have a bool for first or all targets");
-  todo("scenes should flavor text with replaceable words and shit.");
+  todo("Scenes let you replace TARGET. Can't do more than that because of how targets work. (for example, can't know what the item with teh trait is cuz it might be multuiple items) ");
 
   todo("be able to remove triggers from scene, put into TargetCondition (living or land) parent class (i thought i did this)");
   todo("big bads have intro mod flavor text (like dystopic empire)");
