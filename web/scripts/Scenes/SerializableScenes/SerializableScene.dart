@@ -286,7 +286,7 @@ class SceneForm {
         subContainer.append(targetOneElement);
         container.append(subContainer);
 
-        nameElement.onInput.listen((e) {
+        targetOneElement.onChange.listen((e) {
             if(targetOneElement.checked) {
                 scene.targetOne = true;
             }else {
@@ -307,7 +307,7 @@ class SceneForm {
             scene.flavorText = flavorText.value;
             syncFormToScene();
         });
-        container.append(dataBox);
+        container.append(flavorText);
     }
 
 
