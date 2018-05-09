@@ -109,8 +109,8 @@ abstract class NonCanonSessions {
         vv.getRelationshipWith(dd).value = -20;
 
         Relationship.makeHeart(t,c);
-        t.getRelationshipWith(dd).value = 20;
-        dd.getRelationshipWith(t).value = 20;
+        t.getRelationshipWith(c).value = 20;
+        c.getRelationshipWith(t).value = 20;
 
         Relationship.makeDiamonds(vv,c);
         vv.getRelationshipWith(c).value = 20;
@@ -634,7 +634,7 @@ abstract class NonCanonSessions {
             player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
-            player.quirk.suffix = "";
+            player.quirk.suffix = "<3";
             player.land = player.spawnLand();
             player.land.name = "Land of Frogs and String";
             player.land.denizenFeature = new DenizenFeature('Thesis');
