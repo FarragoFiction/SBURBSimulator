@@ -17,6 +17,8 @@ abstract class NonCanonSessions {
         ret[730] = session730; //SBURBNeta
         ret[20082015] = session20082015; //RL
         ret[404] = session404; //cynicalTeuthida
+        ret[212] = session212; //Cipah
+
         return ret;
     }
 
@@ -79,6 +81,44 @@ abstract class NonCanonSessions {
         pa.getRelationshipWith(pm).value = -20;
         pm.getRelationshipWith(pa).value = -20;
     }
+
+
+    //from patron cynicalTeuthida: thanks for your support!!!
+    static void session212(Session session) {
+        int numPlayers = 4;
+        makeASessionFromSource(session,session212IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //no more, no less.
+        Player dd  = session.players[0];
+        Player t = session.players[1];
+        Player vv = session.players[2];
+        Player c = session.players[3];
+
+        /*
+         dd is Diamonds T Pitch VV
+         T is Flushed C  Diamonds DD
+         VV is Diamonds C Pitch DD
+         C is Flushed VV Diamonds T
+         */
+
+        Relationship.makeDiamonds(t,dd);
+        t.getRelationshipWith(dd).value = 20;
+        dd.getRelationshipWith(t).value = 20;
+
+        Relationship.makeSpades(dd,vv);
+        dd.getRelationshipWith(vv).value = -20;
+        vv.getRelationshipWith(dd).value = -20;
+
+        Relationship.makeHeart(t,c);
+        t.getRelationshipWith(dd).value = 20;
+        dd.getRelationshipWith(t).value = 20;
+
+        Relationship.makeDiamonds(vv,c);
+        vv.getRelationshipWith(c).value = 20;
+        c.getRelationshipWith(vv).value = 20;
+
+
+    }
+
 
 
 
@@ -181,7 +221,7 @@ abstract class NonCanonSessions {
         for(int i = 0; i<numPlayers; i++){
             Player player = session.players[i];
             Player guardian = player.guardian;
-            player.relationships = [];
+            player.relationships = <Relationship>[];
             List<Player> guardians = getGuardiansForPlayers(session.players);
             guardian.generateBlandRelationships(guardians);
             player.generateBlandRelationships(session.players);
@@ -288,8 +328,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("being the systematic allfather", InterestManager.DOMESTIC);
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "[";
             player.quirk.suffix = "]";
             player.land = player.spawnLand();
@@ -314,8 +354,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Music", InterestManager.MUSIC);
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = ">{";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -346,7 +386,7 @@ abstract class NonCanonSessions {
             player.quirk.capitalization = 0;
             player.leftMurderMode=true;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["i","1"],["o","0"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -378,8 +418,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Revolution", InterestManager.JUSTICE);
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "=|}";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -409,7 +449,7 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Bees", InterestManager.CULTURE); //why are bees culture. VA. Why?
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["s","z"],["c","z"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -440,7 +480,7 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Movies", InterestManager.POPCULTURE); //especially the Aliens series
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["i","1"],["l","1"],["e","3"],["one","1"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -466,8 +506,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Slow Things", InterestManager.CULTURE);
             player.quirk.capitalization = 5;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "|";
             player.quirk.suffix = "|";
             player.land = player.spawnLand();
@@ -493,8 +533,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("being the highblood", InterestManager.SOCIAL);
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = ""; //no quirk
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -520,8 +560,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Predestination", InterestManager.TERRIBLE);
             player.quirk.capitalization = 0;
             player.quirk.punctuation = 1;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "```"; //this would look better in discord
             player.quirk.suffix = "```";
             player.land = player.spawnLand();
@@ -534,6 +574,72 @@ abstract class NonCanonSessions {
     }
 
 
+    static void session212IndexToPlayer(Session session, Player player, int index) {
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0) {
+            player.copyFromOCDataString("b=2)%18%C2%87%C3%BE%C3%92%00U%17%17%02&s=,,Science,Drawing,dragoonedDrake&x=AQ==");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Lego", s);
+            player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.BLUNT]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Gravity and Prairies";
+            player.land.denizenFeature = new DenizenFeature('Coeus');
+        }else if( index ==1) {
+            player.copyFromOCDataString("b=%C3%B2%C2%A7%19%0A%C3%BE%1B%00%12%25%252&s=,,Musicals,Pets,Tilfie&x=AQ==");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Pup", s);
+            player.specibus = new Specibus("Leash", ItemTraitFactory.WHIP, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Bones and Yarn";
+            player.land.denizenFeature = new DenizenFeature('Zelos');
+        }else if( index ==2) {
+            player.copyFromOCDataString("b=dS1%C2%A1%C3%BE%C2%A9%00Q-%03%24&s=,,Hacking,Video Games,virgosValentine&x=AQ==");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Ebony and Ivory";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==3) {
+            player.copyFromOCDataString("b=%3D%26%19%C2%B0%C3%BE9%00%1C%0E%1F%23&s=,,Writing,Video Games,Cipah&x=AQ==");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Necro", s);
+            player.specibus = new Specibus("Pen", ItemTraitFactory.PEN, <ItemTrait>[ ItemTraitFactory.POINTY]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Frogs and String";
+            player.land.denizenFeature = new DenizenFeature('Thesis');
+        }
+    }
 
     //could make this a mapping, but whatever, i like it like this
     static void session80000008IndexToPlayer(Session session, Player player, int index){
@@ -557,7 +663,7 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Science Fiction", InterestManager.FANTASY);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["good","great"],["lol","lel"],["nope","nah"],["asshole","hooker"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -584,8 +690,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Music", InterestManager.MUSIC);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -611,8 +717,8 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -638,7 +744,7 @@ abstract class NonCanonSessions {
             player.interest2 = new Interest("History", InterestManager.ACADEMIC);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["good","fantastic"],["lol","hee"],["nope","no thank you"],["asshole","jerk"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "~™";
@@ -664,8 +770,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -678,8 +784,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.land = player.spawnLand();
             player.quirk.suffix = "";
@@ -688,8 +794,8 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=%00%00%00Q%C3%BE%C3%93%00G''C&s=,,Knowledge,Fan Fiction,pleasantPigeon&x=AQ==");
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
@@ -701,8 +807,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.land = player.spawnLand();
             player.quirk.suffix = "";
@@ -714,8 +820,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.land = player.spawnLand();
             player.quirk.suffix = "";
@@ -726,8 +832,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "";
             player.land = player.spawnLand();
             player.quirk.suffix = "";
@@ -753,7 +859,7 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["o","O-"]];
             player.quirk.prefix = "-|";
             player.quirk.suffix = "|-";
@@ -775,7 +881,7 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.ENDPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["a","/\\"],["t","+"]];
             player.quirk.prefix = "";
             player.moon = session.prospit;
@@ -797,7 +903,7 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["o","0"],["i","1"],["l","1"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -855,7 +961,7 @@ abstract class NonCanonSessions {
             f.desc = " Who knew shaving cream was so flammable? ";
             player.fraymotifs.add(f);
 
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["w","\|\|"],["y","\|"],["e","[["]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -881,7 +987,7 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.specibus = new Specibus("Urn", ItemTraitFactory.BUST, [ ItemTraitFactory.CERAMIC, ItemTraitFactory.BLUNT]);
             player.quirk.lettersToReplaceIgnoreCase = [["o","-0-"]];
             player.quirk.prefix = "--{{:} ";
@@ -904,8 +1010,8 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
-            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
             player.quirk.prefix = "/2/";
             player.quirk.suffix = "/3/";
             player.land = player.spawnLand();
@@ -926,7 +1032,7 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.ALLCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [["T","7"],["B","8"],["G","9"],["I","1"]];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
