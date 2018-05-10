@@ -97,12 +97,12 @@ class NPCHandler
     static Future<Null> loadBigBads() async {
         print("loading big bads");
         String data = await Loader.getResource("BigBadLists/bigBads.txt");
-        _bigBadsFromFile = data.split("\n");
+        bigBadsFromFile = data.split("\n");
     }
 
     void setupBigBads() {
-        print("setting up big bads from ${_bigBadsFromFile.length} data strings");
-        for(String line in _bigBadsFromFile) {
+        print("setting up big bads from ${bigBadsFromFile.length} data strings");
+        for(String line in bigBadsFromFile) {
             BigBad newBB = BigBad.fromDataString(line, session);
             print("made a new BB ${newBB}");
             bigBads.add(newBB);
