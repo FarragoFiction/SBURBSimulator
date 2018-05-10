@@ -28,9 +28,6 @@ Future<Null> main() async {
     session.reinit("initialization from customizer");
     session.getPlayersReady();
     container = querySelector("#story");
-    todo("SessionForm has a CarapaceSection (new class/file)");
-    todo("CarapaceSection lists all carapaces (image next to each)");
-    todo("CarapaceSection lets you activate/deactive each carapace");
     todo("SessionForm has a ItemSection (new class/file)");
     todo("ItemSection lists all Items (including Crowns), and lets you make a new Item with any existing trait");
     todo("ItemSection lets you select an item.");
@@ -39,6 +36,7 @@ Future<Null> main() async {
     todo("can load a session from a .txt file");
     todo("SessionForm has a PlayerSection (new class/file");
     todo("PlayerSection lists all players (image next to each)");
+    todo("make sure it works for special sessions like 13 or 413!");
     todo("PlayerSection has a text area box for putting a dataUrl to alter players.");
     todo("PlayerSection lets you add the selected item to either sylladex or specibus.");
     todo("Each Player has a QuirkSection that lets  you modify quirks.");
