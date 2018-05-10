@@ -1,3 +1,4 @@
+2018-05-08: Session customization is coming along, so that I can test Big Bads from the Builder.
 2018-05-08: Been working on Big Bad shit, now when they are summoned they have custom flavor text.
 2018-05-04: We're branched! I've got big bads spawning (and then doing nothing) and a handful of shitty placeholder big bads meant to test the trigger conditions. (Don't worry, Shogun has a great deal of experience when it comes to Big Bads, he'll keep us rolling in quality villains when the time comes).
 2018-05-03: ahahahah, it turns out at least some of AB's long term insanity has been because hope gnosis FUCKED SHIT UP for her. Sorry about that.<br><br>Also, I spent the day helping ShogunBot make cards for the impending BigBad Update. It's p relaxing.<br><br>ALSO: MAIN AND EXPERIMENTAL ARE BRANCHING AGAIN. THAT MEANS MAIN ISN'T GETTING ANY MORE UPDATES UNTIL THE BIG BAD UPDATE IS DONE, NOT EVEN BUG FIXES.

@@ -1115,13 +1115,13 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Session> startSession() async {
+    Future<Session> startSession([bool dontRenit]) async {
         logger.info("session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
         //only do this shit if you'e completely virgin
-        if(aliensClonedOnArrival.isEmpty) {
+        if(aliensClonedOnArrival.isEmpty || dontRenit) {
             reinit("start session");
             this.makePlayers();
             this.randomizeEntryOrder();

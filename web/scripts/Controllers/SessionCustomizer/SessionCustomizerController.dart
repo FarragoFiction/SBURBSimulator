@@ -19,24 +19,20 @@ Future<Null> main() async {
     loadNavbar();
     new CustomStoryController(); //will set this as SimController's instance variable.
     if(getParameterByName("seed",null) != null){
-        // Math.seed = getParameterByName("seed");  //TODO replace this somehow
         SimController.instance.initial_seed = int.parse(getParameterByName("seed",null));
     }else{
         var tmp = getRandomSeed();
-        // Math.seed = tmp; //TOdo do something else here but rand is inside of session......
         SimController.instance.initial_seed = tmp;
     }
     session = new Session(SimController.instance.initial_seed);
+    session.reinit("initialization from customizer");
     container = querySelector("#story");
-    todo("SessionForm is a new file/class");
-    todo("before that button is pressed, display a SessionForm");
-    todo("SessionForm has a text area input for a BigBad data string. (hide this when it goes out for real)");
-    todo("SessionForm has a ItemSection (new class/file)");
-    todo("ItemSection lists all Items, and lets you make a new Item with any existing trait");
-    todo("ItemSection lets you select an item.");
     todo("SessionForm has a CarapaceSection (new class/file)");
     todo("CarapaceSection lists all carapaces (image next to each)");
     todo("CarapaceSection lets you activate/deactive each carapace");
+    todo("SessionForm has a ItemSection (new class/file)");
+    todo("ItemSection lists all Items (including Crowns), and lets you make a new Item with any existing trait");
+    todo("ItemSection lets you select an item.");
     todo("CarapaceSection lets you add the selected item to either the carapaces sylladex or their specibus.");
     todo("Can save session to a .txt file");
     todo("can load a session from a .txt file");
@@ -68,7 +64,7 @@ void makeStartButton() {
     container.append(startButton);
     startButton.onClick.listen((MouseEvent e){
         container.appendHtml("Starting a session with ${session.bigBads.length} big bads.");
-        session.startSession();
+        session.startSession(true); //don't reinit
     });
 }
 
