@@ -161,7 +161,7 @@ class DeadSession extends Session {
 
 
     @override
-    Future<Session> startSession() async {
+    Future<Session> startSession([bool dontReinit]) async {
         globalInit(); // initialise classes and aspects if necessary
         SimController.instance.currentSessionForErrors = this;
 
