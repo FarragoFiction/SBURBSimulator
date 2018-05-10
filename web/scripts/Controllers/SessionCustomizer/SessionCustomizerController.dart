@@ -1,9 +1,30 @@
 import "dart:async";
 import "dart:html";
+import '../../SBURBSim.dart';
+import '../../navbar.dart';
 
 Element container;
+Session session;
 
 Future<Null> main() async {
+    await globalInit();
+    window.onError.listen((Event event){
+        ErrorEvent e = event as ErrorEvent;
+        //String msg, String url, lineNo, columnNo, error
+        printCorruptionMessage(SimController.instance.currentSessionForErrors,e);//(e.message, e.path.toString(), e.lineno.toString(), e.colno.toString(), e.toString());
+        return;
+    });
+    loadNavbar();
+    new CustomStoryController(); //will set this as SimController's instance variable.
+    if(getParameterByName("seed",null) != null){
+        // Math.seed = getParameterByName("seed");  //TODO replace this somehow
+        SimController.instance.initial_seed = int.parse(getParameterByName("seed",null));
+    }else{
+        var tmp = getRandomSeed();
+        // Math.seed = tmp; //TOdo do something else here but rand is inside of session......
+        SimController.instance.initial_seed = tmp;
+    }
+    session = new Session(SimController.instance.initial_seed);
     container = querySelector("#story");
     todo("Have a button to start a session");
     todo("SessionForm is a new file/class");
@@ -30,6 +51,8 @@ Future<Null> main() async {
     todo("PlayerSection lets you pick initial relationships. (drop down of types, drop down of targets)");
     todo("Can give a session a Name.");
     todo("Can choose 13 sessions to save to localStorage (if they aren't too big? Only have 2.2 mb)");
+    todo("can view list of your saved sessions, load them into this page, etc");
+    makeStartButton();
 
 }
 
@@ -40,4 +63,11 @@ void todo(String text) {
 
 void makeStartButton() {
     ButtonElement startButton = new ButtonElement()..text = "Start Session";
+    container.append(startButton);
+    startButton.onClick.listen((MouseEvent e)=>session.startSession());
+}
+
+
+class CustomStoryController extends SimController {
+    CustomStoryController() : super();
 }
