@@ -26,6 +26,7 @@ Future<Null> main() async {
     }
     session = new Session(SimController.instance.initial_seed);
     session.reinit("initialization from customizer");
+    session.getPlayersReady();
     container = querySelector("#story");
     todo("SessionForm has a CarapaceSection (new class/file)");
     todo("CarapaceSection lists all carapaces (image next to each)");

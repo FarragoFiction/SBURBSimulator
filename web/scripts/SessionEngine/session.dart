@@ -1123,9 +1123,7 @@ class Session {
         //only do this shit if you'e completely virgin
         if(aliensClonedOnArrival.isEmpty && !dontRenit) {
             reinit("start session");
-            this.makePlayers();
-            this.randomizeEntryOrder();
-            this.makeGuardians(); //after entry order established
+            getPlayersReady();
         }
         logger.info("session has ${players.length} players");
 
@@ -1135,6 +1133,12 @@ class Session {
         await SimController.instance.easterEggCallBack(this);
 
         return completer.future;
+    }
+
+    void getPlayersReady() {
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
     }
 
     void simulationComplete(String ending) {
