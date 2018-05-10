@@ -2,17 +2,21 @@ import '../../SBURBSim.dart';
 import "dart:html";
 import "dart:async";
 import "CarapaceSection.dart";
+import "ItemSection.dart";
 
 class SessionForm {
     Session session;
     DivElement container;
     CarapaceSection carapaceSection;
+    ItemSection itemSection;
+
     SessionForm(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("sessionForm");
         parentContainer.append(container);
         draw();
         carapaceSection = new CarapaceSection(session, container);
+        itemSection = new ItemSection(session, container);
     }
 
     void draw() {
