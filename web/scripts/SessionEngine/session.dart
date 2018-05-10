@@ -363,7 +363,7 @@ class Session {
 
     void setupMoons(String reason) {
          //;
-        //logger.info("DEBUG DESTROY MOON: setting up moons because $reason");
+        logger.info("DEBUG CUSTOM SESSION: setting up moons because $reason");
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Mini Red Miles", 3);
@@ -1121,7 +1121,7 @@ class Session {
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
         //only do this shit if you'e completely virgin
-        if(aliensClonedOnArrival.isEmpty || dontRenit) {
+        if(aliensClonedOnArrival.isEmpty && !dontRenit) {
             reinit("start session");
             this.makePlayers();
             this.randomizeEntryOrder();
@@ -1230,7 +1230,7 @@ class Session {
     void reinit(String source) {
         String parent = "";
         if(childSession != null) parent = "${childSession.session_id}";
-        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
+        logger.info("DEBUG SESSION CUSTOMIZER: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         plzStartReckoning = false;
         npcHandler = new NPCHandler(this);
@@ -1311,7 +1311,7 @@ class Session {
         createScenesForPlayers();
         ;
 
-        this.setupMoons("making players"); //happens only in reinit
+        //this.setupMoons("making players"); //happens only in reinit
 
 
     }

@@ -18,7 +18,7 @@ class CarapaceSection {
     }
 
     void draw() {
-        container.setInnerHtml("Customize Session ${session.session_id}");
+        container.setInnerHtml("Customize Carapaces");
         for(GameEntity c in  allCarapaces) {
             drawOneCarapace(c);
         }
@@ -27,6 +27,7 @@ class CarapaceSection {
     void drawOneCarapace(GameEntity carapace) {
         DivElement carapaceDiv = new DivElement();
         carapaceDiv.classes.add("carapaceForm");
+
         container.append(carapaceDiv);
 
         DivElement name = new DivElement()
@@ -34,20 +35,26 @@ class CarapaceSection {
         DivElement img = new DivElement();
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${carapace.initials.toLowerCase()}.png");
         img.append(portrait);
+        if((carapace as Carapace).type == Carapace.DERSE) {
+            portrait.classes.add("derse");
+        }else {
+            portrait.classes.add("prospit");
+        }
+        portrait.height = 100;
         name.append(img);
         carapaceDiv.append(name);
 
 
         DivElement checkBoxContainer = new DivElement();
         carapaceDiv.append(checkBoxContainer);
-        LabelElement labelCheckBox = new LabelElement()
-            ..setInnerHtml("Should they Spawn Active?:");
+        LabelElement labelCheckBox = new LabelElement()..setInnerHtml("Should they Spawn Active?:");
         checkBoxContainer.append(labelCheckBox);
         CheckboxInputElement isActive = new CheckboxInputElement();
+        isActive.checked = carapace.active;
         checkBoxContainer.append(isActive);
 
         isActive.onChange.listen((Event e) {
-            carapace.active = true;
+            carapace.active = isActive.checked;
         });
     }
 }

@@ -63,6 +63,7 @@ void makeStartButton() {
     ButtonElement startButton = new ButtonElement()..text = "Start Session";
     container.append(startButton);
     startButton.onClick.listen((MouseEvent e){
+        session.logger.info("DEBUG CUSTOM SESSION: starting session from button press");
         container.appendHtml("Starting a session with ${session.bigBads.length} big bads.");
         session.startSession(true); //don't reinit
     });
