@@ -1,14 +1,15 @@
 import '../../SBURBSim.dart';
 import "dart:html";
 import "dart:async";
-
+import "ItemSection.dart";
 
 //lists all carapaces, lets you activate them or not
 class CarapaceSection {
     Session session;
     Element container;
     List<GameEntity> allCarapaces;
-    CarapaceSection(Session this.session, Element parentContainer) {
+    ItemSection itemSection;
+    CarapaceSection(Session this.session, Element parentContainer, ItemSection this.itemSection) {
         container = new DivElement();
         container.classes.add("carapaceSection");
         parentContainer.append(container);
@@ -30,8 +31,7 @@ class CarapaceSection {
 
         container.append(carapaceDiv);
 
-        DivElement name = new DivElement()
-            ..setInnerHtml("${carapace.name}");
+        DivElement name = new DivElement()..setInnerHtml("${carapace.name}");
         DivElement img = new DivElement();
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${carapace.initials.toLowerCase()}.png");
         img.append(portrait);
@@ -56,5 +56,32 @@ class CarapaceSection {
         isActive.onChange.listen((Event e) {
             carapace.active = isActive.checked;
         });
+
+        drawSpecibus(carapace);
+        drawSylladex(carapace);
+    }
+
+    void drawSpecibus(Carapace carapace) {
+        SpanElement specibusContainer = new SpanElement();
+        LabelElement label = new LabelElement()..setInnerHtml("<b>Specibus:<b> ");
+        SpanElement specibusElement = new SpanElement()..setInnerHtml(carapace.specibus.name);
+        specibusContainer.append(label);
+        specibusContainer.append(specibusElement);
+        container.append(specibusContainer);
+        //TODO draw button
+    }
+
+    void drawSylladex(Carapace carapace) {
+        SpanElement sylladexContainer = new SpanElement();
+        SelectElement select = new SelectElement();
+        sylladexContainer.append(select);
+        select.size = 13;
+        for(Item item in  carapace.sylladex) {
+            OptionElement option = new OptionElement();
+            option.text = item.baseName;
+            option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+            select.append(option);
+        }
+        container.append(sylladexContainer);
     }
 }

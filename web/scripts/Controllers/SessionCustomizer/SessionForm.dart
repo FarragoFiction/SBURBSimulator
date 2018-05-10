@@ -15,8 +15,8 @@ class SessionForm {
         container.classes.add("sessionForm");
         parentContainer.append(container);
         draw();
-        carapaceSection = new CarapaceSection(session, container);
         itemSection = new ItemSection(session, container);
+        carapaceSection = new CarapaceSection(session, container, itemSection);
     }
 
     void draw() {

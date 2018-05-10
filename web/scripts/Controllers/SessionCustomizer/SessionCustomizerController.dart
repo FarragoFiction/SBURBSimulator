@@ -48,6 +48,7 @@ Future<Null> main() async {
     todo("Can give a session a Name.");
     todo("Can choose 13 sessions to save to localStorage (if they aren't too big? Only have 2.2 mb)");
     todo("can view list of your saved sessions, load them into this page, etc");
+    todo("pretty everything up??? ask PL for help???");
     sessionForm = new SessionForm(session,container);
     makeStartButton();
 
