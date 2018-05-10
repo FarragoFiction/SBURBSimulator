@@ -43,13 +43,17 @@ class SessionForm {
 
         buttonElement.onClick.listen((MouseEvent e) {
             try {
-                BigBad bigBad = new BigBad("N/A", session);
-                bigBad.copyFromDataString(badArea.value);
                 if (isActive.checked) {
+                    BigBad bigBad = new BigBad("N/A", session);
+                    bigBad.copyFromDataString(badArea.value);
                     bigBad.active = true;
+                    session.activatedNPCS.add(bigBad);
+                    window.alert("Added to active NPCs!!!");
+
+                }else {
+                    NPCHandler.bigBadsFromFile.add(badArea.value);
+                    window.alert("Added to potential Big Bads!!!");
                 }
-                session.bigBads.add(bigBad);
-                window.alert("Success!!!");
 
             }catch(e) {
                 window.alert("Tried to load Big Bad but something went wrong. :( :( :( $e");

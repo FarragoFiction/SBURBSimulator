@@ -8,7 +8,7 @@ class NPCHandler
 {
     Session session;
     //not parsed, but means i only need to do the async thing once.
-    static List<String> _bigBadsFromFile = new List<String>();
+    static List<String> bigBadsFromFile = new List<String>();
 
     List<GameEntity> allEntities = new List<GameEntity>();
     List<GameEntity> bigBads = new List<BigBad>();

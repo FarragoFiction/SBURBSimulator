@@ -66,7 +66,10 @@ void todo(String text) {
 void makeStartButton() {
     ButtonElement startButton = new ButtonElement()..text = "Start Session";
     container.append(startButton);
-    startButton.onClick.listen((MouseEvent e)=>session.startSession());
+    startButton.onClick.listen((MouseEvent e){
+        container.appendHtml("Starting a session with ${session.bigBads.length} big bads.");
+        session.startSession();
+    });
 }
 
 
