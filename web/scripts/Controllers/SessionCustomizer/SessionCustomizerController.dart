@@ -16,6 +16,8 @@ Future<Null> main() async {
     todo("CarapaceSection lists all carapaces (image next to each)");
     todo("CarapaceSection lets you activate/deactive each carapace");
     todo("CarapaceSection lets you add the selected item to either the carapaces sylladex or their specibus.");
+    todo("Can save session to a .txt file");
+    todo("can load a session from a .txt file");
     todo("SessionForm has a PlayerSection (new class/file");
     todo("PlayerSection lists all players (image next to each)");
     todo("PlayerSection has a text area box for putting a dataUrl to alter players.");
@@ -26,10 +28,16 @@ Future<Null> main() async {
     todo("PlayerSection lets you pick the name of their Consorts");
     todo("PlayerSection lets you pick the sound their consorts make");
     todo("PlayerSection lets you pick initial relationships. (drop down of types, drop down of targets)");
+    todo("Can give a session a Name.");
+    todo("Can choose 13 sessions to save to localStorage (if they aren't too big? Only have 2.2 mb)");
 
 }
 
 void todo(String text) {
     LIElement newTodo = new LIElement()..setInnerHtml("<b>TODO:</b> $text");
     container.append(newTodo);
+}
+
+void makeStartButton() {
+    ButtonElement startButton = new ButtonElement()..text = "Start Session";
 }
