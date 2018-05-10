@@ -42,7 +42,7 @@ class CarapaceSection {
         }else {
             portrait.classes.add("prospit");
         }
-        portrait.height = 100;
+        portrait.height = 150;
         name.append(img);
         row.append(name);
 
