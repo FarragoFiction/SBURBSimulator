@@ -7,6 +7,9 @@ import "dart:async";
 class ItemSection {
     Session session;
     Element container;
+    //if you make a new item, it's that, else it's what was selected in form
+    //guaranteed to be a copy
+    Item selectedItem;
     ItemSection(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("itemSection");
@@ -26,6 +29,10 @@ class ItemSection {
             select.append(option);
         }
         select.options.first.selected = true;
+
+        select.onChange.listen((Event e) {
+            selectedItem =Item.allUniqueItems[int.parse(select.options[select.selectedIndex].value)].copy();
+        });
     }
 
 

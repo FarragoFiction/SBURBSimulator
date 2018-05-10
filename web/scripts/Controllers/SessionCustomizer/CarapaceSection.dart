@@ -26,12 +26,14 @@ class CarapaceSection {
     }
 
     void drawOneCarapace(GameEntity carapace) {
-        DivElement carapaceDiv = new DivElement();
+        TableElement carapaceDiv = new TableElement();
+        TableRowElement row = new TableRowElement();
+        carapaceDiv.append(row);
         carapaceDiv.classes.add("carapaceForm");
 
         container.append(carapaceDiv);
 
-        DivElement name = new DivElement()..setInnerHtml("${carapace.name}");
+        TableCellElement name = new TableCellElement()..setInnerHtml("${carapace.name}");
         DivElement img = new DivElement();
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${carapace.initials.toLowerCase()}.png");
         img.append(portrait);
@@ -42,11 +44,11 @@ class CarapaceSection {
         }
         portrait.height = 100;
         name.append(img);
-        carapaceDiv.append(name);
+        row.append(name);
 
 
         DivElement checkBoxContainer = new DivElement();
-        carapaceDiv.append(checkBoxContainer);
+        name.append(checkBoxContainer);
         LabelElement labelCheckBox = new LabelElement()..setInnerHtml("Should they Spawn Active?:");
         checkBoxContainer.append(labelCheckBox);
         CheckboxInputElement isActive = new CheckboxInputElement();
@@ -57,24 +59,34 @@ class CarapaceSection {
             carapace.active = isActive.checked;
         });
 
-        drawSpecibus(carapace);
-        drawSylladex(carapace);
+        drawSpecibus(carapace,row);
+        drawSylladex(carapace,row);
     }
 
-    void drawSpecibus(Carapace carapace) {
-        SpanElement specibusContainer = new SpanElement();
+    void drawSpecibus(Carapace carapace, TableRowElement carapaceDiv) {
+        TableCellElement specibusContainer = new TableCellElement();
         LabelElement label = new LabelElement()..setInnerHtml("<b>Specibus:<b> ");
         SpanElement specibusElement = new SpanElement()..setInnerHtml(carapace.specibus.name);
         specibusContainer.append(label);
         specibusContainer.append(specibusElement);
-        container.append(specibusContainer);
-        //TODO draw button
+        carapaceDiv.append(specibusContainer);
+        ButtonElement button = new ButtonElement()..text = "Make Selected Item Specibus?";
+        button.onClick.listen((Event e ) {
+            try {
+                carapace.specibus = itemSection.selectedItem;
+                specibusElement.setInnerHtml(carapace.specibus.name);
+            }catch(e) {
+                window.alert("Failed to make ${itemSection.selectedItem} the specibus.");
+            }
+        });
+        specibusContainer.append(button);
     }
 
-    void drawSylladex(Carapace carapace) {
-        SpanElement sylladexContainer = new SpanElement();
+    void drawSylladex(Carapace carapace, TableRowElement carapaceDiv) {
+        TableCellElement sylladexContainer = new TableCellElement();
         SelectElement select = new SelectElement();
         sylladexContainer.append(select);
+        select.disabled = true;
         select.size = 13;
         for(Item item in  carapace.sylladex) {
             OptionElement option = new OptionElement();
@@ -82,6 +94,21 @@ class CarapaceSection {
             option.value = "${carapace.sylladex.inventory.indexOf(item)}";
             select.append(option);
         }
-        container.append(sylladexContainer);
+        carapaceDiv.append(sylladexContainer);
+
+        ButtonElement button = new ButtonElement()..text = "Add Selected Item to Sylladex?";
+        button.onClick.listen((Event e ) {
+            try {
+                Item item = itemSection.selectedItem;
+                carapace.sylladex.add(item);
+                OptionElement option = new OptionElement();
+                option.text = item.baseName;
+                option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+                select.append(option);
+            }catch(e) {
+                window.alert("Failed to add ${itemSection.selectedItem} to sylladex.");
+            }
+        });
+        sylladexContainer.append(button);
     }
 }

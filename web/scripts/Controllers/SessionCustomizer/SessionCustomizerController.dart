@@ -28,10 +28,10 @@ Future<Null> main() async {
     session.reinit("initialization from customizer");
     session.getPlayersReady();
     container = querySelector("#story");
-    todo("SessionForm has a ItemSection (new class/file)");
-    todo("ItemSection lists all Items (including Crowns), and lets you make a new Item with any existing trait");
-    todo("ItemSection lets you select an item.");
+
     todo("CarapaceSection lets you add the selected item to either the carapaces sylladex or their specibus.");
+    todo("make sure crowns exist in lists");
+    todo("CarapaceSection lets you remove the selected item from teh sylladex");
     todo("Can save session to a .txt file");
     todo("can load a session from a .txt file");
     todo("SessionForm has a PlayerSection (new class/file");
