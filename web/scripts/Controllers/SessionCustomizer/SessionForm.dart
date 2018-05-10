@@ -42,17 +42,19 @@ class SessionForm {
         buttonContainer.append(buttonElement);
 
         buttonElement.onClick.listen((MouseEvent e) {
-            window.alert("todo");
-            BigBad bigBad = new BigBad("N/A", session);
-            bigBad.copyFromDataString(badArea.value);
-            if(isActive.checked) {
-                bigBad.active = true;
+            try {
+                BigBad bigBad = new BigBad("N/A", session);
+                bigBad.copyFromDataString(badArea.value);
+                if (isActive.checked) {
+                    bigBad.active = true;
+                }
+                session.bigBads.add(bigBad);
+                window.alert("Success!!!");
+
+            }catch(e) {
+                window.alert("Tried to load Big Bad but something went wrong. :( :( :( $e");
             }
-            session.bigBads.add(bigBad);
         });
-
-
-
     }
 
 }
