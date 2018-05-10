@@ -2,9 +2,11 @@ import "dart:async";
 import "dart:html";
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
+import "SessionForm.dart";
 
 Element container;
 Session session;
+SessionForm sessionForm;
 
 Future<Null> main() async {
     await globalInit();
@@ -26,7 +28,6 @@ Future<Null> main() async {
     }
     session = new Session(SimController.instance.initial_seed);
     container = querySelector("#story");
-    todo("Have a button to start a session");
     todo("SessionForm is a new file/class");
     todo("before that button is pressed, display a SessionForm");
     todo("SessionForm has a text area input for a BigBad data string. (hide this when it goes out for real)");
@@ -52,6 +53,7 @@ Future<Null> main() async {
     todo("Can give a session a Name.");
     todo("Can choose 13 sessions to save to localStorage (if they aren't too big? Only have 2.2 mb)");
     todo("can view list of your saved sessions, load them into this page, etc");
+    sessionForm = new SessionForm(session,container);
     makeStartButton();
 
 }
