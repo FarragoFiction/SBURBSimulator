@@ -596,7 +596,12 @@ class Session {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
+        List<String> npcsWithTag = new List<String>();
+        for(GameEntity g in this.activatedNPCS) {
+            npcsWithTag.add(g.htmlTitleWithTip());
+        }
+
+        appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. The ${turnArrayIntoHumanSentence(npcsWithTag)} seem to be especially anticipating them.<br><br>");
         await callNextIntro(0);
     }
 

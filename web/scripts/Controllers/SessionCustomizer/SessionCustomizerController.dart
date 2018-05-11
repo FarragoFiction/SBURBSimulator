@@ -29,7 +29,6 @@ Future<Null> main() async {
     session.getPlayersReady();
     container = querySelector("#story");
 
-    todo("add duplicate crowns to item  lists");
     todo("CarapaceSection lets you remove the selected item from the sylladex");
     todo("Can serialize a session");
     todo("can serialize a carapace");
