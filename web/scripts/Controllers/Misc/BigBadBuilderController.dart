@@ -38,16 +38,19 @@ Future<Null> start() async {
   todo("isAspect Player (any just checks for is a player)");
   todo("isClass Player (any just checks for is a player)");
   todo("hasInterest (if they aren't a player automatically false)");
-  todo("isMoon");
-  todo("isLand");
-  todo("isDestroyed");
-  todo("has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
+  todo("land condition: isMoon");
+  todo("land condition: isLand");
+  todo("land condition: isDestroyed");
+  todo("figure out how effects will work (even summon scenes can have effects)");
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
   todo("isPrototypedWith (for sprites or carapace with rings)");
   todo("isFromDystopia (i.e. Troll Empress)");
+  todo("land condition: has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
+
   todo("isDead (would that even work?)");
   todo("isAlive (would that even work?)");
   todo("isGodTier");
+  todo("land condition: isMeteored (i.e. reckoning is going)");
   todo("isGrimDark");
   todo("isUnconditionallyImmortal");
   todo("isDoomed");
