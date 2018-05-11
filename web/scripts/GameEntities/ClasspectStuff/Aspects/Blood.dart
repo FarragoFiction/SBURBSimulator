@@ -50,7 +50,7 @@ class Blood extends Aspect {
     String denizenSongDesc = " A sour note is produced. It's the one Agitation plays to make its audience squirm. The OWNER is strengthened and healed. The ENEMY is weakened and hurt. And that is all there is to say on the matter. ";
 
     @override
-    List<String> symbolicMcguffins = ["blood","bond", "friendship", "tie", "pulse", "chain", "ocean"];
+    List<String> symbolicMcguffins = ["blood","bond", "friendship", "ties", "pulse", "chain", "ocean"];
 
     @override
     List<String> physicalMcguffins = ["blood","photo album", "friendship bracelet", "string", "chain", "manacle", "toy army"];
