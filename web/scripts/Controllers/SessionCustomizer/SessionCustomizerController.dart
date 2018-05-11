@@ -29,10 +29,12 @@ Future<Null> main() async {
     session.getPlayersReady();
     container = querySelector("#story");
 
-    todo("CarapaceSection lets you add the selected item to either the carapaces sylladex or their specibus.");
-    todo("make sure crowns exist in lists");
-    todo("CarapaceSection lets you remove the selected item from teh sylladex");
-    todo("Can save session to a .txt file");
+    todo("add duplicate crowns to item  lists");
+    todo("CarapaceSection lets you remove the selected item from the sylladex");
+    todo("Can serialize a session");
+    todo("can serialize a carapace");
+    todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)");
+    todo("can save a session to a .txt file");
     todo("can load a session from a .txt file");
     todo("SessionForm has a PlayerSection (new class/file");
     todo("PlayerSection lists all players (image next to each)");

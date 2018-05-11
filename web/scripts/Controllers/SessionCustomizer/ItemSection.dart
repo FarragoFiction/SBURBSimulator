@@ -45,7 +45,7 @@ class ItemSection {
         select.size = 13;
         if(ItemSection.sortedItems == null) {
             sortedItems = new List.from(Item.allUniqueItems);
-            sortedItems.sort();
+            sortedItems.sort((a, b) => a.baseName.compareTo(b.baseName));
         }
         for(Item item in  sortedItems) {
             OptionElement option = new OptionElement();

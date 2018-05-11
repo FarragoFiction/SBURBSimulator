@@ -48,7 +48,7 @@ class CarapaceSection {
 
         DivElement checkBoxContainer = new DivElement();
         name.append(checkBoxContainer);
-        LabelElement labelCheckBox = new LabelElement()..setInnerHtml("Should they Spawn Active?:");
+        LabelElement labelCheckBox = new LabelElement()..setInnerHtml("Spawn Active?:");
         checkBoxContainer.append(labelCheckBox);
         CheckboxInputElement isActive = new CheckboxInputElement();
         isActive.checked = carapace.active;
