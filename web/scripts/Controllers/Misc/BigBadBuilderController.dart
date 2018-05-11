@@ -33,9 +33,34 @@ Future<Null> start() async {
    * Find sessions where the current Big Bads are being summoned
    */
 
-  todo("Scenes let you replace TARGET. Can't do more than that because of how targets work. (for example, can't know what the item with teh trait is cuz it might be multuiple items) ");
+  todo("maybe a bool for all target conditions for NOT. is NOT carapace, is NOT time player, etc.");
 
-  todo("be able to remove triggers from scene, put into TargetCondition (living or land) parent class (i thought i did this)");
+  todo("isAspect Player (any just checks for is a player)");
+  todo("isClass Player (any just checks for is a player)");
+  todo("hasInterest (if they aren't a player automatically false)");
+  todo("isMoon");
+  todo("isLand");
+  todo("isDestroyed");
+  todo("has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
+  todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
+  todo("isPrototypedWith (for sprites or carapace with rings)");
+  todo("isFromDystopia (i.e. Troll Empress)");
+  todo("isDead (would that even work?)");
+  todo("isAlive (would that even work?)");
+  todo("isGodTier");
+  todo("isGrimDark");
+  todo("isUnconditionallyImmortal");
+  todo("isDoomed");
+  todo("isWasted");
+  todo("isTrickster");
+  todo("isDreamSelf");
+  todo("isMurderMode");
+  todo("isRobot");
+  todo("isBrainGhost");
+
+
+
+
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("scenes should have effects, summon scenes all start with 'is active'");
   todo("teach AB to write bigBadSummaries to cache");
