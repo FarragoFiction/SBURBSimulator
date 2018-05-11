@@ -6,6 +6,11 @@
 .carapaceForm{
     padding: 10px;
     border: 3px solid #000000;
+    min-width: 960px;
+}
+
+button{
+    margin: 5px;
 }
 
 .carapaceSection{
@@ -14,6 +19,11 @@
 }
 
 .itemForm{
+    padding: 10px;
+    border: 3px solid #000000;
+}
+
+.selectedItem{
     padding: 10px;
     border: 3px solid #000000;
 }

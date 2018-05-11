@@ -8,8 +8,7 @@ class CarapaceSection {
     Session session;
     Element container;
     List<GameEntity> allCarapaces;
-    ItemSection itemSection;
-    CarapaceSection(Session this.session, Element parentContainer, ItemSection this.itemSection) {
+    CarapaceSection(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("carapaceSection");
         parentContainer.append(container);
@@ -59,56 +58,87 @@ class CarapaceSection {
             carapace.active = isActive.checked;
         });
 
-        drawSpecibus(carapace,row);
-        drawSylladex(carapace,row);
+
+        drawSylladexShit(row, carapace);
     }
 
-    void drawSpecibus(Carapace carapace, TableRowElement carapaceDiv) {
+    void drawSylladexShit(TableRowElement row, GameEntity carapace) {
+
+      TableCellElement td = new TableCellElement();
+      row.append(td);
+      ItemSection itemSection = new ItemSection(carapace, session, td);
+      itemSection.draw();
+      TableElement itemsTable = new TableElement();
+      td.append(itemsTable);
+      TableRowElement itemRow1 = new TableRowElement();
+      TableRowElement itemRow2 = new TableRowElement();
+      TableRowElement itemRow3 = new TableRowElement();
+      row.append(itemRow1);
+      row.append(itemRow2);
+      row.append(itemRow3);
+
+
+      itemSection.drawSelectedItem(itemRow1);
+      drawSpecibus(carapace,itemRow2, itemSection);
+      drawSylladex(carapace,itemRow3, itemSection);
+    }
+
+
+    void drawSpecibus(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
         TableCellElement specibusContainer = new TableCellElement();
-        LabelElement label = new LabelElement()..setInnerHtml("<b>Specibus:<b> ");
+        DivElement label = new DivElement()..setInnerHtml("<b>Specibus:<b> ");
+        label.style.display = "inline-block";
         SpanElement specibusElement = new SpanElement()..setInnerHtml(carapace.specibus.name);
+        ButtonElement button = new ButtonElement()..text = "Equip Item?";
+        specibusContainer.append(button);
+
         specibusContainer.append(label);
         specibusContainer.append(specibusElement);
         carapaceDiv.append(specibusContainer);
-        ButtonElement button = new ButtonElement()..text = "Make Selected Item Specibus?";
+
         button.onClick.listen((Event e ) {
             try {
-                carapace.specibus = itemSection.selectedItem;
-                specibusElement.setInnerHtml(carapace.specibus.name);
+                carapace.specibus = itemSection.selectedItem.copy();
+                specibusElement.setInnerHtml(carapace.specibus.baseName);
             }catch(e) {
-                window.alert("Failed to make ${itemSection.selectedItem} the specibus.");
+                window.alert("Failed to make ${itemSection.selectedItem} the specibus. Because $e");
+                session.logger.error(e);
+
             }
         });
-        specibusContainer.append(button);
     }
 
-    void drawSylladex(Carapace carapace, TableRowElement carapaceDiv) {
+    void drawSylladex(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
         TableCellElement sylladexContainer = new TableCellElement();
+        ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
+        button.style.verticalAlign = "top";
         SelectElement select = new SelectElement();
+        sylladexContainer.append(button);
         sylladexContainer.append(select);
         select.disabled = true;
-        select.size = 13;
+        select.size = 6;
         for(Item item in  carapace.sylladex) {
             OptionElement option = new OptionElement();
             option.text = item.baseName;
             option.value = "${carapace.sylladex.inventory.indexOf(item)}";
             select.append(option);
         }
+
         carapaceDiv.append(sylladexContainer);
 
-        ButtonElement button = new ButtonElement()..text = "Add Selected Item to Sylladex?";
+
         button.onClick.listen((Event e ) {
             try {
-                Item item = itemSection.selectedItem;
+                Item item = itemSection.selectedItem.copy();
                 carapace.sylladex.add(item);
                 OptionElement option = new OptionElement();
                 option.text = item.baseName;
                 option.value = "${carapace.sylladex.inventory.indexOf(item)}";
                 select.append(option);
             }catch(e) {
-                window.alert("Failed to add ${itemSection.selectedItem} to sylladex.");
+                window.alert("Failed to add ${itemSection.selectedItem} to sylladex. Because $e");
+                session.logger.error(e);
             }
         });
-        sylladexContainer.append(button);
     }
 }

@@ -8,15 +8,13 @@ class SessionForm {
     Session session;
     DivElement container;
     CarapaceSection carapaceSection;
-    ItemSection itemSection;
 
     SessionForm(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("sessionForm");
         parentContainer.append(container);
         draw();
-        itemSection = new ItemSection(session, container);
-        carapaceSection = new CarapaceSection(session, container, itemSection);
+        carapaceSection = new CarapaceSection(session, container);
     }
 
     void draw() {
