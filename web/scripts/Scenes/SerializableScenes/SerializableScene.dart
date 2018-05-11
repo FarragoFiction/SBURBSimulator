@@ -115,7 +115,7 @@ void syncForm() {
         name = json["name"];
         if(json["targetOne"] == "true") targetOne = true;
         flavorText = json["flavorText"];
-        print("name is $name and flavortext is $flavorText");
+        //print("name is $name and flavortext is $flavorText");
         String triggerContionsStringLiving = json["triggerConditionsLiving"];
         String triggerContionsStringLand = json["triggerConditionsLand"];
 

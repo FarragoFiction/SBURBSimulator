@@ -54,7 +54,9 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
-        Set<ItemTrait> allTraitsKnown = ItemTraitFactory.allTraits;
+        List<ItemTrait> allTraitsKnown = new List.from(ItemTraitFactory.allTraits);
+        allTraitsKnown.sort((a, b) => a.toString().toLowerCase().compareTo(b.toString().toLowerCase()));
+
         Session session = scene.session;
         DivElement me = new DivElement();
         div.append(me);
@@ -121,20 +123,27 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     }
   @override
   List<GameEntity> filter(List<GameEntity> list) {
+        //scene.session.logger.info("TEST before filtering on $this list is ${list.length}");
       list.removeWhere((GameEntity entity) {
         for(Item i in entity.sylladex) {
             bool ret = (i.hasTrait(itemTrait));
             if(ret == true) {
-                scene.session.logger.info("$entity has item in sylladex with trait $itemTrait");
-                return true;
+                //scene.session.logger.info("TEST $entity has item $i in sylladex with trait $itemTrait");
+                return false;
+            }else {
+                //scene.session.logger.info("TEST $entity's $i does not have trait $itemTrait");
+
             }
         }
         bool ret = (entity.specibus.hasTrait(itemTrait));
         if(ret == true) {
-            scene.session.logger.info("$entity has specibus with trait $itemTrait");
-            return true;
+           // scene.session.logger.info("$entity has specibus with trait $itemTrait");
+            return false;
         }
+        return true;
       });
-      return list;
+        //scene.session.logger.info("TEST: after filtering on $this list is ${list.length}");
+
+        return list;
     }
 }
