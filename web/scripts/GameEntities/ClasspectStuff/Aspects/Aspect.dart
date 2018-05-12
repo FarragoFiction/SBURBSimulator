@@ -53,7 +53,7 @@ abstract class Aspects {
         LIFE = new Life(11);
         DREAM = new Dream(12);
         SAUCE = new Sauce(13);
-        LAW = new Law(14);
+        //LAW = new Law(14);
 
         NULL = new Aspect(255, "Null", isInternal:true);
     }
