@@ -49,7 +49,7 @@ abstract class NonCanonSessions {
         Player ej = session.players[2];
         Player nb = session.players[3];
         Player lb = session.players[4]; //F1X TH1S!
-        //Player hb = session.players[5]; //humanBot
+        Player hb = session.players[5]; //humanBot
         //Player la = session.players[6]; //LA, joke character 1 hp. {?}
     }
 
