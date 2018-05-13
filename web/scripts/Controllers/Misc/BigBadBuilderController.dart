@@ -47,6 +47,7 @@ Future<Null> start() async {
   todo("isFromDystopia (i.e. Troll Empress)");
   todo("land condition: has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
 
+  todo("make scene effects like kill, cause strife, control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
   todo("isDead (would that even work?)");
   todo("isAlive (would that even work?)");
   todo("isGodTier");
