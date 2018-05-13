@@ -103,6 +103,7 @@ abstract class Formats {
 
     static FileFormat<T,U> getFormatForExtension<T,U>(String extension) => getFormatEntryForExtension(extension).format;
     static String getMimeTypeForExtension(String extension) => getFormatEntryForExtension(extension).mimeType;
+    static Iterable<String> getExtensionsForFormat(FileFormat<dynamic,dynamic> format) => extensionMapping.keys.where((String ext) => extensionMapping[ext].format == format);
 }
 
 class ExtensionMappingEntry<T,U> {

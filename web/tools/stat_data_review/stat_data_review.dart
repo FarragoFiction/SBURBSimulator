@@ -57,7 +57,7 @@ class StatDataReview {
         querySelector("#stat_average")..onClick.listen((Event e) => redraw());
     }
 
-    void addData(Iterable<DataPoint> points) {
+    void addData(Iterable<DataPoint> points, String filename) {
         data.addAll(points);
 
         for (DataPoint point in points) {

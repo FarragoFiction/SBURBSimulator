@@ -8,7 +8,7 @@ class NPCHandler
 {
     Session session;
     //not parsed, but means i only need to do the async thing once.
-    static List<String> _bigBadsFromFile = new List<String>();
+    static List<String> bigBadsFromFile = new List<String>();
 
     List<GameEntity> allEntities = new List<GameEntity>();
     List<GameEntity> bigBads = new List<BigBad>();
@@ -91,20 +91,20 @@ class NPCHandler
     }
 
    void setupNpcs() {
-        //setupBigBads();
+        setupBigBads();
     }
 
     static Future<Null> loadBigBads() async {
         print("loading big bads");
         String data = await Loader.getResource("BigBadLists/bigBads.txt");
-        _bigBadsFromFile = data.split("\n");
+        bigBadsFromFile = data.split("\n");
     }
 
     void setupBigBads() {
-        print("setting up big bads from ${_bigBadsFromFile.length} data strings");
-        for(String line in _bigBadsFromFile) {
+        //print("setting up big bads from ${bigBadsFromFile.length} data strings");
+        for(String line in bigBadsFromFile) {
             BigBad newBB = BigBad.fromDataString(line, session);
-            print("made a new BB ${newBB}");
+            //print("made a new BB ${newBB}");
             bigBads.add(newBB);
         }
     }
@@ -140,7 +140,7 @@ class NPCHandler
         //he's lucky and cunning
         midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Cordial","Courtyard","Clubs","Curious", "Cheerful", "Cheery","Chipper","Clutzy","Chaotic"], lastNames: <String>["Deuce","Droll","Dabbler", "Demoman","Dwarf","Dunce"], ringFirstNames: <String>["Crowned","Capering","Chaotic","Collateral"], ringLastNames: <String>["Destroyer","Demigod"])
             ..specibus = new Specibus("Bomb", ItemTraitFactory.GRENADE, <ItemTrait>[ ItemTraitFactory.EXPLODEY])
-            ..distractions = <String>["is flipping the fuck out about a bull penis cane. What?","is trading everbodies hats in the session.","is eating black licorice gummy bears.","is collecting just. So many bombs. You don't even know.","is stopping arguments between carapaces.","having a tea party with some nice consorts and underlings."]
+            ..distractions = <String>["is flipping the fuck out about a bull penis cane. What?","is trading everybody's hats in the session.","is eating black licorice gummy bears.","is collecting just. So many bombs. You don't even know.","is stopping arguments between carapaces.","having a tea party with some nice consorts and underlings."]
             ..description = "One of the Dersite Agents, CD is an incompetent buffoon with a taste for big explosions. He’s really lucky, though. Perhaps that’s why he’s still good at being an agent. He sometimes playing jazz music at the Liquid Negrocity."
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session), new GiveJackScepter(session), new GiveJackRing(session)] //order of scenes is order of priority
             ..sylladex.add(new Item("Licorice Gummy Bears",<ItemTrait>[ItemTraitFactory.CANDY]))
@@ -296,7 +296,7 @@ class NPCHandler
             ..description = "He’s just another Dersite who disperse tickets. He hates crimes and will throw the criminals in the slammer. He calls it the slammer when he is extra angry. "
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["needs to stock back up on tickets to give people.","has brought in some roughnecks to be sent to the slammer.","needs an updated list of everything that became illegal in the past day."]
-            ..distractions = <String>["flipping the fuck out about how illegal everything is.","being extra angry at crimes.","designing slammers to throw things into. You call it the slammer you are extra angry at crimes."]
+            ..distractions = <String>["flipping the fuck out about how illegal everything is.","being extra angry at crimes.","designing slammers to throw things into. You call it the slammer when you are extra angry at crimes."]
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..makeLucky(100)

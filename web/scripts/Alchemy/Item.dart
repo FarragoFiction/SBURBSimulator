@@ -107,8 +107,21 @@ class Item implements Comparable<Item> {
     }
 
     Item copy() {
-        Item ret =  new Item(baseName, new List<ItemTrait>.from(traits),isCopy:true, abDesc: this.abDesc, shogunDesc:this.shogunDesc);
-     //
+
+        Item ret;
+        if(this is Ring) {
+            ret =  new Ring.withoutOptionalParams(baseName, new List<ItemTrait>.from(traits));
+            (ret as MagicalItem).fraymotifs = new List<Fraymotif>.from((this as MagicalItem).fraymotifs);
+        }else if (this is Scepter) {
+            ret =  new Scepter.withoutOptionalParams(baseName, new List<ItemTrait>.from(traits));
+            (ret as MagicalItem).fraymotifs = new List<Fraymotif>.from((this as MagicalItem).fraymotifs);
+        }else if (this is MagicalItem) {
+            ret =  new MagicalItem.withoutOptionalParams(baseName, new List<ItemTrait>.from(traits));
+            (ret as MagicalItem).fraymotifs = new List<Fraymotif>.from((this as MagicalItem).fraymotifs);
+        }else {
+            ret =  new Item(baseName, new List<ItemTrait>.from(traits),isCopy:true, abDesc: this.abDesc, shogunDesc:this.shogunDesc);
+        }
+
         ret.numUpgrades = numUpgrades;
         ret.maxUpgrades = maxUpgrades;
         return ret;

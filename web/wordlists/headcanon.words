@@ -4,7 +4,9 @@ TextEngine Word List
 @verbs
 
 JRheadcanon
-    #onceUponATime# #verb_action@pastThird# a #noun#.: 0.5
+    #onceUponATime# #verb_action@pastThird# a #noun: 0.5
+    #onceUponATime# JR managed to typo  #noun: 0.5
+    #JR physically is unable to spell '#noun' right on the first try.: 0.3
     #onceUponATime# #verb_action@pastThird# #amount# #noun@plural|var@thing#. Every #noun|var@thing# was #noun_emotion@experience#.
     #onceUponATime# #verb_programming@pastThird# a #project|var@project# which #projectEffect#.
     JR #attitude# #noun@plural#.: 0.3

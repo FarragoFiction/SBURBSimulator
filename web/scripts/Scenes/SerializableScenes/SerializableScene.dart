@@ -16,36 +16,19 @@ import "dart:convert";
  * is actually possible (i.e. there are any carapaces living remainging)
  */
 abstract class  SerializableScene extends Scene {
-
-    //things that can be replaced
-    static String BIGBADNAME = BigBad.BIGBADNAME;
-    static String TARGET = "TARGET";
+    static String TARGET = "TARGET_NAME_OR_NAMES";
 
     SceneForm form;
+    //if this is set i only poke at the first valid target, not all valid targets
+    bool targetOne = false;
 
     String get labelPattern => ":___ ";
 
 
     //not all things have a target, subclasses without one won't bother
 
-    //what do you try to target, used for drop down
-    static String TARGETPLAYERS = "Players";
-    static String TARGETCARAPACES = "Carapaces";
-    static String TARGETDENIZENS = "Denizens";
-    static String TARGETLANDS = "Lands";
-    static String TARGETMOONS = "Moons";
-    static String TARGETCONSORTS = "Consorts";
-    static String TARGETGHOSTS = "Ghosts";
-    static String TARGETDEADPLAYERS = "Dead Players";
-    static String TARGETDEADCARAPACES = "Dead Carapaces";
-    static String TARGETROBOTS = "Robots";
-    static String TARGETDREAMSELVES = "Dream Selves";
-    static String TARGETBIGBADS = "Big Bads";
-    static String TARGETGODS = "Gods";
-    static String TARGETMORTALS = "Mortals";
-
     //flavor text will not influence the actual actions going on, but will change how it is narratively
-  String flavorText = "";
+  String flavorText = "Describe what happens in this scene in human words, based on what it targets and what it does to the targets. You can add a script tag to refer to the target or targets, but everything else should be your own words, including the Big Bads name.";
   List<GameEntity> livingTargets = new List<GameEntity>();
   //can include moons or the battlefield
   List<Land> landTargets = new List<Land>();
@@ -71,9 +54,7 @@ abstract class  SerializableScene extends Scene {
       session.logger.info("TEST BIG BAD: rendering content");
 
       String displayText = "$flavorText";
-      displayText =   displayText.replaceAll("$BIGBADNAME", "${gameEntity.htmlTitle()}");
-      //if i some how have both, living target will be the one i pick.
-      //TODO replace shit.
+      displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       DivElement content = new DivElement();
       div.append(content);
       content.setInnerHtml(displayText);
@@ -81,11 +62,35 @@ abstract class  SerializableScene extends Scene {
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
   }
 
+  List<GameEntity> get finalLivingTargets {
+      if(targetOne) {
+          return <GameEntity>[livingTargets.first];
+      }else {
+          return livingTargets;
+      }
+  }
+
+    List<Land> get finalLandTargets {
+        if(targetOne) {
+            return <Land>[landTargets.first];
+        }else {
+            return landTargets;
+        }
+    }
+
+    //if i some how have both, living target will be the one i pick.
+    String getTargetNames() {
+      if(livingTargets.isNotEmpty) {
+          return turnArrayIntoHumanSentence(finalLivingTargets);
+      }else {
+          return turnArrayIntoHumanSentence(finalLandTargets);
+      }
+
+  }
+
 void syncForm() {
     form.syncDataBoxToScene();
-    if(gameEntity is BigBad) {
-        (gameEntity as BigBad).syncForm();
-    }
+
 }
 
   void renderForm(Element container) {
@@ -108,12 +113,14 @@ void syncForm() {
 
     void copyFromJSON(JSONObject json) {
         name = json["name"];
+        if(json["targetOne"] == "true") targetOne = true;
+        flavorText = json["flavorText"];
+        //print("name is $name and flavortext is $flavorText");
         String triggerContionsStringLiving = json["triggerConditionsLiving"];
         String triggerContionsStringLand = json["triggerConditionsLand"];
 
         loadTriggerConditionsLiving(triggerContionsStringLiving);
         loadTriggerConditionsLand(triggerContionsStringLand);
-
     }
 
     void loadTriggerConditionsLand(String weirdString) {
@@ -142,6 +149,10 @@ void syncForm() {
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = name;
+        json["flavorText"] = flavorText;
+
+        json["targetOne"] = targetOne.toString();
+
         List<JSONObject> triggerCondtionsArrayLiving = new List<JSONObject>();
         List<JSONObject> triggerCondtionsArrayLand = new List<JSONObject>();
 
@@ -199,6 +210,7 @@ class SceneForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement flavorText;
+    CheckboxInputElement targetOneElement;
 
 
     SceneForm(SerializableScene this.scene, parentContainer) {
@@ -215,16 +227,22 @@ class SceneForm {
         drawDeleteButton();
         drawName();
         drawFlavorText();
+        drawTargetOne();
         drawAddTriggerConditionButton();
 
     }
 
     void syncDataBoxToScene() {
         dataBox.value = scene.toDataString();
+        if(scene.gameEntity is BigBad) {
+            (scene.gameEntity as BigBad).syncForm();
+        }
     }
 
     void syncFormToScene() {
         nameElement.value = scene.name;
+        flavorText.value = scene.flavorText;
+        targetOneElement.checked = scene.targetOne;
         syncDataBoxToScene();
     }
 
@@ -268,17 +286,50 @@ class SceneForm {
         });
     }
 
+    void drawTargetOne() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Target One Valid Target (vs target All Valid Targets):";
+        targetOneElement = new CheckboxInputElement();
+        targetOneElement.checked = scene.targetOne;
+
+        subContainer.append(nameLabel);
+        subContainer.append(targetOneElement);
+        container.append(subContainer);
+
+        targetOneElement.onChange.listen((e) {
+            if(targetOneElement.checked) {
+                scene.targetOne = true;
+            }else {
+                scene.targetOne = false;
+            }
+            syncDataBoxToScene();
+        });
+
+    }
+
 
     void drawFlavorText() {
         flavorText = new TextAreaElement();
-        flavorText.value = scene.toDataString();
+        flavorText.value = scene.flavorText;
         flavorText.cols = 60;
         flavorText.rows = 10;
-        flavorText.onChange.listen((e) {
+        flavorText.onInput.listen((e) {
             scene.flavorText = flavorText.value;
-            syncFormToScene();
+            syncDataBoxToScene();
         });
-        container.append(dataBox);
+
+        DivElement buttonDiv = new DivElement();
+        ButtonElement button = new ButtonElement();
+        button.text = "Append Target Name(s)";
+        button.onClick.listen((e) {
+            flavorText.value = "${flavorText.value} ${SerializableScene.TARGET}";
+            scene.flavorText = flavorText.value;
+            syncDataBoxToScene();
+        });
+        buttonDiv.append(button);
+        container.append(flavorText);
+        container.append(buttonDiv);
     }
 
 

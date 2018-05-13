@@ -32,19 +32,42 @@ Future<Null> start() async {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
-  todo("have 'any' as option for is carapace");
-  todo("serializable scenes have a bool for first or all targets");
-  todo("be able to remove triggers from scene, put into TargetCondition (living or land) parent class (i thought i did this)");
+
+  todo("maybe a bool for all target conditions for NOT. is NOT carapace, is NOT time player, etc.");
+
+  todo("isAspect Player (any just checks for is a player)");
+  todo("isClass Player (any just checks for is a player)");
+  todo("hasInterest (if they aren't a player automatically false)");
+  todo("land condition: isMoon");
+  todo("land condition: isLand");
+  todo("land condition: isDestroyed");
+  todo("figure out how effects will work (even summon scenes can have effects)");
+  todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
+  todo("isPrototypedWith (for sprites or carapace with rings)");
+  todo("isFromDystopia (i.e. Troll Empress)");
+  todo("land condition: has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
+
+  todo("make scene effects like kill, cause strife, control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
+  todo("isDead (would that even work?)");
+  todo("isAlive (would that even work?)");
+  todo("isGodTier");
+  todo("land condition: isMeteored (i.e. reckoning is going)");
+  todo("isGrimDark");
+  todo("isUnconditionallyImmortal");
+  todo("isDoomed");
+  todo("isWasted");
+  todo("isTrickster");
+  todo("isDreamSelf");
+  todo("isMurderMode");
+  todo("isRobot");
+  todo("isBrainGhost");
+
+
+
+
   todo("big bads have intro mod flavor text (like dystopic empire)");
-  todo("scenes should flavor text with replaceable words and shit. (how to do with such complex triggers?)");
   todo("scenes should have effects, summon scenes all start with 'is active'");
-  todo("text doc of big bads");
-  todo("split main and experimental");
-  todo("big bad activation loop");
-  todo("teach shogunbot how to make non carapace cards");
   todo("teach AB to write bigBadSummaries to cache");
-  todo("When a BIG BAD is activated, you can see their image as a img tag");
-  todo("find a test sessions where big bad is summoned");
   todo("big bads need 0 or more custom fraymotif names");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("have anything flagged as a big bad be something players try to strife, if it seems defeatable");
@@ -55,7 +78,6 @@ Future<Null> start() async {
   todo("more living conditions: is meta player, is god tier, is player, is Sprite, isRobot, is consort, is denizen, is alive, is dead, isAspect, isClass");
   todo("more land contions: owned by Aspect player,owned by Class player, owned by Meta Player, owned by God Tier, corrupt");
   todo("side apps, like big bad gotcha, or big bad betting battles");
-  todo("can lands be resurrected? if so, instead of nulling them out on destruction, maybe i should .dead them? what all would i have to change for that? questing, at the very least. space player frog shit...");
 
   setUpForm();
 }

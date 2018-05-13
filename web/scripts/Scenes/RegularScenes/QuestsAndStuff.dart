@@ -178,7 +178,7 @@ class QuestsAndStuff extends Scene {
             //i've already killed sextellions, may as well do this,too, wait, let me go find out if shogun wants dibs
             //yup, he wants dibs. I can't keep doing villanous things if I'm supposed to be the 'good guy' after all.
             DivElement joke = new DivElement();
-            joke.setInnerHtml("<br>Uh. What. God dammit Shogun, why did you blow that space player's planet up? Jesus fuck, no they did NOT 'steal your palette' they had it first! Ugh. Whatever. How are they supposed to win now, dunkass???");
+            joke.setInnerHtml("<br>Uh. What. God dammit Shogun, why did you blow that space player's planet up? Jesus fuck, no they did NOT 'steal your palette' they had it first! Ugh. Why would you even WANT an unfertilized Skaia??? Whatever. How are they supposed to win now, dunkass???");
             session.mutator.metaHandler.initalizePlayers(session, false);
             div.append(joke);
             div.append(player.land.planetsplode(session.mutator.metaHandler.feudalUltimatum));

@@ -363,7 +363,7 @@ class Session {
 
     void setupMoons(String reason) {
          //;
-        //logger.info("DEBUG DESTROY MOON: setting up moons because $reason");
+        logger.info("DEBUG CUSTOM SESSION: setting up moons because $reason");
 
          prospitRing = new Ring.withoutOptionalParams("WHITE QUEEN'S RING OF ORBS ${convertPlayerNumberToWords()}FOLD",[ ItemTraitFactory.QUEENLY] );
          Fraymotif f = new Fraymotif("Mini Red Miles", 3);
@@ -596,7 +596,12 @@ class Session {
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 
-        appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. <br><br>");
+        List<String> npcsWithTag = new List<String>();
+        for(GameEntity g in this.activatedNPCS) {
+            npcsWithTag.add(g.htmlTitleWithTip());
+        }
+
+        appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. The ${turnArrayIntoHumanSentence(npcsWithTag)} seem to be especially anticipating them.<br><br>");
         await callNextIntro(0);
     }
 
@@ -1115,17 +1120,15 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Session> startSession() async {
+    Future<Session> startSession([bool dontRenit]) async {
         logger.info("session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
         //only do this shit if you'e completely virgin
-        if(aliensClonedOnArrival.isEmpty) {
+        if(aliensClonedOnArrival.isEmpty && !dontRenit) {
             reinit("start session");
-            this.makePlayers();
-            this.randomizeEntryOrder();
-            this.makeGuardians(); //after entry order established
+            getPlayersReady();
         }
         logger.info("session has ${players.length} players");
 
@@ -1135,6 +1138,12 @@ class Session {
         await SimController.instance.easterEggCallBack(this);
 
         return completer.future;
+    }
+
+    void getPlayersReady() {
+        this.makePlayers();
+        this.randomizeEntryOrder();
+        this.makeGuardians(); //after entry order established
     }
 
     void simulationComplete(String ending) {
@@ -1230,7 +1239,7 @@ class Session {
     void reinit(String source) {
         String parent = "";
         if(childSession != null) parent = "${childSession.session_id}";
-        logger.info("TEST COMPLETION: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
+        logger.info("DEBUG SESSION CUSTOMIZER: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         plzStartReckoning = false;
         npcHandler = new NPCHandler(this);
@@ -1311,7 +1320,7 @@ class Session {
         createScenesForPlayers();
         ;
 
-        this.setupMoons("making players"); //happens only in reinit
+        //this.setupMoons("making players"); //happens only in reinit
 
 
     }

@@ -82,6 +82,24 @@ abstract class Loader {
         return res.addListener();
     }
 
+    /// Sets a resource at a specified path to an object, does not load a file
+    static void assignResource<T>(T object, String path) {
+        _createResource(path).object = object;
+    }
+
+    /// Removes a resource from the listings, and completes any waiting gets with an error state
+    static void purgeResource(String path) {
+        if (_resources.containsKey(path)) {
+            Resource<dynamic> r = _resources[path];
+            for(Completer<dynamic> c in r.listeners) {
+                if (!c.isCompleted) {
+                    c.completeError("Resource purged");
+                }
+            }
+        }
+        _resources.remove(path);
+    }
+
     static Future<bool> _loadBundle(String path) async {
         Archive bundle = await Loader.getResource("$path.bundle", bypassManifest: true);
 

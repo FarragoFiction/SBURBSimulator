@@ -6048,3 +6048,40 @@ The first session after that void gnosis is still wrong. It ends in a space gnos
 
  I'm going to go outside and look at some nature for ten minutes, then I'm going to come back in and
  spend a half hour or so line by line manually comparing the sessions.
+
+
+
+ ~~~~~~~~
+
+ Current Problem:
+
+ Editing flavor text was working. But NOW, no matter how I edit it, the scene data box updates but the
+ big bad data box does not.
+
+ i can confirm i can copy the scene box from one screen to another.
+
+ if i add a trigger it saves the big bad, but otherwise only saves the scene
+
+ it calls '        scene.syncForm();' while name and shit calls
+
+             syncDataBoxToScene();
+and all that is is:
+
+        dataBox.value = scene.toDataString();
+
+
+which...
+hrm...
+
+
+void syncForm() {
+    form.syncDataBoxToScene();
+    if(gameEntity is BigBad) {
+        (gameEntity as BigBad).syncForm();
+    }
+}
+
+well. huh. isn't that a punch in the face.
+
+
+
