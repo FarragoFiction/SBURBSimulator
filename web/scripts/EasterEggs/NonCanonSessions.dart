@@ -7,6 +7,7 @@ typedef void SessionSource(Session session, Player player, int index);
     20082015 -RL
     404 - cynicalTeuthida
     4037 - ???
+    225 - MLH's friends
  */
 abstract class NonCanonSessions {
 
@@ -17,8 +18,8 @@ abstract class NonCanonSessions {
         ret[730] = session730; //SBURBNeta
         ret[20082015] = session20082015; //RL
         ret[404] = session404; //cynicalTeuthida
+        ret[225] = session225; //MLH's friends
         ret[212] = session212; //Cipah
-
         return ret;
     }
 
@@ -36,6 +37,202 @@ abstract class NonCanonSessions {
         session.players = <Player>[session.mutator.metaHandler.feudalUltimatum];
         session.players.length = 1; //no more, no less.
         session.players[0].setStat(Stats.EXPERIENCE, 1300);
+    }
+
+
+    //Session for MLH and his friends.
+    static void session225(Session session) {
+        int numPlayers = 5;
+        makeASessionFromSource(session,session225IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //more, or less
+        Player fi = session.players[0]; //chathandles
+        Player da = session.players[1];
+        Player ej = session.players[2];
+        Player nb = session.players[3];
+        Player lb = session.players[4]; //F1X TH1S!
+        Player hb = session.players[5]; //humanBot
+        //Player la = session.players[6]; //LA, joke character 1 hp. {?}
+    }
+
+    static void session225IndexToPlayer(Session session, Player player, int index){
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0){
+            player.isTroll = false;
+            player.hairColor = "#d8cd08";
+            player.bloodColor = "#ff0000";
+            player.class_name = SBURBClassManager.KNIGHT;
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.LIFE; //Placeholder (?) for Juice (or Closet)
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Straw", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.hair  =1;
+            player.chatHandle = "forgetfulIdealist";
+
+            player.interest1 = new Interest("Coding", InterestManager.TECHNOLOGY);
+            player.interest2 = new Interest("Drawing", InterestManager.CULTURE);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [["teh", "the"]];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of AIs and Regrowth";
+            player.land.denizenFeature = new DenizenFeature('Demeter');
+
+            player.moon = session.prospit;
+        }else if(index == 1){
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#05bad6";
+            player.class_name = SBURBClassManager.SMITH; //Maybe not. IDK
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.DOOM; //Placeholder for Rain
+            player.hair  =6;
+            player.leftHorn = 57;
+            player.rightHorn = 57;
+            player.chatHandle = "demonicActivist";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Bad Fanfiction", s); //Jokes Galore
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Intimidation", InterestManager.TERRIBLE);
+            player.interest2 = new Interest("War", InterestManager.TERRIBLE);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Violence and Madness";
+            player.land.denizenFeature = new DenizenFeature('Mania');
+
+            player.moon = session.derse;
+        }else if(index == 2){
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#ae7616";
+            player.class_name = SBURBClassManager.SEER;
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.SPACE;
+            player.hair  =4;
+            player.leftHorn = 64;
+            player.rightHorn = 64;
+            player.chatHandle = "electricJuggernaut";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Zebra", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Playing Guitar", InterestManager.MUSIC);
+            player.interest2 = new Interest("Programming", InterestManager.TECHNOLOGY);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.leftMurderMode = true;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Stars and Patterns";
+            player.land.denizenFeature = new EasyDenizenFeature('Morpheus'); //Sorry, I thought it would be funny
+
+            player.moon = session.prospit;
+        }else if(index == 3){
+            player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#010100";
+            player.class_name = SBURBClassManager.SYLPH;
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.TIME; //Placeholder for Rhyme
+            player.hair  =33;
+            player.leftHorn = 4;
+            player.rightHorn = 6;
+            player.chatHandle = "niceBoi";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("zBox", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Gaming", InterestManager.CULTURE);
+            player.interest2 = new Interest("Literature", InterestManager.CULTURE);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Patience and Quiet";
+            player.land.denizenFeature = new HardDenizenFeature('Chronos');
+
+            player.moon = session.prospit;
+
+        }else if(index == 4) { //No character information
+            /*player.isTroll = false;
+            player.bloodColor = "#ff0000";
+            player.hairColor = "#010100";
+            player.class_name = SBURBClassManager.SYLPH;
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.TIME; //Placeholder for Rhyme
+            player.hair  =33;
+            player.leftHorn = 4;
+            player.rightHorn = 6;
+            player.chatHandle = "niceBoi";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Nemetona", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Gaming", InterestManager.CULTURE);
+            player.interest2 = new Interest("Literature", InterestManager.CULTURE);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Patience and Quiet";
+            player.land.denizenFeature = new HardDenizenFeature('Chronos');
+
+            player.moon = session.prospit;*/
+
+        }else if(index == 5) {
+            player.robot = true;
+
+            player.isTroll = false;
+            player.bloodColor = "#0021cb";
+            player.hairColor = "#8f8803";
+            player.class_name = SBURBClassManager.SCRIBE;
+            player.godDestiny = true;
+            player.godTier = true;
+            player.aspect = Aspects.LIFE; //Placeholder for Juice
+            player.hair  =1;
+            player.leftHorn = 4;
+            player.rightHorn = 6;
+            player.chatHandle = "humanBot";
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Sunglasses", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.interest1 = new Interest("Robots", InterestManager.TECHNOLOGY);
+            player.interest2 = new Interest("Writing", InterestManager.CULTURE); //Placeholder for something
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Life and Fruit";
+            player.land.denizenFeature = new HardDenizenFeature('Persephone');
+
+            player.moon = session.prospit;
+
+        }
+
     }
 
 
@@ -234,7 +431,7 @@ abstract class NonCanonSessions {
 
 
     //SBURB NETA, a DELTA spawn.  Ran from 7/31 to 10/31 (barring an epilogue final boss fight)
-   static void session730(Session session){
+    static void session730(Session session){
         int numPlayers = 9;
         makeASessionFromSource(session, session730IndexToPlayer, numPlayers);
 
