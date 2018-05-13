@@ -205,7 +205,7 @@ abstract class NonCanonSessions {
             player.isTroll = false;
             player.bloodColor = "#0021cb";
             player.hairColor = "#8f8803";
-            player.class_name = SBURBClassManager.KNIGHT; //Placeholder, not sure for what yet
+            player.class_name = SBURBClassManager.SCRIBE;
             player.godDestiny = true;
             player.godTier = true;
             player.aspect = Aspects.LIFE; //Placeholder for Juice
@@ -217,7 +217,7 @@ abstract class NonCanonSessions {
             player.object_to_prototype = new PotentialSprite("Sunglasses", s);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Robots", InterestManager.TECHNOLOGY);
-            player.interest2 = new Interest("Fantasy", InterestManager.CULTURE); //Placeholder for something
+            player.interest2 = new Interest("Writing", InterestManager.CULTURE); //Placeholder for something
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
