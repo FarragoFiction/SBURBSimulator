@@ -9,8 +9,8 @@ Session session;
 SessionForm sessionForm;
 
 Future<Null> main() async {
-    await globalInit();
     await Loader.preloadManifest();
+    await globalInit();
     window.onError.listen((Event event){
         ErrorEvent e = event as ErrorEvent;
         //String msg, String url, lineNo, columnNo, error
