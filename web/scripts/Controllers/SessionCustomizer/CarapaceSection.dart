@@ -10,8 +10,6 @@ class CarapaceSection {
     Session session;
     Element container;
     List<GameEntity> allCarapaces;
-
-
     CarapaceSection(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("carapaceSection");
@@ -89,10 +87,60 @@ class CarapaceSection {
 
 
     void drawSpecibus(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
-        new SpecibusSection().draw(session, carapace, carapaceDiv, itemSection);
+        TableCellElement specibusContainer = new TableCellElement();
+        DivElement label = new DivElement()..setInnerHtml("<b>Specibus:<b> ");
+        label.style.display = "inline-block";
+        SpanElement specibusElement = new SpanElement()..setInnerHtml(carapace.specibus.name);
+        ButtonElement button = new ButtonElement()..text = "Equip Item?";
+        specibusContainer.append(button);
+
+        specibusContainer.append(label);
+        specibusContainer.append(specibusElement);
+        carapaceDiv.append(specibusContainer);
+
+        button.onClick.listen((Event e ) {
+            try {
+                carapace.specibus = itemSection.selectedItem.copy();
+                specibusElement.setInnerHtml(carapace.specibus.baseName);
+            }catch(e) {
+                window.alert("Failed to make ${itemSection.selectedItem} the specibus. Because $e");
+                session.logger.error(e);
+
+            }
+        });
     }
 
     void drawSylladex(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
-        new SylladexSection().draw(session, carapace, carapaceDiv, itemSection);
+        TableCellElement sylladexContainer = new TableCellElement();
+        ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
+        button.style.verticalAlign = "top";
+        SelectElement select = new SelectElement();
+        sylladexContainer.append(button);
+        sylladexContainer.append(select);
+        select.disabled = true;
+        select.size = 6;
+        for(Item item in  carapace.sylladex) {
+            OptionElement option = new OptionElement();
+            option.text = item.baseName;
+            option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+            select.append(option);
+        }
+
+        carapaceDiv.append(sylladexContainer);
+
+
+        button.onClick.listen((Event e ) {
+            try {
+                Item item = itemSection.selectedItem.copy();
+                carapace.sylladex.add(item);
+                OptionElement option = new OptionElement();
+                option.text = item.baseName;
+                option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+                select.append(option);
+            }catch(e) {
+                window.alert("Failed to add ${itemSection.selectedItem} to sylladex. Because $e");
+                session.logger.error(e);
+            }
+        });
     }
 }
