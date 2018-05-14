@@ -17,7 +17,10 @@ class SessionForm {
         container.classes.add("sessionForm");
         parentContainer.append(container);
         draw();
+        playerSection = new PlayerSection(session, container);
+        playerSection.draw();
         carapaceSection = new EntitySection(session, container);
+        carapaceSection.draw();
     }
 
     void draw() {

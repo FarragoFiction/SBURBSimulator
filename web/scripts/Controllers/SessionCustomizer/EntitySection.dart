@@ -9,13 +9,13 @@ class EntitySection {
     Session session;
     Element container;
     List<GameEntity> allEntities;
+
     EntitySection(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("carapaceSection");
         parentContainer.append(container);
         allEntities  = new List.from(session.prospit.associatedEntities);
         allEntities.addAll(session.derse.associatedEntities);
-        draw();
     }
 
     void draw() {
