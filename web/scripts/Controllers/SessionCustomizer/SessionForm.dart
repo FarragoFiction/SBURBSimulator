@@ -7,14 +7,14 @@ import "ItemSection.dart";
 class SessionForm {
     Session session;
     DivElement container;
-    CarapaceSection carapaceSection;
+    EntitySection carapaceSection;
 
     SessionForm(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("sessionForm");
         parentContainer.append(container);
         draw();
-        carapaceSection = new CarapaceSection(session, container);
+        carapaceSection = new EntitySection(session, container);
     }
 
     void draw() {

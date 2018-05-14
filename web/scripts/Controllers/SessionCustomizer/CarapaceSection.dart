@@ -2,31 +2,30 @@ import '../../SBURBSim.dart';
 import "dart:html";
 import "dart:async";
 import "ItemSection.dart";
-import "SylladexSection.dart";
-import "SpecibusSection.dart";
+
 
 //lists all carapaces, lets you activate them or not
-class CarapaceSection {
+class EntitySection {
     Session session;
     Element container;
-    List<GameEntity> allCarapaces;
-    CarapaceSection(Session this.session, Element parentContainer) {
+    List<GameEntity> allEntities;
+    EntitySection(Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("carapaceSection");
         parentContainer.append(container);
-        allCarapaces  = new List.from(session.prospit.associatedEntities);
-        allCarapaces.addAll(session.derse.associatedEntities);
+        allEntities  = new List.from(session.prospit.associatedEntities);
+        allEntities.addAll(session.derse.associatedEntities);
         draw();
     }
 
     void draw() {
         container.setInnerHtml("Customize Carapaces");
-        for(GameEntity c in  allCarapaces) {
-            drawOneCarapace(c);
+        for(GameEntity c in  allEntities) {
+            drawOneEntity(c);
         }
     }
 
-    void drawOneCarapace(GameEntity carapace) {
+    void drawOneEntity(GameEntity entity) {
         TableElement carapaceDiv = new TableElement();
         TableRowElement row = new TableRowElement();
         carapaceDiv.append(row);
@@ -34,17 +33,8 @@ class CarapaceSection {
 
         container.append(carapaceDiv);
 
-        TableCellElement name = new TableCellElement()..setInnerHtml("${carapace.name}");
-        DivElement img = new DivElement();
-        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${carapace.initials.toLowerCase()}.png");
-        img.append(portrait);
-        if((carapace as Carapace).type == Carapace.DERSE) {
-            portrait.classes.add("derse");
-        }else {
-            portrait.classes.add("prospit");
-        }
-        portrait.height = 150;
-        name.append(img);
+        TableCellElement name = new TableCellElement()..setInnerHtml("${entity.name}");
+        drawPortrait(entity, name);
         row.append(name);
 
 
@@ -53,16 +43,30 @@ class CarapaceSection {
         LabelElement labelCheckBox = new LabelElement()..setInnerHtml("Spawn Active?:");
         checkBoxContainer.append(labelCheckBox);
         CheckboxInputElement isActive = new CheckboxInputElement();
-        isActive.checked = carapace.active;
+        isActive.checked = entity.active;
         checkBoxContainer.append(isActive);
 
         isActive.onChange.listen((Event e) {
-            carapace.active = isActive.checked;
+            entity.active = isActive.checked;
         });
 
 
-        drawSylladexShit(row, carapace);
+        drawSylladexShit(row, entity);
     }
+
+    void drawPortrait(GameEntity entity, TableCellElement name) {
+      DivElement img = new DivElement();
+      ImageElement portrait = new ImageElement(src: "images/BigBadCards/${entity.initials.toLowerCase()}.png");
+      img.append(portrait);
+      if((entity as Carapace).type == Carapace.DERSE) {
+          portrait.classes.add("derse");
+      }else {
+          portrait.classes.add("prospit");
+      }
+      portrait.height = 150;
+      name.append(img);
+    }
+
 
     void drawSylladexShit(TableRowElement row, GameEntity carapace) {
 
