@@ -90,7 +90,7 @@ class EntitySection {
     }
 
 
-    void drawSpecibus(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
+    void drawSpecibus(GameEntity carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
         TableCellElement specibusContainer = new TableCellElement();
         DivElement label = new DivElement()..setInnerHtml("<b>Specibus:<b> ");
         label.style.display = "inline-block";
@@ -114,7 +114,7 @@ class EntitySection {
         });
     }
 
-    void drawSylladex(Carapace carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
+    void drawSylladex(GameEntity carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
         TableCellElement sylladexContainer = new TableCellElement();
         ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
         button.style.verticalAlign = "top";
