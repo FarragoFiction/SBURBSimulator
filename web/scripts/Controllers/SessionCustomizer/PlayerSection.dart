@@ -3,6 +3,7 @@ import '../../GameEntities/player.dart';
 import '../../SessionEngine/session.dart';
 import "EntitySection.dart";
 import 'dart:html';
+import "../../PlayerSpriteHandler.dart";
 
 class PlayerSection extends EntitySection {
 
@@ -23,12 +24,28 @@ class PlayerSection extends EntitySection {
   }
 
   @override
+  void drawOneEntity(GameEntity entity) {
+      TableElement carapaceDiv = new TableElement();
+      TableRowElement row = new TableRowElement();
+      carapaceDiv.append(row);
+      carapaceDiv.classes.add("carapaceForm");
+
+      container.append(carapaceDiv);
+
+      TableCellElement name = new TableCellElement()..setInnerHtml("${entity.title()}");
+      drawPortrait(entity, name);
+      row.append(name);
+
+      drawSylladexShit(row, entity);
+  }
+
+  @override
   void drawPortrait(GameEntity entity, TableCellElement name) {
       CanvasElement img = new CanvasElement(width: 400, height: 300);
       name.append(img);
       Player p = entity as Player;
-      p.initSpriteCanvas();
-      img.context2D.drawImage(p.canvas, 0,0);
+      //async
+      PlayerSpriteHandler.drawSpriteFromScratch(img, p);
   }
 
 }

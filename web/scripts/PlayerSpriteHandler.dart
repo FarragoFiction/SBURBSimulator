@@ -23,7 +23,7 @@ class PlayerSpriteHandler {
 
 
     static Future<Null> drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) async{
-        // ;
+        print("trying to async draw a sprite from scratch");
         if (Drawing.checkSimMode() == true) {
             return;
         }
@@ -116,7 +116,7 @@ class PlayerSpriteHandler {
             PaletteSwapCallback callback = Drawing.aspectPalletSwap;
             if (player.trickster) callback = Drawing.candyPalletSwap;
             if (player.robot) callback = Drawing.robotPalletSwap;
-            drawWhateverFutureWithPalleteSwapCallback(canvas, Drawing.playerToCowl(player), player, callback);
+            await drawWhateverFutureWithPalleteSwapCallback(canvas, Drawing.playerToCowl(player), player, callback);
         }
 
         if (player.robot == true) {
@@ -129,13 +129,13 @@ class PlayerSpriteHandler {
             Drawing.greySkin(canvas); //,player);
         }
         if (player.isTroll) {
-            horns(canvas, player);
+            await horns(canvas, player);
         }
 
         if (!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack") {
-            stabs(canvas, player);
+            await stabs(canvas, player);
         } else if (!baby && player.dead && player.causeOfDeath == "fighting the Black King") {
-            kingDeath(canvas, player);
+            await kingDeath(canvas, player);
         }
 
 
@@ -158,6 +158,8 @@ class PlayerSpriteHandler {
         }else if(player.session.mutator.lightField && !player.session.mutator.hasSpotLight(player)) {
             Drawing.voidSwap(canvas, 0.2); //compared to the light player, you are irrelevant.
         }
+        print("done trying to async draw a sprite from scratch");
+
     }
 
     static Future<Null> grimDarkHalo(CanvasElement canvas, Player player) async {
@@ -188,8 +190,7 @@ class PlayerSpriteHandler {
     }
 
     static Future<Null>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
-        ImageElement image = await Loader.getResource((imageString));
-        //;
+        ImageElement image = await Loader.getResource("images/$imageString");
         canvas.context2D.drawImage(image, 0, 0);
     }
 
@@ -303,7 +304,6 @@ class PlayerSpriteHandler {
     }
 
     static Future<Null> stabs(CanvasElement canvas, Player player) async {
-        CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "stab.png";
         await drawWhateverFuture(canvas, imageString);
         Drawing.swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
@@ -311,7 +311,6 @@ class PlayerSpriteHandler {
 
 
     static Future<Null> kingDeath(CanvasElement canvas, Player player) async {
-        CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "sceptre.png";
         await drawWhateverFuture(canvas, imageString);
         Drawing.swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
@@ -333,7 +332,6 @@ class PlayerSpriteHandler {
     }
 
     static Future<Null> babySprite(CanvasElement canvas, Player player) async {
-        CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "Bodies/baby${player.baby}.png";
         if (player.isTroll) {
             imageString = "Bodies/grub${player.baby}.png";

@@ -54,6 +54,12 @@ abstract class Loader {
         }
     }
 
+    static Future<Null> preloadManifest() async {
+        init();
+        manifest = await Loader.getResource("manifest/manifest.txt", format: Formats.manifest, bypassManifest: true);
+        //print("preloaded a manifest, its ${manifest.runtimeType} and $manifest");
+    }
+
     static Future<Null> loadManifest() async {
         manifest = await Loader.getResource("manifest/manifest.txt", format: Formats.manifest, bypassManifest: true);
     }
