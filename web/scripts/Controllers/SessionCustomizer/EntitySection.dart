@@ -104,7 +104,7 @@ class EntitySection {
 
         button.onClick.listen((Event e ) {
             try {
-                carapace.specibus = itemSection.selectedItem.copy();
+                carapace.specibus = Specibus.fromItem(itemSection.selectedItem);
                 specibusElement.setInnerHtml(carapace.specibus.baseName);
             }catch(e) {
                 window.alert("Failed to make ${itemSection.selectedItem} the specibus. Because $e");

@@ -35,6 +35,10 @@ class Specibus extends Item {
         this.traits.add(requiredTrait);
     }
 
+    static Specibus fromItem(Item item){
+        return new Specibus(item.baseName, item.traits.first, new List.from(item.traits));
+    }
+
 
     //TODO  have a list of components that make this up. (keep track of and vs or?)
     //TODO your specibus can be 2x or 1/2 x kind. unlucky event where it breaks so 1/2 kind
