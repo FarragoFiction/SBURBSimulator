@@ -46,18 +46,12 @@ abstract class Loader {
                 String bundle = manifest.getBundleForFile(path);
 
                 if (bundle != null) {
-                    _loadBundle(bundle);
-                    return _createResource(path).addListener();
+                    await _loadBundle(bundle);
+                    return _createResource(path).object;
                 }
             }
             return _load(path, format: format, absoluteRoot: absoluteRoot);
         }
-    }
-
-    static Future<Null> preloadManifest() async {
-        init();
-        manifest = await Loader.getResource("manifest/manifest.txt", format: Formats.manifest, bypassManifest: true);
-        //print("preloaded a manifest, its ${manifest.runtimeType} and $manifest");
     }
 
     static Future<Null> loadManifest() async {
@@ -106,10 +100,13 @@ abstract class Loader {
         _resources.remove(path);
     }
 
-    static Future<bool> _loadBundle(String path) async {
+    static Future<Null> _loadBundle(String path) async {
         Archive bundle = await Loader.getResource("$path.bundle", bypassManifest: true);
 
         String dir = path.substring(0, path.lastIndexOf(_slash));
+
+        Completer<Null> completer = new Completer<Null>();
+        List<Future<dynamic>> fileFutures = <Future<dynamic>>[];
 
         for (ArchiveFile file in bundle.files) {
             String extension = file.name.split(".").last;
@@ -117,26 +114,22 @@ abstract class Loader {
 
             String fullname = "$dir/${file.name}";
 
-            Resource<dynamic> res = _createResource(fullname);
+            if (_resources.containsKey(fullname)) {
+                fileFutures.add(getResource(fullname));
+                continue;
+            }
 
             Uint8List data = file.content as Uint8List;
 
-            //format.read(await format.fromBytes(data.buffer)).then(res.populate);
-            // this is kind of a mess
-            if (res.object == null) {
-                format.fromBytes(data.buffer).then((dynamic thing) {
-                    if (res.object == null) {
-                        format.read(thing).then((dynamic thing2) {
-                            if (res.object == null) {
-                                res.populate(thing2);
-                            }
-                        });
-                    }
-                });
-            }
+            Resource<dynamic> res = _createResource(fullname);
+            fileFutures.add(res.addListener());
+
+            format.fromBytes(data.buffer).then((dynamic thing) { format.read(thing).then(res.populate); });
         }
 
-        return true;
+        Future.wait(fileFutures).then((List<dynamic> list) { completer.complete(); });
+
+        return completer.future;
     }
 
     // JS loading extra special dom stuff

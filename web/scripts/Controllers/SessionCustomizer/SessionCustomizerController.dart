@@ -9,7 +9,8 @@ Session session;
 SessionForm sessionForm;
 
 Future<Null> main() async {
-    await Loader.preloadManifest();
+    Loader.init();
+    await Loader.loadManifest();
     await globalInit();
     window.onError.listen((Event event){
         ErrorEvent e = event as ErrorEvent;
