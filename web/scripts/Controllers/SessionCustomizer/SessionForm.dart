@@ -1,12 +1,15 @@
 import '../../SBURBSim.dart';
 import "dart:html";
 import "dart:async";
-import "CarapaceSection.dart";
+import "EntitySection.dart";
+import "PlayerSection.dart";
 import "ItemSection.dart";
 
 class SessionForm {
     Session session;
     DivElement container;
+    //todo guardian section?
+    PlayerSection playerSection;
     EntitySection carapaceSection;
 
     SessionForm(Session this.session, Element parentContainer) {
