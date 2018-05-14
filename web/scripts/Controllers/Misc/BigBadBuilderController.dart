@@ -50,6 +50,7 @@ Future<Null> start() async {
   todo("make scene effects like kill, cause strife, control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
   todo("isDead (would that even work?)");
   todo("isAlive (would that even work?)");
+  todo("hasQuirk"); //bbb that hates unreadable quirks
   todo("isGodTier");
   todo("land condition: isMeteored (i.e. reckoning is going)");
   todo("isGrimDark");
