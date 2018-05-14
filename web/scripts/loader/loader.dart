@@ -121,7 +121,19 @@ abstract class Loader {
 
             Uint8List data = file.content as Uint8List;
 
-            format.read(await format.fromBytes(data.buffer)).then(res.populate);
+            //format.read(await format.fromBytes(data.buffer)).then(res.populate);
+            // this is kind of a mess
+            if (res.object == null) {
+                format.fromBytes(data.buffer).then((dynamic thing) {
+                    if (res.object == null) {
+                        format.read(thing).then((dynamic thing2) {
+                            if (res.object == null) {
+                                res.populate(thing2);
+                            }
+                        });
+                    }
+                });
+            }
         }
 
         return true;

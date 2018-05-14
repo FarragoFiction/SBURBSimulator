@@ -58,7 +58,20 @@ void main() {
     
     //testAudio();
 
-    testText();
+    //testText();
+
+    testLoaderIssues();
+}
+
+Future<Null> testLoaderIssues() async {
+    Loader.init();
+    await Loader.loadManifest();
+
+    print("start");
+    Loader.getResource("images/Hair/hair1.png");
+    Loader.getResource("images/Hair/hair2.png");
+    Loader.getResource("images/Hair/hair3.png");
+    print("done");
 }
 
 Future<Null> testText() async {
