@@ -112,7 +112,7 @@ class SessionFinderControllerJunior extends SimController {
 
   @override
   void easterEggCallBack(Session session) {
-    initializePlayers(session.players, session);  //need to redo it here because all other versions are in case customizations
+    //initializePlayers(session.players, session);  //need to redo it here because all other versions are in case customizations
     //aaaaand. done.
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();

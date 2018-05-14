@@ -31,17 +31,15 @@ Future<Null> main() async {
     session.getPlayersReady();
     container = querySelector("#story");
 
+    todo("PlayerSection has a text area box for putting a dataUrl from old customizer to alter players. (that page just turns into a dataString generator, not used stand alone anymore)");
+    todo("can collapse a section or expand it (like carapaces that are just taking up space)");
     todo("CarapaceSection lets you remove the selected item from the sylladex");
     todo("Can serialize a session");
     todo("can serialize a carapace");
     todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)");
     todo("can save a session to a .txt file");
     todo("can load a session from a .txt file");
-    todo("SessionForm has a PlayerSection (new class/file");
-    todo("PlayerSection lists all players (image next to each)");
     todo("make sure it works for special sessions like 13 or 413!");
-    todo("PlayerSection has a text area box for putting a dataUrl to alter players.");
-    todo("PlayerSection lets you add the selected item to either sylladex or specibus.");
     todo("Each Player has a QuirkSection that lets  you modify quirks.");
     todo("PlayerSection lets you pick the name of their sprite, and the name of the fraymotif that sprite has");
     todo("PlayerSection lets you pick the name of their Land");

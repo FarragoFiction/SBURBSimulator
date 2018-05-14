@@ -1273,6 +1273,7 @@ class Session {
 
 
     void makePlayers() {
+        logger.info("making players");
         this.players = <Player>[];
         resetAvailableClasspects();
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);

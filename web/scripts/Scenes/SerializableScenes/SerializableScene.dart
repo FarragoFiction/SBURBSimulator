@@ -51,7 +51,7 @@ abstract class  SerializableScene extends Scene {
 
   @override
   void renderContent(Element div) {
-      session.logger.info("TEST BIG BAD: rendering content");
+      //session.logger.info("TEST BIG BAD: rendering content");
 
       String displayText = "$flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
@@ -175,7 +175,7 @@ void syncForm() {
   //all trigger conditions must be true for this to be true.
   @override
   bool trigger(List<Player> playerList) {
-      session.logger.info("TEST BIG BAD: checking triggers");
+      //session.logger.info("TEST BIG BAD: checking triggers");
 
       landTargets.clear();
       livingTargets.clear();

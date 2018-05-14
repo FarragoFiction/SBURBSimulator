@@ -968,7 +968,7 @@ class ObservatoryViewer {
     }
 
     void easterEggCallback(Session session) {
-        initializePlayers(session.players, session);
+        //initializePlayers(session.players, session);
     }
 
     void toggleOvercoat() {

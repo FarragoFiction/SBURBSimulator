@@ -66,7 +66,7 @@ class CharCreatorController extends SimController {
   //don't actually start the session, but get players ready.
   @override
   void easterEggCallBack(Session session) {
-    initializePlayers(session.players, session);
+    //initializePlayers(session.players, session);
     charCreatorHelperGlobalVar = new CharacterCreatorHelper(session.players);
 
   }
@@ -95,7 +95,16 @@ class CharCreatorController extends SimController {
     String html = "<Br><br><a href = 'index2.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}' target='_blank'>Be Responsible For Sending Players into SBURB? (Link $numURLS)</a>  | <a href = 'rare_session_finder.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}' target='_blank'>Have AB find different ways a session with these players could go?</a>";
     if(session.players.length == 1)  html = "<Br><br><a href = 'dead_index.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}' target='_blank'>Be Responsible For Sending Player into a Dead Session? (Link $numURLS)</a> | <a href = 'dead_session_finder.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}' target='_blank'>Have AB try to find a dead session where this player wins?</a>";
 
-    appendHtml(querySelector("#character_creator"),html);
+    DivElement deprecated = new DivElement();
+    querySelector("#character_creator").append(deprecated);
+
+    deprecated.setInnerHtml("<b>HEY. Just so you know. This shit's getting replaced by the :<a href = 'sessionCreator.html'>Session Creator</a>. <br><br> This URL will not work, but you CAN use it as input for the creator. (If I've gotten around to that feature yet). ");
+
+    TextAreaElement area = new TextAreaElement();
+    area.value = "index2.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}";
+    deprecated.append(area);
+
+    //appendHtml(querySelector("#character_creator"),html);
   }
 
   void newPlayer(){

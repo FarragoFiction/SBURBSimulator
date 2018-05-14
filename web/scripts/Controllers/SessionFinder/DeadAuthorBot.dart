@@ -46,7 +46,7 @@ abstract class DeadAuthorBot extends DeadSimController {
   @override
   void easterEggCallBack(Session session) {
     DeadSession ds = (session as DeadSession);
-    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
+    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
     ds.players[0].deriveLand = false;
     //ds.players[0].relationships.add(new Relationship(ds.players[0], -999, ds.metaPlayer)); //if you need to talk to anyone, talk to metaplayer.
     //ds.metaPlayer.relationships.add(new Relationship(ds.metaPlayer, -999, ds.players[0])); //if you need to talk to anyone, talk to metaplayer.
@@ -67,7 +67,7 @@ abstract class DeadAuthorBot extends DeadSimController {
 
   @override
   void easterEggCallBackRestart(Session session) {
-    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
+    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
     session.intro();
   }
 

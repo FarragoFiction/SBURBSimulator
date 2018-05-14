@@ -65,7 +65,7 @@ abstract class SimController {
 
 
     void scratchEasterEggCallBack(Session s) {
-        initializePlayers(s.players, s); //will take care of overriding players if need be.
+        //initializePlayers(s.players, s); //will take care of overriding players if need be.
 
 
         if (s.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
@@ -136,7 +136,7 @@ abstract class SimController {
 
     //they aren't full callbacks anymore but live here so regular vs ab etc have diff behaviors
     void easterEggCallBack(Session s) {
-        initializePlayers(s.players, s); //will take care of overriding players if need be.
+        //initializePlayers(s.players, s); //will take care of overriding players if need be.
         s.checkSGRUB();
         if (doNotRender == true) {
             s.intro();
@@ -147,7 +147,7 @@ abstract class SimController {
     }
 
     void easterEggCallBackRestart(Session s) {
-        initializePlayers(s.players, s); //initializePlayers
+        //initializePlayers(s.players, s); //initializePlayers
         s.intro(); //<-- instead of load, bc don't need to load.
 
     }

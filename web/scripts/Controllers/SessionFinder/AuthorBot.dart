@@ -57,7 +57,7 @@ abstract class AuthorBot extends SimController {
   @override
   void easterEggCallBack(Session session) {
     //only diff from story is don't check SGRUB
-    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
+    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
     if(doNotRender == true){
       session.intro();
     }else{
@@ -67,7 +67,7 @@ abstract class AuthorBot extends SimController {
 
   @override
   void easterEggCallBackRestart(Session session) {
-    initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
+    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
     session.intro();
   }
 
