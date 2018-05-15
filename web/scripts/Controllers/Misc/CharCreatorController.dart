@@ -98,13 +98,8 @@ class CharCreatorController extends SimController {
     DivElement deprecated = new DivElement();
     querySelector("#character_creator").append(deprecated);
 
-    deprecated.setInnerHtml("<b>HEY. Just so you know. This shit's getting replaced by the :<a href = 'sessionCreator.html'>Session Creator</a>. <br><br> This URL will not work, but you CAN use it as input for the creator. (If I've gotten around to that feature yet). ");
 
-    TextAreaElement area = new TextAreaElement();
-    area.value = "index2.html?seed=$initial_seed&${generateURLParamsForPlayers(session.players,true)}";
-    deprecated.append(area);
-
-    //appendHtml(querySelector("#character_creator"),html);
+    appendHtml(querySelector("#character_creator"),html);
   }
 
   void newPlayer(){

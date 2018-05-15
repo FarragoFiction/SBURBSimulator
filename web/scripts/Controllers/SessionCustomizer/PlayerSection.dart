@@ -56,7 +56,7 @@ class PlayerSection extends EntitySection {
               session.processDataString(playerData.value);
               draw(); //blow away old shit and redraw self
           }catch(e){
-              window.alert("This data string doesn't work, for some reason. $e");
+              window.alert("This data string doesn't work, for some reason. (the reason is JR isn't done) $e");
               session.logger.error(e);
           }
       });
