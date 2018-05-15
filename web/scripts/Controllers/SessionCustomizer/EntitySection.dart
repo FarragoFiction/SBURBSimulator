@@ -20,6 +20,8 @@ class EntitySection {
 
     void draw() {
         container.setInnerHtml("Customize Carapaces");
+        container.classes.add("section");
+
         ButtonElement toggle = new ButtonElement()..text = "Show";
         DivElement wrapper = new DivElement();
         wrapper.style.display = "none";
@@ -137,6 +139,7 @@ class EntitySection {
         ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
         button.style.verticalAlign = "top";
         SelectElement select = new SelectElement();
+        select.style.width = "188px"; //don't go off screen plz
         sylladexContainer.append(button);
         sylladexContainer.append(select);
         select.disabled = true;

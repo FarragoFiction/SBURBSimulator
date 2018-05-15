@@ -16,6 +16,7 @@ class PlayerSection extends EntitySection {
   @override
   void draw() {
       container.setInnerHtml("Customize Players");
+      container.classes.add("section");
 
       ButtonElement toggle = new ButtonElement()..text = "Hide";
 
