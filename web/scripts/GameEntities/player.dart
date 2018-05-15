@@ -5,6 +5,7 @@ import "dart:typed_data";
 import "../SBURBSim.dart";
 import "../includes/bytebuilder.dart";
 import "../navbar.dart";
+import '../includes/lz-string.dart';
 
 
 
@@ -1871,8 +1872,39 @@ class Player extends GameEntity{
         this.guardian.applyPossiblePsionics(); //now you have new psionics
     }
 
-    static List<Player> processDataString(String dataString) {
+    static List<Player> processDataString(Session session, String dataString) {
+        session.logger.info("TEST DATASTRINGS: going to get players with dataString $dataString, which hopefully wasn't blank.");
 
+        if(session.prospit == null) session.setupMoons("getting replayers");
+        session.logger.info("TEST DATASTRINGS: finished setting up moon");
+
+        String raw = getRawParameterByName("b", dataString);
+        session.logger.info("TEST DATASTRINGS: got raw of $raw");
+
+        String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
+        String base = window.location.href.replaceAll("?$params","");
+        String bs = "${base}?" +dataString;
+
+        String b = (getParameterByName("b", bs));
+        String s = Uri.encodeFull(getParameterByName("s", bs)); //these are NOT encoded in files, so make sure to encode them
+        String x = (getParameterByName("x", bs));
+
+        //;
+        if (b == null || s == null) return <Player>[];
+        if (b == "null" || s == "null") return <Player>[]; //why was this necesassry????????????????
+        session.logger.info("TEST DATASTRINGS: going to get players with b of $b and$s  of $s and x of $x");
+
+        List<Player> ret =  dataBytesAndStringsToPlayers(session,b, s, x);
+        session.logger.info("TEST DATASTRINGS: got players, just need to process a bit");
+
+        //can't let them keep their null session reference.
+
+        for(Player p in ret) {
+            p.session = session;
+            p.syncToSessionMoon();
+            p.initialize();
+        }
+        session.logger.info("TEST DATASTRINGS: done processing data strings");
     }
 
     void initialize() {

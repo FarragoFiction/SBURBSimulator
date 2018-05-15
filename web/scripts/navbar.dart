@@ -106,10 +106,12 @@ String getParameterByName(String name, [String url]) {
 }
 
 String getRawParameterByName(String name, String url) {
+    print("url is $url");
     Uri uri = Uri.base;
     if (url != null) {
         uri = new Uri.file(url); //TODO is there no built in way to parse a string as a URI? need for virtual parameters like ocDataSTrings from selfInsertOC=true
     }
+    print("uri is $uri parms are ${uri.queryParameters}");
     return uri.queryParameters[name];
 }
 

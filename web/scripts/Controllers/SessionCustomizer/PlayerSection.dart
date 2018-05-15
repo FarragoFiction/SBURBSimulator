@@ -52,10 +52,12 @@ class PlayerSection extends EntitySection {
       loadButton.onClick.listen((Event e) {
           try {
               //match number of plaeyrs to number of replayers.
-              session.processDataString(loadButton.value);
+              print("trying to load ${playerData.value}");
+              session.processDataString(playerData.value);
               draw(); //blow away old shit and redraw self
           }catch(e){
-              window.alert("This data string doesn't work, for some reason.");
+              window.alert("This data string doesn't work, for some reason. $e");
+              session.logger.error(e);
           }
       });
 

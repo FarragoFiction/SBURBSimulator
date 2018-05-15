@@ -1238,7 +1238,7 @@ class Session {
 
     //slurps up players from this data string, inits etc
     void processDataString(String dataString) {
-        players = Player.processDataString(dataString);
+        players = Player.processDataString(this, dataString);
         playerInitialization();
     }
 
@@ -1331,6 +1331,7 @@ class Session {
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
 
         createScenesForPlayers();
+        logger.info("TEST DATASTRING: done initializing players");
     }
 
     String convertPlayerNumberToWords() {
