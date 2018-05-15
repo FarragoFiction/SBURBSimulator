@@ -1968,6 +1968,9 @@ class Player extends GameEntity{
     }
 
     void initializeSprite() {
+        if(object_to_prototype == null) {
+            object_to_prototype =  session.rand.pickFrom(PotentialSprite.prototyping_objects);
+        }
         this.sprite = new Sprite("sprite", session); //unprototyped.
         //minLuck, maxLuck, hp, mobility, triggerLevel, freeWill, power, abscondable, canAbscond, framotifs, grist
         this.sprite.stats.setMap(<Stat, num>{Stats.HEALTH: 10, Stats.CURRENT_HEALTH: 10}); //same as denizen minion, but empty power
