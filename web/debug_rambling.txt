@@ -6085,3 +6085,27 @@ well. huh. isn't that a punch in the face.
 
 
 
+~~~~~~~~
+
+five minutes on the clock.
+
+
+Problem:
+
+I want to be able to take a url in a text field and have it parse all the players out of it.
+
+The existing code very much assumes that a data string with multiple plaeyrs in it comes from the url.
+
+Anywhere that takes in a non url also takes in a single player (such as parsing TG).
+
+I wrote some code that seems to be a good hybrid, but it crashes and parses wrong (claims null interest categories, for example)
+then runs out of room saying that there's no more bytes if i change the player
+
+okay well, what does the bytes look like when it runs out?
+
+huh, it's not running out...
+
+it's....got a shit ton left.
+
+I'm so confused.
+

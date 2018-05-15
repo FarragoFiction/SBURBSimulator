@@ -289,16 +289,16 @@ List<Player> dataBytesAndStringsToPlayers(Session session, String bytes, String 
   ////print(bytes.length);
   List<String> strings = s.split(",");
   List<Player> players = [];
-  ////print(bytes);
+  print("databytes etc to players bytes i have are $bytes and strings is $strings");
   for(num i = 0; i<bytes.length/11; i+=1){;
-    ////;
+    print("in the for loop, i is $i");
     var bi = i*11; //i is which player we are on, which is 11 bytes long
     var si = i*5; //or 5 strings long
     var b = bytes.substring(bi, bi+11);
     //List<dynamic> s = [];
     var s = strings.sublist(si, si +5);  //TODO used to be "slice" in js, is it still?
     ////;
-    ////print(b);
+    print("for one player, b is $b");
     var p = (dataBytesAndStringsToPlayer(session, b,s));
     p.id = i; //will be overwritten by sim, but viewer needs it
     players.add(p);
@@ -352,8 +352,11 @@ dynamic dataBytesAndStringsToPlayer(Session session, String charString, List<Str
   player.victimBlood = intToBloodColor(charString.codeUnitAt(4) >> 4);
   player.bloodColor = intToBloodColor(charString.codeUnitAt(4) & 15);
 
+  print("totaly byte is ${charString.codeUnitAt(5)} or ${charString[5]} interest1 value is ${charString.codeUnitAt(5) >> 4} and interest2 value is ${charString.codeUnitAt(5) & 15}");
   InterestCategory ic1 = InterestManager.get(charString.codeUnitAt(5) >> 4);
+  print("interest category 1 is $ic1");
   InterestCategory ic2 = InterestManager.get(charString.codeUnitAt(5) & 15);
+  print("interest category 2 is $ic2");
   //TODO this probably means interest category can't be null.
   player.interest1 = new Interest(i1, ic1);
   player.interest2 = new Interest(i2, ic2);

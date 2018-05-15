@@ -1285,27 +1285,27 @@ class Session {
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
         double special = rand.nextDouble();
 
-        this.players.add(randomSpacePlayer(this));
-        ;
-
-        this.players.add(randomTimePlayer(this));
-
-
-
-        for (int i = 2; i < numPlayers; i++) {
-            this.players.add(randomPlayer(this));
-        }
-
-        //random chance of Lord/Muse for two player sessions
-        if(numPlayers <= 2) {
-            ;
-            if(special > .6) {
-                players[0].class_name = SBURBClassManager.LORD;
-                players[1].class_name = SBURBClassManager.MUSE;
-            }else if(special < .3) {
-                players[0].class_name = SBURBClassManager.MUSE;
-                players[1].class_name = SBURBClassManager.LORD;
+        List<Player> replayer =  getReplayers(this);
+        if(replayer.isEmpty) {
+            this.players.add(randomSpacePlayer(this));
+            this.players.add(randomTimePlayer(this));
+            for (int i = 2; i < numPlayers; i++) {
+                this.players.add(randomPlayer(this));
             }
+
+            //random chance of Lord/Muse for two player sessions
+            if (numPlayers <= 2) {
+                ;
+                if (special > .6) {
+                    players[0].class_name = SBURBClassManager.LORD;
+                    players[1].class_name = SBURBClassManager.MUSE;
+                } else if (special < .3) {
+                    players[0].class_name = SBURBClassManager.MUSE;
+                    players[1].class_name = SBURBClassManager.LORD;
+                }
+            }
+        }else {
+            players = replayers;
         }
 
         playerInitialization();

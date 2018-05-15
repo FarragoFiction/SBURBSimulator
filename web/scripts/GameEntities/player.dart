@@ -1878,21 +1878,19 @@ class Player extends GameEntity{
         if(session.prospit == null) session.setupMoons("getting replayers");
         session.logger.info("TEST DATASTRINGS: finished setting up moon");
 
-        String raw = getRawParameterByName("b", dataString);
-        session.logger.info("TEST DATASTRINGS: got raw of $raw");
 
         String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
         String base = window.location.href.replaceAll("?$params","");
         String bs = "${base}?" +dataString;
 
         String b = (getParameterByName("b", bs));
-        String s = Uri.encodeFull(getParameterByName("s", bs)); //these are NOT encoded in files, so make sure to encode them
+        String s = LZString.decompressFromEncodedURIComponent(Uri.encodeFull(getParameterByName("s", bs))); //these are NOT encoded in files, so make sure to encode them
         String x = (getParameterByName("x", bs));
 
         //;
         if (b == null || s == null) return <Player>[];
         if (b == "null" || s == "null") return <Player>[]; //why was this necesassry????????????????
-        session.logger.info("TEST DATASTRINGS: going to get players with b of $b and$s  of $s and x of $x");
+        session.logger.info("TEST DATASTRINGS: going to get players with b of $b and s  of $s and x of $x");
 
         List<Player> ret =  dataBytesAndStringsToPlayers(session,b, s, x);
         session.logger.info("TEST DATASTRINGS: got players, just need to process a bit");
