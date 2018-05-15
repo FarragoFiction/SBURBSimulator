@@ -1305,9 +1305,10 @@ class Session {
                 }
             }
         }else {
-            players = replayers;
+            players = new List.from(replayer);
         }
 
+        logger.info("players is $players");
         playerInitialization();
     }
 

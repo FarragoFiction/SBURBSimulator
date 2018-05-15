@@ -28,10 +28,14 @@ List<Player> getReplayers(Session session) {
     ////print(s);
     List<Player> ret =  dataBytesAndStringsToPlayers(session,b, s, x);
     //can't let them keep their null session reference.
+    //session.logger.info("replayers are $ret before moon syncing");
+
     for(Player p in ret) {
         p.session = session;
         p.syncToSessionMoon();
+        p.initialize();
     }
+    //session.logger.info("replayers are $ret");
     return ret;
 }
 
