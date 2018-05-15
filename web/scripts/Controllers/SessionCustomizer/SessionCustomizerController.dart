@@ -32,16 +32,19 @@ Future<Null> main() async {
     container = querySelector("#story");
 
     todo("PlayerSection has a text area box for putting a dataUrl from old customizer to alter players. (that page just turns into a dataString generator, not used stand alone anymore)");
-    todo("can collapse a section or expand it (like carapaces that are just taking up space)");
+    todo("each player has a text box that can take in new or old data strings");
     todo("CarapaceSection lets you remove the selected item from the sylladex");
+    todo("new way to serialize a player/entity that doesn't care about brevity (can replace any player with this new datastring)");
     todo("Can serialize a session");
     todo("can serialize a carapace");
     todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)");
     todo("can save a session to a .txt file");
     todo("can load a session from a .txt file");
+    todo("if only one player, use dead session controller");
     todo("make sure it works for special sessions like 13 or 413!");
     todo("Each Player has a QuirkSection that lets  you modify quirks.");
     todo("PlayerSection lets you pick the name of their sprite, and the name of the fraymotif that sprite has");
+    todo("players/carapaces get one custom fraymotif name (all custom fraymotifs just do everything at once)");
     todo("PlayerSection lets you pick the name of their Land");
     todo("PlayerSection lets you pick the name of their Consorts");
     todo("PlayerSection lets you pick the sound their consorts make");

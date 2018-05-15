@@ -20,18 +20,36 @@ class EntitySection {
 
     void draw() {
         container.setInnerHtml("Customize Carapaces");
+        ButtonElement toggle = new ButtonElement()..text = "Show";
+        DivElement wrapper = new DivElement();
+        wrapper.style.display = "none";
+        container.append(toggle);
+        container.append(wrapper);
+
+
+        toggle.onClick.listen((Event e) {
+            if(wrapper.style.display == "none") {
+                wrapper.style.display = "block";
+                toggle.text = "Hide";
+            }else {
+                wrapper.style.display = "none";
+                toggle.text = "Show";
+            }
+        });
+
+
         for(GameEntity c in  allEntities) {
-            drawOneEntity(c);
+            drawOneEntity(c, wrapper);
         }
     }
 
-    void drawOneEntity(GameEntity entity) {
+    void drawOneEntity(GameEntity entity, Element wrapper) {
         TableElement carapaceDiv = new TableElement();
         TableRowElement row = new TableRowElement();
         carapaceDiv.append(row);
         carapaceDiv.classes.add("carapaceForm");
 
-        container.append(carapaceDiv);
+        wrapper.append(carapaceDiv);
 
         TableCellElement name = new TableCellElement()..setInnerHtml("${entity.name}");
         drawPortrait(entity, name);

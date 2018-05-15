@@ -16,21 +16,53 @@ class PlayerSection extends EntitySection {
   @override
   void draw() {
       container.setInnerHtml("Customize Players");
-      //TODO have text box where you can import a session data url to get all player data at once
+
+      ButtonElement toggle = new ButtonElement()..text = "Hide";
+
+      DivElement wrapper = new DivElement();
+      wrapper.style.display = "block";
+      container.append(toggle);
+      container.append(wrapper);
+
+      toggle.onClick.listen((Event e) {
+          if(wrapper.style.display == "none") {
+              wrapper.style.display = "block";
+              toggle.text = "Hide";
+          }else {
+              wrapper.style.display = "none";
+              toggle.text = "Show";
+          }
+      });
+
+      drawLoadPlayersBox(wrapper);
+
       for(GameEntity c in  allEntities) {
           print("c is $c");
-          drawOneEntity(c);
+          drawOneEntity(c,wrapper);
       }
   }
 
+  void drawLoadPlayersBox(Element wrapper) {
+      DivElement box = new DivElement();
+      LabelElement labelElement = new LabelElement();
+      labelElement.setInnerHtml("Optional: Load players from old data string");
+      TextAreaElement playerData = new TextAreaElement();
+      ButtonElement loadButton = new ButtonElement()..text = "Load";
+
+      box.append(labelElement);
+      box.append(playerData);
+      box.append(loadButton);
+      wrapper.append(box);
+  }
+
   @override
-  void drawOneEntity(GameEntity entity) {
+  void drawOneEntity(GameEntity entity, Element wrapper) {
       TableElement carapaceDiv = new TableElement();
       TableRowElement row = new TableRowElement();
       carapaceDiv.append(row);
       carapaceDiv.classes.add("carapaceForm");
 
-      container.append(carapaceDiv);
+      wrapper.append(carapaceDiv);
 
       TableCellElement name = new TableCellElement()..setInnerHtml("${entity.title()}");
       drawPortrait(entity, name);
