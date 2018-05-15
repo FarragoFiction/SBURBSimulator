@@ -49,6 +49,15 @@ class PlayerSection extends EntitySection {
       labelElement.setInnerHtml("Optional: Load players from old data string");
       TextAreaElement playerData = new TextAreaElement();
       ButtonElement loadButton = new ButtonElement()..text = "Load";
+      loadButton.onClick.listen((Event e) {
+          try {
+              //match number of plaeyrs to number of replayers.
+              session.processDataString(loadButton.value);
+              draw(); //blow away old shit and redraw self
+          }catch(e){
+              window.alert("This data string doesn't work, for some reason.");
+          }
+      });
 
       box.append(labelElement);
       box.append(playerData);

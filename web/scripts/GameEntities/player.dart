@@ -1871,6 +1871,10 @@ class Player extends GameEntity{
         this.guardian.applyPossiblePsionics(); //now you have new psionics
     }
 
+    static List<Player> processDataString(String dataString) {
+
+    }
+
     void initialize() {
         this.initializeStats();
         this.initializeSprite();

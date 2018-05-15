@@ -1236,6 +1236,12 @@ class Session {
         return null;
     }
 
+    //slurps up players from this data string, inits etc
+    void processDataString(String dataString) {
+        players = Player.processDataString(dataString);
+        playerInitialization();
+    }
+
     void reinit(String source) {
         String parent = "";
         if(childSession != null) parent = "${childSession.session_id}";
@@ -1290,15 +1296,6 @@ class Session {
             this.players.add(randomPlayer(this));
         }
 
-        for (num j = 0; j < this.players.length; j++) {
-            Player p = this.players[j];
-            p.generateRelationships(this.players);
-            if(p.aspect != Aspects.TIME) {
-                p.active = false;
-            }else {
-                p.active = true;
-            }
-        }
         //random chance of Lord/Muse for two player sessions
         if(numPlayers <= 2) {
             ;
@@ -1310,20 +1307,30 @@ class Session {
                 players[1].class_name = SBURBClassManager.LORD;
             }
         }
+
+        playerInitialization();
+    }
+
+    //called immediately after making players, whether replayers or natives
+    void playerInitialization() {
+        for (num j = 0; j < this.players.length; j++) {
+            Player p = this.players[j];
+            p.generateRelationships(this.players);
+            if(p.aspect != Aspects.TIME) {
+                p.active = false;
+            }else {
+                p.active = true;
+            }
+        }
+
         Relationship.decideInitialQuadrants(rand, this.players);
 
         //this.hardStrength = 500 + 20 * this.players.length;
-
         Sprite weakest = Stats.POWER.min(this.players.map((Player p) => p.sprite));
         double weakpower = weakest.getStat(Stats.POWER) / Stats.POWER.coefficient;
         this.hardStrength = (4000 + this.players.length * (85 + weakpower)) * Stats.POWER.coefficient;
 
         createScenesForPlayers();
-        ;
-
-        //this.setupMoons("making players"); //happens only in reinit
-
-
     }
 
     String convertPlayerNumberToWords() {
