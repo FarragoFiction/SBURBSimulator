@@ -8,11 +8,8 @@ Element div;
 void main() {
     loadNavbar();
     div = querySelector("#story");
-    todo("make form to generate json datastring for entrant (easier than csv), BBName, Entrant Name, images csv, text, jrComment, shogunComment  ");
-    todo("make sample file for showing three contest entry");
+
     todo("have image folder for entrants");
-    todo("slurp file");
-    todo("display contest entries");
     todo("allow filtering (use PL's image browser code thingy)");
     makeForm();
     drawContestants();

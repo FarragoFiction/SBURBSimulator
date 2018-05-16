@@ -32,4 +32,7 @@ label{
 
 .nameHeader{
     font-size: 33px;
+    border-bottom: 1px solid #00ff00;
+    margin-bottom: 10px;
+
 }
