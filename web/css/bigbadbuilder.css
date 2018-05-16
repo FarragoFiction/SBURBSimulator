@@ -1,3 +1,35 @@
 label{
     padding-right: 10px;
 }
+
+.contestEntry{
+    margin: 5px;
+    padding: 15px;
+    border: 13px solid #3b3b3b;
+    border-radius: 15px;
+    background-color: #616161;
+    color: #00ff00;
+}
+
+.jrNotes{
+    border: 5px solid #164524;
+    border-radius: 15px;
+    background: #387742;
+    color: #06FFC9;
+    margin: 5px;
+    padding: 15px;
+}
+
+.bio{
+    padding: 10px;
+}
+.bioPic{
+    padding: 10px;
+    background: white;
+    border: 1px solid black;
+    margin-right: 10px;
+}
+
+.nameHeader{
+    font-size: 33px;
+}

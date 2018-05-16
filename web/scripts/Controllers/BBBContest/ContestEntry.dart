@@ -37,7 +37,20 @@ class ContestEntry {
 
     void draw(Element parentContainer) {
         DivElement container = new DivElement();
-        container.text = "TODO: make this pretty. $entrantName, $bbName";
+        container.classes.add("contestEntry");
+
+        DivElement nameElement = new DivElement()..text = "$bbName (by ${entrantName})";
+        nameElement.classes.add("nameHeader");
+        container.append(nameElement);
+
+        DivElement bodyElement = new DivElement()..setInnerHtml(text);
+        bodyElement.classes.add("bodyElement");
+        container.append(bodyElement);
+
+        DivElement jrNotes = new DivElement()..setInnerHtml("JR: $jrComment");
+        jrNotes.classes.add("jrNotes");
+        container.append(jrNotes);
+
         parentContainer.append(container);
     }
 
