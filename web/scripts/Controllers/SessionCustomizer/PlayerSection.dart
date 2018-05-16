@@ -124,6 +124,7 @@ class IndividualPlayerSection extends IndividualEntitySection{
                 //match number of plaeyrs to number of replayers.
                 print("trying to load ${playerData.value}");
                 player.copyFromOCDataString(playerData.value);
+                player.initialize();
                 draw(); //blow away old shit and redraw self
             }catch(e){
                 window.alert("This data string doesn't work, for some reason. $e");
