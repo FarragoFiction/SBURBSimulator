@@ -96,13 +96,14 @@ class IndividualPlayerSection extends IndividualEntitySection{
         drawPortrait();
         row.append(name);
 
-        drawOneImportBox();
-        drawSylladexShit(row, entity);
+        drawOneImportBox(row);
+        drawSylladexShit(entity);
     }
 
     @override
     void drawPortrait() {
         CanvasElement img = new CanvasElement(width: 400, height: 300);
+        img.style.display = "block";
         name.append(img);
         Player p = entity as Player;
         //async
@@ -110,8 +111,10 @@ class IndividualPlayerSection extends IndividualEntitySection{
     }
 
     //TODO eventually support it taking in either an old data string or a new one
-    void drawOneImportBox() {
-        DivElement box = new DivElement();
+    void drawOneImportBox(TableRowElement row) {
+        //TableRowElement row = new TableRowElement();
+        //container.append(row);
+        TableCellElement box = new TableCellElement();
         LabelElement labelElement = new LabelElement();
         labelElement.setInnerHtml("Load Player From Data String:");
         TextAreaElement playerData = new TextAreaElement();
@@ -131,7 +134,7 @@ class IndividualPlayerSection extends IndividualEntitySection{
         box.append(labelElement);
         box.append(playerData);
         box.append(loadButton);
-        name.append(box);
+        row.append(box);
     }
 
 }

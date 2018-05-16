@@ -70,7 +70,7 @@ abstract class IndividualEntitySection {
         container.append(row);
         container.classes.add("carapaceForm");
 
-        TableCellElement name = new TableCellElement()..setInnerHtml("${entity.name}");
+        name = new TableCellElement()..setInnerHtml("${entity.name}");
         drawPortrait();
         row.append(name);
 
@@ -88,10 +88,10 @@ abstract class IndividualEntitySection {
         });
 
 
-        drawSylladexShit(row, entity);
+        drawSylladexShit(entity);
     }
 
-    void drawSpecibus() {
+    void drawSpecibus(TableRowElement row) {
         TableCellElement specibusContainer = new TableCellElement();
         DivElement label = new DivElement()..setInnerHtml("<b>Specibus:<b> ");
         label.style.display = "inline-block";
@@ -101,7 +101,7 @@ abstract class IndividualEntitySection {
 
         specibusContainer.append(label);
         specibusContainer.append(specibusElement);
-        container.append(specibusContainer);
+        row.append(specibusContainer);
 
         button.onClick.listen((Event e ) {
             try {
@@ -114,7 +114,7 @@ abstract class IndividualEntitySection {
         });
     }
 
-    void drawSylladex() {
+    void drawSylladex(TableRowElement row) {
         TableCellElement sylladexContainer = new TableCellElement();
         ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
         button.style.verticalAlign = "top";
@@ -130,7 +130,7 @@ abstract class IndividualEntitySection {
             option.value = "${entity.sylladex.inventory.indexOf(item)}";
             select.append(option);
         }
-        container.append(sylladexContainer);
+        row.append(sylladexContainer);
         button.onClick.listen((Event e ) {
             try {
                 Item item = itemSection.selectedItem.copy();
@@ -148,8 +148,9 @@ abstract class IndividualEntitySection {
 
     void drawPortrait();
 
-    void drawSylladexShit(TableRowElement row, GameEntity carapace) {
-
+    void drawSylladexShit(GameEntity carapace) {
+        TableRowElement row = new TableRowElement();
+        container.append(row);
         TableCellElement td = new TableCellElement();
         row.append(td);
         itemSection = new ItemSection(carapace, entity.session, td);
@@ -163,10 +164,9 @@ abstract class IndividualEntitySection {
         row.append(itemRow2);
         row.append(itemRow3);
 
-
         itemSection.drawSelectedItem(itemRow1);
-        drawSpecibus();
-        drawSylladex();
+        drawSpecibus(itemRow2);
+        drawSylladex(itemRow3);
     }
 
 }
