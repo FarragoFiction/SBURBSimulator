@@ -221,7 +221,7 @@ class PlayerSpriteHandler {
     static Future<Null> fin1(CanvasElement canvas, Player player) async {
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             String imageString = "fin1.png";
-            drawWhateverFuture(canvas, imageString);
+            await drawWhateverFuture(canvas, imageString);
         }
     }
 
@@ -229,13 +229,13 @@ class PlayerSpriteHandler {
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
             String imageString = "fin2.png";
-            drawWhateverFuture(canvas, imageString);
+            await drawWhateverFuture(canvas, imageString);
         }
     }
 
     static Future<Null> horns(CanvasElement canvas, Player player) async {
-        leftHorn(canvas, player);
-        rightHorn(canvas, player);
+        await leftHorn(canvas, player);
+        await rightHorn(canvas, player);
     }
 
 
@@ -245,44 +245,44 @@ class PlayerSpriteHandler {
     //same for wings eventually.
     static Future<Null> leftHorn(CanvasElement canvas, Player player) async {
         String imageString = "Horns/left${player.leftHorn}.png";
-        drawWhateverFuture(canvas, imageString);
+        await drawWhateverFuture(canvas, imageString);
     }
 
     //parse horns sprite sheet. render a random right horn.
     //right horn should be at: 120,40
     static Future<Null> rightHorn(CanvasElement canvas, Player player) async {
         String imageString = "Horns/right${player.rightHorn}.png";
-        drawWhateverFuture(canvas, imageString);
+        await drawWhateverFuture(canvas, imageString);
     }
 
     static Future<Null> bloody_face(CanvasElement canvas, Player player) async {
         if (player.victimBlood != null) {
             String imageString = "bloody_face.png";
-            drawWhateverFuture(canvas, imageString);
+            await drawWhateverFuture(canvas, imageString);
         }
     }
 
     static Future<Null> robo_face(CanvasElement canvas, Player player) async {
         String imageString = "robo_face.png";
-        drawWhateverFuture(canvas, imageString);
+        await drawWhateverFuture(canvas, imageString);
     }
 
 
     static Future<Null> scar_face(CanvasElement canvas, Player player) async {
         String imageString = "calm_scratch_face.png";
-        drawWhateverFuture(canvas, imageString);
+       await drawWhateverFuture(canvas, imageString);
     }
 
 
     static Future<Null> scratch_face(CanvasElement canvas, Player player) async {
         String imageString = "scratch_face.png";
-        drawWhateverFuture(canvas, imageString);
+        await drawWhateverFuture(canvas, imageString);
         Drawing.swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor)); //it's their own blood
     }
 
     static Future<Null> hair(CanvasElement canvas, Player player) async {
         String imageString = "Hair/hair${player.hair}.png";
-        drawWhateverFuture(canvas, imageString);
+        await drawWhateverFuture(canvas, imageString);
         if (player.sbahj) {
             Drawing.sbahjifier(canvas);
         }
