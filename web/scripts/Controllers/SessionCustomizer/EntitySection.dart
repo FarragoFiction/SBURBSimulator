@@ -46,15 +46,32 @@ class EntitySection {
     }
 
     void drawOneEntity(GameEntity entity, Element wrapper) {
-        TableElement carapaceDiv = new TableElement();
-        TableRowElement row = new TableRowElement();
-        carapaceDiv.append(row);
-        carapaceDiv.classes.add("carapaceForm");
+        IndividualCarapaceSection tmp = new IndividualCarapaceSection(entity, wrapper);
+        tmp.draw();
+    }
 
-        wrapper.append(carapaceDiv);
+}
+
+
+abstract class IndividualEntitySection {
+
+    GameEntity entity;
+    TableElement container;
+    TableCellElement name;
+    ItemSection itemSection;
+
+    IndividualEntitySection(GameEntity this.entity, Element parentContainer) {
+        container = new TableElement();
+        parentContainer.append(container);
+    }
+
+    void draw() {
+        TableRowElement row = new TableRowElement();
+        container.append(row);
+        container.classes.add("carapaceForm");
 
         TableCellElement name = new TableCellElement()..setInnerHtml("${entity.name}");
-        drawPortrait(entity, name);
+        drawPortrait();
         row.append(name);
 
 
@@ -74,67 +91,30 @@ class EntitySection {
         drawSylladexShit(row, entity);
     }
 
-    void drawPortrait(GameEntity entity, TableCellElement name) {
-      DivElement img = new DivElement();
-      ImageElement portrait = new ImageElement(src: "images/BigBadCards/${entity.initials.toLowerCase()}.png");
-      img.append(portrait);
-      if((entity as Carapace).type == Carapace.DERSE) {
-          portrait.classes.add("derse");
-      }else {
-          portrait.classes.add("prospit");
-      }
-      portrait.height = 150;
-      name.append(img);
-    }
-
-
-    void drawSylladexShit(TableRowElement row, GameEntity carapace) {
-
-      TableCellElement td = new TableCellElement();
-      row.append(td);
-      ItemSection itemSection = new ItemSection(carapace, session, td);
-      itemSection.draw();
-      TableElement itemsTable = new TableElement();
-      td.append(itemsTable);
-      TableRowElement itemRow1 = new TableRowElement();
-      TableRowElement itemRow2 = new TableRowElement();
-      TableRowElement itemRow3 = new TableRowElement();
-      row.append(itemRow1);
-      row.append(itemRow2);
-      row.append(itemRow3);
-
-
-      itemSection.drawSelectedItem(itemRow1);
-      drawSpecibus(carapace,itemRow2, itemSection);
-      drawSylladex(carapace,itemRow3, itemSection);
-    }
-
-
-    void drawSpecibus(GameEntity carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
+    void drawSpecibus() {
         TableCellElement specibusContainer = new TableCellElement();
         DivElement label = new DivElement()..setInnerHtml("<b>Specibus:<b> ");
         label.style.display = "inline-block";
-        SpanElement specibusElement = new SpanElement()..setInnerHtml(carapace.specibus.name);
+        SpanElement specibusElement = new SpanElement()..setInnerHtml(entity.specibus.name);
         ButtonElement button = new ButtonElement()..text = "Equip Item?";
         specibusContainer.append(button);
 
         specibusContainer.append(label);
         specibusContainer.append(specibusElement);
-        carapaceDiv.append(specibusContainer);
+        container.append(specibusContainer);
 
         button.onClick.listen((Event e ) {
             try {
-                carapace.specibus = Specibus.fromItem(itemSection.selectedItem);
-                specibusElement.setInnerHtml(carapace.specibus.baseName);
+                entity.specibus = Specibus.fromItem(itemSection.selectedItem);
+                specibusElement.setInnerHtml(entity.specibus.baseName);
             }catch(e) {
                 window.alert("Failed to make ${itemSection.selectedItem} the specibus. Because $e");
-                session.logger.error(e);
-
+                entity.session.logger.error(e);
             }
         });
     }
 
-    void drawSylladex(GameEntity carapace, TableRowElement carapaceDiv, ItemSection itemSection) {
+    void drawSylladex() {
         TableCellElement sylladexContainer = new TableCellElement();
         ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
         button.style.verticalAlign = "top";
@@ -144,28 +124,71 @@ class EntitySection {
         sylladexContainer.append(select);
         select.disabled = true;
         select.size = 6;
-        for(Item item in  carapace.sylladex) {
+        for(Item item in  entity.sylladex) {
             OptionElement option = new OptionElement();
             option.text = item.baseName;
-            option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+            option.value = "${entity.sylladex.inventory.indexOf(item)}";
             select.append(option);
         }
-
-        carapaceDiv.append(sylladexContainer);
-
-
+        container.append(sylladexContainer);
         button.onClick.listen((Event e ) {
             try {
                 Item item = itemSection.selectedItem.copy();
-                carapace.sylladex.add(item);
+                entity.sylladex.add(item);
                 OptionElement option = new OptionElement();
                 option.text = item.baseName;
-                option.value = "${carapace.sylladex.inventory.indexOf(item)}";
+                option.value = "${entity.sylladex.inventory.indexOf(item)}";
                 select.append(option);
             }catch(e) {
                 window.alert("Failed to add ${itemSection.selectedItem} to sylladex. Because $e");
-                session.logger.error(e);
+                entity.session.logger.error(e);
             }
         });
     }
+
+    void drawPortrait();
+
+    void drawSylladexShit(TableRowElement row, GameEntity carapace) {
+
+        TableCellElement td = new TableCellElement();
+        row.append(td);
+        itemSection = new ItemSection(carapace, entity.session, td);
+        itemSection.draw();
+        TableElement itemsTable = new TableElement();
+        td.append(itemsTable);
+        TableRowElement itemRow1 = new TableRowElement();
+        TableRowElement itemRow2 = new TableRowElement();
+        TableRowElement itemRow3 = new TableRowElement();
+        row.append(itemRow1);
+        row.append(itemRow2);
+        row.append(itemRow3);
+
+
+        itemSection.drawSelectedItem(itemRow1);
+        drawSpecibus();
+        drawSylladex();
+    }
+
 }
+
+class IndividualCarapaceSection extends IndividualEntitySection{
+    Carapace carapace;
+  IndividualCarapaceSection(GameEntity entity, Element parentContainer) : super(entity, parentContainer) {
+      carapace = entity as Carapace;
+  }
+
+  @override
+  void drawPortrait() {
+      DivElement img = new DivElement();
+      ImageElement portrait = new ImageElement(src: "images/BigBadCards/${entity.initials.toLowerCase()}.png");
+      img.append(portrait);
+      if(carapace.type == Carapace.DERSE) {
+          portrait.classes.add("derse");
+      }else {
+          portrait.classes.add("prospit");
+      }
+      portrait.height = 150;
+      name.append(img);
+  }
+}
+

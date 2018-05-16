@@ -69,27 +69,69 @@ class PlayerSection extends EntitySection {
 
   @override
   void drawOneEntity(GameEntity entity, Element wrapper) {
-      TableElement carapaceDiv = new TableElement();
-      TableRowElement row = new TableRowElement();
-      carapaceDiv.append(row);
-      carapaceDiv.classes.add("carapaceForm");
-
-      wrapper.append(carapaceDiv);
-
-      TableCellElement name = new TableCellElement()..setInnerHtml("${entity.title()}");
-      drawPortrait(entity, name);
-      row.append(name);
-
-      drawSylladexShit(row, entity);
+      IndividualPlayerSection tmp = new IndividualPlayerSection(entity, wrapper);
+      tmp.draw();
   }
 
-  @override
-  void drawPortrait(GameEntity entity, TableCellElement name) {
-      CanvasElement img = new CanvasElement(width: 400, height: 300);
-      name.append(img);
-      Player p = entity as Player;
-      //async
-      PlayerSpriteHandler.drawSpriteFromScratch(img, p);
-  }
+
+}
+
+
+class IndividualPlayerSection extends IndividualEntitySection{
+
+    Player player;
+
+
+    IndividualPlayerSection(GameEntity entity, Element parentContainer) : super(entity, parentContainer) {
+        player = entity as Player;
+    }
+
+    @override
+    void draw() {
+        container.setInnerHtml(""); //clear it
+        TableRowElement row = new TableRowElement();
+        container.append(row);
+        container.classes.add("carapaceForm");
+        name = new TableCellElement()..setInnerHtml("${player.title()}");
+        drawPortrait();
+        row.append(name);
+
+        drawOneImportBox();
+        drawSylladexShit(row, entity);
+    }
+
+    @override
+    void drawPortrait() {
+        CanvasElement img = new CanvasElement(width: 400, height: 300);
+        name.append(img);
+        Player p = entity as Player;
+        //async
+        PlayerSpriteHandler.drawSpriteFromScratch(img, p);
+    }
+
+    //TODO eventually support it taking in either an old data string or a new one
+    void drawOneImportBox() {
+        DivElement box = new DivElement();
+        LabelElement labelElement = new LabelElement();
+        labelElement.setInnerHtml("Load Player From Data String:");
+        TextAreaElement playerData = new TextAreaElement();
+        ButtonElement loadButton = new ButtonElement()..text = "Load";
+        loadButton.onClick.listen((Event e) {
+            try {
+                //match number of plaeyrs to number of replayers.
+                print("trying to load ${playerData.value}");
+                player.copyFromOCDataString(playerData.value);
+                draw(); //blow away old shit and redraw self
+            }catch(e){
+                window.alert("This data string doesn't work, for some reason. $e");
+                player.session.logger.error(e);
+            }
+        });
+
+        box.append(labelElement);
+        box.append(playerData);
+        box.append(loadButton);
+        name.append(box);
+    }
 
 }
