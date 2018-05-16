@@ -35,17 +35,22 @@ void makeForm() {
     imagesCSV.id = "imagesCSV";
     TextAreaElement text = new TextAreaElement();
     text.id = "text";
-    TextInputElement jrComment = new TextInputElement();
+    TextAreaElement jrComment = new TextAreaElement();
     jrComment.id = "jrComment";
-    TextInputElement shogunComment = new TextInputElement();
+    TextAreaElement shogunComment = new TextAreaElement();
     shogunComment.id = "shogunComment";
     ButtonElement buttonElement = new ButtonElement()..text = "Submit";
 
-    List<InputElement> inputs = <InputElement>[bbName, entrantName, imagesCSV, text, jrComment, shogunComment];
+    List<Element> inputs = <Element>[bbName, entrantName, imagesCSV, text, jrComment, shogunComment];
 
-    for(InputElement e in inputs) {
-        form.append(e);
-        e.value = e.id;
+    for(Element e in inputs) {
+        if(e is InputElement) {
+            form.append(e);
+            e.value = e.id;
+        }else if (e is TextAreaElement) {
+            form.append(e);
+            e.value = e.id;
+        }
     }
 
     form.append(buttonElement);
@@ -55,7 +60,7 @@ void makeForm() {
         for(InputElement e in inputs) {
             json[e.id] = e.value;
         }
-        DivElement output = new DivElement()..setInnerHtml(json.toString());
+        TextAreaElement output = new TextAreaElement()..value =(json.toString());
         form.append(output);
     });
 
