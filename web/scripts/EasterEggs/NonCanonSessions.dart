@@ -686,6 +686,196 @@ abstract class NonCanonSessions {
         }
     }
 
+
+
+
+    static void session97IndexToPlayer(Session session, Player player, int index) {
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0) {
+            player.copyFromOCDataString("b=%00%00%00%C2%84%C3%BE%16%00Y%07%07%40&s=,,Playing Guitar,Justice,roseDiamond&x=AQ==");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Lion", s);
+            player.specibus = new Specibus("Shield", ItemTraitFactory.SHIELD, <ItemTrait>[ ItemTraitFactory.BLUNT]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = " Land of Dust and Shards";
+            player.land.denizenFeature = new DenizenFeature('Diamond');
+        }else if( index ==1) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Pup", s);
+            player.specibus = new Specibus("Leash", ItemTraitFactory.WHIP, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Zelos');
+        }else if( index ==2) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==3) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Necro", s);
+            player.specibus = new Specibus("Pen", ItemTraitFactory.PEN, <ItemTrait>[ ItemTraitFactory.POINTY]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Thesis');
+        }else if( index ==4) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==5) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==6) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==7) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==8) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==9) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==10) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }else if( index ==11) {
+            player.copyFromOCDataString("");
+            player.deriveSprite = false;
+            player.object_to_prototype = new PotentialSprite("Virus", s);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "";
+            player.land.denizenFeature = new DenizenFeature('Perses');
+        }
+    }
+
     //could make this a mapping, but whatever, i like it like this
     static void session80000008IndexToPlayer(Session session, Player player, int index){
         Session s = session;
