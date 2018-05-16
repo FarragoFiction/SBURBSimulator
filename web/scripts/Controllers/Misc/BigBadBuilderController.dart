@@ -52,6 +52,7 @@ Future<Null> start() async {
   todo("isAlive (would that even work?)");
   todo("hasQuirk"); //bbb that hates unreadable quirks
   todo("isGodTier");
+  todo("hasRelationshipWithMe (either 'any' or list of relatinships types");
   todo("land condition: isMeteored (i.e. reckoning is going)");
   todo("isGrimDark");
   todo("isUnconditionallyImmortal");
