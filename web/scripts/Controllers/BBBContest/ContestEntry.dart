@@ -22,15 +22,23 @@ class ContestEntry {
         shogunComment = json["shogunComment"];
     }
 
-    static Future<List<ContestEntry>> slurpNewsposts() async{
-        List<ContestEntry> ret = new List<ContestEntry>();
-        await HttpRequest.getString(PathUtils.adjusted("BigBadLists/contestEntrants.txt")).then((String data) {
+    static Future<List<ContestEntry>> slurpEntries() async{
+        return await HttpRequest.getString(PathUtils.adjusted("BigBadLists/contestEntrants.txt")).then((String data) {
+            List<ContestEntry> ret = new List<ContestEntry>();
             List<String> parts = data.split("\n");
             for(String line in parts) {
+                //print("adding entry from $line");
                 ret.add(new ContestEntry(line));
             }
+            //print("returning entries $ret");
             return ret;
         });
+    }
+
+    void draw(Element parentContainer) {
+        DivElement container = new DivElement();
+        container.text = "TODO: make this pretty. $entrantName, $bbName";
+        parentContainer.append(container);
     }
 
 }

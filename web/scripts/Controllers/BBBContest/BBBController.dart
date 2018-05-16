@@ -1,5 +1,6 @@
 import '../../SessionEngine/JSONObject.dart';
 import '../../navbar.dart';
+import 'ContestEntry.dart';
 import "dart:html";
 import "dart:async";
 
@@ -14,12 +15,22 @@ void main() {
     todo("display contest entries");
     todo("allow filtering (use PL's image browser code thingy)");
     makeForm();
+    drawContestants();
 }
 
 void todo(String todo) {
     LIElement tmp = new LIElement();
     tmp.setInnerHtml("TODO: $todo");
     div.append(tmp);
+}
+
+Future<Null> drawContestants() async{
+    List<ContestEntry> entries = await ContestEntry.slurpEntries();
+    print("entries is $entries");
+    for(ContestEntry e in entries) {
+        print("entry is $e");
+        e.draw(div);
+    }
 }
 
 void makeForm() {
