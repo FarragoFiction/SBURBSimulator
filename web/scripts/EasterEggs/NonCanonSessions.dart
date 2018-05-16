@@ -709,10 +709,10 @@ abstract class NonCanonSessions {
             player.land.name = " Land of Dust and Shards";
             player.land.denizenFeature = new DenizenFeature('Diamond');
         }else if( index ==1) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=%00%00%00%C3%97%C3%BE%C3%94%00S%23%23%09&s=,,Science,Sword-Fighting,tintedGlasses&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Pup", s);
-            player.specibus = new Specibus("Leash", ItemTraitFactory.WHIP, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Rose", s);
+            player.specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -721,13 +721,13 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Zelos');
+            player.land.name = "Land of Darkness and Scrolls";
+            player.land.denizenFeature = new DenizenFeature('Kali');
         }else if( index ==2) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=h%3C%0C%C3%B6%C3%BEm%00%11..%0F&s=,,Mysteries,Books,masonicWriter&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Virus", s);
-            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Cipher", s);
+            player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -736,13 +736,13 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Perses');
+            player.land.name = "Land of Lies and Truth";
+            player.land.denizenFeature = new DenizenFeature('Dolos');
         }else if( index ==3) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=h%3C%0C%C2%B5%C3%BE%7C%00Q..%1C&s=,,Unicorns,Love,sparklingMermaid&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Necro", s);
-            player.specibus = new Specibus("Pen", ItemTraitFactory.PEN, <ItemTrait>[ ItemTraitFactory.POINTY]);
+            player.object_to_prototype = new PotentialSprite("Pig", s);
+            player.specibus = new Specibus("Grapple", ItemTraitFactory.POINTY, <ItemTrait>[ ItemTraitFactory.CLOTH]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -751,13 +751,13 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Thesis');
+            player.land.name = "Land of Darkness and Love";
+            player.land.denizenFeature = new DenizenFeature('Cuthulu');
         }else if( index ==4) {
             player.copyFromOCDataString("");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Virus", s);
-            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Rabbit", s);
+            player.specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -766,13 +766,13 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Perses');
+            player.land.name = "Land of Deserts and Frogs";
+            player.land.denizenFeature = new DenizenFeature('Gaia');
         }else if( index ==5) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=Y%C2%88%C3%BF%C2%AA%C3%BE%C2%9C%00%11..%04&s=,,Video Games,Girls,hardcoreCat&x=AQ== ");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Virus", s);
-            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Cat", s);
+            player.specibus = new Specibus("Claw", ItemTraitFactory.CLAWS, <ItemTrait>[ ItemTraitFactory.EDGED]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -781,13 +781,13 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Perses');
+            player.land.name = "Land of Oceans and Empire";
+            player.land.denizenFeature = new DenizenFeature('Caesar');
         }else if( index ==6) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=Q3%0D%22%C3%BEV%00%11..%07&s=,,Spiders,Freedom,finallyFree&x=AQ==");
             player.deriveSprite = false;
-            player.object_to_prototype = new PotentialSprite("Virus", s);
-            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Spider", s);
+            player.specibus = new Specibus("Violin", ItemTraitFactory.WOOD, <ItemTrait>[ ItemTraitFactory.MUSICAL]);
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
@@ -796,8 +796,8 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.quirk.suffix = "";
             player.land = player.spawnLand();
-            player.land.name = "";
-            player.land.denizenFeature = new DenizenFeature('Perses');
+            player.land.name = "Land of Wind and Deceit";
+            player.land.denizenFeature = new DenizenFeature('Hermes');
         }else if( index ==7) {
             player.copyFromOCDataString("");
             player.deriveSprite = false;
