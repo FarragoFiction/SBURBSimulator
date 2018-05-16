@@ -18,6 +18,8 @@ abstract class NonCanonSessions {
         ret[20082015] = session20082015; //RL
         ret[404] = session404; //cynicalTeuthida
         ret[212] = session212; //Cipah
+        ret[97] = session97; //yogisticDoctor
+
 
         return ret;
     }
@@ -80,6 +82,49 @@ abstract class NonCanonSessions {
 
         pa.getRelationshipWith(pm).value = -20;
         pm.getRelationshipWith(pa).value = -20;
+    }
+
+    static void session97(Session session) {
+        int numPlayers = 12;
+        makeASessionFromSource(session,session97IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //no more, no less.
+        Player rd  = session.players[0];
+        Player tg = session.players[1];
+        Player mw = session.players[2];
+        Player sm = session.players[3];
+        Player gs  = session.players[4];
+        Player hc = session.players[5];
+        Player ff = session.players[6];
+        Player rg = session.players[7];
+        Player rl  = session.players[8];
+        Player sk = session.players[9];
+        Player pz = session.players[10];
+        Player gg = session.players[11];
+
+        Relationship.makeHeart(rd,tg);
+        rd.getRelationshipWith(tg).value = 20;
+        tg.getRelationshipWith(rd).value = 20;
+
+        Relationship.makeDiamonds(mw,sm);
+        mw.getRelationshipWith(sm).value = 20;
+        sm.getRelationshipWith(mw).value = 20;
+
+        Relationship.makeHeart(mw,rg);
+        mw.getRelationshipWith(sm).value = 20;
+        sm.getRelationshipWith(mw).value = 20;
+
+        Relationship.makeHeart(gs,gg);
+        gs.getRelationshipWith(gg).value = 20;
+        gg.getRelationshipWith(gs).value = 20;
+
+        Relationship.makeHeart(hc,ff);
+        hc.getRelationshipWith(ff).value = 20;
+        ff.getRelationshipWith(hc).value = 20;
+
+        Relationship.makeHeart(sk,pz);
+        pz.getRelationshipWith(sk).value = 20;
+        sk.getRelationshipWith(pz).value = 20;
+
     }
 
 
