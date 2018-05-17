@@ -120,6 +120,7 @@ class IndividualPlayerSection extends IndividualEntitySection{
         row.append(landShit);
         LabelElement landName = new LabelElement()..text = "Land Name:";
         TextInputElement input = new TextInputElement()..value = player.land.name;
+        input.style.display = "block";
         input.size = 60;
 
         LabelElement consortName = new LabelElement()..text = "Consorts:";

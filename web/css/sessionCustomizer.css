@@ -9,9 +9,12 @@
     margin-bottom: 10px;
 }
 label{
-    margin-right: 5px;
+    margin: 5px;
 }
 
+input{
+    margin: 5px;
+}
 button{
     margin: 5px;
 }
