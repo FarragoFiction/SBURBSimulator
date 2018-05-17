@@ -8,6 +8,9 @@
     min-width: 960px;
     margin-bottom: 10px;
 }
+label{
+    margin-right: 5px;
+}
 
 button{
     margin: 5px;

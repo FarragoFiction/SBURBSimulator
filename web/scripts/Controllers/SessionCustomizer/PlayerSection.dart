@@ -98,6 +98,10 @@ class IndividualPlayerSection extends IndividualEntitySection{
 
         drawOneImportBox(row);
         drawSylladexShit(entity);
+
+        TableRowElement row2 = new TableRowElement();
+        container.append(row2);
+        drawLandShit(row2);
     }
 
     @override
@@ -108,6 +112,29 @@ class IndividualPlayerSection extends IndividualEntitySection{
         Player p = entity as Player;
         //async
         PlayerSpriteHandler.drawSpriteFromScratch(img, p);
+    }
+
+    void drawLandShit(TableRowElement row) {
+        DivElement landShit = new DivElement();
+        landShit.classes.add("section");
+        row.append(landShit);
+        LabelElement landName = new LabelElement()..text = "Land Name:";
+        TextInputElement input = new TextInputElement()..value = player.land.name;
+        input.size = 60;
+
+        LabelElement consortName = new LabelElement()..text = "Consorts:";
+        TextInputElement consortInput = new TextInputElement()..value = player.land.consortFeature.name;
+
+        LabelElement consortSound = new LabelElement()..text = "who:";
+        TextInputElement soundInput = new TextInputElement()..value = player.land.consortFeature.sound;
+
+        landShit.append(landName);
+        landShit.append(input);
+        landShit.append(consortName);
+        landShit.append(consortInput);
+        landShit.append(consortSound);
+        landShit.append(soundInput);
+
     }
 
     //TODO eventually support it taking in either an old data string or a new one
