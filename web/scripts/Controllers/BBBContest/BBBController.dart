@@ -9,6 +9,7 @@ void main() {
     loadNavbar();
     div = querySelector("#story");
 
+    todo("add JR comments");
     todo("have image folder for entrants");
     todo("allow filtering (use PL's image browser code thingy)");
     makeForm();

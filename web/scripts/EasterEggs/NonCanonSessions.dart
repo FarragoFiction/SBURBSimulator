@@ -754,7 +754,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Darkness and Love";
             player.land.denizenFeature = new DenizenFeature('Cuthulu');
         }else if( index ==4) {
-            player.copyFromOCDataString("");
+            player.copyFromOCDataString("b=h%3C%0C%40%C3%BE%C2%B2%00Q..%3D&s=,,Fish,Drawing,greenShoes&x=pgAA");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Rabbit", s);
             player.specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT]);
@@ -769,7 +769,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Deserts and Frogs";
             player.land.denizenFeature = new DenizenFeature('Gaia');
         }else if( index ==5) {
-            player.copyFromOCDataString("b=Y%C2%88%C3%BF%C2%AA%C3%BE%C2%9C%00%11..%04&s=,,Video Games,Girls,hardcoreCat&x=AQ== ");
+            player.copyFromOCDataString("b=Y%C2%88%C3%BF%C2%AA%C3%BE%C2%9C%00%11..%04&s=,,Video Games,Girls,hardcoreCat&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Cat", s);
             player.specibus = new Specibus("Claw", ItemTraitFactory.CLAWS, <ItemTrait>[ ItemTraitFactory.EDGED]);

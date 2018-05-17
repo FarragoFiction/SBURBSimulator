@@ -28,7 +28,7 @@ class ContestEntry {
             List<String> parts = data.split("\n");
             for(String line in parts) {
                 //print("adding entry from $line");
-                ret.add(new ContestEntry(line));
+                if(line.isNotEmpty) ret.add(new ContestEntry(line));
             }
             //print("returning entries $ret");
             return ret;
