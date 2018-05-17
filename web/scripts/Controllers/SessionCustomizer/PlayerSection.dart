@@ -1,6 +1,9 @@
 import '../../GameEntities/GameEntity.dart';
+import '../../GameEntities/NPCS.dart';
+import '../../GameEntities/Stats/stat.dart';
 import '../../GameEntities/player.dart';
 import '../../SessionEngine/session.dart';
+import '../../fraymotif.dart';
 import "EntitySection.dart";
 import 'dart:html';
 import "../../PlayerSpriteHandler.dart";
@@ -102,6 +105,69 @@ class IndividualPlayerSection extends IndividualEntitySection{
         TableRowElement row2 = new TableRowElement();
         container.append(row2);
         drawLandShit(row2);
+        drawSpriteShit(row2);
+
+    }
+
+    void drawSpriteShit(TableRowElement row) {
+        DivElement spriteShit = new DivElement();
+        spriteShit.style.display = "inline-block";
+        spriteShit.classes.add("section");
+        row.append(spriteShit);
+
+        LabelElement spriteName = new LabelElement()..text = "Sprite Name:";
+        TextInputElement input = new TextInputElement()..value = player.object_to_prototype.name;
+        input.style.display = "block";
+        input.size = 60;
+
+        LabelElement spritePowerName = new LabelElement()..text = "Sprite Power Name:";
+        TextInputElement inputPower = new TextInputElement();
+        if(player.object_to_prototype.fraymotifs.isNotEmpty) inputPower.value = player.object_to_prototype.fraymotifs.first.name;
+        input.style.display = "block";
+        input.size = 60;
+
+        LabelElement spritePowerDescription = new LabelElement()..text = "Sprite Power Description:";
+        TextInputElement inputDesc = new TextInputElement();
+        if(player.object_to_prototype.fraymotifs.isNotEmpty) inputDesc.value = player.object_to_prototype.fraymotifs.first.desc;
+        inputDesc.style.display = "block";
+        inputDesc.size = 60;
+
+        spriteShit.append(spriteName);
+        spriteShit.append(input);
+        spriteShit.append(spritePowerName);
+        spriteShit.append(inputPower);
+        spriteShit.append(spritePowerDescription);
+        spriteShit.append(inputDesc);
+
+        input.onChange.listen((Event e) {
+            player.object_to_prototype = new PotentialSprite(input.value, null);
+        });
+
+        inputPower.onChange.listen((Event e) {
+            if( player.object_to_prototype.fraymotifs.isNotEmpty) {
+                player.object_to_prototype.fraymotifs.first.name = inputPower.value;
+            }else {
+                Fraymotif f = new Fraymotif(inputPower.value, 1);
+                player.object_to_prototype.fraymotifs.add(f);
+            }
+            player.object_to_prototype.fraymotifs.first.effects.clear();
+            player.object_to_prototype.fraymotifs.first.effects.add(new FraymotifEffect(Stats.POWER, 2, true)); //do damage
+            player.object_to_prototype.fraymotifs.first.effects.add(new FraymotifEffect(Stats.HEALTH, 1, true)); //heal
+        });
+
+        inputDesc.onChange.listen((Event e) {
+            if( player.object_to_prototype.fraymotifs.isNotEmpty) {
+                player.object_to_prototype.fraymotifs.first.desc = inputDesc.value;
+            }else {
+                Fraymotif f = new Fraymotif(inputPower.value, 1);
+                f.desc = inputDesc.value;
+                player.object_to_prototype.fraymotifs.add(f);
+
+            }
+            player.object_to_prototype.fraymotifs.first.effects.clear();
+            player.object_to_prototype.fraymotifs.first.effects.add(new FraymotifEffect(Stats.POWER, 2, true)); //do damage
+            player.object_to_prototype.fraymotifs.first.effects.add(new FraymotifEffect(Stats.HEALTH, 1, true)); //heal
+        });
     }
 
     @override
@@ -116,6 +182,7 @@ class IndividualPlayerSection extends IndividualEntitySection{
 
     void drawLandShit(TableRowElement row) {
         DivElement landShit = new DivElement();
+        landShit.style.display = "inline-block";
         landShit.classes.add("section");
         row.append(landShit);
         LabelElement landName = new LabelElement()..text = "Land Name:";
