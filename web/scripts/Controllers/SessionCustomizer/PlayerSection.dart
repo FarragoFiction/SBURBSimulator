@@ -136,6 +136,18 @@ class IndividualPlayerSection extends IndividualEntitySection{
         landShit.append(consortSound);
         landShit.append(soundInput);
 
+        input.onChange.listen((Event e) {
+            player.land.name = input.value;
+        });
+
+        consortInput.onChange.listen((Event e) {
+            player.land.consortFeature.name = consortInput.value;
+        });
+
+        soundInput.onChange.listen((Event e) {
+            player.land.consortFeature.sound = soundInput.value;
+        });
+
     }
 
     //TODO eventually support it taking in either an old data string or a new one
