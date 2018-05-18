@@ -131,7 +131,9 @@ class SessionFinderControllerJunior extends SimController {
     }else{
       initial_seed = getRandomSeed();
       session = new Session(initial_seed);
-      session.startSession();
+      checkEasterEgg(session);
+      SimController.instance.easterEggCallBack(session);
+      //session.startSession();
     }
   }
 
