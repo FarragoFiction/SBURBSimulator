@@ -31,8 +31,8 @@ Future<Null> main() async {
     session.getPlayersReady();
     container = querySelector("#story");
 
-    todo("PlayerSection has a text area box for putting a dataUrl from old customizer to alter players. (that page just turns into a dataString generator, not used stand alone anymore)");
-    todo("each player has a text box that can take in new or old data strings");
+    todo("special sessions work (and don't get replaced)");
+    todo("can customize denizen");
     todo("CarapaceSection lets you remove the selected item from the sylladex");
     todo("new way to serialize a player/entity that doesn't care about brevity (can replace any player with this new datastring)");
     todo("Can serialize a session");

@@ -190,6 +190,9 @@ class IndividualPlayerSection extends IndividualEntitySection{
         input.style.display = "block";
         input.size = 60;
 
+        LabelElement denizenName = new LabelElement()..text = "Denizen:";
+        TextInputElement denizenInput = new TextInputElement()..value = player.land.denizenFeature.name;
+
         LabelElement consortName = new LabelElement()..text = "Consorts:";
         TextInputElement consortInput = new TextInputElement()..value = player.land.consortFeature.name;
 
@@ -198,6 +201,8 @@ class IndividualPlayerSection extends IndividualEntitySection{
 
         landShit.append(landName);
         landShit.append(input);
+        landShit.append(denizenName);
+        landShit.append(denizenInput);
         landShit.append(consortName);
         landShit.append(consortInput);
         landShit.append(consortSound);
@@ -209,6 +214,10 @@ class IndividualPlayerSection extends IndividualEntitySection{
 
         consortInput.onChange.listen((Event e) {
             player.land.consortFeature.name = consortInput.value;
+        });
+
+        denizenInput.onChange.listen((Event e) {
+            player.land.denizenFeature.name = denizenInput.value;
         });
 
         soundInput.onChange.listen((Event e) {
