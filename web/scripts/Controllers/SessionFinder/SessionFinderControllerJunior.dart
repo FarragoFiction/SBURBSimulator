@@ -107,7 +107,9 @@ class SessionFinderControllerJunior extends SimController {
     (querySelector("#button")as ButtonElement).disabled =true;
     print("ab is going to make a session");
     Session session = new Session(SimController.instance.initial_seed);
-    session.startSession();
+    checkEasterEgg(session);
+    SimController.instance.easterEggCallBack(session);
+    //session.startSession();
   }
 
   @override

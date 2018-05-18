@@ -84,7 +84,8 @@ Future<Null> drawOneSummaryAsync(SessionSummary summary, Element container) asyn
     tr.append(td1);
     tr.append(td2);
     tr.append(td3);
-
+    checkEasterEgg(session);
+    await SimController.instance.easterEggCallBack(session);
     await session.startSession();
     SessionSummary simSummary = session.generateSummary();
     addMVPRow(table, summary, simSummary);

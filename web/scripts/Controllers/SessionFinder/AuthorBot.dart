@@ -39,6 +39,8 @@ abstract class AuthorBot extends SimController {
   }
 
   Future<Null> startSessionThenSummarize(Session session) async{
+    checkEasterEgg(session);
+    await SimController.instance.easterEggCallBack(session);
     await session.startSession();
     print("I think the session stopped!");
     summarizeSession(session);

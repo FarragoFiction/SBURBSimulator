@@ -237,6 +237,8 @@ class Session {
         mutator.syncToSession(this);
         logger.info("Session made with ${sessionHealth} health.");
        resetAvailableClasspects();
+        getPlayersReady();
+        reinit("new session");
     }
 
     Moon stringToMoon(String string) {
@@ -1119,20 +1121,13 @@ class Session {
         }
     }
 
-    //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Session> startSession([bool dontRenit = false]) async {
+    //players should be created before i start
+    Future<Session> startSession() async {
         logger.info("session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
-        //only do this shit if you'e completely virgin
-        if(aliensClonedOnArrival.isEmpty && !dontRenit) {
-            reinit("start session");
-            getPlayersReady();
-        }
         logger.info("session has ${players.length} players");
-
-
         /*
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg(this);
@@ -1145,8 +1140,6 @@ class Session {
             //
             load(this,players, getGuardiansForPlayers(players), "");
         }
-
-
         return completer.future;
     }
 

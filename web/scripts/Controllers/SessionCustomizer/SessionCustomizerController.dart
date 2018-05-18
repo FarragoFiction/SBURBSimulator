@@ -27,8 +27,8 @@ Future<Null> main() async {
         SimController.instance.initial_seed = tmp;
     }
     session = new Session(SimController.instance.initial_seed);
-    session.reinit("initialization from customizer");
-    session.getPlayersReady();
+    checkEasterEgg(session);
+    await SimController.instance.easterEggCallBack(session);
     container = querySelector("#story");
 
     todo("special sessions work (and don't get replaced)");
@@ -69,7 +69,7 @@ void makeStartButton() {
     startButton.onClick.listen((MouseEvent e){
         session.logger.info("DEBUG CUSTOM SESSION: starting session from button press");
         container.appendHtml("Starting a session with ${session.bigBads.length} big bads.");
-        session.startSession(true); //don't reinit
+        session.startSession();
     });
 }
 
