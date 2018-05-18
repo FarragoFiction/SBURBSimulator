@@ -43,7 +43,6 @@ Future<Null> main() async {
   SimController.instance.shareableURL();
   Session session = new DeadSession(SimController.instance.initial_seed);
   checkEasterEgg(session);
-  await SimController.instance.easterEggCallBack(session);
   session.startSession();
 }
 

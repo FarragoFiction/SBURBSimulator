@@ -40,39 +40,11 @@ abstract class AuthorBot extends SimController {
 
   Future<Null> startSessionThenSummarize(Session session) async{
     checkEasterEgg(session);
-    await SimController.instance.easterEggCallBack(session);
     await session.startSession();
     print("I think the session stopped!");
     summarizeSession(session);
     print("I think i summarized the session!");
   }
-
-
-
-
-  @override
-  void checkSGRUB() {
-    //throw "ab does not do this";
-  }
-
-
-  @override
-  void easterEggCallBack(Session session) {
-    //only diff from story is don't check SGRUB
-    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
-    if(doNotRender == true){
-      session.intro();
-    }else{
-      load(session, session.players, getGuardiansForPlayers(session.players),""); //in loading.js
-    }
-  }
-
-  @override
-  void easterEggCallBackRestart(Session session) {
-    //initializePlayers(session.players,session); //need to redo it here because all other versions are in case customizations
-    session.intro();
-  }
-
 
   @override
   void processCombinedSession(Session session ) {

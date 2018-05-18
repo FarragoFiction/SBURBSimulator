@@ -157,7 +157,6 @@ class DeadSession extends Session {
         }
         if(id ==612) this.session_id = 413;
         checkEasterEgg(tmpcurSessionGlobalVar);
-        await SimController.instance.easterEggCallBack(tmpcurSessionGlobalVar);
         await tmpcurSessionGlobalVar.startSession();
     }
 

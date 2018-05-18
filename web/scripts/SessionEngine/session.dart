@@ -717,15 +717,12 @@ class Session {
     Future<Null> restartSession() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        await (SimController.instance.easterEggCallBackRestart);
-        SimController.instance.easterEggCallBackRestart(this);
     }
 
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await checkEasterEgg(this);
-        SimController.instance.easterEggCallBackRestartScratch(this);
     }
 
     Future<Null> reckoningTick([num time]) async {
@@ -1070,10 +1067,6 @@ class Session {
 
         this.stats.ectoBiologyStarted = ectoSave;
         this.stats.scratched = true;
-
-        //don't need to call easter egg directly.
-       this.easterCallBackScratch(this); //in the controller.
-        //SimController.instance.restartSession(); //in controller
     }
 
     void checkSGRUB() {
@@ -1134,11 +1127,12 @@ class Session {
         //print(npcHandler.debugNPCs());
         await SimController.instance.easterEggCallBack(this);
         */
+        print("about to start, seed is ${rand.spawn().nextInt()}");
         if (doNotRender == true) {
             intro();
         } else {
             //
-            load(this,players, getGuardiansForPlayers(players), "");
+            //load(this,players, getGuardiansForPlayers(players), "");
         }
         return completer.future;
     }

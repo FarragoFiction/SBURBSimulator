@@ -134,31 +134,6 @@ abstract class SimController {
     }
 
 
-    //they aren't full callbacks anymore but live here so regular vs ab etc have diff behaviors
-    void easterEggCallBack(Session s) {
-        //initializePlayers(s.players, s); //will take care of overriding players if need be.
-        s.checkSGRUB();
-        if (doNotRender == true) {
-            s.intro();
-        } else {
-            //
-            load(s,s.players, getGuardiansForPlayers(s.players), "");
-        }
-    }
-
-    void easterEggCallBackRestart(Session s) {
-        //initializePlayers(s.players, s); //initializePlayers
-        s.intro(); //<-- instead of load, bc don't need to load.
-
-    }
-
-    void easterEggCallBackRestartScratch(Session s) {
-        scratchEasterEggCallBack(s);
-    }
-
-
-
-
     void recoverFromCorruption(Session s) {
         if(s != null) s.mutator.renderEndButtons(SimController.instance.storyElement, s);
         if(s != null) s.stats.doomedTimeline = true; //TODO do i really need this, but the sim sometimes tries to keep running after grim crashes

@@ -28,7 +28,6 @@ Future<Null> main() async {
     }
     session = new Session(SimController.instance.initial_seed);
     checkEasterEgg(session);
-    await SimController.instance.easterEggCallBack(session);
     container = querySelector("#story");
 
     todo("special sessions work (and don't get replaced)");

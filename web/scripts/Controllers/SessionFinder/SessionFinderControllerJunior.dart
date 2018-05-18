@@ -108,12 +108,11 @@ class SessionFinderControllerJunior extends SimController {
     print("ab is going to make a session");
     Session session = new Session(SimController.instance.initial_seed);
     checkEasterEgg(session);
-    SimController.instance.easterEggCallBack(session);
+    doSession(session);
     //session.startSession();
   }
 
-  @override
-  void easterEggCallBack(Session session) {
+  void doSession(Session session) {
     //initializePlayers(session.players, session);  //need to redo it here because all other versions are in case customizations
     //aaaaand. done.
     sessionsSimulated.add(session.session_id);
@@ -132,7 +131,7 @@ class SessionFinderControllerJunior extends SimController {
       initial_seed = getRandomSeed();
       session = new Session(initial_seed);
       checkEasterEgg(session);
-      SimController.instance.easterEggCallBack(session);
+      doSession(session);
       //session.startSession();
     }
   }

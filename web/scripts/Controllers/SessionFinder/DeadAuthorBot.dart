@@ -61,7 +61,6 @@ abstract class DeadAuthorBot extends DeadSimController {
   Future<Null> startSessionThenSummarize(Session session) async{
     print("starting the session sane style");
     checkEasterEgg(session);
-    await SimController.instance.easterEggCallBack(session);
     await session.startSession();
     print("I think the session stopped!");
     summarizeSession(session);
