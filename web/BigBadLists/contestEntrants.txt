@@ -99,3 +99,37 @@
 {"bbName":"The Other","entrantName":"trinityWolf","imagesCSV":"imagesCSV","text":"About: This entity was a corrupted Thief of Heart who, in their quest to bring peace, decided the solution was to put their own mind into as many other players as possible. After taking over the rest of their session-mates, they entered the new universe, but they found that the species within were less susceptible to their abilities. They needed to find a host similar to them... something almost like a daughter.-<br>Appearance conditions/goal: this villain can appear in any session where a Thief, Rogue, or Heart player has a land relating to glass, insects, or machinery. If such conditions are met, the player in this land can encounter a cathedral-like building, which contains the Summoning Engine. If the cathedral is entered, it is too late. The Other will control this player and use them as a puppet, attempting to assert control over others with any means necessary. Once they have a physical vessel, they can adapt the Engine to control others as well. Those who are immune, such as Mind players or those with a high free will, will be murdered. -<br>Likes: Insects, Technology, Cake-<br>Dislikes: Weasels, Fossils -<br>Defeat condition: a Mind Player must assist the puppets in breaking free, or all afflicted must be killed.","jrComment":"jrComment","shogunComment":"shogunComment"}
 
 {"bbName":"Walm","entrantName":"gravitatedAgitated","imagesCSV":"imagesCSV","text":"Some unlucky sessions fall under the influence of The Walm-<br>A single Walm will open up on a land, and slowly but surely it will take over the session. If it manages to fully take over a land, it renders any potential godtiering useless by replacing the quest bed with a Walm-Tier bed.-<br>If it takes over a space player's land, the process to create a frog is rendered moot, due to The Walm owning the forge. -<br>If it takes over a time player's land, scratching becomes highly unlikely unless the player buys the privilege.-<br>May appear randomly in any session, but it is still extremely rare.","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+
+{"bbName":"Jack Alltrades","entrantName":"Ok4y","imagesCSV":"imagesCSV","text":" Jack Alltrades is the sleeping god of the Derse moon and is by far the most powerful carapracian , his powers far exceed that of the black king and queen. He was the original black carapracian who eventually cloned himself to form both the queen and king of Derse who then cloned themselves to form the mindless cararacians we know and love. Gradually the state of Derse deteriorated while Prospit well.... prospered. The sad state of Derse, the stupidity of its inhabitants, and the sucess of Prospit all greatly angered Jack however he cannot do anything about it till he awakens once again.\nAppearance:  Like a human but with black skin,  white eyes, and white hair.\nSummoning method: There is a small chance of him appearing if both the black king and black queen fail horribly in thier duties. Such as if the black king fails to defeat the white king or if the queen's ring is taken early on in the game. \nLikes: Cards, Murder, Profit, Success, and low key likes shipping\nDislikes: Players, Incompetence, Prospit, especially hates the white royalty and prospit dreamers.\nDefeat Condition:  he can be defeated in battle","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+{"bbName":"The Nice Guy","entrantName":"entrantName","imagesCSV":"imagesCSV","text":"About: This strange, depraved monstrosity can spawn in any session with one or more cisgendered female players. He will first appear as odd DMs coming out of nowhere before taking physical form upon Skaia. He will then try (and usually fail) to seduce said female players. Once he fails, he will go on a murderous Rage throughout the session, stopping at nothing to get what he wants\nLikes: Girls, Anime, Elitism, Anti-SJWís\nDislikes: Actually nice people, Being Fucking Courteous, denial\nDefeat Condition: I giant NO from a girl amplified by a Rage player","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+{"bbName":"The Discord","entrantName":"retroStrategist","imagesCSV":"imagesCSV","text":"About: The Discord is a strange thing, it speaks with many voices from one mouth. It appears to be a head, but it is so much more. For the Discord seeks nothing but chaos, and shitposts. Fear the power of the @ everyone, for it can wipe out a session in an instant. Everyone dies.(edited)\nLikes: Some spicy memes, shitposting, emojis, pinging everyone for fun\nDislikes: Order, moderators, bad memes\nThe Discord can hijack communication in a sessions, making a player ping everyone and making everyone pissed at them\nDefeat conditions: 1. A blood player becomes the mod of the Discord, ending the rampant shitposting in the general channel, 2. A Hope, Rage, or Breath player just memes the everloving crap out of it, causing the server to crash or shut dow","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+{"bbName":"The Powlful Being","entrantName":"Fae","imagesCSV":"imagesCSV","text":"Unsettling, mostly quiet, but its cry strikes fear into all those who hear it. Almost like a horrorterror in appearance and power but only if you look or hang around it for too long.\nThey want to absorb the clouds of skaia as well as other power sources in order to become the most powlful being. It can change size in order to intimidate people.\nLikes: owls, feathers, siphonable energy, strongly associates with void, light, hope, and rage players, bird puns\nDislikes: rodents (its food), strong sources of light, loud noises","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+{"bbName":"the Muse of Light","entrantName":"Echo","imagesCSV":"imagesCSV","text":"Personality: Patient, energetic, calm, idealistic, loyal, internal\n\"A Lipio troll who came out of a failed session. She \"collects\" all combinations of species, blood color, class, aspect, and moon. She believes that this way, she will find a doomed version of her dead friends to be with forever.\"\nGoal: To find alternate versions of her friends\nLikes: archaeology, dating, Dream players, Dungeon Mastering, fine art, fairies, Graces, Guides, mutant-blood trolls, Sages, Scouts, Scribes, Smiths \nDislikes: Babies, baking, classism, cooking, Knights, murder, olive-blood trolls, Space players, stand-up comedy, Time players\nDefeat Conditions: Battle her with a Page of Breath who is at least halfway up their echeladder\nWeapon: Canoe oar\nQuirk: The q-u-ick brown fox j-u-mps over the lazy dog. Sphinx of black q-u-artz, j-u-dge my vow.","jrComment":"jrComment","shogunComment":"shogunComment"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
