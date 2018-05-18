@@ -59,6 +59,7 @@ class DeadSession extends Session {
             oddsOfSuccess += rand.nextDouble(0.4); //fu almost can't lose. but if he does ;) ;) ;)
         }
         makeThemes();
+        getPlayersReady();
         timeTillReckoning = minTimeTillReckoning; //pretty long compared to a normal session, but not 16 times longer. what will you do?
     }
 
