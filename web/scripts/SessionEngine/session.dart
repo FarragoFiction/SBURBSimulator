@@ -1120,7 +1120,7 @@ class Session {
     }
 
     //TODO since this lives in the session now, need to remember that ive already started a session
-    Future<Session> startSession([bool dontRenit]) async {
+    Future<Session> startSession([bool dontRenit = false]) async {
         logger.info("session is starting");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
@@ -1132,10 +1132,20 @@ class Session {
         }
         logger.info("session has ${players.length} players");
 
+
+        /*
         //we await this because of the fan ocs being loaded from file like assholes.
         checkEasterEgg(this);
         //print(npcHandler.debugNPCs());
         await SimController.instance.easterEggCallBack(this);
+        */
+        if (doNotRender == true) {
+            intro();
+        } else {
+            //
+            load(this,players, getGuardiansForPlayers(players), "");
+        }
+
 
         return completer.future;
     }
