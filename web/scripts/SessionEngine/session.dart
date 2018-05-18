@@ -1131,8 +1131,7 @@ class Session {
         if (doNotRender == true) {
             intro();
         } else {
-            //
-            //load(this,players, getGuardiansForPlayers(players), "");
+            load(this,players, getGuardiansForPlayers(players), "");
         }
         return completer.future;
     }
