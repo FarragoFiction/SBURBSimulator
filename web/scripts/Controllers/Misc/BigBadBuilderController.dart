@@ -34,14 +34,18 @@ Future<Null> start() async {
    */
 
   todo("maybe a bool for all target conditions for NOT. is NOT carapace, is NOT time player, etc.");
+  todo("big bads need 0 or more custom fraymotif names");
+  todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
 
   todo("make scene effects like kill, empower, drain, cause strife, order (add one new high priority scene), control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
   todo("isAspect Player (any just checks for is a player)");
   todo("isClass Player (any just checks for is a player)");
   todo("hasInterest (if they aren't a player automatically false)");
+  todo("player effect, drain/add grist");
   todo("land condition: isMoon");
   todo("land condition: isLand");
   todo("land condition: isDestroyed");
+  todo("land effect, rename land (can rename whole thing, reference original name, or parts of original name (first word, second word)");
   todo("figure out how effects will work (even summon scenes can have effects)");
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
   todo("isPrototypedWith (for sprites or carapace with rings)");
@@ -63,6 +67,9 @@ Future<Null> start() async {
   todo("isMurderMode");
   todo("isRobot");
   todo("isBrainGhost");
+  todo("magical item that grants unconditional immortality to the wearer???");
+  todo("scenes can have different outcome by being duplicated more or less with different triggers and effects ");
+  todo("target based on 'recently broke up' or 'recently got together' with someone");
 
 
 
@@ -70,8 +77,6 @@ Future<Null> start() async {
   todo("big bads have intro mod flavor text (like dystopic empire)");
   todo("scenes should have effects, summon scenes all start with 'is active'");
   todo("teach AB to write bigBadSummaries to cache");
-  todo("big bads need 0 or more custom fraymotif names");
-  todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("have anything flagged as a big bad be something players try to strife, if it seems defeatable");
   todo("any CROWNED CARAPACE that has killed a player is flagged as big bad");
   todo("any unconditionally immortal player that has killed a player is flagged as big bad");
