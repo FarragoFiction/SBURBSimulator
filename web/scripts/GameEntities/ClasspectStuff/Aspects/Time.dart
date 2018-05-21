@@ -19,7 +19,7 @@ class Time extends Aspect {
 
     @override
     AspectPalette palette = new AspectPalette()
-        ..accent = "#ff0000"
+        ..accent = "#3da35a"
         ..aspect_light = '#FF2106'
         ..aspect_dark = '#AD1604'
         ..shoe_light = '#030303'
