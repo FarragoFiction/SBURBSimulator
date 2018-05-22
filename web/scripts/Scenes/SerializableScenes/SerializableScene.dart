@@ -124,8 +124,8 @@ void syncForm() {
         String effectsStringLiving = json["effectsForLiving"];
         String effectsStringLand = json["effectsForLands"];
 
-        loadEffectsLiving(triggerContionsStringLiving);
-        loadEffectsLand(triggerContionsStringLand);
+        loadEffectsLiving(effectsStringLiving);
+        loadEffectsLand(effectsStringLand);
     }
 
     void loadEffectsLiving(String weirdString) {
