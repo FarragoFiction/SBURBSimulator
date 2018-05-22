@@ -18,10 +18,6 @@ class TargetHasCrown extends TargetConditionLiving {
     TargetHasCrown(SerializableScene scene) : super(scene){
     }
 
-    String getItemName() {
-        return "TODO: GET CROWN NAME";
-    }
-
 
     @override
     void renderForm(Element div) {
@@ -36,9 +32,6 @@ class TargetHasCrown extends TargetConditionLiving {
         return new TargetHasCrown(scene);
     }
 
-
-
-
     @override
     void syncFormToMe() {
             //does nothing
@@ -50,7 +43,7 @@ class TargetHasCrown extends TargetConditionLiving {
     }
     @override
     void copyFromJSON(JSONObject json) {
-
+        //nothing to do
     }
     @override
     List<GameEntity> filter(List<GameEntity> list) {

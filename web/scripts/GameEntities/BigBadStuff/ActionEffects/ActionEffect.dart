@@ -6,7 +6,10 @@ action effects decide what happens when a scene triggers.
  */
 abstract class ActionEffect {
     SerializableScene scene;
+    static String IMPORTANTWORD = "importantWord";
+
     String name = "Generic Effect";
+    String importantWord;
 
     ActionEffect(SerializableScene scene);
 
@@ -15,6 +18,15 @@ abstract class ActionEffect {
     void syncFormToMe();
     void copyFromJSON(JSONObject json);
     void applyEffect();
+    ActionEffect makeNewOfSameType();
+
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json[IMPORTANTWORD] = importantWord;
+        json["name"] = name;
+        return json;
+    }
 }
 
 
