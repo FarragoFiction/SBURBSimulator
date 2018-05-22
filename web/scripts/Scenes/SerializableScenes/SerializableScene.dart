@@ -129,6 +129,7 @@ void syncForm() {
     }
 
     void loadEffectsLiving(String weirdString) {
+      if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
@@ -140,6 +141,7 @@ void syncForm() {
     }
 
     void loadEffectsLand(String weirdString) {
+        if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
