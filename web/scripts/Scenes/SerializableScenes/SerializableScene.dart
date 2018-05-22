@@ -135,7 +135,7 @@ void syncForm() {
             JSONObject j = new JSONObject();
             j.json = d;
             ActionEffect tc = EffectEntity.fromJSON(j, this);
-            effectsForLands.add(tc);
+            effectsForLiving.add(tc);
         }
     }
 
