@@ -67,6 +67,7 @@ class BigBad extends NPC {
       loadStartMechanisms(startScenesString);
 
       String scenesString = json["scenes"];
+      print("scenes string is $scenesString");
       loadScenes(scenesString);
   }
 
@@ -75,7 +76,7 @@ class BigBad extends NPC {
       if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            //print("dynamic json thing is  $d");
+            print("dynamic json thing for action scene is is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
             SerializableScene ss = new SerializableScene(session);
@@ -184,7 +185,7 @@ class BigBadForm {
             s.renderForm(startSceneSection);
         }
 
-        for(SummonScene s in bigBad.scenes) {
+        for(SerializableScene s in bigBad.scenes) {
             s.renderForm(sceneSection);
         }
         syncDataBoxToBigBad();
