@@ -53,7 +53,7 @@ class  SerializableScene extends Scene {
   void renderContent(Element div) {
       //session.logger.info("TEST BIG BAD: rendering content");
 
-      String displayText = "$flavorText";
+      String displayText = "<br>$flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       DivElement content = new DivElement();
       div.append(content);
