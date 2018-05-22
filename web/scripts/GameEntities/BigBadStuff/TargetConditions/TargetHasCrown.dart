@@ -23,7 +23,7 @@ class TargetHasCrown extends TargetConditionLiving {
     void renderForm(Element div) {
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br>Target Entity must be CROWNED (even if they can't use it). <br>");
+        me.setInnerHtml("<br><br><br><b>Has Crown:</b><br>Target Entity must be CROWNED (even if they can't use it). <br><br>");
         syncToForm();
     }
 
