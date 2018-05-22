@@ -269,6 +269,11 @@ class SceneForm {
     TextAreaElement flavorText;
     CheckboxInputElement targetOneElement;
 
+    Element targetLivingSection;
+    Element targetLandSection;
+    Element effectLivingSection;
+    Element effectLandSection;
+
 
     SceneForm(SerializableScene this.scene, parentContainer) {
         container = new DivElement();
@@ -301,22 +306,47 @@ class SceneForm {
         nameElement.value = scene.name;
         flavorText.value = scene.flavorText;
         targetOneElement.checked = scene.targetOne;
+
+        for (TargetCondition s in scene.triggerConditionsLiving) {
+            s.renderForm(targetLivingSection);
+        }
+
+        for (TargetCondition s in scene.triggerConditionsLand) {
+            s.renderForm(targetLandSection);
+        }
+
+        for (ActionEffect s in scene.effectsForLiving) {
+            s.renderForm(effectLivingSection);
+        }
+
+        for (ActionEffect s in scene.effectsForLands) {
+            s.renderForm(effectLandSection);
+        }
         syncDataBoxToScene();
     }
 
 
     void drawAddTriggerConditionButton() {
         //trigger conditions know how to add their own damn selves
+        targetLandSection = new DivElement();
+        targetLivingSection = new DivElement();
+        container.append(targetLivingSection);
+        container.append(targetLandSection);
 
-        TargetConditionLiving.drawSelectTriggerConditions(container, scene);
-        TargetConditionLand.drawSelectTriggerConditions(container, scene);
+        TargetConditionLiving.drawSelectTriggerConditions(container, scene, targetLivingSection);
+        TargetConditionLand.drawSelectTriggerConditions(container, scene, targetLandSection);
 
     }
 
     void drawAddActionEffectButton() {
+        effectLandSection = new DivElement();
+        effectLivingSection = new DivElement();
+        container.append(effectLivingSection);
+        container.append(effectLandSection);
+
         //action effects know how to add their own damn selves
-        EffectEntity.drawSelectActionEffects(container, scene);
-        EffectLand.drawSelectActionEffects(container, scene);
+        EffectEntity.drawSelectActionEffects(container, scene,effectLivingSection);
+        EffectLand.drawSelectActionEffects(container, scene,effectLandSection);
 
     }
 

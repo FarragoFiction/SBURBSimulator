@@ -55,12 +55,10 @@ abstract class EffectLand extends ActionEffect {
   }
 
 
-  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner) {
+  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner, Element triggersSection) {
       DivElement container = new DivElement();
 
-      DivElement triggersSection = new DivElement();
       triggersSection.setInnerHtml("<h3>Land Effects:</h3>Effects Applied In Order<br>");
-      div.append(triggersSection);
       div.append(container);
       List<ActionEffect> effects;
       effects = EffectLand.listPossibleEffects(owner);
@@ -139,12 +137,10 @@ abstract class EffectEntity extends ActionEffect {
   }
 
 
-  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner) {
+  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner, Element triggersSection) {
       DivElement container = new DivElement();
 
-      DivElement triggersSection = new DivElement();
       triggersSection.setInnerHtml("<h3>Entity Effects:</h3>Effects Applied In Order.<br>");
-      div.append(triggersSection);
       div.append(container);
       List<ActionEffect> effects;
       effects = EffectEntity.listPossibleEffects(owner);

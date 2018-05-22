@@ -40,12 +40,10 @@ abstract class TargetConditionLiving extends TargetCondition {
 
   List<GameEntity> filter(List<GameEntity> list);
 
-  static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner) {
+  static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, Element triggersSection) {
       DivElement container = new DivElement();
 
-      DivElement triggersSection = new DivElement();
       triggersSection.setInnerHtml("<h3>Entity Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
-      div.append(triggersSection);
       div.append(container);
       List<TargetCondition> conditions;
 
@@ -140,12 +138,10 @@ abstract class TargetConditionLand extends TargetCondition {
       return ret;
   }
 
-  static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner) {
+  static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, Element triggersSection) {
       DivElement container = new DivElement();
 
-      DivElement triggersSection = new DivElement();
       triggersSection.setInnerHtml("<h3>Land Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
-      div.append(triggersSection);
       div.append(container);
       List<TargetCondition> conditions;
       conditions = TargetConditionLand.listPossibleTriggers(owner);

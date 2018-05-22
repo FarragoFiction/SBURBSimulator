@@ -6109,3 +6109,11 @@ it's....got a shit ton left.
 
 I'm so confused.
 
+~~~
+
+ab is still not sane bu ti need to work on ai.
+
+action scenes currently don't load/save right.
+
+
+both from a big bad and from the data url itself.
